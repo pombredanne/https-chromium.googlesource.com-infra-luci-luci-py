@@ -1,6 +1,6 @@
 {
   "base_url": "https://github.com/luci",
   "enabled_paths": ["client"],
-  "enabled_refglobs": ["refs/**"],
+  "enabled_refglobs": ["refs/heads/master", "refs/heads/stable"],
   "path_map_exceptions": {"client": "client-py"}
 }
