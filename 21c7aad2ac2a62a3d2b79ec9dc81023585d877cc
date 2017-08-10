@@ -22,6 +22,30 @@
       "revId": "21c7aad2ac2a62a3d2b79ec9dc81023585d877cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105caab2_8e41a808",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-10T01:51:32Z",
+      "side": 1,
+      "message": "I was trying to be smarty pants but yeah that was silly, sorry about that.",
+      "parentUuid": "d5e3e984_856f7d99",
+      "range": {
+        "startLine": 226,
+        "startChar": 4,
+        "endLine": 229,
+        "endChar": 43
+      },
+      "revId": "21c7aad2ac2a62a3d2b79ec9dc81023585d877cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
