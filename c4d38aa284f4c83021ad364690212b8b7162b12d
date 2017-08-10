@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e6e15e5_ad2efeb9",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-08-10T23:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df5e1619_db989690",
+      "revId": "c4d38aa284f4c83021ad364690212b8b7162b12d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fce62b38_8e45c184",
         "filename": "appengine/config_service/storage.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "c4d38aa284f4c83021ad364690212b8b7162b12d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a286c777_73a89b1a",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-08-10T23:06:36Z",
+      "side": 1,
+      "message": "Done (first option; second is kind of messy with the condition check per tuple element).",
+      "parentUuid": "fce62b38_8e45c184",
+      "revId": "c4d38aa284f4c83021ad364690212b8b7162b12d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
