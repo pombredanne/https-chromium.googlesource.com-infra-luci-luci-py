@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df5e1619_db989690",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-08-10T22:24:52Z",
+      "side": 1,
+      "message": "please add an explicit comment that this field is not populated if specific revision is requested and a TODO to fix that",
+      "revId": "c4d38aa284f4c83021ad364690212b8b7162b12d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fce62b38_8e45c184",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-08-10T22:24:52Z",
+      "side": 1,
+      "message": "i think \n\nlatest_revisions.get(cs) or (None, None)\n\nwould be simpler.\n\n-------\n\nAlternative:\n\ncurrently both statements @L135 and L140 have the knowledge that we want to return both latest revision and url. It\u0027d be simpler if only one of them knew that. It can be achieved by making a dict {id-\u003eentity} instead of {id-\u003etuple} @L135",
+      "revId": "c4d38aa284f4c83021ad364690212b8b7162b12d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
