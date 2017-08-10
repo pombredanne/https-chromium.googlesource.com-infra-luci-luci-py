@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e608292f_8f1a576e",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-08-10T16:06:02Z",
+      "side": 1,
+      "message": "Why spell this one out and not the one on 381?",
+      "range": {
+        "startLine": 383,
+        "startChar": 33,
+        "endLine": 383,
+        "endChar": 38
+      },
+      "revId": "ca8303c0401d9b67451ecb3a28c66c8af64bd4ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
