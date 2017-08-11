@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e980d9e4_2a0cd551",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-11T15:32:33Z",
+      "side": 1,
+      "message": "you could even logging.error",
+      "revId": "f12f81f9dbcf64749ed878c2ee59975c14290158",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8af10415_b8cc196e",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-11T15:32:33Z",
+      "side": 1,
+      "message": "Reminder in theory you shouldn\u0027t change the number but it\u0027s fine here because we never used protorpc encoded messages.",
+      "range": {
+        "startLine": 277,
+        "startChar": 46,
+        "endLine": 277,
+        "endChar": 48
+      },
+      "revId": "f12f81f9dbcf64749ed878c2ee59975c14290158",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
