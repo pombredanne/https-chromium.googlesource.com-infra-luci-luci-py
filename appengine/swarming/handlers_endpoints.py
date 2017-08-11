@@ -383,6 +383,10 @@ class SwarmingTasksService(remote.Service):
       task_request.init_new_request(
           request, acl.can_schedule_high_priority_tasks(), secret_bytes)
 
+      # TODO(crbug.com/731847): If request.service_account is an email, contact
+      # the token server to generate "OAuth token grant", and put it into
+      # request.service_account_token.
+
       result_summary = task_scheduler.schedule_request(request, secret_bytes)
     except (datastore_errors.BadValueError, TypeError, ValueError) as e:
       raise endpoints.BadRequestException(e.message)
