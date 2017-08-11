@@ -951,6 +951,7 @@ def get_dimensions():
     dimensions[u'machine_type'] = [machine_type]
 
   if platforms.is_gce():
+    dimensions[u'image'] = [platforms.gce.get_image()]
     dimensions[u'zone'] = [platforms.gce.get_zone()]
 
   loc = get_locale()
