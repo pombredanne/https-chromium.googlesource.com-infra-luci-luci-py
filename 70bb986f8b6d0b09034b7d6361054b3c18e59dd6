@@ -52,6 +52,24 @@
       "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1041a006_19cd7f0d",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-12T00:43:12Z",
+      "side": 1,
+      "message": "Oh, nice. Didn\u0027t know about it.",
+      "parentUuid": "18b6098e_cdc876ea",
+      "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
