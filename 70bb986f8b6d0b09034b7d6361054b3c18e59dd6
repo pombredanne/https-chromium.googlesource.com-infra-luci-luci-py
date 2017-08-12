@@ -34,6 +34,24 @@
       "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18b6098e_cdc876ea",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-08-12T00:22:12Z",
+      "side": 1,
+      "message": "No, that would be instance/attributes/metadata/image. This is instance/image. It\u0027s present on some VMs but not on others.",
+      "parentUuid": "832c3f2d_c2ec9cf2",
+      "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
