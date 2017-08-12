@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85858bdc_88bb7890",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-08-12T00:15:34Z",
+      "side": 1,
+      "message": "Apparently image is \"\" in us-central1-a? Added \"if image\" check so empty string doesn\u0027t get added.",
+      "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
