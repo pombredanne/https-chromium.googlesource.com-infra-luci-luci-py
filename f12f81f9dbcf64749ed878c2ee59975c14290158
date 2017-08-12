@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e1ad1c76_8a3139d5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-12T00:08:24Z",
+      "side": 1,
+      "message": "Nah, warning is fine. I plan to use prefix search for \"crbug.com/731847\" anyway, so its doesn\u0027t really matter.",
+      "parentUuid": "e980d9e4_2a0cd551",
+      "revId": "f12f81f9dbcf64749ed878c2ee59975c14290158",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8af10415_b8cc196e",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "f12f81f9dbcf64749ed878c2ee59975c14290158",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7158884_f0bdb607",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-12T00:08:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8af10415_b8cc196e",
+      "range": {
+        "startLine": 277,
+        "startChar": 46,
+        "endLine": 277,
+        "endChar": 48
+      },
+      "revId": "f12f81f9dbcf64749ed878c2ee59975c14290158",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
