@@ -16,6 +16,24 @@
       "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "832c3f2d_c2ec9cf2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-12T00:20:38Z",
+      "side": 1,
+      "message": "The \"image\" tag is not GCE standard. Does MP add it to the templates?",
+      "parentUuid": "85858bdc_88bb7890",
+      "revId": "70bb986f8b6d0b09034b7d6361054b3c18e59dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
