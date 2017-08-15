@@ -22,6 +22,29 @@
       "revId": "f82013510f00d463b22cba266ae9b40a2be7777c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a846e6e_281a0d8a",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-15T18:48:37Z",
+      "side": 1,
+      "message": "pass this from outside, this should be Storage._hash_algo.",
+      "range": {
+        "startLine": 848,
+        "startChar": 24,
+        "endLine": 848,
+        "endChar": 38
+      },
+      "revId": "f82013510f00d463b22cba266ae9b40a2be7777c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
