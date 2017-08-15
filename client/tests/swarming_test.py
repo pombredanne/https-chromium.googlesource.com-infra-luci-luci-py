@@ -112,6 +112,7 @@ def gen_request_data(properties=None, **kwargs):
       'outputs': [],
       'secret_bytes': None,
     },
+    'service_account': None,
     'tags': ['tag:a', 'tag:b'],
     'user': 'joe@localhost',
   }
@@ -351,11 +352,11 @@ class TestSwarmingTrigger(NetTestCase):
             io_timeout_secs=60,
             outputs=[],
             secret_bytes=None),
-        service_account_token=None,
+        service_account=None,
         tags=['tag:a', 'tag:b'],
         user='joe@localhost')
 
-    request_1 = swarming.task_request_to_raw_request(task_request, False)
+    request_1 = swarming.task_request_to_raw_request(task_request)
     request_1['name'] = u'unit_tests:0:2'
     request_1['properties']['env'] = [
       {'key': 'GTEST_SHARD_INDEX', 'value': '0'},
@@ -363,7 +364,7 @@ class TestSwarmingTrigger(NetTestCase):
     ]
     result_1 = gen_request_response(request_1)
 
-    request_2 = swarming.task_request_to_raw_request(task_request, False)
+    request_2 = swarming.task_request_to_raw_request(task_request)
     request_2['name'] = u'unit_tests:1:2'
     request_2['properties']['env'] = [
       {'key': 'GTEST_SHARD_INDEX', 'value': '1'},
@@ -426,11 +427,11 @@ class TestSwarmingTrigger(NetTestCase):
             io_timeout_secs=60,
             outputs=[],
             secret_bytes=None),
-        service_account_token=None,
+        service_account=None,
         tags=['tag:a', 'tag:b'],
         user='joe@localhost')
 
-    request = swarming.task_request_to_raw_request(task_request, False)
+    request = swarming.task_request_to_raw_request(task_request)
     self.assertEqual('123', request['parent_task_id'])
 
     result = gen_request_response(request)
@@ -493,11 +494,11 @@ class TestSwarmingTrigger(NetTestCase):
             io_timeout_secs=60,
             outputs=[],
             secret_bytes=None),
-        service_account_token=None,
+        service_account=None,
         tags=['tag:a', 'tag:b'],
         user='joe@localhost')
 
-    request = swarming.task_request_to_raw_request(task_request, False)
+    request = swarming.task_request_to_raw_request(task_request)
     expected = {
       'client_package': None,
       'packages': [{
@@ -896,6 +897,7 @@ class TestMain(NetTestCase):
         'outputs': [],
         'secret_bytes': None,
       },
+      'service_account': None,
       'tags': [],
       'user': None,
     }
@@ -956,6 +958,7 @@ class TestMain(NetTestCase):
         'outputs': [],
         'secret_bytes': None,
       },
+      'service_account': None,
       'tags': [],
       'user': None,
     }
@@ -1014,7 +1017,7 @@ class TestMain(NetTestCase):
         'outputs': [],
         'secret_bytes': None,
       },
-      'service_account_token': 'bot',
+      'service_account': 'bot',
       'tags': [],
       'user': None,
     }
@@ -1206,6 +1209,7 @@ class TestMain(NetTestCase):
               'outputs': [],
               'secret_bytes': None,
             },
+            'service_account': None,
             'tags': ['tag:a', 'tag:b'],
             'user': 'joe@localhost',
           },
@@ -1374,6 +1378,7 @@ class TestMain(NetTestCase):
           'io_timeout_secs': 60,
           'secret_bytes': None,
         },
+        'service_account': None,
         'tags': ['tag:a', 'tag:b'],
         'user': 'joe@localhost',
       },
