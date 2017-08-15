@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7a22061_f7fa8ad7",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-15T18:36:47Z",
+      "side": 1,
+      "message": "bump",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "f82013510f00d463b22cba266ae9b40a2be7777c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
