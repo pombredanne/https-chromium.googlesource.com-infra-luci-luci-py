@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "506d148a_e044942e",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-15T18:58:52Z",
+      "side": 1,
+      "message": "Should this be 0.8.1 (after all, there are no actual legality changes, yet) or 0.9.0?",
+      "parentUuid": "f7a22061_f7fa8ad7",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "f82013510f00d463b22cba266ae9b40a2be7777c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a846e6e_281a0d8a",
         "filename": "client/isolateserver.py",
         "patchSetId": 2
