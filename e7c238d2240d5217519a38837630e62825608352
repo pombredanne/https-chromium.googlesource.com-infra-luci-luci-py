@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d61f638_5e2ef441",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "How did you calculate this alignment?",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf600ce4_10944fb2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "Having the entry to have the function name as is makes it easier to find it back in logs.\n\n logging.warning(\u0027Not implemented: posting_bot_event(%s)\u0027, message)",
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f92605e5_b88f70e0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "logging.info(\u0027do_handshake(%s)\u0027, attributes)\n\nwould be more useful imho",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 32
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "604a6326_cdca90fb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "I forget why the deep copy here",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 24
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "426e0a5d_4bf074b0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "add a docstring",
+      "range": {
+        "startLine": 120,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 27
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48e84d17_af6ad9f1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "Decorate functions that do not need self as @staticmethod or (better) move outside of the class.",
+      "range": {
+        "startLine": 127,
+        "startChar": 6,
+        "endLine": 127,
+        "endChar": 27
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36caf5e4_27746c83",
+        "filename": "appengine/swarming/swarming_bot/proto_bot/build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-16T02:10:26Z",
+      "side": 1,
+      "message": "sort",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
