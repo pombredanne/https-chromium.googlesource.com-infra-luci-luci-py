@@ -16,6 +16,24 @@
       "revId": "552bf3e67c3d81c2278e33b1936260baa4941293",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db530f1c_bfca6f4a",
+        "filename": "appengine/swarming/swarming_bot/proto_bot/build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T15:01:34Z",
+      "side": 1,
+      "message": "This is nontrivial because I use gRPC and components/tools/compile_proto.py does not, so this would be a fairly substantial refactoring of compile_proto.py. Still want me to do it?",
+      "parentUuid": "107b29fd_20fb9cf8",
+      "revId": "552bf3e67c3d81c2278e33b1936260baa4941293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
