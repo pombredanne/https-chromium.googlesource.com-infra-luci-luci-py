@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "afca6970_9f384965",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T11:43:54Z",
+      "side": 1,
+      "message": "I meant to do \"two spaces after grpc_proxy\" but got it wrong. If I accept the default of \"after the opening brace\" it\u0027s too long.\n\nHow about I just do one indent (two spaces) from the normal start of the line.",
+      "parentUuid": "0d61f638_5e2ef441",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf600ce4_10944fb2",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "e7c238d2240d5217519a38837630e62825608352",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b7b7171_7d2316e0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T11:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf600ce4_10944fb2",
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "5dc9b63b_1e797e2a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T11:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f92605e5_b88f70e0",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 32
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "604a6326_cdca90fb",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 2
@@ -76,6 +142,30 @@
       "writtenOn": "2017-08-16T02:10:26Z",
       "side": 1,
       "message": "I forget why the deep copy here",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 24
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a27edfa_de30fea7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T11:43:54Z",
+      "side": 1,
+      "message": "Apparently some of the copies we did in the past were copies-by-reference and not by value, so when the proto was destroyed we got very unfortunate errors.",
+      "parentUuid": "604a6326_cdca90fb",
       "range": {
         "startLine": 110,
         "startChar": 16,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "daa86ad2_ee34b20c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T11:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "426e0a5d_4bf074b0",
+      "range": {
+        "startLine": 120,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 27
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48e84d17_af6ad9f1",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 2
@@ -131,6 +245,30 @@
       "revId": "e7c238d2240d5217519a38837630e62825608352",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "330578d2_865d6608",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T11:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48e84d17_af6ad9f1",
+      "range": {
+        "startLine": 127,
+        "startChar": 6,
+        "endLine": 127,
+        "endChar": 27
+      },
+      "revId": "e7c238d2240d5217519a38837630e62825608352",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
