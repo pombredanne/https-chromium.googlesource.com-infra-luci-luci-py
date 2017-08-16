@@ -52,6 +52,24 @@
       "revId": "552bf3e67c3d81c2278e33b1936260baa4941293",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7d8748_c776bb0e",
+        "filename": "appengine/swarming/swarming_bot/proto_bot/build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-08-16T15:19:40Z",
+      "side": 1,
+      "message": "Ah. Done.",
+      "parentUuid": "a755f816_d5063934",
+      "revId": "552bf3e67c3d81c2278e33b1936260baa4941293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
