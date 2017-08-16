@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a86cbf8_0c0a82f6",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-16T23:47:32Z",
+      "side": 0,
+      "message": "to fit line 501 into 80 char line limit :)",
+      "range": {
+        "startLine": 497,
+        "startChar": 26,
+        "endLine": 497,
+        "endChar": 34
+      },
+      "revId": "4d93f73abc088bfc5cf24259df1df1ea538c9ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
