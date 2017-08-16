@@ -11,5 +11,11 @@
 python -m grpc.tools.protoc \
   --python_out=. \
   --grpc_python_out=. \
-  swarming_bot.proto \
+  code.proto \
+  command.proto \
+  device.proto \
+  reservation_manager.proto \
+  status.proto \
+  task_manager.proto \
+  worker_manager.proto \
   -I.
