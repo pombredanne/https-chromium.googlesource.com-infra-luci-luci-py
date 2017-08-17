@@ -46,6 +46,30 @@
       "revId": "581c983fa43a05e6ff480e2ca5f85f135a2f0486",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd973a3b_7d7fe473",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T20:25:47Z",
+      "side": 1,
+      "message": "Then it\u0027ll be worth being a global variable. :)",
+      "parentUuid": "32b80e96_36e8a73a",
+      "range": {
+        "startLine": 801,
+        "startChar": 0,
+        "endLine": 801,
+        "endChar": 18
+      },
+      "revId": "581c983fa43a05e6ff480e2ca5f85f135a2f0486",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
