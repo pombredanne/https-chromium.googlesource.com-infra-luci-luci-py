@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44f26b69_fddef0dd",
+        "filename": "appengine/swarming/ui/res/imp/common/swarming-app.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T00:09:49Z",
+      "side": 1,
+      "message": "spacing?",
+      "range": {
+        "startLine": 275,
+        "startChar": 72,
+        "endLine": 275,
+        "endChar": 73
+      },
+      "revId": "302c5cac4bb745779d57b6b584d5690ab3dc6b28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
