@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8aa4a429_973468a2",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "technically speaking,\n\n  resp.lstrip(\")]}\u0027\\n\")\n\nwould work as fine and would work with all the possible variations in case someone wants to mess with you and prefixes with \"}])\\n\u0027\". :)",
+      "range": {
+        "startLine": 245,
+        "startChar": 34,
+        "endLine": 245,
+        "endChar": 38
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9965ba45_89e960a5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "Is the AuthorizationError correctly surfaced in the API as a 403? I\u0027m pretty sure it is but I just want to confirm.",
+      "range": {
+        "startLine": 411,
+        "startChar": 28,
+        "endLine": 411,
+        "endChar": 46
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fde1c20_c688508e",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "AGAIN? :P",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0af24a34_84380771",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "do you think it can be abused with something like \"bot@\" ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 62,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0534168_87043492",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "live",
+      "range": {
+        "startLine": 116,
+        "startChar": 26,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0056cca_fd3445b0",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "1h minus 0~10 minutes.\n\nI think it\u0027d be good to remind here the random early expiration above.",
+      "range": {
+        "startLine": 128,
+        "startChar": 37,
+        "endLine": 128,
+        "endChar": 39
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dbb7a18_becd5351",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "can this be verified higher up in the request?",
+      "range": {
+        "startLine": 234,
+        "startChar": 2,
+        "endLine": 234,
+        "endChar": 8
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88e4c8f4_4df4c783",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "is that\u0027s verified higher up?",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 254,
+        "endChar": 8
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aabb77e7_f01c6fde",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "googlesource URLs are much longer now :(",
+      "range": {
+        "startLine": 257,
+        "startChar": 21,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd81fa05_3365b590",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "Please passlist the characters, e.g. \u0027|\u0027 should be denied. It\u0027s fine to be more restrictive than necessary.",
+      "range": {
+        "startLine": 321,
+        "startChar": 33,
+        "endLine": 321,
+        "endChar": 49
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cda142b6_288f1fc7",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:25:06Z",
+      "side": 1,
+      "message": "this code is unnecessary, the BadValueError shall be raised as soon as the _validator is called when request.service_account was initially set, in message_conversions.py.",
+      "range": {
+        "startLine": 944,
+        "startChar": 6,
+        "endLine": 944,
+        "endChar": 13
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
