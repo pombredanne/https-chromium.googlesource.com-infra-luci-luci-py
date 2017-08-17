@@ -209,7 +209,7 @@ def json_request_async(
     payload: object to be serialized to JSON and put in the request body.
     params: dict with query GET parameters (i.e. ?key=value&key=value).
     headers: additional request headers.
-    scopes: OAuth2 scopes for the access token (ok skip auth if None).
+    scopes: OAuth2 scopes for the access token (or skip auth if None).
     service_account_key: auth.ServiceAccountKey with credentials.
     delegation_token: delegation token returned by auth.delegate.
     deadline: deadline for a single attempt.
