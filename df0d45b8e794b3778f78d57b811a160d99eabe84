@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54bec41e_ad402f5c",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-08-17T14:29:42Z",
+      "side": 1,
+      "message": "Actually the dimensions are here;\n Maybe, dict(id\u003dbot, **dimensions)?",
+      "revId": "df0d45b8e794b3778f78d57b811a160d99eabe84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
