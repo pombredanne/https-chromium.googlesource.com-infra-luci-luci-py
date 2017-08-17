@@ -125,6 +125,7 @@ def task_request_to_rpc(entity):
       caches=[_ndb_to_rpc(swarming_rpcs.CacheEntry, c) for c in props.caches],
       cipd_input=cipd_input,
       secret_bytes='<REDACTED>' if props.has_secret_bytes else None,
+      service_account_token=None,
       dimensions=_string_pairs_from_dict(props.dimensions),
       env=_string_pairs_from_dict(props.env),
       inputs_ref=inputs_ref)
