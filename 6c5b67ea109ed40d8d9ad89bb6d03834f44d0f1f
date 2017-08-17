@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "579d1d93_58f465ec",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Good suggestion.",
+      "parentUuid": "8aa4a429_973468a2",
+      "range": {
+        "startLine": 245,
+        "startChar": 34,
+        "endLine": 245,
+        "endChar": 38
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9965ba45_89e960a5",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-08-17T12:25:06Z",
       "side": 1,
       "message": "Is the AuthorizationError correctly surfaced in the API as a 403? I\u0027m pretty sure it is but I just want to confirm.",
+      "range": {
+        "startLine": 411,
+        "startChar": 28,
+        "endLine": 411,
+        "endChar": 46
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aabd6829_8e8b9666",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "It does, but it looses the error message :-/ https://chromium-review.googlesource.com/c/619753",
+      "parentUuid": "9965ba45_89e960a5",
       "range": {
         "startLine": 411,
         "startChar": 28,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "533df859_f1d90155",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "It is to hide service_account_token from task listing (and similar) API responses . No one cares about this token, it is an internal thing.",
+      "parentUuid": "4fde1c20_c688508e",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0af24a34_84380771",
         "filename": "appengine/swarming/server/service_accounts.py",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb97a776_d53405ed",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Unlikely, this string is later compared verbatim to the value specified in the token server config file (like this one https://chrome-internal.googlesource.com/infradata/config/+/master/configs/luci-token-server-dev/service_accounts.cfg#11). There\u0027s no transformation and no \"pattern matching\" happens along the way, so weird strings will be accepted only if we have them in the config.\n\nAnyhow, I\u0027m doing a regexp check now (using same regexp we apply to emails in Auth DB).",
+      "parentUuid": "0af24a34_84380771",
+      "range": {
+        "startLine": 48,
+        "startChar": 62,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "346e31da_c1401252",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0534168_87043492",
+      "range": {
+        "startLine": 116,
+        "startChar": 26,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0056cca_fd3445b0",
         "filename": "appengine/swarming/server/service_accounts.py",
         "patchSetId": 2
@@ -137,6 +257,30 @@
       "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd28e5f1_d1e26591",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0056cca_fd3445b0",
+      "range": {
+        "startLine": 128,
+        "startChar": 37,
+        "endLine": 128,
+        "endChar": 39
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "536c8f86_7fb91498",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "It is. This assert serves as a reminder that it is OK to use \u0027|\u0027 as a separator.\n\nIn my code I generally NEVER use asserts as a \"control flow\" checks. They must never fire. I used them as statements of what\u0027s expected from inputs or outputs.",
+      "parentUuid": "2dbb7a18_becd5351",
+      "range": {
+        "startLine": 234,
+        "startChar": 2,
+        "endLine": 234,
+        "endChar": 8
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88e4c8f4_4df4c783",
         "filename": "appengine/swarming/server/service_accounts.py",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a39861d0_a0d58835",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Kind of. Very higher up :) When importing the config: https://github.com/luci/luci-py/blob/master/appengine/auth_service/config.py#L449 (and probably somewhere else along the propagation path).\n\nvalidate_root_service_url checks for https:// (or http:// on dev server). I guess I can just reuse this function here too for completness.",
+      "parentUuid": "88e4c8f4_4df4c783",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 254,
+        "endChar": 8
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "3ba0a718_428bcf07",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "🤷",
+      "parentUuid": "aabb77e7_f01c6fde",
+      "range": {
+        "startLine": 257,
+        "startChar": 21,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd81fa05_3365b590",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 2
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "6adc339c_1a11a54e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Done in \u0027is_service_account\u0027.",
+      "parentUuid": "bd81fa05_3365b590",
+      "range": {
+        "startLine": 321,
+        "startChar": 33,
+        "endLine": 321,
+        "endChar": 49
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cda142b6_288f1fc7",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 2
@@ -252,6 +492,30 @@
       "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac4eede_d30fee79",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-17T21:51:19Z",
+      "side": 1,
+      "message": "Ok. Will write a test to verify this.",
+      "parentUuid": "cda142b6_288f1fc7",
+      "range": {
+        "startLine": 944,
+        "startChar": 6,
+        "endLine": 944,
+        "endChar": 13
+      },
+      "revId": "6c5b67ea109ed40d8d9ad89bb6d03834f44d0f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
