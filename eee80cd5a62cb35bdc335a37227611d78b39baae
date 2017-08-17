@@ -22,6 +22,30 @@
       "revId": "eee80cd5a62cb35bdc335a37227611d78b39baae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f262705_eea6649c",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-17T12:02:55Z",
+      "side": 1,
+      "message": "Frankly, I would have only implemented the part that is strictly necessary to parse the dates, which would probably have been two regexp:\n  r\u0027(\\d\\d\\d-\\d\\d-\\d\\d)T(\\d\\d):(\\d\\d):(\\d\\d)\\.(\\d+)\u0027\n  r\u0027(\\d\\d\\d-\\d\\d-\\d\\d)T(\\d\\d):(\\d\\d):(\\d\\d)\\.(\\d+)[\\-+](\\d\\d):(\\d\\d)\u0027\n\nbut that\u0027s fine. :P\n\nrubberstamping the code below.",
+      "parentUuid": "a0c74065_5cc63a2e",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 80
+      },
+      "revId": "eee80cd5a62cb35bdc335a37227611d78b39baae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
