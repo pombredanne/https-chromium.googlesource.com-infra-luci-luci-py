@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15e6e8c1_1cac04bf",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-18T04:21:22Z",
+      "side": 1,
+      "message": "turns out this is not needed\n\n(added a test that checks this)\n\nI think it\u0027s because swarming_rpcs.TaskProperties doesn\u0027t have \u0027service_account_token\u0027 field.",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "revId": "a7b4c929c9a269daa6303517e61deaa38f4b233c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
