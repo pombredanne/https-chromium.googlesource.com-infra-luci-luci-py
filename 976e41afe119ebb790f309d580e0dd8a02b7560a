@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51bc59d6_a07c75d5",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-19T01:29:22Z",
+      "side": 1,
+      "message": "floats here don\u0027t work",
+      "range": {
+        "startLine": 545,
+        "startChar": 18,
+        "endLine": 545,
+        "endChar": 22
+      },
+      "revId": "976e41afe119ebb790f309d580e0dd8a02b7560a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12912221_754ef4d6",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-19T01:29:22Z",
+      "side": 1,
+      "message": "no change here, just extracted some common code into _call_token_server",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 28
+      },
+      "revId": "976e41afe119ebb790f309d580e0dd8a02b7560a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
