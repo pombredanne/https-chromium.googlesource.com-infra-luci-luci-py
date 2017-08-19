@@ -521,7 +521,7 @@ class BotOAuthTokenHandler(_BotApiHandler):
     try:
       if account_id == 'task':
         account, token = service_accounts.get_task_account_token(
-            task_id, scopes)
+            task_id, bot_id, scopes)
       elif account_id == 'system':
         account, token = service_accounts.get_system_account_token(
             bot_group_cfg.system_service_account, scopes)
@@ -542,7 +542,7 @@ class BotOAuthTokenHandler(_BotApiHandler):
       self.send_response({
         'service_account': account,
         'access_token': token.access_token,
-        'expiry': token.expiry,
+        'expiry': int(token.expiry),
       })
     else:
       assert account in ('bot', 'none'), account

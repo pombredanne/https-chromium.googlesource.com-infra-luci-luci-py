@@ -132,14 +132,12 @@ class OAuthTokenGrantTest(test_case.TestCase):
         expected_url='https://tokens.example.com/prpc/'
             'tokenserver.minter.TokenMinter/MintOAuthTokenGrant',
         expected_payload=None,
-      response=net.Error('bad', 403, 'error message'))
+      response=net.Error('bad', 403, 'Token server error message'))
 
     with self.assertRaises(auth.AuthorizationError) as err:
       service_accounts.get_oauth_token_grant(
           'service-account@example.com', datetime.timedelta(seconds=3600))
-    self.assertEqual(
-        'Caller user:end-user@example.com is not allowed to use service '
-        'account service-account@example.com', str(err.exception))
+    self.assertEqual('Token server error message', str(err.exception))
 
 
 class SystemAccountTokenTest(test_case.TestCase):
