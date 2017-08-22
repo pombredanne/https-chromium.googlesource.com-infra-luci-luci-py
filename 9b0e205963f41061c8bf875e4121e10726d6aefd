@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95277558_790d2b65",
+        "filename": "appengine/components/tools/gke.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-08-22T19:39:54Z",
+      "side": 1,
+      "message": "can we add a nice check in main() to make sure no one runs this on windows? Otherwise they\u0027re going to get a bunch of weird shit.",
+      "revId": "9b0e205963f41061c8bf875e4121e10726d6aefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e62362e_848609bd",
+        "filename": "appengine/components/tools/gke.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-08-22T19:39:54Z",
+      "side": 1,
+      "message": "baleete",
+      "range": {
+        "startLine": 296,
+        "startChar": 2,
+        "endLine": 296,
+        "endChar": 8
+      },
+      "revId": "9b0e205963f41061c8bf875e4121e10726d6aefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
