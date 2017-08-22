@@ -906,12 +906,7 @@ class FetchStreamVerifier(object):
     if self.expected_digest != actual_digest:
       msg = 'Incorrect digest: want %s, got %s' % (
           self.expected_digest, actual_digest)
-      logging.error('%s; last chunk (%d bytes)', msg, len(chunk))
-      # TODO(aludwin): actually raise an error. In the short term, we'll
-      # continue to let this through to verify that we see the logs when we
-      # expect to; if we just return IOError, the download will be retried and
-      # the error will be masked.
-      # raise IOError(msg)
+      raise IOError(msg)
 
 
 class CacheMiss(Exception):
