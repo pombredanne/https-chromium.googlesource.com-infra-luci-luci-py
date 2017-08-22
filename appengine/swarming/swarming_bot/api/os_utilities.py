@@ -966,6 +966,11 @@ def get_dimensions():
   if ssd:
     dimensions[u'ssd'] = [u'1']
 
+  if sys.platform == 'linux2':
+    kvm = platforms.linux.get_kvm()
+    if kvm:
+      dimensions[u'kvm'] = [u'1']
+
   if sys.platform == 'darwin':
     model = platforms.osx.get_hardware_model_string()
     if model:
