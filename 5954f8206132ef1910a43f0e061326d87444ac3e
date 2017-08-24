@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22d54803_d1a11d73",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-08-24T18:06:55Z",
+      "side": 1,
+      "message": "all location vars/parameters in this file are instances of gitiles.Location\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/gitiles.py?q\u003dgitiles.py\u0026sq\u003dpackage:chromium\u0026l\u003d47\nwhy convert to string here?\n\nyou could use gitiles.Location.join function at L210 and then convert to str",
+      "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40aa9087_73311d11",
+        "filename": "appengine/config_service/storage_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-08-24T18:06:55Z",
+      "side": 1,
+      "message": "trailing comma",
+      "range": {
+        "startLine": 41,
+        "startChar": 42,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6aad2cc_77815d56",
+        "filename": "appengine/config_service/storage_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-08-24T18:06:55Z",
+      "side": 1,
+      "message": "trailing comma",
+      "range": {
+        "startLine": 70,
+        "startChar": 52,
+        "endLine": 70,
+        "endChar": 55
+      },
+      "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
