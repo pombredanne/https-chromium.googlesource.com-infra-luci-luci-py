@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22d87aec_c51aa542",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-08-24T18:14:16Z",
+      "side": 1,
+      "message": "join is a method. You can do location.join(name)",
+      "revId": "d34d32bec8a7657fb38849a07340d8c51a74e139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
