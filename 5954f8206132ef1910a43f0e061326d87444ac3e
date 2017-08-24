@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7ae62bd5_866d7aff",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-08-24T18:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22d54803_d1a11d73",
+      "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40aa9087_73311d11",
         "filename": "appengine/config_service/storage_test.py",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "4ec21609_6ea05a08",
+        "filename": "appengine/config_service/storage_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-08-24T18:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40aa9087_73311d11",
+      "range": {
+        "startLine": 41,
+        "startChar": 42,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6aad2cc_77815d56",
         "filename": "appengine/config_service/storage_test.py",
         "patchSetId": 2
@@ -62,6 +104,30 @@
       "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a72712a_70fca720",
+        "filename": "appengine/config_service/storage_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-08-24T18:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6aad2cc_77815d56",
+      "range": {
+        "startLine": 70,
+        "startChar": 52,
+        "endLine": 70,
+        "endChar": 55
+      },
+      "revId": "5954f8206132ef1910a43f0e061326d87444ac3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
