@@ -22,6 +22,30 @@
       "revId": "472f16eb2ecd9a98a8c2e9588d8d8f5297b4cc15",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33f7a5fa_5376fbac",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-25T21:54:35Z",
+      "side": 0,
+      "message": "Oh I\u0027m still unhappy, but it\u0027s not worth leaving this in the source code.",
+      "parentUuid": "42308b9d_2bb1237d",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 363,
+        "endChar": 42
+      },
+      "revId": "472f16eb2ecd9a98a8c2e9588d8d8f5297b4cc15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
