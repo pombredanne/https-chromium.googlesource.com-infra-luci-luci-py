@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0666fd36_cf6cd63d",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-29T05:13:29Z",
+      "side": 1,
+      "message": "... without any privilege modifications\n\n?",
+      "range": {
+        "startLine": 37,
+        "startChar": 39,
+        "endLine": 37,
+        "endChar": 52
+      },
+      "revId": "2976968ca58fdfcb34001092dd4f3305d7b4d161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ea811ba_351d3b83",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-29T05:13:29Z",
+      "side": 1,
+      "message": "is this version documented somewhere on the internet? Add a link to this page if so.",
+      "range": {
+        "startLine": 66,
+        "startChar": 54,
+        "endLine": 66,
+        "endChar": 59
+      },
+      "revId": "2976968ca58fdfcb34001092dd4f3305d7b4d161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d871321_2fd0474c",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-29T05:13:29Z",
+      "side": 1,
+      "message": "nit: move this TODO lower, I think it applies to \u0027extend(source)\u0027\n\n(Or just put SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE \u003d 2 right before flags |\u003d ...)",
+      "range": {
+        "startLine": 123,
+        "startChar": 4,
+        "endLine": 123,
+        "endChar": 71
+      },
+      "revId": "2976968ca58fdfcb34001092dd4f3305d7b4d161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3ff3281_a66fe8d6",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-08-29T05:13:29Z",
+      "side": 1,
+      "message": "nit: _supports_unprivileged_symlinks",
+      "range": {
+        "startLine": 127,
+        "startChar": 7,
+        "endLine": 127,
+        "endChar": 25
+      },
+      "revId": "2976968ca58fdfcb34001092dd4f3305d7b4d161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
