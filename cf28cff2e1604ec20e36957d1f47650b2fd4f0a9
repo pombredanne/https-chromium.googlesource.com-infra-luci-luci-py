@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "822daaba_a9a38464",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-29T21:25:03Z",
+      "side": 1,
+      "message": "I\u0027d prefer:\n\n  if not results.get(\u0027items\u0027):\n\nit\u0027s more future proof.",
+      "revId": "cf28cff2e1604ec20e36957d1f47650b2fd4f0a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
