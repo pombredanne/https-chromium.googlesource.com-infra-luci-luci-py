@@ -121,9 +121,10 @@ hooks_durations = ts_mon.CumulativeDistributionMetric(
 
 def _flatten_dimensions(dimensions):
   """Return a canonical string of flattened dimensions."""
+  ignored_dims = ('android_devices', 'caches', 'id')
   iterables = (['%s:%s' % (key, x) for x in values]
                for key, values in dimensions.iteritems()
-               if key not in ('android_devices', 'id'))
+               if key not in ignored_dims)
   return '|'.join(sorted(itertools.chain(*iterables)))
 
 
