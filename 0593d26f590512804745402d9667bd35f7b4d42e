@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5cac834_c48a473c",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-30T17:02:01Z",
+      "side": 1,
+      "message": "what about --task-name then remove parallel_execution.task_to_name() call above and replace \"name\" with \"task_name\". Only line 100 for the suffix for shards would be kept.\n\nI don\u0027t mind much though.",
+      "revId": "0593d26f590512804745402d9667bd35f7b4d42e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97058616_e7405d3c",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-08-30T17:02:01Z",
+      "side": 1,
+      "message": "this may not be true anymore, it may be longer than that, i.e. soon sha256. You can just check for 40 or 64 but check for hex.",
+      "revId": "0593d26f590512804745402d9667bd35f7b4d42e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
