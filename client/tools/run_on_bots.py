@@ -59,13 +59,13 @@ def get_bot_list(swarming_server, dimensions):
   return natsort.natsorted(healthy), quarantined, dead
 
 
-def archive(isolate_server, script):
+def archive(isolate_server, scripts):
   """Archives the tool and return the sha-1."""
-  base_script = os.path.basename(script)
+  base_scripts = [os.path.basename(x) for x in scripts]
   isolate = {
     'variables': {
-      'command': ['python', base_script],
-      'files': [base_script],
+      'command': ['python', base_scripts[0]],
+      'files': base_scripts,
     },
   }
   tempdir = tempfile.mkdtemp(prefix=u'run_on_bots')
@@ -74,7 +74,8 @@ def archive(isolate_server, script):
     isolated_file = os.path.join(tempdir, 'tool.isolated')
     with open(isolate_file, 'wb') as f:
       f.write(str(isolate))
-    shutil.copyfile(script, os.path.join(tempdir, base_script))
+    for script, base_script in zip(scripts, base_scripts):
+      shutil.copyfile(script, os.path.join(tempdir, base_script))
     cmd = [
       sys.executable, 'isolate.py', 'archive',
       '--isolate-server', isolate_server,
@@ -143,7 +144,7 @@ def run_parallel(
 
 def main():
   parser = parallel_execution.OptionParser(
-      usage='%prog [options] script.py', version=__version__)
+      usage='%prog [options] script.py [more.py...]', version=__version__)
   parser.add_option(
       '--serial', action='store_true',
       help='Runs the task serially, to be used when debugging problems since '
@@ -176,7 +177,7 @@ def main():
     return 1
 
   # 2. Archive the script to run.
-  isolated_hash = archive(options.isolate_server, args[0])
+  isolated_hash = archive(options.isolate_server, args)
   print('Running %s' % isolated_hash)
 
   # 3. Trigger the tasks.
