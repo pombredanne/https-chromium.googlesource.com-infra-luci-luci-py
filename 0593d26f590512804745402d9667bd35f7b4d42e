@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d82eb4b0_9c1815b7",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-08-31T04:13:55Z",
+      "side": 1,
+      "message": "I think providing a name which still gives you a normal looking full task name is better.",
+      "parentUuid": "c5cac834_c48a473c",
+      "revId": "0593d26f590512804745402d9667bd35f7b4d42e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97058616_e7405d3c",
         "filename": "client/tools/run_on_bots.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "0593d26f590512804745402d9667bd35f7b4d42e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccae38c5_9406147e",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-08-31T04:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97058616_e7405d3c",
+      "revId": "0593d26f590512804745402d9667bd35f7b4d42e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
