@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a7f6d05_00954ff2",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-04T13:27:57Z",
+      "side": 1,
+      "message": "I forgot to mention I\u0027d prefer to use https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/client/utils/threading_utils.py\n\nwith threading_utils.ThreadPool(1, batches, 0) as p:\n\nbut better is to update https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/client/tools/parallel_execution.py accordingly.",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e064332_a1a460ca",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-04T13:27:57Z",
+      "side": 1,
+      "message": "action\u003d\u0027store_const\u0027, const\u003d1, dest\u003d\u0027parallel\u0027,",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8506822c_ad571533",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-04T13:27:57Z",
+      "side": 1,
+      "message": "I prefer --parallel",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84354df2_c04295ba",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-04T13:27:57Z",
+      "side": 1,
+      "message": "I think we can generalize it all as a single mechanism.",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
