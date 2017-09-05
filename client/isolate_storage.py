@@ -255,7 +255,7 @@ class IsolateServer(StorageApi):
     self._namespace_dict = {
         'compression': 'flate' if namespace.endswith(
             ('-gzip', '-flate')) else '',
-        'digest_hash': 'sha-1',
+        'digest_hash': isolated_format.get_hash_algo(namespace),
         'namespace': namespace,
     }
     self._lock = threading.Lock()
