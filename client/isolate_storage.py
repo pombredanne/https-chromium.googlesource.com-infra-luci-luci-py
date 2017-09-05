@@ -252,10 +252,11 @@ class IsolateServer(StorageApi):
     assert file_path.is_url(base_url), base_url
     self._base_url = base_url.rstrip('/')
     self._namespace = namespace
+    algo = isolated_format.get_hash_algo(namespace)
     self._namespace_dict = {
         'compression': 'flate' if namespace.endswith(
             ('-gzip', '-flate')) else '',
-        'digest_hash': 'sha-1',
+        'digest_hash': isolated_format.SUPPORTED_ALGOS_REVERSE(algo),
         'namespace': namespace,
     }
     self._lock = threading.Lock()
