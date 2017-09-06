@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cad06e1b_60aaa3dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-09-06T22:23:29Z",
+      "side": 1,
+      "message": "nit: without",
+      "revId": "fe07cf64ec286170469205da645fbe9f3b50937b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f08bc4d_b190a508",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
