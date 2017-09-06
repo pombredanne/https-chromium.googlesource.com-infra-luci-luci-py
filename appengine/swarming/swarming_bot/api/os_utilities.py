@@ -440,6 +440,13 @@ def get_gpu():
   """
   if sys.platform == 'darwin':
     dimensions, state = platforms.osx.get_gpu()
+    # OSX specific hack: When only an Intel GPU is available, add 'none' as if
+    # it were a VM. It is because:
+    # - All OSX hardware with a dedicated GPU also has an Intel based GPU
+    # - Most of workers are often real hardware and not VMs because of Apple's
+    #   way of doing business.
+    if all(d.startswith(u'8086') for d in dimensions):
+      dimensions.append(u'none')
   elif sys.platform == 'linux2':
     dimensions, state = platforms.linux.get_gpu()
   elif sys.platform == 'win32':
