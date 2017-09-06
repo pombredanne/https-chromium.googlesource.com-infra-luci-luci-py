@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f08bc4d_b190a508",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2017-09-06T20:12:23Z",
+      "side": 1,
+      "message": "No no no! We trigger GPU jobs on the Mac Minis on mac_chromium_rel_ng, and these only have Intel GPUs. This is going to break mac_chromium_rel_ng!",
+      "range": {
+        "startLine": 449,
+        "startChar": 6,
+        "endLine": 449,
+        "endChar": 16
+      },
+      "revId": "fe07cf64ec286170469205da645fbe9f3b50937b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
