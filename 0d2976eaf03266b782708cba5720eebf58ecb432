@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ab3b721_c5edfbd3",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T20:34:31Z",
+      "side": 1,
+      "message": "please bump",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396881f5_e17d1170",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T20:34:31Z",
+      "side": 1,
+      "message": "do not make it a default argument",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8669abb2_3d31d0fd",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T20:34:31Z",
+      "side": 1,
+      "message": "same",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc60f131_7f6c32e8",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T20:34:31Z",
+      "side": 1,
+      "message": "It\u0027s really a good idea.",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8c79567_005e1144",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T20:34:31Z",
+      "side": 1,
+      "message": "elif value !\u003d \u0027none\u0027:\n  tdout_to \u003d [value]",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
