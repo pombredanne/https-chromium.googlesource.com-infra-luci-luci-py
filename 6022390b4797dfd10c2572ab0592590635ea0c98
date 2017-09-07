@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cf6d5dc4_e7580201",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T18:50:36Z",
+      "side": 1,
+      "message": "not needed, remove",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a7f6d05_00954ff2",
         "filename": "client/tools/run_on_bots.py",
         "patchSetId": 2
@@ -31,6 +48,24 @@
       "side": 1,
       "message": "parallel_execution.py calls trigger and collect, rather than run, so using batches will just batch up the triggers, not the entire execution time.  You could do 1 thread and still hit all of touch swarming in a minute or two.\n\nDo you want me to change parallel execution to stop calling trigger/collect and/or run things per-thread, synchronously?",
       "parentUuid": "0a7f6d05_00954ff2",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b2dc25_14ad0101",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-07T18:50:36Z",
+      "side": 1,
+      "message": "Bah, it\u0027s not a big deal, I cared more about threading_utils because it handles pooling automatically. The code here is fine enough albeit just not super efficient thread wise. The main difference is that there\u0027s no way to see progress of the triggers, only completion.",
+      "parentUuid": "23bd3029_4f47e323",
       "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
