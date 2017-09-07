@@ -128,6 +128,8 @@ class TaskRequestPrivateTest(TestCase):
         Prop(), '0123456789012345678901234567890123456789')
     task_request._validate_isolated(
         Prop(), '0123456789012345678901234567890123abcdef')
+    task_request._validate_isolated(
+        Prop(), '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef')
     with self.assertRaises(datastore_errors.BadValueError):
       task_request._validate_isolated(
           Prop(), '123456789012345678901234567890123456789')
