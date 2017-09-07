@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "324af8d5_6ed389e7",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1116294
+      },
+      "writtenOn": "2017-09-07T21:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf6d5dc4_e7580201",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a7f6d05_00954ff2",
         "filename": "client/tools/run_on_bots.py",
         "patchSetId": 2
@@ -69,6 +87,24 @@
       "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2164a58_8f1787d2",
+        "filename": "client/tools/run_on_bots.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1116294
+      },
+      "writtenOn": "2017-09-07T21:38:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "34b2dc25_14ad0101",
+      "revId": "6022390b4797dfd10c2572ab0592590635ea0c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
