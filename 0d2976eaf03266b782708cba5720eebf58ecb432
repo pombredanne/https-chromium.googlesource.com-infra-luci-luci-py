@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba98e3e1_771f3b63",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-09-07T23:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ab3b721_c5edfbd3",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "396881f5_e17d1170",
         "filename": "client/swarming.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47339bc6_a118b2d7",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-09-07T23:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "396881f5_e17d1170",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3ceab6e2_362c6814",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-09-07T23:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8669abb2_3d31d0fd",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fc60f131_7f6c32e8",
         "filename": "client/swarming.py",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "eac1a11c_ef528d71",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-09-07T23:33:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fc60f131_7f6c32e8",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8c79567_005e1144",
         "filename": "client/swarming.py",
         "patchSetId": 2
@@ -84,6 +156,24 @@
       "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d987c45_f5bfee20",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1146751
+      },
+      "writtenOn": "2017-09-07T23:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8c79567_005e1144",
+      "revId": "0d2976eaf03266b782708cba5720eebf58ecb432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
