@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "9ac85e2e_60a32ba9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-09-07T00:29:23Z",
+      "side": 1,
+      "message": "^ +dpranke@",
+      "range": {
+        "startLine": 10,
+        "startChar": 49,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "fe07cf64ec286170469205da645fbe9f3b50937b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f08bc4d_b190a508",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
@@ -102,6 +125,30 @@
       "side": 1,
       "message": "Wouldn\u0027t it be better to just have the tasks not request a GPU if they don\u0027t care what kind?\n\nI\u0027m not sure why we\u0027re explicitly specifying GPUs in this case.",
       "parentUuid": "c0b5a425_93a9e229",
+      "range": {
+        "startLine": 449,
+        "startChar": 6,
+        "endLine": 449,
+        "endChar": 16
+      },
+      "revId": "fe07cf64ec286170469205da645fbe9f3b50937b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80529f43_4ee3bf15",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-09-07T00:29:23Z",
+      "side": 1,
+      "message": "AFAIK, the idea is to definitely not have any dedicated GPU. See CL description.",
+      "parentUuid": "fc58f15d_05309089",
       "range": {
         "startLine": 449,
         "startChar": 6,
