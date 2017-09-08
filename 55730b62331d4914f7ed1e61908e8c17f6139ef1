@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d805096a_f4dd7f1d",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-08T01:04:18Z",
+      "side": 1,
+      "message": "actually I had thought about having \u003chash\u003e-\u003ccompress\u003e, so this would switch to \u0027sha-256-flate\u0027 or \u0027sha256-flat\u0027.  I fear that flate and flat are close enough that people will get confused so I\u0027m open to other ideas. The dash is a bit unfortunate.",
+      "revId": "55730b62331d4914f7ed1e61908e8c17f6139ef1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

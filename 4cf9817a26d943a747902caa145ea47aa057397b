@@ -84,6 +84,41 @@
     },
     {
       "key": {
+        "uuid": "df839c85_883eb94e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-08T01:04:18Z",
+      "side": 1,
+      "message": "Oh right. You need the content? I think I\u0027d prefer to have the log close to the place it is written.",
+      "parentUuid": "18ec8f8b_7a45f08b",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87342e50_b318e2e6",
+        "filename": "client/isolate.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-08T01:04:18Z",
+      "side": 1,
+      "message": "bump",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71464d6e_0e579b87",
         "filename": "client/isolate.py",
         "patchSetId": 5
