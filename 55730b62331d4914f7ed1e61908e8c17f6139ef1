@@ -34,6 +34,24 @@
       "revId": "55730b62331d4914f7ed1e61908e8c17f6139ef1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a696e27_04559f4d",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-08T14:51:30Z",
+      "side": 1,
+      "message": "Ugh indeed it\u0027s deflate.",
+      "parentUuid": "e2fd91fe_f1ccc0da",
+      "revId": "55730b62331d4914f7ed1e61908e8c17f6139ef1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
