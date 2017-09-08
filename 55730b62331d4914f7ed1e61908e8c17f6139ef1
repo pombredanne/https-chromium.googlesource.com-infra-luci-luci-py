@@ -16,6 +16,24 @@
       "revId": "55730b62331d4914f7ed1e61908e8c17f6139ef1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2fd91fe_f1ccc0da",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T03:12:00Z",
+      "side": 1,
+      "message": "I\u0027ve switched this code to expect the algo at the start of the namespace for now. I thought you used \"-deflate\" (see is_namespace_with_compression), not \u0027-flate\u0027? In any case, this code will work either way.",
+      "parentUuid": "d805096a_f4dd7f1d",
+      "revId": "55730b62331d4914f7ed1e61908e8c17f6139ef1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

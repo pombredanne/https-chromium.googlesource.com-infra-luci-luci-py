@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "5ee6ab95_d83e979e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T03:12:00Z",
+      "side": 1,
+      "message": "Moved to be with the other similar logging.",
+      "parentUuid": "df839c85_883eb94e",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87342e50_b318e2e6",
         "filename": "client/isolate.py",
         "patchSetId": 5
@@ -119,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "f26f8ec3_902fc9b0",
+        "filename": "client/isolate.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T03:12:00Z",
+      "side": 1,
+      "message": "No, I didn\u0027t change the isolate.py frontend, the Isolate server or the .isolate format - the only way to use these new hashes is with the gRPC proxies for now. I don\u0027t think we should increment this until Isolate itself supports the longer hashes.",
+      "parentUuid": "87342e50_b318e2e6",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71464d6e_0e579b87",
         "filename": "client/isolate.py",
         "patchSetId": 5
@@ -130,6 +166,24 @@
       "writtenOn": "2017-09-07T18:57:29Z",
       "side": 1,
       "message": "Add sha-256 and sha-512?",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c02edb71_08c95df3",
+        "filename": "client/isolate.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T03:12:00Z",
+      "side": 1,
+      "message": "They\u0027re not supported in .isolate or in the server, so I\u0027d leave this as-is for now.",
+      "parentUuid": "71464d6e_0e579b87",
       "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
