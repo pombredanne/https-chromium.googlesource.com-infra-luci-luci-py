@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d84f8234_dc489944",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T00:45:32Z",
+      "side": 1,
+      "message": "Done; added 128 for sha512 as well.",
+      "parentUuid": "27f404c4_f033bd99",
+      "range": {
+        "startLine": 129,
+        "startChar": 12,
+        "endLine": 129,
+        "endChar": 18
+      },
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c2a6a90_bb12383a",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 5
@@ -36,6 +60,24 @@
       "writtenOn": "2017-09-07T18:57:29Z",
       "side": 1,
       "message": "It\u0027s already logged here.",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18ec8f8b_7a45f08b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T00:45:32Z",
+      "side": 1,
+      "message": "I don\u0027t think so? I\u0027m logging the return value of get_isolated_args, which in this function is just called \"args\" and is written to a json file (args_path). The cmd that we log simply references the isolated args file but doesn\u0027t show its contents - I looked through all three logs and didn\u0027t see the contents of that file anywhere until I added this.\n\nWith that said, I\u0027m happy to take it out - up to you.",
+      "parentUuid": "9c2a6a90_bb12383a",
       "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -76,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e0f3e_2a7840c8",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T00:45:32Z",
+      "side": 1,
+      "message": "Good point. This was causing a bunch of unit test failures too. Done.",
+      "parentUuid": "8a8c99b3_4325a31b",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c6d7732d_ffd275db",
         "filename": "client/isolate_storage.py",
         "patchSetId": 5
@@ -93,6 +153,24 @@
     },
     {
       "key": {
+        "uuid": "4c3f667a_3509aa0b",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T00:45:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6d7732d_ffd275db",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0028dca8_de01eb47",
         "filename": "client/isolated_format.py",
         "patchSetId": 5
@@ -107,6 +185,24 @@
       "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01646f13_0a6c5b7b",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-09-08T00:45:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0028dca8_de01eb47",
+      "revId": "4cf9817a26d943a747902caa145ea47aa057397b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
