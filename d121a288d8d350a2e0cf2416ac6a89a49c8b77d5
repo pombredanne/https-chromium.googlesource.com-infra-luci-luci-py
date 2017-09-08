@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5db7087b_4eb3a668",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-09-08T21:30:27Z",
+      "side": 1,
+      "message": "wow, i didn\u0027t know this hack worked.",
+      "range": {
+        "startLine": 727,
+        "startChar": 2,
+        "endLine": 727,
+        "endChar": 30
+      },
+      "revId": "d121a288d8d350a2e0cf2416ac6a89a49c8b77d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
