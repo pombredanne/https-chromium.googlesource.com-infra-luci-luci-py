@@ -163,6 +163,7 @@ def get_isolated_args(work_dir, task_details, isolated_result,
     cmd.extend(task_details.command)
   elif task_details.extra_args:
     cmd.extend(task_details.extra_args)
+  logging.info('Will call run_isolated with commands: %s', cmd)
   return cmd
 
 
