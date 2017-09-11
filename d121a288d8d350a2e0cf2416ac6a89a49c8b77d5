@@ -22,6 +22,30 @@
       "revId": "d121a288d8d350a2e0cf2416ac6a89a49c8b77d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31fbc3a2_81acf335",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-11T14:11:15Z",
+      "side": 1,
+      "message": "Yes I tested it to work on both with grpcio installed and without. Unless I messed up my testing environment (which I hope not!)",
+      "parentUuid": "5db7087b_4eb3a668",
+      "range": {
+        "startLine": 727,
+        "startChar": 2,
+        "endLine": 727,
+        "endChar": 30
+      },
+      "revId": "d121a288d8d350a2e0cf2416ac6a89a49c8b77d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
