@@ -276,6 +276,12 @@ def get_cpu_dimensions():
       out.append(u'arm-' + bitness)
   # else AMD like "AMD PRO A6-8500B R5, 6 Compute Cores 2C+4G     "
 
+  if platforms.is_gce():
+    cpu_platform = platforms.gce.get_cpu_platform()
+    if cpu_platform:
+      out.append(u'%s-%s-GCE-%s' % (
+          cpu_type, bitness, cpu_platform.replace(' ', '_')))
+
   out.sort()
   return out
 

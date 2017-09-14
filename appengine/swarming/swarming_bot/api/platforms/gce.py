@@ -182,6 +182,14 @@ def get_machine_type():
 
 
 @tools.cached
+def get_cpu_platform():
+  """Returns the GCE CPU platform (human-readable)."""
+  # https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones
+  metadata = get_metadata()
+  return unicode(metadata['instance']['cpuPlatform'])
+
+
+@tools.cached
 def get_tags():
   """Returns a list of instance tags or empty list if not GCE VM."""
   return get_metadata()['instance']['tags']
