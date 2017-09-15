@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb974787_56c827eb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-15T17:49:53Z",
+      "side": 1,
+      "message": "u\u0027 GCE\u0027",
+      "revId": "8e765ae46b295ab9c3f7e7808c78b5c95afef30e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
