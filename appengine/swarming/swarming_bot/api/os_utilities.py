@@ -284,13 +284,18 @@ def get_cpu_dimensions():
 def get_cpuinfo():
   """Returns the flags of the processor."""
   if sys.platform == 'darwin':
-    return platforms.osx.get_cpuinfo()
-  if sys.platform == 'win32':
-    return platforms.win.get_cpuinfo()
-  if sys.platform == 'linux2':
-    return platforms.linux.get_cpuinfo()
-  return {}
-
+    info = platforms.osx.get_cpuinfo()
+  elif sys.platform == 'win32':
+    info = platforms.win.get_cpuinfo()
+  elif sys.platform == 'linux2':
+    info = platforms.linux.get_cpuinfo()
+  else:
+    info = {}
+  if platforms.is_gce():
+    # On GCE, the OS reports a generic CPU. Replace with GCE-specific details,
+    # keeping the CPU flags as reported by the OS.
+    info.update(platforms.gce.get_cpuinfo() or {})
+  return info
 
 def get_ip():
   """Returns the IP that is the most likely to be used for TCP connections."""
