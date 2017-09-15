@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ebbc995_a8df36a2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-15T15:00:58Z",
+      "side": 1,
+      "message": "Not needed anymore.",
+      "revId": "3b1bb1af5d6b2a012f32dc251b4fd50c3a7c90f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59c0fe01_afcea0f8",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-15T15:00:58Z",
+      "side": 1,
+      "message": "I\u0027d prefer to change it here where we\u0027d add the condition:\n\nif platforms.is_gce():\n  # Ignore what the OS reports if GCE provides one.\n  info \u003d platforms.gce.get_cpuinfo()\n  if info:\n    return info",
+      "revId": "3b1bb1af5d6b2a012f32dc251b4fd50c3a7c90f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14230325_259a5dc8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-15T15:00:58Z",
+      "side": 1,
+      "message": "def get_cpuinfo():\n  \"\"\"Returns the GCE CPU information as reported by GCE instance metadata.\"\"\"\n  metadata \u003d get_metadata()\n  if not metadata:\n    return None\n  p \u003d unicode(metadata[\u0027instance\u0027][\u0027cpuPlatform\u0027])\n  if not p:\n    return None\n  # Normalize according the expected name as reported by the CPUID instruction.\n  # Sadly what GCE metadata reports is a \u0027creative\u0027 name that bears no relation with\n  # what CPUID reports.\n  #\n  # Fake it based on the expected names reported at\n  # https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones\n  #\n  # TODO: Update once we get other platforms. We don\u0027t know in advance what \u0027creative\u0027\n  # names will be used so better to fail explicitly and fix it right away.\n  assert p.startswith(u\u0027Intel \u0027), p\n  return {\n    u\u0027model\u0027: u\u0027Intel(R) Xeon(R) CPU \u0027 + p[len(u\u0027Intel \u0027):],\n    u\u0027vendor\u0027: u\u0027GenuineIntel\u0027,\n  }",
+      "revId": "3b1bb1af5d6b2a012f32dc251b4fd50c3a7c90f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
