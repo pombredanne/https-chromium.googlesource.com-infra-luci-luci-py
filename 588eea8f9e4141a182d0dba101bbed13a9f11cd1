@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a88e6f7b_07e1deb3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2017-09-15T15:33:31Z",
+      "side": 1,
+      "message": "Do we want to include some indication that this is a \u0027creative\u0027 name from GCE that could mean almost anything, rather than a particular CPU?",
+      "revId": "588eea8f9e4141a182d0dba101bbed13a9f11cd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
