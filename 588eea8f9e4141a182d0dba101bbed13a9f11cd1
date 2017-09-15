@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3321b0b7_6fe437d2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-15T15:39:14Z",
+      "side": 1,
+      "message": "There\u0027s actually an issue with my proposal; we loose the cpu flags as described by the OS. This means we\u0027ll loose the AVX2 flag. This would immediately break those tests:\n\nhttps://chromium-swarm.appspot.com/tasklist?c\u003dname\u0026c\u003dstate\u0026c\u003dcreated_ts\u0026c\u003duser\u0026c\u003dbot\u0026et\u003d1505489700000\u0026f\u003dcpu%3Ax86-64-avx2\u0026l\u003d50\u0026n\u003dtrue\u0026q\u003dcpu\u0026s\u003dcreated_ts%3Adesc\u0026st\u003d1505403300000\n\nSo one option is to rewrite this function as:\n\ndef get_cpuinfo():\n  \"\"\"Returns the flags of the processor.\"\"\"\n  if sys.platform \u003d\u003d \u0027darwin\u0027:\n    info \u003d platforms.osx.get_cpuinfo()\n  elif sys.platform \u003d\u003d \u0027win32\u0027:\n    info \u003d platforms.win.get_cpuinfo()\n  elif sys.platform \u003d\u003d \u0027linux2\u0027:\n    info \u003d platforms.linux.get_cpuinfo()\n  else:\n    info \u003d {}\n  if platforms.is_gce():\n    info.update(platforms.gce.get_cpuinfo() or {})\n  return info\n\n\nThis would enable keeping the flags as reported by the OS, yet override the mode as reported by GCE.",
+      "revId": "588eea8f9e4141a182d0dba101bbed13a9f11cd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a88e6f7b_07e1deb3",
         "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
         "patchSetId": 3
@@ -13,6 +30,24 @@
       "writtenOn": "2017-09-15T15:33:31Z",
       "side": 1,
       "message": "Do we want to include some indication that this is a \u0027creative\u0027 name from GCE that could mean almost anything, rather than a particular CPU?",
+      "revId": "588eea8f9e4141a182d0dba101bbed13a9f11cd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1535aca6_d3076fa0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-15T15:39:14Z",
+      "side": 1,
+      "message": "Fine with this idea.",
+      "parentUuid": "a88e6f7b_07e1deb3",
       "revId": "588eea8f9e4141a182d0dba101bbed13a9f11cd1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
