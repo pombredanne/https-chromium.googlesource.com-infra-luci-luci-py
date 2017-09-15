@@ -283,6 +283,11 @@ def get_cpu_dimensions():
 @tools.cached
 def get_cpuinfo():
   """Returns the flags of the processor."""
+  if platforms.is_gce():
+    # Ignore what the OS reports if GCE provides one.
+    cpuinfo = platforms.gce.get_cpuinfo()
+    if cpuinfo:
+      return cpuinfo
   if sys.platform == 'darwin':
     return platforms.osx.get_cpuinfo()
   if sys.platform == 'win32':
