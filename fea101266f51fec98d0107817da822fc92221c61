@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aac0f63c_a2e31275",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-09-19T20:02:52Z",
+      "side": 1,
+      "message": "Good catch.",
+      "parentUuid": "db0c7c82_2b7374da",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "fea101266f51fec98d0107817da822fc92221c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54035d98_4213d6b6",
         "filename": "appengine/swarming/ui/res/imp/common/dynamic-table-behavior.html",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "fea101266f51fec98d0107817da822fc92221c61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7c36f13_333442fb",
+        "filename": "appengine/swarming/ui/res/imp/common/dynamic-table-behavior.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-09-19T20:02:52Z",
+      "side": 1,
+      "message": "Basically we look through the list of gpus (e.g. [\"10de\",\"10de:08a4\",\"10de:08a4-barfoo\"]) and pick out the \"most important\" gpu.  Before the driver string \"-barfoo\" was added, we only looked at the ones with a colon to select as those were the most verbose ones.\n\nWhy not just pick the longest?  Some computers have 2 gpus and I wanted to make sure it listed both GPUs as important.",
+      "parentUuid": "54035d98_4213d6b6",
+      "revId": "fea101266f51fec98d0107817da822fc92221c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
