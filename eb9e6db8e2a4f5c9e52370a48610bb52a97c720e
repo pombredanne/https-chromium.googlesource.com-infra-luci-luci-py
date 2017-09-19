@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3c8f7c7c_1aaeb570",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-19T00:59:16Z",
+      "side": 1,
+      "message": "Eh. Done",
+      "parentUuid": "583fea10_e51d5e41",
+      "range": {
+        "startLine": 153,
+        "startChar": 45,
+        "endLine": 153,
+        "endChar": 53
+      },
+      "revId": "eb9e6db8e2a4f5c9e52370a48610bb52a97c720e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ac9a867_a700e0d6",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "eb9e6db8e2a4f5c9e52370a48610bb52a97c720e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "450543d5_212326c3",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-19T00:59:16Z",
+      "side": 1,
+      "message": "It\u0027s hacked up there:\nhttps://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/handlers_backend.py#229\n\nso it doesn\u0027t matter. Actually, I prefer to use another word to reduce the risk of confusion.",
+      "parentUuid": "8ac9a867_a700e0d6",
+      "range": {
+        "startLine": 477,
+        "startChar": 16,
+        "endLine": 477,
+        "endChar": 18
+      },
+      "revId": "eb9e6db8e2a4f5c9e52370a48610bb52a97c720e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
