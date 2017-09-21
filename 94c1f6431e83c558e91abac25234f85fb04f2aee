@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "728a12d4_ae1a95c1",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-21T19:10:59Z",
+      "side": 1,
+      "message": "nit: \u0027size\u0027, to be similar to isolated.size: https://screenshot.googleplex.com/pO6JPDqaNTg.png",
+      "range": {
+        "startLine": 608,
+        "startChar": 31,
+        "endLine": 608,
+        "endChar": 36
+      },
+      "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13af1fce_036cde64",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-21T19:10:59Z",
+      "side": 1,
+      "message": "also ValueError to cover the case when state.json is broken and not really JSON",
+      "range": {
+        "startLine": 629,
+        "startChar": 2,
+        "endLine": 629,
+        "endChar": 8
+      },
+      "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da87f2a_0ace3cad",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-21T19:10:59Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 655,
+        "startChar": 2,
+        "endLine": 655,
+        "endChar": 8
+      },
+      "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
