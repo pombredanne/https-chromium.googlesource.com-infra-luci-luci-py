@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b67e73d3_de3d70e6",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-21T19:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "728a12d4_ae1a95c1",
+      "range": {
+        "startLine": 608,
+        "startChar": 31,
+        "endLine": 608,
+        "endChar": 36
+      },
+      "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13af1fce_036cde64",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "822348f2_abcaa19e",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-21T19:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13af1fce_036cde64",
+      "range": {
+        "startLine": 629,
+        "startChar": 2,
+        "endLine": 629,
+        "endChar": 8
+      },
+      "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5da87f2a_0ace3cad",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee22d7c1_ee8c548c",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-21T19:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5da87f2a_0ace3cad",
+      "range": {
+        "startLine": 655,
+        "startChar": 2,
+        "endLine": 655,
+        "endChar": 8
+      },
+      "revId": "94c1f6431e83c558e91abac25234f85fb04f2aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
