@@ -90,10 +90,17 @@ PASSLIST = (
 # Keep in sync with ../config/bot_config.py. This is enforced by a unit test.
 DEFAULT_SETTINGS = {
   'free_partition': {
-    'size': 4 * 1024*1024*1024,
-    'max_percent': 15.,
-    'min_percent': 7.,
-    'wiggle': 250 * 1024*1024,
+    'root': {
+      'size': 1 * 1024*1024*1024,
+      'max_percent': 10.,
+      'min_percent': 6.,
+    },
+    'bot': {
+      'size': 4 * 1024*1024*1024,
+      'max_percent': 15.,
+      'min_percent': 7.,
+      'wiggle': 250 * 1024*1024,
+    },
   },
   'caches': {
     'isolated': {
