@@ -57,6 +57,24 @@
       "revId": "503cd1b3dc434c13e757e7d6bbec4186e03ebb50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec86d81a_7c66eeb3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-26T23:55:56Z",
+      "side": 1,
+      "message": "Thanks for clarifying.",
+      "parentUuid": "f1a347c7_cf8eeb67",
+      "revId": "503cd1b3dc434c13e757e7d6bbec4186e03ebb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
