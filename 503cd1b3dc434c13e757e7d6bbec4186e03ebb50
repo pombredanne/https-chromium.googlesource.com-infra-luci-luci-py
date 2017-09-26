@@ -39,6 +39,24 @@
       "revId": "503cd1b3dc434c13e757e7d6bbec4186e03ebb50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1a347c7_cf8eeb67",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-26T23:53:14Z",
+      "side": 1,
+      "message": "\u0027-\u0027 means \"the email is known\": see local_auth section in https://chromium.googlesource.com/infra/luci/luci-py/+/master/client/LUCI_CONTEXT.md\n\nThis happens if bot is not using OAuth for authentication at all. We still allow the task to start, it fail fail later when it tried to grab a token (if it ever happens). But we need to put something into the LUCI_CONTEXT before that.",
+      "parentUuid": "e17708c1_a6e4f146",
+      "revId": "503cd1b3dc434c13e757e7d6bbec4186e03ebb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
