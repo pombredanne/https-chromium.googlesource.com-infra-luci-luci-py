@@ -11,6 +11,7 @@ import webapp2
 
 from components import auth
 from components import datastore_utils
+from components import decorators
 from components import template
 from components import utils
 
@@ -24,6 +25,7 @@ THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 class CatalogHandler(auth.AuthenticatingHandler):
   """Catalog handler."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.require(auth.is_admin)
   def get(self, machine_id=None):
     params = {
@@ -49,6 +51,7 @@ class CatalogHandler(auth.AuthenticatingHandler):
 class LeaseRequestHandler(auth.AuthenticatingHandler):
   """Lease request handler."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.require(auth.is_admin)
   def get(self, lease_id=None):
     params = {
@@ -74,6 +77,7 @@ class LeaseRequestHandler(auth.AuthenticatingHandler):
 class RootHandler(auth.AuthenticatingHandler):
   """Root handler."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.public
   def get(self):
     params = {
