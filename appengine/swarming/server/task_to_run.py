@@ -291,7 +291,8 @@ def _yield_pages_async(q, size):
     should_continue[0] = more
 
   while should_continue[0]:
-    page_future = q.fetch_page_async(size, start_cursor=next_cursor[0])
+    page_future = q.fetch_page_async(
+        size, start_cursor=next_cursor[0], deadline=40)
     result_future = ndb.Future()
     page_future.add_immediate_callback(fire, page_future, result_future)
     yield result_future
@@ -300,7 +301,7 @@ def _yield_pages_async(q, size):
 
 def _get_task_to_run_query(dimensions_hash):
   """Returns a ndb.Query of TaskToRun within this dimensions_hash queue."""
-  opts = ndb.QueryOptions(keys_only=True, deadline=15)
+  opts = ndb.QueryOptions(keys_only=True, deadline=40)
   # See _gen_queue_number() as of why << 31.
   return TaskToRun.query(default_options=opts).order(
           TaskToRun.queue_number).filter(
@@ -491,7 +492,7 @@ def yield_next_available_task_to_dispatch(bot_dimensions, deadline):
   try:
     for task_key in _yield_potential_tasks(bot_id):
       duration = (utils.utcnow() - now).total_seconds()
-      if duration > 40.:
+      if duration > 50.:
         # Stop searching after too long, since the odds of the request blowing
         # up right after succeeding in reaping a task is not worth the dangling
         # task request that will stay in limbo until the cron job reaps it and
