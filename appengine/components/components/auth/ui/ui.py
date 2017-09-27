@@ -10,6 +10,7 @@ import os
 import re
 import webapp2
 
+from components import decorators
 from components import template
 from components import utils
 
@@ -185,6 +186,7 @@ class BootstrapHandler(AdminPageHandler):
   Used during bootstrap of a new service instance.
   """
 
+  @decorators.forbid_ui_if_disabled
   @forbid_ui_on_replica
   @api.require(api.is_superuser)
   def get(self):
@@ -195,6 +197,7 @@ class BootstrapHandler(AdminPageHandler):
     }
     self.reply('auth/admin/bootstrap.html', env)
 
+  @decorators.forbid_ui_if_disabled
   @forbid_ui_on_replica
   @api.require(api.is_superuser)
   def post(self):
@@ -220,10 +223,12 @@ class BootstrapOAuthHandler(AdminPageHandler):
   also available after the service is linked to some primary Auth service.
   """
 
+  @decorators.forbid_ui_if_disabled
   @api.require(api.is_superuser)
   def get(self):
     self.show_page(web_client_id=api.get_web_client_id_uncached())
 
+  @decorators.forbid_ui_if_disabled
   @api.require(api.is_superuser)
   def post(self):
     web_client_id = self.request.POST['web_client_id']
@@ -254,6 +259,7 @@ class LinkToPrimaryHandler(AdminPageHandler):
       self.abort(400)
       return
 
+  @decorators.forbid_ui_if_disabled
   @forbid_ui_on_replica
   @api.require(api.is_superuser)
   def get(self):
@@ -266,6 +272,7 @@ class LinkToPrimaryHandler(AdminPageHandler):
     }
     self.reply('auth/admin/linking.html', env)
 
+  @decorators.forbid_ui_if_disabled
   @forbid_ui_on_replica
   @api.require(api.is_superuser)
   def post(self):
@@ -406,6 +413,7 @@ class UIHandler(handler.AuthenticatingHandler):
 
 class MainHandler(UIHandler):
   """Redirects to first navbar tab."""
+  @decorators.forbid_ui_if_disabled
   @redirect_ui_on_replica
   @api.require(acl.has_access)
   def get(self):
@@ -430,6 +438,7 @@ class UINavbarTabHandler(UIHandler):
   # Path to a Jinja2 template with tab's markup.
   template_file = None
 
+  @decorators.forbid_ui_if_disabled
   @redirect_ui_on_replica
   @api.require(acl.has_access)
   def get(self, **_params):
@@ -579,6 +588,7 @@ class ApiDocHandler(UINavbarTabHandler):
     },
   ]
 
+  @decorators.forbid_ui_if_disabled
   @redirect_ui_on_replica
   @api.require(acl.has_access)
   def get(self):

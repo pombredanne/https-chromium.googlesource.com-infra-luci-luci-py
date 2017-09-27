@@ -36,6 +36,7 @@ from . import ui
 class RestrictedEreporter2Report(auth.AuthenticatingHandler):
   """Returns all the recent errors as a web page."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.is_ereporter2_viewer)
   def get(self):
@@ -80,6 +81,7 @@ class RestrictedEreporter2Report(auth.AuthenticatingHandler):
 class RestrictedEreporter2Request(auth.AuthenticatingHandler):
   """Dumps information about single logged request."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.is_ereporter2_viewer)
   def get(self, request_id):
@@ -93,6 +95,7 @@ class RestrictedEreporter2Request(auth.AuthenticatingHandler):
 class RestrictedEreporter2ErrorsList(auth.AuthenticatingHandler):
   """Dumps information about reported client side errors."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.is_ereporter2_viewer)
   def get(self):
@@ -112,6 +115,7 @@ class RestrictedEreporter2ErrorsList(auth.AuthenticatingHandler):
 class RestrictedEreporter2Error(auth.AuthenticatingHandler):
   """Dumps information about reported client side errors."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.is_ereporter2_viewer)
   def get(self, error_id):
@@ -126,6 +130,7 @@ class RestrictedEreporter2Error(auth.AuthenticatingHandler):
 
 
 class RestrictedEreporter2Silence(auth.AuthenticatingHandler):
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.is_ereporter2_viewer)
   def get(self):
@@ -140,6 +145,7 @@ class RestrictedEreporter2Silence(auth.AuthenticatingHandler):
     }
     self.response.out.write(template.render('ereporter2/silence.html', params))
 
+  @decorators.forbid_ui_if_disabled
   @auth.require(acl.is_ereporter2_editor)
   def post(self):
     to_delete = self.request.get('to_delete')
