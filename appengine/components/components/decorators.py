@@ -6,7 +6,20 @@
 
 import functools
 import logging
+import os
 
+
+DISABLE_UI = os.environ.get('LUCI_DISABLE_UI_ROUTES', '0')
+
+def forbid_ui_if_disabled(method):
+  @functools.wraps(method)
+  def wrapper(self, *args, **kwargs):
+    if DISABLE_UI == '1':
+      self.abort(
+          405,
+          detail='UI is disabled.')
+    return method(self, *args, **kwargs)
+  return wrapper
 
 def silence(*exceptions):
   """Eats the exceptions listed and log a warning instead of an error.
