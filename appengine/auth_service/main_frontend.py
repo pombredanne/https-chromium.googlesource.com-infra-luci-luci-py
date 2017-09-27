@@ -17,6 +17,9 @@ sys.path.insert(0, os.path.join(APP_DIR, 'components', 'third_party'))
 
 import endpoints
 
+from components import utils
+utils.fix_protobuf_package()
+
 from components import auth
 from components import config
 from components import ereporter2
