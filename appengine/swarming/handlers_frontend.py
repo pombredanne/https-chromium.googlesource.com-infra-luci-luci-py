@@ -18,6 +18,7 @@ import handlers_endpoints
 import mapreduce_jobs
 import template
 from components import auth
+from components import decorators
 from components import utils
 from server import acl
 from server import bot_code
@@ -35,6 +36,7 @@ SortOptions = collections.namedtuple('SortOptions', ['key', 'name'])
 
 
 class RestrictedConfigHandler(auth.AuthenticatingHandler):
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.can_view_config)
   def get(self):
@@ -46,6 +48,7 @@ class RestrictedConfigHandler(auth.AuthenticatingHandler):
 class UploadBotConfigHandler(auth.AuthenticatingHandler):
   """Stores a new bot_config.py script."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.can_view_config)
   def get(self):
@@ -61,6 +64,7 @@ class UploadBotConfigHandler(auth.AuthenticatingHandler):
     self.response.write(
         template.render('swarming/restricted_upload_bot_config.html', params))
 
+  @decorators.forbid_ui_if_disabled
   @auth.require(acl.can_edit_config)
   def post(self):
     script = self.request.get('script', '')
@@ -80,6 +84,7 @@ class UploadBotConfigHandler(auth.AuthenticatingHandler):
 class UploadBootstrapHandler(auth.AuthenticatingHandler):
   """Stores a new bootstrap.py script."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.autologin
   @auth.require(acl.can_view_config)
   def get(self):
@@ -95,6 +100,7 @@ class UploadBootstrapHandler(auth.AuthenticatingHandler):
     self.response.write(
         template.render('swarming/restricted_upload_bootstrap.html', params))
 
+  @decorators.forbid_ui_if_disabled
   @auth.require(acl.can_edit_config)
   def post(self):
     script = self.request.get('script', '')
@@ -123,6 +129,7 @@ class RestrictedLaunchMapReduceJob(auth.AuthenticatingHandler):
   on backend module.
   """
 
+  @decorators.forbid_ui_if_disabled
   @auth.require(acl.can_edit_config)
   def post(self):
     job_id = self.request.get('job_id')
@@ -144,6 +151,7 @@ class RestrictedLaunchMapReduceJob(auth.AuthenticatingHandler):
 class BotsListHandler(auth.AuthenticatingHandler):
   """Redirects to a list of known bots."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.public
   def get(self):
     limit = int(self.request.get('limit', 100))
@@ -163,6 +171,7 @@ class BotsListHandler(auth.AuthenticatingHandler):
 class BotHandler(auth.AuthenticatingHandler):
   """Redirects to a page about the bot, including last tasks and events."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.public
   def get(self, bot_id):
     self.redirect('/bot?id=%s' % bot_id)
@@ -171,6 +180,7 @@ class BotHandler(auth.AuthenticatingHandler):
 class TasksHandler(auth.AuthenticatingHandler):
   """Redirects to a list of all task requests."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.public
   def get(self):
     limit = int(self.request.get('limit', 100))
@@ -188,6 +198,7 @@ class TasksHandler(auth.AuthenticatingHandler):
 class TaskHandler(auth.AuthenticatingHandler):
   """Redirects to a page containing task request and result."""
 
+  @decorators.forbid_ui_if_disabled
   @auth.public
   def get(self, task_id):
     self.redirect('/task?id=%s' % task_id)
@@ -201,6 +212,7 @@ class UIHandler(auth.AuthenticatingHandler):
 
   This landing page is stamped with the OAuth 2.0 client id from the
   configuration."""
+  @decorators.forbid_ui_if_disabled
   @auth.public
   def get(self, page):
     if not page:
@@ -220,6 +232,7 @@ class UIHandler(auth.AuthenticatingHandler):
     except template.TemplateNotFound:
       self.abort(404, 'Page not found.')
 
+  @decorators.forbid_ui_if_disabled
   def get_content_security_policy(self):
     # We use iframes to display pages at display_server_url_template. Need to
     # allow it in CSP.
