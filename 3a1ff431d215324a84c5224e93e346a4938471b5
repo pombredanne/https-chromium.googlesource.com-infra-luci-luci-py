@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f323d8dd_8e67f308",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-28T22:06:44Z",
+      "side": 1,
+      "message": "it is ok to mention this in open source code?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 24
+      },
+      "revId": "3a1ff431d215324a84c5224e93e346a4938471b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eeb1a1d9_6ccb649e",
+        "filename": "appengine/components/components/auth/ui/ui.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-28T22:06:44Z",
+      "side": 1,
+      "message": "please move this check into components.utils:\n\ndef should_disable_ui_routes():\n  return os.environ.get(\u0027LUCI_DISABLE_UI_ROUTES\u0027, \u00270\u0027) \u003d\u003d \u00271\u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 5,
+        "endLine": 62,
+        "endChar": 57
+      },
+      "revId": "3a1ff431d215324a84c5224e93e346a4938471b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
