@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0004a1d_b84bab60",
+        "filename": "appengine/auth_service/main_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-09-28T00:44:28Z",
+      "side": 1,
+      "message": "Technically this isn\u0027t supposed to be needed here, only when running tests. Can you skip this and main_frontend.py from the CL?",
+      "revId": "14adb64277dc6445a3656ec8f710d0275000b67b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
