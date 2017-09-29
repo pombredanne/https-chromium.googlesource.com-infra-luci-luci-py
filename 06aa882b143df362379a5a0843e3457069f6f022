@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "268668a6_fde81c4d",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-09-29T19:32:41Z",
+      "side": 1,
+      "message": "nit: one more \u0027\\n\u0027 \n\n(we use two newlines between top-level functions)",
+      "revId": "06aa882b143df362379a5a0843e3457069f6f022",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
