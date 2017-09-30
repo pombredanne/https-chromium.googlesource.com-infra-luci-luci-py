@@ -124,7 +124,8 @@ def run_batches(
         '-s', isolated_hash,
       ]
       for k, v in sorted(dimensions.iteritems()):
-        cmd.extend(('-d', k, v))
+        if k != 'id':
+          cmd.extend(('-d', k, v))
       for t in sorted(tags):
         cmd.extend(('--tags', t))
       for k, v in env:
@@ -132,6 +133,7 @@ def run_batches(
       if args:
         cmd.append('--')
         cmd.extend(args)
+
       threads.append(batched_subprocess(cmd, sem))
   for t in threads:
      t.join()
