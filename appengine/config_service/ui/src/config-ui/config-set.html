@@ -260,9 +260,11 @@
         return "Cannot determine type of config set.";
       },
 
-      _onCompleteRefresh: function() {
+      _onCompleteRefresh: function(x) {
+        console.log(x)
         this.isRefreshing = false;
         this.refreshMessage = "Reimport successful.";
+        this.$.requestConfigs.generateRequest();
         this.fire('refreshComplete');
       },
 
