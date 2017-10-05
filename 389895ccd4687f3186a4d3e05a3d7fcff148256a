@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d48ff163_0eb0d0d9",
+        "filename": "appengine/config_service/ui/src/config-ui/config-set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-05T04:20:38Z",
+      "side": 1,
+      "message": "could you please remove all these trailing spaces from all files in another CL?",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 11
+      },
+      "revId": "389895ccd4687f3186a4d3e05a3d7fcff148256a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
