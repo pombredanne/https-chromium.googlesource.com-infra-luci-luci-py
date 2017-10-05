@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "96ca21eb_57855326",
+        "filename": "appengine/config_service/ui/src/config-ui/config-set.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-05T22:30:51Z",
+      "side": 1,
+      "message": "I just checked on sublime and it seems like this was the only one with trailing space for the html files",
+      "parentUuid": "229732c7_85d26d87",
+      "revId": "fd57f7faffbe722372e38c1b8973cd61fe575790",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "86b79679_30e950c0",
         "filename": "appengine/config_service/ui/src/config-ui/config-set.html",
         "patchSetId": 1
@@ -39,6 +57,30 @@
       "revId": "fd57f7faffbe722372e38c1b8973cd61fe575790",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30044931_e9f108a2",
+        "filename": "appengine/config_service/ui/src/config-ui/config-set.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-05T22:30:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86b79679_30e950c0",
+      "range": {
+        "startLine": 90,
+        "startChar": 30,
+        "endLine": 90,
+        "endChar": 31
+      },
+      "revId": "fd57f7faffbe722372e38c1b8973cd61fe575790",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
