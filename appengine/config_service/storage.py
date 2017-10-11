@@ -44,6 +44,8 @@ class ConfigSet(ndb.Model):
 
   location = ndb.StringProperty(required=True)
 
+  # needed to initially canonicalize the location endings
+  is_location_canonical = ndb.BooleanProperty(indexed=False, default=False)
 
 class RevisionInfo(ndb.Model):
   """Contains revision metadata.

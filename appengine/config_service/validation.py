@@ -6,11 +6,12 @@ import base64
 import json
 import logging
 import posixpath
-import re
 import urlparse
 
 from google.appengine.ext import ndb
 
+import common
+import services
 from components import auth
 from components import config
 from components import gitiles
@@ -18,10 +19,6 @@ from components import net
 from components.config import validation
 from components.config.proto import project_config_pb2
 from components.config.proto import service_config_pb2
-
-import common
-import services
-import storage
 
 
 def validate_config_set(config_set, ctx=None):
@@ -73,7 +70,7 @@ def check_id_sorted(iterable, list_name, ctx):
       continue
     if prev is not None and item.id < prev:
       ctx.warning(
-          '%s are not sorted by id. First offending id: %s', list_name, item.id)
+        '%s are not sorted by id. First offending id: %s', list_name, item.id)
       return
     prev = item.id
 
@@ -109,7 +106,7 @@ def validate_config_set_location(loc, ctx, allow_relative_url=False):
 
 
 @validation.self_rule(
-    common.PROJECT_REGISTRY_FILENAME, service_config_pb2.ProjectsCfg)
+  common.PROJECT_REGISTRY_FILENAME, service_config_pb2.ProjectsCfg)
 def validate_project_registry(cfg, ctx):
   project_ids = set()
   for i, project in enumerate(cfg.projects):
@@ -118,7 +115,6 @@ def validate_project_registry(cfg, ctx):
       with ctx.prefix('config_location: '):
         validate_config_set_location(project.config_location, ctx)
   check_id_sorted(cfg.projects, 'Projects', ctx)
-
 
 
 def validate_identity(identity, ctx):
@@ -161,7 +157,7 @@ def validate_access_list(access_list, ctx):
 
 
 @validation.self_rule(
-    common.SERVICES_REGISTRY_FILENAME, service_config_pb2.ServicesCfg)
+  common.SERVICES_REGISTRY_FILENAME, service_config_pb2.ServicesCfg)
 def validate_services_cfg(cfg, ctx):
   service_ids = set()
   for i, service in enumerate(cfg.services):
@@ -170,7 +166,7 @@ def validate_services_cfg(cfg, ctx):
       if service.config_location and service.config_location.url:
         with ctx.prefix('config_location: '):
           validate_config_set_location(
-              service.config_location, ctx, allow_relative_url=True)
+            service.config_location, ctx, allow_relative_url=True)
       for owner in service.owners:
         validate_email(owner, ctx)
       if service.metadata_url:
@@ -189,7 +185,7 @@ def validate_service_dynamic_metadata_blob(metadata, ctx):
 
   if metadata.get('version') != '1.0':
     ctx.error(
-        'Expected format version 1.0, but found "%s"', metadata.get('version'))
+      'Expected format version 1.0, but found "%s"', metadata.get('version'))
 
   validation = metadata.get('validation')
   if validation is None:
@@ -245,17 +241,17 @@ def validate_schemas(cfg, ctx):
 
         config_set, path = schema.name.split(':', 2)
         if (not config.SERVICE_CONFIG_SET_RGX.match(config_set) and
-            config_set not in ('projects', 'projects/refs')):
+                config_set not in ('projects', 'projects/refs')):
           ctx.error(
-              'left side of ":" must be a service config set, "projects" or '
-              '"projects/refs"')
+            'left side of ":" must be a service config set, "projects" or '
+            '"projects/refs"')
         validate_path(path, ctx)
       with ctx.prefix('url: '):
         validate_url(schema.url, ctx)
 
 
 @validation.project_config_rule(
-    common.PROJECT_METADATA_FILENAME, project_config_pb2.ProjectCfg)
+  common.PROJECT_METADATA_FILENAME, project_config_pb2.ProjectCfg)
 def validate_project_metadata(cfg, ctx):
   if not cfg.name:
     ctx.error('name is not specified')
@@ -263,7 +259,7 @@ def validate_project_metadata(cfg, ctx):
 
 
 @validation.project_config_rule(
-    common.REFS_FILENAME, project_config_pb2.RefsCfg)
+  common.REFS_FILENAME, project_config_pb2.RefsCfg)
 def validate_refs_cfg(cfg, ctx):
   refs = set()
   for i, ref in enumerate(cfg.refs):
@@ -298,7 +294,7 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
   for p in metadata.validation.patterns:
     # TODO(nodir): optimize if necessary.
     if (validation.compile_pattern(p.config_set)(config_set) and
-        validation.compile_pattern(p.path)(path)):
+          validation.compile_pattern(p.path)(path)):
       match = True
       break
   if not match:
@@ -308,11 +304,11 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
 
   def report_error(text):
     text = (
-        'Error during external validation: %s\n'
-        'url: %s\n'
-        'config_set: %s\n'
-        'path: %s\n'
-        'response: %r') % (text, url, config_set, path, res)
+             'Error during external validation: %s\n'
+             'url: %s\n'
+             'config_set: %s\n'
+             'path: %s\n'
+             'response: %r') % (text, url, config_set, path, res)
     logging.error(text)
     ctx.critical(text)
 
@@ -323,7 +319,7 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
       'content': base64.b64encode(content),
     }
     res = yield net.json_request_async(
-        url, method='POST', payload=req, scopes=net.EMAIL_SCOPE)
+      url, method='POST', payload=req, scopes=net.EMAIL_SCOPE)
   except net.Error as ex:
     report_error('Net error: %s' % ex)
     return
@@ -335,9 +331,9 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
         continue
       severity = msg.get('severity') or 'INFO'
       if (severity not in
-          service_config_pb2.ValidationResponseMessage.Severity.keys()):
+            service_config_pb2.ValidationResponseMessage.Severity.keys()):
         report_error(
-            'invalid response: unexpected message severity: %s' % severity)
+          'invalid response: unexpected message severity: %s' % severity)
         continue
       # It is safe because we've validated |severity|.
       func = getattr(ctx, severity.lower())
@@ -366,7 +362,7 @@ def validate_config_async(config_set, path, content, ctx=None):
   futures = []
   for service in all_services:
     futures.append(
-        _validate_by_service_async(service, config_set, path, content, ctx))
+      _validate_by_service_async(service, config_set, path, content, ctx))
   yield futures
   raise ndb.Return(ctx.result())
 
