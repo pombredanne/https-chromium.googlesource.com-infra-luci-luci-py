@@ -17,7 +17,6 @@ from components import auth
 from components import utils
 from components.auth import delegation
 
-
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
 
 

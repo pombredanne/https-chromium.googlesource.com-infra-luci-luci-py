@@ -25,6 +25,9 @@ import validation
 # This is used by endpoints indirectly.
 package = 'luci-config'
 
+class ConfigFile(messages.Message):
+  path = messages.StringField(1)
+  content = messages.StringField(2)
 
 class Project(messages.Message):
   # Unique luci project id from services/luci-config:projects.cfg
@@ -141,6 +144,46 @@ class ConfigApi(remote.Service):
     )
 
   ##############################################################################
+  # endpoint: validate_config
+  class ValidateConfigResponseMessage(messages.Message):
+    class ValidationMessage(messages.Message):
+      severity = messages.IntegerField(1, required=True)
+      message = messages.StringField(2, required=True)
+    validation_messages = messages.MessageField(ValidationMessage,
+                                                1, repeated=True)
+
+  @auth.endpoints_method(
+    endpoints.ResourceContainer(
+      message_types.VoidMessage,
+      config_set=messages.StringField(1),
+      config_files=messages.MessageField(ConfigFile, repeated=True)
+    ),
+    ValidateConfigResponseMessage,
+    http_method='GET',
+    path='validate-config'
+  )
+  @auth.public # ACL check inside
+  def validate_config(self, request):
+
+    if (request.config_set and not can_read_config_set(request.config_set)) \
+            or not acl.has_validation_access():
+      raise endpoints.ForbiddenException()
+
+    config_set = request.config_set
+
+    result = []
+    for config_file in request.config_files:
+      result.extend(validation.validate_config(config_set, config_file.path,
+                                               config_file.content).messages)
+
+    # return the severities and the texts
+    return self.ValidateConfigResponseMessage(validation_messages=[
+      self.ValidateConfigResponseMessage.ValidationMessage(
+        severity=msg.severity, message=msg.text)
+      for msg in result.messages
+    ])
+
+  ##############################################################################
   # endpoint: get_config_sets
 
   class GetConfigSetsResponseMessage(messages.Message):
@@ -152,6 +195,8 @@ class ConfigApi(remote.Service):
         config_set=messages.StringField(1),
         include_last_import_attempt=messages.BooleanField(2),
         include_files=messages.BooleanField(3),
+        filter_by_location_prefix=messages.BooleanField(4, default=False),
+        locations=messages.StringField(5, repeated=True)
     ),
     GetConfigSetsResponseMessage,
     http_method='GET',
@@ -159,6 +204,7 @@ class ConfigApi(remote.Service):
   @auth.public # ACL check inside
   def get_config_sets(self, request):
     """Returns config sets."""
+
     if request.config_set and not can_read_config_set(request.config_set):
       raise endpoints.ForbiddenException()
     if request.include_files and not request.config_set:
@@ -187,6 +233,7 @@ class ConfigApi(remote.Service):
       attempts = [None] * len(config_sets)
 
     res = self.GetConfigSetsResponseMessage()
+
     can_read = can_read_config_sets([cs.key.id() for cs in config_sets])
     for cs, attempt in zip(config_sets, attempts):
       if not can_read[cs.key.id()]:
@@ -206,7 +253,15 @@ class ConfigApi(remote.Service):
         if cs.latest_revision_time:
           cs_msg.revision.timestamp = utils.datetime_to_timestamp(
               cs.latest_revision_time)
-      res.config_sets.append(cs_msg)
+
+      # filter by location prefixes
+      if request.filter_by_location_prefixes:
+        for location in request.locations:
+          if location.startswith(cs_msg.location):
+            res.config_sets.append(cs_msg)
+      else:
+        res.config_sets.append(cs_msg)
+
     return res
 
   ##############################################################################

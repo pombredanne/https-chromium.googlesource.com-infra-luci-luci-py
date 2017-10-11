@@ -260,6 +260,8 @@ def get_config_set_location(config_set):  # pragma: no cover
 
 def _has_access(access, identity=None):
   identity = identity or auth.get_current_identity()
+  # trying to see what comes in here..just to see how this authenticates
+
   if access.startswith('group:'):
     group = access.split(':', 2)[1]
     return auth.is_group_member(group, identity)

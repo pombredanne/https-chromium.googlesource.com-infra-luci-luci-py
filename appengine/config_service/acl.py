@@ -7,6 +7,8 @@ from components import config
 from components import utils
 from components.config.proto import service_config_pb2
 
+import pdb
+
 import common
 import projects
 import services
@@ -106,6 +108,12 @@ def has_projects_access(project_ids):
   has_access = _has_access([metadata.get(pid) for pid in project_ids])
   return dict(zip(project_ids, has_access))
 
+
+def has_validation_access():
+  validation_group = get_acl_cfg().validation_group
+  if is_admin() or validation_group and auth.is_group_member(validation_group):
+    return True
+  return False
 
 def _has_access(resources):
   access_values = set()
