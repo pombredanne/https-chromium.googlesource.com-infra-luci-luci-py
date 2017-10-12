@@ -141,6 +141,52 @@ class ConfigApi(remote.Service):
     )
 
   ##############################################################################
+  # endpoint: validate_config
+
+  class ValidateConfigResponseMessage(messages.Message):
+    messages = messages.MessageField(
+        cfg_endpoint.ValidationMessage, 1, repeated=True)
+
+  class ValidateConfigRequestMessage(messages.Message):
+    class ConfigFile(messages.Message):
+      path = messages.StringField(1)
+      content = messages.StringField(2)
+    config_set = messages.StringField(1)
+    files = messages.MessageField(ConfigFile, 2, repeated=True)
+
+  @auth.endpoints_method(
+      ValidateConfigRequestMessage,
+      ValidateConfigResponseMessage,
+      http_method='POST',
+      path='validate-config',
+  )
+  @auth.public # ACL check inside
+  def validate_config(self, request):
+    if not request.config_set:
+      raise endpoints.BadRequestException()
+    if (not can_read_config_set(request.config_set)
+        or not acl.has_validation_access()):
+      raise endpoints.ForbiddenException()
+
+    futs = []
+    for f in request.files:
+      if not f.path:
+        raise endpoints.BadRequestException()
+      futs.extend(validation.validate_config_async(
+          request.config_set, f.path, f.content).messages)
+
+    ndb.Future.wait_all(futs)
+    messages = []
+    for fut in futs:
+      messages.extend(fut.get_result())
+
+    # return the severities and the texts
+    return self.ValidateConfigResponseMessage(validation_messages=[
+      cfg_endpoint.ValidationMessage(severity=msg.severity, message=msg.text)
+      for msg in messages
+    ])
+
+  ##############################################################################
   # endpoint: get_config_sets
 
   class GetConfigSetsResponseMessage(messages.Message):
