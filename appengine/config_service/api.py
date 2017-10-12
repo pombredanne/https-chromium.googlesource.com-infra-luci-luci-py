@@ -26,6 +26,11 @@ import validation
 package = 'luci-config'
 
 
+class ConfigFile(messages.Message):
+  path = messages.StringField(1)
+  content = messages.StringField(2)
+
+
 class Project(messages.Message):
   # Unique luci project id from services/luci-config:projects.cfg
   id = messages.StringField(1, required=True)
@@ -141,6 +146,42 @@ class ConfigApi(remote.Service):
     )
 
   ##############################################################################
+  # endpoint: validate_config
+  class ValidateConfigResponseMessage(messages.Message):
+    validation_messages = messages.MessageField(cfg_endpoint.ValidationMessage,
+                                                1, repeated=True)
+
+  @auth.endpoints_method(
+      endpoints.ResourceContainer(
+        message_types.VoidMessage,
+        config_set=messages.StringField(1),
+        config_files=messages.MessageField(ConfigFile, 2, repeated=True)
+      ),
+      ValidateConfigResponseMessage,
+      http_method='GET',
+      path='validate-config'
+  )
+  @auth.public # ACL check inside
+  def validate_config(self, request):
+    if not request.config_set:
+      raise endpoints.BadRequestException()
+    if (not can_read_config_set(request.config_set)
+        or not acl.has_validation_access()):
+      raise endpoints.ForbiddenException()
+
+    result = []
+    for f in request.config_files:
+      result.extend(validation.validate_config(request.config_set, f.path,
+                                               f.content).messages)
+
+    # return the severities and the texts
+    return self.ValidateConfigResponseMessage(validation_messages=[
+      self.ValidateConfigResponseMessage.ValidationMessage(
+          severity=msg.severity, message=msg.text)
+      for msg in result.messages
+    ])
+
+  ##############################################################################
   # endpoint: get_config_sets
 
   class GetConfigSetsResponseMessage(messages.Message):
@@ -151,7 +192,7 @@ class ConfigApi(remote.Service):
         message_types.VoidMessage,
         config_set=messages.StringField(1),
         include_last_import_attempt=messages.BooleanField(2),
-        include_files=messages.BooleanField(3),
+        include_files=messages.BooleanField(3)
     ),
     GetConfigSetsResponseMessage,
     http_method='GET',
