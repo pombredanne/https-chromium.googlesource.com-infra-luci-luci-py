@@ -1,0 +1,462 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a72da67e_1b83c67c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "this looks like it shouldn\u0027t be here. It defines the CL title.",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b0e6d12_e01f9215",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "please move modification of get_config_sets to a separate CL",
+      "range": {
+        "startLine": 10,
+        "startChar": 32,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8955362c_e165dbe1",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "\"may call validation API\"",
+      "range": {
+        "startLine": 108,
+        "startChar": 28,
+        "endLine": 108,
+        "endChar": 49
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed09736c_89faebb3",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "return \u003cexpression\u003e",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 5
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee32b86_b6db3621",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: two blank lines between top-level declarations",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874816d7_0ecbe961",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: two blank lines before and after ConfigFile",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87ad3307_821ffbb4",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "let\u0027s reuse https://cs.chromium.org/chromium/infra/luci/appengine/components/components/config/endpoint.py?l\u003d46\nor at least make it identical",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d00e28c1_630dc9da",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: +2 spaces, see other endpoints",
+      "range": {
+        "startLine": 156,
+        "startChar": 2,
+        "endLine": 156,
+        "endChar": 4
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcaa46e8_31dee0ca",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: +2 spaces, see other endpoints",
+      "range": {
+        "startLine": 157,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 6
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b2feeff_93d05264",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: remove blank line",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54111c67_d9e5dc39",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "if this is falsy, we should raise endpoints.BadRequestException",
+      "range": {
+        "startLine": 168,
+        "startChar": 8,
+        "endLine": 168,
+        "endChar": 26
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ce9feb_5ff57bd6",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: don\u0027t use \\ https://google.github.io/styleguide/pyguide.html?showone\u003dLine_length#Line_length",
+      "range": {
+        "startLine": 168,
+        "startChar": 75,
+        "endLine": 168,
+        "endChar": 77
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "028792d8_972e7736",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "remove this space",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 12
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae4c481_777b6885",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: inline",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 14
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06fca19d_281045ef",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: too long name for the short lifespan of the variable\nrenamed to f",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 175,
+        "endChar": 19
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b6ee00a_6b309ed2",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "nit: +2 spaces https://google.github.io/styleguide/pyguide.html?showone\u003dIndentation#Indentation",
+      "range": {
+        "startLine": 182,
+        "startChar": 6,
+        "endLine": 182,
+        "endChar": 8
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16bbc6ee_de4e3eb3",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "an empty `locations` can indicate that same thing what filter_by_location_prefix\u003dFalse currently indicates",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "450e75ac_6c7c6a91",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "why repeated? we will need to pass only one location prefix which contains repo URL and branch (because there is only one repo and one branch). We won\u0027t be passing many locations.\n\nStepping back, this belongs to a separate CL. This CL is about the validation API.\n\nStepping back, I think we agreed on not implementing this for now and see how slow would it be without this filtering.",
+      "range": {
+        "startLine": 199,
+        "startChar": 42,
+        "endLine": 199,
+        "endChar": 55
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "affee786_d2a0015d",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "location_prefix",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 17
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d58a7923_8e4dd0e5",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "we are adding same cs_msg to res many times if matches multiple prefixes",
+      "range": {
+        "startLine": 259,
+        "startChar": 12,
+        "endLine": 259,
+        "endChar": 42
+      },
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "559ce4e5_03b31228",
+        "filename": "appengine/config_service/notifications.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "please undo changes in this file",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bca5e9d_c66d12b9",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T00:31:27Z",
+      "side": 1,
+      "message": "location, if present, should always be canonical\n\nplease replace with version number",
+      "revId": "302742c0448363612bed2fdbe25c4c67500bc9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
