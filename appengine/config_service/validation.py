@@ -245,7 +245,7 @@ def validate_schemas(cfg, ctx):
 
         config_set, path = schema.name.split(':', 2)
         if (not config.SERVICE_CONFIG_SET_RGX.match(config_set) and
-            config_set not in ('projects', 'projects/refs')):
+                config_set not in ('projects', 'projects/refs')):
           ctx.error(
               'left side of ":" must be a service config set, "projects" or '
               '"projects/refs"')
@@ -335,7 +335,7 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
         continue
       severity = msg.get('severity') or 'INFO'
       if (severity not in
-          service_config_pb2.ValidationResponseMessage.Severity.keys()):
+            service_config_pb2.ValidationResponseMessage.Severity.keys()):
         report_error(
             'invalid response: unexpected message severity: %s' % severity)
         continue
