@@ -26,6 +26,11 @@ import validation
 package = 'luci-config'
 
 
+class ConfigFile(messages.Message):
+  path = messages.StringField(1)
+  content = messages.StringField(2)
+
+
 class Project(messages.Message):
   # Unique luci project id from services/luci-config:projects.cfg
   id = messages.StringField(1, required=True)
@@ -139,6 +144,43 @@ class ConfigApi(remote.Service):
           if can_read[cs.key.id()]
         ]
     )
+
+  ##############################################################################
+  # endpoint: validate_config
+
+  class ValidateConfigResponseMessage(messages.Message):
+    validation_messages = messages.MessageField(
+      cfg_endpoint.ValidationMessage, 1, repeated=True)
+
+  class ValidateConfigRequestMessage(messages.Message):
+    config_set = messages.StringField(1)
+    files = messages.MessageField(ConfigFile, 2, repeated=True)
+
+  @auth.endpoints_method(
+      ValidateConfigRequestMessage,
+      ValidateConfigResponseMessage,
+      http_method='POST',
+      path='validate-config',
+  )
+  @auth.public # ACL check inside
+  def validate_config(self, request):
+    if not request.config_set:
+      raise endpoints.BadRequestException()
+    if (not can_read_config_set(request.config_set)
+        or not acl.has_validation_access()):
+      raise endpoints.ForbiddenException()
+
+    messages = []
+    for f in request.files:
+      messages.extend(validation.validate_config(
+          request.config_set, f.path, f.content).messages)
+
+    # return the severities and the texts
+    return self.ValidateConfigResponseMessage(validation_messages=[
+      cfg_endpoint.ValidationMessage(
+          severity=msg.severity, message=msg.text)
+      for msg in messages
+    ])
 
   ##############################################################################
   # endpoint: get_config_sets
