@@ -213,7 +213,7 @@ class TestBotMain(TestBotBase):
         },
       },
       u'quarantined':
-        (u'Not enough free disk space on %s. 0.1mib < 150.0mib\n'
+        (u'Not enough free disk space on %s. 0.1mib < 100.0mib\n'
         u'Not enough free disk space on %s. 0.1mib < 150.0mib') %
         (root, botobj.base_dir),
       u'sleep_streak': 1,
