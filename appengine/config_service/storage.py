@@ -14,6 +14,8 @@ from google.protobuf import text_format
 from components import config
 from components import utils
 
+class VersionNumber(ndb.model):
+  value = ndb.IntegerProperty(required=True)
 
 class Blob(ndb.Model):
   """Content-addressed blob. Immutable.
@@ -43,6 +45,8 @@ class ConfigSet(ndb.Model):
   latest_revision_committer_email = ndb.StringProperty(indexed=False)
 
   location = ndb.StringProperty(required=True)
+
+  version_number = ndb.IntegerProperty(indexed=False, default=-1)
 
 
 class RevisionInfo(ndb.Model):
@@ -112,6 +116,19 @@ def get_file_keys(config_set, revision):
   return File.query(
       default_options=ndb.QueryOptions(keys_only=True),
       ancestor=ndb.Key(ConfigSet, config_set, Revision, revision)).fetch()
+
+
+@ndb.tasklet
+def get_latest_version_number_async():
+  qry = VersionNumber.query().order('-value')
+  # return the top one
+  version_numbers = yield qry.fetch_async(1)
+  if not version_numbers:
+    version_number = VersionNumber(value=0)
+    version_number.put()
+  else:
+    version_number = version_numbers[0]
+  raise ndb.Return(version_number)
 
 
 @ndb.tasklet
