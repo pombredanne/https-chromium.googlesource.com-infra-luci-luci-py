@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "137fb2b2_8fbad2eb",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T22:40:27Z",
+      "side": 1,
+      "message": "just \"messages\"\nValidateConfigResponseMessage is about validation, so validation_ prefix is unnecessary",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 23
+      },
+      "revId": "a745a2277782610e89a0eff749bec49ccb4b1916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67cd448e_6969dbd0",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T22:40:27Z",
+      "side": 1,
+      "message": "nit: +2 spaces",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 6
+      },
+      "revId": "a745a2277782610e89a0eff749bec49ccb4b1916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18bc5dba_756a7e8d",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T22:40:27Z",
+      "side": 1,
+      "message": "this is the only place where ConfigFile is used. Please define ConfigFile inside ValidateConfigRequestMessage. See GetMappingResponseMessage or ConfigSet for examples.",
+      "range": {
+        "startLine": 157,
+        "startChar": 34,
+        "endLine": 157,
+        "endChar": 44
+      },
+      "revId": "a745a2277782610e89a0eff749bec49ccb4b1916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5cb069d_6dd54242",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T22:40:27Z",
+      "side": 1,
+      "message": "please use validate_config_async to validate all files concurrently\notherwise RPCs to other services are done sequentially and users will be waiting\n\nhere is an article about futures\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/async\n\nuse ndb.Future.wait_all function to wait for all futures to complete\nexamples: https://cs.chromium.org/search/?q\u003dndb.Future.wait_all\u0026sq\u003dpackage:chromium\u0026type\u003dcs",
+      "range": {
+        "startLine": 175,
+        "startChar": 22,
+        "endLine": 175,
+        "endChar": 48
+      },
+      "revId": "a745a2277782610e89a0eff749bec49ccb4b1916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "140dafb8_ef0382df",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T22:40:27Z",
+      "side": 1,
+      "message": "please raise an exception.BadRequestException() if path is empty",
+      "range": {
+        "startLine": 176,
+        "startChar": 30,
+        "endLine": 176,
+        "endChar": 36
+      },
+      "revId": "a745a2277782610e89a0eff749bec49ccb4b1916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b0db0ae_7ff27678",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-12T22:40:27Z",
+      "side": 1,
+      "message": "nit: joined together, this will still fit 80 lines",
+      "range": {
+        "startLine": 180,
+        "startChar": 6,
+        "endLine": 181,
+        "endChar": 50
+      },
+      "revId": "a745a2277782610e89a0eff749bec49ccb4b1916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
