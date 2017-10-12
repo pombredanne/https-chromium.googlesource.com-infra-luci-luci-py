@@ -86,7 +86,7 @@ def get_gitiles_config():
 ## Low level import functions
 
 
-def _import_revision(config_set, base_location, commit):
+def _import_revision(config_set, base_location, commit, version_number):
   """Imports a referenced Gitiles revision into a config set.
 
   |base_location| will be used to set storage.ConfigSet.location.
@@ -115,6 +115,12 @@ def _import_revision(config_set, base_location, commit):
     attempt.put()
     return
 
+  base_location = str(base_location)
+  remote_host_url, branch_path = base_location.split('/+/')
+  # get rid of the .git ending
+  if remote_host_url.endswith('.git'):
+    base_location = remote_host_url[:-4] + '/+/' + branch_path
+
   rev_entities = [
     storage.ConfigSet(
         id=config_set,
@@ -122,7 +128,8 @@ def _import_revision(config_set, base_location, commit):
         latest_revision_url=str(location),
         latest_revision_committer_email=commit.committer.email,
         latest_revision_time=commit.committer.time,
-        location=str(base_location),
+        location=base_location,
+        version_number=version_number
     ),
     storage.Revision(key=rev_key),
   ]
@@ -261,14 +268,16 @@ def _import_config_set(config_set, location):
       raise NotFoundError('Could not load commit log for %s' % (location,))
     commit = log.commits[0]
 
+    cur_version_number = storage.get_version_number_async().get_result().value
     config_set_key = ndb.Key(storage.ConfigSet, config_set)
     config_set_entity = config_set_key.get()
-    if config_set_entity and config_set_entity.latest_revision == commit.sha:
+    if (config_set_entity and config_set_entity.latest_revision == commit.sha
+        and config_set_entity.version_number >= cur_version_number):
       save_attempt(True, 'Up-to-date')
       logging.debug('Config set %s is up-to-date', config_set)
       return
 
-    _import_revision(config_set, location, commit)
+    _import_revision(config_set, location, commit, cur_version_number)
   except urlfetch_errors.DeadlineExceededError:
     save_attempt(False, 'Could not import: deadline exceeded')
     raise Error(
