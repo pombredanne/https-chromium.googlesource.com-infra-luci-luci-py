@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b84cac21_80806369",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000647
+      },
+      "writtenOn": "2017-10-13T21:31:51Z",
+      "side": 1,
+      "message": "Since this code and the updated proto always deploy together, acl_cfg.config_get_by_hash_group will always be defined but will be set to empty string util it\u0027s actually set in acl.cfg. So until it\u0027s set to some group name this ACL check will always pass.\nI guess we should:\n1) Deploy this change\n2) Create the \"config-get-by-hash\" group in config UI\n3) update acl.cfg with config_get_by_hash_group \u003d \"config-get-by-hash\"\n4) Remove the above \"if\"\n\nDoes this sound right?",
+      "revId": "de1e769d1778521b605071ca2f83e79ffda50827",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
