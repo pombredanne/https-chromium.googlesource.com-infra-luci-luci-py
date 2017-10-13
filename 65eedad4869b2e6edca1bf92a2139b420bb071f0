@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f4a418b_2289d420",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T20:39:48Z",
+      "side": 1,
+      "message": "move after BadRequestExceptions",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 171,
+        "endChar": 42
+      },
+      "revId": "65eedad4869b2e6edca1bf92a2139b420bb071f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17ae3279_74a423bd",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T20:39:48Z",
+      "side": 1,
+      "message": "in all BadRequestExceptions, please add a message explaining what\u0027s bad",
+      "range": {
+        "startLine": 176,
+        "startChar": 14,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "65eedad4869b2e6edca1bf92a2139b420bb071f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3f03c73_8f1084e6",
+        "filename": "appengine/config_service/api_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T20:39:48Z",
+      "side": 1,
+      "message": "+1 blank line",
+      "revId": "65eedad4869b2e6edca1bf92a2139b420bb071f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
