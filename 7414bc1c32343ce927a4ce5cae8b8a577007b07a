@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "226b7d26_b98e6eff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-13T20:22:35Z",
+      "side": 1,
+      "message": "Non-Google contributors won\u0027t be able to see this - maybe add a bit more background here.",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "7414bc1c32343ce927a4ce5cae8b8a577007b07a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b66e720_e34598b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-13T20:22:35Z",
+      "side": 1,
+      "message": "Note: this is not a Chromium bug so isn\u0027t visible outside of Google. I think this tag should be removed.",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "7414bc1c32343ce927a4ce5cae8b8a577007b07a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

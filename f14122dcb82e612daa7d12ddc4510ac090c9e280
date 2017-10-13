@@ -70,6 +70,30 @@
       "revId": "f14122dcb82e612daa7d12ddc4510ac090c9e280",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "727d8ef8_f9bd4b9b",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-13T20:22:35Z",
+      "side": 1,
+      "message": "I\u0027d request a hardcoded default, given that we have a *lot* of Google-internal stacks to upgrade. Once those stacks are all upgraded (or decomissioned), we can take out the hardcoded default.",
+      "parentUuid": "66e2ed2f_2038d560",
+      "range": {
+        "startLine": 127,
+        "startChar": 30,
+        "endLine": 127,
+        "endChar": 50
+      },
+      "revId": "f14122dcb82e612daa7d12ddc4510ac090c9e280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
