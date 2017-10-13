@@ -121,3 +121,7 @@ def _has_access(resources):
     bool(r) and any(has_access[a] for a in r.access)
     for r in resources
   ]
+
+
+def can_get_by_hash():
+  return auth.is_group_member('config-get-by-hash')
