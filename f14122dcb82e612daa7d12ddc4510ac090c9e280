@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afa59ad9_ebda8772",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-13T02:37:16Z",
+      "side": 1,
+      "message": "Ideally we want this to be provided via https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/components/components/config/proto/service_config.proto#102 like other two global groups we have there.",
+      "range": {
+        "startLine": 127,
+        "startChar": 30,
+        "endLine": 127,
+        "endChar": 50
+      },
+      "revId": "f14122dcb82e612daa7d12ddc4510ac090c9e280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
