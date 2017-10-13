@@ -57,6 +57,7 @@ message Service {
   // Used in "services/<service_id>" config set name.
   optional string id = 1;
   // Email addresses of responsible and point-of-contacts for the service.
+  // Implicitly added to access list.
   repeated string owners = 2;
   // Where to import "services/<id>" config set from. If config_location.url is
   // relative, it is relative to the current configuration file.

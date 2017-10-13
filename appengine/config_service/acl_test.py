@@ -60,6 +60,17 @@ class AclTestCase(test_case.TestCase):
 
     self.assertTrue(can_read_config_set('services/swarming'))
 
+  def test_owners_has_service_access(self):
+    self.assertFalse(can_read_config_set('services/swarming'))
+
+    auth.get_current_identity.return_value = auth.Identity(
+        auth.IDENTITY_USER, 'a@example.com')
+    services.get_services_async.return_value = future([
+      service_config_pb2.Service(
+          id='swarming', owners=['a@example.com'])
+    ])
+    self.assertTrue(can_read_config_set('services/swarming'))
+
   def test_has_service_access_no_access(self):
     self.assertFalse(can_read_config_set('services/swarming'))
 
