@@ -176,6 +176,22 @@ class GitilesImportTestCase(test_case.TestCase):
     self.assertEqual(val_msg.severity, config.Severity.ERROR)
     self.assertEqual(val_msg.text, 'test_archive/x: bad config!')
 
+  def test_import_revision_update_version(self):
+    self.mock_get_archive()
+    gitiles_import._import_revision(
+        'config_set',
+        gitiles.Location(
+            hostname='localhost',
+            project='project.git',
+            treeish='luci/config',
+            path='/',
+        ),
+        self.test_commit)
+    saved_config_set = storage.ConfigSet.get_by_id('config_set')
+    self.assertEqual(
+      saved_config_set.location,
+      'https://localhost/project/+/luci/config')
+
   def mock_get_log(self):
     self.mock(gitiles, 'get_log', mock.Mock())
     gitiles.get_log.return_value = gitiles.Log(
