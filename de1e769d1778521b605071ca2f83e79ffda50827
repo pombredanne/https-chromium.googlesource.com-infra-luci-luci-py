@@ -16,6 +16,24 @@
       "revId": "de1e769d1778521b605071ca2f83e79ffda50827",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52395db4_d9f212b4",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-13T21:58:36Z",
+      "side": 1,
+      "message": "yeah, this would work \n\n(except step 3 is \"in auth server UI\", which is https://chrome-infra-auth.appspot.com for Chrome and I don\u0027t know what for your case. I guess there\u0027s one per deployed stack).",
+      "parentUuid": "b84cac21_80806369",
+      "revId": "de1e769d1778521b605071ca2f83e79ffda50827",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
