@@ -44,6 +44,8 @@ class ConfigSet(ndb.Model):
 
   location = ndb.StringProperty(required=True)
 
+  version_number = ndb.IntegerProperty(indexed=False, default=0)
+
 
 class RevisionInfo(ndb.Model):
   """Contains revision metadata.
