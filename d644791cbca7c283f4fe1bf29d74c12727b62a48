@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1810d487_90a0126e",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T23:19:13Z",
+      "side": 1,
+      "message": "this name + current context does not say version of what\nalso it should not be in gitiles_import.py because it is not specific to gitiles_import.py\n\nplease move this const into the ConfigSet class",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c22862f3_2a1a2a5a",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T23:19:13Z",
+      "side": 1,
+      "message": "please move canonicalization of gitiles.Location to gitiles.py\n\nalso make sure /a/ is removed from the project name, e.g.\nhttps://chromium.googlesource.com/a/infra/infra\nshould be converted to\nhttps://chromium.googlesource.com/infra/infra",
+      "range": {
+        "startLine": 121,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 38
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4617543_5030d8a5",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T23:19:13Z",
+      "side": 1,
+      "message": "indexing this MAY be useful and certainly won\u0027t take a lot of space. Let\u0027s omit this",
+      "range": {
+        "startLine": 47,
+        "startChar": 39,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2ac93d2_b405f0b8",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T23:19:13Z",
+      "side": 1,
+      "message": "no need to incorporate type into name\njust \"version\"",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
