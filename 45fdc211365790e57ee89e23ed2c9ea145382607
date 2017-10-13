@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcc0d17c_00860ca3",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T00:02:20Z",
+      "side": 1,
+      "message": "since this class is inside something specific to config, it can be renamed to just File",
+      "range": {
+        "startLine": 151,
+        "startChar": 10,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "45fdc211365790e57ee89e23ed2c9ea145382607",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e82ba575_3178dcc4",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T00:02:20Z",
+      "side": 1,
+      "message": "nit: blank line between nested class and attributes",
+      "revId": "45fdc211365790e57ee89e23ed2c9ea145382607",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44bf637b_be8229c6",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T00:02:20Z",
+      "side": 1,
+      "message": "the order in this function should be 1) validate args 2) check permissions 3) do something\nplease move this code up, before access check",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 174,
+        "endChar": 45
+      },
+      "revId": "45fdc211365790e57ee89e23ed2c9ea145382607",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dfcc55d_00b68ddd",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-13T00:02:20Z",
+      "side": 1,
+      "message": "this is not how futures work\n\nfuts.append(validation.validate_config_async(\n    request.config_set, f.path, f.content))\n\nand then fut.get_result() would return ValidationResult that has messages\n\nplease add a test in api_test.py, it would catch this",
+      "range": {
+        "startLine": 175,
+        "startChar": 6,
+        "endLine": 176,
+        "endChar": 58
+      },
+      "revId": "45fdc211365790e57ee89e23ed2c9ea145382607",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
