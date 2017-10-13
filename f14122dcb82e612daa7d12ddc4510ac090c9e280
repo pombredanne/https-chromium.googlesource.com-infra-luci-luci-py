@@ -46,6 +46,30 @@
       "revId": "f14122dcb82e612daa7d12ddc4510ac090c9e280",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66e2ed2f_2038d560",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-13T03:21:31Z",
+      "side": 1,
+      "message": "Yeah, it will be accessible through get_acl_cfg().config_get_by_hash_group.\n\n1. Modify service_config.proto.\n2. Run \u0027make compile\u0027 there. It will regenerate *_pb2.py (see https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/components/components/config/proto/Makefile). It requires \u0027protoc\u0027 be in PATH. You can run protoc manually too. It is standalone *.proto file, doesn\u0027t need any include dirs specified.\n\nNow there\u0027s a slight problem. When we deploy this code, config_get_by_hash_group will be None, since it\u0027s not in acl.cfg yet. And we can\u0027t add it there in advance, because text proto parser treats unknown fields as hard error. \n\nSo we can either split this into several steps:\n1. Add unused config_get_by_hash_group field to proto.\n2. Deploy (ALL instances of luci-config, Chrome\u0027s and Foundry\u0027s).\n3. Set correct value of \u0027config_get_by_hash_group\u0027 in acl.cfg (now that the service doesn\u0027t reject it).\n4. Start using config_get_by_hash_group in can_get_by_hash().\n5. Deploy this.\n\nAlternatively we can hardcode some default :-/ e.g\n\ndef can_get_by_hash():\n  group \u003d get_acl_cfg().config_get_by_hash_group or \u0027config-get-by-hash\u0027\n  return auth.is_group_member(group)\n\nA third alternative is to deploy new code at once and change acl.cfg really-really fast after that :) Some requests may fail until new acl.cfg is picked up. (For Swarming and Isolate it doesn\u0027t matter, they use luci-config API asynchronously with retries and stuff). \n\nI guess hardcoding default is simplest, so let\u0027s do it?\n\n(For the reference, here\u0027s Chrome\u0027s acl.cfg https://chrome-internal.googlesource.com/infradata/config/+/master/configs/luci-config/acl.cfg. I believe Foundry has its own copy somewhere in Gerrit too...)",
+      "parentUuid": "329588f4_fa80c570",
+      "range": {
+        "startLine": 127,
+        "startChar": 30,
+        "endLine": 127,
+        "endChar": 50
+      },
+      "revId": "f14122dcb82e612daa7d12ddc4510ac090c9e280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
