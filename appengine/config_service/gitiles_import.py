@@ -46,7 +46,6 @@ DEFAULT_GITILES_IMPORT_CONFIG = service_config_pb2.ImportCfg.Gitiles(
     ref_config_default_path='luci',
 )
 
-
 class Error(Exception):
   """A config set import-specific error."""
 
@@ -123,6 +122,7 @@ def _import_revision(config_set, base_location, commit):
         latest_revision_committer_email=commit.committer.email,
         latest_revision_time=commit.committer.time,
         location=str(base_location),
+        version_number=storage.ConfigSet.CUR_VERSION
     ),
     storage.Revision(key=rev_key),
   ]
@@ -263,7 +263,9 @@ def _import_config_set(config_set, location):
 
     config_set_key = ndb.Key(storage.ConfigSet, config_set)
     config_set_entity = config_set_key.get()
-    if config_set_entity and config_set_entity.latest_revision == commit.sha:
+    if (config_set_entity and config_set_entity.latest_revision == commit.sha
+        and (config_set_entity.version_number >=
+               storage.ConfigSet.CUR_VERSION)):
       save_attempt(True, 'Up-to-date')
       logging.debug('Config set %s is up-to-date', config_set)
       return
