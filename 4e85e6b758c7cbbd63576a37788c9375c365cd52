@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6f1c4c93_07e0689e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-16T16:17:44Z",
+      "side": 1,
+      "message": "This line ensures the default values are always present.",
+      "revId": "4e85e6b758c7cbbd63576a37788c9375c365cd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bae845cd_cc8e8057",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 3
@@ -25,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "ff7c52fe_ca792972",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-16T16:17:44Z",
+      "side": 1,
+      "message": "See line 312.",
+      "parentUuid": "bae845cd_cc8e8057",
+      "range": {
+        "startLine": 355,
+        "startChar": 41,
+        "endLine": 355,
+        "endChar": 46
+      },
+      "revId": "4e85e6b758c7cbbd63576a37788c9375c365cd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ae166b1_f8aebf9e",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 3
@@ -36,6 +77,30 @@
       "writtenOn": "2017-10-12T19:08:07Z",
       "side": 1,
       "message": "I hate this \u0027else\u0027, it makes code unreadable.\n\nConsider doing more linear:\n\nfor mount, infos in ...:\n  if path.startswith(....):\n    # Apply \u0027bot\u0027 check if bot is on its own partition or it\u0027s on \n    # root partition and there are no errors reporter there yet.\n    if mount !\u003d root or not errors:\n      _check_for_quarantine(mount, infos, \u0027bot\u0027)\n    break    \n\nI believe it is exact same logic, just 2 times shorter.",
+      "range": {
+        "startLine": 379,
+        "startChar": 2,
+        "endLine": 379,
+        "endChar": 7
+      },
+      "revId": "4e85e6b758c7cbbd63576a37788c9375c365cd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33221d17_45ef5d37",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-16T16:17:44Z",
+      "side": 1,
+      "message": "True, thanks!",
+      "parentUuid": "7ae166b1_f8aebf9e",
       "range": {
         "startLine": 379,
         "startChar": 2,
