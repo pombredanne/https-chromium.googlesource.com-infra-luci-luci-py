@@ -86,14 +86,24 @@ def has_services_access(service_ids):
   if is_admin():
     return {sid: True for sid in service_ids}
 
-  service_id_set = set(service_ids)
   cfgs = {
     s.id: s
     for s in services.get_services_async().get_result()
-    if s.id in service_id_set
   }
-  has_access = _has_access([cfgs.get(sid) for sid in service_ids])
-  return dict(zip(service_ids, has_access))
+
+  def acc_list(sid):
+    cfg = cfgs.get(sid)
+    if not cfg:
+      return []
+    ret = cfg.access
+    for o in cfg.owners:
+      ret.append(auth.Identity(auth.IDENTITY_USER, o).to_bytes())
+    return ret
+
+  return _has_access({
+    sid: acc_list(sid)
+    for sid in set(service_ids)
+  })
 
 
 def has_projects_access(project_ids):
@@ -103,8 +113,15 @@ def has_projects_access(project_ids):
   if is_admin() or super_group and auth.is_group_member(super_group):
     return {pid: True for pid in project_ids}
   metadata = projects.get_metadata_async(project_ids).get_result()
-  has_access = _has_access([metadata.get(pid) for pid in project_ids])
-  return dict(zip(project_ids, has_access))
+
+  def acc_list(pid):
+    md = metadata.get(pid)
+    return md.access if md else []
+
+  return _has_access({
+    pid: acc_list(pid)
+    for pid in set(project_ids)
+  })
 
 
 def has_validation_access():
@@ -115,18 +132,17 @@ def has_validation_access():
 
 def _has_access(resources):
   access_values = set()
-  for r in resources:
-    if r:
-      access_values.update(r.access)
+  for acc_list in resources.itervalues():
+    access_values.update(acc_list)
 
   has_access = {
     a: config.api._has_access(a)
     for a in access_values
   }
-  return [
-    bool(r) and any(has_access[a] for a in r.access)
-    for r in resources
-  ]
+  return {
+    id: any(has_access[a] for a in acc_list)
+    for id, acc_list in resources.iteritems()
+  }
 
 
 def can_get_by_hash():
