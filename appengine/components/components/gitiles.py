@@ -85,6 +85,8 @@ class Location(LocationTuple):
     if project.startswith('a/'):
       project = project[len('a/'):]
     project = project.strip('/')
+    if project.endswith('.git'):
+      project = project[:-len('.git')]
 
     treeish_and_path = (path_match.group(3) or '').strip('/')
     first_slash = treeish_and_path.find('/')
