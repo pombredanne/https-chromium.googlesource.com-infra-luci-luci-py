@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90cb0049_96982b0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-17T17:10:07Z",
+      "side": 1,
+      "message": "we remove .git independent of version",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "c71c4973e8a098e128ad9993ddbfc4fe4dc55165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bcd5a87_d8fe7149",
+        "filename": "appengine/components/components/gitiles.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-17T17:10:07Z",
+      "side": 1,
+      "message": "mention .git here",
+      "revId": "c71c4973e8a098e128ad9993ddbfc4fe4dc55165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41c23326_399fa912",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-17T17:10:07Z",
+      "side": 1,
+      "message": "unnecessary",
+      "range": {
+        "startLine": 268,
+        "startChar": 12,
+        "endLine": 268,
+        "endChar": 13
+      },
+      "revId": "c71c4973e8a098e128ad9993ddbfc4fe4dc55165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26e729d2_e1c99bbe",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-17T17:10:07Z",
+      "side": 1,
+      "message": "if joined with prev line, it would still fit 80col",
+      "range": {
+        "startLine": 269,
+        "startChar": 15,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "c71c4973e8a098e128ad9993ddbfc4fe4dc55165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3be0c6e3_f52e545d",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-17T17:10:07Z",
+      "side": 1,
+      "message": "there should be 2 blank lines between top level statements\nremove 1",
+      "revId": "c71c4973e8a098e128ad9993ddbfc4fe4dc55165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
