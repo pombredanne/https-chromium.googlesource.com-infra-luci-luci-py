@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "595aaa33_530ec2b3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/posix.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-10-17T20:41:06Z",
+      "side": 1,
+      "message": "lists :)",
+      "range": {
+        "startLine": 54,
+        "startChar": 21,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "a7d0b3c0adac691d22eee987a02adc94e359f42c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
