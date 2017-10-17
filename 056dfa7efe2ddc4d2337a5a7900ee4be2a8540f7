@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a316078_fdf889f6",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-17T22:46:22Z",
+      "side": 1,
+      "message": "add a note \"Note that config.enabled here will always be True\" (or something like that). I was stuck trying to understand why line 383 was removed.",
+      "range": {
+        "startLine": 387,
+        "startChar": 41,
+        "endLine": 387,
+        "endChar": 42
+      },
+      "revId": "056dfa7efe2ddc4d2337a5a7900ee4be2a8540f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
