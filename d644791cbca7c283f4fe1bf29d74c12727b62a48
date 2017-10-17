@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c0564ccd_243d06ac",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-17T16:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1810d487_90a0126e",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c22862f3_2a1a2a5a",
         "filename": "appengine/config_service/gitiles_import.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4a64c57_4a36fd94",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-17T16:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c22862f3_2a1a2a5a",
+      "range": {
+        "startLine": 121,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 38
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -91,6 +139,54 @@
       "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd475a64_5eabd18f",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-17T16:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4617543_5030d8a5",
+      "range": {
+        "startLine": 47,
+        "startChar": 39,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17e48a14_b27e3a14",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-17T16:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2ac93d2_b405f0b8",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "d644791cbca7c283f4fe1bf29d74c12727b62a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
