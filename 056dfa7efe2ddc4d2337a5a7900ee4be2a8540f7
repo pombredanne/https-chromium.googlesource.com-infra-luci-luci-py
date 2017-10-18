@@ -22,6 +22,30 @@
       "revId": "056dfa7efe2ddc4d2337a5a7900ee4be2a8540f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "834c59af_4bb8f689",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-10-18T00:04:38Z",
+      "side": 1,
+      "message": "It\u0027s True by default (see the definition of MachineType), so a comment feels redundant to me. I think the removal of line 383 is only confusing because it was there before. If you\u0027re reading the code for the first time (and not a diff) and you don\u0027t know that line ever existed then I think it makes sense the way it is.\n\nReading from the start of this loop body everything is commented:\n1. If there is no config, disable the MachineType.\n2. Re-enable disabled MachineTypes.\n3. Handle scheduled config changes.\n4. If the MachineType does not match the config, update it.\n\nWhat do you think?",
+      "parentUuid": "5a316078_fdf889f6",
+      "range": {
+        "startLine": 387,
+        "startChar": 41,
+        "endLine": 387,
+        "endChar": 42
+      },
+      "revId": "056dfa7efe2ddc4d2337a5a7900ee4be2a8540f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
