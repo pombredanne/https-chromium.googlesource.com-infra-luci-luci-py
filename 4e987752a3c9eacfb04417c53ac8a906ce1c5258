@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c13ea20f_e85291ee",
+        "filename": "client/cipd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-10-19T02:20:15Z",
+      "side": 1,
+      "message": "python_bits ?",
+      "range": {
+        "startLine": 261,
+        "startChar": 2,
+        "endLine": 261,
+        "endChar": 6
+      },
+      "revId": "4e987752a3c9eacfb04417c53ac8a906ce1c5258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
