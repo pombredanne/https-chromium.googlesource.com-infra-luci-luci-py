@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29552733_6c26aa3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-19T18:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0a3c320_8ca8608b",
+      "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "249914ce_36410354",
         "filename": "appengine/config_service/gitiles_import.py",
         "patchSetId": 7
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "94f26072_40649857",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-19T18:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "249914ce_36410354",
+      "range": {
+        "startLine": 89,
+        "startChar": 68,
+        "endLine": 89,
+        "endChar": 74
+      },
+      "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "172860f7_f523b968",
         "filename": "appengine/config_service/gitiles_import.py",
         "patchSetId": 7
@@ -62,6 +104,30 @@
       "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a33a074_0ced1230",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-19T18:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "172860f7_f523b968",
+      "range": {
+        "startLine": 274,
+        "startChar": 51,
+        "endLine": 274,
+        "endChar": 64
+      },
+      "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
