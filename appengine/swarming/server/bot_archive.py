@@ -385,9 +385,13 @@ def yield_swarming_bot_files(
   """
   items = {i: None for i in FILES}
   items.update(additionals)
+  # The keys must match ../swarming_bot/config/config.json.
   config = {
+    'enable_ts_monitoring': False,
+    'isolate_grpc_proxy': False,
     'server': host.rstrip('/'),
     'server_version': host_version,
+    'swarming_grpc_proxy': False,
   }
 
   if settings:

@@ -21,7 +21,10 @@ def read_config():
   config_path = os.path.join(ROOT_DIR, 'swarming_bot', 'config', 'config.json')
   with open(config_path, 'rb') as f:
     config = json.load(f) or {}
-  expected = ['enable_ts_monitoring', 'is_grpc', 'server', 'server_version']
+  expected = [
+      'enable_ts_monitoring', 'isolate_grpc_proxy', 'server', 'server_version',
+      'swarming_grpc_proxy',
+  ]
   actual = sorted(config)
   if expected != actual:
     raise ValueError(
