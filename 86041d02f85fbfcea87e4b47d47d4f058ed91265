@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f21f6f43_6c25d32c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T07:31:43Z",
+      "side": 1,
+      "message": "space after ]",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "86041d02f85fbfcea87e4b47d47d4f058ed91265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f9e2cf8_334cd9f3",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T07:31:43Z",
+      "side": 1,
+      "message": "rename to force_update",
+      "range": {
+        "startLine": 89,
+        "startChar": 56,
+        "endLine": 89,
+        "endChar": 70
+      },
+      "revId": "86041d02f85fbfcea87e4b47d47d4f058ed91265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a975f77_e7de99b2",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T07:31:43Z",
+      "side": 1,
+      "message": "check this before rev_key.get() so we don\u0027t make an RPC for no reason",
+      "range": {
+        "startLine": 112,
+        "startChar": 23,
+        "endLine": 112,
+        "endChar": 41
+      },
+      "revId": "86041d02f85fbfcea87e4b47d47d4f058ed91265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29944767_c63ff66c",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T07:31:43Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 165,
+        "startChar": 28,
+        "endLine": 165,
+        "endChar": 42
+      },
+      "revId": "86041d02f85fbfcea87e4b47d47d4f058ed91265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d401ee05_eae0300a",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T07:31:43Z",
+      "side": 1,
+      "message": "rename to force_update",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 18
+      },
+      "revId": "86041d02f85fbfcea87e4b47d47d4f058ed91265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3fbb581_00b12eca",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T07:31:43Z",
+      "side": 1,
+      "message": "break line here",
+      "range": {
+        "startLine": 274,
+        "startChar": 20,
+        "endLine": 274,
+        "endChar": 21
+      },
+      "revId": "86041d02f85fbfcea87e4b47d47d4f058ed91265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
