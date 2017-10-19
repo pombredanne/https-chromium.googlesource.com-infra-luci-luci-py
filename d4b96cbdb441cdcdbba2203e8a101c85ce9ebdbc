@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0a3c320_8ca8608b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T16:26:25Z",
+      "side": 1,
+      "message": "-2 blank lines",
+      "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "249914ce_36410354",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T16:26:25Z",
+      "side": 1,
+      "message": "there is only one caller of _import_revision and it passes force_update unconditionally, so default value does not gain anything. Let\u0027s remove it.",
+      "range": {
+        "startLine": 89,
+        "startChar": 68,
+        "endLine": 89,
+        "endChar": 74
+      },
+      "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "172860f7_f523b968",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-19T16:26:25Z",
+      "side": 1,
+      "message": "without default value, this becomes unnecessary",
+      "range": {
+        "startLine": 274,
+        "startChar": 51,
+        "endLine": 274,
+        "endChar": 64
+      },
+      "revId": "d4b96cbdb441cdcdbba2203e8a101c85ce9ebdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
