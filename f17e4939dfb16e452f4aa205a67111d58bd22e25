@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcf898ce_fc19898a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-20T14:25:43Z",
+      "side": 1,
+      "message": "just realized typo here, you can fix `comparison` while at it, thanks",
+      "range": {
+        "startLine": 133,
+        "startChar": 40,
+        "endLine": 133,
+        "endChar": 51
+      },
+      "revId": "f17e4939dfb16e452f4aa205a67111d58bd22e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c4d1df5_50ff0d22",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-20T14:25:43Z",
+      "side": 1,
+      "message": "Wouha :(\n\nI\u0027d expand a bit while at it:\n\nLower value is more important. It extracts the lowest 30 bits, top 8 bits for priority, rest for timestamp.",
+      "revId": "f17e4939dfb16e452f4aa205a67111d58bd22e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3987ddef_6974706e",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-20T14:25:43Z",
+      "side": 1,
+      "message": "can you explicitly add priority\u003d20 here for clarity.",
+      "revId": "f17e4939dfb16e452f4aa205a67111d58bd22e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aae3d9eb_dbb0c093",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-20T14:25:43Z",
+      "side": 1,
+      "message": "# It should return them all, in the expected order: lowest priority first.",
+      "revId": "f17e4939dfb16e452f4aa205a67111d58bd22e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77c95827_6a398384",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-20T14:25:43Z",
+      "side": 1,
+      "message": "same, specify priority\u003d20 for clarity",
+      "revId": "f17e4939dfb16e452f4aa205a67111d58bd22e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
