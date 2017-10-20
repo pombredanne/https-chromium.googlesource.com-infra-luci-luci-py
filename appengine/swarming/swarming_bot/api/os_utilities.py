@@ -325,9 +325,9 @@ def get_ip():
 
 
 @tools.cached
-def get_hostname():
+def get_hostname(ignore_gce_hostname=False):
   """Returns the machine's hostname."""
-  if platforms.is_gce():
+  if platforms.is_gce() and not ignore_gce_hostname:
     # When running on GCE, always use the hostname as defined by GCE. It's
     # possible the VM hadn't learned about it yet.
     meta = platforms.gce.get_metadata() or {}
@@ -346,9 +346,9 @@ def get_hostname():
 
 
 @tools.cached
-def get_hostname_short():
+def get_hostname_short(ignore_gce_hostname=False):
   """Returns the base host name."""
-  return get_hostname().split(u'.', 1)[0]
+  return get_hostname(ignore_gce_hostname).split(u'.', 1)[0]
 
 
 @tools.cached
@@ -999,13 +999,13 @@ def get_state_all_devices_android(devices):
 ###
 
 
-def get_dimensions():
+def get_dimensions(ignore_gce_hostname=False):
   """Returns the default dimensions."""
   dimensions = {
     u'cores': [unicode(get_num_processors())],
     u'cpu': get_cpu_dimensions(),
     u'gpu': get_gpu()[0],
-    u'id': [get_hostname_short()],
+    u'id': [get_hostname_short(ignore_gce_hostname)],
     u'os': get_os_values(),
     # This value is frequently overridden by bots.cfg via luci-config.
     u'pool': [u'default'],
