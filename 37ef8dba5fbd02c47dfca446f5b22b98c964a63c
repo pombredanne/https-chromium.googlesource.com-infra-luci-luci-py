@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b48a7ab_604401a2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-20T17:05:28Z",
+      "side": 1,
+      "message": "To clarify here, what I this is to do:\n\n\u003cMove lines 338-344 up\u003e\n\nif platforms.is_gce():\n  meta \u003d platforms.gce.get_metadata() or {}\n  gce_hostname \u003d meta.get(\u0027instance\u0027, {}).get(\u0027hostname\u0027)\n  if gce_hostname:\n    if os.path.isfile(\u0027/.docker_env\u0027):\n      return gce_hostname + \u0027-\u0027 + hostname\n    return gce_hostname\nreturn hostname",
+      "revId": "37ef8dba5fbd02c47dfca446f5b22b98c964a63c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
