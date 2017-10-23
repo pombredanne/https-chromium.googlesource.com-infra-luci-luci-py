@@ -327,16 +327,25 @@ def get_ip():
 @tools.cached
 def get_hostname():
   """Returns the machine's hostname."""
+  # Windows enjoys putting random case in there. Enforces lower case for sanity.
+  hostname = socket.getfqdn().lower()
+
   if platforms.is_gce():
     # When running on GCE, always use the hostname as defined by GCE. It's
     # possible the VM hadn't learned about it yet.
     meta = platforms.gce.get_metadata() or {}
-    hostname = meta.get('instance', {}).get('hostname')
-    if hostname:
-      return unicode(hostname)
+    gce_hostname = meta.get('instance', {}).get('hostname')
+    if gce_hostname:
+      # When running inside Docker on GCE, append docker hostname to
+      # differentiate between bots running on the same machine in multiple
+      # containers.
+      # TODO(sergiyb): Also do the same for non-GCE machines, but note that
+      # Android bots are already prepending host's hostname to the name of the
+      # Docker container, so we might need to remove that logic first.
+      if os.path.isfile('/.docker_env'):
+        return '%s--%s' % (gce_hostname, hostname)
+      return unicode(gce_hostname)
 
-  # Windows enjoys putting random case in there. Enforces lower case for sanity.
-  hostname = socket.getfqdn().lower()
   if hostname.endswith('.in-addr.arpa'):
     # When OSX fails to get the FDQN, it returns as the base name the IPv4
     # address reversed, which is not useful. Get the base hostname as defined by
