@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe021d81_ac3fcb5e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "stick with single quotes for consistency.",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5ad46e2_c226dd00",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "Can you post an error instead then discard? Doing an assert crashes the app and is not really useful.",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0864229_5bb79578",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "what catches it?",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e31066_8f007d35",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 192,
+        "startChar": 5,
+        "endLine": 192,
+        "endChar": 0
+      },
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1919c4f_3e2fd58e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "TODO(aludwin): :)",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1f3f8e0_96c72df8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "single quotes everywhere",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ca07e9e_f0614332",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": ":/\n\nPlease make it more focused?",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8e0a001_ca9225da",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-23T20:32:03Z",
+      "side": 1,
+      "message": "if not worker.devices:",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
