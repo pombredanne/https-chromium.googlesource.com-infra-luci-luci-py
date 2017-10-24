@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87c929ce_806ca8fa",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-24T14:19:11Z",
+      "side": 1,
+      "message": "technically speaking, you still want to poll here and line 114: if the code is broken, you want the bot to poll, so that it gets a chance to self-update to valid code. So neither you should throw.",
+      "revId": "df367e439c82193f8dafb82165bd7ebe951bd6d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49dd5ff3_55c48548",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-24T14:19:11Z",
+      "side": 1,
+      "message": "use e or ex instead of g, mainly for consistency with the rest of the code.",
+      "range": {
+        "startLine": 134,
+        "startChar": 39,
+        "endLine": 134,
+        "endChar": 40
+      },
+      "revId": "df367e439c82193f8dafb82165bd7ebe951bd6d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07df8f95_7cf3648c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-24T14:19:11Z",
+      "side": 1,
+      "message": "I see that _poll_server() in bot_main catches remote_client_errors.PollError then do proper back off, isn\u0027t that what you want to throw?",
+      "range": {
+        "startLine": 139,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 13
+      },
+      "revId": "df367e439c82193f8dafb82165bd7ebe951bd6d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d37d364_8da1654f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-24T14:19:11Z",
+      "side": 1,
+      "message": "quote and exception type",
+      "revId": "df367e439c82193f8dafb82165bd7ebe951bd6d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
