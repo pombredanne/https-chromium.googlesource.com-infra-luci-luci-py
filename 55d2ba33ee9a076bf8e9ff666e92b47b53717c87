@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "72ef8ab2_c40703c1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe021d81_ac3fcb5e",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5ad46e2_c226dd00",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "cbb4a854_87baebed",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "What do you mean by post an error? I\u0027ve changed this to raising an exception.",
+      "parentUuid": "d5ad46e2_c226dd00",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0864229_5bb79578",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2017-10-23T20:32:03Z",
       "side": 1,
       "message": "what catches it?",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b943ce_f9e29ef6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "The top-level exception catcher, I thought. Basically, DEADLINE_EXCEEDED is *not* a real exception, but anything else shouldn\u0027t be caught here. Is this the wrong strategy? I thought that\u0027s what the non-gRPC version did - eg _url_read_json will throw any number of (uncaught) exceptions on failure, so that\u0027s what I\u0027m doing here as well.",
+      "parentUuid": "b0864229_5bb79578",
       "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "b1822aa4_f5146519",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4e31066_8f007d35",
+      "range": {
+        "startLine": 192,
+        "startChar": 5,
+        "endLine": 192,
+        "endChar": 0
+      },
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1919c4f_3e2fd58e",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 3
@@ -90,6 +168,24 @@
       "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab90689c_7b497085",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1919c4f_3e2fd58e",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "28c466b9_02b2830b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "Sorry, I should know better :P",
+      "parentUuid": "d1f3f8e0_96c72df8",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ca07e9e_f0614332",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 3
@@ -121,6 +235,24 @@
       "writtenOn": "2017-10-23T20:32:03Z",
       "side": 1,
       "message": ":/\n\nPlease make it more focused?",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ad6a840_82ca4ca9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "I\u0027ve just deleted this clause, and will let these exceptions get caught in bot_main. sgty?",
+      "parentUuid": "0ca07e9e_f0614332",
       "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -141,6 +273,24 @@
       "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cf6e6fd_4e845718",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-10-24T13:01:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e0a001_ca9225da",
+      "revId": "55d2ba33ee9a076bf8e9ff666e92b47b53717c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
