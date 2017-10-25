@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa1513e1_7d0a552e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T15:15:01Z",
+      "side": 1,
+      "message": "if not self._session.leases:",
+      "revId": "4e0021fa389110cd4ad0f3e758d5b87df528aa67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3b5bb2c_2a58f028",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T15:15:01Z",
+      "side": 1,
+      "message": "\u003d\u003d",
+      "range": {
+        "startLine": 150,
+        "startChar": 21,
+        "endLine": 150,
+        "endChar": 23
+      },
+      "revId": "4e0021fa389110cd4ad0f3e758d5b87df528aa67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6800b3cd_8d62cb69",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T15:15:01Z",
+      "side": 1,
+      "message": "if not new_lease:",
+      "revId": "4e0021fa389110cd4ad0f3e758d5b87df528aa67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc2ff52f_bd759de9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T15:15:01Z",
+      "side": 1,
+      "message": "\u003d\u003d\nand below, otherwise you compare the object instances, not their value.",
+      "range": {
+        "startLine": 157,
+        "startChar": 23,
+        "endLine": 157,
+        "endChar": 25
+      },
+      "revId": "4e0021fa389110cd4ad0f3e758d5b87df528aa67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252b72cc_21fb86c1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T15:15:01Z",
+      "side": 1,
+      "message": "if k \u003d\u003d \u0027pool\u0027:\n\nthis code currently looks at \u0027p\u0027, \u0027o\u0027 and \u0027l\u0027 :)\n\nIt would have worked if you had added a , but it\u0027s not needed here",
+      "revId": "4e0021fa389110cd4ad0f3e758d5b87df528aa67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
