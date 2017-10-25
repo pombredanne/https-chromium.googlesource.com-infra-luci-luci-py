@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a8d17b79_be66af42",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T17:42:53Z",
+      "side": 1,
+      "message": "Said to reboot the host instead. There\u0027s a risk of users leaving random processes around may cause issues down the road so it\u0027s safer.",
+      "parentUuid": "a15c9896_6bef399d",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cafba196_3b140a6f",
         "filename": "client/tools/debug_task.py",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3d20dd83_b0a6d5d6",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T17:42:53Z",
+      "side": 1,
+      "message": "Both cannot be used simultaneously, it should be blocked by the server.",
+      "parentUuid": "cafba196_3b140a6f",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc810565_5a70ef8b",
         "filename": "client/tools/debug_task.py",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2017-10-25T17:38:44Z",
       "side": 1,
       "message": "Do you need to specify pool if you\u0027re specifying bot id?",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5020c57c_5240136b",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T17:42:53Z",
+      "side": 1,
+      "message": "Yes for ACL purposes...",
+      "parentUuid": "fc810565_5a70ef8b",
       "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
