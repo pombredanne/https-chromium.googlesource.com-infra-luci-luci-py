@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c93d0458_cf604981",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T21:13:19Z",
+      "side": 1,
+      "message": "use a new list with only [\u0027debug_task:1\u0027], the server will add the relevant ones and we don\u0027t want things like buildername and buildnumber to be carried over, that would be confusing from a monitoring perspective.",
+      "revId": "5b0943c3451a878b1aefa872df565f90dece0efe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49bc73b8_970c460e",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T21:13:19Z",
+      "side": 1,
+      "message": "Kevin will probably ask to extract this into a function in ui/res/js/common.js",
+      "revId": "5b0943c3451a878b1aefa872df565f90dece0efe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bea6e879_7c090655",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T21:13:19Z",
+      "side": 1,
+      "message": "yes they are the same, you can remove the comment",
+      "revId": "5b0943c3451a878b1aefa872df565f90dece0efe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b06320e_42d8bdc3",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T21:13:19Z",
+      "side": 1,
+      "message": "for the pool, you need to take the one from the original request, as the bot may have multiple pools and the task may have used another than the first one.",
+      "revId": "5b0943c3451a878b1aefa872df565f90dece0efe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
