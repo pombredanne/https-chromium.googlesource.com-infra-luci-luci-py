@@ -22,6 +22,30 @@
       "revId": "42d0484f6734d38e04efac46c98d59fb9c1a4f31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "080d3e24_3e45ed53",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T00:08:39Z",
+      "side": 1,
+      "message": "That\u0027s true, I\u0027ll think about maybe refactoring this eventually since this is unwieldy.",
+      "parentUuid": "239a332d_794cc12d",
+      "range": {
+        "startLine": 671,
+        "startChar": 4,
+        "endLine": 675,
+        "endChar": 27
+      },
+      "revId": "42d0484f6734d38e04efac46c98d59fb9c1a4f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
