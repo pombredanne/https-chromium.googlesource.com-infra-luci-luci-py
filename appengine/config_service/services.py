@@ -90,5 +90,12 @@ def get_metadata_async(service_id):
   except net.Error as ex:
     raise DynamicMetadataError('Net error: %s' % ex.message)
   msg = _dict_to_dynamic_metadata(res)
-  yield ctx.memcache_set(cache_key, msg.SerializeToString(), time=60)
+  yield ctx.memcache_set(cache_key, msg.SerializeToString(), time=600)
   raise ndb.Return(msg)
+
+
+def cron_request_metadata():
+  futs = []
+  for s in get_services_async().get_result():
+    futs.append(get_metadata_async(s.id))
+  ndb.Future.wait_all(futs)
