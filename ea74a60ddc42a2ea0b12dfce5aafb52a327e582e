@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ae4151c_eeeed1b2",
+        "filename": "appengine/swarming/ui/res/js/common.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-25T23:00:46Z",
+      "side": 1,
+      "message": "small nit: swarming.parseDuration(\"40\") \u003d\u003d 40",
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
