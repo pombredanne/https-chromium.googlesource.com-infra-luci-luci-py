@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59afec92_50470b72",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-25T21:14:02Z",
+      "side": 1,
+      "message": "_promptRetry, _promptDebug, _debugClosed, and _retryClosed should be ordered better.",
+      "revId": "f4142e4811b6dc73d18a026b0703376e715055dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d1001d6_0a17809f",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-25T21:14:02Z",
+      "side": 1,
+      "message": "maruel@: is it sensible to set execution_timeout_secs and io_timeout_secs to the same number?\n\nIf io_timeout_secs applies to just stdout, the script will just be doing time.sleep, so it should get set to the number. But if it also applies to other files, I guess we could set it to something like min(3600, leaseDuration), so if the developer starts it and then never connects, we kill the task earlier?",
+      "revId": "f4142e4811b6dc73d18a026b0703376e715055dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
