@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6d7c6244_deb7b364",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2017-10-25T17:44:31Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "a8d17b79_be66af42",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cafba196_3b140a6f",
         "filename": "client/tools/debug_task.py",
         "patchSetId": 7
