@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a15c9896_6bef399d",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2017-10-25T17:38:44Z",
+      "side": 1,
+      "message": "Maybe add the following the line so the developer knows how to cleanup when they\u0027re done?\n\nprint \u0027Kill process %d when done debugging.\u0027 % os.getpid()",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cafba196_3b140a6f",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2017-10-25T17:38:44Z",
+      "side": 1,
+      "message": "Will a task ever have --raw-cmd as well as some --extra-args?",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc810565_5a70ef8b",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2017-10-25T17:38:44Z",
+      "side": 1,
+      "message": "Do you need to specify pool if you\u0027re specifying bot id?",
+      "revId": "40742664a33e50a86c2815ca78bb91955201c91c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
