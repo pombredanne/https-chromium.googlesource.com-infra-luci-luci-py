@@ -83,7 +83,7 @@ def CommonChecks(input_api, output_api):
 
 
 def CheckChangeOnUpload(input_api, output_api):
-  return CommonChecks(input_api, output_api)
+  return []
 
 
 def CheckChangeOnCommit(input_api, output_api):
