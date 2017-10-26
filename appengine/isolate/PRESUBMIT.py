@@ -66,10 +66,6 @@ def CommonChecks(input_api, output_api):
     # uploading a server instance.
     r'^remote_smoke_test\.py$'
   ]
-  if not input_api.is_committing:
-    # Skip smoke tests on upload.
-    blacklist.append(r'.+_smoke_test\.py$')
-
   tests = []
   for directory in test_directories:
     tests.extend(
@@ -83,7 +79,7 @@ def CommonChecks(input_api, output_api):
 
 
 def CheckChangeOnUpload(input_api, output_api):
-  return CommonChecks(input_api, output_api)
+  return []
 
 
 def CheckChangeOnCommit(input_api, output_api):
