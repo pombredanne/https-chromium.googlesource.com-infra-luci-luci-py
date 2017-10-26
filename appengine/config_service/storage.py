@@ -15,6 +15,16 @@ from components import config
 from components import utils
 
 
+class ServiceDynamicMetadata(ndb.Model):
+  """
+
+  Entity key:
+    Id is the service id
+
+  """
+  metadata = ndb.BlobProperty(required=True)
+
+
 class Blob(ndb.Model):
   """Content-addressed blob. Immutable.
 
