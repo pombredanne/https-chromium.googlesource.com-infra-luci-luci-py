@@ -4,6 +4,7 @@
 
 """Provides info about registered luci services."""
 
+import logging
 from google.appengine.ext import ndb
 
 from components import config
@@ -59,18 +60,14 @@ def _dict_to_dynamic_metadata(data):
 def get_metadata_async(service_id):
   """Returns service dynamic metadata.
 
-  Memcaches results for 1 min. Never returns None.
-
   Raises:
     ServiceNotFoundError if service |service_id| is not found.
     DynamicMetadataError if metadata endpoint response is bad.
   """
-  cache_key = 'get_metadata(%r)' % service_id
-  ctx = ndb.get_context()
-  cached = yield ctx.memcache_get(cache_key)
-  if cached:
+  model = yield storage.ServiceDynamicMetadata.get_by_id_async(service_id)
+  if model:
     msg = service_config_pb2.ServiceDynamicMetadata()
-    msg.ParseFromString(cached)
+    msg.ParseFromString(model.metadata)
     raise ndb.Return(msg)
 
   services = yield get_services_async()
@@ -83,12 +80,42 @@ def get_metadata_async(service_id):
 
   if not service.metadata_url:
     raise ndb.Return(service_config_pb2.ServiceDynamicMetadata())
-
   try:
     res = yield net.json_request_async(
         service.metadata_url, scopes=net.EMAIL_SCOPE)
   except net.Error as ex:
     raise DynamicMetadataError('Net error: %s' % ex.message)
   msg = _dict_to_dynamic_metadata(res)
-  yield ctx.memcache_set(cache_key, msg.SerializeToString(), time=60)
+  model = storage.ServiceDynamicMetadata(
+      id=service_id,
+      metadata=msg.SerializeToString())
+  yield model.put_async()
   raise ndb.Return(msg)
+
+
+@ndb.tasklet
+def _request_and_store_metadata_async(service):
+  if service.metadata_url:
+    try:
+      res = yield net.json_request_async(
+          service.metadata_url, scopes=net.EMAIL_SCOPE)
+    except net.Error as ex:
+      raise DynamicMetadataError('Net error: %s' % ex.message)
+    model = storage.ServiceDynamicMetadata(
+        id=service.id,
+        metadata=_dict_to_dynamic_metadata(res))
+  else:
+    model = storage.ServiceDynamicMetadata(id=service.id)
+  yield model.put_async()
+  raise ndb.Return()
+
+
+def cron_request_metadata():
+  futs = []
+  for s in get_services_async().get_result():
+    try:
+      futs.append(_request_and_store_metadata_async(s))
+    except DynamicMetadataError as ex:
+      logging.error('Could not load dynamic metadata for %s: %s', s.id, ex)
+  ndb.Future.wait_all(futs)
+  logging.info('Finished storing requested metadata')
