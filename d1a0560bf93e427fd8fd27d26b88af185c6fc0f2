@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e5abd46_a6e9eea3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "break to lines please",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 184
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6530bc_76e84888",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "please make it impersonal\n\n\"Also increase the TTL...\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dd9c4b7_6c50becf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "this belongs to a CL comment, not description",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 48
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca426ec_3332b8c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "nit: space after :",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 5
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf86b464_4d9fbc9f",
+        "filename": "appengine/config_service/cron.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "update_services_metadata",
+      "range": {
+        "startLine": 14,
+        "startChar": 34,
+        "endLine": 14,
+        "endChar": 59
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa4f30a3_a7ef270d",
+        "filename": "appengine/config_service/handlers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "Updates stored service metadata.\n\nnit: period in the end",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 55
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09fdad88_a90f9ec9",
+        "filename": "appengine/config_service/handlers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "+1 blank space",
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef220a42_65a4f84e",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-26T16:14:46Z",
+      "side": 1,
+      "message": "please change this so that it stores metadata in the datastore\n\nthen get_metadata_async will always load from datastore",
+      "range": {
+        "startLine": 97,
+        "startChar": 1,
+        "endLine": 101,
+        "endChar": 27
+      },
+      "revId": "d1a0560bf93e427fd8fd27d26b88af185c6fc0f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
