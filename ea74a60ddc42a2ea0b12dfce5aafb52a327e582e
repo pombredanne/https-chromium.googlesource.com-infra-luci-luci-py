@@ -2,6 +2,161 @@
   "comments": [
     {
       "key": {
+        "uuid": "bf99e1f5_221ed4b5",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "For the debug task, what about a name that is like \"[user] checked out bot for Debugging\"",
+      "range": {
+        "startLine": 1122,
+        "startChar": 10,
+        "endLine": 1122,
+        "endChar": 34
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48a2dbeb_3ca43395",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "Nice use of the js template strings.",
+      "range": {
+        "startLine": 1135,
+        "startChar": 29,
+        "endLine": 1135,
+        "endChar": 36
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1fc33b3_08ee862c",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1164,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "Nit: Update log to specify retry or debug",
+      "range": {
+        "startLine": 1164,
+        "startChar": 21,
+        "endLine": 1164,
+        "endChar": 29
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5115507_def818a8",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1181,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "nit: _getFirstRequestDimension (same for result below)",
+      "range": {
+        "startLine": 1181,
+        "startChar": 6,
+        "endLine": 1181,
+        "endChar": 31
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b58bc88a_10fbf97e",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "Prefer to use \"\u003d\u003d\u003d\" whenever possible.  If you depend on the looser \"\u003d\u003d\" behavior, it usually is worth a comment to explain why.",
+      "range": {
+        "startLine": 1183,
+        "startChar": 23,
+        "endLine": 1183,
+        "endChar": 25
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fac9c232_e66411a7",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-retry-prompt.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "Hmm... It appears the original author (me) was sloppy when creating this element and neglected the other properties.  Would you be able to add them here?  Anything that doesn\u0027t have a _ prefix.",
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bcbe40a_618eb5b1",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-retry-prompt.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "This may be confusing, as it is not guaranteed to be a different bot, right?  Maybe \"No preference for bot\"?",
+      "range": {
+        "startLine": 52,
+        "startChar": 26,
+        "endLine": 52,
+        "endChar": 35
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ae4151c_eeeed1b2",
         "filename": "appengine/swarming/ui/res/js/common.js",
         "patchSetId": 8
@@ -13,6 +168,23 @@
       "writtenOn": "2017-10-25T23:00:46Z",
       "side": 1,
       "message": "small nit: swarming.parseDuration(\"40\") \u003d\u003d 40",
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a609c60_f3f86976",
+        "filename": "appengine/swarming/ui/res/js/common.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-26T11:58:18Z",
+      "side": 1,
+      "message": "nit: Add comment indicating the fallthroughs are intentional",
       "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
