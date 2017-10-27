@@ -1,0 +1,232 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56ad6ef6_a36c1c03",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "blank line between stdlib and the rest",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97e25988_f3a2e3cf",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "Ideally, we should not be contacting services in this code path. If it is not in the datastore, this function can consider that it is not there at all.\n\nadd a TODO here to delete the rest of this function once we have the entities in production.",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c904bd7_57d3156a",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "remove these lines, let\u0027s not do puts in this code path",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e744bd4c_9b677cbe",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "_update_service_metadata_async",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 37
+      },
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23de1bab_585e871b",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "this part is identical in both if and else blocks. Please move it out of the if statement and then here\n\n  model.metadata \u003d ....\n\nthen you don\u0027t need else block",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 22
+      },
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "994a7614_38bf81c0",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "consider loading the existing metadata from datastore (without transaction) and comparing. Then we can detect when metadata actually did change, log the event and then put.\n\nThen we will have less puts and more useful logging",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ada5b653_9dc33231",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "creating a future does not raise an exception, so this code will never run\n\nyou\u0027d need to call fut.get_exception() to retrieve an exception",
+      "range": {
+        "startLine": 118,
+        "startChar": 11,
+        "endLine": 119,
+        "endChar": 75
+      },
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a4036a0_895aec9e",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "currently this wait for futures to complete, but does not check if they completed successfully",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03ee185c_20a3d869",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "not sure this is useful in practice",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1dbf890_b1cfca52",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "please add a one line description",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9d2184e_47708bc9",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "remove blank line",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc2a94c_d1007f24",
+        "filename": "appengine/config_service/storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-27T19:39:44Z",
+      "side": 1,
+      "message": "document what\u0027s inside, e.g. mention that it is ServiceDynamicMetadata message in binary format, add a link to the proto file, etc",
+      "revId": "768d4fb7523516ce9162a7a8b16ac910da08a7b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
