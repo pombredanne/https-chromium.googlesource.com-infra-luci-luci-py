@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9c1e0301_4eefd701",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf99e1f5_221ed4b5",
+      "range": {
+        "startLine": 1122,
+        "startChar": 10,
+        "endLine": 1122,
+        "endChar": 34
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48a2dbeb_3ca43395",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-26T11:58:18Z",
       "side": 1,
       "message": "Nice use of the js template strings.",
+      "range": {
+        "startLine": 1135,
+        "startChar": 29,
+        "endLine": 1135,
+        "endChar": 36
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e1c1adb_6e8072c6",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "48a2dbeb_3ca43395",
       "range": {
         "startLine": 1135,
         "startChar": 29,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "caf30ea5_396ef777",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1164,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1fc33b3_08ee862c",
+      "range": {
+        "startLine": 1164,
+        "startChar": 21,
+        "endLine": 1164,
+        "endChar": 29
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5115507_def818a8",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 8
@@ -91,6 +163,30 @@
       "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e22871d_e46ea9e5",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1181,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5115507_def818a8",
+      "range": {
+        "startLine": 1181,
+        "startChar": 6,
+        "endLine": 1181,
+        "endChar": 31
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "cfce22ef_f62c78e6",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b58bc88a_10fbf97e",
+      "range": {
+        "startLine": 1183,
+        "startChar": 23,
+        "endLine": 1183,
+        "endChar": 25
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fac9c232_e66411a7",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-retry-prompt.html",
         "patchSetId": 8
@@ -134,6 +254,24 @@
     },
     {
       "key": {
+        "uuid": "26eea257_81f34726",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-retry-prompt.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fac9c232_e66411a7",
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8bcbe40a_618eb5b1",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-retry-prompt.html",
         "patchSetId": 8
@@ -145,6 +283,30 @@
       "writtenOn": "2017-10-26T11:58:18Z",
       "side": 1,
       "message": "This may be confusing, as it is not guaranteed to be a different bot, right?  Maybe \"No preference for bot\"?",
+      "range": {
+        "startLine": 52,
+        "startChar": 26,
+        "endLine": 52,
+        "endChar": 35
+      },
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "078d24e1_0730588a",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-retry-prompt.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Yes, that\u0027s correct.\n\nI considered \"(potentially) different bot\" when writing it, but that seemed overly confusing.\nHow about this wording?",
+      "parentUuid": "8bcbe40a_618eb5b1",
       "range": {
         "startLine": 52,
         "startChar": 26,
@@ -188,6 +350,24 @@
       "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad6353b_27e81052",
+        "filename": "appengine/swarming/ui/res/js/common.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-28T00:05:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a609c60_f3f86976",
+      "revId": "ea74a60ddc42a2ea0b12dfce5aafb52a327e582e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
