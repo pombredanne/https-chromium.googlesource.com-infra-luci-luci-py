@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97a40cc8_70d6c755",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:30:17Z",
+      "side": 1,
+      "message": "+2 space indentation",
+      "range": {
+        "startLine": 272,
+        "startChar": 4,
+        "endLine": 272,
+        "endChar": 6
+      },
+      "revId": "a42cd410eb23ae2c35826559a3f19546ef0449f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a94ec5e_af56698a",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:30:17Z",
+      "side": 1,
+      "message": "add trailing comma",
+      "range": {
+        "startLine": 278,
+        "startChar": 13,
+        "endLine": 278,
+        "endChar": 15
+      },
+      "revId": "a42cd410eb23ae2c35826559a3f19546ef0449f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8bbf0db_2d58c664",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:30:17Z",
+      "side": 1,
+      "message": "nit: consider adding .put() right here, so you have one variable less",
+      "range": {
+        "startLine": 279,
+        "startChar": 4,
+        "endLine": 279,
+        "endChar": 5
+      },
+      "revId": "a42cd410eb23ae2c35826559a3f19546ef0449f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b06fa88d_f05670bd",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:30:17Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 6
+      },
+      "revId": "a42cd410eb23ae2c35826559a3f19546ef0449f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a61c42e0_d1113dee",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:30:17Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 297,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 12
+      },
+      "revId": "a42cd410eb23ae2c35826559a3f19546ef0449f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
