@@ -22,6 +22,30 @@
       "revId": "45a8691e5e72300aae45ef54c28433f9efd59764",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4b2a6d8_25fd6de9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2017-10-30T14:46:14Z",
+      "side": 1,
+      "message": "Rewrote as suggested. This will likely need updating all server configs that override this function prior to landing this CL.",
+      "parentUuid": "7b0ce338_970c6204",
+      "range": {
+        "startLine": 1007,
+        "startChar": 35,
+        "endLine": 1007,
+        "endChar": 49
+      },
+      "revId": "45a8691e5e72300aae45ef54c28433f9efd59764",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
