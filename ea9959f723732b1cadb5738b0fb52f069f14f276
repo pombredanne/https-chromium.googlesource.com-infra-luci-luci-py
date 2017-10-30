@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d858709_72d8bc9f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2017-10-30T17:33:01Z",
+      "side": 1,
+      "message": "One of the potential issues with this move is that on_before_task may have operated on the botobj, which may change the geberated command. We\u0027ll need to review the actual usage of this function and see if this will cause any issues.",
+      "revId": "ea9959f723732b1cadb5738b0fb52f069f14f276",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
