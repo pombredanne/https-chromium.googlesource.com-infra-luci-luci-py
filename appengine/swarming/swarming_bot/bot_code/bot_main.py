@@ -1042,6 +1042,8 @@ def _run_manifest(botobj, manifest, start):
     command.extend(_run_isolated_flags(botobj))
     logging.debug('Running command: %s', command)
 
+    _call_hook_safe(True, botobj, 'on_before_trigger_task_runner', command)
+
     # Put the output file into the current working directory, which should be
     # the one containing swarming_bot.zip.
     log_path = os.path.join(botobj.base_dir, 'logs', 'task_runner_stdout.log')
