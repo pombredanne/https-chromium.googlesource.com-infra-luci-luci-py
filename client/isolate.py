@@ -364,7 +364,12 @@ class SavedState(Flattenable):
       del self.files[f]
     if read_only is not None:
       self.read_only = read_only
-    self.relative_cwd = relative_cwd
+    self.relative_cwd = None
+    if self.command:
+      # Only set relative_cwd if a command was also specified. This reduce the
+      # noise for Swarming tasks where the command is specified as part of the
+      # Swarming task request and not thru the isolated file.
+      self.relative_cwd = relative_cwd
 
   def to_isolated(self):
     """Creates a .isolated dictionary out of the saved state.
