@@ -22,6 +22,30 @@
       "revId": "a8b99b66458b80f04aa41bd9d20a088a524dbb0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6972ad6e_e8fc01e2",
+        "filename": "client/isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-30T21:47:50Z",
+      "side": 1,
+      "message": "Good point, replaced.\n\nIt historically accepted to have relative_cwd and command to be in separate files but this is definitely a misfeature I prefer to get rid of, hence this CL. If there\u0027s a problem I\u0027ll see when rolling into src.git, which I\u0027ll do right after.",
+      "parentUuid": "fe80aa82_f343f423",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 372,
+        "endChar": 38
+      },
+      "revId": "a8b99b66458b80f04aa41bd9d20a088a524dbb0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
