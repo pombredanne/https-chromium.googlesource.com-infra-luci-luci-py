@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe80aa82_f343f423",
+        "filename": "client/isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-30T21:39:17Z",
+      "side": 1,
+      "message": "I think this logic should be in to_isolated.\n\nIIUC, it is acceptable for \u0027command\u0027 and \u0027relative_cwd\u0027 be specified in different *.isolate files? If so, if the *.isolate file with \u0027relative_cwd\u0027 is processed before the one with \u0027command\u0027, \u0027relative_cwd\u0027 will be ignored.\n\nlgtm either way...",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 372,
+        "endChar": 38
+      },
+      "revId": "a8b99b66458b80f04aa41bd9d20a088a524dbb0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
