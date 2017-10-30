@@ -1048,15 +1048,20 @@ def _run_manifest(botobj, manifest, start):
     os_utilities.roll_log(log_path)
     os_utilities.trim_rolled_log(log_path)
     with open(log_path, 'a+b') as f:
-      proc = subprocess42.Popen(
-          command,
-          detached=True,
-          cwd=botobj.base_dir,
-          env=env,
-          stdin=subprocess42.PIPE,
-          stdout=f,
-          stderr=subprocess42.STDOUT,
-          close_fds=sys.platform != 'win32')
+      popen_kwargs = {
+        'detached': True,
+        'cwd': botobj.base_dir,
+        'env': env,
+        'stdin': subprocess42.PIPE,
+        'stdout': f,
+        'stderr': subprocess42.STDOUT,
+        'close_fds': sys.platform != 'win32'
+      }
+
+      _call_hook_safe(
+          True, botobj, 'on_before_trigger_task_runner', command, popen_kwargs)
+
+      proc = subprocess42.Popen(command, **popen_kwargs)
       try:
         proc.wait(hard_timeout)
       except subprocess42.TimeoutExpired:

@@ -255,6 +255,21 @@ def on_after_task(bot, failure, internal_failure, dimensions, summary):
   #  bot.host_reboot('Internal failure')
 
 
+def on_before_trigger_task_runner(bot, command, popen_kwargs):
+  """Hook function called just before starting task runner process
+
+  This allows to override command line arguments for or even use a custom task
+  runner. It can also be useful to add a wrapper script around the task runner,
+  e.g. to acquire lock on system resources blocking other processes from using
+  them at the same time.
+
+  Arguments:
+  - bot: bot.Bot instance. See ../api/bot.py.
+  - command: Command used to trigger task_runner. May be edited in place.
+  """
+  pass
+
+
 def on_bot_idle(bot, since_last_action):
   """Hook function called once when the bot has been idle; when it has no
   command to execute.
