@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22cf631c_5e9f7bff",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "\"cur\" could be interpreted as \"current in the datastore\" which is not the case here. Consider omitting \"cur_\"",
+      "range": {
+        "startLine": 96,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e8381a9_70e8cc6e",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "model is a type of data\nentity is a piece of data\nplease use \"entity\" for pieces of data",
+      "range": {
+        "startLine": 96,
+        "startChar": 6,
+        "endLine": 96,
+        "endChar": 11
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcd9a9b1_c21047a5",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "+2 space indent",
+      "range": {
+        "startLine": 100,
+        "startChar": 6,
+        "endLine": 100,
+        "endChar": 8
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0f8fd1a_0895e724",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "entity",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 12
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b1dde39_ce1458be",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "we have two branching points (\"and\" and \"or\") but could have just one:\n\nif not prev_entity or prev_entity.metadata !\u003d entity.metadata:",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 31
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3663e7dc_becca942",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "log after putting, in case put fails",
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b09157e1_b6f6ddc4",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "line unnecessary",
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "290e5897_17de6139",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "futs \u003d [_update_service_metadata_async(s) for s in services]\n\nor\n\nfuts \u003d map(_update_service_metadata_async, services]",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 50
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bd1cd9d_2847a3b6",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "for s, fut in zip(servies, futs)",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 31
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05cbe8fc_c3a0805b",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-30T18:38:47Z",
+      "side": 1,
+      "message": "use logging.exception\n\nand then you don\u0027t need `as ex`",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 19
+      },
+      "revId": "40d09157648c2434cb435e1f852c7e5b7921aaf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
