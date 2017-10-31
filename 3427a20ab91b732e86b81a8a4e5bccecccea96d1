@@ -16,6 +16,24 @@
       "revId": "3427a20ab91b732e86b81a8a4e5bccecccea96d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02c0d669_06d830ec",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-10-31T00:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d55540b2_fceb3c18",
+      "revId": "3427a20ab91b732e86b81a8a4e5bccecccea96d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
