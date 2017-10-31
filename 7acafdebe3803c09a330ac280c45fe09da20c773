@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a4a17823_82ed6117",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T17:45:36Z",
+      "side": 1,
+      "message": "Yes, it is unrelated.",
+      "parentUuid": "cf345668_afb9fb82",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9096ff4d_7033f768",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -106,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "447eeeb4_e57e3cd1",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T17:45:36Z",
+      "side": 1,
+      "message": "Correct.",
+      "parentUuid": "2df33861_f5b41d11",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32bb379b_1b51abff",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -117,6 +153,24 @@
       "writtenOn": "2017-10-31T13:28:27Z",
       "side": 1,
       "message": "This comment confused me. It is not for readability, it is to allow that a requirement includes multiple tags, e.g.\n\nrequire_any_of {\n  tag: \"foo\"\n}\nrequire_any_of {\n  tag: \"bar\"\n  tag: \"baz\"\n}\n\nin the case, \"foo\" would be fine, or both \"bar\" and \"baz\".",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30022db3_274935db",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T17:45:36Z",
+      "side": 1,
+      "message": "I could have put \u0027tags\u0027 directly into TrustedDelegation. Then it would have been:\n\ntrusted_delegation {\n  peer_id: \"someone@example.com\"\n  tag: \"a:b:c\"\n  tab: \"d:e:f\"\n}\n\nIt is not clear from this whether all tags are required or any one. With require_any_of it is clearer. I can remove the confusing comment and let the reader guess the reason themselves :)",
+      "parentUuid": "32bb379b_1b51abff",
       "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -146,6 +200,30 @@
     },
     {
       "key": {
+        "uuid": "5f04f499_81a142cf",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T17:45:36Z",
+      "side": 1,
+      "message": "\u0027:\u0027 is not allowed in emails used by LUCI (and I\u0027m pretty sure in Google emails either). If it was allowed, you can specify it as \u0027user:foo:bar@example.com\u0027\n\nI dropped \u0027user:\u0027 prefix by default because the field in the proto is already called \u0027user\u0027. This would look weird, IMO:\n\n  user: \u0027user:abc@example.com\u0027",
+      "parentUuid": "332ef132_249354e3",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 13
+      },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f7748f8_2d1d91e1",
         "filename": "appengine/swarming/server/pools_config.py",
         "patchSetId": 1
@@ -160,6 +238,24 @@
       "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9d67808_94064149",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T17:45:36Z",
+      "side": 1,
+      "message": "Nah, I think it is short enough already :)",
+      "parentUuid": "0f7748f8_2d1d91e1",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -200,6 +296,24 @@
       "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b47f14e_e49c8b38",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T17:45:36Z",
+      "side": 1,
+      "message": "None of them do RPCs. This is entirely local check that hits memory-cached stuff (pools config, auth groups and the delegation token extracted from the request headers).\n\nThe was some RPC change on Buildbucket side: https://chromium.googlesource.com/infra/infra/+/453d1555046496e2cf7192771d69719d3984d88b \n\nBut it didn\u0027t increase the latency, just slightly changed the format of tokens already used there.",
+      "parentUuid": "4f3f945a_cb0fa591",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
