@@ -22,6 +22,30 @@
       "revId": "34f349c8680d63efb269f2a150de3471943a047c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04bd227a_8661d0f3",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2017-10-31T23:57:43Z",
+      "side": 1,
+      "message": "In the retry case, this gets called with isDebug \u003d\u003d\u003d undefined.\n\nI just tested chromium-swarm-dev.appspot.com, and it wfm: if it doesn\u0027t work for you, are there any errors in the JS console?",
+      "parentUuid": "c7d0c9c3_862491f3",
+      "range": {
+        "startLine": 1112,
+        "startChar": 32,
+        "endLine": 1112,
+        "endChar": 39
+      },
+      "revId": "34f349c8680d63efb269f2a150de3471943a047c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
