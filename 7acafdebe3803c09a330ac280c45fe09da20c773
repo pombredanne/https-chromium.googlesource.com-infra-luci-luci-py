@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9096ff4d_7033f768",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T05:35:31Z",
+      "side": 1,
+      "message": "I hate this stuff ever since managing Gerrit. I recently had to do this for Swarming too (chrome-infra-auth.appspot.com/auth/groups/project-infra-ci-pool-access), and now I don\u0027t want to do it anymore.",
+      "range": {
+        "startLine": 54,
+        "startChar": 21,
+        "endLine": 54,
+        "endChar": 47
+      },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9ab6882_8cd91eba",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T05:35:31Z",
+      "side": 1,
+      "message": "see https://bugs.chromium.org/p/chromium/issues/detail?id\u003d777022#c10 for example",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 25
+      },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b99592ee_317a0c8d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T05:35:31Z",
+      "side": 1,
+      "message": "this will be later renamed to just \u0027check_schedule_request_acl\u0027, once we can delete the previous implementation",
+      "range": {
+        "startLine": 441,
+        "startChar": 4,
+        "endLine": 441,
+        "endChar": 34
+      },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

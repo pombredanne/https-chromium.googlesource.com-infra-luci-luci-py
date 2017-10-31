@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c483dc2f_7a3e4ef7",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T05:35:31Z",
+      "side": 0,
+      "message": "it was actually useless, since termination task doesn\u0027t specify pool anyway.\n\nSee also comments I\u0027ve added to new check_schedule_request_acl",
+      "range": {
+        "startLine": 759,
+        "startChar": 19,
+        "endLine": 759,
+        "endChar": 45
+      },
+      "revId": "8a54ff83d30bb9cda742fc2fd7e2c9fe4933a70d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
