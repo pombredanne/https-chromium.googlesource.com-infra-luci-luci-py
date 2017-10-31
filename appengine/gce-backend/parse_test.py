@@ -46,6 +46,12 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
             'tag1',
             'tag2',
         ],
+        guest_accelerators=[
+            'accelerator-type-1:1',
+            'accelerator-type-2:2',
+        ],
+        on_host_maintenance=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.TERMINATE,
     )
     template2 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
         dimensions=[
@@ -62,6 +68,12 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
             'tag2',
             'tag1',
         ],
+        guest_accelerators=[
+            'accelerator-type-2:2',
+            'accelerator-type-1:1',
+        ],
+        on_host_maintenance=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.TERMINATE,
     )
 
     self.assertEqual(
@@ -161,6 +173,39 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
         parse.compute_template_checksum(template2),
     )
 
+  def test_checksum_is_guest_accelerators_dependent(self):
+    """Ensures checksum is dependent on the guest accelerators."""
+    template1 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
+        guest_accelerators=[
+            'accelerator-type-1:1',
+            'accelerator-type-2:2',
+        ],
+    )
+    template2 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
+        guest_accelerators=[
+            'accelerator-type-1:1',
+            'accelerator-type-3:3',
+        ],
+    )
+
+    self.assertNotEqual(
+        parse.compute_template_checksum(template1),
+        parse.compute_template_checksum(template2),
+    )
+
+  def test_checksum_is_on_host_maintenance_dependent(self):
+    """Ensures checksum is dependent on the host maintenance behavior."""
+    template1 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
+        on_host_maintenance=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.MIGRATE)
+    template2 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
+        on_host_maintenance=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.TERMINATE)
+
+    self.assertNotEqual(
+        parse.compute_template_checksum(template1),
+        parse.compute_template_checksum(template2),
+    )
 
 class EnsureInstanceGroupManagerMatches(test_case.TestCase):
   """Tests for parse.ensure_instance_group_manager_matches."""
@@ -647,7 +692,13 @@ class EnsureEntityExists(test_case.TestCase):
         ],
         tags=[
           'tag',
-        ]
+        ],
+        guest_accelerators=[
+            'accelerator-type-1:1',
+            'accelerator:type-2:2',
+        ],
+        on_host_maintenance=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.TERMINATE,
     )
     manager_cfgs = [
         config_pb2.InstanceGroupManagerConfig.InstanceGroupManager(
@@ -686,6 +737,16 @@ class EnsureEntityExists(test_case.TestCase):
         parse.get_instance_group_manager_key(template_cfg, manager_cfg)
         for manager_cfg in manager_cfgs
     ]
+    expected_guest_accelerators = [
+        models.GuestAccelerator(
+            accelerator_type='accelerator-type-1',
+            accelerator_count=1,
+        ),
+        models.GuestAccelerator(
+            accelerator_type='accelerator:type-2',
+            accelerator_count=2,
+        ),
+    ]
 
     future = parse.ensure_entities_exist(
         template_cfg, manager_cfgs)
@@ -715,6 +776,12 @@ class EnsureEntityExists(test_case.TestCase):
     self.assertItemsEqual(instance_template_revision.tags, template_cfg.tags)
     self.assertItemsEqual(
         instance_template_revision.active, expected_active_keys)
+    self.assertItemsEqual(
+        instance_template_revision.guest_accelerators,
+        expected_guest_accelerators)
+    self.assertEqual(
+        instance_template_revision.on_host_maintenance,
+        template_cfg.on_host_maintenance)
     self.assertEqual(
         instance_group_managers[0].maximum_size, manager_cfgs[0].maximum_size)
     self.assertEqual(

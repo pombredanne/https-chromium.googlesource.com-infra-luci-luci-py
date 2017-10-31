@@ -88,6 +88,12 @@ class CreateTest(test_case.TestCase):
                 ],
             ),
         ],
+        guest_accelerators=[
+            models.GuestAccelerator(
+                accelerator_type='accelerator-type-1',
+                accelerator_count=1,
+            ),
+        ],
     ).put()
     expected_url = 'url'
 
