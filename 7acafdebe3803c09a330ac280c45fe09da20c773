@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cf345668_afb9fb82",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "To be clear, https://crbug.com/753958 is left out for now, right?",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9096ff4d_7033f768",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -22,6 +39,30 @@
       "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a6dd9e6_e95fccf8",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9096ff4d_7033f768",
+      "range": {
+        "startLine": 54,
+        "startChar": 21,
+        "endLine": 54,
+        "endChar": 47
+      },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -48,6 +89,80 @@
     },
     {
       "key": {
+        "uuid": "2df33861_f5b41d11",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "in this case, this is a service account, right?",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32bb379b_1b51abff",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "This comment confused me. It is not for readability, it is to allow that a requirement includes multiple tags, e.g.\n\nrequire_any_of {\n  tag: \"foo\"\n}\nrequire_any_of {\n  tag: \"bar\"\n  tag: \"baz\"\n}\n\nin the case, \"foo\" would be fine, or both \"bar\" and \"baz\".",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "332ef132_249354e3",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "FTR, I\u0027m not a fan of this. I prefer deterministic behavior, even if this means it is slightly more verbose.\n\nWhat if my email address was \"foo:bar@example.com\" ? :)\n\nIt\u0027s probably tricky to change now due to vast usage in auth service.",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 13
+      },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f7748f8_2d1d91e1",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "I\u0027m the style of person to do:\n\ndef _poolcfg_proto_to_poolconfig(msg):\n  return PoolConfig(...)\n\nbut it\u0027s really just a personal style. Then this loop would become a dict comprehension, e.g.\n\nreturn {msg.name: _poolcfg_proto_to_poolconfig(msg) for msg in cfg.pool}\n\nbut that\u0027s really just a personal preference.",
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b99592ee_317a0c8d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
@@ -65,6 +180,23 @@
         "endLine": 441,
         "endChar": 34
       },
+      "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3f945a_cb0fa591",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T13:28:27Z",
+      "side": 1,
+      "message": "Can you list which of the statements do an RPC? I\u0027m wondering (not concerned, just wondering) about the potential latency increase and reliability reduction.",
       "revId": "7acafdebe3803c09a330ac280c45fe09da20c773",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
