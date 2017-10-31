@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29ce6d5c_9510a388",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1370,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T00:52:32Z",
+      "side": 1,
+      "message": "no logical changes here, just extracted into a separate class to make this test more \"unit\" (it tests only check_schedule_request_acl now)",
+      "range": {
+        "startLine": 1370,
+        "startChar": 6,
+        "endLine": 1370,
+        "endChar": 33
+      },
+      "revId": "b695b44d01f9012c5455417a1cf10d4258aa96f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
