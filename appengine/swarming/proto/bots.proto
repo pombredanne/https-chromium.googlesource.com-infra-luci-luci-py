@@ -51,6 +51,25 @@ message BotsCfg {
   //       If there's no such group, the connection from the bot is rejected.
   //       Config validation process ensures there can be only one such group.
   repeated BotGroup bot_group = 2;
+
+  // Additional dimensions applied to bots.
+  repeated BotAnnotation bot_annotations = 3;
+}
+
+// These bots must belong to some bot_group already,
+// but they will get extra dimensions defined here.
+message BotAnnotations{
+  // Explicit enumeration of bot IDs which get extra dimensions.
+  //
+  // Same syntax as BotGroup.bot_id.
+  repeated string bot_id = 1;
+
+  // List of dimensions to assign to these bots.
+  //
+  // These dimensions will be added to other dimensions of the bot, not
+  // overwritten.
+  // Each dimension is a "<key>:<value>" pair.
+  repeated string dimensions = 22;
 }
 
 
