@@ -93,7 +93,9 @@ def get_metadata_async(service_id):
 
 @ndb.tasklet
 def _update_service_metadata_async(service):
-  entity = storage.ServiceDynamicMetadata(id=service.id)
+  entity = storage.ServiceDynamicMetadata(
+      id=service.id,
+      metadata=service_config_pb2.ServiceDynamicMetadata().SerializeToString())
   if service.metadata_url:
     try:
       res = yield net.json_request_async(
