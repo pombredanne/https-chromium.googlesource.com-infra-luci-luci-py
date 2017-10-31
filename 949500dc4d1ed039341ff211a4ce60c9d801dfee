@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e801b099_4c4e007f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T01:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51ca6162_ed39cdb2",
+      "range": {
+        "startLine": 484,
+        "startChar": 2,
+        "endLine": 484,
+        "endChar": 23
+      },
+      "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d5c8e5e_78029558",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "343be149_3e143484",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T01:51:29Z",
+      "side": 1,
+      "message": "Ah, screw it. Merged back into one test class, looks simpler that way.",
+      "parentUuid": "1d5c8e5e_78029558",
+      "range": {
+        "startLine": 245,
+        "startChar": 12,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0b10b3d_67b14bbe",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 2
@@ -62,6 +110,24 @@
       "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7db30c0c_3e2f2d59",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-10-31T01:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0b10b3d_67b14bbe",
+      "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
