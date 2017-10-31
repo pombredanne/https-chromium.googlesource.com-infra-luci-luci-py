@@ -23,7 +23,6 @@ from components import utils
 import event_mon_metrics
 import ts_mon_metrics
 
-from server import acl
 from server import config
 from server import task_pack
 from server import task_queues
@@ -472,17 +471,27 @@ def exponential_backoff(attempt_num):
   return min(max_wait, math.pow(1.5, min(attempt_num, 10) + 1))
 
 
-def schedule_request(request, secret_bytes, check_acls=True):
+def check_schedule_request_acl(request):
+  """Verifies the current caller can schedule a given task request.
+
+  Arguments:
+  - request: TaskRequest entity with information about the new task.
+
+  Raises:
+    auth.AuthorizationError if the caller is not allowed to schedule this task.
+  """
+  # TODO(vadimsh): Check service accounts and delegation token.
+  _check_dimension_acls(request)
+
+
+def schedule_request(request, secret_bytes):
   """Creates and stores all the entities to schedule a new task request.
 
-  Checks ACLs first. Raises auth.AuthorizationError if caller is not authorized
-  to post this request.
+  Assumes ACL check has already happened (see 'check_schedule_request_acl').
 
-  The number of entities created is 3: TaskRequest, TaskToRun and
-  TaskResultSummary.
-
-  All 4 entities in the same entity group (TaskReqest, TaskToRun,
-  TaskResultSummary, SecretBytes) are saved as a DB transaction.
+  The number of entities created is ~4: TaskRequest, TaskToRun and
+  TaskResultSummary and (optionally) SecretBytes. They are in single entity
+  group and saved in a single transaction.
 
   Arguments:
   - request: TaskRequest entity to be saved in the DB. It's key must not be set
@@ -490,18 +499,12 @@ def schedule_request(request, secret_bytes, check_acls=True):
   - secret_bytes: SecretBytes entity to be saved in the DB. It's key will be set
              and the entity will be stored by this function. None is allowed if
              there are no SecretBytes for this task.
-  - check_acls: Whether the request should check ACLs.
 
   Returns:
     TaskResultSummary. TaskToRun is not returned.
   """
   assert isinstance(request, task_request.TaskRequest), request
   assert not request.key, request.key
-
-  # Raises AuthorizationError with helpful message if the request.authorized
-  # can't use some of the requested dimensions.
-  if check_acls:
-    _check_dimension_acls(request)
 
   # This does a DB GET, occasionally triggers a task queue. May throw, which is
   # surfaced to the user but it is safe as the task request wasn't stored yet.
