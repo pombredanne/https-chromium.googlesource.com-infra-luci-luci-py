@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7d0c9c3_862491f3",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-10-31T15:08:24Z",
+      "side": 1,
+      "message": "I think this breaks retry - that is, this param is filled out by something in the normal day-to-day usage of how this function is called.  Thus retries are considered to be debug.",
+      "range": {
+        "startLine": 1112,
+        "startChar": 32,
+        "endLine": 1112,
+        "endChar": 39
+      },
+      "revId": "34f349c8680d63efb269f2a150de3471943a047c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
