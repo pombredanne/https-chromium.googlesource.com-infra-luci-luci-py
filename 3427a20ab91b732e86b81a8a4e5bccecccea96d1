@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d55540b2_fceb3c18",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-10-31T00:12:17Z",
+      "side": 1,
+      "message": "i\u0027d rather make this code more resilient. why not check `if model.metadata` here\n\nalso, the model should have been called \"entity\". I\u0027ve missed that",
+      "revId": "3427a20ab91b732e86b81a8a4e5bccecccea96d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
