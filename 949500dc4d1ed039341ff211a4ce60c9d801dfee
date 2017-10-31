@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51ca6162_ed39cdb2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T01:33:56Z",
+      "side": 1,
+      "message": "I\u0027d prefer to inline the function, unless you plan to have multiple call sites where the internal and public versions will differ.",
+      "range": {
+        "startLine": 484,
+        "startChar": 2,
+        "endLine": 484,
+        "endChar": 23
+      },
+      "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5c8e5e_78029558",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T01:33:56Z",
+      "side": 1,
+      "message": "What I generally do is instead:\n\ndef _test_check_schedule_request_acl(self):\n  # Tested in CheckScheduleRequestACLTest below.\n  pass",
+      "range": {
+        "startLine": 245,
+        "startChar": 12,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0b10b3d_67b14bbe",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-10-31T01:33:56Z",
+      "side": 1,
+      "message": "return group \u003d\u003d \u0027mocked\u0027 and ident \u003d\u003d auth_testing.DEFAULT_MOCKED_IDENTITY",
+      "revId": "949500dc4d1ed039341ff211a4ce60c9d801dfee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
