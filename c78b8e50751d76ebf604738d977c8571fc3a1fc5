@@ -16,6 +16,24 @@
       "revId": "c78b8e50751d76ebf604738d977c8571fc3a1fc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d05977ec_d5065f39",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-01T13:55:31Z",
+      "side": 1,
+      "message": "I think I prefer it this way - it makes it easier to add logging (which I probably should have done, and which I\u0027ll add before I submit).",
+      "parentUuid": "950eda7e_15917e7a",
+      "revId": "c78b8e50751d76ebf604738d977c8571fc3a1fc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
