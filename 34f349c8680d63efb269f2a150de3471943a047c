@@ -46,6 +46,30 @@
       "revId": "34f349c8680d63efb269f2a150de3471943a047c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "192c3f5f_9f078359",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-01T19:16:44Z",
+      "side": 1,
+      "message": "I did a retry on a task and it created a debug task instead;\nhttps://chromium-swarm.appspot.com/task?id\u003d3991d43a4366b910",
+      "parentUuid": "04bd227a_8661d0f3",
+      "range": {
+        "startLine": 1112,
+        "startChar": 32,
+        "endLine": 1112,
+        "endChar": 39
+      },
+      "revId": "34f349c8680d63efb269f2a150de3471943a047c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
