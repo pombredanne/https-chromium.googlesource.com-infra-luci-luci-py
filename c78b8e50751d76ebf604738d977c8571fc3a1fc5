@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "950eda7e_15917e7a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-01T13:29:58Z",
+      "side": 1,
+      "message": "it\u0027s fine to early exit, e.g.\n\n  return \u0027update\u0027, action.arg\n\nas you prefer.",
+      "revId": "c78b8e50751d76ebf604738d977c8571fc3a1fc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
