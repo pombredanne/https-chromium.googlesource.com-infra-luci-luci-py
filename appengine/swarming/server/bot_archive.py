@@ -486,4 +486,5 @@ def _make_config_json(host, host_version, settings):
   if settings:
     config['enable_ts_monitoring'] = settings.enable_ts_monitoring
     config['isolate_grpc_proxy'] = settings.bot_isolate_grpc_proxy
+    config['swarming_grpc_proxy'] = settings.bot_swarming_grpc_proxy
   return json.dumps(config)
