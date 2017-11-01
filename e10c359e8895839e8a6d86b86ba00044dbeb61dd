@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92816882_e70e5b86",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-01T15:12:23Z",
+      "side": 1,
+      "message": "They should be None or preferably \"\", not False",
+      "revId": "e10c359e8895839e8a6d86b86ba00044dbeb61dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
