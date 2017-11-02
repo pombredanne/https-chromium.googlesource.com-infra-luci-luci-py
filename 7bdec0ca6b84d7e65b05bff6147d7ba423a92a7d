@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "969faa3d_c025288c",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2017-11-02T02:05:12Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be `platform[\u0027properties\u0027][\u0027minCpuPlatform\u0027]`?",
+      "revId": "7bdec0ca6b84d7e65b05bff6147d7ba423a92a7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
