@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df722837_9998bd8d",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116954
+      },
+      "writtenOn": "2017-11-02T08:02:59Z",
+      "side": 1,
+      "message": "Do we have any non-Googlers who will have access to the debug button?",
+      "range": {
+        "startLine": 19,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "0f778293df7bafe1f0b0b44931f65dc638113a3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
