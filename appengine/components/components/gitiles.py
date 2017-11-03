@@ -111,6 +111,9 @@ class Location(LocationTuple):
       path = treeish_and_path[len(treeish):]
 
     treeish = treeish or 'HEAD'
+    # if not HEAD or a hash, should be prefixed with refs/heads/
+    if treeish != 'HEAD' and not re.match(r'^[0-9a-f]{40}$', treeish):
+      treeish = 'refs/heads/' + treeish
 
     path = path or ''
     if not path.startswith('/'):
