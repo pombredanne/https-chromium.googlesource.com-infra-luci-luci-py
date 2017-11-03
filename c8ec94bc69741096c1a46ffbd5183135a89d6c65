@@ -141,6 +141,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbb0ca9d_990a18cf",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-03T19:25:40Z",
+      "side": 1,
+      "message": "Good point. If I remove this setting, would you prefer that I remove the \"Scheduling\" message altogether and push on_host_maintenance up to InstanceTemplate?",
+      "parentUuid": "6917e999_b4395cd5",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
