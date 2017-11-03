@@ -16,6 +16,24 @@
       "revId": "ea9959f723732b1cadb5738b0fb52f069f14f276",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32736b77_26941084",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2017-11-03T12:04:10Z",
+      "side": 1,
+      "message": "I\u0027ve looked at all configs in infradata repo and found the following usages of the bot object:\n  - bot.dimensions (read only)\n  - bot.base_dir (read only)\n  - bot.post_event (called)\n  - bot.post_error (called)\n\nIt seems to me that these will not affect the command above, so is probably safe to land. Are there configs for swarming servers in other places than infradata repo?",
+      "parentUuid": "6d858709_72d8bc9f",
+      "revId": "ea9959f723732b1cadb5738b0fb52f069f14f276",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
