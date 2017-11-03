@@ -714,7 +714,7 @@ def decorate_shard_output(swarming, shard_index, metadata, include_stdout):
         dash_pad,
         tag_header,
         dash_pad,
-        metadata.get('output', '').rstrip(),
+        (metadata.get('output') or '').rstrip(),
         dash_pad,
         tag_footer1,
         tag_footer2,
