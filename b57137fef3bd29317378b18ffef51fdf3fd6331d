@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95ca4da9_90c459e6",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-11-03T17:21:58Z",
+      "side": 1,
+      "message": "IIUC, these two lines should be equivalent (https://docs.python.org/2/library/stdtypes.html#dict.get) --- is it possible that rather than output not being in metadata (which would resolve to \u0027\u0027 in both cases), output is mapping to a dict in metadata?",
+      "revId": "b57137fef3bd29317378b18ffef51fdf3fd6331d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
