@@ -22,6 +22,30 @@
       "revId": "a91e68b900815cbfd669a188ed93798adbd89f21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8916c10a_3e8a2199",
+        "filename": "appengine/components/components/gitiles.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-11-03T20:35:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a4a32eb_ce8dc9eb",
+      "range": {
+        "startLine": 115,
+        "startChar": 33,
+        "endLine": 115,
+        "endChar": 58
+      },
+      "revId": "a91e68b900815cbfd669a188ed93798adbd89f21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
