@@ -159,6 +159,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d7b9b81_fd2b9470",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:30:16Z",
+      "side": 1,
+      "message": "The other option I see is support for preemptible VMs. We thought about it a bit, but in Chromium\u0027s case we run long enough tests that it\u0027s risky, but eventually for short tests it would be worth the trade off.",
+      "parentUuid": "bbb0ca9d_990a18cf",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
