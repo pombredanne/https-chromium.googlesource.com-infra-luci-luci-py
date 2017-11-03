@@ -11,6 +11,7 @@ import logging
 
 from google.appengine.ext import ndb
 from protorpc.remote import protojson
+from proto import config_pb2
 
 from components.machine_provider import dimensions
 
@@ -105,6 +106,45 @@ def _load_service_accounts(service_accounts):
           for sa in service_accounts]
 
 
+def _load_guest_accelerators(guest_accelerators):
+  """Loads from the given guest accelerators.
+
+  Args:
+    guest_accelerators:
+      proto.config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator.
+
+  Returns:
+    models.GuestAccelerator instance.
+  """
+  return [models.GuestAccelerator(accelerator_type=ga.accelerator_type,
+                                  accelerator_count=ga.accelerator_count)
+          for ga in guest_accelerators]
+
+
+def _load_scheduling(scheduling):
+  """Loads scheduling parameters.
+
+  Args:
+    scheduling:
+      proto.config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling.
+
+  Returns:
+    models.Scheduling instance.
+  """
+  if not scheduling:
+    return None
+  host_maintenance_handlers = {
+      config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling.MIGRATE:
+          'migrate',
+      config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling.TERMINATE:
+          'terminate',
+  }
+  return models.Scheduling(
+      on_host_maintenance=host_maintenance_handlers[
+          scheduling.on_host_maintenance],
+      automatic_restart=scheduling.automatic_restart)
+
+
 def compute_template_checksum(template_cfg):
   """Computes a checksum from the given config.
 
@@ -144,6 +184,17 @@ def compute_template_checksum(template_cfg):
         }
         for i in sorted(template_cfg.service_accounts[1:], key=lambda i: i.name)
     ])
+  if template_cfg.guest_accelerators:
+    identifying_properties['guest-accelerators'] = [
+        {'accelerator_type': ga.accelerator_type,
+         'accelerator_count': ga.accelerator_count}
+        for ga in sorted(template_cfg.guest_accelerators,
+                         key=lambda ga: ga.accelerator_type)]
+  if template_cfg.scheduling:
+    identifying_properties['scheduling'] = {
+        'on_host_maintenance': template_cfg.scheduling.on_host_maintenance,
+        'automatic_restart': template_cfg.scheduling.automatic_restart,
+    }
   return utilities.compute_checksum(identifying_properties)
 
 
@@ -376,6 +427,9 @@ def ensure_entities_exist(template_cfg, manager_cfgs, max_concurrent=50):
         network_url=template_cfg.network_url,
         project=template_cfg.project,
         service_accounts=_load_service_accounts(template_cfg.service_accounts),
+        guest_accelerators=_load_guest_accelerators(
+            template_cfg.guest_accelerators),
+        scheduling=_load_scheduling(template_cfg.scheduling),
         tags=list(template_cfg.tags),
     )
   if ensure_instance_group_managers_active(

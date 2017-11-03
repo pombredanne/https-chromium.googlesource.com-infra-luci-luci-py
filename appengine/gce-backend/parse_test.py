@@ -46,6 +46,22 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
             'tag1',
             'tag2',
         ],
+        guest_accelerators=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-1',
+                accelerator_count=1,
+            ),
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-2',
+                accelerator_count=2,
+            ),
+        ],
+        scheduling=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling(
+                on_host_maintenance=(config_pb2.InstanceTemplateConfig
+                                     .InstanceTemplate.Scheduling.TERMINATE),
+                automatic_restart=True,
+            ),
     )
     template2 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
         dimensions=[
@@ -62,6 +78,22 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
             'tag2',
             'tag1',
         ],
+        guest_accelerators=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-2',
+                accelerator_count=2,
+            ),
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-1',
+                accelerator_count=1,
+            ),
+        ],
+        scheduling=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling(
+                on_host_maintenance=(config_pb2.InstanceTemplateConfig
+                                     .InstanceTemplate.Scheduling.TERMINATE),
+                automatic_restart=True,
+            ),
     )
 
     self.assertEqual(
@@ -161,6 +193,76 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
         parse.compute_template_checksum(template2),
     )
 
+  def test_checksum_is_guest_accelerators_dependent(self):
+    """Ensures checksum is dependent on the guest accelerators."""
+    template1 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
+        guest_accelerators=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-1',
+                accelerator_count=1,
+            ),
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-2',
+                accelerator_count=2,
+            ),
+        ],
+    )
+    template2 = config_pb2.InstanceTemplateConfig.InstanceTemplate(
+        guest_accelerators=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-1',
+                accelerator_count=1,
+            ),
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-3',
+                accelerator_count=3,
+            ),
+        ],
+    )
+
+    self.assertNotEqual(
+        parse.compute_template_checksum(template1),
+        parse.compute_template_checksum(template2),
+    )
+
+  def test_checksum_is_scheduling_dependent(self):
+    """Ensures checksum is dependent on the guest accelerators."""
+    templates = [
+        config_pb2.InstanceTemplateConfig.InstanceTemplate(
+            scheduling=
+                config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling(
+                    on_host_maintenance=(
+                        config_pb2.InstanceTemplateConfig.InstanceTemplate
+                        .Scheduling.TERMINATE),
+                    automatic_restart=True,
+                ),
+        ),
+        config_pb2.InstanceTemplateConfig.InstanceTemplate(
+            scheduling=
+                config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling(
+                    on_host_maintenance=(
+                        config_pb2.InstanceTemplateConfig.InstanceTemplate
+                        .Scheduling.MIGRATE),
+                    automatic_restart=True,
+                ),
+        ),
+        config_pb2.InstanceTemplateConfig.InstanceTemplate(
+            scheduling=
+                config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling(
+                    on_host_maintenance=(
+                        config_pb2.InstanceTemplateConfig.InstanceTemplate
+                        .Scheduling.TERMINATE),
+                    automatic_restart=False,
+                ),
+        ),
+        config_pb2.InstanceTemplateConfig.InstanceTemplate(scheduling=None),
+    ]
+    for i, template1 in enumerate(templates):
+      for j, template2 in enumerate(templates, start=i+1):
+        self.assertNotEqual(
+            parse.compute_template_checksum(template1),
+            parse.compute_template_checksum(template2),
+        )
 
 class EnsureInstanceGroupManagerMatches(test_case.TestCase):
   """Tests for parse.ensure_instance_group_manager_matches."""
@@ -647,7 +749,19 @@ class EnsureEntityExists(test_case.TestCase):
         ],
         tags=[
           'tag',
-        ]
+        ],
+        guest_accelerators=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.GuestAccelerator(
+                accelerator_type='accelerator-type-1',
+                accelerator_count=1,
+            ),
+        ],
+        scheduling=
+            config_pb2.InstanceTemplateConfig.InstanceTemplate.Scheduling(
+                on_host_maintenance=(config_pb2.InstanceTemplateConfig
+                                     .InstanceTemplate.TERMINATE),
+                automatic_restart=True,
+            ),
     )
     manager_cfgs = [
         config_pb2.InstanceGroupManagerConfig.InstanceGroupManager(
@@ -686,6 +800,18 @@ class EnsureEntityExists(test_case.TestCase):
         parse.get_instance_group_manager_key(template_cfg, manager_cfg)
         for manager_cfg in manager_cfgs
     ]
+    expected_guest_accelerators = [
+        models.GuestAccelerator(
+            accelerator_type=
+                template_cfg.guest_accelerators[0].accelerator_type,
+            accelerator_count=
+                template_cfg.guest_accelerators[0].accelerator_count,
+        ),
+    ]
+    expected_scheduling = models.Scheduling(
+        on_host_maintenance='terminate',
+        automatic_restart=True,
+    )
 
     future = parse.ensure_entities_exist(
         template_cfg, manager_cfgs)
@@ -715,6 +841,10 @@ class EnsureEntityExists(test_case.TestCase):
     self.assertItemsEqual(instance_template_revision.tags, template_cfg.tags)
     self.assertItemsEqual(
         instance_template_revision.active, expected_active_keys)
+    self.assertItemsEqual(
+        instance_template_revision.guest_accelerators,
+        expected_guest_accelerators)
+    self.assertEqual(instance_template_revision.scheduling, expected_scheduling)
     self.assertEqual(
         instance_group_managers[0].maximum_size, manager_cfgs[0].maximum_size)
     self.assertEqual(
