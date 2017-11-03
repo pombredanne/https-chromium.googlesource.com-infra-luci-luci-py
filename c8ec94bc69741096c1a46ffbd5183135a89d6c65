@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d8b5f9c3_8586a3f2",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "Since this only has two keys, can you instead add on_host_maintenance and automatic_restart parameters and form the dict here? You might also want to set them to their default \"migrate\" and True values respectively if they are None. I\u0027m not sure GCE will like receiving a null value for these.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b773dfca_abc2ffa1",
         "filename": "appengine/gce-backend/instance_templates.py",
         "patchSetId": 1
@@ -13,6 +30,24 @@
       "writtenOn": "2017-11-03T19:15:20Z",
       "side": 1,
       "message": "optional; you could replace \u0027guest_accelerator\u0027 with \u0027ga\u0027 and it would be more readable.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2ede7a9_618edad3",
+        "filename": "appengine/gce-backend/instance_templates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "Personally I prefer the verbosity, if for no other reason than consistency (everything else is spelled out, e.g. service_accounts and not sa).",
+      "parentUuid": "b773dfca_abc2ffa1",
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -36,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "d6fe09e7_f0d5b545",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "I\u0027m not sure I agree. We don\u0027t have the same for zones, for example. We don\u0027t want to be modifying this every time GCE adds a new GPU, I\u0027m fine with it being free-form text.",
+      "parentUuid": "a8a9c69c_f158965a",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66bba103_5ee1d3b5",
         "filename": "appengine/gce-backend/models.py",
         "patchSetId": 1
@@ -53,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "4b229d08_2a38655e",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "You can add this in config.py, we have some arbitrary limits on a few of the values there (though most are uncapped).",
+      "parentUuid": "66bba103_5ee1d3b5",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb686721_d0f7ca5c",
         "filename": "appengine/gce-backend/models.py",
         "patchSetId": 1
@@ -64,6 +135,41 @@
       "writtenOn": "2017-11-03T19:15:20Z",
       "side": 1,
       "message": "Same for validator.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "008ffff8_ecf66f00",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "Could just validate this at the config.py level and assume it\u0027s correct here (config import is the only way to create these entities).",
+      "parentUuid": "eb686721_d0f7ca5c",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a73c752_046dbac0",
+        "filename": "appengine/gce-backend/parse.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "Add the new fields to this dict (in sorted order), otherwise adding/modifying/removing the new values won\u0027t be considered a change.",
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +210,29 @@
       "writtenOn": "2017-11-03T19:15:20Z",
       "side": 1,
       "message": "// Number of ...",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "245e5128_beaabcea",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "I wouldn\u0027t go this far. Just make it a string like metadata, of the form key:value where key is a GPU accelerator and value is the count. Can we call these GPU accelerators? I know GCE calls them guest accelerators but I have no idea what a guest accelerator is without reading the docs. At the very least the comment could say that it\u0027s GPUs.",
+      "range": {
+        "startLine": 67,
+        "startChar": 13,
+        "endLine": 67,
+        "endChar": 29
+      },
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -174,6 +303,24 @@
       "side": 1,
       "message": "The other option I see is support for preemptible VMs. We thought about it a bit, but in Chromium\u0027s case we run long enough tests that it\u0027s risky, but eventually for short tests it would be worth the trade off.",
       "parentUuid": "bbb0ca9d_990a18cf",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0e522ab_db8219c5",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-03T21:57:11Z",
+      "side": 1,
+      "message": "Yes, remove this and just make on_host_maintenance a field in the InstanceTemplate.\n\nEven if we support preemptible VMs we still wouldn\u0027t need the automatic_restart field. We\u0027d just programmatically determine its value (false if preemptible else true).",
+      "parentUuid": "2d7b9b81_fd2b9470",
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
