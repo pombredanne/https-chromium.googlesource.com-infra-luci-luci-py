@@ -16,6 +16,24 @@
       "revId": "b57137fef3bd29317378b18ffef51fdf3fd6331d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fea4fd78_93feb777",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2017-11-03T18:36:08Z",
+      "side": 1,
+      "message": "As discussed offline: the problem is that output is in metadata, but an empty struct.",
+      "parentUuid": "95ca4da9_90c459e6",
+      "revId": "b57137fef3bd29317378b18ffef51fdf3fd6331d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
