@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b773dfca_abc2ffa1",
+        "filename": "appengine/gce-backend/instance_templates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "optional; you could replace \u0027guest_accelerator\u0027 with \u0027ga\u0027 and it would be more readable.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8a9c69c_f158965a",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "I\u0027d prefer a validator that lists the valid values, if possible.\n\n\u0027accelerator_\u0027 is redundant.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66bba103_5ee1d3b5",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "Add some \u0027reasonable\u0027 limits, e.g. less than a million.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb686721_d0f7ca5c",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "Same for validator.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e4e3757_397e0712",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "// Guest accelerator cards exposed to instances created from this template.",
+      "range": {
+        "startLine": 54,
+        "startChar": 7,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66ef24fd_01180eb4",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "// Number of ...",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "884db091_94a3e1a9",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "I don\u0027t see it worth a doc string since the enum should be clear enough.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6917e999_b4395cd5",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-03T19:15:20Z",
+      "side": 1,
+      "message": "// Should the VM automatically restarted on instance crash or abnormal termination.\n\nBut I fail to see a moment where it makes sense to be false.",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
