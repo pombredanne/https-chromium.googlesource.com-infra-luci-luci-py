@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "91d33a68_87ba3b63",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Moved on_host_maintenance here. As suggested in another comment, automatic_restart has been removed entirely (we\u0027re just always passing True).",
+      "parentUuid": "d8b5f9c3_8586a3f2",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b773dfca_abc2ffa1",
         "filename": "appengine/gce-backend/instance_templates.py",
         "patchSetId": 1
@@ -51,6 +69,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "038dafd1_9d66a7b9",
+        "filename": "appengine/gce-backend/instance_templates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "I\u0027ve left this as guest_accelerator.",
+      "parentUuid": "b2ede7a9_618edad3",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "36649689_9ff11c35",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Left the accelerator type unvalidated (although I\u0027ve added some other checks to config.py: checking for duplicate accelerator types and too many accelerator_types).\n\nI\u0027d prefer to leave the name as accelerator_type because \"type\" is a built-in python function.",
+      "parentUuid": "d6fe09e7_f0d5b545",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66bba103_5ee1d3b5",
         "filename": "appengine/gce-backend/models.py",
         "patchSetId": 1
@@ -121,6 +175,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "180b3f59_e4750b51",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Added to config.py (used 1-1000 as the valid range).",
+      "parentUuid": "4b229d08_2a38655e",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -159,6 +231,24 @@
     },
     {
       "key": {
+        "uuid": "f62bf49b_3009928b",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "I don\u0027t think anything needs to be done in config.py since the on_host_maintenance field is an enumeration. The proto will not load if its value is not MIGRATE (0) or TERMINATE (1) -- for proto2 anyway: https://developers.google.com/protocol-buffers/docs/reference/python-generated#enum",
+      "parentUuid": "008ffff8_ecf66f00",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a73c752_046dbac0",
         "filename": "appengine/gce-backend/parse.py",
         "patchSetId": 1
@@ -173,6 +263,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43ca550e_72e3e05f",
+        "filename": "appengine/gce-backend/parse.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a73c752_046dbac0",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -199,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "1a677301_5ad24783",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e4e3757_397e0712",
+      "range": {
+        "startLine": 54,
+        "startChar": 7,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66ef24fd_01180eb4",
         "filename": "appengine/gce-backend/proto/config.proto",
         "patchSetId": 1
@@ -213,6 +345,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96e3f08a_99ad8453",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66ef24fd_01180eb4",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -239,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "e261cd92_392ced3c",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Done. The string may be \"\u003ctype\u003e:\u003ccount\u003e\" or just \"\u003ctype\u003e\". If \u003ccount\u003e is omitted, it is assumed to be 1.\n\nI\u0027ve mentioned \"GPU\" in the comment. I could change the field name as well, but I think it would be preferable to remain consistent with the naming used by GCE. Let me know if you disagree.",
+      "parentUuid": "245e5128_beaabcea",
+      "range": {
+        "startLine": 67,
+        "startChar": 13,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "884db091_94a3e1a9",
         "filename": "appengine/gce-backend/proto/config.proto",
         "patchSetId": 1
@@ -253,6 +427,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caa52b13_93edc0ff",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "884db091_94a3e1a9",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -324,6 +516,24 @@
       "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3f76f91_2578c0cc",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T17:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0e522ab_db8219c5",
+      "revId": "c8ec94bc69741096c1a46ffbd5183135a89d6c65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
