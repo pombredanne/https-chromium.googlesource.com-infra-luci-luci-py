@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "33778f21_358aaf06",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cd9e89d_f6e4801b",
+      "range": {
+        "startLine": 249,
+        "startChar": 59,
+        "endLine": 249,
+        "endChar": 67
+      },
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d7984a3_2945f3be",
         "filename": "appengine/gce-backend/config.py",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c785171_9d4e1b99",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d7984a3_2945f3be",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "b7838e28_081a2bec",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b740347d_9652bf51",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 25
+      },
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "980dc88f_3f8dde0d",
         "filename": "appengine/gce-backend/config.py",
         "patchSetId": 3
@@ -79,6 +145,24 @@
       "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "200e4250_dcd221e3",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "980dc88f_3f8dde0d",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "53a35f37_d71c5813",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d6428be_6ed35a69",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "240d69e0_66089481",
         "filename": "appengine/gce-backend/models.py",
         "patchSetId": 3
@@ -116,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "10e2c650_f8fd326e",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "There isn\u0027t an \"enum\" property type in ndb. Changed to IntegerProperty to reflect the underlying type of the enum in the proto. I\u0027ve now pushed conversion to a string to instance_templates.py for the API call.",
+      "parentUuid": "240d69e0_66089481",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bec216b1_d4df39c1",
         "filename": "appengine/gce-backend/parse.py",
         "patchSetId": 3
@@ -130,6 +250,24 @@
       "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c06278_717709cb",
+        "filename": "appengine/gce-backend/parse.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-06T18:33:55Z",
+      "side": 1,
+      "message": "Removed (since parse.py is no longer performing this conversion).",
+      "parentUuid": "bec216b1_d4df39c1",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
