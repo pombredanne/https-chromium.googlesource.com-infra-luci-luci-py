@@ -23,6 +23,17 @@ class ServiceAccount(ndb.Model):
   scopes = ndb.StringProperty(indexed=False, repeated=True)
 
 
+class GuestAccelerator(ndb.Model):
+  """Guest accelerator cards to be exposed to GCE instances.
+
+  Standalone instances should not be present in the datastore.
+  """
+  # Full or partial URL of the accelerator type resource.
+  accelerator_type = ndb.StringProperty(indexed=False)
+  # Number of guest accelerator cards.
+  accelerator_count = ndb.IntegerProperty(indexed=False)
+
+
 class Instance(ndb.Model):
   """A GCE instance.
 
@@ -118,6 +129,12 @@ class InstanceTemplateRevision(ndb.Model):
   tags = ndb.StringProperty(indexed=False, repeated=True)
   # URL of the instance template created from this entity.
   url = ndb.StringProperty(indexed=False)
+  # Guest accelerator cards to expose to instances.
+  guest_accelerators = ndb.LocalStructuredProperty(
+      GuestAccelerator, repeated=True)
+  # Determines the behavior when a maintenance event occurs that might cause the
+  # instance to reboot.
+  on_host_maintenance = ndb.StringProperty(indexed=False)
 
 
 class InstanceTemplate(ndb.Model):
