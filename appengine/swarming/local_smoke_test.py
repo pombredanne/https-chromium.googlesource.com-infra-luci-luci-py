@@ -798,6 +798,55 @@ class Test(unittest.TestCase):
         i['key']: i['value'] for i in self.client.query_bot()['dimensions']}
     self.assertEqual(expected, set(dimensions))
 
+  def test_priority(self):
+    # Make a test that keeps the bot busy, while all the other tasks are being
+    # created with priorities that are out of order.
+    h, tmp = tempfile.mkstemp(prefix='swarming_smoke_test')
+    os.close(h)
+    task_ids = []
+    priorities = [9, 8, 6, 7]
+    tags = [u'pool:default', u'service_account:none', u'user:joe@localhost']
+    try:
+      args = [
+        '-T', 'wait', '--priority', '20', '--',
+        'python', '-u', '-c',
+        # Cheezy wait.
+        ('import os,time;'
+         '[time.sleep(0.1) for _ in xrange(100000) if os.path.exists(\'%s\')];'
+        'print(\'hi\')') % tmp,
+      ]
+      task_id = self.client.task_trigger_raw(args)
+
+      for p in priorities:
+        args = [
+          '-T', 'p%d' % p, '--priority', str(p), '--',
+          'python', '-u', '-c', 'print(\'%d\')' % p,
+        ]
+        task_ids.append(self.client.task_trigger_raw(args))
+    finally:
+      # Unblock the bot.
+      os.remove(tmp)
+    # Ensure the initial wait task is completed.
+    actual_summary, actual_files = self.client.task_collect(task_id)
+    t = tags[:] + [u'priority:20']
+    self.assertResults(
+        self.gen_expected(name=u'wait', tags=sorted(t)), actual_summary)
+    actual_files.pop('summary.json')
+    self.assertEqual({}, actual_files)
+
+    # Look at tasks that were triggered, so that they ran in the expected order.
+    self.assertEqual(len(priorities), len(task_ids))
+    for priority, task_id in zip(priorities, task_ids):
+      actual_summary, actual_files = self.client.task_collect(task_id)
+      t = tags[:] + [u'priority:%d' % priority]
+      expected_summary = self.gen_expected(
+          name=u'p%d' % priority, tags=sorted(t),
+          outputs=[u'%d\n' % priority])
+      self.assertResults(expected_summary, actual_summary)
+      bot_version = self.assertResults(expected_summary, actual_summary)
+      actual_files.pop('summary.json')
+      self.assertEqual({}, actual_files)
+
   def _run_isolated(self, hello_world, name, args, expected_summary,
       expected_files, deduped=False, isolated_content=None):
     """Runs hello_world.py as an isolated file."""
