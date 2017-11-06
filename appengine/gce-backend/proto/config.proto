@@ -50,6 +50,20 @@ message InstanceTemplateConfig {
     optional bool auto_assign_external_ip = 12;
     // Minimum CPU platform.
     optional string min_cpu_platform = 13;
+    // Guest accelerator cards (GPUs) to request for instances created from this
+    // template. This has the form <type>:<count>, where <type> indicates the
+    // GPU type to request, and <count> indicates how many GPU's of that type to
+    // request. The count may be omitted to request 1 GPU of that type.
+    repeated string guest_accelerators = 14;
+    // Determines the behavior of a VM instnace created from this template when
+    // a maintenance event occurs that might cause the instance to reboot.
+    enum OnHostMaintenance {
+      // Live-migrate the instance.
+      MIGRATE = 0;
+      // Terminate the instance.
+      TERMINATE = 1;
+    }
+    optional OnHostMaintenance on_host_maintenance = 15;
   }
 
   repeated InstanceTemplate templates = 1;
