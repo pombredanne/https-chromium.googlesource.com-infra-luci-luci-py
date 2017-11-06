@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cd9e89d_f6e4801b",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "instance",
+      "range": {
+        "startLine": 249,
+        "startChar": 59,
+        "endLine": 249,
+        "endChar": 67
+      },
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d7984a3_2945f3be",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "use a list, since you are already explicitly checking if new items are in the list.",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b740347d_9652bf51",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "only this line needs to be in the try/except",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 25
+      },
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "980dc88f_3f8dde0d",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "value \u003d False\n(spacing) for all statements",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d6428be_6ed35a69",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "1024 is a round number :)",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "240d69e0_66089481",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "I don\u0027t understand why you use a string here while the proto uses an enum. It\u0027d be more efficient to use an enum here too.",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bec216b1_d4df39c1",
+        "filename": "appengine/gce-backend/parse.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:03:09Z",
+      "side": 1,
+      "message": "if not on_host_maintenance:\nso it works with \u0027\u0027 too",
+      "revId": "0c3d01ace0599b7d3b34eece0d3842a24edce337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
