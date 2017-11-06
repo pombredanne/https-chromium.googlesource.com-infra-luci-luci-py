@@ -140,6 +140,7 @@ def validate_template_config(config, context):
   """Validates an InstanceTemplateConfig instance."""
   # We don't do any GCE-specific validation here. Just require globally
   # unique base name because base name is used as the key in the datastore.
+  valid_on_host_maintenance = ['migrate', 'terminate']
   base_names = set()
   valid = True
   for template in config.templates:
@@ -148,6 +149,49 @@ def validate_template_config(config, context):
       valid = False
     else:
       base_names.add(template.base_name)
+    if template.on_host_maintenance:
+      if template.on_host_maintenance not in valid_on_host_maintenance:
+        context.error(
+            'on_host_maintenance (%s) in template %s must be one of %s',
+            template.on_host_maintenance, template.base_name,
+            ','.join(valid_on_host_maintenance))
+        valid=False
+
+    accelerator_types = set()
+    for spec in template.guest_accelerators:
+      values = spec.split(':', 1)
+      accelerator_type = values[0]
+      try:
+        accelerator_count = int(values[1]) if len(values) > 1 else 1
+        if accelerator_count <= 0:
+          context.error(
+              'Guest accelerator count in template %s must be positive.',
+              template.base_name)
+          valid=False
+        if accelerator_count > 1000:
+          context.error(
+              'Too many guest accelerators of type %s in template %s.',
+              accelerator_type, template.base_name)
+          valid=False
+      except ValueError:
+        context.error(
+            'Number (%s) of guest accelerators of type %s in template %s is '+
+            'non-numeric.',
+            values[1], accelerator_type, template.base_name)
+        valid = False
+      if accelerator_type in accelerator_types:
+        context.error(
+            'Guest accelerator type %s is not unique within template %s.',
+            accelerator_type, template.base_name)
+        valid=False
+      accelerator_types.add(accelerator_type)
+
+    if len(accelerator_types) > 10:
+      context.error(
+          'Too many guest accelerator types in template %s.',
+          template.base_name)
+      valid=False
+
   if len(base_names) > 10:
     context.error('Too many instance templates.')
     valid = False

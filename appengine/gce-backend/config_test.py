@@ -152,6 +152,192 @@ class UpdateConfigTest(test_case.TestCase):
     self.failIf(config.Configuration.cached().manager_config)
     self.failIf(config.Configuration.cached().revision)
 
+  def test_invalid_on_host_maintenance_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                on_host_maintenance='foo',
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_negative_guest_accelerator_count_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1:-1'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_zero_guest_accelerator_count_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1:0'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_empty_guest_accelerator_count_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1:'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_non_numeric_guest_accelerator_count_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1:foo'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_guest_accelerator_count_too_high_rejected(self):
+    """Ensures invalid host maintenance behavior is rejected."""
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1:9999'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_valid_guest_accelerator_accepted(self):
+    """Ensures invalid host maintenance behavior is rejected."""
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1:2'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failUnless(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.assertEqual(config.Configuration.cached().revision, 'mock-revision')
+
+  def test_guest_accelerator_default_count_accepted(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=['accelerator-type-1'],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failUnless(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.assertEqual(config.Configuration.cached().revision, 'mock-revision')
+
+  def test_multiple_guest_accelerator_accepted(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=[
+                    'accelerator-type-1',
+                    'accelerator-type-2:2',
+                ],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failUnless(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.assertEqual(config.Configuration.cached().revision, 'mock-revision')
+
+  def test_duplicate_guest_accelerator_types_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=[
+                    'accelerator-type-1',
+                    'accelerator-type-2:2',
+                    'accelerator-type-1:3',
+                ],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
+  def test_too_many_guest_accelerator_types_rejected(self):
+    template_config = config_pb2.InstanceTemplateConfig(
+        templates=[
+            config_pb2.InstanceTemplateConfig.InstanceTemplate(
+                guest_accelerators=[
+                    'accelerator-type-1',
+                    'accelerator-type-2',
+                    'accelerator-type-3',
+                    'accelerator-type-4',
+                    'accelerator-type-5',
+                    'accelerator-type-6',
+                    'accelerator-type-7',
+                    'accelerator-type-8',
+                    'accelerator-type-9',
+                    'accelerator-type-10',
+                    'accelerator-type-11',
+                ],
+            ),
+        ],
+    )
+    self.install_mock(template_config=template_config)
+
+    config.update_template_configs()
+    self.failIf(config.Configuration.cached().template_config)
+    self.failIf(config.Configuration.cached().manager_config)
+    self.failIf(config.Configuration.cached().revision)
+
   def test_repeated_zone_different_base_name(self):
     """Ensures repeated zones in different base names are valid."""
     manager_config = config_pb2.InstanceGroupManagerConfig(

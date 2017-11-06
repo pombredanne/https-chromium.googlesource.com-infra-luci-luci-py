@@ -123,6 +123,12 @@ def create(key):
       for service_account in instance_template_revision.service_accounts
   ]
 
+  guest_accelerators = [
+      {'acceleratorType': guest_accelerator.accelerator_type,
+       'acceleratorCount': guest_accelerator.accelerator_count}
+      for guest_accelerator in instance_template_revision.guest_accelerators
+  ]
+
   api = gce.Project(instance_template_revision.project)
   try:
     image_project = api.project_id
@@ -139,6 +145,8 @@ def create(key):
         min_cpu_platform=instance_template_revision.min_cpu_platform,
         network_url=instance_template_revision.network_url,
         service_accounts=service_accounts,
+        guest_accelerators=guest_accelerators,
+        on_host_maintenance=instance_template_revision.on_host_maintenance,
         tags=instance_template_revision.tags,
     )
   except net.Error as e:
