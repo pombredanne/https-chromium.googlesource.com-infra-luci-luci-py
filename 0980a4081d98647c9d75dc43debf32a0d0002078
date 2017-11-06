@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6633c47f_10c123c6",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:12:55Z",
+      "side": 1,
+      "message": "This variable can be mutated to override...",
+      "revId": "0980a4081d98647c9d75dc43debf32a0d0002078",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5262f8af_ab249545",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:12:55Z",
+      "side": 1,
+      "message": "add after: USE WITH CAUTION.",
+      "revId": "0980a4081d98647c9d75dc43debf32a0d0002078",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30599125_5ed69ebf",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:12:55Z",
+      "side": 1,
+      "message": "Can be mutated.",
+      "revId": "0980a4081d98647c9d75dc43debf32a0d0002078",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

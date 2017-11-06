@@ -34,6 +34,24 @@
       "revId": "ea9959f723732b1cadb5738b0fb52f069f14f276",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b550b5d_58851c5a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-06T18:12:55Z",
+      "side": 1,
+      "message": "No.",
+      "parentUuid": "32736b77_26941084",
+      "revId": "ea9959f723732b1cadb5738b0fb52f069f14f276",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
