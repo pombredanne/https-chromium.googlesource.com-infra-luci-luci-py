@@ -419,3 +419,113 @@ def get_uptime():
   if ctypes.windll.kernel32.QueryUnbiasedInterruptTime(ctypes.byref(val)) != 0:
     return val.value / 10000000.
   return 0.
+
+
+def list_top_windows():
+  """Returns a list of the class names of topmost windows."""
+  from ctypes.wintypes import BOOL, HWND, LONG
+  class TopLevelWindowEnumerator(object):
+    """Finds all top-level windows on the desktop, returning their class names.
+
+    Windows owned by the shell are ignored.
+    """
+    _GWL_EXSTYLE_INDEX = -20
+    _WS_EX_TOPMOST_BIT = 8
+
+    def __init__(self):
+      # The function prototype of EnumWindowsProc.
+      self.__window_enum_proc_prototype = ctypes.WINFUNCTYPE(
+          BOOL, HWND, ctypes.c_void_p)
+      # An instantiation of the prototype pointing to this class's trampoline.
+      self.__enum_windows_proc_function = self.__window_enum_proc_prototype(
+          TopLevelWindowEnumerator.__enum_windows_proc)
+
+      # Set up various user32 functions that are needed.
+      ctypes.windll.user32.EnumWindows.restype = BOOL
+      ctypes.windll.user32.EnumWindows.argtypes = [
+          self.__window_enum_proc_prototype, ctypes.py_object]
+      ctypes.windll.user32.IsWindowVisible.restype = BOOL
+      ctypes.windll.user32.IsWindowVisible.argtypes = [HWND]
+      ctypes.windll.user32.IsIconic.restype = BOOL
+      ctypes.windll.user32.IsIconic.argtypes = [HWND]
+      ctypes.windll.user32.GetClassNameW.restype = ctypes.c_int
+      ctypes.windll.user32.GetClassNameW.argtypes = [
+          HWND, ctypes.c_wchar_p, ctypes.c_int]
+      ctypes.windll.user32.GetWindowLongW.restype = LONG
+      ctypes.windll.user32.GetWindowLongW.argtypes = [HWND, ctypes.c_int]
+
+      # A collection to hold the discovered class names.
+      self.__top_level_window_class_names = []
+
+    def run(self):
+      """Runs the enumerator over all windows to find those that are topmost.
+
+      Returns:
+          A list of the class names of topmost windows.
+      """
+      self.__top_level_window_class_names = []
+      ctypes.windll.user32.EnumWindows(
+          self.__enum_windows_proc_function,
+          ctypes.py_object(self))
+      return self.__top_level_window_class_names
+
+    @staticmethod
+    def __enum_windows_proc(hwnd, lparam):
+      """An EnumWindowsProc trampoline that delegates to an instance's
+      __on_window method.
+
+      Args:
+          hwnd: An HWND of a window on the desktop.
+          lparam: A pointer to the TopLevelWindowEnumerator instance.
+
+      Returns:
+          1 so that EnumWindows continues its enumeration.
+      """
+      enumerator = ctypes.cast(lparam, ctypes.py_object).value
+      enumerator.__on_window(hwnd)
+      return 1
+
+    def __is_topmost_window(self, hwnd):
+      """Returns True if |hwnd| is a topmost window."""
+      ex_styles = ctypes.windll.user32.GetWindowLongW(
+          hwnd,
+          TopLevelWindowEnumerator._GWL_EXSTYLE_INDEX)
+      return ex_styles & TopLevelWindowEnumerator._WS_EX_TOPMOST_BIT
+
+    def __get_window_class(self, hwnd):
+      """Returns the class name of |hwnd|."""
+      buffer_size = 257
+      buffer = ctypes.create_unicode_buffer(buffer_size)
+      name_len = ctypes.windll.user32.GetClassNameW(hwnd, buffer, buffer_size)
+      if name_len <= 0 or name_len >= buffer_size:
+        raise ctypes.WinError()
+      return buffer.value
+
+    def __is_shell_window_class(self, class_name):
+      """Returns True if |class_name| names a Windows shell dialog."""
+      return class_name in ['Button', 'Shell_TrayWnd', 'Shell_SecondaryTrayWnd']
+
+    def __is_system_dialog_class(self, class_name):
+      """Returns True if |class_name| names a system dialog."""
+      return class_name == '#32770'
+
+    def __on_window(self, hwnd):
+      """Evaluates |hwnd| to determine whether or not it is a topmost window.
+
+      In case |hwnd| is a topmost window, its class name is added to this
+      instances collection of topmost window class names.
+      """
+      if not ctypes.windll.user32.IsWindowVisible(hwnd):
+        return
+      if ctypes.windll.user32.IsIconic(hwnd):
+        return
+      if not self.__is_topmost_window(hwnd):
+        return
+      class_name = self.__get_window_class(hwnd)
+      if not class_name:
+        return
+      if self.__is_shell_window_class(class_name):
+        return
+      self.__top_level_window_class_names.append(class_name)
+
+  return TopLevelWindowEnumerator().run()
