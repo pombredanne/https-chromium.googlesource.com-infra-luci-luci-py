@@ -54,6 +54,7 @@ import json
 import logging
 import random
 import struct
+import sys
 import time
 
 from google.appengine.api import datastore_errors
@@ -74,6 +75,10 @@ from server import task_pack
 # The 10 minutes delta is from assert_task() which advance the timer by a random
 # value to up 10 minutes early.
 _ADVANCE = datetime.timedelta(hours=1, minutes=10)
+
+
+# This code requires 64 bits python. See _hash_data().
+assert sys.maxint == 0x7fffffffffffffff, sys.maxint
 
 
 class Error(Exception):
@@ -415,7 +420,7 @@ def _get_task_dims_key(dimensions_hash, dimensions):
 
 
 def _hash_data(data):
-  """Returns a 32 bits non-zero hash."""
+  """Returns a 32 bits non-zero hash based on MD5."""
   assert isinstance(data, str), repr(data)
   digest = hashlib.md5(data).digest()
   # Note that 'L' means C++ unsigned long which is (usually) 32 bits and
