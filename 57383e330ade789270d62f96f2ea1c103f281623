@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd26a245_3328b5e0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "I recommend to inline/flatten the code and not use an OOP approach here.\n\nIt is because the object is instantiated exactly once and never reused, yet code like line 466 implies reusability which I find confusing as a reader. I think will be significantly shorter and more readable by just using inline code.",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06d998c6_cbae741c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "inline here instead of making a private member, e.g.\n\ncallback \u003d ctypes.WINFUNCTYPE(BOOL, HWND, ctypes.c_void_p)\nctypes.windll.user32.EnumWindows(callback(_enum_windows_proc), None)\n\nthere\u0027s no need to carry the closure explicitly, the function is already bound to the current closure.",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f40aacf5_a89e925c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "I think it\u0027d be more readable if these functions where moved outside in the private code section at the top of the file. I\u0027d say _enum_windows(), _is_topmost_window() and _get_window_class().\n\nUnless I\u0027m really mistaken, the closure is available, so you don\u0027t need lparam at all if the function is function-local.",
+      "range": {
+        "startLine": 473,
+        "startChar": 8,
+        "endLine": 473,
+        "endChar": 27
+      },
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c41ea2fe_7049c94f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "s/buffer_size/len(buffer)/\n\nthen you can inline 257 at line 498. I confirmed this to be true on Windows.",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0101a38_d91ab74a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "len(buffer)",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69530353_7b680d6c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "include a reason string",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f86e8f_38d2115d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "Since this private function is used only once, inline and comment about what it\u0027s doing.",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52c2e78e_1a5710dc",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "This code is not used.",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e544155_cb82b5d0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-07T15:27:40Z",
+      "side": 1,
+      "message": "That would be the code that remains here in this function.",
+      "revId": "57383e330ade789270d62f96f2ea1c103f281623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
