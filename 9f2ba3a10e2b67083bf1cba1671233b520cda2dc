@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "936ee62c_b9f91be8",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-08T01:40:31Z",
+      "side": 1,
+      "message": "IIUC, for arms this is actually redundant, since cpu_type encodes the bitness already",
+      "range": {
+        "startLine": 275,
+        "startChar": 42,
+        "endLine": 275,
+        "endChar": 49
+      },
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff244bae_371903b0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-08T01:40:31Z",
+      "side": 1,
+      "message": "I have a feeling we should be using these numbers instead of trying to parse strings...",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
