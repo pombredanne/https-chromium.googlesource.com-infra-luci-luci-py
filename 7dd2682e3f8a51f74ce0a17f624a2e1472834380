@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce6a25a0_6c55545e",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-08T02:02:34Z",
+      "side": 1,
+      "message": "I\u0027d prefer if \":\" were required, rather than allowing an unspecified default of 1.",
+      "revId": "7dd2682e3f8a51f74ce0a17f624a2e1472834380",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
