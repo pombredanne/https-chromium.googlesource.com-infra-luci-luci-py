@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "bc11a209_6e72c543",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T02:37:04Z",
+      "side": 1,
+      "message": "I\u0027m fine with \u0027arm64\u0027. \u0027aarch64\u0027 is ugly anyway.",
+      "parentUuid": "ad1ff07b_59eb2eb6",
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eecc068d_6e36f5ec",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
@@ -113,6 +131,30 @@
       "side": 1,
       "message": "I believe \u0027arm\u0027 CPU type by itself makes little sense since arms in general not as compatible with each other as x86 CPUs (I think). armv7l or arm64/aarch64 on the other hand are known architecture suffixies, so I think having \u0027v7l\u0027 in \u0027armv7l\u0027 was the correct choice.",
       "parentUuid": "8246d348_fb804a49",
+      "range": {
+        "startLine": 275,
+        "startChar": 42,
+        "endLine": 275,
+        "endChar": 49
+      },
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "109a7e7f_1922d010",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T02:37:04Z",
+      "side": 1,
+      "message": "fair enough.",
+      "parentUuid": "3cd56542_f7d14037",
       "range": {
         "startLine": 275,
         "startChar": 42,
