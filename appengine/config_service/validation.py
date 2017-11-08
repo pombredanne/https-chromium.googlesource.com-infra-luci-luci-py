@@ -282,7 +282,17 @@ def validate_refs_cfg(cfg, ctx):
 
 @ndb.tasklet
 def _validate_by_service_async(service, config_set, path, content, ctx):
-  """Validates a config with an external service."""
+  """Validates a config with an external service.
+
+  Validation results will be stored in the validation context.
+
+  Args:
+    service (str): service to be validated against.
+    config_set (str): config set being validated.
+    path (str): path of the config file being validated.
+    content (bytes): byte-form of the content of the file being validated.
+    ctx (validation.Context): context in which validation messages are stored.
+  """
   try:
     metadata = yield services.get_metadata_async(service.id)
   except services.DynamicMetadataError as ex:
