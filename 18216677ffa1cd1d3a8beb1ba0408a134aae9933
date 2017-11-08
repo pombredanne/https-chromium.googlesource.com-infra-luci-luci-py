@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c32c7ff9_78706068",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-08T20:53:41Z",
+      "side": 1,
+      "message": "In theory you should rsplit this, because guest accelerators could (but probably don\u0027t) contain : in their names, while the number on the end would never contain a colon.",
+      "revId": "18216677ffa1cd1d3a8beb1ba0408a134aae9933",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6bafd05_f7d57b95",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2017-11-08T20:53:41Z",
+      "side": 1,
+      "message": "Unnecessary.",
+      "revId": "18216677ffa1cd1d3a8beb1ba0408a134aae9933",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
