@@ -147,6 +147,12 @@ class LocalApplication(object):
     if self._listen_all:
       cmd.extend(('--host', '0.0.0.0'))
       cmd.extend(('--admin_host', '0.0.0.0'))
+    else:
+      # The default is localhost. For unknown reasons, on GCE dev_appserver
+      # still found the public IP. Binding to the local IPv4 IP makes sure the
+      # local server never find the network IP.
+      cmd.extend(('--host', '127.0.0.1'))
+      cmd.extend(('--admin_host', '127.0.0.1'))
 
     kwargs = {}
     if sys.platform != 'win32':
