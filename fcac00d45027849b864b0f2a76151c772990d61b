@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e951755_201a98f8",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-08T18:37:14Z",
+      "side": 1,
+      "message": "Correct on both accounts.",
+      "parentUuid": "7faad17d_baac522f",
+      "revId": "fcac00d45027849b864b0f2a76151c772990d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b013bbd0_4698f2ec",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "fcac00d45027849b864b0f2a76151c772990d61b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aab4e94f_c78fb6a9",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-08T18:37:14Z",
+      "side": 1,
+      "message": "sgtm. Done.",
+      "parentUuid": "b013bbd0_4698f2ec",
+      "revId": "fcac00d45027849b864b0f2a76151c772990d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
