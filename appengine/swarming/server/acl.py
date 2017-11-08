@@ -34,6 +34,8 @@
 Keep this file synchronized with the documentation at ../proto/config.proto.
 """
 
+import sys
+
 from components import auth
 from components import utils
 from server import config
@@ -189,6 +191,26 @@ def can_view_all_tasks():
 ### Other
 
 
+def _add_gce_account(bots):
+  """Adds the current GCE account if any."""
+  # This code must never be run on production.
+  assert utils.is_local_dev_server()
+  old_path = sys.path
+  try:
+    sys.path = sys.path[:]
+    sys.path.insert(0, 'swarming_bot')
+    sys.path.insert(0, 'swarming_bot/api/platforms')
+    import gce
+    if (gce.is_gce() and
+        'https://www.googleapis.com/auth/userinfo.email' in
+        gce.oauth2_available_scopes('default')):
+      account = gce.get_metadata()['instance']['serviceAccounts']['default'][
+          'email']
+      bots.append(account)
+  finally:
+    sys.path = old_path
+
+
 def bootstrap_dev_server_acls():
   """Adds localhost to IP whitelist and Swarming groups."""
   assert utils.is_local_dev_server()
@@ -196,6 +218,8 @@ def bootstrap_dev_server_acls():
     return
 
   bots = auth.bootstrap_loopback_ips()
+  # If on GCE, add the service account as a bot.
+  _add_gce_account(bots)
 
   auth_settings = config.settings().auth
   admins_group = auth_settings.admins_group
