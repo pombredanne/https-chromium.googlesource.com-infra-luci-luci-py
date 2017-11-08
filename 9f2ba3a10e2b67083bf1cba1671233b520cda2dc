@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "c633f1fb_dee5d4bb",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-08T19:20:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc11a209_6e72c543",
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eecc068d_6e36f5ec",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
