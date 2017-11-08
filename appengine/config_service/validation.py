@@ -320,7 +320,7 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
     req = {
       'config_set': config_set,
       'path': path,
-      'content': base64.b64encode(content),
+      'content': content,
     }
     res = yield net.json_request_async(
         url, method='POST', payload=req, scopes=net.EMAIL_SCOPE)

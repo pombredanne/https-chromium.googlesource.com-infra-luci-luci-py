@@ -355,7 +355,7 @@ class ValidationTestCase(test_case.TestCase):
 
     ############################################################################
 
-    result = validation.validate_config('services/foo', 'bar.cfg', cfg)
+    result = validation.validate_config('services/foo', 'bar.cfg', cfg_b64)
     self.assertEqual(
         result.messages,
         [
@@ -387,7 +387,7 @@ class ValidationTestCase(test_case.TestCase):
 
     ############################################################################
 
-    result = validation.validate_config('projects/foo', 'bar.cfg', cfg)
+    result = validation.validate_config('projects/foo', 'bar.cfg', cfg_b64)
     self.assertEqual(
         result.messages,
         [
