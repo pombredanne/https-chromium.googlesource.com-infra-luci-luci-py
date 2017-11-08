@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c65e2763_866959ae",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-08T19:10:13Z",
+      "side": 1,
+      "message": "ByteField means the content will be base64 on the wire and will be decoded from base64 by the time validate_config function is called. So this is bytes, not base64.\n\nnothing to change here, just explaining that validate_config_async should accept bytes",
+      "range": {
+        "startLine": 189,
+        "startChar": 38,
+        "endLine": 189,
+        "endChar": 47
+      },
+      "revId": "78ebad34d866944721156bb4f7d852527a348d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42a9af30_8183bca8",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-08T19:10:13Z",
+      "side": 1,
+      "message": "we should not be doing this",
+      "range": {
+        "startLine": 198,
+        "startChar": 37,
+        "endLine": 198,
+        "endChar": 62
+      },
+      "revId": "78ebad34d866944721156bb4f7d852527a348d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "070d33a1_abee268c",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-08T19:10:13Z",
+      "side": 1,
+      "message": "please document that content is in bytes, not text, to avoid confusion like yesterday\n\nalso see below",
+      "revId": "78ebad34d866944721156bb4f7d852527a348d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c183621e_82dc1e93",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-08T19:10:13Z",
+      "side": 1,
+      "message": "looks like this function and other validation functions changed from accepting bytes to accepting base64. I don\u0027t think this is right. I think generally we should deal with bytes everywhere, but encode to base64 right before sending (what this code did before)",
+      "revId": "78ebad34d866944721156bb4f7d852527a348d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
