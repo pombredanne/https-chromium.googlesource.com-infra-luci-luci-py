@@ -147,6 +147,9 @@ class LocalApplication(object):
     if self._listen_all:
       cmd.extend(('--host', '0.0.0.0'))
       cmd.extend(('--admin_host', '0.0.0.0'))
+    else:
+      cmd.extend(('--host', '127.0.0.1'))
+      cmd.extend(('--admin_host', '127.0.0.1'))
 
     kwargs = {}
     if sys.platform != 'win32':
