@@ -193,7 +193,8 @@ def _read_and_validate_archive(config_set, rev_key, archive, location):
         content = extracted.read()
         files[item.name] = content
         with ctx.prefix(item.name + ': '):
-          validation.validate_config(config_set, item.name, content, ctx=ctx)
+          validation.validate_config(
+              config_set, item.name, content, ctx=ctx)
 
   if ctx.result().has_errors:
     return [], ctx.result()
