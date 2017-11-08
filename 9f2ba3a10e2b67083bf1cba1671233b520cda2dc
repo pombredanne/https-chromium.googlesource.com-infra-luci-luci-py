@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "e5a3e5a5_27569e32",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T02:26:12Z",
+      "side": 1,
+      "message": "Looks like arm64 should not exist, aarch64 is the official name. That said, it was an intentional choice of mine to use \u0027x86\u0027 and intentionally not include bitness, I\u0027d prefer if here it would use only \u0027arm\u0027 but I realize it may be too late;\nhttps://chromium-swarm.appspot.com/tasklist?f\u003dcpu%3Aarmv7l\n\nOn the other hand arm64 doesn\u0027t seem used yet so we can nail down to either arm64 or aarch64, but not both.\nhttps://chromium-swarm.appspot.com/tasklist?f\u003dcpu%3Aarm64",
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eecc068d_6e36f5ec",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T02:26:12Z",
+      "side": 1,
+      "message": "elif cpu_type.startswith((\u0027arm\u0027, \u0027aarch\u0027)):\nwould have worked, but let\u0027s settle for only one prefix.",
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "936ee62c_b9f91be8",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 1
@@ -25,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "8246d348_fb804a49",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T02:26:12Z",
+      "side": 1,
+      "message": "only on arm, see comment above. That\u0027s an error of mine, the v7l part should have been at the end, more like a flag.",
+      "parentUuid": "936ee62c_b9f91be8",
+      "range": {
+        "startLine": 275,
+        "startChar": 42,
+        "endLine": 275,
+        "endChar": 49
+      },
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff244bae_371903b0",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 1
@@ -36,6 +94,30 @@
       "writtenOn": "2017-11-08T01:40:31Z",
       "side": 1,
       "message": "I have a feeling we should be using these numbers instead of trying to parse strings...",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "9f2ba3a10e2b67083bf1cba1671233b520cda2dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dad1e23_78143d77",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T02:26:12Z",
+      "side": 1,
+      "message": "I did the initial implementation on a RPi1 and an old chrome book. Here\u0027s a few device I did a quick check on. They are use implementer:0x41, architecture:7. Yet RPi3 is an Broadcom 64 bits, the Odroid is an Amlogic 32 bits and the third is a low power Allwinner 32 bits CPU. So the numbers do not seem really useful at all.\n\n\nHere\u0027s what a RPi3 looks like:\n$ cat /proc/cpuinfo\nprocessor\t: 0\nmodel name\t: ARMv7 Processor rev 4 (v7l)\nBogoMIPS\t: 38.40\nFeatures\t: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 \nCPU implementer\t: 0x41\nCPU architecture: 7\nCPU variant\t: 0x0\nCPU part\t: 0xd03\nCPU revision\t: 4\n\n(cpus 1 to 3)\n\nHardware\t: BCM2835\nRevision\t: a22082\nSerial\t\t: 0000000012345678\n\n\nbut here\u0027s how it looks like on an ODROID-C1+\n\n$ cat /proc/cpuinfo \nProcessor\t: ARMv7 Processor rev 1 (v7l)\nprocessor\t: 0\nBogoMIPS\t: 0.40\n\nprocessor\t: 1\nBogoMIPS\t: 0.40\n\nprocessor\t: 2\nBogoMIPS\t: 0.40\n\nprocessor\t: 3\nBogoMIPS\t: 0.40\n\nFeatures\t: swp half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 \nCPU implementer\t: 0x41\nCPU architecture: 7\nCPU variant\t: 0x0\nCPU part\t: 0xc05\nCPU revision\t: 1\n\nHardware\t: ODROIDC\nRevision\t: 000a\nSerial\t\t: 1b00000000000000\n\n\nand a CHIP:\n$ cat /proc/cpuinfo \nprocessor\t: 0\nmodel name\t: ARMv7 Processor rev 2 (v7l)\nBogoMIPS\t: 429.72\nFeatures\t: half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpd32 \nCPU implementer\t: 0x41\nCPU architecture: 7\nCPU variant\t: 0x3\nCPU part\t: 0xc08\nCPU revision\t: 2\n\nHardware\t: Allwinner sun4i/sun5i Families\nRevision\t: 0000\nSerial\t\t: 123456789abcdef0",
+      "parentUuid": "ff244bae_371903b0",
       "range": {
         "startLine": 43,
         "startChar": 0,
