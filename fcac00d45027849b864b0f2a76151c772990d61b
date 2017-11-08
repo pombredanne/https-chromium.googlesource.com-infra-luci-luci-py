@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faad17d_baac522f",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T18:03:40Z",
+      "side": 1,
+      "message": "since newTask.properties \u003d\u003d this._request.properties, does this mean the object is mutated? I guess so. I guess it\u0027s not to bad because the first thing after this code is a redirect to the new task?",
+      "revId": "fcac00d45027849b864b0f2a76151c772990d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b013bbd0_4698f2ec",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T18:03:40Z",
+      "side": 1,
+      "message": "It\u0027s not related to the bug fix, but while modifying these lines wdyt about adding a tag \u0027retry:1\u0027. This way we could easily find the tasks triggered this way for accounting purposes.",
+      "revId": "fcac00d45027849b864b0f2a76151c772990d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
