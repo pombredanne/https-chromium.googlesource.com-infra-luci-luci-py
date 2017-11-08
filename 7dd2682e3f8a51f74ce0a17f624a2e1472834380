@@ -16,6 +16,24 @@
       "revId": "7dd2682e3f8a51f74ce0a17f624a2e1472834380",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80afbde1_3c9d9d81",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1250672
+      },
+      "writtenOn": "2017-11-08T14:11:56Z",
+      "side": 1,
+      "message": "Done. Also added check for empty accelerator type (e.g., \":2\").",
+      "parentUuid": "ce6a25a0_6c55545e",
+      "revId": "7dd2682e3f8a51f74ce0a17f624a2e1472834380",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
