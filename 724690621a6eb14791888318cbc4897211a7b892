@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d89f3b2_78d9c4f3",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-08T23:28:43Z",
+      "side": 0,
+      "message": "FYI, that was just a very poor attempt to try to increase parallelism.",
+      "range": {
+        "startLine": 815,
+        "startChar": 11,
+        "endLine": 815,
+        "endChar": 17
+      },
+      "revId": "724690621a6eb14791888318cbc4897211a7b892",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
