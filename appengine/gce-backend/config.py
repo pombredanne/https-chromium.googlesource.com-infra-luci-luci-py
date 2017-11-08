@@ -148,6 +148,57 @@ def validate_template_config(config, context):
       valid = False
     else:
       base_names.add(template.base_name)
+
+    accelerator_types = []
+    for spec in template.guest_accelerators:
+      values = spec.split(':', 1)
+      accelerator_type = values[0]
+      if not accelerator_type:
+        context.error(
+            'Empty guest accelerator type in template %s.',
+            template.base_name)
+        valid = False
+      elif accelerator_type in accelerator_types:
+        context.error(
+            'Guest accelerator type %s is not unique within template %s.',
+            accelerator_type, template.base_name)
+        valid = False
+      accelerator_types.append(accelerator_type)
+
+      accelerator_count = 1
+      if len(values) < 2:
+        context.error(
+            'Number of guest accelerators of type %s in template %s not '+
+            'specified.',
+            accelerator_type, template.base_name)
+        valid = False
+        continue
+      try:
+        accelerator_count = int(values[1])
+      except ValueError:
+        context.error(
+            'Number (%s) of guest accelerators of type %s in template %s is '+
+            'non-numeric.',
+            values[1], accelerator_type, template.base_name)
+        valid = False
+        continue
+      if accelerator_count <= 0:
+        context.error(
+            'Guest accelerator count in template %s must be positive.',
+            template.base_name)
+        valid = False
+      if accelerator_count > 1024:
+        context.error(
+            'Too many guest accelerators of type %s in template %s.',
+            accelerator_type, template.base_name)
+        valid = False
+
+    if len(accelerator_types) > 10:
+      context.error(
+          'Too many guest accelerator types in template %s.',
+          template.base_name)
+      valid = False
+
   if len(base_names) > 10:
     context.error('Too many instance templates.')
     valid = False

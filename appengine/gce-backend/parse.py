@@ -11,6 +11,7 @@ import logging
 
 from google.appengine.ext import ndb
 from protorpc.remote import protojson
+from proto import config_pb2
 
 from components.machine_provider import dimensions
 
@@ -105,6 +106,19 @@ def _load_service_accounts(service_accounts):
           for sa in service_accounts]
 
 
+def _load_guest_accelerators(guest_accelerators):
+  """Loads from the given guest accelerators.
+
+  Args:
+    guest_accelerators: A list of "<type>:<count>" strings.
+
+  Returns:
+    models.GuestAccelerator instance.
+  """
+  return [models.GuestAccelerator(accelerator_type=k, accelerator_count=int(v))
+          for k, v in _load_dict(guest_accelerators).iteritems()]
+
+
 def compute_template_checksum(template_cfg):
   """Computes a checksum from the given config.
 
@@ -118,12 +132,14 @@ def compute_template_checksum(template_cfg):
       'auto-assign-external-ip': template_cfg.auto_assign_external_ip,
       'dimensions': _load_dict(template_cfg.dimensions),
       'disk-size-gb': template_cfg.disk_size_gb,
+      'guest-accelerators': [],
       'image-name': template_cfg.image_name,
       'image-project': template_cfg.image_project,
       'machine-type': template_cfg.machine_type,
       'metadata': _load_dict(template_cfg.metadata),
       'min-cpu-platform': template_cfg.min_cpu_platform,
       'network_url': template_cfg.network_url,
+      'on-host-maintenance': template_cfg.on_host_maintenance,
       'project': template_cfg.project,
       'service-accounts': [],
       'tags': sorted(template_cfg.tags),
@@ -143,6 +159,16 @@ def compute_template_checksum(template_cfg):
           'scopes': sorted(i.scopes),
         }
         for i in sorted(template_cfg.service_accounts[1:], key=lambda i: i.name)
+    ])
+  if template_cfg.guest_accelerators:
+    identifying_properties['guest-accelerators'].extend([
+        {
+            'accelerator_type': ga.accelerator_type,
+            'accelerator_count': ga.accelerator_count,
+        }
+        for ga in sorted(
+            _load_guest_accelerators(template_cfg.guest_accelerators),
+            key=lambda ga: ga.accelerator_type)
     ])
   return utilities.compute_checksum(identifying_properties)
 
@@ -376,6 +402,9 @@ def ensure_entities_exist(template_cfg, manager_cfgs, max_concurrent=50):
         network_url=template_cfg.network_url,
         project=template_cfg.project,
         service_accounts=_load_service_accounts(template_cfg.service_accounts),
+        guest_accelerators=_load_guest_accelerators(
+            template_cfg.guest_accelerators),
+        on_host_maintenance=template_cfg.on_host_maintenance,
         tags=list(template_cfg.tags),
     )
   if ensure_instance_group_managers_active(
