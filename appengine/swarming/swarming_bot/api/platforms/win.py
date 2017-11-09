@@ -13,6 +13,7 @@ import string
 import subprocess
 import sys
 
+from utils import file_path
 from utils import tools
 
 import gpu
@@ -494,3 +495,33 @@ def list_top_windows():
 
   ctypes.windll.user32.EnumWindows(window_enum_proc_prototype(on_window), None)
   return out
+
+
+def host_reboot(message):
+  """Forcibly reboots the host, logs a message in the event log.
+
+  This requires the SE_SHUTDOWN_NAME privilege, which is disabled by default.
+  """
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa376874.aspx
+  ctypes.windll.advapi32.InitiateSystemShutdownExW.argtypes = (
+      ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_ulong, ctypes.c_long,
+      ctypes.c_long, ctypes.c_ulong)
+  ctypes.windll.advapi32.InitiateSystemShutdownExW.restype = ctypes.c_ulong
+
+  # TODO(maruel): While the function report success, the token as reported by
+  # procexp is not modified and InitiateSystemShutdownExW() below fails with
+  # ACCESS_DENIED. Needs more investigation.
+  logging.info('Enabling SE_SHUTDOWN_NAME')
+  if not file_path.enable_privilege(u'SeShutdownPrivilege'):
+    logging.error('Failed to enable SE_SHUTDOWN_NAME')
+
+  SHTDN_REASON_MAJOR_APPLICATION = 0x40000
+  SHTDN_REASON_MINOR_MAINTENANCE = 1
+  reason = SHTDN_REASON_MAJOR_APPLICATION | SHTDN_REASON_MINOR_MAINTENANCE
+  res = bool(ctypes.windll.advapi32.InitiateSystemShutdownExW(
+      None, unicode(message), 0, 1, 1, reason))
+  if not res:
+    logging.error(
+        'Failed to reboot: InitiateSystemShutdownExW(): %s',
+        ctypes.FormatError())
+  return res

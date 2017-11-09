@@ -1346,6 +1346,10 @@ def host_reboot_and_return(message=None):
     True if at least one command succeeded.
   """
   if sys.platform == 'win32':
+    if platforms.win.host_reboot(message):
+      return True
+    # TODO(maruel): We still observe failures on bots. In the meantime, fallback
+    # to shelling out.
     cmds = [
       ['shutdown', '-r', '-f', '-t', '1'],
     ]
