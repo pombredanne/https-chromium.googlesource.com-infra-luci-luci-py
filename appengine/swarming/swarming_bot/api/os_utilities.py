@@ -1346,10 +1346,9 @@ def host_reboot_and_return(message=None):
     True if at least one command succeeded.
   """
   if sys.platform == 'win32':
-    cmds = [
-      ['shutdown', '-r', '-f', '-t', '1'],
-    ]
-  elif sys.platform == 'cygwin':
+    return platform.win.host_reboot(message)
+
+  if sys.platform == 'cygwin':
     # The one that will succeed depends if it is executed via a prompt or via
     # a ssh command. #itscomplicated.
     cmds = [
