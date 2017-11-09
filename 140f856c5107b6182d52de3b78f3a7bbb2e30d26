@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e56a0d6b_f5b300f0",
+        "filename": "appengine/swarming/ui/res/imp/botlist/bot-filters.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T16:14:48Z",
+      "side": 1,
+      "message": "spacing",
+      "revId": "140f856c5107b6182d52de3b78f3a7bbb2e30d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01935f9c_e5e8e0e5",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T16:14:48Z",
+      "side": 1,
+      "message": "why?",
+      "revId": "140f856c5107b6182d52de3b78f3a7bbb2e30d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
