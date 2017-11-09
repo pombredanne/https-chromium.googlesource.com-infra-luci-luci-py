@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "320f2846_89bfb4e1",
+        "filename": "appengine/swarming/ui/res/imp/botlist/bot-filters.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-09T16:25:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56a0d6b_f5b300f0",
+      "revId": "140f856c5107b6182d52de3b78f3a7bbb2e30d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01935f9c_e5e8e0e5",
         "filename": "appengine/swarming/ui/res/imp/botpage/bot-page.html",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "140f856c5107b6182d52de3b78f3a7bbb2e30d26",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a4aec07_6ab798b9",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-09T16:25:06Z",
+      "side": 1,
+      "message": "Polymer does some magic with camelCase properties because html is case sensitive.  It is easy to forget that if you have somePropertyName, polymer will change the html to be some-property-name.\n\nI try to make sure all properties are snake case to avoid the manipulation and the potential bugs (which have bitten me and several teammates before).",
+      "parentUuid": "01935f9c_e5e8e0e5",
+      "revId": "140f856c5107b6182d52de3b78f3a7bbb2e30d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
