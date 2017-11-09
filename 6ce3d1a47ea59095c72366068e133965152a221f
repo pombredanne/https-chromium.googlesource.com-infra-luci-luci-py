@@ -16,6 +16,24 @@
       "revId": "6ce3d1a47ea59095c72366068e133965152a221f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce9457b7_3a443a6e",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-09T18:54:47Z",
+      "side": 1,
+      "message": "That\u0027s true in one case, but you can cancel a task, it can expire, etc.  Time Spend Pending is also shorter, so I think I like that better.",
+      "parentUuid": "fd5128dc_921bafef",
+      "revId": "6ce3d1a47ea59095c72366068e133965152a221f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
