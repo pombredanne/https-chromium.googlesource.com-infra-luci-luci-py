@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e7573f1_0210d19b",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-09T19:42:31Z",
+      "side": 1,
+      "message": "it is not str",
+      "range": {
+        "startLine": 290,
+        "startChar": 13,
+        "endLine": 290,
+        "endChar": 16
+      },
+      "revId": "bdafd6e520041bc7bfadbd6c01e3d8afb3f3e305",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89f6fe07_5ca8bea8",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-09T19:42:31Z",
+      "side": 1,
+      "message": "there is no such a type. It is str",
+      "range": {
+        "startLine": 293,
+        "startChar": 13,
+        "endLine": 293,
+        "endChar": 18
+      },
+      "revId": "bdafd6e520041bc7bfadbd6c01e3d8afb3f3e305",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b8c80d2_7c99763d",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-09T19:42:31Z",
+      "side": 1,
+      "message": "will be",
+      "range": {
+        "startLine": 294,
+        "startChar": 67,
+        "endLine": 294,
+        "endChar": 70
+      },
+      "revId": "bdafd6e520041bc7bfadbd6c01e3d8afb3f3e305",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
