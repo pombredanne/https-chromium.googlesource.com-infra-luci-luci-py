@@ -323,6 +323,7 @@
       created_ts: humanTime("created_ts"),
       duration: humanTime("duration"),
       modified_ts: humanTime("modified_ts"),
+      pending_time: humanTime("pending_time"),
       source_revision: function(task) {
         var r = this._attribute(task, "source_revision")[0];
         return r.substring(0,8);
@@ -374,6 +375,7 @@
       created_ts: sortableTime("created_ts"),
       duration: sortableTime("duration"),
       modified_ts: sortableTime("modified_ts"),
+      pending_time: sortableTime("pending_time"),
       started_ts: sortableTime("started_ts"),
     };
     var priorityColumns = ["created_ts", "started_ts", "abandoned_ts", "completed_ts", "modified_ts", "duration"];
