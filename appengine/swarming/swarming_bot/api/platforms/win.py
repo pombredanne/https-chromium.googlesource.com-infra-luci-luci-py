@@ -494,3 +494,22 @@ def list_top_windows():
 
   ctypes.windll.user32.EnumWindows(window_enum_proc_prototype(on_window), None)
   return out
+
+
+def host_reboot(message=None):
+  """Forcibly reboots the host, logs a message in the event log."""
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa376874.aspx
+  ctypes.windll.advapi32.InitiateSystemShutdownExW.argtypes = (
+      ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_ulong, ctypes.c_long,
+      ctypes.c_long, ctypes.c_ulong)
+  ctypes.windll.advapi32.InitiateSystemShutdownExW.restype = ctypes.c_ulong
+  SHTDN_REASON_MAJOR_APPLICATION = 0x40000
+  SHTDN_REASON_MINOR_MAINTENANCE = 1
+  reason = SHTDN_REASON_MAJOR_APPLICATION | SHTDN_REASON_MINOR_MAINTENANCE
+  res = bool(ctypes.windll.advapi32.InitiateSystemShutdownExW(
+      None, unicode(message), 0, 1, 1, reason))
+  if not res:
+    logging.error(
+        'Failed to reboot: InitiateSystemShutdownExW(): %s',
+        ctypes.FormatError())
+  return res
