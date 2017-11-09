@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12f5eb71_1ecaba9f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-09T22:43:30Z",
+      "side": 1,
+      "message": "is this absolutely necessary? Maybe there\u0027s enough data in TaskToRun already?",
+      "range": {
+        "startLine": 219,
+        "startChar": 2,
+        "endLine": 219,
+        "endChar": 71
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575332e8_0aa6187a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-09T22:43:30Z",
+      "side": 1,
+      "message": "please remove this, it makes no sense anymore",
+      "range": {
+        "startLine": 279,
+        "startChar": 16,
+        "endLine": 279,
+        "endChar": 22
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbd20a13_7c64d205",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-09T22:43:30Z",
+      "side": 1,
+      "message": "I don\u0027t fully understand this. Are we fetching ALL PENDING TASKS and then sort them in memory? This is not very scalable approach.\n\nIf we don\u0027t fetch them all, how do we ensure that query results are already sorted by priority?\n\nAnd we fetch them in correct order to begin with, why do we need to sort them again?",
+      "range": {
+        "startLine": 367,
+        "startChar": 2,
+        "endLine": 367,
+        "endChar": 45
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
