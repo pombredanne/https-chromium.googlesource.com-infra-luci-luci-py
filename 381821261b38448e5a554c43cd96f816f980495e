@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68fe740b_bc4e60aa",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T00:04:58Z",
+      "side": 1,
+      "message": "You need to remove, otherwise you get:\n\n/b/s/w/ir/cache/builder/Luci_py_Presubmit/infra/luci/appengine/swarming/swarming_bot/api/platforms/win_test.py (0.30s) failed\nTraceback (most recent call last):\n  File \"/b/s/w/ir/cache/builder/Luci_py_Presubmit/infra/luci/appengine/swarming/swarming_bot/api/platforms/win_test.py\", line 13, in \u003cmodule\u003e\n    import win\n  File \"/b/s/w/ir/cache/builder/Luci_py_Presubmit/infra/luci/appengine/swarming/swarming_bot/api/platforms/win.py\", line 8, in \u003cmodule\u003e\n    import ctypes.wintypes\n  File \"/b/s/w/ir/cipd_bin_packages/lib/python2.7/ctypes/wintypes.py\", line 19, in \u003cmodule\u003e\n    class VARIANT_BOOL(_SimpleCData):\nValueError: _type_ \u0027v\u0027 not supported\n\nhttps://logs.chromium.org/v/?s\u003dinfra%2Fbuildbucket%2Fcr-buildbucket.appspot.com%2F8963499215297493152%2F%2B%2Fsteps%2Fpresubmit%2F0%2Fstdout",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a8c8177_10c1b426",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T00:04:58Z",
+      "side": 1,
+      "message": "optional nit: in the rest of the file I used the normal ctypes instead of the wintypes aliases because whatever but whatever. ¯\\_(ツ)_/¯",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccaaba59_5b131738",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T00:04:58Z",
+      "side": 1,
+      "message": "to reduce surprises:\n\n  return bool(ex_styles \u0026 8)",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcb98ea3_19ac00ef",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T00:04:58Z",
+      "side": 1,
+      "message": "optional nit: you could reduce to:\n\n  out \u003d []\n\nand thus doesn\u0027t need a comment because it is documented at the function\u0027s docstring.",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
