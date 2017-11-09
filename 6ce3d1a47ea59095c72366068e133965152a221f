@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd5128dc_921bafef",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-09T18:52:54Z",
+      "side": 1,
+      "message": "\"Delay between request and started\" ?",
+      "revId": "6ce3d1a47ea59095c72366068e133965152a221f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
