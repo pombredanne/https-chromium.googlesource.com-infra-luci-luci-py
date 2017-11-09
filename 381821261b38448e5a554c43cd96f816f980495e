@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "38ba00bb_7668815f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2017-11-09T10:02:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68fe740b_bc4e60aa",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a8c8177_10c1b426",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "381821261b38448e5a554c43cd96f816f980495e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5412c0a0_9487ae8e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2017-11-09T10:02:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a8c8177_10c1b426",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "db880ac8_4e83d6fd",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2017-11-09T10:02:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccaaba59_5b131738",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcb98ea3_19ac00ef",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 5
@@ -67,6 +121,24 @@
       "revId": "381821261b38448e5a554c43cd96f816f980495e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f3748f5_7ffa0c21",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2017-11-09T10:02:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcb98ea3_19ac00ef",
+      "revId": "381821261b38448e5a554c43cd96f816f980495e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
