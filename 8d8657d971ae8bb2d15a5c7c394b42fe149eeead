@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abc194c6_3540b99d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2017-11-09T11:08:57Z",
+      "side": 1,
+      "message": "InitiateSystemShutdownExW returns 0 in case of error. isn\u0027t this \"not\" flipping the polarity?",
+      "range": {
+        "startLine": 434,
+        "startChar": 8,
+        "endLine": 434,
+        "endChar": 11
+      },
+      "revId": "8d8657d971ae8bb2d15a5c7c394b42fe149eeead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
