@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e10363f1_d040ab32",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-10T15:55:04Z",
+      "side": 1,
+      "message": "I forgot USD is in the column.  Seems fine to me.",
+      "parentUuid": "d5ce9fe7_38bdf43d",
+      "range": {
+        "startLine": 261,
+        "startChar": 49,
+        "endLine": 261,
+        "endChar": 50
+      },
+      "revId": "cdaaa1d23cfcfae227dfa1d12a7f9fcf3c860423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5730cce7_b348c6cd",
         "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
         "patchSetId": 1
