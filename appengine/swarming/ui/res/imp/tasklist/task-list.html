@@ -317,7 +317,7 @@
     var columnMap = {
       abandoned_ts: humanTime("abandoned_ts"),
       bot: function(task) {
-        return this._attribute(task, "bot_id")[0];
+        var b = this._attribute(task, "bot_id")[0];
       },
       completed_ts: humanTime("completed_ts"),
       costs_usd: function(task) {
@@ -448,7 +448,7 @@
 
       _attribute: function(task, col, def) {
         if (def === undefined) {
-          def = "none";
+          def = "‑‑";
         }
         var retVal = this._tag(task, col) || task[col] || [def];
         if (!Array.isArray(retVal)) {
@@ -554,7 +554,7 @@
       _sourceLink: function(task) {
         var rev = this._attribute(task, "source_revision")[0];
         var repo = this._attribute(task, "source_repo")[0];
-        if (rev === "none" || repo === "none") {
+        if (rev === "‑‑" || repo === "‑‑") {
           return false;
         }
         return repo.replace("%s", rev);

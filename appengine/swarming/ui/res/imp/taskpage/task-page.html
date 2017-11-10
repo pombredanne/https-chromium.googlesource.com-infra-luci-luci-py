@@ -457,7 +457,7 @@
               </tbody>
             </table>
 
-            <div class="title" hidden$="[[_not(_task_exists)]]">Task Timing Information</div>
+            <div class="title" hidden$="[[_not(_task_exists)]]">Timing Information</div>
             <div class="horizontal layout wrap">
               <div class="left flex">
                 <table class="task-info" hidden$="[[_not(_task_exists)]]">
@@ -466,45 +466,39 @@
                       <td>Created</td>
                       <td title$="[[_request.created_ts]]">[[_request.human_created_ts]]</td>
                     </tr>
-                    <template is="dom-if" if="[[_wasPickedUp(_result)]]">
-                      <tr>
-                        <td>Started</td>
-                        <td title$="[[_result.started_ts]]">[[_result.human_started_ts]]</td>
-                      </tr>
-                    </template>
+                    <tr>
+                      <td>Pending Time</td>
+                      <td>
+                        <font color="#cc79a7">[[_result.human_pending_time]]</font>
+                      </td>
+                    </tr>
                     <template is="dom-if" if="[[_wasNotPickedUp(_result)]]">
                       <tr>
                         <td>Expires</td>
                         <td>[[_expires(_request)]]</td>
                       </tr>
                     </template>
-                    <template is="dom-if" if="[[_result.human_completed_ts]]">
-                      <tr>
-                        <td>Completed</td>
-                        <td title$="[[_result.completed_ts]]">[[_result.human_completed_ts]]</td>
-                      </tr>
-                    </template>
-                    <template is="dom-if" if="[[_result.human_abandoned_ts]]">
-                      <tr>
-                        <td>Abandoned</td>
-                        <td title$="[[_result.abandoned_ts]]">[[_result.human_abandoned_ts]]</td>
-                      </tr>
-                    </template>
                     <tr>
-                      <td>Last updated</td>
-                      <td title$="[[_result.modified_ts]]">[[_result.human_modified_ts]]</td>
-                    </tr>
-                    <tr>
-                      <td>Pending Time</td>
-                      <td>
-                        <font color="#cc79a7">[[_pending(_result)]]</font>
-                      </td>
+                      <td>Started</td>
+                      <td title$="[[_result.started_ts]]">[[_result.human_started_ts]]</td>
                     </tr>
                     <tr>
                       <td>Duration</td>
                       <td>
                         <font color="#0072b2">[[_result.human_duration]]</font>
                       </td>
+                    </tr>
+                    <tr>
+                      <td>Completed</td>
+                      <td title$="[[_result.completed_ts]]">[[_result.human_completed_ts]]</td>
+                    </tr>
+                    <tr>
+                      <td>Abandoned</td>
+                      <td title$="[[_result.abandoned_ts]]">[[_result.human_abandoned_ts]]</td>
+                    </tr>
+                    <tr>
+                      <td>Last updated</td>
+                      <td title$="[[_result.modified_ts]]">[[_result.human_modified_ts]]</td>
                     </tr>
                   </tbody>
                 </table>
@@ -521,7 +515,7 @@
               </div>
             </div>
 
-            <div class="title" hidden$="[[_not(_task_exists)]]">Task Execution</div>
+            <div class="title" hidden$="[[_not(_task_exists)]]">Execution</div>
             <template is="dom-if" if="[[_wasPickedUp(_result)]]">
               <table hidden$="[[_not(_task_exists)]]">
                 <tr>
@@ -1087,18 +1081,6 @@
 
       _noMilo: function(result) {
         return !(this._tag(result, "allow_milo") || this._tag(result, "luci_project"));
-      },
-
-      _pending: function(result) {
-        if (!result.created_ts) {
-          return "";
-        }
-        var end = result.started_ts || result.abandoned_ts || new Date();
-        // In the case of deduplicated tasks, started_ts comes before the task.
-        if (end <= result.created_ts) {
-          return "0s";
-        }
-        return this._timeDiffExact(result.created_ts, end);
       },
 
       _promptClosed: function(e) {

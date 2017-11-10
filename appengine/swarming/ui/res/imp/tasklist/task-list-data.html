@@ -190,7 +190,7 @@
 
         if (map["user"]) {
           delete map["user"][""];
-          map["user"]["none"] = true;
+          map["user"]["‑‑"] = true;
         }
 
         // Turn the Map<Object,Map<Boolean>> into a Map<Object,Array<String>>
@@ -237,59 +237,61 @@
           return [];
         }
         var now = new Date();
-
-        // Do any preprocessing here
-        json.items.forEach(function(t) {
-          var tagMap = {};
-          t.tags = t.tags || [];
-          t.tags.forEach(function(tag) {
-            var split = tag.split(":", 1)
-            var key = split[0];
-            var rest = tag.substring(key.length + 1);
-            tagMap[key] = rest;
-          });
-          t.tagMap = tagMap;
-
-          TIMES.forEach(function(time) {
-            swarming.sanitizeAndHumanizeTime(t, time);
-          });
-
-          if (!t.costs_usd || !Array.isArray(t.costs_usd)) {
-            t.costs_usd = "‑‑";
-          } else {
-            t.costs_usd.forEach(function(c, idx) {
-              t.costs_usd[idx] = c.toFixed(4) + "$";
-              if (t.state === this.RUNNING && t.started_ts) {
-                t.costs_usd[idx] = t.costs_usd[idx] + "*";
-              }
-            }.bind(this));
-          }
-
-          // Running tasks have no duration set, so we can figure it out.
-          if (!t.duration && t.state === this.RUNNING && t.started_ts) {
-            t.duration = (now - t.started_ts) / 1000;
-          }
-          // Make the duration human readable
-          t.human_duration = this._humanDuration(t.duration);
-          if (t.state === this.RUNNING && t.started_ts) {
-            t.human_duration = t.human_duration + "*";
-          }
-
-          // Deduplicated tasks usually have tasks that ended before they were
-          // created, so we need to account for that.
-          var et = t.started_ts || t.abandoned_ts || new Date();
-          var deduped = (t.created_ts && et < t.created_ts);
-
-          t.pending_time = null;
-          if (!deduped && t.created_ts) {
-            t.pending_time = (et - t.created_ts) / 1000;
-          }
-          t.human_pending_time = this._humanDuration(t.pending_time);
-          if (!deduped && t.created_ts && !t.started_ts && !t.abandoned_ts) {
-            t.human_pending_time = t.human_pending_time + "*";
-          }
-        }.bind(this));
+        json.items.forEach(function(t) { this._parseTask(t, now) }.bind(this));
         return json.items;
+      },
+
+      _parseTask: function(t, now) {
+        var tagMap = {};
+        t.tags = t.tags || [];
+        t.tags.forEach(function(tag) {
+          var split = tag.split(":", 1)
+          var key = split[0];
+          var rest = tag.substring(key.length + 1);
+          tagMap[key] = rest;
+        });
+        t.tagMap = tagMap;
+
+        // See _parseResult() in ../taskpage/task-page-data.html for similar
+        // sanitization.
+        TIMES.forEach(function(time) {
+          swarming.sanitizeAndHumanizeTime(t, time);
+        });
+
+        if (!t.costs_usd || !Array.isArray(t.costs_usd)) {
+          t.costs_usd = "‑‑";
+        } else {
+          t.costs_usd.forEach(function(c, idx) {
+            t.costs_usd[idx] = c.toFixed(4) + "$";
+            if (t.state === this.RUNNING && t.started_ts) {
+              t.costs_usd[idx] = t.costs_usd[idx] + "*";
+            }
+          }.bind(this));
+        }
+
+        // Running tasks have no duration set, so we can figure it out.
+        if (!t.duration && t.state === this.RUNNING && t.started_ts) {
+          t.duration = (now - t.started_ts) / 1000;
+        }
+        // Make the duration human readable
+        t.human_duration = this._humanDuration(t.duration);
+        if (t.state === this.RUNNING && t.started_ts) {
+          t.human_duration = t.human_duration + "*";
+        }
+
+        // Deduplicated tasks usually have tasks that ended before they were
+        // created, so we need to account for that.
+        var et = t.started_ts || t.abandoned_ts || new Date();
+        var deduped = (t.created_ts && et < t.created_ts);
+
+        t.pending_time = null;
+        if (!deduped && t.created_ts) {
+          t.pending_time = (et - t.created_ts) / 1000;
+        }
+        t.human_pending_time = this._humanDuration(t.pending_time);
+        if (!deduped && t.created_ts && !t.started_ts && !t.abandoned_ts) {
+          t.human_pending_time = t.human_pending_time + "*";
+        }
       }
     });
   })();

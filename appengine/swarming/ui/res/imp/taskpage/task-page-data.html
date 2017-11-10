@@ -174,21 +174,53 @@
         return request;
       },
 
-      _parseResult: function(result) {
-        if (!result) {
+      _parseResult: function(t) {
+        if (!t) {
           return {};
         }
+        // See parseTask() in ../tasklist/task-list-data.html for similar
+        // sanitization.
+
         var now = new Date();
         TIMES.forEach(function(time) {
-          swarming.sanitizeAndHumanizeTime(result, time);
+          swarming.sanitizeAndHumanizeTime(t, time);
         });
-        // Running tasks have no duration set, so we can figure it out.
-        if (!result.duration && result.state === this.RUNNING && result.started_ts){
-          result.duration = (now - result.started_ts) / 1000;
-        }
-        // Make the duration human readable
-        result.human_duration = this._humanDuration(result.duration);
-        return result;
+
+				if (!t.costs_usd || !Array.isArray(t.costs_usd)) {
+					t.costs_usd = "‑‑";
+				} else {
+					t.costs_usd.forEach(function(c, idx) {
+						t.costs_usd[idx] = c.toFixed(4) + "$";
+						if (t.state === this.RUNNING && t.started_ts) {
+							t.costs_usd[idx] = t.costs_usd[idx] + "*";
+						}
+					}.bind(this));
+				}
+
+				// Running tasks have no duration set, so we can figure it out.
+				if (!t.duration && t.state === this.RUNNING && t.started_ts) {
+					t.duration = (now - t.started_ts) / 1000;
+				}
+				// Make the duration human readable
+				t.human_duration = this._humanDuration(t.duration);
+				if (t.state === this.RUNNING && t.started_ts) {
+					t.human_duration = t.human_duration + "*";
+				}
+
+				// Deduplicated tasks usually have tasks that ended before they were
+				// created, so we need to account for that.
+				var et = t.started_ts || t.abandoned_ts || new Date();
+				var deduped = (t.created_ts && et < t.created_ts);
+
+				t.pending_time = null;
+				if (!deduped && t.created_ts) {
+					t.pending_time = (et - t.created_ts) / 1000;
+				}
+				t.human_pending_time = this._humanDuration(t.pending_time);
+				if (!deduped && t.created_ts && !t.started_ts && !t.abandoned_ts) {
+					t.human_pending_time = t.human_pending_time + "*";
+				}
+				return t;
       },
 
       _parseStdout: function(stdout) {

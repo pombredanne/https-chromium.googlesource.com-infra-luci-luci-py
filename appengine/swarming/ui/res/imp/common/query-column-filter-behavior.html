@@ -535,19 +535,19 @@
             return o.indexOf(num) !== -1;
           },
           device_os: function(bot, os) {
-            var o = this._attribute(bot, "device_os", "none");
+            var o = this._attribute(bot, "device_os", "‑‑");
             return o.indexOf(os) !== -1;
           },
           device_type: function(bot, dt) {
-            var o = this._attribute(bot, "device_type", "none");
+            var o = this._attribute(bot, "device_type", "‑‑");
             return o.indexOf(swarming.alias.unapply(dt)) !== -1;
           },
           device: function(bot, dt) {
-            var o = this._attribute(bot, "device", "none");
+            var o = this._attribute(bot, "device", "‑‑");
             return o.indexOf(swarming.alias.unapply(dt)) !== -1;
           },
           gpu: function(bot, gpu) {
-            var o = this._attribute(bot, "gpu", "none");
+            var o = this._attribute(bot, "gpu", "‑‑");
             return o.indexOf(swarming.alias.unapply(gpu)) !== -1;
           },
         };

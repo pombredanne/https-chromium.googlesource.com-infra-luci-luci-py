@@ -341,19 +341,19 @@
       },
       cpu: function(bot) {
         if (this._verbose) {
-          return this._attribute(bot, "cpu", "none").join(" | ");
+          return this._attribute(bot, "cpu", "‑‑").join(" | ");
         }
-        return swarming.longest(this._attribute(bot, "cpu", "none"));
+        return swarming.longest(this._attribute(bot, "cpu", "‑‑"));
       },
       device_temperature: function(){
         return "";
       },
       device_os: function(bot) {
         if (this._verbose) {
-          return this._attribute(bot, "device_os", "none").join(" | ");
+          return this._attribute(bot, "device_os", "‑‑").join(" | ");
         }
         // This assumes that all devices hooked up to a bot are the same OS.
-        return swarming.longest(this._attribute(bot, "device_os", "none"));
+        return swarming.longest(this._attribute(bot, "device_os", "‑‑"));
       },
       disk_space: function(bot) {
         var aliased = [];
@@ -367,7 +367,7 @@
         return aliased[0];
       },
       external_ip: function(bot) {
-        return bot.external_ip || "none";
+        return bot.external_ip || "‑‑";
       },
       first_seen: function(bot) {
         return sk.human.localeTime(bot.first_seen_ts)
@@ -376,7 +376,7 @@
         return bot.bot_id;
       },
       internal_ip: function(bot) {
-        return this._attribute(bot, "ip", "none")[0];
+        return this._attribute(bot, "ip", "‑‑")[0];
       },
       last_seen: function(bot) {
         if (this._verbose) {
@@ -385,7 +385,7 @@
         return this._timeDiffApprox(bot.last_seen_ts) + " ago";
       },
       mp_lease_id: function(bot) {
-        var id = bot.lease_id || "none";
+        var id = bot.lease_id || "‑‑";
         if (this._verbose) {
           return id;
         }

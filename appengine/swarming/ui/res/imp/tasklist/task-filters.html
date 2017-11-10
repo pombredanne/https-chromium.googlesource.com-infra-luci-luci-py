@@ -381,8 +381,8 @@
           if (col === "state") {
             params["state"] = [rest];
           } else {
-            if (col === "user" && rest === "none") {
-              // empty string means no user.  We use "none" in the UI because
+            if (col === "user" && rest === "‑‑") {
+              // empty string means no user.  We use "‑‑" in the UI because
               // it is more user friendly.
               rest = "";
             }
