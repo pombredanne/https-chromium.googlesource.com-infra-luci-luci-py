@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "501fdbfe_0ee2c76b",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-10T15:35:18Z",
+      "side": 1,
+      "message": "Consider $USD or similar.",
+      "range": {
+        "startLine": 261,
+        "startChar": 49,
+        "endLine": 261,
+        "endChar": 50
+      },
+      "revId": "cdaaa1d23cfcfae227dfa1d12a7f9fcf3c860423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5730cce7_b348c6cd",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-11-10T15:35:18Z",
+      "side": 1,
+      "message": "This may be confusing for deduplicated tasks.  I think for deduplicated tasks, we still want \"--\"",
+      "range": {
+        "startLine": 288,
+        "startChar": 10,
+        "endLine": 290,
+        "endChar": 11
+      },
+      "revId": "cdaaa1d23cfcfae227dfa1d12a7f9fcf3c860423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
