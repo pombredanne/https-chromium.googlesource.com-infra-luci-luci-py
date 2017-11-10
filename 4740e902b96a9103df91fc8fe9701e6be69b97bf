@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "357b4dea_341ddd78",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-10T19:54:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e316debe_9c2941a0",
+      "range": {
+        "startLine": 219,
+        "startChar": 2,
+        "endLine": 219,
+        "endChar": 71
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "575332e8_0aa6187a",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 13
@@ -140,6 +164,30 @@
       "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab5bb99c_352a6336",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-10T19:54:34Z",
+      "side": 1,
+      "message": "Ah, I understand now.\n\nI forgot that queues number include dimension hashes. So we fetch all dimensions-matching tasks, but then still need to sort them by priority.",
+      "parentUuid": "181398a3_f7dafb7f",
+      "range": {
+        "startLine": 367,
+        "startChar": 2,
+        "endLine": 367,
+        "endChar": 45
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
