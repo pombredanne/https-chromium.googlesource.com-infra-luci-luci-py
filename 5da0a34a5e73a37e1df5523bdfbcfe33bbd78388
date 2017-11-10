@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4588c1a7_7038f2bf",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-11-10T22:24:34Z",
+      "side": 1,
+      "message": "this seems a bit weird to me... why not have an api for one hook to call the other? That way the specialized hook can know exactly when, during its specialized logic, it\u0027s appropriate to call the generic hook (as opposed to chained, which moves this knowledge up a level)",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 27
+      },
+      "revId": "5da0a34a5e73a37e1df5523bdfbcfe33bbd78388",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
