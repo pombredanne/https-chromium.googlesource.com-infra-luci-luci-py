@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d5ce9fe7_38bdf43d",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-10T15:50:48Z",
+      "side": 1,
+      "message": "The column already has (USD) in it. I want to go the same route with time and put the timezone only in the column header.\n\nAs a matter of fact, it\u0027d be nice if the column could stick to the top when scrolling down, but that\u0027s another story.\n\nThe $ is just enough to enable eye scanning and make sense of the value.",
+      "parentUuid": "501fdbfe_0ee2c76b",
+      "range": {
+        "startLine": 261,
+        "startChar": 49,
+        "endLine": 261,
+        "endChar": 50
+      },
+      "revId": "cdaaa1d23cfcfae227dfa1d12a7f9fcf3c860423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5730cce7_b348c6cd",
         "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "cdaaa1d23cfcfae227dfa1d12a7f9fcf3c860423",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "966c161e_3d894159",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list-data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-10T15:50:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5730cce7_b348c6cd",
+      "range": {
+        "startLine": 288,
+        "startChar": 10,
+        "endLine": 290,
+        "endChar": 11
+      },
+      "revId": "cdaaa1d23cfcfae227dfa1d12a7f9fcf3c860423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
