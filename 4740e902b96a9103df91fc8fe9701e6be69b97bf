@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e316debe_9c2941a0",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-10T01:13:47Z",
+      "side": 1,
+      "message": "It is missing expiration_ts, dimensions and further down is_terminate and execution_timeouts_secs.\n\nThe idea to keep TaskToRun as small as possible is because is it the hottest entity, while TaskRequest, being immutable, is at least guaranteed to be memcache on the normal path, reducing DB I/O.",
+      "parentUuid": "12f5eb71_1ecaba9f",
+      "range": {
+        "startLine": 219,
+        "startChar": 2,
+        "endLine": 219,
+        "endChar": 71
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575332e8_0aa6187a",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 13
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0d0df723_a348ebe6",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-10T01:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "575332e8_0aa6187a",
+      "range": {
+        "startLine": 279,
+        "startChar": 16,
+        "endLine": 279,
+        "endChar": 22
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbd20a13_7c64d205",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 13
@@ -59,6 +107,30 @@
       "writtenOn": "2017-11-09T22:43:30Z",
       "side": 1,
       "message": "I don\u0027t fully understand this. Are we fetching ALL PENDING TASKS and then sort them in memory? This is not very scalable approach.\n\nIf we don\u0027t fetch them all, how do we ensure that query results are already sorted by priority?\n\nAnd we fetch them in correct order to begin with, why do we need to sort them again?",
+      "range": {
+        "startLine": 367,
+        "startChar": 2,
+        "endLine": 367,
+        "endChar": 45
+      },
+      "revId": "4740e902b96a9103df91fc8fe9701e6be69b97bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "181398a3_f7dafb7f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-10T01:13:47Z",
+      "side": 1,
+      "message": "Each query is already in order of priority.\n\nWe fetch 10 first tasks per query with the highest priority task for each query.\n\nGenerally a bot has 2~3 queues so it requires a merge sort at the end.",
+      "parentUuid": "bbd20a13_7c64d205",
       "range": {
         "startLine": 367,
         "startChar": 2,

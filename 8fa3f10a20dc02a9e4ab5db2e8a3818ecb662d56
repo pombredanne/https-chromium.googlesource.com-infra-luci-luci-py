@@ -22,6 +22,30 @@
       "revId": "8fa3f10a20dc02a9e4ab5db2e8a3818ecb662d56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a19432_bcdd8527",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-10T01:13:47Z",
+      "side": 0,
+      "message": "No it was that k.id() is dimensions_hash, *without* the priority.",
+      "parentUuid": "09677dcb_5e83d7a2",
+      "range": {
+        "startLine": 354,
+        "startChar": 50,
+        "endLine": 354,
+        "endChar": 56
+      },
+      "revId": "8fa3f10a20dc02a9e4ab5db2e8a3818ecb662d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
