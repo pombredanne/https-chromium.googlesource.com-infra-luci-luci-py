@@ -209,7 +209,8 @@ def _handle_dead_bot(run_result_key):
   result_summary_key = task_pack.run_result_key_to_result_summary_key(
       run_result_key)
   request_key = task_pack.result_summary_key_to_request_key(result_summary_key)
-  request_future = request_key.get_async()
+  # Disable in-process cache to not cause unnecessary memory usage.
+  request_future = request_key.get_async(use_cache=False)
   now = utils.utcnow()
   server_version = utils.get_app_version()
   packed = task_pack.pack_run_result_key(run_result_key)
@@ -1028,8 +1029,10 @@ def cron_abort_expired_task_to_run(host):
   killed = []
   skipped = 0
   try:
+    # TODO(maruel): Parallelize as this can be bursty.
     for to_run in task_to_run.yield_expired_task_to_run():
-      request = to_run.request_key.get()
+      # Disable in-process cache to not cause unnecessary memory usage.
+      request = to_run.request_key.get(use_cache=False)
       summary = _expire_task(to_run.key, request)
       if summary:
         # TODO(maruel): Know which try it is.
