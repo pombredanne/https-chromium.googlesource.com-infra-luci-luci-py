@@ -164,6 +164,7 @@ class ConfigApi(remote.Service):
   )
   @auth.public # ACL check inside
   def validate_config(self, request):
+    logging.debug("Validation request: %s", request)
     if not request.config_set:
       raise endpoints.BadRequestException('Must specify a config_set')
     if not request.files:
