@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6536cdc3_0d913fa0",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-13T23:19:05Z",
+      "side": 1,
+      "message": "this part is unnecessary. appengine HTTP logs already have URL path",
+      "range": {
+        "startLine": 168,
+        "startChar": 9,
+        "endLine": 168,
+        "endChar": 29
+      },
+      "revId": "84a64d12ba83ab65867aa8ab15e201918db67d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
