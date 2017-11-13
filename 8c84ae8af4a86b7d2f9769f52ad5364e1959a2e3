@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2db4887_280db7da",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-13T15:44:46Z",
+      "side": 1,
+      "message": "Oops there\u0027s a typo in this CL but ironically thanks to Gerrit I can\u0027t upload a new patchset until I committed the other branches I rebased upon to test it on staging.\n\nThe delta is:\n\n  - from google.appengine.api.runtime import apiproxy_errors\n  + from google.appengine.runtime import apiproxy_errors\n\nYou can still review and I\u0027ll fix this before committing.",
+      "range": {
+        "startLine": 36,
+        "startChar": 22,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "8c84ae8af4a86b7d2f9769f52ad5364e1959a2e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
