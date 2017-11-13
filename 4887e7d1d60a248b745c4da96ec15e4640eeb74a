@@ -22,6 +22,30 @@
       "revId": "4887e7d1d60a248b745c4da96ec15e4640eeb74a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "862920cc_e40ff0e8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-13T21:22:54Z",
+      "side": 1,
+      "message": "I want to keep the dashes to be consistent across OSes. I think it\u0027s too late (read: there\u0027s too many consumers that hard code these strings) to change the format now. So the code does whatever it takes to generate the string, and who knows what occurred in the head of MS engineers.\n\nIn particular, most people asks for \"Windows \u003cmarketing name\u003e\", not \"Windows-10.0-3\", that has no sense to users that this means Windows 2016 Server.",
+      "parentUuid": "a18099e0_4e8e5b58",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 66
+      },
+      "revId": "4887e7d1d60a248b745c4da96ec15e4640eeb74a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
