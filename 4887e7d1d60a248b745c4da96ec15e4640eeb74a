@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a18099e0_4e8e5b58",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2017-11-13T21:04:35Z",
+      "side": 1,
+      "message": "It is slightly annoying to have so much logic around the Windows version name. How do you feel about something like:\nu\u0027%s.%s-%d\u0027 % (version_number, build_number, sys.getwindowsversion().product_type)\n\nI\u0027m not sure whether/how build_number corresponds to platform.win32_ver()[2].\n\nObviously this new value would be in addition to the existing values, although I would propose that we not add \"2016Server\".",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 66
+      },
+      "revId": "4887e7d1d60a248b745c4da96ec15e4640eeb74a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
