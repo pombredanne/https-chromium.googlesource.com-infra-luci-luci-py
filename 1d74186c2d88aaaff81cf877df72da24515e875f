@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f467758_4b717506",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2017-11-14T04:17:32Z",
+      "side": 1,
+      "message": "nit: (?:\\.\\d+)? seems more natural",
+      "range": {
+        "startLine": 89,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 48
+      },
+      "revId": "1d74186c2d88aaaff81cf877df72da24515e875f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
