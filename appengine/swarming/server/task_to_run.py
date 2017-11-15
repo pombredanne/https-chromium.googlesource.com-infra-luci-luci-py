@@ -168,13 +168,6 @@ def _memcache_to_run_key(task_key):
   return '%x' % request_key.integer_id()
 
 
-def _lookup_cache_is_taken(task_key):
-  """Queries the quick lookup cache to reduce DB operations."""
-  assert not ndb.in_transaction()
-  key = _memcache_to_run_key(task_key)
-  return bool(memcache.get(key, namespace='task_to_run'))
-
-
 class _QueryStats(object):
   """Statistics for a yield_next_available_task_to_dispatch() loop."""
   broken = 0
@@ -205,6 +198,7 @@ class _QueryStats(object):
         self.deadline)
 
 
+@ndb.tasklet
 def _validate_task(bot_dimensions, deadline, stats, now, task):
   """Validates the TaskToRun and update stats.
 
@@ -217,15 +211,6 @@ def _validate_task(bot_dimensions, deadline, stats, now, task):
       task_to_run_key_to_request_key(task.key)) + '0'
   stats.total += 1
 
-  # Do this after the basic weeding out but before fetching TaskRequest.
-  if _lookup_cache_is_taken(task.key):
-    logging.debug('_validate_task(%s): negative cache', packed)
-    stats.cache_lookup += 1
-    return None
-
-  # Ok, it's now worth taking a real look at the entity.
-  request_future = task_to_run_key_to_request_key(task.key).get_async()
-
   # It expired. A cron job will cancel it eventually. Since 'now' is saved
   # before the query, an expired task may still be reaped even if technically
   # expired if the query is very slow. This is on purpose so slow queries do not
@@ -236,17 +221,26 @@ def _validate_task(bot_dimensions, deadline, stats, now, task):
     logging.debug(
         '_validate_task(%s): expired %s < %s', packed, task.expiration_ts, now)
     stats.expired += 1
-    request_future.wait()
-    return None
+    raise ndb.Return(None)
+
+  # Do this after the basic weeding out but before fetching TaskRequest.
+  neg = yield ndb.get_context().memcache_get(
+      _memcache_to_run_key(task.key), namespace='task_to_run')
+  if neg:
+    logging.debug('_validate_task(%s): negative cache', packed)
+    stats.cache_lookup += 1
+    raise ndb.Return(None)
+
+  # Ok, it's now worth taking a real look at the entity.
+  request = yield task_to_run_key_to_request_key(task.key).get_async()
 
   # The hash may have conflicts. Ensure the dimensions actually match by
   # verifying the TaskRequest. There's a probability of 2**-31 of conflicts,
   # which is low enough for our purpose.
-  request = request_future.get_result()
   if not match_dimensions(request.properties.dimensions, bot_dimensions):
     logging.debug('_validate_task(%s): dimensions mismatch', packed)
     stats.real_mismatch += 1
-    return None
+    raise ndb.Return(None)
 
   # If the bot has a deadline, don't allow it to reap the task unless it can be
   # completed before the deadline. We have to assume the task takes the
@@ -267,7 +261,7 @@ def _validate_task(bot_dimensions, deadline, stats, now, task):
           '_validate_task(%s): deadline %s but no execution timeout',
           packed, deadline)
       stats.too_long += 1
-      return None
+      raise ndb.Return(None)
     hard = request.properties.execution_timeout_secs
     grace = 3 * (request.properties.grace_period_secs or 30)
     # Allowance buffer for overheads (scheduling and isolation)
@@ -279,12 +273,12 @@ def _validate_task(bot_dimensions, deadline, stats, now, task):
           '%d)',
           packed, deadline, max_schedule, now, hard, grace, overhead)
       stats.too_long += 1
-      return None
+      raise ndb.Return(None)
 
   # It's a valid task! Note that in the meantime, another bot may have reaped
   # it.
   logging.info('_validate_task(%s): ready to reap!', packed)
-  return request
+  raise ndb.Return(request)
 
 
 def _yield_pages_async(q, size):
@@ -486,6 +480,10 @@ def set_lookup_cache(task_key, is_available_to_schedule):
   tasks simultaneously. In this case, there is a high likelihood that multiple
   concurrent HTTP handlers are trying to reap the exact same task
   simultaneously. This blacklist helps reduce the contention.
+
+  Returns:
+    True if the key was updated, False if was trying to reap and the entry was
+    already set.
   """
   # Set the expiration time for items in the negative cache as 15 seconds. This
   # copes with significant index inconsistency but do not clog the memcache
@@ -497,8 +495,16 @@ def set_lookup_cache(task_key, is_available_to_schedule):
   if is_available_to_schedule:
     # The item is now available, so remove it from memcache.
     memcache.delete(key, namespace='task_to_run')
-  else:
-    memcache.set(key, True, time=cache_lifetime, namespace='task_to_run')
+    return True
+  # Do one last 'get then set'.
+  #
+  # We could do a CAS but this causes a global lock on memcache, which we prefer
+  # to avoid. This need perf testing on live instance to compare the system
+  # characteristics but for now, avoid locks at all cost.
+  if memcache.get(key, namespace='task_to_run'):
+    return False
+  memcache.set(key, True, time=cache_lifetime, namespace='task_to_run')
+  return False
 
 
 def yield_next_available_task_to_dispatch(bot_dimensions, deadline):
@@ -522,6 +528,7 @@ def yield_next_available_task_to_dispatch(bot_dimensions, deadline):
   stats = _QueryStats()
   stats.deadline = deadline
   bot_id = bot_dimensions[u'id'][0]
+  futures = []
   try:
     for task in _yield_potential_tasks(bot_id):
       duration = (utils.utcnow() - now).total_seconds()
@@ -533,13 +540,35 @@ def yield_next_available_task_to_dispatch(bot_dimensions, deadline):
         # search to 40s, it gives 20s to complete the reaping and complete the
         # HTTP request.
         return
-      request = _validate_task(bot_dimensions, deadline, stats, now, task)
+      futures.append(_validate_task(bot_dimensions, deadline, stats, now, task))
+      while futures:
+        # Keep a FIFO queue ordering.
+        if futures[0].done():
+          request = futures[0].get_result()
+          if request:
+            yield request, task
+            # If the code is still executed, it means that the task reaping
+            # wasn't successful.
+            stats.ignored += 1
+          futures.pop(0)
+        # Don't batch too much.
+        if len(futures) < 50:
+          break
+        futures[0].wait()
+
+    # No more tasks to yield. Empty the pending futures.
+    while futures:
+      request = futures[0].get_result()
       if request:
         yield request, task
-        # If the code is still executed, it means that the task reaping wasn't
-        # successful.
+        # If the code is still executed, it means that the task reaping
+        # wasn't successful.
         stats.ignored += 1
+      futures.pop(0)
   finally:
+    # Don't leave stray RPCs as much as possible, this can mess up following
+    # HTTP handlers.
+    ndb.Future.wait_all(futures)
     logging.debug(
         'yield_next_available_task_to_dispatch(%s) in %.3fs: %s',
         bot_id, (utils.utcnow() - now).total_seconds(), stats)
