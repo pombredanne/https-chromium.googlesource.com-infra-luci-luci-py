@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9505a48c_5110fed8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "nit: this word here is misleading, there\u0027s nothing memcache-special about the pipeline, it fetches from NDB as much as from memcache directly.\n\nReading \"memcache pipeline\" I was expecting some kind of a memcache-based queue.",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c8048b5_81057f29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "nit: in ndb\u0027s memcache\n?",
+      "range": {
+        "startLine": 9,
+        "startChar": 58,
+        "endLine": 9,
+        "endChar": 69
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51e32f45_13443a35",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "stats are kind of weird now, since they\u0027ll include results from items we asynchronously \"prefetched\", but didn\u0027t actually looked at in the main loop\n\nProbably ok...",
+      "range": {
+        "startLine": 210,
+        "startChar": 51,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91c0ea2c_54253578",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "s",
+      "range": {
+        "startLine": 211,
+        "startChar": 38,
+        "endLine": 211,
+        "endChar": 39
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdf81fba_fb36bc17",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "It doesn\u0027t use any global locks. It basically compares a version of an item. .get() returns \u003citem, version\u003e and .set() then compares that \u003cversion\u003e is still the same when updating the item. It is extremely fast.\n\nRegardless, you should just use memcache.add(key, true, ...). It will return True if item was missing before, and False if it is already there (or on error... there\u0027s probably a way to distinguish two cases). See https://cloud.google.com/appengine/docs/standard/python/refdocs/modules/google/appengine/api/memcache#Client.add",
+      "range": {
+        "startLine": 513,
+        "startChar": 40,
+        "endLine": 513,
+        "endChar": 51
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a29e3ad_60b69610",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "please use https://docs.python.org/2/library/collections.html#collections.deque, it is more appropriate struct for append() and pop(0) operations.",
+      "range": {
+        "startLine": 543,
+        "startChar": 12,
+        "endLine": 543,
+        "endChar": 14
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a166076_9a8e54b8",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T19:56:29Z",
+      "side": 1,
+      "message": "is \u0027finally\u0027 section executed in this case? I don\u0027t remember how exactly generators handle breaking from the loop.",
+      "range": {
+        "startLine": 563,
+        "startChar": 12,
+        "endLine": 565,
+        "endChar": 30
+      },
+      "revId": "4566d3dfe3801714da06e90fed5ab43236ae68ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
