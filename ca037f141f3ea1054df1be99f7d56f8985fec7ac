@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "020e8e9c_20f4d26b",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-15T14:45:22Z",
+      "side": 1,
+      "message": "One thing that I don\u0027t like with assertTrue is that it uses the method __bool__(), which is true for a *lot of things*. I really want to make sure it\u0027s True, not a str or whatever.",
+      "parentUuid": "d33f5ad9_1551dcea",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 22
+      },
+      "revId": "ca037f141f3ea1054df1be99f7d56f8985fec7ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8df71bd4_a3e594bf",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-14T19:04:36Z",
       "side": 1,
       "message": "I think this should belong to try: block right after line 725, since we don\u0027t want to log that we successfully rebuilt the cache if infact we failed to commit the transaction.",
+      "range": {
+        "startLine": 733,
+        "startChar": 4,
+        "endLine": 737,
+        "endChar": 53
+      },
+      "revId": "ca037f141f3ea1054df1be99f7d56f8985fec7ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7749976d_b6807540",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-15T14:45:22Z",
+      "side": 1,
+      "message": "The data is useful for partial completion. Added a comment to explain why this is done this way. Makes more sense?",
+      "parentUuid": "8df71bd4_a3e594bf",
       "range": {
         "startLine": 733,
         "startChar": 4,
