@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c54d2845_89bffff0",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-15T21:12:09Z",
+      "side": 1,
+      "message": "but this is not async....\n\nif should be\n\nobj \u003d yield key.get_async()\n...\n  yield key.delete_async()\n\n(tx itself should also be decoraded with @ndb.tasklet, though I\u0027m not sure how it mixes with datastore_utils.transaction_async. With vanilla ndb we should be just using @ndb.transactional_tasklet, there\u0027s probably some alternative for this in datastore_utils).\n\nI have a suspicion this is what\u0027s causing recursion errors. We are mixing async and non-async code. It has weird consequences.",
+      "range": {
+        "startLine": 437,
+        "startChar": 2,
+        "endLine": 441,
+        "endChar": 16
+      },
+      "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
