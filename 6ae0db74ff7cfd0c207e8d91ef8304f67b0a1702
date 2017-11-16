@@ -22,6 +22,30 @@
       "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b812fd58_68cd7fa6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-16T01:54:49Z",
+      "side": 1,
+      "message": "There\u0027s no relation with transaction_async() and transaction() and the callback synchronicity. The sync version always call the async version;\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/datastore_utils/txn.py?l\u003d64\n\nand\n\nhttps://cloud.google.com/appengine/docs/standard/python/refdocs/modules/google/appengine/ext/ndb/model#transaction",
+      "parentUuid": "c54d2845_89bffff0",
+      "range": {
+        "startLine": 437,
+        "startChar": 2,
+        "endLine": 441,
+        "endChar": 16
+      },
+      "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
