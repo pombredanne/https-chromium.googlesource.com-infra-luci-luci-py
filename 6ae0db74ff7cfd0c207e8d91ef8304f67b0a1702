@@ -70,6 +70,30 @@
       "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fe01fa9_2da36840",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-16T14:19:05Z",
+      "side": 1,
+      "message": "I looked a bit deeper, after 5-6 layers of indirection, it eventually goes down to context.py;\nhttps://cloud.google.com/appengine/docs/standard/python/refdocs/modules/google/appengine/ext/ndb/context#Context.transaction\n\n            result \u003d callback()\n            if isinstance(result, tasklets.Future):\n              result \u003d yield result\n\nso it tries to be smart pants about it, trying to guess automatically if the callback is sync or async based on its returned value. Oh God I Hate Dynamic Language Libraries That Tries To Be Smart Pants. In practice it does mean there\u0027s value in making the callback async, so your guts feeling were right (as usual), but I really wanted to double check first. The fact I had to dive quite deep into the library to be able to confirm the behavior, as it\u0027s not documented anywhere, is a bit annoying. I decided to document it in components/datastore_utils/txn.py so it is at least written down somewhere.",
+      "parentUuid": "b6388c31_e6807909",
+      "range": {
+        "startLine": 437,
+        "startChar": 2,
+        "endLine": 441,
+        "endChar": 16
+      },
+      "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
