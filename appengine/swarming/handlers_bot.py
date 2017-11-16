@@ -151,10 +151,13 @@ class _BotAuthenticatingHandler(auth.AuthenticatingHandler):
 
     # TODO(vadimsh): Remove is_ip_whitelisted_machine check once all bots are
     # using auth for bootstrap and updating.
-    if (not acl.can_create_bot() and
-        not acl.is_ip_whitelisted_machine() and
-        not (bot_id and bot_auth.is_authenticated_bot(bot_id, machine_type))):
-      raise auth.AuthorizationError('Not allowed to access the bot code')
+    if not acl.can_create_bot() and not acl.is_ip_whitelisted_machine():
+      is_auth = False
+      if bot_id:
+        is_auth = bot_auth.is_authenticated_bot_async(
+            bot_id, machine_type).get_result()
+      if not (bot_id and is_auth):
+        raise auth.AuthorizationError('Not allowed to access the bot code')
 
     return bot_code.generate_bootstrap_token() if generate_token else None
 
@@ -279,7 +282,7 @@ class _BotBaseHandler(_BotApiHandler):
     # auth.AuthorizationError if not.
     # This function may succeed even if bot_id is None. This is handled later in
     # this function, where the bot will be forcibly quarantined.
-    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(
+    bot_group_cfg_future = bot_auth.validate_bot_id_and_fetch_config_async(
         bot_id, machine_type)
 
     bot_settings_future = None
@@ -291,6 +294,7 @@ class _BotBaseHandler(_BotApiHandler):
     # config wins. We still emit an error if bot tries to supply the dimension
     # and it disagrees with the server defined one. Don't report ['default'] as
     # an error, bot sends it in the handshake before it knows anything at all.
+    bot_group_cfg = bot_group_cfg_future.get_result()
     for dim_key, from_cfg in bot_group_cfg.dimensions.iteritems():
       from_bot = sorted(dimensions.get(dim_key) or [])
       from_cfg = sorted(from_cfg)
@@ -458,7 +462,8 @@ class BotOAuthTokenHandler(_BotApiHandler):
   }
   REQUIRED_KEYS = {u'account_id', u'id', u'scopes'}
 
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
+  # auth happens in bot_auth.validate_bot_id_and_fetch_config_async()
+  @auth.public
   def post(self):
     request = self.parse_body()
     logging.debug('Request body: %s', request)
@@ -503,8 +508,8 @@ class BotOAuthTokenHandler(_BotApiHandler):
     # Make sure bot self-reported ID matches the authentication token. Raises
     # auth.AuthorizationError if not. Also fetches corresponding BotGroupConfig
     # that contains system service account email for this bot.
-    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(
-        bot_id, machine_type)
+    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config_async(
+        bot_id, machine_type).get_result()
 
     # At this point, the request is valid structurally, and the bot used proper
     # authentication when making it.
@@ -825,7 +830,8 @@ class BotTaskUpdateHandler(_BotApiHandler):
   }
   REQUIRED_KEYS = {u'id', u'task_id'}
 
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
+  # auth happens in bot_auth.validate_bot_id_and_fetch_config_async()
+  @auth.public
   def post(self, task_id=None):
     # Unlike handshake and poll, we do not accept invalid keys here. This code
     # path is much more strict.
@@ -846,7 +852,8 @@ class BotTaskUpdateHandler(_BotApiHandler):
 
     # Make sure bot self-reported ID matches the authentication token. Raises
     # auth.AuthorizationError if not.
-    bot_auth.validate_bot_id_and_fetch_config(bot_id, machine_type)
+    bot_auth.validate_bot_id_and_fetch_config_async(
+        bot_id, machine_type).get_result()
 
     bot_overhead = request.get('bot_overhead')
     cipd_pins = request.get('cipd_pins')
@@ -979,7 +986,8 @@ class BotTaskErrorHandler(_BotApiHandler):
 
   EXPECTED_KEYS = {u'id', u'message', u'task_id'}
 
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config
+  # auth happens in bot_auth.validate_bot_id_and_fetch_config_async()
+  @auth.public
   def post(self, task_id=None):
     request = self.parse_body()
     bot_id = request.get('id')
@@ -993,7 +1001,8 @@ class BotTaskErrorHandler(_BotApiHandler):
 
     # Make sure bot self-reported ID matches the authentication token. Raises
     # auth.AuthorizationError if not.
-    bot_auth.validate_bot_id_and_fetch_config(bot_id, machine_type)
+    bot_auth.validate_bot_id_and_fetch_config_async(
+        bot_id, machine_type).get_result()
 
     bot_management.bot_event(
         event_type='task_error', bot_id=bot_id,

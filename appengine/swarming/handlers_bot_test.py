@@ -71,9 +71,12 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
   def mock_bot_group_config(self, **kwargs):
     cfg = bot_groups_config.BotGroupConfig(**kwargs)
+    @ndb.tasklet
+    def validate_bot_id_and_fetch_config_async(*args, **kwargs):
+      raise ndb.Return(cfg)
     self.mock(
-        bot_auth, 'validate_bot_id_and_fetch_config',
-        lambda *args, **kwargs: cfg)
+        bot_auth, 'validate_bot_id_and_fetch_config_async',
+        validate_bot_id_and_fetch_config_async)
 
   def test_handshake(self):
     errors = []

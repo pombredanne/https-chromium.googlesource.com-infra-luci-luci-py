@@ -10,27 +10,30 @@ handlers in handlers_bot.py.
 
 import logging
 
+from google.appengine.ext import ndb
+
 from components import auth
 from components.auth import ipaddr
 
 from server import bot_groups_config
 
 
-def is_authenticated_bot(bot_id, machine_type):
+@ndb.tasklet
+def is_authenticated_bot_async(bot_id, machine_type):
   """Returns True if bot with given ID is using correct credentials.
 
   Expected to be called in a context of a handler of a request coming from the
   bot with given ID.
   """
   try:
-    validate_bot_id_and_fetch_config(bot_id, machine_type)
-    return True
+    yield validate_bot_id_and_fetch_config_async(bot_id, machine_type)
+    raise ndb.Return(True)
   except auth.AuthorizationError:
-    return False
+    raise ndb.Return(False)
 
 
-# pylint: disable=unused-argument
-def validate_bot_id_and_fetch_config(bot_id, machine_type):
+@ndb.tasklet
+def validate_bot_id_and_fetch_config_async(bot_id, machine_type):
   """Verifies ID reported by a bot matches the credentials being used.
 
   Expected to be called in a context of some bot API request handler. Uses
@@ -44,8 +47,7 @@ def validate_bot_id_and_fetch_config(bot_id, machine_type):
   defined in bots.cfg
   """
   bot_id = _extract_primary_hostname(bot_id)
-  cfg = bot_groups_config.get_bot_group_config_async(
-      bot_id, machine_type).get_result()
+  cfg = yield bot_groups_config.get_bot_group_config_async(bot_id, machine_type)
   if not cfg:
     logging.error(
         'bot_auth: unknown bot_id, not in the config\nbot_id: "%s"', bot_id)
@@ -91,7 +93,7 @@ def validate_bot_id_and_fetch_config(bot_id, machine_type):
           bot_id, ipaddr.ip_to_string(ip), cfg.ip_whitelist)
       raise auth.AuthorizationError('Not IP whitelisted')
 
-  return cfg
+  raise ndb.Return(cfg)
 
 
 def _is_valid_ident_for_bot(ident, bot_id):
