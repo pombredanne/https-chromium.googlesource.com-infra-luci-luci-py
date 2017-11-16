@@ -82,7 +82,7 @@ class BotAuthTest(test_case.TestCase):
       self.assertEquals(cls, bots_pb2.BotsCfg)
       return None, cfg
     self.mock(config, 'get_self_config', get_self_config_mock)
-    utils.clear_cache(bot_groups_config._fetch_bot_groups)
+    utils.clear_cache(bot_groups_config._fetch_bot_groups_async)
 
   def mock_caller(self, ident, ip):
     self.mock(
