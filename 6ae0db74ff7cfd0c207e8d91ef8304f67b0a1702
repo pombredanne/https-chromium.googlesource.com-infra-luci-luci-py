@@ -46,6 +46,30 @@
       "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6388c31_e6807909",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-16T03:25:40Z",
+      "side": 1,
+      "message": ":-/\n\nI don\u0027t understand how ndb works then.\n\nDo you mind making it async just to see how it affects \u0027infinite recursion\u0027 problem?\n\nIt still feels wrong to me. Forgetting about \u0027transaction_async\u0027, we essentially call a bunch of blocking functions from inside @ndb.tasklet. With \u0027transaction_async\u0027 I think we make blocking calls, and then make the actual Commit() RPC asynchronously. In either case it is mixing of async and non-async code.",
+      "parentUuid": "b812fd58_68cd7fa6",
+      "range": {
+        "startLine": 437,
+        "startChar": 2,
+        "endLine": 441,
+        "endChar": 16
+      },
+      "revId": "6ae0db74ff7cfd0c207e8d91ef8304f67b0a1702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
