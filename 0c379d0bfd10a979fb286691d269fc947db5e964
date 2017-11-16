@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34cf60bb_67c71b07",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-16T19:37:20Z",
+      "side": 1,
+      "message": "async\n\n(is there a unit tests that hits this code? Need tests to catch typos...)",
+      "range": {
+        "startLine": 441,
+        "startChar": 23,
+        "endLine": 441,
+        "endChar": 29
+      },
+      "revId": "0c379d0bfd10a979fb286691d269fc947db5e964",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
