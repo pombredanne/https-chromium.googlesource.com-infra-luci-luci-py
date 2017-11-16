@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b804054_4b815999",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-16T23:09:30Z",
+      "side": 1,
+      "message": "This will cache the ndb.Future object returned by @ndb.tasklet. I\u0027m not 100% sure it is reusable between requests or concurrency safe. Imagine a case when multiple requests (in different threads) hit do_work, and get _exact same_ unresolved ndb.Future object, and then concurrently try to resolve it. I don\u0027t think it would work.",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 163,
+        "endChar": 36
+      },
+      "revId": "a3947b470f6a1f71cbf0b94c131b0f2bc6fa3b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
