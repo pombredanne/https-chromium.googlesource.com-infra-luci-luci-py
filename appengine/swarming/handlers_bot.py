@@ -268,20 +268,25 @@ class _BotBaseHandler(_BotApiHandler):
 
     lease_expiration_ts = None
     machine_type = None
+    bot_info = None
+    bot_info_future = None
     if bot_id:
-      logging.debug('Fetching bot info and settings')
-      bot_info, bot_settings = ndb.get_multi([
-          bot_management.get_info_key(bot_id),
-          bot_management.get_settings_key(bot_id)])
+      bot_info_future = bot_management.get_info_key(bot_id).get_async()
+
+    # Make sure bot self-reported ID matches the authentication token. Raises
+    # auth.AuthorizationError if not.
+    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(
+        bot_id, machine_type)
+
+    if bot_info_future:
+      bot_info = bot_info_future.get_result()
       if bot_info:
         lease_expiration_ts = bot_info.lease_expiration_ts
         machine_type = bot_info.machine_type
 
-    # Make sure bot self-reported ID matches the authentication token. Raises
-    # auth.AuthorizationError if not.
-    logging.debug('Fetching bot group config')
-    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(
-        bot_id, machine_type)
+    bot_settings_future = None
+    if bot_id:
+      bot_settings_future = bot_management.get_settings_key(bot_id).get_async()
 
     # The server side dimensions from bot_group_cfg override bot-provided ones.
     # If both server side config and bot report some dimension, server side
@@ -356,6 +361,7 @@ class _BotBaseHandler(_BotApiHandler):
       return result
 
     # Look for admin enforced quarantine.
+    bot_settings = bot_settings_future.get_result()
     if bool(bot_settings and bot_settings.quarantined):
       result.quarantined_msg = 'Quarantined by admin'
       return result
