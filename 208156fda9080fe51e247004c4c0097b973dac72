@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9372996_a7e147eb",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-16T23:11:46Z",
+      "side": 1,
+      "message": "this actually not useful since lines 289-362 are only computations without any RPCs. Also there are returns (lines 320 and 359) that will keep the future hanging",
+      "range": {
+        "startLine": 362,
+        "startChar": 19,
+        "endLine": 362,
+        "endChar": 51
+      },
+      "revId": "208156fda9080fe51e247004c4c0097b973dac72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c45ed0c3_d7c5b48d",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-16T23:11:46Z",
+      "side": 1,
+      "message": "1) As I said in another CL, this most likely will have weird consequences.\n2) What\u0027s the point of making it async? Only one unlucky request per minute will hit a path that refreshes the cache. With out QPS it is very-very small percentage of requests.",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 12
+      },
+      "revId": "208156fda9080fe51e247004c4c0097b973dac72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
