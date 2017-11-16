@@ -339,7 +339,8 @@ def ensure_entities_exist(max_concurrent=50):
   # Generate a few asynchronous requests at a time in order to prevent having
   # too many in flight at a time.
   futures = []
-  machine_types = bot_groups_config.fetch_machine_types().copy()
+  machine_types = bot_groups_config.fetch_machine_types_async().get_result(
+      ).copy()
 
   for machine_type in MachineType.query():
     # Check the MachineType in the datastore against its config.

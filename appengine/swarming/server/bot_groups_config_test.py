@@ -10,6 +10,8 @@ import unittest
 import test_env
 test_env.setup_test_env()
 
+from google.appengine.ext import ndb
+
 from components import config
 from components import utils
 from components.config import validation
@@ -88,16 +90,17 @@ class BotGroupsConfigTest(test_case.TestCase):
     ])
 
   def mock_config(self, cfg):
-    def get_self_config_mock(path, cls=None, **kwargs):
+    @ndb.tasklet
+    def get_self_config_async_mock(path, cls=None, **kwargs):
       self.assertEqual({'store_last_good': True}, kwargs)
       if path == 'bots.cfg':
         self.assertEqual(cls, bots_pb2.BotsCfg)
-        return '123', cfg
+        raise ndb.Return(('123', cfg))
       self.assertEqual('scripts/foo.py', path)
-      return '123', 'print "Hi"'
+      raise ndb.Return(('123', 'print "Hi"'))
 
-    self.mock(config, 'get_self_config', get_self_config_mock)
-    utils.clear_cache(bot_groups_config._fetch_bot_groups)
+    self.mock(config, 'get_self_config_async', get_self_config_async_mock)
+    utils.clear_cache(bot_groups_config._fetch_bot_groups_async)
 
   def test_version(self):
     self.assertEqual('hash:06a8c8330221ff', EXPECTED_GROUP_1.version)
@@ -129,7 +132,7 @@ class BotGroupsConfigTest(test_case.TestCase):
 
   def test_fetch_bot_groups(self):
     self.mock_config(TEST_CONFIG)
-    cfg = bot_groups_config._fetch_bot_groups()
+    cfg = bot_groups_config._fetch_bot_groups_async().get_result()
 
     self.assertEquals({
       u'bot1': EXPECTED_GROUP_1,
@@ -141,15 +144,13 @@ class BotGroupsConfigTest(test_case.TestCase):
     self.assertEquals(EXPECTED_GROUP_3, cfg.default_group)
 
   def test_get_bot_group_config(self):
+    get = lambda *args: bot_groups_config.get_bot_group_config_async(
+        *args).get_result()
     self.mock_config(TEST_CONFIG)
-    self.assertEquals(
-        EXPECTED_GROUP_1, bot_groups_config.get_bot_group_config('bot1', None))
-    self.assertEquals(
-        EXPECTED_GROUP_2, bot_groups_config.get_bot_group_config('botzz', 'mt'))
-    self.assertEquals(
-        EXPECTED_GROUP_3, bot_groups_config.get_bot_group_config('?', None))
-    self.assertEquals(
-        EXPECTED_GROUP_2, bot_groups_config.get_bot_group_config('?', 'mt'))
+    self.assertEquals(EXPECTED_GROUP_1, get('bot1', None))
+    self.assertEquals(EXPECTED_GROUP_2, get('botzz', 'mt'))
+    self.assertEquals(EXPECTED_GROUP_3, get('?', None))
+    self.assertEquals(EXPECTED_GROUP_2, get('?', 'mt'))
 
   def test_empty_config_is_valid(self):
     self.validator_test(bots_pb2.BotsCfg(), [])

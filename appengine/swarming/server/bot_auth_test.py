@@ -10,6 +10,8 @@ import unittest
 import test_env
 test_env.setup_test_env()
 
+from google.appengine.ext import ndb
+
 from components import auth
 from components import auth_testing
 from components import config
@@ -77,12 +79,13 @@ class BotAuthTest(test_case.TestCase):
     auth_testing.reset_local_state()
 
   def mock_config(self, cfg):
-    def get_self_config_mock(path, cls, **_kwargs):
+    @ndb.tasklet
+    def get_self_config_async_mock(path, cls, **_kwargs):
       self.assertEquals('bots.cfg', path)
       self.assertEquals(cls, bots_pb2.BotsCfg)
-      return None, cfg
-    self.mock(config, 'get_self_config', get_self_config_mock)
-    utils.clear_cache(bot_groups_config._fetch_bot_groups)
+      raise ndb.Return((None, cfg))
+    self.mock(config, 'get_self_config_async', get_self_config_async_mock)
+    utils.clear_cache(bot_groups_config._fetch_bot_groups_async)
 
   def mock_caller(self, ident, ip):
     self.mock(

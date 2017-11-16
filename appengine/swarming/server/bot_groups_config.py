@@ -9,6 +9,8 @@ import hashlib
 import logging
 import os
 
+from google.appengine.ext import ndb
+
 from components import auth
 from components import config
 from components import utils
@@ -115,29 +117,31 @@ def _make_bot_group_config(**fields):
   return BotGroupConfig(version=_gen_version(fields), **fields)
 
 
-def get_bot_group_config(bot_id, machine_type):
+@ndb.tasklet
+def get_bot_group_config_async(bot_id, machine_type):
   """Returns BotGroupConfig for a bot with given ID or machine type.
 
   Returns:
     BotGroupConfig or None if not found.
   """
-  cfg = _fetch_bot_groups()
+  cfg = yield _fetch_bot_groups_async()
 
   if machine_type and cfg.machine_types.get(machine_type):
-    return cfg.machine_types[machine_type]
+    raise ndb.Return(cfg.machine_types[machine_type])
 
   gr = cfg.direct_matches.get(bot_id)
   if gr is not None:
-    return gr
+    raise ndb.Return(gr)
 
   for prefix, gr in cfg.prefix_matches:
     if bot_id.startswith(prefix):
-      return gr
+      raise ndb.Return(gr)
 
-  return cfg.default_group
+  raise ndb.Return(cfg.default_group)
 
 
-def _bot_group_proto_to_tuple(msg, trusted_dimensions):
+@ndb.tasklet
+def _bot_group_proto_to_tuple_async(msg, trusted_dimensions):
   """bots_pb2.BotGroup => BotGroupConfig.
 
   Assumes body of bots_pb2.BotGroup is already validated (logs inconsistencies,
@@ -157,7 +161,7 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
 
   content = ''
   if msg.bot_config_script:
-    rev, content = config.get_self_config(
+    rev, content = yield config.get_self_config_async(
         'scripts/' + msg.bot_config_script,
         store_last_good=True)
     if not rev or not content:
@@ -167,15 +171,16 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
       logging.error(
           'Configuration referenced non existing bot_config file %r\n%s',
           msg.bot_config_script, msg)
-  return _make_bot_group_config(
-    require_luci_machine_token=auth_cfg.require_luci_machine_token,
-    require_service_account=list(auth_cfg.require_service_account),
-    ip_whitelist=auth_cfg.ip_whitelist,
-    owners=tuple(msg.owners),
-    dimensions={k: sorted(v) for k, v in dimensions.iteritems()},
-    bot_config_script=msg.bot_config_script or '',
-    bot_config_script_content=content or '',
-    system_service_account=msg.system_service_account or '')
+  obj = _make_bot_group_config(
+      require_luci_machine_token=auth_cfg.require_luci_machine_token,
+      require_service_account=list(auth_cfg.require_service_account),
+      ip_whitelist=auth_cfg.ip_whitelist,
+      owners=tuple(msg.owners),
+      dimensions={k: sorted(v) for k, v in dimensions.iteritems()},
+      bot_config_script=msg.bot_config_script or '',
+      bot_config_script_content=content or '',
+      system_service_account=msg.system_service_account or '')
+  raise ndb.Return(obj)
 
 
 def _expand_bot_id_expr(expr):
@@ -231,49 +236,49 @@ def _expand_bot_id_expr(expr):
 
 
 @utils.cache_with_expiration(60)
-def fetch_machine_types():
+@ndb.tasklet
+def fetch_machine_types_async():
   """Returns a dict of MachineTypes contained in bots.cfg.
 
   Returns:
     A dict mapping the name of a MachineType to a bots_pb2.MachineType.
   """
-  cfg = _fetch_bots_config()
-  if not cfg:
-    return {}
-
   machine_types = {}
-  for bot_group in cfg.bot_group:
-    for mt in bot_group.machine_type:
-      machine_types[mt.name] = mt
+  cfg = yield _fetch_bots_config_async()
+  if cfg:
+    for bot_group in cfg.bot_group:
+      for mt in bot_group.machine_type:
+        machine_types[mt.name] = mt
+  raise ndb.Return(machine_types)
 
-  return machine_types
 
-
-def _fetch_bots_config():
+@ndb.tasklet
+def _fetch_bots_config_async():
   """Fetches bots.cfg."""
   # store_last_good=True tells config components to update the config file
   # in a cron job. Here we juts read from the datastore. In case it's the first
   # call ever, or config doesn't exist, it returns (None, None).
-  rev, cfg = config.get_self_config(
+  rev, cfg = yield config.get_self_config_async(
       BOTS_CFG_FILENAME, bots_pb2.BotsCfg, store_last_good=True)
   if cfg:
     logging.debug('Using bots.cfg at rev %s', rev)
     # Callers can assume the config is already validated (as promised by
     # components.config). There should be no error at this point.
-  return cfg
+  raise ndb.Return(cfg)
 
 
 @utils.cache_with_expiration(60)
-def _fetch_bot_groups():
+@ndb.tasklet
+def _fetch_bot_groups_async():
   """Loads bots.cfg and parses it into _BotGroups struct.
 
   If bots.cfg doesn't exist, returns default config that allows any caller from
   'bots' IP whitelist to act as a bot.
   """
-  cfg = _fetch_bots_config()
+  cfg = yield _fetch_bots_config_async()
   if not cfg:
     logging.info('Didn\'t find bots.cfg, using default')
-    return _default_bot_groups()
+    raise ndb.Return(_default_bot_groups())
 
   direct_matches = {}
   prefix_matches = []
@@ -281,7 +286,8 @@ def _fetch_bot_groups():
   default_group = None
 
   for entry in cfg.bot_group:
-    group_cfg = _bot_group_proto_to_tuple(entry, cfg.trusted_dimensions or [])
+    group_cfg = yield _bot_group_proto_to_tuple_async(
+        entry, cfg.trusted_dimensions or [])
 
     for bot_id_expr in entry.bot_id:
       try:
@@ -312,8 +318,8 @@ def _fetch_bot_groups():
       else:
         default_group = group_cfg
 
-  return _BotGroups(
-      direct_matches, prefix_matches, machine_types, default_group)
+  raise ndb.Return(
+      _BotGroups(direct_matches, prefix_matches, machine_types, default_group))
 
 
 def _validate_email(ctx, email, designation):
@@ -504,8 +510,8 @@ def validate_bots_cfg(cfg, ctx):
           ctx.error(
               'invalid bot_config_script name: must not contain path entry')
         # We can't validate that the file exists here. It'll fail in
-        # _bot_group_proto_to_tuple() which is called by _fetch_bot_groups() and
-        # cached for 60 seconds.
+        # _bot_group_proto_to_tuple_async() which is called by
+        # _fetch_bot_groups_async() and cached for 60 seconds.
 
       # Validate 'system_service_account'.
       if entry.system_service_account == 'bot':
