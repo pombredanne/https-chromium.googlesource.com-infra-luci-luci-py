@@ -176,6 +176,10 @@ def new_task_request_from_rpc(msg, now):
   if len(set(i.key for i in props.env)) != len(props.env):
     raise ValueError('same environment variable key cannot be specified twice')
 
+  env_prefixes = {}
+  for item in props.env_prefixes:
+    env_prefixes.setdefault(item.key, []).append(item.value)
+
   properties = _rpc_to_ndb(
       task_request.TaskProperties,
       props,
@@ -187,6 +191,7 @@ def new_task_request_from_rpc(msg, now):
       secret_bytes=None, # ignore this, it's handled out of band
       dimensions={i.key: i.value for i in props.dimensions},
       env={i.key: i.value for i in props.env},
+      env_prefixes=env_prefixes,
       inputs_ref=inputs_ref)
 
   req = _rpc_to_ndb(
