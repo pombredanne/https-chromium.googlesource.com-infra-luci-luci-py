@@ -191,6 +191,10 @@ class TaskDetails(object):
     self.env = {
       k.encode('utf-8'): v.encode('utf-8') for k, v in data['env'].iteritems()
     }
+    self.env_prefixes = {
+      k.encode('utf-8'): [path.encode('utf-8') for path in v]
+      for k, v in data['env_prefixes'].iteritems()
+    }
     self.grace_period = data['grace_period']
     self.hard_timeout = data['hard_timeout']
     self.io_timeout = data['io_timeout']
@@ -454,6 +458,11 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         env.pop(key, None)
       else:
         env[key] = value
+    for key, paths in (task_details.env_prefixes or {}).iteritems():
+      cur = []
+      if key in env:
+        cur = env[key]
+      env[key] = os.path.pathsep.join(map(os.path.abspath, paths)+cur)
     if ctx_file:
       env['LUCI_CONTEXT'] = ctx_file
     logging.info('cmd=%s', cmd)
