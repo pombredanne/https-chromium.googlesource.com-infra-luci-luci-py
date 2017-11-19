@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "757c0bc6_e5546683",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-19T18:58:21Z",
+      "side": 1,
+      "message": "this seems to imply that hash of all existing tasks changed. Can we make it so hash does not change unless we add an env prefix",
+      "revId": "810fb9f40792115abba380f83086c63bca4a8fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c441a8_dd2447b6",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-19T18:58:21Z",
+      "side": 1,
+      "message": "i think this does not match code below, i.e. this is [(\u0027a\u0027, \u0027x\u0027), (\u0027a\u0027, \u0027y\u0027)] and code below is [(\u0027a\u0027, [\u0027x\u0027, \u0027y\u0027])]",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 133,
+        "endChar": 8
+      },
+      "revId": "810fb9f40792115abba380f83086c63bca4a8fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b1f7db6_053b39c8",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-19T18:58:21Z",
+      "side": 1,
+      "message": "i understand that this is value of the key, but initially I read this as \"the value\". Consider renaming to key",
+      "range": {
+        "startLine": 178,
+        "startChar": 28,
+        "endLine": 178,
+        "endChar": 33
+      },
+      "revId": "810fb9f40792115abba380f83086c63bca4a8fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f2eeb52_c5cdacdc",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-19T18:58:21Z",
+      "side": 1,
+      "message": "unicode?",
+      "range": {
+        "startLine": 208,
+        "startChar": 24,
+        "endLine": 208,
+        "endChar": 30
+      },
+      "revId": "810fb9f40792115abba380f83086c63bca4a8fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae168de_104c74da",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-19T18:58:21Z",
+      "side": 1,
+      "message": "not sure why we convert string paths to bytes here",
+      "range": {
+        "startLine": 195,
+        "startChar": 7,
+        "endLine": 195,
+        "endChar": 23
+      },
+      "revId": "810fb9f40792115abba380f83086c63bca4a8fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d49cf02_a5e9fd18",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-19T18:58:21Z",
+      "side": 1,
+      "message": "env[key] was a list, but now a string?",
+      "revId": "810fb9f40792115abba380f83086c63bca4a8fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
