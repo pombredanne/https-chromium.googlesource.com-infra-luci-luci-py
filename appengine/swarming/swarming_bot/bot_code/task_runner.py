@@ -157,6 +157,10 @@ def get_isolated_args(work_dir, task_details, isolated_result,
 
   cmd.extend(run_isolated_flags)
 
+  for key, values in task_details.env_prefixes.iteritems():
+    for v in values:
+      cmd.extend(('--env-prefix', '%s=%s' % (key, v)))
+
   # TODO(nodir): Pass the command line arguments via a response file.
   if task_details.command:
     cmd.append('--raw-cmd')
@@ -165,6 +169,7 @@ def get_isolated_args(work_dir, task_details, isolated_result,
   elif task_details.extra_args:
     cmd.append('--')
     cmd.extend(task_details.extra_args)
+
   return cmd
 
 
@@ -190,6 +195,10 @@ class TaskDetails(object):
 
     self.env = {
       k.encode('utf-8'): v.encode('utf-8') for k, v in data['env'].iteritems()
+    }
+    self.env_prefixes = {
+      k.encode('utf-8'): [path.encode('utf-8') for path in v]
+      for k, v in data['env_prefixes'].iteritems()
     }
     self.grace_period = data['grace_period']
     self.hard_timeout = data['hard_timeout']
