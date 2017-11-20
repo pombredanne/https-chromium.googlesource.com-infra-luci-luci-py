@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec8f0cb6_23ee69c9",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-20T22:17:57Z",
+      "side": 1,
+      "message": "I can put this into a separate CL if need be.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "dd2f4c8d32e81642bc82d51c50e8ec0f28ea804a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
