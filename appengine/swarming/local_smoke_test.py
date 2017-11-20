@@ -635,7 +635,7 @@ class Test(unittest.TestCase):
         },
       },
       properties_hash =
-          u'082928de84d0a65839d227dcea2f5a947898929c77c1602b68c46d7d4588c1f5',
+          u'3d6dcab82b1c098b27c7a7cbb6ddcb3d41689c42ca7fe5fafd53f9105af6efea',
     )
     task_id = self._run_isolated(
         hello_world, 'idempotent_reuse', ['--idempotent'], expected_summary, {})
