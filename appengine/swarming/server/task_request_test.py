@@ -111,6 +111,7 @@ class Prop(object):
 class TestCase(test_case.TestCase):
   def setUp(self):
     super(TestCase, self).setUp()
+    self.maxDiff = None
     auth_testing.mock_get_current_identity(self)
 
 
@@ -256,6 +257,7 @@ class TaskRequestApiTest(TestCase):
         u'pool': u'default',
       },
       'env': {u'foo': u'bar', u'joe': u'2'},
+      'env_prefixes': None,
       'extra_args': [],
       'execution_timeout_secs': 30,
       'grace_period_secs': 30,
@@ -278,7 +280,7 @@ class TaskRequestApiTest(TestCase):
       # Intentionally hard code the hash value since it has to be deterministic.
       # Other unit tests should use the calculated value.
       'properties_hash':
-          '258e0894f2589a7bc2b46bd563d01f64300ae08938fb14b3d750baff94ba714e',
+          'b2c0774ef945d1da3088704c3db0c9ff19660d5e306aedb1b314b9a91d405088',
       'pubsub_topic': None,
       'pubsub_userdata': None,
       'service_account': u'none',
@@ -335,6 +337,7 @@ class TaskRequestApiTest(TestCase):
         u'pool': u'default',
       },
       'env': {u'foo': u'bar', u'joe': u'2'},
+      'env_prefixes': None,
       'extra_args': [],
       'execution_timeout_secs': 30,
       'grace_period_secs': 30,
@@ -357,7 +360,7 @@ class TaskRequestApiTest(TestCase):
       # Intentionally hard code the hash value since it has to be deterministic.
       # Other unit tests should use the calculated value.
       'properties_hash':
-          '693715e9539552e2ece434e25a665d437cfe4685504a3c7bad6356f9feffee2a',
+          '0124d2b3eda7af75ee16ef62ce46042ca04e99c3bd5b8b96cf0950d8af50b066',
       'pubsub_topic': None,
       'pubsub_userdata': None,
       'service_account': u'none',
@@ -399,7 +402,7 @@ class TaskRequestApiTest(TestCase):
     # Other unit tests should use the calculated value.
     # Ensure the algorithm is deterministic.
     self.assertEqual(
-        'c7445927612637c589b72dd47c4657b166a53ac6ecdfd08c167539331a7890d3',
+        'e510ce0702ac4b3127b6615d8151789a2d95e7888503bb6dcf398cec285ab43e',
         as_dict['properties_hash'])
 
   def test_init_new_request_bot_service_account(self):
