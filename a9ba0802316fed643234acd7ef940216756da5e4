@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e88c698a_48581b36",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-20T18:59:26Z",
+      "side": 1,
+      "message": "Please remove, see line 648, running the test with -v does the same.",
+      "revId": "a9ba0802316fed643234acd7ef940216756da5e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82aa0e2f_bbda83b4",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-20T18:59:26Z",
+      "side": 1,
+      "message": "if cur \u003d\u003d [], then \"paths + [[]]\". What you want is:\n\npaths \u003d [os.path.normpath(os.path.join(cwd, p)) for p in paths]\ncur \u003d env.get(\u0027key\u0027)\nif cur:\n  path.append(cur)\nenv[key] \u003d os.path.pathsep.join(paths)",
+      "range": {
+        "startLine": 327,
+        "startChar": 43,
+        "endLine": 327,
+        "endChar": 46
+      },
+      "revId": "a9ba0802316fed643234acd7ef940216756da5e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
