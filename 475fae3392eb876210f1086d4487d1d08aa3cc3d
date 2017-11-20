@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afb613b1_9f3aa742",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-20T20:13:04Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer a StringListPair instead, so it\u0027d be a single PATH with all items under. This way there\u0027s no risk of accidental reordering.",
+      "revId": "475fae3392eb876210f1086d4487d1d08aa3cc3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11aba05b_ea0dfb33",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-20T20:13:04Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 290,
+        "startChar": 2,
+        "endLine": 290,
+        "endChar": 6
+      },
+      "revId": "475fae3392eb876210f1086d4487d1d08aa3cc3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
