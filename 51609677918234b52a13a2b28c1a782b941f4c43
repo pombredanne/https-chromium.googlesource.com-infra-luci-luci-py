@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40f0f217_28ebed53",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1169909
+      },
+      "writtenOn": "2017-11-20T22:40:21Z",
+      "side": 1,
+      "message": "The fact that the generator may be empty makes me wonder if it can also be _partially_ empty - is there any case where we may try to upload the second half of a large blob? If yes, we might need to ensure that the generator is never reused rather than to tolerate it when it is.",
+      "revId": "51609677918234b52a13a2b28c1a782b941f4c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
