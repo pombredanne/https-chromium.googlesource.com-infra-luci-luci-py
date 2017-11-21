@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c0a97d88_29c144fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-21T01:09:06Z",
+      "side": 1,
+      "message": "ignoring?",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "51609677918234b52a13a2b28c1a782b941f4c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "40f0f217_28ebed53",
         "filename": "client/isolate_storage.py",
         "patchSetId": 1
@@ -13,6 +36,24 @@
       "writtenOn": "2017-11-20T22:40:21Z",
       "side": 1,
       "message": "The fact that the generator may be empty makes me wonder if it can also be _partially_ empty - is there any case where we may try to upload the second half of a large blob? If yes, we might need to ensure that the generator is never reused rather than to tolerate it when it is.",
+      "revId": "51609677918234b52a13a2b28c1a782b941f4c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a7133b5_59706ecc",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-21T01:09:06Z",
+      "side": 1,
+      "message": "The code for the generator is far from optimal. :/ The code should accept a generator factory so that restarting works.\n\nEric is right that eventually we\u0027d need to support partial upload, in this case the caller would ditch the generator\u0027s initial output up to the desired offset.",
+      "parentUuid": "40f0f217_28ebed53",
       "revId": "51609677918234b52a13a2b28c1a782b941f4c43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
