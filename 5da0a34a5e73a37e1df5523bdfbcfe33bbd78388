@@ -22,6 +22,30 @@
       "revId": "5da0a34a5e73a37e1df5523bdfbcfe33bbd78388",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c07c79f_4916c4ea",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-21T21:08:56Z",
+      "side": 1,
+      "message": "This is a fair comment. The current layering is annoying at best. In practice, we need to go with http://go/swarming-bot-config-out-of-process which will make this whole thing moot.",
+      "parentUuid": "4588c1a7_7038f2bf",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 27
+      },
+      "revId": "5da0a34a5e73a37e1df5523bdfbcfe33bbd78388",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
