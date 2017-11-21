@@ -179,8 +179,30 @@ class RemoteClientGrpc(object):
     return self._process_lease(new_lease)
 
   def post_bot_event(self, _event_type, message, _attributes):
-    # pylint: disable=unused-argument
-    logging.warning('post_bot_event(%s): not yet implemented', message)
+    event_type, status = {
+        'bot_error': (bots_pb2.ERROR, bot_pb2.UNHEALTHY),
+        'bot_rebooting': (bots_pb2.INFO, bot_pb2.HOST_REBOOTING),
+        'bot_shutdown': (bots_pb2.INFO, bots_pb2.BOT_TERMINATING),
+    }.get(_event_type, (None, None))
+
+    if event_type is None:
+        logging.warning('Unsupported event type: %s', _event_type)
+        return
+
+    # The proxy already knows when a bot is shutting down or rebooting, so the
+    # proxy API doesn't allow the bot to send state transition messages - it
+    # generates the state transition messages itself."
+    self._session.status = status
+
+    req = bots_pb2.PostBotEventTempRequest()
+    req.name = self._session.name
+    req.bot_session_temp.CopyFrom(self._session)
+    req.type = event_type
+    req.msg = message
+    try:
+      self._proxy_bots.call_unary('PostBotEventTemp', req)
+    except grpc_proxy.grpc.RpcError as e:
+      logging.error('gRPC error posting bot event: %s', e)
 
   def post_task_update(self, task_id, bot_id, params,
                        stdout_and_chunk=None, exit_code=None):
@@ -235,7 +257,7 @@ class RemoteClientGrpc(object):
     """Creates a proto Worker message from  bot attributes."""
     self._session.bot_id = attributes['dimensions']['id'][0]
     _dimensions_to_workers(attributes['dimensions'], self._session.worker)
-    self._session.health = bots_pb2.HEALTHY
+    self._session.status = bots_pb2.OK
     self._session.version = attributes['version']
 
   def _process_lease(self, lease):
