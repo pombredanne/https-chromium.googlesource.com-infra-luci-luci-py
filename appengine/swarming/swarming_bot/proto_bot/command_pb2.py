@@ -23,7 +23,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n\rcommand.proto\x12%google.devtools.remoteworkers.v1test2\x1a\x1egoogle/protobuf/duration.proto\"\xbb\x05\n\x0b\x43ommandTask\x12I\n\x06inputs\x18\x01 \x01(\x0b\x32\x39.google.devtools.remoteworkers.v1test2.CommandTask.Inputs\x12T\n\x10\x65xpected_outputs\x18\x04 \x01(\x0b\x32:.google.devtools.remoteworkers.v1test2.CommandTask.Outputs\x12M\n\x08timeouts\x18\x05 \x01(\x0b\x32;.google.devtools.remoteworkers.v1test2.CommandTask.Timeouts\x1a\xfb\x01\n\x06Inputs\x12\x11\n\targuments\x18\x01 \x03(\t\x12<\n\x05\x66iles\x18\x02 \x03(\x0b\x32-.google.devtools.remoteworkers.v1test2.Digest\x12l\n\x15\x65nvironment_variables\x18\x03 \x03(\x0b\x32M.google.devtools.remoteworkers.v1test2.CommandTask.Inputs.EnvironmentVariable\x1a\x32\n\x13\x45nvironmentVariable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a-\n\x07Outputs\x12\r\n\x05\x66iles\x18\x01 \x03(\t\x12\x13\n\x0b\x64irectories\x18\x02 \x03(\t\x1a\x8e\x01\n\x08Timeouts\x12,\n\texecution\x18\x01 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\'\n\x04idle\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\x12+\n\x08shutdown\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\"c\n\x0e\x43ommandOutputs\x12\x11\n\texit_code\x18\x01 \x01(\x05\x12>\n\x07outputs\x18\x02 \x01(\x0b\x32-.google.devtools.remoteworkers.v1test2.Digest\"k\n\x0f\x43ommandOverhead\x12+\n\x08\x64uration\x18\x01 \x01(\x0b\x32\x19.google.protobuf.Duration\x12+\n\x08overhead\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"\x84\x01\n\x0c\x46ileMetadata\x12\x0c\n\x04path\x18\x01 \x01(\t\x12=\n\x06\x64igest\x18\x02 \x01(\x0b\x32-.google.devtools.remoteworkers.v1test2.Digest\x12\x10\n\x08\x63ontents\x18\x03 \x01(\x0c\x12\x15\n\ris_executable\x18\x04 \x01(\x08\"`\n\x11\x44irectoryMetadata\x12\x0c\n\x04path\x18\x01 \x01(\t\x12=\n\x06\x64igest\x18\x02 \x01(\x0b\x32-.google.devtools.remoteworkers.v1test2.Digest\"*\n\x06\x44igest\x12\x0c\n\x04hash\x18\x01 \x01(\t\x12\x12\n\nsize_bytes\x18\x02 \x01(\x03\"\x9e\x01\n\tDirectory\x12\x42\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x33.google.devtools.remoteworkers.v1test2.FileMetadata\x12M\n\x0b\x64irectories\x18\x02 \x03(\x0b\x32\x38.google.devtools.remoteworkers.v1test2.DirectoryMetadatab\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -502,6 +501,7 @@ DESCRIPTOR.message_types_by_name['FileMetadata'] = _FILEMETADATA
 DESCRIPTOR.message_types_by_name['DirectoryMetadata'] = _DIRECTORYMETADATA
 DESCRIPTOR.message_types_by_name['Digest'] = _DIGEST
 DESCRIPTOR.message_types_by_name['Directory'] = _DIRECTORY
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CommandTask = _reflection.GeneratedProtocolMessageType('CommandTask', (_message.Message,), dict(
 
@@ -585,14 +585,4 @@ Directory = _reflection.GeneratedProtocolMessageType('Directory', (_message.Mess
 _sym_db.RegisterMessage(Directory)
 
 
-try:
-  # THESE ELEMENTS WILL BE DEPRECATED.
-  # Please use the generated *_pb2_grpc.py files instead.
-  import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
-  from grpc.beta import implementations as beta_implementations
-  from grpc.beta import interfaces as beta_interfaces
-except ImportError:
-  pass
 # @@protoc_insertion_point(module_scope)
