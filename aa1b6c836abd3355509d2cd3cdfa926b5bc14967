@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3a30b29_7c0d86c6",
+        "filename": "appengine/components/components/prpc/helpers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "please extract this to a variable",
+      "range": {
+        "startLine": 44,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 21
+      },
+      "revId": "aa1b6c836abd3355509d2cd3cdfa926b5bc14967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5089a104_08fe0296",
+        "filename": "appengine/components/components/prpc/helpers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "nit: period in the end here and everywhere below",
+      "range": {
+        "startLine": 66,
+        "startChar": 21,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "aa1b6c836abd3355509d2cd3cdfa926b5bc14967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "387173fb_d4c89579",
+        "filename": "appengine/components/components/prpc/helpers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "\"dictionary like object\" http://webapp2.readthedocs.io/en/latest/guide/request.html",
+      "range": {
+        "startLine": 67,
+        "startChar": 38,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "aa1b6c836abd3355509d2cd3cdfa926b5bc14967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

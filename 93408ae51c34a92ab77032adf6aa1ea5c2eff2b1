@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19da8d09_4c7af28b",
+        "filename": "appengine/components/components/prpc/__init__.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "i think we better off raising an exception early if the service is missing some methods",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "93408ae51c34a92ab77032adf6aa1ea5c2eff2b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6217fb4_44692c85",
+        "filename": "appengine/components/components/prpc/__init__.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "pylint will complain. Let\u0027s keep the parameter name \"self\", but add \n\n  server \u003d self\n\nhere",
+      "revId": "93408ae51c34a92ab77032adf6aa1ea5c2eff2b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0059d590_196c4da2",
+        "filename": "appengine/components/components/prpc/__init__.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "we can probably put me/us in all TODO(agable). It is unlikely that agable will be working on this.",
+      "range": {
+        "startLine": 169,
+        "startChar": 17,
+        "endLine": 169,
+        "endChar": 23
+      },
+      "revId": "93408ae51c34a92ab77032adf6aa1ea5c2eff2b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d991dc5_498ee73f",
+        "filename": "appengine/components/components/prpc/types.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T23:57:13Z",
+      "side": 1,
+      "message": "agable added all these types so that grpc-generated code can import stuff on appengine (where grpc is not present). The only thing we still need is ServicerContext.\n\nin particular, the method info could be just dict of dicts in the prpc server\n\nalso there is no reason to keep all these types in a file different from the one containing server",
+      "revId": "93408ae51c34a92ab77032adf6aa1ea5c2eff2b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
