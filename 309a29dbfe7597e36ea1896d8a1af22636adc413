@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c56ea4f8_ada1d118",
+        "filename": "appengine/components/components/prpc/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T17:24:35Z",
+      "side": 1,
+      "message": "pRPC in general supports only unary-unary calls and pRPC doc say \"does not support streams\", so I think this is unnecessary",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "309a29dbfe7597e36ea1896d8a1af22636adc413",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d9192f3_d9539af9",
+        "filename": "appengine/components/components/prpc/grpc/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-21T17:24:35Z",
+      "side": 1,
+      "message": "please add a docstring",
+      "revId": "309a29dbfe7597e36ea1896d8a1af22636adc413",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
