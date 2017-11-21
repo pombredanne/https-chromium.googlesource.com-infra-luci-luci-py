@@ -99,6 +99,24 @@
       "revId": "51609677918234b52a13a2b28c1a782b941f4c43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b224f457_46789d35",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-21T02:41:33Z",
+      "side": 1,
+      "message": "Yes that\u0027s what I meant by \"eventually\".",
+      "parentUuid": "24768622_ed0009fd",
+      "revId": "51609677918234b52a13a2b28c1a782b941f4c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
