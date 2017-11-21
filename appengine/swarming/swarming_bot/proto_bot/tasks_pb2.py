@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n\x0btasks.proto\x12%google.devtools.remoteworkers.v1test2\x1a\x19google/protobuf/any.proto\x1a google/protobuf/field_mask.proto\x1a\x0cstatus.proto\"\xb1\x01\n\x04Task\x12\x0c\n\x04name\x18\x01 \x01(\t\x12)\n\x0b\x64\x65scription\x18\x02 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x43\n\x04logs\x18\x03 \x03(\x0b\x32\x35.google.devtools.remoteworkers.v1test2.Task.LogsEntry\x1a+\n\tLogsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x9a\x01\n\nTaskResult\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08\x63omplete\x18\x02 \x01(\x08\x12\"\n\x06status\x18\x03 \x01(\x0b\x32\x12.google.rpc.Status\x12$\n\x06output\x18\x04 \x01(\x0b\x32\x14.google.protobuf.Any\x12\"\n\x04meta\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\"\x1e\n\x0eGetTaskRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xab\x01\n\x17UpdateTaskResultRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x41\n\x06result\x18\x02 \x01(\x0b\x32\x31.google.devtools.remoteworkers.v1test2.TaskResult\x12/\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12\x0e\n\x06source\x18\x04 \x01(\t\"1\n\x11\x41\x64\x64TaskLogRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06log_id\x18\x02 \x01(\t\"$\n\x12\x41\x64\x64TaskLogResponse\x12\x0e\n\x06handle\x18\x01 \x01(\t2\x82\x03\n\x05Tasks\x12m\n\x07GetTask\x12\x35.google.devtools.remoteworkers.v1test2.GetTaskRequest\x1a+.google.devtools.remoteworkers.v1test2.Task\x12\x85\x01\n\x10UpdateTaskResult\x12>.google.devtools.remoteworkers.v1test2.UpdateTaskResultRequest\x1a\x31.google.devtools.remoteworkers.v1test2.TaskResult\x12\x81\x01\n\nAddTaskLog\x12\x38.google.devtools.remoteworkers.v1test2.AddTaskLogRequest\x1a\x39.google.devtools.remoteworkers.v1test2.AddTaskLogResponseb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,status__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -336,6 +335,7 @@ DESCRIPTOR.message_types_by_name['GetTaskRequest'] = _GETTASKREQUEST
 DESCRIPTOR.message_types_by_name['UpdateTaskResultRequest'] = _UPDATETASKRESULTREQUEST
 DESCRIPTOR.message_types_by_name['AddTaskLogRequest'] = _ADDTASKLOGREQUEST
 DESCRIPTOR.message_types_by_name['AddTaskLogResponse'] = _ADDTASKLOGRESPONSE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Task = _reflection.GeneratedProtocolMessageType('Task', (_message.Message,), dict(
 
@@ -390,161 +390,46 @@ _sym_db.RegisterMessage(AddTaskLogResponse)
 
 _TASK_LOGSENTRY.has_options = True
 _TASK_LOGSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-try:
-  # THESE ELEMENTS WILL BE DEPRECATED.
-  # Please use the generated *_pb2_grpc.py files instead.
-  import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
-  from grpc.beta import implementations as beta_implementations
-  from grpc.beta import interfaces as beta_interfaces
 
+_TASKS = _descriptor.ServiceDescriptor(
+  name='Tasks',
+  full_name='google.devtools.remoteworkers.v1test2.Tasks',
+  file=DESCRIPTOR,
+  index=0,
+  options=None,
+  serialized_start=762,
+  serialized_end=1148,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='GetTask',
+    full_name='google.devtools.remoteworkers.v1test2.Tasks.GetTask',
+    index=0,
+    containing_service=None,
+    input_type=_GETTASKREQUEST,
+    output_type=_TASK,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateTaskResult',
+    full_name='google.devtools.remoteworkers.v1test2.Tasks.UpdateTaskResult',
+    index=1,
+    containing_service=None,
+    input_type=_UPDATETASKRESULTREQUEST,
+    output_type=_TASKRESULT,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddTaskLog',
+    full_name='google.devtools.remoteworkers.v1test2.Tasks.AddTaskLog',
+    index=2,
+    containing_service=None,
+    input_type=_ADDTASKLOGREQUEST,
+    output_type=_ADDTASKLOGRESPONSE,
+    options=None,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_TASKS)
 
-  class TasksStub(object):
+DESCRIPTOR.services_by_name['Tasks'] = _TASKS
 
-    def __init__(self, channel):
-      """Constructor.
-
-      Args:
-        channel: A grpc.Channel.
-      """
-      self.GetTask = channel.unary_unary(
-          '/google.devtools.remoteworkers.v1test2.Tasks/GetTask',
-          request_serializer=GetTaskRequest.SerializeToString,
-          response_deserializer=Task.FromString,
-          )
-      self.UpdateTaskResult = channel.unary_unary(
-          '/google.devtools.remoteworkers.v1test2.Tasks/UpdateTaskResult',
-          request_serializer=UpdateTaskResultRequest.SerializeToString,
-          response_deserializer=TaskResult.FromString,
-          )
-      self.AddTaskLog = channel.unary_unary(
-          '/google.devtools.remoteworkers.v1test2.Tasks/AddTaskLog',
-          request_serializer=AddTaskLogRequest.SerializeToString,
-          response_deserializer=AddTaskLogResponse.FromString,
-          )
-
-
-  class TasksServicer(object):
-
-    def GetTask(self, request, context):
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def UpdateTaskResult(self, request, context):
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def AddTaskLog(self, request, context):
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-
-  def add_TasksServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-        'GetTask': grpc.unary_unary_rpc_method_handler(
-            servicer.GetTask,
-            request_deserializer=GetTaskRequest.FromString,
-            response_serializer=Task.SerializeToString,
-        ),
-        'UpdateTaskResult': grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateTaskResult,
-            request_deserializer=UpdateTaskResultRequest.FromString,
-            response_serializer=TaskResult.SerializeToString,
-        ),
-        'AddTaskLog': grpc.unary_unary_rpc_method_handler(
-            servicer.AddTaskLog,
-            request_deserializer=AddTaskLogRequest.FromString,
-            response_serializer=AddTaskLogResponse.SerializeToString,
-        ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-        'google.devtools.remoteworkers.v1test2.Tasks', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
-  class BetaTasksServicer(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def GetTask(self, request, context):
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def UpdateTaskResult(self, request, context):
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def AddTaskLog(self, request, context):
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-
-
-  class BetaTasksStub(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def GetTask(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      raise NotImplementedError()
-    GetTask.future = None
-    def UpdateTaskResult(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      raise NotImplementedError()
-    UpdateTaskResult.future = None
-    def AddTaskLog(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      raise NotImplementedError()
-    AddTaskLog.future = None
-
-
-  def beta_create_Tasks_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_deserializers = {
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'AddTaskLog'): AddTaskLogRequest.FromString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'GetTask'): GetTaskRequest.FromString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'UpdateTaskResult'): UpdateTaskResultRequest.FromString,
-    }
-    response_serializers = {
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'AddTaskLog'): AddTaskLogResponse.SerializeToString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'GetTask'): Task.SerializeToString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'UpdateTaskResult'): TaskResult.SerializeToString,
-    }
-    method_implementations = {
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'AddTaskLog'): face_utilities.unary_unary_inline(servicer.AddTaskLog),
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'GetTask'): face_utilities.unary_unary_inline(servicer.GetTask),
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'UpdateTaskResult'): face_utilities.unary_unary_inline(servicer.UpdateTaskResult),
-    }
-    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-    return beta_implementations.server(method_implementations, options=server_options)
-
-
-  def beta_create_Tasks_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_serializers = {
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'AddTaskLog'): AddTaskLogRequest.SerializeToString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'GetTask'): GetTaskRequest.SerializeToString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'UpdateTaskResult'): UpdateTaskResultRequest.SerializeToString,
-    }
-    response_deserializers = {
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'AddTaskLog'): AddTaskLogResponse.FromString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'GetTask'): Task.FromString,
-      ('google.devtools.remoteworkers.v1test2.Tasks', 'UpdateTaskResult'): TaskResult.FromString,
-    }
-    cardinalities = {
-      'AddTaskLog': cardinality.Cardinality.UNARY_UNARY,
-      'GetTask': cardinality.Cardinality.UNARY_UNARY,
-      'UpdateTaskResult': cardinality.Cardinality.UNARY_UNARY,
-    }
-    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-    return beta_implementations.dynamic_stub(channel, 'google.devtools.remoteworkers.v1test2.Tasks', cardinalities, options=stub_options)
-except ImportError:
-  pass
 # @@protoc_insertion_point(module_scope)
