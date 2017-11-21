@@ -235,7 +235,7 @@ class RemoteClientGrpc(object):
     """Creates a proto Worker message from  bot attributes."""
     self._session.bot_id = attributes['dimensions']['id'][0]
     _dimensions_to_workers(attributes['dimensions'], self._session.worker)
-    self._session.health = bots_pb2.HEALTHY
+    self._session.health = bots_pb2.OK
     self._session.version = attributes['version']
 
   def _process_lease(self, lease):
