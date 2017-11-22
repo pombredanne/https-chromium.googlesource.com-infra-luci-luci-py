@@ -1557,6 +1557,16 @@ def CMDreproduce(parser, args):
       else:
         env[key] = i['value'].encode('utf-8')
 
+  if properties.get('env_prefixes'):
+    env_prefixes = properties['env']
+    logging.info('env_prefixes: %r', env_prefixes)
+    for key, paths in env_prefixes.iteritems():
+      paths = [os.path.normpath(os.path.join(workdir, p)) for p in paths]
+      cur = env.get(key)
+      if cur:
+        paths.append(cur)
+      env[key] = os.path.pathsep.join(paths)
+
   command = []
   if (properties.get('inputs_ref') or {}).get('isolated'):
     # Create the tree.
