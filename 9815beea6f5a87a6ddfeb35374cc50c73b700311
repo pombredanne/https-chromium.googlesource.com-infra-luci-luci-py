@@ -1,0 +1,313 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f79cca3b_f820a7b6",
+        "filename": "appengine/components/components/prpc/context.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "this file is nice because it is self-contained and has one resposibility",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bf7890d_058f7f5f",
+        "filename": "appengine/components/components/prpc/helpers.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "unit",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 9
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f27398e0_48c119fb",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "name \"_generic_handlers\" does not make sense anymore because we\u0027ve removed that type.\n\nsince the key here is a service name and value is service-specific, I recommend name \"_services\"",
+      "range": {
+        "startLine": 57,
+        "startChar": 9,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "949e1e02_6447ccbd",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "nit: desc\n\nto better distinguish service from servicer",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 11
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68efb6e5_66927bb1",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "just to ensure we don\u0027t forget to do it: please raise an exception if method is not there",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b88ca6fb_8742196c",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "inline",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 11
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0338da8_717be27e",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "I think we can put desc here, so that we have the desc if we need it later (e.g. discovery)",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b43b1634_5285b4d9",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "nit: periods",
+      "range": {
+        "startLine": 110,
+        "startChar": 70,
+        "endLine": 110,
+        "endChar": 71
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7207034e_b7062f71",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "ideally we don\u0027t mutate context\nsame applies to L126",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f52b4ec_f3e3170f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "i am not sure, i suspect that context.details is a string and content is bytes\nwe may need to encode(\u0027utf-8\u0027)",
+      "range": {
+        "startLine": 127,
+        "startChar": 20,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01e1d485_6fec982b",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "https://godoc.org/go.chromium.org/luci/grpc/prpc says\n\n\u003e A server MUST always specify \"X-Prpc-Grpc-Code\". The server SHOULD specify HTTP status corresponding to the gRPC code.\n\nsee https://cs.chromium.org/chromium/infra/go/src/go.chromium.org/luci/grpc/prpc/encoding.go?type\u003dcs\u0026q\u003dcodeStatus+file:%5Einfra/go/src/go%5C.chromium%5C.org/luci/grpc/prpc/+package:%5Echromium$\u0026l\u003d134",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69de9d10_e425ec79",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "all returns after this one are `return self.finalize(context)`\n\nconsider restructuring code like this:\n\n  def _call(self, service, method, ctx):\n    # logic below\n\nand here\n\n  self._call(ctx)\n  # contents of finalize here\n\n---\n\nbut i am not sure what makes the case of \"headers could not be parsed\" different others. Can we use finalize\u0027s logic for this case too?",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b83eab4_57294cd4",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "it is a tuple, not a dict\n\nconsider defining a collections.namedtuple for service",
+      "range": {
+        "startLine": 153,
+        "startChar": 22,
+        "endLine": 153,
+        "endChar": 55
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c2a1371_91210232",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "let\u0027s deconstruct it here as `a, b, c \u003d rpc_handler`\nso that we don\u0027t do rpc_handler[i] here and below",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 23
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83d58264_017f4b8e",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "i think we can just do logging.exception(\u0027Service implementation threw an exception\u0027) ?",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

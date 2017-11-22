@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2a2e7335_543ddaa9",
+        "filename": "appengine/components/components/prpc/__init__.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-22T05:03:44Z",
+      "side": 1,
+      "message": "AttributeError is acceptable too. It would be obvious enough that they are missing a method, I think",
+      "parentUuid": "dd46394d_39282dbc",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "93408ae51c34a92ab77032adf6aa1ea5c2eff2b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6217fb4_44692c85",
         "filename": "appengine/components/components/prpc/__init__.py",
         "patchSetId": 11
