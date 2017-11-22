@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4edcac6c_4d88198a",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-22T20:06:25Z",
+      "side": 1,
+      "message": "Sadly the hash is now a function of the value of PATH. What I\u0027d recommend is to print the values to stdout instead, so that you only need to update line 516 (outputs) to be u\u0027hi\\nbar\\n%s\u0027 % computed_PATH as I\u0027d like to not further break this on windows.",
+      "range": {
+        "startLine": 517,
+        "startChar": 20,
+        "endLine": 517,
+        "endChar": 44
+      },
+      "revId": "9625aa0f169045f978f4b6a9163eeaa2b0bd0f3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c89dff02_01d4c2e4",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-22T20:06:25Z",
+      "side": 1,
+      "message": "it\u0027s not exactly this; you want to do:\n\nif os.path.isabs(path):\n  bad\n\ncwd \u003d os.getcwd() (or any path, really)\nif not os.path.join(cwd, path).startswith(cwd):\n  bad\n\n\nbecause right now your check would fail \u0027foo/../../owned\u0027 :)\n\nI was looking at _validate_rel_path() and was surprised to see:\n\n\u003e\u003e\u003e import os\n\u003e\u003e\u003e os.path.normpath(\u0027../bar\u0027)\n\u0027../bar\u0027\n\nanyhow _validate_rel_path() checks it differently by explicitly searching for \u0027..\u0027 in the path.",
+      "revId": "9625aa0f169045f978f4b6a9163eeaa2b0bd0f3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
