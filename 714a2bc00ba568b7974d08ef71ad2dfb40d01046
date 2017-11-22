@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9e0d0bdd_aa8721c1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2017-11-22T20:28:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f74595a_71aad18f",
+      "revId": "714a2bc00ba568b7974d08ef71ad2dfb40d01046",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04e7052b_94cd6ac6",
         "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "714a2bc00ba568b7974d08ef71ad2dfb40d01046",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "438ca587_8ba03735",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2017-11-22T20:28:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04e7052b_94cd6ac6",
+      "revId": "714a2bc00ba568b7974d08ef71ad2dfb40d01046",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
