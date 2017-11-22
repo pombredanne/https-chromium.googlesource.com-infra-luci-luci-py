@@ -80,6 +80,22 @@ _VENDOR_MAPPING = {
 }
 
 
+def vendor_name_to_id(ven_name, ven_id):
+  """Uses an internal lookup table to return the vendor ID for known
+  vendor names.
+
+  Returns:
+    a string, or |ven_id| when |ven_name| is unknown.
+  """
+  # macOS 10.13 doesn't provide the vendor ID any more, so support reverse
+  # lookups on vendor name.
+  lower_name = ven_name.lower()
+  for k, v in _VENDOR_MAPPING.items():
+    if lower_name == v[0].lower():
+      return k
+  return ven_id
+
+
 def ids_to_names(ven_id, ven_name, dev_id, dev_name):
   """Uses an internal lookup table to return canonical names when known.
 
