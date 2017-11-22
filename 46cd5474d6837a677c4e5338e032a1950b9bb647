@@ -230,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "7bc4f6e4_d10e24e0",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-22T20:18:26Z",
+      "side": 1,
+      "message": "yeah I was confused.",
+      "parentUuid": "9563e9ae_e7303033",
+      "revId": "46cd5474d6837a677c4e5338e032a1950b9bb647",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3840e635_62c104b8",
         "filename": "client/example/example_result/summary.json",
         "patchSetId": 7
