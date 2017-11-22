@@ -22,6 +22,30 @@
       "revId": "ff51445c2c2a266c6e8526332950bdbe78415d21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6650bec3_aeb33ba1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-22T02:22:42Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong opinion, this fix is fine. I think I\u0027d prefer _time_to_duration() to not handle None, to have less unexpected behavior. I\u0027m fine with having condition at call sites.",
+      "parentUuid": "8be286f5_553bc511",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 34
+      },
+      "revId": "ff51445c2c2a266c6e8526332950bdbe78415d21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
