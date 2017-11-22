@@ -46,6 +46,30 @@
       "revId": "ff51445c2c2a266c6e8526332950bdbe78415d21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "528be460_686a0618",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-22T14:31:47Z",
+      "side": 1,
+      "message": "Then I will keep it as-is.",
+      "parentUuid": "6650bec3_aeb33ba1",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 34
+      },
+      "revId": "ff51445c2c2a266c6e8526332950bdbe78415d21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
