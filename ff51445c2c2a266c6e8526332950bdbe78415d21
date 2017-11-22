@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8be286f5_553bc511",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-22T00:05:24Z",
+      "side": 1,
+      "message": "I\u0027m wondering if it\u0027s safer to modify _time_to_duration to do the right thing if gets passed in None (or some other falsey value) and just return without doing anything? That seems safer in that it captures other possible use cases as well and doesn\u0027t have any \"terminate-specific\" code paths.",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 34
+      },
+      "revId": "ff51445c2c2a266c6e8526332950bdbe78415d21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
