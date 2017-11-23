@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a8d7e31_a670df5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-23T08:21:12Z",
+      "side": 1,
+      "message": "this message may need to updated, since we made quite a few modifications to the original",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f79cca3b_f820a7b6",
         "filename": "appengine/components/components/prpc/context.py",
         "patchSetId": 13
@@ -305,6 +322,121 @@
       "writtenOn": "2017-11-22T05:03:44Z",
       "side": 1,
       "message": "i think we can just do logging.exception(\u0027Service implementation threw an exception\u0027) ?",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04be299d_a45b86d5",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-23T08:21:12Z",
+      "side": 1,
+      "message": "https://google.github.io/styleguide/pyguide.html#Strings\nsays\n\n  Prefer \"\"\" for multi-line strings rather than \u0027\u0027\u0027.\n  Projects may choose to use \u0027\u0027\u0027 for all non-docstring multi-line strings \n  if and only if they also use \u0027 for regular strings.\n\nso I think we should use \u0027\u0027\u0027 here and below",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1f1bf5c_21d3abb3",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-23T08:21:12Z",
+      "side": 1,
+      "message": "-2 space indent. I suspect your editor does not realize this is python\nsame below",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 4
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac87518f_6a170ab0",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-23T08:21:12Z",
+      "side": 1,
+      "message": "unnecessary",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 12
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51160107_c5df7375",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-23T08:21:12Z",
+      "side": 1,
+      "message": "please ensure \\n in the end of the file\n\ncan be by removing this?",
+      "range": {
+        "startLine": 33,
+        "startChar": 34,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c9f7a15_574b53c0",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-23T08:21:12Z",
+      "side": 1,
+      "message": "file_to_generate\nhttps://github.com/google/protobuf/blob/f08e4dd9845c5ba121b402f8768f3d2617191bbe/src/google/protobuf/compiler/plugin.proto#L71",
+      "range": {
+        "startLine": 41,
+        "startChar": 21,
+        "endLine": 41,
+        "endChar": 31
+      },
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
