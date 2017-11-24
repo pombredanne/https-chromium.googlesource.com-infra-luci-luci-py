@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1556d7cd_d31dc87f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T13:04:34Z",
+      "side": 1,
+      "message": "We don\u0027t actually set the bot session\u0027s status to shutdown or rebooting anywhere - maybe we should do that here? That is, in the change below, we unconditionally set the status to OK but perhaps we should be recording here that it\u0027s *not* just OK anymore.\n\nThen, maybe add a comment here, something like: \"The proxy already knows when a bot is shutting down or rebooting, so the proxy API doesn\u0027t allow the bot to send state transition messages - it generates the state transition messages itself.\"",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 39
+      },
+      "revId": "cf4633289c8e4d899c385fe3c8be4d5718cd6108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5016e95_ac72ae48",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T13:04:34Z",
+      "side": 1,
+      "message": "Do we know this is always populated here?",
+      "range": {
+        "startLine": 194,
+        "startChar": 34,
+        "endLine": 194,
+        "endChar": 47
+      },
+      "revId": "cf4633289c8e4d899c385fe3c8be4d5718cd6108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5392c56d_38159c02",
+        "filename": "appengine/swarming/swarming_bot/proto_bot/requirements.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T13:04:34Z",
+      "side": 1,
+      "message": "Is this a machine-readable file? Might be nice to have a comment here somewhere.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 13
+      },
+      "revId": "cf4633289c8e4d899c385fe3c8be4d5718cd6108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
