@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5860a40_941f5b2a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T21:11:02Z",
+      "side": 1,
+      "message": "This should be \"None\" - what happens if we encounter an error after we start the shutdown?",
+      "range": {
+        "startLine": 184,
+        "startChar": 38,
+        "endLine": 184,
+        "endChar": 48
+      },
+      "revId": "09ab8990911522d0268946ba27f887d4cbd33b4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a0aa0a0_baa22ed0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T21:11:02Z",
+      "side": 1,
+      "message": "I\u0027d call this an error and include the message text",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 190,
+        "endChar": 63
+      },
+      "revId": "09ab8990911522d0268946ba27f887d4cbd33b4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df25c50b_38eaa9a2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T21:11:02Z",
+      "side": 1,
+      "message": "Maybe:\n\n\u0027post_bot_event called before do_handshake: %s %s\u0027 % (event_type, message)\n\nAlternatively, just do an unconditional \"logging.info\" at the top of this function with the event_type and message text; that way, if anything goes wrong, we always know we have a log *somewhere* of what went wrong (even if only for a brief time).",
+      "range": {
+        "startLine": 194,
+        "startChar": 21,
+        "endLine": 194,
+        "endChar": 38
+      },
+      "revId": "09ab8990911522d0268946ba27f887d4cbd33b4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a94f70d5_a6e0c271",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T21:11:02Z",
+      "side": 1,
+      "message": "if status is not None:",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 33
+      },
+      "revId": "09ab8990911522d0268946ba27f887d4cbd33b4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
