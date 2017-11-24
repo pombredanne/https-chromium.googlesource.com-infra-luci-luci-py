@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "380eac4a_f8df7485",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T21:40:13Z",
+      "side": 1,
+      "message": "I supposed, though it\u0027s a touch spammy :) Up to you though.",
+      "parentUuid": "88d59c5f_5bb7771e",
+      "range": {
+        "startLine": 194,
+        "startChar": 21,
+        "endLine": 194,
+        "endChar": 38
+      },
+      "revId": "09ab8990911522d0268946ba27f887d4cbd33b4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a94f70d5_a6e0c271",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 9
