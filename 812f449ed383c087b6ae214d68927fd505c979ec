@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0c253060_ed08a329",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-24T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "003231ce_2284dc5e",
+      "range": {
+        "startLine": 181,
+        "startChar": 27,
+        "endLine": 181,
+        "endChar": 38
+      },
+      "revId": "812f449ed383c087b6ae214d68927fd505c979ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fecc980_76b1fab8",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "812f449ed383c087b6ae214d68927fd505c979ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2873cc1_012952ca",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-24T20:00:06Z",
+      "side": 1,
+      "message": "I found most bot_error messages are sent because bad things happen: https://cs.corp.google.com/search/?q\u003d%5Cbpost_error%5Cb+file:%5Eluci/luci-py/+package:%5Egithub$\u0026type\u003dcs except the one when failing to call a hook... Setting it back OK.",
+      "parentUuid": "4fecc980_76b1fab8",
+      "range": {
+        "startLine": 183,
+        "startChar": 38,
+        "endLine": 183,
+        "endChar": 55
+      },
+      "revId": "812f449ed383c087b6ae214d68927fd505c979ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2a567c6a_17872bfa",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-24T20:00:06Z",
+      "side": 1,
+      "message": "Good catch! Now that we are calling _attributes_to_session() as well and the status will be overwritten. I think we should not update the status inside _attributes_to_session() because status is not from the attributes.",
+      "parentUuid": "98b77c61_fb281788",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 33
+      },
+      "revId": "812f449ed383c087b6ae214d68927fd505c979ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ff909c5_51a00759",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
         "patchSetId": 8
@@ -91,6 +163,30 @@
       "revId": "812f449ed383c087b6ae214d68927fd505c979ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4937cd4c_b7962d95",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-24T20:00:06Z",
+      "side": 1,
+      "message": "I think we should log an error instead of creating a session, because this newly created session doesn\u0027t have a session name and the check on the server side will fail: https://cs.corp.google.com/piper///depot/google3/devtools/foundry/src/lib/validate/worker.go?rcl\u003d176360269\u0026l\u003d119\n\nWdyt?",
+      "parentUuid": "5ff909c5_51a00759",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 33
+      },
+      "revId": "812f449ed383c087b6ae214d68927fd505c979ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
