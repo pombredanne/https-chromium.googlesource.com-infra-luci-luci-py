@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "a117f71d_06d9ccde",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-24T19:12:33Z",
+      "side": 1,
+      "message": "We might try to post an error if something goes wrong :) Probably best not to assume, and log a (local) error if it\u0027s None.",
+      "parentUuid": "130f672b_0a24c51a",
+      "range": {
+        "startLine": 194,
+        "startChar": 34,
+        "endLine": 194,
+        "endChar": 47
+      },
+      "revId": "cf4633289c8e4d899c385fe3c8be4d5718cd6108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5392c56d_38159c02",
         "filename": "appengine/swarming/swarming_bot/proto_bot/requirements.txt",
         "patchSetId": 7
