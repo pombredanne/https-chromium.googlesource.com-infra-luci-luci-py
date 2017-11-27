@@ -169,6 +169,24 @@
       "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69b4aef6_002a7d9d",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-27T22:38:10Z",
+      "side": 1,
+      "message": "this is modeled after CLI options of https://cloud.google.com/sdk/gcloud/reference/compute/instances/add-metadata\n\nthus it should be something like\n\nmetadata_from_file: \"startup-script:\u003cpath\u003e\"\n\nto be consistent with both gcloud naming conventions and existing \u0027metadata\u0027 field.",
+      "parentUuid": "2290a9fa_ae127997",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
