@@ -53,11 +53,20 @@ class Configuration(datastore_utils.config.GlobalConfig):
         raise ValueError(ex)
       return proto_cfg
 
+    def _desuger_template(proto_cfg):
+        for template in proto_cfg.templates:
+            for filepath in template.metadata_from_files:
+                revision, content = config.get_self_config(filepath)
+                template.metadata.append('startup:%s' % content)
+            del template.metadata_from_file[:]
+        return proto_cfg
+
     configuration = cls.cached()
     template_cfg = _adds_cfg_to_message(
         'template.cfg', configuration.template_config,
         config_pb2.InstanceTemplateConfig()
     )
+    template_cfg = _desuger_template(template_cfg)
     manager_cfg = _adds_cfg_to_message(
         'manager.cfg', configuration.manager_config,
         config_pb2.InstanceGroupManagerConfig()
