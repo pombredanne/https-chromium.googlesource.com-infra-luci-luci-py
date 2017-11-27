@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6aa7992_fd56292d",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-27T15:41:39Z",
+      "side": 1,
+      "message": "desuger?",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6487ba01_6dd8e3fb",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-27T15:41:39Z",
+      "side": 1,
+      "message": "why mutate the proto?",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35fa3c1f_5cc3c331",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-27T15:41:39Z",
+      "side": 1,
+      "message": "this name implies it\u0027s generic, but it\u0027s not, it is specifically about \u0027startup:\u0027 metadata.\n\nCould the script be inlined with \u0027metadata\u0027? I guess it\u0027d be a bit too much.",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
