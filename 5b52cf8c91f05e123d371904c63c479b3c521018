@@ -49,6 +49,23 @@
     },
     {
       "key": {
+        "uuid": "5adf4a1d_e23a7478",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-27T22:35:02Z",
+      "side": 1,
+      "message": "the file use +2 indentation.",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6487ba01_6dd8e3fb",
         "filename": "appengine/gce-backend/config.py",
         "patchSetId": 1
@@ -84,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "54f64dbe_460365ac",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-27T22:35:02Z",
+      "side": 1,
+      "message": "I\u0027m just not a fair of methods mutating a struct, but in this case it\u0027s internal so it\u0027s fine.",
+      "parentUuid": "083fd686_ae93359c",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35fa3c1f_5cc3c331",
         "filename": "appengine/gce-backend/proto/config.proto",
         "patchSetId": 1
@@ -113,6 +148,24 @@
       "side": 1,
       "message": "Ah, that\u0027s my bad. I don\u0027t know what the tag should be and forgot to add that question. It should be something generic. Suggestions?",
       "parentUuid": "35fa3c1f_5cc3c331",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2290a9fa_ae127997",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-27T22:35:02Z",
+      "side": 1,
+      "message": "startup_metadata_from_file, a bit verbose but exact.",
+      "parentUuid": "1b5b7461_049cf641",
       "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
