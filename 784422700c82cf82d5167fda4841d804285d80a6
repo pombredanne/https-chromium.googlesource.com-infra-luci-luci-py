@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7977ea82_9c902a32",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-27T14:57:57Z",
+      "side": 1,
+      "message": "I think this should be using \"is None\". Updated.",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 24
+      },
+      "revId": "784422700c82cf82d5167fda4841d804285d80a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
