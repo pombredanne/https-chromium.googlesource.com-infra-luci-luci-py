@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "588f4259_3f7a3d81",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "i am worried about the case when a user implements a method, but makes a typo in name, we don\u0027t tell the user about it, and the users gets \"not implemented\" error. There is an advantage in not checking: it is possible to implement a service partially (not all of its methods), but it is questionable (maybe the service should be split).\n\nok, let\u0027s leave it as is. It is consistent with Python overall: if you make a typo in a python method and you don\u0027t have a test, you gonna pay for that in runtime",
+      "parentUuid": "1dc67cf6_6168c4bd",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b88ca6fb_8742196c",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -432,6 +450,30 @@
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffece231_cdd7af83",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c59067c6_4c35cbe2",
+      "range": {
+        "startLine": 127,
+        "startChar": 20,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -822,6 +864,54 @@
     },
     {
       "key": {
+        "uuid": "56d8e58b_7c2caf6f",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "i meant\n\n  return \u0027\\n\u0027.join(fragments).strip()",
+      "parentUuid": "e0b647e0_1d55702a",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 12
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "143b78eb_942befce",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "`+ \u0027\\n\u0027` is fine",
+      "parentUuid": "b2c852a8_39da2ab3",
+      "range": {
+        "startLine": 33,
+        "startChar": 34,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c9f7a15_574b53c0",
         "filename": "appengine/components/tools/protoc-gen-prpc-python",
         "patchSetId": 13
@@ -866,6 +956,30 @@
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae85567_edda3d86",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "yeah, i meant to iterate over file_to_generate and lookup proto_file, but what you do is fine too, it is the same time complexity pretty much",
+      "parentUuid": "5358535b_542379ec",
+      "range": {
+        "startLine": 41,
+        "startChar": 21,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

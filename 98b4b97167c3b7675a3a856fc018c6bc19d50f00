@@ -1,0 +1,342 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dc48487_08889f4b",
+        "filename": "appengine/components/components/prpc/headers_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "since we are checking exception and exiting right after that, I believe we can use self.assertRaises in call sites and do L28 without try..except block",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b15f9ab_eec797d9",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "sort?",
+      "range": {
+        "startLine": 23,
+        "startChar": 28,
+        "endLine": 23,
+        "endChar": 45
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2ca69c3_af0f2e6c",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "I assume you deleted some status codes because they were not used by prpc.\nBut StatusCode is public API, so they should remain.\n\nAlso, I realized that users will have to import StatusCode from prpc package, which is different if there were doing this in a true gRPC. But it is not a big deal. It is more likely that we will rewrite buildbucket in Go than gRPC will start working they way we need on classic appengine",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a308103_1b50ce5a",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "in L189-203 do not check that the handler func is not None. Please either check it there or move  the IF condition to the dict-comprehension itself, so we don\u0027t have method entries for unimplemented methods",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52bfac2a_3bd74f68",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "there is no context anymore",
+      "range": {
+        "startLine": 126,
+        "startChar": 54,
+        "endLine": 126,
+        "endChar": 71
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9730931c_20375813",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "let\u0027s set \n\n  Content-Type: text/plain; charset\u003dutf-8\n\ninstead, so that the client does not interpret the response as HTML",
+      "range": {
+        "startLine": 143,
+        "startChar": 34,
+        "endLine": 143,
+        "endChar": 59
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5501d574_d5c4725e",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "https://godoc.org/go.chromium.org/luci/grpc/prpc\nsays\n\n\u003e - \"X-Prpc-Grpc-Code\": specifies the gRPC code.\n  A server MUST specify it in all cases.\n\nplease either specify X-Prpc-Grpc-Code here, or do header parsing in _handle\n\n--\n\nalso I noticed that we don\u0027t set CORS headers in this case. I am not sure, but it might mean that on the client side, the cross-origin request will fail with a CORS error instead of bad request",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d7efd03_3a6814fd",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "this is not HTML, so let\u0027s respond with\n\n  Content-Type: text/plain; charset\u003dutf-8",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 49
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87618d17_f513e891",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "it is an encoding.Encoding enum member\n\nsame for accept",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 33
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d827d2e2_a1a8e7da",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "unused, unnecessary, also see below",
+      "range": {
+        "startLine": 195,
+        "startChar": 24,
+        "endLine": 195,
+        "endChar": 29
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d94f8f7_6bdfb6d8",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "unnecessary",
+      "range": {
+        "startLine": 204,
+        "startChar": 24,
+        "endLine": 204,
+        "endChar": 29
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82372d8b_50af4d58",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "unnecessary\nlogging.exception already records message and stack trace of the \"current\" exception",
+      "range": {
+        "startLine": 206,
+        "startChar": 61,
+        "endLine": 206,
+        "endChar": 71
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8be56bff_f3c25064",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "let\u0027s log this, so the service owner understand what they are doing wrong",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f789411b_a4dd2cc6",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "let\u0027s use logging.exception here too",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "058e89e4_72011707",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "nit: 2 blank lines between top-level declarations",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd8dd4fc_6b5f559e",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-28T18:27:40Z",
+      "side": 1,
+      "message": "please make a set out of it before the loop and then use the set",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
