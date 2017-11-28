@@ -59,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "37d39eb2_94be22d0",
+        "filename": "appengine/components/components/prpc/helpers.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bf7890d_058f7f5f",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 9
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f27398e0_48c119fb",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -79,6 +103,30 @@
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca57b83a_7ceb1c6f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f27398e0_48c119fb",
+      "range": {
+        "startLine": 57,
+        "startChar": 9,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +153,30 @@
     },
     {
       "key": {
+        "uuid": "4c77e720_d3cbd0eb",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "949e1e02_6447ccbd",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 11
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68efb6e5_66927bb1",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -116,6 +188,24 @@
       "writtenOn": "2017-11-22T05:03:44Z",
       "side": 1,
       "message": "just to ensure we don\u0027t forget to do it: please raise an exception if method is not there",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dc67cf6_6168c4bd",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Should we be raising an exception here? The handler itself handles this case by setting StatusCode.UNIMPLEMENTED in the context at L154.",
+      "parentUuid": "68efb6e5_66927bb1",
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -168,6 +258,54 @@
     },
     {
       "key": {
+        "uuid": "7871cec4_96fd5c97",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0338da8_717be27e",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0ef5845_397067cf",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b88ca6fb_8742196c",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 11
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b43b1634_5285b4d9",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -191,6 +329,30 @@
     },
     {
       "key": {
+        "uuid": "0c5f44c8_2edd80c0",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b43b1634_5285b4d9",
+      "range": {
+        "startLine": 110,
+        "startChar": 70,
+        "endLine": 110,
+        "endChar": 71
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7207034e_b7062f71",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -208,6 +370,24 @@
     },
     {
       "key": {
+        "uuid": "585ecbca_3d6cd9bf",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done, this should all be much cleaner.\n\nWith that said, I wanted to make context immutable, but it seems like it\u0027s easier on the user of pRPC to have their Service mutate context than to make it immutable (which would make this code cleaner, imo). I can still go for that, and have servicer methods return a new context if necessary?",
+      "parentUuid": "7207034e_b7062f71",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f52b4ec_f3e3170f",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -219,6 +399,30 @@
       "writtenOn": "2017-11-22T05:03:44Z",
       "side": 1,
       "message": "i am not sure, i suspect that context.details is a string and content is bytes\nwe may need to encode(\u0027utf-8\u0027)",
+      "range": {
+        "startLine": 127,
+        "startChar": 20,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c59067c6_4c35cbe2",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "http://webapp2.readthedocs.io/en/latest/guide/response.html by default its text/html and UTF-8 it seems. So, I think it\u0027s being encoded under-the-hood here, I added a comment specifying this was the case and put all the headers logic together so what\u0027s going on here is much more obvious.",
+      "parentUuid": "5f52b4ec_f3e3170f",
       "range": {
         "startLine": 127,
         "startChar": 20,
@@ -248,6 +452,24 @@
     },
     {
       "key": {
+        "uuid": "5524073f_e87b50fd",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01e1d485_6fec982b",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69de9d10_e425ec79",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -262,6 +484,24 @@
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49b9f773_b9bdbc0e",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69de9d10_e425ec79",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -288,6 +528,30 @@
     },
     {
       "key": {
+        "uuid": "45e979bc_56550e0c",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b83eab4_57294cd4",
+      "range": {
+        "startLine": 153,
+        "startChar": 22,
+        "endLine": 153,
+        "endChar": 55
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c2a1371_91210232",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -311,6 +575,30 @@
     },
     {
       "key": {
+        "uuid": "83eae0f8_295d82a4",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c2a1371_91210232",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 23
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83d58264_017f4b8e",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 13
@@ -325,6 +613,24 @@
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ab4602_4a61c1b2",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83d58264_017f4b8e",
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -351,6 +657,30 @@
     },
     {
       "key": {
+        "uuid": "87f4fcef_fb4d5185",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04be299d_a45b86d5",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1f1bf5c_21d3abb3",
         "filename": "appengine/components/tools/protoc-gen-prpc-python",
         "patchSetId": 13
@@ -371,6 +701,30 @@
       "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b7c8c1_bacf0122",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1f1bf5c_21d3abb3",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 4
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -420,6 +774,54 @@
     },
     {
       "key": {
+        "uuid": "e0b647e0_1d55702a",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "this is getting rid of the newline at the beginning of the file. I can put the first line of the multiline strings on the first line of the declaration, but then stylistically that looks bad (it would have to exceed 80 char max).",
+      "parentUuid": "ac87518f_6a170ab0",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 12
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2c852a8_39da2ab3",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "the issue is the beginning of the generated file has \u0027\\n\u0027 otherwise because of how multiline strings work. I\u0027ll just append it? alternatively, I can lstrip?",
+      "parentUuid": "51160107_c5df7375",
+      "range": {
+        "startLine": 33,
+        "startChar": 34,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c9f7a15_574b53c0",
         "filename": "appengine/components/tools/protoc-gen-prpc-python",
         "patchSetId": 13
@@ -431,6 +833,30 @@
       "writtenOn": "2017-11-23T08:21:12Z",
       "side": 1,
       "message": "file_to_generate\nhttps://github.com/google/protobuf/blob/f08e4dd9845c5ba121b402f8768f3d2617191bbe/src/google/protobuf/compiler/plugin.proto#L71",
+      "range": {
+        "startLine": 41,
+        "startChar": 21,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "9815beea6f5a87a6ddfeb35374cc50c73b700311",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5358535b_542379ec",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T16:04:41Z",
+      "side": 1,
+      "message": "this is the iterator variable, file_to_generate is a string. do you mean to filter req.proto_file by file_to_generate? (I did this, since it stops google/protobuf deps from being generated).",
+      "parentUuid": "5c9f7a15_574b53c0",
       "range": {
         "startLine": 41,
         "startChar": 21,
