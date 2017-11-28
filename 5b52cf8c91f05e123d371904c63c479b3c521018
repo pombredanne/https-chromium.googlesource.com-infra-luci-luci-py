@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "8da0f3ee_6e1d5cea",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1159394
+      },
+      "writtenOn": "2017-11-28T09:17:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5adf4a1d_e23a7478",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6487ba01_6dd8e3fb",
         "filename": "appengine/gce-backend/config.py",
         "patchSetId": 1
@@ -116,6 +134,24 @@
       "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d83bc5cb_4c75b4e3",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1159394
+      },
+      "writtenOn": "2017-11-28T09:17:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54f64dbe_460365ac",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -184,6 +220,24 @@
       "side": 1,
       "message": "this is modeled after CLI options of https://cloud.google.com/sdk/gcloud/reference/compute/instances/add-metadata\n\nthus it should be something like\n\nmetadata_from_file: \"startup-script:\u003cpath\u003e\"\n\nto be consistent with both gcloud naming conventions and existing \u0027metadata\u0027 field.",
       "parentUuid": "2290a9fa_ae127997",
+      "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3ca66d3_191042be",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1159394
+      },
+      "writtenOn": "2017-11-28T09:17:57Z",
+      "side": 1,
+      "message": "Thanks! I\u0027ll make that change here and in https://chrome-internal-review.googlesource.com/c/infradata/config/+/499012/3/configs/gce-backend/templates.cfg",
+      "parentUuid": "69b4aef6_002a7d9d",
       "revId": "5b52cf8c91f05e123d371904c63c479b3c521018",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
