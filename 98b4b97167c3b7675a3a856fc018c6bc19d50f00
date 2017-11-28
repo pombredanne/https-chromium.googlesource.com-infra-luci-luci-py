@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a472c079_8ad7ca11",
+        "filename": "appengine/components/components/prpc/headers_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dc48487_08889f4b",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b15f9ab_eec797d9",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "aed8c044_d42398da",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b15f9ab_eec797d9",
+      "range": {
+        "startLine": 23,
+        "startChar": 28,
+        "endLine": 23,
+        "endChar": 45
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2ca69c3_af0f2e6c",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -62,6 +110,24 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aea9298_feba04f4",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2ca69c3_af0f2e6c",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "ffe9e75a_6bb27507",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a308103_1b50ce5a",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52bfac2a_3bd74f68",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -108,6 +198,30 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "052b44d8_c6fcc77f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52bfac2a_3bd74f68",
+      "range": {
+        "startLine": 126,
+        "startChar": 54,
+        "endLine": 126,
+        "endChar": 71
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "afa4ed60_9279120a",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Not necessary anymore, it\u0027ll follow the same path as any other error in _handle (see below).",
+      "parentUuid": "9730931c_20375813",
+      "range": {
+        "startLine": 143,
+        "startChar": 34,
+        "endLine": 143,
+        "endChar": 59
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5501d574_d5c4725e",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -148,6 +286,24 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19415663_a9d11ef4",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "I just made it so that this case isn\u0027t special and just follows the normal error handling (thus, gRPC code is set, and CORS headers are too).",
+      "parentUuid": "5501d574_d5c4725e",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -174,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "da119b6a_57bd2b89",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d7efd03_3a6814fd",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 49
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87618d17_f513e891",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -194,6 +374,30 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdabac83_4964f4a0",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "No longer needed (restructured so these aren\u0027t args).",
+      "parentUuid": "87618d17_f513e891",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 33
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -220,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "59ec121f_0c5ebfec",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d827d2e2_a1a8e7da",
+      "range": {
+        "startLine": 195,
+        "startChar": 24,
+        "endLine": 195,
+        "endChar": 29
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d94f8f7_6bdfb6d8",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -240,6 +468,30 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c913ca_1d39bafd",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d94f8f7_6bdfb6d8",
+      "range": {
+        "startLine": 204,
+        "startChar": 24,
+        "endLine": 204,
+        "endChar": 29
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -266,6 +518,30 @@
     },
     {
       "key": {
+        "uuid": "cb41b1e5_ddc4cf50",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82372d8b_50af4d58",
+      "range": {
+        "startLine": 206,
+        "startChar": 61,
+        "endLine": 206,
+        "endChar": 71
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8be56bff_f3c25064",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 16
@@ -280,6 +556,24 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "172980f0_30f16b6a",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8be56bff_f3c25064",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -300,6 +594,24 @@
     },
     {
       "key": {
+        "uuid": "d994919d_6faf19fc",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f789411b_a4dd2cc6",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "058e89e4_72011707",
         "filename": "appengine/components/components/prpc/server_test.py",
         "patchSetId": 16
@@ -314,6 +626,24 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c99faa4_63de31d7",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "058e89e4_72011707",
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -337,6 +667,30 @@
       "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff92e56b_fcfc4bd3",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-28T20:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd8dd4fc_6b5f559e",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "98b4b97167c3b7675a3a856fc018c6bc19d50f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
