@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2eced4a2_73f59335",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-28T18:25:45Z",
+      "side": 1,
+      "message": "did you mean \u0027desugar\u0027?",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "adb525704cf6274065e4ac4c5d07d501946f8edc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ebec67b_a40c63b0",
         "filename": "appengine/gce-backend/config.py",
         "patchSetId": 3
@@ -13,6 +36,29 @@
       "writtenOn": "2017-11-28T14:41:07Z",
       "side": 1,
       "message": "rest of the file uses single quotes.\n\nYou want 1, not 2.",
+      "revId": "adb525704cf6274065e4ac4c5d07d501946f8edc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acb73691_062348f0",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-11-28T18:25:45Z",
+      "side": 1,
+      "message": "nit: please place it right after \u0027metadata\u0027 field. It is fine to have tags non-sequential.",
+      "range": {
+        "startLine": 57,
+        "startChar": 20,
+        "endLine": 57,
+        "endChar": 38
+      },
       "revId": "adb525704cf6274065e4ac4c5d07d501946f8edc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
