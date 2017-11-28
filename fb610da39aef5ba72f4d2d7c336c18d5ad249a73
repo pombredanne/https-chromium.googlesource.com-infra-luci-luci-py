@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f7f4d2a7_9db1db78",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-28T21:54:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ab9d2df_2f3e0a85",
+      "range": {
+        "startLine": 488,
+        "startChar": 20,
+        "endLine": 488,
+        "endChar": 22
+      },
+      "revId": "fb610da39aef5ba72f4d2d7c336c18d5ad249a73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52053cbb_b24b9134",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2017-11-28T19:38:34Z",
       "side": 1,
       "message": "should this one set MAC_CHROMIUM_TMPDIR too? https://chromium.googlesource.com/chromium/src/+/master/base/files/file_util_mac.mm#33",
+      "revId": "fb610da39aef5ba72f4d2d7c336c18d5ad249a73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc4f29f9_5e8ca331",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-28T21:54:51Z",
+      "side": 1,
+      "message": "Wouha. I\u0027ll make a separate CL for this.",
+      "parentUuid": "52053cbb_b24b9134",
       "revId": "fb610da39aef5ba72f4d2d7c336c18d5ad249a73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
