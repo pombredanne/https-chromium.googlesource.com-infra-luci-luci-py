@@ -50,6 +50,11 @@ message InstanceTemplateConfig {
     optional bool auto_assign_external_ip = 12;
     // Minimum CPU platform.
     optional string min_cpu_platform = 13;
+    // Path to file with metadata.
+    //
+    // Value should be on the form 'key:path' and will
+    // be translated to 'key:content(path)'.
+    repeated string metadata_from_file = 14;
   }
 
   repeated InstanceTemplate templates = 1;
