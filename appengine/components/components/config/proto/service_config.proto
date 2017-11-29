@@ -180,7 +180,7 @@ message ValidationRequestMessage {
   // Path of the config file to validate.
   optional string path = 2;
   // Base64-encoded contents of the file.
-  optional string content = 3;
+  optional bytes content = 3;
 }
 
 // This message is used only in JSON form. It is expected from an external
