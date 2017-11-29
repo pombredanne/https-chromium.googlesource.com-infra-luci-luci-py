@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3a09dc8_c73be90f",
+        "filename": "appengine/components/components/config/validation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-29T17:01:46Z",
+      "side": 1,
+      "message": "nit: a more pythonic version:\n\n  if kind in (\u0027text\u0027, \u0027exact\u0027):",
+      "revId": "e3644252c76de0c5ad696f7b31aecf2cbfc115af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
