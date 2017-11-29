@@ -213,7 +213,11 @@ class Popen(subprocess.Popen):
   Unlike subprocess, yield_any(), recv_*(), communicate() will close stdout and
   stderr once the child process closes them, after all the data is read.
 
-  Arguments:
+  Mutated behavior:
+  - args: transparently encode('utf-8') any unicode items.
+  - cwd: transparently encode('utf-8') if unicode.
+
+  Additional arguments:
   - detached: If True, the process is created in a new process group. On
     Windows, use CREATE_NEW_PROCESS_GROUP. On posix, use os.setpgid(0, 0).
 
@@ -240,6 +244,15 @@ class Popen(subprocess.Popen):
   def __init__(self, args, **kwargs):
     assert 'creationflags' not in kwargs
     assert 'preexec_fn' not in kwargs, 'Use detached=True instead'
+
+    # Windows version of subprocess.Popen() really doens't like unicode. In
+    # practice we should use the current ANSI code page, but settle for utf-8
+    # across all OSes for consistency.
+    to_str = i if isinstance(i, str) else i.encode('utf-8')
+    args = [to_str(i) for i in args]
+    if 'cwd' in kwargs:
+      kwargs['cwd'] = to_str(kwargs['cwd'])
+
     self.start = time.time()
     self.end = None
     self.gid = None
