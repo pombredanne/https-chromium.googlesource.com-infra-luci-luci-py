@@ -273,6 +273,7 @@ class ThreadPoolTest(unittest.TestCase):
     # Trigger a ridiculous amount of tasks, and abort the remaining.
     completed = False
     results = []
+    print "Hie!!!"
     try:
       with threading_utils.ThreadPool(2, 2, 0) as pool:
         # Allow 10 tasks to run initially.

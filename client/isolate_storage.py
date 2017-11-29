@@ -565,14 +565,15 @@ class IsolateServerGrpc(StorageApi):
       logging.error('gRPC error during fetch: re-throwing as IOError (%s)' % g)
       raise IOError(g)
 
-  def push(self, item, push_state, content=None):
+  def push(self, item, push_state, _content=None):
     assert isinstance(item, Item)
     assert item.digest is not None
     assert item.size is not None
     assert isinstance(push_state, _IsolateServerGrpcPushState)
 
-    # Default to item.content().
-    content = item.content() if content is None else content
+    # Always use item.content() to create a new generator even if "_content" is
+    # not None. This is because the gRPC proxy doesn't allow partial uploads.
+    content = item.content()
     guard_memory_use(self, content, item.size)
     self._num_pushes += 1
 
