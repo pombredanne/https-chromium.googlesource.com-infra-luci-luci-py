@@ -57,6 +57,12 @@ def raiseError(code):
   raise isolate_storage.grpc.RpcError(
       'cannot turn this into a real code yet: %s' % code)
 
+def content(it):
+  """Constructs a function which returns the given iterable."""
+  def f(self):
+    return it
+  return f
+
 class IsolateStorageTest(auto_stub.TestCase):
   def get_server(self):
     return isolate_storage.IsolateServerGrpc('https://luci.appspot.com',
@@ -146,7 +152,8 @@ class IsolateStorageTest(auto_stub.TestCase):
     """Push: send one chunk of small data"""
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=4)
-    s.push(i, isolate_storage._IsolateServerGrpcPushState(), '1234')
+    self.mock(isolate_storage.Item, 'content', content(['1234']))
+    s.push(i, isolate_storage._IsolateServerGrpcPushState())
     requests = s._proxy._stub.popPushRequests()
     self.assertEqual(1, len(requests))
     m = re.search('client/bob/uploads/.*/blobs/abc123/4',
@@ -161,7 +168,8 @@ class IsolateStorageTest(auto_stub.TestCase):
     self.mock(isolate_storage, 'NET_IO_FILE_CHUNK', 3)
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=4)
-    s.push(i, isolate_storage._IsolateServerGrpcPushState(), '1234')
+    self.mock(isolate_storage.Item, 'content', content(['1234']))
+    s.push(i, isolate_storage._IsolateServerGrpcPushState())
     requests = s._proxy._stub.popPushRequests()
     self.assertEqual(2, len(requests))
     m = re.search('client/bob/uploads/.*/blobs/abc123/4',
@@ -178,7 +186,8 @@ class IsolateStorageTest(auto_stub.TestCase):
     """Push: sends multiple small chunks"""
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=4)
-    s.push(i, isolate_storage._IsolateServerGrpcPushState(), ['12', '34'])
+    self.mock(isolate_storage.Item, 'content', content(['12', '34']))
+    s.push(i, isolate_storage._IsolateServerGrpcPushState())
     requests = s._proxy._stub.popPushRequests()
     self.assertEqual(2, len(requests))
     m = re.search('client/bob/uploads/.*/blobs/abc123/4',
@@ -196,7 +205,8 @@ class IsolateStorageTest(auto_stub.TestCase):
     self.mock(isolate_storage, 'NET_IO_FILE_CHUNK', 2)
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=6)
-    s.push(i, isolate_storage._IsolateServerGrpcPushState(), ['123', '456'])
+    self.mock(isolate_storage.Item, 'content', content(['123', '456']))
+    s.push(i, isolate_storage._IsolateServerGrpcPushState())
     requests = s._proxy._stub.popPushRequests()
     self.assertEqual(4, len(requests))
     m = re.search('client/bob/uploads/.*/blobs/abc123/6',
@@ -219,7 +229,8 @@ class IsolateStorageTest(auto_stub.TestCase):
     """Push: send a zero-length blob"""
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=0)
-    s.push(i, isolate_storage._IsolateServerGrpcPushState(), '')
+    self.mock(isolate_storage.Item, 'content', content(['']))
+    s.push(i, isolate_storage._IsolateServerGrpcPushState())
     requests = s._proxy._stub.popPushRequests()
     self.assertEqual(1, len(requests))
     m = re.search('client/bob/uploads/.*/blobs/abc123/0',
@@ -238,6 +249,7 @@ class IsolateStorageTest(auto_stub.TestCase):
 
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=0)
+    self.mock(isolate_storage.Item, 'content', content(['1234']))
     with self.assertRaises(IOError):
       s.push(i, isolate_storage._IsolateServerGrpcPushState(), '1234')
 
@@ -250,8 +262,49 @@ class IsolateStorageTest(auto_stub.TestCase):
 
     s = self.get_server()
     i = isolate_storage.Item(digest='abc123', size=0)
+    self.mock(isolate_storage.Item, 'content', content(['1234']))
     with self.assertRaises(IOError):
-      s.push(i, isolate_storage._IsolateServerGrpcPushState(), '1234')
+      s.push(i, isolate_storage._IsolateServerGrpcPushState())
+
+  def testPushRetriesOnGrpcFailure(self):
+    """Push: retry will succeed if the Isolate failure is transient."""
+    class IsFirstWrapper:
+      is_first = True
+
+    def Write(self, requests, timeout=None):
+      del timeout
+      if IsFirstWrapper.is_first:
+        IsFirstWrapper.is_first = False
+        raiseError(isolate_storage.grpc.StatusCode.INTERNAL_ERROR)
+      nb = 0
+      for r in requests:
+        nb += len(r.data)
+        self._push_requests.append(r.__deepcopy__())
+      resp = isolate_storage.bytestream_pb2.WriteResponse()
+      resp.committed_size = nb
+      return resp
+
+    self.mock(ByteStreamStubMock, 'Write', Write)
+
+    s = self.get_server()
+    i = isolate_storage.Item(digest='abc123', size=4)
+    self.mock(isolate_storage.Item, 'content', content(['12', '34']))
+    with self.assertRaises(IOError):
+      s.push(i, isolate_storage._IsolateServerGrpcPushState())
+
+    # Second retry should succeed.
+    s.push(i, isolate_storage._IsolateServerGrpcPushState())
+    requests = s._proxy._stub.popPushRequests()
+    self.assertEqual(2, len(requests))
+    m = re.search('client/bob/uploads/.*/blobs/abc123/4',
+                  requests[0].resource_name)
+    self.assertTrue(m)
+    self.assertEqual('12', requests[0].data)
+    self.assertEqual(0, requests[0].write_offset)
+    self.assertFalse(requests[0].finish_write)
+    self.assertEqual('34', requests[1].data)
+    self.assertEqual(2, requests[1].write_offset)
+    self.assertTrue(requests[1].finish_write)
 
 
 if __name__ == '__main__':
