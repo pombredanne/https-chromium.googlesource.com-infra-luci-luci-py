@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51187f36_eac60ae3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2017-11-29T11:49:05Z",
+      "side": 1,
+      "message": "What was this change for? Just to allow a single \u0027expected\u0027 value instead of a list?",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "266f18bd33eb12b4d878427be1b54ee82f90e14e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
