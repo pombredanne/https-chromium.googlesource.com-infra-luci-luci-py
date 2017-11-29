@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "61e8bdf0_da4882b8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-29T13:24:18Z",
+      "side": 1,
+      "message": "random nit; I\u0027ve never understood why people prefer spacing here. I like my code dense and easy to fold in vim.\n\nExample in devstyle http://engdoc/eng/doc/devguide/py/style/index.md#217-function-and-method-decorators doesn\u0027t show spacing either.\n\nTo clarify, what I\u0027m asking for is why you feel like it increases readability as I\u0027ve seen a few people do that.",
+      "revId": "266f18bd33eb12b4d878427be1b54ee82f90e14e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51187f36_eac60ae3",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc_test.py",
         "patchSetId": 2
