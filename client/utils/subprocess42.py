@@ -240,6 +240,8 @@ class Popen(subprocess.Popen):
   def __init__(self, args, **kwargs):
     assert 'creationflags' not in kwargs
     assert 'preexec_fn' not in kwargs, 'Use detached=True instead'
+    for i in args:
+      assert isinstance(i, str), repr(args)
     self.start = time.time()
     self.end = None
     self.gid = None

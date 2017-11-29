@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -14,6 +15,7 @@ import json
 import logging
 import os
 import re
+import shutil
 import signal
 import socket
 import sys
@@ -44,6 +46,10 @@ test_env_bot.setup_test_env()
 from api import os_utilities
 
 
+# Use a variable because it is corrupting my text editor from the 80s.
+HELLO_WORLD = u'hello_🌐'
+
+
 # Signal as seen by the process.
 SIGNAL_TERM = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
 
@@ -54,12 +60,12 @@ TIMEOUT_SECS = 20
 
 
 # For the isolated tests that outputs a file named result.txt containing 'hey'.
-ISOLATE_HELLO_WORLD = {
-  'variables': {
-    'command': ['python', '-u', 'hello_world.py'],
-    'files': ['hello_world.py'],
+DEFAULT_ISOLATE_HELLO = """{
+  "variables": {
+    "command": ["python", "-u", "%(name)s.py"],
+    "files": ["%(name)s.py"],
   },
-}
+}""" % {'name': HELLO_WORLD.encode('utf-8')}
 
 # Update these hashes everytime isolated_format.py is updated:
 RESULT_HEY_ISOLATED_OUT = {
@@ -80,15 +86,6 @@ RESULT_HEY_OUTPUTS_REF = {
     '&hash=5c64883277eb00bceafe3659f182e194cffc5d96',
 }
 
-RESULT_HEY2_ISOLATED_OUT = {
-  u'isolated': u'7f89142465cba8d465b1f0a3f6e6f95ad28cc56b',
-  u'isolatedserver': u'http://localhost:10050',
-  u'namespace': u'default-gzip',
-  u'view_url':
-    u'http://localhost:10050/browse?namespace=default-gzip'
-    '&hash=7f89142465cba8d465b1f0a3f6e6f95ad28cc56b',
-}
-
 RESULT_SECRET_OUTPUT = {
   u'isolated': u'd2eca4d860e4f1728272f6a736fd1c9ac6e98c4f',
   u'isolatedserver': u'http://localhost:10050',
@@ -100,10 +97,10 @@ RESULT_SECRET_OUTPUT = {
 
 
 class SwarmingClient(object):
-  def __init__(self, swarming_server, isolate_server):
+  def __init__(self, swarming_server, isolate_server, tmpdir):
     self._swarming_server = swarming_server
     self._isolate_server = isolate_server
-    self._tmpdir = tempfile.mkdtemp(prefix='swarming_client')
+    self._tmpdir = tmpdir
     self._index = 0
 
   def isolate(self, isolate_path, isolated_path):
@@ -120,86 +117,78 @@ class SwarmingClient(object):
 
   def task_trigger_raw(self, args):
     """Triggers a task and return the task id."""
-    h, tmp = tempfile.mkstemp(prefix='swarming_smoke_test', suffix='.json')
+    h, tmp = tempfile.mkstemp(
+        dir=self._tmpdir, prefix='trigger_raw', suffix='.json')
     os.close(h)
-    try:
-      cmd = [
-        '--user', 'joe@localhost',
-        '-d', 'pool', 'default',
-        '--dump-json', tmp,
-        '--raw-cmd',
-      ]
-      cmd.extend(args)
-      assert not self._run('trigger', cmd), args
-      with open(tmp, 'rb') as f:
-        data = json.load(f)
-        task_id = data['tasks'].popitem()[1]['task_id']
-        logging.debug('task_id = %s', task_id)
-        return task_id
-    finally:
-      os.remove(tmp)
+    cmd = [
+      '--user', 'joe@localhost',
+      '-d', 'pool', 'default',
+      '--dump-json', tmp,
+      '--raw-cmd',
+    ]
+    cmd.extend(args)
+    assert not self._run('trigger', cmd), args
+    with open(tmp, 'rb') as f:
+      data = json.load(f)
+      task_id = data['tasks'].popitem()[1]['task_id']
+      logging.debug('task_id = %s', task_id)
+      return task_id
 
   def task_trigger_isolated(self, name, isolated_hash, extra=None):
     """Triggers a task and return the task id."""
-    h, tmp = tempfile.mkstemp(prefix='swarming_smoke_test', suffix='.json')
+    h, tmp = tempfile.mkstemp(
+        dir=self._tmpdir, prefix='trigger_isolated', suffix='.json')
     os.close(h)
-    try:
-      cmd = [
-        '--user', 'joe@localhost',
-        '-d', 'pool', 'default',
-        '--dump-json', tmp,
-        '--task-name', name,
-        '-I',  self._isolate_server,
-        '--namespace', 'default-gzip',
-        '-s', isolated_hash,
-      ]
-      if extra:
-        cmd.extend(extra)
-      assert not self._run('trigger', cmd)
-      with open(tmp, 'rb') as f:
-        data = json.load(f)
-        task_id = data['tasks'].popitem()[1]['task_id']
-        logging.debug('task_id = %s', task_id)
-        return task_id
-    finally:
-      os.remove(tmp)
+    cmd = [
+      '--user', 'joe@localhost',
+      '-d', 'pool', 'default',
+      '--dump-json', tmp,
+      '--task-name', name,
+      '-I',  self._isolate_server,
+      '--namespace', 'default-gzip',
+      '-s', isolated_hash,
+    ]
+    if extra:
+      cmd.extend(extra)
+    assert not self._run('trigger', cmd)
+    with open(tmp, 'rb') as f:
+      data = json.load(f)
+      task_id = data['tasks'].popitem()[1]['task_id']
+      logging.debug('task_id = %s', task_id)
+      return task_id
 
   def task_collect(self, task_id):
     """Collects the results for a task."""
-    h, tmp = tempfile.mkstemp(prefix='swarming_smoke_test', suffix='.json')
-    os.close(h)
+    task_id = task_id.encode('utf-8')
+    tmp = os.path.join(self._tmpdir, task_id + '.json')
+    tmpdir = os.path.join(self._tmpdir, task_id)
+    os.mkdir(tmpdir)
+    # swarming.py collect will return the exit code of the task.
+    args = [
+      '--task-summary-json', tmp, task_id, '--task-output-dir', tmpdir,
+      '--timeout', str(TIMEOUT_SECS), '--perf',
+    ]
+    self._run('collect', args)
+    with open(tmp, 'rb') as f:
+      content = f.read()
     try:
-      tmpdir = tempfile.mkdtemp(prefix='swarming_smoke_test')
-      try:
-        # swarming.py collect will return the exit code of the task.
-        args = [
-          '--task-summary-json', tmp, task_id, '--task-output-dir', tmpdir,
-          '--timeout', str(TIMEOUT_SECS), '--perf',
-        ]
-        self._run('collect', args)
-        with open(tmp, 'rb') as f:
-          content = f.read()
-        try:
-          summary = json.loads(content)
-        except ValueError:
-          print >> sys.stderr, 'Bad json:\n%s' % content
-          raise
-        outputs = {}
-        for root, _, files in os.walk(tmpdir):
-          for i in files:
-            p = os.path.join(root, i)
-            name = p[len(tmpdir)+1:]
-            with open(p, 'rb') as f:
-              outputs[name] = f.read()
-        return summary, outputs
-      finally:
-        file_path.rmtree(tmpdir)
-    finally:
-      os.remove(tmp)
+      summary = json.loads(content)
+    except ValueError:
+      print >> sys.stderr, 'Bad json:\n%s' % content
+      raise
+    outputs = {}
+    for root, _, files in os.walk(tmpdir):
+      for i in files:
+        p = os.path.join(root, i)
+        name = p[len(tmpdir)+1:]
+        with open(p, 'rb') as f:
+          outputs[name] = f.read()
+    return summary, outputs
 
   def task_query(self, task_id):
     """Query a task result without waiting for it to complete."""
-    return json.loads(self._capture('query', ['task/%s/result' % task_id]))
+    return json.loads(
+        self._capture('query', ['task/%s/result' % task_id.encode('utf-8')]))
 
   def terminate(self, bot_id):
     task_id = self._capture('terminate', [bot_id]).strip()
@@ -207,11 +196,6 @@ class SwarmingClient(object):
     if not task_id:
       return 1
     return self._run('collect', ['--timeout', str(TIMEOUT_SECS), task_id])
-
-  def cleanup(self):
-    if self._tmpdir:
-      file_path.rmtree(self._tmpdir)
-      self._tmpdir = None
 
   def query_bot(self):
     """Returns the bot's properties."""
@@ -302,6 +286,7 @@ class Test(unittest.TestCase):
   client = None
   servers = None
   bot = None
+  leak = False
 
   def setUp(self):
     super(Test, self).setUp()
@@ -406,7 +391,7 @@ class Test(unittest.TestCase):
     self.assertOneTask(args, summary, {})
 
   def test_success_fails(self):
-    def get_hello_world(exit_code=0):
+    def get_cmd(exit_code=0):
       return [
         'python', '-u', '-c',
         'import sys; print(\'hi\'); sys.exit(%d)' % exit_code,
@@ -414,11 +399,11 @@ class Test(unittest.TestCase):
     # tuple(task_request, expectation)
     tasks = [
       (
-        ['-T', 'simple_success', '--'] + get_hello_world(),
+        ['-T', 'simple_success', '--'] + get_cmd(),
         (self.gen_expected(name=u'simple_success'), {}),
       ),
       (
-        ['-T', 'simple_failure', '--'] + get_hello_world(1),
+        ['-T', 'simple_failure', '--'] + get_cmd(1),
         (
           self.gen_expected(
               name=u'simple_failure', exit_codes=[1], failure=True),
@@ -426,7 +411,7 @@ class Test(unittest.TestCase):
         ),
       ),
       (
-        ['-T', 'ending_simple_success', '--'] + get_hello_world(),
+        ['-T', 'ending_simple_success', '--'] + get_cmd(),
         (self.gen_expected(name=u'ending_simple_success'), {}),
       ),
     ]
@@ -445,13 +430,14 @@ class Test(unittest.TestCase):
   def test_isolated(self):
     # Make an isolated file, archive it.
     # Assert that the environment variable SWARMING_TASK_ID is set.
-    hello_world = '\n'.join((
+    content  = '\n'.join((
         'import os',
         'import sys',
         'print(\'hi\')',
         'assert os.environ.get("SWARMING_TASK_ID")',
         'with open(os.path.join(sys.argv[1], \'result.txt\'), \'wb\') as f:',
         '  f.write(\'hey\')'))
+    isolated_size = 214
     expected_summary = self.gen_expected(
         name=u'isolated_task',
         isolated_out=RESULT_HEY_ISOLATED_OUT,
@@ -459,10 +445,10 @@ class Test(unittest.TestCase):
           u'isolated_download': {
             u'initial_number_items': u'0',
             u'initial_size': u'0',
-            u'items_cold': sorted([len(hello_world), 200]),
+            u'items_cold': sorted([len(content), isolated_size]),
             u'items_hot': [],
             u'num_items_cold': u'2',
-            u'total_bytes_items_cold': unicode(len(hello_world) + 200),
+            u'total_bytes_items_cold': unicode(len(content) + isolated_size),
           },
           u'isolated_upload': {
             u'items_cold': [3, 118],
@@ -475,70 +461,85 @@ class Test(unittest.TestCase):
         outputs_ref=RESULT_HEY_OUTPUTS_REF)
     expected_files = {os.path.join('0', 'result.txt'): 'hey'}
     self._run_isolated(
-        hello_world, 'isolated_task', ['--', '${ISOLATED_OUTDIR}'],
+        content, 'isolated_task', ['--', '${ISOLATED_OUTDIR}'],
         expected_summary, expected_files)
 
   def test_isolated_command(self):
     # Command is specified in Swarming task, still with isolated file.
     # Confirms that --env and --env-prefix work.
-    hello_world = '\n'.join((
-        'import os',
-        'import sys',
-        'print(\'hi\')',
-        'assert "SWARMING_TASK_ID" not in os.environ',
-        'cwd = os.path.realpath(os.getcwd()).rstrip(os.sep)',
-        'path = os.environ["PATH"].split(os.pathsep)',
-        'print(os.path.realpath(path[0]).replace(cwd, "$CWD"))',
-        'with open(os.path.join(sys.argv[1], \'FOO.txt\'), \'wb\') as f:',
-        '  f.write(os.environ["FOO"])',
-        'with open(os.path.join(sys.argv[1], \'result.txt\'), \'wb\') as f:',
-        '  f.write(\'hey2\')',
-    ))
+    content = u'\n'.join((
+        u'# coding=utf-8',
+        u'import os',
+        u'import sys',
+        u'print(\'hi💩\')',
+        u'assert "SWARMING_TASK_ID" not in os.environ',
+        u'cwd = os.path.realpath(os.getcwd()).rstrip(os.sep)',
+        u'path = os.environ["PATH"].split(os.pathsep)',
+        u'print(os.path.realpath(path[0]).replace(cwd, "$CWD"))',
+        u'with open(os.path.join(sys.argv[1], \'FOO.txt\'), \'wb\') as f:',
+        u'  f.write(os.environ["FOO"])',
+        u'with open(os.path.join(sys.argv[1], \'result.txt\'), \'wb\') as f:',
+        u'  f.write(\'hey2\')',
+    )).encode('utf-8')
     computed_PATH = os.sep.join(['$CWD', 'local', 'path'])
 
     # Hard code the size of the isolated file.
-    isolated_size = 138
+    isolated_size = 145
+    isolated_hash = u'fc04fe5eee668c35c81db590a76c0da9cbcdae90'
+    result_hey2_isolated_out = {
+      u'isolated': isolated_hash,
+      u'isolatedserver': u'http://localhost:10050',
+      u'namespace': u'default-gzip',
+      u'view_url':
+        u'http://localhost:10050/browse?namespace=default-gzip&hash=' +
+          isolated_hash,
+    }
     expected_summary = self.gen_expected(
         name=u'separate_cmd',
-        isolated_out=RESULT_HEY2_ISOLATED_OUT,
+        isolated_out=result_hey2_isolated_out,
         performance_stats={
           u'isolated_download': {
             u'initial_number_items': u'0',
             u'initial_size': u'0',
-            u'items_cold': sorted([len(hello_world), isolated_size]),
+            u'items_cold': sorted([len(content), isolated_size]),
             u'items_hot': [],
             u'num_items_cold': u'2',
             u'total_bytes_items_cold': unicode(
-                len(hello_world) + isolated_size),
+                len(content) + isolated_size),
           },
           u'isolated_upload': {
-            u'items_cold': [3, 4, 191],
+            u'items_cold': [4, 7, 191],
             u'items_hot': [],
             u'num_items_cold': u'3',
-            u'total_bytes_items_cold': u'198',
+            u'total_bytes_items_cold': unicode(4+7+191),
           },
         },
-        outputs=[u'hi\n%s\n' % computed_PATH],
-        outputs_ref=RESULT_HEY2_ISOLATED_OUT)
+        outputs=[u'hi💩\n%s\n' % computed_PATH],
+        outputs_ref=result_hey2_isolated_out)
     expected_files = {
       os.path.join('0', 'result.txt'): 'hey2',
-      os.path.join('0', 'FOO.txt'): 'bar',
+      os.path.join('0', 'FOO.txt'): u'bar💩'.encode('utf-8'),
     }
+    # Use a --raw-cmd instead of a command in the isolated file. This is the
+    # future!
+    isolated_content='{"variables": {"files": ["%s.py"]}}' % HELLO_WORLD.encode(
+        'utf-8')
     self._run_isolated(
-        hello_world, 'separate_cmd',
+        content, 'separate_cmd',
         ['--raw-cmd',
-         '--env', 'FOO', 'bar',
+         '--env', 'FOO', u'bar💩'.encode('utf-8'),
          '--env', 'SWARMING_TASK_ID', '',
          '--env-prefix', 'PATH', 'local/path',
-         '--', 'python', 'hello_world.py', '${ISOLATED_OUTDIR}'],
+         '--', 'python', HELLO_WORLD.encode('utf-8') + '.py',
+         '${ISOLATED_OUTDIR}'],
         expected_summary, expected_files,
-        isolated_content={'variables': {'files': ['hello_world.py']}})
+        isolated_content=isolated_content)
 
   def test_isolated_hard_timeout(self):
     # Make an isolated file, archive it, have it time out. Similar to
     # test_hard_timeout. The script doesn't handle signal so it failed the grace
     # period.
-    hello_world = '\n'.join((
+    content = '\n'.join((
         'import os',
         'import sys',
         'import time',
@@ -547,6 +548,7 @@ class Test(unittest.TestCase):
         'time.sleep(120)',
         'with open(os.path.join(sys.argv[1], \'result.txt\'), \'wb\') as f:',
         '  f.write(\'hey\')'))
+    isolated_size = 214
     expected_summary = self.gen_expected(
         name=u'isolated_hard_timeout',
         exit_codes=[SIGNAL_TERM],
@@ -555,10 +557,10 @@ class Test(unittest.TestCase):
           u'isolated_download': {
             u'initial_number_items': u'0',
             u'initial_size': u'0',
-            u'items_cold': sorted([len(hello_world), 200]),
+            u'items_cold': sorted([len(content), isolated_size]),
             u'items_hot': [],
             u'num_items_cold': u'2',
-            u'total_bytes_items_cold': unicode(len(hello_world) + 200),
+            u'total_bytes_items_cold': unicode(len(content) + isolated_size),
           },
           u'isolated_upload': {
             u'items_cold': [],
@@ -568,14 +570,14 @@ class Test(unittest.TestCase):
         state=0x40)  # task_result.State.TIMED_OUT
     # Hard timeout is enforced by run_isolated, I/O timeout by task_runner.
     self._run_isolated(
-        hello_world, 'isolated_hard_timeout',
+        content, 'isolated_hard_timeout',
         ['--hard-timeout', '1', '--', '${ISOLATED_OUTDIR}'],
         expected_summary, {})
 
   def test_isolated_hard_timeout_grace(self):
     # Make an isolated file, archive it, have it time out. Similar to
     # test_hard_timeout. The script handles signal so it send results back.
-    hello_world = '\n'.join((
+    content = '\n'.join((
         'import os',
         'import signal',
         'import sys',
@@ -596,6 +598,7 @@ class Test(unittest.TestCase):
         '    print(\'ioerror\')',
         'with open(os.path.join(sys.argv[1], \'result.txt\'), \'wb\') as f:',
         '  f.write(\'hey\')'))
+    isolated_size = 214
     expected_summary = self.gen_expected(
         name=u'isolated_hard_timeout_grace',
         isolated_out=RESULT_HEY_ISOLATED_OUT,
@@ -603,10 +606,10 @@ class Test(unittest.TestCase):
           u'isolated_download': {
             u'initial_number_items': u'0',
             u'initial_size': u'0',
-            u'items_cold': sorted([200, len(hello_world)]),
+            u'items_cold': sorted([isolated_size, len(content)]),
             u'items_hot': [],
             u'num_items_cold': u'2',
-            u'total_bytes_items_cold': unicode(len(hello_world) + 200),
+            u'total_bytes_items_cold': unicode(len(content) + isolated_size),
           },
           u'isolated_upload': {
             u'items_cold': [],
@@ -622,22 +625,23 @@ class Test(unittest.TestCase):
     expected_files = {os.path.join('0', 'result.txt'): 'hey'}
     # Hard timeout is enforced by run_isolated, I/O timeout by task_runner.
     self._run_isolated(
-        hello_world, 'isolated_hard_timeout_grace',
+        content, 'isolated_hard_timeout_grace',
         ['--hard-timeout', '1', '--', '${ISOLATED_OUTDIR}'],
         expected_summary, expected_files)
 
   def test_idempotent_reuse(self):
-    hello_world = 'print "hi"\n'
+    content = 'print "hi"\n'
+    isolated_size = 213
     expected_summary = self.gen_expected(
       name=u'idempotent_reuse',
       performance_stats={
         u'isolated_download': {
           u'initial_number_items': u'0',
           u'initial_size': u'0',
-          u'items_cold': sorted([len(hello_world), 199]),
+          u'items_cold': sorted([len(content), isolated_size]),
           u'items_hot': [],
             u'num_items_cold': u'2',
-            u'total_bytes_items_cold': unicode(len(hello_world) + 199),
+            u'total_bytes_items_cold': unicode(len(content) + isolated_size),
         },
         u'isolated_upload': {
           u'items_cold': [],
@@ -645,10 +649,13 @@ class Test(unittest.TestCase):
         },
       },
       properties_hash =
-          u'3d6dcab82b1c098b27c7a7cbb6ddcb3d41689c42ca7fe5fafd53f9105af6efea',
+          u'7801158c5536725f6cf6e8d9f01a2af666943f3d2997995034fd4eb4ba747e37',
     )
     task_id = self._run_isolated(
-        hello_world, 'idempotent_reuse', ['--idempotent'], expected_summary, {})
+        content, 'idempotent_reuse', ['--idempotent'], expected_summary, {})
+
+    # The task name changes, there's a bit less data but the rest is the same.
+    expected_summary[u'name'] = u'idempotent_reuse2'
     expected_summary[u'costs_usd'] = None
     expected_summary.pop('performance_stats')
     expected_summary[u'cost_saved_usd'] = 0.02
@@ -656,11 +663,11 @@ class Test(unittest.TestCase):
     expected_summary[u'try_number'] = 0
     expected_summary[u'properties_hash'] = None
     self._run_isolated(
-        hello_world, 'idempotent_reuse', ['--idempotent'], expected_summary, {},
+        content, 'idempotent_reuse2', ['--idempotent'], expected_summary, {},
         deduped=True)
 
   def test_secret_bytes(self):
-    hello_world = textwrap.dedent("""
+    content = textwrap.dedent("""
       import sys
       import os
       import json
@@ -673,6 +680,7 @@ class Test(unittest.TestCase):
       with open(os.path.join(sys.argv[1], 'sekret'), 'w') as f:
         print >> f, data['swarming']['secret_bytes'].decode('base64')
     """)
+    isolated_size = 214
     expected_summary = self.gen_expected(
       name=u'secret_bytes',
       isolated_out=RESULT_SECRET_OUTPUT,
@@ -680,10 +688,10 @@ class Test(unittest.TestCase):
         u'isolated_download': {
           u'initial_number_items': u'0',
           u'initial_size': u'0',
-          u'items_cold': sorted([200, len(hello_world)]),
+          u'items_cold': sorted([isolated_size, len(content)]),
           u'items_hot': [],
           u'num_items_cold': u'2',
-            u'total_bytes_items_cold': unicode(len(hello_world) + 200),
+            u'total_bytes_items_cold': unicode(len(content) + isolated_size),
         },
         u'isolated_upload': {
           u'items_cold': [7, 114],
@@ -694,16 +702,13 @@ class Test(unittest.TestCase):
       },
       outputs_ref=RESULT_SECRET_OUTPUT,
     )
-    h, tmp = tempfile.mkstemp(prefix='swarming_smoke_test_secret')
-    os.write(h, 'foobar')
-    os.close(h)
-    try:
-      self._run_isolated(
-          hello_world, 'secret_bytes',
-          ['--secret-bytes-path', tmp, '--', '${ISOLATED_OUTDIR}'],
-          expected_summary, {os.path.join('0', 'sekret'): 'foobar\n'})
-    finally:
-      os.remove(tmp)
+    tmp = os.path.join(self.tmpdir, 'test_secret_bytes')
+    with open(tmp, 'wb') as f:
+      f.write('foobar')
+    self._run_isolated(
+        content, 'secret_bytes',
+        ['--secret-bytes-path', tmp, '--', '${ISOLATED_OUTDIR}'],
+        expected_summary, {os.path.join('0', 'sekret'): 'foobar\n'})
 
   def test_local_cache(self):
     # First task creates the cache, second copy the content to the output
@@ -721,7 +726,7 @@ class Test(unittest.TestCase):
       'else:',
       '  shutil.copy(p, sys.argv[1])',
       'print "hi"'))
-    sizes = sorted([len(script), 200])
+    sizes = sorted([len(script), 214])
     expected_summary = self.gen_expected(
       name=u'cache_first',
       performance_stats={
@@ -796,8 +801,8 @@ class Test(unittest.TestCase):
     # created with priorities that are out of order. Then it unblocks the bot
     # and asserts the tasks are run in the expected order, based on priority and
     # created_ts.
-    h, tmp = tempfile.mkstemp(prefix='swarming_smoke_test')
-    os.close(h)
+    signal_file = os.path.join(self.tmpdir, 'test_priority')
+    open(signal_file, 'wb').close()
 
     # List of tuple(task_name, priority, task_id).
     tasks = []
@@ -809,7 +814,7 @@ class Test(unittest.TestCase):
         # Cheezy wait.
         ('import os,time;'
          '[time.sleep(0.1) for _ in xrange(100000) if os.path.exists(\'%s\')];'
-        'print(\'hi\')') % tmp,
+        'print(\'hi\')') % signal_file,
       ]
       wait_task_id = self.client.task_trigger_raw(args)
       # Assert that the 'wait' task has started but not completed, otherwise
@@ -848,7 +853,7 @@ class Test(unittest.TestCase):
       self.assertEqual(u'PENDING', stats[u'state'], stats)
     finally:
       # Unblock the wait_task_id on the bot.
-      os.remove(tmp)
+      os.remove(signal_file)
 
     # Ensure the initial wait task is completed. This will cause all the pending
     # tasks to be run. Now, will they be run in the expected order? That is the
@@ -878,28 +883,29 @@ class Test(unittest.TestCase):
     expected = ['2-p6', '3-p7', '1-p8', '4-p8', '0-p9']
     self.assertEqual(expected, [r[0] for r in results])
 
-  def _run_isolated(self, hello_world, name, args, expected_summary,
+  def _run_isolated(self, content, name, args, expected_summary,
       expected_files, deduped=False, isolated_content=None):
-    """Runs hello_world.py as an isolated file."""
+    """Runs a python script as an isolated file."""
     # Shared code for all test_isolated_* test cases.
-    tmpdir = tempfile.mkdtemp(prefix='swarming_smoke')
-    try:
-      isolate_path = os.path.join(tmpdir, 'i.isolate')
-      isolated_path = os.path.join(tmpdir, 'i.isolated')
-      with open(isolate_path, 'wb') as f:
-        json.dump(isolated_content or ISOLATE_HELLO_WORLD, f)
-      with open(os.path.join(tmpdir, 'hello_world.py'), 'wb') as f:
-        f.write(hello_world)
-      isolated_hash = self.client.isolate(isolate_path, isolated_path)
-      task_id = self.client.task_trigger_isolated(
-          name, isolated_hash, extra=args)
-      actual_summary, actual_files = self.client.task_collect(task_id)
-      self.assertResults(expected_summary, actual_summary, deduped=deduped)
-      actual_files.pop('summary.json')
-      self.assertEqual(expected_files, actual_files)
-      return task_id
-    finally:
-      file_path.rmtree(tmpdir)
+    root = os.path.join(self.tmpdir, name)
+    # Refuse reusing the same task name twice, it makes the whole test suite
+    # more manageable.
+    self.assertFalse(os.path.isdir(root), root)
+    os.mkdir(root)
+    isolate_path = os.path.join(root, 'i.isolate')
+    isolated_path = os.path.join(root, 'i.isolated')
+    with open(isolate_path, 'wb') as f:
+      f.write(isolated_content or DEFAULT_ISOLATE_HELLO)
+    with open(os.path.join(root, HELLO_WORLD + u'.py'), 'wb') as f:
+      f.write(content)
+    isolated_hash = self.client.isolate(isolate_path, isolated_path)
+    task_id = self.client.task_trigger_isolated(
+        name, isolated_hash, extra=args)
+    actual_summary, actual_files = self.client.task_collect(task_id)
+    self.assertResults(expected_summary, actual_summary, deduped=deduped)
+    actual_files.pop('summary.json')
+    self.assertEqual(expected_files, actual_files)
+    return task_id
 
   def assertResults(self, expected, result, deduped=False):
     self.assertEqual([u'shards'], result.keys())
@@ -969,34 +975,31 @@ class Test(unittest.TestCase):
     return bot_version
 
 
-def cleanup(bot, client, servers, print_all, leak):
+def cleanup(bot, client, servers, print_all):
   """Kills bot, kills server, print logs if failed, delete tmpdir."""
   try:
-    try:
-      try:
-        if bot:
-          bot.stop(leak)
-      finally:
-        if servers:
-          servers.stop(leak)
-    finally:
-      if print_all:
-        if bot:
-          bot.dump_log()
-        if servers:
-          servers.dump_log()
-        if client:
-          client.dump_log()
+    if bot:
+      bot.stop()
   finally:
-    if client and not leak:
-      client.cleanup()
+    if servers:
+      servers.stop()
+  if print_all:
+    if bot:
+      bot.dump_log()
+    if servers:
+      servers.dump_log()
+    if client:
+      client.dump_log()
+  if not Test.leak:
+    shutil.rmtree(Test.tmpdir)
 
 
 def main():
   fix_encoding.fix_encoding()
   verbose = '-v' in sys.argv
-  leak = bool('--leak' in sys.argv)
-  if leak:
+  Test.leak = bool('--leak' in sys.argv)
+  Test.tmpdir = tempfile.mkdtemp(prefix='local_smoke_test')
+  if Test.leak:
     # Note that --leak will not guarantee that 'c' and 'isolated_cache' are
     # kept. Only the last test case will leak these two directories.
     sys.argv.remove('--leak')
@@ -1024,13 +1027,15 @@ def main():
   servers = None
   failed = True
   try:
-    servers = start_servers.LocalServers(False)
+    servers = start_servers.LocalServers(False, Test.tmpdir)
     servers.start()
-    bot = start_bot.LocalBot(servers.swarming_server.url)
+    botdir = os.path.join(Test.tmpdir, 'bot')
+    os.mkdir(botdir)
+    bot = start_bot.LocalBot(servers.swarming_server.url, True, botdir)
     Test.bot = bot
     bot.start()
     client = SwarmingClient(
-        servers.swarming_server.url, servers.isolate_server.url)
+        servers.swarming_server.url, servers.isolate_server.url, Test.tmpdir)
     # Test cases only interract with the client; except for test_update_continue
     # which mutates the bot.
     Test.client = client
@@ -1056,7 +1061,7 @@ def main():
       bot.kill()
       bot.wait()
   finally:
-    cleanup(bot, client, servers, failed or verbose, leak)
+    cleanup(bot, client, servers, failed or verbose)
   return int(failed)
 
 

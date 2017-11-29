@@ -744,7 +744,7 @@ def _run_manifest(botobj, manifest, start):
   url = botobj.remote.server
   if not botobj.remote.is_grpc and 'host' in manifest:
     # The URL in the manifest includes the version - eg not https://chromium-
-    # swarm-dev.appspot.com, but https://<some-version>-dot-chromiium-swarm-
+    # swarm-dev.appspot.com, but https://<some-version>-dot-chromium-swarm-
     # dev.appspot.com. That way, if a new server version becomes the default,
     # old bots will continue to work with a server version that can manipulate
     # the old data (the new server will only ever have to read it, which is
@@ -767,7 +767,7 @@ def _run_manifest(botobj, manifest, start):
     # change the semantics. If this becomes a significant problem, we could
     # start transmitting the expected server version using gRPC metadata.
     #    - aludwin, Nov 2016
-    url = manifest['host']
+    url = manifest['host'].encode('utf-8')
 
   task_dimensions = manifest['dimensions']
   task_result = {}

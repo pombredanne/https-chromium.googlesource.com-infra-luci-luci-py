@@ -345,6 +345,13 @@ def run_command(command, cwd, env, hard_timeout, grace_period):
     tuple(process exit code, bool if had a hard timeout)
   """
   logging.info('run_command(%s, %s)' % (command, cwd))
+  assert isinstance(command, list), repr(command)
+  assert isinstance(cwd, unicode), repr(cwd)
+
+  # Internal processing was done in unicode instances, but we need to downgrade
+  # to utf-8 before shelling out. There could be str instances, like due to
+  # tools.fix_python_path()
+  command = [_to_str(c) for c in command]
 
   exit_code = None
   had_hard_timeout = False
@@ -361,7 +368,8 @@ def run_command(command, cwd, env, hard_timeout, grace_period):
           had_signal.append(True)
           raise subprocess42.TimeoutExpired(command, None)
 
-      proc = subprocess42.Popen(command, cwd=cwd, env=env, detached=True)
+      proc = subprocess42.Popen(
+          command, cwd=cwd.encode('utf-8'), env=env, detached=True)
       with subprocess42.set_signal_handler(subprocess42.STOP_SIGNALS, handler):
         try:
           exit_code = proc.wait(hard_timeout or None)
@@ -520,8 +528,13 @@ def map_and_run(
 
   Returns metadata about the result.
   """
-  assert isinstance(command, list), command
   assert root_dir or root_dir is None
+  assert isinstance(command, list), repr(command)
+  # command may be a list of str or unicode, depending if it was passed through
+  # a json file or via the command line. Temporarily upgrade to unicode, to
+  # downgrade just before shelling out.
+  command = [
+      c if isinstance(c, unicode) else c.decode('utf-8') for c in command]
   result = {
     'duration': None,
     'exit_code': None,
@@ -710,7 +723,7 @@ def run_tha_test(
   file.
 
   Arguments:
-    command: a list of string; the command to run OR optional arguments to add
+    command: a list of str; the command to run OR optional arguments to add
              to the command stated in the .isolated file if a command was
              specified.
     isolated_hash: the SHA-1 of the .isolated file that must be retrieved to
