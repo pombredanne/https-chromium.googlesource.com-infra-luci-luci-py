@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5dae24c2_b8a19244",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2017-11-29T14:29:48Z",
+      "side": 1,
+      "message": "Actually I don\u0027t have a strong preference here :) I was simply following the suggestions of gpylint. I should probably revert changes so that it is consistent with the rest.",
+      "parentUuid": "61e8bdf0_da4882b8",
+      "revId": "266f18bd33eb12b4d878427be1b54ee82f90e14e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51187f36_eac60ae3",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc_test.py",
         "patchSetId": 2
