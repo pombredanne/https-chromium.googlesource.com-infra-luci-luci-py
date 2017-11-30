@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2938b90_b758c9d3",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-30T13:28:26Z",
+      "side": 1,
+      "message": "this is now confusing because at the protobuf level (binary) it is passed as raw bytes. On JSON it is still base64 but this behavior is not specific to this field (i.e. we don\u0027t explain how other fields are encoded in JSON form). please remove the selected text",
+      "range": {
+        "startLine": 182,
+        "startChar": 5,
+        "endLine": 182,
+        "endChar": 20
+      },
+      "revId": "d751814142ccd7a8e9296ce494978e95ab0fd428",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
