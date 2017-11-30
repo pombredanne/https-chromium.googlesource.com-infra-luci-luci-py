@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5445da0a_1746ee29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-11-30T21:48:51Z",
+      "side": 1,
+      "message": "will they count against other \u0027quarantine\u0027 metrics? what\u0027s the eta for the proto api change?",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "56dda2fd8cc15d4acc2e3ea85d02beab4855289c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
