@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3ead8b07_770abe76",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-30T21:42:41Z",
+      "side": 1,
+      "message": "I fixed the comment here and explained that webapp2 handles encoding.",
+      "parentUuid": "5eaa9958_59486b4b",
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "585cd63a_22c76c6c",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 18
