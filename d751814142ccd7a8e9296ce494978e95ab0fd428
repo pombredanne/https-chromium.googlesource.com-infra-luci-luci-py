@@ -22,6 +22,30 @@
       "revId": "d751814142ccd7a8e9296ce494978e95ab0fd428",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a424406b_c480858f",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-11-30T17:29:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2938b90_b758c9d3",
+      "range": {
+        "startLine": 182,
+        "startChar": 5,
+        "endLine": 182,
+        "endChar": 20
+      },
+      "revId": "d751814142ccd7a8e9296ce494978e95ab0fd428",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
