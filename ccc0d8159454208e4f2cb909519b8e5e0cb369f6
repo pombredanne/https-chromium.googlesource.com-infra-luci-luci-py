@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a7d282e_d83ca0be",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-30T04:50:16Z",
+      "side": 1,
+      "message": "http://webapp2.readthedocs.io/en/latest/guide/response.html says\n\n\u003e If the data written to the output stream is a Unicode value, or if the response includes a Content-Type header that ends with ; charset\u003dutf-8, webapp2 encodes the output as UTF-8. By default, the Content-Type header is text/html; charset\u003dutf-8, including the encoding behavior. If the Content-Type is changed to have a different charset, webapp2 assumes the output is a byte string to be sent verbatim.\n\nwhich seems to imply that these bytes will be interpreted as a string and converted utf-8 🤔?\nmaybe add a test and see what happens",
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "585cd63a_22c76c6c",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-30T04:50:16Z",
+      "side": 1,
+      "message": "if someone sends trash to our service, we\u0027d have a lot of exceptions in the logs and it will cause error reports. I prefer errors in the log if the service is doing something wrong (e.g. we cannot encode response), but not user (decode request). Let\u0027s deescalate this to a warning. I know that I said that `as e` as unnecessary earlier, but looks like it would be useful in the log",
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b63ebc7b_8cab5d15",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-30T04:50:16Z",
+      "side": 1,
+      "message": "if you pass context as a parameter (which is more typical than returning it), then you don\u0027t have to return it in every exit point AND this would also slightly reduce responsibilities of this function (by removing the responsibility of creation the context)",
+      "range": {
+        "startLine": 205,
+        "startChar": 17,
+        "endLine": 205,
+        "endChar": 26
+      },
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bec3c6b3_849f027a",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-11-30T04:50:16Z",
+      "side": 1,
+      "message": "unnecessary",
+      "range": {
+        "startLine": 211,
+        "startChar": 24,
+        "endLine": 211,
+        "endChar": 29
+      },
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
