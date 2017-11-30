@@ -22,6 +22,30 @@
       "revId": "56dda2fd8cc15d4acc2e3ea85d02beab4855289c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29efbdde_a71db39b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-11-30T21:59:55Z",
+      "side": 1,
+      "message": "As explained over IM, it\u0027s possible to modify _set_executors_metrics() in ts_mon_metrics.py to look at the state in each bot_info; around line 330:\n\n  if bot_info.state.get(\u0027maintenance\u0027):\n    status \u003d \u0027maintenance\u0027\n\nthen this need the monarch protos to be updated, which is an independent task. So overall, this statement is incorrect.",
+      "parentUuid": "5445da0a_1746ee29",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "56dda2fd8cc15d4acc2e3ea85d02beab4855289c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
