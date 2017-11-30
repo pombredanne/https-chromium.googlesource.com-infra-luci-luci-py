@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5eaa9958_59486b4b",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-30T20:21:07Z",
+      "side": 1,
+      "message": "You\u0027re right, the \".encode(\u0027utf-8\u0027)\" is unnecessary. But it ends up not mattering for us because none of our error responses take advantage of multibyte encodings. I tested it by changing one of the error messages to contain a multibyte-encoded character and it works, but I\u0027m not sure how to add a long-term stable test for this.",
+      "parentUuid": "4a7d282e_d83ca0be",
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "585cd63a_22c76c6c",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 18
@@ -33,6 +51,24 @@
       "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15c937cd_eb0590ae",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-30T20:21:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "585cd63a_22c76c6c",
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "4de2f92c_ced10dea",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-30T20:21:07Z",
+      "side": 1,
+      "message": "Sounds good, I think I did it this way to avoid passing so many arguments around. Done.",
+      "parentUuid": "b63ebc7b_8cab5d15",
+      "range": {
+        "startLine": 205,
+        "startChar": 17,
+        "endLine": 205,
+        "endChar": 26
+      },
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bec3c6b3_849f027a",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 18
@@ -79,6 +139,30 @@
       "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb8ead93_e8211fdc",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2017-11-30T20:21:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bec3c6b3_849f027a",
+      "range": {
+        "startLine": 211,
+        "startChar": 24,
+        "endLine": 211,
+        "endChar": 29
+      },
+      "revId": "ccc0d8159454208e4f2cb909519b8e5e0cb369f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
