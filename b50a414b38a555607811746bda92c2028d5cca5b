@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ae93492_c6ea01cd",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T06:04:50Z",
+      "side": 1,
+      "message": "Explain why they could be numeric:\nvalidation library for Go apps (\u003curl\u003e) sends severity as a number corresponding to Python\u0027s logging severity level.",
+      "range": {
+        "startLine": 348,
+        "startChar": 6,
+        "endLine": 348,
+        "endChar": 35
+      },
+      "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7586ea85_692f7a6e",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T06:04:50Z",
+      "side": 1,
+      "message": "godoc you\u0027ve referenced says severity will be integer but encoded as string. If so, how will this work?\n\n\u003e\u003e\u003e \u00271\u0027 in (1, 2)\nFalse",
+      "range": {
+        "startLine": 349,
+        "startChar": 9,
+        "endLine": 349,
+        "endChar": 17
+      },
+      "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

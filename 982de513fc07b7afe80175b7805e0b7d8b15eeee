@@ -187,6 +187,30 @@
       "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "323a4c3f_0887462f",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T06:04:50Z",
+      "side": 1,
+      "message": "please, add a unittest for this to ensure nobody accidentally breaks this later.\n\nAs for second thing, yes it really does correspond *for now*, but it may or may not be corresponding later (unless it is generated from Python code automatically).",
+      "parentUuid": "35e6d363_d4aa422a",
+      "range": {
+        "startLine": 349,
+        "startChar": 17,
+        "endLine": 349,
+        "endChar": 47
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
