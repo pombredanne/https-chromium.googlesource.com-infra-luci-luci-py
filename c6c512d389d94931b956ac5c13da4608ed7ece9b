@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6afafeea_06b072ca",
+        "filename": "appengine/config_service/validation_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-01T20:24:23Z",
+      "side": 1,
+      "message": "in validation.py we use logging.WARNING. Let\u0027s use it here too for consistency",
+      "range": {
+        "startLine": 446,
+        "startChar": 28,
+        "endLine": 446,
+        "endChar": 32
+      },
+      "revId": "c6c512d389d94931b956ac5c13da4608ed7ece9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "629125f8_baefaa60",
+        "filename": "appengine/config_service/validation_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-01T20:24:23Z",
+      "side": 1,
+      "message": "trailing comma",
+      "range": {
+        "startLine": 446,
+        "startChar": 31,
+        "endLine": 446,
+        "endChar": 32
+      },
+      "revId": "c6c512d389d94931b956ac5c13da4608ed7ece9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcfc0f7b_3d0329bc",
+        "filename": "appengine/config_service/validation_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-01T20:24:23Z",
+      "side": 1,
+      "message": "trailing comma",
+      "range": {
+        "startLine": 454,
+        "startChar": 69,
+        "endLine": 454,
+        "endChar": 72
+      },
+      "revId": "c6c512d389d94931b956ac5c13da4608ed7ece9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
