@@ -437,6 +437,24 @@ class ValidationTestCase(test_case.TestCase):
         ])
 
     ############################################################################
+    # Validation messages from Go applications with integer severities
+
+    net.json_request_async.return_value = ndb.Future()
+    net.json_request_async.return_value.set_result({
+      'messages': [{
+        'text': 'warn',
+        'severity': logging.WARN
+      }]
+    })
+
+    result = validation.validate_config('projects/baz/refs/x', 'qux.cfg', cfg)
+    self.assertEqual(
+        result.messages,
+        [
+          validation_context.Message(text='warn', severity=logging.WARN)
+        ])
+
+    ############################################################################
     # Less-expected responses
 
     res = {
