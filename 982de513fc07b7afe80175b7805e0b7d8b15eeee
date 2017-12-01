@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21dd1be0_a95178bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T02:59:50Z",
+      "side": 1,
+      "message": "validation.py isn\u0027t meaningful. Better: \"in responses of validation endpoints\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 52,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed42cb49_1ff43cd4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T02:59:50Z",
+      "side": 1,
+      "message": "nit: just \"Support\" and the whole title will fit into recommended by Git/Gerrit (but not enforced) 50 chars :)",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63e5f96f_cd64361f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T02:59:50Z",
+      "side": 1,
+      "message": "so why can\u0027t go version send them as strings as luci-config expects?\n\nIn other words, why is this a good change in luci-config service itself?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d33997dc_bd786d11",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-01T02:59:50Z",
+      "side": 1,
+      "message": "does this work with severity\u003d\u003d\u0027INFO\u0027 (see above)?\n\nalso, are you saying severity numbers (which are just arbitrary values of constants of Python logging package) have been replicated to Go library?",
+      "range": {
+        "startLine": 349,
+        "startChar": 17,
+        "endLine": 349,
+        "endChar": 47
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
