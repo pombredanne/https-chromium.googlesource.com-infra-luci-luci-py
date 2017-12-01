@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "997d961b_dda164cc",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-01T23:36:54Z",
+      "side": 1,
+      "message": "Then update the call site too.",
+      "parentUuid": "9c7a93da_61116835",
+      "revId": "adacf3daac1f8379e4b28058fbc19f7936564942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25b4108d_43dd77c1",
         "filename": "client/tests/isolate_storage_test.py",
         "patchSetId": 5
