@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "9d623c89_5e88dd12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T04:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed42cb49_1ff43cd4",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4c1a214_a2526c28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T04:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21dd1be0_a95178bf",
+      "range": {
+        "startLine": 7,
+        "startChar": 52,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63e5f96f_cd64361f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "842330e8_9d5817f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T04:39:54Z",
+      "side": 1,
+      "message": "In the go version, we wanted to reuse the proto that was already in the codebase. The convenience we gained there was that we did not have to write separate structs for these response messages; we could simply reuse what was in https://godoc.org/go.chromium.org/luci/common/proto/config, which made it easier for us to construct the messages and decode them into JSON. \n\nWe could have defined separate structs with the format that is currently supported by luci_config, but I felt that the check here was the path of least resistance since it was be just one more simple check to see if it is a numeric value that is in the group of logging levels.",
+      "parentUuid": "63e5f96f_cd64361f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d33997dc_bd786d11",
         "filename": "appengine/config_service/validation.py",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e6d363_d4aa422a",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T04:39:54Z",
+      "side": 1,
+      "message": "Ah sorry, I definitely need to learn how to be more explicit in my explanations.\n\nPer your first question,\nI just tested it out and it seems like it doesn\u0027t work\nhttps://docs.python.org/2/library/logging.html#logging.getLevelName\nit was a bit misleading here.. :(\nJust fixed it.\n\nand second,\nhttps://godoc.org/go.chromium.org/luci/common/proto/config#ValidationResponseMessage_Severity\nyes, it seems to have a one to one correspondence with the python logging levels.",
+      "parentUuid": "d33997dc_bd786d11",
+      "range": {
+        "startLine": 349,
+        "startChar": 17,
+        "endLine": 349,
+        "endChar": 47
+      },
+      "revId": "982de513fc07b7afe80175b7805e0b7d8b15eeee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
