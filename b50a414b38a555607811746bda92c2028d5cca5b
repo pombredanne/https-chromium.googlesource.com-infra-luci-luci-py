@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6f628653_40cf00fc",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T19:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ae93492_c6ea01cd",
+      "range": {
+        "startLine": 348,
+        "startChar": 6,
+        "endLine": 348,
+        "endChar": 35
+      },
+      "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7586ea85_692f7a6e",
         "filename": "appengine/config_service/validation.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-01T06:04:50Z",
       "side": 1,
       "message": "godoc you\u0027ve referenced says severity will be integer but encoded as string. If so, how will this work?\n\n\u003e\u003e\u003e \u00271\u0027 in (1, 2)\nFalse",
+      "range": {
+        "startLine": 349,
+        "startChar": 9,
+        "endLine": 349,
+        "endChar": 17
+      },
+      "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "358163ff_52608e13",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T19:55:00Z",
+      "side": 1,
+      "message": "I don\u0027t think it will actually get encoded as string, because we are using json instead of jsonpb to marshal these.\nThe output that I get is:\n{\"messages\":[{\"text\":\"deadbeef\",\"severity\":40}]}\nwhen I run it in a test in the go library. Thus, it will always be the proper integer form and not the stringified version of an integer.\n\nThe doc assumes that jsonpb is used.\n\nIt would be great if we could have used jsonpb since it actually encodes it to the string literal that we want:\n{\"messages\":[{\"text\":\"deadbeef\",\"severity\":\"ERROR\"}]}\nBut the problem with marshaling via jsonpb is that it utilizes camel case instead of the snake case that luci-config wants :(( (for example, \"config_set\" becomes \"configSet\").",
+      "parentUuid": "7586ea85_692f7a6e",
       "range": {
         "startLine": 349,
         "startChar": 9,
@@ -68,6 +116,30 @@
       "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6bac17d_92914563",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-01T19:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6ab3453_202d4643",
+      "range": {
+        "startLine": 355,
+        "startChar": 60,
+        "endLine": 355,
+        "endChar": 62
+      },
+      "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
