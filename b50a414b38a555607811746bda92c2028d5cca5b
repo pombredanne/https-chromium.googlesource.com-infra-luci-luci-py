@@ -45,6 +45,29 @@
       "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ab3453_202d4643",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-01T16:20:49Z",
+      "side": 1,
+      "message": "%r\n\nbecause now severity can be of a different type",
+      "range": {
+        "startLine": 355,
+        "startChar": 60,
+        "endLine": 355,
+        "endChar": 62
+      },
+      "revId": "b50a414b38a555607811746bda92c2028d5cca5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
