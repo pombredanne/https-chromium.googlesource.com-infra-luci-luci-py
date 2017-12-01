@@ -46,6 +46,30 @@
       "revId": "56dda2fd8cc15d4acc2e3ea85d02beab4855289c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70c066e8_c8de7ba9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-01T23:47:12Z",
+      "side": 1,
+      "message": "Updated misleading comment.",
+      "parentUuid": "29efbdde_a71db39b",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "56dda2fd8cc15d4acc2e3ea85d02beab4855289c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
