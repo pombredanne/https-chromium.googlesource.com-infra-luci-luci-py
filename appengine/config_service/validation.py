@@ -131,7 +131,7 @@ def validate_identity(identity, ctx):
 def validate_email(email, ctx):
   try:
     auth.Identity('user', email)
-  except ValueError as ex:
+  except ValueError:
     ctx.error('invalid email: "%s"', email)
 
 
@@ -345,6 +345,8 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
         report_error('invalid response: message is not a dict: %r' % msg)
         continue
       severity = msg.get('severity') or 'INFO'
+      # in case it severity is numeric
+      severity = logging.getLevelName(severity)
       if (severity not in
           service_config_pb2.ValidationResponseMessage.Severity.keys()):
         report_error(
