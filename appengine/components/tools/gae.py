@@ -138,7 +138,7 @@ def CMDcleanup(parser, args):
 
   if not versions_to_remove:
     # List all deployed versions, dump them to a temp file to be edited.
-    versions = app.get_uploaded_versions()
+    versions = sorted(app.get_uploaded_versions())
     fd, path = tempfile.mkstemp()
     atexit.register(lambda: os.remove(path))
     with os.fdopen(fd, 'w') as f:
@@ -315,7 +315,7 @@ def CMDswitch(parser, args):
 
   # Interactively pick a version if not passed via command line.
   if not version:
-    versions = app.get_uploaded_versions()
+    versions = sorted(app.get_uploaded_versions())
     if not versions:
       print('Upload a version first.')
       return 1
