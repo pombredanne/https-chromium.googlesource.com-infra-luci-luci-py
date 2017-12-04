@@ -213,10 +213,10 @@ class TestBotMain(TestBotBase):
         },
       },
       u'quarantined':
-        (u'Not enough free disk space on %s. 0.1mib < 100.0mib\n'
+        (u'Not enough free disk space on %s. 0.1mib < 150.0mib\n'
         u'Not enough free disk space on %s. 0.1mib < 150.0mib') %
         (root, botobj.base_dir),
-      u'sleep_streak': 1,
+      'sleep_streak': 1,
     }
     self.assertEqual(expected, bot_main._get_state(botobj, 1))
 
@@ -245,62 +245,10 @@ class TestBotMain(TestBotBase):
     }
     self.assertEqual(expected, bot_main._get_state(obj, 0.1))
 
-  def test_get_disks_quarantine_empty(self):
-    root = 'c:\\' if sys.platform == 'win32' else '/'
-    disks = {
-      self.bot.base_dir: {
-        'free_mb': 0,
-        'size_mb': 0,
-      },
-      root: {
-        'free_mb': 0,
-        'size_mb': 0,
-      },
-    }
-    expected = (
-      u'Not enough free disk space on %s. 0.0mib < 1024.0mib\n'
-      u'Not enough free disk space on %s. 0.0mib < 4096.0mib') % (
-          root, self.bot.base_dir)
-    self.assertEqual(expected, bot_main._get_disks_quarantine(self.bot, disks))
-
-  def test_get_disks_quarantine(self):
-    root = 'c:\\' if sys.platform == 'win32' else '/'
-    disks = {
-      self.bot.base_dir: {
-        'free_mb': 4096,
-        'size_mb': 4096,
-      },
-      root: {
-        'free_mb': 4096,
-        'size_mb': 4096,
-      },
-    }
-    expected = None
-    self.assertEqual(expected, bot_main._get_disks_quarantine(self.bot, disks))
-
   def test_default_settings(self):
     # If this trigger, you either forgot to update bot_main.py or bot_config.py.
     from config import bot_config
     self.assertEqual(bot_main.DEFAULT_SETTINGS, bot_config.get_settings(None))
-
-  def test_min_free_disk(self):
-    # size_mb, size, min_percent, max_percent, expected
-    data = [
-      (0, 0, 0, 0, 0),
-      # 1GB*10% = 100Mb
-      (1000, 1000, 10., 20., 104857600),
-      # size is between min_percent (104857600) and max_percent (209715200)
-      (1000, 150000000, 10., 20., 150000000),
-      # 1GB*20% = 200Mb
-      (1000, 300000000, 10., 20., 209715200),
-      # No max_percent, so use size
-      (1000, 300000000, 10., 0, 300000000),
-    ]
-    for size_mb, size, minp, maxp, expected in data:
-      infos = {'size_mb': size_mb}
-      settings = {'size': size, 'min_percent': minp, 'max_percent': maxp}
-      actual = bot_main._min_free_disk(infos, settings)
-      self.assertEqual(expected, actual)
 
   def test_dict_deep_merge(self):
     a = {
@@ -806,7 +754,6 @@ class TestBotMain(TestBotBase):
           'task_id': '24',
           'swarming_http_headers': {'A': 'a'},
           'swarming_http_headers_exp': int(time.time() + 3600),
-          'bot_service_account': 'none',
           'system_service_account': 'robot@example.com',  # as in task manifest
           'task_service_account': 'bot',
         })
