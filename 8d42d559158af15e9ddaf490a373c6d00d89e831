@@ -22,6 +22,30 @@
       "revId": "8d42d559158af15e9ddaf490a373c6d00d89e831",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1419ef3c_123d9553",
+        "filename": "client/tools/reproduce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-05T22:42:19Z",
+      "side": 1,
+      "message": "oops, done",
+      "parentUuid": "ae73e5cd_b7dfd97a",
+      "range": {
+        "startLine": 39,
+        "startChar": 41,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "8d42d559158af15e9ddaf490a373c6d00d89e831",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
