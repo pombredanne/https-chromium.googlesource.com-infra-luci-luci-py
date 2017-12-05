@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73498049_985632c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-05T02:29:46Z",
+      "side": 1,
+      "message": "to be OR Permit specification of service accounts in pools.cfg via groups.",
+      "range": {
+        "startLine": 7,
+        "startChar": 48,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "36a0fefa8cb520d65741a15ed169453ed4f8de7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac5f763_44ef2886",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-05T02:29:46Z",
+      "side": 1,
+      "message": "i know that *today* this each is_group_member is O(a few pointer dereferences), but hypothetically isn\u0027t it better to query for all groups at once?",
+      "range": {
+        "startLine": 553,
+        "startChar": 1,
+        "endLine": 554,
+        "endChar": 42
+      },
+      "revId": "36a0fefa8cb520d65741a15ed169453ed4f8de7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
