@@ -45,6 +45,30 @@
       "revId": "36a0fefa8cb520d65741a15ed169453ed4f8de7e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cf8384b_f3b56fce",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-05T02:33:57Z",
+      "side": 1,
+      "message": "There\u0027s no API for that in luci-py. It will be relatively easy to find and update this code once it is added (if ever).\n\nIn any case, I plan to keep \"amortized O(1) on average\" guarantee for is_group_member, otherwise lots of stuff will become slow.",
+      "parentUuid": "4ac5f763_44ef2886",
+      "range": {
+        "startLine": 553,
+        "startChar": 1,
+        "endLine": 554,
+        "endChar": 42
+      },
+      "revId": "36a0fefa8cb520d65741a15ed169453ed4f8de7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
