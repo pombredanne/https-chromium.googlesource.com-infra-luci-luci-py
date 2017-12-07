@@ -22,6 +22,30 @@
       "revId": "811b7a1ebf2794d2c54614025118f00243e60f55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6360ccb4_30f7220b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-07T21:11:32Z",
+      "side": 1,
+      "message": "The file is empty. :(",
+      "parentUuid": "d2284270_a42a61b4",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 40
+      },
+      "revId": "811b7a1ebf2794d2c54614025118f00243e60f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
