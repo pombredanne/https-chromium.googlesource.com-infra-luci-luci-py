@@ -22,6 +22,30 @@
       "revId": "b62516080798f0983e3e6ba8f5d1087f0f3d3087",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a52a4275_863c0e3a",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-07T21:08:31Z",
+      "side": 1,
+      "message": "I think it\u0027s possible to deflake, so I prefer to not delete it _yet_. I know it\u0027s full of false hope. I\u0027m full of false hopes.",
+      "parentUuid": "2b316b0b_c9020a69",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 32
+      },
+      "revId": "b62516080798f0983e3e6ba8f5d1087f0f3d3087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
