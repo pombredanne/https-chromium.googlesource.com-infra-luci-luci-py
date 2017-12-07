@@ -22,6 +22,30 @@
       "revId": "4d648d7ca03aee52f14d8a430445924417eded5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21c4aacd_2d90a2e1",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-07T20:24:30Z",
+      "side": 1,
+      "message": "The subtle thing where --raw-cmd is more strictly checked for as I noted in the CL description. swarming.py already does it but I wanted to bump just to make this clear.",
+      "parentUuid": "9f849c90_8d7f3e7d",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "4d648d7ca03aee52f14d8a430445924417eded5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
