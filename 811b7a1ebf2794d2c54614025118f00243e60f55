@@ -70,6 +70,30 @@
       "revId": "811b7a1ebf2794d2c54614025118f00243e60f55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b21b572c_a34c733e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-07T21:14:58Z",
+      "side": 1,
+      "message": "Yeah, I would have liked to be able to expose the docker runtime version but I didn\u0027t find any way to do so.",
+      "parentUuid": "1facc0da_89885179",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 40
+      },
+      "revId": "811b7a1ebf2794d2c54614025118f00243e60f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
