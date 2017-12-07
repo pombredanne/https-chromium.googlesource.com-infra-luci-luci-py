@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c26f6d5_13740e93",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-07T23:29:49Z",
+      "side": 1,
+      "message": "for consistency, names.\ndo we have too many configs that will require changes that you don\u0027t want to change this?",
+      "range": {
+        "startLine": 30,
+        "startChar": 18,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "cc8407d9562cc20d2064dce3f93ba5c2621ba1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc30be7_0b9d64d1",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-07T23:29:49Z",
+      "side": 1,
+      "message": "TIL \u0027_replace\u0027 on namedtuple.",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 34
+      },
+      "revId": "cc8407d9562cc20d2064dce3f93ba5c2621ba1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
