@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "286f06ef_68b82007",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-07T23:35:16Z",
+      "side": 1,
+      "message": "vadim convinced me that name is consistent by showing 2 last fields in this message :)",
+      "parentUuid": "2c26f6d5_13740e93",
+      "range": {
+        "startLine": 30,
+        "startChar": 18,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "cc8407d9562cc20d2064dce3f93ba5c2621ba1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfc30be7_0b9d64d1",
         "filename": "appengine/swarming/server/pools_config_test.py",
         "patchSetId": 1
