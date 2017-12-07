@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b316b0b_c9020a69",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-12-07T21:07:36Z",
+      "side": 1,
+      "message": "should this just be deleted? or is there actually a non-flaky way to test this?",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 32
+      },
+      "revId": "b62516080798f0983e3e6ba8f5d1087f0f3d3087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
