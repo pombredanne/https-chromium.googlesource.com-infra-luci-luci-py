@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6bf5372b_73654488",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-08T02:35:37Z",
+      "side": 1,
+      "message": "The string is completely unprocessed so I added a slash but it wouldn\u0027t change.\n\nHow slashes are handled is a good question and I don\u0027t have a strong opinion either way.",
+      "parentUuid": "e9890e9f_73efdfae",
+      "range": {
+        "startLine": 319,
+        "startChar": 25,
+        "endLine": 319,
+        "endChar": 32
+      },
+      "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "233b6f20_cf96327c",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8e085100_37ddb8a3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-08T02:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "233b6f20_cf96327c",
+      "range": {
+        "startLine": 505,
+        "startChar": 48,
+        "endLine": 505,
+        "endChar": 52
+      },
+      "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01b64db7_89fc46f7",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -59,6 +107,24 @@
       "writtenOn": "2017-12-08T00:04:11Z",
       "side": 1,
       "message": "should this use realpath to avoid symlink silliness?",
+      "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "790f1d27_16263414",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-08T02:35:37Z",
+      "side": 1,
+      "message": "No. I think it is reasonable someone may want to run inside a symlinked mapped directory and we should allow that.",
+      "parentUuid": "01b64db7_89fc46f7",
       "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
