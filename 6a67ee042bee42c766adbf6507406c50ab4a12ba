@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9890e9f_73efdfae",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-12-08T00:04:11Z",
+      "side": 1,
+      "message": "does it make sense to test with slashes to make sure the windows slashiness is all sorted out?",
+      "range": {
+        "startLine": 319,
+        "startChar": 25,
+        "endLine": 319,
+        "endChar": 32
+      },
+      "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "233b6f20_cf96327c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-12-08T00:04:11Z",
+      "side": 1,
+      "message": "nit: in",
+      "range": {
+        "startLine": 505,
+        "startChar": 48,
+        "endLine": 505,
+        "endChar": 52
+      },
+      "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01b64db7_89fc46f7",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-12-08T00:04:11Z",
+      "side": 1,
+      "message": "should this use realpath to avoid symlink silliness?",
+      "revId": "6a67ee042bee42c766adbf6507406c50ab4a12ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
