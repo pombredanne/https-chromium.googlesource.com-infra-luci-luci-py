@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0247a473_f7706e11",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-12-08T00:06:04Z",
+      "side": 1,
+      "message": "maybe `script(....)` helper function to do dedent+encode?",
+      "range": {
+        "startLine": 417,
+        "startChar": 28,
+        "endLine": 417,
+        "endChar": 44
+      },
+      "revId": "2584d74bddde999550e8143eefcf165f3f0d8a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
