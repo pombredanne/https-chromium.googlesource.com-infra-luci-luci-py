@@ -16,6 +16,24 @@
       "revId": "fbe9b4a14325d476d407c537e1c8c15c07420696",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "456566a2_a6f0950a",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2017-12-08T00:00:22Z",
+      "side": 1,
+      "message": "so much poop 💩",
+      "parentUuid": "827a88aa_9acf3089",
+      "revId": "fbe9b4a14325d476d407c537e1c8c15c07420696",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
