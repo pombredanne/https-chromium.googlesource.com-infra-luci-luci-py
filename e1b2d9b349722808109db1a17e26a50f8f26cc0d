@@ -22,6 +22,30 @@
       "revId": "e1b2d9b349722808109db1a17e26a50f8f26cc0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a64438fc_6c0a4952",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-08T00:12:12Z",
+      "side": 1,
+      "message": "yes, renamed to run_dir to make this clearer.",
+      "parentUuid": "b28139ca_6931bb9b",
+      "range": {
+        "startLine": 365,
+        "startChar": 33,
+        "endLine": 365,
+        "endChar": 59
+      },
+      "revId": "e1b2d9b349722808109db1a17e26a50f8f26cc0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
