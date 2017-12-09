@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cf6e6fa_b2162094",
+        "filename": "appengine/components/components/auth/ui/rest_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-09T03:42:33Z",
+      "side": 1,
+      "message": "this is used only in UI (in API doc), so it\u0027s alright to change it",
+      "range": {
+        "startLine": 583,
+        "startChar": 24,
+        "endLine": 583,
+        "endChar": 30
+      },
+      "revId": "8451d62b8333683950d8434441128cba62ff6911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
