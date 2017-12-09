@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92a9d552_f46a5274",
+        "filename": "appengine/components/components/auth/ui/static/js/listing.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T07:10:32Z",
+      "side": 1,
+      "message": "beaUtify\n\nunless you want to canonize every principal \nhttps://www.google.com/search?q\u003dbeatify\u0026oq\u003dbeatify\n😄",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 24
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fee4903_a8bec463",
+        "filename": "appengine/components/components/auth/ui/static/js/listing.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T07:10:32Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be \u0027user:\u0027?",
+      "range": {
+        "startLine": 24,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b707ab_2050f0a7",
+        "filename": "appengine/components/components/auth/ui/static/js/listing.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T07:10:32Z",
+      "side": 1,
+      "message": "luckily, no nouns require \u0027es\u0027 here",
+      "range": {
+        "startLine": 29,
+        "startChar": 38,
+        "endLine": 29,
+        "endChar": 39
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c052685_2d0362f4",
+        "filename": "appengine/components/components/auth/ui/templates/listing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T07:10:32Z",
+      "side": 1,
+      "message": "why? to reduce memory footprint in python app if group is big?",
+      "range": {
+        "startLine": 4,
+        "startChar": 57,
+        "endLine": 5,
+        "endChar": 34
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
