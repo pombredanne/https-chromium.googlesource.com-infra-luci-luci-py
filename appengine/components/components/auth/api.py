@@ -947,14 +947,9 @@ def get_process_auth_db():
 
     # Fetching AuthDB for the first time ever? Do it under the lock because
     # there's nothing to return yet. All threads would have to wait for this
-    # initial fetch to complete. Also ensure 'auth' component is configured.
+    # initial fetch to complete.
     if _auth_db is None:
-      logging.info('Initial fetch of AuthDB')
-      config.ensure_configured()
-      _auth_db = fetch_auth_db()
-      _auth_db_expiration = time.time() + _process_cache_expiration_sec
-      logging.info('Fetched AuthDB at rev %d', _auth_db.auth_db_rev)
-      return _auth_db
+      return _initialize_auth_db_cache()
 
     # We have a cached copy and it has expired. Maybe some thread is already
     # fetching it? Don't block an entire process on this, return a little bit
@@ -981,10 +976,6 @@ def get_process_auth_db():
     if fresh_copy is None:
       # No changes, entity group versions match, reuse same object.
       fresh_copy = known_auth_db
-    else:
-      logging.info(
-          'Updated cached AuthDB: rev %d->%d',
-          known_auth_db.auth_db_rev, fresh_copy.auth_db_rev)
   except Exception:
     # Failed. Be sure to allow other threads to try the fetch. Meanwhile log the
     # exception and return a stale copy of AuthDB. Better than nothing.
@@ -994,18 +985,104 @@ def get_process_auth_db():
       _auth_db_fetching_thread = None
       return _auth_db
 
-  # Fetch has completed successfully. Update process cache now.
+  # Fetch has completed successfully. Update the process cache now.
   with _auth_db_lock:
     assert _auth_db_fetching_thread == threading.current_thread()
     _auth_db_fetching_thread = None
-    _auth_db = fresh_copy
-    _auth_db_expiration = time.time() + _process_cache_expiration_sec
-    return _auth_db
+    return _roll_auth_db_cache(fresh_copy)
+
+
+def get_latest_auth_db():
+  """Returns the most recent AuthDB instance, fetching it if necessary.
+
+  Very heavy call. If the absolute consistency is not required, prefer to use
+  get_process_auth_db instead. The later is much faster by relying on in-process
+  cache (as a downside it may lag behind the most recent state).
+  """
+  global _auth_db
+
+  # We just "rush" the update of the internal cache. That way get_latest_auth_db
+  # blocks for long only if something in AuthDB has changed, i.e our cached copy
+  # becomes stale. By reusing _auth_db (instead of keeping a separate cache or
+  # something like that), we keep the memory footprint smaller.
+
+  known = None
+  with _auth_db_lock:
+    if _auth_db is None:
+      return _initialize_auth_db_cache()
+    known = _auth_db
+
+  # Note: fetch_auth_db returns None if known version is already latest.
+  fresh = fetch_auth_db(known_version=known.entity_group_version) or known
+
+  with _auth_db_lock:
+    return _roll_auth_db_cache(fresh)
 
 
 def warmup():
   """Can be called from /_ah/warmup handler to precache authentication DB."""
   get_process_auth_db()
+
+
+################################################################################
+## AuthDB cache internal guts.
+
+
+def _initialize_auth_db_cache():
+  """Initializes auth runtime and _auth_db in particular.
+
+  Must be called under _auth_db_lock.
+  """
+  global _auth_db
+  global _auth_db_expiration
+
+  assert _auth_db is None
+  logging.info('Initial fetch of AuthDB')
+  config.ensure_configured()
+  _auth_db = fetch_auth_db()
+  _auth_db_expiration = time.time() + _process_cache_expiration_sec
+  logging.info('Fetched AuthDB at rev %d', _auth_db.auth_db_rev)
+
+  return _auth_db
+
+
+def _roll_auth_db_cache(candidate):
+  """Updates _auth_db if the given candidate AuthDB is fresher.
+
+  Must be called under _auth_db_lock.
+  """
+  global _auth_db
+  global _auth_db_expiration
+
+  # This may happen after 'reset_local_state' call.
+  if _auth_db is None:
+    _auth_db = candidate
+    _auth_db_expiration = time.time() + _process_cache_expiration_sec
+    logging.info('Updated AuthDB to rev %d', _auth_db.auth_db_rev)
+    return _auth_db
+
+  # Completely skip the update if the fetched version is older than what we
+  # already have.
+  if candidate.entity_group_version < _auth_db.entity_group_version:
+    logging.info(
+        'Someone else updated the cached AuthDB already '
+        '(cached rev %d > fetched rev %d)',
+        _auth_db.auth_db_rev, candidate.auth_db_rev)
+    return _auth_db
+
+  # Prefer to reuse the known copy if it matches the fetched one, it may have
+  # some internal caches we want to keep.
+  if candidate.entity_group_version > _auth_db.entity_group_version:
+    _auth_db = candidate
+    logging.info(
+        'Updated cached AuthDB: rev %d->%d',
+        _auth_db.auth_db_rev, candidate.auth_db_rev)
+
+  # Bump the expiration time even if the candidate's version is same as the
+  # current cached one. We've just confirmed it is still fresh, we can keep
+  # it cached for longer.
+  _auth_db_expiration = time.time() + _process_cache_expiration_sec
+  return _auth_db
 
 
 ################################################################################
