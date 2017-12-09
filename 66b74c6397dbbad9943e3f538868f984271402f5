@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3062cbef_f001bb02",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T06:46:56Z",
+      "side": 1,
+      "message": "this shadows outer variable. please, change for future readers.\ni propose just \u0027g\u0027 or \u0027name\u0027",
+      "range": {
+        "startLine": 366,
+        "startChar": 20,
+        "endLine": 366,
+        "endChar": 30
+      },
+      "revId": "66b74c6397dbbad9943e3f538868f984271402f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eccfb655_a0a96107",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T06:46:56Z",
+      "side": 1,
+      "message": "evil tandrii@ is about to create ~1000 groups nested like Russian dolls :)",
+      "range": {
+        "startLine": 373,
+        "startChar": 6,
+        "endLine": 374,
+        "endChar": 27
+      },
+      "revId": "66b74c6397dbbad9943e3f538868f984271402f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
