@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "605c682b_ec9ef7f8",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T01:32:02Z",
+      "side": 1,
+      "message": "thanks.",
+      "range": {
+        "startLine": 1033,
+        "startChar": 4,
+        "endLine": 1033,
+        "endChar": 74
+      },
+      "revId": "5d1153eeab586fcc970be0084e14e01dc3466354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93f314dd_433c7808",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-09T01:32:02Z",
+      "side": 1,
+      "message": "it kind of bothers me that we presume in many places that time it takes to refresh cached value can be ignored (ie that is ~100x than expiration time). It does have simplicity of implementation though.",
+      "revId": "5d1153eeab586fcc970be0084e14e01dc3466354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
