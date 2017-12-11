@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "29158c56_715577df",
+        "filename": "appengine/components/components/auth/ui/static/js/listing.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-11T20:49:14Z",
+      "side": 1,
+      "message": ":D",
+      "parentUuid": "92a9d552_f46a5274",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 24
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fee4903_a8bec463",
         "filename": "appengine/components/components/auth/ui/static/js/listing.js",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1dcfd85_e5478927",
+        "filename": "appengine/components/components/auth/ui/static/js/listing.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-11T20:49:14Z",
+      "side": 1,
+      "message": "No, see \u0027stripPrefix\u0027:\n// Strips \u0027\u003cprefix\u003e:\u0027 from a string if it starts with it.\n\nnot sure why it was done this way :)",
+      "parentUuid": "0fee4903_a8bec463",
+      "range": {
+        "startLine": 24,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -91,6 +139,30 @@
       "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c579b4e7_9a281f68",
+        "filename": "appengine/components/components/auth/ui/templates/listing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-11T20:49:14Z",
+      "side": 1,
+      "message": "Almost all UI of chrome-infra-auth is implemented in Javascript. The backend serves only API and a bunch of \"static\" HTML files.\n\nM-A asked me to put these warnings in every file, since he was concerned someone might mistake Handlebars templates with Jinja templates.",
+      "parentUuid": "5c052685_2d0362f4",
+      "range": {
+        "startLine": 4,
+        "startChar": 57,
+        "endLine": 5,
+        "endChar": 34
+      },
+      "revId": "4d3ca518f00167251a7edd3a165d73dc596a91c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
