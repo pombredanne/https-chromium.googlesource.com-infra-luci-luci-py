@@ -610,6 +610,53 @@ class ApiDocHandler(UINavbarTabHandler):
         },
       },
     },
+    {
+      'name': 'Group subgraph',
+      'doc':
+        'Subgraph with all groups that include a principal (perhaps indirectly)'
+        ' or owned by (also perhaps indirectly).',
+      'example': {
+        'subgraph': {
+          'nodes': [
+            {
+              'kind': 'IDENTITY',
+              'edges': {
+                'IN': [1, 2],
+              },
+              'value': 'user:someone@example.com',
+            },
+            {
+              'kind': 'GLOB',
+              'edges': {
+                'IN': [2],
+              },
+              'value': 'user:*',
+            },
+            {
+              'kind': 'GROUP',
+              'edges': {
+                'IN': [3],
+                'OWNS': [2, 4],
+              },
+              'value': 'owners-group',
+            },
+            {
+              'kind': 'GROUP',
+              'edges': {
+                'OWNS': [3],
+              },
+              'value': 'another-owners-group',
+            },
+            {
+              'kind': 'GROUP',
+              'value': 'owned-group',
+            },
+          ],
+          'root': 0,
+        },
+      },
+    },
+
   ]
 
   @redirect_ui_on_replica
