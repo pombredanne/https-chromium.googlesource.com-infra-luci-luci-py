@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16f4e56c_67b76919",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:29:42Z",
+      "side": 1,
+      "message": "sgmt.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "46427bf25f27385f4bc4384a0ea41ba44cbc4657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c70a0c3_54c8cecd",
+        "filename": "appengine/components/components/auth/ui/static/js/lookup.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:29:42Z",
+      "side": 1,
+      "message": "missing \"so\", right?",
+      "range": {
+        "startLine": 170,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 49
+      },
+      "revId": "46427bf25f27385f4bc4384a0ea41ba44cbc4657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
