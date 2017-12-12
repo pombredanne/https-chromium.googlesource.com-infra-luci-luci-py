@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0bdee86_79c57ee8",
+        "filename": "appengine/components/components/auth/ui/templates/groups.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-12T06:36:50Z",
+      "side": 1,
+      "message": "I\u0027ve discovered this exists.",
+      "range": {
+        "startLine": 203,
+        "startChar": 59,
+        "endLine": 203,
+        "endChar": 68
+      },
+      "revId": "38750f037b8b694294958bf08f0768c3525b8d85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
