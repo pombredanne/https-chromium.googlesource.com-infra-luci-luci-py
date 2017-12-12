@@ -332,8 +332,30 @@ class RemoteClientGrpc(object):
       'command': None,
       'extra_args': None,
     }
+    self._accept_task_lease()
     logging.info('returning manifest: %s', manifest)
     return ('run', manifest)
+
+  def _accept_task_lease(self):
+    """"Calls UpdateBotSession to accept the task leases."""
+    logging.info('accepting lease')
+    if self._session is None:
+      raise PollError('no active sessions')
+    if not self._session.leases:
+      raise PollError('session has no leases')
+
+    for lease in self._session.leases:
+      if lease.state != bots_pb2.ACTIVE:
+        raise PollError('cannot accept task lease in non-active state: %s',
+                        lease.state)
+
+    req = bots_pb2.UpdateBotSessionRequest()
+    req.bot_session.CopyFrom(self._session)
+    req.name = req.bot_session.name
+    try:
+      self._session = self._proxy_bots.call_unary('UpdateBotSession', req)
+    except Exception as e:
+      raise PollError(str(e))
 
   def _process_admin_lease(self, lease):
     """Process the admin lease."""

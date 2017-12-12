@@ -107,6 +107,98 @@ class TestRemoteClientGrpc(auto_stub.TestCase):
         'bot_group_cfg_version': 1,
     })
 
+  def test_poll_accept_task(self):
+    """Tests the bot accepts a task before returning the manifest."""
+    attrs = {
+        'version': '123',
+        'dimensions': {
+            'id': ['robocop'],
+        },
+        'state': {},
+    }
+
+    session = remote_client_grpc.bots_pb2.BotSession()
+    session.bot_id = 'robocop'
+    session.version = '123'
+    session.name = 'projects/project_id/botsessions/bot_sessions'
+    session.status = remote_client_grpc.bots_pb2.OK
+    worker = session.worker
+    dev = worker.devices.add()
+    dev.handle = 'robocop'
+    self._client._session = remote_client_grpc.bots_pb2.BotSession()
+
+    # Case: UpdateBotSession returns no leases.
+    self._client._session.CopyFrom(session)
+    req = remote_client_grpc.bots_pb2.UpdateBotSessionRequest()
+    req.name = session.name
+    req.bot_session.CopyFrom(session)
+    resp = remote_client_grpc.bots_pb2.BotSession()
+    resp.CopyFrom(session)
+    expected_call = ('UpdateBotSession', req, resp)
+    # Expect the second UpdateBotSession is not called. Otherwise, assertEqual
+    # in _handle_call should fail.
+    self._expected = [expected_call, ('UpdateBotSession', None, None)]
+    cmd, value = self._client.poll(attrs)
+    # Expect it returns ('sleep', 1)
+    self.assertEqual(cmd, 'sleep')
+    self.assertEqual(value, 1)
+
+    # Case: UpdateBotSession returns admin lease.
+    # TODO(huangwe): Consider accepting admin lease as well.
+    self._client._session.CopyFrom(session)
+    req = remote_client_grpc.bots_pb2.UpdateBotSessionRequest()
+    req.name = session.name
+    req.bot_session.CopyFrom(session)
+    resp = remote_client_grpc.bots_pb2.BotSession()
+    resp.CopyFrom(session)
+    lease = resp.leases.add()
+    lease.state = remote_client_grpc.bots_pb2.PENDING
+    lease.assignment = 'abc'
+    admin_lease = remote_client_grpc.bots_pb2.AdminTemp()
+    admin_lease.command = remote_client_grpc.bots_pb2.AdminTemp.BOT_UPDATE
+    lease.inline_assignment.Pack(admin_lease)
+    expected_call = ('UpdateBotSession', req, resp)
+    # Expect the second UpdateBotSession is not called. Otherwise, assertEqual
+    # in _handle_call should fail.
+    self._expected = [expected_call, ('UpdateBotSession', None, None)]
+    cmd, _ = self._client.poll(attrs)
+    self.assertEqual(cmd, 'update')
+
+    # Case: UpdateBotSession returns task lease.
+    self._client._session.CopyFrom(session)
+    req1 = remote_client_grpc.bots_pb2.UpdateBotSessionRequest()
+    req1.name = session.name
+    req1.bot_session.CopyFrom(session)
+    resp1 = remote_client_grpc.bots_pb2.BotSession()
+    resp1.CopyFrom(session)
+    lease1 = resp1.leases.add()
+    lease1.state = remote_client_grpc.bots_pb2.PENDING
+    lease1.assignment = 'def'
+    command = remote_client_grpc.command_pb2.CommandTask()
+    f = command.inputs.files.add()
+    f.hash = 'adsfafasf'
+    f.size_bytes = 60
+    task_lease = remote_client_grpc.tasks_pb2.Task()
+    task_lease.description.Pack(command)
+    lease1.inline_assignment.Pack(task_lease)
+
+    req2 = remote_client_grpc.bots_pb2.UpdateBotSessionRequest()
+    req2.name = session.name
+    req2.bot_session.CopyFrom(session)
+    lease2 = req2.bot_session.leases.add()
+    lease2.CopyFrom(lease1)
+    lease2.state = remote_client_grpc.bots_pb2.ACTIVE
+    # Expect the second UpdateBotSession is called.
+    self._expected = [('UpdateBotSession', req1, resp1),
+                      ('UpdateBotSession', req2, '')]
+
+    def _stdout_resource_name_from_ids(self, bot_id, task_id):
+      return ''
+    self.mock(remote_client_grpc.RemoteClientGrpc,
+              '_stdout_resource_name_from_ids', _stdout_resource_name_from_ids)
+    cmd, _ = self._client.poll(attrs)
+    self.assertEqual(cmd, 'run')
+
   def test_post_bot_event(self):
     """Tests post_bot_event function."""
     self._client._session = remote_client_grpc.bots_pb2.BotSession()
