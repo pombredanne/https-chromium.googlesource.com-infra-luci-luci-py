@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bd1cc39_3f53868f",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:04:02Z",
+      "side": 1,
+      "message": "node",
+      "range": {
+        "startLine": 1301,
+        "startChar": 22,
+        "endLine": 1301,
+        "endChar": 25
+      },
+      "revId": "0d141fc76920368783d7c6e1e6c23e7b781dfce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c462356a_2d424861",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:04:02Z",
+      "side": 1,
+      "message": "assert relation in (self.IN, self.OWNS), relation",
+      "range": {
+        "startLine": 1316,
+        "startChar": 60,
+        "endLine": 1316,
+        "endChar": 0
+      },
+      "revId": "0d141fc76920368783d7c6e1e6c23e7b781dfce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771a6080_c7431082",
+        "filename": "appengine/components/components/auth/ui/rest_api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:04:02Z",
+      "side": 1,
+      "message": "either include this principal or are owned by it",
+      "range": {
+        "startLine": 1244,
+        "startChar": 25,
+        "endLine": 1244,
+        "endChar": 63
+      },
+      "revId": "0d141fc76920368783d7c6e1e6c23e7b781dfce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "749a1f0b_e5747fbf",
+        "filename": "appengine/components/components/auth/ui/rest_api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:04:02Z",
+      "side": 1,
+      "message": "either include this principal or are owned by it",
+      "range": {
+        "startLine": 1250,
+        "startChar": 34,
+        "endLine": 1250,
+        "endChar": 72
+      },
+      "revId": "0d141fc76920368783d7c6e1e6c23e7b781dfce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0665ba93_b1428f87",
+        "filename": "appengine/components/components/auth/ui/rest_api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1275,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:04:02Z",
+      "side": 1,
+      "message": "nitttt: dict\nbcz there is no json yet :P",
+      "range": {
+        "startLine": 1275,
+        "startChar": 11,
+        "endLine": 1275,
+        "endChar": 15
+      },
+      "revId": "0d141fc76920368783d7c6e1e6c23e7b781dfce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e41ec59f_aa691efa",
+        "filename": "appengine/components/components/auth/ui/rest_api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-12T07:04:02Z",
+      "side": 1,
+      "message": "currently? Are you think of \"roots\"?\nBecause if not and given how thrifty we are by using indexes of list instead dict keys, it\u0027d be reasonable to just document that root \u003d\u003d 0.",
+      "range": {
+        "startLine": 1300,
+        "startChar": 8,
+        "endLine": 1300,
+        "endChar": 61
+      },
+      "revId": "0d141fc76920368783d7c6e1e6c23e7b781dfce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
