@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74630036_dc065f63",
+        "filename": "appengine/auth_service/module-backend.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-13T02:45:40Z",
+      "side": 0,
+      "message": "by going through main_backend.ts_mon_app we make sure we initialize sys.path and other crap before importing protobuf.",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "35976e2b65dc5a3e3e1843c2de18a898af1001b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
