@@ -75,7 +75,7 @@ class ServerDetails(messages.Message):
   luci_config = messages.StringField(5)
   default_isolate_server = messages.StringField(6)
   default_isolate_namespace = messages.StringField(7)
-
+  log_server_url_template = messages.StringField(8)
 
 class BootstrapToken(messages.Message):
   """Returns a token to bootstrap a new bot."""

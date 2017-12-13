@@ -76,6 +76,7 @@
     var details = {
       server_version: "1234-deadbeef",
       display_server_url_template: "/res/imp/taskpage/milo-sample.html?id=%s&foo=bar",
+      log_server_url_template: "/res/imp/taskpage/milo-sample.html?id=%s&foo=bar",
     };
     server.respondWith("GET", /^\/_ah\/api\/swarming\/v1\/server\/details/, JSON.stringify(details));
     server.respondWith("GET", /^\/api\/swarming\/v1\/server\/details/, JSON.stringify(details));

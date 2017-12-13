@@ -58,6 +58,10 @@ message SettingsCfg {
 
   // Sets the default gRPC proxy for the bot's Swarming server calls.
   optional string bot_swarming_grpc_proxy = 15;
+
+  // A url to a log display server (e.g. logdog).  This should have a %s where
+  // the rest of the log stream (from the log_location tag) should go.
+  optional string log_server_url_template = 16;
 }
 
 
@@ -146,7 +150,7 @@ message DimensionACLs {
 
 // Access control groups for the swarming service. Custom group names
 // allow several swarming instances to co-exist under the same "auth"
-// server. 
+// server.
 //
 // All groups default to 'administrators'.
 //
