@@ -455,6 +455,8 @@ class CipdInput(ndb.Model):
       raise datastore_errors.BadValueError(
           'Up to 64 CIPD packages can be listed for a task')
 
+    # Make sure we don't install multiple versions of the same package at the
+    # same path.
     package_path_names = set()
     for p in self.packages:
       p._pre_put_hook()
