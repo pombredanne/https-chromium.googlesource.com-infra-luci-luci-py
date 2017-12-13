@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c29ad9c_0b3dba2b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-13T00:24:32Z",
+      "side": 1,
+      "message": "shouldn\u0027t we assert that multiple packages are not mapped in the same directory? The rest doesn\u0027t really mater (?)",
+      "revId": "b3fc6e50a44b60e0da3abe5bb40797343bb1c554",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
