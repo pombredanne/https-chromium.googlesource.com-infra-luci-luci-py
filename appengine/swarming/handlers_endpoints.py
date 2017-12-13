@@ -160,7 +160,8 @@ class SwarmingServerService(remote.Service):
         display_server_url_template=cfg.display_server_url_template,
         luci_config=config.config.config_service_hostname(),
         default_isolate_server=cfg.isolate.default_server,
-        default_isolate_namespace=cfg.isolate.default_namespace)
+        default_isolate_namespace=cfg.isolate.default_namespace,
+        log_server_url_template=cfg.log_server_url_template)
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
