@@ -22,6 +22,30 @@
       "revId": "04ed93e1725b70dcf824aface18b49826f542958",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78375e7f_e45611c1",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2017-12-13T20:55:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b97e1fd_aa484de6",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1049,
+        "endChar": 9
+      },
+      "revId": "04ed93e1725b70dcf824aface18b49826f542958",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
