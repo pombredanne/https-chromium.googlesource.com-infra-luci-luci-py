@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b97e1fd_aa484de6",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2017-12-13T20:11:42Z",
+      "side": 1,
+      "message": "I\u0027m confused about how this works.  The log_location tag will look like this:\nlog_location:logdog://logs.chromium.org/skia/20171213T152340.465067208Z_000000000039951f/+/annotations\n\nWe need to replace \"logdog://\" with \"https://ci.chromium.org/raw/build/\".  If I understand this code correctly, log_template will be something like \"https://ci.chromium.org/raw/build/%s\", but we still need to trim \"logdog://\" right?",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1049,
+        "endChar": 9
+      },
+      "revId": "04ed93e1725b70dcf824aface18b49826f542958",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
