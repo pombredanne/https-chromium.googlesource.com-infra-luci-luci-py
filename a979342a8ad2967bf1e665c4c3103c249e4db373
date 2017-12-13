@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "080c8523_9e04947c",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-13T00:44:16Z",
+      "side": 1,
+      "message": "i really like this func semantics now.",
+      "range": {
+        "startLine": 857,
+        "startChar": 4,
+        "endLine": 857,
+        "endChar": 17
+      },
+      "revId": "a979342a8ad2967bf1e665c4c3103c249e4db373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3b709c8_7c0e4657",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-13T00:44:16Z",
+      "side": 1,
+      "message": "has",
+      "range": {
+        "startLine": 907,
+        "startChar": 15,
+        "endLine": 907,
+        "endChar": 19
+      },
+      "revId": "a979342a8ad2967bf1e665c4c3103c249e4db373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7699423_59892aa0",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-13T00:44:16Z",
+      "side": 1,
+      "message": "suggestion: s/known/cached for readability.",
+      "range": {
+        "startLine": 1040,
+        "startChar": 42,
+        "endLine": 1040,
+        "endChar": 47
+      },
+      "revId": "a979342a8ad2967bf1e665c4c3103c249e4db373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdab43a0_220fa85e",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-13T00:44:16Z",
+      "side": 1,
+      "message": "we",
+      "range": {
+        "startLine": 1088,
+        "startChar": 24,
+        "endLine": 1088,
+        "endChar": 25
+      },
+      "revId": "a979342a8ad2967bf1e665c4c3103c249e4db373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
