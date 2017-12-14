@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33541d8c_ef873772",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-14T18:55:04Z",
+      "side": 1,
+      "message": "nit: tuple would be more lightweight",
+      "range": {
+        "startLine": 161,
+        "startChar": 20,
+        "endLine": 161,
+        "endChar": 35
+      },
+      "revId": "c89f1fd2982fe6497ea7fda92eff8bbb22e63ee2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01fc3480_09c4426a",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-14T18:55:04Z",
+      "side": 1,
+      "message": "this logic is not needed if we config is hostname, as opposed to template",
+      "range": {
+        "startLine": 171,
+        "startChar": 34,
+        "endLine": 171,
+        "endChar": 66
+      },
+      "revId": "c89f1fd2982fe6497ea7fda92eff8bbb22e63ee2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "509425c5_9957b7d1",
+        "filename": "appengine/swarming/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-14T18:55:04Z",
+      "side": 1,
+      "message": "this makes the reader think this template will render to an URL with logdog host, but that\u0027s not true. Also this is not accurate / unclear (what is \"the rest of the log stream\").\n\nwhy do we need this customizability? the only part of the URL template that will be different in different swarming instances is Milo host. Can we include only milo host in the config? Then it is not a template (simpler), we don\u0027t have assert that it is https:// in another file and js code will get simpler too",
+      "range": {
+        "startLine": 62,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "c89f1fd2982fe6497ea7fda92eff8bbb22e63ee2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8cc1a03_544febc6",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-14T18:55:04Z",
+      "side": 1,
+      "message": "const",
+      "range": {
+        "startLine": 1046,
+        "startChar": 8,
+        "endLine": 1046,
+        "endChar": 11
+      },
+      "revId": "c89f1fd2982fe6497ea7fda92eff8bbb22e63ee2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a7218c2_69de175e",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-14T18:55:04Z",
+      "side": 1,
+      "message": "what if it does not have logdog?\nplease at least throw an exception",
+      "revId": "c89f1fd2982fe6497ea7fda92eff8bbb22e63ee2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
