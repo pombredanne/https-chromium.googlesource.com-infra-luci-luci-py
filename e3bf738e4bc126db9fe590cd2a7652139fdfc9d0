@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c462b9c_aea6fb99",
+        "filename": "appengine/components/components/auth/api_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-14T03:49:33Z",
+      "side": 1,
+      "message": "maybe add user a@ here to test for de-duplication of \u0027IN\u0027 groups.",
+      "range": {
+        "startLine": 891,
+        "startChar": 4,
+        "endLine": 891,
+        "endChar": 33
+      },
+      "revId": "e3bf738e4bc126db9fe590cd2a7652139fdfc9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8156401f_eecd29df",
+        "filename": "appengine/components/components/auth/api_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-14T03:49:33Z",
+      "side": 1,
+      "message": "nested\u003d \nand below.",
+      "range": {
+        "startLine": 912,
+        "startChar": 17,
+        "endLine": 912,
+        "endChar": 26
+      },
+      "revId": "e3bf738e4bc126db9fe590cd2a7652139fdfc9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51681a15_ae77954e",
+        "filename": "appengine/components/components/auth/api_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-14T03:49:33Z",
+      "side": 1,
+      "message": "👍",
+      "range": {
+        "startLine": 950,
+        "startChar": 0,
+        "endLine": 952,
+        "endChar": 13
+      },
+      "revId": "e3bf738e4bc126db9fe590cd2a7652139fdfc9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f36049d0_badd8c91",
+        "filename": "appengine/components/components/auth/api_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-14T03:49:33Z",
+      "side": 1,
+      "message": "i think self.call(b.build(), \u0027g1\u0027) is also interesting edge case.",
+      "revId": "e3bf738e4bc126db9fe590cd2a7652139fdfc9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
