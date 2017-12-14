@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82c42378_cdd9ec9e",
+        "filename": "appengine/components/components/auth/ui/static/js/common.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-14T21:39:52Z",
+      "side": 1,
+      "message": "extracted from groups.js, since it is reused now",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 33
+      },
+      "revId": "39498d8b63cd750c04c614f086d2c149e5915718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "844cb32c_2ec2153e",
+        "filename": "appengine/components/components/auth/ui/static/js/lookup.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-14T21:39:52Z",
+      "side": 1,
+      "message": "graph traversal in Javascript, the pinnacle of my software engineering career :)",
+      "range": {
+        "startLine": 202,
+        "startChar": 6,
+        "endLine": 202,
+        "endChar": 20
+      },
+      "revId": "39498d8b63cd750c04c614f086d2c149e5915718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
