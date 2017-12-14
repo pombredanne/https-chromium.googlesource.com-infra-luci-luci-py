@@ -45,6 +45,30 @@
       "revId": "46427bf25f27385f4bc4384a0ea41ba44cbc4657",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5f4d78a_1b499f19",
+        "filename": "appengine/components/components/auth/ui/static/js/lookup.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-14T19:41:58Z",
+      "side": 1,
+      "message": "no\n\n\"we have the busy indicator\" is explanation why it is alright to display the page before we loaded the data: the page will just display the busy indicator, which is fine.",
+      "parentUuid": "6c70a0c3_54c8cecd",
+      "range": {
+        "startLine": 170,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 49
+      },
+      "revId": "46427bf25f27385f4bc4384a0ea41ba44cbc4657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
