@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5cf4ab58_c8a58fd3",
+        "filename": "appengine/components/components/auth/ui/static/js/common.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-15T21:17:05Z",
+      "side": 1,
+      "message": "too bad we cannot use ES6 here because there is compilation: `/auth/groups/${group}`",
+      "revId": "39498d8b63cd750c04c614f086d2c149e5915718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82c42378_cdd9ec9e",
         "filename": "appengine/components/components/auth/ui/static/js/common.js",
         "patchSetId": 1
@@ -45,6 +62,52 @@
       "revId": "39498d8b63cd750c04c614f086d2c149e5915718",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f3aec6a_80980921",
+        "filename": "appengine/components/components/auth/ui/static/js/lookup.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-15T21:17:05Z",
+      "side": 1,
+      "message": "\u0027 -\u003e \u0027",
+      "range": {
+        "startLine": 236,
+        "startChar": 46,
+        "endLine": 236,
+        "endChar": 49
+      },
+      "revId": "39498d8b63cd750c04c614f086d2c149e5915718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71f8e8bd_699a251e",
+        "filename": "appengine/components/components/auth/ui/static/js/lookup.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-15T21:17:05Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 28
+      },
+      "revId": "39498d8b63cd750c04c614f086d2c149e5915718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
