@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e45ee0e3_21d2ae2e",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-16T03:23:50Z",
+      "side": 1,
+      "message": "The reason for this field here is easier testing of the new feature.",
+      "range": {
+        "startLine": 230,
+        "startChar": 2,
+        "endLine": 230,
+        "endChar": 47
+      },
+      "revId": "12b2c55bd74e4f3b8b5257aa3c53f117d99e3612",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
