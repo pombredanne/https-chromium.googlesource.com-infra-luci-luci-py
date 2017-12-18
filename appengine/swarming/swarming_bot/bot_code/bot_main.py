@@ -233,8 +233,8 @@ def _register_extra_bot_config(content):
     # in unicode. <3 python.
     content = content.encode('utf-8')
   try:
-    compiled = compile(content, 'bot_config.py', 'exec')
-    _EXTRA_BOT_CONFIG  = types.ModuleType('bot_config')
+    compiled = compile(content, os.path.join('config', 'injected.py'), 'exec')
+    _EXTRA_BOT_CONFIG = types.ModuleType('injected')
     exec(compiled, _EXTRA_BOT_CONFIG.__dict__)
   except (SyntaxError, TypeError) as e:
     _set_quarantined('handshake returned invalid bot_config: %s' % e)
