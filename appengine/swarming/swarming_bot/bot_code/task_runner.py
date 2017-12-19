@@ -39,18 +39,6 @@ import remote_client
 THIS_FILE = os.path.abspath(zip_package.get_main_script_path())
 
 
-# Sends a maximum of 100kb of stdout per task_update packet.
-MAX_CHUNK_SIZE = 102400
-
-
-# Maximum wait between task_update packet when there's no output.
-MAX_PACKET_INTERVAL = 30
-
-
-# Minimum wait between task_update packet when there's output.
-MIN_PACKET_INTERNAL = 10
-
-
 # Current task_runner_out version.
 OUT_VERSION = 3
 
@@ -347,38 +335,6 @@ def load_and_run(
       json.dump(task_result, f)
 
 
-def should_post_update(stdout, now, last_packet):
-  """Returns True if it's time to send a task_update packet via post_update().
-
-  Sends a packet when one of this condition is met:
-  - more than MAX_CHUNK_SIZE of stdout is buffered.
-  - last packet was sent more than MIN_PACKET_INTERNAL seconds ago and there was
-    stdout.
-  - last packet was sent more than MAX_PACKET_INTERVAL seconds ago.
-  """
-  packet_interval = MIN_PACKET_INTERNAL if stdout else MAX_PACKET_INTERVAL
-  return len(stdout) >= MAX_CHUNK_SIZE or (now - last_packet) > packet_interval
-
-
-def calc_yield_wait(task_details, start, last_io, timed_out, stdout):
-  """Calculates the maximum number of seconds to wait in yield_any()."""
-  now = monotonic_time()
-  if timed_out:
-    # Give a |grace_period| seconds delay.
-    if task_details.grace_period:
-      return max(now - timed_out - task_details.grace_period, 0.)
-    return 0.
-
-  out = MIN_PACKET_INTERNAL if stdout else MAX_PACKET_INTERVAL
-  if task_details.hard_timeout:
-    out = min(out, start + task_details.hard_timeout - now)
-  if task_details.io_timeout:
-    out = min(out, last_io + task_details.io_timeout - now)
-  out = max(out, 0)
-  logging.debug('calc_yield_wait() = %d', out)
-  return out
-
-
 def kill_and_wait(proc, grace_period, reason):
   logging.warning('SIGTERM finally due to %s', reason)
   proc.terminate()
@@ -462,6 +418,78 @@ def _start_task_runner(args, work_dir, ctx_file):
   return proc
 
 
+class _Writer(object):
+  def __init__(self, task_details, start):
+    self._task_details = task_details
+    self._start = start
+    # Sends a maximum of 100kb of stdout per task_update packet.
+    self._max_chunk_size = 102400
+    # Minimum wait between task_update packet when there's output.
+    self._min_packet_internal = 10
+    # Maximum wait between task_update packet when there's no output.
+    self._max_packet_interval = 30
+
+    # Mutable:
+    self._output_chunk_start = 0
+    self._stdout = ''
+    self._last_io = monotonic_time()
+
+  @property
+  def last_io(self):
+    return self._last_io
+
+  def add(self, _channel, data):
+    if data:
+      self._last_io = monotonic_time()
+      self._stdout += data
+
+  def pop(self):
+    o = self._output_chunk_start
+    s = self._stdout
+    self._output_chunk_start += len(self._stdout)
+    self._stdout = ''
+    return (s, o)
+
+  def maxsize(self):
+    return self._max_chunk_size - len(self._stdout)
+
+  def should_post_update(self, now, last_packet):
+    """Returns True if it's time to send a task_update packet via post_update().
+
+    Sends a packet when one of this condition is met:
+    - more than self._max_chunk_size of stdout is buffered.
+    - last packet was sent more than self._min_packet_internal seconds ago and
+      there was stdout.
+    - last packet was sent more than self._max_packet_interval seconds ago.
+    """
+    packet_interval = (
+        self._min_packet_internal if self._stdout
+        else self._max_packet_interval)
+    return (
+        len(self._stdout) >= self._max_chunk_size or
+        (now - last_packet) > packet_interval)
+
+  def calc_yield_wait(self, timed_out):
+    """Calculates the maximum number of seconds to wait in yield_any()."""
+    now = monotonic_time()
+    if timed_out:
+      # Give a |grace_period| seconds delay.
+      if self._task_details.grace_period:
+        return max(now - timed_out - self._task_details.grace_period, 0.)
+      return 0.
+
+    out = (
+        self._min_packet_internal if self._stdout
+        else self._max_packet_interval)
+    if self._task_details.hard_timeout:
+      out = min(out, self._start + self._task_details.hard_timeout - now)
+    if self._task_details.io_timeout:
+      out = min(out, self._last_io + self._task_details.io_timeout - now)
+    out = max(out, 0)
+    logging.debug('calc_yield_wait() = %d', out)
+    return out
+
+
 def run_command(remote, task_details, work_dir, cost_usd_hour,
                 task_start, run_isolated_flags, bot_file, ctx_file):
   """Runs a command and sends packets to the server to stream results back.
@@ -510,56 +538,46 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     proc = _start_task_runner(args, work_dir, ctx_file)
   except _FailureOnStart as e:
     return fail_without_command(
-      remote, task_details.bot_id, task_details.task_id, params, cost_usd_hour,
-      task_start, e.exit_code, e.stdout)
+        remote, task_details.bot_id, task_details.task_id, params,
+        cost_usd_hour, task_start, e.exit_code, e.stdout)
 
+  writer = _Writer(task_details, start)
   try:
     # Monitor the task
-    output_chunk_start = 0
-    stdout = ''
     exit_code = None
     had_io_timeout = False
     must_signal_internal_failure = None
     kill_sent = False
     timed_out = None
     try:
-      calc = lambda: calc_yield_wait(
-          task_details, start, last_io, timed_out, stdout)
-      maxsize = lambda: MAX_CHUNK_SIZE - len(stdout)
-      last_io = monotonic_time()
-      for _, new_data in proc.yield_any(maxsize=maxsize, timeout=calc):
-        now = monotonic_time()
-        if new_data:
-          stdout += new_data
-          last_io = now
+      for channel, new_data in proc.yield_any(
+          maxsize=writer.maxsize,
+          timeout=lambda: writer.calc_yield_wait(timed_out)):
+        writer.add(channel, new_data)
 
         # Post update if necessary.
-        if should_post_update(stdout, now, last_packet):
+        if writer.should_post_update(now, last_packet):
           last_packet = monotonic_time()
           params['cost_usd'] = (
               cost_usd_hour * (last_packet - task_start) / 60. / 60.)
           if not remote.post_task_update(
-              task_details.task_id, task_details.bot_id,
-              params, (stdout, output_chunk_start)):
+              task_details.task_id, task_details.bot_id, params, writer.pop()):
             # Server is telling us to stop. Normally task cancellation.
             if not kill_sent:
               logging.warning('Server induced stop; sending SIGKILL')
               proc.kill()
               kill_sent = True
 
-          output_chunk_start += len(stdout)
-          stdout = ''
-
         # Send signal on timeout if necessary. Both are failures, not
         # internal_failures.
         # Eventually kill but return 0 so bot_main.py doesn't cancel the task.
         if not timed_out:
           if (task_details.io_timeout and
-              now - last_io > task_details.io_timeout):
+              now - writer.last_io > task_details.io_timeout):
             had_io_timeout = True
             logging.warning(
                 'I/O timeout is %.3fs; no update for %.3fs sending SIGTERM',
-                task_details.io_timeout, now - last_io)
+                task_details.io_timeout, now - writer.last_io)
             proc.terminate()
             timed_out = monotonic_time()
         else:
@@ -667,8 +685,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     # already handling some.
     try:
       remote.post_task_update(
-          task_details.task_id, task_details.bot_id, params,
-          (stdout, output_chunk_start), exit_code)
+          task_details.task_id, task_details.bot_id, params, writer.pop(),
+          exit_code)
     except remote_client.InternalError as e:
       logging.error('Internal error while finishing the task: %s', e)
       if not must_signal_internal_failure:
