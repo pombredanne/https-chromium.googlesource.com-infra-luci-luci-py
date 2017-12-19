@@ -583,7 +583,7 @@ def map_and_run(data, constant_run_path):
     'duration': None,
     'exit_code': None,
     'had_hard_timeout': False,
-    'internal_failure': None,
+    'internal_failure': 'run_isolated did not complete properly',
     'stats': {
     # 'isolated': {
     #    'cipd': {
@@ -702,6 +702,9 @@ def map_and_run(data, constant_run_path):
                 tmp_dir, cipd_info, cwd, data.env, data.env_prefix)
             result['exit_code'], result['had_hard_timeout'] = run_command(
                 command, cwd, env, data.hard_timeout, data.grace_period)
+            # We successfully ran the command, set internal_failure back to
+            # None (even if the command failed, it's not an internal error).
+            result['internal_failure'] = None
         finally:
           result['duration'] = max(time.time() - start, 0)
   except Exception as e:
