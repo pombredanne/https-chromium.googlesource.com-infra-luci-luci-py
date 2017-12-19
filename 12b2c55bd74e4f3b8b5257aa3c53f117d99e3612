@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "41e47769_0d142114",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-19T04:21:09Z",
+      "side": 1,
+      "message": "nit: move it after BotGroup, if possible",
+      "range": {
+        "startLine": 136,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 22
+      },
+      "revId": "12b2c55bd74e4f3b8b5257aa3c53f117d99e3612",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ec8f0b3_65b78074",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-19T04:21:09Z",
+      "side": 1,
+      "message": "I think this should be machine_type_name or machine_type_ref, since people who don\u0027t know this config may not understand what mp refers to when reading it.",
+      "range": {
+        "startLine": 148,
+        "startChar": 18,
+        "endLine": 148,
+        "endChar": 25
+      },
+      "revId": "12b2c55bd74e4f3b8b5257aa3c53f117d99e3612",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e45ee0e3_21d2ae2e",
         "filename": "appengine/swarming/proto/bots.proto",
         "patchSetId": 7
@@ -18,6 +64,29 @@
         "startChar": 2,
         "endLine": 230,
         "endChar": 47
+      },
+      "revId": "12b2c55bd74e4f3b8b5257aa3c53f117d99e3612",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eea0d465_e70c6d49",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-19T04:21:09Z",
+      "side": 1,
+      "message": "repeated",
+      "range": {
+        "startLine": 236,
+        "startChar": 2,
+        "endLine": 236,
+        "endChar": 10
       },
       "revId": "12b2c55bd74e4f3b8b5257aa3c53f117d99e3612",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
