@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "773d45eb_13f1a7d3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-19T21:58:18Z",
+      "side": 1,
+      "message": "+4",
+      "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c2c94c_09233472",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-19T21:58:18Z",
+      "side": 1,
+      "message": "this code uses single quotes",
+      "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "375ba1bb_db163d44",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-19T21:58:18Z",
+      "side": 1,
+      "message": "Set it outside of the contexts, so that failure in teardown code is still logged correctly. E.g. just before except line 710.",
+      "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
