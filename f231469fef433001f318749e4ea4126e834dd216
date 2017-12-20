@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e5d33cf_1ed28beb",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-20T12:32:38Z",
+      "side": 1,
+      "message": "Align -2, we want to catch failures in install_packages_fn() tear down code too.",
+      "revId": "f231469fef433001f318749e4ea4126e834dd216",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
