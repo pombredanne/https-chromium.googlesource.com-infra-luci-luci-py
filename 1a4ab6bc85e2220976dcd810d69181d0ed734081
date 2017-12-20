@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f48aa4a2_28e71e13",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2017-12-20T21:27:02Z",
+      "side": 1,
+      "message": "This is already a sufficient check.",
+      "revId": "1a4ab6bc85e2220976dcd810d69181d0ed734081",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
