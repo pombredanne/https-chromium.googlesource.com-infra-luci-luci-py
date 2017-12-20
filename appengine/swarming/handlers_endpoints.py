@@ -58,21 +58,24 @@ def _decode_field(self, field, value):
 protojson.ProtoJson.decode_field = _decode_field
 
 
-def get_request_and_result(task_id, viewing):
-  """Provides the key and TaskRequest corresponding to a task ID.
+def to_keys(task_id):
+  """Returns request and result keys, handling failure."""
+  try:
+    return task_pack.get_request_and_result_keys(task_id)
+  except ValueError:
+    raise endpoints.BadRequestException('%s is an invalid key.' % task_id)
+
+
+def get_task_request(request_key, viewing):
+  """Returns the TaskRequest corresponding to a task ID.
 
   Enforces the ACL for users. Allows bots all access for the moment.
 
   Returns:
-    tuple(TaskRequest, result): result can be either for a TaskRunResult or a
-                                TaskResultSummay.
+    TaskRequest instance.
   """
-  try:
-    request_key, result_key = task_pack.get_request_and_result_keys(task_id)
-    request, result = ndb.get_multi((request_key, result_key))
-  except ValueError:
-    raise endpoints.BadRequestException('%s is an invalid key.' % task_id)
-  if not request or not result:
+  request = request_key.get()
+  if not request:
     raise endpoints.NotFoundException('%s not found.' % task_id)
   if viewing == _VIEW:
     if not acl.can_view_task(request):
@@ -81,7 +84,35 @@ def get_request_and_result(task_id, viewing):
     if not acl.can_edit_task(request):
       raise endpoints.ForbiddenException('%s is not accessible.' % task_id)
   else:
-    raise endpoints.InternalServerErrorException('get_request_and_result()')
+    raise endpoints.InternalServerErrorException('get_task_request()')
+  return request
+
+
+def get_request_and_result(task_id, viewing, use_memcache):
+  """Returns the TaskRequest and task result corresponding to a task ID.
+
+  Arguments:
+    task_id: task ID as provided by the user.
+    viewing: one of _EDIT or _VIEW
+    use_memcache: bool to state if memcache should be used to retrieve the task
+        results.
+
+  Returns:
+    tuple(TaskRequest, result): result can be either for a TaskRunResult or a
+                                TaskResultSummay.
+  """
+  request_key, result_key = to_keys(task_id)
+  # The task result has a very high odd of taking much more time to fetch than
+  # the TaskRequest, albeit it is the TaskRequest that enforces ACL. Still
+  # do the task result fetch first.
+  result_future = result_key.get_async(use_memcache=use_memcache)
+  try:
+    request = get_task_request(request_key, viewing)
+  finally:
+    # Make sure the RPC is completed in any case.
+    result = result_future.get_result()
+  if not result:
+    raise endpoints.NotFoundException('%s not found.' % task_id)
   return request, result
 
 
@@ -248,7 +279,12 @@ class SwarmingTaskService(remote.Service):
     A summary ID ends with '0', a run ID ends with '1' or '2'.
     """
     logging.debug('%s', request)
-    _, result = get_request_and_result(request.task_id, _VIEW)
+    # Workaround a bug in ndb where if a memcache set fails, a stale copy can be
+    # kept in memcache indefinitely. In the case of task result, if this happens
+    # on the very last store where the task is saved to NDB to be marked as
+    # completed, and that the DB store succeeds *but* the memcache update fails,
+    # this API will *always* return the stale version.
+    _, result = get_request_and_result(request.task_id, _VIEW, False)
     return message_conversion.task_result_to_rpc(
         result, request.include_performance_stats)
 
@@ -262,7 +298,8 @@ class SwarmingTaskService(remote.Service):
   def request(self, request):
     """Returns the task request corresponding to a task ID."""
     logging.debug('%s', request)
-    request_obj, _ = get_request_and_result(request.task_id, _VIEW)
+    request_key, _ = to_keys(request.task_id)
+    request_obj = get_task_request(request_key, _VIEW)
     return message_conversion.task_request_to_rpc(request_obj)
 
   @gae_ts_mon.instrument_endpoint()
@@ -277,8 +314,9 @@ class SwarmingTaskService(remote.Service):
     If a bot was running the task, the bot will forcibly cancel the task.
     """
     logging.debug('%s', request)
-    request_obj, result = get_request_and_result(request.task_id, _EDIT)
-    ok, was_running = task_scheduler.cancel_task(request_obj, result.key)
+    request_key, result_key = to_keys(request.task_id)
+    request_obj = get_task_request(request_key, v_EDIT)
+    ok, was_running = task_scheduler.cancel_task(request_obj, result_key)
     return swarming_rpcs.CancelResponse(ok=ok, was_running=was_running)
 
   @gae_ts_mon.instrument_endpoint()
@@ -295,7 +333,8 @@ class SwarmingTaskService(remote.Service):
     # TODO(maruel): Send as raw content instead of encoded. This is not
     # supported by cloud endpoints.
     logging.debug('%s', request)
-    _, result = get_request_and_result(request.task_id, _VIEW)
+    # The result must be fetched to know the right run_result_key to use.
+    _, result = get_request_and_result(request.task_id, _VIEW, True)
     output = result.get_output()
     if output:
       output = output.decode('utf-8', 'replace')
