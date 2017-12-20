@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7d09ce3a_2d72deb3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2017-12-20T12:13:22Z",
+      "side": 1,
+      "message": "What does +4 mean here?",
+      "parentUuid": "773d45eb_13f1a7d3",
+      "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "18c2c94c_09233472",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-19T21:58:18Z",
       "side": 1,
       "message": "this code uses single quotes",
+      "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56916317_3bcdd3f8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2017-12-20T12:13:22Z",
+      "side": 1,
+      "message": "Right you are, fixed.",
+      "parentUuid": "18c2c94c_09233472",
       "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58b69134_cb2da6fd",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2017-12-20T12:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "375ba1bb_db163d44",
+      "revId": "7c1df5aacd767d7073f86946ba674c6a75d57825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
