@@ -357,7 +357,7 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
         continue
       # It is safe because we've validated |severity|.
       func = getattr(ctx, severity.lower())
-      func(msg.get('text') or '')
+      func((msg.get('text') or '').encode('utf-8'))
   except Exception as ex:
     report_error(ex)
 
