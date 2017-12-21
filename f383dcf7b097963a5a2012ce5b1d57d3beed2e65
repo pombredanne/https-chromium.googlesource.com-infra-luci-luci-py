@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6ace9fc_3914019c",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2017-12-21T23:20:45Z",
+      "side": 1,
+      "message": "i am not sure i understand this. Here we are taking a unicode string and convert it to bytes in utf-8 encoding and log bytes. This does not quite make sense to me.\n\nIf we cannot log non-ascii chars, perhaps we should do .encode(\u0027ascii\u0027, \u0027ignore\u0027)",
+      "range": {
+        "startLine": 360,
+        "startChar": 35,
+        "endLine": 360,
+        "endChar": 50
+      },
+      "revId": "f383dcf7b097963a5a2012ce5b1d57d3beed2e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
