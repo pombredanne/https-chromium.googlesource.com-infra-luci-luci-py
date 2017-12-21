@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b2fcaaf_63f3cb03",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-21T11:05:37Z",
+      "side": 1,
+      "message": "so i checked my favorite trie https://github.com/google/pygtrie and it\u0027s indeed slower then a bit less readable:\n\n\nwhere \u003d bisect.left(known, prefix)\nif where \u003e 0 and prefix.startswith(known[where-1]):\n  # overlap\nelif where \u003c len(known) and known[where].startswith(prefix):\n  # overlap or exactly the same\nelse:\n  known.insert(where, prefix) # less \u003c1ms if len(known)\u003d\u003d1k on my laptop\u0027s i7 cpu.\n\n\nbut it was fun :)",
+      "range": {
+        "startLine": 503,
+        "startChar": 14,
+        "endLine": 505,
+        "endChar": 17
+      },
+      "revId": "6ec9664819cb74e519ab50125ee9cb48a8af9b51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7475f8_c0774baf",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-21T11:05:37Z",
+      "side": 1,
+      "message": "I think doing it all at once is easier and errors are better\n\nthough now that I think of it \"subprefix\" is not 100% correct.",
+      "range": {
+        "startLine": 506,
+        "startChar": 7,
+        "endLine": 514,
+        "endChar": 42
+      },
+      "revId": "6ec9664819cb74e519ab50125ee9cb48a8af9b51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
