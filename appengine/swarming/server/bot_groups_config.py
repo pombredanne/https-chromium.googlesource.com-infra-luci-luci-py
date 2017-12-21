@@ -433,6 +433,33 @@ def _validate_group_bot_ids(ctx, group_bot_ids, group_idx, known_bot_ids):
       ctx.error('bad bot_id expression "%s" - %s', bot_id_expr, exc)
 
 
+def _validate_group_bot_id_prefixes(
+    ctx, group_bot_id_prefixes, group_idx, known_bot_id_prefixes):
+  """Validates bot_id_prefixes and updates known_bot_id_prefixes."""
+  for bot_id_prefix in group_bot_id_prefixes:
+    if not bot_id_prefix:
+      ctx.error('empty bot_id_prefix is not allowed')
+      continue
+    if bot_id_prefix in known_bot_id_prefixes:
+      ctx.error(
+          'bot_id_prefix "%s" is already specified in group #%d',
+          bot_id_prefix, known_bot_id_prefixes[bot_id_prefix])
+      continue
+    # TODO(tandrii): trie is perfect for prefix matching **asymptotically**,
+    # but sorted list + bisect will likely be more effective for our scale
+    # because list.insert is written in C (cPython), while trie will be pure
+    # Python.
+    for p, idx in known_bot_id_prefixes.iteritems():
+      # Inefficient, but robust code wrt variable char length.
+      smaller, larger = sorted([bot_id_prefix, p])
+      if larger.startswith(smaller):
+        ctx.error(
+            'bot_id_prefix "%s" is subprefix of "%s" defined in group #%d, '
+            'making group assigned for bots with prefix "%s" ambigious',
+            bot_id_prefix, p, idx, larger)
+    known_bot_id_prefixes[bot_id_prefix] = group_idx
+
+
 def _validate_group_auth_and_system_service_account(ctx, bot_group):
   a = bot_group.auth
   if a.require_luci_machine_token and a.require_service_account:
@@ -490,28 +517,8 @@ def validate_bots_cfg(cfg, ctx):
 
       # Validate bot_id_prefix and make sure bot_id_prefix groups do not
       # intersect.
-      for bot_id_prefix in entry.bot_id_prefix:
-        if not bot_id_prefix:
-          ctx.error('empty bot_id_prefix is not allowed')
-          continue
-        if bot_id_prefix in bot_id_prefixes:
-          ctx.error(
-              'bot_id_prefix "%s" is already specified in group #%d',
-              bot_id_prefix, bot_id_prefixes[bot_id_prefix])
-          continue
-        # TODO(tandrii): trie is perfect for prefix matching **asymptotically**,
-        # but sorted list + bisect will likely be more effective for our scale
-        # because list.insert is written in C (cPython), while trie will be pure
-        # Python.
-        for p, idx in bot_id_prefixes.iteritems():
-          # Inefficient, but robust code wrt variable char length.
-          smaller, larger = sorted([bot_id_prefix, p])
-          if larger.startswith(smaller):
-            ctx.error(
-                'bot_id_prefix "%s" is subprefix of "%s" defined in group #%d, '
-                'making group assigned for bots with prefix "%s" ambigious',
-                bot_id_prefix, p, idx, larger)
-        bot_id_prefixes[bot_id_prefix] = i
+      _validate_group_bot_id_prefixes(
+          ctx, entry.bot_id_prefix, i, bot_id_prefixes)
 
       # A group without bot_id, bot_id_prefix and machine_type is applied to
       # bots that don't fit any other groups. There should be at most one such
