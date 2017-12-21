@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21d552eb_3bb8ddbc",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2017-12-21T03:30:03Z",
+      "side": 1,
+      "message": "here and below - that\u0027s what current code does (it was continue inside a for loop). I disagree with this, but not touching semantics in a refactoring.",
+      "range": {
+        "startLine": 330,
+        "startChar": 4,
+        "endLine": 330,
+        "endChar": 10
+      },
+      "revId": "4f11aaac84293864fcc6d7cdf9bc1ffb40522c33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
