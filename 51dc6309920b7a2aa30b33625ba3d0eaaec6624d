@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "899beb96_5ba5addd",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-21T23:23:00Z",
+      "side": 1,
+      "message": "updates",
+      "range": {
+        "startLine": 422,
+        "startChar": 46,
+        "endLine": 422,
+        "endChar": 52
+      },
+      "revId": "51dc6309920b7a2aa30b33625ba3d0eaaec6624d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd8b6909_9834f6d9",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 1
