@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "647a0264_0d9d0251",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2017-12-21T23:28:38Z",
+      "side": 1,
+      "message": "we don\u0027t care about performance of config validation as long as its not atrocious. O(N^2) is fine. Config validation happens offline and very infrequently. Simpler code here is better than faster code.",
+      "range": {
+        "startLine": 502,
+        "startChar": 6,
+        "endLine": 503,
+        "endChar": 19
+      },
+      "revId": "af0e6747da413aaa842de78fe520ad9c0b93e508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
