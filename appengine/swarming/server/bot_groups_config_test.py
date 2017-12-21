@@ -294,8 +294,8 @@ class BotGroupsConfigTest(test_case.TestCase):
         bots_pb2.BotGroup(bot_id_prefix=['abc-def-'], auth=DEFAULT_AUTH_CFG),
       ])
     self.validator_test(cfg, [
-      'bot_id_prefix "abc-", defined in group #0, is subprefix of "abc-def-", '
-      'defined in group #1; it makes group assigned for bots with prefix '
+      'bot_group #1: bot_id_prefix "abc-def-" is subprefix of "abc-" '
+      'defined in group #0, making group assigned for bots with prefix '
       '"abc-def-" ambigious'
     ])
 
