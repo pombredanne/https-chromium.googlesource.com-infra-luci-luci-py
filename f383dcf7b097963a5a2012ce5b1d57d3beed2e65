@@ -22,6 +22,30 @@
       "revId": "f383dcf7b097963a5a2012ce5b1d57d3beed2e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "712f3ad4_76e63dc3",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1246322
+      },
+      "writtenOn": "2017-12-22T00:05:20Z",
+      "side": 1,
+      "message": "If we do .encode(\u0027ascii\u0027, \u0027ignore\u0027), wouldn\u0027t it result in a more cryptic message for the end user?\nAt least if it were in bytes, the user can readily see that it\u0027s referring to a certain set of non-ascii characters.\nAlso, even if it were in bytes, when this response gets back to presubmit and is outputted, shouldn\u0027t it render correctly (as in you should see the emoji and not the bytestring)?\nFor example,\n\n  a \u003d u\u0027this is going to be fun 😀\u0027\n  b \u003d a.encode(\u0027utf-8\u0027)\n  print b\n\nwould still output\n\n  this is going to be fun 😀\n\neven though b is still\n\n  \u0027this is going to be fun \\xf0\\x9f\\x98\\x80\u0027\n\nI could be very confused here :/",
+      "parentUuid": "a6ace9fc_3914019c",
+      "range": {
+        "startLine": 360,
+        "startChar": 35,
+        "endLine": 360,
+        "endChar": 50
+      },
+      "revId": "f383dcf7b097963a5a2012ce5b1d57d3beed2e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
