@@ -34,6 +34,9 @@ def init_symlinks(root):
 
 def setup_test_env():
   """Sets up App Engine test environment."""
+  # Intentionally use a low value in the test environment to catch any issue
+  # early on.
+  sys.setrecursionlimit(200)
   # For application modules.
   sys.path.insert(0, APP_DIR)
   init_symlinks(APP_DIR)
