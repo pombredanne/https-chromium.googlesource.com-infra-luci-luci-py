@@ -7,6 +7,7 @@
 import datetime
 import json
 import logging
+import sys
 
 import webapp2
 from google.appengine.api import datastore_errors
@@ -58,7 +59,15 @@ class CronTaskQueues(webapp2.RequestHandler):
   @decorators.require_cronjob
   def get(self):
     ndb.get_context().set_cache_policy(lambda _: False)
-    task_queues.tidy_stale()
+    # The default recursion limit on production AppEngine is too low for very
+    # high concurrency, which causes exceptions like:
+    #   RuntimeError: maximum recursion depth exceeded in cmp
+    old = sys.getrecursionlimit()
+    sys.setrecursionlimit(1500)
+    try:
+      task_queues.tidy_stale()
+    finally:
+      sys.setrecursionlimit(old)
     self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
     self.response.out.write('Success.')
 
