@@ -998,6 +998,57 @@ class BotGroupsConfigTest(test_case.TestCase):
     ])
     self.validator_test(cfg, [])
 
+  def test_bot_annotations(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          bot_id=['vm-win-123', 'vm-win-125'],
+          bot_id_prefix=['docker-'],
+          auth=DEFAULT_AUTH_CFG,
+          bot_annotations=[
+            bots_pb2.BotAnnotations(
+              bot_id=['vm-win-{123..125}', 'ty-{po..}'],
+              dimensions=['one:bad'],
+            ),
+            bots_pb2.BotAnnotations(
+              bot_id=['docker-1'],
+              dimensions=['o:k'],
+            ),
+            bots_pb2.BotAnnotations(
+              bot_id_prefix=['vm-mac-'],
+              dimensions=['bad:prefix'],
+            ),
+            bots_pb2.BotAnnotations(
+              bot_id_prefix=['docker-slim-'],
+              dimensions=[],
+            ),
+          ],
+        ),
+    ])
+    self.validator_test(cfg, [
+      (u'bot_group #0: bot_annotation #0: bot_id "vm-win-124" must belong to '
+        'outer bot_group either by prefix or exact match'),
+      (u'bot_group #0: bot_annotation #0: bad bot_id expression "ty-{po..}" - '
+        'Not a valid range start "po"'),
+      # bot_annotation #1 is correct.
+      (u'bot_group #0: bot_annotation #2: bot_id_prefix "vm-mac-" must contain '
+        'a bot_id_prefix defined in outer bot_group'),
+      (u'bot_group #0: bot_annotation #3: at least 1 dimension required'),
+    ])
+
+  def test_include_bot_annotations(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=DEFAULT_AUTH_CFG,
+          include_bot_annotations=['pools/ok.cfg', 'bad.cfg'],
+        ),
+    ])
+    self.validator_test(cfg, [
+      (u'bot_group #0: invalid include_bot_annotations "bad.cfg" path: '
+        'must be pools/<file>'),
+    ])
+
   def test_system_service_account_bad_email(self):
     cfg = bots_pb2.BotsCfg(
       bot_group=[

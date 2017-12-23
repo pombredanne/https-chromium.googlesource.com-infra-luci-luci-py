@@ -198,6 +198,41 @@ message BotGroup {
   //
   // If not set, bots will not use authentication at all.
   optional string system_service_account = 24;
+
+  // Additional dimensions applied to bots.
+  //
+  // Prefer to use include_bot_annotations instead.
+  repeated BotAnnotations bot_annotations = 25;
+
+  // Additional config file which contains BotAnnotations records.
+  //
+  // The only currently supported way is "pools/<filename>".
+  // TODO(tandrii): support sourcing these from project config.
+  repeated string include_bot_annotations = 26;
+}
+
+
+// These bots must belong to some bot_group already,
+// but they will get extra dimensions defined here.
+message BotAnnotations {
+  // Same syntax as BotGroup.bot_id.
+  repeated string bot_id = 1;
+
+  // A prefix to match against bot ID string.
+  repeated string bot_id_prefix = 2;
+
+  // Name of BotGroup.machine_type section, all bots of which will be matched.
+  //
+  // TODO(tandrii): find ways to be able to partition bots from 1 section,
+  // instead of duplicating sections with the same actual machine type.
+  repeated string machine_type_ref = 3;
+
+  // List of additional dimensions to assign to these bots.
+  //
+  // These dimensions will be added to other dimensions of the bot, not
+  // overwritten.
+  // Each dimension is a "<key>:<value>" pair.
+  repeated string dimensions = 4;
 }
 
 

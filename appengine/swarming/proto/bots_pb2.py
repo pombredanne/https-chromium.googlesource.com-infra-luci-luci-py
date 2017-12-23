@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='bots.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\nbots.proto\"C\n\x07\x42otsCfg\x12\x1a\n\x12trusted_dimensions\x18\x01 \x03(\t\x12\x1c\n\tbot_group\x18\x02 \x03(\x0b\x32\t.BotGroup\"Z\n\rDailySchedule\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\x12\x18\n\x10\x64\x61ys_of_the_week\x18\x03 \x03(\x05\x12\x13\n\x0btarget_size\x18\x04 \x01(\x05\"7\n\tLoadBased\x12\x14\n\x0cminimum_size\x18\x01 \x01(\x05\x12\x14\n\x0cmaximum_size\x18\x02 \x01(\x05\"I\n\x08Schedule\x12\x1d\n\x05\x64\x61ily\x18\x01 \x03(\x0b\x32\x0e.DailySchedule\x12\x1e\n\nload_based\x18\x02 \x03(\x0b\x32\n.LoadBased\"\xb2\x01\n\x0bMachineType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x1a\n\x12\x65\x61rly_release_secs\x18\x03 \x01(\x05\x12\x1b\n\x13lease_duration_secs\x18\x04 \x01(\x05\x12\x15\n\rmp_dimensions\x18\x05 \x03(\t\x12\x13\n\x0btarget_size\x18\x06 \x01(\x05\x12\x1b\n\x08schedule\x18\x07 \x01(\x0b\x32\t.Schedule\"\xcc\x01\n\x08\x42otGroup\x12\x0e\n\x06\x62ot_id\x18\x01 \x03(\t\x12\x15\n\rbot_id_prefix\x18\x02 \x03(\t\x12\"\n\x0cmachine_type\x18\x03 \x03(\x0b\x32\x0c.MachineType\x12\x16\n\x04\x61uth\x18\x14 \x01(\x0b\x32\x08.BotAuth\x12\x0e\n\x06owners\x18\x15 \x03(\t\x12\x12\n\ndimensions\x18\x16 \x03(\t\x12\x19\n\x11\x62ot_config_script\x18\x17 \x01(\t\x12\x1e\n\x16system_service_account\x18\x18 \x01(\t\"d\n\x07\x42otAuth\x12\"\n\x1arequire_luci_machine_token\x18\x01 \x01(\x08\x12\x1f\n\x17require_service_account\x18\x02 \x03(\t\x12\x14\n\x0cip_whitelist\x18\x03 \x01(\t')
+  serialized_pb=_b('\n\nbots.proto\"C\n\x07\x42otsCfg\x12\x1a\n\x12trusted_dimensions\x18\x01 \x03(\t\x12\x1c\n\tbot_group\x18\x02 \x03(\x0b\x32\t.BotGroup\"Z\n\rDailySchedule\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\x12\x18\n\x10\x64\x61ys_of_the_week\x18\x03 \x03(\x05\x12\x13\n\x0btarget_size\x18\x04 \x01(\x05\"7\n\tLoadBased\x12\x14\n\x0cminimum_size\x18\x01 \x01(\x05\x12\x14\n\x0cmaximum_size\x18\x02 \x01(\x05\"I\n\x08Schedule\x12\x1d\n\x05\x64\x61ily\x18\x01 \x03(\x0b\x32\x0e.DailySchedule\x12\x1e\n\nload_based\x18\x02 \x03(\x0b\x32\n.LoadBased\"\xb2\x01\n\x0bMachineType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x1a\n\x12\x65\x61rly_release_secs\x18\x03 \x01(\x05\x12\x1b\n\x13lease_duration_secs\x18\x04 \x01(\x05\x12\x15\n\rmp_dimensions\x18\x05 \x03(\t\x12\x13\n\x0btarget_size\x18\x06 \x01(\x05\x12\x1b\n\x08schedule\x18\x07 \x01(\x0b\x32\t.Schedule\"\x97\x02\n\x08\x42otGroup\x12\x0e\n\x06\x62ot_id\x18\x01 \x03(\t\x12\x15\n\rbot_id_prefix\x18\x02 \x03(\t\x12\"\n\x0cmachine_type\x18\x03 \x03(\x0b\x32\x0c.MachineType\x12\x16\n\x04\x61uth\x18\x14 \x01(\x0b\x32\x08.BotAuth\x12\x0e\n\x06owners\x18\x15 \x03(\t\x12\x12\n\ndimensions\x18\x16 \x03(\t\x12\x19\n\x11\x62ot_config_script\x18\x17 \x01(\t\x12\x1e\n\x16system_service_account\x18\x18 \x01(\t\x12(\n\x0f\x62ot_annotations\x18\x19 \x03(\x0b\x32\x0f.BotAnnotations\x12\x1f\n\x17include_bot_annotations\x18\x1a \x03(\t\"e\n\x0e\x42otAnnotations\x12\x0e\n\x06\x62ot_id\x18\x01 \x03(\t\x12\x15\n\rbot_id_prefix\x18\x02 \x03(\t\x12\x18\n\x10machine_type_ref\x18\x03 \x03(\t\x12\x12\n\ndimensions\x18\x04 \x03(\t\"d\n\x07\x42otAuth\x12\"\n\x1arequire_luci_machine_token\x18\x01 \x01(\x08\x12\x1f\n\x17require_service_account\x18\x02 \x03(\t\x12\x14\n\x0cip_whitelist\x18\x03 \x01(\t')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -328,6 +328,20 @@ _BOTGROUP = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='bot_annotations', full_name='BotGroup.bot_annotations', index=8,
+      number=25, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='include_bot_annotations', full_name='BotGroup.include_bot_annotations', index=9,
+      number=26, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -341,7 +355,59 @@ _BOTGROUP = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=489,
-  serialized_end=693,
+  serialized_end=768,
+)
+
+
+_BOTANNOTATIONS = _descriptor.Descriptor(
+  name='BotAnnotations',
+  full_name='BotAnnotations',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='bot_id', full_name='BotAnnotations.bot_id', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='bot_id_prefix', full_name='BotAnnotations.bot_id_prefix', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='machine_type_ref', full_name='BotAnnotations.machine_type_ref', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dimensions', full_name='BotAnnotations.dimensions', index=3,
+      number=4, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=770,
+  serialized_end=871,
 )
 
 
@@ -385,8 +451,8 @@ _BOTAUTH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=695,
-  serialized_end=795,
+  serialized_start=873,
+  serialized_end=973,
 )
 
 _BOTSCFG.fields_by_name['bot_group'].message_type = _BOTGROUP
@@ -395,12 +461,14 @@ _SCHEDULE.fields_by_name['load_based'].message_type = _LOADBASED
 _MACHINETYPE.fields_by_name['schedule'].message_type = _SCHEDULE
 _BOTGROUP.fields_by_name['machine_type'].message_type = _MACHINETYPE
 _BOTGROUP.fields_by_name['auth'].message_type = _BOTAUTH
+_BOTGROUP.fields_by_name['bot_annotations'].message_type = _BOTANNOTATIONS
 DESCRIPTOR.message_types_by_name['BotsCfg'] = _BOTSCFG
 DESCRIPTOR.message_types_by_name['DailySchedule'] = _DAILYSCHEDULE
 DESCRIPTOR.message_types_by_name['LoadBased'] = _LOADBASED
 DESCRIPTOR.message_types_by_name['Schedule'] = _SCHEDULE
 DESCRIPTOR.message_types_by_name['MachineType'] = _MACHINETYPE
 DESCRIPTOR.message_types_by_name['BotGroup'] = _BOTGROUP
+DESCRIPTOR.message_types_by_name['BotAnnotations'] = _BOTANNOTATIONS
 DESCRIPTOR.message_types_by_name['BotAuth'] = _BOTAUTH
 
 BotsCfg = _reflection.GeneratedProtocolMessageType('BotsCfg', (_message.Message,), dict(
@@ -444,6 +512,13 @@ BotGroup = _reflection.GeneratedProtocolMessageType('BotGroup', (_message.Messag
   # @@protoc_insertion_point(class_scope:BotGroup)
   ))
 _sym_db.RegisterMessage(BotGroup)
+
+BotAnnotations = _reflection.GeneratedProtocolMessageType('BotAnnotations', (_message.Message,), dict(
+  DESCRIPTOR = _BOTANNOTATIONS,
+  __module__ = 'bots_pb2'
+  # @@protoc_insertion_point(class_scope:BotAnnotations)
+  ))
+_sym_db.RegisterMessage(BotAnnotations)
 
 BotAuth = _reflection.GeneratedProtocolMessageType('BotAuth', (_message.Message,), dict(
   DESCRIPTOR = _BOTAUTH,
