@@ -998,6 +998,109 @@ class BotGroupsConfigTest(test_case.TestCase):
     ])
     self.validator_test(cfg, [])
 
+  def test_bot_annotations_valid(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=DEFAULT_AUTH_CFG,
+          bot_id=['vm-win-{123..125}', 'vm-win-222'],
+          bot_id_prefix=['docker-'],
+          machine_type=[
+            bots_pb2.MachineType(
+              name='mp-linux',
+              lease_duration_secs=120,
+              mp_dimensions=['key:value'],
+              target_size=1,
+            ),
+          ],
+          bot_annotations=[
+            bots_pb2.BotAnnotations(
+              bot_id=['docker-1', 'vm-win-{123..124}'],
+              machine_type_ref=['mp-linux'],
+              dimensions=['o:k'],
+            ),
+          ],
+        ),
+    ])
+    self.validator_test(cfg, [])
+
+  def test_bot_annotations_invalid_mp_ref(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=DEFAULT_AUTH_CFG,
+          machine_type=[
+            bots_pb2.MachineType(
+              name='mp-linux',
+              lease_duration_secs=120,
+              mp_dimensions=['key:value'],
+              target_size=1,
+            ),
+          ],
+          bot_annotations=[
+            bots_pb2.BotAnnotations(
+              machine_type_ref=['mp-mac'],
+              dimensions=['o:k'],
+            ),
+          ],
+        ),
+    ])
+    self.validator_test(cfg, [
+      (u'bot_group #0: bot_annotations #0: machine_type_ref "mp-mac" must '
+        'refer to machine_type name defined in outer bot_group'),
+    ])
+
+  def test_bot_annotations_invalid(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=DEFAULT_AUTH_CFG,
+          bot_id=['vm-win-123', 'vm-win-125'],
+          bot_id_prefix=['docker-'],
+          bot_annotations=[
+            bots_pb2.BotAnnotations(
+              bot_id=['vm-win-{123..125}', 'ty-{po..}'],
+              dimensions=['one:ok'],
+            ),
+            bots_pb2.BotAnnotations(
+              bot_id_prefix=['vm-mac-'],
+              dimensions=['bad:prefix'],
+            ),
+            bots_pb2.BotAnnotations(
+              bot_id_prefix=['docker-slim-'],
+              dimensions=[],
+            ),
+            bots_pb2.BotAnnotations(
+              dimensions=['one:ok'],
+            ),
+          ],
+        ),
+    ])
+    self.validator_test(cfg, [
+      (u'bot_group #0: bot_annotations #0: bot_id "vm-win-124" must belong to '
+        'outer bot_group either by prefix or exact match'),
+      (u'bot_group #0: bot_annotations #0: bad bot_id expression "ty-{po..}" - '
+        'Not a valid range start "po"'),
+      (u'bot_group #0: bot_annotations #1: bot_id_prefix "vm-mac-" must '
+        'contain a bot_id_prefix defined in outer bot_group'),
+      (u'bot_group #0: bot_annotations #2: at least 1 dimension required'),
+      (u'bot_group #0: bot_annotations #3: at least one of bot_id, '
+        'bot_id_prefix, or machine_type_ref required'),
+    ])
+
+  def test_include_bot_annotations(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=DEFAULT_AUTH_CFG,
+          include_bot_annotations=['pools/ok.cfg', 'bad.cfg'],
+        ),
+    ])
+    self.validator_test(cfg, [
+      (u'bot_group #0: invalid include_bot_annotations "bad.cfg" path: '
+        'must be pools/<file>'),
+    ])
+
   def test_system_service_account_bad_email(self):
     cfg = bots_pb2.BotsCfg(
       bot_group=[
@@ -1032,6 +1135,52 @@ class BotGroupsConfigTest(test_case.TestCase):
           system_service_account='bot'),
       ])
     self.validator_test(cfg, [])
+
+
+class IncludedBotAnnotationsConfigTest(test_case.TestCase):
+  def validator_test(self, cfg, messages):
+    ctx = validation.Context()
+    bot_groups_config.validate_included_bot_annotation(cfg, ctx)
+    self.assertEquals(ctx.result().messages, [
+      validation.Message(severity=logging.ERROR, text=m)
+      for m in messages
+    ])
+
+  def test_valid(self):
+    cfg = bots_pb2.IncludedBotAnnotations(
+      bot_annotations=[
+        bots_pb2.BotAnnotations(
+          bot_id=['some', 'vm-win-{123..124}'],
+          bot_id_prefix=['any'],
+          machine_type_ref=['mp-linux'],
+          dimensions=['o:k'],
+        ),
+      ])
+    self.validator_test(cfg, [])
+
+  def test_invalid(self):
+    cfg = bots_pb2.IncludedBotAnnotations(
+      bot_annotations=[
+        bots_pb2.BotAnnotations(
+          bot_id=['bad-{123..}'],
+          machine_type_ref=['mp-win'],
+          dimensions=['o:k'],
+        ),
+        bots_pb2.BotAnnotations(
+          bot_id_prefix=['ok'],
+        ),
+        bots_pb2.BotAnnotations(
+          dimensions=['o:k'],
+        ),
+      ])
+    self.maxDiff = 1000000
+    self.validator_test(cfg, [
+      (u'bot_annotations #0: bad bot_id expression "bad-{123..}" - '
+        'Not a valid range end ""'),
+      (u'bot_annotations #1: at least 1 dimension required'),
+      (u'bot_annotations #2: at least one of bot_id, bot_id_prefix, or '
+        'machine_type_ref required'),
+    ])
 
 
 if __name__ == '__main__':

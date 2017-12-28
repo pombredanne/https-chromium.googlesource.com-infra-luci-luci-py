@@ -418,19 +418,31 @@ def _validate_machine_type_schedule(ctx, schedule):
       ctx.error('minimum size must be positive')
 
 
-def _validate_group_bot_ids(ctx, group_bot_ids, group_idx, known_bot_ids):
-  """Validates bot_id sections of a group and updates known_bot_ids."""
-  for bot_id_expr in group_bot_ids:
+def _yield_expanded_bot_ids(bot_ids, validation_ctx=None):
+  """Yields individual bot_ids.
+
+  If validation_ctx is given, records validation errors for invalid
+  bot_id experessions.
+  """
+  for bot_id_expr in bot_ids:
     try:
       for bot_id in _expand_bot_id_expr(bot_id_expr):
-        if bot_id in known_bot_ids:
-          ctx.error(
-              'bot_id "%s" was already mentioned in group #%d',
-              bot_id, known_bot_ids[bot_id])
-          continue
-        known_bot_ids[bot_id] = group_idx
+        yield bot_id
     except ValueError as exc:
-      ctx.error('bad bot_id expression "%s" - %s', bot_id_expr, exc)
+      if validation_ctx:
+        validation_ctx.error(
+            'bad bot_id expression "%s" - %s', bot_id_expr, exc)
+
+
+def _validate_group_bot_ids(ctx, group_bot_ids, group_idx, known_bot_ids):
+  """Validates bot_id sections of a group and updates known_bot_ids."""
+  for bot_id in _yield_expanded_bot_ids(group_bot_ids, validation_ctx=ctx):
+    if bot_id in known_bot_ids:
+      ctx.error(
+          'bot_id "%s" was already mentioned in group #%d',
+          bot_id, known_bot_ids[bot_id])
+    else:
+      known_bot_ids[bot_id] = group_idx
 
 
 def _validate_group_bot_id_prefixes(
@@ -458,6 +470,59 @@ def _validate_group_bot_id_prefixes(
           'with prefix "%s" ambigious',
           bot_id_prefix, p, idx, min(p, bot_id_prefix))
     known_bot_id_prefixes[bot_id_prefix] = group_idx
+
+
+def _validate_bot_annotation(ctx, anno, group):
+  """Validates one bot_annotations section of a bot group."""
+  # Get outer bot_group bot_ids, but don't validate them -- not our job.
+  group_bot_ids = frozenset(_yield_expanded_bot_ids(group.bot_id))
+
+  for bot_id in _yield_expanded_bot_ids(anno.bot_id, validation_ctx=ctx):
+    if bot_id in group_bot_ids:
+      continue
+    ok = False
+    for prefix in group.bot_id_prefix:
+      if bot_id.startswith(prefix):
+        ok = True
+        break
+    if not ok:
+      ctx.error(
+          'bot_id "%s" must belong to outer bot_group either by prefix '
+          'or exact match',
+          bot_id)
+
+  for prefix in anno.bot_id_prefix:
+    ok = False
+    for g_prefix in group.bot_id_prefix:
+      if prefix.startswith(g_prefix):
+        ok = True
+        break
+    if not ok:
+      ctx.error(
+          'bot_id_prefix "%s" must contain a bot_id_prefix defined in outer '
+          'bot_group',
+          prefix)
+
+  known_mp_names = frozenset((mp.name for mp in group.machine_type))
+  for name in anno.machine_type_ref:
+    if name not in known_mp_names:
+      ctx.error(
+          'machine_type_ref "%s" must refer to machine_type name defined in '
+          'outer bot_group',
+          name)
+
+  if (not anno.bot_id and
+      not anno.bot_id_prefix and
+      not anno.machine_type_ref):
+    ctx.error(
+        'at least one of bot_id, bot_id_prefix, or machine_type_ref required')
+
+  if not anno.dimensions:
+    ctx.error('at least 1 dimension required')
+  else:
+    for dim in anno.dimensions:
+      if not local_config.validate_flat_dimension(dim):
+        ctx.error('bad dimension %r', dim)
 
 
 def _validate_group_auth_and_system_service_account(ctx, bot_group):
@@ -548,6 +613,18 @@ def validate_bots_cfg(cfg, ctx):
         if not local_config.validate_flat_dimension(dim):
           ctx.error('bad dimension %r', dim)
 
+      # Validate 'bot_annotations'.
+      for ai, anno in enumerate(entry.bot_annotations):
+        with ctx.prefix('bot_annotations #%d: ', ai):
+          _validate_bot_annotation(ctx, anno, entry)
+
+      # Validate 'include_bot_annotations' filenames only.
+      for incl in entry.include_bot_annotations:
+        if not incl.startswith('pools/'):
+          ctx.error(
+              'invalid include_bot_annotations "%s" path: must be pools/<file>',
+              incl)
+
       # Validate 'bot_config_script': the supplemental bot_config.py.
       if entry.bot_config_script:
         # Another check in bot_code.py confirms that the script itself is valid
@@ -560,3 +637,29 @@ def validate_bots_cfg(cfg, ctx):
         # We can't validate that the file exists here. It'll fail in
         # _bot_group_proto_to_tuple() which is called by _fetch_bot_groups() and
         # cached for 60 seconds.
+
+
+@validation.self_rule('regex:pools/.+\\.cfg', bots_pb2.IncludedBotAnnotations)
+def validate_included_bot_annotation(cfg, ctx):
+  for ai, anno in enumerate(cfg.bot_annotations):
+    with ctx.prefix('bot_annotations #%d: ', ai):
+      # We do not know for sure bot_group which includes this config, so
+      # can't fully validate this config.
+
+      # Validate bot_id expressions.
+      for _ in _yield_expanded_bot_ids(anno.bot_id, validation_ctx=ctx):
+        pass
+
+      if (not anno.bot_id and
+          not anno.bot_id_prefix and
+          not anno.machine_type_ref):
+        ctx.error(
+            'at least one of bot_id, bot_id_prefix, or machine_type_ref '
+            'required')
+
+      if not anno.dimensions:
+        ctx.error('at least 1 dimension required')
+      else:
+        for dim in anno.dimensions:
+          if not local_config.validate_flat_dimension(dim):
+            ctx.error('bad dimension %r', dim)
