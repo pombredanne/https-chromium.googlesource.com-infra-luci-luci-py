@@ -235,10 +235,8 @@ class BotGroupsConfigTest(test_case.TestCase):
       self.assertIsNotNone(g)
       return g.dimensions[u'g'][0]
     self.assertEqual(get_group_dimension('abc'), u'first')
-    # second, because direct match takes precedence over prefix match.
-    # TODO(tandrii): update to match first group, because 2nd group is not
-    # valid.
-    self.assertEqual(get_group_dimension('xyz'), u'second')
+    # Second group is invalid, so xyz matches by prefix to the first group.
+    self.assertEqual(get_group_dimension('xyz'), u'first')
 
     self.assertEqual(get_group_dimension('foo'), u'third')
     self.assertEqual(get_group_dimension('ok'), u'first')

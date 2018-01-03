@@ -295,11 +295,10 @@ def _fetch_bot_groups():
                 'Bot "%s" is specified in two different bot groups', bot_id)
             continue
           if bot_id in known_prefixes:
-            # TODO(tandrii): change to error and skip this prefix
-            # https://crbug.com/781087.
-            logging.warn(
+            logging.error(
                 'bot_id "%s" is equal to existing bot_id_prefix of other group',
                 bot_id)
+            continue
           direct_matches[bot_id] = group_cfg
       except ValueError as exc:
         logging.error('Invalid bot_id expression "%s": %s', bot_id_expr, exc)
@@ -309,12 +308,11 @@ def _fetch_bot_groups():
         logging.error('Skipping empty bot_id_prefix')
         continue
       if bot_id_prefix in direct_matches:
-        # TODO(tandrii): change to error and skip this prefix
-        # https://crbug.com/781087.
         logging.warn(
             'bot_id_prefix "%s" is equal to existing bot of %s', bot_id_prefix,
             'the same group ' if group_cfg == direct_matches[bot_id_prefix] else
             'another group')
+        continue
       prefix_matches.append((bot_id_prefix, group_cfg))
       known_prefixes.add(bot_id_prefix)
 
