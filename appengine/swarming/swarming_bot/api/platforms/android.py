@@ -9,8 +9,10 @@ the server to allow additional server-specific functionality.
 """
 
 import collections
+import json
 import logging
 import os
+import socket
 import time
 
 
@@ -239,3 +241,25 @@ def get_state(devices):
       'get_state() (device part) took %gs' %
       round(time.time() - start, 1))
   return state
+
+
+def dump_state_dict(state):
+  """Dumps the state of the devices to a json file on the host.
+
+  Used to communicate to seperate monitoring processes.
+  """
+  # Incorporate hostname into path so that multiple bots under different
+  # containers have their own file.
+  device_file_path = os.path.join(
+      os.path.expanduser('~'),
+      '.android',
+      '%s__android_device_status.json' % socket.gethostname().split('.')[0])
+  state_with_timestamp = {
+      'timestamp': time.time(),
+      'devices': state[u'devices'],
+  }
+  try:
+    with open(device_file_path, mode='w') as f:
+      json.dump(state_with_timestamp, f, indent=2, sort_keys=True)
+  except IOError:
+    logging.exception('Unable to dump device status to %s', device_file_path)
