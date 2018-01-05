@@ -9,8 +9,10 @@ the server to allow additional server-specific functionality.
 """
 
 import collections
+import json
 import logging
 import os
+import socket
 import time
 
 
@@ -190,8 +192,14 @@ def get_dimensions(devices):
   return dimensions
 
 
-def get_state(devices):
+def get_state(devices, dump_to_file=False):
   """Returns state information about all the devices connected to the host.
+
+  Args:
+    devices: List of HighDevice instances.
+    dump_to_file: Optionally dumps the state of the devices to a json file
+                  on the host filesystem. Used to communicate to seperate
+                  monitoring processes.
   """
   keys = (
     u'board.platform',
@@ -238,4 +246,22 @@ def get_state(devices):
   logging.info(
       'get_state() (device part) took %gs' %
       round(time.time() - start, 1))
+
+  if dump_to_file:
+    # Incorporate hostname into path so that multiple bots under different
+    # containers have their own file.
+    device_file_path = os.path.join(
+        os.path.expanduser('~'),
+        '.android',
+        '%s__android_device_status.json' % socket.gethostname().split('.')[0])
+    state_with_timestamp = {
+        'timestamp': time.time(),
+        'devices': state[u'devices'],
+    }
+    try:
+      with open(device_file_path, mode='w') as f:
+        json.dump(state_with_timestamp, f, indent=2, sort_keys=True)
+    except IOError:
+      logging.exception('Unable to dump device status to %s', device_file_path)
+
   return state
