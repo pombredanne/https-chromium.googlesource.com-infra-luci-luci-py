@@ -1163,6 +1163,54 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
     self.assertEqual(expected, actual)
 
 
+class RunIsolatedSubstitutionTest(RunIsolatedTestBase):
+  # Similar to RunIsolatedTest but verifies that we perform the correct
+  # substitution of path components.
+  def setUp(self):
+    super(RunIsolatedSubstitutionTest, self).setUp()
+    self.popen_calls = []
+
+    # pylint: disable=no-self-argument
+    class Popen(object):
+      def __init__(self2, args, **kwargs):
+        self.popen_calls.append((args, kwargs))
+        self.returncode = None
+
+      def wait(self, timeout=None):  # pylint: disable=unused-argument
+        self.returncode = 0
+        return self.returncode
+
+      def kill(self):
+        pass
+
+    self.mock(subprocess42, 'Popen', Popen)
+
+  def test_substitution(self):
+    props = {
+        'output_dir': '${ISOLATED_OUTDIR}',
+        'repo': 'https://myhost/myrepo.git',
+    }
+    cmd = [
+        '--isolate-server', 'https://localhost:1',
+        '--raw-cmd', '--',
+        '/bin/echo', 'hi',
+        '-properties', json.dumps(props),
+    ]
+
+    # Make sure the replacement occurs on non-Windows.
+    self.mock(os, 'sep', '\\')
+
+    ret = run_isolated.main(cmd)
+    self.assertEqual(0, ret)
+    print self.popen_calls[0][0]
+    actual_props = json.loads(self.popen_calls[0][0][-1])
+    print actual_props
+    self.assertNotIn('ISOLATED_OUTDIR', actual_props['output_dir'])
+    del props['output_dir']
+    del actual_props['output_dir']
+    self.assertEqual(props, actual_props)
+
+
 if __name__ == '__main__':
   fix_encoding.fix_encoding()
   if '-v' in sys.argv:

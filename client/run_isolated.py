@@ -37,6 +37,7 @@ import json
 import logging
 import optparse
 import os
+import re
 import sys
 import tempfile
 import time
@@ -347,7 +348,13 @@ def process_command(command, out_dir, bot_file):
     if replace_slash:
       # Replace slashes only if parameters are present
       # because of arguments like '${ISOLATED_OUTDIR}/foo/bar'
-      arg = arg.replace('/', os.sep)
+      # Only replace the part of the argument which looks like a path.
+      match = re.search(r'[a-zA-Z/_-]*\${ISOLATED_OUTDIR}[a-zA-Z/_-]*', arg)
+      if match:
+        matchstr = match.group(0)
+        sub = matchstr.replace('${ISOLATED_OUTDIR}', 'C:\\some\\dir')
+        sub = sub.replace('/', sep)
+        arg = arg.replace(matchstr, sub, 1)
     return arg
 
   return [fix(arg) for arg in command]
