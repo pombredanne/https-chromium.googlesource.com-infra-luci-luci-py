@@ -16,6 +16,24 @@
       "revId": "a4e26a862436103a9d4cd02122ffe05a1ee63caa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a740e60_707d602e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2018-01-05T20:20:56Z",
+      "side": 1,
+      "message": "I\u0027ll defer to you guys as to the best option.  Here\u0027s an example task for reference: https://chromium-swarm.appspot.com/task?id\u003d3ad4d66af3014810\u0026refresh\u003d10\u0026request_detail\u003dtrue  If there\u0027s a smarter way to pass in the properties dict, that should work, although we do need to know the ISOLATED_OUTDIR inside the recipe.  So base64 or a file would only work if we could obtain ISOLATED_OUTDIR some other way.",
+      "parentUuid": "326ea612_eb4f5ff0",
+      "revId": "a4e26a862436103a9d4cd02122ffe05a1ee63caa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
