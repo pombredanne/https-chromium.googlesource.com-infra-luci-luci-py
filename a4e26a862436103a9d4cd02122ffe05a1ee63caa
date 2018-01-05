@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "326ea612_eb4f5ff0",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-05T20:07:55Z",
+      "side": 1,
+      "message": "Another option is to enforce that the part starts with ${ISOLATED_OUTDIR}. I don\u0027t know if it would break users.\n\nOther option is to use a relative path inside the mapped tree, that\u0027s now supported too.\n\nAnother option is to base64 the json data passed passed at the command line. Or pass it through a file. I assume this doens\u0027t work because of this passed through kitchen?",
+      "revId": "a4e26a862436103a9d4cd02122ffe05a1ee63caa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
