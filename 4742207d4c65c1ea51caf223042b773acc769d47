@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fa588f4_f2df45de",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-07T23:10:49Z",
+      "side": 1,
+      "message": "I see this code in only one config file for now and this is quite chromium-specific. Is there more background I\u0027m missing?",
+      "revId": "4742207d4c65c1ea51caf223042b773acc769d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
