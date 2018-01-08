@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9094d3d_47ccef79",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-08T22:28:46Z",
+      "side": 1,
+      "message": "comment explaining why would be nice (i\u0027m curious)",
+      "range": {
+        "startLine": 184,
+        "startChar": 22,
+        "endLine": 184,
+        "endChar": 55
+      },
+      "revId": "3753afab33777b7e76ef97e8183703d71268e5f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
