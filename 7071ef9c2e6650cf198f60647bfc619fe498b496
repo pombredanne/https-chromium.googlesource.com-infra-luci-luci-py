@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "daa667de_33eaf3d5",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-08T22:41:25Z",
+      "side": 1,
+      "message": "I\u0027ve just copy-pasted it from other cron handlers for uniformity... Fine, will remove.",
+      "parentUuid": "949ebad9_f6405929",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 184,
+        "endChar": 55
+      },
+      "revId": "7071ef9c2e6650cf198f60647bfc619fe498b496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "493ca34b_1bf2d527",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 3
