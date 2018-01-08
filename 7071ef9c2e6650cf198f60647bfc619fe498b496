@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "eca66b2c_47ce649d",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-08T23:36:27Z",
+      "side": 1,
+      "message": "well, then add a \"TODO will be used in next CL\".",
+      "parentUuid": "8e0c7847_45858d2f",
+      "range": {
+        "startLine": 1118,
+        "startChar": 4,
+        "endLine": 1118,
+        "endChar": 16
+      },
+      "revId": "7071ef9c2e6650cf198f60647bfc619fe498b496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "390033a0_5b0796b9",
         "filename": "appengine/swarming/server/bot_groups_config_test.py",
         "patchSetId": 3
