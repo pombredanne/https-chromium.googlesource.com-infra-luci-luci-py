@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "8e0c7847_45858d2f",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-08T23:33:39Z",
+      "side": 1,
+      "message": "Fine. I was planning to use it in the next CL.",
+      "parentUuid": "9f4c37bc_58bb3946",
+      "range": {
+        "startLine": 1118,
+        "startChar": 4,
+        "endLine": 1118,
+        "endChar": 16
+      },
+      "revId": "7071ef9c2e6650cf198f60647bfc619fe498b496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "390033a0_5b0796b9",
         "filename": "appengine/swarming/server/bot_groups_config_test.py",
         "patchSetId": 3
@@ -157,6 +181,24 @@
       "revId": "7071ef9c2e6650cf198f60647bfc619fe498b496",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dac8be6d_480b4e36",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-08T23:33:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "390033a0_5b0796b9",
+      "revId": "7071ef9c2e6650cf198f60647bfc619fe498b496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
