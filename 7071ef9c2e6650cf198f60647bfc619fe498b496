@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "949ebad9_f6405929",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-08T22:30:48Z",
+      "side": 1,
+      "message": "update: I\u0027ve read through all the code, and I don\u0027t see how this is the right to do.",
+      "parentUuid": "6b6fdfc4_6c640156",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 184,
+        "endChar": 55
+      },
+      "revId": "7071ef9c2e6650cf198f60647bfc619fe498b496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "493ca34b_1bf2d527",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 3
