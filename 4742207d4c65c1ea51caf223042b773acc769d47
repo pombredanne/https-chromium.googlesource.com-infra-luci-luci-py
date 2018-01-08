@@ -16,6 +16,24 @@
       "revId": "4742207d4c65c1ea51caf223042b773acc769d47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e24b675_45e64647",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-01-08T21:52:58Z",
+      "side": 1,
+      "message": "It\u0027s in chromium-swarm-dev/android.py and chromium-swarm/android.py atm. I\u0027d like to add it to chromium-swarm/skia_mobile.py as well (since they have some of our phones in their pool.)\n\nI could just copy this into skia_mobile.py, but was hoping to keep it a one-liner. IDC either way",
+      "parentUuid": "6fa588f4_f2df45de",
+      "revId": "4742207d4c65c1ea51caf223042b773acc769d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
