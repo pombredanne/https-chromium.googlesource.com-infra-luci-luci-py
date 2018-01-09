@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "868f9337_788155d0",
+        "filename": "appengine/swarming/server/bot_auth_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-09T02:51:58Z",
+      "side": 0,
+      "message": "get_bot_group_config now rejects broken configs right away",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 40
+      },
+      "revId": "e023054be7f86f6bad73117fb902025fc210ae13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de945f80_636f7a89",
         "filename": "appengine/swarming/server/bot_groups_config_test.py",
         "patchSetId": 1
