@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de945f80_636f7a89",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-09T01:48:13Z",
+      "side": 0,
+      "message": "Invalid config are not being served now at all, the function raises BadConfigError. Invalid configs normally would be rejected in the cron.",
+      "range": {
+        "startLine": 258,
+        "startChar": 10,
+        "endLine": 258,
+        "endChar": 48
+      },
+      "revId": "e023054be7f86f6bad73117fb902025fc210ae13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
