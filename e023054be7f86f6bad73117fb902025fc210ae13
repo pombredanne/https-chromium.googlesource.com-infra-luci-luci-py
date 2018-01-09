@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2a4d8a5_84a38561",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-01-09T19:07:24Z",
+      "side": 0,
+      "message": "oops :(",
+      "range": {
+        "startLine": 1595,
+        "startChar": 30,
+        "endLine": 1595,
+        "endChar": 36
+      },
+      "revId": "e023054be7f86f6bad73117fb902025fc210ae13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
