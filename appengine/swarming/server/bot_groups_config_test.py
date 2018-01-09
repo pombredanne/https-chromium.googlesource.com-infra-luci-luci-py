@@ -93,14 +93,19 @@ EXPECTED_GROUP_3 = bot_groups_config._make_bot_group_config(
 DEFAULT_AUTH_CFG = bots_pb2.BotAuth(ip_whitelist='bots')
 
 
-class BotGroupsConfigTest(test_case.TestCase):
-  def validator_test(self, cfg, messages):
-    ctx = validation.Context()
-    bot_groups_config._validate_bots_cfg(cfg, ctx)
-    self.assertEquals(ctx.result().messages, [
+class ValidationCtx(validation.Context):
+  def assert_errors(self, test, messages):
+    test.assertEquals(self.result().messages, [
       validation.Message(severity=logging.ERROR, text=m)
       for m in messages
     ])
+
+
+class BotGroupsConfigTest(test_case.TestCase):
+  def validator_test(self, cfg, messages):
+    ctx = ValidationCtx()
+    bot_groups_config._validate_bots_cfg(cfg, ctx)
+    ctx.assert_errors(self, messages)
 
   def mock_config(self, cfg):
     def get_self_config_mock(path, cls=None, **kwargs):
@@ -252,22 +257,6 @@ class BotGroupsConfigTest(test_case.TestCase):
       (u'bot_group #2: bot_id_prefix "foo" is already specified as bot_id '
         'in group #2'),
     ])
-    self.mock_config(cfg)
-
-    def get_group_dimension(bot_id):
-      g = bot_groups_config.get_bot_group_config(bot_id, None)
-      self.assertIsNotNone(g)
-      return g.dimensions[u'g'][0]
-    self.assertEqual(get_group_dimension('abc'), u'first')
-    # second, because direct match takes precedence over prefix match.
-    # TODO(tandrii): update to match first group, because 2nd group is not
-    # valid.
-    self.assertEqual(get_group_dimension('xyz'), u'second')
-
-    self.assertEqual(get_group_dimension('foo'), u'third')
-    self.assertEqual(get_group_dimension('ok'), u'first')
-    self.assertEqual(get_group_dimension('ok-1'), u'second')
-    self.assertEqual(get_group_dimension('any'), u'default')
 
   def test_bad_auth_cfg_two_methods(self):
     cfg = bots_pb2.BotsCfg(
@@ -1258,6 +1247,52 @@ class CacheTest(test_case.TestCase):
     cached = self.cached_config_entity()
     self.assertFalse(cached.empty)
     self.assertEqual('rev1', cached.bots_cfg_rev)
+
+  def test_expands_bot_config_scripts_ok(self):
+    self.mock_config({
+      'bots.cfg': ('rev1', bots_pb2.BotsCfg(
+        bot_group=[
+          bots_pb2.BotGroup(
+            auth=bots_pb2.BotAuth(require_luci_machine_token=True),
+            bot_config_script='script.py',
+          ),
+        ],
+      )),
+      'scripts/script.py': ('rev2', 'print "Hallo, python"'),
+    })
+
+    # Has 'bot_config_script_content' populated.
+    cfg = bot_groups_config.refetch_from_config_service()
+    self.assertEqual(bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=bots_pb2.BotAuth(require_luci_machine_token=True),
+          bot_config_script='script.py',
+          bot_config_script_content='print "Hallo, python"',
+        ),
+      ],
+    ), cfg.bots)
+
+  def test_expands_bot_config_scripts_fail(self):
+    self.mock_config({
+      'bots.cfg': ('rev1', bots_pb2.BotsCfg(
+        bot_group=[
+          bots_pb2.BotGroup(
+            auth=bots_pb2.BotAuth(require_luci_machine_token=True),
+            bot_config_script='script.py',
+          ),
+        ],
+      )),
+      'scripts/script.py': ('rev2', '!!not python!!'),
+    })
+
+    ctx = ValidationCtx()
+    with self.assertRaises(bot_groups_config.BadConfigError):
+      bot_groups_config.refetch_from_config_service(ctx)
+    ctx.assert_errors(self, [
+      'bot_group #0: invalid bot config script "script.py": invalid syntax'
+      ' (<unknown>, line 1)',
+    ])
 
 
 if __name__ == '__main__':

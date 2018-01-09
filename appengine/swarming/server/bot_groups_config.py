@@ -4,6 +4,7 @@
 
 """Functions to fetch and interpret bots.cfg file with list of bot groups."""
 
+import ast
 import collections
 import hashlib
 import logging
@@ -122,6 +123,14 @@ def fetch_machine_types():
   return _fetch_bot_groups().machine_types_raw
 
 
+def warmup():
+  """Optional warm up of the in-process caches."""
+  try:
+    _fetch_bot_groups()
+  except BadConfigError as exc:
+    logging.error('Failed to warm up bots.cfg cache: %s', exc)
+
+
 def refetch_from_config_service(ctx=None):
   """Updates the cached expanded copy of bots.cfg in the datastore.
 
@@ -223,7 +232,7 @@ def refetch_from_config_service(ctx=None):
 # Changing this value is equivalent to removing the entities that hold
 # the cache. Note that we intentionally keep older version of the config to
 # allow GAE instances that still run the old code to use them.
-_BOT_CFG_CACHE_VER = 1
+_BOT_CFG_CACHE_VER = 2
 
 
 class BotsCfgHead(ndb.Model):
@@ -271,6 +280,28 @@ def _bots_cfg_body_key():
   return ndb.Key(BotsCfgBody, 1, parent=_bots_cfg_head_key())
 
 
+class _DigestBuilder(object):
+  """Tiny helper for building config digest strings."""
+
+  def __init__(self):
+    self._h = hashlib.sha256()
+
+  def update(self, kind, key, val):
+    assert isinstance(kind, str), type(kind)
+    assert isinstance(key, basestring), type(key)
+    assert isinstance(val, basestring), type(val)
+    assert '\x00' not in kind, kind
+    assert '\x00' not in key, key
+    if isinstance(key, unicode):
+      key = key.encode('utf-8')
+    if isinstance(val, unicode):
+      val = val.encode('utf-8')
+    self._h.update('%s\x00%s\x00%d%s\x00' % (kind, key, len(val), val))
+
+  def get(self):
+    return 'v%d:%s' % (_BOT_CFG_CACHE_VER, self._h.hexdigest())
+
+
 def _fetch_and_expand_bots_cfg(ctx):
   """Fetches bots.cfg with all includes from config service, validating it.
 
@@ -295,10 +326,35 @@ def _fetch_and_expand_bots_cfg(ctx):
 
   logging.info('Expanding and validating bots.cfg at rev %s', rev)
 
-  # TODO(vadimsh): Actually expand.
-  _ = ctx
+  digest = _DigestBuilder()
+  digest.update('ROOT_REV', '', rev)
 
-  return ExpandedBotsCfg(cfg, rev, 'v%d:%s' % (_BOT_CFG_CACHE_VER, rev))
+  # Fetch all included bot config scripts.
+  for idx, gr in enumerate(cfg.bot_group):
+    if gr.bot_config_script_content or not gr.bot_config_script:
+      continue
+    script_rev, content = config.get_self_config(
+        'scripts/' + gr.bot_config_script,
+        store_last_good=True)
+    if content:
+      logging.info(
+          'Using bot config script "%s" at rev %s', gr.bot_config_script,
+          script_rev)
+      gr.bot_config_script_content = content
+      digest.update('BOT_CONFIG_SCRIPT_REV', str(idx), script_rev)
+    else:
+      # The entry is invalid. It points to a non existing file. It could be
+      # because of a typo in the file name. An empty file is an invalid file.
+      ctx.error('missing or empty bot_config_script "%s"', gr.bot_config_script)
+
+  # TODO(vadimsh): Fetch and expand bot lists.
+  # TODO(tandrii): Fetch and expand additional bot annotation includes.
+
+  # Revalidate the fully expanded config, it may have new errors not detected
+  # when validating each file individually.
+  _validate_bots_cfg(cfg, ctx)
+
+  return ExpandedBotsCfg(cfg, rev, digest.get())
 
 
 def _get_expanded_bots_cfg(known_digest=None):
@@ -429,19 +485,6 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
     dimensions.setdefault(k, set()).add(v)
 
   auth_cfg = msg.auth or bots_pb2.BotAuth()
-
-  content = ''
-  if msg.bot_config_script:
-    rev, content = config.get_self_config(
-        'scripts/' + msg.bot_config_script,
-        store_last_good=True)
-    if not rev or not content:
-      # The entry is invalid. It points to a non existing file. It could be
-      # because of a typo in the file name. An empty file is an invalid file,
-      # log an error to alert the admins.
-      logging.error(
-          'Configuration referenced non existing bot_config file %r\n%s',
-          msg.bot_config_script, msg)
   return _make_bot_group_config(
     require_luci_machine_token=auth_cfg.require_luci_machine_token,
     require_service_account=list(auth_cfg.require_service_account),
@@ -449,7 +492,7 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
     owners=tuple(msg.owners),
     dimensions={k: sorted(v) for k, v in dimensions.iteritems()},
     bot_config_script=msg.bot_config_script or '',
-    bot_config_script_content=content or '',
+    bot_config_script_content=msg.bot_config_script_content or '',
     system_service_account=msg.system_service_account or '')
 
 
@@ -838,12 +881,24 @@ def _validate_bots_cfg(cfg, ctx):
       # Validate 'bot_config_script': the supplemental bot_config.py.
       if entry.bot_config_script:
         # Another check in bot_code.py confirms that the script itself is valid
-        # python.
+        # python before it is accepted by the config service. See
+        # _validate_scripts validator there. We later recheck this (see below)
+        # when assembling the final expanded bots.cfg.
         if not entry.bot_config_script.endswith('.py'):
           ctx.error('invalid bot_config_script name: must end with .py')
         if os.path.basename(entry.bot_config_script) != entry.bot_config_script:
           ctx.error(
               'invalid bot_config_script name: must not contain path entry')
-        # We can't validate that the file exists here. It'll fail in
-        # _bot_group_proto_to_tuple() which is called by _fetch_bot_groups() and
-        # cached for 60 seconds.
+        # We can't validate that the file exists here. We'll do it later in
+        # _fetch_and_expand_bots_cfg when assembling the final config from
+        # individual files.
+
+      # Validate 'bot_config_script_content': the content must be valid python.
+      # This validation is hit when validating the expanded bot config.
+      if entry.bot_config_script_content:
+        try:
+          ast.parse(entry.bot_config_script_content)
+        except (SyntaxError, TypeError) as e:
+          ctx.error(
+              'invalid bot config script "%s": %s' %
+              (entry.bot_config_script, e))
