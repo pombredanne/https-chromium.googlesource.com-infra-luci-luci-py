@@ -12,7 +12,6 @@ import test_env
 test_env.setup_test_env()
 
 from components import config
-from components import utils
 from components.config import validation
 from test_support import test_case
 
@@ -93,14 +92,19 @@ EXPECTED_GROUP_3 = bot_groups_config._make_bot_group_config(
 DEFAULT_AUTH_CFG = bots_pb2.BotAuth(ip_whitelist='bots')
 
 
-class BotGroupsConfigTest(test_case.TestCase):
-  def validator_test(self, cfg, messages):
-    ctx = validation.Context()
-    bot_groups_config._validate_bots_cfg(cfg, ctx)
-    self.assertEquals(ctx.result().messages, [
+class ValidationCtx(validation.Context):
+  def assert_errors(self, test, messages):
+    test.assertEquals(self.result().messages, [
       validation.Message(severity=logging.ERROR, text=m)
       for m in messages
     ])
+
+
+class BotGroupsConfigTest(test_case.TestCase):
+  def validator_test(self, cfg, messages):
+    ctx = ValidationCtx()
+    bot_groups_config._validate_bots_cfg(cfg, ctx)
+    ctx.assert_errors(self, messages)
 
   def mock_config(self, cfg):
     def get_self_config_mock(path, cls=None, **kwargs):
@@ -112,7 +116,7 @@ class BotGroupsConfigTest(test_case.TestCase):
       return '123', 'print "Hi"'
 
     self.mock(config, 'get_self_config', get_self_config_mock)
-    utils.clear_cache(bot_groups_config._fetch_bot_groups)
+    bot_groups_config.clear_cache()
 
   def test_version(self):
     self.assertEqual('hash:06a8c8330221ff', EXPECTED_GROUP_1.version)
@@ -252,22 +256,6 @@ class BotGroupsConfigTest(test_case.TestCase):
       (u'bot_group #2: bot_id_prefix "foo" is already specified as bot_id '
         'in group #2'),
     ])
-    self.mock_config(cfg)
-
-    def get_group_dimension(bot_id):
-      g = bot_groups_config.get_bot_group_config(bot_id, None)
-      self.assertIsNotNone(g)
-      return g.dimensions[u'g'][0]
-    self.assertEqual(get_group_dimension('abc'), u'first')
-    # second, because direct match takes precedence over prefix match.
-    # TODO(tandrii): update to match first group, because 2nd group is not
-    # valid.
-    self.assertEqual(get_group_dimension('xyz'), u'second')
-
-    self.assertEqual(get_group_dimension('foo'), u'third')
-    self.assertEqual(get_group_dimension('ok'), u'first')
-    self.assertEqual(get_group_dimension('ok-1'), u'second')
-    self.assertEqual(get_group_dimension('any'), u'default')
 
   def test_bad_auth_cfg_two_methods(self):
     cfg = bots_pb2.BotsCfg(
@@ -1258,6 +1246,54 @@ class CacheTest(test_case.TestCase):
     cached = self.cached_config_entity()
     self.assertFalse(cached.empty)
     self.assertEqual('rev1', cached.bots_cfg_rev)
+
+  def test_expands_bot_config_scripts_ok(self):
+    good_script = "# coding=utf-8\nprint 'Hello'\n"
+
+    self.mock_config({
+      'bots.cfg': ('rev1', bots_pb2.BotsCfg(
+        bot_group=[
+          bots_pb2.BotGroup(
+            auth=bots_pb2.BotAuth(require_luci_machine_token=True),
+            bot_config_script='script.py',
+          ),
+        ],
+      )),
+      'scripts/script.py': ('rev2', good_script),
+    })
+
+    # Has 'bot_config_script_content' populated.
+    cfg = bot_groups_config.refetch_from_config_service()
+    self.assertEqual(bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(
+          auth=bots_pb2.BotAuth(require_luci_machine_token=True),
+          bot_config_script='script.py',
+          bot_config_script_content=good_script,
+        ),
+      ],
+    ), cfg.bots)
+
+  def test_expands_bot_config_scripts_fail(self):
+    self.mock_config({
+      'bots.cfg': ('rev1', bots_pb2.BotsCfg(
+        bot_group=[
+          bots_pb2.BotGroup(
+            auth=bots_pb2.BotAuth(require_luci_machine_token=True),
+            bot_config_script='script.py',
+          ),
+        ],
+      )),
+      'scripts/script.py': ('rev2', '!!not python!!'),
+    })
+
+    ctx = ValidationCtx()
+    with self.assertRaises(bot_groups_config.BadConfigError):
+      bot_groups_config.refetch_from_config_service(ctx)
+    ctx.assert_errors(self, [
+      'bot_group #0: invalid bot config script "script.py": invalid syntax'
+      ' (<unknown>, line 1)',
+    ])
 
 
 if __name__ == '__main__':
