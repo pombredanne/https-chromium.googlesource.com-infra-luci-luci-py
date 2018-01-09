@@ -37,6 +37,7 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
             'key2:value2',
         ],
         disk_size_gb=300,
+        disk_type=config_pb2.InstanceTemplateConfig.InstanceTemplate.PD_SSD,
         machine_type='n1-standard-8',
         metadata=[
             'key1:value1',
@@ -53,6 +54,7 @@ class ComputeTemplateChecksumTest(test_case.TestCase):
             'key1:value1',
         ],
         disk_size_gb=300,
+        disk_type=config_pb2.InstanceTemplateConfig.InstanceTemplate.PD_SSD,
         machine_type='n1-standard-8',
         metadata=[
             'key2:value2',

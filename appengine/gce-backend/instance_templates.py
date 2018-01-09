@@ -131,6 +131,7 @@ def create(key):
     result = api.create_instance_template(
         get_name(instance_template_revision),
         instance_template_revision.disk_size_gb,
+        instance_template_revision.disk_type,
         gce.get_image_url(image_project, instance_template_revision.image_name),
         instance_template_revision.machine_type,
         auto_assign_external_ip=
