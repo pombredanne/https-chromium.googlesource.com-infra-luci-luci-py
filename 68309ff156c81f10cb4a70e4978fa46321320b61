@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86b7cb5e_93a68852",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-09T03:40:34Z",
+      "side": 1,
+      "message": "for efficiency on presumably large vals from bot config script includes and also perhaps more readable:\nself._h.update(kind)\nself._h.update(\u0027\\x00\u0027)\nself._h.update(key)\nself._h.update(\u0027\\x00\u0027)\nself._h.update(len(val))\nself._h.update(\u0027\\x00\u0027)     # \u003c--- for obvious correctness, although [1]\nself._h.update(val)\nself._h.update(\u0027\\x00\u0027)\n\n\n[1] I believe it\u0027s possible to argue that \u0027%d%s\u0027 % (len(val), val) is unique\n\n\nupdate: ah, val here is merely git revision, not actual contents. feel free to ignore.",
+      "range": {
+        "startLine": 299,
+        "startChar": 4,
+        "endLine": 299,
+        "endChar": 71
+      },
+      "revId": "68309ff156c81f10cb4a70e4978fa46321320b61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
