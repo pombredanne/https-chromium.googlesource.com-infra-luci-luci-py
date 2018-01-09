@@ -30,6 +30,17 @@ message InstanceTemplateConfig {
     optional string image_name = 4;
     // Project which contains the specified image, if different than "project".
     optional string image_project = 10;
+    // GCE disk type.
+    enum DiskType {
+      // Persistent standard disk.
+      PD_STANDARD = 0;
+      // Persistent SSD disk.
+      PD_SSD = 1;
+      // Local SSD disk.
+      LOCAL_SSD = 2;
+    }
+    // Disk type.
+    optional DiskType disk_type = 15;
     // Disk size (GiB).
     optional int32 disk_size_gb = 5;
     // Service accounts. Must be at least one.

@@ -224,13 +224,14 @@ class Project(object):
         break
 
   def create_instance_template(
-      self, name, disk_size_gb, image, machine_type,
+      self, name, disk_size_gb, disk_type, image, machine_type,
       auto_assign_external_ip=False, metadata=None, network_url='',
       min_cpu_platform=None, service_accounts=None, tags=None):
     """
     Args:
       name: Name of the instance template.
       disk_size_gb: Disk size in GiB for instances created from this template.
+      disk_type: Disk type for instances created from this template.
       image: Image to use for instances created from this template.
       machine_type: GCE machine type for instances created from this template.
         e.g. n1-standard-8.
@@ -263,6 +264,7 @@ class Project(object):
                   'boot': True,
                   'initializeParams': {
                       'diskSizeGb': disk_size_gb,
+                      'diskType': disk_type,
                       'sourceImage': image,
                   },
               },

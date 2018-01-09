@@ -60,6 +60,18 @@ def get_name(instance_template_revision):
   )
 
 
+def get_disk_type(instance_template_revision):
+  """Returns the disk type to use when creating an instance template.
+
+  Args:
+    disk_type: InstanceTemplateConfig.InstanceTemplate.disk_type enum value.
+
+  Returns:
+    A string.
+  """
+  return ['pd-standard', 'pd-ssd', 'local-ssd'][disk_type]
+
+
 @ndb.transactional
 def update_url(key, url):
   """Updates the given InstanceTemplateRevision with the instance template URL.
@@ -131,6 +143,7 @@ def create(key):
     result = api.create_instance_template(
         get_name(instance_template_revision),
         instance_template_revision.disk_size_gb,
+        get_disk_type(instance_template_revision.disk_type),
         gce.get_image_url(image_project, instance_template_revision.image_name),
         instance_template_revision.machine_type,
         auto_assign_external_ip=
