@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ed438d2_cb20c615",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-10T03:56:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "6d967bd6_deefe125",
+      "range": {
+        "startLine": 459,
+        "startChar": 4,
+        "endLine": 464,
+        "endChar": 63
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88669cf0_83ea9ecd",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "978dc743_98ec4c1c",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-10T03:56:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88669cf0_83ea9ecd",
+      "range": {
+        "startLine": 644,
+        "startChar": 21,
+        "endLine": 644,
+        "endChar": 22
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df773665_5d48188e",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7927a064_e8dff0d2",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-10T03:56:35Z",
+      "side": 1,
+      "message": "It is necessary to fix state after \"unexpected\" errors, like DeadlineExceededError etc. If _cache.fetcher_thread is not fixed upon exiting from the function, the entire process is wedged.",
+      "parentUuid": "df773665_5d48188e",
+      "range": {
+        "startLine": 665,
+        "startChar": 2,
+        "endLine": 668,
+        "endChar": 10
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
