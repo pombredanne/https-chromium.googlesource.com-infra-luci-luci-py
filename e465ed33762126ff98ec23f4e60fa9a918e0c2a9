@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02d5ba36_13df2e39",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-01-10T01:06:11Z",
+      "side": 1,
+      "message": "Maybe just string like machine_type, then you don\u0027t have to keep it in sync with instance_templates.py. If you want you can validate that it\u0027s the right type of string when importing the config (but I don\u0027t really care, since we already don\u0027t validate machine_type).",
+      "revId": "e465ed33762126ff98ec23f4e60fa9a918e0c2a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
