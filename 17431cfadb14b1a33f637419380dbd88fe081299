@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21faa5d6_53aeb117",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-10T15:30:39Z",
+      "side": 1,
+      "message": "Please use instead TaskDimensionsSet as your data source.\nref: https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_queues.py?l\u003d190\n\nIt already contains the list of dimension sets used. This is registered at the time of the TaskRequest creation.\nref: https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?l\u003d633\n\nStale entries are evicted after 6 hours by a cron job that calls into tidy_stale().\nref: https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_queues.py?l\u003d755\n\nThe only gotcha is tasks that specify the \u0027id\u0027 key. Since they can by definition only be run by exactly a single bot, they are stored as BotTaskDimensions.\nref: https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_queues.py?l\u003d107",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
