@@ -140,6 +140,30 @@
       "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ebeeab6_2657cf0e",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-10T04:20:32Z",
+      "side": 1,
+      "message": "ah, yes, of course!",
+      "parentUuid": "7927a064_e8dff0d2",
+      "range": {
+        "startLine": 665,
+        "startChar": 2,
+        "endLine": 668,
+        "endChar": 10
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
