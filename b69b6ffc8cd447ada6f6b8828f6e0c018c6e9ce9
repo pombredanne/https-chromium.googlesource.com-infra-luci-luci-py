@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d967bd6_deefe125",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-10T03:09:34Z",
+      "side": 1,
+      "message": "yes, agree. how about\n\nself.cfg_and_expiry \u003d (None, None)\n\nthen they always match :)",
+      "range": {
+        "startLine": 459,
+        "startChar": 4,
+        "endLine": 464,
+        "endChar": 63
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88669cf0_83ea9ecd",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-10T03:09:34Z",
+      "side": 1,
+      "message": "n",
+      "range": {
+        "startLine": 644,
+        "startChar": 21,
+        "endLine": 644,
+        "endChar": 22
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df773665_5d48188e",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-01-10T03:09:34Z",
+      "side": 1,
+      "message": "i don\u0027t think try..finally is necessary. cfg is not None iff there was no exception.",
+      "range": {
+        "startLine": 665,
+        "startChar": 2,
+        "endLine": 668,
+        "endChar": 10
+      },
+      "revId": "b69b6ffc8cd447ada6f6b8828f6e0c018c6e9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
