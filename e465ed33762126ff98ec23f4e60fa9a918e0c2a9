@@ -16,6 +16,24 @@
       "revId": "e465ed33762126ff98ec23f4e60fa9a918e0c2a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38356dc9_93ada8fe",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-10T01:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02d5ba36_13df2e39",
+      "revId": "e465ed33762126ff98ec23f4e60fa9a918e0c2a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
