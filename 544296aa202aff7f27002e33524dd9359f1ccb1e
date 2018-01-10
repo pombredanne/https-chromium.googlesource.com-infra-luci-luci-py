@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82db69e6_a7536b7b",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-01-10T01:57:22Z",
+      "side": 1,
+      "message": "Most configs currently have this unspecified which will end up defaulting to an empty string in the proto. What happens if you pass \u0027diskType\u0027: \u0027\u0027 to GCE? Will it pick \u0027pd-standard\u0027? If not, we could make disk_type a kwarg like min_cpu_platform.",
+      "revId": "544296aa202aff7f27002e33524dd9359f1ccb1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
