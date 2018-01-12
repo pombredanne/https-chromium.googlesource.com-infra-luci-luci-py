@@ -407,6 +407,66 @@ class TestSwarmingTrigger(NetTestCase):
     }
     self.assertEqual(expected, tasks)
 
+  def test_trigger_task_shards_1_of_2_shards(self):
+    task_request = swarming.NewTaskRequest(
+        expiration_secs=60*60,
+        name=TEST_NAME,
+        parent_task_id=None,
+        priority=101,
+        properties=swarming.TaskProperties(
+            caches=[],
+            cipd_input=None,
+            command=['a', 'b'],
+            relative_cwd=None,
+            dimensions=[('foo', 'bar'), ('os', 'Mac')],
+            env={},
+            env_prefixes=[],
+            execution_timeout_secs=60,
+            extra_args=[],
+            grace_period_secs=30,
+            idempotent=False,
+            inputs_ref={
+              'isolated': None,
+              'isolatedserver': '',
+              'namespace': 'default-gzip',
+            },
+            io_timeout_secs=60,
+            outputs=[],
+            secret_bytes=None),
+        service_account=None,
+        tags=['tag:a', 'tag:b'],
+        user='joe@localhost')
+
+    request_2 = swarming.task_request_to_raw_request(task_request)
+    request_2['name'] = u'unit_tests:1:2'
+    request_2['properties']['env'] = [
+      {'key': 'GTEST_SHARD_INDEX', 'value': '1'},
+      {'key': 'GTEST_TOTAL_SHARDS', 'value': '2'},
+    ]
+    result_2 = gen_request_response(request_2, task_id='12400')
+    self.expected_requests(
+        [
+          (
+            'https://localhost:1/api/swarming/v1/tasks/new',
+            {'data': request_2},
+            result_2,
+          ),
+        ])
+
+    tasks = swarming.trigger_task_shards(
+        swarming='https://localhost:1',
+        task_request=task_request,
+        shards=2,
+        trigger_only_shard=1)
+    expected = {
+      u'unit_tests:1:2': {
+        'shard_index': 1,
+        'task_id': '12400',
+        'view_url': 'https://localhost:1/user/task/12400',
+      },
+    }
+    self.assertEqual(expected, tasks)
+
   def test_trigger_task_shards_priority_override(self):
     task_request = swarming.NewTaskRequest(
         expiration_secs=60*60,

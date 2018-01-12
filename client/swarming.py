@@ -229,7 +229,7 @@ def setup_googletest(env, shards, index):
   return env
 
 
-def trigger_task_shards(swarming, task_request, shards):
+def trigger_task_shards(swarming, task_request, shards, trigger_only_shard=-1):
   """Triggers one or many subtasks of a sharded task.
 
   Returns:
@@ -244,10 +244,14 @@ def trigger_task_shards(swarming, task_request, shards):
       req['name'] += ':%s:%s' % (index, shards)
     return req
 
-  requests = [convert(index) for index in xrange(shards)]
+  if trigger_only_shard < 0:
+    requests = dict((index, convert(index)) for index in xrange(shards))
+  else:
+    requests = {trigger_only_shard:convert(trigger_only_shard)}
+  logging.warning('REQUESTS: %s' % str(requests))
   tasks = {}
   priority_warning = False
-  for index, request in enumerate(requests):
+  for index, request in requests.iteritems():
     task = swarming_trigger(swarming, request)
     if not task:
       break
@@ -935,6 +939,10 @@ def add_sharding_options(parser):
   parser.sharding_group.add_option(
       '--shards', type='int', default=1, metavar='NUMBER',
       help='Number of shards to trigger and collect.')
+  parser.sharding_group.add_option(
+      '--trigger-only-shard', type='int', default=-1, metavar='NUMBER',
+      help='For use only by Swarming trigger scripts. Causes only this shard '
+      'index to be triggered.')
   parser.add_option_group(parser.sharding_group)
 
 
@@ -1504,7 +1512,8 @@ def CMDrun(parser, args):
   task_request = process_trigger_options(parser, options, args)
   try:
     tasks = trigger_task_shards(
-        options.swarming, task_request, options.shards)
+        options.swarming, task_request, options.shards,
+        options.trigger_only_shard)
   except Failure as e:
     on_error.report(
         'Failed to trigger %s(%s): %s' %
@@ -1711,7 +1720,8 @@ def CMDtrigger(parser, args):
   task_request = process_trigger_options(parser, options, args)
   try:
     tasks = trigger_task_shards(
-        options.swarming, task_request, options.shards)
+        options.swarming, task_request, options.shards,
+        options.trigger_only_shard)
     if tasks:
       print('Triggered task: %s' % task_request.name)
       tasks_sorted = sorted(
