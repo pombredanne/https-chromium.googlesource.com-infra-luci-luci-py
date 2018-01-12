@@ -34,6 +34,24 @@
       "revId": "14e7a15d6860df2093902e57757aba899c647d81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3c14cfa_cdc95f3e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-12T02:13:53Z",
+      "side": 1,
+      "message": "Yes just that is sufficient, since the server implementation is different.",
+      "parentUuid": "9f185ed7_15b2b903",
+      "revId": "14e7a15d6860df2093902e57757aba899c647d81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
