@@ -16,6 +16,24 @@
       "revId": "14e7a15d6860df2093902e57757aba899c647d81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f185ed7_15b2b903",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-12T01:59:01Z",
+      "side": 1,
+      "message": "Do you mean:\n\nif not grpc:\n  time.sleep(2)\n\nor something more complicated?\n\nThe problem with sending delay from server is that RemoteClient.poll() return pair (command, argument). There\u0027s no suitable place for adding the delay, unless I refactor \u0027argument\u0027 to be a tuple itself. Is what what we want?",
+      "parentUuid": "3c9e79b2_959327d0",
+      "revId": "14e7a15d6860df2093902e57757aba899c647d81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
