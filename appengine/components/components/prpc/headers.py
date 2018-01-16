@@ -80,7 +80,10 @@ def process_headers(context, headers):
   accept_header = headers.get('Accept')
   # TODO(nodir,mknyszek): Correctly parse accept headers that are more complex
   # (e.g. list multiple acceptable types, or have quality factors).
-  accept = _parse_media_type(accept_header)
+  if accept_header == '*/*':
+    accept = encoding.Encoding.BINARY
+  else:
+    accept = _parse_media_type(accept_header)
 
   timeout_header = headers.get('X-Prpc-Timeout')
   context.timeout = _parse_timeout(timeout_header)
