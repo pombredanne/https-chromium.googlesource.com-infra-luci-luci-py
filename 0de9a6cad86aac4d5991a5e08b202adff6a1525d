@@ -16,6 +16,24 @@
       "revId": "0de9a6cad86aac4d5991a5e08b202adff6a1525d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "736386d7_3f35a304",
+        "filename": "appengine/components/tools/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-01-16T23:53:56Z",
+      "side": 1,
+      "message": "i see a value in pin-pointing owners :)",
+      "parentUuid": "1fa94510_cc362fe6",
+      "revId": "0de9a6cad86aac4d5991a5e08b202adff6a1525d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
