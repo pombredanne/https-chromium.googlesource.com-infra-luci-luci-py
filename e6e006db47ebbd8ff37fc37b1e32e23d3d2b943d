@@ -22,6 +22,30 @@
       "revId": "e6e006db47ebbd8ff37fc37b1e32e23d3d2b943d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dccd5ae_3f9ef89c",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-01-16T18:14:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49ec9ff4_9f4ce89e",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "e6e006db47ebbd8ff37fc37b1e32e23d3d2b943d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
