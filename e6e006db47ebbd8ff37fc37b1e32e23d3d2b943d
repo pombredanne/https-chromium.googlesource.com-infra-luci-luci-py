@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49ec9ff4_9f4ce89e",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1154295
+      },
+      "writtenOn": "2018-01-16T17:56:50Z",
+      "side": 1,
+      "message": "nit: maybe just \u0027package\u0027 is sufficient? IIRC in proto in means the same thing, and it\u0027s more succinct.",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "e6e006db47ebbd8ff37fc37b1e32e23d3d2b943d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
