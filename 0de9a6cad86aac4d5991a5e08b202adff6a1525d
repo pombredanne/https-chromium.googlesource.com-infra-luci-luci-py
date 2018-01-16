@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa94510_cc362fe6",
+        "filename": "appengine/components/tools/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-16T19:39:58Z",
+      "side": 1,
+      "message": "you could just add you both at directory level.",
+      "revId": "0de9a6cad86aac4d5991a5e08b202adff6a1525d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
