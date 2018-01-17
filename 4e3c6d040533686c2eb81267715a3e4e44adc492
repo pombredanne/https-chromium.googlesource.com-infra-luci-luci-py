@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "016381b8_bc8a2988",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-17T01:56:15Z",
+      "side": 1,
+      "message": "this is mostly copy-pasta of yield_instances adjusted for different response format plus dirty HTTP 400 handling. There appears no cleaner way of extracting the concrete error other than parsing human-readable error string which I don\u0027t want to do.\n\nFTR the error response is\n\n{\n \"error\": {\n  \"errors\": [\n   {\n    \"domain\": \"global\",\n    \"reason\": \"invalid\",\n    \"message\": \"Invalid value for field \u0027zone\u0027: \u0027us-east1-a\u0027. Unknown zone.\"\n   }\n  ],\n  \"code\": 400,\n  \"message\": \"Invalid value for field \u0027zone\u0027: \u0027us-east1-a\u0027. Unknown zone.\"\n }\n}",
+      "range": {
+        "startLine": 153,
+        "startChar": 5,
+        "endLine": 153,
+        "endChar": 29
+      },
+      "revId": "4e3c6d040533686c2eb81267715a3e4e44adc492",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
