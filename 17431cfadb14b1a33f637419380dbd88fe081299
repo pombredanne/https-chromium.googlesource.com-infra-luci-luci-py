@@ -16,6 +16,24 @@
       "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "195b051b_cfc640c6",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-01-18T05:28:09Z",
+      "side": 1,
+      "message": "I\u0027ve spent some time looking at TaskDimensionsSet, and can\u0027t figure out:\ncan I actually get the number of tasks with a given dimension set from it?\n\nIt looks like task_queues.assert_task has an early exit with no write if the\ndimensions set already exists with exactly the same dimensions, so I don\u0027t think so?",
+      "parentUuid": "21faa5d6_53aeb117",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
