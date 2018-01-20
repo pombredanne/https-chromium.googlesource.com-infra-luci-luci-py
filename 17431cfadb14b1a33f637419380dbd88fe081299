@@ -34,6 +34,98 @@
       "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2c376c0_68d05586",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-20T01:08:00Z",
+      "side": 1,
+      "message": "Ignore what I wrote above. :(",
+      "parentUuid": "195b051b_cfc640c6",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1939326b_364ad788",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-20T01:08:00Z",
+      "side": 1,
+      "message": "In practice this is not a real DB fetch, it is fetched from memcache, because the entity is immutable. So it is not as bad as it may sound like. So I\u0027d just remove the comment.",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91670c0_f0aa4a38",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-20T01:08:00Z",
+      "side": 1,
+      "message": "Since you want the project, it\u0027s a tag, you need to look at it too.",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee640bf2_0686d3c6",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-20T01:08:00Z",
+      "side": 1,
+      "message": "What problem would you expect?",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06beaa3a_bea8a736",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-20T01:08:00Z",
+      "side": 1,
+      "message": "There\u0027s no dimension \u0027project\u0027 but there\u0027s generally a tag, which are on the request. Maybe you meant pool?",
+      "range": {
+        "startLine": 161,
+        "startChar": 40,
+        "endLine": 161,
+        "endChar": 47
+      },
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
