@@ -22,6 +22,30 @@
       "revId": "28c9b93818178e9503f4f8a8de1a66cce0a3f411",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b1d66e6_407f6ece",
+        "filename": "client/tools/swarming_bots_summary.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-24T01:32:13Z",
+      "side": 1,
+      "message": "Indeed, fixed.",
+      "parentUuid": "b411a7df_c2492af7",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "28c9b93818178e9503f4f8a8de1a66cce0a3f411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
