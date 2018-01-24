@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b411a7df_c2492af7",
+        "filename": "client/tools/swarming_bots_summary.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-24T00:39:33Z",
+      "side": 1,
+      "message": "nit: indentation here is weird",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "28c9b93818178e9503f4f8a8de1a66cce0a3f411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
