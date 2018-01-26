@@ -62,7 +62,7 @@ def _print_version_log(app, to_version):
     end = int(to_version.split('-', 1)[0])
     if start < end:
       pseudo_revision, mergebase = calculate_version.get_remote_pseudo_revision(
-          app.app_dir, 'origin/master')
+          app.app_dir, 'origin/master', len(app.app_id)+1)
       logs, _ = log_since.get_logs(
           app.app_dir, pseudo_revision, mergebase, start, end)
       print('\nLogs between %s and %s:' % (from_version, to_version))
@@ -368,7 +368,7 @@ def CMDupload(parser, args):
     if module not in app.modules:
       parser.error('No such module: %s' % module)
 
-  version = calculate_version.calculate_version(app.app_dir, options.tag)
+  version = calculate_version.calculate_version(app.app_dir, options.tag, len(app.app_id)+1)
 
   # Updating indexes, queues, etc is a disruptive operation. Confirm.
   if not options.force:
@@ -416,7 +416,7 @@ def CMDversion(parser, args):
   """
   parser.add_tag_option()
   app, options, _ = parser.parse_args(args)
-  print(calculate_version.calculate_version(app.app_dir, options.tag))
+  print(calculate_version.calculate_version(app.app_dir, options.tag, len(app.app_id)+1))
   return 0
 
 
