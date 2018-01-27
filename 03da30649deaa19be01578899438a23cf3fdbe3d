@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "928f9f3b_c58e8d12",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-27T01:54:45Z",
+      "side": 1,
+      "message": "what about passing app_id? It\u0027d make it simpler IMHO.",
+      "range": {
+        "startLine": 106,
+        "startChar": 33,
+        "endLine": 106,
+        "endChar": 49
+      },
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669fb19b_e01c7583",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-27T01:54:45Z",
+      "side": 1,
+      "message": "in practice, it\u0027s more than len(app_id)+1, since this includes \u0027-dot-\u0027 too.",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46aab27e_fd04eaba",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-27T01:54:45Z",
+      "side": 1,
+      "message": "if not tainted_text:",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c74c5478_1481b8cd",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-27T01:54:45Z",
+      "side": 1,
+      "message": "Frankly, I\u0027d start with trimming \u0027tainted\u0027 right away by doing:\n\nversion \u003d get_version(pseudo_revision, mergebase, user, tag)\nif len(version) \u003c\u003d limit\n  return version\n\nthen you don\u0027t need variable orig_version_len and then you can handle user trimming after. The logic will be easier to read.",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c0e921e_28a20612",
+        "filename": "appengine/components/tools/calculate_version_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-27T01:54:45Z",
+      "side": 1,
+      "message": "you can remove actual in these kind of tests",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 12
+      },
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
