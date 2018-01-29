@@ -256,6 +256,24 @@
     },
     {
       "key": {
+        "uuid": "da53b382_79607d95",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-29T18:57:37Z",
+      "side": 1,
+      "message": "That\u0027s what you do: you try with -tainted, then without, then cut the username, then abort. That\u0027s what is needed.",
+      "parentUuid": "ff1d378d_6a1aa19e",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c0e921e_28a20612",
         "filename": "appengine/components/tools/calculate_version_test.py",
         "patchSetId": 1
