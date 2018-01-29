@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "abcb6f87_f7dfe4dd",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-01-29T02:31:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f2c376c0_68d05586",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1939326b_364ad788",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 1
@@ -69,6 +87,24 @@
       "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d522f74_c67d2559",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-01-29T02:31:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1939326b_364ad788",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "0665682d_e1bcbe54",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-01-29T02:31:34Z",
+      "side": 1,
+      "message": "Ack.\n\n(I\u0027m not going to grab it now, as per below)",
+      "parentUuid": "f91670c0_f0aa4a38",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee640bf2_0686d3c6",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 1
@@ -103,6 +157,24 @@
       "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57f389e6_f015c498",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-01-29T02:31:34Z",
+      "side": 1,
+      "message": "bot_management.filter_dimensions raises a ValueError if any of the filter_dimensions don\u0027t match the expected format. Since it gets constructed above, that\u0027s only going to happen if:\n1. the format for dimension tags changes\n2. the key/values in dimensions accidentally gets some whitespace committed to the DB\n\nThese are both unlikely cases, but I\u0027d rather not have the whole cron job fail on a single bad task.",
+      "parentUuid": "ee640bf2_0686d3c6",
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -126,6 +198,30 @@
       "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc3691ee_814238c8",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-01-29T02:31:34Z",
+      "side": 1,
+      "message": "Ahhh. I forgot the distinction between dimensions and tags.\n\nI\u0027d like to have that data eventually, but I\u0027d rather keep this CL small, and just having \"pool\" should still be a pretty good win, so I\u0027ll just drop \"project\" here.",
+      "parentUuid": "06beaa3a_bea8a736",
+      "range": {
+        "startLine": 161,
+        "startChar": 40,
+        "endLine": 161,
+        "endChar": 47
+      },
+      "revId": "17431cfadb14b1a33f637419380dbd88fe081299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
