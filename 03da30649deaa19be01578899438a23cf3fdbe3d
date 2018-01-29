@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "0f168b68_0987a35a",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2018-01-29T18:23:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27a7c6f5_a253ce1e",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46aab27e_fd04eaba",
         "filename": "appengine/components/tools/calculate_version.py",
         "patchSetId": 1
@@ -116,6 +134,24 @@
       "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ba03713_5d2f7430",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2018-01-29T18:23:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cae079f8_912a6a0d",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -198,6 +234,30 @@
       "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "060ae878_28546381",
+        "filename": "appengine/components/tools/calculate_version_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2018-01-29T18:23:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "855a9181_a090aba7",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 12
+      },
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
