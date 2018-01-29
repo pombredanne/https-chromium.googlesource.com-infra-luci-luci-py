@@ -238,6 +238,24 @@
     },
     {
       "key": {
+        "uuid": "ff1d378d_6a1aa19e",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1240506
+      },
+      "writtenOn": "2018-01-29T18:52:10Z",
+      "side": 1,
+      "message": "Oh, any comments on this one?  Just wanted to double-check before I start always removing \u0027-tainted-\u0027 that you really don\u0027t need me to keep it for Chrome alerting purposes!",
+      "parentUuid": "a9081ad4_c9a08640",
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c0e921e_28a20612",
         "filename": "appengine/components/tools/calculate_version_test.py",
         "patchSetId": 1
