@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "552eac7b_0138d479",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-29T18:33:28Z",
+      "side": 1,
+      "message": "No strong opinion.",
+      "parentUuid": "e507e2c4_25e53090",
+      "range": {
+        "startLine": 106,
+        "startChar": 33,
+        "endLine": 106,
+        "endChar": 49
+      },
+      "revId": "03da30649deaa19be01578899438a23cf3fdbe3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "669fb19b_e01c7583",
         "filename": "appengine/components/tools/calculate_version.py",
         "patchSetId": 1
