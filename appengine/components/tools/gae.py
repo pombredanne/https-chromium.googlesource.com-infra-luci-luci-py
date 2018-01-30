@@ -361,6 +361,7 @@ def CMDupload(parser, args):
       help='Switch version after uploading new code')
   parser.add_switch_option()
   parser.add_force_option()
+  parser.add_untracked_files_option()
   parser.allow_positional_args = True
   app, options, modules = parser.parse_args(args)
 
@@ -370,7 +371,7 @@ def CMDupload(parser, args):
 
   # Additional chars is for the app_id as well as 5 chars for '-dot-'.
   version = calculate_version.calculate_version(
-    app.app_dir, options.tag, len(app.app_id)+5)
+    app.app_dir, options.tag, len(app.app_id)+5, options.untracked)
 
   # Updating indexes, queues, etc is a disruptive operation. Confirm.
   if not options.force:
@@ -417,10 +418,11 @@ def CMDversion(parser, args):
     who         username who uploads the tainted version
   """
   parser.add_tag_option()
+  parser.add_untracked_files_option()
   app, options, _ = parser.parse_args(args)
   # Additional chars is for the app_id as well as 5 chars for '-dot-'.
   print(calculate_version.calculate_version(
-    app.app_dir, options.tag, len(app.app_id)+5))
+    app.app_dir, options.tag, len(app.app_id)+5), options.untracked)
   return 0
 
 
@@ -449,6 +451,11 @@ class OptionParser(optparse.OptionParser):
     self.add_option(
         '-f', '--force', action='store_true',
         help='Do not ask for confirmation')
+
+  def add_untracked_files_option(self):
+    self.add_option(
+        '-u', '--untracked', action='store_true',
+        help='Consider presence of untracked files as tainting')
 
   def parse_args(self, *args, **kwargs):
     gae_sdk_utils.add_sdk_options(self, self.default_app_dir)
