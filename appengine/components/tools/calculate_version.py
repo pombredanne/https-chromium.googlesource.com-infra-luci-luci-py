@@ -84,7 +84,7 @@ def get_remote_pseudo_revision(root, remote):
     return git_number.get_num(targets[0]), mergebase
 
 
-def is_pristine(root, mergebase):
+def is_pristine(root, mergebase, untracked_files_taint=False):
   """Returns True if the tree is pristine relating to mergebase."""
   head = git(['rev-parse', 'HEAD'], cwd=root).rstrip()
   logging.info('head: %s, mergebase: %s', head, mergebase)
@@ -95,10 +95,12 @@ def is_pristine(root, mergebase):
   # Look for local uncommitted diff.
   return not (
       git(['diff', '--ignore-submodules=none', mergebase], cwd=root) or
-      git(['diff', '--ignore-submodules', '--cached', mergebase], cwd=root))
+      git(['diff', '--ignore-submodules', '--cached', mergebase], cwd=root) or
+      (untracked_files_taint and git(['status', '-s', '--porcelain=v2'],
+                                     cwd=root)))
 
 
-def calculate_version(root, tag):
+def calculate_version(root, tag, untracked_files_taint=False):
   """Returns a tag for a git checkout.
 
   Uses the pseudo revision number from the upstream commit this branch is based
@@ -106,7 +108,7 @@ def calculate_version(root, tag):
   pristine and optionally adds a tag to further describe it.
   """
   pseudo_revision, mergebase = get_head_pseudo_revision(root, 'origin/master')
-  pristine = is_pristine(root, mergebase)
+  pristine = is_pristine(root, mergebase, untracked_files_taint)
   # Trim it to 7 characters like 'git describe' does. 40 characters is
   # overwhelming!
   version = '%s-%s' % (pseudo_revision, mergebase[:7])
