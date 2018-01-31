@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e1e89c75_09e48ab3",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5988ffce_804efb27",
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b142ebd_34262395",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 3
@@ -59,6 +77,24 @@
     },
     {
       "key": {
+        "uuid": "c9090672_ccafac36",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82cbbad3_b38cd3d7",
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e8080bb_0bc3a72e",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 3
@@ -70,6 +106,30 @@
       "writtenOn": "2018-01-31T04:44:57Z",
       "side": 1,
       "message": "why not self.__bits? Isn\u0027t it the same?",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8adeb1f0_308bd25a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Somehow that doesn\u0027t seem to be working, it\u0027s throwing an error:\n\n  AttributeError: \u0027cpu_set_t\u0027 object has no attribute \u0027_cpu_set_t__bits\u0027",
+      "parentUuid": "4e8080bb_0bc3a72e",
       "range": {
         "startLine": 47,
         "startChar": 19,
@@ -105,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "953ffa5d_b9047ea7",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be3fd749_45459779",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c085a63_c61fb1e2",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 3
@@ -125,6 +209,30 @@
       "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51fe2bb7_812ec638",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c085a63_c61fb1e2",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 15
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "8c779500_151677ce",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93a3fe1c_ad4ee3fd",
+      "range": {
+        "startLine": 62,
+        "startChar": 30,
+        "endLine": 64,
+        "endChar": 55
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d032aac2_702864e8",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 3
@@ -171,6 +303,30 @@
       "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04e344b6_9a18031f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-01-31T05:14:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d032aac2_702864e8",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
