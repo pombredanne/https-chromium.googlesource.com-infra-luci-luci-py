@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5988ffce_804efb27",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-31T05:03:31Z",
+      "side": 1,
+      "message": "else is not necessary.",
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b142ebd_34262395",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 3
@@ -22,6 +39,23 @@
       "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82cbbad3_b38cd3d7",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-01-31T05:03:31Z",
+      "side": 1,
+      "message": "libc \u003d ctypes.CDLL(\u0027libc.so.6\u0027)\nworks fine too. :)",
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
