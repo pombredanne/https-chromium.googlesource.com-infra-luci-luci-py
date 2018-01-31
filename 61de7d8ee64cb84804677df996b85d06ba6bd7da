@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "93a3fe1c_ad4ee3fd",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-31T04:50:41Z",
+      "side": 1,
+      "message": "also alignment nit: this file is using \"4 leading spaces\" style, so\n\n err \u003d libs.sched_getaffinity(\n     pid_t(os.getpid()), \n     ctypes.sizeof(cpu_set_t), \n     ctypes.pointer(cpu_set))",
+      "range": {
+        "startLine": 62,
+        "startChar": 30,
+        "endLine": 64,
+        "endChar": 55
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d032aac2_702864e8",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 3
