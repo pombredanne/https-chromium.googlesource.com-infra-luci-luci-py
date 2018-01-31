@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b142ebd_34262395",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-31T04:44:57Z",
+      "side": 1,
+      "message": "lol, at least not 42",
+      "range": {
+        "startLine": 380,
+        "startChar": 13,
+        "endLine": 380,
+        "endChar": 14
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e8080bb_0bc3a72e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-31T04:44:57Z",
+      "side": 1,
+      "message": "why not self.__bits? Isn\u0027t it the same?",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be3fd749_45459779",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-31T04:44:57Z",
+      "side": 1,
+      "message": "nit: clear self.cpus at the beginning of get_cpus, just in case it is called twice",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c085a63_c61fb1e2",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-31T04:44:57Z",
+      "side": 1,
+      "message": "nit: can do early exit if bitmask is 0",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 15
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d032aac2_702864e8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-01-31T04:44:57Z",
+      "side": 1,
+      "message": "we should probably raise it as exception or maybe fallback to multiprocessing.cpu_count(). As is, it will return 0 and os_utilities.get_num_processors() will accept it as valid result.",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "61de7d8ee64cb84804677df996b85d06ba6bd7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
