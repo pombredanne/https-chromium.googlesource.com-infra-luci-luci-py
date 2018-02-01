@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1bdc127b_1195a121",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-02-01T00:26:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c765697_5c422b1e",
+      "revId": "ff832ad75de04abeddc5f5c5d73294c093108f18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a3c3e17_3b5a4053",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-01-31T17:32:11Z",
       "side": 1,
       "message": "Why not:\n  CPU_SETSIZE /  ctypes.sizeof(cpu_mask_t)\n\nIt\u0027s confusing, because 8*64 \u003d 512.",
+      "revId": "ff832ad75de04abeddc5f5c5d73294c093108f18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8b9fd3d_de54a55f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-02-01T00:26:57Z",
+      "side": 1,
+      "message": "I\u0027m getting:\n\n  second item in _fields_ tuple (index 0) must be a C type",
+      "parentUuid": "8a3c3e17_3b5a4053",
       "revId": "ff832ad75de04abeddc5f5c5d73294c093108f18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ff1f4f95_5f3f2da3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-02-01T00:26:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1939d26c_f7ae9cf5",
+      "revId": "ff832ad75de04abeddc5f5c5d73294c093108f18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "921c489b_17edd8c0",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 4
@@ -67,6 +121,24 @@
       "revId": "ff832ad75de04abeddc5f5c5d73294c093108f18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6f3724a_79d941b0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-02-01T00:26:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "921c489b_17edd8c0",
+      "revId": "ff832ad75de04abeddc5f5c5d73294c093108f18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
