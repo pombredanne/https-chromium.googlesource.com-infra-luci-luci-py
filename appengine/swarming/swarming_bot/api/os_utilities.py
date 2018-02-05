@@ -666,11 +666,12 @@ def get_recursive_size(path):
   """Returns the total data size for the specified path."""
   try:
     total = 0
-    for root, _, files in os.walk(path):
+    for root, _, files in os.walk(path, followlinks=False):
       for f in files:
-        total += os.stat(os.path.join(root, f)).st_size
+        total += os.lstat(os.path.join(root, f)).st_size
     return total
-  except (IOError, OSError):
+  except (IOError, OSError, UnicodeEncodeError) as exc:
+    logging.warning('Exception while getting the size of %s:\n%s', path, exc)
     # Returns a negative number to make it clear that something is wrong.
     return -1
 
