@@ -99,8 +99,8 @@ def batched_subprocess(cmd, sem):
 
 
 def run_batches(
-    swarming_server, isolate_server, dimensions, tags, env, priority, deadline,
-    batches, repeat, isolated_hash, name, bots, args):
+    swarming_server, isolate_server, dimensions, tags, env, cipd_packages,priority,
+    deadline, batches, repeat, isolated_hash, name, bots, args, raw_cmd=False):
   """Runs the task |batches| at a time.
 
   This will be mainly bound by task scheduling latency, especially if the bots
@@ -111,8 +111,9 @@ def run_batches(
   for i in xrange(repeat):
     for bot in bots:
       suffix = '/%d' % i if repeat > 1 else ''
+      hash_for_name = isolated_hash if isolated_hash else 'nohash'
       task_name = parallel_execution.task_to_name(
-            name, {'id': bot}, isolated_hash) + suffix
+            name, {'id': bot}, hash_for_name) + suffix
       cmd = [
         sys.executable, 'swarming.py', 'run',
         '--swarming', swarming_server,
@@ -121,14 +122,19 @@ def run_batches(
         '--deadline', deadline,
         '--dimension', 'id', bot,
         '--task-name', task_name,
-        '-s', isolated_hash,
       ]
+      if isolated_hash:
+        cmd.extend(('-s', isolated_hash))
+      if raw_cmd:
+        cmd.append('--raw-cmd')
       for k, v in sorted(dimensions.iteritems()):
         cmd.extend(('-d', k, v))
       for t in sorted(tags):
         cmd.extend(('--tags', t))
       for k, v in env:
         cmd.extend(('--env', k, v))
+      for pkg in sorted(cipd_packages):
+        cmd.extend(('--cipd-package', pkg))
       if args:
         cmd.append('--')
         cmd.extend(args)
@@ -212,12 +218,20 @@ def main():
       '--tags', action='append', default=[], metavar='FOO:BAR',
       help='Tags to assign to the task.')
   parser.add_option(
+      '--cipd-package', action='append', default=[], metavar='PKG',
+      help='CIPD packages to install on the Swarming bot. Uses the format: '
+           'path:package_name:version')
+  parser.add_option(
       '--repeat', type='int', default=1,
       help='Runs the task multiple time on each bot, meant to be used as a '
            'load test')
   parser.add_option(
       '--name',
       help='Name to use when providing an isolated hash')
+  parser.add_option(
+      '--raw-cmd', action='store_true', default=False,
+      help='When set, the command after -- is used as-is without run_isolated. '
+           'In this case, the .isolated file is expected to not have a command')
   options, args = parser.parse_args()
 
   if len(args) < 1:
@@ -231,7 +245,10 @@ def main():
         'task only runs when the bot is idle.')
 
   # 1. Archive the script to run.
-  if not os.path.exists(args[0]):
+  if options.raw_cmd:
+    name = options.name
+    isolated_hash = None
+  elif not os.path.exists(args[0]):
     if not options.name:
       parser.error(
           'Please provide --name when using an isolated hash.')
@@ -273,6 +290,7 @@ def main():
         options.dimensions,
         options.tags,
         options.env,
+        options.cipd_package,
         str(options.priority),
         str(options.deadline),
         options.batches,
@@ -280,7 +298,8 @@ def main():
         isolated_hash,
         name,
         bots,
-        args[1:])
+        args if options.raw_cmd else args[1:],
+        raw_cmd=options.raw_cmd)
 
   if options.serial:
     return run_serial(
