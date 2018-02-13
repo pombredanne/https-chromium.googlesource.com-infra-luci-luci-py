@@ -106,6 +106,24 @@ def get_metadata():
   return None
 
 
+def oauth2_access_token_from_url(url, headers):
+  """Obtain an OAuth2 access token from the given URL.
+
+  Returns tuple (oauth2 access token, expiration timestamp).
+
+  Args:
+    url: URL from which to retrieve the token.
+    headers: dict of HTTP headers to use for the request.
+  """
+  try:
+    resp = json.load(
+        urllib2.urlopen(urllib2.Request(url, headers=headers), timeout=20))
+  except IOError as e:
+    logging.error('Failed to grab OAuth2 access token: %s', e)
+    raise
+  return resp['access_token'], time.time() + resp['expires_in']
+
+
 def oauth2_access_token_with_expiration(account):
   """Returns tuple (oauth2 access token, expiration timestamp).
 
@@ -124,18 +142,13 @@ def oauth2_access_token_with_expiration(account):
         'http://metadata.google.internal/computeMetadata/v1/instance'
         '/service-accounts/%s/token' % account)
     headers = {'Metadata-Flavor': 'Google'}
-    try:
-      resp = json.load(
-          urllib2.urlopen(urllib2.Request(url, headers=headers), timeout=20))
-    except IOError as e:
-      logging.error('Failed to grab GCE access token: %s', e)
-      raise
+    accessToken, expiresAt = oauth2_access_token_from_url(url, headers)
     tok = {
-      'accessToken': resp['access_token'],
-      'expiresAt': time.time() + resp['expires_in'],
+      'accessToken': accessToken,
+      'expiresAt': expiresAt,
     }
     _CACHED_OAUTH2_TOKEN[account] = tok
-    return tok['accessToken'], tok['expiresAt']
+    return accessToken, expiresAt
 
 
 def oauth2_access_token(account='default'):

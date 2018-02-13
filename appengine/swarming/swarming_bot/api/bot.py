@@ -102,6 +102,13 @@ class Bot(object):
     return self._base_dir
 
   @property
+  def config_dir(self):
+    """Returns the directory used for configuration files on the machine."""
+    if sys.platform == 'win32':
+      return os.path.join('C:', 'swarming')
+    return os.path.join('/etc', 'swarming_config')
+
+  @property
   def dimensions(self):
     """The bot's current dimensions.
 
