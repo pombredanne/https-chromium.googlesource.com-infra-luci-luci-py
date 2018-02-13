@@ -421,7 +421,8 @@ def _yield_potential_tasks(bot_id):
 def request_to_task_to_run_key(request):
   """Returns the ndb.Key for a TaskToRun from a TaskRequest."""
   return ndb.Key(
-      TaskToRun, task_queues.hash_dimensions(request.properties.dimensions),
+      TaskToRun,
+      task_queues.hash_dimensions(request.properties.dimensions),
       parent=request.key)
 
 
@@ -473,12 +474,9 @@ def match_dimensions(request_dimensions, bot_dimensions):
   assert isinstance(bot_dimensions, dict), bot_dimensions
   if frozenset(request_dimensions).difference(bot_dimensions):
     return False
-  for key, required in request_dimensions.iteritems():
-    bot_value = bot_dimensions[key]
-    if isinstance(bot_value, (list, tuple)):
-      if required not in bot_value:
-        return False
-    elif required != bot_value:
+  for key, values in request_dimensions.iteritems():
+    assert isinstance(values, (list, tuple)), bot_dimensions
+    if not all(v in bot_dimensions.get(key, []) for v in values):
       return False
   return True
 
