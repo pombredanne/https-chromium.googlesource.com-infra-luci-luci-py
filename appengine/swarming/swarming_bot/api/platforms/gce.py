@@ -12,6 +12,7 @@ import time
 import urllib2
 
 from utils import tools
+from utils import oauth
 
 
 ### Private stuff.
@@ -124,18 +125,13 @@ def oauth2_access_token_with_expiration(account):
         'http://metadata.google.internal/computeMetadata/v1/instance'
         '/service-accounts/%s/token' % account)
     headers = {'Metadata-Flavor': 'Google'}
-    try:
-      resp = json.load(
-          urllib2.urlopen(urllib2.Request(url, headers=headers), timeout=20))
-    except IOError as e:
-      logging.error('Failed to grab GCE access token: %s', e)
-      raise
+    accessToken, expiresAt = oauth.oauth2_access_token_from_url(url, headers)
     tok = {
-      'accessToken': resp['access_token'],
-      'expiresAt': time.time() + resp['expires_in'],
+      'accessToken': accessToken,
+      'expiresAt': expiresAt,
     }
     _CACHED_OAUTH2_TOKEN[account] = tok
-    return tok['accessToken'], tok['expiresAt']
+    return accessToken, expiresAt
 
 
 def oauth2_access_token(account='default'):
