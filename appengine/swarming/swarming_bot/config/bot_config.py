@@ -27,10 +27,12 @@ This file contains unicode to confirm UTF-8 encoded file is well supported.
 Here's a pile of poo: 💩
 """
 
+import json
 import os
 
 from api import os_utilities
 from api import platforms
+from utils import oauth
 
 # Unused argument 'bot' - pylint: disable=W0613
 
@@ -175,6 +177,19 @@ def get_authentication_headers(bot):
         platforms.gce.oauth2_available_scopes('default')):
       tok, exp = platforms.gce.oauth2_access_token_with_expiration('default')
       return {'Authorization': 'Bearer %s' % tok}, exp
+
+  # Some bots, eg. Skia, have a metadata-like token server available. If the bot
+  # is configured for it, obtain a token from the server.
+  oauth2_cfg_path = os.path.join(
+      bot.config_dir(), 'oauth2_access_token_config.json')
+  if os.path.exists(oauth2_cfg_path):
+    with open(oauth2_cfg_path, 'rb') as f:
+      oauth2_cfg = json.load(f)
+    # TODO(borenet): Move and generalize oauth2_access_token_with_expiration.
+    tok, exp = oauth.oauth2_access_token_from_url(
+        oauth2_cfg['url'], oauth2_cfg['headers'])
+    return {'Authorization': 'Bearer %s' % tok}, exp
+
   return (None, None)
 
 
