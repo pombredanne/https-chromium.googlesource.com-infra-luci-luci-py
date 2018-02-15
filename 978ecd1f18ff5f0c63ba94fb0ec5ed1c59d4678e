@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5442d57c_19624ee0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2018-02-15T14:17:22Z",
+      "side": 1,
+      "message": "This feels wrong, but I don\u0027t know the set of paths that end up in sys.path.  Can I do \"from api import oauth\"?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

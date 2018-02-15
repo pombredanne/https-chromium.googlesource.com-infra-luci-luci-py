@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e33786df_4cecfeee",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2018-02-15T14:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e5d44e7_edd09823",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 26
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "482486af_dce9d5f4",
         "filename": "client/utils/oauth.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a869b46b_9484cc74",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2018-02-15T14:17:22Z",
+      "side": 1,
+      "message": "SGTM, done.",
+      "parentUuid": "482486af_dce9d5f4",
+      "range": {
+        "startLine": 823,
+        "startChar": 4,
+        "endLine": 823,
+        "endChar": 32
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd6d86c9_a26cab41",
         "filename": "client/utils/oauth.py",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2018-02-15T00:56:49Z",
       "side": 1,
       "message": "strictly speaking, it supports only http:// now, since for https:// we\u0027ll need to pass a path to the certificate bundle file (e.g. https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/swarming/swarming_bot/api/os_utilities.py#705). Python can\u0027t locate it on its own because Swarming bot runs as zip.",
+      "range": {
+        "startLine": 829,
+        "startChar": 9,
+        "endLine": 829,
+        "endChar": 46
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f4ffdf8_27de65ed",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2018-02-15T14:17:22Z",
+      "side": 1,
+      "message": "I added more to the comment.  AFAIK we don\u0027t currently have any use cases for HTTPS, but it seems we could go ahead and add that support?",
+      "parentUuid": "cd6d86c9_a26cab41",
       "range": {
         "startLine": 829,
         "startChar": 9,
