@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c7f4bfe0_9eae9695",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T01:49:03Z",
+      "side": 1,
+      "message": "I understand, but swarming.py will likely react to [(\u0027A\u0027: \u00271\u0027), (\u0027A\u0027: \u00272\u0027)] in a wrong way (ignoring A:1), since it didn\u0027t expect to see multiple values for same key before. Though I understand now that in this CL it\u0027s impossible to have more than one value for the key.",
+      "parentUuid": "ccae220d_f942c612",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b1a3a33_b379c874",
         "filename": "appengine/swarming/message_conversion.py",
         "patchSetId": 3
@@ -93,6 +117,30 @@
       "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e856440_6f1ff7b9",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T01:49:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eeb9fda4_ad41541f",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "b00c6d5d_8975fefa",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T01:49:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "926baf77_900b41bb",
+      "range": {
+        "startLine": 203,
+        "startChar": 30,
+        "endLine": 203,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d425654_06d5eb43",
         "filename": "appengine/swarming/server/service_accounts_test.py",
         "patchSetId": 3
@@ -187,6 +259,30 @@
       "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0e28bed_d5034b96",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T01:49:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a9826528_8976f5b8",
+      "range": {
+        "startLine": 161,
+        "startChar": 37,
+        "endLine": 161,
+        "endChar": 47
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

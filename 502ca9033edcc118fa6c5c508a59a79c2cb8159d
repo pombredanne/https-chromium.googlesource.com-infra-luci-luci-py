@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f967a8cf_f0a45456",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T01:49:03Z",
+      "side": 1,
+      "message": "well, strictly speaking \u0027value\u0027 should be copied now too, since we modify it in-place.\n\nmaybe\n\nnormalized \u003d {}\nfor k, values in value.iteritems():\n  ...\n  normalized[k] \u003d sorted(values)\nreturn normalized",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 14
+      },
+      "revId": "502ca9033edcc118fa6c5c508a59a79c2cb8159d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc20b3d_1109dccf",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T01:49:03Z",
+      "side": 1,
+      "message": "\u0027break\u0027 is sort of important here, since there\u0027s no reason to verify _all_ values, only first one is sufficient",
+      "range": {
+        "startLine": 606,
+        "startChar": 4,
+        "endLine": 606,
+        "endChar": 47
+      },
+      "revId": "502ca9033edcc118fa6c5c508a59a79c2cb8159d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
