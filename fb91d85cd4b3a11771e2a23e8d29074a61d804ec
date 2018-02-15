@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0022b8f0_110038fa",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T02:33:53Z",
+      "side": 1,
+      "message": "swarming.py only use dimensions for triggering, nothing else. And it already uses a list of tuple, not a dict, so it\u0027s already compatible.",
+      "parentUuid": "c7f4bfe0_9eae9695",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b1a3a33_b379c874",
         "filename": "appengine/swarming/message_conversion.py",
         "patchSetId": 3

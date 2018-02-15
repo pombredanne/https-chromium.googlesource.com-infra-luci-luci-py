@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f5f3b01e_bf193558",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T02:33:53Z",
+      "side": 1,
+      "message": "Brain fart, fixed.",
+      "parentUuid": "f967a8cf_f0a45456",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 14
+      },
+      "revId": "502ca9033edcc118fa6c5c508a59a79c2cb8159d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fc20b3d_1109dccf",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-15T01:49:03Z",
       "side": 1,
       "message": "\u0027break\u0027 is sort of important here, since there\u0027s no reason to verify _all_ values, only first one is sufficient",
+      "range": {
+        "startLine": 606,
+        "startChar": 4,
+        "endLine": 606,
+        "endChar": 47
+      },
+      "revId": "502ca9033edcc118fa6c5c508a59a79c2cb8159d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e082c903_19909d1d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T02:33:53Z",
+      "side": 1,
+      "message": "Ugh, done.",
+      "parentUuid": "0fc20b3d_1109dccf",
       "range": {
         "startLine": 606,
         "startChar": 4,
