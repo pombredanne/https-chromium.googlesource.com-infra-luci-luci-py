@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "b76e1580_76e1aa5b",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T15:54:26Z",
+      "side": 1,
+      "message": "You should probably explicitly support cygwin as\n\u0027/cygdrive/c/swarming_config\u0027",
+      "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb9ffb07_eb2ecd57",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T15:54:26Z",
+      "side": 1,
+      "message": "No need to use os.path.join. It\u0027s a constant.",
+      "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06f8f105_f53da19c",
+        "filename": "appengine/swarming/swarming_bot/api/oauth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T15:54:26Z",
+      "side": 1,
+      "message": "To be clear, the only use case for this is luci_context? If so, this should be obvious in the name of the file or the function. Likely the file.",
+      "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5442d57c_19624ee0",
         "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
         "patchSetId": 7
@@ -19,6 +70,47 @@
         "endLine": 14,
         "endChar": 20
       },
+      "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3833b569_e705a3da",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T15:54:26Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "5442d57c_19624ee0",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95b5bafc_f8c8bce4",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T15:54:26Z",
+      "side": 1,
+      "message": "I don\u0027t see why we should put this here, especially that this file is not even used in practice. The goal of this file is also to be informative. If you want to put the code here, you\u0027d have to explain what\u0027s the goal, instead of what it does.",
       "revId": "978ecd1f18ff5f0c63ba94fb0ec5ed1c59d4678e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
