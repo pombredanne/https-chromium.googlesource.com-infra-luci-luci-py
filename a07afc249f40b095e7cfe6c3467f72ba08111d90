@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e5d44e7_edd09823",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:56:49Z",
+      "side": 1,
+      "message": "nit: access_token, expires_at\n\nper python style guide",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 26
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "482486af_dce9d5f4",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:56:49Z",
+      "side": 1,
+      "message": "Please move this function somewhere else, this file is predominantly for client-side auth. \n\nI think it\u0027s fine to create a new swarming_bot/api/oauth.py file for it. (There\u0027s some stuff in os_utilities.py we can extract into this new file too later).\n\nDon\u0027t forget to add it to the swarming bot archive: https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/swarming/server/bot_archive.py#23",
+      "range": {
+        "startLine": 823,
+        "startChar": 4,
+        "endLine": 823,
+        "endChar": 32
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6d86c9_a26cab41",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:56:49Z",
+      "side": 1,
+      "message": "strictly speaking, it supports only http:// now, since for https:// we\u0027ll need to pass a path to the certificate bundle file (e.g. https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/swarming/swarming_bot/api/os_utilities.py#705). Python can\u0027t locate it on its own because Swarming bot runs as zip.",
+      "range": {
+        "startLine": 829,
+        "startChar": 9,
+        "endLine": 829,
+        "endChar": 46
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
