@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ccae220d_f942c612",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "The API surface didn\u0027t change at all.",
+      "parentUuid": "01601cf9_bdcfe6ff",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8b1a3a33_b379c874",
         "filename": "appengine/swarming/message_conversion.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-15T00:20:31Z",
       "side": 1,
       "message": "please add an assert:\n\nassert isinstance(values, (list, tuple))\n\nIt\u0027s better for this to fail with HTTP 500 than spit out os:W os:i os:n os:d os:o os:w os:s if something goes wrong.",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eeb9fda4_ad41541f",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "The tests verify that but ok (yay python)",
+      "parentUuid": "8b1a3a33_b379c874",
       "range": {
         "startLine": 40,
         "startChar": 13,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "926baf77_900b41bb",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "No, the whole point of this CL *is* to produce old values, yet be able to read the new ones.\n\nThis permits seamless rollback or rollforward. The follow up CL starts writing the new format, and it\u0027s simpler.",
+      "parentUuid": "68fc6118_7b809933",
+      "range": {
+        "startLine": 203,
+        "startChar": 30,
+        "endLine": 203,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2d425654_06d5eb43",
         "filename": "appengine/swarming/server/service_accounts_test.py",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2018-02-15T00:20:31Z",
       "side": 1,
       "message": "[u\u0027default\u0027]",
+      "range": {
+        "startLine": 161,
+        "startChar": 37,
+        "endLine": 161,
+        "endChar": 47
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9826528_8976f5b8",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "I\u0027m changing all that in the next CL.",
+      "parentUuid": "2d425654_06d5eb43",
       "range": {
         "startLine": 161,
         "startChar": 37,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "375737d2_d523f311",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "Good point. That\u0027s a functional change though. I saw it was enforced client side but not server side.",
+      "parentUuid": "a40facbf_ec8d4f44",
+      "range": {
+        "startLine": 157,
+        "startChar": 6,
+        "endLine": 157,
+        "endChar": 7
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c784b06f_681012ee",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 3
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "f285b8b6_a3ce7f28",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c784b06f_681012ee",
+      "range": {
+        "startLine": 167,
+        "startChar": 9,
+        "endLine": 167,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19c9cc4c_c83b71f9",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 3
@@ -174,6 +318,30 @@
       "writtenOn": "2018-02-15T00:20:31Z",
       "side": 1,
       "message": "k \u003d\u003d u\u0027pool\u0027",
+      "range": {
+        "startLine": 172,
+        "startChar": 9,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b78bb7e9_529c4f30",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "Ugh a left over from iterative refactoring, thanks for catching.",
+      "parentUuid": "19c9cc4c_c83b71f9",
       "range": {
         "startLine": 172,
         "startChar": 9,
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "c62c84c0_829ede26",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "That\u0027s not true. Validator\u0027s return value is used to replace the value when it doesn\u0027t return None.\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/entity-property-reference\n\nThe only problem here is that it modifies the inputs, so I fixed the code.",
+      "parentUuid": "c3fc3c7f_835d4e04",
+      "range": {
+        "startLine": 176,
+        "startChar": 6,
+        "endLine": 176,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f141166_fcdf75a8",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 3
@@ -229,6 +421,30 @@
       "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7bb70a6_646f3cb0",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f141166_fcdf75a8",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "18625a72_bb7b606c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e7c170c_b2d701a1",
+      "range": {
+        "startLine": 597,
+        "startChar": 4,
+        "endLine": 599,
+        "endChar": 64
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1facd48e_13f4bc76",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 3
@@ -266,6 +506,30 @@
       "writtenOn": "2018-02-15T00:20:31Z",
       "side": 1,
       "message": "nit: [unicode(bot_id)]",
+      "range": {
+        "startLine": 866,
+        "startChar": 30,
+        "endLine": 866,
+        "endChar": 45
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "319fea8a_31ce773d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-15T01:35:08Z",
+      "side": 1,
+      "message": "Not yet! :)",
+      "parentUuid": "1facd48e_13f4bc76",
       "range": {
         "startLine": 866,
         "startChar": 30,
