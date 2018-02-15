@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01601cf9_bdcfe6ff",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "I have a feeling it will break something in \u0027swarming.py query\u0027",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b1a3a33_b379c874",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "please add an assert:\n\nassert isinstance(values, (list, tuple))\n\nIt\u0027s better for this to fail with HTTP 500 than spit out os:W os:i os:n os:d os:o os:w os:s if something goes wrong.",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68fc6118_7b809933",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "[i.value]\n\nNew code should\u0027t keep producing \u0027legacy\u0027 form of value.",
+      "range": {
+        "startLine": 203,
+        "startChar": 30,
+        "endLine": 203,
+        "endChar": 37
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d425654_06d5eb43",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "[u\u0027default\u0027]",
+      "range": {
+        "startLine": 161,
+        "startChar": 37,
+        "endLine": 161,
+        "endChar": 47
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5f90ee6_5fc68bbe",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "dimensions_data",
+      "range": {
+        "startLine": 151,
+        "startChar": 30,
+        "endLine": 151,
+        "endChar": 40
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a40facbf_ec8d4f44",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "Please check that \u0027:\u0027 is not part of the key, since task queues code uses \u0027k:v\u0027 strings. So key \u0027a:b\u0027 with value \u0027c\u0027 and key \u0027a\u0027 with value \u0027b:c\u0027 are indistinguishable.",
+      "range": {
+        "startLine": 157,
+        "startChar": 6,
+        "endLine": 157,
+        "endChar": 7
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c784b06f_681012ee",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "k \u003d\u003d u\u0027id\u0027",
+      "range": {
+        "startLine": 167,
+        "startChar": 9,
+        "endLine": 167,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c9cc4c_c83b71f9",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "k \u003d\u003d u\u0027pool\u0027",
+      "range": {
+        "startLine": 172,
+        "startChar": 9,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3fc3c7f_835d4e04",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "this must be done in pre put hook, not in validator. Validators must be read-only :(",
+      "range": {
+        "startLine": 176,
+        "startChar": 6,
+        "endLine": 176,
+        "endChar": 19
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f141166_fcdf75a8",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "nit: this indentation looks odd. I though we are doing 4 spaces.\n\nRegardless, _validate_env_key below already checks that k is unicode. Please just add a check for \u0027v\u0027 in the loop there too.",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e7c170c_b2d701a1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "nit:\n\nfor v in self.dimensions_data.itervalues():\n  if isinstance(v, (list, tuple)):\n    return self.dimensions_data\n  break\nreturn {k: [v] for k, v in self.dimensions_data.iteritems()}\n\nThis will be both slightly faster (no need to materialize the full list of items to look at the first element) and more correct (handles empty dimensions_data).",
+      "range": {
+        "startLine": 597,
+        "startChar": 4,
+        "endLine": 599,
+        "endChar": 64
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1facd48e_13f4bc76",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-15T00:20:31Z",
+      "side": 1,
+      "message": "nit: [unicode(bot_id)]",
+      "range": {
+        "startLine": 866,
+        "startChar": 30,
+        "endLine": 866,
+        "endChar": 45
+      },
+      "revId": "fb91d85cd4b3a11771e2a23e8d29074a61d804ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
