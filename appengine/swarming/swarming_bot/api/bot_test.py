@@ -35,7 +35,7 @@ class TestBot(unittest.TestCase):
     calls = []
     class FakeRemote(object):
       # pylint: disable=no-self-argument
-      def post_bot_event(self2, event_type, message, attributes):
+      def post_bot_event(self2, event_type, message, attributes, bot_id):
         try:
           self.assertEqual('bot_error', event_type)
           self.assertEqual({'dimensions': {'foo': ['bar']}}, attributes)

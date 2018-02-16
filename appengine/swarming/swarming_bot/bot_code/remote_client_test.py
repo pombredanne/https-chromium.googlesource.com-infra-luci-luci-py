@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import datetime
 import logging
 import sys
 import threading
@@ -59,6 +60,23 @@ class TestRemoteClient(auto_stub.TestCase):
     self.assertEqual(29*2, self.slept)
     self.assertFalse(c.uses_auth)
     self.assertEqual({}, c.get_authentication_headers())
+
+  def test_get_headers(self):
+    today = datetime.datetime(2018, 2, 16, 1, 19, 45, 130574)
+    self.mock(remote_client, 'utcnow', lambda: today)
+
+    auth_headers = {'A': 'a'}
+    auth_exp_ts = time.time() + 3600
+
+    c = remote_client.RemoteClientNative(
+        'http://localhost:1',
+        lambda: (auth_headers, auth_exp_ts))
+    self.assertTrue(c.uses_auth)
+
+    bot_id = 'bruce'
+    self.assertEqual({'Cookie': 'GOOGAPPUID=94'}, c.get_headers(bot_id))
+    self.assertEqual({'A': 'a', 'Cookie': 'GOOGAPPUID=94'},
+                     c.get_headers(bot_id, include_auth=True))
 
   def test_get_authentication_headers(self):
     self.mock(time, 'time', lambda: 100000)
