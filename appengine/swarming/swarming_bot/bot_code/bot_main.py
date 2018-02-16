@@ -1077,7 +1077,7 @@ def _do_handshake(botobj, quit_bit):
   # generate error reports, so bots stuck in this state are discoverable.
   sleep_time = 5
   while not quit_bit.is_set():
-    resp = botobj.remote.do_handshake(botobj._attributes)
+    resp = botobj.remote.do_handshake(botobj.id, botobj._attributes)
     if resp:
       logging.info('Connected to %s', resp.get('server_version'))
       if resp.get('bot_version') != botobj._attributes['version']:
@@ -1110,7 +1110,7 @@ def _poll_server(botobj, quit_bit, last_action):
   start = time.time()
   cmd = None
   try:
-    cmd, value = botobj.remote.poll(botobj._attributes)
+    cmd, value = botobj.remote.poll(botobj.id, botobj._attributes)
   except remote_client_errors.PollError as e:
     # Back off on failure.
     delay = max(1, min(60, botobj.state.get(u'sleep_streak', 10) * 2))
