@@ -164,6 +164,30 @@
       "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df85c0d4_934dbe1d",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1118354
+      },
+      "writtenOn": "2018-02-16T13:22:17Z",
+      "side": 1,
+      "message": "Let\u0027s leave it as-is for now.  HTTPS would be required if we were making requests across networks, but we should discourage that for this use case.",
+      "parentUuid": "a7b92f27_6c9e3adf",
+      "range": {
+        "startLine": 829,
+        "startChar": 9,
+        "endLine": 829,
+        "endChar": 46
+      },
+      "revId": "a07afc249f40b095e7cfe6c3467f72ba08111d90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
