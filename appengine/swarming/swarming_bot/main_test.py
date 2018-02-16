@@ -4,6 +4,7 @@
 # that can be found in the LICENSE file.
 
 import json
+import logging
 import os
 import re
 import sys
@@ -50,6 +51,11 @@ class SimpleMainTest(TestCase):
         [sys.executable, self._zip_file, 'attributes'],
         stderr=subprocess42.PIPE))
     expected = bot_main.get_attributes(None)
+    # Broken because get_config() doesn't work.
+    self.assertEqual([u'N/A'], expected[u'dimensions'][u'server_version'])
+    # From config/config.json.
+    expected[u'dimensions'][u'server_version'] = [u'1']
+
     NON_DETERMINISTIC = (
       u'cwd', u'disks', u'nb_files_in_temp', u'pid', u'running_time',
       u'started_ts', u'uptime')
@@ -129,4 +135,6 @@ if __name__ == '__main__':
   fix_encoding.fix_encoding()
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
+  logging.basicConfig(
+      level=logging.DEBUG if '-v' in sys.argv else logging.CRITICAL)
   unittest.main()
