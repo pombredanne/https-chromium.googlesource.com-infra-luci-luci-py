@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79fc6f33_bafbb847",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-16T15:53:30Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a02c9605_c5e54abb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-16T15:53:30Z",
+      "side": 1,
+      "message": "This document is not public, it\u0027d be nice to have a short explanation inline or in doc/.",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0605ad1_20926aec",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-16T15:53:30Z",
+      "side": 1,
+      "message": "Why change the cookie every single day? To an extent, using the bot id as is would be sufficient?",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c1e377e_afda3a42",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-16T15:53:30Z",
+      "side": 1,
+      "message": "I\u0027d say to just take the last 4 hex digits and that\u0027s it?",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d6c23c1_5a46edb4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-16T15:53:30Z",
+      "side": 1,
+      "message": "I\u0027m leaning towards making the cookie to be a property of the instance, so that a user doesn\u0027t has to pass bot_id continuously. This would permit removing the parameter at post_task_update() too. So basically;\n\n- Add a method set_bot_id()\n- Call it at instantiation with a default value.\n- Call after each get_dimensions() in bot_main (necessary until https://crbug.com/786735 is implemented)\n\nThat would make usage simpler, wdyt?",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e774b65d_d1d41d80",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-16T15:53:30Z",
+      "side": 1,
+      "message": "You can use attributes[\u0027dimensions\u0027][\u0027id\u0027][0] here, which is reduce the amount of refactoring needed. It\u0027s a bit clunky semantically but it\u0027s a design I\u0027m thinking of revisiting as part of https://crbug.com/786735.",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
