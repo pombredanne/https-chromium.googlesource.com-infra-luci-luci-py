@@ -3,6 +3,8 @@
 # that can be found in the LICENSE file.
 
 import base64
+import datetime
+import hashlib
 import logging
 import os
 import threading
@@ -48,6 +50,32 @@ def createRemoteClient(server, auth, grpc_proxy):
     import remote_client_grpc
     return remote_client_grpc.RemoteClientGrpc(grpc_proxy)
   return RemoteClientNative(server, auth)
+
+
+def utcnow():
+  return datetime.datetime.utcnow()
+
+
+def make_appengine_id(bot_id):
+  # From go/swarming-release-canaries:
+  #
+  # AppEngine looks for a cookie named GOOGAPPUID containing a value in the
+  # range 0–999. If it exists, it is used to split the traffic. If it doesn’t,
+  # the request is routed randomly.
+  #
+  # The bot code will send requests with a value generated locally:
+  #   GOOGAPPUID = sha1('{year}-{month}-{day}-{bot_id}'.format(...)) % 1000
+  #
+  # This scheme should result in the values being roughly uniformly distributed.
+  # The date is included in the hash to ensure that across different rollouts,
+  # it's not the same set of bots being used as the canary (otherwise we might
+  # be unlucky and get a unrepresentative sample).
+
+  s = '{today.year:04}-{today.month:02}-{today.day:02}-{bot_id}'.format(
+      today=utcnow(), bot_id=bot_id)
+  googappuid = int(hashlib.sha1(s).hexdigest(), 16) % 1000
+  logging.debug('GOOGAPPUID = %d / %s', googappuid, s)
+  return googappuid
 
 
 class RemoteClientNative(object):
@@ -118,6 +146,21 @@ class RemoteClientNative(object):
     """
     return bool(self.get_authentication_headers())
 
+  def get_headers(self, bot_id, include_auth=False):
+    """Returns the headers to use to send a request.
+
+    Args:
+      bot_id: The bot's ID, as a unicode string.
+      include_auth: Whether or not to include authentication headers.
+
+    Returns:
+      A dict of HTTP headers.
+    """
+    headers = {'Cookie': 'GOOGAPPUID=%d' % make_appengine_id(bot_id)}
+    if include_auth:
+      headers.update(self.get_authentication_headers())
+    return headers
+
   def get_authentication_headers(self):
     """Returns a dict with the headers, refreshing them if necessary.
 
@@ -166,29 +209,29 @@ class RemoteClientNative(object):
           logging.info('Using auth headers (%s).', self._headers.keys())
       return self._headers or {}
 
-  def _url_read_json(self, url_path, data=None):
+  def _url_read_json(self, url_path, bot_id, data=None):
     """Does POST (if data is not None) or GET request to a JSON endpoint."""
     return net.url_read_json(
         self._server + url_path,
         data=data,
-        headers=self.get_authentication_headers(),
+        headers=self.get_headers(bot_id, include_auth=True),
         timeout=NET_CONNECTION_TIMEOUT_SEC,
         follow_redirects=False)
 
-  def _url_retrieve(self, filepath, url_path):
+  def _url_retrieve(self, filepath, url_path, bot_id):
     """Fetches the file from the given URL path on the server."""
     return net.url_retrieve(
         filepath,
         self._server + url_path,
-        headers=self.get_authentication_headers(),
+        headers=self.get_headers(bot_id, include_auth=True),
         timeout=NET_CONNECTION_TIMEOUT_SEC)
 
-  def post_bot_event(self, event_type, message, attributes):
+  def post_bot_event(self, event_type, message, attributes, bot_id):
     """Logs bot-specific info to the server"""
     data = attributes.copy()
     data['event'] = event_type
     data['message'] = message
-    self._url_read_json('/swarming/api/v1/bot/event', data=data)
+    self._url_read_json('/swarming/api/v1/bot/event', bot_id, data=data)
 
   def post_task_update(self, task_id, bot_id, params,
                        stdout_and_chunk=None, exit_code=None):
@@ -222,7 +265,7 @@ class RemoteClientNative(object):
       data['exit_code'] = exit_code
 
     resp = self._url_read_json(
-        '/swarming/api/v1/bot/task_update/%s' % task_id, data)
+        '/swarming/api/v1/bot/task_update/%s' % task_id, bot_id, data)
     logging.debug('post_task_update() = %s', resp)
     if not resp or resp.get('error'):
       raise InternalError(
@@ -238,16 +281,18 @@ class RemoteClientNative(object):
     }
     resp = self._url_read_json(
         '/swarming/api/v1/bot/task_error/%s' % task_id,
+        bot_id,
         data=data)
     return resp and resp['resp'] == 1
 
-  def do_handshake(self, attributes):
+  def do_handshake(self, bot_id, attributes):
     """Performs the initial handshake. Returns a dict (contents TBD)"""
     return self._url_read_json(
         '/swarming/api/v1/bot/handshake',
+        bot_id,
         data=attributes)
 
-  def poll(self, attributes):
+  def poll(self, bot_id, attributes):
     """Polls for new work or other commands; returns a (cmd, value) pair as
     shown below.
 
@@ -256,7 +301,9 @@ class RemoteClientNative(object):
       replies with an error or the returned dict does not have the correct
       values set.
     """
-    resp = self._url_read_json('/swarming/api/v1/bot/poll', data=attributes)
+    resp = self._url_read_json(
+        '/swarming/api/v1/bot/poll',
+        bot_id, data=attributes)
     if not resp or resp.get('error'):
       raise PollError(
           resp.get('error') if resp else 'Failed to contact server')
@@ -283,7 +330,7 @@ class RemoteClientNative(object):
     """
     url_path = '/swarming/api/v1/bot/bot_code/%s?bot_id=%s' % (
         bot_version, urllib.quote_plus(bot_id))
-    if not self._url_retrieve(new_zip_path, url_path):
+    if not self._url_retrieve(new_zip_path, url_path, bot_id):
       raise BotCodeError(new_zip_path, self._server + url_path, bot_version)
 
   def ping(self):

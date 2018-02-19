@@ -193,7 +193,7 @@ class Bot(object):
     """Posts an event to the server."""
     with self._lock:
       attr = copy.deepcopy(self._attributes)
-    self._remote.post_bot_event(event_type, message, attr)
+    self._remote.post_bot_event(event_type, message, attr, self.id)
 
   def post_error(self, message):
     """Posts given string as a failure.
