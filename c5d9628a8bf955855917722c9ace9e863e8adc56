@@ -159,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8bb15b32_85824e59",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-19T13:44:30Z",
+      "side": 1,
+      "message": "The main challenge here is that it would be a circular reference. But if we use something different than bot id as I note above, it becomes a non-issue.",
+      "parentUuid": "1a7af9e3_76f61a99",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e774b65d_d1d41d80",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 2

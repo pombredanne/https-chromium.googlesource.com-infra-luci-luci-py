@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c610303d_df97b511",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-19T13:44:30Z",
+      "side": 1,
+      "message": "Could we use something else than the bot id? What I have in mind is to use the fully qualified hostname, because what we want here is a unique identifier that stays the same across bot restart and host restart, so ephemeral values like process id cannot be reused.\n\nFor docker containers, the hostname is an hex string, which works just fine. I don\u0027t think this *needs* to be keyed on the bot id. Furthermore, since the bot id can change after the initial handshake (until https://crbug.com/786734 and https://crbug.com/801679 are implemented), I actually prefer to not key on this.\n\nAlso, make this a docstring and link to https://cloud.google.com/appengine/docs/flexible/python/splitting-traffic. I hadn\u0027t done my homework so I hadn\u0027t fully understood the way it\u0027s implemented.",
+      "revId": "f84a4afd2544ca8902095da33e8eaa8643d1f128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
