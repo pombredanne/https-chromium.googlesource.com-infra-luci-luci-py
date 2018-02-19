@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "c0eb0b0e_e527ae78",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-19T02:29:16Z",
+      "side": 1,
+      "message": "Copied the relevant part inline.",
+      "parentUuid": "a02c9605_c5e54abb",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0605ad1_20926aec",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 2
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "3dc24945_748cd6ba",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-19T02:29:16Z",
+      "side": 1,
+      "message": "This is answered in the comment I\u0027ve added: if that\u0027s not sufficient, let me know. :)",
+      "parentUuid": "a0605ad1_20926aec",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c1e377e_afda3a42",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 2
@@ -64,6 +100,24 @@
       "writtenOn": "2018-02-16T15:53:30Z",
       "side": 1,
       "message": "I\u0027d say to just take the last 4 hex digits and that\u0027s it?",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f84eaf8_0c902e20",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-19T02:29:16Z",
+      "side": 1,
+      "message": "Just taking four hex digits gives a value in the range 0-65535, so I\u0027m guessing you meant:\n\ngoogappuid \u003d int(hashlib.sha1(s).hexdigest()[-4:], 16) % 1000\n\nI considered that, but there\u0027s no significant improvement in performance or functionality,\nso I didn\u0027t think it was worth doing.",
+      "parentUuid": "0c1e377e_afda3a42",
       "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "1a7af9e3_76f61a99",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-19T02:29:16Z",
+      "side": 1,
+      "message": "I agree that passing bot_id everywhere is annoying.\n\nI\u0027m not a huge fan of that design: there are then two places where bot_id is stored.\nI was wondering if it would be reasonable to establish a 1:1 relationship between a\nbot and the remote client, so then the remote client could use self.bot.id?",
+      "parentUuid": "8d6c23c1_5a46edb4",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e774b65d_d1d41d80",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 2
@@ -101,6 +173,24 @@
       "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04662f10_daf20058",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-19T02:29:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e774b65d_d1d41d80",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
