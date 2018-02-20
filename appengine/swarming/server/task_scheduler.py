@@ -101,6 +101,7 @@ def _expire_task(to_run_key, request):
   if res:
     logging.info(
         'Expired %s', task_pack.pack_result_summary_key(result_summary_key))
+    ts_mon_metrics.on_task_completed(res)
   return res
 
 
@@ -742,6 +743,10 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
         bot_dimensions, deadline)
     for request, to_run in q:
       iterated += 1
+      if request.expiration_ts < utils.utcnow():
+        _expire_task(to_run.key, request)
+        failures += 1
+        continue
       run_result, secret_bytes = _reap_task(
           bot_dimensions, bot_version, to_run.key, request)
       if not run_result:
@@ -1056,7 +1061,6 @@ def cron_abort_expired_task_to_run(host):
       if summary:
         # TODO(maruel): Know which try it is.
         killed.append(request)
-        ts_mon_metrics.on_task_completed(summary)
       else:
         # It's not a big deal, the bot will continue running.
         skipped += 1
