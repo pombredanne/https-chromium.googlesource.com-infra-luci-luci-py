@@ -4,6 +4,7 @@
 # that can be found in the LICENSE file.
 
 import copy
+import datetime
 import json
 import logging
 import os
@@ -80,6 +81,8 @@ class TestBotBase(net_utils.TestCase):
     return bot.Bot(
         remote_client.createRemoteClient('https://localhost:1',
                                          auth_headers_cb,
+                                         'localhost',
+                                         self.root_dir,
                                          False),
         copy.deepcopy(self.attributes), 'https://localhost:1', 'version1',
         self.root_dir, self.fail)
@@ -97,6 +100,7 @@ class TestBotMain(TestBotBase):
     self.mock(os_utilities, 'host_reboot', self.fail)
     self.mock(subprocess42, 'call', self.fail)
     self.mock(time, 'time', lambda: 100.)
+    self.mock(remote_client, 'make_appengine_id', lambda *a: 42)
     config_path = os.path.join(
         test_env_bot_code.BOT_DIR, 'config', 'config.json')
     with open(config_path, 'rb') as f:
@@ -119,6 +123,7 @@ class TestBotMain(TestBotBase):
     self.mock(bot_main, '_EXTRA_BOT_CONFIG', None)
     self.mock(bot_main, '_QUARANTINED', None)
     self.mock(bot_main, 'SINGLETON', None)
+
 
   def print_err_and_fail(self, _bot, msg, _task_id):
     print msg
@@ -375,7 +380,7 @@ class TestBotMain(TestBotBase):
                 'task_id': 23,
               },
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {'resp': 1},
@@ -494,7 +499,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             None, # fails, gets retried
@@ -504,7 +509,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -548,7 +553,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -577,7 +582,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {'A': 'a'},
+              'headers': {'A': 'a', 'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -606,7 +611,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.bot._attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -636,7 +641,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -665,7 +670,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -693,7 +698,7 @@ class TestBotMain(TestBotBase):
             {
               'data': self.attributes,
               'follow_redirects': False,
-              'headers': {},
+              'headers': {'Cookie': 'GOOGAPPUID=42'},
               'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
@@ -920,7 +925,7 @@ class TestBotMain(TestBotBase):
           'https://localhost:1/swarming/api/v1/bot/bot_code'
           '/123?bot_id=localhost', url)
       self.assertEqual(new_zip, f)
-      self.assertEqual({}, headers)
+      self.assertEqual({'Cookie': 'GOOGAPPUID=42'}, headers)
       self.assertEqual(remote_client.NET_CONNECTION_TIMEOUT_SEC, timeout)
       # Create a valid zip that runs properly.
       with zipfile.ZipFile(f, 'w') as z:

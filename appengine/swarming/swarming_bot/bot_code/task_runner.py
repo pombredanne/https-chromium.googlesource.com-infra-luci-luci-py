@@ -23,6 +23,8 @@ import sys
 import time
 import traceback
 
+from api import os_utilities
+
 from utils import file_path
 from utils import net
 from utils import on_error
@@ -295,7 +297,8 @@ def load_and_run(
         grpc_proxy = swarming_server
         swarming_server = ''
       remote = remote_client.createRemoteClient(
-          swarming_server, headers_cb, grpc_proxy)
+          swarming_server, headers_cb, os_utilities.get_hostname_short(),
+          work_dir, grpc_proxy)
       remote.initialize()
 
       # Let AuthSystem know it can now send RPCs to Swarming (to grab OAuth
