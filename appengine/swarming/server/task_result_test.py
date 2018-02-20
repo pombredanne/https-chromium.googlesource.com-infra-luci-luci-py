@@ -60,7 +60,7 @@ def _gen_request(properties=None, **kwargs):
 def mkreq(req):
   # This function fits the old style where TaskRequest was stored first, before
   # TaskToRun and TaskResultSummary.
-  task_request.init_new_request(req, True, None)
+  task_request.init_new_request(req, True)
   req.key = task_request.new_request_key()
   req.put()
   return req
@@ -160,7 +160,6 @@ class TaskResultApiTest(TestCase):
       'modified_ts': None,
       'name': u'Request name',
       'outputs_ref': None,
-      'properties_hash': None,
       'server_versions': [u'v1a'],
       'started_ts': None,
       'state': task_result.State.PENDING,
@@ -247,7 +246,6 @@ class TaskResultApiTest(TestCase):
       'modified_ts': self.now,
       'name': u'Request name',
       'outputs_ref': None,
-      'properties_hash': None,
       'server_versions': [u'v1a'],
       'started_ts': None,
       'state': task_result.State.PENDING,
@@ -297,7 +295,6 @@ class TaskResultApiTest(TestCase):
       'modified_ts': reap_ts,
       'name': u'Request name',
       'outputs_ref': None,
-      'properties_hash': None,
       'server_versions': [u'v1a'],
       'started_ts': reap_ts,
       'state': task_result.State.RUNNING,
@@ -355,7 +352,6 @@ class TaskResultApiTest(TestCase):
       'modified_ts': complete_ts,
       'name': u'Request name',
       'outputs_ref': None,
-      'properties_hash': None,
       'server_versions': [u'v1a'],
       'started_ts': reap_ts,
       'state': task_result.State.COMPLETED,
