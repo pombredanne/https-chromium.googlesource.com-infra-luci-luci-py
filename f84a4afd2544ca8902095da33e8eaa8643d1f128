@@ -16,6 +16,24 @@
       "revId": "f84a4afd2544ca8902095da33e8eaa8643d1f128",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9c63266_0d62cddb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-20T02:04:21Z",
+      "side": 1,
+      "message": "I just realized you need to include the working directory; basically hostname + working directory should give you something pretty good.\n\nThe reason for including the working directory in the hash is that there are known users of multiple bots on the same host but not using docker, they work by using different working directory.",
+      "parentUuid": "c610303d_df97b511",
+      "revId": "f84a4afd2544ca8902095da33e8eaa8643d1f128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
