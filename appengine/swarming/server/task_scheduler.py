@@ -658,7 +658,7 @@ def schedule_request(request, secret_bytes):
 
   deduped = False
   if request.properties.idempotent:
-    dupe_summary = _find_dupe_task(now, request.properties_hash)
+    dupe_summary = _find_dupe_task(now, request.properties_hash())
     if dupe_summary:
       # Setting task.queue_number to None removes it from the scheduling.
       task.queue_number = None
@@ -825,7 +825,7 @@ def bot_update_task(
     Any error is returned as a string to be passed to logging.error() instead of
     logging inside the transaction for performance.
     """
-    # 2 consecutive GETs, one PUT.
+    # 2 or 3 consecutive GETs, one PUT.
     run_result_future = run_result_key.get_async()
     result_summary_future = result_summary_key.get_async()
     run_result = run_result_future.get_result()
@@ -898,6 +898,8 @@ def bot_update_task(
       result_summary.costs_usd[run_result.try_number-1] = run_result.cost_usd
       result_summary.modified_ts = now
     else:
+      # Performance warning: this function calls properties_hash() which will
+      # GET SecretBytes entity if there's one.
       result_summary.set_from_run_result(run_result, request)
 
     to_put.append(result_summary)
