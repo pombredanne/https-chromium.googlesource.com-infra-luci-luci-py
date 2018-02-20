@@ -22,6 +22,30 @@
       "revId": "d12b173b1a4789612db7a30d5b88ec7092886f82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e793215d_bee6fe40",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-20T20:00:10Z",
+      "side": 1,
+      "message": "Oh totally, but the get() here occurs in a way that makes it so it\u0027s always provisioned from the local in process cache. I added a note here since it\u0027s really not obvious.",
+      "parentUuid": "fc71eb0b_4edd16ec",
+      "range": {
+        "startLine": 816,
+        "startChar": 26,
+        "endLine": 816,
+        "endChar": 37
+      },
+      "revId": "d12b173b1a4789612db7a30d5b88ec7092886f82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
