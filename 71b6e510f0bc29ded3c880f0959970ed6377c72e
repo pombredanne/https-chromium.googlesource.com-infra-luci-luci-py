@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d548f952_3c1883f3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-20T13:36:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3c208a_ac47fccc",
+      "range": {
+        "startLine": 333,
+        "startChar": 22,
+        "endLine": 333,
+        "endChar": 24
+      },
+      "revId": "71b6e510f0bc29ded3c880f0959970ed6377c72e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c53dead_0b21ff5d",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-16T20:12:25Z",
       "side": 1,
       "message": "we should cache the result of this, rereading zip archive on each _get_dimensions call is not nice",
+      "range": {
+        "startLine": 594,
+        "startChar": 4,
+        "endLine": 594,
+        "endChar": 14
+      },
+      "revId": "71b6e510f0bc29ded3c880f0959970ed6377c72e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0df0b466_da8da9d9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-20T13:36:42Z",
+      "side": 1,
+      "message": "Yes, done. I also added it to generate_version.",
+      "parentUuid": "2c53dead_0b21ff5d",
       "range": {
         "startLine": 594,
         "startChar": 4,
