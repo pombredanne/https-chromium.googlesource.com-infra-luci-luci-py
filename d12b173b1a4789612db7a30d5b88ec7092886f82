@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc71eb0b_4edd16ec",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-20T18:08:43Z",
+      "side": 1,
+      "message": "compared to DB get, it is peanuts ¯\\_(ツ)_/¯",
+      "range": {
+        "startLine": 816,
+        "startChar": 26,
+        "endLine": 816,
+        "endChar": 37
+      },
+      "revId": "d12b173b1a4789612db7a30d5b88ec7092886f82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
