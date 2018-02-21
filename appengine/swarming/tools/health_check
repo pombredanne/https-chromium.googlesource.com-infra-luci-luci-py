@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# Check the health of a Swarming version.
+
+set -e
+
+HERE=$(dirname "$0")
+SWARMING=$HERE/../../../client/swarming.py
+
+E_INVALID_ARGUMENT=64
+E_INTERNAL=83
+
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 application server_version" >&2
+  exit "${E_INVALID_ARGUMENT}"
+fi
+
+application=$1
+server_version=$2
+
+url="https://${server_version}-dot-${application}.appspot.com"
+
+echo "Scheduling no-op task on ${url}"
+
+if ! $SWARMING run \
+  -S "$url" \
+  --expiration 30 \
+  --hard-timeout 30 \
+  -d pool Chrome \
+  -d server_version "$server_version" \
+  --raw-cmd python -- -c pass
+then
+
+  echo "Failed to run no-op task." >&2
+  exit "${E_INTERNAL}"
+fi
