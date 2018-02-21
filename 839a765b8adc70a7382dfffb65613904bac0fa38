@@ -1,0 +1,261 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a59c29f_26dd9508",
+        "filename": "appengine/swarming/tools/health_check",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "I like u too",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a1fdd58_38762488",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "more recent than that",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e34758f_d867a776",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "new Swarming version",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 25
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5de9ed48_39813996",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "? you set it as a const just above.",
+      "range": {
+        "startLine": 32,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 28
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd7be134_5b87bb98",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "it\u0027s fine to inline this variable.",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e270ff7_24a32021",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "I\u0027d prefer this function to accept a dict(version: split) and do the string formatting here.",
+      "range": {
+        "startLine": 95,
+        "startChar": 46,
+        "endLine": 95,
+        "endChar": 51
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9baefda1_504795d3",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "This means canarying a previous version is not supported?",
+      "range": {
+        "startLine": 175,
+        "startChar": 36,
+        "endLine": 175,
+        "endChar": 76
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71b201f0_50048c6c",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "prefer consistent 2 lines between file level symbols",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f17e7e38_1c2a3b64",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "version_canarying ?",
+      "range": {
+        "startLine": 213,
+        "startChar": 19,
+        "endLine": 213,
+        "endChar": 30
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d30ff70_18c521ef",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "I don\u0027t understand, you could use version everywhere below and it\u0027d be fine?",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "005bc95b_f4a426d9",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of this mechanism.",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76721e68_279f1fc3",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "order is inverted compared to line 207. I\u0027d recommend to make version not have a default arg.",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97b472a2_0b4f31cc",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T02:50:02Z",
+      "side": 1,
+      "message": "I\u0027d prefer these checks to be:\n\nif not version:",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
