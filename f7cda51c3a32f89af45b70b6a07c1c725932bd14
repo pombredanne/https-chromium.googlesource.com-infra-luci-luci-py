@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90df4621_735ef515",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-21T02:25:40Z",
+      "side": 1,
+      "message": "This is needed now because without a pool configuration service accounts can\u0027t be used in \u0027default\u0027 pool. These tests use service accounts, and thus now need a config for \u0027default\u0027 pool that allows them.",
+      "range": {
+        "startLine": 222,
+        "startChar": 9,
+        "endLine": 222,
+        "endChar": 30
+      },
+      "revId": "f7cda51c3a32f89af45b70b6a07c1c725932bd14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eadf5c8_ad3630ad",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-21T02:25:40Z",
+      "side": 1,
+      "message": "No new code here, just renamed _check_schedule_request_acl_v2 into check_schedule_request_acl and moved it to \"Public API\" section.",
+      "range": {
+        "startLine": 517,
+        "startChar": 4,
+        "endLine": 517,
+        "endChar": 30
+      },
+      "revId": "f7cda51c3a32f89af45b70b6a07c1c725932bd14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
