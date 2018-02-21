@@ -34,6 +34,24 @@
       "revId": "f84a4afd2544ca8902095da33e8eaa8643d1f128",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cee0436b_001dceb0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-21T00:10:17Z",
+      "side": 1,
+      "message": "hostname + working directory WFM.\n\nI\u0027ve updated docs + code to use that instead.",
+      "parentUuid": "b9c63266_0d62cddb",
+      "revId": "f84a4afd2544ca8902095da33e8eaa8643d1f128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
