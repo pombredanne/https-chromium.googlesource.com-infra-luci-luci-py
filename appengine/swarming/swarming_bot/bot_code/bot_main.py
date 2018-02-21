@@ -563,13 +563,17 @@ def get_bot(config):
     'state': {},
     'version': generate_version(),
   }
+  hostname = _get_botid_safe()
   base_dir = os.path.dirname(THIS_FILE)
   # Use temporary Bot object to call get_attributes. Attributes are needed to
   # construct the "real" bot.Bot.
   attributes = get_attributes(
     bot.Bot(
       remote_client.createRemoteClient(config['server'],
-                                       None, config.get('swarming_grpc_proxy')),
+                                       None,
+                                       hostname,
+                                       base_dir,
+                                       config.get('swarming_grpc_proxy')),
       attributes,
       config['server'],
       config['server_version'],
@@ -583,6 +587,8 @@ def get_bot(config):
       remote_client.createRemoteClient(
           config['server'],
           lambda: _get_authentication_headers(botobj),
+          hostname,
+          base_dir,
           config.get('swarming_grpc_proxy')),
       attributes,
       config['server'],
@@ -975,7 +981,10 @@ def _run_bot_inner(arg_error, quit_bit):
     # There's no need to do error handling here - the "ping" is just to "wake
     # up" the network; if there's something seriously wrong, the handshake will
     # fail and we'll handle it there.
+    hostname = _get_botid_safe()
+    base_dir = os.path.dirname(THIS_FILE)
     remote = remote_client.createRemoteClient(config['server'], None,
+                                              hostname, base_dir,
                                               config.get('swarming_grpc_proxy'))
     remote.ping()
   except Exception:
