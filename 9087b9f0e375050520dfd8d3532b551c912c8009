@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5009b3bb_86345164",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "What about making a global \"THIS_DIR\", because there\u0027s 4 calls to dirname(THIS_FILE).",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b10cd3b7_c56b1888",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "since it\u0027s now called multiple times, decorate it with:\n\n@tools.cached",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bd1c6ca_5efe34a8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "I don\u0027t like that, it\u0027s too magical, and the following is more readable, more resilient to refactoring and is only one line:\n\n  s \u003d \u0027%s-%s-%s\u0027 % (utcnow().strftime(\u0027%Y-%m-%d\u0027), hostname, work_dir)",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50d19dd1_bef876f4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "googappuid \u003d int(hashlib.sha1(s).hexdigest()[:7], 16) % 1000\n\nso that it works well on 32 bits, otherwise it will create a long for no good reason.",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d92b644a_f8c1b73d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cdd7573_9b7cb990",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "revert",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f690ca3e_3c43501b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-21T01:02:13Z",
+      "side": 1,
+      "message": "As a matter of fact, you need to force the cookie value used from bot_main, otherwise when a bot starts near the end of the day and runs a task after midnight, the cookie will have a different value in task_runner. This means bot_main could be canaried but not task_runner, or vice-versa.",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
