@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dad41601_935a1dd0",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-21T01:48:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e53ea03c_db23799b",
+      "range": {
+        "startLine": 97,
+        "startChar": 40,
+        "endLine": 97,
+        "endChar": 42
+      },
+      "revId": "59b55bfee027ba14a6b48b530f22b96b5884d851",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "072cd550_9c6ce4c9",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "63f5b3ec_0c5cfcb8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-21T01:48:39Z",
+      "side": 1,
+      "message": "Added something, but properly documenting this will require significantly more time... (days, given how fast I usually write technical documentation).\n\nAlso I believe comments in the proto file is the primary detailed documentation for the configs, and it is documented there (I\u0027ve added some stuff). I\u0027ve also added a reference to the proto from doc/Access-Groups.md (among other additions).",
+      "parentUuid": "072cd550_9c6ce4c9",
+      "revId": "59b55bfee027ba14a6b48b530f22b96b5884d851",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55588c6d_e927b50c",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "59b55bfee027ba14a6b48b530f22b96b5884d851",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "668f9d82_4ca2d1b0",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1438,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-21T01:48:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55588c6d_e927b50c",
+      "revId": "59b55bfee027ba14a6b48b530f22b96b5884d851",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
