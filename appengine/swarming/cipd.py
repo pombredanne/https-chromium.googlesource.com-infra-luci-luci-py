@@ -14,7 +14,7 @@ PACKAGE_NAME_RE = re.compile(r'^([a-z0-9_\-\.]+/)*[a-z0-9_\-\.]+$')
 PACKAGE_NAME_TEMPLATE_RE = re.compile(r'^[a-z0-9_\-\.,\${}/=]+$')
 INSTANCE_ID_RE = re.compile(r'^[0-9a-f]{40}$')
 TAG_KEY_RE = re.compile(r'^[a-z0-9_\-]+$')
-REF_RE = re.compile(r'^[a-z0-9_\-]{1,100}$')
+REF_RE = re.compile(r'^[a-z0-9_/\-]{1,256}$')
 TAG_MAX_LEN = 400
 
 
