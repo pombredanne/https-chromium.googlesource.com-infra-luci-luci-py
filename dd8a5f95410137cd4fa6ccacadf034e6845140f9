@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d770406b_1f8f1a50",
+        "filename": "appengine/swarming/tools/health_check",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "\"set -eu\" is shorter.",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82a3a99c_9c698ca7",
+        "filename": "appengine/swarming/tools/health_check",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "--raw-cmd -- python -c pass",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fbff63b_0818f051",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "description\u003d__doc__ ?",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "322aed08_be47c82d",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "I think you should use https://docs.python.org/2/library/argparse.html#mutual-exclusion so you don\u0027t need lines 280-282 and 286-288.\n\n  group \u003d parser.add_mutually_exclusive_group(required\u003dTrue)",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d2a5cc_a2a29fe6",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "FTR, I prefer \u0027--project\u0027, application,  as this is safer with string escaping.",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e1573eb_c9c3296c",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "same",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d566098f_cab99439",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "same",
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18653ce6_8c73ddcc",
+        "filename": "appengine/swarming/tools/rollout_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:44:25Z",
+      "side": 1,
+      "message": "It\u0027s more recent here too.",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "dd8a5f95410137cd4fa6ccacadf034e6845140f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
