@@ -244,6 +244,24 @@
       "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea6cf33c_1d821474",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:49:15Z",
+      "side": 1,
+      "message": "\u003e I\u0027m confused what you\u0027re suggesting I change here.\n\u003e \n\u003e The date gets mixed into the cookie when it gets created, which is just before every request made by RemoteClientNative.\n\u003e \n\u003e There are transitions of the cookie values every day, but I don\u0027t expect that will have any practical effect: if there\u0027s a rollout happening, some bots will switch back from the canary to the main version, and vice versa, but that\u0027s no different to doing a rollout currently?\n\n\ntask_runner and bot_main are separate processes. But as a matter of fact, task_runner is already locked into a version so it\u0027s true that it doesn\u0027t matter. It\u0027d be good to comment in task_runner.",
+      "parentUuid": "cf370cd8_87a749e4",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

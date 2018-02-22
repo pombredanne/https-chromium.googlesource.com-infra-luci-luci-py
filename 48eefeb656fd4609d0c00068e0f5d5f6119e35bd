@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00438a73_8755c42e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-22T14:49:15Z",
+      "side": 1,
+      "message": "Add comment here about the fact that it doesn\u0027t matter, task_runner is always called with a specific versioned URL.",
+      "revId": "48eefeb656fd4609d0c00068e0f5d5f6119e35bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
