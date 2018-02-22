@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "79d1804c_2d05ac99",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/930422",
+      "parentUuid": "5009b3bb_86345164",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b10cd3b7_c56b1888",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf80ad65_d0039320",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b10cd3b7_c56b1888",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "033fb4b7_f24de9a4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "The linter wouldn\u0027t let me have it either. :P\nI really wanted to use f-strings (https://www.python.org/dev/peps/pep-0498/), but they\u0027re only in Python 3.\n\nDone.",
+      "parentUuid": "6bd1c6ca_5efe34a8",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50d19dd1_bef876f4",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 8
@@ -67,6 +121,24 @@
       "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "837a3d17_5222ef77",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "That feels like premature optimization to me.\nWhy should I avoid a long?",
+      "parentUuid": "50d19dd1_bef876f4",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ddfd3e5c_36a3aec2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92b644a_f8c1b73d",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6cdd7573_9b7cb990",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 8
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "48021f5e_34d94ef7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cdd7573_9b7cb990",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f690ca3e_3c43501b",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 8
@@ -115,6 +223,24 @@
       "writtenOn": "2018-02-21T01:02:13Z",
       "side": 1,
       "message": "As a matter of fact, you need to force the cookie value used from bot_main, otherwise when a bot starts near the end of the day and runs a task after midnight, the cookie will have a different value in task_runner. This means bot_main could be canaried but not task_runner, or vice-versa.",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf370cd8_87a749e4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T03:14:29Z",
+      "side": 1,
+      "message": "I\u0027m confused what you\u0027re suggesting I change here.\n\nThe date gets mixed into the cookie when it gets created, which is just before every request made by RemoteClientNative.\n\nThere are transitions of the cookie values every day, but I don\u0027t expect that will have any practical effect: if there\u0027s a rollout happening, some bots will switch back from the canary to the main version, and vice versa, but that\u0027s no different to doing a rollout currently?",
+      "parentUuid": "f690ca3e_3c43501b",
       "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
