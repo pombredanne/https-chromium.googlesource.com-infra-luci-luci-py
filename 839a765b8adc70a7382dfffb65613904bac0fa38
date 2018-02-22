@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "09bf0254_cfb1589c",
+        "filename": "appengine/swarming/tools/health_check",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "I\u0027m sure the shell script ❤️s you back. 😂",
+      "parentUuid": "8a59c29f_26dd9508",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a1fdd58_38762488",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b440ed4_cb1e550a",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "*cough* cargo-culting, who me? *cough*",
+      "parentUuid": "5a1fdd58_38762488",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "a10ff2c0_33b53458",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e34758f_d867a776",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 25
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5de9ed48_39813996",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "f4914103_aeaff407",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "This is intended to be a defensive measure against someone changing the constant:\nI initially wrote it as just a comment, but then thought I could put it as an assertion.",
+      "parentUuid": "5de9ed48_39813996",
+      "range": {
+        "startLine": 32,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 28
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd7be134_5b87bb98",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -102,6 +192,24 @@
       "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "807c71ee_60b397ea",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7be134_5b87bb98",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "31ca5f0b_ab8a7f30",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Thanks, that looks much better.",
+      "parentUuid": "5e270ff7_24a32021",
+      "range": {
+        "startLine": 95,
+        "startChar": 46,
+        "endLine": 95,
+        "endChar": 51
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9baefda1_504795d3",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "7bb6747c_03784392",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "It is supported. In the usual case, the canary will look like:\n\ndefault: 1000-aaaaaa\u003d10, 2000-aaaaaa\u003d90\nbackend: 1000-aaaaaa\u003d10, 2000-aaaaaa\u003d90\n\nand hence versions \u003d\u003d (\u00272000-aaaaaa\u0027, \u00271000-aaaaaa\u0027), and this block of code won\u0027t execute.\n\nThis block of code is to handle a state which this tool doesn\u0027t create\n(i.e. a human has done something weird):\n\ndefault: 1000-aaaaaa\u003d100\nbackend: 2000-aaaaaa\u003d100\n\nIn this case, the tool guesses the intent was to roll out 2000-aaaaaa,\nand we\u0027re currently in the middle of that rollout.",
+      "parentUuid": "9baefda1_504795d3",
+      "range": {
+        "startLine": 175,
+        "startChar": 36,
+        "endLine": 175,
+        "endChar": 76
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71b201f0_50048c6c",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -165,6 +321,24 @@
       "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15c31a90_3cafe6f4",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71b201f0_50048c6c",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -191,6 +365,30 @@
     },
     {
       "key": {
+        "uuid": "951cc533_bd9775cf",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Once the canary finishes, it gets rolled out to 100%, so I thought \"new\" was better.\n(we go from the current version to the new version sounds pretty natural to me?)",
+      "parentUuid": "f17e7e38_1c2a3b64",
+      "range": {
+        "startLine": 213,
+        "startChar": 19,
+        "endLine": 213,
+        "endChar": 30
+      },
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d30ff70_18c521ef",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -205,6 +403,24 @@
       "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31c4b55f_1f135278",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Just \"version\" is ambiguous.\n\nActually, I think I can change some names to avoid this futzing.",
+      "parentUuid": "0d30ff70_18c521ef",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -225,6 +441,24 @@
     },
     {
       "key": {
+        "uuid": "5557e1d9_6df0b9ba",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "I assume this is re moving the string formatting to set_traffic_splits?\nIf so, ack.",
+      "parentUuid": "005bc95b_f4a426d9",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76721e68_279f1fc3",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -242,6 +476,24 @@
     },
     {
       "key": {
+        "uuid": "75e9f36b_57bf0be9",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "Hmmm, yes.\n\nrollback gets called from two contexts:\n * main: the user wants to rollback (and we need to figure out which version they mean)\n * rollforward: we want to undo the canary (and we *know* what version it should be)\n\nSo version needs to be optional for this to work.\n\nOne option is to just call set_traffic_splits in rollforward, rather than using rollback.\nAs long as we don\u0027t want to do anything else when rolling back, that\u0027s probably fine.\n\nThe other option is just to invert the order of arguments in the other places, which also\nseems fine? I\u0027m going to take this option, but I don\u0027t hugely mind.",
+      "parentUuid": "76721e68_279f1fc3",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97b472a2_0b4f31cc",
         "filename": "appengine/swarming/tools/rollout.py",
         "patchSetId": 2
@@ -256,6 +508,24 @@
       "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "849ac11d_c7413fc6",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-22T02:49:35Z",
+      "side": 1,
+      "message": "https://google.github.io/styleguide/pyguide.html?showone\u003dTrue/False_evaluations#True/False_evaluations says to use implicit truthy-ness if at all possible, but calls out using \"if x is not None: ... when testing whether a variable or argument that defaults to None was set to some other value\".\n\nIn this situation we\u0027re handling strings, and an empty string is unlikely to ever occur (I expect AppEngine disallows it), so I\u0027m happy to switch these.",
+      "parentUuid": "97b472a2_0b4f31cc",
+      "revId": "839a765b8adc70a7382dfffb65613904bac0fa38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
