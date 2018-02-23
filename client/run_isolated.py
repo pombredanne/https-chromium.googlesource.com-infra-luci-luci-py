@@ -688,7 +688,7 @@ def map_and_run(data, constant_run_path):
       if data.storage and data.outputs:
         isolateserver.create_directories(run_dir, data.outputs)
 
-      command = tools.fix_python_path(command)
+      command = tools.fix_python_cmd(command)
       command = process_command(command, out_dir, data.bot_file)
       file_path.ensure_command_has_abs_path(command, cwd)
 

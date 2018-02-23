@@ -238,13 +238,13 @@ def disable_buffering():
     os.environ['PYTHONUNBUFFERED'] = 'x'
 
 
-def fix_python_path(cmd):
-  """Returns the fixed command line to call the right python executable."""
-  out = cmd[:]
-  if out[0] == 'python':
-    out[0] = sys.executable
-  elif out[0].endswith('.py'):
-    out.insert(0, sys.executable)
+def fix_python_cmd(cmd):
+  """Returns the fixed command line to explicitly invoke python if cmd is
+  running a `.py` script."""
+  out = cmd
+  if out[0].endswith('.py'):
+    out = cmd[:]
+    out.insert(0, 'python')
   return out
 
 
