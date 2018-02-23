@@ -262,6 +262,24 @@
       "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b8e3304_d25c789c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-23T02:47:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea6cf33c_1d821474",
+      "revId": "9087b9f0e375050520dfd8d3532b551c912c8009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

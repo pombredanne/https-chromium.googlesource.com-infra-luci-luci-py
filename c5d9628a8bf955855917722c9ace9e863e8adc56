@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "bfbbcd7b_e585591a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-02-23T02:47:55Z",
+      "side": 1,
+      "message": "Resolved (reopen if you disagree).",
+      "parentUuid": "1f84eaf8_0c902e20",
+      "revId": "c5d9628a8bf955855917722c9ace9e863e8adc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d6c23c1_5a46edb4",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 2
