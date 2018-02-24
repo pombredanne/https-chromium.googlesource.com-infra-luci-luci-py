@@ -351,6 +351,16 @@ class GitilesTestCase(test_case.TestCase):
     self.assertEqual(loc.treeish, 'refs/heads/a')
     self.assertEqual(loc.path, '/c/b')
 
+  def test_parse_resolve_master(self):
+    self.mock(gitiles, 'get_refs', mock.Mock(side_effect=Exception))
+    loc = gitiles.Location.parse_resolve('http://h/p/+/master/a/b')
+    self.assertEqual(loc.treeish, 'refs/heads/master')
+    self.assertEqual(loc.path, '/a/b')
+
+    loc = gitiles.Location.parse_resolve('http://h/p/+/refs/heads/master/a/b')
+    self.assertEqual(loc.treeish, 'refs/heads/master')
+    self.assertEqual(loc.path, '/a/b')
+
   def test_location_neq(self):
     loc1 = gitiles.Location(
         hostname='localhost', project='project',
