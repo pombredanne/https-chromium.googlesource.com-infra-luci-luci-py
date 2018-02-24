@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "43646664_a176f6c3",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-24T23:56:11Z",
+      "side": 1,
+      "message": "grpc.StatusCode\n\nplease add https://grpc.io/grpc/python/grpc.html?highlight\u003dstatus#grpc.StatusCode",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83a654ac_2bba3967",
         "filename": "appengine/components/components/prpc/codes.py",
         "patchSetId": 1
@@ -25,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "a516b902_50995108",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-24T23:56:11Z",
+      "side": 1,
+      "message": "maybe remove one _",
+      "range": {
+        "startLine": 31,
+        "startChar": 74,
+        "endLine": 31,
+        "endChar": 75
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1285fe3b_a65b61d8",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 1
@@ -36,6 +82,30 @@
       "writtenOn": "2018-02-24T04:04:59Z",
       "side": 1,
       "message": "I\u0027m actually not sure what else to put here :( We only need \u0027Authorization\u0027 for now, so I\u0027m keeping only it.\n\nIIUC, pRPC doesn\u0027t clarify how we pass metadata in requests. I can imagine we can add X-Prpc-Metadata-* headers. But this is not necessary for now.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 28
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24129ff2_9d98845f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-24T23:56:11Z",
+      "side": 1,
+      "message": "I think go/prpc does:\n\n\u003e - Any other headers MUST be added to metadata.MD in the context that is\n  passed to the service method implementation.\n  - If a header name has \"-Bin\" suffix, the server must treat it as\n    base64-encoded and trim the suffix.",
+      "parentUuid": "1285fe3b_a65b61d8",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -71,6 +141,29 @@
     },
     {
       "key": {
+        "uuid": "1bcdfcdf_5e668d8f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-24T23:56:11Z",
+      "side": 1,
+      "message": "nit: \":\" to be consistent with L97",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 15
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "088bdba7_10888b2f",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 1
@@ -91,6 +184,30 @@
       "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56059fa0_cd3f47bb",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-24T23:56:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "088bdba7_10888b2f",
+      "range": {
+        "startLine": 307,
+        "startChar": 8,
+        "endLine": 307,
+        "endChar": 20
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
