@@ -90,40 +90,40 @@ class Location(LocationTuple):
     if project.endswith('.git'):
       project = project[:-len('.git')]
 
-    treeish_and_path = (path_match.group(3) or '').strip('/')
-    first_slash = treeish_and_path.find('/')
-    if first_slash == -1:
+    treeish_and_path = (path_match.group(3) or '').strip('/').split('/')
+    if len(treeish_and_path) == 1:
       treeish = treeish_and_path
-      path = '/'
+      path = []
     elif not treeishes:
-      treeish = treeish_and_path[:first_slash]
-      path = treeish_and_path[first_slash:]
+      if treeish_and_path[:2] == ['refs', 'heads']:
+        treeish = treeish_and_path[:3]
+        path = treeish_and_path[3:]
+      else:
+        treeish = treeish_and_path[:1]
+        path = treeish_and_path[1:]
     else:
       treeish = treeish_and_path
-      treeishes = set(treeishes)
+      treeishes = set(tuple(t.split('/')) for t in treeishes)
       while True:
-        if treeish in treeishes:
+        if tuple(treeish) in treeishes:
           break
-        i = treeish.rfind('/')
-        assert i != 0
-        if i == -1:
+        if len(treeish) == 1:
           break
-        treeish = treeish[:i]
+        treeish = treeish[:-1]
       path = treeish_and_path[len(treeish):]
 
-    treeish = treeish or 'HEAD'
+    treeish = treeish or ['HEAD']
     # if not HEAD or a hash, should be prefixed with refs/heads/
-    if treeish != 'HEAD' and not RGX_HASH.match(treeish):
-      treeish = 'refs/heads/' + treeish
+    if (treeish[:2] != ['refs', 'heads']
+        and treeish != ['HEAD']
+        and not (len(treeish) == 1 and RGX_HASH.match(treeish[0]))):
+      treeish = ['refs', 'heads'] + treeish
 
-    path = path or ''
-    if not path.startswith('/'):
-      path = '/' + path
-
+    treeish_str = '/'.join(treeish)
+    path_str = '/'.join([''] + path)  # must start with slash
     # Check yourself.
-    _validate_args(hostname, project, treeish, path, path_required=True)
-
-    return cls(hostname, project, treeish, path)
+    _validate_args(hostname, project, treeish_str, path_str, path_required=True)
+    return cls(hostname, project, treeish_str, path_str)
 
   @classmethod
   def parse_resolve(cls, url):
