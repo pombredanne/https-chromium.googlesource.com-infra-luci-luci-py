@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74e0a841_2247b4b0",
+        "filename": "appengine/components/components/gitiles.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-02-24T01:22:40Z",
+      "side": 1,
+      "message": "pop()",
+      "range": {
+        "startLine": 112,
+        "startChar": 25,
+        "endLine": 112,
+        "endChar": 30
+      },
+      "revId": "a15a0a71d5c4a4b858ffa9cd2745f35ca01f5219",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
