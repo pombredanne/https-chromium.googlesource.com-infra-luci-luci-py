@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "189e86e5_69b0fb3c",
+        "filename": "appengine/components/components/gitiles.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-02-24T02:13:16Z",
+      "side": 1,
+      "message": "that\u0027s weird, but i\u0027m fine with is.",
+      "revId": "f0468ac8dc95f3eead99f0c55cc29213fb8d220c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
