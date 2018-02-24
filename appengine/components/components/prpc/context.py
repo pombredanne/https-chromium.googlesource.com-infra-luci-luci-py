@@ -4,6 +4,8 @@
 
 import time
 
+from components.prpc import codes
+
 
 class ServicerContext(object):
   """A context object passed to method implementations."""
@@ -43,9 +45,10 @@ class ServicerContext(object):
     gRPC runtime to determine the status code of the RPC.
 
     Args:
-      code: The integer status code of the RPC to be transmitted to the
-        invocation side of the RPC.
+      code: One of StatusCode.* tuples that contains a status code of the RPC to
+        be transmitted to the invocation side of the RPC.
     """
+    assert code in codes.ALL_CODES, '%r is not StatusCode.*' % (code,)
     self.code = code
 
   def set_details(self, details):
@@ -58,4 +61,5 @@ class ServicerContext(object):
       details: The details string of the RPC to be transmitted to
         the invocation side of the RPC.
     """
+    assert isinstance(details, basestring), '%r is not string' % (details,)
     self.details = details
