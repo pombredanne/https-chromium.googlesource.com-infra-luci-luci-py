@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6fcfddb9_2f7b3953",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-25T21:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43646664_a176f6c3",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83a654ac_2bba3967",
         "filename": "appengine/components/components/prpc/codes.py",
         "patchSetId": 1
@@ -68,6 +92,30 @@
       "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0cb4415_57320752",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-25T21:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a516b902_50995108",
+      "range": {
+        "startLine": 31,
+        "startChar": 74,
+        "endLine": 31,
+        "endChar": 75
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "93016220_a2bf088b",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-25T21:38:49Z",
+      "side": 1,
+      "message": "Ok, but the doc is inconsistent:\n * We are not adding Content-Type to the metadata, but add Content-Length. Why?\n * Same for many other standard HTTP headers involved in routing/encoding. At very least Host and Transfer-Encoding that are user quite often.\n * Outgoing X-Prpc- metadata values are not placed into headers. But incoming X-Prpc- values do.\n\nI\u0027ve discovered headers.py already attempts to construct metadata. I\u0027ve modified it to be more consistent with common sense and grpc spec:\n * Use ordered multidict (represented as list of (k, v) pairs) for metadata. This is what grpc python lib does.\n * Use lowercase for keys. This is also what all grpc libs do.\n * Drop \u0027Accept\u0027, \u0027Content-Type\u0027, \u0027Content-Length\u0027, \u0027Host\u0027, \u0027X-Prpc-*\u0027 headers from the metadata.",
+      "parentUuid": "24129ff2_9d98845f",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 28
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93c695f5_d08d8c2f",
         "filename": "appengine/components/components/prpc/server.py",
         "patchSetId": 1
@@ -161,6 +233,30 @@
       "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28f30b12_1544759f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-25T21:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bcdfcdf_5e668d8f",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 15
+      },
+      "revId": "a2e8ea7f037b3d52bb18c0e29698a1254162bf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
