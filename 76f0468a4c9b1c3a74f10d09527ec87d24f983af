@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47ff434a_5917b189",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-26T16:00:28Z",
+      "side": 1,
+      "message": "check \u003d fs.isfile\n\nbecause max_path and stuff",
+      "revId": "76f0468a4c9b1c3a74f10d09527ec87d24f983af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ac1e464_cc2c81d2",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-26T16:00:28Z",
+      "side": 1,
+      "message": "What about:\n\n  paths \u003d (env or os.environ).get(\u0027PATH\u0027, \u0027\u0027).split(os.pathsep)\n\nthen the iteration below is nicer.",
+      "revId": "76f0468a4c9b1c3a74f10d09527ec87d24f983af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
