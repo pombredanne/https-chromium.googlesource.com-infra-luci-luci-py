@@ -31,10 +31,10 @@ Used to optimize scheduling.
     |id=<dimension_hash>| ... |id=<dimension_hash>|
     +-------------------+     +-------------------+
 
-    +-------Root------------+
-    |TaskDimensionsRoot     |  (not stored)
-    |id=<pool:foo or id:foo>|
-    +-----------------------+
+    +-------Root----------------------------------+
+    |TaskDimensionsRoot                           |  (not stored)
+    |id=<pool:foo or id:foo or server_version:foo>|
+    +---------------------------------------------+
         |
         +---------------- ... -------+
         |                            |
@@ -146,8 +146,9 @@ class TaskDimensionsRoot(ndb.Model):
 
   This root entity is not stored in the DB.
 
-  id is either 'id:<value>' or 'pool:<value>'. For a request dimensions set that
-  specifies both keys, TaskDimensions is listed under 'id:<value>'.
+  id is one of 'id:<value>', 'server_version:<value>' or 'pool:<value>'.
+  If a task specifies multiple of these keys, the TaskDimensions will be listed
+  under the first it finds (see _get_task_dims_key).
   """
   pass
 
@@ -303,6 +304,8 @@ def _get_task_queries_for_bot(bot_dimensions):
   """Returns all the ndb.Query for TaskDimensions relevant for this bot."""
   opts = ndb.QueryOptions(batch_size=100, deadline=15)
   ancestors = [ndb.Key(TaskDimensionsRoot, u'id:' + bot_dimensions[u'id'][0])]
+  for value in bot_dimensions['server_version']:
+    ancestors.append(ndb.Key(TaskDimensionsRoot, u'server_version:' + value))
   for pool in bot_dimensions['pool']:
     ancestors.append(ndb.Key(TaskDimensionsRoot, u'pool:' + pool))
   # These are consistent queries because they use an ancestor. The old entries
@@ -417,10 +420,15 @@ def _rebuild_bot_cache_async(bot_dimensions, bot_root_key):
 
 
 def _get_task_dims_key(dimensions_hash, dimensions):
-  # Both 'id' and 'pool' are guaranteed to have at most 1 item.
+  # 'id', 'server_version' and 'pool' are guaranteed to have at most 1 item.
   if u'id' in dimensions:
     return ndb.Key(
         TaskDimensionsRoot, u'id:%s' % dimensions[u'id'][0],
+        TaskDimensions, dimensions_hash)
+  if u'server_version' in dimensions:
+    return ndb.Key(
+        TaskDimensionsRoot,
+        u'server_version:%s' % dimensions[u'server_version'][0],
         TaskDimensions, dimensions_hash)
   return ndb.Key(
       TaskDimensionsRoot, u'pool:%s' % dimensions[u'pool'][0],

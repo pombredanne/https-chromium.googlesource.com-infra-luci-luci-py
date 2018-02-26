@@ -176,6 +176,9 @@ def _validate_dimensions(_prop, value):
     if k == u'id' and len(values) != 1:
       raise datastore_errors.BadValueError(
           u'\'id\' cannot be specified more than once in dimensions')
+    if k == u'server_version' and len(values) != 1:
+      raise datastore_errors.BadValueError(
+          u"'server_version' cannot be specified more than once in dimensions")
     # Do not allow a task to be triggered in multiple pools, as this could
     # cross a security boundary.
     if k == u'pool' and len(values) != 1:
@@ -542,8 +545,8 @@ class TaskProperties(ndb.Model):
   cipd_input = ndb.LocalStructuredProperty(CipdInput)
 
   # Filter to use to determine the required properties on the bot to run on. For
-  # example, Windows or hostname. Encoded as json. 'pool' dimension is required
-  # for all tasks except terminate (see _pre_put_hook).
+  # example, Windows or hostname. Encoded as json. 'pool' or 'server_version'
+  # dimension is required for all tasks except terminate (see _pre_put_hook).
   dimensions_data = datastore_utils.DeterministicJsonProperty(
       validator=_validate_dimensions, json_type=dict, indexed=False,
       name='dimensions')
@@ -641,10 +644,12 @@ class TaskProperties(ndb.Model):
       # already check those. Terminate task can only use 'id'.
       return
 
-    if u'pool' not in self.dimensions_data:
-      # Only terminate task may not use 'pool'. Others must specify one.
+    if (u'pool' not in self.dimensions_data and
+        u'server_version' not in self.dimensions_data):
+      # Only terminate task may not use 'pool' or 'server_version'.
+      # Others must specify one.
       raise datastore_errors.BadValueError(
-          u'\'pool\' must be used as dimensions')
+          u"'pool' or 'server_version' must be used as dimensions")
 
     # Isolated input and commands.
     isolated_input = self.inputs_ref and self.inputs_ref.isolated
