@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "541a6a47_dccbb79e",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-02-26T23:19:28Z",
+      "side": 1,
+      "message": "found by switching to fs:\n\n  \u0027\u0027.split(\u0027;\u0027) \u003d\u003d [\u0027\u0027]\n\n😒",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 18
+      },
+      "revId": "20d80e79736720bcca2774e142c9c6faec35e378",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e962da85_d6b5195c",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-02-26T23:19:28Z",
+      "side": 1,
+      "message": "I think this is fine? I don\u0027t think we want to return a unicode string from this function, right?",
+      "range": {
+        "startLine": 281,
+        "startChar": 13,
+        "endLine": 281,
+        "endChar": 20
+      },
+      "revId": "20d80e79736720bcca2774e142c9c6faec35e378",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
