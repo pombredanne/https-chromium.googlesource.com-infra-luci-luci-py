@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90ddba38_174dd9c2",
+        "filename": "appengine/components/components/auth/endpoints_support.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-26T23:09:31Z",
+      "side": 0,
+      "message": "this is not caught anymore. It will be caught by default handlers that catches all other kinds of random exceptions and converts them to HTTP 500.",
+      "range": {
+        "startLine": 275,
+        "startChar": 4,
+        "endLine": 278,
+        "endChar": 55
+      },
+      "revId": "53783f3e4ea7c15f43244f36a402bca655cb464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
