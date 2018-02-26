@@ -47,6 +47,30 @@
       "revId": "4fa8c997ab4fa511cd05f7ffd4fd54acde11273b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "562c7aea_c4fd65df",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-02-26T23:31:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b9a2185_86ea0aef",
+      "range": {
+        "startLine": 278,
+        "startChar": 12,
+        "endLine": 278,
+        "endChar": 20
+      },
+      "revId": "4fa8c997ab4fa511cd05f7ffd4fd54acde11273b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
