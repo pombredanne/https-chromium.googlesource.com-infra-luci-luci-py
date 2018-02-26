@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "342bb194_cc3ea272",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-26T23:20:01Z",
+      "side": 1,
+      "message": "nit: maybe do \n\npython_exe \u003d u\u0027python.exe\u0027\n...\npython_exe \u003d u\u0027python\u0027\n\ninstead? Should have same effect, but looks tiny bit cleaner.",
+      "range": {
+        "startLine": 278,
+        "startChar": 12,
+        "endLine": 278,
+        "endChar": 20
+      },
+      "revId": "4fa8c997ab4fa511cd05f7ffd4fd54acde11273b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
