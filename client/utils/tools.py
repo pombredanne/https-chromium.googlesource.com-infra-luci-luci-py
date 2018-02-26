@@ -266,7 +266,7 @@ def fix_python_cmd(cmd, env=None):
     python_exe = 'python'
     def check(candidate):
       try:
-        return bool(os.stat(candidate).st_mode | os.path.stat.S_IEXEC)
+        return bool(fs.stat(candidate).st_mode | os.path.stat.S_IEXEC)
       except OSError:
         return False
 
@@ -274,8 +274,11 @@ def fix_python_cmd(cmd, env=None):
 
   paths = (os.environ if env is None else env).get('PATH', '').split(os.pathsep)
   for path in paths:
+    if path == '':
+      continue
+
     candidate = os.path.join(path, python_exe)
-    if check(candidate):
+    if check(unicode(candidate)):
       found_python = candidate
       break
 
