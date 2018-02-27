@@ -22,6 +22,30 @@
       "revId": "2200025ca8f5e91f47d18db841904964230cdf3f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e3e83bf_e2dc298a",
+        "filename": "appengine/components/components/prpc/headers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-02-27T01:40:34Z",
+      "side": 1,
+      "message": "Renamed to \u0027parse_headers\u0027.",
+      "parentUuid": "8f1f80c2_ea30ee84",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 19
+      },
+      "revId": "2200025ca8f5e91f47d18db841904964230cdf3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
