@@ -1,2 +1,2 @@
 compile:
-	../../../tools/compile_proto.py .
+	cd ../../../ && protoc --python_out=. components/config/proto/*.proto
