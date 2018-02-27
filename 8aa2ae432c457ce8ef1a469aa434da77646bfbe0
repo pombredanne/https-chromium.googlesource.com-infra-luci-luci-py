@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22d538e6_be711cc6",
+        "filename": "appengine/swarming/tools/health_check",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-27T02:18:43Z",
+      "side": 1,
+      "message": "just a reminder that this will have to be configurable.",
+      "range": {
+        "startLine": 29,
+        "startChar": 10,
+        "endLine": 29,
+        "endChar": 16
+      },
+      "revId": "8aa2ae432c457ce8ef1a469aa434da77646bfbe0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91dc58df_7f23b2f9",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-27T02:18:43Z",
+      "side": 1,
+      "message": "I\u0027m of the school to put as few global variables (well, file level variables) as possible, so we generally put these into main(). I know it\u0027s not customary in g3.",
+      "revId": "8aa2ae432c457ce8ef1a469aa434da77646bfbe0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "758aebcb_dc41b019",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-27T02:18:43Z",
+      "side": 1,
+      "message": "We tried to never hardcode instance names in the source code. If you don\u0027t want to type it many tools default to the environment variable SWARMING_SERVER.",
+      "range": {
+        "startLine": 19,
+        "startChar": 52,
+        "endLine": 19,
+        "endChar": 70
+      },
+      "revId": "8aa2ae432c457ce8ef1a469aa434da77646bfbe0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7303fdac_40f49ec4",
+        "filename": "appengine/swarming/tools/rollout.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-02-27T02:18:43Z",
+      "side": 1,
+      "message": "you should return rollforward(args, args.version)\n\nand the same for rollback below, so they can return failure without throwing, i.e. print to sys,stderr, then return 1. (I know a weird concept in python :) but I find it more user friendly.",
+      "revId": "8aa2ae432c457ce8ef1a469aa434da77646bfbe0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
