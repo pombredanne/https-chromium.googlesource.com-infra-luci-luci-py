@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f1f80c2_ea30ee84",
+        "filename": "appengine/components/components/prpc/headers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-27T01:19:47Z",
+      "side": 1,
+      "message": "this function returns ParsedHeaders. Maybe name it \"_parse_headers\"? it is pure now",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 19
+      },
+      "revId": "2200025ca8f5e91f47d18db841904964230cdf3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
