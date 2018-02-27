@@ -13,7 +13,6 @@ test_env.setup_test_env()
 
 from test_support import test_case
 
-from components.prpc import context
 from components.prpc import encoding
 from components.prpc import headers
 
@@ -24,14 +23,12 @@ class PRPCHeadersTestCase(test_case.TestCase):
 
   def process_headers(self, h, expect_content_type=None,
                       expect_accept=None):
-    ctx = context.ServicerContext()
-    content_type, accept = headers.process_headers(
-        ctx, collections.OrderedDict(h))
+    res = headers.process_headers(collections.OrderedDict(h))
     if expect_content_type is not None:
-      self.assertEqual(content_type, expect_content_type)
+      self.assertEqual(res.content_type, expect_content_type)
     if expect_accept is not None:
-      self.assertEqual(accept, expect_accept)
-    return ctx
+      self.assertEqual(res.accept, expect_accept)
+    return res
 
   def test_no_header(self):
     self.process_headers([])
