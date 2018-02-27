@@ -261,7 +261,7 @@ def fix_python_cmd(cmd, env=None):
 
   if sys.platform == 'win32':
     python_exe = u'python.exe'
-    check = fs.isfile
+    check = os.path.isfile
   else:
     python_exe = u'python'
     def check(candidate):
