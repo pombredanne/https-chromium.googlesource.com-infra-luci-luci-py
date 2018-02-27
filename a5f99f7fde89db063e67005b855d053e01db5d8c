@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e752ee_cf776846",
+        "filename": "appengine/components/components/auth/prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-27T23:43:02Z",
+      "side": 1,
+      "message": "set_details has only one arg",
+      "range": {
+        "startLine": 40,
+        "startChar": 58,
+        "endLine": 40,
+        "endChar": 79
+      },
+      "revId": "a5f99f7fde89db063e67005b855d053e01db5d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bc050bc_0c99f902",
+        "filename": "appengine/components/components/auth/prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-27T23:43:02Z",
+      "side": 1,
+      "message": "6 :P",
+      "range": {
+        "startLine": 75,
+        "startChar": 30,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "a5f99f7fde89db063e67005b855d053e01db5d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b34735ae_17f1deaf",
+        "filename": "appengine/components/components/auth/prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-27T23:43:02Z",
+      "side": 1,
+      "message": "IP",
+      "range": {
+        "startLine": 77,
+        "startChar": 44,
+        "endLine": 77,
+        "endChar": 46
+      },
+      "revId": "a5f99f7fde89db063e67005b855d053e01db5d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a6f6cfa_72c5a5fa",
+        "filename": "appengine/components/components/auth/prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-27T23:43:02Z",
+      "side": 1,
+      "message": "why this is not in prpc component?",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "a5f99f7fde89db063e67005b855d053e01db5d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
