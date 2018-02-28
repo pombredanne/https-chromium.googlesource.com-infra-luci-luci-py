@@ -187,6 +187,30 @@
       "revId": "a5f99f7fde89db063e67005b855d053e01db5d8c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669e2612_53420e22",
+        "filename": "appengine/components/components/auth/prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-02-28T03:24:34Z",
+      "side": 1,
+      "message": "ah, i didn\u0027t realize ipaddr is components.auth-specific",
+      "parentUuid": "b6ea766c_b134dbb2",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "a5f99f7fde89db063e67005b855d053e01db5d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
