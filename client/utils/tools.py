@@ -266,13 +266,22 @@ def fix_python_cmd(cmd, env=None):
     python_exe = 'python'
     def check(candidate):
       try:
-        return bool(os.stat(candidate).st_mode | os.path.stat.S_IEXEC)
+        print 'CHECKING PYTHON: %r --- ' % candidate,
+        ret = bool(os.stat(candidate).st_mode | os.path.stat.S_IEXEC)
+        print 'GOT', ret
+        return ret
       except OSError:
+        print 'FAIL'
         return False
 
   found_python = sys.executable
 
   paths = (os.environ if env is None else env).get('PATH', '').split(os.pathsep)
+  print 'FINDING PYTHON IN: %r' % paths
+  print 'ENV IS %r' % env
+  import traceback
+  traceback.print_stack()
+
   for path in paths:
     if path == '':
       continue
@@ -282,6 +291,7 @@ def fix_python_cmd(cmd, env=None):
       found_python = candidate
       break
 
+  print 'GOT PYTHON: %r' % found_python
   return [found_python] + cmd
 
 
