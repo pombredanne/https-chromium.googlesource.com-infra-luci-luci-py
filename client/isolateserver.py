@@ -364,6 +364,17 @@ def is_valid_file(path, size):
   return True
 
 
+class IterableGenerator(object):
+  """An iterable generator."""
+
+  def __init__(self, generator_func, **kwargs):
+    self.generator_func = generator_func
+    self.kwargs = kwargs
+
+  def __iter__(self):
+    return self.generator_func(**self.kwargs)
+
+
 class FileItem(Item):
   """A file to push to Storage.
 
@@ -380,7 +391,7 @@ class FileItem(Item):
     self.compression_level = get_zip_compression_level(path)
 
   def content(self):
-    return file_read(self.path)
+    return IterableGenerator(file_read, path=self.path)
 
 
 class BufferItem(Item):
