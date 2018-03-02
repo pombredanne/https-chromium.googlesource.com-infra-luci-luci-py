@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f0b8f_bbac9f27",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-02T00:46:24Z",
+      "side": 1,
+      "message": "lets have a separate counter for inline-expired tasks:\n\nres \u003d _expire_task(...)\nif res:\n  expired +\u003d 1",
+      "range": {
+        "startLine": 712,
+        "startChar": 8,
+        "endLine": 712,
+        "endChar": 16
+      },
+      "revId": "74b6025415806bfde0a59f940bead0edde41a6cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
