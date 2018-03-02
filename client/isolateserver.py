@@ -20,6 +20,7 @@ import sys
 import tarfile
 import tempfile
 import time
+import types
 import zlib
 
 from third_party import colorama
@@ -364,6 +365,17 @@ def is_valid_file(path, size):
   return True
 
 
+class MakeIter(object):
+  """Make an iterable generator."""
+
+  def __init__(self, generator_func, *args):
+    self.generator_func = generator_func
+    self.args = args
+
+  def __iter__(self):
+    return self.generator_func(*self.args)
+
+
 class FileItem(Item):
   """A file to push to Storage.
 
@@ -380,7 +392,10 @@ class FileItem(Item):
     self.compression_level = get_zip_compression_level(path)
 
   def content(self):
-    return file_read(self.path)
+    c = file_read(self.path)
+    if not isinstance(c, types.GeneratorType):
+      return c
+    return MakeIter(file_read, self.path)
 
 
 class BufferItem(Item):
