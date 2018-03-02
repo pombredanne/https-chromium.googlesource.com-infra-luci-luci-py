@@ -219,7 +219,7 @@ def guard_memory_use(server, content, size):
     # In theory, we should keep the generator, so that it is not serialized in
     # memory. Sadly net.HttpService.request() requires the body to be
     # serialized.
-    assert isinstance(content, types.GeneratorType), repr(content)
+    assert isinstance(content, (types.GeneratorType, collections.Iterable)), repr(content)
     slept = False
     # HACK HACK HACK. Please forgive me for my sins but OMG, it works!
     # One byte less than 512mb. This is to cope with incompressible content.
