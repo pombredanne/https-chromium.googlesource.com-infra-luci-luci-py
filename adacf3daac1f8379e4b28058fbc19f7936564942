@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "0db91118_7fda1bf4",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2018-03-06T19:01:53Z",
+      "side": 1,
+      "message": "Instead of removing the content, we pass None when we are not pushing compressed data. The content parameter is still needed for pushing compressed data. PTAL.",
+      "parentUuid": "6d17a8f5_49b6a66b",
+      "revId": "adacf3daac1f8379e4b28058fbc19f7936564942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25b4108d_43dd77c1",
         "filename": "client/tests/isolate_storage_test.py",
         "patchSetId": 5
