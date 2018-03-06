@@ -22,6 +22,29 @@
       "revId": "2d0b17db55512e4ad8602cc9c0d48ed6610b00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c420dd_48a92285",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-06T03:01:44Z",
+      "side": 1,
+      "message": "Note that pool ACLs may deny execution of tasks on some pools, see https://chrome-internal.googlesource.com/infradata/config/+/master/configs/chromium-swarm/pools.cfg\n\nmdb/chrome-troopers is currently allowed to execute tasks anywhere, but this is not a guarantee. And it is not true at all for some internal builders on chrome-swarming (by design, some pools there are very sensitive).",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 25
+      },
+      "revId": "2d0b17db55512e4ad8602cc9c0d48ed6610b00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
