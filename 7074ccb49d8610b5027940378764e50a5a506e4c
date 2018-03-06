@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3cc25f9_b4a1c5c6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-06T03:16:35Z",
+      "side": 1,
+      "message": "This will execute the calls sequentially. Use \u0027yield futures\u0027 to execute them in parallel. See https://cloud.google.com/appengine/docs/standard/python/ndb/async#parallel_queries_yield",
+      "range": {
+        "startLine": 403,
+        "startChar": 2,
+        "endLine": 405,
+        "endChar": 11
+      },
+      "revId": "7074ccb49d8610b5027940378764e50a5a506e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1575a6fd_664eec4c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-06T03:16:35Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 436,
+        "startChar": 4,
+        "endLine": 437,
+        "endChar": 22
+      },
+      "revId": "7074ccb49d8610b5027940378764e50a5a506e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
