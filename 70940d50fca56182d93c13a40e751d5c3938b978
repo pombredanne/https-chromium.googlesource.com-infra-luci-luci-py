@@ -22,6 +22,30 @@
       "revId": "70940d50fca56182d93c13a40e751d5c3938b978",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "646c6fce_7394e0ac",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-06T22:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c545e6c_8477e93e",
+      "range": {
+        "startLine": 334,
+        "startChar": 30,
+        "endLine": 334,
+        "endChar": 32
+      },
+      "revId": "70940d50fca56182d93c13a40e751d5c3938b978",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
