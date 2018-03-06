@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6db11f0d_761ba5d8",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2018-03-06T17:00:45Z",
+      "side": 1,
+      "message": "This unfortunately needed for tests. luci-py/client/tests/isolateserver_test.py has a mocked file_read which returns a string instead of a generator.",
+      "parentUuid": "062079d7_e95b0e22",
+      "revId": "23f77363e6fd8e41fb41018023cb3b476f6d241b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f0f7c574_d74ecd23",
         "filename": "client/isolateserver.py",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-05T14:44:32Z",
       "side": 1,
       "message": "This makes the behaviour highly unintuitive at the usage site. I prefer to fix the usage site to receive a content factory.\n\nTo be clear, I totally think this needs to be fixed, I just don\u0027t think we should patch over the problem and instead fix the async_push().",
+      "revId": "23f77363e6fd8e41fb41018023cb3b476f6d241b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d7ec9b1_71441a7e",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2018-03-06T17:00:45Z",
+      "side": 1,
+      "message": "Sure. Will withdraw this change.",
+      "parentUuid": "f0f7c574_d74ecd23",
       "revId": "23f77363e6fd8e41fb41018023cb3b476f6d241b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
