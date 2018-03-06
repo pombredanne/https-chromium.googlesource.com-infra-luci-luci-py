@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9599584_3df53b74",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-06T21:59:20Z",
+      "side": 1,
+      "message": "Nit: we\u0027re not really closing a stream, maybe: \"Send final stdout chunk before aborting tasks.\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "11d11cdecd934eb649d8797647cfe7cd0757894a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
