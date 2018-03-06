@@ -303,6 +303,7 @@ def _content_to_binary(proto_message_name, content):
   return common._convert_config(content, dest_type).SerializeToString()
 
 
+@ndb.non_transactional
 @ndb.tasklet
 def _get_last_good_async(config_set, path, dest_type):
   """Returns last good (rev, config) and updates last_access_ts if needed."""
