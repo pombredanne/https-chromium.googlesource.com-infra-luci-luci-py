@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7a01d83_7c877b19",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-06T02:35:18Z",
+      "side": 1,
+      "message": "use instead:\n./swarming.py query -S \u003curl\u003e --limit 0 bots/list?dimensions\u003dserver_version:%s\n\ne.g.\n./swarming.py query -S chromium-swarm-dev.appspot.com bots/list?dimensions\u003dserver_version:3368-9be68d3\n\nref:\nhttps://chromium-swarm.appspot.com/_ah/api/explorer/#p/swarming/v1/swarming.bots.list\n\noutput is in json and will only include the relevant bots",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 7
+      },
+      "revId": "2d0b17db55512e4ad8602cc9c0d48ed6610b00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
