@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "682f9e5a_923b925a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-06T03:09:08Z",
+      "side": 1,
+      "message": "either remove ndb.tasklet decorator or use \u0027yield futures\u0027 to wait for a bunch of stuff in parallel. \u0027get_result\u0027 is blocking non-tasklet-friendly API.",
+      "range": {
+        "startLine": 403,
+        "startChar": 2,
+        "endLine": 404,
+        "endChar": 18
+      },
+      "revId": "3e8d88dda70e6100f141e203104a2a125bad7c21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a2f5b01_433276ed",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-06T03:09:08Z",
+      "side": 1,
+      "message": "same here. It should use \u0027yield (future_bots, future_tasks)\u0027",
+      "range": {
+        "startLine": 435,
+        "startChar": 4,
+        "endLine": 436,
+        "endChar": 29
+      },
+      "revId": "3e8d88dda70e6100f141e203104a2a125bad7c21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
