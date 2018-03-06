@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba8f59e9_146362fb",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-03-06T23:57:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7a01d83_7c877b19",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 7
+      },
+      "revId": "2d0b17db55512e4ad8602cc9c0d48ed6610b00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8c420dd_48a92285",
         "filename": "appengine/swarming/tools/health_check.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "2d0b17db55512e4ad8602cc9c0d48ed6610b00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ae121ae_7df5bcaf",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-03-06T23:57:11Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nThis is the best design I could think of: I had a few ideas for improving the scheduling situation, but they all result in the health check task going through a very different path to that which normal tasks take, which kinda defeats the purpose.",
+      "parentUuid": "c8c420dd_48a92285",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 25
+      },
+      "revId": "2d0b17db55512e4ad8602cc9c0d48ed6610b00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
