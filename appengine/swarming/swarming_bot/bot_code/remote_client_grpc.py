@@ -239,6 +239,9 @@ class RemoteClientGrpc(object):
     return should_continue
 
   def post_task_error(self, task_id, bot_id, message):
+    # Close Bytestream. This must be done before aborting the task.
+    self._send_stdout_chunk(bot_id, task_id, None, True)
+
     req = tasks_pb2.UpdateTaskResultRequest()
     req.name = task_id + '/result'
     req.source = bot_id
@@ -247,7 +250,6 @@ class RemoteClientGrpc(object):
     req.result.status.code = code_pb2.ABORTED
     req.result.status.message = message
     self._proxy_tasks.call_unary('UpdateTaskResult', req)
-    self._send_stdout_chunk(bot_id, task_id, None, True)
 
   def get_bot_code(self, new_zip_fn, bot_version, _bot_id):
     with open(new_zip_fn, 'w') as zf:
