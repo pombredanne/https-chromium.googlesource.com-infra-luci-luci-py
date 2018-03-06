@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0a0f8b94_6131a293",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-06T02:38:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44c38bd6_12c8a2a5",
+      "range": {
+        "startLine": 368,
+        "startChar": 2,
+        "endLine": 368,
+        "endChar": 52
+      },
+      "revId": "9af1a9a696ba6f56cb1091c1aabc8dbec4e72771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39d028b5_d4812cea",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-02T00:30:27Z",
       "side": 1,
       "message": "I don\u0027t understand how s.valid_until_ts \u003e\u003d now makes TaskDimesionsSet stale?",
+      "range": {
+        "startLine": 375,
+        "startChar": 17,
+        "endLine": 376,
+        "endChar": 35
+      },
+      "revId": "9af1a9a696ba6f56cb1091c1aabc8dbec4e72771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19193c47_e764d2fe",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-06T02:38:33Z",
+      "side": 1,
+      "message": "The comment was incorrect, it\u0027s \"Valid\", not \"Stale\".\n\nStale entries are evicted in _tidy_stale_TaskDimensions() below.",
+      "parentUuid": "39d028b5_d4812cea",
       "range": {
         "startLine": 375,
         "startChar": 17,
