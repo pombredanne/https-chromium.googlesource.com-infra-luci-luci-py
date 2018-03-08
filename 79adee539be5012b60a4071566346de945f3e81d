@@ -22,6 +22,30 @@
       "revId": "79adee539be5012b60a4071566346de945f3e81d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4166c62_1c3abb40",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2018-03-08T14:43:36Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "84a68832_90cf9c83",
+      "range": {
+        "startLine": 242,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 67
+      },
+      "revId": "79adee539be5012b60a4071566346de945f3e81d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
