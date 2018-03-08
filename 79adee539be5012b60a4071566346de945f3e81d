@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84a68832_90cf9c83",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-08T12:21:26Z",
+      "side": 1,
+      "message": "Use new terminology here, and say why (eg \"satisfy RWAPI semantics\").",
+      "range": {
+        "startLine": 242,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 67
+      },
+      "revId": "79adee539be5012b60a4071566346de945f3e81d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
