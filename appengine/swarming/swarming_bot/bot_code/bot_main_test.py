@@ -3,8 +3,10 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import __builtin__
 import copy
 import datetime
+import io
 import json
 import logging
 import os
@@ -169,6 +171,21 @@ class TestBotMain(TestBotBase):
         return {u'alternative': [u'truth']}
     self.mock(bot_main, '_EXTRA_BOT_CONFIG', extra())
     expected = {u'alternative': [u'truth'], u'server_version': [u'version1']}
+    self.assertEqual(expected, bot_main._get_dimensions(obj))
+
+  def test_get_dimensions_file(self):
+    from config import bot_config
+    obj = self.make_bot()
+    def get_dimensions(botobj):
+      self.assertEqual(obj, botobj)
+      return {u'id': [u'foo']}
+    self.mock(bot_config, 'get_dimensions', get_dimensions)
+    def open(name, mode):
+      return io.BytesIO(b'{"test":["bar"]}')
+    self.mock(__builtin__, 'open', open)
+    self.mock(os.path, 'exists', lambda *args: True)
+    expected = {
+      u'id': [u'foo'], u'test': [u'bar'], u'server_version': [u'version1']}
     self.assertEqual(expected, bot_main._get_dimensions(obj))
 
   def test_generate_version(self):

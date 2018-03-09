@@ -124,6 +124,9 @@ DEFAULT_SETTINGS = {
 # Keep in sync with ../../ts_mon_metrics.py
 _IGNORED_DIMENSIONS = ('android_devices', 'caches', 'id', 'temp_band')
 
+# Name of the file that contains additional dimensions.
+DIMENSIONS_FILE = 'dimensions.json'
+
 
 ### Monitoring
 
@@ -298,6 +301,27 @@ def _call_hook_safe(chained, botobj, name, *args):
     #_set_quarantined(msg)
 
 
+def _dimensions_from_file(botobj):
+  """Reads additional dimensions from the configuration file."""
+  dimensions = {}
+  dimensions_cfg_path = os.path.join(botobj.config_dir, DIMENSIONS_FILE)
+  if os.path.exists(dimensions_cfg_path):
+    with open(dimensions_cfg_path, 'rb') as f:
+      dimensions_cfg = json.load(f)
+    if not isinstance(dimensions_cfg, dict):
+      return dimensions
+    for key, values in dimensions_cfg.iteritems():
+      if key in _IGNORED_DIMENSIONS:
+        continue
+      if isinstance(values, list):
+        strings = []
+        for value in values:
+          if isinstance(value, unicode):
+            strings.append(value)
+        dimensions[key] = strings
+  return dimensions
+
+
 def _get_dimensions(botobj):
   """Returns bot_config.py's get_dimensions() dict."""
   # Importing this administrator provided script could have side-effects on
@@ -305,6 +329,8 @@ def _get_dimensions(botobj):
   out = _call_hook_safe(False, botobj, 'get_dimensions')
   if isinstance(out, dict):
     out = out.copy()
+    if getattr(botobj, 'config_dir', None):
+      out.update(_dimensions_from_file(botobj))
     out[u'server_version'] = [_get_server_version_safe()]
     return out
   try:
