@@ -429,6 +429,8 @@ class RemoteClientGrpc(object):
       req.result.status.code = code_pb2.UNAVAILABLE
     elif params.get('hard_timeout'):
       req.result.status.code = code_pb2.DEADLINE_EXCEEDED
+    else:
+      req.result.status.code = code_pb2.OK
     req.result.output.Pack(res)
     req.result.meta.Pack(ovh)
 
