@@ -124,6 +124,9 @@ DEFAULT_SETTINGS = {
 # Keep in sync with ../../ts_mon_metrics.py
 _IGNORED_DIMENSIONS = ('android_devices', 'caches', 'id', 'temp_band')
 
+# Name of the file that contains additional dimensions.
+DIMENSIONS_FILE = 'dimensions.json'
+
 
 ### Monitoring
 
@@ -298,6 +301,29 @@ def _call_hook_safe(chained, botobj, name, *args):
     #_set_quarantined(msg)
 
 
+def _dimensions_from_file(botobj):
+  """Reads additional dimensions from the configuration file."""
+  dimensions_cfg_path = os.path.join(botobj.config_dir, DIMENSIONS_FILE)
+  if os.path.exists(dimensions_cfg_path):
+    with open(dimensions_cfg_path, 'rb') as f:
+      dimensions_cfg = json.load(f)
+    if 'dimensions' not in dimensions_cfg:
+      raise ValueError('No dimensions key in the configuration file')
+    dimensions = dimensions_cfg['dimensions']
+    if not isinstance(dimensions, dict):
+      raise ValueError('Value of dimensions key is not a dictionary')
+    for key, values in dimensions.iteritems():
+      if key == '_comment':
+        continue
+      if not isinstance(values, list):
+        raise ValueError('Value of key %s is not a list' % key)
+      for value in values:
+        if not isinstance(value, unicode):
+          raise ValueError('Value of key %s contains a non-string value' % key)
+    return dimensions
+  return {}
+
+
 def _get_dimensions(botobj):
   """Returns bot_config.py's get_dimensions() dict."""
   # Importing this administrator provided script could have side-effects on
@@ -305,6 +331,10 @@ def _get_dimensions(botobj):
   out = _call_hook_safe(False, botobj, 'get_dimensions')
   if isinstance(out, dict):
     out = out.copy()
+    try:
+      out.update(_dimensions_from_file(botobj))
+    except Exception as e:
+      logging.exception('_dimensions_from_file() failed')
     out[u'server_version'] = [_get_server_version_safe()]
     return out
   try:
