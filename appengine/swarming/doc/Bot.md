@@ -206,6 +206,35 @@ There are two places where bots behavior can be tweaked:
     based on bot credentials, so no matter what bot itself reports, 'pool'
     dimension will be enforced by the server. It useful for isolating bots that
     run less trusted tasks into a dedicated pool.
+*   `dimensions.json`. This file, if located in the configuration directory on
+    the machine, may contain additional dimensions read and returned by the bot.
+    The location of the configuration directory is
+    [platform dependent](../swarming_bot/api/bot.py#105). The `dimensions.json`
+    file has the following schema:
+
+    ```
+    {
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "type": "object",
+        "properties": {
+            "dimensions": {
+                "type": "object",
+                "patternProperties": {
+                    "^_comment": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "required": ["dimensions"]
+    }
+    ```
 
 
 #### Hooks
