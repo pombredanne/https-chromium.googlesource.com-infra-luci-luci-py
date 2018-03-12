@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33076424_1a2f88da",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-12T21:00:40Z",
+      "side": 1,
+      "message": "nit: \n\nif not os.path.exists(...):\n  return {}\n\n(to reduce nesting)",
+      "range": {
+        "startLine": 307,
+        "startChar": 2,
+        "endLine": 307,
+        "endChar": 41
+      },
+      "revId": "0c0860f8bf91f18804a80732ce6f5b2c08ecaf2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d51248_4f933ffb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-12T21:00:40Z",
+      "side": 1,
+      "message": "key.startswith(\u0027_comment\u0027)\n\nso we can have \n\n\"dimensions\": {\n  \"_comment_1\": \"k1 is for Blah1\",\n  \"k1\": [\"v\"],\n  \"_comment_2\": \"k2 is for Blah2\",\n  \"k2\": [\"v\"]\n}",
+      "range": {
+        "startLine": 316,
+        "startChar": 9,
+        "endLine": 316,
+        "endChar": 26
+      },
+      "revId": "0c0860f8bf91f18804a80732ce6f5b2c08ecaf2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8ca7d1e_b75b13bf",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-12T21:00:40Z",
+      "side": 1,
+      "message": "nit: not necessary",
+      "range": {
+        "startLine": 336,
+        "startChar": 20,
+        "endLine": 336,
+        "endChar": 25
+      },
+      "revId": "0c0860f8bf91f18804a80732ce6f5b2c08ecaf2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
