@@ -16,6 +16,24 @@
       "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cdac04b_25d6e43a",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2018-03-14T17:25:54Z",
+      "side": 1,
+      "message": "So for uploading compressed files, we are actually reading the whole files and keep them in memory, right?",
+      "parentUuid": "29aacfda_7e001c60",
+      "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
