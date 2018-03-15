@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b7e6623_993b5f66",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-15T18:12:01Z",
+      "side": 1,
+      "message": "Changing this to ColumnChart (and small tweaks to hAxis, legend, etc) would allow it to go vertical in the future.",
+      "range": {
+        "startLine": 165,
+        "startChar": 43,
+        "endLine": 165,
+        "endChar": 51
+      },
+      "revId": "fc88a3cd4ae49818a623d05d326835100558bb12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
