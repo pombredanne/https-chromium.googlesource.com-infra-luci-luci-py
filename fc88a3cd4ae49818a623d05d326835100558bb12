@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ae550392_4caa1fbd",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-15T20:01:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "095aceea_bfbd3c6a",
+      "range": {
+        "startLine": 69,
+        "startChar": 44,
+        "endLine": 69,
+        "endChar": 45
+      },
+      "revId": "fc88a3cd4ae49818a623d05d326835100558bb12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98be21b4_9f2f4370",
         "filename": "appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "fc88a3cd4ae49818a623d05d326835100558bb12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3569102d_4cf963bd",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-15T20:01:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98be21b4_9f2f4370",
+      "range": {
+        "startLine": 87,
+        "startChar": 62,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "fc88a3cd4ae49818a623d05d326835100558bb12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -91,6 +139,30 @@
       "revId": "fc88a3cd4ae49818a623d05d326835100558bb12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0480b87_f1f34996",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page-demo.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-15T20:01:13Z",
+      "side": 1,
+      "message": "I like to keep it in when debugging network-related things.  Since this is a demo page, it\u0027s fine to keep it commented out until needed",
+      "parentUuid": "1948a9c5_875861a8",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 60
+      },
+      "revId": "fc88a3cd4ae49818a623d05d326835100558bb12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
