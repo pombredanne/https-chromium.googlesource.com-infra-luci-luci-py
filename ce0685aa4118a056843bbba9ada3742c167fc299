@@ -70,6 +70,24 @@
       "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eea2eb2_83628836",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1234394
+      },
+      "writtenOn": "2018-03-15T13:52:28Z",
+      "side": 1,
+      "message": "This change only changes the behavior of non-compressed uploads, i.e. not self._use_zip.",
+      "parentUuid": "73c48a6f_9f38e38b",
+      "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
