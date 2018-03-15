@@ -52,6 +52,24 @@
       "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73c48a6f_9f38e38b",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-15T12:43:17Z",
+      "side": 1,
+      "message": "Has something changed here? I thought we were already reading the whole file into memory (this is what Vadim\u0027s comment implies)?\n\nI *believe* that when we use gRPC, we are *not* zipping here because gRPC zips for us. But I\u0027m not 100% sure.",
+      "parentUuid": "ff45f804_45eb20da",
+      "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
