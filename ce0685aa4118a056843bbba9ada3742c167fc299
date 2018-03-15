@@ -34,6 +34,24 @@
       "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff45f804_45eb20da",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-15T04:24:42Z",
+      "side": 1,
+      "message": "Yeah I\u0027m disappointed by that.\n\nWe haven\u0027t been hit by this because we don\u0027t use the python code to upload code when archiving our build. We only use this code in the case of uploading task results, which are normally fairly small.",
+      "parentUuid": "5cdac04b_25d6e43a",
+      "revId": "ce0685aa4118a056843bbba9ada3742c167fc299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
