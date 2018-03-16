@@ -22,6 +22,30 @@
       "revId": "7952d3be11c59398f4f3bd0477a3173634fa554d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62e7abd1_f02372e1",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-16T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5744f832_cc57e6cc",
+      "range": {
+        "startLine": 389,
+        "startChar": 3,
+        "endLine": 389,
+        "endChar": 7
+      },
+      "revId": "7952d3be11c59398f4f3bd0477a3173634fa554d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
