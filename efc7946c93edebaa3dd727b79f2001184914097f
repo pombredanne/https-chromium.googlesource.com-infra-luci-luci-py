@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b22ad0a5_87422301",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T15:30:53Z",
+      "side": 1,
+      "message": "To confirm: else it uses auto-ticks, right?",
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5af2b31b_002e9963",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page-data.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T15:30:53Z",
+      "side": 1,
+      "message": "The fact that you inconsistently put a white space between ) and { bothers me. One or the other.\n\nI know I know...",
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8251faec_eb212c71",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T15:30:53Z",
+      "side": 1,
+      "message": "Ok for now but it\u0027s a bit too low level explanation, I\u0027ll try to think about adding something in user-guide.md and I\u0027ll update the link when done.",
+      "range": {
+        "startLine": 673,
+        "startChar": 68,
+        "endLine": 673,
+        "endChar": 190
+      },
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffc9c2eb_4a7d16c8",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T15:30:53Z",
+      "side": 1,
+      "message": "Why is the form different here than others?",
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
