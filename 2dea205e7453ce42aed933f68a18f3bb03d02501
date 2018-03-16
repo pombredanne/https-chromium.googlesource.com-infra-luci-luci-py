@@ -16,6 +16,24 @@
       "revId": "2dea205e7453ce42aed933f68a18f3bb03d02501",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cf06b64_ba0174f8",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page-demo.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-16T12:39:38Z",
+      "side": 1,
+      "message": "Yes - they are helpful when debugging network requests on the demo page, but make things very noisy when one is not.  I like to keep them around commented out, since it\u0027s not something susceptible to bit rot.",
+      "parentUuid": "f8bd7005_329c46d8",
+      "revId": "2dea205e7453ce42aed933f68a18f3bb03d02501",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
