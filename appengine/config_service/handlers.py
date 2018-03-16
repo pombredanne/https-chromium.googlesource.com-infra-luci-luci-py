@@ -7,6 +7,7 @@ import httplib
 import webapp2
 
 from components import decorators
+from components import gitiles
 from components.config.proto import service_config_pb2
 from google.appengine.ext.webapp import template
 
@@ -65,6 +66,13 @@ class SchemasHandler(webapp2.RequestHandler):
     self.response.set_status(httplib.NOT_FOUND)
 
 
+class TaskGitilesImportConfigSet(webapp2.RequestHandler):
+  """Imports a config from gitiles."""
+
+  def post(self, config_set):
+    gitiles_import.import_config_set(config_set)
+
+
 def get_frontend_routes():  # pragma: no cover
   return [
     webapp2.Route(r'/', MainPageHandler),
@@ -81,5 +89,9 @@ def get_backend_routes():  # pragma: no cover
       webapp2.Route(
           r'/internal/cron/luci-config/update_services_metadata',
           CronServicesMetadataRequest
-      )
+      ),
+      webapp2.Route(
+          r'/internal/task/luci-config/gitiles_import/<config_set:.+>',
+          TaskGitilesImportConfigSet
+      ),
   ]
