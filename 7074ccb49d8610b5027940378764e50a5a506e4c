@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c17e7b1b_99e772f5",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T16:46:07Z",
+      "side": 1,
+      "message": "Thanks for catching this!\n\nUsed the new acquired knowledge to condense the code a little bit and stop using fetch_page_async().",
+      "parentUuid": "f3cc25f9_b4a1c5c6",
+      "range": {
+        "startLine": 403,
+        "startChar": 2,
+        "endLine": 405,
+        "endChar": 11
+      },
+      "revId": "7074ccb49d8610b5027940378764e50a5a506e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1575a6fd_664eec4c",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "7074ccb49d8610b5027940378764e50a5a506e4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ce5d104_5358eceb",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T16:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1575a6fd_664eec4c",
+      "range": {
+        "startLine": 436,
+        "startChar": 4,
+        "endLine": 437,
+        "endChar": 22
+      },
+      "revId": "7074ccb49d8610b5027940378764e50a5a506e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

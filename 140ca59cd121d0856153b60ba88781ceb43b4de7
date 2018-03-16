@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cb1eddc_bfda04dd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-16T16:46:07Z",
+      "side": 1,
+      "message": "At a later point I\u0027ll maybe just convert this into a massive \"yield futures\" but I\u0027ve decided to reduce parallelism first just to get it working at all.",
+      "revId": "140ca59cd121d0856153b60ba88781ceb43b4de7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
