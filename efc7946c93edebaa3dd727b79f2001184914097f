@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "79f1f792_36dcd23c",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-16T16:43:38Z",
+      "side": 1,
+      "message": "Else it uses no ticks.  Which is fine, because doing something smart for all cases is probably out of scope:\nhttps://screenshot.googleplex.com/2u80yQsgiAS\n\nUsers can still mouseover the individual sections to see the values.",
+      "parentUuid": "b22ad0a5_87422301",
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5af2b31b_002e9963",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page-data.html",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68ab871f_a970648e",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page-data.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-16T16:43:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af2b31b_002e9963",
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "d8a123f8_5c5f0eff",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-16T16:43:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8251faec_eb212c71",
+      "range": {
+        "startLine": 673,
+        "startChar": 68,
+        "endLine": 673,
+        "endChar": 190
+      },
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffc9c2eb_4a7d16c8",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 3
@@ -73,6 +133,24 @@
       "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3e486f9_10bbee40",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-03-16T16:43:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffc9c2eb_4a7d16c8",
+      "revId": "efc7946c93edebaa3dd727b79f2001184914097f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
