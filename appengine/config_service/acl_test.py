@@ -43,6 +43,18 @@ class AclTestCase(test_case.TestCase):
     self.mock(projects, '_filter_existing', lambda pids: pids)
     self.mock(storage, 'get_self_config_async', lambda *_: future(acl_cfg))
 
+  @mock.patch('acl.get_acl_cfg', autospec=True)
+  def test_can_read_all_configs(self, get_acl_cfg):
+    get_acl_cfg.return_value = None
+    self.assertFalse(acl.can_read_all_configs())
+
+    get_acl_cfg.return_value = service_config_pb2.AclCfg(
+        readers_group='readers')
+    self.assertFalse(acl.can_read_all_configs())
+
+    auth.is_group_member.side_effect = lambda g, *_: g == 'readers'
+    self.assertTrue(acl.can_read_all_configs())
+
   def test_admin_can_read_all(self):
     self.mock(acl, 'is_admin', mock.Mock(return_value=True))
     self.assertTrue(can_read_config_set('services/swarming'))

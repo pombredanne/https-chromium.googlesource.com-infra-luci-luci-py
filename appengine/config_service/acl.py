@@ -25,7 +25,7 @@ def can_reimport(config_set):
     return False
   acl_cfg = get_acl_cfg()
   return acl_cfg and acl_cfg.reimport_group and auth.is_group_member(
-    acl_cfg.reimport_group) or is_admin()
+      acl_cfg.reimport_group) or is_admin()
 
 
 def can_read_config_sets(config_sets):
@@ -59,6 +59,10 @@ def can_read_config_sets(config_sets):
       else:
         raise ValueError('invalid config_set %r' % cs)
 
+  if can_read_all_configs():
+    # Shortcut for privileged users.
+    return { cs: True for cs in config_sets }
+
   access_map = {}
   for pid, access in has_projects_access(project_ids).iteritems():
     access_map['projects/' + pid] = access
@@ -72,11 +76,22 @@ def can_read_config_sets(config_sets):
 
 
 def is_admin():
+  """Returns True if the current identity has admin privileges."""
   if auth.is_superuser():
     return True
   acl_cfg = get_acl_cfg()
   return auth.is_group_member(
       acl_cfg and acl_cfg.admin_group or auth.ADMIN_GROUP)
+
+
+def can_read_all_configs():
+  """Returns True if the current identity can read all configs."""
+  if is_admin():
+    return True
+  acl_cfg = get_acl_cfg()
+  return (
+      bool(acl_cfg and acl_cfg.readers_group) and
+      auth.is_group_member(acl_cfg.readers_group))
 
 
 def has_services_access(service_ids):
@@ -91,7 +106,7 @@ def has_services_access(service_ids):
     assert isinstance(sid, basestring)
     assert sid
 
-  if is_admin():
+  if can_read_all_configs():
     return {sid: True for sid in service_ids}
 
   service_id_set = set(service_ids)
@@ -108,7 +123,8 @@ def has_projects_access(project_ids):
   if not project_ids:
     return {}
   super_group = get_acl_cfg().project_access_group
-  if is_admin() or super_group and auth.is_group_member(super_group):
+  if (can_read_all_configs() or
+      super_group and auth.is_group_member(super_group)):
     return {pid: True for pid in project_ids}
   metadata = projects.get_metadata_async(project_ids).get_result()
   has_access = _has_access([metadata.get(pid) for pid in project_ids])

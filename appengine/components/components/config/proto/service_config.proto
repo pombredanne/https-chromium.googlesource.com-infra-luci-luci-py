@@ -111,6 +111,8 @@ message AclCfg {
   optional string validation_group = 5;
   // Name of the group that may call reimport API.
   optional string reimport_group = 6;
+  // Name of the group that can read all configs, including internal ones.
+  optional string readers_group = 7;
 }
 
 // Schema for import.cfg. It specified how to import configuration files from
