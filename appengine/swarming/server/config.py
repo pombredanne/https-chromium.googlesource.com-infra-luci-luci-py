@@ -146,15 +146,15 @@ def _validate_settings(cfg, ctx):
   with ctx.prefix('reusable_task_age_secs '):
     within_year(cfg.reusable_task_age_secs)
 
-  if cfg.HasField('isolate'):
+  if cfg.isolate:
     with ctx.prefix('isolate: '):
       _validate_isolate_settings(cfg.isolate, ctx)
 
-  if cfg.HasField('cipd'):
+  if cfg.cipd:
     with ctx.prefix('cipd: '):
       _validate_cipd_settings(cfg.cipd, ctx)
 
-  if cfg.HasField('mp') and cfg.mp.HasField('server'):
+  if cfg.mp.server:
     with ctx.prefix('mp.server '):
       _validate_url(cfg.mp.server, ctx)
 

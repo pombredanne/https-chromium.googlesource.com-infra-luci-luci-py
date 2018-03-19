@@ -156,7 +156,7 @@ def apply_property_defaults(properties):
     properties.inputs_ref.namespace = (
         properties.inputs_ref.namespace or cfg.isolate.default_namespace)
 
-  if cfg.HasField('cipd') and properties.cipd_input:
+  if cfg.cipd and properties.cipd_input:
     properties.cipd_input.server = (
         properties.cipd_input.server or cfg.cipd.default_server)
     properties.cipd_input.client_package = (
