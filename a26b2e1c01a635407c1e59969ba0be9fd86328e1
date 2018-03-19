@@ -93,6 +93,30 @@
       "revId": "a26b2e1c01a635407c1e59969ba0be9fd86328e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db41912e_47e5b010",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-19T20:32:26Z",
+      "side": 1,
+      "message": "ugh, spent 20min on this trying to understand why doesn\u0027t this work.\n\nwe call ctx.error, not logging.error",
+      "parentUuid": "430585a3_31bbcd4c",
+      "range": {
+        "startLine": 358,
+        "startChar": 5,
+        "endLine": 358,
+        "endChar": 39
+      },
+      "revId": "a26b2e1c01a635407c1e59969ba0be9fd86328e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
