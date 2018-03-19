@@ -45,6 +45,30 @@
       "revId": "a26b2e1c01a635407c1e59969ba0be9fd86328e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "430585a3_31bbcd4c",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-03-19T19:45:27Z",
+      "side": 1,
+      "message": "discussed offline: user supplied stuff shouldn\u0027t be format specifier. Also, ereporter installs itself as log handler.",
+      "parentUuid": "0b1259db_06c8e972",
+      "range": {
+        "startLine": 358,
+        "startChar": 5,
+        "endLine": 358,
+        "endChar": 39
+      },
+      "revId": "a26b2e1c01a635407c1e59969ba0be9fd86328e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
