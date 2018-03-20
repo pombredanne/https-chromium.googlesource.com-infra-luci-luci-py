@@ -602,6 +602,12 @@
                   <td class$="[[_internalClass(_result.internal_failure)]]">[[_result.internal_failure]]</td>
                 </tr>
                 <tr>
+                  <td>Cost (bees)</td>
+                  <td>
+                    [[_beesStr(_result)]]
+                  </td>
+                </tr>
+                <tr>
                   <td>Cost (USD)</td>
                   <td>$[[_cost(_result)]]</td>
                 </tr>
@@ -786,6 +792,12 @@
   </template>
   <script>
   (function(){
+    // https://www.ohbees.com/collections/hobby-day-package-bees/products/package-bees
+    // costs 140. Queen bees cost $30, so cost of all the bees is $110
+    // https://honeybeesuite.com/so-what-does-the-average-honey-bee-cost/ says that
+    // there are about 3000 bees per pound.
+    // This is how many bees one dollar can buy.
+    const beePerDollar = (3.0 * 3000.0) / 110.0;
     Polymer({
       is: 'task-page',
 
@@ -1020,6 +1032,17 @@
         }
         var args = request.properties.command || [];
         return args.join(" ");
+      },
+
+      _beesStr: function(result) {
+        if (!result || !result.costs_usd || !result.costs_usd.length) {
+          return '';
+        }
+
+        let cost = result.costs_usd[0];
+        let length = Math.max(Math.round(cost * beePerDollar), 1);
+
+        return Array.from(Array(length).keys()).map(() => '🐝').join(' ');
       },
 
       _cost: function(result) {
