@@ -33,6 +33,7 @@ import argparse
 import base64
 import collections
 import contextlib
+import errno
 import json
 import logging
 import optparse
@@ -499,16 +500,49 @@ def link_outputs_to_outdir(run_dir, out_dir, outputs):
     return
   isolateserver.create_directories(out_dir, outputs)
   for o in outputs:
-    try:
-      infile = os.path.join(run_dir, o)
-      outfile = os.path.join(out_dir, o)
-      if fs.islink(infile):
-        # TODO(aludwin): handle directories
-        fs.copy2(infile, outfile)
-      else:
-        file_path.link_file(outfile, infile, file_path.HARDLINK_WITH_FALLBACK)
-    except OSError as e:
-      logging.info("Couldn't collect output file %s: %s", o, e)
+    copy_tree(run_dir, out_dir, o)
+
+
+def copy_tree(src_dir, dst_dir, item=None):
+  """Efficiently copies a file or directory from src_dir to dst_dir.
+
+  `item` may be a file, directory, or a symlink to a file or directory.
+  All symlinks are replaced with their targets, so the resulting
+  directory structure in dst_dir will never have any symlinks.
+
+  To increase speed, copy_tree hardlinks individual files into the
+  (newly created) directory structure if possible, unlike Python's
+  standard CopyTree function.
+  """
+  try:
+    src = os.path.join(src_dir, item)
+    dst = os.path.join(dst_dir, item)
+
+    """Check if src exists. Note that os.stat follows symlinks
+    and throws an exception if src doesn't exist or symlink is broken.
+    We don't care about the actual stat object, only the exception.
+    """
+    os.stat(src)
+
+    """Replace symlinks with their target."""
+    while fs.islink(src):
+      src = os.readlink(src)
+
+    if fs.isfile(src):
+      file_path.link_file(dst, src, file_path.HARDLINK_WITH_FALLBACK)
+      return
+
+    if not os.path.exists(dst):
+      os.mkdir(dst)
+
+    for child in os.listdir(src):
+      copy_tree(src, dst, child)
+
+  except OSError as e:
+    if e.errno == errno.ENOENT:
+      logging.warning('Path %s does not exist or is a broken symlink' % src)
+    else:
+      logging.info("Couldn't collect output file %s: %s", src, e)
 
 
 def delete_and_upload(storage, out_dir, leak_temp_dir):
