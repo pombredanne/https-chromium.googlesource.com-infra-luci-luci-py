@@ -596,20 +596,17 @@ class Test(unittest.TestCase):
         import os
         import signal
         import sys
-        import time
-        l = []
+        import threading
+        bit = threading.Event()
         def handler(signum, _):
-          l.append(signum)
+          bit.set()
           sys.stdout.write('got signal %%d\\n' %% signum)
           sys.stdout.flush()
         signal.signal(signal.%s, handler)
         sys.stdout.write('hi\\n')
         sys.stdout.flush()
-        while not l:
-          try:
-            time.sleep(0.01)
-          except IOError:
-            print('ioerror')
+        while not bit.wait(0.01):
+          pass
         with open(os.path.join(sys.argv[1], 'result.txt'), 'wb') as f:
           f.write('test_isolated_hard_timeout_grace')
         """ % ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM')
@@ -907,10 +904,76 @@ class Test(unittest.TestCase):
     expected = ['2-p6', '3-p7', '1-p8', '4-p8', '0-p9']
     self.assertEqual(expected, [r[0] for r in results])
 
+  def test_isolated_canceled(self):
+    # Make an isolated file, archive it, have it run and cancel it while it's
+    # running. The script handles signal so it send results back.
+    content = {
+      HELLO_WORLD + u'.py': _script(u"""
+        import os
+        import signal
+        import sys
+        import threading
+        bit = threading.Event()
+        def handler(signum, _):
+          bit.set()
+          sys.stdout.write('got signal %%d\\n' %% signum)
+          sys.stdout.flush()
+        signal.signal(signal.%s, handler)
+        sys.stdout.write('hi\\n')
+        sys.stdout.flush()
+        while not bit.wait(0.01):
+          pass
+        with open(os.path.join(sys.argv[1], 'result.txt'), 'wb') as f:
+          f.write('hey')
+        """) % ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM'),
+    }
+    expected_summary = self.gen_expected(
+        name=u'isolated_hard_timeout_grace',
+        isolated_out=RESULT_HEY_ISOLATED_OUT,
+        performance_stats={
+          u'isolated_download': {
+            u'initial_number_items': u'4',
+            u'initial_size': u'684',
+            u'items_cold': [200, 407],
+            u'items_hot': [],
+          },
+          u'isolated_upload': {
+            u'items_cold': [],
+            u'items_hot': [3, 118],
+          },
+        },
+        outputs=[u'hi\ngot signal 15\n'],
+        outputs_ref=RESULT_HEY_OUTPUTS_REF,
+        failure=True,
+        state=0x40)  # task_result.State.TIMED_OUT
+    expected_files = {os.path.join('0', 'result.txt'): 'hey'}
+    self._run_isolated(
+        hello_world, 'isolated_canceled', ['--', '${ISOLATED_OUTDIR}'],
+        expected_summary, expected_files)
+    tmpdir = tempfile.mkdtemp(prefix='swarming_smoke')
+    try:
+      task_id = self._map_isolated(tmpdir, content, name, args)
+      # Wait for the task to run.
+      # Cancel it.
+      actual_summary, actual_files = self.client.task_collect(task_id)
+      self.assertResults(expected_summary, actual_summary)
+      actual_files.pop('summary.json')
+      self.assertEqual(expected_files, actual_files)
+    finally:
+      file_path.rmtree(tmpdir)
+
   def _run_isolated(
       self, contents, name, args, expected_summary, expected_files,
       deduped, isolate_content):
     """Runs a python script as an isolated file."""
+    task_id = self._map_isolated(contents, name, args, isolated_content)
+    actual_summary, actual_files = self.client.task_collect(task_id)
+    self.assertResults(expected_summary, actual_summary, deduped=deduped)
+    actual_files.pop('summary.json')
+    self.assertEqual(expected_files, actual_files)
+    return task_id
+
+  def _map_isolated(self, root, contents, name, args, isolated_content):
     # Shared code for all test_isolated_* test cases.
     root = os.path.join(self.tmpdir, name)
     # Refuse reusing the same task name twice, it makes the whole test suite
@@ -929,13 +992,8 @@ class Test(unittest.TestCase):
       with fs.open(p, 'wb') as f:
         f.write(content)
     isolated_hash = self.client.isolate(isolate_path, isolated_path)
-    task_id = self.client.task_trigger_isolated(
+    return self.client.task_trigger_isolated(
         name, isolated_hash, extra=args)
-    actual_summary, actual_files = self.client.task_collect(task_id)
-    self.assertResults(expected_summary, actual_summary, deduped=deduped)
-    actual_files.pop('summary.json')
-    self.assertEqual(expected_files, actual_files)
-    return task_id
 
   def assertResults(self, expected, result, deduped=False):
     self.assertEqual([u'shards'], result.keys())
