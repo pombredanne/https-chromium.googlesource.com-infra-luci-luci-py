@@ -922,7 +922,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
       server.close()
 
 
-class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
+class RunIsolatedTestOutputs(RunIsolatedTestBase):
   # Like RunIsolatedTestRun, but ensures that specific output files
   # (as opposed to anything in $(ISOLATED_OUTDIR)) are returned.
   def _run_test(self, isolated, command, extra_args):
@@ -930,20 +930,46 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
     # back after the task completed.
     server = isolateserver_mock.MockIsolateServer()
     try:
-      # Output two files. If we're on Linux, we'll try to make one of them a
-      # symlink to ensure that we correctly follow symlinks. Note that this only
-      # tests file symlinks, not directory symlinks.
-      # TODO(aludwin): follow directory symlinks
+      # Output the following structure:
+      #
+      # foo1
+      # foodir --> foo2_sl (symlink to "foo2_content" file)
+      # bardir --> bar1
+      #        --> bar2_subdir --> bar2
+      #        --> bar3_sl (symlink to "bar3_content" file)
+      #        --> bar4_sl (symlink to bar4_subdir" directory containing
+      #                               "bar4_content" file)
+      #
+      # Create the symlinks only on Linux.
       script = (
         'import os\n'
         'import sys\n'
-        'open(sys.argv[1], "w").write("bar")\n'
+        'open(sys.argv[1], "w").write("foo1")\n'
+        'bar1_path = os.path.join(sys.argv[3], "bar1")\n'
+        'open(bar1_path, "w").write("bar1")\n'
+        'bar2_dirpath = os.path.join(sys.argv[3], "bar2_subdir")\n'
+        'os.makedirs(bar2_dirpath)\n'
+        'bar2_path = os.path.join(bar2_dirpath, "bar2")\n'
+        'open(bar2_path, "w").write("bar2")\n'
+        'bar4_dirpath = os.path.join(sys.argv[3], "bar4_subdir")\n'
+        'os.makedirs(bar4_dirpath)\n'
         'if sys.platform.startswith("linux"):\n'
-        '  realpath = os.path.abspath("contents_of_symlink")\n'
-        '  open(realpath, "w").write("baz")\n'
-        '  os.symlink(realpath, sys.argv[2])\n'
+        '  foo_realpath = os.path.abspath("foo2_content")\n'
+        '  open(foo_realpath, "w").write("foo2")\n'
+        '  os.symlink(foo_realpath, sys.argv[2])\n'
+        '  bar3_path = os.path.join(sys.argv[3], "bar3_sl")\n'
+        '  bar3_realpath = os.path.abspath("bar3_content")\n'
+        '  open(bar3_realpath, "w").write("bar3")\n'
+        '  os.symlink(bar3_realpath, bar3_path)\n'
+        '  bar4_path = os.path.join(sys.argv[3], "bar4_sl")\n'
+        '  bar4_content = os.path.join(bar4_dirpath, "bar4_content")\n'
+        '  bar4_realpath = os.path.abspath("bar4_content")\n'
+        '  open(bar4_realpath, "w").write("bar4")\n'
+        '  os.symlink(bar4_realpath, bar4_path)\n'
         'else:\n'
-        '  open(sys.argv[2], "w").write("baz")\n')
+        '  open(sys.argv[2], "w").write("foo2")\n'
+        '  open(bar3_path, "w").write("bar3")\n'
+        '  open(bar4_path, "w").write("bar4")\n')
       script_hash = isolateserver_mock.hash_content(script)
       isolated['files']['cmd.py'] = {
         'h': script_hash,
@@ -966,7 +992,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           isolated_hash=isolated_hash,
           storage=store,
           isolate_cache=isolateserver.MemoryCache(),
-          outputs=['foo', 'foodir/foo2'],
+          outputs=['foo1', 'foodir/foo2_sl', 'bardir/'],
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
           root_dir=None,
@@ -983,31 +1009,67 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
 
       # It uploaded back. Assert the store has a new item containing foo.
       hashes = {isolated_hash, script_hash}
-      foo_output_hash = isolateserver_mock.hash_content('bar')
-      foo2_output_hash = isolateserver_mock.hash_content('baz')
-      hashes.add(foo_output_hash)
+      foo1_output_hash = isolateserver_mock.hash_content('foo1')
+      foo2_output_hash = isolateserver_mock.hash_content('foo2')
+      bar1_output_hash = isolateserver_mock.hash_content('bar1')
+      bar2_output_hash = isolateserver_mock.hash_content('bar2')
+      bar3_output_hash = isolateserver_mock.hash_content('bar3')
+      bar4_output_hash = isolateserver_mock.hash_content('bar4')
+      hashes.add(foo1_output_hash)
       hashes.add(foo2_output_hash)
+      hashes.add(bar1_output_hash)
+      hashes.add(bar2_output_hash)
+      hashes.add(bar3_output_hash)
+      hashes.add(bar4_output_hash)
       isolated = {
         u'algo': u'sha-1',
         u'files': {
-          u'foo': {
-            u'h': foo_output_hash,
+          u'foo1': {
+            u'h': foo1_output_hash,
             # TODO(maruel): Handle umask.
             u'm': 0640,
-            u's': 3,
+            u's': 4,
           },
-          u'foodir/foo2': {
+          u'foodir/foo2_sl': {
             u'h': foo2_output_hash,
             # TODO(maruel): Handle umask.
             u'm': 0640,
-            u's': 3,
+            u's': 4,
+          },
+          u'bardir/bar1': {
+            u'h': bar1_output_hash,
+            # TODO(maruel): Handle umask.
+            u'm': 0640,
+            u's': 4,
+          },
+          u'bardir/bar2_subdir/bar2': {
+            u'h': bar2_output_hash,
+            # TODO(maruel): Handle umask.
+            u'm': 0640,
+            u's': 4,
+          },
+          u'bardir/bar3_sl': {
+            u'h': bar3_output_hash,
+            # TODO(maruel): Handle umask.
+            u'm': 0640,
+            u's': 4,
+          },
+          u'bardir/bar4_sl': {
+            u'h': bar4_output_hash,
+            # TODO(maruel): Handle umask.
+            u'm': 0640,
+            u's': 4,
           },
         },
         u'version': isolated_format.ISOLATED_FILE_VERSION,
       }
       if sys.platform == 'win32':
-        isolated['files']['foo'].pop('m')
-        isolated['files']['foodir/foo2'].pop('m')
+        isolated['files']['foo1'].pop('m')
+        isolated['files']['foodir/foo2_sl'].pop('m')
+        isolated['files']['bardir/bar1'].pop('m')
+        isolated['files']['bardir/bar2_subdir/bar2'].pop('m')
+        isolated['files']['bardir/bar3_sl'].pop('m')
+        isolated['files']['bardir/bar4_sl'].pop('m')
       uploaded = json_dumps(isolated)
       uploaded_hash = isolateserver_mock.hash_content(uploaded)
       hashes.add(uploaded_hash)
@@ -1026,7 +1088,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
   def test_output_cmd_isolated(self):
     isolated = {
       u'algo': u'sha-1',
-      u'command': [u'cmd.py', u'foo', u'foodir/foo2'],
+      u'command': [u'cmd.py', u'foo1', u'foodir/foo2_sl', 'bardir/'],
       u'files': {},
       u'version': isolated_format.ISOLATED_FILE_VERSION,
     }
@@ -1038,7 +1100,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
       u'files': {},
       u'version': isolated_format.ISOLATED_FILE_VERSION,
     }
-    self._run_test(isolated, ['cmd.py', 'foo', 'foodir/foo2'], [])
+    self._run_test(isolated, ['cmd.py', 'foo1', 'foodir/foo2_sl', 'bardir/'], [])
 
   def test_output_cmd_isolated_extra_args(self):
     isolated = {
@@ -1047,7 +1109,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
       u'files': {},
       u'version': isolated_format.ISOLATED_FILE_VERSION,
     }
-    self._run_test(isolated, [], ['foo', 'foodir/foo2'])
+    self._run_test(isolated, [], ['foo1', 'foodir/foo2_sl', 'bardir/'])
 
 
 class RunIsolatedJsonTest(RunIsolatedTestBase):

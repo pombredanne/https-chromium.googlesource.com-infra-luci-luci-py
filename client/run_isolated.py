@@ -500,16 +500,26 @@ def link_outputs_to_outdir(run_dir, out_dir, outputs):
   isolateserver.create_directories(out_dir, outputs)
   for o in outputs:
     try:
-      infile = os.path.join(run_dir, o)
-      outfile = os.path.join(out_dir, o)
-      if fs.islink(infile):
-        # TODO(aludwin): handle directories
-        fs.copy2(infile, outfile)
-      else:
-        file_path.link_file(outfile, infile, file_path.HARDLINK_WITH_FALLBACK)
+      linktree(o, run_dir, out_dir)
     except OSError as e:
-      logging.info("Couldn't collect output file %s: %s", o, e)
+      logging.info("Couldn't collect output %s: %s", o, e)
 
+def linktree(item, src, dst):
+  """Creates hardlinks in dst to entries in src."""
+  src = os.path.join(src, item)
+  dst = os.path.join(dst, item)
+
+  if fs.islink(src):
+    src = os.readlink(src)
+
+  if fs.isfile(src):
+    file_path.link_file(dst, src, file_path.HARDLINK_WITH_FALLBACK)
+    return
+
+  for item in os.listdir(src):
+    if not os.path.exists(dst):
+      os.mkdir(dst)
+    linktree(item, src, dst)
 
 def delete_and_upload(storage, out_dir, leak_temp_dir):
   """Deletes the temporary run directory and uploads results back.
