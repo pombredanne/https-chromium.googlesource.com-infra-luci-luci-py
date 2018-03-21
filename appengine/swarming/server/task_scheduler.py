@@ -127,13 +127,14 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request):
     # 3 GET, 1 PUT at the end.
     to_run_future = to_run_key.get_async()
     result_summary_future = result_summary_key.get_async()
-    if request.properties.has_secret_bytes:
-      secret_bytes_future = request.secret_bytes_key.get_async()
     to_run = to_run_future.get_result()
+    t = request.task_slice(to_run.task_slice_index)
+    if t.properties.has_secret_bytes:
+      secret_bytes_future = request.secret_bytes_key.get_async()
     result_summary = result_summary_future.get_result()
     orig_summary_state = result_summary.state
     secret_bytes = None
-    if request.properties.has_secret_bytes:
+    if t.properties.has_secret_bytes:
       secret_bytes = secret_bytes_future.get_result()
     if not to_run:
       logging.error('Missing TaskToRun?\n%s', result_summary.task_id)
@@ -219,7 +220,10 @@ def _handle_dead_bot(run_result_key):
   request = request_future.get_result()
   # The TaskRunResult key id is the try number.
   try_number = run_result_key.integer_id()
-  to_run_key = task_to_run.request_to_task_to_run_key(request, try_number)
+  # https://crbug.com/781021
+  task_slice_index = 0 # run_result.task_slice_index
+  to_run_key = task_to_run.request_to_task_to_run_key(
+      request, try_number, task_slice_index)
 
   def run():
     """Returns tuple(task_is_retried or None, bot_id)."""
@@ -247,7 +251,8 @@ def _handle_dead_bot(run_result_key):
       run_result.abandoned_ts = now
       task_is_retried = None
     elif (result_summary.try_number == 1 and now < request.expiration_ts and
-          (request.properties.idempotent or
+          (request.task_slice(
+              run_result.task_slice_index).properties.idempotent or
             run_result.started_ts == old_modified)):
       # Retry it. It fits:
       # - first try
@@ -257,7 +262,7 @@ def _handle_dead_bot(run_result_key):
       #   - task hadn't got any ping at all from task_runner.run_command()
       # TODO(maruel): Allow retry for bot locked task using 'id' dimension.
       # Create a second TaskToRun.
-      to_run = task_to_run.new_task_to_run(request, 2)
+      to_run = task_to_run.new_task_to_run(request, 2, task_slice_index)
       to_put = (run_result, result_summary, to_run)
       run_result.state = task_result.State.BOT_DIED
       run_result.internal_failure = True
@@ -627,7 +632,9 @@ def check_schedule_request_acl(request):
   # checked in TaskProperties's pre put hook).
   #
   # It is guaranteed that at most one item can be specified in 'pool'.
-  pool = request.properties.dimensions[u'pool'][0]
+  # https://crbug.com/781021
+  index = 0 # run_result.task_slice_index
+  pool = request.task_slice(index).properties.dimensions[u'pool'][0]
   pool_cfg = pools_config.get_pool_config(pool)
 
   # request.service_account can be 'bot' or 'none'. We don't care about these,
@@ -699,8 +706,8 @@ def schedule_request(request, secret_bytes):
 
   now = utils.utcnow()
   request.key = task_request.new_request_key()
-  # This is the first try.
-  to_run = task_to_run.new_task_to_run(request, 1)
+  # First try, first task slice.
+  to_run = task_to_run.new_task_to_run(request, 1, 0)
   result_summary = task_result.new_result_summary(request)
   result_summary.modified_ts = now
   if secret_bytes:
@@ -720,8 +727,9 @@ def schedule_request(request, secret_bytes):
     return key
 
   deduped = False
-  if request.properties.idempotent:
-    dupe_summary = _find_dupe_task(now, request.properties_hash())
+  t = request.task_slice(0)
+  if t.properties.idempotent:
+    dupe_summary = _find_dupe_task(now, t.properties_hash())
     if dupe_summary:
       _copy_summary(
           dupe_summary, result_summary,
@@ -955,7 +963,7 @@ def bot_kill_task(run_result_key, bot_id):
     run_result.internal_failure = True
     run_result.abandoned_ts = now
     run_result.modified_ts = now
-    result_summary.set_from_run_result(run_result, None)
+    result_summary.set_from_run_result(run_result, request)
 
     futures = ndb.put_multi_async((run_result, result_summary))
     _maybe_pubsub_notify_via_tq(result_summary, request)
@@ -988,12 +996,16 @@ def cancel_task(request, result_key):
     result_key = task_pack.run_result_key_to_result_summary_key(result_key)
   now = utils.utcnow()
 
+  ## https://crbug.com/781021
+  task_slice_index = 0 # run_result.task_slice_index
+
   def run():
     """3x DB GETs, 2x DB PUTs, PubSub push."""
     # Need to get the current try number to know which TaskToRun to fetch.
     result_summary_future = result_key.get_async()
     to_runs_future = ndb.get_multi_async(
-        task_to_run.request_to_task_to_run_key(request, i) for i in (1, 2))
+        task_to_run.request_to_task_to_run_key(request, i, task_slice_index)
+        for i in (1, 2))
     result_summary = result_summary_future.get_result()
     was_running = result_summary.state == task_result.State.RUNNING
     if not result_summary.can_be_canceled:
@@ -1028,7 +1040,8 @@ def cancel_task(request, result_key):
     # We don't know in advance if it's try number 1 or 2, so do both. Since it's
     # an memcache RPC, it's not too costly.
     # TODO(maruel): Refactor to do both simultaneously to save 2ms.
-    to_run_key = task_to_run.request_to_task_to_run_key(request, i)
+    to_run_key = task_to_run.request_to_task_to_run_key(
+        request, i, task_slice_index)
     task_to_run.set_lookup_cache(to_run_key, False)
 
   try:
@@ -1080,7 +1093,8 @@ def cron_abort_expired_task_to_run(host):
           'EXPIRED!\n%d tasks:\n%s',
           len(killed),
           '\n'.join(
-            '  %s/user/task/%s  %s' % (host, i.task_id, i.properties.dimensions)
+            '  %s/user/task/%s  %s' % (
+              host, i.task_id, i.task_slice(0).properties.dimensions)
             for i in killed))
     logging.info('Killed %d task, skipped %d', len(killed), skipped)
   return [i.task_id for i in killed]
