@@ -359,6 +359,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       u'started_ts': str_now,
       u'state': u'RUNNING',
       u'task_id': u'5cee488008811',
+      u'task_slice_index': u'0',
       u'try_number': u'1',
     }
     self.assertEqual(expected, response)
@@ -659,6 +660,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       u'started_ts': str_now,
       u'state': u'COMPLETED',
       u'task_id': u'5cee488008811',
+      u'task_slice_index': u'0',
       u'try_number': u'1',
     }
     self.assertEqual(expected, response)
@@ -965,6 +967,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'started_ts': str_now,
         u'state': u'RUNNING',
         u'task_id': u'5cee488008811',
+        u'task_slice_index': u'0',
         u'try_number': u'1',
       }
       out.update((unicode(k), v) for k, v in kwargs.iteritems())
@@ -1104,6 +1107,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       u'started_ts': str_now,
       u'state': u'COMPLETED',
       u'task_id': u'5cee488008811',
+      u'task_slice_index': u'0',
       u'try_number': u'1',
     }
     self.assertEqual(expected, response)
@@ -1154,6 +1158,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       u'started_ts': str_now,
       u'state': u'BOT_DIED',
       u'task_id': u'5cee488008811',
+      u'task_slice_index': u'0',
       u'try_number': u'1',
     }
     self.assertEqual(expected, response)
