@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c4451ff9_218b9b61",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-21T14:20:57Z",
+      "side": 1,
+      "message": "two lines between file level symbols.",
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e3d91706_451bee21",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -49,6 +66,23 @@
     },
     {
       "key": {
+        "uuid": "cf0d4cd1_77f87638",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-21T14:20:57Z",
+      "side": 1,
+      "message": "do this at the call site, not inside the function. There\u0027s no need to have \"item\" here.",
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c5c9ba5_c253f1a9",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -60,6 +94,30 @@
       "writtenOn": "2018-03-21T11:55:24Z",
       "side": 1,
       "message": "Does os.readlink recursively follow symlinks? If not, this needs to be:\n\nwhile fs.islink(src):\n  src \u003d os.readlink(src)\n\nAlso needs a comment: \"Replace symlinks with their target.\"",
+      "range": {
+        "startLine": 512,
+        "startChar": 0,
+        "endLine": 513,
+        "endChar": 26
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34ba87e9_05e73b4e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-21T14:20:57Z",
+      "side": 1,
+      "message": "There\u0027s an example here: https://cs.chromium.org/chromium/infra/luci/client/isolated_format.py?l\u003d155",
+      "parentUuid": "5c5c9ba5_c253f1a9",
       "range": {
         "startLine": 512,
         "startChar": 0,
@@ -119,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "87e7f024_b765a7f5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-21T14:20:57Z",
+      "side": 1,
+      "message": "I think it\u0027s fine to silently drop broken symlinks, as otherwise this could be a security issue if it permits to espace the isolated tree, but would work once mapped into the output tree. Unlikely but still, I prefer to reduce the attack surface.",
+      "parentUuid": "4b08ec7c_02ec3910",
+      "range": {
+        "startLine": 515,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 20
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e2f02843_de949815",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -130,6 +212,30 @@
       "writtenOn": "2018-03-21T11:55:24Z",
       "side": 1,
       "message": "Needs a try-catch here IMO, with some logging if something goes wrong. Basically, copy_tree shouldn\u0027t throw, and link_outputs_to_outdir shouldn\u0027t have to catch.",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 516,
+        "endChar": 67
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b1f41dc_3896c452",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-21T14:20:57Z",
+      "side": 1,
+      "message": "Agreed, and it should try to go as far as possible, skipping (and logging) over failures.",
+      "parentUuid": "e2f02843_de949815",
       "range": {
         "startLine": 516,
         "startChar": 0,
