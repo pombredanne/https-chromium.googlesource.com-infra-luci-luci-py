@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "28464755_b953b4a2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T12:23:45Z",
+      "side": 1,
+      "message": "Also: is linktree/copy_tree supposed to prevent us from following symlinks outside the run_dir directory? I\u0027m ok to say \"no, don\u0027t prevent anything\" but I think Marc-Antoine wanted to be more careful.",
+      "parentUuid": "e3d91706_451bee21",
+      "range": {
+        "startLine": 507,
+        "startChar": 0,
+        "endLine": 508,
+        "endChar": 0
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c5c9ba5_c253f1a9",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2018-03-21T11:55:24Z",
       "side": 1,
       "message": "What happens if src is missing (eg broken symlink or just a missing file)? I\u0027d imagine that fs.isfile will be false, and we\u0027ll exit this function without any warnings or exceptions being thrown. Note that we *don\u0027t* necessarily want to throw an exception halfway through copying a tree, we probably want to copy as much of it as we can.",
+      "range": {
+        "startLine": 515,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 20
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b08ec7c_02ec3910",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T12:23:45Z",
+      "side": 1,
+      "message": "I partially take this back - there should be a way to know what files we expected to find but couldn\u0027t. Maybe throwing exceptions is the right way to track this? Note that if we identify the file that was missing, we should identify it using the names of the symlinks, not the resolved targets. So that might mean that before saying \u0027src \u003d os.readlink(src)\u0027, we make a copy called \u0027orig_src\u0027 or something like that.",
+      "parentUuid": "355d5aec_eb98141c",
       "range": {
         "startLine": 515,
         "startChar": 1,
@@ -133,6 +181,29 @@
         "startChar": 0,
         "endLine": 521,
         "endChar": 19
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19577961_1c6b718a",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T12:23:45Z",
+      "side": 1,
+      "message": "I don\u0027t think this is the right place to test all the different variants of copy_tree (or linktree). The \"script\" that gets run is no longer readable or paramaterizable, and it only is capable of testing a bunch of happy paths and none of the sad paths.\n\nI\u0027m thinking it would be better to have a class *just* to test copy_tree directly, allowing both happy and sad paths to be tested without having to go through the whole mocked flow. Eg, you should be able to specify something like this as a test input:\n\nsrc_dir \u003d {\n  \u0027foo_file\u0027: (FILE, \u0027contents of foo\u0027), #python tuple\n  \u0027bar_link\u0027: (LINK, \u0027foo_file\u0027),\n  \u0027bad_link\u0027: (LINK, \u0027nonexistent_file\u0027),\n  \u0027subdir_link\u0027: (LINK, \u0027sub_dir/child_a\u0027),\n  \u0027subdir\u0027:  (DIR, {\n    \u0027child_a\u0027: (FILE, \u0027contents of a\u0027),\n    \u0027child_b\u0027: (FILE, \u0027contents of b\u0027),\n  }),\n}\n\nAnd then verify that we have the following outputs:\nexpected \u003d {\n  \u0027/foo_file\u0027: \u0027contents of foo\u0027,\n  \u0027/bar_link\u0027: \u0027contents of foo\u0027,\n  \u0027/subdir_link\u0027: \u0027contents of a\u0027,\n  \u0027/subdir/child_a\u0027: \u0027contents of a\u0027,\n  \u0027/subdir/child_b\u0027: \u0027contents of b\u0027,\n}\nexpected_not_found \u003d [\u0027/bad_link\u0027]\n\nThis is much clearer than the existing test and lets you test far more complicated scenarios.",
+      "range": {
+        "startLine": 925,
+        "startChar": 6,
+        "endLine": 925,
+        "endChar": 28
       },
       "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
