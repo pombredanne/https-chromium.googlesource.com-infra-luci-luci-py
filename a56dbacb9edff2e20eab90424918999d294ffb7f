@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3d91706_451bee21",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T11:55:24Z",
+      "side": 1,
+      "message": "Should be link_tree (not linktree) to match coding style. I\u0027d also call this copy_tree myself, because the only linking we do is for hardlinks and we don\u0027t even guarantee that. In particular, we do end up copying (recreating) the directory structure.\n\nI also find the fact that we overwrite \"src\" and \"dst\" hard to follow as well. Maybe pass in src_dir and dst_dir, rather than overwrite the passed-in variable?\n\nNeeds a comment as well:\n\"\"\"Efficiently copies a file or directory from src_dir to dst_dir.\n\n`item` may be a file, directory, or a symlink to a file or directory. All symlinks are replaced with their targets, so the resulting directory structure in dst_dir will never have any symlinks.\n\nTo increase speed, copy_tree hardlinks individual files into the (newly created) directory structure if possible, unlike Python\u0027s standard CopyTree function.\n\"\"\"",
+      "range": {
+        "startLine": 507,
+        "startChar": 0,
+        "endLine": 508,
+        "endChar": 0
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c5c9ba5_c253f1a9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T11:55:24Z",
+      "side": 1,
+      "message": "Does os.readlink recursively follow symlinks? If not, this needs to be:\n\nwhile fs.islink(src):\n  src \u003d os.readlink(src)\n\nAlso needs a comment: \"Replace symlinks with their target.\"",
+      "range": {
+        "startLine": 512,
+        "startChar": 0,
+        "endLine": 513,
+        "endChar": 26
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "355d5aec_eb98141c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T11:55:24Z",
+      "side": 1,
+      "message": "What happens if src is missing (eg broken symlink or just a missing file)? I\u0027d imagine that fs.isfile will be false, and we\u0027ll exit this function without any warnings or exceptions being thrown. Note that we *don\u0027t* necessarily want to throw an exception halfway through copying a tree, we probably want to copy as much of it as we can.",
+      "range": {
+        "startLine": 515,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 20
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2f02843_de949815",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T11:55:24Z",
+      "side": 1,
+      "message": "Needs a try-catch here IMO, with some logging if something goes wrong. Basically, copy_tree shouldn\u0027t throw, and link_outputs_to_outdir shouldn\u0027t have to catch.",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 516,
+        "endChar": 67
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d57aa667_6cc246e2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T11:55:24Z",
+      "side": 1,
+      "message": "This also overrides a passed-in variable. Maybe call this one \"child\" instead of \"item\"?",
+      "range": {
+        "startLine": 519,
+        "startChar": 6,
+        "endLine": 519,
+        "endChar": 10
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25f03cd5_78b413fa",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T11:55:24Z",
+      "side": 1,
+      "message": "This should be moved outside of the loop - dst doesn\u0027t change on each iteration of the loop, so it\u0027s more clear to have it outside IMO.",
+      "range": {
+        "startLine": 520,
+        "startChar": 0,
+        "endLine": 521,
+        "endChar": 19
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
