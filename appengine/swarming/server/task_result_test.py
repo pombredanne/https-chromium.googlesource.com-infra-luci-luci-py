@@ -170,6 +170,7 @@ class TaskResultApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
       'try_number': None,
       'user': u'Jesus',
     }
@@ -211,6 +212,7 @@ class TaskResultApiTest(TestCase):
       'server_versions': ['v1a'],
       'started_ts': None,
       'state': task_result.State.RUNNING,
+      'task_slice_index': 0,
       'try_number': 1,
     }
     self.assertEqual(expected, actual.to_dict())
@@ -223,7 +225,7 @@ class TaskResultApiTest(TestCase):
     # TaskResultSummary and TaskRunResult are properly updated.
     request = mkreq(_gen_request())
     result_summary = task_result.new_result_summary(request)
-    to_run = task_to_run.new_task_to_run(request, 1)
+    to_run = task_to_run.new_task_to_run(request, 1, 0)
     result_summary.modified_ts = utils.utcnow()
     ndb.transaction(lambda: ndb.put_multi([result_summary, to_run]))
     expected = {
@@ -249,7 +251,6 @@ class TaskResultApiTest(TestCase):
       'server_versions': [u'v1a'],
       'started_ts': None,
       'state': task_result.State.PENDING,
-      'try_number': None,
       'tags': [
         u'pool:default',
         u'priority:50',
@@ -257,6 +258,8 @@ class TaskResultApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
+      'try_number': None,
       'user': u'Jesus',
     }
     self.assertEqual(expected, result_summary.to_dict())
@@ -306,6 +309,7 @@ class TaskResultApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
       'try_number': 1,
       'user': u'Jesus',
     }
@@ -364,6 +368,7 @@ class TaskResultApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
       'try_number': 1,
       'user': u'Jesus',
     }

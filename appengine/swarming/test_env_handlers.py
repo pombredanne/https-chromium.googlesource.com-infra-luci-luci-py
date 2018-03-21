@@ -252,8 +252,9 @@ class AppTestBase(test_case.TestCase):
       args = json.loads(protojson.encode_message(args))
     return srv.call_api(name, body=args).json
 
-  def _client_create_task(self, properties=None, **kwargs):
-    """Creates an isolated command TaskRequest via the Cloud Endpoints API."""
+  @staticmethod
+  def create_props(**kwargs):
+    """Returns an initialized swarming_rpcs.TaskProperties."""
     props = {
       'cipd_input': {
         'client_package': {
@@ -276,14 +277,19 @@ class AppTestBase(test_case.TestCase):
       'io_timeout_secs': 1200,
       'outputs': ['foo', 'path/to/foobar']
     }
-    props.update(properties or {})
+    props.update(kwargs)
+    return props
 
+  def client_create_task(self, **kwargs):
+    """Creates a task request via the Cloud Endpoints API.
+
+    Useful to use a swarming_rpcs.TaskSlice.
+    """
     params = {
       'expiration_secs': 24*60*60,
       'name': 'hi',
       # Low priority user will be downgraded to 20.
       'priority': 10,
-      'properties': props,
       'tags': [],
       'user': 'joe@localhost',
     }
@@ -296,19 +302,23 @@ class AppTestBase(test_case.TestCase):
     return response, response['task_id']
 
   def client_create_task_isolated(self, properties=None, **kwargs):
+    """Creates a TaskRequest using an isolated tree via the Cloud Endpoints API.
+    """
     properties = (properties or {}).copy()
     properties['inputs_ref'] = {
       'isolated': '0123456789012345678901234567890123456789',
       'isolatedserver': 'http://localhost:1',
       'namespace': 'default-gzip',
     }
-    return self._client_create_task(properties, **kwargs)
+    return self.client_create_task(
+        properties=self.create_props(**properties), **kwargs)
 
   def client_create_task_raw(self, properties=None, **kwargs):
     """Creates a raw command TaskRequest via the Cloud Endpoints API."""
     properties = (properties or {}).copy()
     properties['command'] = ['python', 'run_test.py']
-    return self._client_create_task(properties, **kwargs)
+    return self.client_create_task(
+        properties=self.create_props(**properties), **kwargs)
 
   def client_get_results(self, task_id):
     return self.endpoint_call(

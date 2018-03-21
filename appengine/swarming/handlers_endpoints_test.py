@@ -265,6 +265,32 @@ class TasksApiTest(BaseTest):
     str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
 
     request = self.raw_request()
+    expected_properties = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [{
+          u'package_name': u'rm',
+          u'path': u'.',
+          u'version': u'latest',
+        }],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'rm', u'-rf', u'/'],
+      u'dimensions': [
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'env': [
+        {u'key': u'PATH', u'value': u'/'},
+      ],
+      u'execution_timeout_secs': u'30',
+      u'grace_period_secs': u'15',
+      u'idempotent': False,
+      u'io_timeout_secs': u'30',
+      u'outputs': [u'foo', u'path/to/dir'],
+    }
     expected = {
       u'request': {
         u'authenticated': u'user:user@example.com',
@@ -272,32 +298,7 @@ class TasksApiTest(BaseTest):
         u'expiration_secs': u'30',
         u'name': u'job1',
         u'priority': u'200',
-        u'properties': {
-          u'cipd_input': {
-            u'client_package': {
-              u'package_name': u'infra/tools/cipd/${platform}',
-              u'version': u'git_revision:deadbeef',
-            },
-            u'packages': [{
-              u'package_name': u'rm',
-              u'path': u'.',
-              u'version': u'latest',
-            }],
-            u'server': u'https://chrome-infra-packages.appspot.com',
-          },
-          u'command': [u'rm', u'-rf', u'/'],
-          u'dimensions': [
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'15',
-          u'idempotent': False,
-          u'io_timeout_secs': u'30',
-          u'outputs': [u'foo', u'path/to/dir'],
-        },
+        u'properties': expected_properties,
         u'pubsub_topic': u'projects/abc/topics/def',
         u'pubsub_userdata': u'userdata',
         u'service_account': u'service-account@example.com',
@@ -307,6 +308,12 @@ class TasksApiTest(BaseTest):
           u'priority:200',
           u'service_account:service-account@example.com',
           u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_properties,
+          },
         ],
         u'user': u'joe@localhost',
       },
@@ -390,6 +397,30 @@ class TasksApiTest(BaseTest):
             outputs=['foo', 'path/to/foobar']),
         tags=['foo:bar'],
         user='joe@localhost')
+    expected_properties = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [{
+          u'package_name': u'rm',
+          u'path': u'bin',
+          u'version': u'git_revision:deadbeef',
+        }],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': True,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
     expected = {
       u'request': {
         u'authenticated': u'user:user@example.com',
@@ -397,30 +428,7 @@ class TasksApiTest(BaseTest):
         u'expiration_secs': u'30',
         u'name': u'job1',
         u'priority': u'200',
-        u'properties': {
-          u'cipd_input': {
-            u'client_package': {
-              u'package_name': u'infra/tools/cipd/${platform}',
-              u'version': u'git_revision:deadbeef',
-            },
-            u'packages': [{
-              u'package_name': u'rm',
-              u'path': u'bin',
-              u'version': u'git_revision:deadbeef',
-            }],
-            u'server': u'https://chrome-infra-packages.appspot.com',
-          },
-          u'command': [u'python', u'run_test.py'],
-          u'dimensions': [
-            {u'key': u'os', u'value': u'Amiga'},
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'execution_timeout_secs': u'3600',
-          u'grace_period_secs': u'30',
-          u'idempotent': True,
-          u'io_timeout_secs': u'1200',
-          u'outputs': [u'foo', u'path/to/foobar'],
-        },
+        u'properties': expected_properties,
         u'service_account': u'none',
         u'tags': [
           u'foo:bar',
@@ -429,6 +437,12 @@ class TasksApiTest(BaseTest):
           u'priority:200',
           u'service_account:none',
           u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_properties,
+          },
         ],
         u'user': u'joe@localhost',
       },
@@ -464,6 +478,7 @@ class TasksApiTest(BaseTest):
           u'user:joe@localhost',
         ],
         u'task_id': u'5cf59b8006610',
+        u'task_slice_index': u'0',
         u'try_number': u'0',
         u'user': u'joe@localhost',
       },
@@ -505,6 +520,7 @@ class TasksApiTest(BaseTest):
             u'user:joe@localhost',
           ],
           u'task_id': u'5cf59b8006610',
+          u'task_slice_index': u'0',
           u'try_number': u'0',
           u'user': u'joe@localhost',
         },
@@ -537,6 +553,54 @@ class TasksApiTest(BaseTest):
         {u'now': str_now_30, u'count': u'1'},
         self.call_api('count', body=message_to_dict(request)).json)
     request = swarming_rpcs.TasksRequest(start=start, end=end)
+    expected_properties_1 = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [{
+          u'package_name': u'rm',
+          u'path': u'bin',
+          u'version': u'git_revision:deadbeef',
+        }],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': True,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
+    expected_properties_2 = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [{
+          u'package_name': u'rm',
+          u'path': u'bin',
+          u'version': u'git_revision:deadbeef',
+        }],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': True,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
     expected = {
       u'items': [
         {
@@ -545,30 +609,7 @@ class TasksApiTest(BaseTest):
           u'expiration_secs': u'30',
           u'name': u'job1',
           u'priority': u'200',
-          u'properties': {
-            u'cipd_input': {
-              u'client_package': {
-                u'package_name': u'infra/tools/cipd/${platform}',
-                u'version': u'git_revision:deadbeef',
-              },
-              u'packages': [{
-                u'package_name': u'rm',
-                u'path': u'bin',
-                u'version': u'git_revision:deadbeef',
-              }],
-              u'server': u'https://chrome-infra-packages.appspot.com',
-            },
-            u'command': [u'python', u'run_test.py'],
-            u'dimensions': [
-              {u'key': u'os', u'value': u'Amiga'},
-              {u'key': u'pool', u'value': u'default'},
-            ],
-            u'execution_timeout_secs': u'3600',
-            u'grace_period_secs': u'30',
-            u'idempotent': True,
-            u'io_timeout_secs': u'1200',
-            u'outputs': [u'foo', u'path/to/foobar'],
-          },
+          u'properties': expected_properties_1,
           u'service_account': u'none',
           u'tags': [
             u'foo:bar',
@@ -578,6 +619,12 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'user:joe@localhost',
           ],
+          u'task_slices': [
+            {
+              u'expiration_secs': u'30',
+              u'properties': expected_properties_1,
+            },
+          ],
           u'user': u'joe@localhost',
         },
         {
@@ -586,30 +633,7 @@ class TasksApiTest(BaseTest):
           u'expiration_secs': u'86400',
           u'name': u'task',
           u'priority': u'20',
-          u'properties': {
-            u'cipd_input': {
-              u'client_package': {
-                u'package_name': u'infra/tools/cipd/${platform}',
-                u'version': u'git_revision:deadbeef',
-              },
-              u'packages': [{
-                u'package_name': u'rm',
-                u'path': u'bin',
-                u'version': u'git_revision:deadbeef',
-              }],
-              u'server': u'https://chrome-infra-packages.appspot.com',
-            },
-            u'command': [u'python', u'run_test.py'],
-            u'dimensions': [
-              {u'key': u'os', u'value': u'Amiga'},
-              {u'key': u'pool', u'value': u'default'},
-            ],
-            u'execution_timeout_secs': u'3600',
-            u'grace_period_secs': u'30',
-            u'idempotent': True,
-            u'io_timeout_secs': u'1200',
-            u'outputs': [u'foo', u'path/to/foobar'],
-          },
+          u'properties': expected_properties_2,
           u'service_account': u'none',
           u'tags': [
             u'commit:post',
@@ -620,6 +644,12 @@ class TasksApiTest(BaseTest):
             u'project:yay',
             u'service_account:none',
             u'user:joe@localhost',
+          ],
+          u'task_slices': [
+            {
+              u'expiration_secs': u'86400',
+              u'properties': expected_properties_2,
+            },
           ],
           u'user': u'joe@localhost',
         },
@@ -656,6 +686,24 @@ class TasksApiTest(BaseTest):
             io_timeout_secs=30),
         tags=['foo:bar'],
         user='joe@localhost')
+    expected_properties = {
+      u'dimensions': [
+        {u'key': u'foo', u'value': u'bar'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'env': [
+        {u'key': u'PATH', u'value': u'/'},
+      ],
+      u'execution_timeout_secs': u'30',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'inputs_ref': {
+        u'isolated': u'1'*40,
+        u'isolatedserver': u'http://localhost:1',
+        u'namespace': u'default-gzip',
+      },
+      u'io_timeout_secs': u'30',
+    }
     expected = {
       u'request': {
         u'authenticated': u'user:user@example.com',
@@ -663,24 +711,7 @@ class TasksApiTest(BaseTest):
         u'expiration_secs': u'30',
         u'name': u'job1',
         u'priority': u'200',
-        u'properties': {
-          u'dimensions': [
-            {u'key': u'foo', u'value': u'bar'},
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'30',
-          u'idempotent': False,
-          u'inputs_ref': {
-            'isolated': '1'*40,
-            'isolatedserver': 'http://localhost:1',
-            'namespace': 'default-gzip',
-          },
-          u'io_timeout_secs': u'30',
-        },
+        u'properties': expected_properties,
         u'service_account': u'none',
         u'tags': [
           u'foo:bar',
@@ -688,6 +719,12 @@ class TasksApiTest(BaseTest):
           u'priority:200',
           u'service_account:none',
           u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_properties,
+          },
         ],
         u'user': u'joe@localhost',
       },
@@ -724,6 +761,24 @@ class TasksApiTest(BaseTest):
             io_timeout_secs=30),
         tags=['foo:bar'],
         user='joe@localhost')
+    expected_properties = {
+      u'dimensions': [
+        {u'key': u'foo', u'value': u'bar'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'env': [
+        {u'key': u'PATH', u'value': u'/'},
+      ],
+      u'execution_timeout_secs': u'30',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'inputs_ref': {
+        u'isolated': u'1'*40,
+        u'isolatedserver': u'https://isolateserver.appspot.com',
+        u'namespace': u'default-gzip',
+      },
+      u'io_timeout_secs': u'30',
+    }
     expected = {
       u'request': {
         u'authenticated': u'user:user@example.com',
@@ -731,24 +786,7 @@ class TasksApiTest(BaseTest):
         u'expiration_secs': u'30',
         u'name': u'job1',
         u'priority': u'200',
-        u'properties': {
-          u'dimensions': [
-            {u'key': u'foo', u'value': u'bar'},
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'30',
-          u'idempotent': False,
-          u'inputs_ref': {
-            'isolated': '1'*40,
-            'isolatedserver': 'https://isolateserver.appspot.com',
-            'namespace': 'default-gzip',
-          },
-          u'io_timeout_secs': u'30',
-        },
+        u'properties': expected_properties,
         u'service_account': u'none',
         u'tags': [
           u'foo:bar',
@@ -756,6 +794,12 @@ class TasksApiTest(BaseTest):
           u'priority:200',
           u'service_account:none',
           u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_properties,
+          },
         ],
         u'user': u'joe@localhost',
       },
@@ -805,6 +849,31 @@ class TasksApiTest(BaseTest):
         pubsub_topic='projects/abc/topics/def',
         pubsub_auth_token='secret that must not be shown',
         pubsub_userdata='userdata')
+    expected_properties = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [{
+          u'package_name': u'rm',
+          u'path': u'.',
+          u'version': u'latest',
+        }],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'rm', u'-rf', u'/'],
+      u'dimensions': [
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'env': [
+        {u'key': u'PATH', u'value': u'/'},
+      ],
+      u'execution_timeout_secs': u'30',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'io_timeout_secs': u'30',
+    }
     expected = {
       u'request': {
         u'authenticated': u'user:user@example.com',
@@ -812,31 +881,7 @@ class TasksApiTest(BaseTest):
         u'expiration_secs': u'30',
         u'name': u'job1',
         u'priority': u'200',
-        u'properties': {
-          u'cipd_input': {
-            u'client_package': {
-              u'package_name': u'infra/tools/cipd/${platform}',
-              u'version': u'git_revision:deadbeef',
-            },
-            u'packages': [{
-              u'package_name': u'rm',
-              u'path': u'.',
-              u'version': u'latest',
-            }],
-            u'server': u'https://chrome-infra-packages.appspot.com',
-          },
-          u'command': [u'rm', u'-rf', u'/'],
-          u'dimensions': [
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'30',
-          u'idempotent': False,
-          u'io_timeout_secs': u'30',
-        },
+        u'properties': expected_properties,
         u'pubsub_topic': u'projects/abc/topics/def',
         u'pubsub_userdata': u'userdata',
         u'service_account': u'none',
@@ -847,12 +892,206 @@ class TasksApiTest(BaseTest):
           u'service_account:none',
           u'user:joe@localhost',
         ],
+        u'task_slices': [
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_properties,
+          },
+        ],
         u'user': u'joe@localhost',
       },
       u'task_id': u'5cee488008810',
     }
     response = self.call_api('new', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
+
+  def test_new_task_slices_one(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+
+    task_slices = [
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+    ]
+    response, _ = self.client_create_task(
+        expiration_secs=None, task_slices=task_slices)
+    expected_props = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [
+          {
+            u'package_name': u'rm',
+            u'path': u'bin',
+            u'version': u'git_revision:deadbeef',
+          },
+        ],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
+    expected = {
+      u'request': {
+        u'authenticated': u'user:user@example.com',
+        u'created_ts': str_now,
+        u'expiration_secs': u'180',
+        u'name': u'hi',
+        u'priority': u'20',
+        u'properties': expected_props,
+        u'service_account': u'none',
+        u'tags': [
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:20',
+          u'service_account:none',
+          u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'deny_if_no_worker': True,
+            u'expiration_secs': u'180',
+            u'properties': expected_props,
+          },
+        ],
+        u'user': u'joe@localhost',
+      },
+      u'task_id': u'5cee488008810',
+    }
+    self.assertEqual(expected, response)
+
+  def test_new_task_slices_two(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+
+    task_slices = [
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+    ]
+    response, _ = self.client_create_task(
+        expiration_secs=None, task_slices=task_slices)
+    expected_props = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [
+          {
+            u'package_name': u'rm',
+            u'path': u'bin',
+            u'version': u'git_revision:deadbeef',
+          },
+        ],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
+    expected = {
+      u'request': {
+        u'authenticated': u'user:user@example.com',
+        u'created_ts': str_now,
+        # Automatically calculated: 180+180
+        u'expiration_secs': u'360',
+        u'name': u'hi',
+        u'priority': u'20',
+        u'properties': expected_props,
+        u'service_account': u'none',
+        u'tags': [
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:20',
+          u'service_account:none',
+          u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'deny_if_no_worker': True,
+            u'expiration_secs': u'180',
+            u'properties': expected_props,
+          },
+          {
+            u'deny_if_no_worker': True,
+            u'expiration_secs': u'180',
+            u'properties': expected_props,
+          },
+        ],
+        u'user': u'joe@localhost',
+      },
+      u'task_id': u'5cee488008810',
+    }
+    self.assertEqual(expected, response)
+
+  def test_new_task_slices_two_denied(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+
+    cfg = config.settings()
+    cfg.isolate.default_server = 'https://isolateserver.appspot.com'
+    cfg.isolate.default_namespace = 'default-gzip'
+    self.mock(config, 'settings', lambda: cfg)
+
+    task_slices = [
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        # That's incorrect:
+        u'expiration_secs': 0,
+        u'deny_if_no_worker': True,
+      },
+    ]
+    request = swarming_rpcs.NewTaskRequest(
+        expiration_secs=None,
+        name='hi',
+        priority=10,
+        tags=[],
+        task_slices=task_slices,
+        user='joe@localhost')
+    resp = self.call_api('new', body=message_to_dict(request), status=400)
+    expected = {
+      u'state': u'APPLICATION_ERROR',
+      u'error_message': u'expiration_secs (0) must be between 1s and 7 days',
+    }
+    self.assertEqual(expected, resp.json)
 
   def test_mass_cancel(self):
     # Create two tasks.
@@ -1121,6 +1360,7 @@ class TasksApiTest(BaseTest):
         u'user:jack@localhost',
       ],
       u'task_id': u'5cfcee8008810',
+      u'task_slice_index': u'0',
       u'try_number': u'0',
       u'user': u'jack@localhost',
     }
@@ -1183,6 +1423,7 @@ class TasksApiTest(BaseTest):
         u'user:joe@localhost',
       ],
       u'task_id': u'5cee488006610',
+      u'task_slice_index': u'0',
       u'try_number': u'1',
       u'user': u'joe@localhost'
     }
@@ -1268,6 +1509,7 @@ class TaskApiTest(BaseTest):
         u'user:joe@localhost',
       ],
       u'task_id': task_id,
+      u'task_slice_index': u'0',
       u'user': u'joe@localhost',
     }
     response = self.call_api('result', body={'task_id': task_id})
@@ -1351,6 +1593,7 @@ class TaskApiTest(BaseTest):
           u'user:joe@localhost',
         ],
         u'task_id': task_id,
+        u'task_slice_index': u'0',
         u'try_number': u'1',
         u'user': u'joe@localhost',
       }
@@ -1405,6 +1648,7 @@ class TaskApiTest(BaseTest):
         u'user:joe@localhost',
       ],
       u'task_id': u'5cee488008810',
+      u'task_slice_index': u'0',
       u'user': u'joe@localhost',
     }
     self.assertEqual(expected, response.json)
@@ -1438,6 +1682,7 @@ class TaskApiTest(BaseTest):
       u'started_ts': str_now,
       u'state': u'RUNNING',
       u'task_id': u'5cee488008811',
+      u'task_slice_index': u'0',
       u'try_number': u'1',
     }
     self.assertEqual(expected, response.json)
@@ -1475,6 +1720,7 @@ class TaskApiTest(BaseTest):
       u'started_ts': str_now,
       u'state': u'COMPLETED',
       u'task_id': task_id,
+      u'task_slice_index': u'0',
       u'try_number': u'1',
     }
     self.assertEqual(expected, response.json)
@@ -1579,37 +1825,38 @@ class TaskApiTest(BaseTest):
         properties={'secret_bytes': 'zekret'},
         service_account='service-account@example.com')
     response = self.call_api('request', body={'task_id': task_id})
+    expected_properties = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [{
+          u'package_name': u'rm',
+          u'path': u'bin',
+          u'version': u'git_revision:deadbeef',
+        }],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+      u'secret_bytes': u'PFJFREFDVEVEPg==',  # <REDACTED> in base64
+    }
     expected = {
       u'authenticated': u'user:user@example.com',
       u'created_ts': unicode(now.strftime(self.DATETIME_FORMAT)),
       u'expiration_secs': unicode(24 * 60 * 60),
       u'name': u'hi',
       u'priority': u'20',
-      u'properties': {
-        u'cipd_input': {
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/${platform}',
-            u'version': u'git_revision:deadbeef',
-          },
-          u'packages': [{
-            u'package_name': u'rm',
-            u'path': u'bin',
-            u'version': u'git_revision:deadbeef',
-          }],
-          u'server': u'https://chrome-infra-packages.appspot.com',
-        },
-        u'command': [u'python', u'run_test.py'],
-        u'dimensions': [
-          {u'key': u'os', u'value': u'Amiga'},
-          {u'key': u'pool', u'value': u'default'},
-        ],
-        u'execution_timeout_secs': u'3600',
-        u'grace_period_secs': u'30',
-        u'idempotent': False,
-        u'io_timeout_secs': u'1200',
-        u'outputs': [u'foo', u'path/to/foobar'],
-        u'secret_bytes': u'PFJFREFDVEVEPg==',  # <REDACTED> in base64
-      },
+      u'properties': expected_properties,
       u'service_account': u'service-account@example.com',
       u'tags': [
         u'os:Amiga',
@@ -1617,6 +1864,12 @@ class TaskApiTest(BaseTest):
         u'priority:20',
         u'service_account:service-account@example.com',
         u'user:joe@localhost',
+      ],
+      u'task_slices': [
+        {
+          u'expiration_secs': u'86400',
+          u'properties': expected_properties,
+        },
       ],
       u'user': u'joe@localhost',
     }
@@ -2061,6 +2314,7 @@ class BotApiTest(BaseTest):
           u'started_ts': now_1_str,
           u'state': u'COMPLETED',
           u'task_id': u'5cee870005511',
+          u'task_slice_index': u'0',
           u'try_number': u'1',
         },
       ],
