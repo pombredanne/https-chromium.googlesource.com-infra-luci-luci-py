@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "267eb6fb_c5f13c5c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T14:25:48Z",
+      "side": 1,
+      "message": "I actually like it like this - otherwise you need to do it both internally (when traversing a subdir) and externally (when making the call).\n\nAlternative: def copy_tree(src_dir, dst_dir, item\u003dNone) and leave it up to the caller.",
+      "parentUuid": "cf0d4cd1_77f87638",
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c5c9ba5_c253f1a9",
         "filename": "client/run_isolated.py",
         "patchSetId": 1
@@ -118,6 +136,30 @@
       "side": 1,
       "message": "There\u0027s an example here: https://cs.chromium.org/chromium/infra/luci/client/isolated_format.py?l\u003d155",
       "parentUuid": "5c5c9ba5_c253f1a9",
+      "range": {
+        "startLine": 512,
+        "startChar": 0,
+        "endLine": 513,
+        "endChar": 26
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa0f8678_f99aec3f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T14:25:48Z",
+      "side": 1,
+      "message": "That example\u0027s a bit more complicated than we need, don\u0027t you think? It\u0027s trying to accurately preserve symlinks itself, whereas I don\u0027t think we\u0027re trying to do that - are we?",
+      "parentUuid": "34ba87e9_05e73b4e",
       "range": {
         "startLine": 512,
         "startChar": 0,
@@ -189,6 +231,30 @@
       "side": 1,
       "message": "I think it\u0027s fine to silently drop broken symlinks, as otherwise this could be a security issue if it permits to espace the isolated tree, but would work once mapped into the output tree. Unlikely but still, I prefer to reduce the attack surface.",
       "parentUuid": "4b08ec7c_02ec3910",
+      "range": {
+        "startLine": 515,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 20
+      },
+      "revId": "a56dbacb9edff2e20eab90424918999d294ffb7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1927c0ea_82e2f02e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-21T14:25:48Z",
+      "side": 1,
+      "message": "I mainly just want to log them, not return them to the user. But an exception is much easier to unit test than a log write.",
+      "parentUuid": "87e7f024_b765a7f5",
       "range": {
         "startLine": 515,
         "startChar": 1,
