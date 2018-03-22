@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e9da6a6_62fd9b10",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-22T19:20:18Z",
+      "side": 1,
+      "message": "Does this work if item is None?",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 519,
+        "endChar": 37
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0837130_e697b977",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-22T19:20:18Z",
+      "side": 1,
+      "message": "recursively?",
+      "range": {
+        "startLine": 521,
+        "startChar": 46,
+        "endLine": 521,
+        "endChar": 62
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
