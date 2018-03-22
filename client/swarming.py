@@ -549,7 +549,7 @@ def retrieve_results(
             'Error while reading task: %s', result['error']['message'])
       continue
 
-    if result['state'] in State.STATES_NOT_RUNNING:
+    if result['state'] in State.STATES_NOT_RUNNING or timeout == 0:
       if fetch_stdout:
         out = net.url_read_json(output_url)
         result['output'] = out.get('output', '') if out else ''
@@ -1170,8 +1170,8 @@ class TaskOutputStdoutOption(optparse.Option):
 def add_collect_options(parser):
   parser.server_group.add_option(
       '-t', '--timeout', type='float',
-      help='Timeout to wait for result, set to 0 for no timeout; default to no '
-           'wait')
+      help='Timeout to wait for result, set to 0 for no timeout and get '
+           'current state; defaults to waiting until the task completes')
   parser.group_logging.add_option(
       '--decorate', action='store_true', help='Decorate output')
   parser.group_logging.add_option(
@@ -1311,9 +1311,11 @@ def CMDcancel(parser, args):
     parser.error('Please specify the task to cancel')
   for task_id in args:
     url = '%s/api/swarming/v1/task/%s/cancel' % (options.swarming, task_id)
-    if net.url_read_json(url, data={'task_id': task_id}, method='POST') is None:
+    resp = net.url_read_json(url, data={}, method='POST')
+    if resp is None:
       print('Deleting %s failed. Probably already gone' % task_id)
       return 1
+    logging.info('%s', resp)
   return 0
 
 
