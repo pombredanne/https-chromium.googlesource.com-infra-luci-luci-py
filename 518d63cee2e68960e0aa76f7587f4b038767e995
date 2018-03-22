@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b7769e6_f017363a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-22T17:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00a89e13_b9ba41a6",
+      "range": {
+        "startLine": 992,
+        "startChar": 31,
+        "endLine": 992,
+        "endChar": 42
+      },
+      "revId": "518d63cee2e68960e0aa76f7587f4b038767e995",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e525eb7a_f6bed544",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-22T02:08:36Z",
       "side": 1,
       "message": "but what are the upper 60 bits?",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "518d63cee2e68960e0aa76f7587f4b038767e995",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f028e135_7870c8a9",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-22T17:43:37Z",
+      "side": 1,
+      "message": "Added \"rest is 0\". With TaskProperties fallback, I\u0027ll start using more bits. The purpose of this change is to not create too many moving pieces in one CL, as it\u0027s already large enough. I agree this makes this line a bit odd.",
+      "parentUuid": "e525eb7a_f6bed544",
       "range": {
         "startLine": 64,
         "startChar": 2,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ab2dffd4_1a60e33e",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-22T17:43:37Z",
+      "side": 1,
+      "message": "Rewrote, it was confusing. It\u0027s now clearer.",
+      "parentUuid": "021f5559_0ca19ffe",
+      "range": {
+        "startLine": 72,
+        "startChar": 52,
+        "endLine": 72,
+        "endChar": 73
+      },
+      "revId": "518d63cee2e68960e0aa76f7587f4b038767e995",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ad96568_ce596bc1",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "4e16c491_3993fb20",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-22T17:43:37Z",
+      "side": 1,
+      "message": "Right now, yes. In follow up, I\u0027m adding more junk. But I clarified in the comment above that all upper bits are 0.",
+      "parentUuid": "5ad96568_ce596bc1",
+      "range": {
+        "startLine": 437,
+        "startChar": 28,
+        "endLine": 437,
+        "endChar": 38
+      },
+      "revId": "518d63cee2e68960e0aa76f7587f4b038767e995",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24f74db6_efdace36",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 7
@@ -105,6 +201,30 @@
       "writtenOn": "2018-03-22T02:08:36Z",
       "side": 1,
       "message": "nit: huh? Why h? Also this change seems unnecessary, h is used only once.",
+      "range": {
+        "startLine": 451,
+        "startChar": 2,
+        "endLine": 451,
+        "endChar": 3
+      },
+      "revId": "518d63cee2e68960e0aa76f7587f4b038767e995",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35fc79bf_a66afe00",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-22T17:43:37Z",
+      "side": 1,
+      "message": "Simplifying the diff with follow up. :/ Sorry for the seemingly unreasonable change.\n\nBasically, in a follow up request.properties is not usable anymore. I\u0027ve reverted since it wasn\u0027t that valuable here.",
+      "parentUuid": "24f74db6_efdace36",
       "range": {
         "startLine": 451,
         "startChar": 2,
