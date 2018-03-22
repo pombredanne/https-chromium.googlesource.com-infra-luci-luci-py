@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be8e1e3c_128c83e2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-22T16:03:17Z",
+      "side": 1,
+      "message": "I know this is ugly but I prefer to move then refactor than doing both at once, especially that I tend to mess up.",
+      "revId": "0b3bead86f5bf18dfcf1865d01d8278ae4c03704",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
