@@ -458,6 +458,9 @@ class _TaskResultCommon(ndb.Model):
   # The pinned versions of all the CIPD packages used in the task.
   cipd_pins = ndb.LocalStructuredProperty(CipdPins)
 
+  # Index in the TaskRequest.task_slices that this entity ran.
+  task_slice_index = ndb.IntegerProperty(indexed=False, default=0)
+
   @property
   def can_be_canceled(self):
     """Returns True if the task is in a state that can be canceled."""
@@ -889,6 +892,7 @@ class TaskResultSummary(_TaskResultCommon):
     set.
     """
     assert ndb.in_transaction()
+    assert isinstance(request, task_request.TaskRequest), request
     assert isinstance(run_result, TaskRunResult), run_result
     for property_name in _TaskResultCommon._properties_fixed():
       setattr(self, property_name, getattr(run_result, property_name))
@@ -903,14 +907,18 @@ class TaskResultSummary(_TaskResultCommon):
       self.costs_usd.append(0.)
     self.costs_usd[run_result.try_number-1] = run_result.cost_usd
 
+    # Update the automatic tags, removing the ones from the other
+    # TaskProperties.
+    # https://crbug.com/781021
+    t = request.task_slice(run_result.task_slice_index or 0)
     if (self.state == State.COMPLETED and
         not self.failure and
         not self.internal_failure and
-        request.properties.idempotent and
+        t.properties.idempotent and
         not self.deduped_from):
       # Signal the results are valid and can be reused. If the request has a
       # SecretBytes, it is GET, which is a performance concern.
-      self.properties_hash = request.properties_hash()
+      self.properties_hash = t.properties_hash()
 
   def need_update_from_run_result(self, run_result):
     """Returns True if set_from_run_result() would modify this instance.

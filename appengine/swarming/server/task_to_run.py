@@ -62,6 +62,7 @@ class TaskToRun(ndb.Model):
 
   The key id is:
   - lower 4 bits is the try number. The only supported values are 1 and 2.
+  - next 5 bits are TaskResultSummary.task_slice_index (shifted by 4 bits).
   - rest is 0.
   """
   # This entity is used in transactions. It is not worth using either cache.
@@ -90,6 +91,11 @@ class TaskToRun(ndb.Model):
   queue_number = ndb.IntegerProperty()
 
   @property
+  def task_slice_index(self):
+    """Returns the TaskRequest.task_slice() index."""
+    return self.key.integer_id() >> 4
+
+  @property
   def try_number(self):
     """Returns the try number, 1 or 2."""
     return self.key.integer_id() & 15
@@ -111,11 +117,13 @@ class TaskToRun(ndb.Model):
     if out['queue_number']:
       out['queue_number'] = '0x%016x' % out['queue_number']
     out['try_number'] = self.try_number
+    out['task_slice_index'] = self.task_slice_index
     return out
 
   def _pre_put_hook(self):
     super(TaskToRun, self)._pre_put_hook()
     assert 1 <= self.try_number <= 2, self.try_number
+    assert 0 <= self.task_slice_index < 64, self.task_slice_index
 
 
 ### Private functions.
@@ -249,7 +257,7 @@ def _validate_task_async(bot_dimensions, deadline, stats, now, to_run):
 
   # Ok, it's now worth taking a real look at the entity.
   request = yield task_to_run_key_to_request_key(to_run.key).get_async()
-  props = request.properties
+  props = request.task_slice(to_run.task_slice_index).properties
 
   # The hash may have conflicts. Ensure the dimensions actually match by
   # verifying the TaskRequest.
@@ -433,10 +441,12 @@ def _yield_potential_tasks(bot_id):
 ### Public API.
 
 
-def request_to_task_to_run_key(request, try_number):
+def request_to_task_to_run_key(request, try_number, task_slice_index):
   """Returns the ndb.Key for a TaskToRun from a TaskRequest."""
   assert 1 <= try_number <= 2, try_number
-  return ndb.Key(TaskToRun, try_number, parent=request.key)
+  assert 0 <= task_slice_index < 64, task_slice_index
+  return ndb.Key(
+      TaskToRun, try_number | (task_slice_index << 4), parent=request.key)
 
 
 def task_to_run_key_to_request_key(task_key):
@@ -445,35 +455,40 @@ def task_to_run_key_to_request_key(task_key):
   return task_key.parent()
 
 
-def gen_queue_number(request):
+def gen_queue_number(request, task_slice_index):
   """Returns the value to use for TaskToRun.queue_number based on request.
 
   It is exported so a task can be retried by task_scheduler.
   """
+  h = request.task_slice(task_slice_index).properties.dimensions
   return _gen_queue_number(
-      task_queues.hash_dimensions(request.properties.dimensions),
-      request.created_ts,
-      request.priority)
+      task_queues.hash_dimensions(h), request.created_ts, request.priority)
 
 
-def new_task_to_run(request, try_number):
+def new_task_to_run(request, try_number, task_slice_index):
   """Returns a fresh new TaskToRun for the task ready to be scheduled.
 
   Returns:
     Unsaved TaskToRun entity.
   """
   assert 1 <= try_number <= 2, try_number
+  assert 0 <= task_slice_index < 64, task_slice_index
   created = request.created_ts
-  if try_number != 1:
+  if try_number != 1 or task_slice_index:
     # When retrying, use the current time.
     created = utils.utcnow()
   # TODO(maruel): expiration_ts is based on request.created_ts but it could be
   # enqueued sooner or later. crbug.com/781021
-  exp = request.created_ts + datetime.timedelta(seconds=request.expiration_secs)
+  offset = 0
+  if task_slice_index:
+    for i in xrange(task_slice_index):
+      offset += request.task_slice(i).expiration_secs
+  exp = request.created_ts + datetime.timedelta(
+      seconds=request.task_slice(task_slice_index).expiration_secs+offset)
   return TaskToRun(
-      key=request_to_task_to_run_key(request, try_number),
+      key=request_to_task_to_run_key(request, try_number, task_slice_index),
       created_ts=created,
-      queue_number=gen_queue_number(request),
+      queue_number=gen_queue_number(request, task_slice_index),
       expiration_ts=exp)
 
 
@@ -508,7 +523,6 @@ def set_lookup_cache(task_key, is_available_to_schedule):
   # server with unneeded keys.
   cache_lifetime = 15
 
-  assert not ndb.in_transaction()
   key = _memcache_to_run_key(task_key)
   if is_available_to_schedule:
     # The item is now available, so remove it from memcache.
