@@ -45,6 +45,29 @@
       "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f275e0e_a2dc5f5a",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-22T19:56:07Z",
+      "side": 1,
+      "message": "Instead of one big test, you can create several:\n\n  * Normal file\n  * Symlink to file\n  * Symlink to symlink to file\n  * Symlink to [symlink to] directory\n  * Broken symlink\n  * Symlink to broken symlink\n  * Directory contains symlink to file in its parent\n  * Symlink to a directory\u0027s parent (what will happen!?)\n\nI\u0027m sure you can come up with more!\n\nIdeally, you\u0027ll also be able to confirm that the failures are logged. If you can\u0027t do it automatically, but the logs are printed to stdout/stderr, you can mention in a comment somewhere that you verified manually that they\u0027re being printed out.",
+      "range": {
+        "startLine": 966,
+        "startChar": 6,
+        "endLine": 966,
+        "endChar": 18
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
