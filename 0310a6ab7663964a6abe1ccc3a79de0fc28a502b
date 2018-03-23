@@ -236,6 +236,30 @@
       "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bd6d1c6_34b7086f",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-23T20:33:08Z",
+      "side": 1,
+      "message": "Cyclic: M-A has the final say, but at least for now I\u0027d say it\u0027s fine not to do anything special to track this (eg look for a cycle). Just tell users not to do it.",
+      "parentUuid": "969ac2bf_971e13ae",
+      "range": {
+        "startLine": 966,
+        "startChar": 6,
+        "endLine": 966,
+        "endChar": 18
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
