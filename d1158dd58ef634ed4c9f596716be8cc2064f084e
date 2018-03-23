@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11c3cc54_7e79b7f9",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T19:58:07Z",
+      "side": 1,
+      "message": "Excellent point, used conditional retry_50x on timeout \u003d\u003d -1",
+      "parentUuid": "4f565aab_8e523c62",
+      "range": {
+        "startLine": 506,
+        "startChar": 2,
+        "endLine": 506,
+        "endChar": 10
+      },
+      "revId": "d1158dd58ef634ed4c9f596716be8cc2064f084e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b006830_6b0df4a3",
         "filename": "client/swarming.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "d1158dd58ef634ed4c9f596716be8cc2064f084e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47b84f65_98b82abd",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T19:58:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b006830_6b0df4a3",
+      "range": {
+        "startLine": 1202,
+        "startChar": 60,
+        "endLine": 1202,
+        "endChar": 68
+      },
+      "revId": "d1158dd58ef634ed4c9f596716be8cc2064f084e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
