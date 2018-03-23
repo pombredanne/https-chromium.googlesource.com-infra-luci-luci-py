@@ -529,6 +529,11 @@ def _bot_update_tx(
     return None, None, 'TaskRunResult is broken; %s' % (
         run_result.to_dict())
 
+  if run_result.state == task_result.State.KILLED:
+    # The task was canceled while running.
+    # Store the current output but immediately tell the bot to abort the task.
+    return result_summary_future.get_result(), run_result, None
+
   # Assumptions:
   # - duration and exit_code are both set or not set.
   # - same for run_result.
@@ -972,6 +977,13 @@ def cancel_task(request, result_key):
   TaskResultSummary/TaskRunResult accordingly.
 
   Warning: ACL check must have been done before.
+  Warning: The TaskRunResult.state is immediately set to CANCELED, so there is
+           no way to know when the bot is done.
+
+  Returns:
+    tuple(bool, bool)
+    - True if the cancelation succeeded.
+    - True if the task was running while it was canceled.
   """
   to_run_key = task_to_run.request_to_task_to_run_key(request)
   if result_key.kind() == 'TaskRunResult':
@@ -979,16 +991,36 @@ def cancel_task(request, result_key):
   now = utils.utcnow()
 
   def run():
-    to_run, result_summary = ndb.get_multi((to_run_key, result_key))
+    result_summary_future = result_key.get_async()
+    to_run_future = to_run_key.get_async()
+    result_summary = result_summary_future.get_result()
     was_running = result_summary.state == task_result.State.RUNNING
     if not result_summary.can_be_canceled:
+      to_run_future.wait()
       return False, was_running
-    to_run.queue_number = None
+
+    entities = [result_summary]
     result_summary.state = task_result.State.CANCELED
     result_summary.abandoned_ts = now
     result_summary.modified_ts = now
 
-    futures = ndb.put_multi_async((to_run, result_summary))
+    if result_summary.try_number:
+      run_result_key = result_summary.run_result_key
+      run_result_future = run_result_key.get_async()
+
+    to_run = to_run_future.get_result()
+    if to_run.queue_number:
+      to_run.queue_number = None
+      entities.append(to_run)
+
+    if result_summary.try_number:
+      run_result = run_result_future.get_result()
+      run_result.state = task_result.State.CANCELED
+      run_result.abandoned_ts = now
+      run_result.modified_ts = now
+      entities.append(run_result)
+
+    futures = ndb.put_multi_async(entities)
     _maybe_pubsub_notify_via_tq(result_summary, request)
     for f in futures:
       f.check_success()
