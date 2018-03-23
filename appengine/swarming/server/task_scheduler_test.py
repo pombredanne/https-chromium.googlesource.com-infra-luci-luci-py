@@ -969,6 +969,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         expected, task_scheduler.bot_kill_task(run_result.key, 'bot1'))
 
   def test_cancel_task(self):
+    # pending
     request = gen_request(pubsub_topic='projects/abc/topics/def')
     pub_sub_calls = self.mock_pub_sub()
     task_request.init_new_request(request, True)
@@ -990,12 +991,39 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     reaped_request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
     ok, was_running = task_scheduler.cancel_task(request, result_summary.key)
-    self.assertEqual(False, ok)
+    self.assertEqual(True, ok)
     self.assertEqual(True, was_running)
     result_summary = result_summary.key.get()
-    self.assertEqual(task_result.State.RUNNING, result_summary.state)
+    self.assertEqual(task_result.State.KILLED, result_summary.state)
     self.assertEqual(1, self.execute_tasks())
     self.assertEqual(1, len(pub_sub_calls)) # PENDING -> RUNNING
+    run_result = result_summary.run_result_key.get()
+    self.assertEqual(task_result.State.KILLED, run_result.state)
+
+  def test_cancel_task_done(self):
+    data = _gen_request(properties={'dimensions': {u'OS': u'Windows-3.1.1'}})
+    request = task_request.make_request(data, True)
+    result_summary = task_scheduler.schedule_request(request)
+    reaped_request, run_result = task_scheduler.bot_reap_task(
+        {'OS': 'Windows-3.1.1'}, 'localhost', 'abc', None)
+    self.assertEqual(
+        task_result.State.COMPLETED,
+        task_scheduler.bot_update_task(
+            run_result_key=run_result.key,
+            bot_id='localhost',
+            output='hey',
+            output_chunk_start=0,
+            exit_code=0,
+            duration=0.1,
+            hard_timeout=False,
+            io_timeout=False,
+            cost_usd=0.1,
+            outputs_ref=None,
+            performance_stats=None))
+    ok, was_running = task_scheduler.cancel_task(request, result_summary.key)
+    self.assertEqual((False, False), (ok, was_running))
+    result_summary = result_summary.key.get()
+    self.assertEqual(task_result.State.COMPLETED, result_summary.state)
 
   def test_cron_abort_expired_task_to_run(self):
     request = gen_request(pubsub_topic='projects/abc/topics/def')
