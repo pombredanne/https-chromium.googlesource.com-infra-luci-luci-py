@@ -260,6 +260,30 @@
       "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c33b1d51_a9077a5e",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "I\u0027m fine with a \"TODO(sadafm): Explicitly handle cyclic symlinks.\" and crash for now. Once we have a use case we\u0027ll have a reason to fix it. :)",
+      "parentUuid": "1bd6d1c6_34b7086f",
+      "range": {
+        "startLine": 966,
+        "startChar": 6,
+        "endLine": 966,
+        "endChar": 18
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

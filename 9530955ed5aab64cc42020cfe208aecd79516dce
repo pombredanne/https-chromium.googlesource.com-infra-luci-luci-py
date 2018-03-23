@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdcc1c6b_43c01d7c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "Please bump the minor version, i.e. 0.10.5",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a57d1f57_83285704",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "Please replace with:\n\n  copy_tree(os.path.join(run_dir, o), os.path.join(out_dir, o))\n\nno more need for named variables.",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "291fa232_eaa9d6d8",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "Then the name should not be copy_tree() since it now allows files too. copy_item_recursively() ? Ok it\u0027s kind of a bad name but for me, \"tree\" implies \"only works on directory\".",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bfe0a80_67e4a661",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "s/standard CopyTree function/shutil.copytree()/",
+      "range": {
+        "startLine": 517,
+        "startChar": 11,
+        "endLine": 517,
+        "endChar": 19
+      },
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5adb9739_9fe6ada7",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "Docstrings inside function is kinda weird (to me) and this style is not used here, please use normal comment.",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad62a9a1_6bbc5c9d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "if the file is a symlink to a file, this will result in a copy, which is not optimal IMHO",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "924f82b0_03464193",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "inline the two variables",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a88ee6e1_27098ced",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:40:11Z",
+      "side": 1,
+      "message": "what\u0027s enum?",
+      "revId": "9530955ed5aab64cc42020cfe208aecd79516dce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
