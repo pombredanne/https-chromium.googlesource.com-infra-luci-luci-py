@@ -981,6 +981,9 @@ class TasksApiTest(BaseTest):
         (None, TaskState.EXPIRED, TaskSort.ABANDONED_TS),
         (None, TaskState.EXPIRED, TaskSort.COMPLETED_TS),
         (None, TaskState.EXPIRED, TaskSort.MODIFIED_TS),
+        (None, TaskState.KILLED, TaskSort.ABANDONED_TS),
+        (None, TaskState.KILLED, TaskSort.COMPLETED_TS),
+        (None, TaskState.KILLED, TaskSort.MODIFIED_TS),
         (None, TaskState.PENDING, TaskSort.ABANDONED_TS),
         (None, TaskState.PENDING, TaskSort.COMPLETED_TS),
         (None, TaskState.PENDING, TaskSort.MODIFIED_TS),
@@ -1235,7 +1238,7 @@ class TaskApiTest(BaseTest):
     self.tasks_api = test_case.Endpoints(
         handlers_endpoints.SwarmingTasksService)
 
-  def test_cancel_ok(self):
+  def test_cancel_pending(self):
     """Asserts that task cancellation goes smoothly."""
     # catch PubSub notification
     # Create and cancel a task as a non-privileged user.
@@ -1299,7 +1302,7 @@ class TaskApiTest(BaseTest):
     self.set_as_user()
     self.call_api('cancel', body={'task_id': task_id}, status=403)
 
-  def test_task_canceled(self):
+  def test_cancel_running(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(now)

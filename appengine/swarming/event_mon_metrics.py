@@ -116,6 +116,8 @@ def _task_summary_to_proto(summary, event):
     event.proto.swarming_task_event.state = state_enum['TIMED_OUT'].number
   elif summary.state == task_result.State.EXPIRED:
     event.proto.swarming_task_event.state = state_enum['EXPIRED'].number
+  #elif summary.state == task_result.State.KILLED:
+  #  event.proto.swarming_task_event.state = state_enum['KILLED'].number
   else:
     logging.error('Unhandled task state %r', summary.state)
 
