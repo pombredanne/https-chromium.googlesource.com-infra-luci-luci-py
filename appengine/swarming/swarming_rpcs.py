@@ -15,7 +15,7 @@ class TaskState(messages.Enum):
   (
     PENDING, RUNNING, PENDING_RUNNING, COMPLETED, COMPLETED_SUCCESS,
     COMPLETED_FAILURE, EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, ALL,
-    DEDUPED) = range(12)
+    DEDUPED, KILLED) = range(12)
 
 
 class StateField(messages.Enum):
@@ -26,6 +26,7 @@ class StateField(messages.Enum):
   BOT_DIED = 0x50   # 80
   CANCELED = 0x60   # 96
   COMPLETED = 0x70  # 112
+  KILLED = 0x80     # 128
 
 
 class TaskSort(messages.Enum):

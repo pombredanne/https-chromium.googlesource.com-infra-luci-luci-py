@@ -1168,6 +1168,67 @@ class BotApiTest(test_env_handlers.AppTestBase):
     ]
     self.assertEqual(expected, [e[1] for e in errors])
 
+  def test_task_canceled(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+    str_now = unicode(now.strftime(DATETIME_FORMAT))
+    params = self.do_handshake()
+    _, task_id = self.client_create_task_raw(
+        properties=dict(command=['python', 'runtest.py']))
+
+    def _params(**kwargs):
+      out = {
+        'cost_usd': 0.1,
+        'duration': None,
+        'exit_code': None,
+        'id': 'bot1',
+        'output': None,
+        'output_chunk_start': 0,
+        'task_id': task_id,
+      }
+      out.update(**kwargs)
+      return out
+
+    def _expected(**kwargs):
+      out = {
+        u'bot_dimensions': [
+          {u'key': u'id', u'value': [u'bot1']},
+          {u'key': u'os', u'value': [u'Amiga']},
+          {u'key': u'pool', u'value': [u'default']},
+        ],
+        u'bot_id': u'bot1',
+        u'bot_version': self.bot_version,
+        u'costs_usd': [0.1],
+        u'created_ts': str_now,
+        u'failure': False,
+        u'internal_failure': False,
+        u'modified_ts': str_now,
+        u'name': u'hi',
+        u'server_versions': [u'v1a'],
+        u'started_ts': str_now,
+        u'state': u'RUNNING',
+        u'task_id': u'5cee488008811',
+        u'try_number': u'1',
+      }
+      out.update((unicode(k), v) for k, v in kwargs.iteritems())
+      return out
+
+    def _cycle(params, expected, must_stop):
+      response = self.post_json('/swarming/api/v1/bot/task_update', params)
+      self.assertEqual({u'must_stop': must_stop, u'ok': True}, response)
+      self.assertEqual(expected, self.client_get_results(task_id))
+
+    params = _params(output=base64.b64encode('Oh '))
+    expected = _expected()
+    _cycle(params, expected, False)
+
+    self.client_cancel()
+
+    params = _params(output=base64.b64encode('hi'), output_chunk_start=3)
+    expected = _expected()
+    _cycle(params, expected, False)
+
   def test_bot_code_as_bot(self):
     code = self.app.get('/bot_code')
     expected = {'config/bot_config.py', 'config/config.json'}.union(
