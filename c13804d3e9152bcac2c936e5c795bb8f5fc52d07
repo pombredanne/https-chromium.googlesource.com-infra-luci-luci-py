@@ -52,6 +52,24 @@
       "revId": "c13804d3e9152bcac2c936e5c795bb8f5fc52d07",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48deec15_bde19a4c",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2018-03-23T21:12:18Z",
+      "side": 1,
+      "message": "I ended up using this to get rid of the link styling that seems to get applied, at least on my desktop.",
+      "parentUuid": "1bf3869a_5bb3b8ec",
+      "revId": "c13804d3e9152bcac2c936e5c795bb8f5fc52d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
