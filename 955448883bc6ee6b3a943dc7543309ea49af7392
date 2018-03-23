@@ -22,6 +22,47 @@
       "revId": "955448883bc6ee6b3a943dc7543309ea49af7392",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72eeac69_cd2e625e",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:23:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f41b0347_efa9e256",
+      "range": {
+        "startLine": 539,
+        "startChar": 6,
+        "endLine": 539,
+        "endChar": 14
+      },
+      "revId": "955448883bc6ee6b3a943dc7543309ea49af7392",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8891b2d_6c0b41ad",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T20:23:00Z",
+      "side": 1,
+      "message": "Decided to go with \"return result\" here. The user will get the error so they can do whatever they want with it.",
+      "revId": "955448883bc6ee6b3a943dc7543309ea49af7392",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
