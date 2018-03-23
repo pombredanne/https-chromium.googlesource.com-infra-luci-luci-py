@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d55b4cac_cfc32106",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T00:59:38Z",
+      "side": 1,
+      "message": "Commented out the assert here, with a comment to reenable later, as during the transition to new key IDs, tasks that are getting reaped with the old key IDs are triggering this assert. Oops.",
+      "revId": "e14b3a32ff0854b0d2980acafefbde31ac42bed8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
