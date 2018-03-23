@@ -33,6 +33,7 @@ import argparse
 import base64
 import collections
 import contextlib
+import errno
 import json
 import logging
 import optparse
@@ -499,16 +500,62 @@ def link_outputs_to_outdir(run_dir, out_dir, outputs):
     return
   isolateserver.create_directories(out_dir, outputs)
   for o in outputs:
-    try:
-      infile = os.path.join(run_dir, o)
-      outfile = os.path.join(out_dir, o)
-      if fs.islink(infile):
-        # TODO(aludwin): handle directories
-        fs.copy2(infile, outfile)
-      else:
-        file_path.link_file(outfile, infile, file_path.HARDLINK_WITH_FALLBACK)
-    except OSError as e:
-      logging.info("Couldn't collect output file %s: %s", o, e)
+    infile = os.path.join(run_dir, o)
+    outfile = os.path.join(out_dir, o)
+    copy_tree(infile, outfile)
+
+
+def copy_tree(src, dst):
+  """Efficiently copies a file or directory from src_dir to dst_dir.
+
+  `item` may be a file, directory, or a symlink to a file or directory.
+  All symlinks are replaced with their targets, so the resulting
+  directory structure in dst_dir will never have any symlinks.
+
+  To increase speed, copy_tree hardlinks individual files into the
+  (newly created) directory structure if possible, unlike Python's
+  standard CopyTree function.
+  """
+  try:
+    """Replace symlinks with their final target."""
+    orig_src = src
+    while fs.islink(src):
+      src = os.readlink(src)
+
+    """Check if src exists. Note that os.stat throws an exception
+    if src does not exist or symlink is broken. We do not care about
+    the actual stat object, only the exception.
+    """
+    os.stat(src)
+  
+    """ In case of a symlink to a directory, copy_tree the directory.
+    For example in copying both the following structure:
+        [ir] -- dir_sl --> [dir]
+        [ir] -- dir_sl_1 --> dir_sl_2 --> [dir]
+    directory [dir] will be copied to [io]:
+        [io] -- [dir]
+    """
+    if os.path.islink(orig_src) and os.path.isdir(src):
+      dst = os.path.join(os.path.dirname(dst), os.path.basename(src))
+      copy_tree(src, dst)
+
+    if fs.isfile(src):
+      file_path.link_file(dst, src, file_path.HARDLINK_WITH_FALLBACK)
+      return
+
+    if not os.path.exists(dst):
+      os.makedirs(dst)
+
+    for child in os.listdir(src):
+      infile = os.path.join(src, child)
+      outfile = os.path.join(dst, child)
+      copy_tree(infile, outfile)
+
+  except OSError as e:
+    if e.errno == errno.ENOENT:
+      logging.warning('Path %s does not exist or is a broken symlink' % src)
+    else:
+      logging.info("Couldn't collect output file %s: %s", src, e)
 
 
 def delete_and_upload(storage, out_dir, leak_temp_dir):
