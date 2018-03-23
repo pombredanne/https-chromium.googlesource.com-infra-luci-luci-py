@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "2eda6612_5a5c0116",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-23T20:24:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74ef56e1_210e9bb3",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 519,
+        "endChar": 37
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0837130_e697b977",
         "filename": "client/run_isolated.py",
         "patchSetId": 2
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "b99af8a4_4c6981ce",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-23T20:24:39Z",
+      "side": 1,
+      "message": "Not sure. Moved it to after symlink resolution to be safe.",
+      "parentUuid": "d0837130_e697b977",
+      "range": {
+        "startLine": 521,
+        "startChar": 46,
+        "endLine": 521,
+        "endChar": 62
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f275e0e_a2dc5f5a",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 2
@@ -155,6 +203,30 @@
       "writtenOn": "2018-03-22T19:56:07Z",
       "side": 1,
       "message": "Instead of one big test, you can create several:\n\n  * Normal file\n  * Symlink to file\n  * Symlink to symlink to file\n  * Symlink to [symlink to] directory\n  * Broken symlink\n  * Symlink to broken symlink\n  * Directory contains symlink to file in its parent\n  * Symlink to a directory\u0027s parent (what will happen!?)\n\nI\u0027m sure you can come up with more!\n\nIdeally, you\u0027ll also be able to confirm that the failures are logged. If you can\u0027t do it automatically, but the logs are printed to stdout/stderr, you can mention in a comment somewhere that you verified manually that they\u0027re being printed out.",
+      "range": {
+        "startLine": 966,
+        "startChar": 6,
+        "endLine": 966,
+        "endChar": 18
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "969ac2bf_971e13ae",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-23T20:24:39Z",
+      "side": 1,
+      "message": "I added more tests, and realized there were things that were not handles in copy_tree, so modified that too. I also decided to call link_outputs_to_outdir instead of calling copy_tree directly, because that function takes care of constructing the directory structure.\n\nCurrently, copy_tree doesn\u0027t handle cyclic symlinks. What is the desired behavior? For example,\n what do we want in out_dir for these cases:\n\n(1)  [dir1]---[dir2]---(symlink_to_dir1)\n\n(2)  [dir1]---[dir2]|---(symlink_to_dir1)\n                    |-----(file_in_dir2)\n\n(3)  [dir1]|---[dir2]------------(symlink_to_dir1)\n           |---(file_in_dir1)",
+      "parentUuid": "5f275e0e_a2dc5f5a",
       "range": {
         "startLine": 966,
         "startChar": 6,
