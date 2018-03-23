@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f41b0347_efa9e256",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-23T20:02:21Z",
+      "side": 1,
+      "message": "This should become \u0027return None\u0027 if timeout \u003d\u003d -1, otherwise we\u0027ll just retry the inner retry loop again.",
+      "range": {
+        "startLine": 539,
+        "startChar": 6,
+        "endLine": 539,
+        "endChar": 14
+      },
+      "revId": "955448883bc6ee6b3a943dc7543309ea49af7392",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
