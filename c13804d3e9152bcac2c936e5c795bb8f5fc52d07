@@ -34,6 +34,24 @@
       "revId": "c13804d3e9152bcac2c936e5c795bb8f5fc52d07",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bf3869a_5bb3b8ec",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-23T17:54:35Z",
+      "side": 1,
+      "message": "Let\u0027s just remove the line for now then since it has no effect.",
+      "parentUuid": "2373396d_4ac4e37d",
+      "revId": "c13804d3e9152bcac2c936e5c795bb8f5fc52d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
