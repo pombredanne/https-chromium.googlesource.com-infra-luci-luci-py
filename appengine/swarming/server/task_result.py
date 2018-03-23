@@ -101,12 +101,16 @@ class State(object):
   BOT_DIED = 0x50   # 80
   CANCELED = 0x60   # 96
   COMPLETED = 0x70  # 112
+  KILLED = 0x80     # 128
 
-  STATES = (RUNNING, PENDING, EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED)
+  STATES = (
+      RUNNING, PENDING, EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED,
+      KILLED)
   STATES_RUNNING = (RUNNING, PENDING)
-  STATES_NOT_RUNNING = (EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED)
-  STATES_EXCEPTIONAL = (EXPIRED, TIMED_OUT, BOT_DIED, CANCELED)
-  STATES_DONE = (TIMED_OUT, COMPLETED)
+  STATES_NOT_RUNNING = (
+      EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED, KILLED)
+  STATES_EXCEPTIONAL = (EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, KILLED)
+  STATES_DONE = (TIMED_OUT, COMPLETED, KILLED)
   STATES_ABANDONED = (EXPIRED, BOT_DIED, CANCELED)
 
   _NAMES = {
@@ -117,6 +121,7 @@ class State(object):
     BOT_DIED: 'Bot died',
     CANCELED: 'User canceled',
     COMPLETED: 'Completed',
+    KILLED: 'Killed',
   }
 
   @classmethod
@@ -461,18 +466,7 @@ class _TaskResultCommon(ndb.Model):
   @property
   def can_be_canceled(self):
     """Returns True if the task is in a state that can be canceled."""
-    # TOOD(maruel): To be able to add State.RUNNING, the following must be done:
-    # task_scheduler.cancel_task() must be strictly a transaction relative to
-    # task_scheduler.bot_kill_task() and task_scheduler.bot_update_task().
-    #
-    # The tricky part is to keep this code performant. On the other hand, all
-    # the entities under the transaction (TaskToRun, TaskResultSummary and
-    # TaskRunResult) are under the same entity root, so it's definitely
-    # feasible, likely using a transaction is not a problem in practice. The
-    # important part would be to ensure that TaskOuputChunks are not also stored
-    # as part of the transaction, since they do not need to.
-    # https://code.google.com/p/swarming/issues/detail?id=62
-    return self.state == State.PENDING
+    return self.state in State.STATES_RUNNING
 
   @property
   def duration_as_seen_by_server(self):
@@ -1158,6 +1152,9 @@ def _filter_query(cls, query, start, end, sort, state):
 
   if state == 'canceled':
     return query.filter(cls.state == State.CANCELED)
+
+  if state == 'killed':
+    return query.filter(cls.state == State.KILLED)
 
   raise ValueError('Invalid state')
 
