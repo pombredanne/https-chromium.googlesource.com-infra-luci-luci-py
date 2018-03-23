@@ -284,6 +284,30 @@
       "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1025dc5a_46b6aa26",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-23T21:34:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c33b1d51_a9077a5e",
+      "range": {
+        "startLine": 966,
+        "startChar": 6,
+        "endLine": 966,
+        "endChar": 18
+      },
+      "revId": "0310a6ab7663964a6abe1ccc3a79de0fc28a502b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
