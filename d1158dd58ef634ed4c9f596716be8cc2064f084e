@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f565aab_8e523c62",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-23T19:29:33Z",
+      "side": 1,
+      "message": "Imagine the server is broken and returns HTTP 500 on all responses. Then \"swarming collect -timeout -1\" will hang forever. I think this is not expected behavior. It should given up trying after few attempts. Consider doing something like:\n\ndeadline \u003d started\nif timeout \u003e 0:\n  deadline +\u003d timeout\nelif timeout \u003d\u003d 0:\n  deadline \u003d None  # try forever\nelse:\n  deadline +\u003d 300  # give up on HTTPs 500 after 5 min\n\nOr alternatively pass retry_50x\u003dTrue on line 536 if timeout is -1, and exit on error (instead of \u0027continue\u0027 on line 538). This may be even better, since url_read_json does real exponential backoff IIRC, not linear line 523-528.",
+      "range": {
+        "startLine": 506,
+        "startChar": 2,
+        "endLine": 506,
+        "endChar": 10
+      },
+      "revId": "d1158dd58ef634ed4c9f596716be8cc2064f084e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b006830_6b0df4a3",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-03-23T19:29:33Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure someone will eventually come and ask for a higher value... Let\u0027s not limit it.",
+      "range": {
+        "startLine": 1202,
+        "startChar": 60,
+        "endLine": 1202,
+        "endChar": 68
+      },
+      "revId": "d1158dd58ef634ed4c9f596716be8cc2064f084e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
