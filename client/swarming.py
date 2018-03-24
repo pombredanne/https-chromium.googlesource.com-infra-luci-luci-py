@@ -297,14 +297,15 @@ class State(object):
   BOT_DIED = 0x50
   CANCELED = 0x60
   COMPLETED = 0x70
+  KILLED = 0x80
 
   STATES = (
       'RUNNING', 'PENDING', 'EXPIRED', 'TIMED_OUT', 'BOT_DIED', 'CANCELED',
-      'COMPLETED')
+      'COMPLETED', 'KILLED')
   STATES_RUNNING = ('RUNNING', 'PENDING')
   STATES_NOT_RUNNING = (
-      'EXPIRED', 'TIMED_OUT', 'BOT_DIED', 'CANCELED', 'COMPLETED')
-  STATES_DONE = ('TIMED_OUT', 'COMPLETED')
+      'EXPIRED', 'TIMED_OUT', 'BOT_DIED', 'CANCELED', 'COMPLETED', 'KILLED')
+  STATES_DONE = ('TIMED_OUT', 'COMPLETED', 'KILLED')
   STATES_ABANDONED = ('EXPIRED', 'BOT_DIED', 'CANCELED')
 
   _NAMES = {
@@ -315,6 +316,7 @@ class State(object):
     BOT_DIED: 'Bot died',
     CANCELED: 'User canceled',
     COMPLETED: 'Completed',
+    KILLED: 'User killed',
   }
 
   _ENUMS = {
@@ -325,6 +327,7 @@ class State(object):
     'BOT_DIED': BOT_DIED,
     'CANCELED': CANCELED,
     'COMPLETED': COMPLETED,
+    'KILLED': KILLED,
   }
 
   @classmethod
@@ -725,7 +728,7 @@ def decorate_shard_output(swarming, shard_index, metadata, include_stdout):
     tag_footer2 = ' Pending: %s  CANCELED' % pending
   elif metadata.get('state') == 'EXPIRED':
     tag_footer2 = ' Pending: %s  EXPIRED (lack of capacity)' % pending
-  elif metadata.get('state') in ('BOT_DIED', 'TIMED_OUT'):
+  elif metadata.get('state') in ('BOT_DIED', 'TIMED_OUT', 'KILLED'):
     tag_footer2 = ' Pending: %s  Duration: %s  Bot: %s  Exit: %s  %s' % (
         pending, duration, bot_id, exit_code, metadata['state'])
   else:
