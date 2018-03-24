@@ -675,6 +675,9 @@ class TasksApiTest(BaseTest):
         (None, TaskState.EXPIRED, TaskSort.ABANDONED_TS),
         (None, TaskState.EXPIRED, TaskSort.COMPLETED_TS),
         (None, TaskState.EXPIRED, TaskSort.MODIFIED_TS),
+        (None, TaskState.KILLED, TaskSort.ABANDONED_TS),
+        (None, TaskState.KILLED, TaskSort.COMPLETED_TS),
+        (None, TaskState.KILLED, TaskSort.MODIFIED_TS),
         (None, TaskState.PENDING, TaskSort.ABANDONED_TS),
         (None, TaskState.PENDING, TaskSort.COMPLETED_TS),
         (None, TaskState.PENDING, TaskSort.MODIFIED_TS),
@@ -859,7 +862,7 @@ class TaskApiTest(BaseTest):
     self.tasks_api = test_case.Endpoints(
         handlers_endpoints.SwarmingTasksService)
 
-  def test_cancel_ok(self):
+  def test_cancel_pending(self):
     """Asserts that task cancellation goes smoothly."""
     # catch PubSub notification
     # Create and cancel a task as a non-privileged user.
@@ -920,7 +923,7 @@ class TaskApiTest(BaseTest):
     self.set_as_user()
     self.call_api('cancel', body={'task_id': task_id}, status=403)
 
-  def test_task_canceled(self):
+  def test_cancel_running(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
     str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     _, task_id = self.client_create_task_raw(
@@ -957,16 +960,45 @@ class TaskApiTest(BaseTest):
         try_number=u'1')
     self.assertEqual(expected, self.client_get_results(task_id))
 
-    # Canceling a running task is currently not supported.
     response = self.call_api('cancel', body={'task_id': task_id})
-    self.assertEqual({u'ok': False, u'was_running': True}, response.json)
+    self.assertEqual({u'ok': True, u'was_running': True}, response.json)
 
     self.set_as_bot()
     params = _params(output=base64.b64encode('hi'), output_chunk_start=3)
     response = self.post_json('/swarming/api/v1/bot/task_update', params)
-    self.assertEqual({u'must_stop': False, u'ok': True}, response)
+    self.assertEqual({u'must_stop': True, u'ok': True}, response)
+
+    # abandoned_ts is set but state isn't changed yet.
+    self.set_as_user()
+    expected = self.gen_result_summary(
+        abandoned_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        modified_ts=str_now,
+        started_ts=str_now,
+        state=u'RUNNING',
+        try_number=u'1')
+    self.assertEqual(expected, self.client_get_results(task_id))
+
+    # Bot terminates the task.
+    self.set_as_bot()
+    params = _params(
+        output=base64.b64encode(' again'), output_chunk_start=6,
+        duration=0.1, exit_code=0)
+    response = self.post_json('/swarming/api/v1/bot/task_update', params)
+    self.assertEqual({u'must_stop': True, u'ok': True}, response)
 
     self.set_as_user()
+    expected = self.gen_result_summary(
+        abandoned_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=0.1,
+        exit_code=u'0',
+        modified_ts=str_now,
+        started_ts=str_now,
+        state=u'KILLED',
+        try_number=u'1')
     self.assertEqual(expected, self.client_get_results(task_id))
 
   def test_result_unknown(self):
@@ -1501,14 +1533,17 @@ class BotApiTest(BaseTest):
     self.set_as_bot()
     self.client_create_task_raw()
     res = self.bot_poll()
-    self.bot_complete_task(task_id=res['manifest']['task_id'])
+    response = self.bot_complete_task(task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
     now_1 = self.mock_now(self.now, 1)
     now_1_str = unicode(now_1.strftime(DATETIME_NO_MICRO))
     self.mock(random, 'getrandbits', lambda _: 0x55)
     self.client_create_task_raw(name='philbert')
     res = self.bot_poll()
-    self.bot_complete_task(exit_code=1, task_id=res['manifest']['task_id'])
+    response = self.bot_complete_task(
+        exit_code=1, task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
     start = utils.datetime_to_timestamp(
         self.now + datetime.timedelta(seconds=0.5)) / 1000000.
@@ -1558,7 +1593,8 @@ class BotApiTest(BaseTest):
     res = self.bot_poll()
     now_60 = self.mock_now(self.now, 60)
     str_now_60 = unicode(now_60.strftime(DATETIME_NO_MICRO))
-    self.bot_complete_task(task_id=res['manifest']['task_id'])
+    response = self.bot_complete_task(task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
     params['event'] = 'bot_rebooting'
     params['message'] = 'for the best'
