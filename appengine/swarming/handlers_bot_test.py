@@ -1078,6 +1078,47 @@ class BotApiTest(test_env_handlers.AppTestBase):
     ]
     self.assertEqual(expected, [e[1] for e in errors])
 
+  def test_task_canceled(self):
+    # Task was canceled while running, resulting in KILLED.
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    str_now = unicode(self.now.strftime(DATETIME_FORMAT))
+    params = self.do_handshake()
+    self.client_create_task_raw()
+
+    params = self.do_handshake()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    self.assertEqual(u'run', response.get(u'cmd'))
+    task_id = response['manifest']['task_id']
+
+    response = self.client_cancel_task(task_id)
+    self.assertEqual({u'ok': True, u'was_running': True}, response)
+
+    expected = self.gen_run_result(
+        abandoned_ts=str_now,
+        created_ts=str_now,
+        modified_ts=str_now,
+        started_ts=str_now)
+    response = self.client_get_results(task_id)
+    self.assertEqual(expected, response)
+
+    response = self.bot_complete_task(task_id=task_id)
+    self.assertEqual({u'must_stop': True, u'ok': True}, response)
+
+    response = self.client_cancel_task(task_id)
+    self.assertEqual({u'ok': False, u'was_running': False}, response)
+
+    expected = self.gen_run_result(
+        abandoned_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=0.1,
+        exit_code=u'0',
+        modified_ts=str_now,
+        started_ts=str_now,
+        state=u'KILLED')
+    response = self.client_get_results(task_id)
+    self.assertEqual(expected, response)
+
   def test_bot_code_as_bot(self):
     code = self.app.get('/bot_code')
     expected = {'config/bot_config.py', 'config/config.json'}.union(
