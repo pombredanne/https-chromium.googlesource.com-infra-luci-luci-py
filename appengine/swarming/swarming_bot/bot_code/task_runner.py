@@ -598,9 +598,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
               task_details.task_id, task_details.bot_id, params, buf.pop()):
             # Server is telling us to stop. Normally task cancellation.
             if not kill_sent:
-              logging.warning('Server induced stop; sending SIGKILL')
-              proc.kill()
-              kill_sent = True
+              logging.warning('Server induced stop; sending SIGTERM')
+            proc.terminate()
+            timed_out = monotonic_time()
 
         # Send signal on timeout if necessary. Both are failures, not
         # internal_failures.
