@@ -255,7 +255,13 @@ class TasksApiTest(BaseTest):
           u'service_account:service-account@example.com',
           u'user:joe@localhost'
         ],
-        service_account='service-account@example.com'),
+        service_account='service-account@example.com',
+        task_slices=[
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_properties,
+          },
+        ]),
       u'task_id': u'5cee488008810',
     }
 
@@ -357,6 +363,8 @@ class TasksApiTest(BaseTest):
     self.assertEqual(expected, response.json)
 
     # Expectations.
+    deduped_props = self.gen_props(
+        command=[u'python', u'run_test.py'], idempotent=True)
     deduped_request = self.gen_request(
         created_ts=str_now_30,
         expiration_secs=u'30',
@@ -370,8 +378,13 @@ class TasksApiTest(BaseTest):
           u'service_account:none',
           u'user:joe@localhost',
         ],
-        properties=self.gen_props(
-            command=[u'python', u'run_test.py'], idempotent=True))
+        task_slices=[
+          {
+            u'expiration_secs': u'30',
+            u'properties': deduped_props,
+          },
+        ],
+        properties=deduped_props)
     deduped_result = self.gen_result_summary(
         completed_ts=str_now,
         cost_saved_usd=0.1,
@@ -384,7 +397,6 @@ class TasksApiTest(BaseTest):
         task_id=u'5cf59b8006610',
         started_ts=str_now,
         tags=[
-          u'commit:pre',
           u'os:Amiga',
           u'pool:default',
           u'priority:200',
@@ -486,15 +498,22 @@ class TasksApiTest(BaseTest):
     request = self.create_new_request(
         properties=self.create_props(
             inputs_ref=swarming_rpcs.FilesRef(isolated='1'*40)))
+    expected_props = self.gen_props(
+        inputs_ref={
+          u'isolated': u'1'*40,
+          u'isolatedserver': u'https://isolateserver.appspot.com',
+          u'namespace': u'default-gzip',
+        })
     expected = {
       u'request': self.gen_request(
           created_ts=str_now,
-          properties=self.gen_props(
-              inputs_ref={
-                u'isolated': u'1'*40,
-                u'isolatedserver': u'https://isolateserver.appspot.com',
-                u'namespace': u'default-gzip',
-              })),
+          properties=expected_props,
+          task_slices=[
+            {
+              u'expiration_secs': u'86400',
+              u'properties': expected_props,
+            },
+          ]),
       u'task_id': u'5cee488008810',
     }
     response = self.call_api('new', body=message_to_dict(request))
@@ -547,6 +566,194 @@ class TasksApiTest(BaseTest):
             ]))
     response = self.call_api('new', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
+
+  def test_new_task_slices_one(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+
+    task_slices = [
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+    ]
+    response, _ = self.client_create_task(
+        expiration_secs=None, task_slices=task_slices)
+    expected_props = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [
+          {
+            u'package_name': u'rm',
+            u'path': u'bin',
+            u'version': u'git_revision:deadbeef',
+          },
+        ],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
+    expected = {
+      u'request': {
+        u'authenticated': u'user:user@example.com',
+        u'created_ts': str_now,
+        u'expiration_secs': u'180',
+        u'name': u'hi',
+        u'priority': u'20',
+        u'properties': expected_props,
+        u'service_account': u'none',
+        u'tags': [
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:20',
+          u'service_account:none',
+          u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'deny_if_no_worker': True,
+            u'expiration_secs': u'180',
+            u'properties': expected_props,
+          },
+        ],
+        u'user': u'joe@localhost',
+      },
+      u'task_id': u'5cee488008810',
+    }
+    self.assertEqual(expected, response)
+
+  def test_new_task_slices_two(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+
+    task_slices = [
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+    ]
+    response, _ = self.client_create_task(
+        expiration_secs=None, task_slices=task_slices)
+    expected_props = {
+      u'cipd_input': {
+        u'client_package': {
+          u'package_name': u'infra/tools/cipd/${platform}',
+          u'version': u'git_revision:deadbeef',
+        },
+        u'packages': [
+          {
+            u'package_name': u'rm',
+            u'path': u'bin',
+            u'version': u'git_revision:deadbeef',
+          },
+        ],
+        u'server': u'https://chrome-infra-packages.appspot.com',
+      },
+      u'command': [u'python', u'run_test.py'],
+      u'dimensions': [
+        {u'key': u'os', u'value': u'Amiga'},
+        {u'key': u'pool', u'value': u'default'},
+      ],
+      u'execution_timeout_secs': u'3600',
+      u'grace_period_secs': u'30',
+      u'idempotent': False,
+      u'io_timeout_secs': u'1200',
+      u'outputs': [u'foo', u'path/to/foobar'],
+    }
+    expected = {
+      u'request': {
+        u'authenticated': u'user:user@example.com',
+        u'created_ts': str_now,
+        # Automatically calculated: 180+180
+        u'expiration_secs': u'360',
+        u'name': u'hi',
+        u'priority': u'20',
+        u'properties': expected_props,
+        u'service_account': u'none',
+        u'tags': [
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:20',
+          u'service_account:none',
+          u'user:joe@localhost',
+        ],
+        u'task_slices': [
+          {
+            u'deny_if_no_worker': True,
+            u'expiration_secs': u'180',
+            u'properties': expected_props,
+          },
+          {
+            u'deny_if_no_worker': True,
+            u'expiration_secs': u'180',
+            u'properties': expected_props,
+          },
+        ],
+        u'user': u'joe@localhost',
+      },
+      u'task_id': u'5cee488008810',
+    }
+    self.assertEqual(expected, response)
+
+  def test_new_task_slices_two_denied(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+
+    cfg = config.settings()
+    cfg.isolate.default_server = 'https://isolateserver.appspot.com'
+    cfg.isolate.default_namespace = 'default-gzip'
+    self.mock(config, 'settings', lambda: cfg)
+
+    task_slices = [
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        u'expiration_secs': 180,
+        u'deny_if_no_worker': True,
+      },
+      {
+        u'properties': self.create_props(command=['python', 'run_test.py']),
+        # That's incorrect:
+        u'expiration_secs': 0,
+        u'deny_if_no_worker': True,
+      },
+    ]
+    request = swarming_rpcs.NewTaskRequest(
+        expiration_secs=None,
+        name='hi',
+        priority=10,
+        tags=[],
+        task_slices=task_slices,
+        user='joe@localhost')
+    resp = self.call_api('new', body=message_to_dict(request), status=400)
+    expected = {
+      u'state': u'APPLICATION_ERROR',
+      u'error_message': u'expiration_secs (0) must be between 1s and 7 days',
+    }
+    self.assertEqual(expected, resp.json)
 
   def test_mass_cancel(self):
     # Create two tasks.
@@ -895,6 +1102,7 @@ class TaskApiTest(BaseTest):
         u'user:joe@localhost',
       ],
       u'task_id': task_id,
+      u'task_slice_index': u'0',
       u'user': u'joe@localhost',
     }
     response = self.call_api('result', body={'task_id': task_id})
@@ -1039,6 +1247,7 @@ class TaskApiTest(BaseTest):
         u'user:joe@localhost',
       ],
       u'task_id': u'5cee488008810',
+      u'task_slice_index': u'0',
       u'user': u'joe@localhost',
     }
     self.assertEqual(expected, response.json)
