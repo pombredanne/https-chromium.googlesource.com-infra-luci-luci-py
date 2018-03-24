@@ -58,6 +58,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.set_as_bot()
     self._enqueue_task_orig = self.mock(
         utils, 'enqueue_task', self._enqueue_task)
+    self.now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(self.now)
 
   @ndb.non_transactional
   def _enqueue_task(self, url, queue_name, **kwargs):
@@ -284,9 +286,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
   def test_poll_task_raw(self):
     # Successfully poll a task.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(DATETIME_FORMAT))
+    str_now = unicode(self.now.strftime(DATETIME_FORMAT))
     # A bot polls, gets a task, updates it, completes it.
     params = self.do_handshake()
     # Enqueue a task.
@@ -340,27 +340,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
     }
     self.assertEqual(expected, response)
     response = self.client_get_results(task_id)
-    expected = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'costs_usd': [0.],
-      u'created_ts': str_now,
-      u'failure': False,
-      u'internal_failure': False,
-      u'modified_ts': str_now,
-      u'name': u'hi',
-      u'run_id': u'5cee488008811',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'RUNNING',
-      u'task_id': u'5cee488008811',
-      u'try_number': u'1',
-    }
+    expected = self.gen_run_result(
+        created_ts=str_now,
+        modified_ts=str_now,
+        started_ts=str_now)
     self.assertEqual(expected, response)
 
   def test_poll_task_with_bot_service_account(self):
@@ -517,9 +500,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
   def test_complete_task_isolated(self):
     # Successfully poll a task.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(DATETIME_FORMAT))
+    str_now = unicode(self.now.strftime(DATETIME_FORMAT))
     # A bot polls, gets a task, updates it, completes it.
     params = self.do_handshake()
     # Enqueue a task.
@@ -621,46 +602,31 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
     response = self.client_get_results(task_id)
-    expected = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'completed_ts': str_now,
-      u'costs_usd': [0.1],
-      u'created_ts': str_now,
-      u'duration': 3.,
-      u'exit_code': u'0',
-      u'failure': False,
-      u'internal_failure': False,
-      u'modified_ts': str_now,
-      u'name': u'hi',
-      u'outputs_ref': {
-        u'isolated': u'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-        u'isolatedserver': u'http://localhost:1',
-        u'namespace': u'default-gzip',
-      },
-      u'cipd_pins': {
-        u'client_package': {
-          u'package_name': u'infra/tools/cipd/windows-amd64',
-          u'version': u'deadbeef'*5,
+    expected = self.gen_run_result(
+        cipd_pins={
+          u'client_package': {
+            u'package_name': u'infra/tools/cipd/windows-amd64',
+            u'version': u'deadbeef'*5,
+          },
+          u'packages': [{
+            u'package_name': u'rm',
+            u'path': u'bin',
+            u'version': u'badc0fee'*5,
+          }]
         },
-        u'packages': [{
-          u'package_name': u'rm',
-          u'path': u'bin',
-          u'version': u'badc0fee'*5,
-        }]
-      },
-      u'run_id': u'5cee488008811',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'COMPLETED',
-      u'task_id': u'5cee488008811',
-      u'try_number': u'1',
-    }
+        completed_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=3.0,
+        exit_code=u'0',
+        modified_ts=str_now,
+        outputs_ref={
+          u'isolated': u'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+          u'isolatedserver': u'http://localhost:1',
+          u'namespace': u'default-gzip',
+        },
+        started_ts=str_now,
+        state=u'COMPLETED')
     self.assertEqual(expected, response)
 
   def test_poll_not_enough_time(self):
@@ -682,8 +648,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
   def test_poll_enough_time(self):
     # Successfully poll a task.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
     _, task_id = self.client_create_task_isolated()
     self.assertEqual('0', task_id[-1])
     params = self.do_handshake()
@@ -851,8 +815,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_event(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
     params = self.do_handshake()
     for e in handlers_bot.BotEventHandler.ALLOWED_EVENTS:
       if e == 'bot_error':
@@ -889,7 +851,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'started_ts': 1410990411.111,
         },
         'task_id': u'',
-        'ts': now,
+        'ts': self.now,
         'version': self.bot_version,
       } for e in reversed(handlers_bot.BotEventHandler.ALLOWED_EVENTS)
       if e != 'bot_error'
@@ -916,7 +878,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'started_ts': 1410990411.111,
         },
         'task_id': u'',
-        'ts': now,
+        'ts': self.now,
         'version': u'123',
       })
 
@@ -925,9 +887,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
   def test_task_complete(self):
     # Runs a task up to completion.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(DATETIME_FORMAT))
+    str_now = unicode(self.now.strftime(DATETIME_FORMAT))
     params = self.do_handshake()
     self.client_create_task_raw(
         properties=dict(command=['python', 'runtest.py']))
@@ -945,31 +905,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
       out.update(**kwargs)
       return out
 
-    def _expected(**kwargs):
-      out = {
-        u'bot_dimensions': [
-          {u'key': u'id', u'value': [u'bot1']},
-          {u'key': u'os', u'value': [u'Amiga']},
-          {u'key': u'pool', u'value': [u'default']},
-        ],
-        u'bot_id': u'bot1',
-        u'bot_version': self.bot_version,
-        u'costs_usd': [0.1],
-        u'created_ts': str_now,
-        u'failure': False,
-        u'internal_failure': False,
-        u'modified_ts': str_now,
-        u'name': u'hi',
-        u'run_id': u'5cee488008811',
-        u'server_versions': [u'v1a'],
-        u'started_ts': str_now,
-        u'state': u'RUNNING',
-        u'task_id': u'5cee488008811',
-        u'try_number': u'1',
-      }
-      out.update((unicode(k), v) for k, v in kwargs.iteritems())
-      return out
-
     def _cycle(params, expected, must_stop):
       response = self.post_json('/swarming/api/v1/bot/task_update', params)
       self.assertEqual({u'must_stop': must_stop, u'ok': True}, response)
@@ -982,26 +917,34 @@ class BotApiTest(test_env_handlers.AppTestBase):
     response = self.post_json('/swarming/api/v1/bot/task_update', params)
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
     response = self.client_get_results(task_id)
-    self.assertEqual(_expected(), response)
+    expected = self.gen_run_result(
+        costs_usd=[0.1],
+        created_ts=str_now,
+        modified_ts=str_now,
+        started_ts=str_now)
+    self.assertEqual(expected, response)
 
     # 2. Task update with some output.
     params = _params(output=base64.b64encode('Oh '))
-    expected = _expected()
+    self.assertEqual(expected, response)
     _cycle(params, expected, False)
 
     # 3. Task update with some more output.
     params = _params(output=base64.b64encode('hi'), output_chunk_start=3)
-    expected = _expected()
     _cycle(params, expected, False)
 
     # 4. Task update with completion of the command.
     params = _params(
         duration=0.1, exit_code=23, output=base64.b64encode('Ahahah'))
-    expected = _expected(
+    expected = self.gen_run_result(
         completed_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
         duration=0.1,
         exit_code=u'23',
         failure=True,
+        modified_ts=str_now,
+        started_ts=str_now,
         state=u'COMPLETED')
     _cycle(params, expected, False)
 
@@ -1063,9 +1006,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
   def test_task_failure(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(DATETIME_FORMAT))
+    str_now = unicode(self.now.strftime(DATETIME_FORMAT))
     params = self.do_handshake()
     self.client_create_task_raw()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
@@ -1082,38 +1023,22 @@ class BotApiTest(test_env_handlers.AppTestBase):
     }
     self.post_json('/swarming/api/v1/bot/task_update', params)
     response = self.client_get_results(task_id)
-    expected = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'completed_ts': str_now,
-      u'costs_usd': [0.1],
-      u'created_ts': str_now,
-      u'duration': 0.1,
-      u'exit_code': u'1',
-      u'failure': True,
-      u'internal_failure': False,
-      u'modified_ts': str_now,
-      u'name': u'hi',
-      u'run_id': u'5cee488008811',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'COMPLETED',
-      u'task_id': u'5cee488008811',
-      u'try_number': u'1',
-    }
+    expected = self.gen_run_result(
+        completed_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=0.1,
+        exit_code=u'1',
+        failure=True,
+        modified_ts=str_now,
+        started_ts=str_now,
+        state=u'COMPLETED')
     self.assertEqual(expected, response)
 
   def test_task_internal_failure(self):
     # E.g. task_runner blew up.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(DATETIME_FORMAT))
+    str_now = unicode(self.now.strftime(DATETIME_FORMAT))
     errors = []
     self.mock(
         ereporter2, 'log_request',
@@ -1134,28 +1059,13 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.post_json('/swarming/api/v1/bot/task_error', params)
 
     response = self.client_get_results(task_id)
-    expected = {
-      u'abandoned_ts': str_now,
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'costs_usd': [0.],
-      u'created_ts': str_now,
-      u'failure': False,
-      u'internal_failure': True,
-      u'modified_ts': str_now,
-      u'name': u'hi',
-      u'run_id': u'5cee488008811',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'BOT_DIED',
-      u'task_id': u'5cee488008811',
-      u'try_number': u'1',
-    }
+    expected = self.gen_run_result(
+        abandoned_ts=str_now,
+        created_ts=str_now,
+        internal_failure=True,
+        modified_ts=str_now,
+        started_ts=str_now,
+        state=u'BOT_DIED')
     self.assertEqual(expected, response)
     self.assertEqual(1, len(errors))
     expected = [
