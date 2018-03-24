@@ -855,17 +855,7 @@ class Test(unittest.TestCase):
       wait_task_id = self.client.task_trigger_raw(args)
       # Assert that the 'wait' task has started but not completed, otherwise
       # this defeats the purpose.
-      state = stats = None
-      start = time.time()
-      # 15 seconds is a long time.
-      while time.time() - start < 15.:
-        stats = self.client.task_query(wait_task_id)
-        state = stats[u'state']
-        if state == u'RUNNING':
-          break
-        self.assertEqual(u'PENDING', state, stats)
-        time.sleep(0.01)
-      self.assertEqual(u'RUNNING', state, stats)
+      self._wait_for_state(wait_task_id, u'PENDING', u'RUNNING')
 
       # This is the order of the priorities used for each task triggered. In
       # particular, below it asserts that the priority 8 tasks are run in order
@@ -936,10 +926,54 @@ class Test(unittest.TestCase):
         0x60,  # task_result.State.CANCELED
         actual[u'shards'][0][u'state'], actual[u'shards'][0])
 
+  def test_cancel_running(self):
+    # Cancel a running task. Make sure the target process handles the signal
+    # well with a graceful termination via SIGTERM.
+    content = {
+      HELLO_WORLD + u'.py': _script(u"""
+        import signal
+        import sys
+        import threading
+        bit = threading.Event()
+        def handler(signum, _):
+          bit.set()
+          sys.stdout.write('got signal %%d\\n' %% signum)
+          sys.stdout.flush()
+        signal.signal(signal.%s, handler)
+        sys.stdout.write('hi\\n')
+        sys.stdout.flush()
+        while not bit.wait(0.01):
+          pass
+        sys.exit(23)
+        """) % ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM'),
+    }
+    task_id = self._start_isolated(
+        content, 'cancel_running', ['--', '${ISOLATED_OUTDIR}'],
+        isolate_content=DEFAULT_ISOLATE_HELLO)
+
+    # Wait for the task to start on the bot.
+    self._wait_for_state(task_id, u'PENDING', u'RUNNING')
+
+    # Cancel it.
+    self.assertTrue(self.client.task_cancel(task_id))
+
+    stats = self._wait_for_state(task_id, u'RUNNING', u'KILLED')
+    # Make sure the exit code is what the script returned, which means the
+    # script in fact did handle the SIGTERM and returned properly.
+    self.assertEqual(u'23', stats[u'exit_code'])
+
   def _run_isolated(
       self, contents, name, args, expected_summary, expected_files,
       deduped, isolate_content):
     """Runs a python script as an isolated file."""
+    task_id = self._start_isolated(contents, name, args, isolated_content)
+    actual_summary, actual_files = self.client.task_collect(task_id)
+    self.assertResults(expected_summary, actual_summary, deduped=deduped)
+    actual_files.pop('summary.json')
+    self.assertEqual(expected_files, actual_files)
+    return task_id
+
+  def _start_isolated(self, contents, name, args, isolate_content):
     # Shared code for all test_isolated_* test cases.
     root = os.path.join(self.tmpdir, name)
     # Refuse reusing the same task name twice, it makes the whole test suite
@@ -958,13 +992,8 @@ class Test(unittest.TestCase):
       with fs.open(p, 'wb') as f:
         f.write(content)
     isolated_hash = self.client.isolate(isolate_path, isolated_path)
-    task_id = self.client.task_trigger_isolated(
+    return self.client.task_trigger_isolated(
         name, isolated_hash, extra=args)
-    actual_summary, actual_files = self.client.task_collect(task_id)
-    self.assertResults(expected_summary, actual_summary, deduped=deduped)
-    actual_files.pop('summary.json')
-    self.assertEqual(expected_files, actual_files)
-    return task_id
 
   def assertResults(self, expected, result, deduped=False):
     self.assertEqual([u'shards'], result.keys())
@@ -1032,6 +1061,21 @@ class Test(unittest.TestCase):
     actual_files.pop('summary.json')
     self.assertEqual(expected_files, actual_files)
     return bot_version
+
+  def _wait_for_state(self, task_id, current, new):
+    """Waits for the task to start on the bot."""
+    state = stats = None
+    start = time.time()
+    # 15 seconds is a long time.
+    while time.time() - start < 15.:
+      stats = self.client.task_query(task_id)
+      state = stats[u'state']
+      if state == new:
+        break
+      self.assertEqual(current, state, stats)
+      time.sleep(0.01)
+    self.assertEqual(new, state, stats)
+    return stats
 
 
 def cleanup(bot, client, servers, print_all):
