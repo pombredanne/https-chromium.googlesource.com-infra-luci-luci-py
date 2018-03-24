@@ -40,15 +40,15 @@ from server import task_request
 from server import task_result
 
 
+DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
+DATETIME_NO_MICRO = '%Y-%m-%dT%H:%M:%S'
+
+
 def message_to_dict(rpc_message):
   return json.loads(protojson.encode_message(rpc_message))
 
 
 class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
-
-  DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
-  DATETIME_NO_MICRO = '%Y-%m-%dT%H:%M:%S'
-
   def setUp(self):
     test_case.EndpointsTestCase.setUp(self)
     super(BaseTest, self).setUp()
@@ -65,6 +65,8 @@ class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
     # Client API test cases run by default as user.
     self.set_as_user()
     self.mock(utils, 'enqueue_task', self._enqueue_task)
+    self.now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(self.now)
 
   @ndb.non_transactional
   def _enqueue_task(self, url, queue_name, **kwargs):
@@ -75,6 +77,7 @@ class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
     if queue_name == 'pubsub':
       return True
     self.fail(url)
+
 
 
 class ServerApiTest(BaseTest):
@@ -166,9 +169,6 @@ class ServerApiTest(BaseTest):
   def _test_file(self, name, header):
     # Tests either get_bootstrap or get_bot_config.
     self.set_as_admin()
-
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
     path = os.path.join(self.APP_DIR, 'swarming_bot', 'config', name + '.py')
     with open(path, 'rb') as f:
       content = f.read().decode('utf-8')
@@ -221,95 +221,42 @@ class TasksApiTest(BaseTest):
     utils.clear_cache(config.settings)
     self.mock_default_pool_acl(['service-account@example.com'])
 
-  @staticmethod
-  def raw_request(service_account='service-account@example.com'):
-    return swarming_rpcs.NewTaskRequest(
-        expiration_secs=30,
-        name='job1',
-        priority=200,
-        properties=swarming_rpcs.TaskProperties(
-            cipd_input=swarming_rpcs.CipdInput(
-                client_package=swarming_rpcs.CipdPackage(
-                    package_name='infra/tools/cipd/${platform}',
-                    version='git_revision:deadbeef'),
-                packages=[
-                  swarming_rpcs.CipdPackage(
-                      package_name='rm', path='.', version='latest'),
-                ],
-                server='https://chrome-infra-packages.appspot.com'),
-            command=['rm', '-rf', '/'],
-            dimensions=[
-              swarming_rpcs.StringPair(key='pool', value='default'),
-            ],
-            env=[
-              swarming_rpcs.StringPair(key='PATH', value='/'),
-            ],
-            execution_timeout_secs=30,
-            io_timeout_secs=30,
-            grace_period_secs=15,
-            outputs=['foo','path/to/dir']),
-        tags=['foo:bar'],
-        user='joe@localhost',
-        pubsub_topic='projects/abc/topics/def',
-        pubsub_auth_token='secret that must not be shown',
-        pubsub_userdata='userdata',
-        service_account=service_account)
-
   def test_new_ok_raw(self):
     """Asserts that new generates appropriate metadata."""
     oauth_grant_calls = self.mock_task_service_accounts()
     self.mock(random, 'getrandbits', lambda _: 0x88)
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
 
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
-
-    request = self.raw_request()
+    request = self.create_new_request(
+        expiration_secs=30,
+        properties=self.create_props(
+            command=['rm', '-rf', '/'],
+            execution_timeout_secs=30,
+            grace_period_secs=15),
+        pubsub_topic='projects/abc/topics/def',
+        pubsub_auth_token='secret that must not be shown',
+        pubsub_userdata='userdata',
+        service_account='service-account@example.com')
     expected = {
-      u'request': {
-        u'authenticated': u'user:user@example.com',
-        u'created_ts': str_now,
-        u'expiration_secs': u'30',
-        u'name': u'job1',
-        u'priority': u'200',
-        u'properties': {
-          u'cipd_input': {
-            u'client_package': {
-              u'package_name': u'infra/tools/cipd/${platform}',
-              u'version': u'git_revision:deadbeef',
-            },
-            u'packages': [{
-              u'package_name': u'rm',
-              u'path': u'.',
-              u'version': u'latest',
-            }],
-            u'server': u'https://chrome-infra-packages.appspot.com',
-          },
-          u'command': [u'rm', u'-rf', u'/'],
-          u'dimensions': [
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'15',
-          u'idempotent': False,
-          u'io_timeout_secs': u'30',
-          u'outputs': [u'foo', u'path/to/dir'],
-        },
-        u'pubsub_topic': u'projects/abc/topics/def',
-        u'pubsub_userdata': u'userdata',
-        u'service_account': u'service-account@example.com',
-        u'tags': [
-          u'foo:bar',
+      u'request': self.gen_request(
+        created_ts=str_now,
+        expiration_secs=u'30',
+        priority=u'20',
+        properties=self.gen_props(
+            command=[u'rm', u'-rf', u'/'],
+            execution_timeout_secs=u'30',
+            grace_period_secs=u'15'),
+        pubsub_topic=u'projects/abc/topics/def',
+        pubsub_userdata=u'userdata',
+        tags=[
+          u'a:tag',
+          u'os:Amiga',
           u'pool:default',
-          u'priority:200',
+          u'priority:20',
           u'service_account:service-account@example.com',
-          u'user:joe@localhost',
+          u'user:joe@localhost'
         ],
-        u'user': u'joe@localhost',
-      },
+        service_account='service-account@example.com'),
       u'task_id': u'5cee488008810',
     }
 
@@ -323,7 +270,9 @@ class TasksApiTest(BaseTest):
 
   def test_new_bad_service_account(self):
     oauth_grant_calls = self.mock_task_service_accounts()
-    request = self.raw_request(service_account='bad email')
+    request = self.create_new_request(
+        properties=self.create_props(command=['rm', '-rf', '/']),
+        service_account='bad email')
     response = self.call_api('new', body=message_to_dict(request), status=400)
     # Note: Cloud Endpoints proxy transform this response to
     # {"error": {"message": "..."}}.
@@ -337,7 +286,9 @@ class TasksApiTest(BaseTest):
   def test_new_forbidden_service_account(self):
     self.mock_task_service_accounts(
         exc=auth.AuthorizationError('forbidden account'))
-    request = self.raw_request()
+    request = self.create_new_request(
+        properties=self.create_props(command=['rm', '-rf', '/']),
+        service_account='service-account@example.com')
     response = self.call_api('new', body=message_to_dict(request), status=403)
     # Note: Cloud Endpoints proxy transform this response to
     # {"error": {"message": "..."}}.
@@ -350,347 +301,175 @@ class TasksApiTest(BaseTest):
     """Asserts that new returns task result for deduped."""
     # Run a task to completion.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = self.mock_now(datetime.datetime(2010, 1, 2, 3, 4, 5))
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     self.client_create_task_raw(
-        name='task', tags=['project:yay', 'commit:post', 'os:Win'],
+        tags=['project:yay', 'commit:post'],
         properties=dict(idempotent=True))
     self.set_as_bot()
     self.bot_run_task()
 
     self.mock(random, 'getrandbits', lambda _: 0x66)
-    now_30 = self.mock_now(now, 30)
-    str_now_30 = unicode(now_30.strftime(self.DATETIME_NO_MICRO))
-    self.set_as_user()
+    now_30 = self.mock_now(self.now, 30)
+    str_now_30 = unicode(now_30.strftime(DATETIME_NO_MICRO))
 
-    request = swarming_rpcs.NewTaskRequest(
-        expiration_secs=30,
-        name='job1',
-        priority=200,
-        properties=swarming_rpcs.TaskProperties(
-            command=['python', 'run_test.py'],
-            cipd_input=swarming_rpcs.CipdInput(
-                client_package=swarming_rpcs.CipdPackage(
-                    package_name='infra/tools/cipd/${platform}',
-                    version='git_revision:deadbeef'),
-                packages=[
-                  swarming_rpcs.CipdPackage(
-                      package_name='rm',
-                      path='bin',
-                      version='git_revision:deadbeef'),
-                ],
-                server='https://chrome-infra-packages.appspot.com'),
-            dimensions=[
-              swarming_rpcs.StringPair(key='os', value='Amiga'),
-              swarming_rpcs.StringPair(key='pool', value='default'),
-            ],
-            execution_timeout_secs=3600,
-            idempotent=True,
-            io_timeout_secs=1200,
-            outputs=['foo', 'path/to/foobar']),
-        tags=['foo:bar'],
-        user='joe@localhost')
-    expected = {
-      u'request': {
-        u'authenticated': u'user:user@example.com',
-        u'created_ts': str_now_30,
-        u'expiration_secs': u'30',
-        u'name': u'job1',
-        u'priority': u'200',
-        u'properties': {
-          u'cipd_input': {
-            u'client_package': {
-              u'package_name': u'infra/tools/cipd/${platform}',
-              u'version': u'git_revision:deadbeef',
-            },
-            u'packages': [{
-              u'package_name': u'rm',
-              u'path': u'bin',
-              u'version': u'git_revision:deadbeef',
-            }],
-            u'server': u'https://chrome-infra-packages.appspot.com',
-          },
-          u'command': [u'python', u'run_test.py'],
-          u'dimensions': [
-            {u'key': u'os', u'value': u'Amiga'},
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'execution_timeout_secs': u'3600',
-          u'grace_period_secs': u'30',
-          u'idempotent': True,
-          u'io_timeout_secs': u'1200',
-          u'outputs': [u'foo', u'path/to/foobar'],
-        },
-        u'service_account': u'none',
-        u'tags': [
-          u'foo:bar',
+    # Expectations.
+    t_result = self.gen_result_summary(
+        completed_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=0.1,
+        exit_code=u'0',
+        modified_ts=str_now,
+        started_ts=str_now,
+        tags=[
+          u'commit:post',
           u'os:Amiga',
           u'pool:default',
-          u'priority:200',
+          u'priority:20',
+          u'project:yay',
           u'service_account:none',
           u'user:joe@localhost',
         ],
-        u'user': u'joe@localhost',
-      },
-      u'task_id': u'5cf59b8006610',
-      u'task_result': {
-        u'bot_dimensions': [
-          {u'key': u'id', u'value': [u'bot1']},
-          {u'key': u'os', u'value': [u'Amiga']},
-          {u'key': u'pool', u'value': [u'default']},
-        ],
-        u'bot_id': u'bot1',
-        u'bot_version': self.bot_version,
-        u'completed_ts': str_now,
-        u'cost_saved_usd': 0.1,
-        u'created_ts': str_now_30,
-        u'deduped_from': u'5cee488008811',
-        u'duration': 0.1,
-        u'exit_code': u'0',
-        u'failure': False,
-        u'internal_failure': False,
-        u'modified_ts': str_now_30,
-        u'name': u'job1',
-        u'run_id': u'5cee488008811',
-        u'server_versions': [u'v1a'],
-        u'started_ts': str_now,
-        u'state': u'COMPLETED',
-        u'tags': [
-          u'foo:bar',
+        try_number=u'1')
+    t_request = self.gen_request(
+        created_ts=str_now,
+        properties=self.gen_props(
+            command=[u'python', u'run_test.py'], idempotent=True),
+        priority=u'20',
+        tags=[
+          u'commit:post',
           u'os:Amiga',
           u'pool:default',
-          u'priority:200',
+          u'priority:20',
+          u'project:yay',
           u'service_account:none',
           u'user:joe@localhost',
-        ],
-        u'task_id': u'5cf59b8006610',
-        u'try_number': u'0',
-        u'user': u'joe@localhost',
-      },
-    }
-    response = self.call_api('new', body=message_to_dict(request))
+        ])
+
+    # Make sure it completed.
+    self.set_as_privileged_user()
+    expected = {u'items': [t_result], u'now': str_now_30}
+    response = self.call_api(
+        'list', body=message_to_dict(swarming_rpcs.TasksRequest()))
+    self.assertEqual(expected, response.json)
+    expected = {u'items': [t_request], u'now': str_now_30}
+    response = self.call_api(
+        'requests', body=message_to_dict(swarming_rpcs.TasksRequest()))
     self.assertEqual(expected, response.json)
 
-    request = swarming_rpcs.TasksRequest(state=swarming_rpcs.TaskState.DEDUPED)
+    # Expectations.
+    deduped_request = self.gen_request(
+        created_ts=str_now_30,
+        expiration_secs=u'30',
+        name=u'job2',
+        priority=u'200',
+        tags=[
+          u'commit:pre',
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:200',
+          u'service_account:none',
+          u'user:joe@localhost',
+        ],
+        properties=self.gen_props(
+            command=[u'python', u'run_test.py'], idempotent=True))
+    deduped_result = self.gen_result_summary(
+        completed_ts=str_now,
+        cost_saved_usd=0.1,
+        created_ts=str_now_30,
+        duration=0.1,
+        deduped_from=u'5cee488008811',
+        exit_code=u'0',
+        modified_ts=str_now_30,
+        name=u'job2',
+        task_id=u'5cf59b8006610',
+        started_ts=str_now,
+        tags=[
+          u'commit:pre',
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:200',
+          u'service_account:none',
+          u'user:joe@localhost',
+        ])
+
     expected = {
-      u'items': [
-        {
-          u'bot_dimensions': [
-            {u'key': u'id', u'value': [u'bot1']},
-            {u'key': u'os', u'value': [u'Amiga']},
-            {u'key': u'pool', u'value': [u'default']},
-          ],
-          u'bot_id': u'bot1',
-          u'bot_version': self.bot_version,
-          u'completed_ts': str_now,
-          u'cost_saved_usd': 0.1,
-          u'created_ts': str_now_30,
-          u'deduped_from': u'5cee488008811',
-          u'duration': 0.1,
-          u'exit_code': u'0',
-          u'failure': False,
-          u'internal_failure': False,
-          u'modified_ts': str_now_30,
-          u'name': u'job1',
-          u'run_id': u'5cee488008811',
-          u'server_versions': [u'v1a'],
-          u'started_ts': str_now,
-          u'state': u'COMPLETED',
-          u'tags': [
-            u'foo:bar',
-            u'os:Amiga',
-            u'pool:default',
-            u'priority:200',
-            u'service_account:none',
-            u'user:joe@localhost',
-          ],
-          u'task_id': u'5cf59b8006610',
-          u'try_number': u'0',
-          u'user': u'joe@localhost',
-        },
-      ],
-      u'now': str_now_30,
+      u'request': deduped_request,
+      u'task_id': u'5cf59b8006610',
+      u'task_result': deduped_result,
     }
+    self.set_as_user()
+    new_req = self.create_new_request(
+        expiration_secs=30,
+        name='job2',
+        priority=200,
+        tags=['commit:pre'],
+        properties=self.create_props(
+            command=['python', 'run_test.py'], idempotent=True))
+    response = self.call_api('new', body=message_to_dict(new_req))
+    self.assertEqual(expected, response.json)
 
     self.set_as_privileged_user()
-    self.assertEqual(
-        expected,
-        self.call_api('list', body=message_to_dict(request)).json)
+    expected = {
+      u'items': [deduped_result],
+      u'now': str_now_30,
+    }
+    response = self.call_api(
+        'list',
+        body=message_to_dict(
+            swarming_rpcs.TasksRequest(state=swarming_rpcs.TaskState.DEDUPED)))
+    self.assertEqual(expected, response.json)
+
     # Assert the entity presence.
     self.assertEqual(2, task_request.TaskRequest.query().count())
     self.assertEqual(2, task_result.TaskResultSummary.query().count())
     self.assertEqual(1, task_result.TaskRunResult.query().count())
 
     # Deduped task have no performance data associated.
-    request = swarming_rpcs.TasksRequest(
-        state=swarming_rpcs.TaskState.DEDUPED,
-        include_performance_stats=True)
-    actual = self.call_api('list', body=message_to_dict(request)).json
-    self.assertEqual(expected, actual)
+    response = self.call_api(
+        'list',
+        body=message_to_dict(
+            swarming_rpcs.TasksRequest(
+                state=swarming_rpcs.TaskState.DEDUPED,
+                include_performance_stats=True)))
+    self.assertEqual(expected, response.json)
 
     # Use the occasion to test 'count' and 'requests'.
-    start = utils.datetime_to_timestamp(now) / 1000000. - 1
+    start = utils.datetime_to_timestamp(self.now) / 1000000. - 1
     end = utils.datetime_to_timestamp(now_30) / 1000000. + 1
-    request = swarming_rpcs.TasksCountRequest(
-        start=start, end=end, state=swarming_rpcs.TaskState.DEDUPED)
-    self.assertEqual(
-        {u'now': str_now_30, u'count': u'1'},
-        self.call_api('count', body=message_to_dict(request)).json)
-    request = swarming_rpcs.TasksRequest(start=start, end=end)
-    expected = {
-      u'items': [
-        {
-          u'authenticated': u'user:user@example.com',
-          u'created_ts': str_now_30,
-          u'expiration_secs': u'30',
-          u'name': u'job1',
-          u'priority': u'200',
-          u'properties': {
-            u'cipd_input': {
-              u'client_package': {
-                u'package_name': u'infra/tools/cipd/${platform}',
-                u'version': u'git_revision:deadbeef',
-              },
-              u'packages': [{
-                u'package_name': u'rm',
-                u'path': u'bin',
-                u'version': u'git_revision:deadbeef',
-              }],
-              u'server': u'https://chrome-infra-packages.appspot.com',
-            },
-            u'command': [u'python', u'run_test.py'],
-            u'dimensions': [
-              {u'key': u'os', u'value': u'Amiga'},
-              {u'key': u'pool', u'value': u'default'},
-            ],
-            u'execution_timeout_secs': u'3600',
-            u'grace_period_secs': u'30',
-            u'idempotent': True,
-            u'io_timeout_secs': u'1200',
-            u'outputs': [u'foo', u'path/to/foobar'],
-          },
-          u'service_account': u'none',
-          u'tags': [
-            u'foo:bar',
-            u'os:Amiga',
-            u'pool:default',
-            u'priority:200',
-            u'service_account:none',
-            u'user:joe@localhost',
-          ],
-          u'user': u'joe@localhost',
-        },
-        {
-          u'authenticated': u'user:user@example.com',
-          u'created_ts': str_now,
-          u'expiration_secs': u'86400',
-          u'name': u'task',
-          u'priority': u'20',
-          u'properties': {
-            u'cipd_input': {
-              u'client_package': {
-                u'package_name': u'infra/tools/cipd/${platform}',
-                u'version': u'git_revision:deadbeef',
-              },
-              u'packages': [{
-                u'package_name': u'rm',
-                u'path': u'bin',
-                u'version': u'git_revision:deadbeef',
-              }],
-              u'server': u'https://chrome-infra-packages.appspot.com',
-            },
-            u'command': [u'python', u'run_test.py'],
-            u'dimensions': [
-              {u'key': u'os', u'value': u'Amiga'},
-              {u'key': u'pool', u'value': u'default'},
-            ],
-            u'execution_timeout_secs': u'3600',
-            u'grace_period_secs': u'30',
-            u'idempotent': True,
-            u'io_timeout_secs': u'1200',
-            u'outputs': [u'foo', u'path/to/foobar'],
-          },
-          u'service_account': u'none',
-          u'tags': [
-            u'commit:post',
-            u'os:Amiga',
-            u'os:Win',
-            u'pool:default',
-            u'priority:20',
-            u'project:yay',
-            u'service_account:none',
-            u'user:joe@localhost',
-          ],
-          u'user': u'joe@localhost',
-        },
-      ],
-      u'now': str_now_30,
-    }
-    self.assertEqual(
-        expected,
-        self.call_api('requests', body=message_to_dict(request)).json)
+    response = self.call_api(
+        'count',
+        body=message_to_dict(
+            swarming_rpcs.TasksCountRequest(
+                start=start, end=end, state=swarming_rpcs.TaskState.DEDUPED)))
+    self.assertEqual({u'now': str_now_30, u'count': u'1'}, response.json)
+
+    expected = {u'items': [deduped_request, t_request], u'now': str_now_30}
+    response = self.call_api(
+        'requests',
+        body=message_to_dict(
+            swarming_rpcs.TasksRequest(start=start, end=end)))
+    self.assertEqual(expected, response.json)
 
   def test_new_ok_isolated(self):
     """Asserts that new generates appropriate metadata."""
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
-    request = swarming_rpcs.NewTaskRequest(
-        expiration_secs=30,
-        name='job1',
-        priority=200,
-        properties=swarming_rpcs.TaskProperties(
-            dimensions=[
-              swarming_rpcs.StringPair(key='pool', value='default'),
-              swarming_rpcs.StringPair(key='foo', value='bar'),
-            ],
-            env=[
-              swarming_rpcs.StringPair(key='PATH', value='/'),
-            ],
-            execution_timeout_secs=30,
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
+    request = self.create_new_request(
+        properties=self.create_props(
             inputs_ref=swarming_rpcs.FilesRef(
                 isolated='1'*40,
                 isolatedserver='http://localhost:1',
-                namespace='default-gzip'),
-            io_timeout_secs=30),
-        tags=['foo:bar'],
-        user='joe@localhost')
+                namespace='default-gzip')))
     expected = {
-      u'request': {
-        u'authenticated': u'user:user@example.com',
-        u'created_ts': str_now,
-        u'expiration_secs': u'30',
-        u'name': u'job1',
-        u'priority': u'200',
-        u'properties': {
-          u'dimensions': [
-            {u'key': u'foo', u'value': u'bar'},
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'30',
-          u'idempotent': False,
-          u'inputs_ref': {
-            'isolated': '1'*40,
-            'isolatedserver': 'http://localhost:1',
-            'namespace': 'default-gzip',
-          },
-          u'io_timeout_secs': u'30',
-        },
-        u'service_account': u'none',
-        u'tags': [
-          u'foo:bar',
-          u'pool:default',
-          u'priority:200',
-          u'service_account:none',
-          u'user:joe@localhost',
-        ],
-        u'user': u'joe@localhost',
-      },
+      u'request': self.gen_request(
+          created_ts=str_now,
+          properties=self.gen_props(
+              inputs_ref={
+                u'isolated': u'1'*40,
+                u'isolatedserver': u'http://localhost:1',
+                u'namespace': u'default-gzip',
+              })),
       u'task_id': u'5cee488008810',
     }
     response = self.call_api('new', body=message_to_dict(request))
@@ -698,67 +477,25 @@ class TasksApiTest(BaseTest):
 
   def test_new_ok_isolated_with_defaults(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
 
     cfg = config.settings()
     cfg.isolate.default_server = 'https://isolateserver.appspot.com'
     cfg.isolate.default_namespace = 'default-gzip'
     self.mock(config, 'settings', lambda: cfg)
 
-    request = swarming_rpcs.NewTaskRequest(
-        expiration_secs=30,
-        name='job1',
-        priority=200,
-        properties=swarming_rpcs.TaskProperties(
-            dimensions=[
-              swarming_rpcs.StringPair(key='pool', value='default'),
-              swarming_rpcs.StringPair(key='foo', value='bar'),
-            ],
-            env=[
-              swarming_rpcs.StringPair(key='PATH', value='/'),
-            ],
-            execution_timeout_secs=30,
-            inputs_ref=swarming_rpcs.FilesRef(isolated='1'*40),
-            io_timeout_secs=30),
-        tags=['foo:bar'],
-        user='joe@localhost')
+    request = self.create_new_request(
+        properties=self.create_props(
+            inputs_ref=swarming_rpcs.FilesRef(isolated='1'*40)))
     expected = {
-      u'request': {
-        u'authenticated': u'user:user@example.com',
-        u'created_ts': str_now,
-        u'expiration_secs': u'30',
-        u'name': u'job1',
-        u'priority': u'200',
-        u'properties': {
-          u'dimensions': [
-            {u'key': u'foo', u'value': u'bar'},
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'30',
-          u'idempotent': False,
-          u'inputs_ref': {
-            'isolated': '1'*40,
-            'isolatedserver': 'https://isolateserver.appspot.com',
-            'namespace': 'default-gzip',
-          },
-          u'io_timeout_secs': u'30',
-        },
-        u'service_account': u'none',
-        u'tags': [
-          u'foo:bar',
-          u'pool:default',
-          u'priority:200',
-          u'service_account:none',
-          u'user:joe@localhost',
-        ],
-        u'user': u'joe@localhost',
-      },
+      u'request': self.gen_request(
+          created_ts=str_now,
+          properties=self.gen_props(
+              inputs_ref={
+                u'isolated': u'1'*40,
+                u'isolatedserver': u'https://isolateserver.appspot.com',
+                u'namespace': u'default-gzip',
+              })),
       u'task_id': u'5cee488008810',
     }
     response = self.call_api('new', body=message_to_dict(request))
@@ -766,9 +503,7 @@ class TasksApiTest(BaseTest):
 
   def test_new_cipd_package_with_defaults(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
 
     # Define settings on the server.
     cfg = config.settings()
@@ -778,87 +513,47 @@ class TasksApiTest(BaseTest):
     cfg.cipd.default_server = 'https://chrome-infra-packages.appspot.com'
     self.mock(config, 'settings', lambda: cfg)
 
-    request = swarming_rpcs.NewTaskRequest(
-        expiration_secs=30,
-        name='job1',
-        priority=200,
-        properties=swarming_rpcs.TaskProperties(
+    expected = {
+      u'request': self.gen_request(
+          created_ts=str_now,
+          properties=self.gen_props(
+              cipd_input={
+                u'client_package': {
+                  u'package_name': u'infra/tools/cipd/${platform}',
+                  u'version': u'git_revision:deadbeef',
+                },
+                u'packages': [
+                  {
+                    u'package_name': u'rm',
+                    u'path': u'.',
+                    u'version': u'latest',
+                  },
+                ],
+                u'server': u'https://chrome-infra-packages.appspot.com',
+              },
+              command=[u'rm', u'-rf', u'/'],
+              env=[{u'key': u'PATH', u'value': u'/'}])),
+      u'task_id': u'5cee488008810',
+    }
+    request = self.create_new_request(
+        properties=self.create_props(
             cipd_input=swarming_rpcs.CipdInput(
                 packages=[
                   swarming_rpcs.CipdPackage(
-                      package_name='rm',
-                      path='.',
-                      version='latest'),
-                ],
-            ),
+                      package_name='rm', path='.', version='latest'),
+                ]),
             command=['rm', '-rf', '/'],
-            dimensions=[
-              swarming_rpcs.StringPair(key='pool', value='default'),
-            ],
             env=[
               swarming_rpcs.StringPair(key='PATH', value='/'),
-            ],
-            execution_timeout_secs=30,
-            io_timeout_secs=30),
-        tags=['foo:bar'],
-        user='joe@localhost',
-        pubsub_topic='projects/abc/topics/def',
-        pubsub_auth_token='secret that must not be shown',
-        pubsub_userdata='userdata')
-    expected = {
-      u'request': {
-        u'authenticated': u'user:user@example.com',
-        u'created_ts': str_now,
-        u'expiration_secs': u'30',
-        u'name': u'job1',
-        u'priority': u'200',
-        u'properties': {
-          u'cipd_input': {
-            u'client_package': {
-              u'package_name': u'infra/tools/cipd/${platform}',
-              u'version': u'git_revision:deadbeef',
-            },
-            u'packages': [{
-              u'package_name': u'rm',
-              u'path': u'.',
-              u'version': u'latest',
-            }],
-            u'server': u'https://chrome-infra-packages.appspot.com',
-          },
-          u'command': [u'rm', u'-rf', u'/'],
-          u'dimensions': [
-            {u'key': u'pool', u'value': u'default'},
-          ],
-          u'env': [
-            {u'key': u'PATH', u'value': u'/'},
-          ],
-          u'execution_timeout_secs': u'30',
-          u'grace_period_secs': u'30',
-          u'idempotent': False,
-          u'io_timeout_secs': u'30',
-        },
-        u'pubsub_topic': u'projects/abc/topics/def',
-        u'pubsub_userdata': u'userdata',
-        u'service_account': u'none',
-        u'tags': [
-          u'foo:bar',
-          u'pool:default',
-          u'priority:200',
-          u'service_account:none',
-          u'user:joe@localhost',
-        ],
-        u'user': u'joe@localhost',
-      },
-      u'task_id': u'5cee488008810',
-    }
+            ]))
     response = self.call_api('new', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
 
   def test_mass_cancel(self):
     # Create two tasks.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    first, second, _, _, _, now_120 = self._gen_three_pending_tasks()
-    now_120_str = unicode(now_120.strftime(self.DATETIME_NO_MICRO))
+    first, second, _, _, now_120 = self._gen_three_pending_tasks()
+    now_120_str = unicode(now_120.strftime(DATETIME_NO_MICRO))
 
     expected = {
       u'matched': u'2',
@@ -1032,8 +727,6 @@ class TasksApiTest(BaseTest):
   def test_tags_ok(self):
     """Asserts that TasksTags is returned with the right data."""
     self.set_as_privileged_user()
-    now = datetime.datetime(2009, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
     task_result.TagAggregation(
         key=task_result.TagAggregation.KEY,
         tags=[
@@ -1042,164 +735,96 @@ class TasksApiTest(BaseTest):
             task_result.TagValues(
                 tag='bar', values=['gamma', 'delta', 'epsilon']),
         ],
-        ts=now).put()
+        ts=self.now).put()
     expected = {
       u'tasks_tags': [
         {
-          u'key': 'foo',
+          u'key': u'foo',
           u'value': [u'alpha', u'beta'],
         },
         {
-          u'key': 'bar',
+          u'key': u'bar',
           u'value': [u'gamma', u'delta', u'epsilon'],
         },
       ],
-      u'ts': unicode(now.strftime(self.DATETIME_FORMAT)),
+      u'ts': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
     self.assertEqual(expected, self.call_api('tags', body={}).json)
 
   def _gen_two_tasks(self):
     # first request
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
-    self.mock_now(now)
-    self.mock(random, 'getrandbits', lambda _: 0x66)
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     _, first_id = self.client_create_task_raw(
-        name='first', tags=['project:yay', 'commit:post', 'os:Win'],
+        name='first',
+        tags=['project:yay', 'commit:post'],
         properties=dict(idempotent=True))
     self.set_as_bot()
     self.bot_run_task()
 
     # second request
     self.set_as_user()
-    self.mock(random, 'getrandbits', lambda _: 0x88)
-    now_60 = self.mock_now(now, 60)
-    str_now_60 = unicode(now_60.strftime(self.DATETIME_NO_MICRO))
+    self.mock(random, 'getrandbits', lambda _: 0x66)
+    now_60 = self.mock_now(self.now, 60)
+    str_now_60 = unicode(now_60.strftime(DATETIME_NO_MICRO))
     self.client_create_task_raw(
-        name='second', user='jack@localhost',
-        tags=['project:yay', 'commit:pre', 'os:Win'],
+        name='second',
+        user='jack@localhost',
+        tags=['project:yay', 'commit:pre'],
         properties=dict(idempotent=True))
 
     # Hack the datastore so MODIFIED_TS returns in backward order compared to
     # CREATED_TS.
-    now_120 = self.mock_now(now, 120)
-    str_now_120 = unicode(now_120.strftime(self.DATETIME_NO_MICRO))
+    now_120 = self.mock_now(self.now, 120)
+    str_now_120 = unicode(now_120.strftime(DATETIME_NO_MICRO))
     entity = task_pack.unpack_result_summary_key(first_id).get()
     entity.modified_ts = now_120
     entity.put()
 
-    second = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'cost_saved_usd': 0.1,
-      u'created_ts': str_now_60,
-      u'completed_ts': str_now,
-      u'deduped_from': u'5cee488006611',
-      u'duration': 0.1,
-      u'exit_code': u'0',
-      u'failure': False,
-      u'internal_failure': False,
-      u'modified_ts': str_now_60,
-      u'name': u'second',
-      u'run_id': u'5cee488006611',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'COMPLETED',
-      u'tags': [
-        u'commit:pre',
-        u'os:Amiga',
-        u'os:Win',
-        u'pool:default',
-        u'priority:20',
-        u'project:yay',
-        u'service_account:none',
-        u'user:jack@localhost',
-      ],
-      u'task_id': u'5cfcee8008810',
-      u'try_number': u'0',
-      u'user': u'jack@localhost',
-    }
-    first = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'costs_usd': [0.1],
-      u'created_ts': str_now,
-      u'completed_ts': str_now,
-      u'duration': 0.1,
-      u'exit_code': u'0',
-      u'failure': False,
-      u'internal_failure': False,
-      u'performance_stats': {
-        u'bot_overhead': 0.1,
-        u'isolated_download': {
-          u'duration': 1.0,
-          u'initial_number_items': u'10',
-          u'initial_size': u'100000',
-          # Note: these were manually decompressed, they are returned as
-          # base64.b64encode(large.pack()) from the API.
-          u'items_cold': [20],
-          u'items_hot': [30, 40],
-          u'num_items_cold': u'1',
-          u'total_bytes_items_cold': u'20',
-          u'num_items_hot': u'2',
-          u'total_bytes_items_hot': u'70',
-        },
-        u'isolated_upload': {
-          u'duration': 2.0,
-          # Note: these were manually decompressed, they are returned as
-          # base64.b64encode(large.pack()) from the API.
-          u'items_cold': [1, 2, 40],
-          u'items_hot': [1, 2, 3, 50],
-          u'num_items_cold': u'3',
-          u'total_bytes_items_cold': u'43',
-          u'num_items_hot': u'4',
-          u'total_bytes_items_hot': u'56',
-        },
-      },
-      u'modified_ts': str_now_120,
-      u'name': u'first',
-      u'run_id': u'5cee488006611',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'COMPLETED',
-      u'tags': [
-        u'commit:post',
-        u'os:Amiga',
-        u'os:Win',
-        u'pool:default',
-        u'priority:20',
-        u'project:yay',
-        u'service_account:none',
-        u'user:joe@localhost',
-      ],
-      u'task_id': u'5cee488006610',
-      u'try_number': u'1',
-      u'user': u'joe@localhost'
-    }
+    first = self.gen_result_summary(
+        completed_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=0.1,
+        exit_code=u'0',
+        modified_ts=str_now_120,
+        name=u'first',
+        performance_stats=self.gen_perf_stats(),
+        started_ts=str_now,
+        tags=[
+          u'commit:post', u'os:Amiga', u'pool:default', u'priority:20',
+          u'project:yay', u'service_account:none', u'user:joe@localhost',
+        ],
+        try_number=u'1')
+    deduped = self.gen_result_summary(
+        completed_ts=str_now,
+        cost_saved_usd=0.1,
+        created_ts=str_now_60,
+        deduped_from=u'5cee488008811',
+        duration=0.1,
+        exit_code=u'0',
+        modified_ts=str_now_60,
+        name=u'second',
+        run_id=u'5cee488008811',
+        started_ts=str_now,
+        tags=[
+          u'commit:pre', u'os:Amiga', u'pool:default', u'priority:20',
+          u'project:yay', u'service_account:none', u'user:jack@localhost',
+        ],
+        task_id=u'5cfcee8006610',
+        user=u'jack@localhost')
 
     start = (
-        utils.datetime_to_timestamp(now - datetime.timedelta(days=1)) /
+        utils.datetime_to_timestamp(self.now - datetime.timedelta(days=1)) /
         1000000.)
     end = (
-        utils.datetime_to_timestamp(now + datetime.timedelta(days=1)) /
+        utils.datetime_to_timestamp(self.now + datetime.timedelta(days=1)) /
         1000000.)
     self.set_as_privileged_user()
-    return first, second, str_now_120, start, end
+    return first, deduped, str_now_120, start, end
 
   def _gen_three_pending_tasks(self):
     # Creates three pending tasks, spaced 1 minute apart
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
     self.mock(random, 'getrandbits', lambda _: 0x66)
     _, first_id = self.client_create_task_raw(
         name='first', tags=['project:yay', 'commit:abcd', 'os:Win'],
@@ -1207,7 +832,7 @@ class TasksApiTest(BaseTest):
         pubsub_userdata='1234',
         properties=dict(idempotent=True))
 
-    now_60 = self.mock_now(now, 60)
+    now_60 = self.mock_now(self.now, 60)
     self.mock(random, 'getrandbits', lambda _: 0x88)
     _, second_id = self.client_create_task_raw(
         name='second', user='jack@localhost',
@@ -1216,7 +841,7 @@ class TasksApiTest(BaseTest):
         tags=['project:yay', 'commit:efgh', 'os:Win'],
         properties=dict(idempotent=True))
 
-    now_120 = self.mock_now(now, 120)
+    now_120 = self.mock_now(self.now, 120)
     _, third_id = self.client_create_task_raw(
         name='third', user='jack@localhost',
         pubsub_topic='projects/abc/topics/def',
@@ -1224,7 +849,7 @@ class TasksApiTest(BaseTest):
         tags=['project:yay', 'commit:ijkhl', 'os:Linux'],
         properties=dict(idempotent=True))
 
-    return first_id, second_id, third_id, now, now_60, now_120
+    return first_id, second_id, third_id, now_60, now_120
 
 
 class TaskApiTest(BaseTest):
@@ -1240,9 +865,7 @@ class TaskApiTest(BaseTest):
     # catch PubSub notification
     # Create and cancel a task as a non-privileged user.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     _, task_id = self.client_create_task_raw(
         pubsub_topic='projects/abc/topics/def',
         pubsub_userdata='blah')
@@ -1257,10 +880,11 @@ class TaskApiTest(BaseTest):
       u'failure': False,
       u'internal_failure': False,
       u'modified_ts': str_now,
-      u'name': u'hi',
+      u'name': u'job1',
       u'server_versions': [u'v1a'],
       u'state': u'CANCELED',
       u'tags': [
+        u'a:tag',
         u'os:Amiga',
         u'pool:default',
         u'priority:20',
@@ -1288,8 +912,6 @@ class TaskApiTest(BaseTest):
     """Asserts that non-privileged non-owner can't cancel tasks."""
     # Create a task as an admin.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
     self.set_as_admin()
     _, task_id = self.client_create_task_raw(
         pubsub_topic='projects/abc/topics/def',
@@ -1301,9 +923,7 @@ class TaskApiTest(BaseTest):
 
   def test_task_canceled(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     _, task_id = self.client_create_task_raw(
         properties=dict(command=['python', 'runtest.py']))
 
@@ -1324,45 +944,19 @@ class TaskApiTest(BaseTest):
       out.update(**kwargs)
       return out
 
-    def _expected(**kwargs):
-      out = {
-        u'bot_dimensions': [
-          {u'key': u'id', u'value': [u'bot1']},
-          {u'key': u'os', u'value': [u'Amiga']},
-          {u'key': u'pool', u'value': [u'default']},
-        ],
-        u'bot_id': u'bot1',
-        u'bot_version': self.bot_version,
-        u'costs_usd': [0.1],
-        u'created_ts': str_now,
-        u'failure': False,
-        u'internal_failure': False,
-        u'modified_ts': str_now,
-        u'name': u'hi',
-        u'run_id': u'5cee488008811',
-        u'server_versions': [u'v1a'],
-        u'started_ts': str_now,
-        u'state': u'RUNNING',
-        u'tags': [
-          u'os:Amiga',
-          u'pool:default',
-          u'priority:20',
-          u'service_account:none',
-          u'user:joe@localhost',
-        ],
-        u'task_id': task_id,
-        u'try_number': u'1',
-        u'user': u'joe@localhost',
-      }
-      out.update((unicode(k), v) for k, v in kwargs.iteritems())
-      return out
-
     self.set_as_bot()
     params = _params(output=base64.b64encode('Oh '))
     response = self.post_json('/swarming/api/v1/bot/task_update', params)
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
     self.set_as_user()
-    self.assertEqual(_expected(), self.client_get_results(task_id))
+    expected = self.gen_result_summary(
+        costs_usd=[0.1],
+        created_ts=str_now,
+        modified_ts=str_now,
+        started_ts=str_now,
+        state=u'RUNNING',
+        try_number=u'1')
+    self.assertEqual(expected, self.client_get_results(task_id))
 
     # Canceling a running task is currently not supported.
     response = self.call_api('cancel', body={'task_id': task_id})
@@ -1372,8 +966,9 @@ class TaskApiTest(BaseTest):
     params = _params(output=base64.b64encode('hi'), output_chunk_start=3)
     response = self.post_json('/swarming/api/v1/bot/task_update', params)
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
+
     self.set_as_user()
-    self.assertEqual(_expected(), self.client_get_results(task_id))
+    self.assertEqual(expected, self.client_get_results(task_id))
 
   def test_result_unknown(self):
     """Asserts that result raises 404 for unknown task IDs."""
@@ -1384,9 +979,7 @@ class TaskApiTest(BaseTest):
     self.mock(random, 'getrandbits', lambda _: 0x88)
 
     # pending task
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     _, task_id = self.client_create_task_raw()
     response = self.call_api('result', body={'task_id': task_id})
     expected = {
@@ -1394,10 +987,11 @@ class TaskApiTest(BaseTest):
       u'failure': False,
       u'internal_failure': False,
       u'modified_ts': str_now,
-      u'name': u'hi',
+      u'name': u'job1',
       u'server_versions': [u'v1a'],
       u'state': u'PENDING',
       u'tags': [
+        u'a:tag',
         u'os:Amiga',
         u'pool:default',
         u'priority:20',
@@ -1419,88 +1013,35 @@ class TaskApiTest(BaseTest):
 
     self.set_as_user()
     response = self.call_api('result', body={'task_id': run_id})
-    expected = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'costs_usd': [0.0],
-      u'created_ts': str_now,
-      u'failure': False,
-      u'internal_failure': False,
-      u'modified_ts': str_now,
-      u'name': u'hi',
-      u'run_id': u'5cee488008811',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'RUNNING',
-      u'task_id': u'5cee488008811',
-      u'try_number': u'1',
-    }
+    expected = self.gen_run_result(
+        created_ts=str_now,
+        modified_ts=str_now,
+        started_ts=str_now)
     self.assertEqual(expected, response.json)
 
   def test_result_completed_task(self):
     """Tests that completed tasks are correctly reported."""
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    str_now = unicode(now.strftime(self.DATETIME_FORMAT))
-    self.mock_now(now)
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
     self.client_create_task_raw()
     self.set_as_bot()
     task_id = self.bot_run_task()
     # First ask without perf metadata.
     self.set_as_user()
     response = self.call_api('result', body={'task_id': task_id})
-    expected = {
-      u'bot_dimensions': [
-        {u'key': u'id', u'value': [u'bot1']},
-        {u'key': u'os', u'value': [u'Amiga']},
-        {u'key': u'pool', u'value': [u'default']},
-      ],
-      u'bot_id': u'bot1',
-      u'bot_version': self.bot_version,
-      u'costs_usd': [0.1],
-      u'created_ts': str_now,
-      u'completed_ts': str_now,
-      u'duration': 0.1,
-      u'exit_code': u'0',
-      u'failure': False,
-      u'internal_failure': False,
-      u'modified_ts': str_now,
-      u'name': u'hi',
-      u'run_id': task_id[:-1] + '1',
-      u'server_versions': [u'v1a'],
-      u'started_ts': str_now,
-      u'state': u'COMPLETED',
-      u'task_id': task_id,
-      u'try_number': u'1',
-    }
+    expected = self.gen_run_result(
+        completed_ts=str_now,
+        costs_usd=[0.1],
+        created_ts=str_now,
+        duration=0.1,
+        exit_code=u'0',
+        modified_ts=str_now,
+        run_id=task_id,
+        started_ts=str_now,
+        state=u'COMPLETED',
+        task_id=task_id)
     self.assertEqual(expected, response.json)
-    expected[u'performance_stats'] = {
-      u'bot_overhead': 0.1,
-      u'isolated_download': {
-        u'duration': 1.0,
-        u'initial_number_items': u'10',
-        u'initial_size': u'100000',
-        u'items_cold': [20],
-        u'items_hot': [30, 40],
-        u'num_items_cold': u'1',
-        u'total_bytes_items_cold': u'20',
-        u'num_items_hot': u'2',
-        u'total_bytes_items_hot': u'70',
-      },
-      u'isolated_upload': {
-        u'duration': 2.0,
-        u'items_cold': [1, 2, 40],
-        u'items_hot': [1, 2, 3, 50],
-        u'num_items_cold': u'3',
-        u'total_bytes_items_cold': u'43',
-        u'num_items_hot': u'4',
-        u'total_bytes_items_hot': u'56',
-      },
-    }
+
+    expected[u'performance_stats'] = self.gen_perf_stats()
     response = self.call_api(
         'result',
         body={'task_id': task_id, 'include_performance_stats': True})
@@ -1573,53 +1114,26 @@ class TaskApiTest(BaseTest):
     """Asserts that request produces a task request."""
     self.mock_task_service_accounts()
     self.mock_default_pool_acl(['service-account@example.com'])
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
     _, task_id = self.client_create_task_raw(
         properties={'secret_bytes': 'zekret'},
         service_account='service-account@example.com')
+
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
+    expected = self.gen_request(
+        created_ts=str_now,
+        properties=self.gen_props(
+            command=[u'python', u'run_test.py'],
+            secret_bytes=u'PFJFREFDVEVEPg=='), # <REDACTED> in base64
+        service_account=u'service-account@example.com',
+        tags=[
+          u'a:tag',
+          u'os:Amiga',
+          u'pool:default',
+          u'priority:20',
+          u'service_account:service-account@example.com',
+          u'user:joe@localhost',
+        ])
     response = self.call_api('request', body={'task_id': task_id})
-    expected = {
-      u'authenticated': u'user:user@example.com',
-      u'created_ts': unicode(now.strftime(self.DATETIME_FORMAT)),
-      u'expiration_secs': unicode(24 * 60 * 60),
-      u'name': u'hi',
-      u'priority': u'20',
-      u'properties': {
-        u'cipd_input': {
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/${platform}',
-            u'version': u'git_revision:deadbeef',
-          },
-          u'packages': [{
-            u'package_name': u'rm',
-            u'path': u'bin',
-            u'version': u'git_revision:deadbeef',
-          }],
-          u'server': u'https://chrome-infra-packages.appspot.com',
-        },
-        u'command': [u'python', u'run_test.py'],
-        u'dimensions': [
-          {u'key': u'os', u'value': u'Amiga'},
-          {u'key': u'pool', u'value': u'default'},
-        ],
-        u'execution_timeout_secs': u'3600',
-        u'grace_period_secs': u'30',
-        u'idempotent': False,
-        u'io_timeout_secs': u'1200',
-        u'outputs': [u'foo', u'path/to/foobar'],
-        u'secret_bytes': u'PFJFREFDVEVEPg==',  # <REDACTED> in base64
-      },
-      u'service_account': u'service-account@example.com',
-      u'tags': [
-        u'os:Amiga',
-        u'pool:default',
-        u'priority:20',
-        u'service_account:service-account@example.com',
-        u'user:joe@localhost',
-      ],
-      u'user': u'joe@localhost',
-    }
     self.assertEqual(expected, response.json)
 
 
@@ -1629,37 +1143,37 @@ class BotsApiTest(BaseTest):
   def test_list_ok(self):
     """Asserts that BotInfo is returned for the appropriate set of bots."""
     self.set_as_privileged_user()
-    then = datetime.datetime(2009, 1, 2, 3, 4, 5, 6)
-    then_str = unicode(then.strftime(self.DATETIME_FORMAT))
+    then = datetime.datetime(2009, 1, 2, 3, 4, 5)
+    then_str = unicode(then.strftime(DATETIME_NO_MICRO))
     self.mock_now(then)
+
     # Add three bot events, corresponding to one dead bot, one quarantined bot,
     # and one good bot
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id3',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id3']}, state={'ram': 65},
+        dimensions={u'id': [u'id3'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, task_id=None, task_name=None,
         machine_type='mt')
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    now_str = unicode(now.strftime(self.DATETIME_FORMAT))
-    self.mock_now(now)
+    self.mock_now(self.now)
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id1']}, state={'ram': 65},
+        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, task_id=None, task_name=None)
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id2',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id2']}, state={'ram': 65},
+        dimensions={u'id': [u'id2'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=True, task_id=None, task_name=None)
+    now_str = unicode(self.now.strftime(DATETIME_NO_MICRO))
     bot1 = {
       u'authenticated_as': u'bot:whitelisted-ip',
       u'bot_id': u'id1',
       u'deleted': False,
       u'dimensions': [
-        {u'key': u'foo', u'value': [u'bar']},
         {u'key': u'id', u'value': [u'id1']},
+        {u'key': u'pool', u'value': [u'default']},
       ],
       u'external_ip': u'8.8.4.4',
       u'first_seen_ts': now_str,
@@ -1674,8 +1188,8 @@ class BotsApiTest(BaseTest):
       u'bot_id': u'id2',
       u'deleted': False,
       u'dimensions': [
-        {u'key': u'foo', u'value': [u'bar']},
         {u'key': u'id', u'value': [u'id2']},
+        {u'key': u'pool', u'value': [u'default']},
       ],
       u'external_ip': u'8.8.4.4',
       u'first_seen_ts': now_str,
@@ -1690,8 +1204,8 @@ class BotsApiTest(BaseTest):
       u'bot_id': u'id3',
       u'deleted': False,
       u'dimensions': [
-        {u'key': u'foo', u'value': [u'bar']},
         {u'key': u'id', u'value': [u'id3']},
+        {u'key': u'pool', u'value': [u'default']},
       ],
       u'external_ip': u'8.8.4.4',
       u'first_seen_ts': then_str,
@@ -1705,7 +1219,7 @@ class BotsApiTest(BaseTest):
     expected = {
       u'items': [bot1, bot2, bot3],
       u'death_timeout': unicode(config.settings().bot_death_timeout_secs),
-      u'now': unicode(now.strftime(self.DATETIME_FORMAT)),
+      u'now': now_str,
     }
     # All bots should be returned with no params
     request = swarming_rpcs.BotsRequest()
@@ -1723,13 +1237,13 @@ class BotsApiTest(BaseTest):
     self.assertEqual(expected, response.json)
     # Only bot1 corresponds to these two dimensions
     expected[u'items'] = [bot1]
-    request = swarming_rpcs.BotsRequest(dimensions=['foo:bar', 'id:id1'])
+    request = swarming_rpcs.BotsRequest(dimensions=['pool:default', 'id:id1'])
     response = self.call_api('list', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
     # Only bot1 corresponds to being not dead and not quarantined and
     # this dimension
     request = swarming_rpcs.BotsRequest(
-      dimensions=['foo:bar'],
+      dimensions=['pool:default'],
       quarantined=swarming_rpcs.ThreeStateBool.FALSE,
       is_dead=swarming_rpcs.ThreeStateBool.FALSE)
     response = self.call_api('list', body=message_to_dict(request))
@@ -1754,7 +1268,8 @@ class BotsApiTest(BaseTest):
     self.assertEqual(expected, response.json)
     # quarantined:true can be paired with other dimensions and still work
     request = swarming_rpcs.BotsRequest(
-        quarantined=swarming_rpcs.ThreeStateBool.TRUE, dimensions=['foo:bar'])
+        quarantined=swarming_rpcs.ThreeStateBool.TRUE,
+        dimensions=['pool:default'])
     response = self.call_api('list', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
     # only bot3 is dead
@@ -1765,7 +1280,7 @@ class BotsApiTest(BaseTest):
     self.assertEqual(expected, response.json)
     # is_dead:true can be paired with other dimensions and still work
     request = swarming_rpcs.BotsRequest(
-        is_dead=swarming_rpcs.ThreeStateBool.TRUE, dimensions=['foo:bar'])
+        is_dead=swarming_rpcs.ThreeStateBool.TRUE, dimensions=['pool:default'])
     response = self.call_api('list', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
     # only 1 bot is "ready for work"
@@ -1821,30 +1336,31 @@ class BotsApiTest(BaseTest):
   def test_count_ok(self):
     """Asserts that BotsCount is returned for the appropriate set of bots."""
     self.set_as_privileged_user()
-    self.mock_now(datetime.datetime(2009, 1, 2, 3, 4, 5, 6))
+    then = datetime.datetime(2009, 1, 2, 3, 4, 5)
+    then_str = unicode(then.strftime(DATETIME_NO_MICRO))
+    self.mock_now(then)
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id3',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id3']}, state={'ram': 65},
+        dimensions={u'id': [u'id3'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=True, task_id=None, task_name=None)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
+    self.mock_now(self.now)
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id1']}, state={'ram': 65},
+        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, task_id='987', task_name=None)
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id2',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id2']}, state={'ram': 65},
+        dimensions={u'id': [u'id2'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=True, task_id=None, task_name=None)
     expected = {
       u'count': u'3',
       u'quarantined': u'2',
       u'dead': u'1',
       u'busy': u'1',
-      u'now': unicode(now.strftime(self.DATETIME_FORMAT)),
+      u'now': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
     request = swarming_rpcs.BotsRequest()
     response = self.call_api('count', body=message_to_dict(request))
@@ -1855,20 +1371,23 @@ class BotsApiTest(BaseTest):
       u'quarantined': u'0',
       u'dead': u'0',
       u'busy': u'1',
-      u'now': unicode(now.strftime(self.DATETIME_FORMAT)),
+      u'now': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
-    request = swarming_rpcs.BotsCountRequest(dimensions=['foo:bar', 'id:id1'])
+    request = swarming_rpcs.BotsCountRequest(
+        dimensions=['pool:default', 'id:id1'])
     response = self.call_api('count', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
 
     expected[u'quarantined'] = u'1'
     expected[u'busy'] = u'0'
-    request = swarming_rpcs.BotsCountRequest(dimensions=['foo:bar', 'id:id2'])
+    request = swarming_rpcs.BotsCountRequest(
+        dimensions=['pool:default', 'id:id2'])
     response = self.call_api('count', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
 
     expected[u'dead'] = u'1'
-    request = swarming_rpcs.BotsCountRequest(dimensions=['foo:bar', 'id:id3'])
+    request = swarming_rpcs.BotsCountRequest(
+        dimensions=['pool:default', 'id:id3'])
     response = self.call_api('count', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
 
@@ -1879,7 +1398,7 @@ class BotsApiTest(BaseTest):
       u'quarantined': u'0',
       u'dead': u'0',
       u'busy': u'0',
-      u'now': unicode(now.strftime(self.DATETIME_FORMAT)),
+      u'now': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
     self.assertEqual(expected, response.json)
 
@@ -1889,8 +1408,6 @@ class BotsApiTest(BaseTest):
   def test_dimensions_ok(self):
     """Asserts that BotsDimensions is returned with the right data."""
     self.set_as_privileged_user()
-    now = datetime.datetime(2009, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
 
     bot_management.DimensionAggregation(
         key=bot_management.DimensionAggregation.KEY,
@@ -1900,20 +1417,20 @@ class BotsApiTest(BaseTest):
             bot_management.DimensionValues(
               dimension='bar', values=['gamma', 'delta', 'epsilon']),
         ],
-        ts=now).put()
+        ts=self.now).put()
 
     expected = {
       u'bots_dimensions': [
         {
-          u'key': 'foo',
+          u'key': u'foo',
           u'value': [u'alpha', u'beta'],
         },
         {
-          u'key': 'bar',
+          u'key': u'bar',
           u'value': [u'gamma', u'delta', u'epsilon'],
         },
       ],
-      u'ts': unicode(now.strftime(self.DATETIME_FORMAT)),
+      u'ts': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
 
     self.assertEqual(expected, self.call_api('dimensions', body={}).json)
@@ -1925,13 +1442,11 @@ class BotApiTest(BaseTest):
   def test_get_ok(self):
     """Asserts that get shows the tasks a specific bot has executed."""
     self.set_as_privileged_user()
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
-    now_str = unicode(now.strftime(self.DATETIME_FORMAT))
+    now_str = unicode(self.now.strftime(DATETIME_NO_MICRO))
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id1']}, state={'ram': 65},
+        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, task_id=None, task_name=None)
 
     expected = {
@@ -1939,8 +1454,8 @@ class BotApiTest(BaseTest):
       u'bot_id': u'id1',
       u'deleted': False,
       u'dimensions': [
-        {u'key': u'foo', u'value': [u'bar']},
         {u'key': u'id', u'value': [u'id1']},
+        {u'key': u'pool', u'value': [u'default']},
       ],
       u'external_ip': u'8.8.4.4',
       u'first_seen_ts': now_str,
@@ -1962,8 +1477,6 @@ class BotApiTest(BaseTest):
     """Assert that delete finds and deletes a bot."""
     self.set_as_admin()
     self.mock(acl, '_is_admin', lambda *_args, **_kwargs: True)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
     state = {
       'dict': {'random': 'values'},
       'float': 0.,
@@ -1973,7 +1486,7 @@ class BotApiTest(BaseTest):
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['bar'], 'id': ['id1']}, state=state,
+        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state=state,
         version='123456789', quarantined=False, task_id=None, task_name=None)
 
     # delete the bot
@@ -1986,27 +1499,23 @@ class BotApiTest(BaseTest):
   def test_tasks_ok(self):
     """Asserts that tasks produces bot information."""
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    self.mock_now(now)
 
     self.set_as_bot()
     self.client_create_task_raw()
     res = self.bot_poll()
     self.bot_complete_task(task_id=res['manifest']['task_id'])
 
-    now_1 = self.mock_now(now, 1)
-    now_1_str = unicode(now_1.strftime(self.DATETIME_FORMAT))
+    now_1 = self.mock_now(self.now, 1)
+    now_1_str = unicode(now_1.strftime(DATETIME_NO_MICRO))
     self.mock(random, 'getrandbits', lambda _: 0x55)
     self.client_create_task_raw(name='philbert')
     res = self.bot_poll()
     self.bot_complete_task(exit_code=1, task_id=res['manifest']['task_id'])
 
-    start = (
-        utils.datetime_to_timestamp(now + datetime.timedelta(seconds=0.5)) /
-        1000000.)
-    end = (
-        utils.datetime_to_timestamp(now_1 + datetime.timedelta(seconds=0.5)) /
-        1000000.)
+    start = utils.datetime_to_timestamp(
+        self.now + datetime.timedelta(seconds=0.5)) / 1000000.
+    end = utils.datetime_to_timestamp(
+        now_1 + datetime.timedelta(seconds=0.5)) / 1000000.
 
     self.set_as_privileged_user()
     request = swarming_rpcs.BotTasksRequest(
@@ -2016,55 +1525,22 @@ class BotApiTest(BaseTest):
     response = self.call_api('tasks', body=body)
     expected = {
       u'items': [
-        {
-          u'bot_dimensions': [
-            {u'key': u'id', u'value': [u'bot1']},
-            {u'key': u'os', u'value': [u'Amiga']},
-            {u'key': u'pool', u'value': [u'default']},
-          ],
-          u'bot_id': u'bot1',
-          u'bot_version': self.bot_version,
-          u'completed_ts': now_1_str,
-          u'costs_usd': [0.1],
-          u'created_ts': now_1_str,
-          u'duration': 0.1,
-          u'exit_code': u'1',
-          u'failure': True,
-          u'internal_failure': False,
-          u'modified_ts': now_1_str,
-          u'name': u'philbert',
-          u'performance_stats': {
-            u'bot_overhead': 0.1,
-            u'isolated_download': {
-              u'duration': 1.0,
-              u'initial_number_items': u'10',
-              u'initial_size': u'100000',
-              u'items_cold': [20],
-              u'items_hot': [30, 40],
-              u'num_items_cold': u'1',
-              u'total_bytes_items_cold': u'20',
-              u'num_items_hot': u'2',
-              u'total_bytes_items_hot': u'70',
-            },
-            u'isolated_upload': {
-              u'duration': 2.0,
-              u'items_cold': [1, 2, 40],
-              u'items_hot': [1, 2, 3, 50],
-              u'num_items_cold': u'3',
-              u'total_bytes_items_cold': u'43',
-              u'num_items_hot': u'4',
-              u'total_bytes_items_hot': u'56',
-            },
-          },
-          u'run_id': u'5cee870005511',
-          u'server_versions': [u'v1a'],
-          u'started_ts': now_1_str,
-          u'state': u'COMPLETED',
-          u'task_id': u'5cee870005511',
-          u'try_number': u'1',
-        },
+        self.gen_run_result(
+            completed_ts=now_1_str,
+            costs_usd=[0.1],
+            created_ts=now_1_str,
+            duration=0.1,
+            exit_code=u'1',
+            failure=True,
+            modified_ts=now_1_str,
+            name=u'philbert',
+            performance_stats=self.gen_perf_stats(),
+            run_id=u'5cee870005511',
+            started_ts=now_1_str,
+            state=u'COMPLETED',
+            task_id=u'5cee870005511'),
       ],
-      u'now': unicode(now_1.strftime(self.DATETIME_FORMAT)),
+      u'now': now_1_str,
     }
     actual = response.json
     for k in ('isolated_download', 'isolated_upload'):
@@ -2076,16 +1552,14 @@ class BotApiTest(BaseTest):
   def test_events(self):
     # Run one task, push an event manually.
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
-    self.mock_now(now)
-    str_now = unicode(now.strftime(self.DATETIME_NO_MICRO))
+    str_now = unicode(self.now.strftime(DATETIME_NO_MICRO))
 
     self.set_as_bot()
     self.client_create_task_raw()
     params = self.do_handshake()
     res = self.bot_poll()
-    now_60 = self.mock_now(now, 60)
-    str_now_60 = unicode(now_60.strftime(self.DATETIME_NO_MICRO))
+    now_60 = self.mock_now(self.now, 60)
+    str_now_60 = unicode(now_60.strftime(DATETIME_NO_MICRO))
     self.bot_complete_task(task_id=res['manifest']['task_id'])
 
     params['event'] = 'bot_rebooting'
@@ -2093,7 +1567,7 @@ class BotApiTest(BaseTest):
     response = self.post_json('/swarming/api/v1/bot/event', params)
     self.assertEqual({}, response)
 
-    start = utils.datetime_to_timestamp(now) / 1000000.
+    start = utils.datetime_to_timestamp(self.now) / 1000000.
     end = utils.datetime_to_timestamp(now_60) / 1000000.
     self.set_as_privileged_user()
     body = message_to_dict(
@@ -2187,7 +1661,6 @@ class BotApiTest(BaseTest):
     self.set_as_bot()
     self.bot_poll()
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    self.mock_now(datetime.datetime(2010, 1, 2, 3, 4, 5))
 
     self.set_as_admin()
     response = self.call_api('terminate', body={'bot_id': 'bot1'})
@@ -2197,7 +1670,6 @@ class BotApiTest(BaseTest):
     self.set_as_bot()
     self.bot_poll()
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    self.mock_now(datetime.datetime(2010, 1, 2, 3, 4, 5))
 
     self.set_as_privileged_user()
     response = self.call_api('terminate', body={'bot_id': 'bot1'})
@@ -2207,7 +1679,6 @@ class BotApiTest(BaseTest):
     self.set_as_bot()
     self.bot_poll()
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    self.mock_now(datetime.datetime(2010, 1, 2, 3, 4, 5))
 
     self.set_as_user()
     self.call_api('terminate', body={'bot_id': 'bot1'}, status=403)
