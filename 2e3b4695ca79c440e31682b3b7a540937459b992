@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4fd9e7a_96c108f8",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-26T17:39:27Z",
+      "side": 1,
+      "message": "could you elaborate this? does this mean \"swarming server haven\u0027t seen a bot that satisfies the dimensions in N hours\"?",
+      "range": {
+        "startLine": 274,
+        "startChar": 7,
+        "endLine": 274,
+        "endChar": 22
+      },
+      "revId": "2e3b4695ca79c440e31682b3b7a540937459b992",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49501a5b_aa8f8efb",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-26T17:39:27Z",
+      "side": 1,
+      "message": "one",
+      "range": {
+        "startLine": 306,
+        "startChar": 31,
+        "endLine": 306,
+        "endChar": 35
+      },
+      "revId": "2e3b4695ca79c440e31682b3b7a540937459b992",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6923aea3_7ec0612b",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-26T17:39:27Z",
+      "side": 1,
+      "message": "TaskRequest?",
+      "range": {
+        "startLine": 538,
+        "startChar": 4,
+        "endLine": 538,
+        "endChar": 18
+      },
+      "revId": "2e3b4695ca79c440e31682b3b7a540937459b992",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
