@@ -261,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "ba9bb403_8ae22e81",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-26T23:56:16Z",
+      "side": 1,
+      "message": "I guess I would err on the side of having consistent types, as that reduces the sharp edges in the code (not setting a default lead to at least 2 cases of `thing_thats_usually_a_boolean or False`, for example).",
+      "parentUuid": "e320994e_be0dff5a",
+      "range": {
+        "startLine": 155,
+        "startChar": 17,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f374dd5c_c048cc51",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 18
