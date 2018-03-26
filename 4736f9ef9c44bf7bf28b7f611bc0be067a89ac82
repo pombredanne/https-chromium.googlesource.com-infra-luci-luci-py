@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "e320994e_be0dff5a",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:51:18Z",
+      "side": 1,
+      "message": "In part, but by convention I don\u0027t store unnecessary data.",
+      "parentUuid": "99d715cf_af5fd19c",
+      "range": {
+        "startLine": 155,
+        "startChar": 17,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f374dd5c_c048cc51",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 18
