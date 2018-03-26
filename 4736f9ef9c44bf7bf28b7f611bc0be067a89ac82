@@ -189,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "acf46f82_985bbe76",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-26T23:39:52Z",
+      "side": 1,
+      "message": "Just set `default\u003dFalse` on the BooleanProperty?",
+      "parentUuid": "8e009c4d_475e10f1",
+      "range": {
+        "startLine": 155,
+        "startChar": 17,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f374dd5c_c048cc51",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 18
