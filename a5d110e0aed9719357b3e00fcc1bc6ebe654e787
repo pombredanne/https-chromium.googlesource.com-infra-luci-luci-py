@@ -16,6 +16,24 @@
       "revId": "a5d110e0aed9719357b3e00fcc1bc6ebe654e787",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6b964ec_1fac04d9",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-03-26T01:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec7a1146_306ca7ba",
+      "revId": "a5d110e0aed9719357b3e00fcc1bc6ebe654e787",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
