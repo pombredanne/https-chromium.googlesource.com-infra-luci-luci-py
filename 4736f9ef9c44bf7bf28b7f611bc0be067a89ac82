@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e7dc5f6d_dc91ee37",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:36:40Z",
+      "side": 1,
+      "message": "It\u0027s false because the task is completed. You cannot cancel a completed task. I updated the test to make more sense.",
+      "parentUuid": "d4b3bb1b_a5698df2",
+      "range": {
+        "startLine": 1108,
+        "startChar": 29,
+        "endLine": 1108,
+        "endChar": 34
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c00759af_0db8700a",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 18
@@ -59,6 +83,30 @@
       "writtenOn": "2018-03-26T20:30:00Z",
       "side": 1,
       "message": "? Shouldn\u0027t this already be True or False?",
+      "range": {
+        "startLine": 346,
+        "startChar": 53,
+        "endLine": 346,
+        "endChar": 62
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6a32f2b_c2eda05c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:36:40Z",
+      "side": 1,
+      "message": "It\u0027s None when not specified.",
+      "parentUuid": "c00759af_0db8700a",
       "range": {
         "startLine": 346,
         "startChar": 53,
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "8e009c4d_475e10f1",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:36:40Z",
+      "side": 1,
+      "message": "That\u0027s the serialization of a ndb entity when the property is missing. It\u0027s missing because we don\u0027t set it by default. It\u0027s not set by default to save on entity size since it\u0027s unnecessary, the property is not indexed.",
+      "parentUuid": "865afd61_1ce6aaee",
+      "range": {
+        "startLine": 155,
+        "startChar": 17,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f374dd5c_c048cc51",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 18
@@ -128,6 +200,30 @@
       "writtenOn": "2018-03-26T20:30:00Z",
       "side": 1,
       "message": "`if not duration` means the task is timing out already?",
+      "range": {
+        "startLine": 569,
+        "startChar": 6,
+        "endLine": 569,
+        "endChar": 17
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2b2d579_98f65e43",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:36:40Z",
+      "side": 1,
+      "message": "When the bot reports a task duration, it means the task completed.\n\nBut the condition was slightly incorrect, changed to \"if duration is not None\"",
+      "parentUuid": "f374dd5c_c048cc51",
       "range": {
         "startLine": 569,
         "startChar": 6,
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "b19cef0b_f4576f97",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:36:40Z",
+      "side": 1,
+      "message": "Expanded:\n\n    - True if the cancellation succeeded. Either the task atomically changed\n      from PENDING to CANCELED or it was RUNNING and killing bit has been set.",
+      "parentUuid": "8f02614d_1064ace5",
+      "range": {
+        "startLine": 1006,
+        "startChar": 18,
+        "endLine": 1006,
+        "endChar": 39
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1823ad0d_388901aa",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 18
@@ -174,6 +294,24 @@
       "writtenOn": "2018-03-26T20:30:00Z",
       "side": 1,
       "message": "add a test to make sure repeated `cancel_task(kill_running\u003dTrue)` returns ok\u003dTrue",
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14647caf_cec6e22c",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T23:36:40Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "1823ad0d_388901aa",
       "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
