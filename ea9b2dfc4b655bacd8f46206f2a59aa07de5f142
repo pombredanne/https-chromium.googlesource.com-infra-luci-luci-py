@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "892e4c6f_a13df598",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-26T19:59:52Z",
+      "side": 1,
+      "message": "maybe on self too?",
+      "range": {
+        "startLine": 503,
+        "startChar": 4,
+        "endLine": 503,
+        "endChar": 11
+      },
+      "revId": "ea9b2dfc4b655bacd8f46206f2a59aa07de5f142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
