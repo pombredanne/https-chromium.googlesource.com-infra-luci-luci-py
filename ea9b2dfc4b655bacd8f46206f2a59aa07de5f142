@@ -22,6 +22,30 @@
       "revId": "ea9b2dfc4b655bacd8f46206f2a59aa07de5f142",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fdbb89f_4aa7a89f",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T20:02:19Z",
+      "side": 1,
+      "message": "Yeah I thought about it but sometimes I use another value. I guess I should do it or write a short utility function instead.",
+      "parentUuid": "892e4c6f_a13df598",
+      "range": {
+        "startLine": 503,
+        "startChar": 4,
+        "endLine": 503,
+        "endChar": 11
+      },
+      "revId": "ea9b2dfc4b655bacd8f46206f2a59aa07de5f142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
