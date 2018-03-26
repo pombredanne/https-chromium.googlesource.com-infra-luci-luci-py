@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf1e6444_835be0c3",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-26T00:50:33Z",
+      "side": 1,
+      "message": "Add an option to disable the pool guessing and have the user select one manually.",
+      "revId": "796cbe8f141c60a3fbd690915fc4c917a7355a11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
