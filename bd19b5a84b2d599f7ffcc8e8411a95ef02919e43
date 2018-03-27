@@ -101,6 +101,75 @@
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c4f233d_fab425e5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-27T13:25:27Z",
+      "side": 1,
+      "message": "Maybe save orig_src outside of the \"try\" block so you can show both orig_src and src here?",
+      "range": {
+        "startLine": 552,
+        "startChar": 72,
+        "endLine": 552,
+        "endChar": 75
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9c3adf1_a1b6ed56",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-27T13:25:27Z",
+      "side": 1,
+      "message": "Nit: link_outputs is hard to search for because it\u0027s a substring of link_otuputs_to_outdir. Perhaps run_link_outputs_test?",
+      "range": {
+        "startLine": 973,
+        "startChar": 6,
+        "endLine": 973,
+        "endChar": 18
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9841f85c_4d10934d",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-27T13:25:27Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be subdir_link/child_a? We\u0027re asking the bot to return subdir_link, so that\u0027s what we should see?",
+      "range": {
+        "startLine": 1029,
+        "startChar": 9,
+        "endLine": 1029,
+        "endChar": 15
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
