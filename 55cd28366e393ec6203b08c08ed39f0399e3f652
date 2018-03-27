@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3098282e_b4184666",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-27T20:04:56Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be an error?",
+      "range": {
+        "startLine": 87,
+        "startChar": 7,
+        "endLine": 87,
+        "endChar": 14
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c0e6cd1_f947388f",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-27T20:04:56Z",
+      "side": 1,
+      "message": "will we ever want to have suffixes too? It might be simpler to add fields \"prefix\" and potentially \"suffix\" to EnvVar. We are duping var and soft right now",
+      "range": {
+        "startLine": 189,
+        "startChar": 20,
+        "endLine": 189,
+        "endChar": 24
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83a087e6_846a7f31",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-27T20:04:56Z",
+      "side": 1,
+      "message": "i read this as ((template+canary), (template+canary_ratio)), but I think you meant (template)+(canary template)+(canary_ratio)?\n\nmaybe use commas and parens since you are talking about tuples. Or maybe be consistent with space-vs-underscore",
+      "range": {
+        "startLine": 202,
+        "startChar": 27,
+        "endLine": 202,
+        "endChar": 64
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c947125e_3049f6f3",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-27T20:04:56Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be an error?\n\nwording is inconsistent with TaskTemplate.name comments too",
+      "range": {
+        "startLine": 207,
+        "startChar": 36,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2100a247_5bc0c41f",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-27T20:04:56Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be an error?",
+      "range": {
+        "startLine": 217,
+        "startChar": 67,
+        "endLine": 217,
+        "endChar": 74
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba161f8a_6bb9e1df",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-27T20:04:56Z",
+      "side": 1,
+      "message": "ratio kinda implies canary/prod, but canary/prod\u003d1 means 50% traffic splitting\nmaybe call canary_probability or canary_percentage as an integer, or maybe there is another term that I am forgetting right now",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
