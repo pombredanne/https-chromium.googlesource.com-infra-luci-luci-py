@@ -285,6 +285,30 @@
     },
     {
       "key": {
+        "uuid": "8fa82110_707d6d37",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T00:06:56Z",
+      "side": 1,
+      "message": "While I understand your point, there\u0027s 3 years worth of entities without this property, the code has to be resilient anyway.\n\nKeeping the entities small helped scale the service, so I keep a particular value in not increasing their size unnecessarily (yes we\u0027re talking about a few bytes but still, they add up)",
+      "parentUuid": "ba9bb403_8ae22e81",
+      "range": {
+        "startLine": 155,
+        "startChar": 17,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "4736f9ef9c44bf7bf28b7f611bc0be067a89ac82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f374dd5c_c048cc51",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 18
