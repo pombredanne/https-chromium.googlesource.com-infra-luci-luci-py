@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8f708de8_96a4e567",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65cd591d_e99c738f",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f14bd3c2_154fd37a",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -48,6 +66,24 @@
       "side": 1,
       "message": "Did this work in the current tests? Before fixing this, we should make the failure reproduce in the tests.",
       "parentUuid": "f14bd3c2_154fd37a",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeb9872c_8a640874",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "It works with the current tests. I also ran some more tests on my computer with this structure: \ndir1{symlink1, file, dir2}\ndir2{symlink2, dir3}\ndir3{symlink3}\n\ncase 1: sl1 --\u003e sl2 --\u003e sl3 --\u003e file\ncase 2: sl3 --\u003e sl2 --\u003e sl1 --\u003e file\ncase 3: sl2 --\u003e sl1 --\u003e sl3 --\u003e file\n\nIn each case, I read the original symlink, resolved the final target, opened the target, and overwrote it with no errors. \n\nCan you give me a test case that would fail? I\u0027ll add that to the unit tests, and it\u0027ll help me fix the issue.",
+      "parentUuid": "ab0a949f_d647a767",
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "8a2f878b_b9c05e4c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ca41b03_fac3c946",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40bbd55c_485c9b3e",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -106,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "e3bd69d8_5c0bbaba",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40bbd55c_485c9b3e",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3551aceb_3da7f1da",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -120,6 +192,24 @@
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aaa0aea_21f09cc1",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3551aceb_3da7f1da",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +253,48 @@
     },
     {
       "key": {
+        "uuid": "116f8d92_6ec178b5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c4f233d_fab425e5",
+      "range": {
+        "startLine": 552,
+        "startChar": 72,
+        "endLine": 552,
+        "endChar": 75
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44741459_45e792c6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f062b25_f908eded",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9c3adf1_a1b6ed56",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 5
@@ -183,6 +315,30 @@
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc63cde2_4c9b2c55",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9c3adf1_a1b6ed56",
+      "range": {
+        "startLine": 973,
+        "startChar": 6,
+        "endLine": 973,
+        "endChar": 18
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +365,30 @@
     },
     {
       "key": {
+        "uuid": "ddc174c9_93b56b7d",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Oh, so we want the directory that the symlink points to, but we want it renamed to the name of the symlink? In that case, the previous code was working! Removed the extra block from run_isolated.py. Also added another test case: symlink --\u003e symlink --\u003e dir containing multiple files.",
+      "parentUuid": "9841f85c_4d10934d",
+      "range": {
+        "startLine": 1029,
+        "startChar": 9,
+        "endLine": 1029,
+        "endChar": 15
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5088d421_a0f7927e",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 5
@@ -229,6 +409,30 @@
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f019dceb_329409fe",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "No. It works both ways.",
+      "parentUuid": "5088d421_a0f7927e",
+      "range": {
+        "startLine": 1053,
+        "startChar": 9,
+        "endLine": 1053,
+        "endChar": 26
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +459,30 @@
     },
     {
       "key": {
+        "uuid": "89b3a525_0800489a",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cce4fba9_5b27d40c",
+      "range": {
+        "startLine": 1092,
+        "startChar": 33,
+        "endLine": 1092,
+        "endChar": 45
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f12a91a_f98d54bf",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 5
@@ -275,6 +503,30 @@
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66122bf6_28da8724",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T15:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f12a91a_f98d54bf",
+      "range": {
+        "startLine": 1102,
+        "startChar": 0,
+        "endLine": 1102,
+        "endChar": 43
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
