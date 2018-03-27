@@ -22,6 +22,30 @@
       "revId": "275b2eb5576d621836c36c6c26eda76315aec69d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e900da6_7dc89a6f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-27T17:28:28Z",
+      "side": 1,
+      "message": "Done. Sorry I forgot to remove this after I removed the code that was using it.",
+      "parentUuid": "c55f6cf4_8315b4f6",
+      "range": {
+        "startLine": 519,
+        "startChar": 4,
+        "endLine": 519,
+        "endChar": 18
+      },
+      "revId": "275b2eb5576d621836c36c6c26eda76315aec69d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
