@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c55f6cf4_8315b4f6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-27T16:51:31Z",
+      "side": 1,
+      "message": "This is never used anywhere?",
+      "range": {
+        "startLine": 519,
+        "startChar": 4,
+        "endLine": 519,
+        "endChar": 18
+      },
+      "revId": "275b2eb5576d621836c36c6c26eda76315aec69d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
