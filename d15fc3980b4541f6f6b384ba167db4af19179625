@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "456b91c2_6c7fbed5",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:17:16Z",
+      "side": 0,
+      "message": "this one is now at line 44",
+      "revId": "d15fc3980b4541f6f6b384ba167db4af19179625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784ce0d5_b2ef989f",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:17:16Z",
+      "side": 0,
+      "message": "this one is now at line 19",
+      "revId": "d15fc3980b4541f6f6b384ba167db4af19179625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6d8b6e1_15181649",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:17:16Z",
+      "side": 0,
+      "message": "this one is now at line 24",
+      "revId": "d15fc3980b4541f6f6b384ba167db4af19179625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
