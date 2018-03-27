@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2b0c1f6_f9e30c72",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-03-27T14:43:43Z",
+      "side": 1,
+      "message": "#c30 didn\u0027t list composite as first item, is putting it first intentional? (i don\u0027t actually know what `composite` is)",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "33b4cb15f3800ebd36a391321cd9eb3800e7eff4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
