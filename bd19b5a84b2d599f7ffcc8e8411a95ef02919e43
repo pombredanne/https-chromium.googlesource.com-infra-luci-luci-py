@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65cd591d_e99c738f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:23:30Z",
+      "side": 1,
+      "message": "the function is named copytree, not CopyTree",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f14bd3c2_154fd37a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:23:30Z",
+      "side": 1,
+      "message": "Trailing i, this can\u0027t work.\n\nAlso, links are relative to the location of the directory containing the symlink, but opening a file is relative to the process current working directory, so this can\u0027t work too, you need to relativize the path.",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bcb8859_4c15aec2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:23:30Z",
+      "side": 1,
+      "message": "This is not necessary, line 535 will throw the same way.",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40bbd55c_485c9b3e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:23:30Z",
+      "side": 1,
+      "message": "you could skip an unnecessary stat() by keeping a bool at line 521, e.g.\n\nsrc_is_symlink \u003d False\nwhile fs.islink(src):\n  src_is_symlink \u003d True\n  # expand symlink\n\nthen here;\n\nif src_is_symlink and fs.isdir(src):\n   ...",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3551aceb_3da7f1da",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:23:30Z",
+      "side": 1,
+      "message": "FYI, the reason for using fs instead of os is to escape MAX_PATH on Windows. But it needs to be used consistently.",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f062b25_f908eded",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-27T13:23:30Z",
+      "side": 1,
+      "message": "logging.warning(\u0027Path %s does not exist or is a broken symlink\u0027, src)",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
