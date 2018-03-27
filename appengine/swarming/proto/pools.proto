@@ -30,6 +30,14 @@ message PoolsCfg {
   // since Swarming doesn't know what accounts are allowed in such unconfigured
   // pools.
   bool forbid_unknown_pools = 2;
+
+  // This is the "shared namespace" of templates. Swarming will do a 2-pass
+  // parse of these so order doesn't matter (i.e. If A includes B, but is
+  // defined B-then-A, it's not an error).
+  repeated TaskTemplate task_template = 3;
+
+  // This is the "shared namespace" of deployments.
+  repeated TaskTemplateDeployment task_template_deployment = 4;
 }
 
 
@@ -68,6 +76,17 @@ message Pool {
   // Same as 'allowed_service_account', but the set of service accounts is
   // specified through an auth group.
   repeated string allowed_service_account_group = 5;
+
+  oneof task_deployment_scheme {
+    // Most Pools will include a task_template_deployment by name.
+    string task_template_deployment = 6;
+
+    // However, pools which substantially differ from other ones can define an
+    // entire deployment inline without putting it in the shared namespace. The
+    // name fields in this deployment and any embedded task_templates are
+    // ignored.
+    TaskTemplateDeployment task_template_deployment_inline = 7;
+  }
 }
 
 
@@ -119,4 +138,88 @@ message TrustedDelegation {
   // Presence of any of the specified tags are enough. The format of these tags
   // generally depends on what service is doing the delegation.
   TagList require_any_of = 2;
+}
+
+message TaskTemplate {
+  // This gives the template a name for the 'include' field below. This only
+  // applies to templates defined within the PoolsCfg message (i.e. the
+  // top-level message), not to templates inlined into a TaskTemplateDeployment.
+  string name = 1;
+
+  // Includes properties from the named other TaskTemplate. This can only
+  // include templates defined in the top-level PoolsCfg message.
+  repeated string include = 2;
+
+  message CacheEntry {
+    string name = 1;
+    // A path of "" will remove this cache entry from an included template.
+    string path = 2;
+  }
+  // Inclusions override cache entries by the name field. It is illegal to have
+  // any TaskTemplate with multiple cache entries mapping to the same path. It
+  // is illegal to have any cache paths overlap with cipd package paths.
+  repeated CacheEntry cache = 3;
+
+  message CipdPackage {
+    string path = 1;
+    string pkg = 2;
+    // A version of "" will remove this cipd package (path, name) combination
+    // from an included template.
+    string version = 3;
+  }
+  // Inclusions override cipd packages by (path, name).
+  //
+  // It is illegal to have any cipd paths overlap with cache entry paths.
+  repeated CipdPackage cipd_package = 4;
+
+  message EnvVar {
+    string var = 1;
+    // A value of "" will remove this from an included template.
+    string value = 2;
+    // If true, tasks setting this EnvVar will overwrite it. Otherwise tasks
+    // will not be permitted to to set an env var or env_prefix for this var.
+    bool soft = 3;
+  }
+  // Inclusions override envvars by var. Soft will always take the last-set
+  // value.
+  repeated EnvVar env = 5;
+
+  message EnvPrefix {
+    string var = 1;
+    repeated string path = 2;
+    // If true, tasks will prepend to this EnvPrefix. Otherwise tasks will not
+    // be permitted to set an envvar or env_prefix for this var.
+    bool soft = 3;
+  }
+  // Inclusions append values to `path`. If the first path is the literal '',
+  // then any included paths are discarded, and the '' token is also discarded.
+  // If the `path` value is empty, this EnvPrefix directive is completely
+  // removed.
+  // Soft will always take the last-set value.
+  repeated EnvPrefix env_prefix = 6;
+}
+
+// This is a tuple of prod template+canary template+canary_ratio, so that it can
+// be referenced from multiple pools simultaneously as a single unit.
+message TaskTemplateDeployment {
+  // This gives the deployment a name for the 'task_template_deployment' field
+  // in PoolCfg. If the PoolCfg uses 'task_template_deployment_inline' instead,
+  // to embed a deployment, this is ignored.
+  string name = 1;
+
+  // Most Deployments will have a TaskTemplate with just a single include
+  // directive.
+  //
+  // However, pools which substantially differ from other ones could define an
+  // entire template inline without being forced to put it in the shared
+  // namespace.
+  //
+  // The name field in this template (and the canary template) are ignored.
+  TaskTemplate prod = 2;
+
+  TaskTemplate canary = 3;
+
+  // range [0, 1.0). Exactly 0 means 'canary is disabled', meaning that tasks
+  // in this pool will always get the prod template.
+  double canary_ratio = 4;
 }
