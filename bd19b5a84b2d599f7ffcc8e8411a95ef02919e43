@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ab0a949f_d647a767",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-27T13:32:11Z",
+      "side": 1,
+      "message": "Did this work in the current tests? Before fixing this, we should make the failure reproduce in the tests.",
+      "parentUuid": "f14bd3c2_154fd37a",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1bcb8859_4c15aec2",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -47,6 +65,24 @@
       "writtenOn": "2018-03-27T13:23:30Z",
       "side": 1,
       "message": "This is not necessary, line 535 will throw the same way.",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ca41b03_fac3c946",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1161612
+      },
+      "writtenOn": "2018-03-27T13:32:11Z",
+      "side": 1,
+      "message": "Nice catch. We should make sure to comment that it will throw, and that this is desired.",
+      "parentUuid": "1bcb8859_4c15aec2",
       "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
