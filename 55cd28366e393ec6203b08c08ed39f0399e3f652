@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bde04500_adf64835",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-28T19:47:06Z",
+      "side": 1,
+      "message": "ah, so people don\u0027t cargo-cult them, thinking that they\u0027re important? Sure, sgtm.",
+      "parentUuid": "3098282e_b4184666",
+      "range": {
+        "startLine": 87,
+        "startChar": 7,
+        "endLine": 87,
+        "endChar": 14
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3da091cc_8bd6a276",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2018-03-28T13:23:28Z",
       "side": 1,
       "message": "I hadn\u0027t realized before, but I see now how having the include/merge flow could make the configuration a bit harder to manage than just raw copy-paste. My question is what\u0027s the expected scale of the number of templates for the public swarming instance and how much template lines should we expect the include support saves?",
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d46c8d89_1d7711c6",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-28T19:47:06Z",
+      "side": 1,
+      "message": "I expect that we\u0027ll have 1-4 templates pre-defined, and we\u0027d save a couple hundred lines by doing the includes (they will apply to many pools each).",
+      "parentUuid": "3da091cc_8bd6a276",
       "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "d4746674_563f5d23",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-28T19:47:06Z",
+      "side": 1,
+      "message": "Yeah, you\u0027re actually right; I forgot that it\u0027s legal to define both (prefixes are applied after the var). I\u0027ll rework this.",
+      "parentUuid": "7c0e6cd1_f947388f",
+      "range": {
+        "startLine": 189,
+        "startChar": 20,
+        "endLine": 189,
+        "endChar": 24
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83a087e6_846a7f31",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -76,6 +142,30 @@
       "writtenOn": "2018-03-27T20:04:56Z",
       "side": 1,
       "message": "i read this as ((template+canary), (template+canary_ratio)), but I think you meant (template)+(canary template)+(canary_ratio)?\n\nmaybe use commas and parens since you are talking about tuples. Or maybe be consistent with space-vs-underscore",
+      "range": {
+        "startLine": 202,
+        "startChar": 27,
+        "endLine": 202,
+        "endChar": 64
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0996f6a_8fa1c456",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-28T19:47:06Z",
+      "side": 1,
+      "message": "converted to tuple notation",
+      "parentUuid": "83a087e6_846a7f31",
       "range": {
         "startLine": 202,
         "startChar": 27,
@@ -145,6 +235,30 @@
       "writtenOn": "2018-03-27T20:04:56Z",
       "side": 1,
       "message": "ratio kinda implies canary/prod, but canary/prod\u003d1 means 50% traffic splitting\nmaybe call canary_probability or canary_percentage as an integer, or maybe there is another term that I am forgetting right now",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de4f9be9_e248df00",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-28T19:47:06Z",
+      "side": 1,
+      "message": "ah... I\u0027ll change to `chance`?",
+      "parentUuid": "ba161f8a_6bb9e1df",
       "range": {
         "startLine": 224,
         "startChar": 16,
