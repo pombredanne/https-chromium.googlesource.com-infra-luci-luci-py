@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "cc940743_3f8d1a86",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-28T17:44:28Z",
+      "side": 1,
+      "message": "call os.chdir before hand. That\u0027ll repro. Or probably just run the test from another directory, e.g.\n\n./tests/run_isolated_test.py",
+      "parentUuid": "df8fd63b_84590a23",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1bcb8859_4c15aec2",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -419,6 +437,30 @@
       "side": 1,
       "message": "I think so - otherwise files and directories have different behaviours. Marc-Antoine, wdyt?",
       "parentUuid": "ddc174c9_93b56b7d",
+      "range": {
+        "startLine": 1029,
+        "startChar": 9,
+        "endLine": 1029,
+        "endChar": 15
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9d22af3_3a4ce54c",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-28T17:44:28Z",
+      "side": 1,
+      "message": "In this specific case, yes it should be subdir_link. I think it\u0027s line 1027 that was incorrect.",
+      "parentUuid": "a2e1bb27_b9c8e867",
       "range": {
         "startLine": 1029,
         "startChar": 9,

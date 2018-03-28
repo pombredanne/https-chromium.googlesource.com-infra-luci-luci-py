@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec03315f_6eff5c36",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-28T17:44:28Z",
+      "side": 1,
+      "message": "Please do not use enum, it\u0027s a package that happens to be preinstalled in our machines but I\u0027m trying to limit the dependencies and it\u0027s not worth depending on it. enum is standard on python 3 but not on 2.",
+      "revId": "5ac0ce6cc0c6073050ce63f045594a730864db9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e63f77cc_700ce977",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-28T17:44:28Z",
+      "side": 1,
+      "message": "This will suffice:\n\n  FILE, LINK, DIR \u003d range(3)",
+      "revId": "5ac0ce6cc0c6073050ce63f045594a730864db9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
