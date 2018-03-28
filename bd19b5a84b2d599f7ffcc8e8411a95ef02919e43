@@ -144,6 +144,24 @@
     },
     {
       "key": {
+        "uuid": "f8967018_c64ea229",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-28T21:30:36Z",
+      "side": 1,
+      "message": "It\u0027d because none of your test uses relative symlinks. For example:\n\ncd ~\nmkdir -p foo/bar\nln -s ../../README foo/bar/README\nll foo/bar\ncd foo\nll bar",
+      "parentUuid": "f6c81162_642339e6",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1bcb8859_4c15aec2",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
