@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "3da091cc_8bd6a276",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-28T13:23:28Z",
+      "side": 1,
+      "message": "I hadn\u0027t realized before, but I see now how having the include/merge flow could make the configuration a bit harder to manage than just raw copy-paste. My question is what\u0027s the expected scale of the number of templates for the public swarming instance and how much template lines should we expect the include support saves?",
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c0e6cd1_f947388f",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
