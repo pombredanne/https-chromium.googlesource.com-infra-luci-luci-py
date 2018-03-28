@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "f6c81162_642339e6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-28T20:03:06Z",
+      "side": 1,
+      "message": "I did that too. All tests pass.\nPrinting the paths in the tests I ran on my computer, it looks like the links are actually relative to the process\u0027s working directory.\n\n{dir1{dir2{dir3,sl3}}, sl1}\nsl3 --\u003e sl1\n\nWhen I print os.readlink(sl3), I get dir1/sl1, not ../../dir1/sl1",
+      "parentUuid": "cc940743_3f8d1a86",
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1bcb8859_4c15aec2",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -461,6 +479,30 @@
       "side": 1,
       "message": "In this specific case, yes it should be subdir_link. I think it\u0027s line 1027 that was incorrect.",
       "parentUuid": "a2e1bb27_b9c8e867",
+      "range": {
+        "startLine": 1029,
+        "startChar": 9,
+        "endLine": 1029,
+        "endChar": 15
+      },
+      "revId": "bd19b5a84b2d599f7ffcc8e8411a95ef02919e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7d630eb_46e83f20",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 1245214
+      },
+      "writtenOn": "2018-03-28T20:03:06Z",
+      "side": 1,
+      "message": "So, the current patch set is the right behavior, correct?",
+      "parentUuid": "c9d22af3_3a4ce54c",
       "range": {
         "startLine": 1029,
         "startChar": 9,
