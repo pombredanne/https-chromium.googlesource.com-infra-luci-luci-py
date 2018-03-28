@@ -175,6 +175,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
       'try_number': None,
       'user': u'Jesus',
     }
@@ -210,6 +211,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       'server_versions': [u'v1a'],
       'started_ts': self.now,
       'state': State.RUNNING,
+      'task_slice_index': 0,
       'try_number': 1,
     }
     expected.update(**kwargs)
@@ -312,6 +314,16 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(None, task_to_run.TaskToRun.query().get().queue_number)
     self.assertEqual(State.EXPIRED, result_summary.key.get().state)
 
+  def test_task_slices_second(self):
+    # First TaskSlice couldn't run, the second ran.
+    self._quick_schedule(
+        1,
+        task_slices=[
+          {
+          },
+        ])
+    self.fail('Implement')
+
   def test_exponential_backoff(self):
     self.mock(
         task_scheduler.random, 'random',
@@ -391,7 +403,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     result_summary = self._quick_schedule(
         nb_task, properties=gen_props(idempotent=True))
     request = result_summary.request_key.get()
-    to_run_key = task_to_run.request_to_task_to_run_key(request, 1)
+    to_run_key = task_to_run.request_to_task_to_run_key(request, 1, 0)
     # TaskToRun was not stored.
     self.assertEqual(None, to_run_key.get())
     self._register_bot(0, self.bot_dimensions)
@@ -477,6 +489,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     third_ts = self.mock_now(self.now, 20)
     self._task_deduped(
         0, third_ts, task_id, '1d69ba3ea8008b10', now=second_ts)
+
+  def test_task_idempotent_second_slice(self):
+    # A task may dedupe against a second slice.
+    self.fail('Implement test')
 
   def test_task_parent_children(self):
     # Parent task creates a child task.
@@ -958,12 +974,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     result_summary = result_summary.key.get()
     self.assertEqual(State.CANCELED, result_summary.state)
-    # Make sure they are added to the negative cache.
-    request = result_summary.request_key.get()
-    for i in (1, 2):
-      to_run_key = task_to_run.request_to_task_to_run_key(request, i)
-      actual = task_to_run._lookup_cache_is_taken_async(to_run_key).get_result()
-      self.assertEqual(True, actual)
     self.assertEqual(1, len(pub_sub_calls)) # No other message.
 
   def test_cancel_task_running(self):
@@ -1302,7 +1312,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         properties=gen_props(),
         expiration_ts=self.now+(3*task_result.BOT_PING_TOLERANCE))
     to_run_key_1 = task_to_run.request_to_task_to_run_key(
-        run_result.request_key.get(), 1)
+        run_result.request_key.get(), 1, 0)
     self.assertEqual(None, to_run_key_1.get().queue_number)
 
     # See _handle_dead_bot() with special case about non-idempotent task that
@@ -1336,7 +1346,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # The old TaskToRun is not reused.
     self.assertEqual(None, to_run_key_1.get().queue_number)
     to_run_key_2 = task_to_run.request_to_task_to_run_key(
-        run_result.request_key.get(), 2)
+        run_result.request_key.get(), 2, 0)
     self.assertTrue(to_run_key_2.get().queue_number)
 
   def test_cron_handle_bot_died_same_bot_denied(self):
