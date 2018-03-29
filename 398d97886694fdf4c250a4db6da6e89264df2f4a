@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d650e692_4fee95d6",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-29T15:47:43Z",
+      "side": 1,
+      "message": "Up to an extent, this is not necessary since\n\ntask_template_deployment_inline {\n  include: \"foo\"\n}\n\nworks as well.\n\nSo I\u0027d vote to remove onefof, and rename task_template_deployment_inline to task_template_deployment.",
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1eba5c63_f8e96390",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 4
@@ -111,6 +128,46 @@
         "endLine": 194,
         "endChar": 45
       },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e92ad91_6405d0f8",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-29T15:47:43Z",
+      "side": 1,
+      "message": "I\u0027m not sure about the word \u0027deployment\u0027 but don\u0027t have a suggestion.",
+      "range": {
+        "startLine": 200,
+        "startChar": 20,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35617968_82132bb2",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-29T15:47:43Z",
+      "side": 1,
+      "message": "GAE uses 0.1% unit as an integer and I must say I like it more than a double.",
       "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
