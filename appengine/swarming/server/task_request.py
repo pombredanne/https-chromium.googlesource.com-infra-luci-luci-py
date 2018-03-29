@@ -237,16 +237,25 @@ def _validate_env_prefixes(prop, value):
         '%s can have up to 64 keys' % prop._name)
 
 
-def _validate_expiration(prop, value):
-  """Validates TaskRequest.expiration_ts."""
-  now = utils.utcnow()
-  offset = int(round((value - now).total_seconds()))
-  if not (_MIN_TIMEOUT_SECS <= offset <= _SEVEN_DAYS_SECS):
-    # pylint: disable=W0212
+def _check_expiration_secs(name, value):
+  """Validates expiration_secs."""
+  if not (_MIN_TIMEOUT_SECS <= value <= _SEVEN_DAYS_SECS):
     raise datastore_errors.BadValueError(
-        '%s (%s, %ds from now) must effectively be between %ds and 7 days '
-        'from now (%s)' %
-        (prop._name, value, offset, _MIN_TIMEOUT_SECS, now))
+        '%s (%s) must be between %ds and 7 days' %
+        (name, value, _MIN_TIMEOUT_SECS))
+
+
+def _validate_expiration_ts(prop, value):
+  """Validates TaskRequest.expiration_ts."""
+  offset = int(round((value - utils.utcnow()).total_seconds()))
+  # pylint: disable=W0212
+  _check_expiration_secs(prop._name, offset)
+
+
+def _validate_expiration_secs(prop, value):
+  """Validates TaskSlice.expiration_secs."""
+  # pylint: disable=W0212
+  _check_expiration_secs(prop._name, value)
 
 
 def _validate_grace(prop, value):
@@ -506,7 +515,7 @@ class TaskProperties(ndb.Model):
   infrastructure.
 
   This entity is not saved in the DB as a standalone entity, instead it is
-  embedded in a TaskRequest.
+  embedded in a TaskSlice.
 
   This model is immutable.
 
@@ -705,6 +714,62 @@ class TaskProperties(ndb.Model):
           'Up to 4096 outputs can be listed for a task')
 
 
+class TaskSlice(ndb.Model):
+  """Defines all the various possible task execution for a task request to be
+  run on the Swarming infrastructure.
+
+  This entity is not saved in the DB as a standalone entity, instead it is
+  embedded in a TaskRequest.
+
+  This model is immutable.
+  """
+  # Hashing algorithm used to hash TaskProperties to create its key.
+  HASHING_ALGO = hashlib.sha256
+
+  # The actual properties are embedded in this model.
+  properties = ndb.LocalStructuredProperty(TaskProperties, required=True)
+  # If this task request slice is not scheduled by this moment, the next one
+  # will be processed.
+  expiration_secs = ndb.IntegerProperty(
+      validator=_validate_expiration_secs, required=True)
+
+  # If there is no bot that can serve this properties.dimensions when this task
+  # slice is enqueued, it is immediately denied. Old-style tasks have it set to
+  # False. It could become an option stored in the DB later if there's user
+  # needs.
+  deny_if_no_bot = True
+
+  # Set at instantiation, needed to calculate properties_hash.
+  _request = None
+
+  def properties_hash(self):
+    """Calculates the properties_hash for this request, if applicable.
+
+    Note: if the property has secret bytes, this function call causes a DB GET.
+    """
+    if not self.properties.idempotent:
+      return None
+    props = self.properties.to_dict()
+    if self.properties.has_secret_bytes:
+      # When called from task_scheduler.schedule_task(), this function is called
+      # in the same context that stored the SecretBytes entity, so the entity is
+      # still in the in process cache.
+      #
+      # When called in the context of an idempotent TaskRunResult that is
+      # COMPLETED with success, this is much more costly since this happens
+      # inside a transaction.
+      k = task_pack.request_key_to_secret_bytes_key(self._request.key)
+      props['secret_bytes'] = k.get().secret_bytes.encode('hex')
+    return self.HASHING_ALGO(utils.encode_to_json(props)).digest()
+
+  def to_dict(self):
+    # to_dict() doesn't recurse correctly into ndb.LocalStructuredProperty! It
+    # will call the default method and not the overiden one. :(
+    out = super(TaskSlice, self).to_dict(exclude=['properties'])
+    out['properties'] = self.properties.to_dict()
+    return out
+
+
 class TaskRequest(ndb.Model):
   """Contains a user request.
 
@@ -765,7 +830,7 @@ class TaskRequest(ndb.Model):
   # cron job. It is saved instead of scheduling_expiration_secs so finding
   # expired jobs is a simple query.
   expiration_ts = ndb.DateTimeProperty(
-      indexed=True, validator=_validate_expiration, required=True)
+      indexed=True, validator=_validate_expiration_ts, required=True)
 
   # Tags that specify the category of the task.
   tags = ndb.StringProperty(repeated=True, validator=_validate_tags)

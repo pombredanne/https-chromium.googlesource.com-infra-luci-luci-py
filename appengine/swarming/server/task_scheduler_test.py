@@ -175,6 +175,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
       'try_number': None,
       'user': u'Jesus',
     }
@@ -210,6 +211,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       'server_versions': [u'v1a'],
       'started_ts': self.now,
       'state': State.RUNNING,
+      'task_slice_index': 0,
       'try_number': 1,
     }
     expected.update(**kwargs)
