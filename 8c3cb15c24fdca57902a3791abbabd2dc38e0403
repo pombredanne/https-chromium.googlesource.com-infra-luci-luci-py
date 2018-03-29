@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "173b6870_edb34f82",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-03-29T15:49:33Z",
+      "side": 1,
+      "message": "I\u0027d skip both task_id and task_result.",
+      "revId": "8c3cb15c24fdca57902a3791abbabd2dc38e0403",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
