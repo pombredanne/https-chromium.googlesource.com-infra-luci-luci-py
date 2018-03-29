@@ -8,7 +8,7 @@ See comments in proto/pools.proto for more context. Structures defined here are
 used primarily by task_scheduler.check_schedule_request_acl.
 """
 
-import collections
+from collections import namedtuple, defaultdict
 
 from components import auth
 from components import config
@@ -24,7 +24,7 @@ POOLS_CFG_FILENAME = 'pools.cfg'
 
 
 # Validated read-only representation of one pool.
-PoolConfig = collections.namedtuple('PoolConfig', [
+PoolConfig = namedtuple('PoolConfig', [
   # Name of the pool.
   'name',
   # Revision of pools.cfg file this config came from.
@@ -39,16 +39,186 @@ PoolConfig = collections.namedtuple('PoolConfig', [
   'service_accounts',
   # Additional list of groups with allowed service accounts.
   'service_accounts_groups',
+  # resolved TaskTemplateDeployment (optional).
+  'task_template_deployment',
 ])
 
 
 # Validated read-only fields of one trusted delegation scenario.
-TrustedDelegatee = collections.namedtuple('TrustedDelegatee', [
+TrustedDelegatee = namedtuple('TrustedDelegatee', [
   # auth.Identity of the delegatee (the one who's minting the delegation token).
   'peer_id',
   # A set of tags to look for in the delegation token to allow the delegation.
   'required_delegation_tags',
 ])
+
+
+# Describes how task templates apply to a pool.
+_TaskTemplateDeployment = namedtuple('_TaskTemplateDeployment', [
+  # The TaskTemplate for prod builds (optional).
+  'prod',
+  # The TaskTemplate for canary builds (optional).
+  'canary',
+  # The chance (float (0, 1.0)) of the time that the canary template should
+  # be selected. Required if canary is not None. If we parse a 0 from the
+  # pools.cfg, then both this and 'canary' are set to None.
+  'canary_chance',
+])
+
+class TaskTemplateDeployment(_TaskTemplateDeployment):
+  @classmethod
+  def from_pb(cls, ctx, d, template_map):
+    if not (0 <= d.canary_chance < 1):
+      ctx.error('canary_chance out of range `[0,1)`: %.1f', d.canary_chance)
+      raise InvalidTaskTemplateError()
+
+    # We resolve this regardless to catach validation errors that occur in
+    # canary templates even when canary_chance == 0
+    canary = TaskTemplate.from_pb(ctx, d.canary, template_map)
+    canary_chance = d.canary_chance
+    if canary_chance == 0:
+      canary = None
+      canary_chance = None
+
+    return cls(
+      prod=TaskTemplate.from_pb(ctx, d.prod, template_map),
+      canary=canary,
+      canary_chance=canary_chance,
+    )
+
+
+# A set of default task parameters to apply to tasks issued within a pool.
+_TaskTemplate = namedtuple('_TaskTemplate', [
+  # sequence of CacheEntry.
+  'cache',
+  # sequence of CipdPackage.
+  'cipd_package',
+  # sequence of Env.
+  'env',
+])
+
+class InvalidTaskTemplateError(Exception):
+  pass
+
+class TaskTemplate(_TaskTemplate):
+  class _Intermediate(object):
+    """_Intermediate represents an in-flux TaskTemplate instance, and is used
+    internally by the .from_pb method to build up a finalized TaskTemplate
+    instance."""
+    def __init__(self, cache=None, cipd_package=None, env=None):
+      self.cache = cache or {}                # name -> path
+      self.cipd_package = cipd_package or {}  # (path, name) -> version
+      self.env = env or {}                    # var -> (value, prefix, soft)
+
+    def update(self, other):
+      assert isinstance(other, TaskTemplate)
+
+      for entry in other.cache:
+        self.cache[entry.name] = entry.path
+
+      for entry in other.cipd_package:
+        self.cipd_package[(entry.path, entry.pkg)] = entry.version
+
+      for entry in other.env:
+        cur_pfx = self.env[entry.var][1] if entry.var in self.env else ()
+        self.env[entry.var] = (
+          entry.value,
+          (cur_pfx + entry.prefix),
+          entry.soft)
+
+    def finalize(self, ctx):
+      fail = [False]
+
+      def e(*args):
+        ctx.error(*args)
+        fail[0] = True
+
+      # no empty values
+      for i, (name, path) in enumerate(self.cache.iteritems()):
+        ident = repr(name.encode('utf-8')) if name else '#%d' % i
+        with ctx.prefix('cache[%s]: ', ident):
+          if not name:
+            e('empty name')
+          if not path:
+            e('empty path')
+
+      for i, ((path, pkg), vers) in enumerate(self.cipd_package.iteritems()):
+        ident = (repr((path.encode('utf-8'), pkg.encode('utf-8')))
+                 if path and pkg else '#%d' % i)
+        with ctx.prefix('cipd_package[%s]: ', ident):
+          if not path:
+            e('empty path')
+          if not pkg:
+            e('empty pkg')
+          if not vers:
+            e('empty version')
+
+      for i, (name, (var, prefix, _soft)) in enumerate(self.env.iteritems()):
+        ident = repr(name.encode('utf-8')) if name else '#%d' % i
+        with ctx.prefix('env[%s]: ', ident):
+          if not name:
+            e('empty name')
+          if '' in prefix:
+            e('prefix contains ""')
+          if not var and not prefix:
+            e('empty value AND prefix')
+
+      # paths don't overlap
+      paths = [] # (path, origin)
+      for name, path in self.cache.iteritems():
+        paths.append((path, 'cache %s' % (name,)))
+      for (path, pkg), version in self.cipd_package.iteritems():
+        paths.append((path, 'cipd %s %s' % (pkg, version)))
+      paths.sort()
+      for (a_path, a_ctx), (b_path, b_ctx) in zip(paths, paths[1:]):
+        if b_path.startswith(a_path):
+          if a_ctx.startswith('cipd ') and b_ctx.startswith('cipd '):
+            # overlapping cipd package paths is fine
+            continue
+          e('%r overlaps %r', a_ctx, b_ctx)
+
+      if fail[0]:
+        raise InvalidTaskTemplateError(ctx.result())
+
+      return TaskTemplate(
+        cache = tuple(
+          CacheEntry(name, path)
+          for name, path in sorted(self.cache.items())),
+        cipd_package = tuple(
+          CipdPackage(path, pkg, version)
+          for (path, pkg), version in sorted(self.cipd_package.items())),
+        env = tuple(
+          Env(var, value, prefix, soft)
+          for var, (value, prefix, soft) in sorted(self.env.items())),
+      )
+
+
+  @classmethod
+  def from_pb(cls, ctx, t, template_map):
+    """This returns a TaskTemplate from `t`, a pools_pb2.TaskTemplate, and
+    `template_map`, which maps include names to TaskTemplate instances."""
+    if t is None:
+      return TaskTemplate(**{f: () for f in TaskTemplate._fields})
+
+    assert isinstance(t, pools_pb2.TaskTemplate)
+
+    ret = cls._Intermediate()
+
+    for include in t.include:
+      ret.update(template_map[include])
+
+    ret.update(cls._Intermediate(
+      cache = {e.name: e.path for e in t.cache},
+      cipd_package = {(e.path, e.pkg): e.version for e in t.cipd_package},
+      env = {e.var: (e.value, tuple(e.prefix), e.soft) for e in t.env},
+    ).finalize(ctx))
+
+    return ret.finalize(ctx)
+
+
+CacheEntry = namedtuple('CacheEntry', ['name', 'path'])
+CipdPackage = namedtuple('CipdPackage', ['path', 'pkg', 'version'])
+Env = namedtuple('Env', ['var', 'value', 'prefix', 'soft'])
 
 
 def get_pool_config(pool_name):
@@ -70,12 +240,104 @@ def forbid_unknown_pools():
 
 ### Private stuff.
 
-
 # Parsed representation of pools.cfg ready for queries.
-_PoolsCfg = collections.namedtuple('_PoolsCfg', [
+_PoolsCfg = namedtuple('_PoolsCfg', [
   'pools',                 # dict {pool name => PoolConfig tuple}
   'forbid_unknown_pools',  # boolean, taken directly from the proto message
 ])
+
+
+def _resolve_task_template_inclusions(ctx, task_templates):
+  """Resolves all task template inclusions in the provided
+  pools_pb2.TaskTemplate list.
+
+  Returns a new dictionary with {name -> TaskTemplate} namedtuples.
+  """
+  template_map = {t.name: t for t in task_templates}
+  if '' in template_map:
+    ctx.error('one or more templates has a blank name')
+    return
+
+  if len(template_map) != len(task_templates):
+    ctx.error('one or more templates has a duplicate name')
+    return
+
+  unresolved_includes = {}
+  for t in task_templates:
+    with ctx.prefix('template[%r]: ', t.name.encode('utf-8')):
+      for inc in t.include:
+        if inc not in template_map:
+          ctx.error('unknown include: %r', inc.encode('utf-8'))
+          return
+      unresolved_includes[t.name] = set(t.include)
+
+  resolved = {} # name -> properties for TaskTemplate
+
+  while unresolved_includes:
+    for name, includes in unresolved_includes.iteritems():
+      # looking for an item in unresolved_includes without any unresolved
+      # includes.
+      if includes:
+        continue
+
+      with ctx.prefix('template[%r]: ', name.encode('utf-8')):
+        try:
+          # NOTE: template_map still has all the original include directives.
+          # from_pb will use the `resolved` map to look up all of the
+          # dependencies, which have been fully resolved at this point.
+          resolved[name] = TaskTemplate.from_pb(
+            ctx, template_map[name], resolved)
+        except InvalidTaskTemplateError:
+          return
+
+      # obliterate all references to the template we just resolved
+      unresolved_includes.pop(name)
+      for includes in unresolved_includes.itervalues():
+        includes.discard(name)
+
+      break # back to outer loop to find the next include
+    else:
+      ctx.error('include cycle detected')
+      return
+
+  return resolved
+
+
+def _resolve_task_template_deployments(ctx, template_map,
+                                       task_template_deployments):
+  ret = {}
+
+  for i, deployment in enumerate(task_template_deployments):
+    if deployment.name == "":
+      ctx.error('deployment[%d]: has no name', i)
+      return
+    with ctx.prefix('deployment[%r]: ', deployment.name):
+      try:
+        ret[deployment.name] = TaskTemplateDeployment.from_pb(
+          ctx, deployment, template_map)
+      except InvalidTaskTemplateError:
+        return
+
+  return ret
+
+
+def _resolve_deployment(ctx, pool_msg, template_map,
+                        deployment_map):
+  deployment_scheme = pool_msg.WhichOneof("task_deployment_scheme")
+  if deployment_scheme == "task_template_deployment":
+    if pool_msg.task_template_deployment not in deployment_map:
+      ctx.error('unknown deployment: %r', pool_msg.task_template_deployment)
+      return
+    return deployment_map[pool_msg.task_template_deployment]
+
+  if deployment_scheme == "task_template_deployment_inline":
+    try:
+      return TaskTemplateDeployment.from_pb(
+        ctx, pool_msg.task_template_deployment_inline, template_map)
+    except InvalidTaskTemplateError:
+      pass
+
+  return None
 
 
 def _to_ident(s):
@@ -89,7 +351,7 @@ def _validate_ident(ctx, title, s):
     return _to_ident(s)
   except ValueError as exc:
     ctx.error('bad %s value "%s" - %s', title, s, exc)
-    return None
+    return
 
 
 @utils.cache_with_expiration(60)
@@ -104,6 +366,12 @@ def _fetch_pools_config():
     return _PoolsCfg({}, False)
 
   # The config is already validated at this point.
+
+  fake_ctx = validation.Context()
+  template_map = _resolve_task_template_inclusions(
+    fake_ctx, cfg.task_template)
+  deployment_map = _resolve_task_template_deployments(
+    fake_ctx, template_map, cfg.task_template_deployment)
 
   pools = {}
   for msg in cfg.pool:
@@ -120,13 +388,21 @@ def _fetch_pools_config():
             for d in msg.schedulers.trusted_delegation
           },
           service_accounts=frozenset(msg.allowed_service_account),
-          service_accounts_groups=tuple(msg.allowed_service_account_group))
+          service_accounts_groups=tuple(msg.allowed_service_account_group),
+          task_template_deployment=_resolve_deployment(
+            fake_ctx, msg, template_map, deployment_map))
   return _PoolsCfg(pools, cfg.forbid_unknown_pools)
 
 
 @validation.self_rule(POOLS_CFG_FILENAME, pools_pb2.PoolsCfg)
 def _validate_pools_cfg(cfg, ctx):
   """Validates pools.cfg file."""
+
+  template_map = _resolve_task_template_inclusions(
+    ctx, cfg.task_template)
+  deployment_map = _resolve_task_template_deployments(
+    ctx, template_map, cfg.task_template_deployment)
+
   pools = set()
   for i, msg in enumerate(cfg.pool):
     with ctx.prefix('pool #%d (%s): ', i, '|'.join(msg.name) or 'unnamed'):
@@ -175,3 +451,5 @@ def _validate_pools_cfg(cfg, ctx):
       for i, group in enumerate(msg.allowed_service_account_group):
         if not auth.is_valid_group_name(group):
           ctx.error('bad allowed_service_account_group #%d "%s"', i, group)
+
+      _resolve_deployment(ctx, msg, template_map, deployment_map)
