@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "c5acdead_0e1a5762",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:30:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c0996f6a_8fa1c456",
+      "range": {
+        "startLine": 202,
+        "startChar": 27,
+        "endLine": 202,
+        "endChar": 64
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c947125e_3049f6f3",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -201,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "68d3f5d2_3e936522",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c947125e_3049f6f3",
+      "range": {
+        "startLine": 207,
+        "startChar": 36,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2100a247_5bc0c41f",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -221,6 +269,30 @@
       "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4823307_af6cab91",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2100a247_5bc0c41f",
+      "range": {
+        "startLine": 217,
+        "startChar": 67,
+        "endLine": 217,
+        "endChar": 74
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -268,6 +340,30 @@
       "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0d26f4f_94e76cee",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de4f9be9_e248df00",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "55cd28366e393ec6203b08c08ed39f0399e3f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
