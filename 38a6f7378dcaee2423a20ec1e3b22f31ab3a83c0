@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b7465ba_6fa029dc",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-29T22:01:02Z",
+      "side": 1,
+      "message": "can you use the warning name instead?\n\n   # pylint: disable\u003dprotected-access\n\nThen there\u0027s at least a hope that someone can tell what it\u0027s for :)",
+      "range": {
+        "startLine": 251,
+        "startChar": 20,
+        "endLine": 251,
+        "endChar": 25
+      },
+      "revId": "38a6f7378dcaee2423a20ec1e3b22f31ab3a83c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401f4521_fe36f770",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-29T22:01:02Z",
+      "side": 1,
+      "message": "possible sets of properties that a task request will use; the task will fallback\nfrom one slice to the next until it finds a matching bot.\n\nmaybe?",
+      "range": {
+        "startLine": 718,
+        "startChar": 29,
+        "endLine": 719,
+        "endChar": 37
+      },
+      "revId": "38a6f7378dcaee2423a20ec1e3b22f31ab3a83c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ec40bd2_55714d6b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-29T22:01:02Z",
+      "side": 1,
+      "message": "hm... this is a class property... Is that what you want? Just seems kind of oddball",
+      "range": {
+        "startLine": 740,
+        "startChar": 19,
+        "endLine": 740,
+        "endChar": 23
+      },
+      "revId": "38a6f7378dcaee2423a20ec1e3b22f31ab3a83c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "018f49be_0e268601",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-29T22:01:02Z",
+      "side": 1,
+      "message": "another non-instance field?",
+      "range": {
+        "startLine": 743,
+        "startChar": 0,
+        "endLine": 743,
+        "endChar": 17
+      },
+      "revId": "38a6f7378dcaee2423a20ec1e3b22f31ab3a83c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10309d96_c7cadea0",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-03-29T22:01:02Z",
+      "side": 1,
+      "message": "maybe `selected_task_slice`? \"Index\" in a datastore entity makes me think about datastore indexes.",
+      "range": {
+        "startLine": 470,
+        "startChar": 2,
+        "endLine": 470,
+        "endChar": 18
+      },
+      "revId": "38a6f7378dcaee2423a20ec1e3b22f31ab3a83c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
