@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1eba5c63_f8e96390",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:28:44Z",
+      "side": 1,
+      "message": "A name of \"\" is not permitted either, right? a reader may ask \"why path is special that it deserves such a comment, and name does not?\" Same below.",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 37
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f321867_2a8e84ce",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:28:44Z",
+      "side": 1,
+      "message": "what if i just want to prepend a prefix?",
+      "range": {
+        "startLine": 179,
+        "startChar": 17,
+        "endLine": 179,
+        "endChar": 38
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e527970_5d914368",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:28:44Z",
+      "side": 1,
+      "message": "i am a bit confused. With the merging logic explained in env comment, it is not possible to override a prefix, only append a new one.",
+      "range": {
+        "startLine": 186,
+        "startChar": 7,
+        "endLine": 186,
+        "endChar": 13
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1831e010_09ab5090",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:28:44Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 186,
+        "startChar": 57,
+        "endLine": 186,
+        "endChar": 60
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8baf74ad_95c95c14",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-03-29T06:28:44Z",
+      "side": 1,
+      "message": "i read this as \"if my stuff is soft, it can override other stuff, no matter if the other stuff is soft or not\". I am not sure this is what you meant? i think you meant something like if the thing being overriden is not soft, it is an error, or something",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 194,
+        "endChar": 45
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
