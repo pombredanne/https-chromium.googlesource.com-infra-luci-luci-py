@@ -128,6 +128,7 @@ class TaskResultApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slice_index': 0,
       'try_number': None,
       'user': u'Jesus',
     }
@@ -158,6 +159,7 @@ class TaskResultApiTest(TestCase):
       'server_versions': [u'v1a'],
       'started_ts': None,
       'state': task_result.State.RUNNING,
+      'task_slice_index': 0,
       'try_number': 1,
     }
     out.update(kwargs)
