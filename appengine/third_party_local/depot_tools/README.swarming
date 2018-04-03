@@ -12,3 +12,4 @@ Kept git_common.py, git_number.py, subprocess2.py and subcommand.py.
 Copied testing_support/auto_stub.py as auto_stub.py.
 auto_stub.py: changed TestCase.has_failed so it works if _resultForDoCleanups
   is not present.
+git_number.py: changed POOL_KIND to be overridable by environment variable.
