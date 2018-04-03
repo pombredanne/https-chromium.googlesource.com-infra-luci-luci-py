@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0a15a7a_41007be3",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-03T20:04:39Z",
+      "side": 0,
+      "message": "This was one of the issues from the previous CL - I hadn\u0027t caught this",
+      "revId": "3e436a3d831c6d23b985f6d385a962ef5fa210b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91c80aad_50f2a08b",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-03T20:04:39Z",
+      "side": 0,
+      "message": "I had also forgotten to change this on the last CL",
+      "revId": "3e436a3d831c6d23b985f6d385a962ef5fa210b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
