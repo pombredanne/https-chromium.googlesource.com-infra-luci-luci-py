@@ -46,6 +46,30 @@
       "revId": "f3bcfe538f020a355a1a59c54f2b05e537575a87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27a22076_d133f629",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-04T23:38:59Z",
+      "side": 1,
+      "message": "If all other output is in stdout, then this one should be too. Otherwise it is very weird to have only progress in stdout.",
+      "parentUuid": "6a6b68b0_cbee2cb9",
+      "range": {
+        "startLine": 1766,
+        "startChar": 12,
+        "endLine": 1766,
+        "endChar": 22
+      },
+      "revId": "f3bcfe538f020a355a1a59c54f2b05e537575a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
