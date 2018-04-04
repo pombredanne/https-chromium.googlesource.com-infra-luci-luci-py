@@ -22,6 +22,30 @@
       "revId": "3ff1265aa4e583ce1fcc289e9403e170129141c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df5dfb14_cbd05947",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-04T18:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b3cb53d_e1e968e4",
+      "range": {
+        "startLine": 542,
+        "startChar": 21,
+        "endLine": 542,
+        "endChar": 28
+      },
+      "revId": "3ff1265aa4e583ce1fcc289e9403e170129141c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
