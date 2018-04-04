@@ -16,6 +16,24 @@
       "revId": "ea7f71fa242300162ef0f9e4aee12ce53d5e7bce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c715d76a_2a8aa50b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-04T18:20:32Z",
+      "side": 1,
+      "message": "Protip: save file before uploading CL.",
+      "parentUuid": "bd613c09_3a70744e",
+      "revId": "ea7f71fa242300162ef0f9e4aee12ce53d5e7bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
