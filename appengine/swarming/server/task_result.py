@@ -917,14 +917,18 @@ class TaskResultSummary(_TaskResultCommon):
       self.costs_usd.append(0.)
     self.costs_usd[run_result.try_number-1] = run_result.cost_usd
 
+    # Update the automatic tags, removing the ones from the other
+    # TaskProperties.
+    # https://crbug.com/781021
+    t = request.task_slice(run_result.task_slice_index or 0)
     if (self.state == State.COMPLETED and
         not self.failure and
         not self.internal_failure and
-        request.properties.idempotent and
+        t.properties.idempotent and
         not self.deduped_from):
       # Signal the results are valid and can be reused. If the request has a
       # SecretBytes, it is GET, which is a performance concern.
-      self.properties_hash = request.properties_hash()
+      self.properties_hash = t.properties_hash()
 
   def need_update_from_run_result(self, run_result):
     """Returns True if set_from_run_result() would modify this instance.

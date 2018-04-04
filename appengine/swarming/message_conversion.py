@@ -245,6 +245,8 @@ def new_task_request_from_rpc(msg, now):
       # It is set in task_request.init_new_request().
       authenticated=None,
       properties=props,
+      # 'tags' is converted into manual_tags in task_request.TaskRequest.
+      manual_tags=None,
       # This is internal field not settable via RPC.
       service_account_token=None)
 
