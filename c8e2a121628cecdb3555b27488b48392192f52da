@@ -16,6 +16,24 @@
       "revId": "c8e2a121628cecdb3555b27488b48392192f52da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c518ea9a_4d168a90",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-04T18:34:16Z",
+      "side": 1,
+      "message": "\"The later generations called AST1100/2050/2100 still use the same graphics IP, so we still use the same device ID. \" is what I based the comment off.  It\u0027s on that site and attributed to a Software Manager of ASPEED circa 2008.",
+      "parentUuid": "978da3fd_70ca9cf3",
+      "revId": "c8e2a121628cecdb3555b27488b48392192f52da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
