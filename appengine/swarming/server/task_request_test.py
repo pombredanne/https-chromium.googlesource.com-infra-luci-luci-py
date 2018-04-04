@@ -40,21 +40,19 @@ def mkreq(req, secret_bytes=None):
     sb.put()
   return req
 
+def _merge(override, defaults):
+  if override is None:
+    return None
+  result = defaults.copy()
+  result.update(override)
+  return result
 
-def _gen_request(properties=None, **kwargs):
-  """Creates a TaskRequest."""
-  properties = properties or {}
 
-  def merge(override, defaults):
-    if override is None:
-      return None
-    result = defaults.copy()
-    result.update(override)
-    return result
-
+def _gen_properties(**properties):
+  """Creates a TaskProperties."""
   cipd_input = properties.pop('cipd_input', {})
-  cipd_input = merge(cipd_input, {
-    'client_package': merge(cipd_input.pop('client_package', {}), {
+  cipd_input = _merge(cipd_input, {
+    'client_package': _merge(cipd_input.pop('client_package', {}), {
       'package_name': 'infra/tools/cipd/${platform}',
       'version': 'git_revision:deadbeef',
     }),
@@ -71,7 +69,7 @@ def _gen_request(properties=None, **kwargs):
     'namespace': 'default-gzip',
   })
 
-  properties = merge(properties, {
+  properties = _merge(properties, {
     'cipd_input': cipd_input,
     'command': [u'command1', u'arg1'],
     'dimensions': {
@@ -86,15 +84,21 @@ def _gen_request(properties=None, **kwargs):
     'idempotent': False,
     'inputs_ref': inputs_ref,
     'io_timeout_secs': None,
-    'has_secret_bytes': 'secret_bytes' in kwargs,
+    'has_secret_bytes': 'secret_bytes' in properties,
   })
   properties['dimensions_data'] = properties.pop('dimensions')
+  return properties
+
+
+def _gen_request(properties=None, **kwargs):
+  """Creates an old style TaskRequest."""
   now = utils.utcnow()
+  properties = properties or {}
   args = {
     'created_ts': now,
     'name': 'Request name',
     'priority': 50,
-    'properties': properties,
+    'properties': _gen_properties(**properties),
     'expiration_ts': now + datetime.timedelta(seconds=30),
     'tags': [u'tag:1'],
     'user': 'Jesus',
@@ -158,9 +162,22 @@ class TaskRequestApiTest(TestCase):
         i[5:] for i in dir(self) if i.startswith('test_'))
     self.assertFalse(missing)
 
+  def test_get_automatic_tags(self):
+    req = mkreq(_gen_request())
+    expected = set((
+        u'hostname:localhost',
+        u'OS:Windows-3.1.1',
+        u'pool:default',
+        u'priority:50',
+        u'service_account:none',
+        u'user:Jesus'))
+    self.assertEqual(expected, task_request.get_automatic_tags(req, 0))
+    with self.assertRaises(AssertionError):
+      task_request.get_automatic_tags(req, 1)
+
   def test_create_termination_task(self):
     request = task_request.create_termination_task(u'some-bot')
-    self.assertTrue(request.properties.is_terminate)
+    self.assertTrue(request.task_slice(0).properties.is_terminate)
 
   def test_new_request_key(self):
     for _ in xrange(3):
@@ -301,7 +318,7 @@ class TaskRequestApiTest(TestCase):
     # Other unit tests should use the calculated value.
     self.assertEqual(
         'aa33c679b3ee30e37b9724d79a9d20bc767475c00e7f659b6191508f6b16f1ab',
-        request.properties_hash().encode('hex'))
+        request.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_isolated(self):
     parent = mkreq(_gen_request(properties={
@@ -384,7 +401,7 @@ class TaskRequestApiTest(TestCase):
     # Other unit tests should use the calculated value.
     self.assertEqual(
         '121c6bd6216a4cc9c4302a52da6292e5a240807ef13ace6f7f36a0c83aec6f55',
-        request.properties_hash().encode('hex'))
+        request.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_parent(self):
     parent = mkreq(_gen_request())
@@ -407,7 +424,7 @@ class TaskRequestApiTest(TestCase):
     # Ensure the algorithm is deterministic.
     self.assertEqual(
         '58b6b8966199b901406b82ed15b23b7070cbf6ea8cba237838911939b387b4c6',
-        request.properties_hash().encode('hex'))
+        request.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_bot_service_account(self):
     request = mkreq(_gen_request(service_account='bot'))
@@ -428,9 +445,9 @@ class TaskRequestApiTest(TestCase):
         tags=['tag:2'],
         properties=dict(idempotent=True)))
     self.assertEqual(
-        request_1.properties_hash(),
-        request_2.properties_hash())
-    self.assertTrue(request_1.properties_hash())
+        request_1.task_slice(0).properties_hash(),
+        request_2.task_slice(0).properties_hash())
+    self.assertTrue(request_1.task_slice(0).properties_hash())
 
   def test_different(self):
     # Two TestRequest with different properties.
@@ -439,8 +456,8 @@ class TaskRequestApiTest(TestCase):
     request_2 = mkreq(_gen_request(
         properties=dict(execution_timeout_secs=129, idempotent=True)))
     self.assertNotEqual(
-        request_1.properties_hash(),
-        request_2.properties_hash())
+        request_1.task_slice(0).properties_hash(),
+        request_2.task_slice(0).properties_hash())
 
   def test_bad_values(self):
     with self.assertRaises(AssertionError):
