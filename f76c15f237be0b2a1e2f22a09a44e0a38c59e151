@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c5bc779_29c4facb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-04T19:04:37Z",
+      "side": 1,
+      "message": "er... nvm this.",
+      "parentUuid": "2cb28815_57ee396e",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "f76c15f237be0b2a1e2f22a09a44e0a38c59e151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78b0d1b3_73a88204",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 6
