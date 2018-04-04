@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -83,21 +84,24 @@ def main():
   parser.add_argument(
       '--pool',
       help='Pool to schedule a task on. If unspecified, this is autodetected.')
-  parser.add_argument('application')
+  parser.add_argument('appid')
   parser.add_argument('server_version')
   args = parser.parse_args()
 
-  url = 'https://{server_version}-dot-{application}.appspot.com'.format(
-      application=args.application,
+  url = 'https://{server_version}-dot-{appid}.appspot.com'.format(
+      appid=args.appid,
       server_version=args.server_version)
   print 'Swarming server:', url
 
   pool = args.pool
   if not pool:
-    print 'Finding best pool to use'
+    print 'Finding best pool to use...'
     pool = pick_best_pool(url, args.server_version)
+    if not pool:
+      sys.stderr.write('→ Failed to find a pool to use!\n')
+      return 1
 
-  print 'Scheduling no-op task'
+  print 'Scheduling no-op task on pool %r' % pool
   rv = subprocess.call([
       SWARMING_TOOL, 'run',
       '-S', url,
