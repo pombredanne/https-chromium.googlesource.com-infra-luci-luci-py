@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "978da3fd_70ca9cf3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-04T18:25:47Z",
+      "side": 1,
+      "message": "Your are being overly optimistic (or naive). :) I\u0027ll refrain from stating my opinion on a public channel.\n\nThat said, it\u0027d be interesting if you could check if they use different revision id.",
+      "revId": "c8e2a121628cecdb3555b27488b48392192f52da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
