@@ -314,6 +314,27 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(None, task_to_run.TaskToRun.query().get().queue_number)
     self.assertEqual(State.EXPIRED, result_summary.key.get().state)
 
+  def test_task_slices_second(self):
+    # First TaskSlice couldn't run, the second ran.
+    self._quick_schedule(
+        2,
+        task_slices=[
+          {
+            'expiration_secs': 180,
+            'properties': gen_props(),
+          },
+          {
+            'expiration_secs': 180,
+            'properties': gen_props(),
+          },
+        ])
+    self.mock_now(self.now, 181)
+    actual_request, _, _ = task_scheduler.bot_reap_task(
+        self.bot_dimensions, 'abc', None)
+    self.assertEqual(None, actual_request)
+
+    self.fail('Implement')
+
   def test_exponential_backoff(self):
     self.mock(
         task_scheduler.random, 'random',
@@ -479,6 +500,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     third_ts = self.mock_now(self.now, 20)
     self._task_deduped(
         0, third_ts, task_id, '1d69ba3ea8008b10', now=second_ts)
+
+  def test_task_idempotent_second_slice(self):
+    # A task may dedupe against a second slice.
+    self.fail('Implement test')
 
   def test_task_parent_children(self):
     # Parent task creates a child task.
@@ -960,12 +985,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     result_summary = result_summary.key.get()
     self.assertEqual(State.CANCELED, result_summary.state)
-    # Make sure they are added to the negative cache.
-    request = result_summary.request_key.get()
-    for i in (1, 2):
-      to_run_key = task_to_run.request_to_task_to_run_key(request, i, 0)
-      actual = task_to_run._lookup_cache_is_taken_async(to_run_key).get_result()
-      self.assertEqual(True, actual)
     self.assertEqual(1, len(pub_sub_calls)) # No other message.
 
   def test_cancel_task_running(self):

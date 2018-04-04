@@ -97,9 +97,9 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     """Stores a new initialized TaskRequest.
 
     nb_task is 1 or 0. It represents the number of GAE task queue
-    rebuild-task-cache enqueued. It is 1 when the request.properties.dimensions
-    is new (unseen before) and a GAE task queue was enqueued to process it, 0
-    otherwise.
+    rebuild-task-cache enqueued. It is 1 when the
+    request.task_slice(0).properties.dimensions is new (unseen before) and a GAE
+    task queue was enqueued to process it, 0 otherwise.
     """
     task_request.init_new_request(req, True)
     task_queues.assert_task(req)
@@ -638,7 +638,8 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             command=[], dimensions=request_dimensions,
             execution_timeout_secs=0, grace_period_secs=0),
         nb_task=0)
-    self.assertTrue(task.key.parent().get().properties.is_terminate)
+    self.assertTrue(
+        task.key.parent().get().task_slice(0).properties.is_terminate)
     # Bot declares exactly same dimensions so it matches.
     bot_dimensions = request_dimensions.copy()
     bot_dimensions[u'pool'] = [u'default']
