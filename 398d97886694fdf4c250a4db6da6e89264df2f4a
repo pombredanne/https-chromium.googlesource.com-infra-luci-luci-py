@@ -157,6 +157,30 @@
     },
     {
       "key": {
+        "uuid": "7018b32c_afd48398",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-05T18:21:05Z",
+      "side": 1,
+      "message": "Ignore me.",
+      "parentUuid": "3e92ad91_6405d0f8",
+      "range": {
+        "startLine": 200,
+        "startChar": 20,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "398d97886694fdf4c250a4db6da6e89264df2f4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35617968_82132bb2",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 4
