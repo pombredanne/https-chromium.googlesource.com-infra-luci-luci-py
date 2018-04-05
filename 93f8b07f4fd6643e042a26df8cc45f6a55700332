@@ -16,6 +16,24 @@
       "revId": "93f8b07f4fd6643e042a26df8cc45f6a55700332",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1c8f9d9_c54c0d7f",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-05T17:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ae272b5_52fd8449",
+      "revId": "93f8b07f4fd6643e042a26df8cc45f6a55700332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
