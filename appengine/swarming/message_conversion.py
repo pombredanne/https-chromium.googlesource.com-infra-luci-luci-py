@@ -176,7 +176,7 @@ def bot_info_to_rpc(entity, now, deleted=False):
       bot_id=entity.id,
       deleted=deleted,
       dimensions=_string_list_pairs_from_dict(entity.dimensions),
-      is_dead=entity.is_dead(now),
+      is_dead=entity.is_dead,
       machine_type=entity.machine_type,
       state=json.dumps(entity.state, sort_keys=True, separators=(',', ':')))
 
