@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa9e3055_8e32c29f",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-05T16:50:55Z",
+      "side": 1,
+      "message": "function() {",
+      "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3131f81_e0c73b18",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-05T16:50:55Z",
+      "side": 1,
+      "message": "why special case name?",
+      "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da4408af_f4d9d546",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-05T16:50:55Z",
+      "side": 1,
+      "message": "FTR, I don\u0027t know why you don\u0027t hardcode \":\" everywhere and 1 here, I don\u0027t see these 22 character being any more meaningful than \u00271\u0027.",
+      "range": {
+        "startLine": 477,
+        "startChar": 39,
+        "endLine": 477,
+        "endChar": 54
+      },
+      "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
