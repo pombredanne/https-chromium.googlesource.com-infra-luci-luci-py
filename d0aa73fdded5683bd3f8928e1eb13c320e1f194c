@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fa6800b_6f1a06a5",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-05T18:52:37Z",
+      "side": 1,
+      "message": "\u003c\u003csome black magic\u003e\u003e",
+      "revId": "d0aa73fdded5683bd3f8928e1eb13c320e1f194c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
