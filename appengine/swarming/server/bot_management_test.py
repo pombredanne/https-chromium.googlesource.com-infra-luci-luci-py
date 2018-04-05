@@ -236,11 +236,11 @@ class BotManagementTest(test_case.TestCase):
     def check(dead, alive):
       q = bot_management.filter_availability(
           bot_management.BotInfo.query(), quarantined=None, is_dead=True,
-          now=utils.utcnow(), is_busy=None, is_mp=None)
+          is_busy=None, is_mp=None)
       self.assertEqual(dead, [t.to_dict() for t in q])
       q = bot_management.filter_availability(
           bot_management.BotInfo.query(), quarantined=None, is_dead=False,
-          now=utils.utcnow(), is_busy=None, is_mp=None)
+          is_busy=None, is_mp=None)
       self.assertEqual(alive, [t.to_dict() for t in q])
 
     bot_management.bot_event(
