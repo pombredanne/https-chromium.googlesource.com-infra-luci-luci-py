@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "97bd76ee_17b9b4e3",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-05T17:08:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa9e3055_8e32c29f",
+      "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3131f81_e0c73b18",
         "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-04-05T16:50:55Z",
       "side": 1,
       "message": "why special case name?",
+      "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14858fb9_39779ba6",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-05T17:08:44Z",
+      "side": 1,
+      "message": "I imagined name was a common case.  We populate the tags in primary_map based on what results have been seen in the initial request.  Thus, there are situations in which no tasks have a tag called \"name\", and the auto-fix won\u0027t work (The trivial case is when there are 0 tasks returned for a possibly broken set of filters, a second case is like https://screenshot.googleplex.com/8pLGS9bOxj5).\n\nEven if there is no tag-name there, I want the auto-fixing to work.  I can extend this to be a list of popular tags to search by, if you like.\n\n(also, comment added)",
+      "parentUuid": "d3131f81_e0c73b18",
       "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -56,6 +92,30 @@
       "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bea10a9d_238193a6",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-05T17:08:44Z",
+      "side": 1,
+      "message": "I banished FILTER_SEP, along with the arrogance of youth that caused it to be there in the first place.\n\nNet savings 316 bytes",
+      "parentUuid": "da4408af_f4d9d546",
+      "range": {
+        "startLine": 477,
+        "startChar": 39,
+        "endLine": 477,
+        "endChar": 54
+      },
+      "revId": "e8a559a920ed3337672af36e36fec5e0232d7e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
