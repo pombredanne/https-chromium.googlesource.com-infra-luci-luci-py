@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ae272b5_52fd8449",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-filters.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-05T17:14:10Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the check be the reverse? There\u0027s only an handful of \u0027special keys\u0027, there\u0027s \u0027state\u0027 and is there anything else really? Also I don\u0027t understand why the filter needs to know between dimension or tag.",
+      "revId": "93f8b07f4fd6643e042a26df8cc45f6a55700332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
