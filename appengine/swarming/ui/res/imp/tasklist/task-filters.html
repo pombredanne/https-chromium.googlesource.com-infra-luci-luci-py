@@ -151,7 +151,7 @@
 
       <div class="narrow-down-selector">
         <div>
-          <iron-a11y-keys target="[[_filter_input]]" keys="enter" on-keys-pressed="_manuallyAddFilter"></iron-a11y-keys>
+          <iron-a11y-keys target="[[_filter_input]]" keys="enter" on-keys-pressed="_possiblyTagFilter"></iron-a11y-keys>
           <paper-input id="filter"
             label="Search columns and filters or supply a filter and press enter"
             placeholder="gpu nvidia pool:Chrome"
@@ -459,6 +459,33 @@
           }
         }.bind(this));
         return this._botListLink(dimensions, cols);
+      },
+
+      _possiblyTagFilter: function(){
+        var filter = this._query.trim();
+        var idx = filter.indexOf(this.FILTER_SEP);
+        if (idx === -1) {
+          sk.errorMessage('Invalid filter.  Should be like "foo:bar"', 5000);
+          return;
+        }
+        var primary = filter.slice(0, idx);
+        if (this.primary_map[primary + "-tag"] || primary === "name") {
+          // Make the tag filter for user-supplied tags, they may not have
+          // added the -tag suffix.
+          primary += "-tag";
+        }
+        var param = filter.slice(idx + this.FILTER_SEP.length);
+        if (swarming.alias.DIMENSIONS_WITH_ALIASES.indexOf(primary) !== -1) {
+          param = swarming.alias.apply(param, primary);
+        }
+        filter = primary + this.FILTER_SEP + param;
+
+        if (this._filters.indexOf(filter) !== -1) {
+          sk.errorMessage('Filter "'+filter+'" is already active', 5000);
+          return;
+        }
+        this.push("_filters", filter);
+        this.set("_query", "");
       },
 
       _promptCancel: function() {
