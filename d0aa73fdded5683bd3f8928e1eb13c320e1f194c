@@ -16,6 +16,24 @@
       "revId": "d0aa73fdded5683bd3f8928e1eb13c320e1f194c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c634c70_95beab8b",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-05T18:57:16Z",
+      "side": 1,
+      "message": "This change is actually just a readability change.  I tend to prefer to use {{ }} ONLY when we need the two-way bindings, i.e. we are getting data out of something.  Most places the data is one way (we shove it in), and using [[ ]] to make sure of that helps me remember \"Is data going in or coming out?\"",
+      "parentUuid": "4fa6800b_6f1a06a5",
+      "revId": "d0aa73fdded5683bd3f8928e1eb13c320e1f194c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
