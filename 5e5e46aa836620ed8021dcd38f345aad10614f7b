@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e436d974_cf00141f",
+        "filename": "appengine/swarming/tools/health_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1228540
+      },
+      "writtenOn": "2018-04-06T02:02:27Z",
+      "side": 1,
+      "message": "This is pretty, but it also doesn\u0027t tell you why it failed, so there\u0027s no way to fix it.\n\nretry_exception doesn\u0027t work as I intended it to: https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/999234 is my proposed fix.",
+      "revId": "5e5e46aa836620ed8021dcd38f345aad10614f7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
