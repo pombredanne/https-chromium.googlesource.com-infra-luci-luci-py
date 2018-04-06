@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69f8f873_04980b42",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-06T17:33:21Z",
+      "side": 1,
+      "message": "Please randomize this somehow. We don\u0027t want bots started around the same time to reboot all at once. For example, it is not uncommon for many ccompute GCE bots being respawned at the same time.\n\nNote that if you just put randint() here, it won\u0027t be sufficient, since on_bot_idle is called often, and on average all bots will end up rebooting at the same time anyway (they have high chance of hitting lower end of randomized range).\n\nSo probably need to move hash-based pseudorandom here, like it was in on the server side.",
+      "range": {
+        "startLine": 310,
+        "startChar": 7,
+        "endLine": 310,
+        "endChar": 24
+      },
+      "revId": "d14fc5235bbd1207e0a45f54f0dd91e48e394d23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
