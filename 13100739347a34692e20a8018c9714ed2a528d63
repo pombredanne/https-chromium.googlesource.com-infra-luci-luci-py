@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f68cec1c_9715ad4e",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T15:15:51Z",
+      "side": 1,
+      "message": "defaultdict is not used.\n\nI still prefer to import packages, not symbols, like Go in fact :).",
+      "revId": "13100739347a34692e20a8018c9714ed2a528d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36bc5f85_c2cca8be",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T15:15:51Z",
+      "side": 1,
+      "message": "Don\u0027t rename unless necessary, this makes grepping through code much harder and refactoring python is already hard enough.",
+      "revId": "13100739347a34692e20a8018c9714ed2a528d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
