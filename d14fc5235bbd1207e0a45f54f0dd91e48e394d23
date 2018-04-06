@@ -22,6 +22,30 @@
       "revId": "d14fc5235bbd1207e0a45f54f0dd91e48e394d23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c326824_c56298f3",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T18:48:15Z",
+      "side": 1,
+      "message": "Good point, added a +/- 19% fudge and a small unit test to confirm. wdyt?",
+      "parentUuid": "69f8f873_04980b42",
+      "range": {
+        "startLine": 310,
+        "startChar": 7,
+        "endLine": 310,
+        "endChar": 24
+      },
+      "revId": "d14fc5235bbd1207e0a45f54f0dd91e48e394d23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
