@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "351bbe2c_36f50f2b",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T13:05:23Z",
+      "side": 1,
+      "message": "I\u0027d be cleaner if you removed line 269, not copy the dict, then around line 279 add:\n\n  expected[u\u0027task_id\u0027] \u003d u\u00275cee488008810\u0027\n\nThis results in less variables overall.",
+      "revId": "4f556c1745cf7782e8a71bb3a469a44265aa8897",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
