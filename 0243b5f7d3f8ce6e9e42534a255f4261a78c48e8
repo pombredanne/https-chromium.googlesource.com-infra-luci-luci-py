@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dc69b9b_5a62af38",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "I don\u0027t understand what you mean by this. The bot will handle set the environment variables specified.",
+      "range": {
+        "startLine": 223,
+        "startChar": 14,
+        "endLine": 223,
+        "endChar": 61
+      },
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2459ab01_7ba887ec",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 76,
+        "startChar": 36,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e07e4cb_8493d72d",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "Why? The client may still want to request CANARY.",
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b75dc58_969be14b",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "use 2 lines between file level symbols",
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a1fc1d7_c135fc1e",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "if include_name:\n?",
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0e1b985_f8cf5c5c",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "You cannot just instantiate TaskTemplate()? (I forget)",
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa4c3e6f_c5be18e3",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "you could as well remove the line completely if you want to modify it",
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bda61a9_2eb6ff32",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:19:11Z",
+      "side": 1,
+      "message": "please indent consistently function arguments at +4",
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
