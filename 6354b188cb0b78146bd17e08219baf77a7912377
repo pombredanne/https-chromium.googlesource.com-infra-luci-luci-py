@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "524ee987_8102f4c7",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "+4",
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d3ecee7_1bb55b29",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 2
@@ -48,6 +65,40 @@
     },
     {
       "key": {
+        "uuid": "2a2000f9_6aac0455",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "you can skip pubsub unless you want to test this specifically.",
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bb74332_5f755df1",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "unless you test changing the variables, no need to specify them (here and lines 301-302)",
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a51b8b04_0f64683d",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 2
@@ -65,6 +116,40 @@
         "endLine": 316,
         "endChar": 50
       },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879477ff_cb6589f9",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "I\u0027d prefer to not \"silently fallback\" and instead hard fail if the client asks for canary and there isn\u0027t one (?)",
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "513f79f0_e158701f",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "+4",
       "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -94,6 +179,40 @@
     },
     {
       "key": {
+        "uuid": "3cd5f6b0_3961bb07",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "align call args at +4, it makes it easier to distinguish from arguments.",
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9b9b7b2_e3500f50",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "if not pool_name?",
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4df77b78_30d3261e",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 2
@@ -111,6 +230,23 @@
         "endLine": 605,
         "endChar": 10
       },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc14cef4_cd099382",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-06T20:05:28Z",
+      "side": 1,
+      "message": "CANARY \u003d 1\nPROD \u003d 2\n?",
       "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
