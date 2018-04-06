@@ -72,6 +72,7 @@ def CommonChecks(input_api, output_api):
     join('swarming_bot', 'api'),
     join('swarming_bot', 'api', 'platforms'),
     join('swarming_bot', 'bot_code'),
+    join('swarming_bot', 'config'),
   ]
 
   blacklist = [

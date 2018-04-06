@@ -27,12 +27,15 @@ This file contains unicode to confirm UTF-8 encoded file is well supported.
 Here's a pile of poo: 💩
 """
 
+import hashlib
 import os
+import struct
+import sys
 
 from api import os_utilities
 from api import platforms
 
-# Unused argument 'bot' - pylint: disable=W0613
+# pylint: disable=unused-argument
 
 
 def get_dimensions(bot):
@@ -303,7 +306,12 @@ def on_bot_idle(bot, since_last_action):
   - since_last_action: time in second since last action; e.g. amount of time the
                        bot has been idle.
   """
-  pass
+  # Don't try this if running inside docker.
+  if sys.platform != 'linux2' or not platforms.linux.get_inside_docker():
+    # Fudge +/- 19%
+    f = 1. + (6e-6 * struct.unpack('h', hashlib.md5(bot.id).digest()[:2])[0])
+    if os_utilities.get_uptime() > 12*60*60 * f:
+      bot.host_reboot('Periodic reboot after %ds' % uptime)
 
 
 ### Setup
