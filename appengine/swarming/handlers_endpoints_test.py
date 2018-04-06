@@ -288,6 +288,71 @@ class TasksApiTest(BaseTest):
         [(u'service-account@example.com', datetime.timedelta(0, 30+30+15))] * 2,
         oauth_grant_calls)
 
+  def test_new_ok_template(self):
+    """Asserts that new generates appropriate metadata for a templated task."""
+    oauth_grant_calls = self.mock_task_service_accounts()
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.mock(random, 'randint', lambda *_: 10000) # always pick prod
+
+    request = self.create_new_request(
+        expiration_secs=30,
+        properties=self.create_props(
+            command=['rm', '-rf', '/'],
+            execution_timeout_secs=30,
+            grace_period_secs=15,
+            dimensions=[
+              {u'key': u'os', u'value': u'Amiga'},
+              {u'key': u'pool', u'value': u'template'},
+            ]),
+        pubsub_topic='projects/abc/topics/def',
+        pubsub_auth_token='secret that must not be shown',
+        pubsub_userdata='userdata',
+        service_account='service-account@example.com',
+        tags=[u'a:tag'])
+    expected_props = self.gen_props(
+        command=[u'rm', u'-rf', u'/'],
+        execution_timeout_secs=u'30',
+        grace_period_secs=u'15',
+        env=[{u'key': u'VAR', u'value': u'prod'}],
+        dimensions=[
+          {u'key': u'os', u'value': u'Amiga'},
+          {u'key': u'pool', u'value': u'template'},
+        ])
+    expected = {
+      u'request': self.gen_request(
+        created_ts=fmtdate(self.now),
+        expiration_secs=u'30',
+        priority=u'20',
+        properties=expected_props,
+        pubsub_topic=u'projects/abc/topics/def',
+        pubsub_userdata=u'userdata',
+        tags=[
+          u'a:tag',
+          u'os:Amiga',
+          u'pool:template',
+          u'priority:20',
+          u'service_account:service-account@example.com',
+          u'user:joe@localhost'
+        ],
+        service_account=u'service-account@example.com',
+        task_slices=[
+          {
+            u'expiration_secs': u'30',
+            u'properties': expected_props,
+          },
+        ]),
+      u'task_id': u'5cee488008810',
+    }
+
+    response = self.call_api('new', body=message_to_dict(request))
+    self.assertEqual(expected, response.json)
+
+    # Asked for a correct grant.
+    self.assertEqual(
+        [(u'service-account@example.com', datetime.timedelta(0, 30+30+15))],
+        oauth_grant_calls)
+
+
   def test_new_bad_service_account(self):
     oauth_grant_calls = self.mock_task_service_accounts()
     request = self.create_new_request(

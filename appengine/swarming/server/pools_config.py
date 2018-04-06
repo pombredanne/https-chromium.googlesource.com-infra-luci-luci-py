@@ -8,6 +8,8 @@ See comments in proto/pools.proto for more context. Structures defined here are
 used primarily by task_scheduler.check_schedule_request_acl.
 """
 
+import random
+
 from collections import namedtuple, defaultdict
 
 from components import auth
@@ -18,6 +20,9 @@ from components.config import validation
 from proto import pools_pb2
 from server import config as local_config
 from server import service_accounts
+from server import task_request
+
+import swarming_rpcs
 
 
 POOLS_CFG_FILENAME = 'pools.cfg'
@@ -87,6 +92,41 @@ class TaskTemplateDeployment(_TaskTemplateDeployment):
       canary_chance=canary_chance,
     )
 
+  def apply_to_task_properties(self, properties, pool_task_template):
+    """Applies this deployment to the indicated properties.
+
+    Modifies `properties` in-place.
+
+    Args:
+      properties (task_request.TaskProperties) - The task properties to modify.
+      pool_task_template (swarming_rpcs.PoolTaskTemplate) - The PoolTaskTemplate
+        enum controlling application of the deployment.
+    """
+    assert isinstance(properties, task_request.TaskProperties)
+    assert isinstance(pool_task_template, swarming_rpcs.PoolTaskTemplate)
+
+    if pool_task_template == swarming_rpcs.PoolTaskTemplate.SKIP:
+      return
+
+    to_apply = None
+    if pool_task_template == swarming_rpcs.PoolTaskTemplate.CANARY_NEVER:
+      to_apply = self.prod
+    elif pool_task_template == swarming_rpcs.PoolTaskTemplate.CANARY_PREFER:
+      to_apply = self.canary or self.prod
+    elif pool_task_template == swarming_rpcs.PoolTaskTemplate.AUTO:
+      if not self.canary:
+        to_apply = self.prod
+      else:
+        to_apply = (
+          self.prod if random.randint(0, 9999) >= self.canary_chance
+          else self.canary)
+
+    # This should never happen... but just in case.
+    assert to_apply is not None, (
+      'TaskTemplateDeployment got None template to apply to task')
+
+    to_apply.apply_to_task_properties(properties)
+
 
 # A set of default task parameters to apply to tasks issued within a pool.
 _TaskTemplate = namedtuple('_TaskTemplate', [
@@ -103,8 +143,18 @@ _TaskTemplate = namedtuple('_TaskTemplate', [
   'inclusions',
 ])
 
+
 class InvalidTaskTemplateError(Exception):
   pass
+
+
+class TaskTemplateApplicationError(Exception):
+  def __init__(self, message):
+    self.conflict = message
+    super(TaskTemplateApplicationError, self).__init__(
+      'Task defines %s which conflicts with pool task template' %
+      message)
+
 
 class TaskTemplate(_TaskTemplate):
   class _Intermediate(object):
@@ -233,6 +283,59 @@ class TaskTemplate(_TaskTemplate):
 
     return ret.finalize(ctx)
 
+  @staticmethod
+  def _overlaps_paths(needle, haystack):
+    """Finds if `needle` is equal, or a subdirectory of, any of the '/'
+    delimited paths in `haystatck`."""
+    for path in haystack:
+      if path.startswith(needle):
+        return path
+    return None
+
+  def apply_to_task_properties(self, p):
+    assert isinstance(p, task_request.TaskProperties)
+
+    for envvar in self.env:
+      var = envvar.var
+      if not envvar.soft:
+        if var in p.env:
+          raise TaskTemplateApplicationError('env[%r]' % var)
+        if var in p.env_prefixes:
+          raise TaskTemplateApplicationError('env_prefixes[%r]' % var)
+
+      if envvar.value:
+        p.env[var] = p.env.get(var, '') or envvar.value
+
+      if envvar.prefix:
+        new_prefix = p.env_prefixes.get(var, [])
+        new_prefix.extend(envvar.prefix)
+        p.env_prefixes[var] = new_prefix
+
+    cache_map = {c.name: c.path for c in p.caches}
+    paths = set(cache_map.values())
+    paths.update(p.path for p in p.cipd_input.packages)
+    for cache in self.cache:
+      if cache.name in cache_map:
+        raise TaskTemplateApplicationError('cache[%r]' % cache.name)
+      overlap = self._overlaps_paths(cache.path, paths)
+      if overlap:
+        raise TaskTemplateApplicationError(
+          'a cache or CIPD package with path %r' % (overlap,))
+      p.caches.append(task_request.CacheEntry(
+        name=cache.name,
+        path=cache.path))
+
+    for pkg in self.cipd_package:
+      overlap = self._overlaps_paths(pkg.path, paths)
+      if overlap:
+        raise TaskTemplateApplicationError(
+          'a cache or CIPD package with path %r' % (overlap,))
+      p.cipd_input.packages.append(task_request.CipdPackage(
+        path=pkg.path,
+        package_name=pkg.pkg,
+        version=pkg.version,
+      ))
+
 
 CacheEntry = namedtuple('CacheEntry', ['name', 'path'])
 CipdPackage = namedtuple('CipdPackage', ['path', 'pkg', 'version'])
@@ -241,6 +344,8 @@ Env = namedtuple('Env', ['var', 'value', 'prefix', 'soft'])
 
 def get_pool_config(pool_name):
   """Returns PoolConfig for the given pool or None if not defined."""
+  if pool_name is None:
+    raise ValueError('get_pool_config called with None')
   return _fetch_pools_config().pools.get(pool_name)
 
 
