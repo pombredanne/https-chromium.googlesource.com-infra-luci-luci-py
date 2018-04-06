@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d3ecee7_1bb55b29",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-06T04:07:06Z",
+      "side": 1,
+      "message": "this is the new endpoints handler unit/smoke test. Will add unittests for the pools_config logic directly as well.",
+      "range": {
+        "startLine": 291,
+        "startChar": 6,
+        "endLine": 291,
+        "endChar": 26
+      },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e5a623f_fe7bf661",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-06T04:07:06Z",
+      "side": 1,
+      "message": "note that we use the \u0027template\u0027 pool",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 55
+      },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a51b8b04_0f64683d",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-06T04:07:06Z",
+      "side": 1,
+      "message": "and automatically get `$VAR\u003dprod` applied to the task, even though we didn\u0027t request it.",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 50
+      },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c3a146_a54beb25",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-06T04:07:06Z",
+      "side": 1,
+      "message": "this logic isn\u0027t quite right",
+      "range": {
+        "startLine": 291,
+        "startChar": 9,
+        "endLine": 291,
+        "endChar": 33
+      },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c200b257_4dca6936",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-06T04:07:06Z",
+      "side": 1,
+      "message": "here\u0027s the TaskTemplate definitions in the \u0027template\u0027 pool",
+      "range": {
+        "startLine": 172,
+        "startChar": 17,
+        "endLine": 172,
+        "endChar": 66
+      },
+      "revId": "6354b188cb0b78146bd17e08219baf77a7912377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
