@@ -642,7 +642,7 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     tmap = pools_config._resolve_task_template_inclusions(
         self.ctx, poolcfg.task_template)
     dmap = pools_config._resolve_task_template_deployments(
-        self.ctx, tmap, poolcfg.task_template_deployment)
+        self.ctx, tmap, poolcfg.task_template_deployment, None)
 
     self.assertSetEqual({'standard'}, set(dmap.keys()))
 
@@ -651,7 +651,8 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
                      inclusions={'prod'}),
         canary=self.tt(env=(pools_config.Env('VAR', 'canary', (), False),),
                        inclusions={'canary'}),
-        canary_chance=5000))
+        canary_chance=5000,
+        config_rev=None))
 
   def test_resolve_noname_deployment(self):
     poolcfg = self.parse("""
@@ -659,7 +660,7 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     """)
 
     self.assertIsNone(pools_config._resolve_task_template_deployments(
-        self.ctx, {}, poolcfg.task_template_deployment))
+        self.ctx, {}, poolcfg.task_template_deployment, None))
 
     self.assertEqual(
         [x.text for x in self.ctx.result().messages],
@@ -671,7 +672,7 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     """)
 
     self.assertIsNone(pools_config._resolve_task_template_deployments(
-        self.ctx, {}, poolcfg.task_template_deployment))
+        self.ctx, {}, poolcfg.task_template_deployment, None))
 
     self.assertEqual(
         [x.text for x in self.ctx.result().messages],
@@ -684,7 +685,7 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     """)
 
     self.assertIsNone(pools_config._resolve_task_template_deployments(
-        self.ctx, {}, poolcfg.task_template_deployment))
+        self.ctx, {}, poolcfg.task_template_deployment, None))
 
     self.assertEqual(
         [x.text for x in self.ctx.result().messages],
@@ -716,24 +717,29 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     tmap = pools_config._resolve_task_template_inclusions(
         self.ctx, poolcfg.task_template)
     dmap = pools_config._resolve_task_template_deployments(
-        self.ctx, tmap, poolcfg.task_template_deployment)
+        self.ctx, tmap, poolcfg.task_template_deployment, None)
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
         prod=self.tt(
             env=(pools_config.Env("VAR", "1", (), False),), inclusions={'a'}),
-        canary=None, canary_chance=0
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
+        canary=None,
+        canary_chance=0,
+        config_rev=None,
+    ), pools_config._resolve_deployment(
+        self.ctx, poolcfg.pool[0], tmap, dmap, None))
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
-      prod=self.tt(
-          env=(pools_config.Env("VAR", "1", (), False),), inclusions={'a'}),
-      canary=self.tt(
-          env=(
-            pools_config.Env("VAR", "1", (), False),
-            pools_config.Env("WAT", "yes", (), False)),
-          inclusions={'a'}),
-      canary_chance=5000,
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[1], tmap, dmap))
+        prod=self.tt(
+            env=(pools_config.Env("VAR", "1", (), False),), inclusions={'a'}),
+        canary=self.tt(
+            env=(
+              pools_config.Env("VAR", "1", (), False),
+              pools_config.Env("WAT", "yes", (), False)),
+            inclusions={'a'}),
+        canary_chance=5000,
+        config_rev=None,
+    ), pools_config._resolve_deployment(
+        self.ctx, poolcfg.pool[1], tmap, dmap, None))
 
 
 if __name__ == '__main__':

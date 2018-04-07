@@ -641,7 +641,7 @@ def check_schedule_request_acl(request):
   # checked in TaskProperties's pre put hook).
   #
   # It is guaranteed that at most one item can be specified in 'pool'.
-  pool = request.properties.dimensions[u'pool'][0]
+  pool = request.pool
   pool_cfg = pools_config.get_pool_config(pool)
 
   # request.service_account can be 'bot' or 'none'. We don't care about these,
