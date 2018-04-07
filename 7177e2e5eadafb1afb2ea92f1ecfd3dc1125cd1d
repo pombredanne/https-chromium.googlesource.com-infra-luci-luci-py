@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66c9616c_224126b8",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-07T01:26:14Z",
+      "side": 1,
+      "message": "assuming this doesn\u0027t have to literally be called \"bot\", pylint will ignore arguments that start with underscore, so `get_dimensions(_bot)` is enough to make pylint shut up about it.",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 22
+      },
+      "revId": "7177e2e5eadafb1afb2ea92f1ecfd3dc1125cd1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
