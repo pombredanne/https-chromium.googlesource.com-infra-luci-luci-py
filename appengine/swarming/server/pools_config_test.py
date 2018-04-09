@@ -721,19 +721,22 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     self.assertEqual(pools_config.TaskTemplateDeployment(
         prod=self.tt(
             env=(pools_config.Env("VAR", "1", (), False),), inclusions={'a'}),
-        canary=None, canary_chance=0
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
+        canary=None,
+        canary_chance=0,
+    ), pools_config._resolve_deployment(
+        self.ctx, poolcfg.pool[0], tmap, dmap))
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
-      prod=self.tt(
-          env=(pools_config.Env("VAR", "1", (), False),), inclusions={'a'}),
-      canary=self.tt(
-          env=(
-            pools_config.Env("VAR", "1", (), False),
-            pools_config.Env("WAT", "yes", (), False)),
-          inclusions={'a'}),
-      canary_chance=5000,
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[1], tmap, dmap))
+        prod=self.tt(
+            env=(pools_config.Env("VAR", "1", (), False),), inclusions={'a'}),
+        canary=self.tt(
+            env=(
+              pools_config.Env("VAR", "1", (), False),
+              pools_config.Env("WAT", "yes", (), False)),
+            inclusions={'a'}),
+        canary_chance=5000,
+    ), pools_config._resolve_deployment(
+        self.ctx, poolcfg.pool[1], tmap, dmap))
 
 
 if __name__ == '__main__':

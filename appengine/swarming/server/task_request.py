@@ -386,7 +386,6 @@ def _validate_service_account(prop, value):
 
 ### Models.
 
-
 class FilesRef(ndb.Model):
   """Defines a data tree reference, normally a reference to a .isolated file."""
 
@@ -601,6 +600,12 @@ class TaskProperties(ndb.Model):
   # If True, the TaskRequest embedding these TaskProperties has an associated
   # SecretBytes entity.
   has_secret_bytes = ndb.BooleanProperty(default=False, indexed=False)
+
+  @property
+  def pool(self):
+    """Returns the pool that this TaskProperties has in dimensions, or None if
+    no pool dimension exists."""
+    return self.dimensions.get('pool', [None])[0]
 
   @property
   def dimensions(self):
@@ -850,6 +855,10 @@ class TaskRequest(ndb.Model):
   # Data to send in 'userdata' field of PubSub messages.
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
+
+  @property
+  def pool(self):
+    return self.properties.pool
 
   @property
   def secret_bytes_key(self):
