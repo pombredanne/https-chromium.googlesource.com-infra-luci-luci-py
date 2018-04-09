@@ -98,6 +98,30 @@
     },
     {
       "key": {
+        "uuid": "bb075f9a_252f54fa",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-09T18:25:56Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "ae69ec40_fd26063d",
+      "range": {
+        "startLine": 223,
+        "startChar": 14,
+        "endLine": 223,
+        "endChar": 61
+      },
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2459ab01_7ba887ec",
         "filename": "appengine/swarming/server/pools_config.py",
         "patchSetId": 7
