@@ -92,6 +92,30 @@
       "revId": "7177e2e5eadafb1afb2ea92f1ecfd3dc1125cd1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59159743_b0da3ad1",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-09T21:26:01Z",
+      "side": 1,
+      "message": "Good point, I extracted the code into a new function but this requires using two CLs, one to add the new function and one to remove.\n\nCreated https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1003235 for the new code and kept this CL to remove the old code.",
+      "parentUuid": "0f6c6883_c8d24d76",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 79
+      },
+      "revId": "7177e2e5eadafb1afb2ea92f1ecfd3dc1125cd1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
