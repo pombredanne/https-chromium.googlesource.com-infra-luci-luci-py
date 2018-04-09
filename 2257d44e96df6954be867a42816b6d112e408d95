@@ -1,0 +1,641 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd894eef_3781bcfa",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "nit: more more \\n",
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5536f295_730eaaf6",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "this is actually sad because sometimes it makes sense to cache installed packages (if they are huge)",
+      "range": {
+        "startLine": 186,
+        "startChar": 23,
+        "endLine": 187,
+        "endChar": 18
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e0dae5b_26445692",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "an example of what prefix means or its intended usage would be nice",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 59
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b91edd09_7ddbd3f5",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "\\n",
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b152736_6b286b74",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "nit: please add some comment, its the only uncommented fields in the entire file, looks weird",
+      "range": {
+        "startLine": 257,
+        "startChar": 2,
+        "endLine": 257,
+        "endChar": 26
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b75230d_78298d55",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "\\n",
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bbbb4c0_8d2d1f2e",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "what if I want 100% canary? I think this should be 10000",
+      "range": {
+        "startLine": 71,
+        "startChar": 36,
+        "endLine": 71,
+        "endChar": 40
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64763b3a_f3d0d48b",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "align using 4 spaces",
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45351ae1_40f3921a",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "use format:\n\"\"\"One-line-blah.\n\nMore lines blah.\n\"\"\"\n\n\"\"\"Represents an in-flux TaskTemplate instance.\n\nIt is used internally by ....\n\"\"\"",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f72722_b84e2cca",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "one more \" \" :)",
+      "range": {
+        "startLine": 119,
+        "startChar": 44,
+        "endLine": 119,
+        "endChar": 45
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2eadd3e_c54c327e",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "align using 4 spaces:\n\nctx.error(\n    \u0027template ....\u0027, ...)",
+      "range": {
+        "startLine": 127,
+        "startChar": 19,
+        "endLine": 127,
+        "endChar": 20
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e46834d_d6699f5d",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "align using 4 spaces",
+      "range": {
+        "startLine": 134,
+        "startChar": 19,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936c3047_33f4c14a",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "imho it will be more readable to have\n\n  val, pfx \u003d \u0027\u0027, ()\n  if entry.val in self.env:\n    val, pfx, _ \u003d self.env[entry.var]\n\nor self.env.get(entry.var, (\u0027\u0027, (), False))",
+      "range": {
+        "startLine": 145,
+        "startChar": 8,
+        "endLine": 146,
+        "endChar": 76
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f0f9d51_f864c376",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "nit: sort for deterministic output\n\nand in any case \u0027i\u0027 makes no sense in the output, it is not related to the order of declaration IIUC",
+      "range": {
+        "startLine": 168,
+        "startChar": 46,
+        "endLine": 168,
+        "endChar": 75
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f049a30a_fdc404ec",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "align using 4 spaces",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 17
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0871789_cf22c7a2",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "same here and in other places where iteritems is used",
+      "range": {
+        "startLine": 177,
+        "startChar": 46,
+        "endLine": 177,
+        "endChar": 77
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c2d3263_e1ee38d3",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "this looks too clever and I don\u0027t understand it... why are we comparing only adjacent elements?",
+      "range": {
+        "startLine": 192,
+        "startChar": 6,
+        "endLine": 193,
+        "endChar": 37
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ebe9e3a_b0756df1",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "no spaces here",
+      "range": {
+        "startLine": 203,
+        "startChar": 13,
+        "endLine": 203,
+        "endChar": 16
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6af6a844_a3799cbd",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "4 spaces here",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 8
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f90d6294_0abd2f3b",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 218,
+        "startChar": 4,
+        "endLine": 219,
+        "endChar": 74
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caafbf93_c011dba1",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "same comments as above",
+      "range": {
+        "startLine": 227,
+        "startChar": 3,
+        "endLine": 231,
+        "endChar": 20
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16fac9d8_4d546752",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "4 spaces",
+      "range": {
+        "startLine": 307,
+        "startChar": 10,
+        "endLine": 307,
+        "endChar": 12
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "331d85bc_93ddd014",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "align using 4 spaces:\n\ndef _resolve_task_tempalte_deployments(\n    ctx, ....):",
+      "range": {
+        "startLine": 325,
+        "startChar": 38,
+        "endLine": 325,
+        "endChar": 39
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27a5fe76_84df5fff",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "4 spaces",
+      "range": {
+        "startLine": 335,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 10
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac6bba3_843a08e1",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "align using 4 spaces",
+      "range": {
+        "startLine": 343,
+        "startChar": 23,
+        "endLine": 343,
+        "endChar": 24
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87d73765_79537ee0",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "4 spaces",
+      "range": {
+        "startLine": 387,
+        "startChar": 2,
+        "endLine": 387,
+        "endChar": 4
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a4a4255_5dd9e619",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 389,
+        "startChar": 2,
+        "endLine": 389,
+        "endChar": 4
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ccc2dc8_7e74cd05",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 408,
+        "startChar": 11,
+        "endLine": 408,
+        "endChar": 12
+      },
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "955c38b3_c79247f4",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T20:59:21Z",
+      "side": 1,
+      "message": "you\u0027ve got the idea",
+      "revId": "2257d44e96df6954be867a42816b6d112e408d95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
