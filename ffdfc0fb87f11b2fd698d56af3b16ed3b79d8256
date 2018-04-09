@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80e0a485_98aa2b4e",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-09T22:16:14Z",
+      "side": 1,
+      "message": "please explain that that value \"\" means do not set the value (but still add prefix if any).\ncurrently it is unclear what {prefix:\"a\"} is gonna do",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 210,
+        "endChar": 13
+      },
+      "revId": "ffdfc0fb87f11b2fd698d56af3b16ed3b79d8256",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec04a588_5a7e5654",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-09T22:16:14Z",
+      "side": 1,
+      "message": "prepend?",
+      "range": {
+        "startLine": 229,
+        "startChar": 21,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "ffdfc0fb87f11b2fd698d56af3b16ed3b79d8256",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "785c48bd_29e55c99",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-09T22:16:14Z",
+      "side": 1,
+      "message": "does one Env completely override another Env? i.e. the values in the overridden Env are ignored?",
+      "range": {
+        "startLine": 230,
+        "startChar": 19,
+        "endLine": 230,
+        "endChar": 28
+      },
+      "revId": "ffdfc0fb87f11b2fd698d56af3b16ed3b79d8256",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
