@@ -50,6 +50,30 @@
     },
     {
       "key": {
+        "uuid": "0a222576_ec56fe6e",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-09T17:42:02Z",
+      "side": 1,
+      "message": "You mean that code in the task can do whatever it wants? That\u0027s a give, but the fact that you use specifically \"bot\" here is what makes it very confusing. The bot doesn\u0027t act randomly, the tasks may, but the fact that a task decides to override an environment variable while running is outside the scope of the documentation here.",
+      "parentUuid": "8bea7591_22924117",
+      "range": {
+        "startLine": 223,
+        "startChar": 14,
+        "endLine": 223,
+        "endChar": 61
+      },
+      "revId": "0243b5f7d3f8ce6e9e42534a255f4261a78c48e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2459ab01_7ba887ec",
         "filename": "appengine/swarming/server/pools_config.py",
         "patchSetId": 7
