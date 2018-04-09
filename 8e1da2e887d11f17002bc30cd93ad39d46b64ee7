@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3943a908_e21c89ab",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-09T21:47:40Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "84bff7ba_ae069698",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 15
+      },
+      "revId": "8e1da2e887d11f17002bc30cd93ad39d46b64ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80ee3371_eade4a23",
         "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-09T21:38:12Z",
       "side": 1,
       "message": "is this supposed to be part of this CL?",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 310,
+        "endChar": 59
+      },
+      "revId": "8e1da2e887d11f17002bc30cd93ad39d46b64ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "040ef573_0e37d04f",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-09T21:47:40Z",
+      "side": 1,
+      "message": "Yes, as this CL enables the bot_config to be switched away from periodic_reboot_secs, but I don\u0027t remove support for periodic_reboot_secs just yet.",
+      "parentUuid": "80ee3371_eade4a23",
       "range": {
         "startLine": 306,
         "startChar": 2,
