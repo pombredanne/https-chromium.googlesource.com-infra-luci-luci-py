@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84bff7ba_ae069698",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T21:38:12Z",
+      "side": 1,
+      "message": "I don\u0027t think this is a good name. Fudge factor is something different: https://en.wikipedia.org/wiki/Fudge_factor\n\nmaybe get_pseudo_rand?",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 15
+      },
+      "revId": "8e1da2e887d11f17002bc30cd93ad39d46b64ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80ee3371_eade4a23",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T21:38:12Z",
+      "side": 1,
+      "message": "is this supposed to be part of this CL?",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 310,
+        "endChar": 59
+      },
+      "revId": "8e1da2e887d11f17002bc30cd93ad39d46b64ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
