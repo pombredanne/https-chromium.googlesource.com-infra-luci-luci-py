@@ -46,6 +46,52 @@
       "revId": "7177e2e5eadafb1afb2ea92f1ecfd3dc1125cd1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f6c6883_c8d24d76",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T18:28:34Z",
+      "side": 1,
+      "message": "Consider moving this into a reusable function, so custom implementations of on_bot_idle can still call it.",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 79
+      },
+      "revId": "7177e2e5eadafb1afb2ea92f1ecfd3dc1125cd1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c63b0e91_179630f7",
+        "filename": "appengine/swarming/swarming_bot/config/bot_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T18:28:34Z",
+      "side": 1,
+      "message": "nit: not needed",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 314,
+        "endChar": 9
+      },
+      "revId": "7177e2e5eadafb1afb2ea92f1ecfd3dc1125cd1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
