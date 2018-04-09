@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "371d6eaf_3f40e74d",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-09T22:38:22Z",
+      "side": 1,
+      "message": "should this be in setUp? Basically everything needs it I think?",
+      "range": {
+        "startLine": 621,
+        "startChar": 4,
+        "endLine": 621,
+        "endChar": 52
+      },
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34aeaca6_5170c1f3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-09T22:38:22Z",
+      "side": 1,
+      "message": "should this limit apply to manual+automatic tags?",
+      "range": {
+        "startLine": 943,
+        "startChar": 31,
+        "endLine": 943,
+        "endChar": 34
+      },
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e51f4474_aba49170",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-09T22:38:22Z",
+      "side": 1,
+      "message": "too bad these aren\u0027t namespaced/reserved keys :(",
+      "range": {
+        "startLine": 967,
+        "startChar": 9,
+        "endLine": 967,
+        "endChar": 12
+      },
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e450f5c_ca1f84b2",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-09T22:38:22Z",
+      "side": 1,
+      "message": "duplication with above?",
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
