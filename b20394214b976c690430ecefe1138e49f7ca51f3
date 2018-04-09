@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce717259_490d0170",
+        "filename": "appengine/swarming/swarming_bot/api/bot_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-09T21:55:13Z",
+      "side": 1,
+      "message": "get_pseudo_rand\n\nalso why duplicate implementation in the test?..",
+      "range": {
+        "startLine": 31,
+        "startChar": 56,
+        "endLine": 31,
+        "endChar": 65
+      },
+      "revId": "b20394214b976c690430ecefe1138e49f7ca51f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
