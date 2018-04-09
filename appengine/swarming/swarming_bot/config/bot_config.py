@@ -32,7 +32,7 @@ import os
 from api import os_utilities
 from api import platforms
 
-# Unused argument 'bot' - pylint: disable=W0613
+# pylint: disable=unused-argument
 
 
 def get_dimensions(bot):
@@ -303,7 +303,13 @@ def on_bot_idle(bot, since_last_action):
   - since_last_action: time in second since last action; e.g. amount of time the
                        bot has been idle.
   """
-  pass
+  # Don't try this if running inside docker.
+  if sys.platform != 'linux2' or not platforms.linux.get_inside_docker():
+    # Fudge +/- 20%
+    MAX_UPTIME = 12*60*60
+    uptime = os_utilities.get_uptime()
+    if uptime > MAX_UPTIME * (1. + bot.get_fudge(0.20):
+      bot.host_reboot('Periodic reboot after %ds' % uptime)
 
 
 ### Setup
