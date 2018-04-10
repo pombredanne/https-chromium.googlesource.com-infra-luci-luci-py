@@ -92,16 +92,7 @@ def has_missing_keys(minimum_keys, actual_keys, name):
     return 'Unexpected %s%s; did you make a typo?' % (name, msg_missing)
 
 
-class _BotApiHandler(auth.ApiHandler):
-  """Like ApiHandler, but also implements machine authentication."""
-
-  # Bots are passing credentials through special headers (not cookies), no need
-  # for XSRF tokens.
-  xsrf_token_enforce_on = ()
-
-  @classmethod
-  def get_auth_methods(cls, conf):
-    return [auth.machine_authentication, auth.oauth_authentication]
+## Bot code (bootstrap and swarming_bot.zip) handlers
 
 
 class _BotAuthenticatingHandler(auth.AuthenticatingHandler):
@@ -202,6 +193,373 @@ class BotCodeHandler(_BotAuthenticatingHandler):
         'attachment; filename="swarming_bot.zip"')
     self.response.out.write(
         bot_code.get_swarming_bot_zip(server))
+
+
+## Bot API RPC handlers without dimensions or state
+
+
+class _BotApiHandler(auth.ApiHandler):
+  """Like ApiHandler, but also implements machine authentication."""
+
+  # Bots are passing credentials through special headers (not cookies), no need
+  # for XSRF tokens.
+  xsrf_token_enforce_on = ()
+
+  @classmethod
+  def get_auth_methods(cls, conf):
+    return [auth.machine_authentication, auth.oauth_authentication]
+
+
+class BotOAuthTokenHandler(_BotApiHandler):
+  """Called when bot wants to get a service account OAuth access token.
+
+  There are two flavors of service accounts the bot may use:
+    * 'system': this account is associated directly with the bot (in bots.cfg),
+      and can be used at any time (when running a task or not).
+    * 'task': this account is associated with the task currently executing on
+      the bot, and may be used only when bot is actually running this task.
+
+  The flavor of account is specified via 'account_id' request field. See
+  ACCEPTED_KEYS for format of other keys.
+
+  The returned token is expected to be alive for at least ~5 min, but can live
+  longer (but no longer than ~1h). In general assume the token is short-lived.
+
+  Multiple bots may share exact same access token if their configuration match
+  (the token is cached by Swarming for performance reasons).
+
+  Besides the token, the response also contains the actual service account
+  email (if it is really configured), or two special strings in place of the
+  email:
+    * "none" if the bot is not configured to use service accounts at all.
+    * "bot" if the bot should use tokens produced by bot_config.py hook.
+
+  Response body is a JSON dict:
+    {
+      "service_account": <str email> or "none" or "bot",
+      "access_token": <str with actual token (if account is configured)>,
+      "expiry": <int with unix timestamp in seconds (if account is configured)>
+    }
+  """
+  ACCEPTED_KEYS = {
+    u'account_id',  # 'system' or 'task'
+    u'id',          # bot ID
+    u'scopes',      # list of requested OAuth scopes
+    u'task_id',     # optional task ID, required if using 'task' account
+  }
+  REQUIRED_KEYS = {u'account_id', u'id', u'scopes'}
+
+  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
+  def post(self):
+    request = self.parse_body()
+    logging.debug('Request body: %s', request)
+    msg = log_unexpected_subset_keys(
+        self.ACCEPTED_KEYS, self.REQUIRED_KEYS, request, self.request, 'bot',
+        'keys')
+    if msg:
+      self.abort_with_error(400, error=msg)
+
+    account_id = request['account_id']
+    bot_id = request['id']
+    scopes = request['scopes']
+    task_id = request.get('task_id')
+
+    # Scopes should be a list of strings, always.
+    if (not scopes or not isinstance(scopes, list) or
+        not all(isinstance(s, basestring) for s in scopes)):
+      self.abort_with_error(400, error='"scopes" must be a list of strings')
+
+    # Only two flavors of accounts are supported.
+    if account_id not in ('system', 'task'):
+      self.abort_with_error(
+          400, error='Unknown "account_id", expecting "task" or "system"')
+
+    # If using 'task' account, task_id is required. We'll double check the bot
+    # still executes this task (based on data in datastore), and if so, will
+    # use a service account associated with this particular task.
+    if account_id == 'task' and not task_id:
+      self.abort_with_error(
+          400, error='"task_id" is required when using "account_id" == "task"')
+
+    # Need machine type associated with the bot for bots.cfg query below.
+    # BotInfo also contains ID of a task the bot currently executes (to compare
+    # with 'task_id' request parameter).
+    machine_type = None
+    current_task_id = None
+    bot_info = bot_management.get_info_key(bot_id).get()
+    if bot_info:
+      machine_type = bot_info.machine_type
+      current_task_id = bot_info.task_id
+
+    # Make sure bot self-reported ID matches the authentication token. Raises
+    # auth.AuthorizationError if not. Also fetches corresponding BotGroupConfig
+    # that contains system service account email for this bot.
+    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(
+        bot_id, machine_type)
+
+    # At this point, the request is valid structurally, and the bot used proper
+    # authentication when making it.
+    logging.info('Requesting a "%s" token with scopes %s', account_id, scopes)
+
+    # This is mostly a precaution against confused bot processes. We can always
+    # just use 'current_task_id' to look up per-task service account. Datastore
+    # is the source of truth here, not whatever bot reports.
+    if account_id == 'task' and task_id != current_task_id:
+      logging.error(
+          'Bot %s requested "task" access token for task %s, but runs %s',
+          bot_id, task_id, current_task_id)
+      self.abort_with_error(
+          400, error='Wrong task_id: the bot is not executing this task')
+
+    account = None  # an email or 'bot' or 'none'
+    token = None    # service_accounts.AccessToken
+    try:
+      if account_id == 'task':
+        account, token = service_accounts.get_task_account_token(
+            task_id, bot_id, scopes)
+      elif account_id == 'system':
+        account, token = service_accounts.get_system_account_token(
+            bot_group_cfg.system_service_account, scopes)
+      else:
+        raise AssertionError('Impossible, there is a check above')
+    except auth.AccessTokenError as exc:
+      # Note: no need to log this, it is already logged at the source. Also
+      # we cautiously do not return any error details to the bot, just in case
+      # they may contain something we don't want to disclose.
+      if exc.transient:
+        self.abort_with_error(
+            500, error='Transient error when generating the token')
+      self.abort_with_error(
+          403, error='Fatal error when generating the token, see server logs')
+
+    # Note: the token info is already logged by service_accounts.get_*_token.
+    if token:
+      self.send_response({
+        'service_account': account,
+        'access_token': token.access_token,
+        'expiry': token.expiry,
+      })
+    else:
+      assert account in ('bot', 'none'), account
+      self.send_response({'service_account': account})
+
+
+## Bot API RPC handlers for Tasks
+
+
+class BotTaskUpdateHandler(_BotApiHandler):
+  """Receives updates from a Bot for a task.
+
+  The handler verifies packets are processed in order and will refuse
+  out-of-order packets.
+  """
+  ACCEPTED_KEYS = {
+    u'bot_overhead', u'cipd_pins', u'cipd_stats', u'cost_usd', u'duration',
+    u'exit_code', u'hard_timeout', u'id', u'io_timeout', u'isolated_stats',
+    u'output', u'output_chunk_start', u'outputs_ref', u'task_id',
+  }
+  REQUIRED_KEYS = {u'id', u'task_id'}
+
+  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
+  def post(self, task_id=None):
+    # Unlike handshake and poll, we do not accept invalid keys here. This code
+    # path is much more strict.
+    request = self.parse_body()
+    msg = log_unexpected_subset_keys(
+        self.ACCEPTED_KEYS, self.REQUIRED_KEYS, request, self.request, 'bot',
+        'keys')
+    if msg:
+      self.abort_with_error(400, error=msg)
+
+    bot_id = request['id']
+    task_id = request['task_id']
+
+    machine_type = None
+    bot_info = bot_management.get_info_key(bot_id).get()
+    if bot_info:
+      machine_type = bot_info.machine_type
+
+    # Make sure bot self-reported ID matches the authentication token. Raises
+    # auth.AuthorizationError if not.
+    bot_auth.validate_bot_id_and_fetch_config(bot_id, machine_type)
+
+    bot_overhead = request.get('bot_overhead')
+    cipd_pins = request.get('cipd_pins')
+    cipd_stats = request.get('cipd_stats')
+    cost_usd = request.get('cost_usd', 0)
+    duration = request.get('duration')
+    exit_code = request.get('exit_code')
+    hard_timeout = request.get('hard_timeout')
+    io_timeout = request.get('io_timeout')
+    isolated_stats = request.get('isolated_stats')
+    output = request.get('output')
+    output_chunk_start = request.get('output_chunk_start')
+    outputs_ref = request.get('outputs_ref')
+
+    if (isolated_stats or cipd_stats) and bot_overhead is None:
+      ereporter2.log_request(
+          request=self.request,
+          source='server',
+          category='task_failure',
+          message='Failed to update task: %s' % task_id)
+      self.abort_with_error(
+          400,
+          error='isolated_stats and cipd_stats require bot_overhead to be set'
+                '\nbot_overhead: %s\nisolate_stats: %s' %
+                (bot_overhead, isolated_stats))
+
+    run_result_key = task_pack.unpack_run_result_key(task_id)
+    performance_stats = None
+    if bot_overhead is not None:
+      performance_stats = task_result.PerformanceStats(
+          bot_overhead=bot_overhead)
+      if isolated_stats:
+        download = isolated_stats.get('download') or {}
+        upload = isolated_stats.get('upload') or {}
+        def unpack_base64(d, k):
+          x = d.get(k)
+          if x:
+            return base64.b64decode(x)
+        performance_stats.isolated_download = task_result.OperationStats(
+            duration=download.get('duration'),
+            initial_number_items=download.get('initial_number_items'),
+            initial_size=download.get('initial_size'),
+            items_cold=unpack_base64(download, 'items_cold'),
+            items_hot=unpack_base64(download, 'items_hot'))
+        performance_stats.isolated_upload = task_result.OperationStats(
+            duration=upload.get('duration'),
+            items_cold=unpack_base64(upload, 'items_cold'),
+            items_hot=unpack_base64(upload, 'items_hot'))
+      if cipd_stats:
+        performance_stats.package_installation = task_result.OperationStats(
+            duration=cipd_stats.get('duration'))
+
+    if output is not None:
+      try:
+        output = base64.b64decode(output)
+      except UnicodeEncodeError as e:
+        logging.error('Failed to decode output\n%s\n%r', e, output)
+        output = output.encode('ascii', 'replace')
+      except TypeError as e:
+        # Save the output as-is instead. The error will be logged in ereporter2
+        # and returning a HTTP 500 would only force the bot to stay in a retry
+        # loop.
+        logging.error('Failed to decode output\n%s\n%r', e, output)
+    if outputs_ref:
+      outputs_ref = task_request.FilesRef(**outputs_ref)
+
+    if cipd_pins:
+      cipd_pins = task_result.CipdPins(
+        client_package=task_request.CipdPackage(
+            **cipd_pins['client_package']),
+        packages=[
+            task_request.CipdPackage(**args) for args in cipd_pins['packages']]
+      )
+
+    try:
+      state = task_scheduler.bot_update_task(
+          run_result_key=run_result_key,
+          bot_id=bot_id,
+          output=output,
+          output_chunk_start=output_chunk_start,
+          exit_code=exit_code,
+          duration=duration,
+          hard_timeout=hard_timeout,
+          io_timeout=io_timeout,
+          cost_usd=cost_usd,
+          outputs_ref=outputs_ref,
+          cipd_pins=cipd_pins,
+          performance_stats=performance_stats)
+      if not state:
+        logging.info('Failed to update, please retry')
+        self.abort_with_error(500, error='Failed to update, please retry')
+
+      if state in (task_result.State.COMPLETED, task_result.State.TIMED_OUT):
+        action = 'task_completed'
+      elif state == task_result.State.KILLED:
+        action = 'task_killed'
+      else:
+        assert state in (
+            task_result.State.BOT_DIED, task_result.State.RUNNING), state
+        action = 'task_update'
+      bot_management.bot_event(
+          event_type=action, bot_id=bot_id,
+          external_ip=self.request.remote_addr,
+          authenticated_as=auth.get_peer_identity().to_bytes(),
+          dimensions=None, state=None,
+          version=None, quarantined=None, task_id=task_id, task_name=None)
+    except ValueError as e:
+      ereporter2.log_request(
+          request=self.request,
+          source='server',
+          category='task_failure',
+          message='Failed to update task: %s' % e)
+      self.abort_with_error(400, error=str(e))
+    except webob.exc.HTTPException:
+      raise
+    except Exception as e:
+      logging.exception('Internal error: %s', e)
+      self.abort_with_error(500, error=str(e))
+    self.send_response(
+        {'must_stop': state == task_result.State.KILLED, 'ok': True})
+
+
+class BotTaskErrorHandler(_BotApiHandler):
+  """It is a specialized version of ereporter2's /ereporter2/api/v1/on_error
+  that also attaches a task id to it.
+
+  This formally kills the task, marking it as an internal failure. This can be
+  used by bot_main.py to kill the task when task_runner misbehaved.
+  """
+
+  EXPECTED_KEYS = {u'id', u'message', u'task_id'}
+
+  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config
+  def post(self, task_id=None):
+    request = self.parse_body()
+    bot_id = request.get('id')
+    task_id = request.get('task_id', '')
+    message = request.get('message', 'unknown')
+
+    machine_type = None
+    bot_info = bot_management.get_info_key(bot_id).get()
+    if bot_info:
+      machine_type = bot_info.machine_type
+
+    # Make sure bot self-reported ID matches the authentication token. Raises
+    # auth.AuthorizationError if not.
+    bot_auth.validate_bot_id_and_fetch_config(bot_id, machine_type)
+
+    bot_management.bot_event(
+        event_type='task_error', bot_id=bot_id,
+        external_ip=self.request.remote_addr,
+        authenticated_as=auth.get_peer_identity().to_bytes(),
+        dimensions=None, state=None,
+        version=None, quarantined=None, task_id=task_id, task_name=None,
+        message=message)
+    line = (
+        'Bot: https://%s/restricted/bot/%s\n'
+        'Task failed: https://%s/user/task/%s\n'
+        '%s') % (
+        app_identity.get_default_version_hostname(), bot_id,
+        app_identity.get_default_version_hostname(), task_id,
+        message)
+    ereporter2.log_request(self.request, source='bot', message=line)
+
+    msg = log_unexpected_keys(
+        self.EXPECTED_KEYS, request, self.request, 'bot', 'keys')
+    if msg:
+      self.abort_with_error(400, error=msg)
+
+    msg = task_scheduler.bot_kill_task(
+        task_pack.unpack_run_result_key(task_id), bot_id)
+    if msg:
+      logging.error(msg)
+      self.abort_with_error(400, error=msg)
+    self.send_response({})
+
+
+## Bot API RPC handlers with dimensions and state
 
 
 class _ProcessResult(object):
@@ -417,140 +775,6 @@ class BotHandshakeHandler(_BotBaseHandler):
           len(res.bot_group_cfg.bot_config_script_content))
       data['bot_config'] = res.bot_group_cfg.bot_config_script_content
     self.send_response(data)
-
-
-class BotOAuthTokenHandler(_BotApiHandler):
-  """Called when bot wants to get a service account OAuth access token.
-
-  There are two flavors of service accounts the bot may use:
-    * 'system': this account is associated directly with the bot (in bots.cfg),
-      and can be used at any time (when running a task or not).
-    * 'task': this account is associated with the task currently executing on
-      the bot, and may be used only when bot is actually running this task.
-
-  The flavor of account is specified via 'account_id' request field. See
-  ACCEPTED_KEYS for format of other keys.
-
-  The returned token is expected to be alive for at least ~5 min, but can live
-  longer (but no longer than ~1h). In general assume the token is short-lived.
-
-  Multiple bots may share exact same access token if their configuration match
-  (the token is cached by Swarming for performance reasons).
-
-  Besides the token, the response also contains the actual service account
-  email (if it is really configured), or two special strings in place of the
-  email:
-    * "none" if the bot is not configured to use service accounts at all.
-    * "bot" if the bot should use tokens produced by bot_config.py hook.
-
-  Response body is a JSON dict:
-    {
-      "service_account": <str email> or "none" or "bot",
-      "access_token": <str with actual token (if account is configured)>,
-      "expiry": <int with unix timestamp in seconds (if account is configured)>
-    }
-  """
-  ACCEPTED_KEYS = {
-    u'account_id',  # 'system' or 'task'
-    u'id',          # bot ID
-    u'scopes',      # list of requested OAuth scopes
-    u'task_id',     # optional task ID, required if using 'task' account
-  }
-  REQUIRED_KEYS = {u'account_id', u'id', u'scopes'}
-
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
-  def post(self):
-    request = self.parse_body()
-    logging.debug('Request body: %s', request)
-    msg = log_unexpected_subset_keys(
-        self.ACCEPTED_KEYS, self.REQUIRED_KEYS, request, self.request, 'bot',
-        'keys')
-    if msg:
-      self.abort_with_error(400, error=msg)
-
-    account_id = request['account_id']
-    bot_id = request['id']
-    scopes = request['scopes']
-    task_id = request.get('task_id')
-
-    # Scopes should be a list of strings, always.
-    if (not scopes or not isinstance(scopes, list) or
-        not all(isinstance(s, basestring) for s in scopes)):
-      self.abort_with_error(400, error='"scopes" must be a list of strings')
-
-    # Only two flavors of accounts are supported.
-    if account_id not in ('system', 'task'):
-      self.abort_with_error(
-          400, error='Unknown "account_id", expecting "task" or "system"')
-
-    # If using 'task' account, task_id is required. We'll double check the bot
-    # still executes this task (based on data in datastore), and if so, will
-    # use a service account associated with this particular task.
-    if account_id == 'task' and not task_id:
-      self.abort_with_error(
-          400, error='"task_id" is required when using "account_id" == "task"')
-
-    # Need machine type associated with the bot for bots.cfg query below.
-    # BotInfo also contains ID of a task the bot currently executes (to compare
-    # with 'task_id' request parameter).
-    machine_type = None
-    current_task_id = None
-    bot_info = bot_management.get_info_key(bot_id).get()
-    if bot_info:
-      machine_type = bot_info.machine_type
-      current_task_id = bot_info.task_id
-
-    # Make sure bot self-reported ID matches the authentication token. Raises
-    # auth.AuthorizationError if not. Also fetches corresponding BotGroupConfig
-    # that contains system service account email for this bot.
-    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(
-        bot_id, machine_type)
-
-    # At this point, the request is valid structurally, and the bot used proper
-    # authentication when making it.
-    logging.info('Requesting a "%s" token with scopes %s', account_id, scopes)
-
-    # This is mostly a precaution against confused bot processes. We can always
-    # just use 'current_task_id' to look up per-task service account. Datastore
-    # is the source of truth here, not whatever bot reports.
-    if account_id == 'task' and task_id != current_task_id:
-      logging.error(
-          'Bot %s requested "task" access token for task %s, but runs %s',
-          bot_id, task_id, current_task_id)
-      self.abort_with_error(
-          400, error='Wrong task_id: the bot is not executing this task')
-
-    account = None  # an email or 'bot' or 'none'
-    token = None    # service_accounts.AccessToken
-    try:
-      if account_id == 'task':
-        account, token = service_accounts.get_task_account_token(
-            task_id, bot_id, scopes)
-      elif account_id == 'system':
-        account, token = service_accounts.get_system_account_token(
-            bot_group_cfg.system_service_account, scopes)
-      else:
-        raise AssertionError('Impossible, there is a check above')
-    except auth.AccessTokenError as exc:
-      # Note: no need to log this, it is already logged at the source. Also
-      # we cautiously do not return any error details to the bot, just in case
-      # they may contain something we don't want to disclose.
-      if exc.transient:
-        self.abort_with_error(
-            500, error='Transient error when generating the token')
-      self.abort_with_error(
-          403, error='Fatal error when generating the token, see server logs')
-
-    # Note: the token info is already logged by service_accounts.get_*_token.
-    if token:
-      self.send_response({
-        'service_account': account,
-        'access_token': token.access_token,
-        'expiry': token.expiry,
-      })
-    else:
-      assert account in ('bot', 'none'), account
-      self.send_response({'service_account': account})
 
 
 class BotPollHandler(_BotBaseHandler):
@@ -822,216 +1046,7 @@ class BotEventHandler(_BotBaseHandler):
     self.send_response({})
 
 
-class BotTaskUpdateHandler(_BotApiHandler):
-  """Receives updates from a Bot for a task.
-
-  The handler verifies packets are processed in order and will refuse
-  out-of-order packets.
-  """
-  ACCEPTED_KEYS = {
-    u'bot_overhead', u'cipd_pins', u'cipd_stats', u'cost_usd', u'duration',
-    u'exit_code', u'hard_timeout', u'id', u'io_timeout', u'isolated_stats',
-    u'output', u'output_chunk_start', u'outputs_ref', u'task_id',
-  }
-  REQUIRED_KEYS = {u'id', u'task_id'}
-
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
-  def post(self, task_id=None):
-    # Unlike handshake and poll, we do not accept invalid keys here. This code
-    # path is much more strict.
-    request = self.parse_body()
-    msg = log_unexpected_subset_keys(
-        self.ACCEPTED_KEYS, self.REQUIRED_KEYS, request, self.request, 'bot',
-        'keys')
-    if msg:
-      self.abort_with_error(400, error=msg)
-
-    bot_id = request['id']
-    task_id = request['task_id']
-
-    machine_type = None
-    bot_info = bot_management.get_info_key(bot_id).get()
-    if bot_info:
-      machine_type = bot_info.machine_type
-
-    # Make sure bot self-reported ID matches the authentication token. Raises
-    # auth.AuthorizationError if not.
-    bot_auth.validate_bot_id_and_fetch_config(bot_id, machine_type)
-
-    bot_overhead = request.get('bot_overhead')
-    cipd_pins = request.get('cipd_pins')
-    cipd_stats = request.get('cipd_stats')
-    cost_usd = request.get('cost_usd', 0)
-    duration = request.get('duration')
-    exit_code = request.get('exit_code')
-    hard_timeout = request.get('hard_timeout')
-    io_timeout = request.get('io_timeout')
-    isolated_stats = request.get('isolated_stats')
-    output = request.get('output')
-    output_chunk_start = request.get('output_chunk_start')
-    outputs_ref = request.get('outputs_ref')
-
-    if (isolated_stats or cipd_stats) and bot_overhead is None:
-      ereporter2.log_request(
-          request=self.request,
-          source='server',
-          category='task_failure',
-          message='Failed to update task: %s' % task_id)
-      self.abort_with_error(
-          400,
-          error='isolated_stats and cipd_stats require bot_overhead to be set'
-                '\nbot_overhead: %s\nisolate_stats: %s' %
-                (bot_overhead, isolated_stats))
-
-    run_result_key = task_pack.unpack_run_result_key(task_id)
-    performance_stats = None
-    if bot_overhead is not None:
-      performance_stats = task_result.PerformanceStats(
-          bot_overhead=bot_overhead)
-      if isolated_stats:
-        download = isolated_stats.get('download') or {}
-        upload = isolated_stats.get('upload') or {}
-        def unpack_base64(d, k):
-          x = d.get(k)
-          if x:
-            return base64.b64decode(x)
-        performance_stats.isolated_download = task_result.OperationStats(
-            duration=download.get('duration'),
-            initial_number_items=download.get('initial_number_items'),
-            initial_size=download.get('initial_size'),
-            items_cold=unpack_base64(download, 'items_cold'),
-            items_hot=unpack_base64(download, 'items_hot'))
-        performance_stats.isolated_upload = task_result.OperationStats(
-            duration=upload.get('duration'),
-            items_cold=unpack_base64(upload, 'items_cold'),
-            items_hot=unpack_base64(upload, 'items_hot'))
-      if cipd_stats:
-        performance_stats.package_installation = task_result.OperationStats(
-            duration=cipd_stats.get('duration'))
-
-    if output is not None:
-      try:
-        output = base64.b64decode(output)
-      except UnicodeEncodeError as e:
-        logging.error('Failed to decode output\n%s\n%r', e, output)
-        output = output.encode('ascii', 'replace')
-      except TypeError as e:
-        # Save the output as-is instead. The error will be logged in ereporter2
-        # and returning a HTTP 500 would only force the bot to stay in a retry
-        # loop.
-        logging.error('Failed to decode output\n%s\n%r', e, output)
-    if outputs_ref:
-      outputs_ref = task_request.FilesRef(**outputs_ref)
-
-    if cipd_pins:
-      cipd_pins = task_result.CipdPins(
-        client_package=task_request.CipdPackage(
-            **cipd_pins['client_package']),
-        packages=[
-            task_request.CipdPackage(**args) for args in cipd_pins['packages']]
-      )
-
-    try:
-      state = task_scheduler.bot_update_task(
-          run_result_key=run_result_key,
-          bot_id=bot_id,
-          output=output,
-          output_chunk_start=output_chunk_start,
-          exit_code=exit_code,
-          duration=duration,
-          hard_timeout=hard_timeout,
-          io_timeout=io_timeout,
-          cost_usd=cost_usd,
-          outputs_ref=outputs_ref,
-          cipd_pins=cipd_pins,
-          performance_stats=performance_stats)
-      if not state:
-        logging.info('Failed to update, please retry')
-        self.abort_with_error(500, error='Failed to update, please retry')
-
-      if state in (task_result.State.COMPLETED, task_result.State.TIMED_OUT):
-        action = 'task_completed'
-      elif state == task_result.State.KILLED:
-        action = 'task_killed'
-      else:
-        assert state in (
-            task_result.State.BOT_DIED, task_result.State.RUNNING), state
-        action = 'task_update'
-      bot_management.bot_event(
-          event_type=action, bot_id=bot_id,
-          external_ip=self.request.remote_addr,
-          authenticated_as=auth.get_peer_identity().to_bytes(),
-          dimensions=None, state=None,
-          version=None, quarantined=None, task_id=task_id, task_name=None)
-    except ValueError as e:
-      ereporter2.log_request(
-          request=self.request,
-          source='server',
-          category='task_failure',
-          message='Failed to update task: %s' % e)
-      self.abort_with_error(400, error=str(e))
-    except webob.exc.HTTPException:
-      raise
-    except Exception as e:
-      logging.exception('Internal error: %s', e)
-      self.abort_with_error(500, error=str(e))
-    self.send_response(
-        {'must_stop': state == task_result.State.KILLED, 'ok': True})
-
-
-class BotTaskErrorHandler(_BotApiHandler):
-  """It is a specialized version of ereporter2's /ereporter2/api/v1/on_error
-  that also attaches a task id to it.
-
-  This formally kills the task, marking it as an internal failure. This can be
-  used by bot_main.py to kill the task when task_runner misbehaved.
-  """
-
-  EXPECTED_KEYS = {u'id', u'message', u'task_id'}
-
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config
-  def post(self, task_id=None):
-    request = self.parse_body()
-    bot_id = request.get('id')
-    task_id = request.get('task_id', '')
-    message = request.get('message', 'unknown')
-
-    machine_type = None
-    bot_info = bot_management.get_info_key(bot_id).get()
-    if bot_info:
-      machine_type = bot_info.machine_type
-
-    # Make sure bot self-reported ID matches the authentication token. Raises
-    # auth.AuthorizationError if not.
-    bot_auth.validate_bot_id_and_fetch_config(bot_id, machine_type)
-
-    bot_management.bot_event(
-        event_type='task_error', bot_id=bot_id,
-        external_ip=self.request.remote_addr,
-        authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=None, state=None,
-        version=None, quarantined=None, task_id=task_id, task_name=None,
-        message=message)
-    line = (
-        'Bot: https://%s/restricted/bot/%s\n'
-        'Task failed: https://%s/user/task/%s\n'
-        '%s') % (
-        app_identity.get_default_version_hostname(), bot_id,
-        app_identity.get_default_version_hostname(), task_id,
-        message)
-    ereporter2.log_request(self.request, source='bot', message=line)
-
-    msg = log_unexpected_keys(
-        self.EXPECTED_KEYS, request, self.request, 'bot', 'keys')
-    if msg:
-      self.abort_with_error(400, error=msg)
-
-    msg = task_scheduler.bot_kill_task(
-        task_pack.unpack_run_result_key(task_id), bot_id)
-    if msg:
-      logging.error(msg)
-      self.abort_with_error(400, error=msg)
-    self.send_response({})
+## Generic handler
 
 
 class ServerPingHandler(webapp2.RequestHandler):
