@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0c6df25c_f87e4c3d",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-10T14:02:35Z",
+      "side": 1,
+      "message": "Not *all* tests, but you are right that many do need it. It\u0027s there 23 times though so it\u0027s worth looking into it later.",
+      "parentUuid": "371d6eaf_3f40e74d",
+      "range": {
+        "startLine": 621,
+        "startChar": 4,
+        "endLine": 621,
+        "endChar": 52
+      },
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34aeaca6_5170c1f3",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-09T22:38:22Z",
       "side": 1,
       "message": "should this limit apply to manual+automatic tags?",
+      "range": {
+        "startLine": 943,
+        "startChar": 31,
+        "endLine": 943,
+        "endChar": 34
+      },
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e8e1350_719e09bf",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-10T14:02:35Z",
+      "side": 1,
+      "message": "Good question. I decided to only limit manual tags for now, as the automatic tags have a very large bound: max dimensions per TaskSlice (64*x) * max number of TaskSlice (64).\n\nYour comment made me realize the number of values per dimensions is unbounded (the x above) so I\u0027ll add a check in a follow up.\n\nI decided to not change the limits here in case I\u0027d have to revert. I already started another CL to lower many limits.",
+      "parentUuid": "34aeaca6_5170c1f3",
       "range": {
         "startLine": 943,
         "startChar": 31,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "510f9632_f494444f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-10T14:02:35Z",
+      "side": 1,
+      "message": "Tags duplicate are allowed. I think I could make start denying a few tag prefixes but I\u0027d do this in a follow up.",
+      "parentUuid": "e51f4474_aba49170",
+      "range": {
+        "startLine": 967,
+        "startChar": 9,
+        "endLine": 967,
+        "endChar": 12
+      },
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e450f5c_ca1f84b2",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
@@ -82,6 +154,24 @@
       "writtenOn": "2018-04-09T22:38:22Z",
       "side": 1,
       "message": "duplication with above?",
+      "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68836642_b0fbb8f4",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-10T14:02:35Z",
+      "side": 1,
+      "message": "This one is about \"one specific TaskSlice\" while the above is \"from all TaskSlice\".\n\nThis function is used to embed the tags in the TaskResultSummary, which powers the query and count functionality. The automatic tags will be dependent of current_task_slice.",
+      "parentUuid": "6e450f5c_ca1f84b2",
       "revId": "13505e7438b398f6f39f791db08eaba197f6bfae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
