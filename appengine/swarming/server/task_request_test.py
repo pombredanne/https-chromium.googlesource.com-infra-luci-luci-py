@@ -76,8 +76,23 @@ def _gen_properties(**properties):
   return properties
 
 
+def _gen_request_slices(**kwargs):
+  """Creates a new style TaskRequest."""
+  now = utils.utcnow()
+  args = {
+    u'created_ts': now,
+    u'manual_tags': [u'tag:1'],
+    u'name': u'Request name',
+    u'priority': 50,
+    u'user': u'Jesus',
+  }
+  args.update(kwargs)
+  # Note that ndb model constructor accepts dicts for structured properties.
+  return task_request.TaskRequest(**args)
+
+
 def _gen_request(properties=None, **kwargs):
-  """Creates a TaskRequest."""
+  """Creates an old style TaskRequest."""
   now = utils.utcnow()
   properties = properties or {}
   args = {
@@ -157,17 +172,36 @@ class TaskRequestApiTest(TestCase):
     self.assertFalse(missing)
 
   def test_get_automatic_tags(self):
-    req = _gen_request()
+    # Repeated TaskSlice.
+    slices = [
+        {
+          'properties': _gen_properties(
+              dimensions={u'gpu': [u'1234:5678'], u'pool': [u'GPU']}),
+          'expiration_secs': 60,
+        },
+        {
+          'properties': _gen_properties(
+              dimensions={u'gpu': [u'none'], u'pool': [u'GPU']}),
+          'expiration_secs': 60,
+        },
+    ]
+    req = _gen_request_slices(task_slices=slices)
     expected = set((
-        u'hostname:localhost',
-        u'OS:Windows-3.1.1',
-        u'pool:default',
+        u'gpu:1234:5678',
+        u'pool:GPU',
         u'priority:50',
         u'service_account:none',
         u'user:Jesus'))
     self.assertEqual(expected, task_request.get_automatic_tags(req, 0))
-    with self.assertRaises(AssertionError):
-      task_request.get_automatic_tags(req, 1)
+    expected = set((
+        u'gpu:none',
+        u'pool:GPU',
+        u'priority:50',
+        u'service_account:none',
+        u'user:Jesus'))
+    self.assertEqual(expected, task_request.get_automatic_tags(req, 1))
+    with self.assertRaises(IndexError):
+      task_request.get_automatic_tags(req, 2)
 
   def test_create_termination_task(self):
     request = task_request.create_termination_task(u'some-bot')
@@ -240,25 +274,12 @@ class TaskRequestApiTest(TestCase):
 
   def test_init_new_request(self):
     parent = _gen_request()
-    # Parent entity must have a valid key id and be stored.
-    parent.key = task_request.new_request_key()
-    parent.put()
-    # The reference is to the TaskRunResult.
-    parent_id = task_pack.pack_request_key(parent.key) + u'1'
-    req = _gen_request(
-        properties={
-          'idempotent': True,
-          'relative_cwd': u'deeep',
-          'has_secret_bytes': True,
-        },
-        parent_task_id=parent_id)
-    # TaskRequest with secret must have a valid key.
-    req.key = task_request.new_request_key()
-    # Needed for the get() call below.
-    req.put()
-    sb = _gen_secret(req, 'I am a banana')
-    # Needed for properties_hash() call.
-    sb.put()
+    # Hack: Would need to know about TaskResultSummary.
+    parent_id = task_pack.pack_request_key(parent.key) + '1'
+    r = _gen_request(
+      properties=dict(idempotent=True, relative_cwd=u'deeep'),
+      parent_task_id=parent_id)
+    request = mkreq(r, 'I am a banana')
     expected_properties = {
       'caches': [],
       'cipd_input': {
@@ -314,44 +335,35 @@ class TaskRequestApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slices': [],
       'user': u'Jesus',
     }
-    actual = req.to_dict()
+    actual = request.to_dict()
     actual.pop('created_ts')
     actual.pop('expiration_ts')
     self.assertEqual(expected_request, actual)
-    self.assertEqual(30, req.expiration_secs)
+    self.assertEqual(30, request.expiration_secs)
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
         'aa33c679b3ee30e37b9724d79a9d20bc767475c00e7f659b6191508f6b16f1ab',
-        req.task_slice(0).properties_hash().encode('hex'))
+        request.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_isolated(self):
-    parent = _gen_request(
-        properties={
-          'command': [],
-          'inputs_ref': {
-            'isolated': '0123456789012345678901234567890123456789',
-            'isolatedserver': 'http://localhost:1',
-            'namespace': 'default-gzip',
-          },
-        })
-    # Parent entity must have a valid key id and be stored.
-    parent.key = task_request.new_request_key()
-    parent.put()
-    # The reference is to the TaskRunResult.
-    parent_id = task_pack.pack_request_key(parent.key) + u'1'
-    req = _gen_request(
-        properties={'idempotent': True, 'has_secret_bytes': True},
-        parent_task_id=parent_id)
-    # TaskRequest with secret must have a valid key.
-    req.key = task_request.new_request_key()
-    # Needed for the get() call below.
-    req.put()
-    sb = _gen_secret(req, 'I am not a banana')
-    # Needed for properties_hash() call.
-    sb.put()
+    parent = _gen_request(properties={
+        'command': [],
+        'inputs_ref': {
+          'isolated': '0123456789012345678901234567890123456789',
+          'isolatedserver': 'http://localhost:1',
+          'namespace': 'default-gzip',
+        },
+      })
+    # Hack: Would need to know about TaskResultSummary.
+    parent_id = task_pack.pack_request_key(parent.key) + '1'
+    request = _gen_request(
+      properties={'idempotent':True},
+      parent_task_id=parent_id)
+    #'I am not a banana')
     expected_properties = {
       'caches': [],
       'cipd_input': {
@@ -407,26 +419,24 @@ class TaskRequestApiTest(TestCase):
         u'tag:1',
         u'user:Jesus',
       ],
+      'task_slices': [],
       'user': u'Jesus',
     }
-    actual = req.to_dict()
+    actual = request.to_dict()
     # expiration_ts - created_ts == scheduling_expiration_secs.
     actual.pop('created_ts')
     actual.pop('expiration_ts')
     self.assertEqual(expected_request, actual)
-    self.assertEqual(30, req.expiration_secs)
+    self.assertEqual(30, request.expiration_secs)
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
         '121c6bd6216a4cc9c4302a52da6292e5a240807ef13ace6f7f36a0c83aec6f55',
-        req.task_slice(0).properties_hash().encode('hex'))
+        request.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_parent(self):
     parent = _gen_request()
-    # Parent entity must have a valid key id and be stored.
-    parent.key = task_request.new_request_key()
-    parent.put()
-    # The reference is to the TaskRunResult.
+    # Hack: Would need to know about TaskResultSummary.
     parent_id = task_pack.pack_request_key(parent.key) + '1'
     child = _gen_request(parent_task_id=parent_id)
     self.assertEqual(parent_id, child.parent_task_id)
@@ -463,7 +473,7 @@ class TaskRequestApiTest(TestCase):
         priority=201,
         created_ts=now,
         expiration_ts=now + datetime.timedelta(seconds=129),
-        manual_tags=['tag:2'],
+        tags=['tag:2'],
         properties=dict(idempotent=True))
     self.assertEqual(
         request_1.task_slice(0).properties_hash(),
@@ -483,11 +493,11 @@ class TaskRequestApiTest(TestCase):
   def test_bad_values(self):
     with self.assertRaises(AttributeError):
       _gen_request(properties={'foo': 'bar'})
+    _gen_request()
 
     # Command.
-    req = _gen_request(properties=dict(command=[]))
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      _gen_request(properties=dict(command=[]))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(properties=dict(command={'a': 'b'}))
     with self.assertRaises(datastore_errors.BadValueError):
@@ -504,21 +514,18 @@ class TaskRequestApiTest(TestCase):
 
     # CIPD.
     def mkcipdreq(idempotent=False, **cipd_input):
-      return _gen_request(
+      _gen_request(
           properties=dict(idempotent=idempotent, cipd_input=cipd_input))
 
-    req = mkcipdreq(packages=[{}])
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      mkcipdreq(packages=[{}])
     with self.assertRaises(datastore_errors.BadValueError):
       mkcipdreq(packages=[
-          dict(package_name='infra|rm', path='.', version='latest')])
-    req = mkcipdreq(packages=[dict(package_name='rm', path='.')])
+        dict(package_name='infra|rm', path='.', version='latest')])
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
-    req = mkcipdreq(packages=[dict(package_name='rm', version='latest')])
+      mkcipdreq(packages=[dict(package_name='rm', path='.')])
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      mkcipdreq(packages=[dict(package_name='rm', version='latest')])
     with self.assertRaises(datastore_errors.BadValueError):
       mkcipdreq(packages=[dict(package_name='rm', path='/', version='latest')])
     with self.assertRaises(datastore_errors.BadValueError):
@@ -529,17 +536,15 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       mkcipdreq(packages=[
         dict(package_name='rm', path='a/./b', version='latest')])
-    req = mkcipdreq(packages=[
+    with self.assertRaises(datastore_errors.BadValueError):
+      mkcipdreq(packages=[
         dict(package_name='rm', path='.', version='latest'),
         dict(package_name='rm', path='.', version='canary'),
       ])
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
-    req = mkcipdreq(
-        idempotent=True,
-        packages=[dict(package_name='rm', path='.', version='latest')])
-    with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      mkcipdreq(
+          idempotent=True,
+          packages=[dict(package_name='rm', path='.', version='latest')])
     with self.assertRaises(datastore_errors.BadValueError):
       mkcipdreq(server='abc')
     with self.assertRaises(datastore_errors.BadValueError):
@@ -560,16 +565,16 @@ class TaskRequestApiTest(TestCase):
       mkcachereq(dict(name='', path='git_cache'))
     with self.assertRaises(datastore_errors.BadValueError):
       mkcachereq(dict(name='git_chromium', path=''))
-    req = mkcachereq(
-        dict(name='git_chromium', path='git_cache'),
-        dict(name='git_v8', path='git_cache'))
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
-    req = mkcachereq(
-        dict(name='git_chromium', path='git_cache'),
-        dict(name='git_chromium', path='git_cache2'))
+      mkcachereq(
+          dict(name='git_chromium', path='git_cache'),
+          dict(name='git_v8', path='git_cache'),
+      )
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      mkcachereq(
+          dict(name='git_chromium', path='git_cache'),
+          dict(name='git_chromium', path='git_cache2'),
+      )
     with self.assertRaises(datastore_errors.BadValueError):
       mkcachereq(dict(name='git_chromium', path='/git_cache'))
     with self.assertRaises(datastore_errors.BadValueError):
@@ -587,7 +592,7 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       mkcachereq(dict(name='CAPITAL', path='git_cache'))
     # A CIPD package and named caches cannot be mapped to the same path.
-    req = _gen_request(properties=dict(
+    _gen_request(properties=dict(
         caches=[dict(name='git_chromium', path='git_cache')],
         cipd_input=dict(packages=[
           dict(package_name='foo', path='git_cache', version='latest')])))
@@ -684,16 +689,16 @@ class TaskRequestApiTest(TestCase):
               isolated='deadbeef',
               isolatedserver='http://localhost:1',
               namespace='default-gzip')))
-    # inputs_ref without server/namespace.
-    req = _gen_request(properties=dict(inputs_ref=task_request.FilesRef()))
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      # inputs_ref without server/namespace.
+      _gen_request(properties=dict(inputs_ref=task_request.FilesRef()))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(properties=dict(
           command=[],
           inputs_ref=task_request.FilesRef(
               isolatedserver='https://isolateserver.appspot.com',
-              namespace='default-gzip^^^')))
+              namespace='default-gzip^^^',
+          )))
     _gen_request(properties=dict(
         command=[],
         inputs_ref=task_request.FilesRef(
@@ -706,6 +711,24 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     req = _gen_request(manual_tags=['a:b']*256).put()
+
+    # Task slices
+    slices = [
+        {
+          'properties': _gen_properties(dimensions={u'pool': [u'GPU']}),
+          'expiration_secs': 60,
+        },
+        {
+          'properties': _gen_properties(dimensions={u'pool': [u'GPU']}),
+          'expiration_secs': 60,
+        },
+    ]
+    _gen_request_slices(task_slices=slices)
+    with self.assertRaises(datastore_errors.BadValueError):
+      slices[0]['properties'] = _gen_properties(dimensions={u'pool': [u'oops']})
+      _gen_request_slices(task_slices=slices)
+    with self.assertRaises(ValueError):
+      _gen_request_slices()
 
   def test_validate_priority(self):
     with self.assertRaises(TypeError):

@@ -211,6 +211,11 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     expected['try_number'] = 2
     actual = task_to_run.new_task_to_run(request, 2, 0).to_dict()
     self.assertEqual(expected, actual)
+    # now is used when task_slice_index != 0.
+    expected['task_slice_index'] = 1
+    expected['try_number'] = 1
+    actual = task_to_run.new_task_to_run(request, 1, 1).to_dict()
+    self.assertEqual(expected, actual)
 
   def test_new_task_to_run_limits(self):
     request = self.mkreq(_gen_request(), 1)
@@ -220,10 +225,11 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     task_to_run.new_task_to_run(request, 2, 0)
     with self.assertRaises(AssertionError):
       task_to_run.new_task_to_run(request, 3, 0)
+    task_to_run.new_task_to_run(request, 1, 63)
     # This is an assert instead of a ValueError because it is enforced at the
     # TaskRequest creation time.
     with self.assertRaises(AssertionError):
-      task_to_run.new_task_to_run(request, 1, 1)
+      task_to_run.new_task_to_run(request, 1, 64)
 
   def test_new_task_to_run_list(self):
     self.mock(random, 'getrandbits', lambda _: 0x12)

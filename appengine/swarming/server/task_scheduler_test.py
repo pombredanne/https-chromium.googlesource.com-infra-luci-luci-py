@@ -314,6 +314,27 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(None, task_to_run.TaskToRun.query().get().queue_number)
     self.assertEqual(State.EXPIRED, result_summary.key.get().state)
 
+  def test_task_slices_second(self):
+    # First TaskSlice couldn't run, the second ran.
+    self._quick_schedule(
+        2,
+        task_slices=[
+          {
+            'expiration_secs': 180,
+            'properties': gen_props(),
+          },
+          {
+            'expiration_secs': 180,
+            'properties': gen_props(),
+          },
+        ])
+    self.mock_now(self.now, 181)
+    actual_request, _, _ = task_scheduler.bot_reap_task(
+        self.bot_dimensions, 'abc', None)
+    self.assertEqual(None, actual_request)
+
+    self.fail('Implement')
+
   def test_exponential_backoff(self):
     self.mock(
         task_scheduler.random, 'random',
@@ -479,6 +500,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     third_ts = self.mock_now(self.now, 20)
     self._task_deduped(
         0, third_ts, task_id, '1d69ba3ea8008b10', now=second_ts)
+
+  def test_task_idempotent_second_slice(self):
+    # A task may dedupe against a second slice.
+    self.fail('Implement test')
 
   def test_task_parent_children(self):
     # Parent task creates a child task.
