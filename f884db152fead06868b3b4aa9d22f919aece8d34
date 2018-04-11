@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ac68265_98fb5933",
+        "filename": "appengine/swarming/doc/Schemas.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-11T23:50:28Z",
+      "side": 1,
+      "message": ":)",
+      "revId": "f884db152fead06868b3b4aa9d22f919aece8d34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a652d01a_a61f82ea",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-11T23:50:28Z",
+      "side": 1,
+      "message": "task_slices?",
+      "range": {
+        "startLine": 791,
+        "startChar": 4,
+        "endLine": 791,
+        "endChar": 19
+      },
+      "revId": "f884db152fead06868b3b4aa9d22f919aece8d34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9f6124_1c614ec0",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-11T23:50:28Z",
+      "side": 1,
+      "message": "so there\u0027s more than one secret bytes sub-entity now? Couldn\u0027t it be computed entirely from the current key and the index of the task slice?\n\nIn particular, shouldn\u0027t secret_bytes_key be computed from `self.current_task_slice` (or equivalent)?",
+      "range": {
+        "startLine": 884,
+        "startChar": 1,
+        "endLine": 891,
+        "endChar": 67
+      },
+      "revId": "f884db152fead06868b3b4aa9d22f919aece8d34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "089050de_c6cf4d0d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-11T23:50:28Z",
+      "side": 1,
+      "message": "s/can/must",
+      "range": {
+        "startLine": 937,
+        "startChar": 52,
+        "endLine": 937,
+        "endChar": 55
+      },
+      "revId": "f884db152fead06868b3b4aa9d22f919aece8d34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012f001d_9970d8c6",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-11T23:50:28Z",
+      "side": 1,
+      "message": "wouldn\u0027t it really be \u0027destroy the bot\u0027?",
+      "range": {
+        "startLine": 966,
+        "startChar": 20,
+        "endLine": 966,
+        "endChar": 32
+      },
+      "revId": "f884db152fead06868b3b4aa9d22f919aece8d34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a97ffdb8_28a02e67",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-04-11T23:50:28Z",
+      "side": 1,
+      "message": "it would be really cool if these were explicit fields and not just dimensions; I think they could use some extra documentation too... unfortunately we can\u0027t pull these out into the TaskRequest because they need to be part of the task hash, right? :/",
+      "range": {
+        "startLine": 985,
+        "startChar": 8,
+        "endLine": 985,
+        "endChar": 58
+      },
+      "revId": "f884db152fead06868b3b4aa9d22f919aece8d34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
