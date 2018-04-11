@@ -386,7 +386,6 @@ def _validate_service_account(prop, value):
 
 ### Models.
 
-
 class FilesRef(ndb.Model):
   """Defines a data tree reference, normally a reference to a .isolated file."""
 
@@ -601,6 +600,12 @@ class TaskProperties(ndb.Model):
   # If True, the TaskRequest embedding these TaskProperties has an associated
   # SecretBytes entity.
   has_secret_bytes = ndb.BooleanProperty(default=False, indexed=False)
+
+  @property
+  def pool(self):
+    """Returns the pool that this TaskProperties has in dimensions, or None if
+    no pool dimension exists."""
+    return self.dimensions.get('pool', [None])[0]
 
   @property
   def dimensions(self):
@@ -873,6 +878,13 @@ class TaskRequest(ndb.Model):
       raise datastore_errors.BadValueError('Missing properties')
     t._request = self
     return t
+
+  @property
+  def pool(self):
+    if self.properties:
+      return self.properties.pool
+    else:
+      raise datastore_errors.BadValueError('Missing properties')
 
   @property
   def secret_bytes_key(self):
