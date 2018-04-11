@@ -976,12 +976,6 @@ class TaskRequest(ndb.Model):
           raise datastore_errors.BadValueError(
               'priority 0 can only be used for terminate request')
 
-      if len(self.task_slices) != 1:
-        # https://crbug.com/781021
-        # This will change soon.
-        raise datastore_errors.BadValueError(
-            'multiple task_slices is not yet implemented')
-
       # They must use the exact same id or pool dimensions.
       for key in (u'id', u'pool'):
         v = self.task_slice(0).properties.dimensions.get(key)
