@@ -773,13 +773,6 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
         self.ctx, tmap, poolcfg.task_template_deployment)
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
-        prod=self.tt(
-            env=[self.PE(var="VAR", value="1")],
-            inclusions='a'),
-        canary=None, canary_chance=0
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
-
-    self.assertEqual(pools_config.TaskTemplateDeployment(
       prod=self.tt(
           env=[self.PE(var="VAR", value="1")],
           inclusions='a'),

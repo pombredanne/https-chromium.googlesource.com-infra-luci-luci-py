@@ -5,7 +5,7 @@
 
 """Client tool to trigger tasks or retrieve results from a Swarming server."""
 
-__version__ = '0.11'
+__version__ = '0.12'
 
 import collections
 import datetime
