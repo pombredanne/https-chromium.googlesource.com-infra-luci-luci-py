@@ -18,6 +18,7 @@ from test_support import test_case
 
 from proto import pools_pb2
 from server import pools_config
+from server import task_request
 
 from google.protobuf import text_format
 
@@ -532,6 +533,126 @@ class TestTaskTemplates(TaskTemplateBaseTest):
           ))
 
 
+class TestTaskTemplateApplication(TaskTemplateBaseTest):
+  def test_simple_application(self):
+    tt = self.tt(
+        cache=[self.PCE(name='cache', path='c')],
+        cipd_package=[self.PCP(path='cipd', pkg='some/pkg', version='latest')],
+        env=[self.PE(var='ENV', value='1', prefix=['a'])],
+    )
+    p = task_request.TaskProperties()
+    tt.apply_to_task_properties(p)
+    self.assertEqual(p, task_request.TaskProperties(
+      env={u'ENV': u'1'},
+      env_prefixes={u'ENV': [u'a']},
+      caches=[task_request.CacheEntry(name=u'cache', path=u'c')],
+      cipd_input=task_request.CipdInput(
+          packages=[task_request.CipdPackage(
+              package_name=u'some/pkg', path=u'cipd', version=u'latest')])
+    ))
+
+  def test_env_set_error(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'])])
+    p = task_request.TaskProperties(env={u'ENV': u'10'})
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "Task defines env['ENV'] which conflicts with pool task template")
+
+  def test_env_prefix_set_error(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'])])
+    p = task_request.TaskProperties(env_prefixes={u'ENV': [u'b']})
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "Task defines env_prefixes['ENV'] "
+        "which conflicts with pool task template")
+
+  def test_env_override_soft(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'], soft=True)])
+    p = task_request.TaskProperties(env={u'ENV': u'2'})
+    tt.apply_to_task_properties(p)
+    self.assertEqual(p, task_request.TaskProperties(
+        env={u'ENV': u'2'},
+        env_prefixes={u'ENV': [u'a']},
+    ))
+
+  def test_env_prefixes_append_soft(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'], soft=True)])
+    p = task_request.TaskProperties(env_prefixes={u'ENV': [u'b']})
+    tt.apply_to_task_properties(p)
+    self.assertEqual(p, task_request.TaskProperties(
+      env={u'ENV': u'1'},
+      env_prefixes={u'ENV': [u'a', u'b']},
+    ))
+
+  def test_conflicting_cache(self):
+    tt = self.tt(cache=[self.PCE(name='c', path='C')])
+    p = task_request.TaskProperties(
+      caches=[task_request.CacheEntry(name='c', path='B')])
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "Task defines cache['c'] which conflicts with pool task template")
+
+  def test_conflicting_cache_path(self):
+    tt = self.tt(cache=[self.PCE(name='c', path='C')])
+    p = task_request.TaskProperties(
+      caches=[task_request.CacheEntry(name='other', path='C')])
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cache 'other' "
+        "and task template cache 'c'")
+
+  def test_conflicting_cache_cipd_path(self):
+    tt = self.tt(cache=[self.PCE(name='c', path='C')])
+    p = task_request.TaskProperties(
+        cipd_input=task_request.CipdInput(
+            packages=[
+              task_request.CipdPackage(
+                path='C', package_name='pkg', version='latest')]))
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cipd['pkg:latest'] "
+        "and task template cache 'c'")
+
+  def test_conflicting_cipd_package(self):
+    tt = self.tt(cipd_package=[self.PCP(pkg='pkg', path='C', version='latest')])
+    p = task_request.TaskProperties(
+        cipd_input=task_request.CipdInput(
+            packages=[
+              task_request.CipdPackage(
+                path='C', package_name='other', version='latest')]))
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cipd['other:latest'] "
+        "and task template cipd['pkg:latest']")
+
+  def test_conflicting_cipd_cache_path(self):
+    tt = self.tt(cipd_package=[self.PCP(pkg='pkg', path='C', version='latest')])
+    p = task_request.TaskProperties(
+      caches=[task_request.CacheEntry(name='other', path='C')])
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cache 'other' "
+        "and task template cipd['pkg:latest']")
+
+
 class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
   @staticmethod
   def parse(textpb):
@@ -771,13 +892,6 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
         self.ctx, poolcfg.task_template)
     dmap = pools_config._resolve_task_template_deployments(
         self.ctx, tmap, poolcfg.task_template_deployment)
-
-    self.assertEqual(pools_config.TaskTemplateDeployment(
-        prod=self.tt(
-            env=[self.PE(var="VAR", value="1")],
-            inclusions='a'),
-        canary=None, canary_chance=0
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
       prod=self.tt(
