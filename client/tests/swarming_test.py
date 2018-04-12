@@ -91,6 +91,7 @@ def gen_request_data(properties=None, **kwargs):
     'expiration_secs': 3600,
     'name': 'unit_tests',
     'parent_task_id': '',
+    'pool_task_template': 'AUTO',
     'priority': 101,
     'properties': {
       'caches': [],
@@ -283,7 +284,8 @@ class TestIsolated(auto_stub.TestCase, Common):
         outdir = os.path.join(self.tempdir, 'out')
         self.assertTrue(os.path.isdir(outdir))
         self.assertEqual(
-            [sys.executable, u'main.py', u'foo', outdir, '--bar'], cmd)
+            [sys.executable, u'main.py', u'foo', os.path.realpath(outdir),
+             '--bar'], cmd)
         expected = os.environ.copy()
         expected['SWARMING_TASK_ID'] = 'reproduce'
         expected['SWARMING_BOT_ID'] = 'reproduce'
@@ -335,6 +337,7 @@ class TestSwarmingTrigger(NetTestCase):
         expiration_secs=60*60,
         name=TEST_NAME,
         parent_task_id=None,
+        pool_task_template='AUTO',
         priority=101,
         properties=swarming.TaskProperties(
             caches=[],
@@ -412,6 +415,7 @@ class TestSwarmingTrigger(NetTestCase):
         expiration_secs=60*60,
         name=TEST_NAME,
         parent_task_id='123',
+        pool_task_template='AUTO',
         priority=101,
         properties=swarming.TaskProperties(
             caches=[],
@@ -474,6 +478,7 @@ class TestSwarmingTrigger(NetTestCase):
         expiration_secs=60*60,
         name=TEST_NAME,
         parent_task_id='123',
+        pool_task_template='AUTO',
         priority=101,
         properties=swarming.TaskProperties(
             caches=[],
@@ -899,6 +904,7 @@ class TestMain(NetTestCase):
       'expiration_secs': 21600,
       'name': u'None/foo=bar',
       'parent_task_id': '',
+      'pool_task_template': 'AUTO',
       'priority': 100,
       'properties': {
         'caches': [],
@@ -958,6 +964,7 @@ class TestMain(NetTestCase):
       'expiration_secs': 21600,
       'name': u'None/foo=bar/' + FILE_HASH,
       'parent_task_id': '',
+      'pool_task_template': 'AUTO',
       'priority': 100,
       'properties': {
         'caches': [],
@@ -1022,6 +1029,7 @@ class TestMain(NetTestCase):
       'expiration_secs': 21600,
       'name': u'None/foo=bar',
       'parent_task_id': '',
+      'pool_task_template': 'AUTO',
       'priority': 100,
       'properties': {
         'caches': [],
@@ -1211,6 +1219,7 @@ class TestMain(NetTestCase):
             'expiration_secs': 3600,
             'name': 'unit_tests',
             'parent_task_id': '',
+            'pool_task_template': 'AUTO',
             'priority': 101,
             'properties': {
               'caches': [],

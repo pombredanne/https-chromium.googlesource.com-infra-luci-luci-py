@@ -4,6 +4,7 @@
 # that can be found in the LICENSE file.
 
 import logging
+import random
 import sys
 import unittest
 
@@ -18,8 +19,11 @@ from test_support import test_case
 
 from proto import pools_pb2
 from server import pools_config
+from server import task_request
 
 from google.protobuf import text_format
+
+import swarming_rpcs
 
 
 TEST_CONFIG = pools_pb2.PoolsCfg(pool=[
@@ -218,7 +222,15 @@ class PoolsConfigTest(test_case.TestCase):
 
 class TaskTemplateBaseTest(unittest.TestCase):
   def setUp(self):
+    super(TaskTemplateBaseTest, self).setUp()
+    self._canary_dice_roll = 5000  # 50%
+    self._randint_normal = random.randint
+    random.randint = lambda *_: self._canary_dice_roll
     self.ctx = validation.Context()
+
+  def tearDown(self):
+    super(TaskTemplateBaseTest, self).tearDown()
+    random.randint = self._randint_normal
 
   PTT = pools_pb2.TaskTemplate
   PCE = pools_pb2.TaskTemplate.CacheEntry
@@ -531,6 +543,125 @@ class TestTaskTemplates(TaskTemplateBaseTest):
             inclusions=frozenset({'base'}),
           ))
 
+  def test_simple_application(self):
+    tt = self.tt(
+        cache=[self.PCE(name='cache', path='c')],
+        cipd_package=[self.PCP(path='cipd', pkg='some/pkg', version='latest')],
+        env=[self.PE(var='ENV', value='1', prefix=['a'])],
+    )
+    p = task_request.TaskProperties()
+    tt.apply_to_task_properties(p)
+    self.assertEqual(p, task_request.TaskProperties(
+      env={u'ENV': u'1'},
+      env_prefixes={u'ENV': [u'a']},
+      caches=[task_request.CacheEntry(name=u'cache', path=u'c')],
+      cipd_input=task_request.CipdInput(
+          packages=[task_request.CipdPackage(
+              package_name=u'some/pkg', path=u'cipd', version=u'latest')])
+    ))
+
+  def test_env_set_error(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'])])
+    p = task_request.TaskProperties(env={u'ENV': u'10'})
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "Task defines env['ENV'] which conflicts with pool task template")
+
+  def test_env_prefix_set_error(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'])])
+    p = task_request.TaskProperties(env_prefixes={u'ENV': [u'b']})
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "Task defines env_prefixes['ENV'] "
+        "which conflicts with pool task template")
+
+  def test_env_override_soft(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'], soft=True)])
+    p = task_request.TaskProperties(env={u'ENV': u'2'})
+    tt.apply_to_task_properties(p)
+    self.assertEqual(p, task_request.TaskProperties(
+        env={u'ENV': u'2'},
+        env_prefixes={u'ENV': [u'a']},
+    ))
+
+  def test_env_prefixes_append_soft(self):
+    tt = self.tt(
+        env=[self.PE(var='ENV', value='1', prefix=['a'], soft=True)])
+    p = task_request.TaskProperties(env_prefixes={u'ENV': [u'b']})
+    tt.apply_to_task_properties(p)
+    self.assertEqual(p, task_request.TaskProperties(
+      env={u'ENV': u'1'},
+      env_prefixes={u'ENV': [u'a', u'b']},
+    ))
+
+  def test_conflicting_cache(self):
+    tt = self.tt(cache=[self.PCE(name='c', path='C')])
+    p = task_request.TaskProperties(
+      caches=[task_request.CacheEntry(name='c', path='B')])
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "Task defines cache['c'] which conflicts with pool task template")
+
+  def test_conflicting_cache_path(self):
+    tt = self.tt(cache=[self.PCE(name='c', path='C')])
+    p = task_request.TaskProperties(
+      caches=[task_request.CacheEntry(name='other', path='C')])
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cache 'other' "
+        "and task template cache 'c'")
+
+  def test_conflicting_cache_cipd_path(self):
+    tt = self.tt(cache=[self.PCE(name='c', path='C')])
+    p = task_request.TaskProperties(
+        cipd_input=task_request.CipdInput(
+            packages=[
+              task_request.CipdPackage(
+                path='C', package_name='pkg', version='latest')]))
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cipd['pkg:latest'] "
+        "and task template cache 'c'")
+
+  def test_conflicting_cipd_package(self):
+    tt = self.tt(cipd_package=[self.PCP(pkg='pkg', path='C', version='latest')])
+    p = task_request.TaskProperties(
+        cipd_input=task_request.CipdInput(
+            packages=[
+              task_request.CipdPackage(
+                path='C', package_name='other', version='latest')]))
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cipd['other:latest'] "
+        "and task template cipd['pkg:latest']")
+
+  def test_conflicting_cipd_cache_path(self):
+    tt = self.tt(cipd_package=[self.PCP(pkg='pkg', path='C', version='latest')])
+    p = task_request.TaskProperties(
+      caches=[task_request.CacheEntry(name='other', path='C')])
+    with self.assertRaises(pools_config.TaskTemplateApplicationError) as ex:
+      tt.apply_to_task_properties(p)
+    self.assertEqual(
+        ex.exception.message,
+        "'C': directory has conflicting owners: task cache 'other' "
+        "and task template cipd['pkg:latest']")
+
+
 
 class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
   @staticmethod
@@ -674,6 +805,36 @@ class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
         [x.text for x in self.ctx.result().messages],
         ["template['a']: env['VAR']: empty value AND prefix"])
 
+  def test_no_deployment_apply(self):
+    pc = pools_config.PoolConfig(
+        name='', rev='', scheduling_users=frozenset(),
+        scheduling_groups=frozenset(), trusted_delegatees={},
+        service_accounts=frozenset(), service_accounts_groups=(),
+        task_template_deployment=None)
+    req = task_request.TaskRequest()
+    ptt = swarming_rpcs.PoolTaskTemplate.AUTO
+    pc.apply_task_template(req, ptt)
+    self.assertEqual(req, task_request.TaskRequest())
+
+  def test_deployment_apply(self):
+    pc = pools_config.PoolConfig(
+        name='', rev='test_rev', scheduling_users=frozenset(),
+        scheduling_groups=frozenset(), trusted_delegatees={},
+        service_accounts=frozenset(), service_accounts_groups=(),
+        task_template_deployment=pools_config.TaskTemplateDeployment(
+            prod=self.tt(env=[self.PE(var='VAR', value='1')]),
+            canary=None, canary_chance=0))
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.AUTO
+    pc.apply_task_template(req, ptt)
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(env={u'VAR': u'1'}),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:0',
+        ]))
+
 
 class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
   @staticmethod
@@ -773,13 +934,6 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
         self.ctx, tmap, poolcfg.task_template_deployment)
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
-        prod=self.tt(
-            env=[self.PE(var="VAR", value="1")],
-            inclusions='a'),
-        canary=None, canary_chance=0
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
-
-    self.assertEqual(pools_config.TaskTemplateDeployment(
       prod=self.tt(
           env=[self.PE(var="VAR", value="1")],
           inclusions='a'),
@@ -790,6 +944,152 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
           inclusions={'a'}),
       canary_chance=5000,
     ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[1], tmap, dmap))
+
+  def test_skip_apply(self):
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=None, canary=None, canary_chance=0)
+
+    req = task_request.TaskRequest()
+    ptt = swarming_rpcs.PoolTaskTemplate.SKIP
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest())
+
+  def test_never_canary(self):
+    self._canary_dice_roll = 1 # pick canary, unless we pass CANARY_NEVER
+
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=self.tt(env=[self.PE(var='VAR', value='prod')]),
+        canary=self.tt(env=[self.PE(var='VAR', value='canary')]),
+        canary_chance=5000)
+
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.CANARY_NEVER
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(
+            env={u'VAR': u'prod'},
+        ),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:0',
+        ]))
+
+  def test_prefer_canary_without_canary(self):
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=self.tt(env=[self.PE(var='VAR', value='prod')]),
+        canary=None, canary_chance=0)
+
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.CANARY_PREFER
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(
+            # got prod, since global config doesn't have canary at the moment
+            env={u'VAR': u'prod'},
+        ),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:0',
+        ]))
+
+  def test_prefer_canary_with_canary(self):
+    self._canary_dice_roll = 10000 # pick prod by default
+
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=self.tt(env=[self.PE(var='VAR', value='prod')]),
+        canary=self.tt(env=[self.PE(var='VAR', value='canary')]),
+        canary_chance=5000)
+
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.CANARY_PREFER
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(
+            env={u'VAR': u'canary'},
+        ),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:1',
+        ]))
+
+  def test_auto_without_canary_get_prod(self):
+    self._canary_dice_roll = 10000 # pick prod by default
+
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=self.tt(env=[self.PE(var='VAR', value='prod')]),
+        canary=None, canary_chance=0)
+
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.AUTO
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(
+            env={u'VAR': u'prod'},
+        ),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:0',
+        ]))
+
+  def test_auto_with_both_get_prod(self):
+    self._canary_dice_roll = 10000 # pick prod by default
+
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=self.tt(env=[self.PE(var='VAR', value='prod')]),
+        canary=self.tt(env=[self.PE(var='VAR', value='canary')]),
+        canary_chance=5000)
+
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.CANARY_PREFER
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(
+            env={u'VAR': u'prod'},
+        ),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:0',
+        ]))
+
+  def test_auto_with_both_get_prod(self):
+    self._canary_dice_roll = 1 # pick canary by default
+
+    ttd = pools_config.TaskTemplateDeployment(
+        prod=self.tt(env=[self.PE(var='VAR', value='prod')]),
+        canary=self.tt(env=[self.PE(var='VAR', value='canary')]),
+        canary_chance=5000)
+
+    req = task_request.TaskRequest(
+        properties=task_request.TaskProperties())
+    ptt = swarming_rpcs.PoolTaskTemplate.CANARY_PREFER
+
+    ttd.apply_to_task_request(req, ptt, 'test_rev')
+
+    self.assertEqual(req, task_request.TaskRequest(
+        properties=task_request.TaskProperties(
+            env={u'VAR': u'canary'},
+        ),
+        tags=[
+          'swarming.pool.version:test_rev',
+          'swarming.pool.template.canary:1',
+        ]))
 
 
 if __name__ == '__main__':
