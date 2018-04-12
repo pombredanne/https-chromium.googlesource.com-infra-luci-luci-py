@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "401dab9c_9f310755",
+        "filename": "appengine/swarming/server/directory_occlusion.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "One line doc string",
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b98fd7b9_d5aa8462",
+        "filename": "appengine/swarming/server/directory_occlusion.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "\\n",
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4837b622_2506fbc0",
+        "filename": "appengine/swarming/server/directory_occlusion.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "nit: need to sort for deterministic order of errors",
+      "range": {
+        "startLine": 101,
+        "startChar": 30,
+        "endLine": 101,
+        "endChar": 40
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "368109f0_8b418a4e",
+        "filename": "appengine/swarming/server/directory_occlusion.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "nit: I think subdir is unnecessary, since it is always parts[-1]?",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 29
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd28dda_42f9763e",
+        "filename": "appengine/swarming/server/directory_occlusion.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "nit:\n\nreturn self._subdirs.setdefault(subdir, Checker(\u0027/\u0027.join(parts))\n\nIn fact, considering these two nits, it might be more readable to get rid of _cd completely and just inline it.",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 14
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aafa2d80_1967df62",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "\u0027\n\nand everywhere in this function",
+      "range": {
+        "startLine": 375,
+        "startChar": 42,
+        "endLine": 375,
+        "endChar": 43
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b4a03b2_fba088cd",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "4 spaces",
+      "range": {
+        "startLine": 385,
+        "startChar": 6,
+        "endLine": 385,
+        "endChar": 8
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8ca6968_51f95335",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-12T22:54:57Z",
+      "side": 1,
+      "message": "why?\n\nmaybe ctx.error(...) it? Or it is already logged?",
+      "range": {
+        "startLine": 387,
+        "startChar": 6,
+        "endLine": 387,
+        "endChar": 10
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
