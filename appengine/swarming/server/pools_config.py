@@ -9,6 +9,7 @@ used primarily by task_scheduler.check_schedule_request_acl.
 """
 
 import collections
+import random
 
 from components import auth
 from components import config
@@ -18,13 +19,16 @@ from components.config import validation
 from proto import pools_pb2
 from server import config as local_config
 from server import service_accounts
+from server import task_request
+
+import swarming_rpcs
 
 
 POOLS_CFG_FILENAME = 'pools.cfg'
 
 
 # Validated read-only representation of one pool.
-PoolConfig = collections.namedtuple('PoolConfig', [
+_PoolConfig = collections.namedtuple('_PoolConfig', [
   # Name of the pool.
   'name',
   # Revision of pools.cfg file this config came from.
@@ -42,6 +46,24 @@ PoolConfig = collections.namedtuple('PoolConfig', [
   # resolved TaskTemplateDeployment (optional).
   'task_template_deployment',
 ])
+
+class PoolConfig(_PoolConfig):
+  def apply_task_template(self, request, pool_task_template):
+    """Applies any TaskTemplateDeployment to the indicated request.
+
+    Modifies `request` in-place.
+
+    Args:
+      request (task_request.TaskProperties) - The task request to modify.
+      pool_task_template (swarming_rpcs.PoolTaskTemplate) - The PoolTaskTemplate
+        enum controlling application of the deployment.
+    """
+    assert isinstance(request, task_request.TaskRequest)
+    assert isinstance(pool_task_template, swarming_rpcs.PoolTaskTemplate)
+
+    deployment = self.task_template_deployment
+    if deployment:
+      deployment.apply_to_task_request(request, pool_task_template, self.rev)
 
 
 # Validated read-only fields of one trusted delegation scenario.
@@ -231,6 +253,49 @@ class TaskTemplateDeployment(_TaskTemplateDeployment):
       canary_chance=d.canary_chance,
     )
 
+  def apply_to_task_request(self, request, pool_task_template, rev):
+    """Applies this deployment to the indicated request.
+
+    Modifies `request` in-place.
+
+    Args:
+      request (task_request.TaskProperties) - The task request to modify.
+      pool_task_template (swarming_rpcs.PoolTaskTemplate) - The PoolTaskTemplate
+        enum controlling application of the deployment.
+      rev (str) - The revision of the pools.cfg configuration we're from.
+    """
+    assert isinstance(request, task_request.TaskRequest)
+    assert isinstance(pool_task_template, swarming_rpcs.PoolTaskTemplate)
+
+    if pool_task_template == swarming_rpcs.PoolTaskTemplate.SKIP:
+      return
+
+    to_apply = None
+    canary = False
+    if pool_task_template == swarming_rpcs.PoolTaskTemplate.CANARY_NEVER:
+      to_apply = self.prod
+    elif pool_task_template == swarming_rpcs.PoolTaskTemplate.CANARY_PREFER:
+      if self.canary:
+        canary = True
+        to_apply = self.canary
+      else:
+        to_apply = self.prod
+    elif pool_task_template == swarming_rpcs.PoolTaskTemplate.AUTO:
+      if self.canary_chance == 0:
+        to_apply = self.prod
+      else:
+        canary = random.randint(0, 9999) < self.canary_chance
+        to_apply = self.canary if canary else self.prod
+
+    # This should never happen... but just in case.
+    assert to_apply is not None, (
+        'TaskTemplateDeployment got None template to apply to task')
+
+    to_apply.apply_to_task_properties(request.properties)
+
+    request.tags.append('swarming.pool.version:%s' % (rev,))
+    request.tags.append('swarming.pool.template.canary:%d' % (canary,))
+
 
 # A set of default task parameters to apply to tasks issued within a pool.
 _TaskTemplate = collections.namedtuple('_TaskTemplate', [
@@ -250,6 +315,14 @@ _TaskTemplate = collections.namedtuple('_TaskTemplate', [
 
 class InvalidTaskTemplateError(Exception):
   pass
+
+
+class TaskTemplateApplicationError(Exception):
+  def __init__(
+      self, message,
+      fmt='Task defines %s which conflicts with pool task template'):
+    self.conflict = message
+    super(TaskTemplateApplicationError, self).__init__(fmt % message)
 
 
 class TaskTemplate(_TaskTemplate):
@@ -400,6 +473,77 @@ class TaskTemplate(_TaskTemplate):
 
     return ret.finalize(ctx)
 
+  def apply_to_task_properties(self, p):
+    """Applies this template to the indicated properties.
+
+    Modifies `p` in-place.
+
+    Args:
+      p (task_request.TaskProperties) - The task properties to modify.
+    """
+    assert isinstance(p, task_request.TaskProperties)
+
+    for envvar in self.env:
+      var = envvar.var
+
+      if not envvar.soft:
+        if var in (p.env or {}):
+          raise TaskTemplateApplicationError('env[%r]' % var.encode('utf-8'))
+        if var in (p.env_prefixes or {}):
+          raise TaskTemplateApplicationError(
+              'env_prefixes[%r]' % var.encode('utf-8'))
+
+      if envvar.value:
+        p.env = {} if p.env is None else p.env
+        p.env[var] = p.env.get(var, '') or envvar.value
+
+      if envvar.prefix:
+        p.env_prefixes = {} if p.env_prefixes is None else p.env_prefixes
+        p.env_prefixes[var] = list(envvar.prefix) + p.env_prefixes.get(var, [])
+
+    reserved_cache_names = set()
+    doc = _DirectoryOcclusionChecker()
+    # add all task template paths
+    for cache in self.cache:
+      reserved_cache_names.add(cache.name)
+      doc.add(
+          cache.path, 'task template cache %r' % cache.name.encode('utf-8'),
+          '')
+    for cp in self.cipd_package:
+      doc.add(
+          cp.path, 'task template cipd',
+          '%s:%s' % (cp.pkg.encode('utf-8'), cp.version.encode('utf-8')))
+
+    # add all task paths, avoiding spurious initializations in the underlying
+    # TaskProperties (repeated fields auto-initialize to [] when looped over)
+    for cache in (p.caches or ()):
+      if cache.name in reserved_cache_names:
+        raise TaskTemplateApplicationError(
+            'cache[%r]' % cache.name.encode('utf-8'))
+      doc.add(
+          cache.path, 'task cache %r' % cache.name.encode('utf-8'), '')
+    for cp in (p.cipd_input.packages or () if p.cipd_input else ()):
+      doc.add(
+          cp.path, 'task cipd',
+          '%s:%s' % (
+              cp.package_name.encode('utf-8'), cp.version.encode('utf-8')))
+
+    ctx = validation.Context()
+    if doc.conflicts(ctx):
+      raise TaskTemplateApplicationError(
+          '\n'.join(m.text for m in ctx.result().messages), fmt='%s')
+
+    for cache in self.cache:
+      p.caches.append(task_request.CacheEntry(
+          name=cache.name, path=cache.path))
+
+    if self.cipd_package:
+      # Only initialize TaskProperties.cipd_input if we have something to add
+      p.cipd_input = p.cipd_input or task_request.CipdInput()
+      for cp in self.cipd_package:
+        p.cipd_input.packages.append(task_request.CipdPackage(
+            package_name=cp.pkg, path=cp.path, version=cp.version))
+
 
 CacheEntry = collections.namedtuple('CacheEntry', ['name', 'path'])
 CipdPackage = collections.namedtuple('CipdPackage', ['path', 'pkg', 'version'])
@@ -408,6 +552,8 @@ Env = collections.namedtuple('Env', ['var', 'value', 'prefix', 'soft'])
 
 def get_pool_config(pool_name):
   """Returns PoolConfig for the given pool or None if not defined."""
+  if pool_name is None:
+    raise ValueError('get_pool_config called with None')
   return _fetch_pools_config().pools.get(pool_name)
 
 
