@@ -33,6 +33,7 @@ from server import bot_code
 from server import bot_management
 from server import config
 from server import lease_management
+from server import pools_config
 from server import service_accounts
 from server import task_pack
 from server import task_queues
@@ -400,6 +401,13 @@ class SwarmingTasksService(remote.Service):
     except (datastore_errors.BadValueError, TypeError, ValueError) as e:
       logging.exception('Here\'s what was wrong in the user new task request:')
       raise endpoints.BadRequestException(e.message)
+
+    pool_cfg = pools_config.get_pool_config(request_obj.pool)
+    if pool_cfg:
+      try:
+        pool_cfg.apply_task_template(request_obj, request.pool_task_template)
+      except pools_config.TaskTemplateApplicationError as e:
+        raise endpoints.BadRequestException(e.message)
 
     # Make sure the caller is actually allowed to schedule the task before
     # asking the token server for a service account token.
