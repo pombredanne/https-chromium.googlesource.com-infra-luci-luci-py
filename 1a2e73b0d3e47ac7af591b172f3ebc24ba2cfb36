@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d94e193e_4d29a13e",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-12T22:59:17Z",
+      "side": 1,
+      "message": "This is the wrong place to do this, this has to be in task_request automatic_tags.",
+      "revId": "1a2e73b0d3e47ac7af591b172f3ebc24ba2cfb36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd7d3707_ede18574",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-12T22:59:17Z",
+      "side": 1,
+      "message": "You need to switch to self.task_slice(0).properties.pool",
+      "revId": "1a2e73b0d3e47ac7af591b172f3ebc24ba2cfb36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
