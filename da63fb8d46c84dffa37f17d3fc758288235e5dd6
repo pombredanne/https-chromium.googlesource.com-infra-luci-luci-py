@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ec7990f3_bf14daf6",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 18
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-12T23:22:34Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 232,
+        "startChar": 48,
+        "endLine": 232,
+        "endChar": 51
+      },
+      "revId": "da63fb8d46c84dffa37f17d3fc758288235e5dd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "401dab9c_9f310755",
         "filename": "appengine/swarming/server/directory_occlusion.py",
         "patchSetId": 18
