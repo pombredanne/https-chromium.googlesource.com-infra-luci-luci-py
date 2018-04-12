@@ -16,6 +16,24 @@
       "revId": "e51eb3975dfbc3806e2c86643e433edb5f6d3e7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f22953b_8eb4dc3a",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-12T00:51:25Z",
+      "side": 1,
+      "message": "I was trying to reduce the number of CL but here it is: https://chromium-review.googlesource.com/1009004",
+      "parentUuid": "9582295e_8d5e2f03",
+      "revId": "e51eb3975dfbc3806e2c86643e433edb5f6d3e7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
