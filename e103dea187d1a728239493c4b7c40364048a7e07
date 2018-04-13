@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95f2aa56_a2025921",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-13T13:58:50Z",
+      "side": 1,
+      "message": "Remove hack, we\u0027ve identified the installed image is likely 32 bits.",
+      "revId": "e103dea187d1a728239493c4b7c40364048a7e07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9080c3c1_15fe850c",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-13T13:58:50Z",
+      "side": 1,
+      "message": "elif cpu_type.startswith(u\u0027mips\u0027):\n? just in case",
+      "revId": "e103dea187d1a728239493c4b7c40364048a7e07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d72c3ea_f16a8c35",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-13T13:58:50Z",
+      "side": 1,
+      "message": "use elif",
+      "revId": "e103dea187d1a728239493c4b7c40364048a7e07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
