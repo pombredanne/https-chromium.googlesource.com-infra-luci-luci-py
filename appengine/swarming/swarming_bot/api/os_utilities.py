@@ -227,7 +227,11 @@ def get_cpu_bitness():
   On other platforms (Linux), we explicitly want to report 32 bits userland,
   independent of the kernel bitness.
   """
-  if sys.platform in ('darwin', 'win32') and platform.machine().endswith('64'):
+  machine = platform.machine().lower()
+  if sys.platform in ('darwin', 'win32') and machine.endswith('64'):
+    return u'64'
+  # Needed because Python's sys.maxsize returns 2**31 on mips64 CPUs ¯\_(ツ)_/¯.
+  if machine == 'mips64':
     return u'64'
   return u'64' if sys.maxsize > 2**32 else u'32'
 
@@ -278,6 +282,9 @@ def get_cpu_dimensions():
     if cpu_type != u'arm':
       out.append(u'arm')
       out.append(u'arm-' + bitness)
+  elif cpu_type == 'mips64':
+    if name:
+      out.append(u'%s-%s-%s' % (cpu_type, bitness, name.replace(' ', '_')))
   # else AMD like "AMD PRO A6-8500B R5, 6 Compute Cores 2C+4G     "
 
   out.sort()

@@ -162,35 +162,39 @@ def get_cpuinfo():
     cpu_info[u'name'] = values[u'model name']
     cpu_info[u'vendor'] = values[u'vendor_id']
   else:
-    # CPU implementer == 0x41 means ARM.
-    # TODO(maruel): Add MIPS.
-    cpu_info[u'flags'] = values[u'Features']
-    cpu_info[u'model'] = (
-      int(values[u'CPU variant'], 0), int(values[u'CPU part'], 0),
-      int(values[u'CPU revision']),
-    )
-    # ARM CPUs have a serial number embedded. Intel did try on the Pentium III
-    # but gave up after backlash;
-    # http://www.wired.com/1999/01/intel-on-privacy-whoops/
-    # http://www.theregister.co.uk/2000/05/04/intel_processor_serial_number_q/
-    # It is very ironic that ARM based manufacturers are getting away with.
-    if u'Serial' in values:
-      cpu_info[u'serial'] = values[u'Serial'].lstrip(u'0')
-    if u'Revision' in values:
-      cpu_info[u'revision'] = values[u'Revision']
+    if u'mips' in values.get('isa', ''):
+      # MIPS.
+      cpu_info[u'flags'] = values[u'isa']
+      cpu_info[u'name'] = values[u'cpu model']
+    else:
+      # CPU implementer == 0x41 means ARM.
+      cpu_info[u'flags'] = values[u'Features']
+      cpu_info[u'model'] = (
+        int(values[u'CPU variant'], 0), int(values[u'CPU part'], 0),
+        int(values[u'CPU revision']),
+      )
+      # ARM CPUs have a serial number embedded. Intel did try on the Pentium III
+      # but gave up after backlash;
+      # http://www.wired.com/1999/01/intel-on-privacy-whoops/
+      # http://www.theregister.co.uk/2000/05/04/intel_processor_serial_number_q/
+      # It is very ironic that ARM based manufacturers are getting away with.
+      if u'Serial' in values:
+        cpu_info[u'serial'] = values[u'Serial'].lstrip(u'0')
+      if u'Revision' in values:
+        cpu_info[u'revision'] = values[u'Revision']
 
-    # 'Hardware' field has better content so use it instead of 'model name' /
-    # 'Processor' field.
-    if u'Hardware' in values:
-      cpu_info[u'name'] = values[u'Hardware']
-      # Samsung felt this was useful information. Strip that.
-      suffix = ' (Flattened Device Tree)'
-      if cpu_info[u'name'].endswith(suffix):
-        cpu_info[u'name'] = cpu_info[u'name'][:-len(suffix)]
-    # SAMSUNG EXYNOS5 uses 'Processor' instead of 'model name' as the key for
-    # its name <insert exasperation meme here>.
-    cpu_info[u'vendor'] = (
-        values.get(u'model name') or values.get(u'Processor') or u'N/A')
+      # 'Hardware' field has better content so use it instead of 'model name' /
+      # 'Processor' field.
+      if u'Hardware' in values:
+        cpu_info[u'name'] = values[u'Hardware']
+        # Samsung felt this was useful information. Strip that.
+        suffix = ' (Flattened Device Tree)'
+        if cpu_info[u'name'].endswith(suffix):
+          cpu_info[u'name'] = cpu_info[u'name'][:-len(suffix)]
+      # SAMSUNG EXYNOS5 uses 'Processor' instead of 'model name' as the key for
+      # its name <insert exasperation meme here>.
+      cpu_info[u'vendor'] = (
+          values.get(u'model name') or values.get(u'Processor') or u'N/A')
 
   # http://unix.stackexchange.com/questions/43539/what-do-the-flags-in-proc-cpuinfo-mean
   cpu_info[u'flags'] = sorted(i for i in cpu_info[u'flags'].split())
