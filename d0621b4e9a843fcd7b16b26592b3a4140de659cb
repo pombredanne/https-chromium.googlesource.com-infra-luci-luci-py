@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5e3f25a_2debac18",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-13T02:58:06Z",
+      "side": 1,
+      "message": "should we worry about duplicates here?",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 32
+      },
+      "revId": "d0621b4e9a843fcd7b16b26592b3a4140de659cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99ef9033_ece81e9f",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-13T02:58:06Z",
+      "side": 1,
+      "message": "Any reason this can\u0027t be a simpler recursive solution? This loop is hard to understand...\n\nSomething like:\n\n1. Load all templates and construct TaskTemplate object for each one, with initial state \u0027unresolved\u0027.\n2. Make TaskTemplate have \u0027includes\u0027 list with references to TaskTemplates it directly includes.\n3. Have \u0027resolve\u0027 function:\n\ndef resolve(self, stack):\n  if self in stack:\n    raise CYCLE\n  if self._resolved:\n    return # already resolved\n  chain.append(self)\n  try:\n    for inc in self.includes:\n      inc.resolve(stack)\n    # merge all the resolved shit\n    # ...\n    self._resolved \u003d True\n  finally:\n    stack.pop()\n\nIf you want to forbid diamonds, keep .transitively_includes updated during \"merge all the resolved shit\" phase, and freak out when merging intersecting transitively_includes sets.\n\nIt is my believe that this will be simpler to understand. But maybe my brain just likes recursion more than \"have a queue of stuff to handle and chip away from it\". So I\u0027m not insisting on this change.",
+      "range": {
+        "startLine": 308,
+        "startChar": 2,
+        "endLine": 308,
+        "endChar": 27
+      },
+      "revId": "d0621b4e9a843fcd7b16b26592b3a4140de659cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ccefc9c_dc99ce23",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-13T02:58:06Z",
+      "side": 1,
+      "message": "I have a nagging suspicion that this will cause non-deterministic ordering of errors in a graph that is broken in multiple points...",
+      "range": {
+        "startLine": 309,
+        "startChar": 45,
+        "endLine": 309,
+        "endChar": 57
+      },
+      "revId": "d0621b4e9a843fcd7b16b26592b3a4140de659cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cc4cfa0_511070e7",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-13T02:58:06Z",
+      "side": 1,
+      "message": "please log any errors here (I think there\u0027s a variant of Context that logs every call of .error()).\n\nThere may be errors here if we change the validation logic after the config was ingested, and the ingested config no longer matches new validator.\n\nThere\u0027s no good solution other than log and hope existing config mostly works, because raising an exception here for ingested configs causes 100% outage.",
+      "range": {
+        "startLine": 390,
+        "startChar": 2,
+        "endLine": 390,
+        "endChar": 10
+      },
+      "revId": "d0621b4e9a843fcd7b16b26592b3a4140de659cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
