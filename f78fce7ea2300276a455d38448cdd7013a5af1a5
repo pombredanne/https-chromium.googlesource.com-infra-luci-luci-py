@@ -1,0 +1,175 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65150802_8b418ca2",
+        "filename": "appengine/swarming/server/directory_occlusion.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "why the encode? This seems random here",
+      "range": {
+        "startLine": 55,
+        "startChar": 17,
+        "endLine": 55,
+        "endChar": 33
+      },
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a59b8ba_58258043",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "I\u0027d prefer to update callsite at line 270 instead of using a default argument.",
+      "range": {
+        "startLine": 142,
+        "startChar": 29,
+        "endLine": 142,
+        "endChar": 35
+      },
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93afc377_2e1b141b",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "if not t:",
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c318b531_069acadf",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "same, why not work in unicode?",
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba8a3ed4_31c4a874",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "Similar",
+      "range": {
+        "startLine": 186,
+        "startChar": 45,
+        "endLine": 186,
+        "endChar": 50
+      },
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77c4c943_9ed8782c",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "Aren\u0027t errors unicode safe? I don\u0027t see the encode on the next line useful.",
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49c3a0d0_0c7ccdbe",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "optional: I\u0027d feel better it entities were decoded, then the mapping was done. The current design with resolve_func makes the whole thing feels a bit magic and is doing too much things at once. I\u0027d feel better if the flow was:\n- decode all entities\n- process includes, detect cycles",
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e5bf820_a222d786",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "this looks like a long form for \u0027assert\u0027",
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b72571df_c43a43cd",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-16T17:10:13Z",
+      "side": 1,
+      "message": "if not deployment.name:",
+      "revId": "f78fce7ea2300276a455d38448cdd7013a5af1a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
