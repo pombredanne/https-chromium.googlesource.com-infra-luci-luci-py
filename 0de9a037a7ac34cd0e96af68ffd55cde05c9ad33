@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e2d9ab41_9081a1fb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1143954
+      },
+      "writtenOn": "2018-04-17T22:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f44683db_0481a96a",
+      "revId": "0de9a037a7ac34cd0e96af68ffd55cde05c9ad33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11594465_55db2d88",
         "filename": "appengine/third_party/python-adb/adb/contrib/high.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "0de9a037a7ac34cd0e96af68ffd55cde05c9ad33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "212a3248_bc307e67",
+        "filename": "appengine/third_party/python-adb/adb/contrib/high.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1143954
+      },
+      "writtenOn": "2018-04-17T22:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11594465_55db2d88",
+      "revId": "0de9a037a7ac34cd0e96af68ffd55cde05c9ad33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
