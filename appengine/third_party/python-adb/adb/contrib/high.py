@@ -757,6 +757,18 @@ class HighDevice(object):
         u'system': props[u'System-Free'],
     }
 
+  def GetGMSCoreVersion(self):
+    """Returns GMS core version."""
+    out = self.Dumpsys('package com.google.android.gms')
+    if out is None:
+      return None
+    version = None
+    for line in out.splitlines():
+      if 'versionName=' in line:
+        version = line[line.index('versionName=') + len('versionName='):]
+        break
+    return version
+
   def GetIMEI(self):
     """Returns the phone's IMEI."""
     # Android <5.0.
