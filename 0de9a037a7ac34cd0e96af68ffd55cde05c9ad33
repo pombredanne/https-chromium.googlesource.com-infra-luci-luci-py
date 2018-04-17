@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f44683db_0481a96a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-04-17T19:55:01Z",
+      "side": 1,
+      "message": "Since every device-related dimension begins with the prefix \"device_\" let\u0027s do the same here.\n\nAnd sort the list.\n\nAnd make the val [\u0027unknown\u0027] or somesuch if the list is empty.",
+      "revId": "0de9a037a7ac34cd0e96af68ffd55cde05c9ad33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11594465_55db2d88",
+        "filename": "appengine/third_party/python-adb/adb/contrib/high.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-04-17T19:55:01Z",
+      "side": 1,
+      "message": "The source of truth for this file doesn\u0027t live in the luci-py but in its own repo:\nhttps://chromium.googlesource.com/infra/luci/python-adb/\n\nIf you want to change anything under python-adb, you\u0027ll have to first change it upstream, then vendor the new version here.",
+      "revId": "0de9a037a7ac34cd0e96af68ffd55cde05c9ad33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
