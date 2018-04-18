@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98982ac4_c33be16d",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-18T21:07:18Z",
+      "side": 0,
+      "message": "Both \u0027digests\u0027 and \u0027_fetched\u0027 is set-like structures here, which means this code was O(N).",
+      "range": {
+        "startLine": 802,
+        "startChar": 3,
+        "endLine": 810,
+        "endChar": 0
+      },
+      "revId": "23ceb6c301f396d7b10f8b3e4a37b022cfd56e33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b91e8ff_b0ae89b3",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-18T21:07:18Z",
+      "side": 0,
+      "message": "I think this change belongs to a different CL?",
+      "range": {
+        "startLine": 442,
+        "startChar": 5,
+        "endLine": 442,
+        "endChar": 42
+      },
+      "revId": "23ceb6c301f396d7b10f8b3e4a37b022cfd56e33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

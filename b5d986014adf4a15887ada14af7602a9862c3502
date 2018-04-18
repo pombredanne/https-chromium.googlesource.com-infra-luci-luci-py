@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ef2bfa3_6119f22a",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-18T21:07:18Z",
+      "side": 1,
+      "message": "this looks bad to me because it couples implementation of FetchQueue to the expectations that callers will never add new items to \u0027digests\u0027, i.e. this is now becomes wrong:\n\nq.wait({1 ,2})\nq.wait({1, 2, 3, 4}) # oops, 3 and 4 will never be processed\n\n(I also suspect we do this exact thing when fetching included *.isolated files).\n\nIf you still want to keep _fetched_digests (and I\u0027m not convinced it is useful), then \u0027wait\u0027 API should change to be just wait(), e.g. something like:\n\nq.add_to_wait_set({1, 2})\nq.wait()\nq.add_to_wait_set({3, 4})\nq.wait()\n...\n\nSo misuse is less probable.",
+      "range": {
+        "startLine": 803,
+        "startChar": 4,
+        "endLine": 805,
+        "endChar": 65
+      },
+      "revId": "b5d986014adf4a15887ada14af7602a9862c3502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
