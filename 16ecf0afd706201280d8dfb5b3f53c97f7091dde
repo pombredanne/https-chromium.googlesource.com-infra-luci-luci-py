@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a6d6952f_d5bdc27e",
+        "filename": "appengine/swarming/doc/Magic-Values.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-18T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a167d076_0a1b2d6a",
+      "range": {
+        "startLine": 87,
+        "startChar": 48,
+        "endLine": 87,
+        "endChar": 68
+      },
+      "revId": "16ecf0afd706201280d8dfb5b3f53c97f7091dde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97b36121_3fe2c37b",
         "filename": "appengine/swarming/doc/Magic-Values.md",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "16ecf0afd706201280d8dfb5b3f53c97f7091dde",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da9e99d5_b240f5b9",
+        "filename": "appengine/swarming/doc/Magic-Values.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-18T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97b36121_3fe2c37b",
+      "range": {
+        "startLine": 91,
+        "startChar": 53,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "16ecf0afd706201280d8dfb5b3f53c97f7091dde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a11ea485_786929fc",
+        "filename": "appengine/swarming/doc/Magic-Values.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-18T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5def55c_1356e7eb",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 113,
+        "endChar": 17
+      },
+      "revId": "16ecf0afd706201280d8dfb5b3f53c97f7091dde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71f34470_228c8431",
         "filename": "appengine/swarming/doc/Magic-Values.md",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8e90c0e6_b22d1ade",
+        "filename": "appengine/swarming/doc/Magic-Values.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-18T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71f34470_228c8431",
+      "range": {
+        "startLine": 116,
+        "startChar": 24,
+        "endLine": 116,
+        "endChar": 25
+      },
+      "revId": "16ecf0afd706201280d8dfb5b3f53c97f7091dde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30f4ced7_1702b2dc",
         "filename": "appengine/swarming/doc/Magic-Values.md",
         "patchSetId": 5
@@ -105,6 +201,30 @@
       "writtenOn": "2018-04-18T14:08:27Z",
       "side": 1,
       "message": "hanging sentence",
+      "range": {
+        "startLine": 138,
+        "startChar": 66,
+        "endLine": 138,
+        "endChar": 70
+      },
+      "revId": "16ecf0afd706201280d8dfb5b3f53c97f7091dde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "182700ae_d99b66db",
+        "filename": "appengine/swarming/doc/Magic-Values.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-18T14:23:50Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "30f4ced7_1702b2dc",
       "range": {
         "startLine": 138,
         "startChar": 66,
