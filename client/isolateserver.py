@@ -756,6 +756,9 @@ class FetchQueue(object):
     self._pending = set()
     self._accessed = set()
     self._fetched = cache.cached_set()
+    # When processing wait_on()/next_item().
+    self._cached_digests = set()
+    self._remaining_digests = set()
 
   def add(
       self,
@@ -794,26 +797,29 @@ class FetchQueue(object):
         self._channel, priority, digest, size,
         functools.partial(self.cache.write, digest))
 
-  def wait(self, digests):
+  def wait_on(self, digests):
+    """Initializes the list of digests to process."""
+    s = frozenset(digests)
+    # Calculate once the already fetched items. These will be retrieved first.
+    self._cached_digests.update(self._fetched.intersection(s))
+    self._remaining_digests.update(s.difference(self._cached_digests))
+
+  def next_item(self):
     """Starts a loop that waits for at least one of |digests| to be retrieved.
 
     Returns the first digest retrieved.
     """
     # Flush any already fetched items.
-    for digest in digests:
-      if digest in self._fetched:
-        return digest
-
-    # Ensure all requested items are being fetched now.
-    assert all(digest in self._pending for digest in digests), (
-        digests, self._pending)
+    if self._cached_digests:
+      return self._cached_digests.pop()
 
     # Wait for some requested item to finish fetching.
     while self._pending:
       digest = self._channel.pull()
       self._pending.remove(digest)
       self._fetched.add(digest)
-      if digest in digests:
+      if digest in self._remaining_digests:
+        self._remaining_digests.remove(digest)
         return digest
 
     # Should never reach this point due to assert above.
@@ -1538,6 +1544,7 @@ class IsolatedBundle(object):
     processed = set()
 
     def retrieve_async(isolated_file):
+      """Retrieves an isolated file included by the root bundle."""
       h = isolated_file.obj_hash
       if h in seen:
         raise isolated_format.IsolatedError(
@@ -1545,14 +1552,17 @@ class IsolatedBundle(object):
       assert h not in pending
       seen.add(h)
       pending[h] = isolated_file
+      # This item is being added dynamically, notify FetchQueue.
+      fetch_queue.wait_on([h])
       fetch_queue.add(h, priority=threading_utils.PRIORITY_HIGH)
 
     # Start fetching root *.isolated file (single file, not the whole bundle).
     retrieve_async(self.root)
 
+    fetch_queue.wait_on(pending)
     while pending:
       # Wait until some *.isolated file is fetched, parse it.
-      item_hash = fetch_queue.wait(pending)
+      item_hash = fetch_queue.next_item()
       item = pending.pop(item_hash)
       with fetch_queue.cache.getfileobj(item_hash) as f:
         item.load(f.read())
@@ -1731,11 +1741,12 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
           fetch_queue.pending_count)
       last_update = time.time()
       with threading_utils.DeadlockDetector(DEADLOCK_TIMEOUT) as detector:
+        fetch_queue.wait_on(remaining)
         while remaining:
           detector.ping()
 
           # Wait for any item to finish fetching to cache.
-          digest = fetch_queue.wait(remaining)
+          digest = fetch_queue.next_item()
 
           # Create the files in the destination using item in cache as the
           # source.
