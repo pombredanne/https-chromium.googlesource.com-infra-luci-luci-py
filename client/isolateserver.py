@@ -800,13 +800,9 @@ class FetchQueue(object):
     Returns the first digest retrieved.
     """
     # Flush any already fetched items.
-    for digest in digests:
-      if digest in self._fetched:
-        return digest
-
-    # Ensure all requested items are being fetched now.
-    assert all(digest in self._pending for digest in digests), (
-        digests, self._pending)
+    hits = self._fetched.intersection(digests)
+    if hits:
+      return hits.pop()
 
     # Wait for some requested item to finish fetching.
     while self._pending:
