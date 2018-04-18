@@ -756,6 +756,7 @@ class FetchQueue(object):
     self._pending = set()
     self._accessed = set()
     self._fetched = cache.cached_set()
+    self._fetched_digests = None
 
   def add(
       self,
@@ -799,14 +800,12 @@ class FetchQueue(object):
 
     Returns the first digest retrieved.
     """
+    if self._fetched_digests is None:
+      # Calculate once the already fetched items.
+      self.fetched_digests = self._fetched.intersection(digests)
     # Flush any already fetched items.
-    for digest in digests:
-      if digest in self._fetched:
-        return digest
-
-    # Ensure all requested items are being fetched now.
-    assert all(digest in self._pending for digest in digests), (
-        digests, self._pending)
+    if self._fetched_digests:
+      return self._fetched_digests.pop()
 
     # Wait for some requested item to finish fetching.
     while self._pending:
