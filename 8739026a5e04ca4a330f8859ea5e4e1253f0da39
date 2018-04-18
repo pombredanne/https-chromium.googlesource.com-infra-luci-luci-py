@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "010cc49d_dfdd9720",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-04-18T17:37:07Z",
+      "side": 1,
+      "message": "Make the dim key begin with \"device_\"\n\nAnd remove lines 198-199 and just do:\ndimensions[u\u0027gms_core_version\u0027] \u003d gms_core_versions or [\u0027unknown\u0027]",
+      "revId": "8739026a5e04ca4a330f8859ea5e4e1253f0da39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
