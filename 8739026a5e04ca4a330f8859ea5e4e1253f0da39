@@ -16,6 +16,24 @@
       "revId": "8739026a5e04ca4a330f8859ea5e4e1253f0da39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9d4d2ce_4243cac8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1143954
+      },
+      "writtenOn": "2018-04-18T22:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "010cc49d_dfdd9720",
+      "revId": "8739026a5e04ca4a330f8859ea5e4e1253f0da39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
