@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc16c65a_1166d267",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-18T17:31:05Z",
+      "side": 1,
+      "message": "self._fetched is already a set(), digest is a dict but I think python will likely still optimize this somehow. At the very least it will probably not be slower than the current code. In theory we would need a perf test for this. (I hate writing perf test in python)",
+      "revId": "001cd2e779a67d56c7d9bc48b8e30fccc168c43b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
