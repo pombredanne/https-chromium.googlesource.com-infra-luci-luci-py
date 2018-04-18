@@ -439,15 +439,6 @@ class RunIsolatedTest(unittest.TestCase):
         CONTENTS['file1.txt'] + ' now invalid size')
     self.assertEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
-  def test_corrupted_cache_entry_same_size(self):
-    # Test that an entry with an invalid file content but same size is NOT
-    # detected property.
-    cached_file_path = self._test_corruption_common(
-        CONTENTS['file1.txt'][:-1] + ' ')
-    # TODO(maruel): This corruption is NOT detected.
-    # This needs to be fixed.
-    self.assertNotEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
-
 
 if __name__ == '__main__':
   fix_encoding.fix_encoding()
