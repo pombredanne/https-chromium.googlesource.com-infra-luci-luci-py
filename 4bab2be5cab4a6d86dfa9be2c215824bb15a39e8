@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fa63b65_aa0476b2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T18:48:10Z",
+      "side": 1,
+      "message": "dedent -2, because you don\u0027t want this to be in the parent code path.",
+      "revId": "4bab2be5cab4a6d86dfa9be2c215824bb15a39e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
