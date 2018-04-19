@@ -143,7 +143,7 @@ def path_handler(api_class, api_method, service_path):
 def api_routes(api_class, base_path=None):
   base_path = base_path or '/api/%s/%s' % (
       api_class.api_info.name,
-      api_class.api_info.version)
+      api_class.api_info.api_version)
   routes = []
   templates = set()
   for _, m in sorted(api_class.all_remote_methods().iteritems()):

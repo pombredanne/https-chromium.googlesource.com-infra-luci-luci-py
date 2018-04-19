@@ -8,7 +8,7 @@ api_version: 1
 instance_class: F4
 
 handlers:
-- url: /_ah/spi/.*
+- url: /_ah/api/.*
   script: main.endpoints_app
   secure: always
 - url: /internal/cron/.*
@@ -35,8 +35,6 @@ includes:
 - gae_ts_mon
 
 libraries:
-- name: endpoints
-  version: 1.0
 - name: pycrypto
   version: 2.6
 - name: six
