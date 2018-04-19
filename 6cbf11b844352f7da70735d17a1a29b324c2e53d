@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "adaa38ab_22b11707",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:30:54Z",
+      "side": 1,
+      "message": "Actually, more correct description would be:\n\n  # Pending digests that the caller waits for, see wait_on()/wait().\n  self._waiting_on \u003d set()\n  # Already fetched digests the caller waits for which are not yet returned by wait().\n  self._waiting_on_ready \u003d set()",
+      "parentUuid": "81062cdb_42a94083",
+      "range": {
+        "startLine": 760,
+        "startChar": 4,
+        "endLine": 760,
+        "endChar": 32
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d6c7bc9_471d56c9",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
