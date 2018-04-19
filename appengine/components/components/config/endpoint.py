@@ -166,7 +166,7 @@ class ConfigApi(remote.Service):
         url='https://{hostname}/_ah/api/{name}/{version}/{path}validate'.format(
             hostname=http_headers['host'],
             name=self.api_info.name,
-            version=self.api_info.version,
+            version=self.api_info.api_version,
             path=self.api_info.path or '',
         )
     )
