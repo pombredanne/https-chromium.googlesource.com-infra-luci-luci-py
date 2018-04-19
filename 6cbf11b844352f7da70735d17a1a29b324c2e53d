@@ -1,0 +1,233 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81062cdb_42a94083",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "I find these names non-descriptive. Suggestion that I believe improves readability:\n\n  # Digests that the caller waits for, see wait_on()/wait().\n  self._waiting_on \u003d set()\n  # Digests from _waiting_on set that have been already fetched but not yet returned by wait().\n  self._waiting_on_ready \u003d set()",
+      "range": {
+        "startLine": 760,
+        "startChar": 4,
+        "endLine": 760,
+        "endChar": 32
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d6c7bc9_471d56c9",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "nit: \"\"\"Updates digests to be waited on by \u0027wait\u0027.\"\"\"\n\nFetchQueue processes items that are not necessarily in this set, e.g. when we load *.isolated during GetIsolated stage, we process ALL files, but wait only for *.isolated.",
+      "range": {
+        "startLine": 801,
+        "startChar": 4,
+        "endLine": 801,
+        "endChar": 53
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82692096_f6a5b3e8",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "nit:\n  self._waiting_on_ready.update(self._fetched \u0026 s)\n  self._waiting_on.update(s - self._waiting_on_ready)",
+      "range": {
+        "startLine": 804,
+        "startChar": 4,
+        "endLine": 805,
+        "endChar": 70
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae76f396_5514d0d4",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "nit: \n  def wait():\n    \"\"\"Waits until any of waited-on items is retrieved.\n\n    Once this happens, it is remove from the waited-on set and returned.\n    \n    If the waited-on set is empty, fails with RuntimeError.\n    \"\"\"",
+      "range": {
+        "startLine": 807,
+        "startChar": 2,
+        "endLine": 807,
+        "endChar": 22
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c64128a_d3f2649d",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "nit:\n\n  # Wait for some waited-on item to finished fetching.",
+      "range": {
+        "startLine": 816,
+        "startChar": 4,
+        "endLine": 816,
+        "endChar": 54
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3a9cc35_d3c3d985",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "Need an assert before this loop that self._waiting_on is not empty, since caller must wait for something when it calls \u0027wait\u0027.",
+      "range": {
+        "startLine": 817,
+        "startChar": 4,
+        "endLine": 817,
+        "endChar": 9
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6117195_ad79131a",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "need to add new property\n\n  @property\n  def waiting_on_count(self):\n    \"\"\"Number of items in the wait-on set.\n\n    Includes both pending items, and items already fetched but not \n    yet popped by wait().\n    \"\"\"\n    return len(self._waiting_on) + len(self._waiting_on_ready)\n\nIt will be used by the assert below.",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b709ad9d_1cbcb58b",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "This is not necessary, retrieve_async already updates wait_on correctly.",
+      "range": {
+        "startLine": 1562,
+        "startChar": 4,
+        "endLine": 1562,
+        "endChar": 32
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d328bb23_efec6a05",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "# And we aren\u0027t waiting for any more *.isolated files.\nassert fetch_queue.waiting_on_count \u003d\u003d 0\n\nThis is important because if this assert is not true, wait() below in fetch_isolated (when fetching actual files) will see items it has no idea about (it didn\u0027t add it), and will be confused greatly.",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbe2d8be_fe97dab2",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "nit: I think it would be better if this is moved to line 1738",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb199b79_0928f631",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T03:28:14Z",
+      "side": 1,
+      "message": "can put assert here too\n\n# Fetched all files we\u0027ve been waiting for\nassert fetch_queue.waiting_on_count \u003d\u003d 0",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
