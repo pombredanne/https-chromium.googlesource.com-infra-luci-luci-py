@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0ebfa9cf_f5850367",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adaa38ab_22b11707",
+      "range": {
+        "startLine": 760,
+        "startChar": 4,
+        "endLine": 760,
+        "endChar": 32
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d6c7bc9_471d56c9",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b54d1409_9b72ea16",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d6c7bc9_471d56c9",
+      "range": {
+        "startLine": 801,
+        "startChar": 4,
+        "endLine": 801,
+        "endChar": 53
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82692096_f6a5b3e8",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -83,6 +131,30 @@
       "writtenOn": "2018-04-19T03:28:14Z",
       "side": 1,
       "message": "nit:\n  self._waiting_on_ready.update(self._fetched \u0026 s)\n  self._waiting_on.update(s - self._waiting_on_ready)",
+      "range": {
+        "startLine": 804,
+        "startChar": 4,
+        "endLine": 805,
+        "endChar": 70
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7965e78d_a91d0ccc",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "I generally do not trust operator overloading as they are ambiguous based on the type. In practice, since all call sites are now single items, I switched it to accept a single item. The drawback is that this means more python calls but I think it\u0027s fine.",
+      "parentUuid": "82692096_f6a5b3e8",
       "range": {
         "startLine": 804,
         "startChar": 4,
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "df54d9ce_992d58f4",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae76f396_5514d0d4",
+      "range": {
+        "startLine": 807,
+        "startChar": 2,
+        "endLine": 807,
+        "endChar": 22
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c64128a_d3f2649d",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -129,6 +225,30 @@
       "writtenOn": "2018-04-19T03:28:14Z",
       "side": 1,
       "message": "nit:\n\n  # Wait for some waited-on item to finished fetching.",
+      "range": {
+        "startLine": 816,
+        "startChar": 4,
+        "endLine": 816,
+        "endChar": 54
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49e3d285_ba6c869c",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "# Wait for one waited-on item to be fetched.",
+      "parentUuid": "6c64128a_d3f2649d",
       "range": {
         "startLine": 816,
         "startChar": 4,
@@ -164,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "315b2988_f4ca8e8e",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "It\u0027ll hang, I don\u0027t think the assert is necessary. I.e. it\u0027s not a silent failure.\nI want to reduce the number of asserts, they are surprisingly costly in python.",
+      "parentUuid": "c3a9cc35_d3c3d985",
+      "range": {
+        "startLine": 817,
+        "startChar": 4,
+        "endLine": 817,
+        "endChar": 9
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e6117195_ad79131a",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -175,6 +319,24 @@
       "writtenOn": "2018-04-19T03:28:14Z",
       "side": 1,
       "message": "need to add new property\n\n  @property\n  def waiting_on_count(self):\n    \"\"\"Number of items in the wait-on set.\n\n    Includes both pending items, and items already fetched but not \n    yet popped by wait().\n    \"\"\"\n    return len(self._waiting_on) + len(self._waiting_on_ready)\n\nIt will be used by the assert below.",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7818a8d1_b55ee555",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "Not needed IMHO.",
+      "parentUuid": "e6117195_ad79131a",
       "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -204,6 +366,30 @@
     },
     {
       "key": {
+        "uuid": "6d73d865_1921e333",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b709ad9d_1cbcb58b",
+      "range": {
+        "startLine": 1562,
+        "startChar": 4,
+        "endLine": 1562,
+        "endChar": 32
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d328bb23_efec6a05",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -215,6 +401,24 @@
       "writtenOn": "2018-04-19T03:28:14Z",
       "side": 1,
       "message": "# And we aren\u0027t waiting for any more *.isolated files.\nassert fetch_queue.waiting_on_count \u003d\u003d 0\n\nThis is important because if this assert is not true, wait() below in fetch_isolated (when fetching actual files) will see items it has no idea about (it didn\u0027t add it), and will be confused greatly.",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9f46bca_85f83479",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "I think the failure wouldn\u0027t be silent, so I think it\u0027s fine.",
+      "parentUuid": "d328bb23_efec6a05",
       "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -238,6 +442,24 @@
     },
     {
       "key": {
+        "uuid": "e25a7831_ba52a8eb",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbe2d8be_fe97dab2",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb199b79_0928f631",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -249,6 +471,24 @@
       "writtenOn": "2018-04-19T03:28:14Z",
       "side": 1,
       "message": "can put assert here too\n\n# Fetched all files we\u0027ve been waiting for\nassert fetch_queue.waiting_on_count \u003d\u003d 0",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "388b007b_f992c288",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T14:11:25Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s necessary, since if this were to happen, it wouldn\u0027t be a silent failure. I like asserts for things that could fail silently.",
+      "parentUuid": "eb199b79_0928f631",
       "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
