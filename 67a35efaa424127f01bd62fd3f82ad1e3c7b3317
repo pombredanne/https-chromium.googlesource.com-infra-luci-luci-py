@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f581f87_9dbbce9d",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T21:12:32Z",
+      "side": 1,
+      "message": "it is quite possible now if waiting_on set is empty. Either add an assert above as I proposed or change the message.",
+      "range": {
+        "startLine": 835,
+        "startChar": 23,
+        "endLine": 835,
+        "endChar": 41
+      },
+      "revId": "67a35efaa424127f01bd62fd3f82ad1e3c7b3317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

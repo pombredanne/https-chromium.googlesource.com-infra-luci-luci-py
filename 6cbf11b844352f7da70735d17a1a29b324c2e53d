@@ -308,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "60ee7841_073fd04b",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T21:12:32Z",
+      "side": 1,
+      "message": "Asserts are not about \"silent\" or \"not silent\" errors. Asserts are about ensuring the state of the program is what we expect, because if it is corrupted, a failure may happen at a very distant part of the code, and it will require debugging session to trace back the state corruption back to the source.\n\nAsserts in python are just \u0027if\u0027 conditions. They are as costly as the body of this condition. Checking that the set is empty is very fast.",
+      "parentUuid": "315b2988_f4ca8e8e",
+      "range": {
+        "startLine": 817,
+        "startChar": 4,
+        "endLine": 817,
+        "endChar": 9
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e6117195_ad79131a",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -425,6 +449,24 @@
     },
     {
       "key": {
+        "uuid": "f2d469c1_5839a6c9",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T21:12:32Z",
+      "side": 1,
+      "message": "I disagree with this reasoning. The failure will be KeyError exception on line 1749, which is not immediately related to the code here.",
+      "parentUuid": "f9f46bca_85f83479",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbe2d8be_fe97dab2",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -489,6 +531,24 @@
       "side": 1,
       "message": "I don\u0027t think it\u0027s necessary, since if this were to happen, it wouldn\u0027t be a silent failure. I like asserts for things that could fail silently.",
       "parentUuid": "eb199b79_0928f631",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a5d1c2d_3baaab79",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-19T21:12:32Z",
+      "side": 1,
+      "message": "If the were to happen, it WOULD be silent. FetchQueue will silently fetch stuff that no one is waiting for: useless stuff it shouldn\u0027t be fetching.",
+      "parentUuid": "388b007b_f992c288",
       "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
