@@ -820,6 +820,9 @@ def schedule_request(request, secret_bytes):
     # job, which would remove this code from the critical path.
     datastore_utils.transaction(run_parent)
 
+  if deduped:
+    _maybe_pubsub_notify_via_tq(result_summary, request)
+
   ts_mon_metrics.on_task_requested(result_summary, deduped)
   return result_summary
 
