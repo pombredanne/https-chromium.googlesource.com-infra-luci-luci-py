@@ -45,6 +45,30 @@
       "revId": "23ceb6c301f396d7b10f8b3e4a37b022cfd56e33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1748048_b1961bd2",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-19T00:00:44Z",
+      "side": 0,
+      "message": "A bug in a previous patchset caused this test to trigger, but this code was correct. Restored.",
+      "parentUuid": "7b91e8ff_b0ae89b3",
+      "range": {
+        "startLine": 442,
+        "startChar": 5,
+        "endLine": 442,
+        "endChar": 42
+      },
+      "revId": "23ceb6c301f396d7b10f8b3e4a37b022cfd56e33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
