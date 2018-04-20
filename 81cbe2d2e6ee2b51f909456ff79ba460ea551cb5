@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee6e5b9a_80bac2c2",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T15:39:59Z",
+      "side": 1,
+      "message": "Don\u0027t assert here, it has to be validated at validation time. See\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/config.py?l\u003d135",
+      "revId": "81cbe2d2e6ee2b51f909456ff79ba460ea551cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
