@@ -16,6 +16,47 @@
       "revId": "d27443957d1a43b1687e49e1fb398f898ed6e7f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e98440b_617c3fd1",
+        "filename": "client/utils/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-20T18:25:03Z",
+      "side": 1,
+      "message": "Add \u0027response\u0027 field to HttpError class and make engines set it to a correctly constructed instance of HttpResponse(...) when they raise the exception.",
+      "parentUuid": "38d6c469_6dee471d",
+      "revId": "d27443957d1a43b1687e49e1fb398f898ed6e7f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d7906b_a4927f20",
+        "filename": "client/utils/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-20T18:25:03Z",
+      "side": 1,
+      "message": "last_error here can be TimeoutError or ConnectionError which doesn\u0027t have a response inside.",
+      "range": {
+        "startLine": 541,
+        "startChar": 32,
+        "endLine": 541,
+        "endChar": 43
+      },
+      "revId": "d27443957d1a43b1687e49e1fb398f898ed6e7f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
