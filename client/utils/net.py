@@ -378,7 +378,8 @@ class HttpService(object):
       stream=True,
       method=None,
       headers=None,
-      follow_redirects=True):
+      follow_redirects=True,
+      return_response_error=False):
     """Attempts to open the given url multiple times.
 
     |urlpath| is relative to the server root, i.e. '/some/request?param=1'.
@@ -413,6 +414,9 @@ class HttpService(object):
     for more than |read_timeout| seconds. It can happen during any read
     operation so once you pass non-None |read_timeout| be prepared to handle
     these exceptions in subsequent reads from the stream.
+
+    If |return_response_error| is True, it return the reponse even in case of
+    HTTP >= 400.
 
     Returns a file-like object, where the response may be read from, or None
     if it was unable to connect. If |stream| is False will read whole response
@@ -499,6 +503,10 @@ class HttpService(object):
             logging.error(
                 'Use auth.py to login if haven\'t done so already:\n'
                 '    python auth.py login --service=%s', self.urlhost)
+          if return_response_error:
+            # self.engine
+            r = e.inner_exc.response
+            return HttpResponse(r, request.get_full_url(), r.headers)
           return None
 
         # Hit a error that can not be retried -> stop retry loop.
@@ -514,6 +522,10 @@ class HttpService(object):
           logging.error(
               'Request to %s failed with HTTP status code %d: %s',
               request.get_full_url(), e.code, self._extract_error_message(e))
+          if return_response_error:
+            # self.engine
+            r = e.inner_exc.response
+            return HttpResponse(r, request.get_full_url(), r.headers)
           return None
 
         # Retry all other errors.
@@ -526,6 +538,10 @@ class HttpService(object):
         'Unable to open given url, %s, after %d attempts.\n%s',
         request.get_full_url(), max_attempts,
         self._format_error(last_error, verbose=True))
+    if return_response_error and last_error:
+      # self.engine
+      r = last_error.inner_exc.response
+      return HttpResponse(r, request.get_full_url(), r.headers)
     return None
 
   def json_request(self, urlpath, data=None, **kwargs):
