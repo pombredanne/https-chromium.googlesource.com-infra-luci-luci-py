@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d79a6c9c_dc52590c",
+        "filename": "appengine/swarming/server/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T17:22:08Z",
+      "side": 1,
+      "message": "All URLs are errors? Maybe a unit test would have caught this \u003cwink\u003e \u003cwink\u003e",
+      "revId": "524049824f9c7762a95583fea9bc98df422caa17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
