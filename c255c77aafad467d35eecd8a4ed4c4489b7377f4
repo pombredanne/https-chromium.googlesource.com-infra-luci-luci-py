@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78ca0f6b_1866946b",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T17:14:59Z",
+      "side": 1,
+      "message": "csp[\u0027child-src\u0027].extend(extra)",
+      "revId": "c255c77aafad467d35eecd8a4ed4c4489b7377f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59f6749e_ba5a0cf1",
+        "filename": "appengine/swarming/server/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T17:14:59Z",
+      "side": 1,
+      "message": "You need to use the context to raise an error so it is correctly reported, not use assert directly which will only result in an HTTP 500;\n\n  ctx.error(\u0027must be https\u0027)",
+      "revId": "c255c77aafad467d35eecd8a4ed4c4489b7377f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
