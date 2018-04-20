@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0afe8c7_55e9cf02",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-20T21:02:32Z",
+      "side": 1,
+      "message": "why not less hacky \u0027isinstance(exc, HttpError)\u0027?",
+      "range": {
+        "startLine": 573,
+        "startChar": 4,
+        "endLine": 573,
+        "endChar": 61
+      },
+      "revId": "c49ba6a6f6a7dbdb2e3dd965b85768656839cc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa7ff905_a00cff77",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-20T21:02:32Z",
+      "side": 1,
+      "message": "There are two problem here:\n\n1. This is wrong \u0027resp\u0027. Its type depends on the engine being used. Sometimes it is request.Response, sometimes it is urllib2.Response. It should always be HttpResponse(...), same as the response type on successes.\n2. This response contains file-like object inside, that can be read only once. And _extract_response_details has already read it. So if callers will try to read it again, stuff will fail.\n\nI think this should be replaced as follows:\n\n1. Add \u0027response\u0027 field to HttpError class, of type \u0027HttpResponse\u0027.\n2. Make the engine populate it when it raises HttpError.\n3. Get rid of _extract_response_details and parse_request_exception. All this information now can be obtained from exc.response.\n4. Do not read response body when logging errors if \u0027return_response_error\u0027 is True. Or alternatively read and buffer error bodies in the engine, to be able to log them and return them at the same time.\n\nI can do it if you like.\n\nIdeally, we should ALWAYS raise exceptions (that have HttpResponse inside) on errors and ALWAYS return value HttpResponse on success. Returning None is BS :( The whole API of this function is BS :(",
+      "range": {
+        "startLine": 575,
+        "startChar": 6,
+        "endLine": 575,
+        "endChar": 10
+      },
+      "revId": "c49ba6a6f6a7dbdb2e3dd965b85768656839cc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
