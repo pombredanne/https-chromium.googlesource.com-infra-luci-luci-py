@@ -332,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "db1057ca_f89086f8",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ee7841_073fd04b",
+      "range": {
+        "startLine": 817,
+        "startChar": 4,
+        "endLine": 817,
+        "endChar": 9
+      },
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6117195_ad79131a",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -361,6 +385,24 @@
       "side": 1,
       "message": "Not needed IMHO.",
       "parentUuid": "e6117195_ad79131a",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b91723_e9907446",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T00:28:33Z",
+      "side": 1,
+      "message": "I named it wait_queue_empty instead, so asserts are for it to be True.",
+      "parentUuid": "7818a8d1_b55ee555",
       "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -467,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "b411aee3_4ca4e983",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2d469c1_5839a6c9",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbe2d8be_fe97dab2",
         "filename": "client/isolateserver.py",
         "patchSetId": 7
@@ -552,6 +612,24 @@
       "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce54588c_5eac5aea",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a5d1c2d_3baaab79",
+      "revId": "6cbf11b844352f7da70735d17a1a29b324c2e53d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
