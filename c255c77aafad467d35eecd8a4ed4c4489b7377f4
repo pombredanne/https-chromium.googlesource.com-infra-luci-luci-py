@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "382ca855_7f75f75f",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-20T17:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78ca0f6b_1866946b",
+      "revId": "c255c77aafad467d35eecd8a4ed4c4489b7377f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59f6749e_ba5a0cf1",
         "filename": "appengine/swarming/server/config.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "c255c77aafad467d35eecd8a4ed4c4489b7377f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46dcee6c_ea930312",
+        "filename": "appengine/swarming/server/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-04-20T17:19:22Z",
+      "side": 1,
+      "message": "Herp derp.  Fixed.",
+      "parentUuid": "59f6749e_ba5a0cf1",
+      "revId": "c255c77aafad467d35eecd8a4ed4c4489b7377f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
