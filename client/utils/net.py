@@ -99,7 +99,7 @@ class HttpError(NetError):
     super(HttpError, self).__init__(inner_exc)
     self.code = code
     self.content_type = content_type
-    self._details = None  # (list with header pairs, response body)
+    self._details = None  # (response, list with header pairs, response body)
 
   def _extract_response_details(self, engine):
     """Returns pair (response headers or None, response body or None)."""
@@ -378,7 +378,8 @@ class HttpService(object):
       stream=True,
       method=None,
       headers=None,
-      follow_redirects=True):
+      follow_redirects=True,
+      return_response_error=False):
     """Attempts to open the given url multiple times.
 
     |urlpath| is relative to the server root, i.e. '/some/request?param=1'.
@@ -413,6 +414,9 @@ class HttpService(object):
     for more than |read_timeout| seconds. It can happen during any read
     operation so once you pass non-None |read_timeout| be prepared to handle
     these exceptions in subsequent reads from the stream.
+
+    If |return_response_error| is True, it return the reponse even in case of
+    HTTP >= 400.
 
     Returns a file-like object, where the response may be read from, or None
     if it was unable to connect. If |stream| is False will read whole response
@@ -499,6 +503,8 @@ class HttpService(object):
             logging.error(
                 'Use auth.py to login if haven\'t done so already:\n'
                 '    python auth.py login --service=%s', self.urlhost)
+          if return_response_error:
+            return self._get_error_response(e, request)
           return None
 
         # Hit a error that can not be retried -> stop retry loop.
@@ -514,6 +520,8 @@ class HttpService(object):
           logging.error(
               'Request to %s failed with HTTP status code %d: %s',
               request.get_full_url(), e.code, self._extract_error_message(e))
+          if return_response_error:
+            return self._get_error_response(e, request)
           return None
 
         # Retry all other errors.
@@ -526,6 +534,8 @@ class HttpService(object):
         'Unable to open given url, %s, after %d attempts.\n%s',
         request.get_full_url(), max_attempts,
         self._format_error(last_error, verbose=True))
+    if return_response_error and last_error:
+      return self._get_error_response(last_error, request)
     return None
 
   def json_request(self, urlpath, data=None, **kwargs):
@@ -558,6 +568,13 @@ class HttpService(object):
                     urlpath, e, text)
       return None
 
+  def _get_error_response(self, exc, request):
+    """Returns an HttpResponse from an HTTP exception else None."""
+    extract = getattr(exc, '_extract_response_details', None)
+    if extract:
+      resp, _, _ = extract(self.engine)
+      return HttpResponse(resp, request.get_full_url(), resp.headers)
+
   def _format_error(self, exc, verbose=False):
     """Returns detailed description of a NetError."""
     if not isinstance(exc, NetError):
@@ -565,7 +582,7 @@ class HttpService(object):
     if not verbose or not isinstance(exc, HttpError):
       return str(exc.inner_exc or exc)
     out = [str(exc.inner_exc or exc)]
-    headers, body = exc._extract_response_details(self.engine)
+    _resp, headers, body = exc._extract_response_details(self.engine)
     if headers or body:
       out.append('----------')
       if headers:
@@ -579,7 +596,7 @@ class HttpService(object):
 
   def _extract_error_message(self, exc):
     """Attempts to extract a user friendly error message from HttpError body."""
-    headers, body = exc._extract_response_details(self.engine)
+    _resp, headers, body = exc._extract_response_details(self.engine)
     if not headers or not body:
       return '<no error message>'
 
@@ -704,8 +721,8 @@ class RequestsLibEngine(object):
   def parse_request_exception(cls, exc):
     """Extracts HTTP headers and body from inner exceptions put in HttpError."""
     if isinstance(exc, requests.HTTPError):
-      return exc.response.headers.items(), exc.response.content
-    return None, None
+      return exc.response, exc.response.headers.items(), exc.response.content
+    return None, None, None
 
   @classmethod
   def timeout_exception_classes(cls):

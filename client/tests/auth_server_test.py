@@ -282,7 +282,7 @@ class LocalAuthHttpServiceTest(auto_stub.TestCase):
       @classmethod
       def parse_request_exception(cls, exc):
         del exc  # Unused argument
-        return None, None
+        return None, None, None
 
     return net.HttpService(
         url,

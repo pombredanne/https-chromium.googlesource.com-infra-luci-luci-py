@@ -5,6 +5,7 @@
 
 # pylint: disable=R0201,W0613
 
+import BaseHTTPServer
 import StringIO
 import __builtin__
 import contextlib
@@ -12,6 +13,7 @@ import logging
 import math
 import os
 import sys
+import threading
 import unittest
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
@@ -101,7 +103,7 @@ class HttpServiceTest(RetryLoopMockedTest):
         return ()
       @classmethod
       def parse_request_exception(cls, exc):
-        return None, None
+        return None, None, None
 
     return net.HttpService(
         url,
@@ -376,6 +378,28 @@ class TestNetFunctions(auto_stub.TestCase):
     ]
     for value, expected in data:
       self.assertEqual(expected, net.fix_url(value))
+
+  def test_request_HTTP_error_retry_return_error(self):
+    # Do a full request with no mock. Start a local web server instead.
+    class h(BaseHTTPServer.BaseHTTPRequestHandler):
+      def log_message(self, *args):
+        pass
+      def do_GET(self):
+        self.send_response(500)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        self.wfile.write('{"valid":"json"}')
+    s = BaseHTTPServer.HTTPServer(('127.0.0.1', 0), h)
+    url = 'http://%s:%d/' % (s.server_name, s.server_port)
+    t = threading.Thread(target=s.serve_forever, args=(0.1,))
+    t.daemon = True
+    t.start()
+    try:
+      response = net.url_open(url, return_response_error=True, max_attempts=1)
+      self.assertEqual('{"valid":"json"}', response.read())
+    finally:
+      s.shutdown()
+      t.join()
 
 
 if __name__ == '__main__':
