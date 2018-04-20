@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38d6c469_6dee471d",
+        "filename": "client/utils/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T18:12:41Z",
+      "side": 1,
+      "message": "I know it should use something via self.engine (I kept the comment above) but I\u0027m not sure what\u0027s the best way to pass this. A new method on the engine classes?",
+      "revId": "d27443957d1a43b1687e49e1fb398f898ed6e7f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
