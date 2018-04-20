@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65dfe0b5_16bf9bf9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-20T21:56:06Z",
+      "side": 1,
+      "message": "Could just split by -, but since it\u0027s cached it probably doesn\u0027t matter too much.\n\nFYI list of zones: https://cloud.google.com/compute/docs/regions-zones/",
+      "revId": "c833c172cf0ad55bda64078c837822ec11d0eb90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
