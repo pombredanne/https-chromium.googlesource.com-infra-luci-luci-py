@@ -158,6 +158,17 @@ def _validate_settings(cfg, ctx):
     with ctx.prefix('mp.server '):
       _validate_url(cfg.mp.server, ctx)
 
+  if cfg.HasField('display_server_url_template'):
+    with ctx.prefix('display_server_url_template '):
+      url = cfg.display_server_url_template
+      if not url.startswith('https://'):
+        ctx.error('URL %s must be https' % url)
+
+  if cfg.HasField('extra_child_src_csp_url'):
+    with ctx.prefix('extra_child_src_csp_url '):
+      for url in cfg.extra_child_src_csp_url:
+         ctx.error('URL %s must be https' % url)
+
 
 @utils.memcache('config:get_configs_url', time=60)
 def _get_configs_url():
