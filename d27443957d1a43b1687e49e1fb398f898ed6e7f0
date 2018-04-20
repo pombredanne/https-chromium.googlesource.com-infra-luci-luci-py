@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "06a69f11_8b39a3d8",
+        "filename": "client/utils/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T18:44:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e98440b_617c3fd1",
+      "revId": "d27443957d1a43b1687e49e1fb398f898ed6e7f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8d7906b_a4927f20",
         "filename": "client/utils/net.py",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2018-04-20T18:25:03Z",
       "side": 1,
       "message": "last_error here can be TimeoutError or ConnectionError which doesn\u0027t have a response inside.",
+      "range": {
+        "startLine": 541,
+        "startChar": 32,
+        "endLine": 541,
+        "endChar": 43
+      },
+      "revId": "d27443957d1a43b1687e49e1fb398f898ed6e7f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dce42ed2_e557cc65",
+        "filename": "client/utils/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-20T18:44:57Z",
+      "side": 1,
+      "message": "Done by probing if _extract_response_details is a member of exc in _get_error_response",
+      "parentUuid": "f8d7906b_a4927f20",
       "range": {
         "startLine": 541,
         "startChar": 32,
