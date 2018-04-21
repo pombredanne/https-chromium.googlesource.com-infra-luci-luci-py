@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55af2125_588f48c1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-21T00:41:20Z",
+      "side": 1,
+      "message": "list is not necessary.\n\ndimensions[u\u0027device_gms_core_version\u0027] \u003d sorted(gms_core_versions) or [\u0027unknown\u0027]",
+      "revId": "dfb54f3cb10e843125e864d245f95e160f345445",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
