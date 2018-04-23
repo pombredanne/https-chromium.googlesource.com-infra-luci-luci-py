@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c706e3d_75cfb8d1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-23T14:18:17Z",
+      "side": 1,
+      "message": "Remove [:] here, it\u0027s not needed.",
+      "revId": "ce67eae4a9c28ece048124316df00267b6a77c44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
