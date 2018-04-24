@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c3e2747_6b8a1370",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-24T23:57:45Z",
+      "side": 1,
+      "message": "style police trigger warning :P",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87cbbbd4_26cfc24e",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-24T23:57:45Z",
+      "side": 1,
+      "message": "out \u003d [desc, \u0027----------\u0027]",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac1330c0_cc104b0f",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-24T23:57:45Z",
+      "side": 1,
+      "message": "if not self.response.headers, return nothing?",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8ac7099_05920bb4",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-24T23:57:45Z",
+      "side": 1,
+      "message": "We can remove this soonish. \\o/",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "915da1d0_b94b1143",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-24T23:57:45Z",
+      "side": 1,
+      "message": "This means that the response is always consumed in case of 401,403?",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43c5e292_1a9088d2",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-24T23:57:45Z",
+      "side": 1,
+      "message": "We must not forget to update the other engine implementation. (Mostly a note to self)",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
