@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b44b996_2b197e14",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-25T20:43:07Z",
+      "side": 1,
+      "message": "a JSON",
+      "range": {
+        "startLine": 1407,
+        "startChar": 11,
+        "endLine": 1407,
+        "endChar": 18
+      },
+      "revId": "38bda90961f9df04dc4553d445875eda879f6780",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "691ada0c_75fd5c8b",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-25T20:43:07Z",
+      "side": 1,
+      "message": "Unrelated to this CL: I\u0027m a little uncertain about usage of the term RPC -- are all requests to an API endpoint considered RPC, even if they\u0027re not gRPC/pRPC requests?",
+      "range": {
+        "startLine": 1407,
+        "startChar": 19,
+        "endLine": 1407,
+        "endChar": 22
+      },
+      "revId": "38bda90961f9df04dc4553d445875eda879f6780",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afd36c23_9796103e",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-25T20:43:07Z",
+      "side": 1,
+      "message": "Optional: To be more precise: \"HTTP response code\"",
+      "range": {
+        "startLine": 1411,
+        "startChar": 5,
+        "endLine": 1411,
+        "endChar": 10
+      },
+      "revId": "38bda90961f9df04dc4553d445875eda879f6780",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da8b1073_6cd1501b",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-25T20:43:07Z",
+      "side": 1,
+      "message": "Optional: Probably could test a couple more things here, like empty output or incorrect invocation (e.g. multiple endpoint names, nonexistent endpoint name). But given that this is a command that can be directly invoked, if you\u0027ve manually tested these things once that\u0027s probably OK.",
+      "revId": "38bda90961f9df04dc4553d445875eda879f6780",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
