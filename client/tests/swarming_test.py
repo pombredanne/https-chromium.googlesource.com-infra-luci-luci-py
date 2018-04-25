@@ -1413,6 +1413,23 @@ class TestMain(NetTestCase):
           '--task-output-dir', '/b', '--task-output-stdout', 'all'])
     self._check_output('Fake output\n', '')
 
+  def test_post(self):
+    out = StringIO.StringIO()
+    self.mock(sys, 'stdin', StringIO.StringIO('{"a":"b"}'))
+    self.mock(sys, 'stdout', out)
+    self.expected_requests(
+        [
+          (
+            'http://localhost:1/api/swarming/v1/tasks/new',
+            {'data': '{"a":"b"}', 'method': 'POST'},
+            '{"yo":"dawg"}',
+            {},
+          ),
+        ])
+    ret = self.main_safe(['post', '-S', 'http://localhost:1', 'tasks/new'])
+    self.assertEqual(0, ret)
+    self.assertEqual('{"yo":"dawg"}', out.getvalue())
+
   def test_query_base(self):
     self.expected_requests(
         [
