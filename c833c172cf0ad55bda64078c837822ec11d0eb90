@@ -16,6 +16,24 @@
       "revId": "c833c172cf0ad55bda64078c837822ec11d0eb90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8b7a244_9a805660",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T20:04:11Z",
+      "side": 1,
+      "message": "The reason for the regexp is that I see value in exposing us-central and us-central1. Maybe it\u0027s not useful to export both, but it\u0027s basically free to, and maybe someone will find this useful one day (?)\n\nI added a comment with the URL, it\u0027s a good doc page.",
+      "parentUuid": "65dfe0b5_16bf9bf9",
+      "revId": "c833c172cf0ad55bda64078c837822ec11d0eb90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
