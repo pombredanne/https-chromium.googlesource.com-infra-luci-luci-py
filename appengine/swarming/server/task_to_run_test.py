@@ -80,7 +80,7 @@ def _gen_properties(**kwargs):
 
 
 def _gen_request_slices(**kwargs):
-  """Creates a new style TaskRequest."""
+  """Creates a TaskRequest."""
   now = utils.utcnow()
   args = {
     u'created_ts': now,
@@ -97,23 +97,15 @@ def _gen_request_slices(**kwargs):
 
 
 def _gen_request(properties=None, **kwargs):
-  """Creates an old style TaskRequest."""
-  now = utils.utcnow()
-  properties = properties or {}
-  args = {
-    u'created_ts': now,
-    u'name': u'Request name',
-    u'priority': 50,
-    u'properties': _gen_properties(**properties),
-    u'expiration_ts': now + datetime.timedelta(seconds=60),
-    u'manual_tags': [u'tag:1'],
-    u'user': u'Jesus',
-  }
-  args.update(kwargs)
-  # Note that ndb model constructor accepts dicts for structured properties.
-  req = task_request.TaskRequest(**args)
-  task_request.init_new_request(req, True)
-  return req
+  """Creates a TaskRequest with one task slice."""
+  return _gen_request_slices(
+    task_slices=[
+      {
+        u'expiration_secs': 60,
+        u'properties': _gen_properties(**(properties or {})),
+      },
+    ],
+    **kwargs)
 
 
 def _yield_next_available_task_to_dispatch(bot_dimensions, deadline):

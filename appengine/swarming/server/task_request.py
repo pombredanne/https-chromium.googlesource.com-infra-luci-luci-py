@@ -770,6 +770,10 @@ class TaskSlice(ndb.Model):
     out['properties'] = self.properties.to_dict()
     return out
 
+  def _pre_put_hook(self):
+    super(TaskSlice, self)._pre_put_hook()
+    self.properties._pre_put_hook()
+
 
 class TaskRequest(ndb.Model):
   """Contains a user request.
@@ -936,6 +940,7 @@ class TaskRequest(ndb.Model):
       raise datastore_errors.BadValueError(
           'exactly one of properties or task_slices must be used')
 
+    assert not self.properties
     if self.properties:
       # Old style TaskProperties.
       self.properties._pre_put_hook()
@@ -1067,10 +1072,11 @@ def create_termination_task(bot_id):
       expiration_ts=now + datetime.timedelta(days=1),
       name=u'Terminate %s' % bot_id,
       priority=0,
-      # TODO(maruel): Use task_slice. crbug.com/781021
-      properties=properties,
+      task_slices=[
+        TaskSlice(expiration_secs=24*60*60, properties=properties),
+      ],
       manual_tags=[u'terminate:1'])
-  assert request.properties.is_terminate
+  assert request.task_slice(0).properties.is_terminate
   init_new_request(request, True)
   return request
 
@@ -1222,11 +1228,6 @@ def init_new_request(request, allow_high_priority):
   request.service_account = request.service_account or u'none'
   request.service_account_token = None
 
-  # This is useful to categorize the task.
-  assert not request.tags, 'Fix call site'
-  all_tags = set(request.manual_tags).union(_get_automatic_tags(request))
-  request.tags = sorted(all_tags)
-
   if request.task_slices:
     exp = 0
     for t in request.task_slices:
@@ -1235,6 +1236,11 @@ def init_new_request(request, allow_high_priority):
     # message_conversion.new_task_request_from_rpc() ensures both task_slices
     # and expiration_secs cannot be used simultaneously.
     request.expiration_ts = request.created_ts + datetime.timedelta(seconds=exp)
+
+  # This is useful to categorize the task.
+  assert not request.tags, 'Fix call site'
+  all_tags = set(request.manual_tags).union(_get_automatic_tags(request))
+  request.tags = sorted(all_tags)
 
 
 def validate_priority(priority):

@@ -61,23 +61,39 @@ def gen_props(**kwargs):
   return task_request.TaskProperties(**out)
 
 
-def gen_request(**kwargs):
+def gen_request_slices(**kwargs):
   """Returns an initialized task_request.TaskRequest."""
   now = utils.utcnow()
   args = {
     # Don't be confused, this is not part of the API. This code is constructing
     # a DB entity, not a swarming_rpcs.NewTaskRequest.
     u'created_ts': now,
+    u'manual_tags': [u'tag:1'],
     u'name': u'yay',
     u'priority': 50,
-    u'expiration_ts': now + datetime.timedelta(seconds=60),
-    u'manual_tags': [u'tag:1'],
+    u'task_slices': [
+      {
+        u'expiration_secs': 60,
+        u'properties': gen_props(),
+      },
+    ],
     u'user': u'Jesus',
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)
   task_request.init_new_request(ret, True)
   return ret
+
+
+def gen_request(properties, **kwargs):
+  """Returns an initialized task_request.TaskRequest."""
+  return gen_request_slices(
+    task_slices=[
+      {
+        u'expiration_secs': 60,
+        u'properties': properties,
+      },
+    ])
 
 
 def get_results(request_key):
