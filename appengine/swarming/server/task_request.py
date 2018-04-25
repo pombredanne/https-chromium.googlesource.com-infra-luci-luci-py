@@ -940,6 +940,7 @@ class TaskRequest(ndb.Model):
       raise datastore_errors.BadValueError(
           'exactly one of properties or task_slices must be used')
 
+    assert not self.properties
     if self.properties:
       # Old style TaskProperties.
       self.properties._pre_put_hook()
@@ -1071,10 +1072,11 @@ def create_termination_task(bot_id):
       expiration_ts=now + datetime.timedelta(days=1),
       name=u'Terminate %s' % bot_id,
       priority=0,
-      # TODO(maruel): Use task_slice. crbug.com/781021
-      properties=properties,
+      task_slices=[
+        TaskSlice(expiration_secs=24*60*60, properties=properties),
+      ],
       manual_tags=[u'terminate:1'])
-  assert request.properties.is_terminate
+  assert request.task_slice(0).properties.is_terminate
   init_new_request(request, True)
   return request
 
