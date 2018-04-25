@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "2dbce831_fdc132a9",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T00:52:15Z",
+      "side": 1,
+      "message": "Err, somehow I misread as this being aligned inside the condition. Brain fart.",
+      "parentUuid": "183177a4_2e93eaff",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8ac7099_05920bb4",
         "filename": "client/utils/net.py",
         "patchSetId": 2
