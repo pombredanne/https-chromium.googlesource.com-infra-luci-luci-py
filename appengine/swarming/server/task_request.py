@@ -948,70 +948,52 @@ class TaskRequest(ndb.Model):
 
   def _pre_put_hook(self):
     super(TaskRequest, self)._pre_put_hook()
-    if bool(self.properties) == bool(self.task_slices):
-      raise datastore_errors.BadValueError(
-          'exactly one of properties or task_slices must be used')
-
     if self.properties:
-      # Old style TaskProperties.
+      raise datastore_errors.BadValueError(
+          'old style TaskRequest.properties is not supported anymore')
+    if not self.task_slices:
+      raise datastore_errors.BadValueError('task_slices is missing')
+    if len(self.task_slices) > 8:
+      # The objects are large so use a low limit to start, and increase if
+      # there's user request.
+      raise datastore_errors.BadValueError(
+          'A maximum of 8 task_slices is supported')
+    for tslice in self.task_slices:
       # _pre_put_hook() doesn't recurse correctly into
       # ndb.LocalStructuredProperty. Call the function manually.
-      self.properties._pre_put_hook()
-      if self.properties.is_terminate:
-        if not self.priority == 0:
-          raise datastore_errors.BadValueError(
-              'terminate request must be priority 0')
-      elif self.priority == 0:
+      tslice._pre_put_hook()
+
+    term = sum(1 for t in self.task_slices if t.properties.is_terminate)
+    if term > 1 or (term and len(self.task_slices) > 1):
+      # Revisit this if this becomes a use case, e.g. "try to run this,
+      # otherwise terminate the bot". In any case, terminate must be last.
+      raise datastore_errors.BadValueError(
+          'terminate request must be used alone')
+    if term:
+      if not self.priority == 0:
+        raise datastore_errors.BadValueError(
+            'terminate request must be priority 0')
+    else:
+      if self.priority == 0:
         raise datastore_errors.BadValueError(
             'priority 0 can only be used for terminate request')
-      _check_expiration_secs(
-          'expiration_ts',
-          int(round((self.expiration_ts - self.created_ts).total_seconds())))
-    else:
-      # New style TaskSlice.
-      if len(self.task_slices) > 8:
-        # The objects are large so use a low limit to start, and increase if
-        # there's user request.
-        raise datastore_errors.BadValueError(
-            'A maximum of 8 task_slices is supported')
 
-      for tslice in self.task_slices:
-        # _pre_put_hook() doesn't recurse correctly into
-        # ndb.LocalStructuredProperty. Call the function manually.
-        tslice._pre_put_hook()
+    if len(self.task_slices) != 1:
+      # https://crbug.com/781021
+      # This will change soon.
+      raise datastore_errors.BadValueError(
+          'multiple task_slices is not yet implemented')
 
-      term = sum(1 for t in self.task_slices if t.properties.is_terminate)
-      if term > 1 or (term and len(self.task_slices) > 1):
-        # Revisit this if this becomes a use case, e.g. "try to run this,
-        # otherwise terminate the bot". In any case, terminate must be last.
-        raise datastore_errors.BadValueError(
-            'terminate request must be used alone')
-
-      if term:
-        if not self.priority == 0:
+    # They must use the exact same id or pool dimensions.
+    for key in (u'id', u'pool'):
+      v = self.task_slice(0).properties.dimensions.get(key)
+      for i in xrange(1, self.num_task_slices):
+        t = self.task_slice(i)
+        w = t.properties.dimensions.get(key)
+        if v != w:
           raise datastore_errors.BadValueError(
-              'terminate request must be priority 0')
-      else:
-        if self.priority == 0:
-          raise datastore_errors.BadValueError(
-              'priority 0 can only be used for terminate request')
-
-      if len(self.task_slices) != 1:
-        # https://crbug.com/781021
-        # This will change soon.
-        raise datastore_errors.BadValueError(
-            'multiple task_slices is not yet implemented')
-
-      # They must use the exact same id or pool dimensions.
-      for key in (u'id', u'pool'):
-        v = self.task_slice(0).properties.dimensions.get(key)
-        for i in xrange(1, self.num_task_slices):
-          t = self.task_slice(i)
-          w = t.properties.dimensions.get(key)
-          if v != w:
-            raise datastore_errors.BadValueError(
-                u'each task slice must use the same %s dimensions; %s != %s' %
-                (key, v, w))
+              u'each task slice must use the same %s dimensions; %s != %s' %
+              (key, v, w))
 
     if len(self.manual_tags) > 256:
       raise datastore_errors.BadValueError(
@@ -1087,10 +1069,11 @@ def create_termination_task(bot_id):
       expiration_ts=now + datetime.timedelta(days=1),
       name=u'Terminate %s' % bot_id,
       priority=0,
-      # TODO(maruel): Use task_slice. crbug.com/781021
-      properties=properties,
+      task_slices=[
+        TaskSlice(expiration_secs=24*60*60, properties=properties),
+      ],
       manual_tags=[u'terminate:1'])
-  assert request.properties.is_terminate
+  assert request.task_slice(0).properties.is_terminate
   init_new_request(request, True)
   return request
 
