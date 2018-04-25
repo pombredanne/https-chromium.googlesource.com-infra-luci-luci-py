@@ -80,7 +80,7 @@ def _gen_properties(**kwargs):
 
 
 def _gen_request_slices(**kwargs):
-  """Creates a new style TaskRequest."""
+  """Creates a TaskRequest."""
   now = utils.utcnow()
   args = {
     u'created_ts': now,
@@ -96,24 +96,17 @@ def _gen_request_slices(**kwargs):
   return req
 
 
-def _gen_request(properties=None, **kwargs):
-  """Creates an old style TaskRequest."""
-  now = utils.utcnow()
-  properties = properties or {}
-  args = {
-    u'created_ts': now,
-    u'name': u'Request name',
-    u'priority': 50,
-    u'properties': _gen_properties(**properties),
-    u'expiration_ts': now + datetime.timedelta(seconds=60),
-    u'manual_tags': [u'tag:1'],
-    u'user': u'Jesus',
-  }
-  args.update(kwargs)
-  # Note that ndb model constructor accepts dicts for structured properties.
-  req = task_request.TaskRequest(**args)
-  task_request.init_new_request(req, True)
-  return req
+def _gen_request(properties, **kwargs):
+  """Creates a TaskRequest with one task slice."""
+  assert 'expiration_ts' not in kwargs
+  return _gen_request_slices(
+    task_slices=[
+      {
+        u'expiration_secs': 60,
+        u'properties': _gen_properties(**(properties or {})),
+      },
+    ],
+    **kwargs)
 
 
 def _yield_next_available_task_to_dispatch(bot_dimensions, deadline):
@@ -169,6 +162,13 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     to_run.put()
     return request, to_run
 
+  def _gen_new_task_to_run_slices(self, nb_task, **kwargs):
+    """Returns TaskRequest, TaskToRun saved in the DB."""
+    request = self.mkreq(nb_task, _gen_request_slices(**kwargs))
+    to_run = task_to_run.new_task_to_run(request, 1, 0)
+    to_run.put()
+    return request, to_run
+
   def test_all_apis_are_tested(self):
     actual = frozenset(i[5:] for i in dir(self) if i.startswith('test_'))
     # Contains the list of all public APIs.
@@ -179,14 +179,14 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertFalse(missing)
 
   def test_task_to_run_key_to_request_key(self):
-    request = self.mkreq(1, _gen_request())
+    request = self.mkreq(1, _gen_request(properties=_gen_properties()))
     task_key = task_to_run.request_to_task_to_run_key(request, 1, 0)
     actual = task_to_run.task_to_run_key_to_request_key(task_key)
     self.assertEqual(request.key, actual)
 
   def test_request_to_task_to_run_key(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    request = self.mkreq(1, _gen_request())
+    request = self.mkreq(1, _gen_request(properties=_gen_properties()))
     # Ensures that the hash value is constant for the same input.
     self.assertEqual(
         ndb.Key('TaskRequest', 0x7e296460f77ff77e, 'TaskToRun', 1),
@@ -273,46 +273,52 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       task_to_run.new_task_to_run(request, 1, 1)
 
   def test_new_task_to_run_limits(self):
-    request = self.mkreq(1, _gen_request())
+    request = self.mkreq(1, _gen_request(properties=_gen_properties()))
     with self.assertRaises(AssertionError):
       task_to_run.new_task_to_run(request, 0, 0)
     task_to_run.new_task_to_run(request, 1, 0)
     task_to_run.new_task_to_run(request, 2, 0)
     with self.assertRaises(AssertionError):
       task_to_run.new_task_to_run(request, 3, 0)
-    # This is an assert instead of a ValueError because it is enforced at the
+    # This is an index instead of a ValueError because it is enforced at the
     # TaskRequest creation time.
-    with self.assertRaises(AssertionError):
+    with self.assertRaises(IndexError):
       task_to_run.new_task_to_run(request, 1, 1)
 
   def test_new_task_to_run_list(self):
     self.mock(random, 'getrandbits', lambda _: 0x12)
     request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
-    data = _gen_request(
-        properties={
-          'command': [u'command1', u'arg1'],
-          'dimensions': request_dimensions,
-          'env': {u'foo': u'bar'},
-          'execution_timeout_secs': 30,
-        },
+    data = _gen_request_slices(
         priority=20,
         created_ts=self.now,
-        expiration_ts=self.now+datetime.timedelta(seconds=31))
+        task_slices=[
+          {
+            'expiration_secs': 31,
+            'properties': _gen_properties(
+                command=[u'command1', u'arg1'],
+                dimensions=request_dimensions,
+                env={u'foo': u'bar'},
+                execution_timeout_secs=30),
+          },
+        ])
     request = self.mkreq(1, data)
     task_to_run.new_task_to_run(request, 1, 0).put()
 
     # Create a second with higher priority.
     self.mock(random, 'getrandbits', lambda _: 0x23)
-    data = _gen_request(
-        properties={
-          'command': [u'command1', u'arg1'],
-          'dimensions': request_dimensions,
-          'env': {u'foo': u'bar'},
-          'execution_timeout_secs': 30,
-        },
+    data = _gen_request_slices(
         priority=10,
         created_ts=self.now,
-        expiration_ts=self.now+datetime.timedelta(seconds=31))
+        task_slices=[
+          {
+            'expiration_secs': 31,
+            'properties': _gen_properties(
+                command=[u'command1', u'arg1'],
+                dimensions=request_dimensions,
+                env={u'foo': u'bar'},
+                execution_timeout_secs=30),
+          },
+        ])
     task_to_run.new_task_to_run(self.mkreq(0, data), 1, 0).put()
 
     expected = [
@@ -713,10 +719,15 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, actual)
 
   def test_yield_expired_task_to_run(self):
-    self._gen_new_task_to_run(
+    self._gen_new_task_to_run_slices(
         1,
         created_ts=self.now,
-        expiration_ts=self.now+datetime.timedelta(seconds=60))
+        task_slices=[
+          {
+            'expiration_secs': 60,
+            'properties': _gen_properties(),
+          },
+        ])
     bot_dimensions = {u'id': [u'bot1'], u'pool': [u'default']}
     self.assertEqual(
         0,
