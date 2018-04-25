@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3e66307d_d2b28453",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T22:18:44Z",
+      "side": 1,
+      "message": "That\u0027s another legacy feature that comes from refactoring the task dimensions to allow multiple values for named cache support, but I decided to not touch this for now. Eventually this will be cleaned up.",
+      "parentUuid": "1d6cf950_8d9dc207",
+      "revId": "69e92540e673a0c6c30df81ac26729930d8bbfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58510d81_446380e0",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 4
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "d3f2991e_b87c2baa",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T22:18:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58510d81_446380e0",
+      "range": {
+        "startLine": 182,
+        "startChar": 21,
+        "endLine": 182,
+        "endChar": 22
+      },
+      "revId": "69e92540e673a0c6c30df81ac26729930d8bbfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "619075dd_3f086c10",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 4
@@ -62,6 +104,30 @@
       "revId": "69e92540e673a0c6c30df81ac26729930d8bbfc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37ff8da0_13488275",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T22:18:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "619075dd_3f086c10",
+      "range": {
+        "startLine": 278,
+        "startChar": 17,
+        "endLine": 278,
+        "endChar": 22
+      },
+      "revId": "69e92540e673a0c6c30df81ac26729930d8bbfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
