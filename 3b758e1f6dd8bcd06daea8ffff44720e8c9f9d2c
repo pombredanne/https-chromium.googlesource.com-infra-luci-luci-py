@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4c20adf5_02c52e96",
+        "filename": "client/tests/net_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "Done. It is go muscle memory taking precedence now...",
+      "parentUuid": "eb97f943_33a3d618",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1573eafb_2703cdd7",
         "filename": "client/utils/net.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-04-25T00:01:13Z",
       "side": 1,
       "message": "That\u0027s quite broad :/",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd639c45_6e3f05d0",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "This is \"catch an exception while reporting an exception\" kind of situation (since \u0027description()\u0027 is used to log error details in an exception handler). We don\u0027t want it to raise unexpected errors itself.",
+      "parentUuid": "1573eafb_2703cdd7",
       "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "87f665a7_330f4ebd",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "You mean double quotes? Done.",
+      "parentUuid": "6c3e2747_6b8a1370",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87cbbbd4_26cfc24e",
         "filename": "client/utils/net.py",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17d83e2f_bb4e7118",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87cbbbd4_26cfc24e",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "183177a4_2e93eaff",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "No, we also log the body, see line 147.",
+      "parentUuid": "ac1330c0_cc104b0f",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8ac7099_05920bb4",
         "filename": "client/utils/net.py",
         "patchSetId": 2
@@ -101,6 +191,24 @@
       "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e67ad5b5_ccbbc682",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8ac7099_05920bb4",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "1954d100_fe675c3a",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "Yeah, in this CL at least. I\u0027ll think of how to avoid this in next CL.",
+      "parentUuid": "915da1d0_b94b1143",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "654ffaea_a5c1cb72",
         "filename": "client/utils/net.py",
         "patchSetId": 2
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "afca3e4c_a1611fee",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "654ffaea_a5c1cb72",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43c5e292_1a9088d2",
         "filename": "client/utils/net.py",
         "patchSetId": 2
@@ -152,6 +296,24 @@
       "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28d8d049_2f824ed3",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-04-25T00:45:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "43c5e292_1a9088d2",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
