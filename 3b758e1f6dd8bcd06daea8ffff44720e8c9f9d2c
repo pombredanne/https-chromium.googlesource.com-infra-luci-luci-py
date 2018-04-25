@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "eb97f943_33a3d618",
+        "filename": "client/tests/net_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T00:01:13Z",
+      "side": 1,
+      "message": "single?",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1573eafb_2703cdd7",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T00:01:13Z",
+      "side": 1,
+      "message": "That\u0027s quite broad :/",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c3e2747_6b8a1370",
         "filename": "client/utils/net.py",
         "patchSetId": 2
@@ -81,6 +115,23 @@
       "writtenOn": "2018-04-24T23:57:45Z",
       "side": 1,
       "message": "This means that the response is always consumed in case of 401,403?",
+      "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "654ffaea_a5c1cb72",
+        "filename": "client/utils/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-25T00:01:13Z",
+      "side": 1,
+      "message": "not really necessary",
       "revId": "3b758e1f6dd8bcd06daea8ffff44720e8c9f9d2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
