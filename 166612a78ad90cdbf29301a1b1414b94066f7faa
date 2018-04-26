@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f192969_431b1f6d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-26T03:58:31Z",
+      "side": 1,
+      "message": "My interpretation is of this comment is: The task_slices property includes the at least one TaskSlice, which describes what to run. When there is more than one TaskSlice, the later entries are only used in the case of task fallback.\n\n(I\u0027m not sure if that interpretation is correct since I\u0027m not very familiar with this.)",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 807,
+        "endChar": 36
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "502871b1_dcc270d5",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-26T03:58:31Z",
+      "side": 1,
+      "message": "term seems like a potentially ambiguous abbreviation. Would terminate_count be too long?",
+      "range": {
+        "startLine": 968,
+        "startChar": 4,
+        "endLine": 968,
+        "endChar": 8
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9ab55bb_24a7e33e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-26T03:58:31Z",
+      "side": 1,
+      "message": "\"All task slices in any one request\"?",
+      "range": {
+        "startLine": 989,
+        "startChar": 6,
+        "endLine": 989,
+        "endChar": 10
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
