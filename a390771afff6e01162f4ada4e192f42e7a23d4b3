@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "078a17a1_f2147f66",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-26T16:10:51Z",
+      "side": 1,
+      "message": "Does \"commit\" mean the same as \"put\" in the context of Datastore? If so, and if \"put\" is more common, you could change this comment to say \"pre-put checks\".",
+      "range": {
+        "startLine": 400,
+        "startChar": 42,
+        "endLine": 400,
+        "endChar": 48
+      },
+      "revId": "a390771afff6e01162f4ada4e192f42e7a23d4b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a357724c_5d123fd6",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-26T16:10:51Z",
+      "side": 1,
+      "message": "I know there are also other long-ish test methods with multiple asserts in this file now, but I think this part may be easier read if you split this up into 4 separate test methods with descriptive names, e.g.:\n\n    test_request_with_no_pool_denied\n    test_request_with_no_command_denied\n    test_request_with_no_timeout_denied\n    test_valid_request_accepted\n\n(Related to http://go/tott-520)",
+      "revId": "a390771afff6e01162f4ada4e192f42e7a23d4b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9b73412_798eaca5",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-26T16:10:51Z",
+      "side": 1,
+      "message": "Just a thought, unrelated to this CL:\n\nIn a code review a long time ago, someone told me that the words \"new\" and \"old\" code-rot the fastest, i.e. it\u0027s easy to accidentally leave in a name somewhere that says \"new\" or \"old\" some time after the change.\n\nAn example I just saw: a couple comments in the layout test runner code say \"NRWT\" (new-run-webkit-tests), which is a reference to how there was previously an \"old run-webkit-tests\" at least 5-10 years ago.",
+      "range": {
+        "startLine": 689,
+        "startChar": 19,
+        "endLine": 689,
+        "endChar": 37
+      },
+      "revId": "a390771afff6e01162f4ada4e192f42e7a23d4b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
