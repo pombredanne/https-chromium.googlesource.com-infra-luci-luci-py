@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "d7ff346c_4ab3e94c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T15:32:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ead9b83_d41a988c",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 807,
+        "endChar": 36
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "502871b1_dcc270d5",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 10
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "I think I\u0027m still not very clear about this - it sounds like maybe it\u0027s optional that all slices have the same id dimension, but given the code below, it looks like they indeed must all have the same ID dimension.\n\nI guess \"optional\" here means that id can be absent, but if it\u0027s absent from any then it must be absent from all of the slices. If that\u0027s the case, maybe no need to mention (required/optional) here?",
       "parentUuid": "b31b2168_fa52de1b",
+      "range": {
+        "startLine": 989,
+        "startChar": 6,
+        "endLine": 989,
+        "endChar": 10
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e046f8a1_d775f971",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T15:32:07Z",
+      "side": 1,
+      "message": "Ok, changed as:\n\n    # All task slices in a single task request must use the exact same \u0027pool\u0027\n    # and \u0027id\u0027 dimension value.",
+      "parentUuid": "281d9171_5e122e3a",
       "range": {
         "startLine": 989,
         "startChar": 6,
