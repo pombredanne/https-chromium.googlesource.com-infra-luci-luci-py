@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "78d7626f_6eb49b34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T20:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3798b0d_4d4f0889",
+      "range": {
+        "startLine": 9,
+        "startChar": 65,
+        "endLine": 9,
+        "endChar": 72
+      },
+      "revId": "edce20d5fb33cdd1bdda65fec4a36ecc36913789",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e583a017_e41ffaef",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "edce20d5fb33cdd1bdda65fec4a36ecc36913789",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc275fa3_fabcd2dc",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T20:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e583a017_e41ffaef",
+      "revId": "edce20d5fb33cdd1bdda65fec4a36ecc36913789",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
