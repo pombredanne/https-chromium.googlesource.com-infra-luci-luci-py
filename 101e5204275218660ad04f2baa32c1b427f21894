@@ -19,6 +19,303 @@
     },
     {
       "key": {
+        "uuid": "9e4dcded_c31367cc",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "how a \"message type\" can be a boolean field? a message cannot be a boolean. I think you mean \"field_type\", not \"message_type\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 5,
+        "endLine": 32,
+        "endChar": 42
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "831a4cfc_b6d6e66a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "should we use `is` here?",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "632948fa_d21190ec",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "i am not sure how this is supposed to work. variant is a property of an instance of IntegerField. \n\nwhy we are not accepting the field itself?\n\n  if instanceof(field, IntegerField):\n    if field.variant in (...)",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a02c9cdf_2036b2f1",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "the default endpoints1 behavior of not specifying variant when declaring an IntegerField is that its variant is int64 and it is important to preserve that. See also my comment in the test",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa39e328_f9648a7c",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "Please return (None, None) to make callers life easier and to make it more readable\nalternatively, throw an exception because message_type is unexpected",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a8b6ba6_d0481b4f",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "how can instances of protorpc.messages.Message be sorted? they don\u0027t define an order, do they?\ndid you mean to pass key parameter to sorted?",
+      "range": {
+        "startLine": 87,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 16
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2413abf3_acc52aa0",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "some of the code in this block initializes items and some initializes field_properties, in somewhat arbitrary order. I think this code would be more readable if there was a piece focode that initializes items, and THEN another piece that initializes field_properties and does not mutate items.\n\nplease move field_properties and these two if statements to L139",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e364c60b_8b940304",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "isinstance(field, messages.MessageField)\nsame for other types",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 45
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b237dff_08d67254",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "checking seen only before adding a type to the queue isn\u0027t sufficient because we add to seen only when start processing the item. The following may happen:\n  \n  process A, check X in seen, add X to types\n  process B, check X in seen (still not there), add X to types (added for the second time)\n\nfurther, related to my comment @L149, what if add_schemas was called twice on a given set of types? It would add them twice. Perhaps we should initialize seen with definition_names of what is already in document[\u0027schemas\u0027]. If there is no use case to call add_schemas twice on a given doc, let\u0027s simplify the signature of the function: instead of mutating a document, just return the constructed schema. It would be the responsibility of the caller to add/merge/whatever schemas into the doc correctly",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 127,
+        "endChar": 34
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdecd82a_bbfb4246",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "dup l114-115",
+      "range": {
+        "startLine": 136,
+        "startChar": 9,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d8b1c28_b0217589",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "is there a test for this? i didn\u0027t see one",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97657052_2215278b",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "this can be falsy iff the types parameter value was empty from the start. Let\u0027s check that. Then we don\u0027t need this if statement",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43f99d55_f1ec1dbf",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "this overwrites existing schemas, although the function is called add_schemas.",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95078781_b18ad9a5",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "this must be slower and less readable (I have to think whether VoidMessage implements equality operator) then using isinstance",
+      "range": {
+        "startLine": 189,
+        "startChar": 7,
+        "endLine": 189,
+        "endChar": 50
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b900eca_a6fc6a87",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "there are also methods[name][\u0027parameters\u0027]\nsee search method in\nhttps://cr-buildbucket.appspot.com/_ah/api/discovery/v1/apis/buildbucket/v1/rest\n\nthat\u0027s because the request is a ResourceContainer",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35cb8d84_c5290eeb",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -30,6 +327,23 @@
       "writtenOn": "2018-04-26T02:17:59Z",
       "side": 1,
       "message": "Technically this is supposed to say \"View your email address\" for the email scope. Endpoints v2 hard codes this string and that\u0027s the only scope which has a human-readable description. Every other scope just has name \u003d\u003d description. Seems pointless to me though.\n\nhttps://github.com/cloudendpoints/endpoints-python/blob/master/endpoints/api_config.py#L82",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c67a8cd6_da4b36a3",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "are we not including _ah intentionally? we will need _ah eventually when apps switch to the adapter and turn off endpoints",
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -64,6 +378,46 @@
       "writtenOn": "2018-04-26T02:17:59Z",
       "side": 1,
       "message": "These URLs differ on Endpoints v1. I\u0027m using the v2 paths.",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b790c81_37ec808a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "this pattern was repeated a few times. I think it is OK to write\n\n  \u0027description\u0027: normalize_whitespace(service.api_info.description or service.__doc__)\n\nin the worst case, we will have \u0027description\u0027: \u0027\u0027",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bf79aa9_4372f1b9",
+        "filename": "appengine/components/components/discovery_webapp2_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T07:01:31Z",
+      "side": 1,
+      "message": "this must be a string",
+      "range": {
+        "startLine": 115,
+        "startChar": 23,
+        "endLine": 115,
+        "endChar": 30
+      },
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
