@@ -511,6 +511,24 @@
     },
     {
       "key": {
+        "uuid": "8a81a873_4ddb5145",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "it is fine now because we no longer have the condition",
+      "parentUuid": "9e091d0f_0b6b6052",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43f99d55_f1ec1dbf",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -543,6 +561,24 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cbc850d_16c1d303",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "my suggestion to make this function pure",
+      "parentUuid": "fe2a245d_329c65b8",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -590,6 +626,30 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c21fd8f_91370316",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e890849_2b713c65",
+      "range": {
+        "startLine": 189,
+        "startChar": 7,
+        "endLine": 189,
+        "endChar": 50
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -674,6 +734,24 @@
       "side": 1,
       "message": "The webapp2 routes do not hit /_ah/api they hit /api, so I\u0027m intentionally excluding /_ah so the generated document is for pure webapp2 routes.",
       "parentUuid": "c67a8cd6_da4b36a3",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ed12ada_016b0cda",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "we will have to change this because the goal is to replace handle _ah paths with the webapp2 handlers, so this should be customizable",
+      "parentUuid": "9e1afaa2_58798d2d",
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

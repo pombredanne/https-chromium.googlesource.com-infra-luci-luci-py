@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfe899a3_e70165dd",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "do we still need getattr? doesn\u0027t it work just with field.variant? if so, we can inline variant",
+      "range": {
+        "startLine": 51,
+        "startChar": 14,
+        "endLine": 51,
+        "endChar": 45
+      },
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81f5bede_b88c3e01",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "FWIU you want to maintain the invariant that seen includes all types `types` variable, present currently or in the past, i.e. if a type X is in types or ever was there, it must be in seen. This is how we can guarantee that types variable is processed twice.\n\nthen what we have now is insufficient: imagine types initially having [A, B] and we are processing A that references B. It is not in seen, so we add it there again.\n\nPlease add a comment about the invariant close to the seen var declaration and maintain the invariant in all mutations to types variable. That means, right after L88 too.\n\nAlternatively, check seen in the beginning of the loop",
+      "range": {
+        "startLine": 123,
+        "startChar": 10,
+        "endLine": 123,
+        "endChar": 30
+      },
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be26c88d_42795860",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "the line below confused me for a few minutes until i realized that method.remote.request_type() is a getter of request type, but a class and the request_type variable is an *instance* of the class.\n\nplease rename this to request or request_instance. It is confusing currently.\n\nsame below",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 16
+      },
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "856db523_4a30017a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "nit: consider joining with the prev if",
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c9793c6_7060882a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "here is an example where we may have duplicates in \"types\" that we pass to _get_schemas, so checking seen only before adding a new type in that loop is insufficient",
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d03cc8ab_be62037f",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-26T22:36:18Z",
+      "side": 1,
+      "message": "this is the first line that uses document variable. please move document variable declaration closer to the usage",
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
