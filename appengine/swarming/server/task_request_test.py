@@ -829,10 +829,7 @@ class TaskRequestApiTest(TestCase):
           properties=_gen_properties(dimensions={u'pool': [u'GPU']})),
     ]
     _gen_request_slices(task_slices=slices).put()
-    req = _gen_request_slices(task_slices=slices * 2)
-    with self.assertRaises(datastore_errors.BadValueError):
-      # Will be supported soon.
-      req.put()
+    _gen_request_slices(task_slices=slices * 8).put()
     req = _gen_request_slices(task_slices=slices * 9)
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()

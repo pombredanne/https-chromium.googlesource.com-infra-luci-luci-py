@@ -890,7 +890,6 @@ class TaskRequest(ndb.Model):
   def task_slice(self, index):
     """Returns the TaskSlice at this index, supports old entities."""
     if self.properties_old:
-      assert index == 0, index
       t = TaskSlice(
           properties=self.properties_old, expiration_secs=self.expiration_secs)
     else:
@@ -979,12 +978,6 @@ class TaskRequest(ndb.Model):
       if self.priority == 0:
         raise datastore_errors.BadValueError(
             'priority 0 can only be used for terminate request')
-
-    if len(self.task_slices) != 1:
-      # https://crbug.com/781021
-      # This will change soon.
-      raise datastore_errors.BadValueError(
-          'multiple task_slices is not yet implemented')
 
     # They must use the exact same id or pool dimensions.
     for key in (u'id', u'pool'):

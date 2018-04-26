@@ -643,10 +643,27 @@ class TasksApiTest(BaseTest):
         u'expiration_secs': 180,
       },
     ]
-    # This will soon work.
-    with self.assertRaises(webtest.AppError):
-      self.client_create_task(
-          expiration_secs=None, task_slices=task_slices)
+    response, _ = self.client_create_task(
+        expiration_secs=None, task_slices=task_slices)
+    expected_props = self.gen_props(command=[u'python', u'run_test.py'])
+    expected = {
+      u'request': self.gen_request(
+          created_ts=fmtdate(self.now),
+          expiration_secs=u'360',
+          properties=expected_props,
+          task_slices=[
+            {
+              u'expiration_secs': u'180',
+              u'properties': expected_props,
+            },
+            {
+              u'expiration_secs': u'180',
+              u'properties': expected_props,
+            },
+          ]),
+      u'task_id': u'5cee488008810',
+    }
+    self.assertEqual(expected, response)
 
   def test_new_task_slices_two_denied(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
