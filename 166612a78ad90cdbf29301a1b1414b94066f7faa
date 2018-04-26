@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c0064f5_395bf2f3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T14:55:16Z",
+      "side": 1,
+      "message": "This is correct.",
+      "parentUuid": "4f192969_431b1f6d",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 807,
+        "endChar": 36
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "502871b1_dcc270d5",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6bf57954_da5c25fd",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502871b1_dcc270d5",
+      "range": {
+        "startLine": 968,
+        "startChar": 4,
+        "endLine": 968,
+        "endChar": 8
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9ab55bb_24a7e33e",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 10
@@ -59,6 +107,30 @@
       "writtenOn": "2018-04-26T03:58:31Z",
       "side": 1,
       "message": "\"All task slices in any one request\"?",
+      "range": {
+        "startLine": 989,
+        "startChar": 6,
+        "endLine": 989,
+        "endChar": 10
+      },
+      "revId": "166612a78ad90cdbf29301a1b1414b94066f7faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b31b2168_fa52de1b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T14:55:16Z",
+      "side": 1,
+      "message": "Reworded as:\n\n    # All task slices in a single task request must use the exact same pool\n    # dimension (required), and the same id (optional).",
+      "parentUuid": "b9ab55bb_24a7e33e",
       "range": {
         "startLine": 989,
         "startChar": 6,
