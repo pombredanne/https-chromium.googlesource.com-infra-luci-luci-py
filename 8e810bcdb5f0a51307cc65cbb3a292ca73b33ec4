@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d709b3fb_28bd6440",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "Removed for now.",
+      "parentUuid": "cfe899a3_e70165dd",
+      "range": {
+        "startLine": 51,
+        "startChar": 14,
+        "endLine": 51,
+        "endChar": 45
+      },
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81f5bede_b88c3e01",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acdbd400_6e535dab",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "Ah yeah, that\u0027s because seen.add() at the start of the loop is insufficient. Need to guarantee that seen contains anything that\u0027s ever been in types before the start of each iteration, which means we need to initialize seen to types instead. Fixed invariant and added explanation.",
+      "parentUuid": "81f5bede_b88c3e01",
+      "range": {
+        "startLine": 123,
+        "startChar": 10,
+        "endLine": 123,
+        "endChar": 30
+      },
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e0cb1a6e_77c766da",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "Then my earlier explanation was not correct and we can use isinstance. Renamed and done.",
+      "parentUuid": "be26c88d_42795860",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 16
+      },
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "856db523_4a30017a",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 2
@@ -85,6 +157,24 @@
       "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0f96af2_8b62a6f1",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "Line too long. I prefer this to multi-line ifs.",
+      "parentUuid": "856db523_4a30017a",
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "dadceae7_dacfe9f8",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "Right. Fixed in _get_schemas.",
+      "parentUuid": "8c9793c6_7060882a",
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d03cc8ab_be62037f",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 2
@@ -119,6 +227,24 @@
       "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ad1db16_90f5a00a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d03cc8ab_be62037f",
+      "revId": "8e810bcdb5f0a51307cc65cbb3a292ca73b33ec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

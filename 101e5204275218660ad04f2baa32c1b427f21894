@@ -758,6 +758,24 @@
     },
     {
       "key": {
+        "uuid": "8d549140_676f171b",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T23:02:18Z",
+      "side": 1,
+      "message": "I did not know that was the goal. I thought all clients needed to update to hit /api. Can you even serve /_ah paths? I thought those were reserved by Endpoints. At any rate, that\u0027s fine, I\u0027ll add it later. Eventually endpoints_webapp2.py will import this and the discovery service will be set up automatically when installing the services, the way Endpoints v1 works. So endpoints_webapp2.py will pass the path to use here.",
+      "parentUuid": "6ed12ada_016b0cda",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4fe537de_d475c113",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
