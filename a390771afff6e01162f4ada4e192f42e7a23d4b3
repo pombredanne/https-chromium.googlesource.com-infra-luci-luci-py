@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aa8040f7_477d3bca",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T16:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "078a17a1_f2147f66",
+      "range": {
+        "startLine": 400,
+        "startChar": 42,
+        "endLine": 400,
+        "endChar": 48
+      },
+      "revId": "a390771afff6e01162f4ada4e192f42e7a23d4b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a357724c_5d123fd6",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "ea5008d4_341fc360",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T16:58:32Z",
+      "side": 1,
+      "message": "Done, albeit I kept test_new_foo as explained below.",
+      "parentUuid": "a357724c_5d123fd6",
+      "revId": "a390771afff6e01162f4ada4e192f42e7a23d4b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9b73412_798eaca5",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2018-04-26T16:10:51Z",
       "side": 1,
       "message": "Just a thought, unrelated to this CL:\n\nIn a code review a long time ago, someone told me that the words \"new\" and \"old\" code-rot the fastest, i.e. it\u0027s easy to accidentally leave in a name somewhere that says \"new\" or \"old\" some time after the change.\n\nAn example I just saw: a couple comments in the layout test runner code say \"NRWT\" (new-run-webkit-tests), which is a reference to how there was previously an \"old run-webkit-tests\" at least 5-10 years ago.",
+      "range": {
+        "startLine": 689,
+        "startChar": 19,
+        "endLine": 689,
+        "endChar": 37
+      },
+      "revId": "a390771afff6e01162f4ada4e192f42e7a23d4b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3cbcd5b2_0533cdd0",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-26T16:58:32Z",
+      "side": 1,
+      "message": "\u0027new\u0027 means tasks/new, which is the request to create a new task. These tasks are in TasksApiTest which tests the \"tasks/\" API namespace, and then the format is \u0027test_\u0027 + rpc_name + context. In this case the RPC name is \u0027new\u0027.\n\nWell there\u0027s a few exceptions, the tests names are not 100% consistent but mostly. :)",
+      "parentUuid": "f9b73412_798eaca5",
       "range": {
         "startLine": 689,
         "startChar": 19,
