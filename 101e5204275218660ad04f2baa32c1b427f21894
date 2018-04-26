@@ -65,6 +65,54 @@
     },
     {
       "key": {
+        "uuid": "e3f9342d_6109ab0c",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "We could, but replaced with isinstance per your comment in add_schemas.",
+      "parentUuid": "831a4cfc_b6d6e66a",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9fbb3d6_5336fb09",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e4dcded_c31367cc",
+      "range": {
+        "startLine": 32,
+        "startChar": 5,
+        "endLine": 32,
+        "endChar": 42
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "632948fa_d21190ec",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -79,6 +127,24 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ebbcd36_b819df5e",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "632948fa_d21190ec",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +165,24 @@
     },
     {
       "key": {
+        "uuid": "2bd87e39_c7539d71",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "It actually is preserved, it\u0027s because I wasn\u0027t checking variants at all. An unspecified variant like in my test actually has a default variant which produces string, int64.",
+      "parentUuid": "a02c9cdf_2036b2f1",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa39e328_f9648a7c",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -113,6 +197,24 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "998c8bcb_394f37dc",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa39e328_f9648a7c",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -139,6 +241,30 @@
     },
     {
       "key": {
+        "uuid": "019d09a0_6b324248",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "It probably sorts by something useless like id. I don\u0027t care how it\u0027s sorted, I really just need something that you can mutate during iteration. Changed to list.",
+      "parentUuid": "6a8b6ba6_d0481b4f",
+      "range": {
+        "startLine": 87,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 16
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2413abf3_acc52aa0",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -153,6 +279,24 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e3bdca1_76cc9fa5",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "field_properties is used on line 124 in the \"items\" part of the code. Moved only the two if conditions.",
+      "parentUuid": "2413abf3_acc52aa0",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -179,6 +323,30 @@
     },
     {
       "key": {
+        "uuid": "328f1cff_7fc2f18a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e364c60b_8b940304",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 45
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b237dff_08d67254",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -199,6 +367,30 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "888e4314_f73ca8c8",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Done. Changed add_* to get_* and made it the caller\u0027s responsibility. Also added seen.add here in case the same message has two fields with the same type.",
+      "parentUuid": "8b237dff_08d67254",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 127,
+        "endChar": 34
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -225,6 +417,30 @@
     },
     {
       "key": {
+        "uuid": "0a6b9572_6d10fe15",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Endpoints v2 code has both, but once I added a test it ended up unnecessary. Removed.",
+      "parentUuid": "bdecd82a_bbfb4246",
+      "range": {
+        "startLine": 136,
+        "startChar": 9,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d8b1c28_b0217589",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -239,6 +455,24 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72a08123_29b84256",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d8b1c28_b0217589",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -259,6 +493,24 @@
     },
     {
       "key": {
+        "uuid": "9e091d0f_0b6b6052",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "True, but that would mismatch everywhere else in the file. For example, add_methods cannot check early if there are no methods and therefore needs the \"if x then document[\u0027x\u0027] \u003d x\" logic.",
+      "parentUuid": "97657052_2215278b",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43f99d55_f1ec1dbf",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -270,6 +522,24 @@
       "writtenOn": "2018-04-26T07:01:31Z",
       "side": 1,
       "message": "this overwrites existing schemas, although the function is called add_schemas.",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe2a245d_329c65b8",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "It means add_schemas to the document, not add_schemas to existing schemas. Any better naming suggestions?",
+      "parentUuid": "43f99d55_f1ec1dbf",
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -299,6 +569,30 @@
     },
     {
       "key": {
+        "uuid": "1e890849_2b713c65",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "We can\u0027t use isinstance because we don\u0027t have an instance of the request we have the request_type. We either have to create an instance of request_type or we have to create an instance of VoidMessage. VoidMessage would likely be more lightweight to init because both are messages.Message but VoidMessage has no fields. All messages implement __eq__ in the base class, VoidMessage doesn\u0027t implement it specifically.",
+      "parentUuid": "95078781_b18ad9a5",
+      "range": {
+        "startLine": 189,
+        "startChar": 7,
+        "endLine": 189,
+        "endChar": 50
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1b900eca_a6fc6a87",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -313,6 +607,24 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36deeed2_5cad73a9",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "Added TODO.",
+      "parentUuid": "1b900eca_a6fc6a87",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -344,6 +656,24 @@
       "writtenOn": "2018-04-26T07:01:31Z",
       "side": 1,
       "message": "are we not including _ah intentionally? we will need _ah eventually when apps switch to the adapter and turn off endpoints",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e1afaa2_58798d2d",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "The webapp2 routes do not hit /_ah/api they hit /api, so I\u0027m intentionally excluding /_ah so the generated document is for pure webapp2 routes.",
+      "parentUuid": "c67a8cd6_da4b36a3",
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -401,6 +731,24 @@
     },
     {
       "key": {
+        "uuid": "fb2beb78_33e2f5e7",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "That\u0027s what I initially thought, but existing discovery document generators seem to omit empty fields in virtually all cases. I\u0027m trying to match that behavior for now. Makes diffing my discovery document with existing services\u0027 documents easier.",
+      "parentUuid": "1b790c81_37ec808a",
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bf79aa9_4372f1b9",
         "filename": "appengine/components/components/discovery_webapp2_test.py",
         "patchSetId": 1
@@ -421,6 +769,30 @@
       "revId": "101e5204275218660ad04f2baa32c1b427f21894",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "571b35bc_7ce564c8",
+        "filename": "appengine/components/components/discovery_webapp2_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-04-26T22:16:45Z",
+      "side": 1,
+      "message": "It is, I just messed up checking variants.",
+      "parentUuid": "4bf79aa9_4372f1b9",
+      "range": {
+        "startLine": 115,
+        "startChar": 23,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "101e5204275218660ad04f2baa32c1b427f21894",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
