@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10bceee9_a7703e77",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-27T18:17:33Z",
+      "side": 1,
+      "message": "This will be changed to 8 once multiple TaskSlices are supported, so the delta to update the unit test will be 1 line. That\u0027s why I used len(slices) below.",
+      "revId": "3d127c001b03cdde7ead734a36a1dffb5b400afb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
