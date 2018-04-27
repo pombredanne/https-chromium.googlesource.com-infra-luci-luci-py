@@ -94,24 +94,26 @@ class State(object):
 
   It's in fact an enum. Values should be in decreasing order of importance.
   """
-  RUNNING = 0x10    # 16
-  PENDING = 0x20    # 32
-  EXPIRED = 0x30    # 48
-  TIMED_OUT = 0x40  # 64
-  BOT_DIED = 0x50   # 80
-  CANCELED = 0x60   # 96
-  COMPLETED = 0x70  # 112
-  KILLED = 0x80     # 128
+  RUNNING = 0x10      # 16
+  PENDING = 0x20      # 32
+  EXPIRED = 0x30      # 48
+  TIMED_OUT = 0x40    # 64
+  BOT_DIED = 0x50     # 80
+  CANCELED = 0x60     # 96
+  COMPLETED = 0x70    # 112
+  KILLED = 0x80       # 128
+  NO_RESOURCE = 0x100 # 256
 
   STATES = (
       RUNNING, PENDING, EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED,
-      KILLED)
+      KILLED, NO_RESOURCE)
   STATES_RUNNING = (RUNNING, PENDING)
   STATES_NOT_RUNNING = (
-      EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED, KILLED)
-  STATES_EXCEPTIONAL = (EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, KILLED)
-  STATES_DONE = (TIMED_OUT, COMPLETED, KILLED)
-  STATES_ABANDONED = (EXPIRED, BOT_DIED, CANCELED)
+      EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, COMPLETED, KILLED, NO_RESOURCE)
+  STATES_EXCEPTIONAL = (
+      EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, KILLED, NO_RESOURCE)
+  STATES_DONE = (TIMED_OUT, COMPLETED, KILLED, NO_RESOURCE)
+  STATES_ABANDONED = (EXPIRED, BOT_DIED, CANCELED, NO_RESOURCE)
 
   _NAMES = {
     RUNNING: 'Running',
@@ -122,6 +124,7 @@ class State(object):
     CANCELED: 'User canceled',
     COMPLETED: 'Completed',
     KILLED: 'Killed',
+    NO_RESOURCE: 'No resource',
   }
 
   @classmethod
@@ -1215,8 +1218,10 @@ def new_result_summary(request):
       tags=request.tags)
 
 
-def new_run_result(request, try_number, bot_id, bot_version, bot_dimensions):
+def new_run_result(request, to_run, bot_id, bot_version, bot_dimensions):
   """Returns a new TaskRunResult for a TaskRequest.
+
+  Initializes the immutable parts.
 
   The caller must save it in the DB.
   """
@@ -1224,10 +1229,11 @@ def new_run_result(request, try_number, bot_id, bot_version, bot_dimensions):
   summary_key = task_pack.request_key_to_result_summary_key(request.key)
   return TaskRunResult(
       key=task_pack.result_summary_key_to_run_result_key(
-          summary_key, try_number),
+          summary_key, to_run.try_number),
       bot_dimensions=bot_dimensions,
       bot_id=bot_id,
       bot_version=bot_version,
+      current_task_slice=to_run.task_slice_index,
       server_versions=[utils.get_app_version()])
 
 
