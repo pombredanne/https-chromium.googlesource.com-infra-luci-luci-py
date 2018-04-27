@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69436f82_c9dae59a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T18:04:08Z",
+      "side": 1,
+      "message": "It seems strange to me that we\u0027re using the term \"returns\" and the code says `raise`, since I haven\u0027t seen this convention before. But I see that this seems to be the convention for @ndb.tasklet.",
+      "revId": "3f0fbb6996fee66f2ef7110f6de22787fac58ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "391bccb5_292b8610",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T18:04:08Z",
+      "side": 1,
+      "message": "In the first argument, does nb_ stand for \"number of\"? If so, the second variable could perhaps also be nb_asserted or something else.\n\nAlso , to someone unfamiliar with the code (me), it kind of sounds like `asserted` might be equal to `len(bot_dimensions)`, but I think that\u0027s not the case here?",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 47
+      },
+      "revId": "3f0fbb6996fee66f2ef7110f6de22787fac58ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
