@@ -192,7 +192,10 @@ def _queue_number_priority(v):
 def _memcache_to_run_key(to_run_key):
   """Functional equivalent of task_result.pack_result_summary_key()."""
   request_key = task_to_run_key_to_request_key(to_run_key)
-  return '%x' % request_key.integer_id()
+  return '%x-%d-%d' % (
+      request_key.integer_id(),
+      task_to_run_key_try_number(to_run_key),
+      task_to_run_key_slice_index(to_run_key))
 
 
 @ndb.tasklet
