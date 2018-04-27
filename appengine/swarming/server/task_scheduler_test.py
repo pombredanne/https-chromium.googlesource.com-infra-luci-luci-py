@@ -232,23 +232,31 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(0, self.execute_tasks())
     return result_summary
 
-  def _register_bot(self, nb_task, bot_dimensions):
+  def _register_bot(self, nb_task, asserted, bot_dimensions):
     """Registers the bot so the task queues knows there's a worker than can run
     the task.
+
+    Arguments:
+      nb_task: number of AppEngine task queues enqueued (and run
+               synchronously).
+      asserted: number of BotTaskDimensions asserted, normally 0, 1 or None if
+                it was cached.
+      bot_dimensions: bot dimensions to assert.
     """
     self.assertEqual(0, self.execute_tasks())
     bot_management.bot_event(
         'bot_connected', bot_dimensions[u'id'][0], '1.2.3.4', 'joe@localhost',
         bot_dimensions, {'state': 'real'}, '1234', False, None, None)
-    task_queues.assert_bot_async(bot_dimensions).get_result()
+    self.assertEqual(
+        asserted, task_queues.assert_bot_async(bot_dimensions).get_result())
     self.assertEqual(nb_task, self.execute_tasks())
     self.assertEqual(0, self.execute_tasks())
 
-  def _quick_reap(self, nb_task, **kwargs):
+  def _quick_reap(self, nb_task, asserted, **kwargs):
     """Reaps a task."""
     self.assertEqual(0, self.execute_tasks())
     self._quick_schedule(nb_task, **kwargs)
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, asserted, self.bot_dimensions)
 
     reaped_request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
@@ -269,7 +277,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task(self):
     # Essentially check _quick_reap() works.
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     self.assertEqual('localhost', run_result.bot_id)
     self.assertEqual(1, run_result.try_number)
     to_run_key = task_to_run.request_to_task_to_run_key(
@@ -287,7 +295,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task_not_enough_time(self):
     result_summary = self._quick_schedule(1)
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, 1, self.bot_dimensions)
     actual_request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', datetime.datetime(1969, 1, 1))
     self.assertFalse(actual_request)
@@ -296,7 +304,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task_enough_time(self):
     result_summary = self._quick_schedule(1)
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, 1, self.bot_dimensions)
     actual_request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', datetime.datetime(3000, 1, 1))
     self.assertEqual('localhost', run_result.bot_id)
@@ -304,7 +312,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task_expired(self):
     result_summary = self._quick_schedule(1)
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, 1, self.bot_dimensions)
     # Forwards clock to get past expiration.
     self.mock_now(result_summary.request_key.get().expiration_ts, 1)
 
@@ -378,10 +386,18 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'topic': 'projects/abc/topics/def',
     }], calls)
 
-  def _task_ran_successfully(self, nb_task):
-    """Runs an idempotent task successfully and returns the task_id."""
+  def _task_ran_successfully(self, nb_task, asserted):
+    """Runs an idempotent task successfully and returns the task_id.
+
+    Arguments:
+      nb_task: number of AppEngine task queues enqueued (and run
+               synchronously).
+      asserted: number of BotTaskDimensions asserted, normally 0, 1 or None if
+                it was cached.
+    """
     run_result = self._quick_reap(
         nb_task,
+        asserted,
         task_slices=[
           task_request.TaskSlice(
               expiration_secs=60,
@@ -423,7 +439,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     to_run_key = task_to_run.request_to_task_to_run_key(request, 1, 0)
     # TaskToRun was not stored.
     self.assertEqual(None, to_run_key.get())
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, None, self.bot_dimensions)
     # Bot can't reap.
     reaped_request, _, _ = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
@@ -450,7 +466,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_task_idempotent(self):
     # First task is idempotent.
-    task_id = self._task_ran_successfully(1)
+    task_id = self._task_ran_successfully(1, 1)
 
     # Second task is deduped against first task.
     new_ts = self.mock_now(self.now, config.settings().reusable_task_age_secs-1)
@@ -458,7 +474,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_task_idempotent_old(self):
     # First task is idempotent.
-    self._task_ran_successfully(1)
+    self._task_ran_successfully(1, 1)
 
     # Second task is scheduled, first task is too old to be reused.
     new_ts = self.mock_now(self.now, config.settings().reusable_task_age_secs)
@@ -474,7 +490,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_task_idempotent_three(self):
     # First task is idempotent.
-    task_id = self._task_ran_successfully(1)
+    task_id = self._task_ran_successfully(1, 1)
 
     # Second task is deduped against first task.
     new_ts = self.mock_now(self.now, config.settings().reusable_task_age_secs-1)
@@ -501,11 +517,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock(config, 'settings', lambda: cfg)
 
     # First task is idempotent.
-    self._task_ran_successfully(1)
+    self._task_ran_successfully(1, 1)
 
     # Second task is scheduled, first task is too old to be reused.
     second_ts = self.mock_now(self.now, 10)
-    task_id = self._task_ran_successfully(0)
+    task_id = self._task_ran_successfully(0, None)
 
     # Now any of the 2 tasks could be reused. Assert the right one (the most
     # recent) is reused.
@@ -519,7 +535,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_task_parent_children(self):
     # Parent task creates a child task.
-    parent_id = self._task_ran_successfully(1)
+    parent_id = self._task_ran_successfully(1, 1)
     result_summary = self._quick_schedule(0, parent_task_id=parent_id)
     self.assertEqual([], result_summary.children_task_ids)
     self.assertEqual(parent_id, result_summary.request_key.get().parent_task_id)
@@ -533,6 +549,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_task_parent_isolated(self):
     run_result = self._quick_reap(
+        1,
         1,
         task_slices=[
           task_request.TaskSlice(
@@ -592,7 +609,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # A bot reaps the TaskToRun.
     reaped_ts = self.now + datetime.timedelta(seconds=60)
     self.mock_now(reaped_ts)
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, 1, self.bot_dimensions)
     reaped_request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
     self.assertEqual(result_summary.request_key.get(), reaped_request)
@@ -697,7 +714,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, [t.to_dict() for t in run_results])
 
   def test_exit_code_failure(self):
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     self.assertEqual(
         State.COMPLETED,
         task_scheduler.bot_update_task(
@@ -752,7 +769,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
           ])
 
   def test_bot_update_task(self):
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     self.assertEqual(
         State.RUNNING,
         task_scheduler.bot_update_task(
@@ -786,7 +803,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual('hihey', run_result.key.get().get_output())
 
   def test_bot_update_task_new_overwrite(self):
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     self.assertEqual(
         State.RUNNING,
         task_scheduler.bot_update_task(
@@ -820,7 +837,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual('hhey', run_result.key.get().get_output())
 
   def test_bot_update_exception(self):
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     def r(*_):
       raise datastore_utils.CommitError('Sorry!')
 
@@ -843,7 +860,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_update_pubsub_error(self):
     pub_sub_calls = self.mock_pub_sub()
-    run_result = self._quick_reap(1, pubsub_topic='projects/abc/topics/def')
+    run_result = self._quick_reap(1, 1, pubsub_topic='projects/abc/topics/def')
 
     # Attempt to terminate the task with success, but make PubSub call fail.
     self.publish_successful = False
@@ -883,7 +900,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(2, len(pub_sub_calls)) # notification is sent
 
   def _bot_update_timeouts(self, hard, io):
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     self.assertEqual(
         State.TIMED_OUT,
         task_scheduler.bot_update_task(
@@ -936,7 +953,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     expected = [20, 30, 40, 50, 100, 199, 200]
     self.assertEqual(expected, sorted(priorities))
 
-    self._register_bot(0, self.bot_dimensions)
+    self._register_bot(0, 0, self.bot_dimensions)
     # Triggers many tasks of different priorities.
     for i, p in enumerate(priorities):
       self._quick_schedule(nb_task=int(not i), priority=p)
@@ -953,7 +970,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_kill_task(self):
     pub_sub_calls = self.mock_pub_sub()
-    run_result = self._quick_reap(1, pubsub_topic='projects/abc/topics/def')
+    run_result = self._quick_reap(1, 1, pubsub_topic='projects/abc/topics/def')
     self.assertEqual(1, len(pub_sub_calls)) # PENDING -> RUNNING
 
     self.assertEqual(
@@ -976,7 +993,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(2, len(pub_sub_calls)) # RUNNING -> BOT_DIED
 
   def test_bot_kill_task_wrong_bot(self):
-    run_result = self._quick_reap(1)
+    run_result = self._quick_reap(1, 1)
     expected = (
       'Bot bot1 sent task kill for task 1d69b9f088008911 owned by bot '
       'localhost')
@@ -1010,7 +1027,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_cancel_task_running(self):
     # Cancel a running task.
     pub_sub_calls = self.mock_pub_sub()
-    run_result = self._quick_reap(1, pubsub_topic='projects/abc/topics/def')
+    run_result = self._quick_reap(1, 1, pubsub_topic='projects/abc/topics/def')
     self.assertEqual(1, len(pub_sub_calls)) # RUNNING
 
     # Denied if kill_running == False.
@@ -1090,7 +1107,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_cancel_task_completed(self):
     # Cancel a completed task.
     pub_sub_calls = self.mock_pub_sub()
-    run_result = self._quick_reap(1, pubsub_topic='projects/abc/topics/def')
+    run_result = self._quick_reap(1, 1, pubsub_topic='projects/abc/topics/def')
     self.assertEqual(1, len(pub_sub_calls)) # RUNNING
 
     # The task completes successfully.
@@ -1145,6 +1162,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     pub_sub_calls = self.mock_pub_sub()
     run_result = self._quick_reap(
         1,
+        1,
         pubsub_topic='projects/abc/topics/def',
         task_slices=[
           task_request.TaskSlice(
@@ -1186,6 +1204,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Test first retry, then success.
     run_result = self._quick_reap(
         1,
+        1,
         pubsub_topic='projects/abc/topics/def',
         task_slices=[
           task_request.TaskSlice(
@@ -1219,7 +1238,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     now_2 = self.mock_now(self.now + task_result.BOT_PING_TOLERANCE, 2)
     bot_dimensions_second = self.bot_dimensions.copy()
     bot_dimensions_second[u'id'] = [u'localhost-second']
-    self._register_bot(0, bot_dimensions_second)
+    self._register_bot(0, 1, bot_dimensions_second)
     _request, _, run_result = task_scheduler.bot_reap_task(
         bot_dimensions_second, 'abc', None)
     self.assertEqual(1, self.execute_tasks())
@@ -1266,6 +1285,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Test first try, then success.
     run_result = self._quick_reap(
         1,
+        1,
         pubsub_topic='projects/abc/topics/def',
         task_slices=[
           task_request.TaskSlice(
@@ -1300,7 +1320,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     now_2 = self.mock_now(self.now + task_result.BOT_PING_TOLERANCE, 2)
     bot_dimensions_second = self.bot_dimensions.copy()
     bot_dimensions_second[u'id'] = [u'localhost-second']
-    self._register_bot(0, bot_dimensions_second)
+    self._register_bot(0, 1, bot_dimensions_second)
     _request, _, run_result = task_scheduler.bot_reap_task(
         bot_dimensions_second, 'abc', None)
     self.assertEqual(1, self.execute_tasks())
@@ -1345,6 +1365,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # In the meantime the cron job ran, saw the job idle with 0 update for more
     # than BOT_PING_TOLERANCE, re-enqueue it.
     run_result = self._quick_reap(
+        1,
         1,
         task_slices=[
           task_request.TaskSlice(
@@ -1394,6 +1415,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Test first retry, then success.
     run_result = self._quick_reap(
         1,
+        1,
         task_slices=[
           task_request.TaskSlice(
               expiration_secs=600,
@@ -1436,6 +1458,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Test two tries internal_failure's leading to a BOT_DIED status.
     run_result = self._quick_reap(
         1,
+        1,
         task_slices=[
           task_request.TaskSlice(
               expiration_secs=600,
@@ -1449,7 +1472,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # It must be a different bot.
     bot_dimensions_second = self.bot_dimensions.copy()
     bot_dimensions_second[u'id'] = [u'localhost-second']
-    self._register_bot(0, bot_dimensions_second)
+    self._register_bot(0, 1, bot_dimensions_second)
     # No task to run because the task dimensions were already seen.
     _request, _, run_result = task_scheduler.bot_reap_task(
         bot_dimensions_second, 'abc', None)
@@ -1473,6 +1496,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_cron_handle_bot_died_ignored_expired(self):
     run_result = self._quick_reap(
+        1,
         1,
         task_slices=[
           task_request.TaskSlice(
