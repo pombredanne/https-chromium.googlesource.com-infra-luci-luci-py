@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f9e83fad_49180152",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T18:46:45Z",
+      "side": 1,
+      "message": "Seems like a short variable name, but if this is consistent with the other code and only used on the next line, then it\u0027s OK.",
+      "range": {
+        "startLine": 488,
+        "startChar": 2,
+        "endLine": 488,
+        "endChar": 3
+      },
+      "revId": "3d127c001b03cdde7ead734a36a1dffb5b400afb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10bceee9_a7703e77",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 3
@@ -16,6 +39,24 @@
       "revId": "3d127c001b03cdde7ead734a36a1dffb5b400afb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6d6cd0_09482b01",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T18:46:45Z",
+      "side": 1,
+      "message": "Ah, I see. Got it.",
+      "parentUuid": "10bceee9_a7703e77",
+      "revId": "3d127c001b03cdde7ead734a36a1dffb5b400afb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
