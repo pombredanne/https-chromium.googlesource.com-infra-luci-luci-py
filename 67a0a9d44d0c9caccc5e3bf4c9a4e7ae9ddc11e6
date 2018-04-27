@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbf542b8_6a7b29ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-27T14:26:56Z",
+      "side": 1,
+      "message": "we wanted to change cache name for \"builder\" cache from a hex sha1 hash to a human-readable string (crbug.com/817676). I\u0027ve filed crbug.com/837629 to add/change max sizes of project, bucket and builder.",
+      "revId": "67a0a9d44d0c9caccc5e3bf4c9a4e7ae9ddc11e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d80f5207_e9d17465",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-04-27T14:26:56Z",
+      "side": 1,
+      "message": "nothing will blow up today, but having nicer errors would be nice crbug.com/837634",
+      "revId": "67a0a9d44d0c9caccc5e3bf4c9a4e7ae9ddc11e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
