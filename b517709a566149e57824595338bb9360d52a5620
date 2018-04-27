@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44a4567b_2b078ae3",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T21:24:26Z",
+      "side": 1,
+      "message": "Does this refer to task_pack.pack_result_summary_key (https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_pack.py?type\u003dcs\u0026sq\u003dpackage:chromium\u0026l\u003d104)?\n\nBy functionally equivalent, does this mean they both return keys for memcache?\n\nAlso, why is this better than another string based on the key, e.g. `to_run_key.urlsafe()`?",
+      "range": {
+        "startLine": 193,
+        "startChar": 30,
+        "endLine": 193,
+        "endChar": 65
+      },
+      "revId": "b517709a566149e57824595338bb9360d52a5620",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5a6609e_f3aef7b6",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T21:24:26Z",
+      "side": 1,
+      "message": "This test method may long enough that it would be helpful to split it into chunks with explanatory comments.\n\nI don\u0027t think I understand how this works now, probably because I don\u0027t know how the \"negative cache\" works.\n\nSo... to_run_1 and to_run_2 are different TaskToRun entities which will now have different values for _memcache_to_run_key. `set_lookup_cache(key, True)` means \"task can be scheduled\", and `lookup(key)` returns True if task \"is taken\" (cannot be scheduled).\n\nSo, after initially creating both of the TaskToRun entities, they\u0027re both \"available to be scheduled\"; then `set_lookup_cache` can be used to change whether they\u0027re \"available to be scheduled\"/\"not taken\"?",
+      "revId": "b517709a566149e57824595338bb9360d52a5620",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
