@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b047f1df_fdfce8af",
+        "filename": "appengine/swarming/doc/Schemas.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-27T14:59:10Z",
+      "side": 1,
+      "message": "I would rephrase this as:\n\n    like for deduplicated tasks, tasks that didn\u0027t run due internal failure, or tasks with no secret bytes provided.",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 51
+      },
+      "revId": "c2bb9dfe8ec8ce1dc7b306d177cd4ba14bb5ae5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
