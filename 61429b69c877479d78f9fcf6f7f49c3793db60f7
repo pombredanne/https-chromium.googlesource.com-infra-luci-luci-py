@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c6cb173d_28871e62",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T22:56:08Z",
+      "side": 1,
+      "message": "Not related to this CL:\ndedup (or dedupe, I think both spellings are OK)",
+      "range": {
+        "startLine": 764,
+        "startChar": 32,
+        "endLine": 764,
+        "endChar": 39
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b8e7e85d_fe25d411",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 3
@@ -13,6 +36,92 @@
       "writtenOn": "2018-04-30T20:14:11Z",
       "side": 1,
       "message": "This is new.",
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e129810_ac43ff32",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T22:56:08Z",
+      "side": 1,
+      "message": "Not related to this CL:\nWould it make sense to extract this block to a private helper function that returns a bool (`deduped`)?",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 791,
+        "endChar": 22
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "790c90df_6dccde2c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T22:56:08Z",
+      "side": 1,
+      "message": "+1, this is better",
+      "range": {
+        "startLine": 841,
+        "startChar": 2,
+        "endLine": 841,
+        "endChar": 12
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0693524_dd478fbb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T22:56:08Z",
+      "side": 1,
+      "message": "and reenqueued",
+      "range": {
+        "startLine": 1121,
+        "startChar": 24,
+        "endLine": 1121,
+        "endChar": 31
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd720a0c_02b992c2",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T22:56:08Z",
+      "side": 1,
+      "message": "Also could be written as: self.assertIsNone(to_run_key.get().queue_number); same below.",
       "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

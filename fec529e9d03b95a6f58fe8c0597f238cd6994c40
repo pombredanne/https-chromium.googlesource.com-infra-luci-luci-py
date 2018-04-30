@@ -16,6 +16,24 @@
       "revId": "fec529e9d03b95a6f58fe8c0597f238cd6994c40",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e967750_22136953",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T22:56:08Z",
+      "side": 0,
+      "message": "The purpose of re-getting the TaskToRun is because the properties have been updated in datastore by bot_reap_task and we need to check the new properties, right?",
+      "parentUuid": "938c0e2b_45b165e4",
+      "revId": "fec529e9d03b95a6f58fe8c0597f238cd6994c40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
