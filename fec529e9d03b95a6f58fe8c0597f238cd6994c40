@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "938c0e2b_45b165e4",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-04-30T20:14:11Z",
+      "side": 0,
+      "message": "This wasn\u0027t my biggest moment of engineering.",
+      "revId": "fec529e9d03b95a6f58fe8c0597f238cd6994c40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
