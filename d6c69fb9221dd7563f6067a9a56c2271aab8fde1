@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a301b372_0e1a4491",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T14:45:49Z",
+      "side": 1,
+      "message": "Nit here (and below): I\u0027m not sure, but I think I\u0027d use i.e. rather than e.g. here.",
+      "range": {
+        "startLine": 805,
+        "startChar": 47,
+        "endLine": 805,
+        "endChar": 51
+      },
+      "revId": "d6c69fb9221dd7563f6067a9a56c2271aab8fde1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e45f0c7e_416fad01",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-04-30T14:45:49Z",
+      "side": 1,
+      "message": "I think the comments help a lot.",
+      "revId": "d6c69fb9221dd7563f6067a9a56c2271aab8fde1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
