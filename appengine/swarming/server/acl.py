@@ -151,6 +151,11 @@ def can_create_task():
   return is_ip_whitelisted_machine() or _is_user()
 
 
+def can_create_task_in_any_pool():
+  """Can create a task in any pool."""
+  return _is_privileged_user()
+
+
 def can_schedule_high_priority_tasks():
   """Returns True if the current user can schedule high priority (<20) tasks."""
   return _is_admin()
