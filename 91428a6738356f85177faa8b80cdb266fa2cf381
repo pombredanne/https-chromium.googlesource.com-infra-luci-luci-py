@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "140df726_24a674f1",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-01T23:20:34Z",
+      "side": 1,
+      "message": "docstring please",
+      "revId": "91428a6738356f85177faa8b80cdb266fa2cf381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e07d979_cd38ef67",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-01T23:20:34Z",
+      "side": 1,
+      "message": "protorpc.remote.Service classes\n\nmaybe rename the param to service_classes too. And then, ideally, this parameter name is consistent with api_server function, so perhaps service_classes use there too (and in other functions), or use api_classes here\n\nsame below",
+      "range": {
+        "startLine": 232,
+        "startChar": 24,
+        "endLine": 232,
+        "endChar": 48
+      },
+      "revId": "91428a6738356f85177faa8b80cdb266fa2cf381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
