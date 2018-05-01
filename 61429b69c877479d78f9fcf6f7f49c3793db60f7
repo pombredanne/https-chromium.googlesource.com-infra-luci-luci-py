@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "90695a88_8c851503",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-01T15:43:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6cb173d_28871e62",
+      "range": {
+        "startLine": 764,
+        "startChar": 32,
+        "endLine": 764,
+        "endChar": 39
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8e7e85d_fe25d411",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 3
@@ -62,6 +86,30 @@
       "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb78fd19_9f1c4b80",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-01T15:43:41Z",
+      "side": 1,
+      "message": "I tried to do it but it got more complicated because of get_new_keys(), which uses the closure to get access to the entities. I decided to not do this refactoring in this CL.",
+      "parentUuid": "6e129810_ac43ff32",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 791,
+        "endChar": 22
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +159,30 @@
     },
     {
       "key": {
+        "uuid": "401ebae4_b4905a31",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-01T15:43:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0693524_dd478fbb",
+      "range": {
+        "startLine": 1121,
+        "startChar": 24,
+        "endLine": 1121,
+        "endChar": 31
+      },
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd720a0c_02b992c2",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 3
@@ -122,6 +194,24 @@
       "writtenOn": "2018-04-30T22:56:08Z",
       "side": 1,
       "message": "Also could be written as: self.assertIsNone(to_run_key.get().queue_number); same below.",
+      "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0561539_da673ee6",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-01T15:43:41Z",
+      "side": 1,
+      "message": "I have feelings about this.\n\nI\u0027m generally not a fan of the assertRandomStuff() as I feel it\u0027s more brain work to scan through the lines than a series of equality checks. This includes the assertTrue/assertFalse that exists in this file but I\u0027m not going to check these.\n\nBut since it\u0027s \"new\" code it could be changed.",
+      "parentUuid": "cd720a0c_02b992c2",
       "revId": "61429b69c877479d78f9fcf6f7f49c3793db60f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
