@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f4ca022c_b074f205",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-02T22:41:20Z",
+      "side": 1,
+      "message": "I originally had a dict[(name, version)] but I figured the time/memory trade-off was so minimal that it didn\u0027t matter either way. Anyways, done.",
+      "parentUuid": "f429221d_ee9021ff",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 53
+      },
+      "revId": "b7dfae54c7d6d5064261f07b2162850e9dea9401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec1a0818_fc965968",
         "filename": "appengine/components/components/endpoints_webapp2.py",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "b7dfae54c7d6d5064261f07b2162850e9dea9401",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88712056_9a88f3c0",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-02T22:41:20Z",
+      "side": 1,
+      "message": "I think it\u0027s implied by line 176 that the path needs to be updated in each route. Note that the comment is also not present in directory_service_route.",
+      "parentUuid": "ec1a0818_fc965968",
+      "revId": "b7dfae54c7d6d5064261f07b2162850e9dea9401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
