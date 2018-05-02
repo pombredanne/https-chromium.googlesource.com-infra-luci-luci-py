@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f429221d_ee9021ff",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-02T22:01:00Z",
+      "side": 1,
+      "message": "please make a simple dict[name][version] or dict[\u0027%s/%s\u0027 % (name, version)] in L195",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 53
+      },
+      "revId": "b7dfae54c7d6d5064261f07b2162850e9dea9401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec1a0818_fc965968",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-02T22:01:00Z",
+      "side": 1,
+      "message": "# TODO(smut): Allow /api part of the path to be customized.",
+      "revId": "b7dfae54c7d6d5064261f07b2162850e9dea9401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
