@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87fafc6a_25bf5917",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T17:05:15Z",
+      "side": 1,
+      "message": "Could also be phrased as \"_fallback_to_second\", but the name is also OK as is.",
+      "range": {
+        "startLine": 346,
+        "startChar": 23,
+        "endLine": 346,
+        "endChar": 29
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63399084_4c8b6613",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T17:05:15Z",
+      "side": 1,
+      "message": "Or \"nonexistent\" :-P",
+      "range": {
+        "startLine": 355,
+        "startChar": 20,
+        "endLine": 355,
+        "endChar": 32
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53ab3fc1_db42c1ec",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T17:05:15Z",
+      "side": 1,
+      "message": "Is this a future feature to add? If this a bug filed for this, this could be noted.",
+      "range": {
+        "startLine": 370,
+        "startChar": 6,
+        "endLine": 370,
+        "endChar": 16
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4ed9d3c_b9b76220",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T17:05:15Z",
+      "side": 1,
+      "message": "I\u0027m trying to remember what this means... dictionary says idempotent means \"denoting an element that is unchanged when operated on by itself\"\n\nHere, does this mean that one task slice is equivalent to having the same task slice listed two times?",
+      "range": {
+        "startLine": 584,
+        "startChar": 6,
+        "endLine": 584,
+        "endChar": 30
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61958a6a_b69f5f2d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T17:05:15Z",
+      "side": 1,
+      "message": "Or optionally, assertIsNone",
+      "range": {
+        "startLine": 605,
+        "startChar": 21,
+        "endLine": 605,
+        "endChar": 25
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
