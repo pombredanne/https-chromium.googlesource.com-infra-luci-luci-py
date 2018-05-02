@@ -557,7 +557,7 @@ class TaskRequestApiTest(TestCase):
     # Limit.
     slices = [
       _gen_slice(dimensions={u'pool': [u'GPU'], u'v': [unicode(i)]})
-      for i in xrange(1)
+      for i in xrange(8)
     ]
     _gen_request_slices(task_slices=slices).put()
     slices = [
