@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9b5469c_01f5840a",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T20:54:46Z",
+      "side": 1,
+      "message": "1. Does this mean the same thing as if it said \"Triggers a task by posting the given request\"?\n2. return -\u003e returns",
+      "revId": "751a784e5ffe1b6632935e2c5ee55f3889735599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85dfc741_fde3e062",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T20:54:46Z",
+      "side": 1,
+      "message": "I\u0027d normally avoid the variable name l, even if it\u0027s only used on the very next line (just because l looks like 1 or I in some fonts). Maybe num_unique or something like that.",
+      "range": {
+        "startLine": 1013,
+        "startChar": 6,
+        "endLine": 1013,
+        "endChar": 7
+      },
+      "revId": "751a784e5ffe1b6632935e2c5ee55f3889735599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a548e9e5_319fe689",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-02T20:54:46Z",
+      "side": 1,
+      "message": "This comment could be expanded a little; does it mean we\u0027re generating the max number of equal task slices (1)? and below we\u0027re adding 9 duplicate task slices?",
+      "range": {
+        "startLine": 557,
+        "startChar": 6,
+        "endLine": 557,
+        "endChar": 11
+      },
+      "revId": "751a784e5ffe1b6632935e2c5ee55f3889735599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
