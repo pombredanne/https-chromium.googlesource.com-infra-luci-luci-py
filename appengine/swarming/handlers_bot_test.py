@@ -820,7 +820,11 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'lease_id': None,
         'lease_expiration_ts': None,
         'machine_type': None,
+<<<<<<< HEAD
+        'maintenance': False,
+=======
         'machine_lease': None,
+>>>>>>> master
         'message': u'for the best',
         'quarantined': False,
         'state': {
@@ -848,7 +852,88 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'lease_id': None,
         'lease_expiration_ts': None,
         'machine_type': None,
+<<<<<<< HEAD
+        'maintenance': False,
+        'message': None,
+        'quarantined': False,
+        'state': {
+          u'running_time': 1234.0,
+          u'sleep_streak': 0,
+          u'started_ts': 1410990411.111,
+        },
+        'task_id': u'',
+        'ts': now,
+        'version': u'123',
+      })
+
+    self.assertEqual(expected, actual)
+
+
+  def test_bot_event_maintenance(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+    params = self.do_handshake()
+    for e in handlers_bot.BotEventHandler.ALLOWED_EVENTS:
+      if e == 'bot_error':
+        # This one is tested specifically since it also logs an error message.
+        continue
+      params['event'] = e
+      params['message'] = 'for the best'
+      params['state']['maintennace'] = 'very busy'
+      response = self.post_json('/swarming/api/v1/bot/event', params)
+      self.assertEqual({}, response)
+
+    # TODO(maruel): Replace with client api to query last BotEvent.
+    actual = [
+        e.to_dict() for e in bot_management.get_events_query('bot1', True)]
+
+    print("STARTING THIS TEST")
+    expected = [
+      {
+        'authenticated_as': u'bot:whitelisted-ip',
+        'dimensions': {
+          u'id': [u'bot1'],
+          u'os': [u'Amiga'],
+          u'pool': [u'default'],
+        },
+        'event_type': unicode(e),
+        'external_ip': u'192.168.2.2',
+        'lease_id': None,
+        'lease_expiration_ts': None,
+        'machine_type': None,
+        'maintenance': True,
+        'message': u'for the best',
+        'quarantined': False,
+        'state': {
+          u'bot_group_cfg_version': u'default',
+          u'running_time': 1234.0,
+          u'sleep_streak': 0,
+          u'started_ts': 1410990411.111,
+        },
+        'task_id': u'',
+        'ts': now,
+        'version': self.bot_version,
+      } for e in reversed(handlers_bot.BotEventHandler.ALLOWED_EVENTS)
+      if e != 'bot_error'
+    ]
+    expected.append(
+      {
+        'authenticated_as': u'bot:whitelisted-ip',
+        'dimensions': {
+          u'id': [u'bot1'],
+          u'os': [u'Amiga'],
+          u'pool': [u'default'],
+        },
+        'event_type': u'bot_connected',
+        'external_ip': u'192.168.2.2',
+        'lease_id': None,
+        'lease_expiration_ts': None,
+        'machine_type': None,
+        'maintenance': True,
+=======
         'machine_lease': None,
+>>>>>>> master
         'message': None,
         'quarantined': False,
         'state': {
