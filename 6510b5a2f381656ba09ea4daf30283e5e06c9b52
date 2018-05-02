@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4de68954_9f3feb56",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-02T23:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87fafc6a_25bf5917",
+      "range": {
+        "startLine": 346,
+        "startChar": 23,
+        "endLine": 346,
+        "endChar": 29
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63399084_4c8b6613",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "58cf28df_8ede6484",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-02T23:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63399084_4c8b6613",
+      "range": {
+        "startLine": 355,
+        "startChar": 20,
+        "endLine": 355,
+        "endChar": 32
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53ab3fc1_db42c1ec",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2018-05-02T17:05:15Z",
       "side": 1,
       "message": "Is this a future feature to add? If this a bug filed for this, this could be noted.",
+      "range": {
+        "startLine": 370,
+        "startChar": 6,
+        "endLine": 370,
+        "endChar": 16
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "083d5641_233f0a0f",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-02T23:48:59Z",
+      "side": 1,
+      "message": "Spun off as https://crbug.com/839173. I initially cargo culted it into 781021 but it\u0027s complex enough to warrant its own bug.",
+      "parentUuid": "53ab3fc1_db42c1ec",
       "range": {
         "startLine": 370,
         "startChar": 6,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5cb539c9_e61b73ef",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-02T23:48:59Z",
+      "side": 1,
+      "message": "It means that the task is marked as having no side effect, we can rerun the task safely.",
+      "parentUuid": "f4ed9d3c_b9b76220",
+      "range": {
+        "startLine": 584,
+        "startChar": 6,
+        "endLine": 584,
+        "endChar": 30
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61958a6a_b69f5f2d",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e103f15_0cbd7ed4",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-02T23:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61958a6a_b69f5f2d",
+      "range": {
+        "startLine": 605,
+        "startChar": 21,
+        "endLine": 605,
+        "endChar": 25
+      },
+      "revId": "6510b5a2f381656ba09ea4daf30283e5e06c9b52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
