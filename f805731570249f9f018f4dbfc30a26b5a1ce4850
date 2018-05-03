@@ -81,6 +81,24 @@
       "revId": "f805731570249f9f018f4dbfc30a26b5a1ce4850",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc07b757_e1cb1f97",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-03T21:18:41Z",
+      "side": 1,
+      "message": "That makes sense.\n\nSo assertFalse and assertTrue are really assertFalsey and assertTruthy :-)",
+      "parentUuid": "3b454db0_faf2013a",
+      "revId": "f805731570249f9f018f4dbfc30a26b5a1ce4850",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
