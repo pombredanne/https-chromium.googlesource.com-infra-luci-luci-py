@@ -44,12 +44,12 @@ class BotManagementTest(test_case.TestCase):
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
         dimensions={'id': ['id1'], 'foo': ['bar']}, state={'ram': 65},
-        version=hashlib.sha256().hexdigest(), quarantined=False, task_id=None,
-        task_name=None)
+        version=hashlib.sha256().hexdigest(), quarantined=False,
+        maintenance=False, task_id=None, task_name=None)
 
     expected = {
       'authenticated_as': u'bot:id1.domain',
-      'composite': [32, 8, 2],
+      'composite': [128, 32, 8, 2],
       'dimensions': {u'foo': [u'bar'], u'id': [u'id1']},
       'external_ip': u'8.8.4.4',
       'first_seen_ts': now,
@@ -59,6 +59,7 @@ class BotManagementTest(test_case.TestCase):
       'lease_expiration_ts': None,
       'machine_type': None,
       'quarantined': False,
+      'maintenance': False,
       'state': {u'ram': 65},
       'task_id': None,
       'task_name': None,
@@ -74,8 +75,8 @@ class BotManagementTest(test_case.TestCase):
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
         dimensions={'id': ['id1'], 'foo': ['bar']}, state={'ram': 65},
-        version=hashlib.sha256().hexdigest(), quarantined=False, task_id=None,
-        task_name=None)
+        version=hashlib.sha256().hexdigest(), quarantined=False,
+        maintenance=False,task_id=None, task_name=None)
     expected = [
       {
         'authenticated_as': u'bot:id1.domain',
@@ -87,6 +88,7 @@ class BotManagementTest(test_case.TestCase):
         'machine_type': None,
         'message': None,
         'quarantined': False,
+        'maintenance': False,
         'state': {u'ram': 65},
         'task_id': None,
         'ts': now,
@@ -104,13 +106,13 @@ class BotManagementTest(test_case.TestCase):
         event_type='request_sleep', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
         dimensions={'id': ['id1'], 'foo': ['bar']}, state={'ram': 65},
-        version=hashlib.sha256().hexdigest(), quarantined=True, task_id=None,
-        task_name=None)
+        version=hashlib.sha256().hexdigest(), quarantined=True,
+        maintenance=False, task_id=None, task_name=None)
 
     # Assert that BotInfo was updated too.
     expected = {
       'authenticated_as': u'bot:id1.domain',
-      'composite': [32, 4, 2],
+      'composite': [128, 32, 4, 2],
       'dimensions': {u'foo': [u'bar'], u'id': [u'id1']},
       'external_ip': u'8.8.4.4',
       'first_seen_ts': now,
@@ -120,6 +122,7 @@ class BotManagementTest(test_case.TestCase):
       'lease_expiration_ts': None,
       'machine_type': None,
       'quarantined': True,
+      'maintenance': False,
       'state': {u'ram': 65},
       'task_id': None,
       'task_name': None,
@@ -139,11 +142,11 @@ class BotManagementTest(test_case.TestCase):
         external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
         dimensions={'id': ['id1'], 'foo': ['bar']}, state={'ram': 65},
         version=hashlib.sha256().hexdigest(), quarantined=False,
-        task_id='12311', task_name='yo')
+        maintenance=False, task_id='12311', task_name='yo')
 
     expected = {
       'authenticated_as': u'bot:id1.domain',
-      'composite': [32, 8, 1],
+      'composite': [128, 32, 8, 1],
       'dimensions': {u'foo': [u'bar'], u'id': [u'id1']},
       'external_ip': u'8.8.4.4',
       'first_seen_ts': now,
@@ -153,6 +156,7 @@ class BotManagementTest(test_case.TestCase):
       'lease_expiration_ts': None,
       'machine_type': None,
       'quarantined': False,
+      'maintenance': False,
       'state': {u'ram': 65},
       'task_id': u'12311',
       'task_name': u'yo',
@@ -172,6 +176,7 @@ class BotManagementTest(test_case.TestCase):
         'machine_type': None,
         'message': None,
         'quarantined': False,
+        'maintenance': False,
         'state': {u'ram': 65},
         'task_id': u'12311',
         'ts': now,

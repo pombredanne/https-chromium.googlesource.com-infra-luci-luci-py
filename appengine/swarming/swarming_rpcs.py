@@ -660,8 +660,10 @@ class BotEvent(messages.Message):
   authenticated_as = messages.StringField(7)
   # Version of swarming_bot.zip the bot is currently running.
   version = messages.StringField(8)
-  # If True, the bot is not accepting task.
+  # If True, the bot is not accepting task due to being quarantined.
   quarantined = messages.BooleanField(9)
+  # If True, the bot is not accepting task due to being under maintenance.
+  maintenance = messages.BooleanField(11)
   # Affected by event_type == 'request_task', 'task_completed', 'task_error'.
   task_id = messages.StringField(10)
 
