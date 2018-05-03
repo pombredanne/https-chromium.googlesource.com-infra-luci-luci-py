@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f1817205_82ec9e27",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T15:20:12Z",
+      "side": 1,
+      "message": "The more I think about bot health state, the more I think it needs a bigger refactoring.\n\nIn practice, I\u0027m thinking of a follow up that makes these strings, which would enable putting the rationale there. But that\u0027s out of scope for this CL.\n\nThat said, we could put maintenance_msg here right away, so basically:\n- Add indexed\u003dFalse to quarantined at line 101. Since composite is now the reference, indexing on quarantined is not needed anymore and will be a small performance boost. Add a comment above, just after line 100 with just: https://crbug.com/839415\n- Use maintenance_msg here, so that it stores a string. This is to help with https://crbug.com/839415 down the road. Make it indexed\u003dFalse too.\n\nThis means you need to update call sites too.",
+      "revId": "b1cb09ed907b955f2c0548c5f1d3e16ee1c7aa3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5bc33176_e1dbd184",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 3
