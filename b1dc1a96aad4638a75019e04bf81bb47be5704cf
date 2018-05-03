@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7848e354_8fefdb93",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T19:14:58Z",
+      "side": 1,
+      "message": "I\u0027d prefer this to be added in this CL, since it\u0027s 5 lines. You can copy the 5 lines above and replace the words in it.",
+      "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dd5e21d_27c2af6e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T19:14:58Z",
+      "side": 1,
+      "message": "You can assign unconditionally, it\u0027ll work.",
+      "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef253433_a3cae500",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T19:14:58Z",
+      "side": 1,
+      "message": "I\u0027d prefer these and the following test files to use None instead of \u0027\u0027.",
+      "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
