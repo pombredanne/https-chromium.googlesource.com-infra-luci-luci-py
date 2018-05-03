@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "24def111_9d24375c",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T19:51:01Z",
+      "side": 1,
+      "message": "Based on our conversation offline, I\u0027ll do this in a follow-up.",
+      "parentUuid": "7848e354_8fefdb93",
+      "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6dd5e21d_27c2af6e",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6459ef0f_a6e84276",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T19:51:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dd5e21d_27c2af6e",
+      "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef253433_a3cae500",
         "filename": "appengine/swarming/server/task_queues_test.py",
         "patchSetId": 6
@@ -50,6 +86,24 @@
       "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa077bd1_44da4492",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T19:51:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef253433_a3cae500",
+      "revId": "b1dc1a96aad4638a75019e04bf81bb47be5704cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
