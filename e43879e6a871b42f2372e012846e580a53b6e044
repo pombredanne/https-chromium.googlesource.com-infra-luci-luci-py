@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9f7fad9d_d56dfef5",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-03T21:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd1f66a0_cdb370bc",
+      "range": {
+        "startLine": 166,
+        "startChar": 2,
+        "endLine": 168,
+        "endChar": 27
+      },
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "727aa936_397d3d89",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "1b759e26_d06b7190",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-03T21:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "727aa936_397d3d89",
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "763862e0_d7d26871",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8789551d_48a4d77a",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-03T21:53:15Z",
+      "side": 1,
+      "message": "The parameters are already in the correct dict format, you\u0027d just save a few lines at the end. The core of this function wouldn\u0027t really be simplified. Plus this matches with the way _get_schemas and _get_methods work.",
+      "parentUuid": "763862e0_d7d26871",
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
