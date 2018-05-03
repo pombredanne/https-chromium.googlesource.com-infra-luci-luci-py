@@ -34,6 +34,24 @@
       "revId": "498d3e5ea8df934d3b3bc33301ae01189aeebbef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1931c06b_596f77a7",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-03T15:53:03Z",
+      "side": 0,
+      "message": "i think a comment with explicit reasoning why we don\u0027t do this is still required.\n(I am not still not sure that we can skip normalization)",
+      "parentUuid": "69062953_c5b6aea5",
+      "revId": "498d3e5ea8df934d3b3bc33301ae01189aeebbef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
