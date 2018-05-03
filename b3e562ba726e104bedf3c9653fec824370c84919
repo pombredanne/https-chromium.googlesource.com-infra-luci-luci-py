@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b6d3891_d2111ce1",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T19:59:06Z",
+      "side": 1,
+      "message": "Could you add a test case with a bot with maintenance set? Basically the same code as this test case but with maintenance_msg set, so it does the full cycle from fetching the BotInfo via the API?\n\nI know a case with quarantined is missing, will address with https://crbug.com/839415.",
+      "revId": "b3e562ba726e104bedf3c9653fec824370c84919",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
