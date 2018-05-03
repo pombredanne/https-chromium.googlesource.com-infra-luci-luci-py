@@ -4,6 +4,10 @@
 
 """Discovery document generator for an Endpoints v1 over webapp2 service."""
 
+import re
+
+import endpoints
+
 from protorpc import message_types
 from protorpc import messages
 
@@ -92,11 +96,6 @@ def _get_schemas(types):
   # this invariant by initializing seen to types and adding to seen every time
   # the loop adds to types.
   for message_type in types:
-    # Endpoints v1 and v2 discovery documents "normalize" these names by
-    # removing non-alphanumeric characters and putting the rest in PascalCase.
-    # However, it's possible these names only need to match the $refs below and
-    # exact formatting is irrelevant.
-    # TODO(smut): Figure out if these names need to be normalized.
     name = message_type.definition_name()
 
     schemas[name] = {
@@ -151,6 +150,40 @@ def _get_schemas(types):
   return schemas
 
 
+def _get_parameters(message, path):
+  """Returns a parameters document for the given parameters and path.
+
+  Args:
+    message: The protorpc.message.Message class describing the parameters.
+    path: The path to the method.
+
+  Returns:
+    A dict which can be written as JSON describing the path parameters.
+  """
+  PARAMETER_REGEX = r'{([a-zA-Z_][a-zA-Z0-9_]*)}'
+  # The order is the names of path parameters in the order in which they
+  # appear in the path followed by the names of required query strings.
+  order = []
+  for parameter in re.findall(PARAMETER_REGEX, path):
+    order.append(parameter)
+  parameters = _get_schemas([message]).get(message.definition_name(), {}).get(
+      'properties', {})
+  for parameter in parameters:
+    if parameter in order:
+      parameters[parameter]['location'] = 'path'
+    else:
+      parameters[parameter]['location'] = 'query'
+      if parameters[parameter].get('required'):
+        order.append(parameter)
+
+  document = {}
+  if order:
+    document['parameterOrder'] = order
+  if parameters:
+    document['parameters'] = parameters
+  return document
+
+
 def _get_methods(service):
   """Returns a methods and schemas document for the given service.
 
@@ -188,12 +221,24 @@ def _get_methods(service):
     request = method.remote.request_type()
     if not isinstance(request, message_types.VoidMessage):
       if info.http_method not in ('GET', 'DELETE'):
-        methods[name]['request'] = {
-          # $refs are used to look up the schema elsewhere in the discovery doc.
-          '$ref': request.__class__.definition_name(),
-          'parameterName': 'resource',
-        }
-        types.add(request.__class__)
+        rc = endpoints.ResourceContainer.get_request_message(method.remote)
+        if not isinstance(rc, endpoints.ResourceContainer):
+          methods[name]['request'] = {
+            # $refs refer to the "schemas" section of the discovery doc.
+            '$ref': request.__class__.definition_name(),
+            'parameterName': 'resource',
+          }
+          types.add(request.__class__)
+        else:
+          # If the request type is a known ResourceContainer, create a schema
+          # reference to the body only. Path parameters are handled differently.
+          methods[name]['request'] = {
+            '$ref': rc.body_message_class.definition_name(),
+            'parameterName': 'resource',
+          }
+          types.add(rc.body_message_class)
+          methods[name].update(_get_parameters(
+              rc.parameters_message_class, info.get_path(service.api_info)))
 
     response = method.remote.response_type()
     if not isinstance(response, message_types.VoidMessage):
@@ -201,8 +246,6 @@ def _get_methods(service):
         '$ref': response.__class__.definition_name(),
       }
       types.add(response.__class__)
-
-    # TODO(smut): Add parameters.
 
   document = {}
   if methods:
