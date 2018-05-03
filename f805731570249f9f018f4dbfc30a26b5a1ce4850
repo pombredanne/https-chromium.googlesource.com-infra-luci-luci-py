@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b352b1fd_cc573a1c",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T20:57:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a634f58f_12309e84",
+      "range": {
+        "startLine": 1295,
+        "startChar": 8,
+        "endLine": 1295,
+        "endChar": 25
+      },
+      "revId": "f805731570249f9f018f4dbfc30a26b5a1ce4850",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d6e9850_8e69cb6a",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2018-05-03T20:43:58Z",
       "side": 1,
       "message": "Or: self.assertTrue / self.assertFalse; if changed here then it should also be changed below.",
+      "revId": "f805731570249f9f018f4dbfc30a26b5a1ce4850",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b454db0_faf2013a",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-03T20:57:04Z",
+      "side": 1,
+      "message": "I really dislike assertTrue and assertFalse because they call __bool__ on the object, so\n\nself.assertFalse(None) and self.assertTrue(object()) both succeed, but in this case I really want to make sure it is a bool that is returned.",
+      "parentUuid": "7d6e9850_8e69cb6a",
       "revId": "f805731570249f9f018f4dbfc30a26b5a1ce4850",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
