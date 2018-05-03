@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de12afc2_3cafb995",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-03T01:32:03Z",
+      "side": 1,
+      "message": "Ordinarily I\u0027d make if conditions positive, but I think this reads better as it introduces the reader to the \"normal\" case first and the special case with extra comments and parameter processing second.",
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

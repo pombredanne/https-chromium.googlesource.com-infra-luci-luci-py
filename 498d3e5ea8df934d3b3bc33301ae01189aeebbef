@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "542d58d8_87fc6ca2",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-03T01:32:03Z",
+      "side": 0,
+      "message": "The apigen clients don\u0027t seem to care about normalizing these names: https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/1041268.",
+      "revId": "498d3e5ea8df934d3b3bc33301ae01189aeebbef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
