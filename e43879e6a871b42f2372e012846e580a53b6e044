@@ -2,6 +2,63 @@
   "comments": [
     {
       "key": {
+        "uuid": "fd1f66a0_cdb370bc",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-03T15:50:18Z",
+      "side": 1,
+      "message": "order \u003d re.findall(...) ?",
+      "range": {
+        "startLine": 166,
+        "startChar": 2,
+        "endLine": 168,
+        "endChar": 27
+      },
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "727aa936_397d3d89",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-03T15:50:18Z",
+      "side": 1,
+      "message": "nit:\n\n  for name, parameter in parameters.itervalues():\n\nmakes code below more concise",
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "763862e0_d7d26871",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-03T15:50:18Z",
+      "side": 1,
+      "message": "nit: i think this function would be simpler if it didn\u0027t bake in knowledge about document stuff and just returned a tuple (order, parameters)",
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de12afc2_3cafb995",
         "filename": "appengine/components/components/discovery_webapp2.py",
         "patchSetId": 1
@@ -16,6 +73,24 @@
       "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f7130e5_01a472a2",
+        "filename": "appengine/components/components/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-03T15:50:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "de12afc2_3cafb995",
+      "revId": "e43879e6a871b42f2372e012846e580a53b6e044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
