@@ -44,6 +44,14 @@ def _secs_to_ms(value):
   return int(round(value * 1000.))
 
 
+def _has_capacity(dimensions):
+  """Returns True if there's a reasonable chance for this run to be triggered.
+
+  Looks at the bots and caches the information.
+  """
+  return True
+
+
 def _expire_task(to_run_key, request):
   """Expires a TaskResultSummary and unschedules the TaskToRun.
 
@@ -81,11 +89,13 @@ def _expire_task(to_run_key, request):
     to_put = [to_run, result_summary]
     new_to_run = None
     if result_summary.current_task_slice < request.num_task_slices-1:
-      # Enqueue a new TasktoRun for the next TaskSlice.
-      new_to_run = task_to_run.new_task_to_run(
-          request, 1, result_summary.current_task_slice+1)
-      result_summary.current_task_slice += 1
-      to_put.append(new_to_run)
+      index = result_summary.current_task_slice+1
+      dimensions = request.task_slices(index).properties.dimensions
+      if _has_capacity(dimensions):
+        # Enqueue a new TasktoRun for the next TaskSlice, it has capacity.
+        new_to_run = task_to_run.new_task_to_run(request, 1, index)
+        result_summary.current_task_slice = index
+        to_put.append(new_to_run)
 
     if result_summary.try_number:
       # It's a retry that is being expired. Keep the old state. That requires an
@@ -272,9 +282,8 @@ def _handle_dead_bot(run_result_key):
       # - One of:
       #   - idempotent
       #   - task hadn't got any ping at all from task_runner.run_command()
-      # TODO(maruel): Allow retry for bot locked task using 'id' dimension.
       # TODO(maruel): Allow increasing the current_task_slice value.
-      # Create a second TaskToRun.
+      # Create a second TaskToRun with the same TaskSlice.
       to_run = task_to_run.new_task_to_run(request, 2, current_task_slice)
       to_put = (run_result, result_summary, to_run)
       run_result.state = task_result.State.BOT_DIED
@@ -747,7 +756,7 @@ def schedule_request(request, secret_bytes):
     logging.info('%s conflicted, using %s', old, result_summary.task_id)
     return key
 
-  deduped = False
+  dupe_summary = None
   for i in xrange(request.num_task_slices):
     t = request.task_slice(i)
     if t.properties.idempotent:
@@ -774,25 +783,43 @@ def schedule_request(request, secret_bytes):
         # and TaskResultSummary.
         #
         # Since the task is never scheduled, TaskToRun is not stored.
-        #
+        to_run = None
         # Since the has_secret_bytes property is already set for UI purposes,
         # and the task itself will never be run, we skip storing the
         # SecretBytes, as they would never be read and will just consume space
         # in the datastore (and the task we deduplicated with will have them
         # stored anyway, if we really want to get them again).
-        datastore_utils.insert(request, get_new_keys, extra=[result_summary])
-        logging.debug(
-            'New request %s reusing %s', result_summary.task_id,
-            dupe_summary.task_id)
-        deduped = True
+        secret_bytes = None
 
-  if not deduped:
-    # Storing these entities makes this task live. It is important at this point
-    # that the HTTP handler returns as fast as possible, otherwise the task will
-    # be run but the client will not know about it.
-    datastore_utils.insert(request, get_new_keys,
-        extra=filter(bool, [to_run, result_summary, secret_bytes]))
+  if not dupe_summary:
+    index = 0
+    while index < request.num_task_slices:
+      to_run = task_to_run.new_task_to_run(request, 1, index)
+      if _has_capacity(request.task_slice(index).properties.dimensions):
+        break
+    if index == request.num_task_slices:
+      # Skip to_run since it's not enqueued.
+      to_run = None
+      # Same rationale as deduped task.
+      secret_bytes = None
+      # Instantaneously denied.
+      result_summary.abandonned_ts = result_summary.created_ts
+      result_summary.state = NO_RESOURCE
+
+  # Storing these entities makes this task live. It is important at this point
+  # that the HTTP handler returns as fast as possible, otherwise the task will
+  # be run but the client will not know about it.
+  datastore_utils.insert(request, get_new_keys,
+      extra=filter(bool, [to_run, result_summary, secret_bytes]))
+  if result_summary.state == NO_RESOURCE:
+    logging.warning(
+        'New request %s denied with NO_RESOURCE', result_summary.task_id)
+  elif not dupe_summary:
     logging.debug('New request %s', result_summary.task_id)
+  else:
+    logging.debug(
+        'New request %s reusing %s', result_summary.task_id,
+        dupe_summary.task_id)
 
   # Get parent task details if applicable.
   if request.parent_task_id:
