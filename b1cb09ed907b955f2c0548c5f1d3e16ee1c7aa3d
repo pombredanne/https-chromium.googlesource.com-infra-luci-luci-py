@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bc33176_e1dbd184",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T01:18:25Z",
+      "side": 1,
+      "message": "It seemed reasonable to put this as boolean field 11 but put it next to quarantined (boolean field 9) which it was closely related to, but LMK if you\u0027d like me to put it somewhere else.",
+      "revId": "b1cb09ed907b955f2c0548c5f1d3e16ee1c7aa3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
