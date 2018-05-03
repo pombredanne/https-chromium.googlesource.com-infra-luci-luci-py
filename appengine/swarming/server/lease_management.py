@@ -762,6 +762,7 @@ def ensure_bot_info_exists(machine_lease):
         state=None,
         version=None,
         quarantined=False,
+        maintenance=False,
         task_id='',
         task_name=None,
         lease_id=machine_lease.lease_id,
