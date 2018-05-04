@@ -309,6 +309,47 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertTrue(to_run_key.get().queue_number)
     self.assertEqual(State.PENDING, result_summary.state)
 
+  def test_schedule_request_new_key(self):
+    # Ensure that get_new_keys work by generating deterministic key.
+    self.mock(random, 'getrandbits', lambda _bits: 42)
+    old_gen_new_keys = self.mock(task_scheduler, '_gen_new_keys', self.fail)
+    result_summary_1 = self._quick_schedule(1)
+    self.assertEqual('1d69b9f088002a10', result_summary_1.task_id)
+
+    def _gen_new_keys(result_summary, to_run, secret_bytes):
+      self.assertTrue(result_summary)
+      self.assertTrue(to_run)
+      self.assertIsNone(secret_bytes)
+      self.mock(random, 'getrandbits', lambda _bits: 43)
+      return old_gen_new_keys(result_summary, to_run, secret_bytes)
+    old_gen_new_keys = self.mock(task_scheduler, '_gen_new_keys', _gen_new_keys)
+    result_summary_2 = self._quick_schedule(0)
+    self.assertEqual('1d69b9f088002b10', result_summary_2.task_id)
+
+  def test_schedule_request_new_key_idempotent(self):
+    # Ensure that get_new_keys work by generating deterministic key.
+    self.mock(random, 'getrandbits', lambda _bits: 42)
+    task_id_1 = self._task_ran_successfully(1, 1)
+    self.assertEqual('1d69b9f088002a11', task_id_1)
+
+    def _gen_new_keys(result_summary, to_run, secret_bytes):
+      self.assertTrue(result_summary)
+      self.assertIsNone(to_run)
+      self.assertIsNone(secret_bytes)
+      self.mock(random, 'getrandbits', lambda _bits: 43)
+      return old_gen_new_keys(result_summary, to_run, secret_bytes)
+    old_gen_new_keys = self.mock(task_scheduler, '_gen_new_keys', _gen_new_keys)
+    result_summary_2 = self._quick_schedule(
+        0,
+        task_slices=[
+          task_request.TaskSlice(
+              expiration_secs=60,
+              properties=_gen_properties(idempotent=True)),
+        ])
+    self.assertEqual('1d69b9f088002b10', result_summary_2.task_id)
+    self.assertEqual(State.COMPLETED, result_summary_2.state)
+    self.assertEqual(task_id_1, result_summary_2.deduped_from)
+
   def test_bot_reap_task_not_enough_time(self):
     result_summary = self._quick_schedule(1)
     self._register_bot(0, 1, self.bot_dimensions)
