@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "28a11cb3_0704d0b2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-04T20:51:20Z",
+      "side": 1,
+      "message": "Makes sense, thanks",
+      "parentUuid": "eec7bb76_240211a1",
+      "revId": "3db7136bdd1f185484db8a7aebcb370c9d7117cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8033ca9c_bcd4baea",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 1
@@ -163,6 +181,24 @@
       "revId": "3db7136bdd1f185484db8a7aebcb370c9d7117cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86c6c972_015cd8c3",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-04T20:51:20Z",
+      "side": 1,
+      "message": "Looked at the new comments, very helpful since it\u0027s not very obvious when/why _gen_new_keys is called.",
+      "parentUuid": "e0d781ce_99381843",
+      "revId": "3db7136bdd1f185484db8a7aebcb370c9d7117cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
