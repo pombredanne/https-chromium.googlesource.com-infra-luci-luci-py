@@ -446,6 +446,9 @@
           }
           return "Quarantined: " + msg;
         }
+        if (bot.maintenance_msg) {
+          return "Maintenance: " + bot.maintenance_msg;
+        }
         return "Alive";
       },
       task: function(bot) {
@@ -577,6 +580,10 @@
         return dir * naturalSort(botACol, botBCol)
       },
       status: function(dir, botA, botB) {
+        // Dead > Quarantined > Alive
+        // Tiebreakers when alive broken by ID
+        // Tiebreakers otherwise broken by last seen time
+
         // Case 1: One of the bots is dead, sort dead bot over alive/quarantined bot.
         if (botA.is_dead !== botB.is_dead) {
           if (botA.is_dead) {
