@@ -484,6 +484,8 @@ class BotPollHandler(_BotBaseHandler):
     # the other for the list of known bots.
 
     def bot_event(event_type, task_id=None, task_name=None):
+      if quarantined:
+        task_queues.cleanup_after_bot(bot_id)
       bot_management.bot_event(
           event_type=event_type, bot_id=res.bot_id,
           external_ip=self.request.remote_addr,
