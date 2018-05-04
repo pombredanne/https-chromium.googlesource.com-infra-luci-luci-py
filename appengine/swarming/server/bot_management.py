@@ -498,6 +498,8 @@ def cron_update_bot_info():
         # Make sure the variable is not aliased.
         k = b.key
         l = lambda: run(k)
+        # Unregister the bot from task queues.
+        task_queues.cleanup_after_bot(bot_id)
         # Retry more often than the default 1. We do not want to throw too much
         # in the logs and there should be plenty of time to do the retries.
         f = datastore_utils.transaction_async(l, retries=3)
