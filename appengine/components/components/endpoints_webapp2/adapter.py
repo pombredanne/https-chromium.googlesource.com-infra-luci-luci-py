@@ -17,8 +17,8 @@ from protorpc import messages
 from protorpc import remote
 import webapp2
 
-from components import discovery_webapp2
 from components import net
+from components.endpoints_webapp2 import discovery
 
 
 PROTOCOL = protojson.EndpointsProtoJson()
@@ -219,7 +219,7 @@ def discovery_handler_factory(api_classes, base_path):
 
       self.response.headers['Content-Type'] = 'application/json'
       json.dump(
-          discovery_webapp2.generate(service, base_path),
+          discovery.generate(service, base_path),
           self.response, indent=2, sort_keys=True, separators=(',', ':'))
 
   return DiscoveryHandler
@@ -258,7 +258,7 @@ def directory_handler_factory(api_classes, base_path):
     def get(self):
       self.response.headers['Content-Type'] = 'application/json'
       json.dump(
-          discovery_webapp2.directory(api_classes, base_path),
+          discovery.directory(api_classes, base_path),
           self.response, indent=2, sort_keys=True, separators=(',', ':'))
 
   return DirectoryHandler

@@ -14,8 +14,9 @@ from protorpc import messages
 from protorpc import remote
 import endpoints
 
+from components.endpoints_webapp2 import discovery
+
 from test_support import test_case
-import discovery_webapp2
 
 
 class Enum(messages.Enum):
@@ -74,10 +75,10 @@ class Service(remote.Service):
 
 
 class DiscoveryWebapp2TestCase(test_case.TestCase):
-  """Tests for discovery_webapp2.py"""
+  """Tests for discovery.py"""
 
   def test_get_methods(self):
-    """Tests discovery_webapp2._get_methods."""
+    """Tests discovery._get_methods."""
     expected = {
       'methods': {
         'get_method': {
@@ -86,7 +87,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           'id': 'service.get_method',
           'path': 'get_method',
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -107,11 +108,11 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           },
           'path': '{path}/method',
           'request': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
             'parameterName': 'resource',
           },
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -123,11 +124,11 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           'id': 'service.post_method',
           'path': 'post_method',
           'request': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
             'parameterName': 'resource',
           },
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -145,11 +146,11 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           },
           'path': 'query_string_method',
           'request': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
             'parameterName': 'resource',
           },
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -157,9 +158,9 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
         },
       },
       'schemas': {
-        'discovery_webapp2_test.Message': {
+        'discovery_test.Message': {
           'description': 'A message to test with.',
-          'id': 'discovery_webapp2_test.Message',
+          'id': 'discovery_test.Message',
           'properties': {
             'boolean': {
               'type': 'boolean',
@@ -180,10 +181,10 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
         },
       },
     }
-    self.assertEqual(discovery_webapp2._get_methods(Service), expected)
+    self.assertEqual(discovery._get_methods(Service), expected)
 
   def test_get_parameters(self):
-    """Tests for discovery_webapp2._get_parameters."""
+    """Tests for discovery._get_parameters."""
     expected = {
       'parameterOrder': [
         'boolean',
@@ -211,15 +212,15 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
         },
       },
     }
-    self.assertEqual(discovery_webapp2._get_parameters(
+    self.assertEqual(discovery._get_parameters(
         Message, 'path/{boolean}/with/{string}/parameters'), expected)
 
   def test_get_schemas(self):
-    """Tests for discovery_webapp2._get_schemas."""
+    """Tests for discovery._get_schemas."""
     expected = {
-      'discovery_webapp2_test.Child': {
+      'discovery_test.Child': {
         'description': 'A child message to test recursion with.',
-        'id': 'discovery_webapp2_test.Child',
+        'id': 'discovery_test.Child',
         'properties': {
           'enum': {
             'default': 'UNKNOWN',
@@ -232,12 +233,12 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
         },
         'type': 'object',
       },
-      'discovery_webapp2_test.Parent': {
+      'discovery_test.Parent': {
         'description': 'A parent message to test recursion with.',
-        'id': 'discovery_webapp2_test.Parent',
+        'id': 'discovery_test.Parent',
         'properties': {
           'child': {
-            '$ref': 'discovery_webapp2_test.Child',
+            '$ref': 'discovery_test.Child',
             'description': 'A child message to test recursion with.',
           },
           'datetime': {
@@ -248,10 +249,10 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
         'type': 'object',
       },
     }
-    self.assertEqual(discovery_webapp2._get_schemas([Parent]), expected)
+    self.assertEqual(discovery._get_schemas([Parent]), expected)
 
   def test_generate(self):
-    """Tests for discovery_webapp2.generate."""
+    """Tests for discovery.generate."""
     expected = {
       'auth': {
         'oauth2': {
@@ -280,7 +281,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           'id': 'service.get_method',
           'path': 'get_method',
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -301,11 +302,11 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           },
           'path': '{path}/method',
           'request': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
             'parameterName': 'resource',
           },
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -317,11 +318,11 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           'id': 'service.post_method',
           'path': 'post_method',
           'request': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
             'parameterName': 'resource',
           },
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -339,11 +340,11 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           },
           'path': 'query_string_method',
           'request': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
             'parameterName': 'resource',
           },
           'response': {
-            '$ref': 'discovery_webapp2_test.Message',
+            '$ref': 'discovery_test.Message',
           },
           'scopes': [
             'https://www.googleapis.com/auth/userinfo.email',
@@ -409,9 +410,9 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
       'rootUrl': 'https://None/api/',
       'servicePath': 'service/v1/',
       'schemas': {
-        'discovery_webapp2_test.Message': {
+        'discovery_test.Message': {
           'description': 'A message to test with.',
-          'id': 'discovery_webapp2_test.Message',
+          'id': 'discovery_test.Message',
           'properties': {
             'boolean': {
               'type': 'boolean',
@@ -433,10 +434,10 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
       },
       'version': 'v1',
     }
-    self.assertEqual(discovery_webapp2.generate(Service, '/api'), expected)
+    self.assertEqual(discovery.generate(Service, '/api'), expected)
 
   def test_directory(self):
-    """Tests for discovery_webapp2.directory."""
+    """Tests for discovery.directory."""
     expected = {
       'discoveryVersion': 'v1',
       'items': [
@@ -458,7 +459,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
       ],
       'kind': 'discovery#directoryList',
     }
-    self.assertEqual(discovery_webapp2.directory([Service], '/api'), expected)
+    self.assertEqual(discovery.directory([Service], '/api'), expected)
 
 
 if __name__ == '__main__':

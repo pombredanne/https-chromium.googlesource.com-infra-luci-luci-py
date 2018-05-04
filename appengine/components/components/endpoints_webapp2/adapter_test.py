@@ -15,8 +15,9 @@ from protorpc import remote
 import endpoints
 import webapp2
 
+from components.endpoints_webapp2 import adapter
+
 from test_support import test_case
-import endpoints_webapp2
 
 
 class Msg(messages.Message):
@@ -56,8 +57,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
         method='POST',
         body='{"s": "a"}',
     )
-    msg = endpoints_webapp2.decode_message(
-        EndpointsService.post.remote, request)
+    msg = adapter.decode_message(EndpointsService.post.remote, request)
     self.assertEqual(msg.s, 'a')
     self.assertEqual(msg.s2, None)  # because it is not a ResourceContainer.
 
@@ -69,7 +69,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
         method='GET',
         route_kwargs={'s2': 'b'},
     )
-    msg = endpoints_webapp2.decode_message(EndpointsService.get.remote, request)
+    msg = adapter.decode_message(EndpointsService.get.remote, request)
     self.assertEqual(msg.s, 'a')
     self.assertEqual(msg.s2, 'b')
 
@@ -81,7 +81,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
         method='GET',
         route_kwargs={'s2': 'b', 'x': 'c'},
     )
-    rc = endpoints_webapp2.decode_message(
+    rc = adapter.decode_message(
         EndpointsService.get_container.remote, request)
     self.assertEqual(rc.s, 'a')
     self.assertEqual(rc.s2, 'b')
@@ -89,7 +89,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
 
   def test_handle_403(self):
     app = webapp2.WSGIApplication(
-        endpoints_webapp2.api_routes(EndpointsService), debug=True)
+        adapter.api_routes(EndpointsService), debug=True)
     request = webapp2.Request.blank('/api/Service/v1/post_403')
     request.method = 'POST'
     response = request.get_response(app)
@@ -102,7 +102,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
 
   def test_discovery_routing(self):
     app = webapp2.WSGIApplication(
-        [endpoints_webapp2.discovery_service_route([EndpointsService], 'api')],
+        [adapter.discovery_service_route([EndpointsService], 'api')],
         debug=True)
     request = webapp2.Request.blank('/api/discovery/v1/apis/Service/v1/rest')
     request.method = 'GET'
@@ -111,7 +111,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
 
   def test_directory_routing(self):
     app = webapp2.WSGIApplication(
-        [endpoints_webapp2.directory_service_route([EndpointsService], 'api')],
+        [adapter.directory_service_route([EndpointsService], 'api')],
         debug=True)
     request = webapp2.Request.blank('/api/discovery/v1/apis')
     request.method = 'GET'
