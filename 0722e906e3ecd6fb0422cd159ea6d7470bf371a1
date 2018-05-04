@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe5eef43_b91d4ffe",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-04T22:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b093808_15da23bc",
+      "range": {
+        "startLine": 158,
+        "startChar": 14,
+        "endLine": 158,
+        "endChar": 15
+      },
+      "revId": "0722e906e3ecd6fb0422cd159ea6d7470bf371a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d1d641b_aa2ff108",
         "filename": "appengine/components/components/endpoints_webapp2.py",
         "patchSetId": 1
@@ -83,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "12b00bc3_077539bd",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-04T22:49:31Z",
+      "side": 1,
+      "message": "No service is using base_path, but services are using api_routes, which means they are serving at the original default, \u0027/api\u0027. Swarming clients were updated almost two years ago to hit \u0027/api\u0027, presumably under the original assumption that you couldn\u0027t serve \u0027/_ah/api\u0027 and we\u0027d need to update all clients: https://codereview.chromium.org/2161083002.",
+      "parentUuid": "d93998f5_cf02c800",
+      "range": {
+        "startLine": 179,
+        "startChar": 38,
+        "endLine": 179,
+        "endChar": 42
+      },
+      "revId": "0722e906e3ecd6fb0422cd159ea6d7470bf371a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5465fef5_a23719e7",
         "filename": "appengine/components/components/endpoints_webapp2.py",
         "patchSetId": 1
@@ -97,6 +145,24 @@
       "revId": "0722e906e3ecd6fb0422cd159ea6d7470bf371a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f322f6b4_c4363873",
+        "filename": "appengine/components/components/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-04T22:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5465fef5_a23719e7",
+      "revId": "0722e906e3ecd6fb0422cd159ea6d7470bf371a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
