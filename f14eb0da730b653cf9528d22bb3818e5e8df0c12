@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ffab49a_e0395508",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-04T20:51:05Z",
+      "side": 1,
+      "message": "If this is a user-visible explanation, some possible longer alternatives migth be \"No resource available\" or \"No resources available\". But \"No resource\" is OK too.",
+      "range": {
+        "startLine": 127,
+        "startChar": 18,
+        "endLine": 127,
+        "endChar": 29
+      },
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c0f9e40_8bbcba5f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-04T20:51:05Z",
+      "side": 1,
+      "message": "SGTM",
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb745a4d_aa462d76",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-04T20:51:05Z",
+      "side": 1,
+      "message": "fourth",
+      "range": {
+        "startLine": 1411,
+        "startChar": 38,
+        "endLine": 1411,
+        "endChar": 43
+      },
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90e5caf5_7aea88f0",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-04T20:51:05Z",
+      "side": 1,
+      "message": "Just curious, what\u0027s the reason for using these numbers?",
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
