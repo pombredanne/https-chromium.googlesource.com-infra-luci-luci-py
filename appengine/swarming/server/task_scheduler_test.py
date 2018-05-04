@@ -397,7 +397,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(to_run_key.get().queue_number)
     self.assertEqual(State.EXPIRED, result_summary.key.get().state)
 
-  def test_task_slices_fallback_to_second(self):
+  def test_schedule_request_slice_fallback_to_second_after_expiration(self):
     # First TaskSlice couldn't run, the second ran.
     self._quick_schedule(
         2,
@@ -431,6 +431,27 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     _request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
     self.assertEqual(1, run_result.current_task_slice)
+
+  def test_schedule_request_slice_no_capacity(self):
+    self.mock(task_scheduler, '_has_capacity', lambda _: False)
+    result_summary = self._quick_schedule(
+        2,
+        task_slices=[
+          task_request.TaskSlice(
+              expiration_secs=180,
+              properties=_gen_properties(
+                  dimensions={
+                    u'nonexistent': [u'really'],
+                    u'pool': [u'default'],
+                  })),
+          task_request.TaskSlice(
+              expiration_secs=180,
+              properties=_gen_properties()),
+        ])
+    self.assertEqual(State.NO_RESOURCE, result_summary.state)
+    self.assertEqual(self.now, result_summary.abandonned_ts)
+    self.assertEqual(None, result_summary.try_number)
+    self.assertEqual(0, result_summary.current_task_slice)
 
   def test_exponential_backoff(self):
     self.mock(
