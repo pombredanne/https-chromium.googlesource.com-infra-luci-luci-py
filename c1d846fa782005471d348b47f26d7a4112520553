@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e0ac253_3e40e840",
+        "filename": "appengine/components/components/webapp2_adapter/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:26:25Z",
+      "side": 1,
+      "message": "```py\n\nsame below",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcf1c7f7_974e1de0",
+        "filename": "appengine/components/components/webapp2_adapter/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:26:25Z",
+      "side": 1,
+      "message": "i assume this paragraph will be deleted if we can serve at /_ah/api/",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e45edd5b_37213e93",
+        "filename": "appengine/components/components/webapp2_adapter/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:26:25Z",
+      "side": 1,
+      "message": "i am not a fan of this directory name (webapp2_adapter). It kind hints that it adapts to/from webapp2, but it doesn\u0027t call out the other side of the adaptation (endpoints). The original name mentioned both sides (endpoints_webapp2.py). Why not endpoints_webapp/__init__.py? Then you don\u0027t need to update clients.\n\nIf had to pick just one side of adaptation, I\u0027d just endpoints (endpoints_adapter) because endpoints is more specific than webapp2",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0b28087_b58ceeff",
+        "filename": "appengine/components/components/webapp2_adapter/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:26:25Z",
+      "side": 1,
+      "message": "why not just discovery.py? it already lives in directory that defines \"webapp2\" context",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dd31ce2_ff3803d4",
+        "filename": "appengine/components/components/webapp2_adapter/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:26:25Z",
+      "side": 1,
+      "message": "why not just adapter.py or server.py (because it serves)",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "591327ef_931671a2",
+        "filename": "appengine/components/components/webapp2_adapter/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:26:25Z",
+      "side": 1,
+      "message": "from . import discovery_webapp2 \n\nlike other components/foo/bar.py do",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
