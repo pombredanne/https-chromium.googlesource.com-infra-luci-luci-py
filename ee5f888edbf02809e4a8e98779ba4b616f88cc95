@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f72db5b6_65e134c1",
+        "filename": "appengine/components/components/endpoints_webapp2_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T01:42:30Z",
+      "side": 1,
+      "message": "Fixed sort order, but are these supposed to be doubled up? It looks like you\u0027re adding each route twice (lines 171 and 174):\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/221435bab36f7fc34cac5ab62bac5dabbe14917b/appengine/components/components/endpoints_webapp2.py#144\n\nI will consider this outside the scope of the CL since it\u0027s been working somehow.",
+      "revId": "ee5f888edbf02809e4a8e98779ba4b616f88cc95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
