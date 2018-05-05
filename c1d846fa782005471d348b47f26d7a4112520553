@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ecd16740_f5e0324e",
+        "filename": "appengine/components/components/webapp2_adapter/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T00:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e0ac253_3e40e840",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcf1c7f7_974e1de0",
         "filename": "appengine/components/components/webapp2_adapter/README.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-05T00:26:25Z",
       "side": 1,
       "message": "i assume this paragraph will be deleted if we can serve at /_ah/api/",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f507f88_138ce5a7",
+        "filename": "appengine/components/components/webapp2_adapter/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T00:46:40Z",
+      "side": 1,
+      "message": "It will need to be revised to tell the user to change their /_ah/spi v1 handler to /_ah/api (same as if they were migrating to v2).",
+      "parentUuid": "dcf1c7f7_974e1de0",
       "revId": "c1d846fa782005471d348b47f26d7a4112520553",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "7be46aaf_0a105e8a",
+        "filename": "appengine/components/components/webapp2_adapter/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T00:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e45edd5b_37213e93",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0b28087_b58ceeff",
         "filename": "appengine/components/components/webapp2_adapter/discovery_webapp2.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "c1d846fa782005471d348b47f26d7a4112520553",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b347da16_96123b38",
+        "filename": "appengine/components/components/webapp2_adapter/discovery_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T00:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0b28087_b58ceeff",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "98b87194_849c08fb",
+        "filename": "appengine/components/components/webapp2_adapter/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T00:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dd31ce2_ff3803d4",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "591327ef_931671a2",
         "filename": "appengine/components/components/webapp2_adapter/endpoints_webapp2.py",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2018-05-05T00:26:25Z",
       "side": 1,
       "message": "from . import discovery_webapp2 \n\nlike other components/foo/bar.py do",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af920f1b_c0c49d74",
+        "filename": "appengine/components/components/webapp2_adapter/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-05T00:46:40Z",
+      "side": 1,
+      "message": "Other packages are inconsistent. For example:\nMost packages import test_support without the dot (\"from test_support import test_case\").\ncomponents/machine_provider does not use \"from .\".\ncomponents/auth/__init__.py does not use \"from .\" while other files in this directory do.\ncomponents/config seems to use \"from .\" everywhere even in __init__.py.",
+      "parentUuid": "591327ef_931671a2",
       "revId": "c1d846fa782005471d348b47f26d7a4112520553",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
