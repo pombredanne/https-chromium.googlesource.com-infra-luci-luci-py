@@ -209,6 +209,24 @@
       "revId": "c1d846fa782005471d348b47f26d7a4112520553",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce2bf5cc_7bee1b58",
+        "filename": "appengine/components/components/webapp2_adapter/endpoints_webapp2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-05T00:52:51Z",
+      "side": 1,
+      "message": "i think last time I wrote something like this, it didn\u0027t work and switched to `from . import foo`, but if it works in concrete applications (like auth seems to work), then ok",
+      "parentUuid": "af920f1b_c0c49d74",
+      "revId": "c1d846fa782005471d348b47f26d7a4112520553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
