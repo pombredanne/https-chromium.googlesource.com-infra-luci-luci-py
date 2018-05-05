@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2204004d_53e32dda",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-05T00:26:52Z",
+      "side": 1,
+      "message": "Went with \u0027No resource available\u0027.",
+      "parentUuid": "5ffab49a_e0395508",
+      "range": {
+        "startLine": 127,
+        "startChar": 18,
+        "endLine": 127,
+        "endChar": 29
+      },
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c0f9e40_8bbcba5f",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 11
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "5a92a4fe_4b85f43b",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-05T00:26:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb745a4d_aa462d76",
+      "range": {
+        "startLine": 1411,
+        "startChar": 38,
+        "endLine": 1411,
+        "endChar": 43
+      },
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90e5caf5_7aea88f0",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 11
@@ -76,6 +124,24 @@
       "writtenOn": "2018-05-04T20:51:05Z",
       "side": 1,
       "message": "Just curious, what\u0027s the reason for using these numbers?",
+      "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61a9701c_d2069507",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-05T00:26:52Z",
+      "side": 1,
+      "message": "That\u0027s a good question. I was initially suspecting I may need to use a bitmask, like for searching for multiple states simultaneously, but this never materialized. I just kept going on.",
+      "parentUuid": "90e5caf5_7aea88f0",
       "revId": "f14eb0da730b653cf9528d22bb3818e5e8df0c12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
