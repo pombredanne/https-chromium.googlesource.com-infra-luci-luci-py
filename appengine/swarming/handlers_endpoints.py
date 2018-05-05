@@ -22,9 +22,9 @@ from protorpc import remote
 
 from components import auth
 from components import datastore_utils
-from components import endpoints_webapp2
 from components import machine_provider
 from components import utils
+from components import webapp2_adapter
 
 import message_conversion
 import swarming_rpcs
@@ -953,12 +953,12 @@ class SwarmingBotsService(remote.Service):
 
 def get_routes():
   return (
-    endpoints_webapp2.api_routes(SwarmingServerService) +
-    endpoints_webapp2.api_routes(SwarmingTaskService) +
-    endpoints_webapp2.api_routes(SwarmingTasksService) +
-    endpoints_webapp2.api_routes(SwarmingQueuesService) +
-    endpoints_webapp2.api_routes(SwarmingBotService) +
-    endpoints_webapp2.api_routes(SwarmingBotsService) +
+    webapp2_adapter.api_routes(SwarmingServerService) +
+    webapp2_adapter.api_routes(SwarmingTaskService) +
+    webapp2_adapter.api_routes(SwarmingTasksService) +
+    webapp2_adapter.api_routes(SwarmingQueuesService) +
+    webapp2_adapter.api_routes(SwarmingBotService) +
+    webapp2_adapter.api_routes(SwarmingBotsService) +
     # components.config endpoints for validation and configuring of luci-config
     # service URL.
-    endpoints_webapp2.api_routes(config.ConfigApi))
+    webapp2_adapter.api_routes(config.ConfigApi))

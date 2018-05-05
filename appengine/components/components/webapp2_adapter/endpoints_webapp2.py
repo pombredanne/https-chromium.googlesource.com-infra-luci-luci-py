@@ -17,8 +17,9 @@ from protorpc import messages
 from protorpc import remote
 import webapp2
 
-from components import discovery_webapp2
 from components import net
+
+import discovery_webapp2
 
 
 PROTOCOL = protojson.EndpointsProtoJson()

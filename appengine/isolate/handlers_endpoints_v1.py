@@ -25,8 +25,8 @@ from protorpc import messages
 from protorpc import remote
 
 from components import auth
-from components import endpoints_webapp2
 from components import utils
+from components import webapp2_adapter
 
 import acl
 import config
@@ -551,4 +551,4 @@ class IsolateService(remote.Service):
 
 
 def get_routes():
-  return endpoints_webapp2.api_routes(IsolateService)
+  return webapp2_adapter.api_routes(IsolateService)

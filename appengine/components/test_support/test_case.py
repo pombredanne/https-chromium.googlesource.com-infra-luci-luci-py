@@ -18,8 +18,8 @@ from google.appengine.datastore import datastore_stub_util
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
-from components import endpoints_webapp2
 from components import utils
+from components import webapp2_adapter
 from depot_tools import auto_stub
 
 # W0212: Access to a protected member XXX of a client class
@@ -246,7 +246,7 @@ class EndpointsTestCase(TestCase):
 class Webapp2EndpointsTestCase(TestCase):
   """Base class for a test case that tests Webapp2 Cloud Endpoints Service.
 
-  Webapp2 handlers for such service can be derived using endpoints_webapp2.
+  Webapp2 handlers for such service can be derived using webapp2_adapter.
 
   Usage is same as EndpointsTestCase, except call_should_fail is not supported
   and status parameter in call_api should be used instead.
@@ -259,7 +259,7 @@ class Webapp2EndpointsTestCase(TestCase):
     super(Webapp2EndpointsTestCase, self).setUp()
     self._app = webtest.TestApp(
         webapp2.WSGIApplication(
-            endpoints_webapp2.api_routes(self.api_service_cls),
+            webapp2_adapter.api_routes(self.api_service_cls),
             debug=True),
         extra_environ={'REMOTE_ADDR': '127.0.0.1'})
 

@@ -8,7 +8,6 @@ import endpoints
 import webapp2
 
 from components import config
-from components import endpoints_webapp2
 
 import handlers_endpoints
 

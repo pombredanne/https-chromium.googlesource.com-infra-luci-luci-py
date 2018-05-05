@@ -22,9 +22,9 @@ from protorpc import remote
 import gae_ts_mon
 
 from components import auth
-from components import endpoints_webapp2
 from components import pubsub
 from components import utils
+from components import webapp2_adapter
 from components.machine_provider import rpc_messages
 
 import acl
@@ -746,7 +746,7 @@ class MachineProviderEndpoints(remote.Service):
 
 
 def get_routes():
-  return endpoints_webapp2.api_server([
+  return webapp2_adapter.api_server([
       CatalogEndpoints,
       MachineEndpoints,
       MachineProviderEndpoints,
