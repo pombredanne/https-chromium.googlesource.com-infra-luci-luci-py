@@ -29,17 +29,19 @@ from server import task_request
 
 
 def _assert_bot(dimensions=None):
+  bot_id = u'bot1'
   bot_dimensions = {
     u'cpu': [u'x86-64', u'x64'],
-    u'id': [u'bot1'],
+    u'id': [bot_id],
     u'os': [u'Ubuntu-16.04', u'Ubuntu'],
     u'pool': [u'default'],
   }
   bot_dimensions.update(dimensions or {})
   bot_management.bot_event(
-      'bot_connected', u'bot1', '1.2.3.4', 'bot1', bot_dimensions, {},
+      'bot_connected', bot_id, '1.2.3.4', 'bot1', bot_dimensions, {},
       '1234', False, None, None, None)
-  return task_queues.assert_bot_async(bot_dimensions).get_result()
+  bot_root_key = bot_management.get_root_key(bot_id)
+  return task_queues.assert_bot_async(bot_root_key, bot_dimensions).get_result()
 
 
 def _gen_properties(**kwargs):
@@ -259,7 +261,7 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
   def test_cleanup_after_bot(self):
     self.assertEqual(0, _assert_bot())
     self._assert_task()
-    task_queues.cleanup_after_bot('bot1')
+    task_queues.cleanup_after_bot(bot_manangement.get_root_key('bot1'))
     # BotInfo is deleted separately.
     self.assert_count(1, bot_management.BotInfo)
     self.assert_count(0, task_queues.BotDimensions)
