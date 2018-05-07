@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "50d61779_0e84b94c",
+        "filename": "appengine/swarming/ui/res/imp/botlist/bot-list-summary.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-07T20:03:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98bebd28_a4a14e4f",
+      "range": {
+        "startLine": 229,
+        "startChar": 47,
+        "endLine": 229,
+        "endChar": 49
+      },
+      "revId": "fd05d6aaf4f57f25068e95273a7ec0a7e3468930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3646c083_077af6ed",
         "filename": "appengine/swarming/ui/res/imp/botlist/bot-list.html",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f833a7ba_e28c7be0",
+        "filename": "appengine/swarming/ui/res/imp/botlist/bot-list.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-07T20:03:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3646c083_077af6ed",
+      "range": {
+        "startLine": 595,
+        "startChar": 37,
+        "endLine": 595,
+        "endChar": 39
+      },
+      "revId": "fd05d6aaf4f57f25068e95273a7ec0a7e3468930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8247398c_90cafac0",
         "filename": "appengine/swarming/ui/res/imp/botlist/bot-list.html",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "fd05d6aaf4f57f25068e95273a7ec0a7e3468930",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9706ddf0_923e05f7",
+        "filename": "appengine/swarming/ui/res/imp/botlist/bot-list.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-07T20:03:06Z",
+      "side": 1,
+      "message": "Sorry, good catch. This is the problem with having lots of different fields with slightly different names :-/",
+      "parentUuid": "8247398c_90cafac0",
+      "range": {
+        "startLine": 600,
+        "startChar": 53,
+        "endLine": 600,
+        "endChar": 67
+      },
+      "revId": "fd05d6aaf4f57f25068e95273a7ec0a7e3468930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
