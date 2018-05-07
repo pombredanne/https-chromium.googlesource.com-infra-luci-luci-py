@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "419ec9d6_b3b6994e",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-07T12:16:40Z",
+      "side": 1,
+      "message": "I don\u0027t see the screenshot.  One thing to consider, to avoid this list from being too cluttered, is to not show the grouping if it\u0027s 0.  e.g. if there are 0 quarantined bots and 0 maintenance bots, just say\n23 busy, 6 dead.\n\nThat might be better in a follow-up CL, but something worth thinking about.",
+      "range": {
+        "startLine": 290,
+        "startChar": 70,
+        "endLine": 290,
+        "endChar": 93
+      },
+      "revId": "c22f1c218894906d6d57835ce45c9fdf5a926928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
