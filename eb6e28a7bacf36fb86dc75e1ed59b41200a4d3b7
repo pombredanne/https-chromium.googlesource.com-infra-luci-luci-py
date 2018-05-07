@@ -16,6 +16,24 @@
       "revId": "eb6e28a7bacf36fb86dc75e1ed59b41200a4d3b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa907949_d08a02a2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-07T14:33:27Z",
+      "side": 1,
+      "message": "It\u0027ll rerun on the next scheduled run, which is every 1 minute.\nhttps://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/cron.yaml#12",
+      "parentUuid": "3c469777_c872397b",
+      "revId": "eb6e28a7bacf36fb86dc75e1ed59b41200a4d3b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
