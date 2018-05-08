@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b309c9c7_620c226d",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-08T21:53:01Z",
+      "side": 1,
+      "message": "I realized I\u0027ll likely want to redo this part, even in dry run mode. So you can wait to review, I\u0027ll ping when ready, likely tomorrow.",
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
