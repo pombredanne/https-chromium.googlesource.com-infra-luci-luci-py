@@ -640,6 +640,29 @@ def _assert_task_props(properties, expiration_ts):
     raise Error('Failed to trigger task queue; please try again')
 
 
+def _has_capacity_slow(dimensions_hash, dimensions):
+  """Returns True if there's a reasonable chance for this dimensions set to be
+  serviced by a bot alive.
+
+  Looks into the datastore to figure this out.
+  """
+  key = str(dimensions_hash)
+  task_dims_key = _get_task_dims_key(dimensions_hash, dimensions)
+  t = task_dims_key.get()
+  if t:
+    # A task ran in the not too distant past. This doesn't mean there's a bot
+    # that could service the task. In practice, we'd want to search for
+    # BotTaskDimensions.
+    logging.warning('FOUND STALE CAPACITY: %s', key)
+    # TODO(maruel): https://crbug.com/839173
+    memcache.set(key, True, time=61, namespace='task_queues_tasks')
+    return True
+  logging.warning('HAS NO CAPACITY: %s', key)
+  # TODO(maruel): https://crbug.com/839173
+  memcache.set(key, True, time=61, namespace='task_queues_tasks')
+  return True
+
+
 ### Public APIs.
 
 
@@ -707,9 +730,7 @@ def cleanup_after_bot(bot_root_key):
   q = BotTaskDimensions.query(ancestor=bot_root_key).iter(keys_only=True)
   futures = ndb.delete_multi_async(q)
   futures.append(ndb.Key(BotDimensions, 1, parent=bot_root_key).delete_async())
-
-  for f in futures:
-    f.check_success()
+  _flush_futures(futures)
 
 
 def assert_task(request):
@@ -737,6 +758,11 @@ def assert_task(request):
 def get_queues(bot_root_key):
   """Returns the known task queues as integers.
 
+  This function is called to get the task queues to poll, as the bot is trying
+  to reap a task, any task.
+
+  It is also called while the bot is running a task, to refresh the task queues.
+
   Arguments:
     bot_root_key: ndb.Key to bot_management.BotRoot
   """
@@ -746,6 +772,9 @@ def get_queues(bot_root_key):
     logging.debug(
         'get_queues(%s): can run from %d queues (memcache)\n%s',
         bot_id, len(data), data)
+    # Refresh all the keys.
+    memcache.set_multi(
+        {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
     return data
 
   # Retrieve all the dimensions_hash that this bot could run that have
@@ -760,7 +789,28 @@ def get_queues(bot_root_key):
   logging.info(
       'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
       bot_id, (utils.utcnow()-now).total_seconds(), len(data), data)
+  memcache.set_multi(
+      {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
   return data
+
+
+def has_capacity(dimensions):
+  """Returns True if there's a reasonable chance for this dimensions set to be
+  serviced by a bot alive.
+
+  There's a risk of collision, that is it could return True even if there is no
+  capacity. The risk is of 2^30 different dimensions sets.
+  """
+  dimensions_hash = hash_dimensions(dimensions)
+  if memcache.get(str(dimensions_hash), namespace='task_queues_tasks'):
+    # Cache hit!
+    return True
+  # Sadly, the fact that it's not there doesn't mean that this task queue is
+  # dead. For example:
+  # - memcache could have been cleared manually or could be malfunctioning.
+  # - in the case where a single bot can service the dimensions, the bot may not
+  #   have been polling for N+1 seconds.
+  return _has_capacity_slow(dimensions_hash, dimensions)
 
 
 def rebuild_task_cache(payload):

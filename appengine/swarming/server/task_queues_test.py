@@ -229,6 +229,20 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     # Tested indirectly by self._assert_task()
     pass
 
+  def test_has_capacity(self):
+    # The bot can service this dimensions.
+    d = {u'pool': [u'default'], u'os': [u'Ubuntu-16.04']}
+    # This is a lie as we are testing this on prod: https://crbug.com/839173
+    self.assertEqual(True, task_queues.has_capacity(d))
+    _assert_bot()
+    self.assertEqual(True, task_queues.has_capacity(d))
+
+    # Disable the DB code path to confirm the memcache based behavior.
+    self.mock(task_queues, '_has_capacity_slow', lambda *_: False)
+    self.assertEqual(True, task_queues.has_capacity(d))
+    d = {u'pool': [u'inexistant']}
+    self.assertEqual(False, task_queues.has_capacity(d))
+
   def test_assert_bot_then_task(self):
     self.assertEqual(0, _assert_bot())
     self._assert_task()
