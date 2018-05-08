@@ -737,6 +737,11 @@ def assert_task(request):
 def get_queues(bot_root_key):
   """Returns the known task queues as integers.
 
+  This function is called to get the task queues to poll, as the bot is trying
+  to reap a task, any task.
+
+  It is also called while the bot is running a task, to refresh the task queues.
+
   Arguments:
     bot_root_key: ndb.Key to bot_management.BotRoot
   """
@@ -746,6 +751,9 @@ def get_queues(bot_root_key):
     logging.debug(
         'get_queues(%s): can run from %d queues (memcache)\n%s',
         bot_id, len(data), data)
+    # Refresh all the keys.
+    memcache.set_multi(
+        {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
     return data
 
   # Retrieve all the dimensions_hash that this bot could run that have
@@ -760,7 +768,30 @@ def get_queues(bot_root_key):
   logging.info(
       'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
       bot_id, (utils.utcnow()-now).total_seconds(), len(data), data)
+  memcache.set_multi(
+      {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
   return data
+
+
+def has_capacity(dimensions):
+  """Returns True if there's a reasonable chance for this run to be triggered.
+
+  There's a risk of collision, that is it could return True even if there is no
+  capacity. The risk is of 2^30 different dimensions sets.
+  """
+  key = str(hash_dimensions(dimensions))
+  if memcache.get(key, namespace='task_queues_tasks'):
+    # Cache hit!
+    return True
+  # Sadly, the fact that it's not there doesn't mean that this task queue is
+  # dead. For example:
+  # - memcache could have been cleared manually or could be malfunctioning.
+  # - in the case where a single bot can service the dimensions, the bot may not
+  #   have been polling for N+1 seconds.
+  # Look in the datastore.
+  # TODO(maruel): https://crbug.com/839173
+  logging.warning('%s HAS NO CAPACITY', key)
+  return True
 
 
 def rebuild_task_cache(payload):
