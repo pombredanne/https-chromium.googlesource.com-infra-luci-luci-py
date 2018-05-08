@@ -67,6 +67,7 @@ from components import datastore_utils
 from components import utils
 from server import config
 from server import task_pack
+from server import task_queues
 
 
 ### Models.
@@ -384,6 +385,14 @@ def bot_event(
     version, quarantined, maintenance_msg, task_id, task_name, **kwargs):
   """Records when a bot has queried for work.
 
+  The sheer fact this event is happening means the bot is alive (not dead), so
+  this is good. It may be quarantined though, and in this case, it will be
+  evicted from the task queues.
+
+  If it's declaring maintenance, it will not be evicted from the task queues, as
+  maintenance is supposed to be temporary and expected and complete within a
+  reasonable time frame.
+
   Arguments:
   - event: event type.
   - bot_id: bot id.
@@ -440,6 +449,10 @@ def bot_event(
     bot_info.machine_type = kwargs['machine_type']
   if kwargs.get('machine_lease') is not None:
     bot_info.machine_lease = kwargs['machine_lease']
+
+  if quarantined:
+    # Make sure it is not in the queue since it can't reap anything.
+    task_queues.cleanup_after_bot(bot_id)
 
   if event_type in ('request_sleep', 'task_update'):
     # Handle this specifically. It's not much of an even worth saving a BotEvent
@@ -499,6 +512,8 @@ def cron_update_bot_info():
         # Make sure the variable is not aliased.
         k = b.key
         l = lambda: run(k)
+        # Unregister the bot from task queues since it can't reap anything.
+        task_queues.cleanup_after_bot(bot_id)
         # Retry more often than the default 1. We do not want to throw too much
         # in the logs and there should be plenty of time to do the retries.
         f = datastore_utils.transaction_async(l, retries=5)

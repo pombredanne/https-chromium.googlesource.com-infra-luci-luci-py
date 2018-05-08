@@ -737,6 +737,11 @@ def assert_task(request):
 def get_queues(bot_root_key):
   """Returns the known task queues as integers.
 
+  This function is called to get the task queues to poll, as the bot is trying
+  to reap a task, any task.
+
+  It is also called while the bot is running a task, to refresh the task queues.
+
   Arguments:
     bot_root_key: ndb.Key to bot_management.BotRoot
   """
@@ -746,6 +751,9 @@ def get_queues(bot_root_key):
     logging.debug(
         'get_queues(%s): can run from %d queues (memcache)\n%s',
         bot_id, len(data), data)
+    # Refresh all the keys.
+    memcache.set_multi(
+        {d: True for d in data}, time=61, namespace='task_queues')
     return data
 
   # Retrieve all the dimensions_hash that this bot could run that have
@@ -760,7 +768,17 @@ def get_queues(bot_root_key):
   logging.info(
       'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
       bot_id, (utils.utcnow()-now).total_seconds(), len(data), data)
+  memcache.set_multi({d: True for d in data}, time=61, namespace='task_queues')
   return data
+
+
+def has_capacity(dimensions):
+  """Returns True if there's a reasonable chance for this run to be triggered.
+
+  There's a risk of collision, that is it could return True even if there is no
+  capacity. The risk is of 2^30 different dimensions sets.
+  """
+  return bool(memcache.get(hash_dimensions(d), namespace='task_queues'))
 
 
 def rebuild_task_cache(payload):
