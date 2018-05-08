@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "442e1965_94bd0859",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-08T22:44:51Z",
+      "side": 1,
+      "message": "leverages",
+      "range": {
+        "startLine": 9,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "956f1ee3_629bfa60",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-08T22:44:51Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 393,
+        "startChar": 55,
+        "endLine": 393,
+        "endChar": 58
+      },
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6db65938_522ab2fe",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-08T22:44:51Z",
+      "side": 1,
+      "message": "-\u003e event_type to match current arg name\n\nNot sure if you want to go into this level of detail in docstrings, but you could list type (string, integer, object?) for some args, like this one.",
+      "range": {
+        "startLine": 397,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 9
+      },
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0040a0b0_28eb74e4",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-08T22:44:51Z",
+      "side": 1,
+      "message": "Looks like `l` is used in one place and the variable name doesn\u0027t add much. Could it be inlined?\n\n    f \u003d datastore_utils.transaction_async(lambda: run(k), retries\u003d5)",
+      "range": {
+        "startLine": 518,
+        "startChar": 8,
+        "endLine": 518,
+        "endChar": 9
+      },
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fc00332_0ca1664d",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-08T22:44:51Z",
+      "side": 1,
+      "message": "Maybe: \"The bot is being removed\", or \"The bot no longer exists\"",
+      "range": {
+        "startLine": 948,
+        "startChar": 15,
+        "endLine": 948,
+        "endChar": 27
+      },
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b309c9c7_620c226d",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 4
@@ -13,6 +128,24 @@
       "writtenOn": "2018-05-08T21:53:01Z",
       "side": 1,
       "message": "I realized I\u0027ll likely want to redo this part, even in dry run mode. So you can wait to review, I\u0027ll ping when ready, likely tomorrow.",
+      "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8940ed53_aefe1979",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-08T22:44:51Z",
+      "side": 1,
+      "message": "Got it, will review after this part is redone.",
+      "parentUuid": "b309c9c7_620c226d",
       "revId": "562e46eb79d1ee142826b329b06ef3ab1b6049ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
