@@ -6,6 +6,7 @@ import endpoints
 import httplib
 import json
 import logging
+import os
 import posixpath
 import urlparse
 
@@ -18,6 +19,7 @@ from protorpc import remote
 import webapp2
 
 from components import net
+from components import template
 
 import discovery
 
@@ -192,6 +194,7 @@ def api_server(api_classes, base_path='/api'):
     routes.extend(api_routes(api_class, base_path=base_path))
   routes.append(directory_service_route(api_classes, base_path))
   routes.append(discovery_service_route(api_classes, base_path))
+  routes.append(explorer_proxy_route(base_path))
   return routes
 
 
@@ -279,3 +282,40 @@ def directory_service_route(api_classes, base_path):
   return webapp2.Route(
       '%s/discovery/v1/apis' % base_path,
       directory_handler_factory(api_classes, base_path))
+
+
+def proxy_handler_factory(base_path):
+  """Returns an API explorer proxy request handler.
+
+  Args:
+    base_path: The base path under which all service paths exist.
+
+  Returns:
+    A webapp2.RequestHandler.
+  """
+  class ProxyHandler(webapp2.RequestHandler):
+    """Returns a proxy capable of handling requests from API explorer."""
+
+    def get(self):
+      self.response.write(template.render(
+          'adapter/proxy.html', params={'base_path': base_path}))
+
+  return ProxyHandler
+
+
+def explorer_proxy_route(base_path):
+  """Returns a route to a handler which serves an API explorer proxy.
+
+  Args:
+    base_path: The base path under which all service paths exist.
+
+  Returns:
+    A webapp2.Route.
+  """
+  template.bootstrap({
+      'adapter':
+          os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'),
+  })
+  return webapp2.Route(
+      '%s/static/proxy.html' % base_path,
+      proxy_handler_factory(base_path))

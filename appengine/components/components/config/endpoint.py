@@ -161,10 +161,14 @@ class ConfigApi(remote.Service):
     """
     meta = ServiceDynamicMetadata(version=METADATA_FORMAT_VERSION)
     http_headers = dict(self.request_state.headers)
-    assert 'host' in http_headers, http_headers
+    # Requests from Cloud Endpoints have "host", while requests from the
+    # endpoints_webapp2 adapter have "Host". It's possible Apiary does some
+    # normalization of headers
+    # TODO(smut): Investigate whether endpoints_webapp2 should normalize this.
+    assert 'host' in http_headers or 'Host' in http_headers, http_headers
     meta.validation = meta.Validator(
         url='https://{hostname}/_ah/api/{name}/{version}/{path}validate'.format(
-            hostname=http_headers['host'],
+            hostname=http_headers.get('host') or http_headers['Host'],
             name=self.api_info.name,
             version=self.api_info.version,
             path=self.api_info.path or '',
