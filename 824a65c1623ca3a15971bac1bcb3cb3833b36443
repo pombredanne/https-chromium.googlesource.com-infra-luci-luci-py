@@ -16,6 +16,24 @@
       "revId": "824a65c1623ca3a15971bac1bcb3cb3833b36443",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00ef04ac_c0599b62",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-09T15:22:50Z",
+      "side": 1,
+      "message": "Got it, thanks for explanation :-)",
+      "parentUuid": "4b39e1d5_31ec5923",
+      "revId": "824a65c1623ca3a15971bac1bcb3cb3833b36443",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
