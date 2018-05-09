@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "998d7dc9_c45ad928",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-09T17:59:50Z",
+      "side": 1,
+      "message": "I don\u0027t see why anyone would use proxy_handler_factory directly.\nlet\u0027s move this into explorer_proxy_route and remove proxy_handler_factory",
+      "range": {
+        "startLine": 296,
+        "startChar": 2,
+        "endLine": 302,
+        "endChar": 0
+      },
+      "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25fd3611_5a012f0a",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-09T17:59:50Z",
+      "side": 1,
+      "message": "let\u0027s add THIS_DIR global variable like many other .py files do",
+      "range": {
+        "startLine": 317,
+        "startChar": 23,
+        "endLine": 317,
+        "endChar": 64
+      },
+      "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "058f9478_a2ccd31d",
+        "filename": "appengine/components/components/endpoints_webapp2/templates/proxy.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-09T17:59:50Z",
+      "side": 1,
+      "message": "please add a comment or a README explaining what is this, why is this needed and where we got it from.\nMore generally, the explanation available in the CL should still be available in the committed code.",
+      "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
