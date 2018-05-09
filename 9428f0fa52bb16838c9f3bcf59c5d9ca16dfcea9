@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "530e2f33_497214ff",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-09T21:32:56Z",
+      "side": 1,
+      "message": "It\u0027s just for consistency with the others, but done.",
+      "parentUuid": "998d7dc9_c45ad928",
+      "range": {
+        "startLine": 296,
+        "startChar": 2,
+        "endLine": 302,
+        "endChar": 0
+      },
+      "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25fd3611_5a012f0a",
         "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5138e8fc_6d379a30",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-09T21:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fd3611_5a012f0a",
+      "range": {
+        "startLine": 317,
+        "startChar": 23,
+        "endLine": 317,
+        "endChar": 64
+      },
+      "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "058f9478_a2ccd31d",
         "filename": "appengine/components/components/endpoints_webapp2/templates/proxy.html",
         "patchSetId": 2
@@ -62,6 +110,24 @@
       "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d44a6b7_39a152d1",
+        "filename": "appengine/components/components/endpoints_webapp2/templates/proxy.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-09T21:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "058f9478_a2ccd31d",
+      "revId": "9428f0fa52bb16838c9f3bcf59c5d9ca16dfcea9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
