@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4c4a2d4_922eaf35",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-09T23:09:57Z",
+      "side": 1,
+      "message": "and resources?",
+      "range": {
+        "startLine": 199,
+        "startChar": 22,
+        "endLine": 199,
+        "endChar": 26
+      },
+      "revId": "2f70eeefb5c20c23b1af13e0066a1cb99d89cedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a60f61e_d7ffb76f",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-09T23:09:57Z",
+      "side": 1,
+      "message": "tuple",
+      "range": {
+        "startLine": 205,
+        "startChar": 6,
+        "endLine": 205,
+        "endChar": 10
+      },
+      "revId": "2f70eeefb5c20c23b1af13e0066a1cb99d89cedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef7dbf9_dce0f2de",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-09T23:09:57Z",
+      "side": 1,
+      "message": "understanding this requires reading the comment in L217. The comment it not helpful there because it does not explain anything there.\n\nlet\u0027s do method id parsing in one place, where we acquire method_id. Also let\u0027s make this code more straightforward:\n\n  method_parts \u003d method_id.split(\u0027.\u0027)\n  assert len(method_parts) in (2, 3)\n  if len(method_parts) \u003d\u003d 3:\n    ...",
+      "range": {
+        "startLine": 264,
+        "startChar": 3,
+        "endLine": 266,
+        "endChar": 35
+      },
+      "revId": "2f70eeefb5c20c23b1af13e0066a1cb99d89cedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
