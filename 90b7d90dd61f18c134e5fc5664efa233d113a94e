@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "61e7d1af_f830c9e7",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-09T01:09:22Z",
+      "side": 1,
+      "message": "In fact I took it out. It really has nothing to do with this CL. But if you try out the API explorer note that config.get_metadata will return an internal server error unrelated to this CL until I fix it.",
+      "parentUuid": "b7da45ac_e434bd64",
+      "revId": "90b7d90dd61f18c134e5fc5664efa233d113a94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ec1e20c_6486a2ec",
         "filename": "appengine/components/components/endpoints_webapp2/templates/proxy.html",
         "patchSetId": 1
