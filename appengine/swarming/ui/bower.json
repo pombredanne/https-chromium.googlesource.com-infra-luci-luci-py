@@ -16,11 +16,13 @@
     "iron-elements": "PolymerElements/iron-elements#~1.0.0",
     "paper-elements": "PolymerElements/paper-elements#~1.0.0",
     "paper-time-picker": "bendavis78/paper-time-picker#~1.1.0",
-    "polymer": "Polymer/polymer#^1.10.1",
+    "polymer": "Polymer/polymer#1.10.1",
     "polymer-paper-date-picker": "bendavis78/paper-date-picker#~1.1.0",
-    "svg-piechart": "timeu/svg-piechart#~1.1.0"
+    "svg-piechart": "timeu/svg-piechart#~1.1.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.2.0"
   },
   "resolutions": {
-    "firebase": "^2.3.1"
+    "firebase": "^2.3.1",
+    "webcomponentsjs": "^1.2.0"
   }
 }
