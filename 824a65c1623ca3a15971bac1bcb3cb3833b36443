@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b39e1d5_31ec5923",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-09T00:53:47Z",
+      "side": 1,
+      "message": "get_native_path_case() is an OS-specific function that returns the native path case as found on the file system for case-preserving but case-insensitive file systems like on macOS and Windows.\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/file_path.py",
+      "revId": "824a65c1623ca3a15971bac1bcb3cb3833b36443",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
