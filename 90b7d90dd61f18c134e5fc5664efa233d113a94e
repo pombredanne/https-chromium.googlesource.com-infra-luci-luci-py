@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7da45ac_e434bd64",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-09T01:00:17Z",
+      "side": 1,
+      "message": "Technically this is out of scope of this CL, it\u0027s not related to the API explorer proxy specifically, I just uncovered it while testing out this CL. I can create a separate CL if you prefer to either have this fallback or to lowercase all header names in adapter.py.",
+      "revId": "90b7d90dd61f18c134e5fc5664efa233d113a94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ec1e20c_6486a2ec",
+        "filename": "appengine/components/components/endpoints_webapp2/templates/proxy.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-09T01:00:17Z",
+      "side": 1,
+      "message": "I gave up trying to understand this and reproduce it. Instead this is just straight copy paste from https://machine-provider-dev.appspot.com/_ah/api/static/proxy.html.",
+      "revId": "90b7d90dd61f18c134e5fc5664efa233d113a94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
