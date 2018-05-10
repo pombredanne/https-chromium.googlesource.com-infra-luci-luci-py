@@ -22,6 +22,30 @@
       "revId": "215e13491b25b644705f62562fb9150fd23977e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37b7a8b_61442ff6",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-10T22:06:29Z",
+      "side": 0,
+      "message": "message_to_dict is fine and is being used elsewhere in the file. The problem is swarming_rpcs.TasksRequest no longer exists, because the message is replaced by a resource container. Elsewhere in this file, the problem was solved by passing dicts so I chose the same solution for consistency. However I can make it more structured by creating an instance of the container. I\u0027ve uploaded a new patchset, let me know which you prefer.",
+      "parentUuid": "afb09b76_045362be",
+      "range": {
+        "startLine": 378,
+        "startChar": 21,
+        "endLine": 378,
+        "endChar": 36
+      },
+      "revId": "215e13491b25b644705f62562fb9150fd23977e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

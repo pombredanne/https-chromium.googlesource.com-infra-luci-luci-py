@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aecbba89_923205f5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-10T22:06:29Z",
+      "side": 1,
+      "message": "One place makes sense to me. I\u0027m also not sure whether they should all be here or all be in swarming_rpcs.py. They seem to go with the stuff that\u0027s here, having to reference two files just to see what the endpoints methods are seems cumbersome, but on the other hand it would increase this file size by 50% or more, which might make it hard to read. Maybe handlers_endpoints.py could be split into separate files for each endpoint, then each remote.Service class and its relevant message.Message classes could be together in one file.\n\nAgreed it\u0027s out of scope though, currently this CL is consistent since other resource containers are already declared here.",
+      "parentUuid": "e6d8c9fb_d734df51",
+      "revId": "4fb41f3f520012cb8309516f83e1c89a05e522b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "075641c5_706f015e",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 2
