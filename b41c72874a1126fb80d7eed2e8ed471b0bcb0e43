@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a6b8791d_76d7bb72",
+        "filename": "appengine/components/components/protoutil/multiline_proto_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-10T18:13:32Z",
+      "side": 1,
+      "message": "i am not sure it will increase code coverage. multiline_proto.py operates at the string level. It does not care if there are two fields with different or same names",
+      "parentUuid": "3b7b4944_5216a3cc",
+      "revId": "b41c72874a1126fb80d7eed2e8ed471b0bcb0e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e49675b_3529e5f1",
         "filename": "appengine/components/components/protoutil/protoutil.py",
         "patchSetId": 3
@@ -48,6 +66,24 @@
       "side": 1,
       "message": "Could you put a comment in there or you prefer to keep it as-is?",
       "parentUuid": "3e49675b_3529e5f1",
+      "revId": "b41c72874a1126fb80d7eed2e8ed471b0bcb0e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4f12fbc_3a670e85",
+        "filename": "appengine/components/components/protoutil/protoutil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-10T18:13:32Z",
+      "side": 1,
+      "message": "I will delete the original code :)",
+      "parentUuid": "d74d0d9c_a4e0e91f",
       "revId": "b41c72874a1126fb80d7eed2e8ed471b0bcb0e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
