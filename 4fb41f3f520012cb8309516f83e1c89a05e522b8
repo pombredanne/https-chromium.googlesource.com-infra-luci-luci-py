@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6d8c9fb_d734df51",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-10T17:32:21Z",
+      "side": 1,
+      "message": "Oh, what do you think about:\n- Keep them in swarming_rpcs.py, actually move all messages here back to this file.\n- Rename them so the fooRequest and result has similar name, right now it\u0027s quite inconsistent.\n\nI\u0027m actually a bit ambivalent about this, the other option is to move all messages in here. Either way I\u0027d prefer inputs and outputs messages to be listed at the same place so either all here or all in swarming_rpcs.\n\nI think it\u0027s now become large enough that it could warrant one source file per API surface but that\u0027s out of scope of for this CL.",
+      "revId": "4fb41f3f520012cb8309516f83e1c89a05e522b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075641c5_706f015e",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-10T17:32:21Z",
+      "side": 1,
+      "message": "/me kicks himself.",
+      "range": {
+        "startLine": 523,
+        "startChar": 34,
+        "endLine": 523,
+        "endChar": 46
+      },
+      "revId": "4fb41f3f520012cb8309516f83e1c89a05e522b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

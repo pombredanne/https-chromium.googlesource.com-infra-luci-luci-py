@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afb09b76_045362be",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-10T17:32:21Z",
+      "side": 0,
+      "message": "IIUC, the problem is that message_to_dict() encodes to json. What about using protojson.encode_message(rpc_message) ? I like this being a bit more structured than a dict.",
+      "range": {
+        "startLine": 378,
+        "startChar": 21,
+        "endLine": 378,
+        "endChar": 36
+      },
+      "revId": "215e13491b25b644705f62562fb9150fd23977e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
