@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6ac89c3_ad077cbc",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-10T22:27:40Z",
+      "side": 1,
+      "message": "Docstring.",
+      "revId": "692a4ac91cdd8d1d5fe910c07d4cff0bf36ef04c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffef9d0c_c71e3846",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-10T22:27:40Z",
+      "side": 1,
+      "message": "It looks like for structs you want the special case of being able to filter individual elements of the map that the struct field contains, in other words you\u0027re actually looking at the value of struct.field (the value being \u003ck, v\u003e pairs) and filtering based on that, instead of exclusively based on paths to field names. Is this how field masks are intended to behave? Can you write that in a comment?",
+      "revId": "692a4ac91cdd8d1d5fe910c07d4cff0bf36ef04c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c34a0b6_cbcedd91",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-10T22:27:40Z",
+      "side": 1,
+      "message": "Docstring.",
+      "revId": "692a4ac91cdd8d1d5fe910c07d4cff0bf36ef04c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
