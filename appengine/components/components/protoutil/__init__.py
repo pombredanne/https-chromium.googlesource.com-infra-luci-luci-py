@@ -5,3 +5,4 @@
 """Utility functions for Protocol Buffers."""
 
 from .multiline_proto import parse_multiline, MultilineParseError
+from .protutil import merge_dict
