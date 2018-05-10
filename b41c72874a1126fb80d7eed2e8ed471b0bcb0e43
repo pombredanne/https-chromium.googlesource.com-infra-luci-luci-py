@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e49675b_3529e5f1",
+        "filename": "appengine/components/components/protoutil/protoutil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-10T17:42:43Z",
+      "side": 1,
+      "message": "code below is identical to the one in https://chromium.googlesource.com/infra/infra/+/a7ed29f96789be6d978cda846912a060e0caf38c/appengine/cr-buildbucket/protoutil.py",
+      "revId": "b41c72874a1126fb80d7eed2e8ed471b0bcb0e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
