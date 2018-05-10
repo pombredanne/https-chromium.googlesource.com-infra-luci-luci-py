@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73babcba_ecb6ee6e",
+        "filename": "appengine/swarming/handlers_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-10T13:08:55Z",
+      "side": 1,
+      "message": "Reminds me we need to remove this.",
+      "revId": "8aacfeffc2e43525059787f384897bcfc3a72eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
