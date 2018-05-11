@@ -18,6 +18,7 @@ import test_env_handlers
 import webtest
 
 from google.appengine.api import datastore_errors
+from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
 import handlers_backend
@@ -228,6 +229,45 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
   def test_rebuild_task_cache(self):
     # Tested indirectly by self._assert_task()
     pass
+
+  def test_dimensions_to_flat(self):
+    self.assertEqual(
+        ['a:bee', 'a:c', 'cee:zee'],
+        task_queues.dimensions_to_flat({'a': ['c', 'bee'], 'cee': ['zee']}))
+
+  def test_has_capacity(self):
+    # The bot can service this dimensions.
+    d = {u'pool': [u'default'], u'os': [u'Ubuntu-16.04']}
+    # By default, nothing has capacity.
+    self.assertEqual(None, task_queues.has_capacity(d))
+    self.assertEqual(None, memcache.get('bot1', namespace='task_queues'))
+
+    # A bot comes only. There's some capacity now but it's not registered in
+    # task queue yet.
+    _assert_bot()
+    self.assertEqual([], memcache.get('bot1', namespace='task_queues'))
+    self.assertEqual(1, bot_management.BotInfo.query().count())
+    self.assertEqual(None, task_queues.has_capacity(d))
+
+    # It registers there only once there's a request enqueued.
+    request = _gen_request(properties=_gen_properties(dimensions=d))
+    task_queues.assert_task(request)
+    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(None, task_queues.has_capacity(d))
+
+    # It get sets only once get_queues() is called.
+    bot_root_key = bot_management.get_root_key(u'bot1')
+    task_queues.get_queues(bot_root_key)
+    self.assertEqual(True, task_queues.has_capacity(d))
+    self.assertEqual(
+        [1843498234], memcache.get('bot1', namespace='task_queues'))
+
+  def test_set_has_capacity(self):
+    d = {u'pool': [u'default'], u'os': [u'Ubuntu-16.04']}
+    # By default, nothing has capacity. None means no data.
+    self.assertEqual(None, task_queues.has_capacity(d))
+    task_queues.set_has_capacity(d)
+    self.assertEqual(True, task_queues.has_capacity(d))
 
   def test_assert_bot_then_task(self):
     self.assertEqual(0, _assert_bot())
