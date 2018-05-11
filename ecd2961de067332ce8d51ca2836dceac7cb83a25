@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79a4abf5_a4dd7a61",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-11T21:06:59Z",
+      "side": 1,
+      "message": "- Does this mean that this is called when a bot makes a request to the swarming server indicating that it has changed state somehow?\n- I was just trying to think of whether this would be better if this function took a dict instead of a list of arguments, but I don\u0027t think that would necessarily improve it.\n- Most function names start with a verb, would it make sense to call it register_bot_event or add_bot_event or such? Keeping it as bot_event is also alright since that\u0027s shorter.",
+      "range": {
+        "startLine": 377,
+        "startChar": 18,
+        "endLine": 377,
+        "endChar": 44
+      },
+      "revId": "ecd2961de067332ce8d51ca2836dceac7cb83a25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
