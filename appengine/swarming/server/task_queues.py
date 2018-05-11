@@ -290,14 +290,6 @@ def _validate_dimensions_flat(obj):
         '%s.dimensions_flat must be sorted' % obj.__class__.__name__)
 
 
-def _flatten_bot_dimensions(bot_dimensions):
-  dimensions_flat = []
-  for k, values in bot_dimensions.iteritems():
-    for v in values:
-      dimensions_flat.append(u'%s:%s' % (k, v))
-  return sorted(dimensions_flat)
-
-
 def _get_task_queries_for_bot(bot_dimensions):
   """Returns all the ndb.Query for TaskDimensions relevant for this bot.
 
@@ -425,7 +417,7 @@ def _rebuild_bot_cache_async(bot_dimensions, bot_root_key):
     yield [future_bots, future_tasks]
 
     # Seal the fact that it has been updated.
-    df = _flatten_bot_dimensions(bot_dimensions)
+    df = dimensions_to_flat(bot_dimensions)
     obj = BotDimensions(id=1, parent=bot_root_key, dimensions_flat=df)
     # Do these steps in order.
     yield obj.put_async()
@@ -643,6 +635,16 @@ def _assert_task_props(properties, expiration_ts):
 ### Public APIs.
 
 
+def dimensions_to_flat(dimensions):
+  """Returns a flat '<key>:<value>' sorted list of dimensions."""
+  out = []
+  for k, values in dimensions.iteritems():
+    for v in values:
+      out.append('%s:%s' % (k, v))
+  out.sort()
+  return out
+
+
 def hash_dimensions(dimensions):
   """Returns a 32 bits int that is a hash of the request dimensions specified.
 
@@ -683,7 +685,7 @@ def assert_bot_async(bot_root_key, bot_dimensions):
   # Check if the bot dimensions changed since last _rebuild_bot_cache_async()
   # call.
   obj = yield ndb.Key(BotDimensions, 1, parent=bot_root_key).get_async()
-  if obj and obj.dimensions_flat == _flatten_bot_dimensions(bot_dimensions):
+  if obj and obj.dimensions_flat == dimensions_to_flat(bot_dimensions):
     # Cache hit, no need to look further.
     raise ndb.Return(None)
 
@@ -707,9 +709,7 @@ def cleanup_after_bot(bot_root_key):
   q = BotTaskDimensions.query(ancestor=bot_root_key).iter(keys_only=True)
   futures = ndb.delete_multi_async(q)
   futures.append(ndb.Key(BotDimensions, 1, parent=bot_root_key).delete_async())
-
-  for f in futures:
-    f.check_success()
+  _flush_futures(futures)
 
 
 def assert_task(request):
@@ -737,6 +737,11 @@ def assert_task(request):
 def get_queues(bot_root_key):
   """Returns the known task queues as integers.
 
+  This function is called to get the task queues to poll, as the bot is trying
+  to reap a task, any task.
+
+  It is also called while the bot is running a task, to refresh the task queues.
+
   Arguments:
     bot_root_key: ndb.Key to bot_management.BotRoot
   """
@@ -746,6 +751,9 @@ def get_queues(bot_root_key):
     logging.debug(
         'get_queues(%s): can run from %d queues (memcache)\n%s',
         bot_id, len(data), data)
+    # Refresh all the keys.
+    memcache.set_multi(
+        {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
     return data
 
   # Retrieve all the dimensions_hash that this bot could run that have
@@ -760,7 +768,36 @@ def get_queues(bot_root_key):
   logging.info(
       'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
       bot_id, (utils.utcnow()-now).total_seconds(), len(data), data)
+  memcache.set_multi(
+      {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
   return data
+
+
+def has_capacity(dimensions):
+  """Returns True if there's a reasonable chance for this task request
+  dimensions set to be serviced by a bot alive.
+
+  There's a risk of collision, that is it could return True even if there is no
+  capacity. The risk is of 2^30 different dimensions sets.
+
+  It is only looking at the task queues, not at the actual bots.
+
+  Returns:
+    True or False if the capacity is cached, None otherwise.
+  """
+  dimensions_hash = str(hash_dimensions(dimensions))
+  # Sadly, the fact that the key is not there doesn't mean that this task queue
+  # is dead. For example:
+  # - memcache could have been cleared manually or could be malfunctioning.
+  # - in the case where a single bot can service the dimensions, the bot may not
+  #   have been polling for N+1 seconds.
+  return memcache.get(dimensions_hash, namespace='task_queues_tasks')
+
+
+def set_has_capacity(dimensions):
+  """Registers the fact that this task request dimensions set has capacity."""
+  dimensions_hash = str(hash_dimensions(dimensions))
+  memcache.set(dimensions_hash, True, time=61, namespace='task_queues_tasks')
 
 
 def rebuild_task_cache(payload):
