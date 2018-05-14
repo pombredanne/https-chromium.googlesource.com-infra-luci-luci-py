@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a54cb8d6_2a6ef991",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1796,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T18:06:12Z",
+      "side": 1,
+      "message": "I think would have used the variable names `other_sep` and `name`, even though these names are only used across a couple of lines.\n\nWhen I\u0027m reading the code, `name` feels to be the same length as `n`, (both are one syllable), but `name` is clearer to me; `n` also stands for number sometimes. Anyway, this is fine and I think it\u0027s a matter of custom/preference.",
+      "range": {
+        "startLine": 1795,
+        "startChar": 0,
+        "endLine": 1796,
+        "endChar": 59
+      },
+      "revId": "71cb0b099ca21e6b9ddb3d9c9e15ee04a038f97a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
