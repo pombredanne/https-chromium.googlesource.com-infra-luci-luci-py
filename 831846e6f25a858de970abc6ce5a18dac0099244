@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ad919af_0b126e06",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1776,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T19:35:38Z",
+      "side": 1,
+      "message": "Nit: add a period at the end of the line for consistency.",
+      "revId": "831846e6f25a858de970abc6ce5a18dac0099244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e598e76_486c1fb7",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T19:35:38Z",
+      "side": 1,
+      "message": "f2.mode?",
+      "range": {
+        "startLine": 1099,
+        "startChar": 6,
+        "endLine": 1099,
+        "endChar": 13
+      },
+      "revId": "831846e6f25a858de970abc6ce5a18dac0099244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
