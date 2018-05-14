@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fd5784e7_551e3812",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1776,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-14T19:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ad919af_0b126e06",
+      "revId": "831846e6f25a858de970abc6ce5a18dac0099244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e598e76_486c1fb7",
         "filename": "client/tests/isolateserver_test.py",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2018-05-14T19:35:38Z",
       "side": 1,
       "message": "f2.mode?",
+      "range": {
+        "startLine": 1099,
+        "startChar": 6,
+        "endLine": 1099,
+        "endChar": 13
+      },
+      "revId": "831846e6f25a858de970abc6ce5a18dac0099244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2d98105_d4b6609a",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-14T19:57:08Z",
+      "side": 1,
+      "message": "Disappointingly, the test passes either way.",
+      "parentUuid": "4e598e76_486c1fb7",
       "range": {
         "startLine": 1099,
         "startChar": 6,
