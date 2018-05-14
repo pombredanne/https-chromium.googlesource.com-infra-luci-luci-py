@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8af626d_2f5adc01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T20:16:52Z",
+      "side": 1,
+      "message": "Possible rephrasing: There are two different has_capacity functions, one in task_queues which checks the task queue based cache, and the other in bot_management which does a BotInfo DB query.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c193be35_b2e6feb3",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T20:16:52Z",
+      "side": 1,
+      "message": "Maybe: \"by a live bot\"\nAlso maybe, the docstring summary can be shortened, e.g.: Checks if there appears to a live bot to serve this request.",
+      "range": {
+        "startLine": 778,
+        "startChar": 32,
+        "endLine": 778,
+        "endChar": 46
+      },
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f47881bc_4815500a",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T20:16:52Z",
+      "side": 1,
+      "message": "Maybe could be rephrased: A bot exists but is not registered yet?",
+      "range": {
+        "startLine": 245,
+        "startChar": 6,
+        "endLine": 245,
+        "endChar": 22
+      },
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3f9446d_6d3cca95",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-14T20:16:52Z",
+      "side": 1,
+      "message": "It looks like maybe this could potentially be split up; it would be slightly longer and would have the same coverage, but it might be quicker to diagnose if one of the parts of the test fails.",
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
