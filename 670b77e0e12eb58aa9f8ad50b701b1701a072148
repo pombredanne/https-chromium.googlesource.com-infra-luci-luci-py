@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "267c3e39_fb799fd4",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-14T15:03:03Z",
+      "side": 1,
+      "message": "nit: a host with a schema is an invalid host\n     there are two string formattings that could be one. This and L310.\n\nConsider\n\n  schema \u003d \u0027http\u0027 if ...\n  ....\n  `schema, host, ...` in L311",
+      "range": {
+        "startLine": 298,
+        "startChar": 12,
+        "endLine": 298,
+        "endChar": 19
+      },
+      "revId": "670b77e0e12eb58aa9f8ad50b701b1701a072148",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffdf148d_c8dc8862",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-14T15:03:03Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "670b77e0e12eb58aa9f8ad50b701b1701a072148",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
