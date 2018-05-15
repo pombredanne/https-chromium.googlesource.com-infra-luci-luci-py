@@ -1027,7 +1027,7 @@ def clean_caches(options, isolate_cache, named_cache_manager):
         isolate_cache.get_timestamp(oldest_isolated) if oldest_isolated else 0,
       ),
       (
-        lambda: named_cache_manager.trim(options.min_free_space),
+        named_cache_manager.trim,
         named_cache_manager.get_timestamp(oldest_named) if oldest_named else 0,
       ),
     ]
