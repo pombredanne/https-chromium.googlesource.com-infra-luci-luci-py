@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd7d0fb9_f2fbc3f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-15T18:50:05Z",
+      "side": 1,
+      "message": "Done but this was incredibly confusing, so I renamed the one in task_queues to has_probably_capacity(), which helps disambiguating and clarifying purpose.",
+      "parentUuid": "d8af626d_2f5adc01",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c193be35_b2e6feb3",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-14T20:16:52Z",
       "side": 1,
       "message": "Maybe: \"by a live bot\"\nAlso maybe, the docstring summary can be shortened, e.g.: Checks if there appears to a live bot to serve this request.",
+      "range": {
+        "startLine": 778,
+        "startChar": 32,
+        "endLine": 778,
+        "endChar": 46
+      },
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d96a4c29_34d3cfec",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-15T18:50:05Z",
+      "side": 1,
+      "message": "Returns True if there is likely a live bot to serve this request.",
+      "parentUuid": "c193be35_b2e6feb3",
       "range": {
         "startLine": 778,
         "startChar": 32,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bb04e5b0_5fe00b28",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-15T18:50:05Z",
+      "side": 1,
+      "message": "s/only/online/. I removed the comment about the task queue, it\u0027s not relevant in the end.",
+      "parentUuid": "f47881bc_4815500a",
+      "range": {
+        "startLine": 245,
+        "startChar": 6,
+        "endLine": 245,
+        "endChar": 22
+      },
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f3f9446d_6d3cca95",
         "filename": "appengine/swarming/server/task_queues_test.py",
         "patchSetId": 11
@@ -82,6 +154,24 @@
       "writtenOn": "2018-05-14T20:16:52Z",
       "side": 1,
       "message": "It looks like maybe this could potentially be split up; it would be slightly longer and would have the same coverage, but it might be quicker to diagnose if one of the parts of the test fails.",
+      "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a50b0149_e8f460e5",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-15T18:50:05Z",
+      "side": 1,
+      "message": "Split in 3",
+      "parentUuid": "f3f9446d_6d3cca95",
       "revId": "248538b6e2c5db519deb7b754ad8de8e1728ac2e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
