@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94790861_181afdb8",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-15T20:37:11Z",
+      "side": 1,
+      "message": "Deletes",
+      "range": {
+        "startLine": 97,
+        "startChar": 5,
+        "endLine": 97,
+        "endChar": 11
+      },
+      "revId": "decec2909adae48661319b144d484d569f3399f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf108a07_a6ee18b6",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-15T20:37:11Z",
+      "side": 1,
+      "message": "No need to explicitly write the number again here, since you\u0027re probably going to change that number later.",
+      "range": {
+        "startLine": 534,
+        "startChar": 30,
+        "endLine": 534,
+        "endChar": 52
+      },
+      "revId": "decec2909adae48661319b144d484d569f3399f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a3fa1cc_ec7ef6a9",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-15T20:37:11Z",
+      "side": 1,
+      "message": "could also be written as 9.5 * 60. Or 9 * 60 or something like that.",
+      "range": {
+        "startLine": 539,
+        "startChar": 54,
+        "endLine": 539,
+        "endChar": 57
+      },
+      "revId": "decec2909adae48661319b144d484d569f3399f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da2a68e7_a741b9b5",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-15T20:37:11Z",
+      "side": 1,
+      "message": "Does this make 2 bot events, one just before the cutoff and one just after, and assert that exactly one was deleted? The comment at the top could be expanded a little.",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 68
+      },
+      "revId": "decec2909adae48661319b144d484d569f3399f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
