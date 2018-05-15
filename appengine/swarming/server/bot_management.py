@@ -492,7 +492,7 @@ def has_capacity(dimensions):
     q = q.filter(BotInfo.dimensions_flat == f)
   if q.get():
     logging.warning('FOUND CAPACITY VIA BotInfo: %s', flat)
-    task_queues.set_has_probably_capacity(dimensions)
+    task_queues.set_has_capacity(dimensions)
     return True
 
   logging.error('HAS NO CAPACITY: %s', flat)

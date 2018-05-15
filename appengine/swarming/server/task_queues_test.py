@@ -267,11 +267,11 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(
         [1843498234], memcache.get('bot1', namespace='task_queues'))
 
-  def test_set_has_probably_capacity(self):
+  def test_set_has_capacity(self):
     d = {u'pool': [u'default'], u'os': [u'Ubuntu-16.04']}
     # By default, nothing has capacity. None means no data.
     self.assertEqual(None, task_queues.has_probably_capacity(d))
-    task_queues.set_has_probably_capacity(d)
+    task_queues.set_has_capacity(d)
     self.assertEqual(True, task_queues.has_probably_capacity(d))
 
   def test_assert_bot_then_task(self):
