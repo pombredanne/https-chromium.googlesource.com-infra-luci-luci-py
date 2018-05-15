@@ -417,19 +417,19 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, task_to_run.TaskToRun.query().count())
     actual_request, _, _ = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
-    self.assertIsNone(actual_request)
+    self.assertTrue(actual_request)
 
     # For now a cron job or poll to expire the first slice is necessary.
     # Eventually it should be faster as the first dimensions should be
     # immediately denied.
     self.assertEqual(
-        ([], ['1d69b9f088008910']),
+        ([], []),
         task_scheduler.cron_abort_expired_task_to_run('f.local'))
-    self.assertEqual(2, task_to_run.TaskToRun.query().count())
+    self.assertEqual(1, task_to_run.TaskToRun.query().count())
 
     _request, _, run_result = task_scheduler.bot_reap_task(
         self.bot_dimensions, 'abc', None)
-    self.assertEqual(1, run_result.current_task_slice)
+    self.assertIsNone(run_result)
 
   def test_schedule_request_slice_no_capacity(self):
     self.mock(bot_management, 'has_capacity', lambda _: False)
@@ -1407,7 +1407,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                   io_timeout_secs=63,
                   dimensions={u'pool': [u'some-pool']})),
         ])
-    self.assertEqual(State.PENDING, result_summary.state)
+    self.assertEqual(State.NO_RESOURCE, result_summary.state)
     self.assertEqual(0, result_summary.current_task_slice)
 
     # Expire the first task. But has_capacity returns False 2 times, so 1+2 =
@@ -1419,12 +1419,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       return len(items) > 2
     self.mock(bot_management, 'has_capacity', has_capacity)
     self.assertEqual(
-        ([], ['1d69b9f088008910']),
+        ([], []),
         task_scheduler.cron_abort_expired_task_to_run('f.local'))
     result_summary = result_summary.key.get()
-    self.assertEqual(State.PENDING, result_summary.state)
+    self.assertEqual(State.NO_RESOURCE, result_summary.state)
     # Skipped #1 and #2.
-    self.assertEqual(3, result_summary.current_task_slice)
+    self.assertEqual(0, result_summary.current_task_slice)
 
   def test_cron_handle_bot_died(self):
     pub_sub_calls = self.mock_pub_sub()
