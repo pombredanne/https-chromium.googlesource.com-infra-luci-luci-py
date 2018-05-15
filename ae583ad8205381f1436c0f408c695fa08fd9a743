@@ -22,6 +22,30 @@
       "revId": "ae583ad8205381f1436c0f408c695fa08fd9a743",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "739d0d5a_d02194a4",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-15T20:46:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b97238cb_30a2bdb0",
+      "range": {
+        "startLine": 1022,
+        "startChar": 25,
+        "endLine": 1022,
+        "endChar": 34
+      },
+      "revId": "ae583ad8205381f1436c0f408c695fa08fd9a743",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
