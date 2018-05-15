@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de22b4b9_1ce98edf",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-15T20:18:55Z",
+      "side": 1,
+      "message": "Nit: probably_has_capacity sounds better to me.",
+      "range": {
+        "startLine": 776,
+        "startChar": 4,
+        "endLine": 776,
+        "endChar": 25
+      },
+      "revId": "0b2990c6d4ffa14f360a41d7f5da49363d403d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
