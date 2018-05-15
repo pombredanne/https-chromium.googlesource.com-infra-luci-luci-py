@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bb143eb9_6078acce",
+        "filename": "appengine/components/components/config/proto/project_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-15T01:39:53Z",
+      "side": 1,
+      "message": "Currently it doesn\u0027t. It may be in the future, I\u0027ll update it when it happens. \u0027config\u0027 may be OK too, dunno.",
+      "parentUuid": "13a4672f_a8799768",
+      "revId": "3ae0156b956ee2435cd63300235033244d212bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b0c6df4_47a3775f",
         "filename": "appengine/components/components/config/proto/project_config.proto",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "3ae0156b956ee2435cd63300235033244d212bc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0fd2c05_d20c64ff",
+        "filename": "appengine/components/components/config/proto/project_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-15T01:39:53Z",
+      "side": 1,
+      "message": "In this case mostly for \"anonymous:anonymous\".",
+      "parentUuid": "6b0c6df4_47a3775f",
+      "revId": "3ae0156b956ee2435cd63300235033244d212bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
