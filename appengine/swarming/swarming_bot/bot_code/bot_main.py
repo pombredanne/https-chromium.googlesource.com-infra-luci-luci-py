@@ -1153,7 +1153,12 @@ def _poll_server(botobj, quit_bit, last_action):
     # Value is duration
     _call_hook_safe(
         True, botobj, 'on_bot_idle', max(0, time.time() - last_action))
-    quit_bit.wait(value)
+    try
+      # Sometimes throw with [Errno 4] Interrupted function call. <3 python.
+      quit_bit.wait(value)
+    except IOError:
+      # Act as it if were set as this likely mean a system shutdown.
+      quit_bit.set()
     return False
 
   if cmd == 'terminate':
