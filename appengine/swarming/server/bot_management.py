@@ -503,8 +503,7 @@ def has_capacity(dimensions):
     return True
 
   logging.error('HAS NO CAPACITY: %s', flat)
-  # TODO(maruel): https://crbug.com/839173
-  return True
+  return False
 
 
 def cron_update_bot_info():
