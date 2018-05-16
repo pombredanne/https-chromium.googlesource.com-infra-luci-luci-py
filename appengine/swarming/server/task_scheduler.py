@@ -748,7 +748,7 @@ def _gen_new_keys(result_summary, to_run, secret_bytes):
   return key
 
 
-def schedule_request(request, secret_bytes):
+def schedule_request(request, secret_bytes, check_capacity):
   """Creates and stores all the entities to schedule a new task request.
 
   Assumes ACL check has already happened (see 'check_schedule_request_acl').
@@ -763,6 +763,8 @@ def schedule_request(request, secret_bytes):
   - secret_bytes: SecretBytes entity to be saved in the DB. It's key will be set
              and the entity will be stored by this function. None is allowed if
              there are no SecretBytes for this task.
+  - check_capacity: if True, check if there's capacity available for this
+                    request.
 
   Returns:
     TaskResultSummary. TaskToRun is not returned.
@@ -801,8 +803,8 @@ def schedule_request(request, secret_bytes):
         secret_bytes = None
         break
 
-  if not dupe_summary:
-    # The task has to run. Make sure there's capacity.
+  # The task has to run. Make sure there's capacity if desired.
+  if not dupe_summary and check_capacity:
     index = 0
     while index < request.num_task_slices:
       # This needs to be extremely fast.
