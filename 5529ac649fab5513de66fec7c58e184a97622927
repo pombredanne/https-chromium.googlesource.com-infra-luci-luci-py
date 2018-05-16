@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "43e3b49d_2563b8a4",
+        "filename": "client/local_caching.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T18:52:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "921449bb_7a4b70d4",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 7
+      },
+      "revId": "5529ac649fab5513de66fec7c58e184a97622927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d7de666_d1d6226d",
         "filename": "client/local_caching.py",
         "patchSetId": 9
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "1eefa1b9_8eecf521",
+        "filename": "client/local_caching.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T18:52:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d7de666_d1d6226d",
+      "range": {
+        "startLine": 15,
+        "startChar": 25,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "5529ac649fab5513de66fec7c58e184a97622927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5982631b_486b8570",
         "filename": "client/local_caching.py",
         "patchSetId": 9
@@ -82,6 +130,30 @@
       "writtenOn": "2018-05-16T18:10:21Z",
       "side": 1,
       "message": "I\u0027m not sure if there\u0027s much of an advantage, but you could also write %d in these spaces.",
+      "range": {
+        "startLine": 29,
+        "startChar": 38,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "5529ac649fab5513de66fec7c58e184a97622927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0743719c_d6cf9d1d",
+        "filename": "client/local_caching.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T18:52:15Z",
+      "side": 1,
+      "message": "None could be a valid value that would act as 0, that\u0027s why I changed to %s.",
+      "parentUuid": "5982631b_486b8570",
       "range": {
         "startLine": 29,
         "startChar": 38,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "3876dd9a_dccdd9c2",
+        "filename": "client/named_cache.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T18:52:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cc792e4_28a788f9",
+      "range": {
+        "startLine": 217,
+        "startChar": 33,
+        "endLine": 217,
+        "endChar": 47
+      },
+      "revId": "5529ac649fab5513de66fec7c58e184a97622927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f84d9e7_5cdca01e",
         "filename": "client/named_cache.py",
         "patchSetId": 9
@@ -131,6 +227,24 @@
       "revId": "5529ac649fab5513de66fec7c58e184a97622927",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9776eec5_f96fb8bd",
+        "filename": "client/named_cache.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T18:52:15Z",
+      "side": 1,
+      "message": "Changed the code to check that the lru is never empty instead, it results in shorter code overall.",
+      "parentUuid": "7f84d9e7_5cdca01e",
+      "revId": "5529ac649fab5513de66fec7c58e184a97622927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -154,6 +268,30 @@
       "revId": "5529ac649fab5513de66fec7c58e184a97622927",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "507bc428_889842d8",
+        "filename": "client/named_cache.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T18:52:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d42763a9_a9db5f35",
+      "range": {
+        "startLine": 250,
+        "startChar": 11,
+        "endLine": 250,
+        "endChar": 23
+      },
+      "revId": "5529ac649fab5513de66fec7c58e184a97622927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
