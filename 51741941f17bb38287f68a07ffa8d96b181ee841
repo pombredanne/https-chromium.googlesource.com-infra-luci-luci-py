@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79274913_7acd6893",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "nit: implementation",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7504c7_7e9474b5",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "where is this used if we prohibit addressing a single element in repeated fields?",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b8edb1a_da7899d8",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "what does this mean?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d787496_dd495a4a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "what does this mean?",
+      "range": {
+        "startLine": 18,
+        "startChar": 26,
+        "endLine": 18,
+        "endChar": 35
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50794813_2037937a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "what about repeated fields? e.g. \"repeated Message stuff\" and a mask \"stuff.*.field\"? Is \u0027f.message_type\u0027 also set for repeated fields? Please clarify this in a comment.",
+      "range": {
+        "startLine": 110,
+        "startChar": 11,
+        "endLine": 110,
+        "endChar": 29
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3c5da6_abc4440d",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "what if it\u0027s not? Why do we default to \"include\" rather than \"exclude\"?",
+      "range": {
+        "startLine": 124,
+        "startChar": 14,
+        "endLine": 124,
+        "endChar": 29
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68079408_c1635880",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "is there a difference for the following code between _QUOTED_STRING and _LITERAL. It seems to be this is a tokenizer detail and the rest of the code shouldn\u0027t care? Unless you explicitly want to forbid using quoted strings to refer to fields (not map keys).",
+      "range": {
+        "startLine": 174,
+        "startChar": 13,
+        "endLine": 174,
+        "endChar": 27
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c54d8659_f1be2531",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-16T22:56:34Z",
+      "side": 1,
+      "message": "strictly speaking this is not what your grammar says :P",
+      "range": {
+        "startLine": 183,
+        "startChar": 30,
+        "endLine": 183,
+        "endChar": 60
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
