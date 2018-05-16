@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9f70c4f_110ae496",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-16T17:11:27Z",
+      "side": 1,
+      "message": "This can probably be clarified. Would it be right to say: \"quit_bit.wait sometimes throws an OSError ([Errno 4] Interrupted system call) for Python version \u003c 3. (\u003c3 kind of looks like a love-heart, so I read this as \"love python\" at first...)",
+      "revId": "4b3f2dc94b73a9db6b6660d6d7d7dfd023aeaead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
