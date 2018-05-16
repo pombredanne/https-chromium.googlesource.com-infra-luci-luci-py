@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7eb36e33_fb6a8a11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-16T20:00:37Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 33,
+        "endLine": 15,
+        "endChar": 38
+      },
+      "revId": "522f35b38f9dc1ed4f447d211112bb1d7049b248",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "accf5b02_51eb88a8",
+        "filename": "client/named_cache.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-16T20:00:37Z",
+      "side": 1,
+      "message": "nit: \n\n  _name, (_content, timestamp) \u003d ...",
+      "range": {
+        "startLine": 245,
+        "startChar": 15,
+        "endLine": 245,
+        "endChar": 19
+      },
+      "revId": "522f35b38f9dc1ed4f447d211112bb1d7049b248",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "194b7bd8_bfa2909d",
+        "filename": "client/named_cache.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-16T20:00:37Z",
+      "side": 1,
+      "message": "this is const true?",
+      "range": {
+        "startLine": 256,
+        "startChar": 11,
+        "endLine": 256,
+        "endChar": 40
+      },
+      "revId": "522f35b38f9dc1ed4f447d211112bb1d7049b248",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac504fb1_45779bd5",
+        "filename": "client/named_cache.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-16T20:00:37Z",
+      "side": 1,
+      "message": "could we maybe restructure this loop so this line is not duped?\n\n      free_space \u003d lambda: file_path.get_free_space(self.root_dir)\n      while self._lru and free_space() \u003c self._policies.min_free_space:\n        _remove_lru_file()",
+      "revId": "522f35b38f9dc1ed4f447d211112bb1d7049b248",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
