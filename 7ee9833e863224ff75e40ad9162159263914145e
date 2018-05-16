@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a5406ce5_83d23fd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9603587_35114c80",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 12
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf761d4c_d0b1c3c0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "f8c8c625_7990eace",
+        "filename": "appengine/swarming/doc/Bot.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bc7ec98_ef6fe5a6",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 9
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f380a72_f6da3e9e",
         "filename": "appengine/swarming/doc/Bot.md",
         "patchSetId": 3
@@ -85,6 +133,30 @@
       "revId": "7ee9833e863224ff75e40ad9162159263914145e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5cc70e0_bf81e72f",
+        "filename": "appengine/swarming/doc/Bot.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f380a72_f6da3e9e",
+      "range": {
+        "startLine": 375,
+        "startChar": 55,
+        "endLine": 375,
+        "endChar": 56
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +183,30 @@
     },
     {
       "key": {
+        "uuid": "cf0511ae_dc29c919",
+        "filename": "appengine/swarming/doc/Bot.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3ad85c8_7fd3b7ca",
+      "range": {
+        "startLine": 381,
+        "startChar": 4,
+        "endLine": 381,
+        "endChar": 32
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0da249c6_5b1f701a",
         "filename": "appengine/swarming/doc/Bot.md",
         "patchSetId": 3
@@ -122,6 +218,30 @@
       "writtenOn": "2018-05-16T17:06:30Z",
       "side": 1,
       "message": "This list is already a list of possible conditions; maybe these two conditions could be listed in the top level of the list? Although I might have misunderstood this.\n\nI guess this was written like this because the latter two conditions are covered by _maybe_update_lkgbc and the former two are covered by _update_lkgbc?",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 40
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "613d802d_723ab54d",
+        "filename": "appengine/swarming/doc/Bot.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Sorry this was completely wrong, rewrote.",
+      "parentUuid": "0da249c6_5b1f701a",
       "range": {
         "startLine": 382,
         "startChar": 0,
@@ -157,6 +277,30 @@
     },
     {
       "key": {
+        "uuid": "4fd0bde5_f14b3a9e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a228af2d_03b40d31",
+      "range": {
+        "startLine": 1209,
+        "startChar": 15,
+        "endLine": 1209,
+        "endChar": 34
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51827a22_cbb3fad0",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 3
@@ -177,6 +321,30 @@
       "revId": "7ee9833e863224ff75e40ad9162159263914145e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3f9cc87_9cf0c7ef",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51827a22_cbb3fad0",
+      "range": {
+        "startLine": 1309,
+        "startChar": 74,
+        "endLine": 1309,
+        "endChar": 80
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +371,30 @@
     },
     {
       "key": {
+        "uuid": "fcf70db2_7d98eeda",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1314,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b70f588a_89e6ae8a",
+      "range": {
+        "startLine": 1314,
+        "startChar": 57,
+        "endLine": 1314,
+        "endChar": 75
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36af1f2f_1d76b8f8",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 3
@@ -214,6 +406,30 @@
       "writtenOn": "2018-05-16T17:06:30Z",
       "side": 1,
       "message": "LKGBC",
+      "range": {
+        "startLine": 1316,
+        "startChar": 70,
+        "endLine": 1316,
+        "endChar": 75
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2229a56_7ce17abb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Isssh sorry I should have reread myself for this CL.",
+      "parentUuid": "36af1f2f_1d76b8f8",
       "range": {
         "startLine": 1316,
         "startChar": 70,
@@ -249,6 +465,30 @@
     },
     {
       "key": {
+        "uuid": "cda9d601_57b052a2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc733665_ddd95043",
+      "range": {
+        "startLine": 1319,
+        "startChar": 19,
+        "endLine": 1319,
+        "endChar": 32
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86372bd6_15e2502d",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 3
@@ -260,6 +500,30 @@
       "writtenOn": "2018-05-16T17:06:30Z",
       "side": 1,
       "message": "I\u0027m not sure what this condition would mean. Would we want to log something?",
+      "range": {
+        "startLine": 1326,
+        "startChar": 0,
+        "endLine": 1328,
+        "endChar": 18
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1297c650_0c71a94b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "It means the currently running file does not exist anymore. There\u0027s nothing to do in this situation except downloading the bot code again. Added a TODO for this.",
+      "parentUuid": "86372bd6_15e2502d",
       "range": {
         "startLine": 1326,
         "startChar": 0,
@@ -292,6 +556,30 @@
       "revId": "7ee9833e863224ff75e40ad9162159263914145e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2482aa71_e110e4cb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-16T19:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1492e34_16b72997",
+      "range": {
+        "startLine": 1019,
+        "startChar": 19,
+        "endLine": 1019,
+        "endChar": 42
+      },
+      "revId": "7ee9833e863224ff75e40ad9162159263914145e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
