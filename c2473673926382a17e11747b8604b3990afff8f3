@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf762635_0258d68e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-16T20:49:42Z",
+      "side": 1,
+      "message": "Will we be able to check whether it\u0027s faster, and by how much?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "c2473673926382a17e11747b8604b3990afff8f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc26b1fa_10ec0857",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-16T20:49:42Z",
+      "side": 1,
+      "message": "In general, I\u0027m a fan of using keywords when passing literal booleans arguments like this even if it\u0027s not very clear what it might mean, e.g.\n\n    task_schedule.schedule_request(\n        request_obj, secret_bytes, check_capacity\u003dTrue)",
+      "revId": "c2473673926382a17e11747b8604b3990afff8f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
