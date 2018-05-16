@@ -4,5 +4,6 @@
 
 """Utility functions for Protocol Buffers."""
 
+from .field_masks import trim_message
 from .multiline_proto import parse_multiline, MultilineParseError
 from .protoutil import merge_dict
