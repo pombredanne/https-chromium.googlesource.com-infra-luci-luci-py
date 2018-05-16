@@ -34,6 +34,24 @@
       "revId": "4b3f2dc94b73a9db6b6660d6d7d7dfd023aeaead",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79ebc7a0_5475d4b0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-16T19:40:54Z",
+      "side": 1,
+      "message": "Oh, I thought so! Alright :-P",
+      "parentUuid": "f2deff65_af3b9ea1",
+      "revId": "4b3f2dc94b73a9db6b6660d6d7d7dfd023aeaead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
