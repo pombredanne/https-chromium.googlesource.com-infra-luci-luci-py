@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b3a36d56_0a7da3f0",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-17T23:08:00Z",
+      "side": 1,
+      "message": "Done. If we want to be that technical, then scheme \u003d \"http:\" or \"https:\".",
+      "parentUuid": "267c3e39_fb799fd4",
+      "range": {
+        "startLine": 298,
+        "startChar": 12,
+        "endLine": 298,
+        "endChar": 19
+      },
+      "revId": "670b77e0e12eb58aa9f8ad50b701b1701a072148",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffdf148d_c8dc8862",
         "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "670b77e0e12eb58aa9f8ad50b701b1701a072148",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d27b101_c511e4f3",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-17T23:08:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffdf148d_c8dc8862",
+      "revId": "670b77e0e12eb58aa9f8ad50b701b1701a072148",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
