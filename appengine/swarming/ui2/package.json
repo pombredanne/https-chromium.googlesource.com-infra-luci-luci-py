@@ -1,0 +1,19 @@
+{
+  "name": "swarming-ui",
+  "version": "1.0.0",
+  "description": "A web UI for Swarming, using WebComponents.",
+  "main": "pages/index.js",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "lit-html": "^0.9.0",
+    "pulito": "^2.0.0",
+    "sass-loader":"^7.0.0",
+    "uglify-es": "^3.3.9",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "devDependencies": {
+    "fetch-mock": "^6.0.0"
+  }
+}
