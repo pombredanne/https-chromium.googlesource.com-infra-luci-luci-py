@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8147971_e44160d5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-17T21:04:40Z",
+      "side": 1,
+      "message": "Does this do the same thing as _get_wmi_wbem? The docstring is the same. Also, I have no idea what a WMI WBEM is, but that\u0027s probably OK.",
+      "revId": "6de4ed66544250549f4d53ebfe571f05bba5fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1c4f566_1cc659d8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-17T21:04:40Z",
+      "side": 1,
+      "message": "What do you think about adding asserts like `assert client is not None`? I think more explicit is good, but maybe it doesn\u0027t add much?",
+      "revId": "6de4ed66544250549f4d53ebfe571f05bba5fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
