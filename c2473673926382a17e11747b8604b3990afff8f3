@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aa25f1d0_5a4a6119",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-17T18:10:15Z",
+      "side": 1,
+      "message": "Programming is 50% wishing for luck that the code works great in practice. More seriously, Cloud DB performance in reality is really hard to assess. :/ But I know that count() is faster than get, so I\u0027m trying.",
+      "parentUuid": "cf762635_0258d68e",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "c2473673926382a17e11747b8604b3990afff8f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc26b1fa_10ec0857",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "c2473673926382a17e11747b8604b3990afff8f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325e1ea3_7ae816f9",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-17T18:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc26b1fa_10ec0857",
+      "revId": "c2473673926382a17e11747b8604b3990afff8f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
