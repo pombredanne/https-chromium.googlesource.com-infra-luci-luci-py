@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d4c3f822_7e6b6742",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "Done. This paragraph was copied from the original internal doc pretty much verbatim. That spec (yes, spec, including grammar) does cover these types, e.g. how does one specify an enum member?",
+      "parentUuid": "79274913_7acd6893",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb7504c7_7e9474b5",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e663da_fe703eb9",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "this is a map key, not an index of a repeated field. Expanded comment",
+      "parentUuid": "bb7504c7_7e9474b5",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e834369c_d30e4196",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b8edb1a_da7899d8",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d787496_dd495a4a",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 9
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9b211b79_8d239e9b",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d787496_dd495a4a",
+      "range": {
+        "startLine": 18,
+        "startChar": 26,
+        "endLine": 18,
+        "endChar": 35
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50794813_2037937a",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 9
@@ -105,6 +201,30 @@
       "writtenOn": "2018-05-16T22:56:34Z",
       "side": 1,
       "message": "what about repeated fields? e.g. \"repeated Message stuff\" and a mask \"stuff.*.field\"? Is \u0027f.message_type\u0027 also set for repeated fields? Please clarify this in a comment.",
+      "range": {
+        "startLine": 110,
+        "startChar": 11,
+        "endLine": 110,
+        "endChar": 29
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6d28f9b_f92fc13c",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "i didn\u0027t understand the problem or where the confusion is coming from.\nmessage_type is truish if the field is a of a message type, regardless of whether it is repeated or not.\nIn particular, f.message_type is truish if it is a repeated message field.\nHow can I improve the comment below?",
+      "parentUuid": "50794813_2037937a",
       "range": {
         "startLine": 110,
         "startChar": 11,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "6c030a66_5e72068e",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "good catch. Done",
+      "parentUuid": "4f3c5da6_abc4440d",
+      "range": {
+        "startLine": 124,
+        "startChar": 14,
+        "endLine": 124,
+        "endChar": 29
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68079408_c1635880",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 9
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "89dc44f4_5d071718",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "exactly, the spec does not allow quoted strings for field names\nquoted strings are allowed only as map keys",
+      "parentUuid": "68079408_c1635880",
+      "range": {
+        "startLine": 174,
+        "startChar": 13,
+        "endLine": 174,
+        "endChar": 27
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c54d8659_f1be2531",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 9
@@ -174,6 +342,30 @@
       "writtenOn": "2018-05-16T22:56:34Z",
       "side": 1,
       "message": "strictly speaking this is not what your grammar says :P",
+      "range": {
+        "startLine": 183,
+        "startChar": 30,
+        "endLine": 183,
+        "endChar": 60
+      },
+      "revId": "51741941f17bb38287f68a07ffa8d96b181ee841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83972ab9_4dea01a4",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-17T00:00:06Z",
+      "side": 1,
+      "message": "sorry, this is the first more or less serious parser I ever wrote. I\u0027ve added a comment. Let me know if there is a better way to improve this",
+      "parentUuid": "c54d8659_f1be2531",
       "range": {
         "startLine": 183,
         "startChar": 30,
