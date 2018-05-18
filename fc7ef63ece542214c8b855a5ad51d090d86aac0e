@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a8adf87_4c9f349d",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-18T00:02:45Z",
+      "side": 1,
+      "message": "It seems odd to me that you can use a field mask to essentially mask values. access_text is a field, true is part of the value of the access_text field. If you can dive into maps like this, why not repeated fields? abc.0 means element 0 of repeated field abc.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc1703db_d1ef92ec",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-18T00:02:45Z",
+      "side": 1,
+      "message": "I\u0027m not thrilled about choosing something when it seems like the people working on protobufs haven\u0027t even settled on anything. What if they pick some other character to quote strings?",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2104590c_c64f0654",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-18T00:02:45Z",
+      "side": 1,
+      "message": "In this example I gather that topics is a map of key to some proto that has a field called archived. Is that true?",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25cab8b5_a7d5c90a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-18T00:02:45Z",
+      "side": 1,
+      "message": "Asterisk is extremely overloaded. Leads me to the same question as above, what if protobuf maintainers settle on something else?",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "362a0a6c_fe5357c9",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-18T00:02:45Z",
+      "side": 1,
+      "message": "Why? Seems like an arbitrary restriction since you allow everything else.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
