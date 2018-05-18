@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bbd436fd_480f0170",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-18T17:55:25Z",
+      "side": 1,
+      "message": "I will completely remove the context later, but not changing right now to keep this CL focused on moving code around instead of functional change.",
+      "parentUuid": "dbafa90b_eaf2c1df",
+      "range": {
+        "startLine": 128,
+        "startChar": 7,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0bf3df9_4d2482cc",
         "filename": "client/local_caching.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-18T17:42:56Z",
       "side": 1,
       "message": "Maybe get_file_obj",
+      "range": {
+        "startLine": 256,
+        "startChar": 6,
+        "endLine": 256,
+        "endChar": 16
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c8186be_42ae07ad",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-18T17:55:25Z",
+      "side": 1,
+      "message": "I won\u0027t rename now to reduce the delta but I agree it should be renamed, will do in a follow up but probably something like open_for_read() or similar.",
+      "parentUuid": "b0bf3df9_4d2482cc",
       "range": {
         "startLine": 256,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "db0c8a35_ff0ca094",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-18T17:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41ec5a00_2d5798f5",
+      "range": {
+        "startLine": 402,
+        "startChar": 20,
+        "endLine": 402,
+        "endChar": 41
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1d4f716_853a226b",
         "filename": "client/local_caching.py",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2018-05-18T17:42:56Z",
       "side": 1,
       "message": "Probably not a good idea to keep commented-out code checked in.",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 61
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ab92ccd_d5af2050",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-18T17:55:25Z",
+      "side": 1,
+      "message": "I just copied the previous code as-is with as little modification as possible.\n\nI plan to add this back soon as part of https://crbug.com/813413 so I prefer to keep this dead code for now.",
+      "parentUuid": "b1d4f716_853a226b",
       "range": {
         "startLine": 407,
         "startChar": 0,
@@ -114,6 +210,30 @@
       "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76731c73_38a9261c",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-18T17:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64498c2a_ee191774",
+      "range": {
+        "startLine": 429,
+        "startChar": 13,
+        "endLine": 429,
+        "endChar": 17
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
