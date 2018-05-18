@@ -1023,25 +1023,25 @@ def clean_caches(isolate_cache, named_cache_manager):
   """
   # TODO(maruel): Trim CIPD cache the same way.
   total = 0
-  with named_cache_manager.open():
-    oldest_isolated = isolate_cache.get_oldest()
-    oldest_named = named_cache_manager.get_oldest()
-    trimmers = [
-      (
-        isolate_cache.trim,
-        isolate_cache.get_timestamp(oldest_isolated) if oldest_isolated else 0,
-      ),
-      (
-        named_cache_manager.trim,
-        named_cache_manager.get_timestamp(oldest_named) if oldest_named else 0,
-      ),
-    ]
-    trimmers.sort(key=lambda (_, ts): ts)
-    # TODO(maruel): This is incorrect, we want to trim 'items' that are strictly
-    # the oldest independent of in which cache they live in. Right now, the
-    # cache with the oldest item pays the price.
-    for trim, _ in trimmers:
-      total += trim()
+  oldest_isolated = isolate_cache.get_oldest()
+  oldest_named = named_cache_manager.get_oldest()
+  trimmers = [
+    (
+      isolate_cache.trim,
+      isolate_cache.get_timestamp(oldest_isolated) if oldest_isolated else 0,
+    ),
+    (
+      named_cache_manager.trim,
+      named_cache_manager.get_timestamp(oldest_named) if oldest_named else 0,
+    ),
+  ]
+  trimmers.sort(key=lambda (_, ts): ts)
+  # TODO(maruel): This is incorrect, we want to trim 'items' that are strictly
+  # the oldest independent of in which cache they live in. Right now, the
+  # cache with the oldest item pays the price.
+  for trim, _ in trimmers:
+    total += trim()
+  named_cache_manager.cleanup()
   isolate_cache.cleanup()
   return total
 
@@ -1159,7 +1159,7 @@ def create_option_parser():
   return parser
 
 
-def process_named_cache_options(parser, options):
+def process_named_cache_options(parser, options, time_fn=None):
   """Validates named cache options and returns a CacheManager."""
   if options.named_caches and not options.named_cache_root:
     parser.error('--named-cache is specified, but --named-cache-root is empty')
@@ -1183,7 +1183,7 @@ def process_named_cache_options(parser, options):
         # 3 weeks.
         max_age_secs=21*24*60*60)
     root_dir = unicode(os.path.abspath(options.named_cache_root))
-    return local_caching.CacheManager(root_dir, policies)
+    return local_caching.CacheManager(root_dir, policies, time_fn=time_fn)
   return None
 
 
@@ -1300,9 +1300,12 @@ def main(args):
       (os.path.join(run_dir, unicode(relpath)), name)
       for name, relpath in options.named_caches
     ]
-    with named_cache_manager.open():
-      for path, name in caches:
-        named_cache_manager.install(path, name)
+    for path, name in caches:
+      if not isinstance(path, unicode):
+        raise NamedCacheError('named cache installation path must be unicode')
+      if not os.path.isabs(path):
+        raise NamedCacheError('named cache installation path must be absolute')
+      named_cache_manager.install(path, name)
     try:
       yield
     finally:
@@ -1312,13 +1315,12 @@ def main(args):
       #
       # If the Swarming bot cannot clean up the cache, it will handle it like
       # any other bot file that could not be removed.
-      with named_cache_manager.open():
-        for path, name in caches:
-          try:
-            named_cache_manager.uninstall(path, name)
-          except local_caching.NamedCacheError:
-            logging.exception('Error while removing named cache %r at %r. '
-                              'The cache will be lost.', path, name)
+      for path, name in caches:
+        try:
+          named_cache_manager.uninstall(path, name)
+        except local_caching.NamedCacheError:
+          logging.exception('Error while removing named cache %r at %r. '
+                            'The cache will be lost.', path, name)
 
   extra_args = []
   command = []

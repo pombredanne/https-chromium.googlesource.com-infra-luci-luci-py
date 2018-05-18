@@ -55,7 +55,7 @@ def json_dumps(data):
   return json.dumps(data, sort_keys=True, separators=(',', ':'))
 
 
-def genTree(path):
+def readTree(path):
   """Returns a dict with {filepath: content}."""
   if not os.path.isdir(path):
     return None
@@ -760,7 +760,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertIsInstance(
         isolate_cache, local_caching.DiskContentAddressedCache)
     named_cache_manager = run_isolated.process_named_cache_options(
-        parser, options)
+        parser, options, time_fn=lambda: fake_time)
     self.assertIsInstance(named_cache_manager, local_caching.CacheManager)
 
     # Add items to these caches.
@@ -768,19 +768,19 @@ class RunIsolatedTest(RunIsolatedTestBase):
     big = small * 1014
     small_digest = unicode(ALGO(small).hexdigest())
     big_digest = unicode(ALGO(big).hexdigest())
-    with isolate_cache:
-      fake_time = now + 1
-      isolate_cache.write(big_digest, [big])
-      fake_time = now + 2
-      isolate_cache.write(small_digest, [small])
-    with named_cache_manager.open(time_fn=lambda: fake_time):
-      fake_time = now + 1
-      put_to_named_cache(named_cache_manager, u'first', u'big', big)
-      fake_time = now + 3
-      put_to_named_cache(named_cache_manager, u'second', u'small', small)
+    fake_time = now + 1
+    isolate_cache.write(big_digest, [big])
+    fake_time = now + 2
+    isolate_cache.write(small_digest, [small])
+    isolate_cache.trim()
+    fake_time = now + 1
+    put_to_named_cache(named_cache_manager, u'first', u'big', big)
+    fake_time = now + 3
+    put_to_named_cache(named_cache_manager, u'second', u'small', small)
+    named_cache_manager.trim()
 
     # Ensures the cache contain the expected data.
-    actual = genTree(np)
+    actual = readTree(np)
     # Figure out the cache path names.
     cache_small = [
         os.path.dirname(n) for n in actual if os.path.basename(n) == 'small'][0]
@@ -801,7 +801,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
           '{"items":[["%s",[10140,%s]],["%s",[10,%s]]],"version":2}' % (
           big_digest, now+1, small_digest, now+2),
     }
-    self.assertEqual(expected, genTree(ip))
+    self.assertEqual(expected, readTree(ip))
 
     # Request triming.
     fake_free_space[0] = 1020
@@ -823,7 +823,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     # - DiskContentAddressedCache.trim() keeps its own internal counter while
     #   deleting files so it ignores get_free_space() output while deleting
     #   files.
-    actual = genTree(np)
+    actual = readTree(np)
     expected = {
       os.path.join(cache_small, u'small'): small,
       u'state.json':
@@ -837,7 +837,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
           '{"items":[["%s",[10,%s]]],"version":2}' %
           (small_digest, now+2),
     }
-    self.assertEqual(expected, genTree(ip))
+    self.assertEqual(expected, readTree(ip))
 
 
 class RunIsolatedTestRun(RunIsolatedTestBase):
