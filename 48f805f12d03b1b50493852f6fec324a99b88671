@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbafa90b_eaf2c1df",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-18T17:42:56Z",
+      "side": 1,
+      "message": "Or maybe: Implements context manager interface.\n\nOr, alternately, have ContentAddressedCache inherit from contextlib.AbstractContextManager, which I think provides similar default __enter__/__exit__ methods.\n\nhttps://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager",
+      "range": {
+        "startLine": 128,
+        "startChar": 7,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0bf3df9_4d2482cc",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-18T17:42:56Z",
+      "side": 1,
+      "message": "Maybe get_file_obj",
+      "range": {
+        "startLine": 256,
+        "startChar": 6,
+        "endLine": 256,
+        "endChar": 16
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41ec5a00_2d5798f5",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-18T17:42:56Z",
+      "side": 1,
+      "message": "GiB, MiB",
+      "range": {
+        "startLine": 402,
+        "startChar": 20,
+        "endLine": 402,
+        "endChar": 41
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d4f716_853a226b",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-18T17:42:56Z",
+      "side": 1,
+      "message": "Probably not a good idea to keep commented-out code checked in.",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 61
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64498c2a_ee191774",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-18T17:42:56Z",
+      "side": 1,
+      "message": "its",
+      "range": {
+        "startLine": 429,
+        "startChar": 13,
+        "endLine": 429,
+        "endChar": 17
+      },
+      "revId": "48f805f12d03b1b50493852f6fec324a99b88671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

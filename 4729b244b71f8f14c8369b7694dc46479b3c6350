@@ -16,6 +16,24 @@
       "revId": "4729b244b71f8f14c8369b7694dc46479b3c6350",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30174222_c0d1295b",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-18T17:42:56Z",
+      "side": 0,
+      "message": "Agreed, this is better.",
+      "parentUuid": "c1912db2_9b846a74",
+      "revId": "4729b244b71f8f14c8369b7694dc46479b3c6350",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
