@@ -27,7 +27,7 @@ class Enum(messages.Enum):
 class Message(messages.Message):
   """A message to test with."""
   boolean = messages.BooleanField(1)
-  integer = messages.IntegerField(2)
+  integer = messages.IntegerField(2, default=2)
   string = messages.StringField(3)
   required = messages.BooleanField(4, required=True)
 
@@ -207,6 +207,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
               'type': 'boolean',
             },
             'integer': {
+              'default': '2',
               'format': 'int64',
               'type': 'string',
             },
@@ -238,6 +239,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
           'type': 'boolean',
         },
         'integer': {
+          'default': '2',
           'format': 'int64',
           'location': 'query',
           'type': 'string',
@@ -461,6 +463,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
               'type': 'boolean',
             },
             'integer': {
+              'default': '2',
               'format': 'int64',
               'type': 'string',
             },
@@ -606,6 +609,7 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
               'type': 'boolean',
             },
             'integer': {
+              'default': '2',
               'format': 'int64',
               'type': 'string',
             },
