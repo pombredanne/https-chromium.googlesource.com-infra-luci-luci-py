@@ -84,6 +84,154 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ccc841e_e2dbbd17",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "available",
+      "range": {
+        "startLine": 28,
+        "startChar": 65,
+        "endLine": 28,
+        "endChar": 73
+      },
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e82f24b9_82345723",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "Maybe move these public functions to the bottom, so a reader going from top-to-bottom has full context and knows what all these helper functions do by the time they get to these two functions. As it is I have to scroll back and forth.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b51b659f_59ee7060",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "Unnecessary blank line.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8531471_90f2c152",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "Add a docstring or comment explaining what with_seg does.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00eb5e70_dfaefcbc",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "\"Field is scalar, see above.\" Just to give a reference point (i.e. \"look for the comment about scalar fields\").",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d6897a5_6134dfc5",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "Docstring.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5f7869a_651328d3",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "current",
+      "range": {
+        "startLine": 220,
+        "startChar": 46,
+        "endLine": 220,
+        "endChar": 52
+      },
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c23f4f62_1a2f6ec5",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-19T02:02:19Z",
+      "side": 1,
+      "message": "Docstring.",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
