@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "17d36e1d_f0fd097c",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T22:26:01Z",
+      "side": 1,
+      "message": "All I\u0027m saying is that checking that _LITERAL is [_a-zA-Z][_a-zA-Z]* should be part of the tokenizer, this this is what _LITERAL means: it\u0027s an identifier with the specific structure. Why does it need a context to check that?",
+      "parentUuid": "462fe5c7_addefc60",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 18
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3172e8c3_756825e8",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 3
