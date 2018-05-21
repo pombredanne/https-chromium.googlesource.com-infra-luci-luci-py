@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d182aee0_0d471983",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T23:31:09Z",
+      "side": 1,
+      "message": "the check we do here is different from what we would do in tokenizer. The tokenizer would check that a literal matches any of possible literal types, that is ([a-zA-Z_][a-zA-Z_0-9]*|-?\\d+|true|false). This checks against specifically [a-zA-Z_][a-zA-Z_0-9]*, so even if we do a check in tokenizer, we\u0027d still have to have a check here. At this point, it is better to have one check, here. Note that read_bool and read_integer make their respective checks too",
+      "parentUuid": "17d36e1d_f0fd097c",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 18
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3172e8c3_756825e8",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 3
