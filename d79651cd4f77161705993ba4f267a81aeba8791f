@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "88ee8478_39b71211",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T23:38:02Z",
+      "side": 1,
+      "message": "This is because tokenizer isn\u0027t doing its job. Normally it would detect all semantically different types of tokens and return them: NUMBER, LITERAL, STRING, ... See for example a list of CPython tokens: https://github.com/python/cpython/blob/master/Include/token.h \n\nInstead tokenizer does half of the job, and the rest is done by the parser here. This is probably not a big deal for such small language, but it\u0027s not how it is supposed to be done.\n\n(\u0027true\u0027 and \u0027false\u0027 would still have to be LITERAL, since we allow them to appear as field names, IIUC, thus it would be parser\u0027s job to recognize them as booleans or as fields, since this requires a context).",
+      "parentUuid": "d182aee0_0d471983",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 18
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3172e8c3_756825e8",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 3
@@ -131,6 +155,30 @@
       "writtenOn": "2018-05-21T18:31:42Z",
       "side": 1,
       "message": "I think it would be a bit safer to have a whitelist here instead:\n\nelif path[i] in _LITERAL_CHARS:\n  ...\n  while i \u003c len(path) and path[i] in _LITERAL_CHARS:\n    ...\nelse:\n  raise ValueError(\u0027unexpected symbol %q in path string\u0027 % path[i])\n\nThat way is people pass e.g. \"a.b.c d.e.f\" as a field path, they\u0027ll get somewhat clearer error message.",
+      "range": {
+        "startLine": 269,
+        "startChar": 26,
+        "endLine": 269,
+        "endChar": 60
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "959db4c9_2a7ef15d",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T23:38:02Z",
+      "side": 1,
+      "message": "ping on this at least",
+      "parentUuid": "3172e8c3_756825e8",
       "range": {
         "startLine": 269,
         "startChar": 26,
