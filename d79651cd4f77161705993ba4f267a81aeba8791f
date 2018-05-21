@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c67428f_70a6ac4b",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T18:31:42Z",
+      "side": 1,
+      "message": "consider treating EOF as a special token, maybe it will simplify some code (read_path will be few lines shorter at least..)",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 40
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54d27887_caebaed0",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T18:31:42Z",
+      "side": 1,
+      "message": "strictly speaking this should be a part of the tokenizer",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 18
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3172e8c3_756825e8",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T18:31:42Z",
+      "side": 1,
+      "message": "I think it would be a bit safer to have a whitelist here instead:\n\nelif path[i] in _LITERAL_CHARS:\n  ...\n  while i \u003c len(path) and path[i] in _LITERAL_CHARS:\n    ...\nelse:\n  raise ValueError(\u0027unexpected symbol %q in path string\u0027 % path[i])\n\nThat way is people pass e.g. \"a.b.c d.e.f\" as a field path, they\u0027ll get somewhat clearer error message.",
+      "range": {
+        "startLine": 269,
+        "startChar": 26,
+        "endLine": 269,
+        "endChar": 60
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
