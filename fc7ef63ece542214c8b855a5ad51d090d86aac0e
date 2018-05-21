@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "89151ecd_1d5db6d1",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "this comment seems to be a dup of comment at L26, I will reply there.",
+      "parentUuid": "3a8adf87_4c9f349d",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc1703db_d1ef92ec",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-18T00:02:45Z",
       "side": 1,
       "message": "I\u0027m not thrilled about choosing something when it seems like the people working on protobufs haven\u0027t even settled on anything. What if they pick some other character to quote strings?",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9f8019e_24f5caed",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "what is the better alternative? i need to choose /something/ because i need the features this format provides. Any other format, including custom protobuf for specifying what to include in response, has much less (~0) chances to become a standard than this almost-completed internal standard",
+      "parentUuid": "dc1703db_d1ef92ec",
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "a2f89e34_7a48abe8",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2104590c_c64f0654",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25cab8b5_a7d5c90a",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -64,6 +118,24 @@
       "writtenOn": "2018-05-18T00:02:45Z",
       "side": 1,
       "message": "Asterisk is extremely overloaded. Leads me to the same question as above, what if protobuf maintainers settle on something else?",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21aee566_7ec55474",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "i agree that this particular usage of star seems unnecessary because \"publisher.*\" is equivalent to \"publisher\". i\u0027ve left a comment on the internal doc asking why is this needed and CCed you\n\nsupporting this is straightforward though, see _remove_trailing_stars in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1066083/3",
+      "parentUuid": "25cab8b5_a7d5c90a",
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -84,6 +156,24 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b1144a3_a04071ea",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "see internal doc, this CL didn\u0027t invent this. Consider commenting there and cceing me.\n\nFWIU, this is not arbitrary. Restricting is better because otherwise we have more complexity. There is a plenty of use cases to select certain map keys, or certain subfields of a repeated field. In particular, map keys have a more stable meaning than indexes of a repeated field. go/apidosanddonts#order-independence-in-repeated-fields discourages encoding any meaning in the order of repeated fields in the responses, which means users should not interpret indexes. They can, however, interpret map keys.",
+      "parentUuid": "362a0a6c_fe5357c9",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -110,6 +200,30 @@
     },
     {
       "key": {
+        "uuid": "67dc1aeb_6352dce1",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ccc841e_e2dbbd17",
+      "range": {
+        "startLine": 28,
+        "startChar": 65,
+        "endLine": 28,
+        "endChar": 73
+      },
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e82f24b9_82345723",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -124,6 +238,24 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc2ca1c2_77895db2",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e82f24b9_82345723",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -144,6 +276,24 @@
     },
     {
       "key": {
+        "uuid": "033d2b48_e2605e8c",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b51b659f_59ee7060",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8531471_90f2c152",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -158,6 +308,24 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27946825_0e4be9c8",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "done. I didn\u0027t find a way to explain it completely with less lines than the code itself though",
+      "parentUuid": "b8531471_90f2c152",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -178,6 +346,24 @@
     },
     {
       "key": {
+        "uuid": "44d43de4_a607cdde",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00eb5e70_dfaefcbc",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d6897a5_6134dfc5",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -192,6 +378,24 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "413dd9e5_92561831",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d6897a5_6134dfc5",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -218,6 +422,30 @@
     },
     {
       "key": {
+        "uuid": "4db8238c_67e5ac3a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5f7869a_651328d3",
+      "range": {
+        "startLine": 220,
+        "startChar": 46,
+        "endLine": 220,
+        "endChar": 52
+      },
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c23f4f62_1a2f6ec5",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -232,6 +460,24 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e1c8bbb_ccc0090a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-21T16:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c23f4f62_1a2f6ec5",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
