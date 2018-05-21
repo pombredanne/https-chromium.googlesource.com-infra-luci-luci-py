@@ -170,6 +170,75 @@ class ParsePathTests(unittest.TestCase):
       self.parse('str..')
 
 
+class NormalizePathsTests(unittest.TestCase):
+
+  def test_empty(self):
+    actual = field_masks._normalize_paths([])
+    expected = set()
+    self.assertEqual(actual, expected)
+
+  def test_normal(self):
+    actual = field_masks._normalize_paths([
+        ('a',),
+        ('b',),
+    ])
+    expected = {('a',), ('b',)}
+    self.assertEqual(actual, expected)
+
+  def test_redundancy_one_level(self):
+    actual = field_masks._normalize_paths([
+        ('a',),
+        ('a', 'b'),
+    ])
+    expected = {('a',)}
+    self.assertEqual(actual, expected)
+
+  def test_redundancy_second_level(self):
+    actual = field_masks._normalize_paths([
+        ('a',),
+        ('a', 'b', 'c'),
+    ])
+    expected = {('a',)}
+    self.assertEqual(actual, expected)
+
+
+class ParseFieldTreeTests(unittest.TestCase):
+  def parse(self, paths):
+    return field_masks.parse_field_tree(
+        field_mask_pb2.FieldMask(paths=paths),
+        test_proto_pb2.Msg.DESCRIPTOR)
+
+  def test_empty(self):
+    actual = self.parse([])
+    expected = {}
+    self.assertEqual(actual, expected)
+
+  def test_str(self):
+    actual = self.parse(['str'])
+    expected = {'str': {}}
+    self.assertEqual(actual, expected)
+
+  def test_str_num(self):
+    actual = self.parse(['str', 'num'])
+    expected = {'str': {}, 'num': {}}
+    self.assertEqual(actual, expected)
+
+  def test_str_msg_num(self):
+    actual = self.parse(['str', 'msg.num'])
+    expected = {'str': {}, 'msg': {'num': {}}}
+    self.assertEqual(actual, expected)
+
+  def test_redunant(self):
+    actual = self.parse(['msg', 'msg.num'])
+    expected = {'msg': {}}
+    self.assertEqual(actual, expected)
+
+  def test_redunant_star(self):
+    actual = self.parse(['msg.*', 'msg.msg.num'])
+    expected = {'msg': {}}
+    self.assertEqual(actual, expected)
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
