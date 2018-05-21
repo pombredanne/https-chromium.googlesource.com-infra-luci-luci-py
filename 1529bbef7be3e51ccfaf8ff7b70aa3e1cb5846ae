@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db94fbfc_58ffab65",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T22:54:44Z",
+      "side": 1,
+      "message": "nit: this is not necessary, \u0027paths\u0027 is already a set.",
+      "range": {
+        "startLine": 83,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 16
+      },
+      "revId": "1529bbef7be3e51ccfaf8ff7b70aa3e1cb5846ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae0e695c_0124a75f",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-21T22:54:44Z",
+      "side": 1,
+      "message": "nit: any(p[:i] in present for i in xrange(len(p)))",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 13
+      },
+      "revId": "1529bbef7be3e51ccfaf8ff7b70aa3e1cb5846ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
