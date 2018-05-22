@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b20e6c4b_7b562b06",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-22T16:56:02Z",
+      "side": 1,
+      "message": "this this true? tok_type is compared to _STRING which is quoted string.",
+      "range": {
+        "startLine": 184,
+        "startChar": 46,
+        "endLine": 184,
+        "endChar": 54
+      },
+      "revId": "c022a72a942c0baa58058e3e89584270be050376",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
