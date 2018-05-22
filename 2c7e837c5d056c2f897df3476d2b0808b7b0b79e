@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00660f50_1985cac6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-22T23:45:18Z",
+      "side": 1,
+      "message": "Question: Changing places where `with self._lock` is used will change the way it behaves when multiple instances of this code are running at the same time, right? Technically, if this might change behavior slightly, it might not be considered \"refactoring\".\n\nIn any case, adding more places where lock is used can just make it safer, right?",
+      "range": {
+        "startLine": 11,
+        "startChar": 50,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "2c7e837c5d056c2f897df3476d2b0808b7b0b79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b523275_01b5f023",
+        "filename": "client/local_caching.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-22T23:45:18Z",
+      "side": 1,
+      "message": "Optional: Blank lines before first method in class is not consistent throughout this file. Some have a blank line before the first method; some don\u0027t; some have docstrings, some don\u0027t.",
+      "revId": "2c7e837c5d056c2f897df3476d2b0808b7b0b79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b29ba67_0030984b",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-22T23:45:18Z",
+      "side": 1,
+      "message": "Could this be called read_tree?",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 12
+      },
+      "revId": "2c7e837c5d056c2f897df3476d2b0808b7b0b79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
