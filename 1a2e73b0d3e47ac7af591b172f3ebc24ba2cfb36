@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "50f815f5_d730e5ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-22T16:46:00Z",
+      "side": 1,
+      "message": "since this CL was created, Vadim has finished proto support in Skylark. Going forward, ideally we address config repetition problem at the skylark level, not application level. FWIW I am planning to remove builder mixins, acl_sets and builder_defaults from buildbucket as soon as we migrate clients to skylark.",
+      "revId": "1a2e73b0d3e47ac7af591b172f3ebc24ba2cfb36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d94e193e_4d29a13e",
         "filename": "appengine/swarming/server/pools_config.py",
         "patchSetId": 14
