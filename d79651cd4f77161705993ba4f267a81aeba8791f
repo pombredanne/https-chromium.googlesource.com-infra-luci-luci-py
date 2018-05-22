@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b1ed21c3_1da19a7b",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-22T04:44:38Z",
+      "side": 1,
+      "message": "Done\nit don\u0027t know if it got simpler though. read_path still has EOF check, just differently. Am I missing something?",
+      "parentUuid": "6c67428f_70a6ac4b",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 40
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54d27887_caebaed0",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 3
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "37863721_1e9d0f36",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-22T04:44:38Z",
+      "side": 1,
+      "message": "Thanks. This is better",
+      "parentUuid": "88ee8478_39b71211",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 18
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3172e8c3_756825e8",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 3
@@ -188,6 +236,30 @@
       "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69a3835e_f39c57a1",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-22T04:44:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "959db4c9_2a7ef15d",
+      "range": {
+        "startLine": 269,
+        "startChar": 26,
+        "endLine": 269,
+        "endChar": 60
+      },
+      "revId": "d79651cd4f77161705993ba4f267a81aeba8791f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
