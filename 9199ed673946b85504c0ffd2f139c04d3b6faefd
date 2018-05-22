@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5074abc1_f69dc061",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "Can you explain this more? What is a seg? I understand it\u0027s a field path segment, but keep in mind that for a reader reading from top to bottom this is the first time they\u0027re seeing the term. If include_field is required reading, move it above trim_message.",
+      "range": {
+        "startLine": 66,
+        "startChar": 53,
+        "endLine": 66,
+        "endChar": 56
+      },
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb69c64f_5d25d934",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "Document n, i.",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcb302a6_3d7bbf66",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "\"if not n\"?",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25098643_d43f847b",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "What if seg \u003d\u003d STAR? Then it should INCLUDE_ENTIRELY if I understand correctly. Or did you already convert {\"a\": {STAR: {}} into {\"a\": {}} during parse_field_tree?",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fb46a96_768dcdf8",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "Can you add a comment for this case with an example? Something like \"for path x.y.z, x.*.z also matches\".",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

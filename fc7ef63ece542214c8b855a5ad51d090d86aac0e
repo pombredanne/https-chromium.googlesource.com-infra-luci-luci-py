@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "e4bc1784_97a82ba2",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "Sorry I meant to resolve all of these at once.",
+      "parentUuid": "b9f8019e_24f5caed",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2104590c_c64f0654",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 10
@@ -139,6 +157,24 @@
       "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9076957e_7c93b39f",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-22T22:52:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21aee566_7ec55474",
+      "revId": "fc7ef63ece542214c8b855a5ad51d090d86aac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
