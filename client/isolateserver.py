@@ -1090,26 +1090,25 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
       isolated_hash, storage, cache, outdir, use_symlinks)
   # Hash algorithm to use, defined by namespace |storage| is using.
   algo = storage.hash_algo
-  with cache:
-    fetch_queue = FetchQueue(storage, cache)
-    bundle = IsolatedBundle()
+  fetch_queue = FetchQueue(storage, cache)
+  bundle = IsolatedBundle()
 
-    with tools.Profiler('GetIsolateds'):
-      # Optionally support local files by manually adding them to cache.
-      if not isolated_format.is_valid_hash(isolated_hash, algo):
-        logging.debug('%s is not a valid hash, assuming a file '
-                      '(algo was %s, hash size was %d)',
-                      isolated_hash, algo(), algo().digest_size)
-        path = unicode(os.path.abspath(isolated_hash))
-        try:
-          isolated_hash = fetch_queue.inject_local_file(path, algo)
-        except IOError as e:
-          raise isolated_format.MappingError(
-              '%s doesn\'t seem to be a valid file. Did you intent to pass a '
-              'valid hash (error: %s)?' % (isolated_hash, e))
+  with tools.Profiler('GetIsolateds'):
+    # Optionally support local files by manually adding them to cache.
+    if not isolated_format.is_valid_hash(isolated_hash, algo):
+      logging.debug('%s is not a valid hash, assuming a file '
+                    '(algo was %s, hash size was %d)',
+                    isolated_hash, algo(), algo().digest_size)
+      path = unicode(os.path.abspath(isolated_hash))
+      try:
+        isolated_hash = fetch_queue.inject_local_file(path, algo)
+      except IOError as e:
+        raise isolated_format.MappingError(
+            '%s doesn\'t seem to be a valid file. Did you intent to pass a '
+            'valid hash (error: %s)?' % (isolated_hash, e))
 
-      # Load all *.isolated and start loading rest of the files.
-      bundle.fetch(fetch_queue, isolated_hash, algo)
+    # Load all *.isolated and start loading rest of the files.
+    bundle.fetch(fetch_queue, isolated_hash, algo)
 
     with tools.Profiler('GetRest'):
       # Create file system hierarchy.
@@ -1198,6 +1197,7 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
       assert fetch_queue.wait_queue_empty, 'FetchQueue should have been emptied'
 
   # Cache could evict some items we just tried to fetch, it's a fatal error.
+  cache.trim()
   if not fetch_queue.verify_all_cached():
     free_disk = file_path.get_free_space(cache.cache_dir)
     msg = (
@@ -1409,13 +1409,13 @@ def CMDdownload(parser, args):
 
     # Fetching whole isolated tree.
     if options.isolated:
-      with cache:
-        bundle = fetch_isolated(
-            isolated_hash=options.isolated,
-            storage=storage,
-            cache=cache,
-            outdir=options.target,
-            use_symlinks=options.use_symlinks)
+      bundle = fetch_isolated(
+          isolated_hash=options.isolated,
+          storage=storage,
+          cache=cache,
+          outdir=options.target,
+          use_symlinks=options.use_symlinks)
+      cache.trim()
       if bundle.command:
         rel = os.path.join(options.target, bundle.relative_cwd)
         print('To run this test please run from the directory %s:' %
