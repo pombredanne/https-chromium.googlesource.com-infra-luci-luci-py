@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a83f3573_fb5cb4f2",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-22T04:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db94fbfc_58ffab65",
+      "range": {
+        "startLine": 83,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 16
+      },
+      "revId": "1529bbef7be3e51ccfaf8ff7b70aa3e1cb5846ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0e695c_0124a75f",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "1529bbef7be3e51ccfaf8ff7b70aa3e1cb5846ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f75f14e_33d3eb8a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-22T04:50:28Z",
+      "side": 1,
+      "message": "Done. Made it even shorter",
+      "parentUuid": "ae0e695c_0124a75f",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 13
+      },
+      "revId": "1529bbef7be3e51ccfaf8ff7b70aa3e1cb5846ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
