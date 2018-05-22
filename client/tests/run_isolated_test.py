@@ -768,16 +768,16 @@ class RunIsolatedTest(RunIsolatedTestBase):
     big = small * 1014
     small_digest = unicode(ALGO(small).hexdigest())
     big_digest = unicode(ALGO(big).hexdigest())
-    with isolate_cache:
-      fake_time = now + 1
-      isolate_cache.write(big_digest, [big])
-      fake_time = now + 2
-      isolate_cache.write(small_digest, [small])
-    with named_cache_manager:
-      fake_time = now + 1
-      put_to_named_cache(named_cache_manager, u'first', u'big', big)
-      fake_time = now + 3
-      put_to_named_cache(named_cache_manager, u'second', u'small', small)
+    fake_time = now + 1
+    isolate_cache.write(big_digest, [big])
+    fake_time = now + 2
+    isolate_cache.write(small_digest, [small])
+    isolate_cache.trim()
+    fake_time = now + 1
+    put_to_named_cache(named_cache_manager, u'first', u'big', big)
+    fake_time = now + 3
+    put_to_named_cache(named_cache_manager, u'second', u'small', small)
+    named_cache_manager.trim()
 
     # Ensures the cache contain the expected data.
     actual = readTree(np)
