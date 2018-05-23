@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ed66a74_357fd599",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T05:32:42Z",
+      "side": 1,
+      "message": "nit:\n\nroutes.extend([\n    foo,\n    bar,\n])\n\nor\n\nroutes \u003d [\n    foo,\n    bar\n]\n\nin L197",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 16
+      },
+      "revId": "c1eaa1bc99d4b84f3db5576f9560cbd6aef1f947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52f31921_0d827f50",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T05:32:42Z",
+      "side": 1,
+      "message": "why are we copying it? i.e. why not just self.request.headers[\u0027Host\u0027]?\nhttp://webapp2.readthedocs.io/en/latest/guide/request.html \nsays \n\n\u003e headers\n  A dictionary like object with request headers. Keys are case-insensitive.\n\ni noticed that we do such copying in L227 and L271 too, but I don\u0027t know why",
+      "range": {
+        "startLine": 331,
+        "startChar": 13,
+        "endLine": 331,
+        "endChar": 17
+      },
+      "revId": "c1eaa1bc99d4b84f3db5576f9560cbd6aef1f947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
