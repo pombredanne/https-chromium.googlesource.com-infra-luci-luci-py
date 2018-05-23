@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "861a4739_aa1770e6",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-23T21:15:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ed66a74_357fd599",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 16
+      },
+      "revId": "c1eaa1bc99d4b84f3db5576f9560cbd6aef1f947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52f31921_0d827f50",
         "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c1eaa1bc99d4b84f3db5576f9560cbd6aef1f947",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c47d4d7_2242c9eb",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-23T21:15:07Z",
+      "side": 1,
+      "message": "I blindly copied https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/components/components/config/endpoint.py#163 without looking too much into it. Done.",
+      "parentUuid": "52f31921_0d827f50",
+      "range": {
+        "startLine": 331,
+        "startChar": 13,
+        "endLine": 331,
+        "endChar": 17
+      },
+      "revId": "c1eaa1bc99d4b84f3db5576f9560cbd6aef1f947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
