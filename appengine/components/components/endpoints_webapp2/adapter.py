@@ -21,6 +21,7 @@ import webapp2
 
 from components import net
 from components import template
+from components import utils
 
 import discovery
 
@@ -199,6 +200,7 @@ def api_server(api_classes, base_path='/api'):
   routes.append(directory_service_route(api_classes, base_path))
   routes.append(discovery_service_route(api_classes, base_path))
   routes.append(explorer_proxy_route(base_path))
+  routes.append(explorer_redirect_route(base_path))
   return routes
 
 
@@ -311,3 +313,23 @@ def explorer_proxy_route(base_path):
       'adapter': os.path.join(THIS_DIR, 'templates'),
   })
   return webapp2.Route('%s/static/proxy.html' % base_path, ProxyHandler)
+
+
+def explorer_redirect_route(base_path):
+  """Returns a route to a handler which redirects to the API explorer.
+
+  Args:
+    base_path: The base path under which all service paths exist.
+
+  Returns:
+    A webapp2.Route.
+  """
+  class RedirectHandler(webapp2.RequestHandler):
+    """Returns a handler redirecting to the API explorer."""
+
+    def get(self):
+      host = dict(self.request.headers)['Host']
+      self.redirect('https://apis-explorer.appspot.com/apis-explorer'
+                    '/?base=https://%s%s' % (host, base_path))
+
+  return webapp2.Route('%s/explorer' % base_path, RedirectHandler)
