@@ -859,10 +859,10 @@ class TaskRequestApiTest(TestCase):
       d = {u'pool': [u'b'], u'a.': [unicode(i) for i in xrange(17)]}
       _gen_request(properties=_gen_properties(dimensions=d)).put()
     # Value length.
-    d = {u'pool': [u'default'], u'v': [u'v'*128]}
+    d = {u'pool': [u'default'], u'v': [u'v'*256]}
     _gen_request(properties=_gen_properties(dimensions=d)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      d = {u'pool': [u'default'], u'v': [u'v'*129]}
+      d = {u'pool': [u'default'], u'v': [u'v'*257]}
       _gen_request(properties=_gen_properties(dimensions=d)).put()
     with self.assertRaises(datastore_errors.BadValueError):
       # Value with space.
@@ -1042,10 +1042,14 @@ class TaskRequestApiTest(TestCase):
       _gen_request(service_account=u'joe@'+u'l'*125).put()
 
   def test_request_bad_tags(self):
-    req = _gen_request(manual_tags=['a:b']*256).put()
-    req = _gen_request(manual_tags=['a:b']*257)
+    _gen_request(manual_tags=['a:b']*256).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      req.put()
+      _gen_request(manual_tags=['a:b']*257).put()
+    with self.assertRaises(datastore_errors.BadValueError):
+      _gen_request(manual_tags=['a']).put()
+    _gen_request(manual_tags=['a:' + 'b'*(64+256-1)]).put()
+    with self.assertRaises(datastore_errors.BadValueError):
+      _gen_request(manual_tags=['a:' + 'a'*(64+256)]).put()
 
   def test_validate_priority(self):
     with self.assertRaises(TypeError):

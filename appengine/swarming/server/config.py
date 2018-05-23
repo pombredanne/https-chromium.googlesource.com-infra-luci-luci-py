@@ -83,7 +83,7 @@ def validate_dimension_value(value):
   return (
       bool(isinstance(value, unicode) and
       value and
-      len(value) <= 128 and
+      len(value) <= 256 and
       value.strip() == value))
 
 

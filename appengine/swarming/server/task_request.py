@@ -315,7 +315,8 @@ def _validate_timeout(prop, value):
 def _validate_tags(prop, value):
   """Validates TaskRequest.tags."""
   # pylint: disable=protected-access
-  _validate_length(prop, value, 256)
+  # Length for dimension key of 64, value of 256, and ':'.
+  _validate_length(prop, value, 64+256+1)
   if ':' not in value:
     raise datastore_errors.BadValueError(
         '%s must be key:value form, not %s' % (prop._name, value))
