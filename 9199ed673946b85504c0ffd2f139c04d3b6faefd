@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a1624b7c_b067ece4",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T20:57:48Z",
+      "side": 1,
+      "message": "I\u0027ve rebased this CL on top of https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1069806 which introduces segments in the module docstring. Also I\u0027ve added a reference to parse_segment_tree.\n\nmoving include_field up would be inconsistent with the rest of file. It is structured differently: high-level-to-low-level, e.g. trim_message is first and tokenizer is last.\n\nI am reluctant to add even more text to this docstring. It is already larger than the code already. There is a threshold after which reading text takes more effort than reading the code. We\u0027ve already surpassed it. It does not make sense to me to have documentation that requires more effort that reading implementation of the thing it is explaining. with_seg is is  just a helper function. It is meant to be short. Also note that it is not a part of public API.",
+      "parentUuid": "5074abc1_f69dc061",
+      "range": {
+        "startLine": 66,
+        "startChar": 53,
+        "endLine": 66,
+        "endChar": 56
+      },
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb69c64f_5d25d934",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 15
@@ -39,6 +63,24 @@
       "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c46179c5_6b8f7e72",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T20:57:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb69c64f_5d25d934",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "fd1c56c5_8ae304f4",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T20:57:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcb302a6_3d7bbf66",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25098643_d43f847b",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 15
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "39d26360_d1e5af04",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T20:57:48Z",
+      "side": 1,
+      "message": "if seg \u003d\u003d STAR, that it would be noop because of L154",
+      "parentUuid": "25098643_d43f847b",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fb46a96_768dcdf8",
         "filename": "appengine/components/components/protoutil/field_masks.py",
         "patchSetId": 15
@@ -90,6 +168,24 @@
       "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db94146a_6134ffe3",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-23T20:57:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fb46a96_768dcdf8",
+      "revId": "9199ed673946b85504c0ffd2f139c04d3b6faefd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
