@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65902cd8_12129834",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-23T21:29:10Z",
+      "side": 1,
+      "message": "https://www.youtube.com/watch?v\u003dS6umxthz1Ys",
+      "range": {
+        "startLine": 175,
+        "startChar": 26,
+        "endLine": 175,
+        "endChar": 36
+      },
+      "revId": "035c1075429de8aa7940466251aeea3277c09918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
