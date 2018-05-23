@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6b98379_42d7ad5f",
+        "filename": "appengine/swarming/server/config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-23T18:20:56Z",
+      "side": 1,
+      "message": "By separating these out into separate mini-tests, you could explicitly point out the part of the test which is testing length vs  other aspects of the key or value, e.g. test_validate_dimension_key_length, test_validate_dimension_key_allowed_chars, .... Also, are empty strings allowed for the key or value?",
+      "revId": "81a4efcb3cd325d2aa46794716061e7ea973763f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
