@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "bd2a727e_39b33175",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T20:17:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "71fdc660_84d2b2fc",
+      "range": {
+        "startLine": 876,
+        "startChar": 36,
+        "endLine": 876,
+        "endChar": 53
+      },
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12781217_a9843c10",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 5
@@ -128,6 +152,24 @@
       "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cee05402_77c4ad54",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T20:17:55Z",
+      "side": 1,
+      "message": "Checked the new wording, looks better but I had one little question.",
+      "parentUuid": "46858455_f7dd859c",
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -222,6 +264,30 @@
       "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80e50254_1280ffa3",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T20:17:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "40639f88_192f7b9a",
+      "range": {
+        "startLine": 285,
+        "startChar": 47,
+        "endLine": 285,
+        "endChar": 64
+      },
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

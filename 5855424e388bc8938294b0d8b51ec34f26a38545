@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c051780a_5b29fd11",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T20:17:55Z",
+      "side": 1,
+      "message": "Clarification: And, if wait_for_capacity is True, then it will be PENDING and won\u0027t be denied immeidately, so the task state won\u0027t be set to NO_RESOURCE, right?",
+      "range": {
+        "startLine": 778,
+        "startChar": 14,
+        "endLine": 778,
+        "endChar": 76
+      },
+      "revId": "5855424e388bc8938294b0d8b51ec34f26a38545",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
