@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ace92af7_d5cbf989",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-24T21:41:47Z",
+      "side": 1,
+      "message": "Minor thing, but arguably this name is indistinguishable from a function that includes a path. e.g. one might expect Mask.include(...) to include some new path in the already parsed mask, not check whether a path is included. Might consider is_included, should_include, or even just includes (although the latter still maintains some ambiguity).\n\nJust a thought for the future, I wouldn\u0027t bother creating a cl to address this.",
+      "range": {
+        "startLine": 145,
+        "startChar": 6,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "4e29bf0883fc23e5438dd0f0b32bf45b3e0db175",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
