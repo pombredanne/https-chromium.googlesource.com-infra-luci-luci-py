@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3368f489_9a3d547a",
+        "filename": "appengine/gce-backend/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-24T22:58:49Z",
+      "side": 1,
+      "message": "i thought this would be frontend app (which is removed in this CL) because there is no endpoints anymore.\nat least it might be confusing to someone",
+      "range": {
+        "startLine": 27,
+        "startChar": 23,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "ff9087a219c37f3bab75da908812b0870bdff4a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
