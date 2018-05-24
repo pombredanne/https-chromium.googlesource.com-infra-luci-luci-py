@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25de3ad0_115058e8",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T18:24:56Z",
+      "side": 1,
+      "message": "True could also be directly passed here, right?\n\nWhy is wait_for_capacity True for the terminate task?\n\nIs is that even though it\u0027s high priority, if it didn\u0027t have wait_for_capacity set to True it would still be denied immediately when the target bot is currently running a task?",
+      "range": {
+        "startLine": 876,
+        "startChar": 36,
+        "endLine": 876,
+        "endChar": 53
+      },
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12781217_a9843c10",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T18:24:56Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 780,
+        "startChar": 4,
+        "endLine": 780,
+        "endChar": 16
+      },
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "313e5c78_c3d234ed",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T18:24:56Z",
+      "side": 1,
+      "message": "Alright, so I see \"wait for capacity\" is the opposite of \"deny if no resource\".\n\nI think the first sentence of the comment above could be clarified or rephrased, something like:\n\n  When a task is scheduled and there are currently no bots available to run\n  the task, we could either wait, or deny immediately. This should normally\n  be set to False to avoid unnecessary waiting.",
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "292c627a_e71465d9",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T18:24:56Z",
+      "side": 1,
+      "message": "Could this be rephrased as: \"even if there\u0027s no capacity\"?",
+      "range": {
+        "startLine": 544,
+        "startChar": 34,
+        "endLine": 544,
+        "endChar": 55
+      },
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6f518a8_65f07f76",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-24T18:24:56Z",
+      "side": 1,
+      "message": "Optional rephrasing: even if there are no bots online that can run this task",
+      "range": {
+        "startLine": 285,
+        "startChar": 47,
+        "endLine": 285,
+        "endChar": 64
+      },
+      "revId": "1784e917b8f912460ea661dd7657dde17d6b5437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
