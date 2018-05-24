@@ -466,7 +466,7 @@ class SwarmingTasksService(remote.Service):
 
     try:
       result_summary = task_scheduler.schedule_request(
-          request_obj, secret_bytes, check_capacity=True)
+          request_obj, secret_bytes)
     except (datastore_errors.BadValueError, TypeError, ValueError) as e:
       raise endpoints.BadRequestException(e.message)
 
@@ -865,18 +865,20 @@ class SwarmingBotService(remote.Service):
     # TODO(maruel): Disallow a terminate task when there's one currently
     # pending or if the bot is considered 'dead', e.g. no contact since 10
     # minutes.
+    wait_for_capacity = True
     logging.debug('%s', request)
     bot_id = unicode(request.bot_id)
     bot_key = bot_management.get_info_key(bot_id)
     get_or_raise(bot_key)  # raises 404 if there is no such bot
     try:
       # Craft a special priority 0 task to tell the bot to shutdown.
-      request = task_request.create_termination_task(bot_id)
+      request = task_request.create_termination_task(
+          bot_id, wait_for_capacity=wait_for_capacity)
     except (datastore_errors.BadValueError, TypeError, ValueError) as e:
       raise endpoints.BadRequestException(e.message)
 
     result_summary = task_scheduler.schedule_request(
-        request, secret_bytes=None, check_capacity=True)
+        request, secret_bytes=None)
     return swarming_rpcs.TerminateResponse(
         task_id=task_pack.pack_result_summary_key(result_summary.key))
 
