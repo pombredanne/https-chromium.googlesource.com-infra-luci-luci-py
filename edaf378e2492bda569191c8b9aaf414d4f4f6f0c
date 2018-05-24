@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "01f08586_94f88526",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-24T00:19:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f73a0a84_4251a910",
+      "revId": "edaf378e2492bda569191c8b9aaf414d4f4f6f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "541b9b66_396436e5",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 2
@@ -65,6 +83,54 @@
     },
     {
       "key": {
+        "uuid": "01cc4116_129e51a4",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-24T00:19:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "541b9b66_396436e5",
+      "range": {
+        "startLine": 458,
+        "startChar": 63,
+        "endLine": 458,
+        "endChar": 64
+      },
+      "revId": "edaf378e2492bda569191c8b9aaf414d4f4f6f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39a88d28_50f42df3",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-24T00:19:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dfcd630_de77738d",
+      "range": {
+        "startLine": 458,
+        "startChar": 6,
+        "endLine": 458,
+        "endChar": 11
+      },
+      "revId": "edaf378e2492bda569191c8b9aaf414d4f4f6f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdeebbfc_76de9da3",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 2
@@ -76,6 +142,30 @@
       "writtenOn": "2018-05-23T22:12:36Z",
       "side": 1,
       "message": "Side question, unrelated to this CL:\n\nI notice that sometimes you use literal unicode strings, and sometimes don\u0027t, but as far as I know, the behavior should generally be the same when the strings contain only ASCII characters. Is that so?\n\nFor example, in this case, would it also theoretically be valid to leave out the `u`, and if so, is the point of using `u` here to emphasize that these fields and values should generally be of type unicode rather than str?",
+      "range": {
+        "startLine": 462,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 34
+      },
+      "revId": "edaf378e2492bda569191c8b9aaf414d4f4f6f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24310c80_c625801d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-24T00:19:39Z",
+      "side": 1,
+      "message": "Yes, I try to put most strings as unicode, as most internal processing should be unicode based, but I often forget.",
+      "parentUuid": "fdeebbfc_76de9da3",
       "range": {
         "startLine": 462,
         "startChar": 0,
