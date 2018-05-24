@@ -22,6 +22,30 @@
       "revId": "ff9087a219c37f3bab75da908812b0870bdff4a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29172e62_a82cefe3",
+        "filename": "appengine/gce-backend/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-24T23:09:27Z",
+      "side": 1,
+      "message": "That requires more changes (e.g. users would have to change app.yaml to reference frontend_app instead of continuing to reference endpoints_app), I\u0027m trying to keep the conversion small. It\u0027s only large here because we had /_ah/api and /api being served in parallel.",
+      "parentUuid": "3368f489_9a3d547a",
+      "range": {
+        "startLine": 27,
+        "startChar": 23,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "ff9087a219c37f3bab75da908812b0870bdff4a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
