@@ -282,6 +282,10 @@ class TaskSlice(messages.Message):
   # If this task request slice is not scheduled after waiting this long, the
   # next one will be processed.
   expiration_secs = messages.IntegerField(2)
+  # If True, this task slice will wait even if there were no bot online that
+  # could run this task. In this case, the task slice will be pending until its
+  # expiration.
+  wait_for_capacity = messages.BooleanField(3)
 
 
 class NewTaskRequest(messages.Message):
