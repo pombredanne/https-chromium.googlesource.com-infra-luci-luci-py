@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "9fb19541_666c610b",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-25T15:58:30Z",
+      "side": 1,
+      "message": "This word can be removed now",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "d5cb258bd4d06e4394b3bac6faf6a00e9d13c836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7379d713_64c67c1a",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-25T15:58:30Z",
+      "side": 1,
+      "message": "Using a namedtuple is nicer, I agree",
+      "revId": "d5cb258bd4d06e4394b3bac6faf6a00e9d13c836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f63ee866_7b471554",
         "filename": "client/swarming.py",
         "patchSetId": 1
