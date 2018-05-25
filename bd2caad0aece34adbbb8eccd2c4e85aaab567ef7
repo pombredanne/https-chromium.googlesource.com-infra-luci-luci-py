@@ -16,6 +16,23 @@
       "revId": "bd2caad0aece34adbbb8eccd2c4e85aaab567ef7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0da9cadd_67dba0cc",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-25T14:49:57Z",
+      "side": 1,
+      "message": "this crashes if someone has \"..\", \"__\", \"_.\" or \"._\" in their name\nlet\u0027s not assume no one does it",
+      "revId": "bd2caad0aece34adbbb8eccd2c4e85aaab567ef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
