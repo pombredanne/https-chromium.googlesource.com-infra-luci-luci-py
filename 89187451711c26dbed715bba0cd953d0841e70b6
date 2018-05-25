@@ -16,6 +16,24 @@
       "revId": "89187451711c26dbed715bba0cd953d0841e70b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cb68769_77c15af6",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-25T00:14:06Z",
+      "side": 1,
+      "message": "It\u0027s supposed to be the same for all classes of a multi-class service and it\u0027s set the in the same function call which sets name and version so if your multi-class service is configured correctly it will be.\n\nI haven\u0027t bothered to check classes[1] for any of the other properties (e.g. description). At any rate, it seems optional, so omitting it shouldn\u0027t be a big deal. Buildbucket is the first service I\u0027ve seen which even sets a title.",
+      "parentUuid": "2c1dc219_77575e5c",
+      "revId": "89187451711c26dbed715bba0cd953d0841e70b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
