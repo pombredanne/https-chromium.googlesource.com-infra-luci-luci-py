@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f2ed2451_88a62753",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-25T16:29:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fb19541_666c610b",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "d5cb258bd4d06e4394b3bac6faf6a00e9d13c836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7379d713_64c67c1a",
         "filename": "client/swarming.py",
         "patchSetId": 1
