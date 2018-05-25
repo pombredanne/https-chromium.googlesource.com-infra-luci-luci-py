@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6991e073_df6ce0b9",
+        "filename": "appengine/components/components/endpoints_webapp2/discovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-25T00:19:26Z",
+      "side": 1,
+      "message": "Technically there are more rules, but this suffices for us.",
+      "revId": "bd2caad0aece34adbbb8eccd2c4e85aaab567ef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
