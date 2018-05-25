@@ -137,6 +137,8 @@ class TestOsUtilities(auto_stub.TestCase):
     actual.discard(u'ssd')
     # There are cases where this dimension is not set.
     actual.discard(u'machine_type')
+    # Only defined on ARM.
+    actual.discard(u'device_tree_compatible')
 
     expected = {u'cores', u'cpu', u'gpu', u'id', u'os', u'pool', u'python'}
     if platforms.is_gce():
@@ -147,6 +149,7 @@ class TestOsUtilities(auto_stub.TestCase):
       expected.add(u'mac_model')
       expected.add(u'xcode_version')
     if sys.platform == 'linux2':
+      expected.add(u'cpu_governor')
       expected.add(u'inside_docker')
       expected.add(u'kvm')
     if sys.platform == 'win32':
