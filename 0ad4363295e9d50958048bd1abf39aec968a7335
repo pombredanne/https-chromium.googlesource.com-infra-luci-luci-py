@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f0310f9_b755a940",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-25T21:54:27Z",
+      "side": 1,
+      "message": "-\u003e \"In practice different CPU cores could have different CPU governers.\"\n\nBut usually they\u0027re the same right? Or at least, we only care about the first one?",
+      "range": {
+        "startLine": 987,
+        "startChar": 25,
+        "endLine": 988,
+        "endChar": 15
+      },
+      "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c23e29b2_e3ae06c6",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-25T21:54:27Z",
+      "side": 1,
+      "message": "linux -\u003e Linux\n\nPossible alternate phrasing:\n\"Only set on ARM Linux machines.\" / \"Only set on bare metal Linux machines\".\nCurrent phrasing is also OK.",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 143,
+        "endChar": 35
+      },
+      "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7810fec_ab0e4935",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-05-25T21:54:27Z",
+      "side": 1,
+      "message": "Or cpu_num",
+      "range": {
+        "startLine": 313,
+        "startChar": 29,
+        "endLine": 313,
+        "endChar": 35
+      },
+      "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
