@@ -147,6 +147,7 @@ class TestOsUtilities(auto_stub.TestCase):
       expected.add(u'mac_model')
       expected.add(u'xcode_version')
     if sys.platform == 'linux2':
+      expected.add(u'cpu-governor')
       expected.add(u'inside_docker')
       expected.add(u'kvm')
     if sys.platform == 'win32':
