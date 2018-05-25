@@ -23,6 +23,8 @@ from google.protobuf import symbol_database
 from components.prpc import encoding, headers
 from components.prpc.context import ServicerContext
 from components.prpc.codes import StatusCode
+import discovery
+
 
 __all__ = [
   'HandlerCallDetails',
@@ -50,7 +52,7 @@ _PRPC_TO_HTTP_STATUS = {
 }
 
 
-_Service = collections.namedtuple('_Service', ['description', 'methods'])
+_Service = collections.namedtuple('_Service', ['servicer', 'methods'])
 
 
 # Details about the RPC call passed to the interceptors.
@@ -127,7 +129,15 @@ class Server(object):
     if desc.name in self._services:
       raise ValueError(
           'Tried to double-register handlers for service %s' % desc.name)
-    self._services[full_name] = _Service(desc, methods)
+    self._services[full_name] = _Service(servicer, methods)
+
+  def add_discovery_service(self):
+    """Adds a discovery service.
+
+    Must be called after all other services are added.
+    """
+    services = [s.servicer for s in self._services.itervalues()]
+    self.add_service(discovery.discovery_service(services))
 
   def get_routes(self):
     """Returns a list of webapp2.Route for all the routes the API handles."""
