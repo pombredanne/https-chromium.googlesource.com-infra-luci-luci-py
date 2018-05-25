@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f63ee866_7b471554",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-25T14:16:50Z",
+      "side": 1,
+      "message": "The goal here for https://crbug.com/839467 would be to either:\n- Allow the user to specify this option group multiple times, once per task slice\n- Have specialized \u0027soft\u0027 version of some of these options, which would create a 2 TaskSlice TaskRequest automatically.",
+      "revId": "d5cb258bd4d06e4394b3bac6faf6a00e9d13c836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
