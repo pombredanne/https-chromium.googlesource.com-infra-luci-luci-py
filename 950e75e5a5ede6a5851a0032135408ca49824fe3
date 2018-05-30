@@ -46,6 +46,30 @@
       "revId": "950e75e5a5ede6a5851a0032135408ca49824fe3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc80364b_7ac304d3",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:52:55Z",
+      "side": 1,
+      "message": "Hm.. In interpreted it as \"build Mask object from the given string that uses JSON field names\". Is this incorrect?\n\nNote that users don\u0027t give a damn how Mask is organized internally and what sort of field names it uses internally.",
+      "parentUuid": "553881bf_f2cf14e6",
+      "range": {
+        "startLine": 188,
+        "startChar": 45,
+        "endLine": 188,
+        "endChar": 60
+      },
+      "revId": "950e75e5a5ede6a5851a0032135408ca49824fe3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
