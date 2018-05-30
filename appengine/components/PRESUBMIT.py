@@ -65,6 +65,8 @@ def CommonChecks(input_api, output_api):
     join('components', 'auth'),
     join('components', 'auth', 'ui'),
     join('components', 'config'),
+    join('components', 'prpc'),
+    join('components', 'prpc', 'discovery'),
     join('components', 'datastore_utils'),
     join('components', 'ereporter2'),
     join('tests'),
