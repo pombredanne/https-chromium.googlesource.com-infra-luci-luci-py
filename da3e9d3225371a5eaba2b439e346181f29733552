@@ -70,6 +70,30 @@
       "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "181d75aa_21706bf6",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:35:04Z",
+      "side": 1,
+      "message": "Ah, I misread this code. It checks that if the value is \u0027str\u0027, it is \u0027ascii\u0027, but it does also allow \u0027unicode\u0027.\n\nIn fact support for \u0027str\u0027 was bolted upon later: https://github.com/google/protorpc/commit/6d2fc34a720f5ba36c164a0f3901026d4680c75f\n\nTry converting the string to \u0027unicode\u0027 instead, e.g. \n\n  text \u003d m.text\n  if isinstance(m.text, str):\n    text \u003d text.decode(\u0027utf-8\u0027)",
+      "parentUuid": "ca06a660_e4d737dd",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 48
+      },
+      "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
