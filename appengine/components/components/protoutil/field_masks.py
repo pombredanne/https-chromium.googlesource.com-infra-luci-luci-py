@@ -38,8 +38,6 @@ FieldMask.paths string grammar:
 TODO(nodir): replace spec above with a link to a spec when it is available.
 """
 
-import contextlib
-
 from google import protobuf
 from google.protobuf import descriptor
 
@@ -147,6 +145,7 @@ class Mask(object):
 
     Args:
       path: a path string or a tuple of segments.
+        Must use camel_case for field names.
       start_at: the index of the segment to start interpreting path from.
 
     Returns:
@@ -160,7 +159,7 @@ class Mask(object):
     """
     assert path
     if not isinstance(path, tuple):
-      path = _parse_path(path, self.desc, self.repeated)
+      path = _parse_path(path, self.desc, repeated=self.repeated)
 
     if not self.children:
       return INCLUDE_ENTIRELY
@@ -186,7 +185,7 @@ class Mask(object):
     return max(c.includes(path, start_at + 1) for c in children)
 
   @classmethod
-  def from_field_mask(cls, field_mask, desc):
+  def from_field_mask(cls, field_mask, desc, from_camel_case=False):
     """Parses a field mask to a Mask.
 
     Removes trailing stars, e.g. parses ['a.*'] as ['a'].
@@ -195,6 +194,8 @@ class Mask(object):
     Args:
       field_mask: a google.protobuf.field_mask_pb2.FieldMask instance.
       desc: a google.protobuf.descriptor.Descriptor for the target message.
+      from_camel_case: True if field_mask uses lowerCamelCase for field names.
+        Field names will be converted to snake_case.
 
     Raises:
       ValueError if a field path is invalid.
@@ -202,7 +203,8 @@ class Mask(object):
     parsed_paths = []
     for p in field_mask.paths:
       try:
-        parsed_paths.append(_parse_path(p, desc))
+        parsed_paths.append(
+            _parse_path(p, desc, from_camel_case=from_camel_case))
       except ValueError as ex:
         raise ValueError('invalid path "%s": %s' % (p, ex))
 
@@ -288,7 +290,7 @@ _SUPPORTED_MAP_KEY_TYPES = _INTEGER_FIELD_TYPES | {
 }
 
 
-def _parse_path(path, desc, repeated=False):
+def _parse_path(path, desc, repeated=False, from_camel_case=False):
   """Parses a field path to a tuple of segments.
 
   See grammar in the module docstring.
@@ -299,6 +301,8 @@ def _parse_path(path, desc, repeated=False):
     repeated: True means that desc is a repeated field. For example,
       the target field is a repeated message field and path starts with an
       index.
+    from_camel_case: True if path uses lowerCamelCase for field names instead of
+      snake_case. Field names will be converted to snake_case.
 
   Returns:
     A tuple of segments. A star is returned as STAR object.
@@ -380,15 +384,14 @@ def _parse_path(path, desc, repeated=False):
       raise ValueError(
           'unexpected token "%s"; expected a field name' % tok)
     read()  # Swallow field name.
-    field_name = tok
 
-    field = ctx.desc.fields_by_name.get(field_name)
+    field = _find_field(ctx.desc, tok, from_camel_case)
     if field is None:
       raise ValueError(
           'field "%s" does not exist in message %s' % (
-              field_name, ctx.desc.full_name))
+              tok, ctx.desc.full_name))
     ctx.advance_to_field(field)
-    return field_name, False
+    return field.name, False
 
   def read_bool():
     tok_type, tok = read()
@@ -410,6 +413,19 @@ def _parse_path(path, desc, repeated=False):
     return tok
 
   return read_path()
+
+
+def _find_field(desc, name, camel_case):
+  if not camel_case:
+    return desc.fields_by_name.get(name)
+  field = desc.fields_by_name.get(_camel_to_snake(name))
+  if field is not None:
+    return field
+  for f in desc.fields:
+    print _snake_to_camel(f.name)
+    if _snake_to_camel(f.name) == name:
+      return f
+  return None
 
 
 class _ParseContext(object):
@@ -482,3 +498,27 @@ def _tokenize(path):
     else:
       yield (_UNKNOWN, c)
   yield (_EOF, '<eof>')
+
+
+def _camel_to_snake(camelCaseString):
+  ret = []
+  for c in camelCaseString:
+    if c.isupper():
+      ret.append('_')
+      ret.append(c.lower())
+    else:
+      ret.append(c)
+  return ''.join(ret)
+
+
+def _snake_to_camel(snakeCaseString):
+  ret = []
+  nextUpper = False
+  for c in snakeCaseString:
+    if c == '_':
+      nextUpper = True
+    elif nextUpper:
+      ret.append(c.upper())
+    else:
+      ret.append(c)
+  return ''.join(ret)
