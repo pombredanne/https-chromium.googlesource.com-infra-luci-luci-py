@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e5f0fa1_8e57c5fa",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:07:37Z",
+      "side": 1,
+      "message": "Encoding into utf-8 doesn\u0027t work?",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 48
+      },
+      "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
