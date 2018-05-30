@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "168b0743_ad978568",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-30T18:10:26Z",
+      "side": 1,
+      "message": "Exact. This does happen more on bigLITTLE ARM systems but is really rare that this setup is used on on x64.",
+      "parentUuid": "5f0310f9_b755a940",
+      "range": {
+        "startLine": 987,
+        "startChar": 25,
+        "endLine": 988,
+        "endChar": 15
+      },
+      "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c23e29b2_e3ae06c6",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "43d0a03e_c459cedc",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-30T18:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c23e29b2_e3ae06c6",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 143,
+        "endChar": 35
+      },
+      "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7810fec_ab0e4935",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 5
@@ -68,6 +116,30 @@
       "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61db1e15_a2380492",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-30T18:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7810fec_ab0e4935",
+      "range": {
+        "startLine": 313,
+        "startChar": 29,
+        "endLine": 313,
+        "endChar": 35
+      },
+      "revId": "0ad4363295e9d50958048bd1abf39aec968a7335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
