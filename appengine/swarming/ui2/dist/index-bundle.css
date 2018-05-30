@@ -1,0 +1,107 @@
+svg.icon-sk-svg {
+  position: relative;
+  vertical-align: middle;
+  pointer-events: none;
+  display: inline-block;
+  width: 24px;
+  height: 24px; }
+toast-sk {
+  display: block;
+  visibility: hidden;
+  position: fixed;
+  left: 10px;
+  bottom: 0;
+  color: #FFF;
+  fill: #FFF;
+  background: #175A87;
+  border-radius: 4px;
+  padding: 10px 15px;
+  opacity: 0;
+  z-index: 20; }
+
+toast-sk[shown] {
+  visibility: visible;
+  opacity: 1;
+  bottom: 10px;
+  transition: bottom 0.3s linear, opacity 0.3s linear, visibility 0s; }
+oauth-login #avatar {
+  border-radius: 5px; }
+
+oauth-login a {
+  color: white; }
+
+oauth-login .center {
+  vertical-align: middle; }
+.command {
+  font-family: monospace;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+body {
+  margin: 0;
+  padding: 0; }
+
+swarming-app {
+  font-family: sans-serif; }
+
+swarming-app > header {
+  background-color: #1F78B4;
+  color: #fff;
+  padding: 0 .5em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row;
+      flex-flow: row;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  height: 50px; }
+
+swarming-app > header a {
+  color: inherit; }
+
+swarming-app > header .grow {
+  -ms-flex-positive: 1;
+      flex-grow: 1; }
+
+swarming-app > header .title, swarming-app > header aside {
+  font-size: 20px; }
+
+swarming-app > header > * {
+  margin: auto 5px;
+  /* Center things vertically */ }
+
+swarming-app > main {
+  padding: 0 5px; }
+
+@media screen and (min-width: 520px) {
+  swarming-app > header > .toggle-button {
+    display: none; } }
+
+@media screen and (max-width: 520px) {
+  swarming-app > header > .toggle-button {
+    display: block;
+    background-color: transparent;
+    border: none;
+    fill: white; }
+  swarming-app > header > aside {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: 150px;
+    background-color: white;
+    z-index: 2;
+    padding: 0px 5px;
+    border-right: 1px solid black; }
+  swarming-app > header > aside {
+    transition: 0.5s;
+    left: -170px; }
+  swarming-app > header > aside.shown {
+    transition: 0.5s;
+    left: 0; }
+  swarming-app > header > aside > a {
+    display: block;
+    color: black;
+    margin: 5px 0; } }
