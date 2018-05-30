@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1f52b67_dd57ed5a",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:44:52Z",
+      "side": 1,
+      "message": "nit: just json_names, since from_ is already included in \u0027from_field_mask\u0027",
+      "range": {
+        "startLine": 188,
+        "startChar": 45,
+        "endLine": 188,
+        "endChar": 60
+      },
+      "revId": "950e75e5a5ede6a5851a0032135408ca49824fe3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
