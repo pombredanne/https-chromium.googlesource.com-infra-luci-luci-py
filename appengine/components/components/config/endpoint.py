@@ -25,10 +25,6 @@ from . import validation
 METADATA_FORMAT_VERSION = "1.0"
 
 
-def get_default_rule_set():
-  return validation.DEFAULT_RULE_SET
-
-
 class ConfigSettingsMessage(messages.Message):
   """Configuration service location. Resembles common.ConfigSettings"""
   # Example: 'luci-config.appspot.com'
@@ -146,9 +142,12 @@ class ConfigApi(remote.Service):
 
     res = ValidateResponseMessage()
     for m in ctx.result().messages:
+      print '%r' % m.text
       res.messages.append(ValidationMessage(
           severity=common.Severity.lookup_by_number(m.severity),
-          text=m.text,
+          # TODO(nodir): change the protocol to support Unicode.
+          # In the meantime, replace non-ASCII charactres with question marks.
+          text=m.text.encode('ascii', 'replace'),
       ))
     return res
 
@@ -170,6 +169,6 @@ class ConfigApi(remote.Service):
             path=self.api_info.path or '',
         )
     )
-    for p in sorted(get_default_rule_set().patterns()):
+    for p in sorted(validation.DEFAULT_RULE_SET.patterns()):
       meta.validation.patterns.append(ConfigPattern(**p._asdict()))
     return meta
