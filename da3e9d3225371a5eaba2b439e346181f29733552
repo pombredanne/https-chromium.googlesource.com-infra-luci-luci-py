@@ -46,6 +46,30 @@
       "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca06a660_e4d737dd",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:28:34Z",
+      "side": 1,
+      "message": "Well... Protorpc is a very confusing library.\n\nHere: https://cs.chromium.org/chromium/infra/appengine/third_party/catapult/third_party/gsutil/third_party/protorpc/protorpc/messages.py?g\u003d0\u0026l\u003d1456\n\n  \"\"\"Field definition for unicode string values.\"\"\"\n\nand few lines later\n\n  \"\"\"ValidationError if a str value is not 7-bit ascii.\"\"\"\n\nWTF\n\nSo it appears all StringField values are indeed limited to 7-bit ascii, despite documentation saying StringField can carry unicode.",
+      "parentUuid": "48d0df84_9d0798a9",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 48
+      },
+      "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
