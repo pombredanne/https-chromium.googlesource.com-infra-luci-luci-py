@@ -104,7 +104,7 @@ class Context(object):
     assert severity >= 0, severity
     msg = Message(
         severity=severity,
-        text='%s%s' % (self.prefixes[-1], (str(text) % args)),
+        text='%s%s' % (self.prefixes[-1], (text % args)),
     )
     self.messages.append(msg)
     if self.on_message:
