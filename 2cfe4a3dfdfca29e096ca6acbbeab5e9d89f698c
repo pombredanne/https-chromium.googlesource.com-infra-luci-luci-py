@@ -16,6 +16,24 @@
       "revId": "2cfe4a3dfdfca29e096ca6acbbeab5e9d89f698c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2e1f809_81ac040e",
+        "filename": "appengine/isolate/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-05-30T01:52:06Z",
+      "side": 1,
+      "message": "When Endpoints v1 is disabled, the Endpoints v1 proxy just lets requests pass through. So this should work, but with a little extra latency compared to /api (but not more than Endpoints v1 services have at /_ah/api). After August 2nd they\u0027re presumably going to remove the proxy altogether.\n\nMachine Provider is working this way, we\u0027re serving using the adapter at /_ah/api. I think that the /_ah/spi path magically enables the Endpoints v1 proxy, and removing it here means the proxy operates in pass through mode.",
+      "parentUuid": "a86a4d53_f88426fb",
+      "revId": "2cfe4a3dfdfca29e096ca6acbbeab5e9d89f698c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
