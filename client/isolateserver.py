@@ -1518,7 +1518,7 @@ def process_cache_options(options, **kwargs):
         unicode(os.path.abspath(options.cache)),
         policies,
         isolated_format.get_hash_algo(options.namespace),
-        **kwargs)
+        False)
   else:
     return local_caching.MemoryContentAddressedCache()
 
