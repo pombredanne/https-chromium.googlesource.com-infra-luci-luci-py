@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bba106d_c5a3be68",
+        "filename": "appengine/components/components/prpc/discovery/service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T00:27:02Z",
+      "side": 1,
+      "message": "this is not passed",
+      "range": {
+        "startLine": 19,
+        "startChar": 20,
+        "endLine": 19,
+        "endChar": 24
+      },
+      "revId": "4dd45f7d3af1dff765be399b5f8b84167fa5dd8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5621f485_d4937d2e",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T00:27:02Z",
+      "side": 1,
+      "message": "nit: let\u0027s import it using absolute path too, just like other import above\n\n  from components.prpc import discovery",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "4dd45f7d3af1dff765be399b5f8b84167fa5dd8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e49725f_940d910d",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T00:27:02Z",
+      "side": 1,
+      "message": "is it harmful to have it always enabled? E.g. always add it in get_routes().",
+      "range": {
+        "startLine": 134,
+        "startChar": 6,
+        "endLine": 134,
+        "endChar": 27
+      },
+      "revId": "4dd45f7d3af1dff765be399b5f8b84167fa5dd8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
