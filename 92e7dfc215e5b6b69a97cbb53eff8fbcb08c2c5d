@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d08c9cf_09a8e09d",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:02:21Z",
+      "side": 1,
+      "message": "This is generally not enough, since fields can have \u0027json_name\u0027 option on them that overrides this default rule. I think it is available in the descriptor somewhere.",
+      "range": {
+        "startLine": 421,
+        "startChar": 34,
+        "endLine": 421,
+        "endChar": 49
+      },
+      "revId": "92e7dfc215e5b6b69a97cbb53eff8fbcb08c2c5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee429c53_10bf7293",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:02:21Z",
+      "side": 1,
+      "message": "nit: just s or camel_case_string",
+      "range": {
+        "startLine": 502,
+        "startChar": 20,
+        "endLine": 502,
+        "endChar": 35
+      },
+      "revId": "92e7dfc215e5b6b69a97cbb53eff8fbcb08c2c5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e78619cc_3f37a172",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:02:21Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 513,
+        "startChar": 20,
+        "endLine": 513,
+        "endChar": 35
+      },
+      "revId": "92e7dfc215e5b6b69a97cbb53eff8fbcb08c2c5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b396786_eaf6f1ad",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-30T18:02:21Z",
+      "side": 1,
+      "message": "next_upper\n\npython itself is still using snake case...",
+      "range": {
+        "startLine": 515,
+        "startChar": 2,
+        "endLine": 515,
+        "endChar": 11
+      },
+      "revId": "92e7dfc215e5b6b69a97cbb53eff8fbcb08c2c5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
