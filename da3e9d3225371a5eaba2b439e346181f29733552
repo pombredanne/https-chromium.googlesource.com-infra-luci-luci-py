@@ -22,6 +22,30 @@
       "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48d0df84_9d0798a9",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-30T18:16:38Z",
+      "side": 1,
+      "message": "no. utf-8 uses [0..255] range, but cloud endpoints supports [0..127]:\n\n\u003e ValidationError: Field text encountered non-ASCII string ab: \u0027ascii\u0027 codec can\u0027t decode byte 0xc2 in position 1: ordinal not in range(128)\nINFO:root:/_ah/spi/ConfigApi.validate failed: Bad response: 500 Internal Server Error (not 200)\nERROR\n\nthis was u\u0027a\\x80b\u0027.\n\nUnless I am doing something wrong.",
+      "parentUuid": "2e5f0fa1_8e57c5fa",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 48
+      },
+      "revId": "da3e9d3225371a5eaba2b439e346181f29733552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
