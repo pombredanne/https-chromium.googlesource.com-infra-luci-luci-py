@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0dca2acc_92a326f4",
+        "filename": "appengine/components/components/prpc/test/test_prpc_pb2.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T22:25:21Z",
+      "side": 1,
+      "message": "Hm... How about:\n\n1. Making this lazy, e.g.\n\n_BLOB \u003d (\n  \u0027...\u0027\n  \u0027...\u0027\n)\n\n_FILE_DESC_SET \u003d None\n\ndef file_descriptor_set():\n  global _FILE_DESC_SET\n  if not _FILE_DESC_SET:\n    _FILE_DESC_SET \u003d ...\n  return _FILE_DESC_SET\n\nThen process startup time will be less affected by number or size of proto files.\n\n2. Zip it to save some space (either with gzip, like golang does, of just zlib). It\u0027s two extra lines of code.",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "685d9531427756b9fce89d253f6ffa429bbc1b23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
