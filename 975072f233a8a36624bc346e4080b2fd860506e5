@@ -1,0 +1,226 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3f28ea3_8d964f1a",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "It\u0027s stdlib, move at line 12",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16ea5da2_b8806500",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "move on next line",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 186,
+        "endChar": 19
+      },
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d0e7605_8568c7ed",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "Can be a one liner:\npage \u003d page or \u0027swarming\u0027",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60dadb08_540f0ed5",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "Well, the file itself changes every time we push? I don\u0027t want to cache the web UI pages for too long.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33cb5360_cebca69a",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "I\u0027d be more comfortable if it were fetched from https://github.com/webcomponents/custom-elements/releases. Last release is 1.1.0.\n\nI\u0027d say it could be stored here with a README to say where it comes from. I prefer the makefile to not wget unless really necessary. But npm so whatever.\n\nTo understand, are you doing this because custom-elements is not on the npm registry, or is it because of something else?",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9d080ed_1ab02048",
+        "filename": "appengine/swarming/ui2/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "# Web Components Swarming UI",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1581f917_a620327a",
+        "filename": "appengine/swarming/ui2/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "We should make it work in Safari too for our friends stuck with iPhone.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22436ffb_2397fbf3",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "That\u0027s so last decade!\nhttps://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags\n:D",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b2d7102_5a76433c",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "spacing",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac4387a6_0a0a4d49",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "Hardcoding here is temporary?",
+      "range": {
+        "startLine": 25,
+        "startChar": 53,
+        "endLine": 25,
+        "endChar": 73
+      },
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "935bca18_aee1483c",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "No trailing \";\"? I guess it\u0027s really not that relevant in practice.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3570d5d5_41220805",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T20:27:53Z",
+      "side": 1,
+      "message": "Why not make it a function? Because that\u0027s what it is.\n\nfunction login_template(ele) {\n return ...\n}\n\nunless I misunderstood something.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
