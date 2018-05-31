@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabf2151_126dcec3",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T19:10:46Z",
+      "side": 1,
+      "message": "is this supposed to be used by callers of public API? If not, better hide it, e.g.\n\ndef get(self, path):\n  return self._get_impl(path, 0)",
+      "range": {
+        "startLine": 188,
+        "startChar": 22,
+        "endLine": 188,
+        "endChar": 32
+      },
+      "revId": "be72a31e4a5c57b7d17fae39ae3066353d284d42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d057a158_5525ab75",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T19:10:46Z",
+      "side": 1,
+      "message": "this is surprising... why not mask.get(\u0027a.b\u0027)? What happens if I call mask.get(\u0027a\u0027)? What happens if I call mask.get(\u0027asfhaksjfhijsfh\u0027)?",
+      "range": {
+        "startLine": 191,
+        "startChar": 39,
+        "endLine": 191,
+        "endChar": 52
+      },
+      "revId": "be72a31e4a5c57b7d17fae39ae3066353d284d42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
