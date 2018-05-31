@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d11dcaf_1ede4ee2",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-disambiguation.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T01:02:35Z",
+      "side": 1,
+      "message": "I don\u0027t know why the files keep getting the trailing \\n removed.",
+      "revId": "f31d2089dfd09d97f9be50d82f048ac546014def",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
