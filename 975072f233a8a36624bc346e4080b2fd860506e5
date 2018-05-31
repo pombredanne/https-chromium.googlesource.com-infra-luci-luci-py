@@ -190,6 +190,57 @@
     },
     {
       "key": {
+        "uuid": "e44d267a_c7b44881",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-05-31T20:34:05Z",
+      "side": 1,
+      "message": "Nit: no quotes on center, to match the lines above.\n\nAlso drop quotes on width and height.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "567cc4e4_6b80aa04",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-05-31T20:34:05Z",
+      "side": 1,
+      "message": "Why not errorMessage?",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc659ff3_9cedb0a3",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-05-31T20:34:05Z",
+      "side": 1,
+      "message": "only one blank line here",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "935bca18_aee1483c",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 16
