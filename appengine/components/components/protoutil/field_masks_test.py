@@ -464,6 +464,17 @@ class TrimTests(unittest.TestCase):
         test_proto_pb2.Msg(map_str_msg={'a': test_proto_pb2.Msg(num=1)}))
 
 
+# class GetTests(unittest.TestCase):
+#   def mask(self, *paths):
+#     return Mask.from_field_mask(
+#         field_mask_pb2.FieldMask(paths=list(paths)), TEST_DESC)
+
+#   def test_all(self):
+#     actual = self.mask().includes('str')
+#     self.assertEqual(actual, field_masks.INCLUDE_ENTIRELY)
+
+#   def test_include_recursively(self):
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
