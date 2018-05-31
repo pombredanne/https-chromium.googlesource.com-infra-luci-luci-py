@@ -22,6 +22,30 @@
       "revId": "685d9531427756b9fce89d253f6ffa429bbc1b23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f42df3e_3315b299",
+        "filename": "appengine/components/components/prpc/test/test_prpc_pb2.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-05-31T22:52:13Z",
+      "side": 1,
+      "message": "1. It wouldn\u0027t help in practice. There is no point in loading _prpc_pb2.py files unless you want to host a prpc\n   service. You declare a prpc service like this:\n   \n\n   class MyService(object):\n      DESCRIPTION \u003d my_service_prpc_pb2.MyServiceDescription\n\n   and then start a prpc server which would ultimately load the descriptor on startup.\n   It will make more sense if we have a prpc client in python... maybe.\n\n2. done",
+      "parentUuid": "0dca2acc_92a326f4",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "685d9531427756b9fce89d253f6ffa429bbc1b23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
