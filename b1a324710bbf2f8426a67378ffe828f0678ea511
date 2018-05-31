@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e5840f2_24347b48",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T20:21:41Z",
+      "side": 1,
+      "message": "nit: maybe \u0027submask\u0027?",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 9
+      },
+      "revId": "b1a324710bbf2f8426a67378ffe828f0678ea511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebfdda9b_0725ce78",
+        "filename": "appengine/components/components/protoutil/field_masks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T20:21:41Z",
+      "side": 1,
+      "message": "nit: document ValueError on unknown path",
+      "range": {
+        "startLine": 193,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 8
+      },
+      "revId": "b1a324710bbf2f8426a67378ffe828f0678ea511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
