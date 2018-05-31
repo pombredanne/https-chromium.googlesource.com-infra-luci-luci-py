@@ -20,9 +20,11 @@ import webapp2
 from google.protobuf import symbol_database
 
 # Helpers are in separate modules so this one exposes only the public interface.
-from components.prpc import encoding, headers
-from components.prpc.context import ServicerContext
+from components.prpc import encoding
+from components.prpc import headers
 from components.prpc.codes import StatusCode
+from components.prpc.context import ServicerContext
+
 
 __all__ = [
   'HandlerCallDetails',
@@ -50,7 +52,7 @@ _PRPC_TO_HTTP_STATUS = {
 }
 
 
-_Service = collections.namedtuple('_Service', ['description', 'methods'])
+_Service = collections.namedtuple('_Service', ['servicer', 'methods'])
 
 
 # Details about the RPC call passed to the interceptors.
@@ -104,8 +106,11 @@ class Server(object):
       ValueError: when trying to add another handler for the same service name.
     """
     sym_db = symbol_database.Default()
-    pkg = servicer.DESCRIPTION['package']
-    desc = servicer.DESCRIPTION['descriptor']
+    file_desc = _find_by_name(
+        servicer.DESCRIPTION['file_descriptor_set'].file,
+        servicer.DESCRIPTION['file_name'])
+    desc = _find_by_name(
+        file_desc.service, servicer.DESCRIPTION['service_name'])
 
     # Construct handler.
     methods = {
@@ -120,14 +125,14 @@ class Server(object):
     }
 
     full_name = desc.name
-    if pkg:
-      full_name = '%s.%s' % (pkg, desc.name)
+    if file_desc.package:
+      full_name = '%s.%s' % (file_desc.package, desc.name)
 
     # Register handler with internal server state.
     if desc.name in self._services:
       raise ValueError(
           'Tried to double-register handlers for service %s' % desc.name)
-    self._services[full_name] = _Service(desc, methods)
+    self._services[full_name] = _Service(servicer, methods)
 
   def get_routes(self):
     """Returns a list of webapp2.Route for all the routes the API handles."""
@@ -306,3 +311,10 @@ class Server(object):
 
     interceptor = self._interceptors[idx]
     return interceptor(request, context, call_details, continuation)
+
+
+def _find_by_name(items, name):
+  for item in items:
+    if item.name == name:
+      return item
+  return None
