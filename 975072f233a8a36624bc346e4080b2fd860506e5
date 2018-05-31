@@ -560,6 +560,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "accdf82b_c6b7a4c3",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-05-31T22:07:26Z",
+      "side": 1,
+      "message": "Readability is an important property of code.\n\n\u0027const\u0027 has a meaning. \u0027function\u0027 has a meaning. I have no words.",
+      "parentUuid": "d15e4d35_867e2594",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
