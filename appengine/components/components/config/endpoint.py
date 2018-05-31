@@ -146,9 +146,12 @@ class ConfigApi(remote.Service):
 
     res = ValidateResponseMessage()
     for m in ctx.result().messages:
+      text = m.text
+      if isinstance(m.text, str):
+        text = unicode(text, errors='replace')
       res.messages.append(ValidationMessage(
           severity=common.Severity.lookup_by_number(m.severity),
-          text=unicode(m.text, errors='replace'),
+          text=text,
       ))
     return res
 
