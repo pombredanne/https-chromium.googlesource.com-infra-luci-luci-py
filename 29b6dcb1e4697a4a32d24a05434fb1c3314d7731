@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e23c4ab8_ea520cf9",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T23:05:23Z",
+      "side": 1,
+      "message": "hm... \n\n\u0027привет\u0027.decode(\u0027ascii\u0027, errors\u003d\u0027replace\u0027)\nu\u0027\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\u0027\n\n(U+FFFD is ‘REPLACEMENT CHARACTER’, I assume famous square blocks).\n\nSo who knows how Cloud Endpoints will actually handle this replacement :)",
+      "range": {
+        "startLine": 147,
+        "startChar": 36,
+        "endLine": 147,
+        "endChar": 52
+      },
+      "revId": "29b6dcb1e4697a4a32d24a05434fb1c3314d7731",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
