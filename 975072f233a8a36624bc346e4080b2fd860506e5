@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1025fa0a_7e88e8b5",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Removing actually - don\u0027t need it anymore",
+      "parentUuid": "c3f28ea3_8d964f1a",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16ea5da2_b8806500",
         "filename": "appengine/swarming/handlers_frontend.py",
         "patchSetId": 16
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "39ca8720_73a3486a",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16ea5da2_b8806500",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 186,
+        "endChar": 19
+      },
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d0e7605_8568c7ed",
         "filename": "appengine/swarming/handlers_frontend.py",
         "patchSetId": 16
@@ -56,6 +98,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "351a2f4a_11ddbd4d",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d0e7605_8568c7ed",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "077acc78_00595c4a",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "The main index page doesn\u0027t really change, since it just pulls in the JS and the CSS (which do change and have less long caching (1 hour).  These are the same settings we currently have - if we notice any skew or cache problems, I\u0027m fine to revisit.",
+      "parentUuid": "60dadb08_540f0ed5",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33cb5360_cebca69a",
         "filename": "appengine/swarming/ui2/Makefile",
         "patchSetId": 16
@@ -90,6 +168,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44cff758_07d4fe0b",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Ah, wget was a bit of a hack to get it to work.  I\u0027ll use npm properly now.",
+      "parentUuid": "33cb5360_cebca69a",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "b27be05f_f24b943f",
+        "filename": "appengine/swarming/ui2/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9d080ed_1ab02048",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1581f917_a620327a",
         "filename": "appengine/swarming/ui2/README.md",
         "patchSetId": 16
@@ -121,6 +235,24 @@
       "writtenOn": "2018-05-31T20:27:53Z",
       "side": 1,
       "message": "We should make it work in Safari too for our friends stuck with iPhone.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b37957e7_8ed2e4ab",
+        "filename": "appengine/swarming/ui2/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "I don\u0027t have a Mac on which to test. I\u0027d like them to work there as well (and they probably will), but at the moment, I don\u0027t have anyway to test them on Safari.",
+      "parentUuid": "1581f917_a620327a",
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -141,6 +273,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb040eec_08d216a6",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22436ffb_2397fbf3",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -167,6 +317,30 @@
     },
     {
       "key": {
+        "uuid": "76a143f1_f8a5299d",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b2d7102_5a76433c",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac4387a6_0a0a4d49",
         "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
         "patchSetId": 16
@@ -190,6 +364,30 @@
     },
     {
       "key": {
+        "uuid": "0f8e9532_df9565b3",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "This page (and everything in /dist) is dynamically generated from pages/.  These hashes are added as cache-busters.",
+      "parentUuid": "ac4387a6_0a0a4d49",
+      "range": {
+        "startLine": 25,
+        "startChar": 53,
+        "endLine": 25,
+        "endChar": 73
+      },
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e44d267a_c7b44881",
         "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
         "patchSetId": 16
@@ -204,6 +402,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe910cea_66b4d4b7",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e44d267a_c7b44881",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -224,6 +440,24 @@
     },
     {
       "key": {
+        "uuid": "cd2262c9_0a0b4dbe",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "567cc4e4_6b80aa04",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc659ff3_9cedb0a3",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 16
@@ -238,6 +472,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e796111a_7fe1c9df",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc659ff3_9cedb0a3",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -258,6 +510,24 @@
     },
     {
       "key": {
+        "uuid": "beed6afa_5f310eb8",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": ":(\n\nhttps://engdoc.corp.google.com/eng/doc/devguide/js/styleguide.md?cl\u003dhead#formatting-semicolons-are-required\n\nDone (in most places that I could find).  They\u0027ll get minified out anyway.",
+      "parentUuid": "935bca18_aee1483c",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3570d5d5_41220805",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 16
@@ -269,6 +539,24 @@
       "writtenOn": "2018-05-31T20:27:53Z",
       "side": 1,
       "message": "Why not make it a function? Because that\u0027s what it is.\n\nfunction login_template(ele) {\n return ...\n}\n\nunless I misunderstood something.",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d15e4d35_867e2594",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-05-31T21:05:56Z",
+      "side": 1,
+      "message": "It is a function.  The () \u003d\u003e notation is just just shorthand for that.  Also, it\u0027s not obvious here unless you\u0027ve seen lit-html before, but the html`` is really doing calling a function a la html(``). \n\nMaking it a const variable is just a convention that we\u0027ve been following.  See the example on https://github.com/Polymer/lit-html",
+      "parentUuid": "3570d5d5_41220805",
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
