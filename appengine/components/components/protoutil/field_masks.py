@@ -147,6 +147,7 @@ class Mask(object):
       path: a path string or a tuple of segments.
         Must use canonical field names, i.e. not json names.
       start_at: the index of the segment to start interpreting path from.
+        Not index of a character.
 
     Returns:
       EXCLUDE if the field value must be excluded.
@@ -183,6 +184,26 @@ class Mask(object):
       # Nothing matched.
       return EXCLUDE
     return max(c.includes(path, start_at + 1) for c in children)
+
+  def get(self, path, start_at=0):
+    """Returns a sub-mask given a path from self to it.
+
+    For example, for a mask ["a.b.c"], mask.get("b") will return a mask with c.
+
+    Args:
+      path: a paths string or a tuple of segments.
+        Must use canonical field names, i.e. not json names.
+      start_at: the index of the segment to start interpreting path from.
+        Not index of a character.
+    """
+    assert path
+    if not isinstance(path, tuple):
+      path = _parse_path(path, self.desc, repeated=self.repeated)
+    if start_at == len(path):
+      return self
+
+    child = self.children.get(path[start_at])
+    return child and child.get(path, start_at + 1)
 
   @classmethod
   def from_field_mask(cls, field_mask, desc, json_names=False):
