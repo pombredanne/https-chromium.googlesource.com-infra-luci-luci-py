@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08b036c0_e7674231",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-05-31T22:28:19Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer more explicit \n\n  text \u003d text.decode(\u0027utf-8\u0027, errors\u003d\u0027replace\u0027)\n\n(Otherwise we depend on utf-8 implicitly through default process encoding).",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 46
+      },
+      "revId": "58486e09afedbe2c3ab70daf12a6e747b446bd17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
