@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d285db98_2c831d4e",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-01T13:47:41Z",
+      "side": 1,
+      "message": "That\u0027s not really needed either.",
+      "revId": "75a26cc593d9a74e9ae96cb4790d33329eaac5a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
