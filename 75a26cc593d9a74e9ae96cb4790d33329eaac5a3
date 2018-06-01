@@ -16,6 +16,24 @@
       "revId": "75a26cc593d9a74e9ae96cb4790d33329eaac5a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20a09fa4_21fd00e1",
+        "filename": "appengine/swarming/ui2/dist/public_swarming_index.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-01T13:57:19Z",
+      "side": 1,
+      "message": "Done, especially as per https://google.github.io/styleguide/htmlcssguide.html#Optional_Tags",
+      "parentUuid": "d285db98_2c831d4e",
+      "revId": "75a26cc593d9a74e9ae96cb4790d33329eaac5a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
