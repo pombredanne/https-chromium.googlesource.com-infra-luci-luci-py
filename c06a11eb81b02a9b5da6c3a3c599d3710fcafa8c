@@ -16,6 +16,24 @@
       "revId": "c06a11eb81b02a9b5da6c3a3c599d3710fcafa8c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c22bc9c_4b6b1f58",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-01T14:17:36Z",
+      "side": 1,
+      "message": "it does if you have a symlink to luci-py. This CL wasn\u0027t rolled to infra.git yet.\n\nRolling and updating prpc files: https://chromium-review.googlesource.com/c/infra/infra/+/1082002",
+      "parentUuid": "a74b5781_69efbd9e",
+      "revId": "c06a11eb81b02a9b5da6c3a3c599d3710fcafa8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
