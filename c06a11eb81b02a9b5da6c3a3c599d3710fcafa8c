@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a74b5781_69efbd9e",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-01T02:02:38Z",
+      "side": 1,
+      "message": "This breaks buildbucket deployment:\n\nTraceback (most recent call last):\n  File \"appengine/runtime/wsgi.py\", line 240, in Handle\n    handler \u003d _config_handle.add_wsgi_middleware(self._LoadHandler())\n  File \"appengine/runtime/wsgi.py\", line 299, in _LoadHandler\n    handler, path, err \u003d LoadObject(self._handler)\n  File \"appengine/runtime/wsgi.py\", line 85, in LoadObject\n    obj \u003d __import__(path[0])\n  File \"apps.py\", line 18, in \u003cmodule\u003e\n    html, endpoints, backend \u003d main.initialize()\n  File \"main.py\", line 47, in initialize\n    return create_html_app(), create_endpoints_app(), create_backend_app()\n  File \"main.py\", line 22, in create_html_app\n    handlers.get_frontend_routes(), debug\u003dutils.is_local_dev_server())\n  File \"handlers.py\", line 349, in get_frontend_routes\n    prpc_server.add_service(access.AccessServicer())\n  File \"components/prpc/server.py\", line 109, in add_service\n    pkg \u003d servicer.DESCRIPTION[\u0027file_descriptor\u0027].package\nKeyError: \u0027file_descriptor\u0027",
+      "revId": "c06a11eb81b02a9b5da6c3a3c599d3710fcafa8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
