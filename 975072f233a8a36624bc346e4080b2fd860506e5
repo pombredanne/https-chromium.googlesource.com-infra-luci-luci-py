@@ -578,6 +578,24 @@
       "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00331353_57deec85",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-01T12:55:11Z",
+      "side": 1,
+      "message": "Resolved via offline conversation.  TL;DR: It\u0027s convention ¯\\_(ツ)_/¯",
+      "parentUuid": "accdf82b_c6b7a4c3",
+      "revId": "975072f233a8a36624bc346e4080b2fd860506e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
