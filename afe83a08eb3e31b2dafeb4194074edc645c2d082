@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "0fecef77_d77c1002",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1180854
+      },
+      "writtenOn": "2018-06-04T18:46:30Z",
+      "side": 1,
+      "message": "super nit: no empty to lines to be consistent with list of properties",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 909,
+        "endChar": 25
+      },
+      "revId": "afe83a08eb3e31b2dafeb4194074edc645c2d082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "151a84a3_ff18259d",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 3
