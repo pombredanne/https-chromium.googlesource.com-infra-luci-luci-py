@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bcc05137_315b49ef",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-04T18:53:18Z",
+      "side": 1,
+      "message": "Yes, just a few clean-ups while I was in here.",
+      "parentUuid": "0f8310bd_91959d48",
+      "range": {
+        "startLine": 627,
+        "startChar": 38,
+        "endLine": 627,
+        "endChar": 48
+      },
+      "revId": "afe83a08eb3e31b2dafeb4194074edc645c2d082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fecef77_d77c1002",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ea6e1471_6703f608",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-04T18:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fecef77_d77c1002",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 909,
+        "endChar": 25
+      },
+      "revId": "afe83a08eb3e31b2dafeb4194074edc645c2d082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "151a84a3_ff18259d",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 3
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "d4f296da_9ab0b2f3",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-04T18:53:18Z",
+      "side": 1,
+      "message": "My spaces are all over.",
+      "parentUuid": "151a84a3_ff18259d",
+      "revId": "afe83a08eb3e31b2dafeb4194074edc645c2d082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "979500bf_05b67ad4",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 3
@@ -79,6 +145,24 @@
       "revId": "afe83a08eb3e31b2dafeb4194074edc645c2d082",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f59fcb4c_a87f5ed9",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-04T18:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "979500bf_05b67ad4",
+      "revId": "afe83a08eb3e31b2dafeb4194074edc645c2d082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
