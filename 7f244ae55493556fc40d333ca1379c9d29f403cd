@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2489709_ba4882bd",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-04T18:59:34Z",
+      "side": 1,
+      "message": "optional nit: sometimes you include the trailing comma but sometimes you don\u0027t. Not sure what\u0027s the style preference (I prefer to).",
+      "range": {
+        "startLine": 901,
+        "startChar": 61,
+        "endLine": 901,
+        "endChar": 62
+      },
+      "revId": "7f244ae55493556fc40d333ca1379c9d29f403cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0881df7f_1e950b75",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-04T18:59:34Z",
+      "side": 1,
+      "message": "sliceIdx could be None if the task didn\u0027t ran, so you may want to do an \"or 0\".",
+      "range": {
+        "startLine": 1214,
+        "startChar": 35,
+        "endLine": 1214,
+        "endChar": 43
+      },
+      "revId": "7f244ae55493556fc40d333ca1379c9d29f403cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
