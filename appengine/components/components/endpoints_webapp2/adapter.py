@@ -149,7 +149,7 @@ def path_handler(api_class, api_method, service_path):
   return Handler
 
 
-def api_routes(api_class, base_path='/api'):
+def _api_routes(api_class, base_path):
   """Creates webapp2 routes for the given Endpoints v1 service.
 
   Args:
@@ -159,9 +159,6 @@ def api_routes(api_class, base_path='/api'):
   Returns:
     A list of webapp2.Routes.
   """
-  # TODO(smut): Convert all callers to invoke api_server instead.
-  # Once nothing invokes this directly, make base_path required here
-  # and have the default in api_server only.
   api_path = '%s/%s/%s' % (
       base_path, api_class.api_info.name, api_class.api_info.version)
   routes = []
@@ -183,20 +180,20 @@ def api_routes(api_class, base_path='/api'):
   return routes
 
 
-def api_server(api_classes, base_path='/api'):
+def api_routes(api_classes, base_path='/_ah/api'):
   """Creates webapp2 routes for the given Endpoints v1 services.
 
   Args:
     api_classes: A list of protorpc.remote.Service classes to create routes for.
     base_path: The base path under which all service paths should exist. If
-      unspecified, defaults to api.
+      unspecified, defaults to /_ah/api.
 
   Returns:
     A list of webapp2.Routes.
   """
   routes = []
   for api_class in api_classes:
-    routes.extend(api_routes(api_class, base_path=base_path))
+    routes.extend(_api_routes(api_class, base_path))
   routes.extend([
       directory_service_route(api_classes, base_path),
       discovery_service_route(api_classes, base_path),
@@ -204,6 +201,20 @@ def api_server(api_classes, base_path='/api'):
       explorer_redirect_route(base_path),
   ])
   return routes
+
+
+def api_server(api_classes, base_path='/_ah/api'):
+  """Creates a webapp2 application for the given Endpoints v1 services.
+
+  Args:
+    api_classes: A list of protorpc.remote.Service classes to create routes for.
+    base_path: The base path under which all service paths should exist. If
+      unspecified, defaults to /_ah/api.
+
+  Returns:
+    A webapp2.WSGIApplication.
+  """
+  return webapp2.WSGIApplication(api_routes(api_classes, base_path))
 
 
 def discovery_handler_factory(api_classes, base_path):
