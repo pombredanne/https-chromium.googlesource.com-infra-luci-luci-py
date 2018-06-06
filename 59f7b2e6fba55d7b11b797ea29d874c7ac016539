@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47e63fbe_522de525",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-06-06T20:48:06Z",
+      "side": 1,
+      "message": "default depends on package-lock.json, so package-lock.json here is redundant.\n\nSame for dev_test.",
+      "revId": "59f7b2e6fba55d7b11b797ea29d874c7ac016539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
