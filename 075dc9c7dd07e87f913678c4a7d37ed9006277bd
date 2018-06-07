@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9b1caaba_9c3e2ca8",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-07T18:51:42Z",
+      "side": 1,
+      "message": "Meh, this instance makes sense to not use const, IMO",
+      "parentUuid": "0d11e6fa_8df246c4",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a90145c7_9db3dc63",
         "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c886876_c977882e",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-07T18:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a90145c7_9db3dc63",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "c536aca4_9a9d095a",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-07T18:51:42Z",
+      "side": 1,
+      "message": "It looked strange yesterday when I put it on the left.  Now it doesn\u0027t.  Must have had too much JS yesterday.",
+      "parentUuid": "74f96598_d39e606f",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f6f05f1_a64ac528",
         "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index_test.js",
         "patchSetId": 5
@@ -67,6 +121,24 @@
       "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72095a59_65af0935",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index_test.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-07T18:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f6f05f1_a64ac528",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
