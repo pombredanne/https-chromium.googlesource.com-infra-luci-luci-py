@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d11e6fa_8df246c4",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-07T17:07:18Z",
+      "side": 1,
+      "message": "I just want to put on record that I\u0027m not a fan of this pattern but I\u0027m not a frontend dev. I\u0027ve read some opinions on this, like https://stackoverflow.com/q/33040703 to try to understand better the rationale but you can ignore my opinion for now.",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a90145c7_9db3dc63",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-07T17:07:18Z",
+      "side": 1,
+      "message": "do you want to keep this in the code?",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74f96598_d39e606f",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index-demo.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-07T17:07:18Z",
+      "side": 1,
+      "message": "Why align right so much?",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f6f05f1_a64ac528",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index_test.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-07T17:07:18Z",
+      "side": 1,
+      "message": "line before?",
+      "revId": "075dc9c7dd07e87f913678c4a7d37ed9006277bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
