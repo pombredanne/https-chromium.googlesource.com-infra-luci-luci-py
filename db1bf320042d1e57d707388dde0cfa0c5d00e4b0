@@ -16,6 +16,24 @@
       "revId": "db1bf320042d1e57d707388dde0cfa0c5d00e4b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d2e933_6967f31a",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-07T21:38:06Z",
+      "side": 1,
+      "message": "yes, templates var is a set. There may be \u003e1 route per URL template",
+      "parentUuid": "9ed939c3_1cf8fb51",
+      "revId": "db1bf320042d1e57d707388dde0cfa0c5d00e4b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
