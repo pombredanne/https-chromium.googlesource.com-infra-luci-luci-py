@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d9e5378_f6ebeeee",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-07T18:21:22Z",
+      "side": 1,
+      "message": "thank you",
+      "revId": "195b4f6c0bb8c72d692de0de80b04346a1f1b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82694e25_1998e9bb",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-07T18:21:22Z",
+      "side": 1,
+      "message": "same as below, as a reader of this code, I might be confused what\u0027s the difference between api_routes and _api_routes. Do we need them separate? I don\u0027t see any other usages of _api_routes besides L196. Inline?",
+      "revId": "195b4f6c0bb8c72d692de0de80b04346a1f1b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b30952_0d96f23d",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-07T18:21:22Z",
+      "side": 1,
+      "message": "as a user that reads function signatures and docstrings, i might be confused what\u0027s the difference between api_server and api_routes and which one I should use. Please mention in the docstring that this is just a shortcut",
+      "revId": "195b4f6c0bb8c72d692de0de80b04346a1f1b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
