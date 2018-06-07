@@ -34,6 +34,24 @@
       "revId": "db1bf320042d1e57d707388dde0cfa0c5d00e4b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c93ac02_495478ac",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-07T21:43:12Z",
+      "side": 1,
+      "message": "That suggests two different methods may have the same path. That could happen if there are separate classes handling GET and POST for the same path for example. Is that the only case, HTTP method differences?",
+      "parentUuid": "f8d2e933_6967f31a",
+      "revId": "db1bf320042d1e57d707388dde0cfa0c5d00e4b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
