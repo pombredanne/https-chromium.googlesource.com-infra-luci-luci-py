@@ -16,6 +16,24 @@
       "revId": "59f7b2e6fba55d7b11b797ea29d874c7ac016539",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eba978a_8ba1388c",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-07T13:53:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47e63fbe_522de525",
+      "revId": "59f7b2e6fba55d7b11b797ea29d874c7ac016539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
