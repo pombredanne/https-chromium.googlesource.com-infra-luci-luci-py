@@ -16,6 +16,24 @@
       "revId": "26b6803e894af6afb3d3281b3bebf8989f97a90c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c7a00ed_a8f38ea4",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-08T17:53:21Z",
+      "side": 1,
+      "message": "re-reading crbug.com/850811, now I am not sure this is the right fix. FWIU the goal here is to allow slashes in the url path. But the URL paths in the request do not have slashes, e.g.  in\n\nhttps://pantheon.corp.google.com/logs/viewer?project\u003dluci-config\u0026minLogLevel\u003d0\u0026expandAll\u003dfalse\u0026timestamp\u003d2018-06-08T17%3A46%3A02.566000000Z\u0026customFacets\u0026limitCustomFacetWidth\u003dtrue\u0026interval\u003dP1D\u0026resource\u003dgae_app%2Fmodule_id%2Fdefault%2Fversion_id%2F3631-462e384\u0026scrollTimestamp\u003d2018-06-08T00%3A30%3A00.176328000Z\u0026dateRangeStart\u003d2018-06-07T17%3A46%3A26.370Z\u0026dateRangeEnd\u003d2018-06-08T17%3A46%3A26.370Z\u0026logName\u003dprojects%2Fluci-config%2Flogs%2Fappengine.googleapis.com%252Frequest_log\u0026filters\u003dstatus%3A404\u0026filters\u003dpath%3A%2F_ah%2Fapi\u0026advancedFilter\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.zone%3D%22us10%22%0Aresource.labels.project_id%3D%22luci-config%22%0Aresource.labels.version_id%3D%223631-462e384%22%0Atimestamp%3D%222018-06-08T00%3A29%3A07.075443000Z%22%0AinsertId%3D%225b19cdd30002ce868d8749d8%22\n\nthe URL path is /_ah/api/config/v1/config_sets/services%2Fchromium-swarm/config/scripts%2Fskia.py?hash_only\u003dTrue\n\nit looks the problem is that\nhttps://cs.chromium.org/chromium/src/third_party/catapult/third_party/webapp2/webapp2.py?l\u003d977\u0026rcl\u003d093d06a929b436bba7dabe3728eb496e60b2dfa4\nunquotes URL path before matching path :(\n\nshould we override match method?",
+      "parentUuid": "8d8f59de_f64bca1d",
+      "revId": "26b6803e894af6afb3d3281b3bebf8989f97a90c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
