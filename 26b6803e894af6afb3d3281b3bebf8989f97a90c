@@ -34,6 +34,24 @@
       "revId": "26b6803e894af6afb3d3281b3bebf8989f97a90c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "977015d2_f093f724",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-08T22:35:14Z",
+      "side": 1,
+      "message": "The test on line 115 in your CL should fail on the first iteration because s2 is not allowed to be an empty string (which is consistent with Cloud Endpoints). I\u0027ve uploaded a new patch similar to your CL which tests both cases and includes comments detailing my interpretation of each result.\n\nCreating our own subclass of webapp2.Route with a custom match implementation doesn\u0027t work for some reason. It looks like by the time match is called the URL is already unquoted: https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1093876.",
+      "parentUuid": "6c7a00ed_a8f38ea4",
+      "revId": "26b6803e894af6afb3d3281b3bebf8989f97a90c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
