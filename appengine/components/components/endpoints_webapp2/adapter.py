@@ -172,7 +172,7 @@ def api_routes(api_classes, base_path='/_ah/api'):
     for _, method in sorted(api_class.all_remote_methods().iteritems()):
       info = method.method_info
       method_path = info.get_path(api_class.api_info)
-      method_path = method_path.replace('{', '<').replace('}', '>')
+      method_path = method_path.replace('{', '<').replace('}', ':.+>')
       t = posixpath.join(api_base_path, method_path)
       http_method = info.http_method.upper() or 'POST'
       handler = path_handler(api_class, method, api_base_path)
