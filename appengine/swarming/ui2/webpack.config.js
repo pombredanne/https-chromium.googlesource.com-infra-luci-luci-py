@@ -13,5 +13,23 @@ module.exports = (env, argv) => {
     test: /.js$/,
     use: 'html-template-minifier-webpack',
   });
+
+  // TODO(kjlubick): remove after https://github.com/google/pulito/pull/3 lands
+  config.plugins.forEach((p) => {
+    if ('HtmlWebpackPlugin' === p.constructor.name && p.options) {
+      p.options.minify = {
+        caseSensitive: true,
+        collapseBooleanAttributes: true,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLS: true,
+        removeOptionalTags: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+      };
+    }
+  });
   return config;
 }
