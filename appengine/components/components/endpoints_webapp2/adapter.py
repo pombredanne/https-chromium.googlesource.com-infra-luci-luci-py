@@ -18,6 +18,7 @@ from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
 import webapp2
+import webob
 
 from components import net
 from components import template
@@ -149,6 +150,34 @@ def path_handler(api_class, api_method, service_path):
   return Handler
 
 
+class NonUnquotingRoute(webapp2.Route):
+  """A webapp2.Route which doesn't unquote the URL before matching."""
+
+  def match(self, request):
+    """Matches this route against the current request.
+
+    Args:
+      request: A webapp2.Request instance.
+
+    Raises:
+      webob.exc.HTTPMethodNotAllowed: If there was a match but the HTTP method
+        in the request is not supported.
+
+    Returns:
+      A 3-tuple of (webapp2.Route, args, kwargs) or None if there was no match.
+    """
+    print 'match called with path %r' % request.path
+    match = self.regex.match(request.path)
+    if not match or self.schemes and request.scheme not in self.schemes:
+      return None
+
+    if self.methods and request.method not in self.methods:
+      raise webob.exc.HTTPMethodNotAllowed()
+
+    args, kwargs = webapp2._get_route_variables(match, self.defaults.copy())
+    return self, args, kwargs
+
+
 def api_routes(api_classes, base_path='/_ah/api'):
   """Creates webapp2 routes for the given Endpoints v1 services.
 
@@ -176,7 +205,7 @@ def api_routes(api_classes, base_path='/_ah/api'):
       t = posixpath.join(api_base_path, method_path)
       http_method = info.http_method.upper() or 'POST'
       handler = path_handler(api_class, method, api_base_path)
-      routes.append(webapp2.Route(t, handler, methods=[http_method]))
+      routes.append(NonUnquotingRoute(t, handler, methods=[http_method]))
       templates.add(t)
 
     # Add routes for HTTP OPTIONS (to add CORS headers) for each method.

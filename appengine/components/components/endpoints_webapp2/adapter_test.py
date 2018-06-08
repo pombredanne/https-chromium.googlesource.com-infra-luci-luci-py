@@ -38,9 +38,10 @@ class EndpointsService(remote.Service):
   def get(self, _request):
     return Msg()
 
-  @endpoints.method(CONTAINER, Msg, http_method='GET')
-  def get_container(self, _request):
-    return Msg()
+  @endpoints.method(
+      CONTAINER, Msg, http_method='GET', path='container/{s2}/get')
+  def get_container(self, request):
+    return Msg(s2=request.s2)
 
   @endpoints.method(Msg, Msg)
   def post_403(self, _request):
@@ -86,9 +87,23 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
     self.assertEqual(rc.s2, 'b')
     self.assertEqual(rc.x, 'c')
 
+  def test_handle_path_parameter(self):
+    app = webapp2.WSGIApplication(
+        adapter.api_routes([EndpointsService]), debug=True)
+
+    request = webapp2.Request.blank('/_ah/api/Service/v1/container/a/get')
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 200)
+    self.assertEqual(json.loads(response.body)['s2'], 'a')
+
+    request = webapp2.Request.blank('/_ah/api/Service/v1/container/a%2Fb/get')
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 200)
+    self.assertEqual(json.loads(response.body)['s2'], 'a/b')
+
   def test_handle_403(self):
     app = webapp2.WSGIApplication(
-        adapter.api_routes([EndpointsService], '/_ah/api'), debug=True)
+        adapter.api_routes([EndpointsService]), debug=True)
     request = webapp2.Request.blank('/_ah/api/Service/v1/post_403')
     request.method = 'POST'
     response = request.get_response(app)
@@ -106,10 +121,10 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
         # Each route appears twice below because each route has two
         # different handlers, one for HTTP OPTIONS and the other for
         # user-defined methods.
+        '/_ah/api/Service/v1/container/<s2>/get',
+        '/_ah/api/Service/v1/container/<s2>/get',
         '/_ah/api/Service/v1/get',
         '/_ah/api/Service/v1/get',
-        '/_ah/api/Service/v1/get_container',
-        '/_ah/api/Service/v1/get_container',
         '/_ah/api/Service/v1/post',
         '/_ah/api/Service/v1/post',
         '/_ah/api/Service/v1/post_403',
