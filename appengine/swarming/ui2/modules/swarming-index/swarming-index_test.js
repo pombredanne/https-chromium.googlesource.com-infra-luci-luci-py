@@ -2,7 +2,9 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import './index.js'
+import 'modules/swarming-index'
+
+(function(){
 
 const fetchMock = require('fetch-mock');
 
@@ -47,6 +49,7 @@ afterEach(function() {
 function createElement(test) {
   return window.customElements.whenDefined('swarming-index').then(() => {
     container.innerHTML = `<swarming-index client_id=for_test testing_offline=true></swarming-index>`;
+    expect(container.firstElementChild).toBeTruthy();
     test(container.firstElementChild);
   });
 }
@@ -259,3 +262,5 @@ describe('swarming-index', function() {
     });
   });
 });
+
+})();
