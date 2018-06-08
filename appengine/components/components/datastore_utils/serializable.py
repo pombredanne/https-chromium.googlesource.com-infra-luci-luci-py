@@ -192,6 +192,8 @@ class _ModelDictConverter(object):
       return lambda prop, x: self.convert_dict(prop._modelclass, x)
     # For other properties consult the registry of converters.
     for prop_cls, include_subclasses, conv in self.property_converters:
+      # Using type() instead of isinstance() for a typecheck.
+      # pylint: disable=W1504
       if (include_subclasses and isinstance(prop, prop_cls) or
           not include_subclasses and type(prop) == prop_cls):
         return conv
