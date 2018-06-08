@@ -6,6 +6,7 @@
 import json
 import sys
 import unittest
+import urllib
 
 from test_support import test_env
 test_env.setup_test_env()
@@ -38,9 +39,15 @@ class EndpointsService(remote.Service):
   def get(self, _request):
     return Msg()
 
-  @endpoints.method(CONTAINER, Msg, http_method='GET')
-  def get_container(self, _request):
-    return Msg()
+  @endpoints.method(
+      CONTAINER, Msg, http_method='GET', path='container/{s2}/get')
+  def get_container_inner_path(self, request):
+    return Msg(s='inner', s2=request.s2)
+
+  @endpoints.method(
+      CONTAINER, Msg, http_method='GET', path='container/{s2}')
+  def get_container_trailing_path(self, request):
+    return Msg(s='trailing', s2=request.s2)
 
   @endpoints.method(Msg, Msg)
   def post_403(self, _request):
@@ -81,14 +88,77 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
         route_kwargs={'s2': 'b', 'x': 'c'},
     )
     rc = adapter.decode_message(
-        EndpointsService.get_container.remote, request)
+        EndpointsService.get_container_inner_path.remote, request)
     self.assertEqual(rc.s, 'a')
     self.assertEqual(rc.s2, 'b')
     self.assertEqual(rc.x, 'c')
 
+  def test_handle_path_parameter(self):
+    app = webapp2.WSGIApplication(
+        adapter.api_routes([EndpointsService], base_path='/api'), debug=True)
+
+    # Fails because no value of s2 has been provided.
+    request = webapp2.Request.blank('/api/Service/v1/container')
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 404)
+
+    # Fails because no value of s2 has been provided (empty not allowed).
+    request = webapp2.Request.blank('/api/Service/v1/container/')
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 404)
+
+    # Successfully matches trailing because s2's value is '/'.
+    request = webapp2.Request.blank('/api/Service/v1/container//')
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 200)
+    self.assertEqual(json.loads(response.body)['s'], 'trailing')
+
+    # Successfully matches trailing because s2's value is '/get'.
+    # Does not match inner because empty s2 is not allowed.
+    request = webapp2.Request.blank('/api/Service/v1/container//get')
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 200)
+    self.assertEqual(json.loads(response.body)['s'], 'trailing')
+
+    s2_values = ['a', 'get', 'container', '/', '%2F', '/get']
+    for s2 in s2_values:
+      # Successfully matches trailing because s2's value has been provided.
+      request = webapp2.Request.blank('/api/Service/v1/container/%s' % s2)
+      response = request.get_response(app)
+      self.assertEqual(response.status_int, 200)
+      response = json.loads(response.body)
+      self.assertEqual(response['s'], 'trailing')
+      self.assertEqual(response['s2'], urllib.unquote(s2))
+
+      # Successfully matches trailing because s2's value has been provided.
+      # The trailing '/' is interpreted as part of s2.
+      request = webapp2.Request.blank('/api/Service/v1/container/%s/' % s2)
+      response = request.get_response(app)
+      self.assertEqual(response.status_int, 200)
+      response = json.loads(response.body)
+      self.assertEqual(response['s'], 'trailing')
+      self.assertEqual(response['s2'], '%s/' % urllib.unquote(s2))
+
+      # Successfully matches inner because s2's value has been provided.
+      request = webapp2.Request.blank('/api/Service/v1/container/%s/get' % s2)
+      response = request.get_response(app)
+      self.assertEqual(response.status_int, 200)
+      response = json.loads(response.body)
+      self.assertEqual(response['s'], 'inner')
+      self.assertEqual(response['s2'], urllib.unquote(s2))
+
+      # Successfully matches inner because s2's value has been provided.
+      # The trailing '/get/' is interpreted as part of s2.
+      request = webapp2.Request.blank('/api/Service/v1/container/%s/get/' % s2)
+      response = request.get_response(app)
+      self.assertEqual(response.status_int, 200)
+      response = json.loads(response.body)
+      self.assertEqual(response['s'], 'trailing')
+      self.assertEqual(response['s2'], '%s/get/' % urllib.unquote(s2))
+
   def test_handle_403(self):
     app = webapp2.WSGIApplication(
-        adapter.api_routes([EndpointsService], '/_ah/api'), debug=True)
+        adapter.api_routes([EndpointsService]), debug=True)
     request = webapp2.Request.blank('/_ah/api/Service/v1/post_403')
     request.method = 'POST'
     response = request.get_response(app)
@@ -106,10 +176,12 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
         # Each route appears twice below because each route has two
         # different handlers, one for HTTP OPTIONS and the other for
         # user-defined methods.
+        '/_ah/api/Service/v1/container/<s2:.+>',
+        '/_ah/api/Service/v1/container/<s2:.+>',
+        '/_ah/api/Service/v1/container/<s2:.+>/get',
+        '/_ah/api/Service/v1/container/<s2:.+>/get',
         '/_ah/api/Service/v1/get',
         '/_ah/api/Service/v1/get',
-        '/_ah/api/Service/v1/get_container',
-        '/_ah/api/Service/v1/get_container',
         '/_ah/api/Service/v1/post',
         '/_ah/api/Service/v1/post',
         '/_ah/api/Service/v1/post_403',
