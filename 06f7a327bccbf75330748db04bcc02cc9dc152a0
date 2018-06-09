@@ -16,6 +16,24 @@
       "revId": "06f7a327bccbf75330748db04bcc02cc9dc152a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71b3ba74_1abb0641",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-09T00:21:51Z",
+      "side": 1,
+      "message": "The URL is unquoted here:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/third_party/WebOb/webob/request.py?l\u003d1426\n\nI tried patching out the unquote, but then the assertion on line 102 fails. The request gets \"a%252Fb\", in other words the %2F isn\u0027t even passed directly, it has its % escaped.\n\nI don\u0027t think this is the right approach. Messing with webob.request will have far-reaching implications.",
+      "parentUuid": "87735d78_3d5ccf67",
+      "revId": "06f7a327bccbf75330748db04bcc02cc9dc152a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
