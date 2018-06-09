@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bc23672_b05aa0f8",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login_test.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-09T18:38:50Z",
+      "side": 1,
+      "message": "Is that javascript?\n\u003cinsert meme\u003e",
+      "revId": "9e5c800a3dceeab20806a5361a668c7682ce15d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97795bc6_e5694939",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login_test.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-09T18:38:50Z",
+      "side": 1,
+      "message": "That\u0027s a promise?",
+      "revId": "9e5c800a3dceeab20806a5361a668c7682ce15d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31c0fc2a_1b4af607",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-09T18:38:50Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer using the term RPCs to tasks. Unless you want to include tasks that aren\u0027t RPCs, e.g. polling on the server for it to complete a server-side task.",
+      "range": {
+        "startLine": 66,
+        "startChar": 59,
+        "endLine": 66,
+        "endChar": 64
+      },
+      "revId": "9e5c800a3dceeab20806a5361a668c7682ce15d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
