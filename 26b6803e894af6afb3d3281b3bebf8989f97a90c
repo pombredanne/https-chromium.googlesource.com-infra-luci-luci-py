@@ -52,6 +52,24 @@
       "revId": "26b6803e894af6afb3d3281b3bebf8989f97a90c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bdc5c45_221f2cd2",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-11T18:53:25Z",
+      "side": 1,
+      "message": "test in patchset 2 in this CL fails if method \"get_container_trailing_path\" is made lexicographically before \"get_container_inner_path\"",
+      "parentUuid": "977015d2_f093f724",
+      "revId": "26b6803e894af6afb3d3281b3bebf8989f97a90c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
