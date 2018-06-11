@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "46a06000_2de8f8b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-11T23:45:09Z",
+      "side": 1,
+      "message": "The merging logic in the CL is for actually applying the template to an incoming request; I agree about removing the other stacking logic (already committed) when skylark is available. Should I do that immediately?",
+      "parentUuid": "50f815f5_d730e5ff",
+      "revId": "1a2e73b0d3e47ac7af591b172f3ebc24ba2cfb36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d94e193e_4d29a13e",
         "filename": "appengine/swarming/server/pools_config.py",
         "patchSetId": 14
