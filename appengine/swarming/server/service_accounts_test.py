@@ -12,6 +12,8 @@ import unittest
 import test_env
 test_env.setup_test_env()
 
+import swarming_rpcs
+
 from test_support import test_case
 
 from components import auth
@@ -168,7 +170,8 @@ class TaskAccountTokenTest(TestBase):
       'user': 'Someone',
     }
     req = task_request.TaskRequest(**args)
-    task_request.init_new_request(req, True)
+    task_request.init_new_request(
+        req, True, swarming_rpcs.PoolTaskTemplate.AUTO)
     req.key = task_request.new_request_key()
     req.service_account = service_account
     req.service_account_token = service_account_token

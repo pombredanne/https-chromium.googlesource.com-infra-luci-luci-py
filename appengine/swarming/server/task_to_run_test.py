@@ -15,6 +15,7 @@ APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, APP_DIR)
 import test_env_handlers
 
+import swarming_rpcs
 import webtest
 
 from google.appengine.ext import ndb
@@ -91,7 +92,7 @@ def _gen_request_slices(**kwargs):
   }
   args.update(kwargs)
   req = task_request.TaskRequest(**args)
-  task_request.init_new_request(req, True)
+  task_request.init_new_request(req, True, swarming_rpcs.PoolTaskTemplate.AUTO)
   return req
 
 

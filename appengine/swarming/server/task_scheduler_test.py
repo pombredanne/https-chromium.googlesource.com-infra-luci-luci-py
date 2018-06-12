@@ -22,6 +22,7 @@ import webtest
 
 import event_mon_metrics
 import handlers_backend
+import swarming_rpcs
 
 from components import auth
 from components import auth_testing
@@ -81,7 +82,7 @@ def _gen_request_slices(**kwargs):
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)
-  task_request.init_new_request(ret, True)
+  task_request.init_new_request(ret, True, swarming_rpcs.PoolTaskTemplate.AUTO)
   return ret
 
 
@@ -188,6 +189,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         u'pool:default',
         u'priority:50',
         u'service_account:none',
+        u'swarming.pool.template:no_config',
         u'tag:1',
         u'user:Jesus',
       ],
