@@ -4,6 +4,7 @@
 # that can be found in the LICENSE file.
 
 import logging
+import random
 import sys
 import unittest
 
@@ -18,8 +19,11 @@ from test_support import test_case
 
 from proto import pools_pb2
 from server import pools_config
+from server import task_request
 
 from google.protobuf import text_format
+
+import swarming_rpcs
 
 
 TEST_CONFIG = pools_pb2.PoolsCfg(pool=[
@@ -218,7 +222,15 @@ class PoolsConfigTest(test_case.TestCase):
 
 class TaskTemplateBaseTest(unittest.TestCase):
   def setUp(self):
+    super(TaskTemplateBaseTest, self).setUp()
+    self._canary_dice_roll = 5000  # 50%
+    self._randint_normal = random.randint
+    random.randint = lambda *_: self._canary_dice_roll
     self.ctx = validation.Context()
+
+  def tearDown(self):
+    super(TaskTemplateBaseTest, self).tearDown()
+    random.randint = self._randint_normal
 
   PTT = pools_pb2.TaskTemplate
   PCE = pools_pb2.TaskTemplate.CacheEntry
@@ -745,13 +757,6 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
         self.ctx, poolcfg.task_template)
     dmap = pools_config._resolve_task_template_deployments(
         self.ctx, tmap, poolcfg.task_template_deployment)
-
-    self.assertEqual(pools_config.TaskTemplateDeployment(
-        prod=self.tt(
-            env=[self.PE(var='VAR', value='1')],
-            inclusions='a'),
-        canary=None, canary_chance=0
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
 
     self.assertEqual(pools_config.TaskTemplateDeployment(
       prod=self.tt(
