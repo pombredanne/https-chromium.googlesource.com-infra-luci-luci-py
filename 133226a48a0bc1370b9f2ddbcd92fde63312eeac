@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b98f471_4d3e17c0",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 0,
+      "message": "This is because of the dice roll? It\u0027s kind of non-obvious.",
+      "revId": "133226a48a0bc1370b9f2ddbcd92fde63312eeac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

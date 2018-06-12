@@ -1,0 +1,260 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bec23439_80335817",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "Where\u0027s the template?",
+      "range": {
+        "startLine": 293,
+        "startChar": 61,
+        "endLine": 293,
+        "endChar": 75
+      },
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea30a601_52e4796f",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "Remove one line",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69a4b353_e7e6cf24",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "you can import auto_stub if you prefer, or even use the unittest mock stuff.",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10bc570c_0f620f92",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "Please do not import swarming_rpcs here, it\u0027s a layering violation which pulls all the RPC stuff.\nThe best I can see is to redefine these here as a separate python style enum, i.e.:\n\nAUTO, CANARY_PREFER, CANARY_NEVER, SKIP \u003d range(4)\n\nand then do explicit conversion in handlers_endpoints, even if this sounds silly, this is more future proof.\n\u003c/insert meme about copying protos\u003e",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43af3bee_3d9d7472",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "Returns:\n  foo\n\nwell, that\u0027s what in general folks do.",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7b7aa84_8832359a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "# It shouldn\u0027t ...",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d9911a_dc91b9d6",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "I\u0027d prefer instead:\n\ncanary \u003d False\nif \u003cfoo\u003e:\n  canary \u003d True\nelif \u003cbar\u003e:\n  canary \u003d True\n\nto_apply \u003d deployment.prod if canary else deployment.canary",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "230439d4_ecc76e3c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1311,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "That confuses the Go programmer in me :)",
+      "range": {
+        "startLine": 1311,
+        "startChar": 4,
+        "endLine": 1311,
+        "endChar": 7
+      },
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811b86b8_b0ba77e1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1322,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "props.env \u003d props.env or {}\nwould be fine too and slightly more readable.",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdf653da_d03c1651",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "similar",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51b18bd1_f2b54f8b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "# Add all task template paths.",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a69484fe_08a382d0",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "similar (upper case and period)",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d7e7ce_31ce72c8",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "+4",
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40494e95_d68848ba",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-12T22:04:05Z",
+      "side": 1,
+      "message": "Would ALWAYS_PROD make sense? CANARY_NEVER is fine too.",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 14
+      },
+      "revId": "03b4d5bd9acb623b83922c52df7f816e4b800ef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
