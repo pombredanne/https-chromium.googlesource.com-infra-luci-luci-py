@@ -81,6 +81,24 @@
       "revId": "2c2ef36a0223247018322c33321230f4038b2e37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46f0f7eb_76cba62a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-13T18:18:42Z",
+      "side": 1,
+      "message": "So this helps us to know when it doesn\u0027t exit properly; makes sense I think.",
+      "parentUuid": "3a3c8463_90579959",
+      "revId": "2c2ef36a0223247018322c33321230f4038b2e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
