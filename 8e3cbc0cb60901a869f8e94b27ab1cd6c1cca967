@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "072d21a1_9b4d92c0",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-13T16:56:58Z",
+      "side": 1,
+      "message": "Discussed offline: At this point protorpc has already constrained msg.pool_task_template to be one of these enum values; A missing enum value here (like if we added another one but forgot to update this table) would properly be a 500 instead of a 400 (since it would require code changes on the server to fix)",
+      "parentUuid": "07bc26f7_6b65408f",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61b044ab_3b597f69",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 23
