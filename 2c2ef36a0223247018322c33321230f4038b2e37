@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5ad68674_b7033389",
+        "filename": "client/cipd.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T18:01:55Z",
+      "side": 1,
+      "message": "\"Only if we had a tricium analyzer for this\" :P",
+      "parentUuid": "21c8b6e5_7be4a635",
+      "range": {
+        "startLine": 433,
+        "startChar": 27,
+        "endLine": 433,
+        "endChar": 42
+      },
+      "revId": "2c2ef36a0223247018322c33321230f4038b2e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "123ec1fb_cd7cd254",
         "filename": "client/local_caching.py",
         "patchSetId": 7
@@ -36,6 +60,24 @@
       "writtenOn": "2018-06-13T17:17:53Z",
       "side": 1,
       "message": "Is adding the call to _save here related to switching explicit trim calls? Or was this missing before?",
+      "revId": "2c2ef36a0223247018322c33321230f4038b2e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a3c8463_90579959",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T18:01:55Z",
+      "side": 1,
+      "message": "It was done only at exit, but it\u0027s kinda useful to do it at install, as if a named cache is \"lost\", it\u0027s important to know.",
+      "parentUuid": "123ec1fb_cd7cd254",
       "revId": "2c2ef36a0223247018322c33321230f4038b2e37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
