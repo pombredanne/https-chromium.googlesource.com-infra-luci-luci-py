@@ -10,7 +10,7 @@ const fetchMock = require('fetch-mock');
 
 function requireLogin(logged_in, delay=500) {
   return function(url, opts){
-    if (opts && opts.headers && opts.headers.authorization) {
+    if (opts && opts.headers && opts.headers.authorization && false) {
       return new Promise((resolve) => {
         setTimeout(resolve, delay);
       }).then(() => {
