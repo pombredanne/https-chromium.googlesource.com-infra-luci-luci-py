@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07bc26f7_6b65408f",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "You should do a get() and if missing, it\u0027ll be None and you can raise a ValueError. This way it will return a 400 instead of a 500, which is better. :)",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61b044ab_3b597f69",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "All\nmust",
+      "range": {
+        "startLine": 956,
+        "startChar": 54,
+        "endLine": 956,
+        "endChar": 58
+      },
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c4e9902_9021b7cc",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 1287,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "You can remove lines 1284, 1286~1287. I\u0027d rewrite the whole thing as:\n\n  canary \u003d False\n  if deployment.canary:\n    if template_apply \u003d\u003d TEMPLATE_CANARY_PREFER:\n      canary \u003d True\n    elif template_apply \u003d\u003d TEMPLATE_AUTO and deployment.canary_chance:\n      canary \u003d random.randint(0, 9999) \u003c deployment.canary_chance\n  to_apply \u003d deployment.canary if canary else deployment.prod\n\nIt could all be put as one condition but this is more readable this way.",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5869bc7d_297296fc",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "I wasn\u0027t asking to rename it though :)",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c5f0e36_4ae13eb6",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "I\u0027d prefer to not be a method and leverage the saved characters \"self.\" at call sites for a slightly more descriptive function name like _gen_task_template(). :)",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89fa42a9_369b9cec",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure this fits the line.",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae9a635a_ee4af6fa",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "Remove, unnecessary.",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca7eaf7d_cf5566a3",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "+4",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ff5b995_a6c7d110",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-13T13:56:01Z",
+      "side": 1,
+      "message": "I\u0027m still not getting used to the ) on a new line, sorry.  (No need to change your CL, just noting my lack of capability to accept new styles).",
+      "revId": "8e3cbc0cb60901a869f8e94b27ab1cd6c1cca967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
