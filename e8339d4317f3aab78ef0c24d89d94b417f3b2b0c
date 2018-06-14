@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4256b69_015eb6c3",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:32:38Z",
+      "side": 1,
+      "message": "Per docs this is equivalent to no regex:\nhttp://webapp2.readthedocs.io/en/latest/guide/routing.html#the-url-template",
+      "revId": "e8339d4317f3aab78ef0c24d89d94b417f3b2b0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
