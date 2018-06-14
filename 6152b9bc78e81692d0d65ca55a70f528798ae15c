@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "28825387_f1d53752",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a754344_ff32d709",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 100,
+        "endChar": 49
+      },
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2c605b9_71d68dba",
         "filename": "appengine/components/components/endpoints_webapp2/partial.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abbbd07d_82665455",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2c605b9_71d68dba",
+      "range": {
+        "startLine": 105,
+        "startChar": 40,
+        "endLine": 108,
+        "endChar": 24
+      },
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5c0d4227_5d323a2b",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56d4d308_8fa5103d",
+      "range": {
+        "startLine": 111,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 29
+      },
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3469267d_49bd5c92",
         "filename": "appengine/components/components/endpoints_webapp2/partial.py",
         "patchSetId": 1
@@ -85,6 +157,24 @@
       "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "933e26d5_85c61eda",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "First one can\u0027t happen. The only time expecting_name is flipped to false is on L162 (in this patchset), which is right after clearing the accumulator. Added invariant for this.\n\nFor the second one, you\u0027re right, right now \"a(b)c\" is incorrectly accepted, I\u0027ve added a ParsingError and a test case for this.",
+      "parentUuid": "3469267d_49bd5c92",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "77d4e617_76af236d",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a060ebeb_dcd33b75",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "651abd33_d05411b4",
         "filename": "appengine/components/components/endpoints_webapp2/partial.py",
         "patchSetId": 1
@@ -122,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "d3a1ec8a_1d74c327",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "651abd33_d05411b4",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bc15ded_52931ffa",
         "filename": "appengine/components/components/endpoints_webapp2/partial_test.py",
         "patchSetId": 1
@@ -136,6 +262,24 @@
       "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6938a12_c9240a01",
+        "filename": "appengine/components/components/endpoints_webapp2/partial_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-14T23:58:59Z",
+      "side": 1,
+      "message": "Done. Good catch, this required a bugfix in partial.py.",
+      "parentUuid": "2bc15ded_52931ffa",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
