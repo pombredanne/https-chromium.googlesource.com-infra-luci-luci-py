@@ -65,6 +65,22 @@ def is_valid_file(path, size):
   return True
 
 
+def _get_recursive_size(path):
+  """Returns the total data size for the specified path.
+
+  This function can be surprisingly slow on OSX, so its output should be cached.
+  """
+  try:
+    total = 0
+    for root, _, files in fs.walk(path):
+      for f in files:
+        total += fs.lstat(os.path.join(root, f)).st_size
+    return total
+  except (IOError, OSError, UnicodeEncodeError) as exc:
+    logging.warning('Exception while getting the size of %s:\n%s', path, exc)
+    return None
+
+
 class NamedCacheError(Exception):
   """Named cache specific error."""
 
@@ -664,7 +680,7 @@ class NamedCache(Cache):
     """
     super(NamedCache, self).__init__(cache_dir)
     self._policies = policies
-    # LRU {cache_name -> cache_location}
+    # LRU {cache_name -> tuple(cache_location, size)}
     self.state_file = os.path.join(cache_dir, self.STATE_FILE)
     self._lru = lru.LRUDict()
     if not fs.isdir(self.cache_dir):
@@ -676,8 +692,26 @@ class NamedCache(Cache):
         logging.exception('failed to load named cache state file')
         logging.warning('deleting named caches')
         file_path.rmtree(self.cache_dir)
+      self._try_upgrade()
     if time_fn:
       self._lru.time_fn = time_fn
+
+  def _try_upgrade(self):
+    """Upgrades from the old format to the new one if necessary.
+
+    This code can be removed so all bots are known to have the right new format.
+    """
+    if not self._lru:
+      return
+    name, data = self._lru.get_oldest()
+    if isinstance(data, (list, tuple)):
+      return
+    # Update to v2.
+    def upgrade(name, rel_cache):
+      abs_cache = os.path.join(self.cache_dir, rel_cache)
+      return rel_cache, _get_recursive_size(abs_cache)
+    self._lru.transform(upgrade)
+    self._save()
 
   def __len__(self):
     """Returns number of items in the cache.
@@ -732,8 +766,8 @@ class NamedCache(Cache):
           raise NamedCacheError(
               'installation directory %r already exists' % path)
 
-        rel_cache = self._lru.get(name)
-        if rel_cache:
+        if name in self._lru:
+          rel_cache, _size = self._lru.get(name)
           abs_cache = os.path.join(self.cache_dir, rel_cache)
           if os.path.isdir(abs_cache):
             logging.info('Moving %r to %r', abs_cache, path)
@@ -751,6 +785,7 @@ class NamedCache(Cache):
         # When uninstalling, we will move it back to the cache and create an
         # an entry.
         file_path.ensure_tree(path)
+      finally:
         self._save()
       except (IOError, OSError) as ex:
         raise NamedCacheError(
@@ -772,39 +807,43 @@ class NamedCache(Cache):
               'Directory %r does not exist anymore. Cache lost.', path)
           return
 
-        rel_cache = self._lru.get(name)
-        if rel_cache:
-          # Do not crash because cache already exists.
+        if name in self._lru:
+          # This shouldn't happen but just remove the preexisting one and move
+          # on.
           logging.warning('overwriting an existing named cache %r', name)
-          create_named_link = False
-        else:
-          rel_cache = self._allocate_dir()
-          create_named_link = True
+          self._remove(name)
+        rel_cache = self._allocate_dir()
 
         # Move the dir and create an entry for the named cache.
         abs_cache = os.path.join(self.cache_dir, rel_cache)
         logging.info('Moving %r to %r', path, abs_cache)
         file_path.ensure_tree(os.path.dirname(abs_cache))
         fs.rename(path, abs_cache)
-        self._lru.add(name, rel_cache)
 
-        if create_named_link:
-          # Create symlink <cache_dir>/<named>/<name> -> <cache_dir>/<short
-          # name> for user convenience.
-          named_path = self._get_named_path(name)
-          if os.path.exists(named_path):
-            file_path.remove(named_path)
-          else:
-            file_path.ensure_tree(os.path.dirname(named_path))
-          try:
-            fs.symlink(abs_cache, named_path)
-            logging.info('Created symlink %r to %r', named_path, abs_cache)
-          except OSError:
-            # Ignore on Windows. It happens when running as a normal user or
-            # when UAC is enabled and the user is a filtered administrator
-            # account.
-            if sys.platform != 'win32':
-              raise
+        # That succeeded, calculate its new size.
+        size = _get_recursive_size(abs_cache)
+        if not size:
+          # Do not save empty named cache.
+          return
+        self._lru.add(name, (rel_cache, size))
+
+        # Create symlink <cache_dir>/<named>/<name> -> <cache_dir>/<short name>
+        # for user convenience.
+        named_path = self._get_named_path(name)
+        if os.path.exists(named_path):
+          file_path.remove(named_path)
+        else:
+          file_path.ensure_tree(os.path.dirname(named_path))
+
+        try:
+          fs.symlink(abs_cache, named_path)
+          logging.info('Created symlink %r to %r', named_path, abs_cache)
+        except OSError:
+          # Ignore on Windows. It happens when running as a normal user or when
+          # UAC is enabled and the user is a filtered administrator account.
+          if sys.platform != 'win32':
+            raise
+      finally:
         self._save()
       except (IOError, OSError) as ex:
         raise NamedCacheError(
@@ -847,23 +886,26 @@ class NamedCache(Cache):
 
       # Trim according to minimum free space.
       if self._policies.min_free_space:
-        while True:
+        while self._lru:
           free_space = file_path.get_free_space(self.cache_dir)
-          if not self._lru or free_space >= self._policies.min_free_space:
+          if free_space >= self._policies.min_free_space:
             break
           _remove_lru_file()
 
-      # TODO(maruel): Trim according to self._policies.max_cache_size. Do it
-      # last as it requires counting the size of each entry.
-
-      # TODO(maruel): Trim empty directories. An empty directory is not a cache,
-      # something needs to be in it.
+      # Trim according to maximum total size.
+      if self._policies.max_cache_size:
+        while self._lru:
+          total = sum(size for _name, (_rel_cache, size) in self._lru)
+          if total <= self._policies.max_cache_size:
+            break
+          _remove_lru_file()
 
       self._save()
       return len(removed)
 
   def cleanup(self):
-    # TODO(maruel): Implement.
+    # TODO(maruel): Implement. In particular, remove the unexpected files and
+    # directories!
     pass
 
   def _allocate_dir(self):
@@ -895,10 +937,9 @@ class NamedCache(Cache):
       Number of caches deleted.
     """
     self._lock.assert_locked()
-    rel_path = self._lru.get(name)
-    if not rel_path:
+    if name not in self._lru:
       return
-
+    rel_path, _size = self._lru.get(name)
     named_dir = self._get_named_path(name)
     if fs.islink(named_dir):
       fs.unlink(named_dir)
