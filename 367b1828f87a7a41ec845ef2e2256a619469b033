@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9e9dbd0_e128014a",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-14T18:26:05Z",
+      "side": 1,
+      "message": "Is the old version v1 or v2?\n\nIn _try_upgrade there\u0027s a comment that makes it look like the old version is v1 and we\u0027re upgrading to v2.",
+      "revId": "367b1828f87a7a41ec845ef2e2256a619469b033",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50850c4d_bb50733c",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-14T18:26:05Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 680,
+        "startChar": 6,
+        "endLine": 680,
+        "endChar": 20
+      },
+      "revId": "367b1828f87a7a41ec845ef2e2256a619469b033",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
