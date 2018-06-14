@@ -736,10 +736,8 @@ class FetchQueue(object):
       # 'touch' returns True if item is in cache and not corrupted.
       if self.cache.touch(digest, size):
         return
-      # isolate_storage.Item is corrupted, remove it from cache and fetch it
-      # again.
+      logging.error('%s is corrupted', digest)
       self._fetched.remove(digest)
-      self.cache.evict(digest)
 
     # TODO(maruel): It should look at the free disk space, the current cache
     # size and the size of the new item on every new item:
