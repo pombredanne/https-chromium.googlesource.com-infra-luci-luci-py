@@ -121,9 +121,9 @@ class LRUDict(object):
     self._items[key] = (value, self.time_fn())
     self._dirty = True
 
-  def keys_set(self):
+  def keys(self):
     """Set of keys of items in this dict."""
-    return set(self._items)
+    return self._items.keys()
 
   def get(self, key, default=None):
     """Returns value for |key| or |default| if not found."""
@@ -172,7 +172,18 @@ class LRUDict(object):
     self._dirty = True
     return item
 
+  def iteritems(self):
+    """Iterator over stored values in order."""
+    for key, (val, _ts) in self._items.iteritems():
+      yield key, val
+
   def itervalues(self):
-    """Iterator over stored values in arbitrary order."""
+    """Iterator over stored values in order."""
     for val, _ in self._items.itervalues():
       yield val
+
+  def transform(self, mutator):
+    """Updates the data format and saves immediately."""
+    for key, (val, timestamp) in self._items.iteritems():
+      self._items[key] = (mutator(key, val), timestamp)
+    self._dirty = True
