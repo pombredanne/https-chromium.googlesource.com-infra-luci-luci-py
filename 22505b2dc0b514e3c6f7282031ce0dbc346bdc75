@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9166c12a_fc9ad7c3",
+        "filename": "client/tests/lru_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-14T18:18:35Z",
+      "side": 1,
+      "message": "This was a bit confusing at first. Maybe something like: \"Makes a LRUDict by loading the given JSON from a file.\"",
+      "revId": "22505b2dc0b514e3c6f7282031ce0dbc346bdc75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eceaf0ce_416693fb",
+        "filename": "client/tests/lru_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-14T18:18:35Z",
+      "side": 1,
+      "message": "reloads",
+      "range": {
+        "startLine": 36,
+        "startChar": 16,
+        "endLine": 36,
+        "endChar": 22
+      },
+      "revId": "22505b2dc0b514e3c6f7282031ce0dbc346bdc75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e23ee802_248562b3",
+        "filename": "client/tests/lru_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-14T18:18:35Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 74,
+        "startChar": 11,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "22505b2dc0b514e3c6f7282031ce0dbc346bdc75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc6a09fa_e30ccce3",
+        "filename": "client/tests/lru_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-14T18:18:35Z",
+      "side": 1,
+      "message": "Optional: This test method could potentially be two:\n  test_magic_methods_empty_dict\n  test_magic_methods_nonempty_dict",
+      "revId": "22505b2dc0b514e3c6f7282031ce0dbc346bdc75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
