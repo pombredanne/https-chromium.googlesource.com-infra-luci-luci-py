@@ -171,8 +171,8 @@ class DiskContentAddressedCacheTest(TestCase):
     assertItems([(h_a, 1), (h_large, len(large)), (h_b, 1)])
     self.assertEqual(h_a, cache._protected)
     self.assertEqual(1000, cache._free_disk)
-    self.assertEqual(0, cache.initial_number_items)
-    self.assertEqual(0, cache.initial_size)
+    self.assertEqual(0, len(cache))
+    self.assertEqual(0, cache.total_size)
     # Free disk is enforced, because otherwise we assume the task wouldn't
     # be able to start. In this case, it throws an exception since all items
     # are protected. The item is added since it's detected after the fact.
@@ -194,8 +194,8 @@ class DiskContentAddressedCacheTest(TestCase):
         max_age_secs=0)
     cache = self.get_cache()
     cache.write(h_large, large)
-    self.assertEqual(2, cache.initial_number_items)
-    self.assertEqual(2, cache.initial_size)
+    self.assertEqual(2, len(cache))
+    self.assertEqual(2, cache.total_size)
     cache.trim()
 
     self.assertEqual(
@@ -212,8 +212,8 @@ class DiskContentAddressedCacheTest(TestCase):
     assertItems([(h_c, 1), (h_large, len(large))])
     self.assertEqual(None, cache._protected)
     self.assertEqual(1101, cache._free_disk)
-    self.assertEqual(2, cache.initial_number_items)
-    self.assertEqual(100, cache.initial_size)
+    self.assertEqual(2, len(cache))
+    self.assertEqual(100, cache.total_size)
     cache.trim()
 
   def test_policies_trim_old(self):
