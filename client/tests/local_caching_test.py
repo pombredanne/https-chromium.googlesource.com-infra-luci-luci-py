@@ -267,11 +267,15 @@ class NamedCacheTest(TestCase):
     self.cache_dir = os.path.join(self.tempdir, 'cache')
 
   def make_caches(self, cache, names):
+    """Creates a cache entry for each in names."""
     dest_dir = os.path.join(self.tempdir, 'dest')
     try:
-      names = map(unicode, names)
       for n in names:
-        cache.install(os.path.join(dest_dir, n), n)
+        dest = os.path.join(dest_dir, n)
+        cache.install(dest, n)
+        # Put a file in there named 'hello', otherwise it'll stay empty.
+        with open(os.path.join(dest, 'hello'), 'wb') as f:
+          f.write('world')
       self.assertEqual(set(names), set(os.listdir(dest_dir)))
       for n in names:
         cache.uninstall(os.path.join(dest_dir, n), n)
@@ -283,7 +287,7 @@ class NamedCacheTest(TestCase):
   def test_get_oldest(self):
     cache = local_caching.NamedCache(self.cache_dir, self.policies)
     self.assertIsNone(cache.get_oldest())
-    self.make_caches(cache, range(10))
+    self.make_caches(cache, map(unicode, range(10)))
     self.assertEqual(cache.get_oldest(), u'0')
 
   def test_get_timestamp(self):
@@ -292,7 +296,7 @@ class NamedCacheTest(TestCase):
     cache = local_caching.NamedCache(
         self.cache_dir, self.policies, time_fn=time_fn)
     for i in xrange(10):
-      self.make_caches(cache, [i])
+      self.make_caches(cache, [unicode(i)])
       now += 1
     for i in xrange(10):
       self.assertEqual(i, cache.get_timestamp(str(i)))
@@ -319,8 +323,8 @@ class NamedCacheTest(TestCase):
     cache.uninstall(b_path, u'2')
 
     self.assertEqual(4, len(os.listdir(cache.cache_dir)))
-    path1 = os.path.join(cache.cache_dir, cache._lru['1'])
-    path2 = os.path.join(cache.cache_dir, cache._lru['2'])
+    path1 = os.path.join(cache.cache_dir, cache._lru['1'][0])
+    path2 = os.path.join(cache.cache_dir, cache._lru['2'][0])
 
     self.assertEqual('x', read_file(os.path.join(path1, u'x')))
     self.assertEqual('y', read_file(os.path.join(path2, u'y')))
@@ -356,8 +360,8 @@ class NamedCacheTest(TestCase):
     cache.uninstall(b_path, '2')
 
     self.assertEqual(4, len(os.listdir(cache.cache_dir)))
-    path1 = os.path.join(cache.cache_dir, cache._lru['1'])
-    path2 = os.path.join(cache.cache_dir, cache._lru['2'])
+    path1 = os.path.join(cache.cache_dir, cache._lru['1'][0])
+    path2 = os.path.join(cache.cache_dir, cache._lru['2'][0])
 
     self.assertEqual('x2', read_file(os.path.join(path1, 'x')))
     self.assertEqual('y', read_file(os.path.join(path2, 'y')))
@@ -367,7 +371,7 @@ class NamedCacheTest(TestCase):
   def test_trim(self):
     cache = local_caching.NamedCache(self.cache_dir, self.policies)
     item_count = self.policies.max_items + 10
-    self.make_caches(cache, range(item_count))
+    self.make_caches(cache, map(unicode, range(item_count)))
     self.assertEqual(len(cache), item_count)
     cache.trim()
     self.assertEqual(len(cache), self.policies.max_items)
@@ -382,7 +386,7 @@ class NamedCacheTest(TestCase):
     fs.makedirs(os.path.join(self.cache_dir, 'a'), 0777)
 
     cache = local_caching.NamedCache(self.cache_dir, self.policies)
-    self.make_caches(cache, ['a'])
+    self.make_caches(cache, [u'a'])
     cache.trim()
     self.assertTrue(
         fs.islink(os.path.join(cache.cache_dir, 'named', 'a')))
