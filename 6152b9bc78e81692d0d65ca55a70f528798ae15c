@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a754344_ff32d709",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "this error message might be cryptic for a user",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 100,
+        "endChar": 49
+      },
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2c605b9_71d68dba",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "i think\n\n  for part in self._accumulator.split(\u0027/\u0027):\n\nwould be simpler",
+      "range": {
+        "startLine": 105,
+        "startChar": 40,
+        "endLine": 108,
+        "endChar": 24
+      },
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d4d308_8fa5103d",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "nit: \n\n  pointer \u003d pointer.setdefault(part, {})",
+      "range": {
+        "startLine": 111,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 29
+      },
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3469267d_49bd5c92",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "what if were not expecting a name, but there is something accumulated?\n\ndo we ever want L181 to accumulate something if we are not expecting a name?",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a060ebeb_dcd33b75",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "for clarity, please assert that not stack[-1].expecting_name",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "651abd33_d05411b4",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "because of string concatenation in accumulate, this call makes this algorithm quadratic. Why not make accumulate a list? or just store indexes of start and end?",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bc15ded_52931ffa",
+        "filename": "appengine/components/components/endpoints_webapp2/partial_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-14T23:08:33Z",
+      "side": 1,
+      "message": "please add \u0027a(b)c\u0027. note that \u0027(a,b)c\u0027 fails for a different reason",
+      "revId": "6152b9bc78e81692d0d65ca55a70f528798ae15c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
