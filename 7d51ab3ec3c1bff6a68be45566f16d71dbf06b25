@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b84b9149_3cd98ad2",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-15T21:55:50Z",
+      "side": 1,
+      "message": "Will we ever want to keep the working directory after execution? (if not, then it would be simpler to just always delete).",
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6768f7d_5c83aa31",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1708,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-15T21:55:50Z",
+      "side": 1,
+      "message": "32-bit Python",
+      "range": {
+        "startLine": 1708,
+        "startChar": 59,
+        "endLine": 1708,
+        "endChar": 73
+      },
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cde6000_633b5ee7",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-15T21:55:50Z",
+      "side": 1,
+      "message": "1GiB",
+      "range": {
+        "startLine": 1709,
+        "startChar": 28,
+        "endLine": 1709,
+        "endChar": 31
+      },
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef6fc195_9af20900",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1710,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-15T21:55:50Z",
+      "side": 1,
+      "message": "Also, why is it a leak? If the contents don\u0027t fit in memory then some will be written to disk and not cleaned up later?",
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
