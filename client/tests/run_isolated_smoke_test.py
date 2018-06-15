@@ -399,12 +399,14 @@ class RunIsolatedTest(unittest.TestCase):
     isolated_hash = self._store('file_with_size.isolated')
     file1_hash = self._store('file1.txt')
 
+    # OMG
+
     # Run the test once to generate the cache.
     _out, _err, returncode = self._run(self._cmd_args(isolated_hash))
     self.assertEqual(0, returncode)
     expected = {
-      u'.': (040700, 040700, 040777),
-      u'state.json': (0100600, 0100600, 0100666),
+      u'.': (040707, 040707, 040777),
+      u'state.json': (0100606, 0100606, 0100666),
       # The reason for 0100666 on Windows is that the file node had to be
       # modified to delete the hardlinked node. The read only bit is reset on
       # load.
@@ -423,12 +425,14 @@ class RunIsolatedTest(unittest.TestCase):
     # Ensure that the cache has an invalid file.
     self.assertNotEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
+    # OMG
+
     # Rerun the test and make sure the cache contains the right file afterwards.
     out, err, returncode = self._run(self._cmd_args(isolated_hash))
     self.assertEqual(0, returncode, (out, err, returncode))
     expected = {
-      u'.': (040700, 040700, 040777),
-      u'state.json': (0100600, 0100600, 0100666),
+      u'.': (040707, 040707, 040777),
+      u'state.json': (0100606, 0100606, 0100666),
       unicode(file1_hash): (0100400, 0100400, 0100666),
       unicode(isolated_hash): (0100400, 0100400, 0100444),
     }
