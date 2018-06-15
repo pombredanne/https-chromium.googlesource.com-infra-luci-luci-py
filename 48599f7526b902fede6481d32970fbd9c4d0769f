@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b7ddda99_1efe0698",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-15T20:02:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98ef46d8_9b0ebcfe",
+      "revId": "48599f7526b902fede6481d32970fbd9c4d0769f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c25fa1e_5d3c2c54",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 12
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "8aa00449_7e66d571",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-15T20:02:16Z",
+      "side": 1,
+      "message": "Improved sentence. I renamed the variable \u0027actual\u0027 to \u0027trimmed\u0027 since it was confusing!",
+      "parentUuid": "1c25fa1e_5d3c2c54",
+      "range": {
+        "startLine": 693,
+        "startChar": 0,
+        "endLine": 694,
+        "endChar": 42
+      },
+      "revId": "48599f7526b902fede6481d32970fbd9c4d0769f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d04da07_6597538d",
         "filename": "client/utils/file_path.py",
         "patchSetId": 12
@@ -53,6 +95,30 @@
       "writtenOn": "2018-06-15T18:45:23Z",
       "side": 1,
       "message": "Even if you plan to reenable the log later, I still think it\u0027s usually nicer to not check in commented-out code; if you do leave it commented out here, it could be with a note saying \"this is commented out because it was noisy; it should be reenabled later when xxx changes\"",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 906,
+        "endChar": 43
+      },
+      "revId": "48599f7526b902fede6481d32970fbd9c4d0769f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66ef9457_f1706f25",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-15T20:02:16Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "6d04da07_6597538d",
       "range": {
         "startLine": 904,
         "startChar": 0,
