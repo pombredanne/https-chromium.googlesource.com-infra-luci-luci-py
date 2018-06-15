@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59682e5a_3e91403c",
+        "filename": "client/local_caching.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-15T18:12:33Z",
+      "side": 1,
+      "message": "In Python this should usually be called a list, right? (same below)",
+      "range": {
+        "startLine": 160,
+        "startChar": 17,
+        "endLine": 160,
+        "endChar": 22
+      },
+      "revId": "fa91ea2ab80bdb91b9f84b2bbfda4a2c5a589946",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
