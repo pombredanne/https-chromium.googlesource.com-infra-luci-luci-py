@@ -22,6 +22,30 @@
       "revId": "ab31058cdb87ff395a5c6f7188fe851f4791f130",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "658d57c3_0e88ed4e",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-15T01:43:03Z",
+      "side": 1,
+      "message": "Accumulator start index can be computed here based on i and the length of the accumulator. I\u0027ve changed this to give the precise index where the name was empty.",
+      "parentUuid": "dc24d9f7_71a310b2",
+      "range": {
+        "startLine": 109,
+        "startChar": 27,
+        "endLine": 109,
+        "endChar": 28
+      },
+      "revId": "ab31058cdb87ff395a5c6f7188fe851f4791f130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
