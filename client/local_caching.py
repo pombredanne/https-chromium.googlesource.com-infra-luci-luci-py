@@ -956,9 +956,56 @@ class NamedCache(Cache):
     return evicted
 
   def cleanup(self):
-    # TODO(maruel): Implement. In particular, remove the unexpected files and
-    # directories!
-    pass
+    """Removes unknown directories."""
+    success = True
+    with self._lock:
+      try:
+        actual = set(fs.listdir(self.cache_dir))
+        actual.discard(u'named')
+        actual.discard(self.STATE_FILE)
+        expected = {v[0]: k for k, v in self._lru.iteritems()}
+        # Remove missing entries.
+        for missing in (set(expected) - actual):
+          self._lru.pop(expected[missing])
+        # Remove unexpected items.
+        for unexpected in (actual - set(expected)):
+          try:
+            p = os.path.join(self.cache_dir, unexpected)
+            if fs.isdir(p):
+              file_path.rmtree(p)
+            else:
+              fs.remove(p)
+          except (IOError, OSError) as e:
+            logging.error('Failed to remove %s: %s', unexpected, e)
+            success = False
+
+        # Second, fix named cache links.
+        named = os.path.join(self.cache_dir, u'named')
+        if os.path.isdir(named):
+          actual = set(fs.listdir(named))
+          expected = set(self._lru)
+          # Confirm entries. Do not add missing ones for now.
+          for i in expected.intersection(actual):
+            p = os.path.join(self.cache_dir, u'named', i)
+            e = os.path.join(self.cache_dir, self._lru[i][0])
+            l = fs.readlink(p)
+            if e != l:
+              raise ValueError((e, l))
+
+          # Remove unexpected items.
+          for unexpected in (actual - expected):
+            try:
+              p = os.path.join(self.cache_dir, u'named', unexpected)
+              if fs.isdir(p):
+                file_path.rmtree(p)
+              else:
+                fs.remove(p)
+            except (IOError, OSError) as e:
+              logging.error('Failed to remove %s: %s', unexpected, e)
+              success = False
+      finally:
+        self._save()
+    return success
 
   # Internal functions.
 

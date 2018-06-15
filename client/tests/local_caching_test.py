@@ -504,7 +504,7 @@ class NamedCacheTest(TestCase, CacheTestMixin):
         ['11', '12'],
         sorted(os.listdir(os.path.join(cache.cache_dir, 'named'))))
 
-  def test_corrupted(self):
+  def test_load_corrupted_state(self):
     os.mkdir(self.cache_dir)
     with open(os.path.join(self.cache_dir, u'state.json'), 'w') as f:
       f.write('}}}}')
@@ -521,6 +521,41 @@ class NamedCacheTest(TestCase, CacheTestMixin):
         fs.exists(os.path.join(cache.cache_dir, 'named', '1')))
     self.assertTrue(
         fs.islink(os.path.join(cache.cache_dir, 'named', '1')))
+    self.assertEqual(True, cache.cleanup())
+    self.assertEqual(
+        sorted([u'named', u'state.json', cache._lru[u'1'][0]]),
+        sorted(fs.listdir(cache.cache_dir)))
+
+  def test_cleanup_missing(self):
+    cache = self.get_cache(_get_policies())
+    self._add_one_item(cache, 1)
+    file_path.rmtree(os.path.join(cache.cache_dir, cache._lru[u'1'][0]))
+
+    cache = self.get_cache(_get_policies())
+    self.assertEqual([u'1'], list(cache))
+    self.assertEqual(True, cache.cleanup())
+    self.assertEqual([], list(cache))
+
+  def test_cleanup_unexpected(self):
+    os.mkdir(self.cache_dir)
+    with open(os.path.join(self.cache_dir, u'junk'), 'w') as f:
+      f.write('random')
+    cache = self.get_cache(_get_policies())
+    self.assertEqual(['junk'], fs.listdir(cache.cache_dir))
+    self.assertEqual(True, cache.cleanup())
+    self.assertEqual([cache.STATE_FILE], fs.listdir(cache.cache_dir))
+
+  def test_cleanup_unexpected_named(self):
+    os.mkdir(self.cache_dir)
+    os.mkdir(os.path.join(self.cache_dir, u'named'))
+    with open(os.path.join(self.cache_dir, u'named', u'junk'), 'w') as f:
+      f.write('random')
+    cache = self.get_cache(_get_policies())
+    self.assertEqual(['named'], fs.listdir(cache.cache_dir))
+    self.assertEqual(True, cache.cleanup())
+    self.assertEqual(
+        ['named', cache.STATE_FILE], sorted(fs.listdir(cache.cache_dir)))
+    self.assertEqual([], fs.listdir(os.path.join(cache.cache_dir, u'named')))
 
   def test_upgrade(self):
     # Make sure upgrading works. This is temporary as eventually all bots will
@@ -543,6 +578,8 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     cache = self.get_cache(_get_policies())
     expected = {u'cache1': ((u'f1', len('world')), now)}
     self.assertEqual(expected, dict(cache._lru._items.iteritems()))
+    self.assertEqual(
+        [u'f1', u'state.json'], sorted(fs.listdir(cache.cache_dir)))
 
 
 def _gen_state(items):
