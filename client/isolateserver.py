@@ -736,10 +736,8 @@ class FetchQueue(object):
       # 'touch' returns True if item is in cache and not corrupted.
       if self.cache.touch(digest, size):
         return
-      # isolate_storage.Item is corrupted, remove it from cache and fetch it
-      # again.
+      logging.error('%s is corrupted', digest)
       self._fetched.remove(digest)
-      self.cache.evict(digest)
 
     # TODO(maruel): It should look at the free disk space, the current cache
     # size and the size of the new item on every new item:
@@ -1203,7 +1201,7 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
     msg = (
         'Cache is too small to hold all requested files.\n'
         '  %s\n  cache=%dbytes, %d items; %sb free_space') % (
-          cache.policies, cache.total_size, cache.number_items, free_disk)
+          cache.policies, cache.total_size, len(cache), free_disk)
     raise isolated_format.MappingError(msg)
   return bundle
 
