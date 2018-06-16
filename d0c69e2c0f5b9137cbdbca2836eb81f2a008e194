@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "571d36b3_d1dfb002",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T14:33:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "733b74b4_69f54acf",
+      "range": {
+        "startLine": 964,
+        "startChar": 23,
+        "endLine": 964,
+        "endChar": 31
+      },
+      "revId": "d0c69e2c0f5b9137cbdbca2836eb81f2a008e194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0d621ca_19c4c9f1",
         "filename": "client/local_caching.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "bef85eab_867c1e66",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T14:33:25Z",
+      "side": 1,
+      "message": "Renamed i to name, e to expected_link, l to link. Changed ValueError to fs.remove() and added logging.\n\nI also improved the handling and added more test cases to tests the different code paths.",
+      "parentUuid": "f0d621ca_19c4c9f1",
+      "range": {
+        "startLine": 990,
+        "startChar": 0,
+        "endLine": 993,
+        "endChar": 38
+      },
+      "revId": "d0c69e2c0f5b9137cbdbca2836eb81f2a008e194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7bfb509e_47502a51",
         "filename": "client/local_caching.py",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-06-15T21:39:38Z",
       "side": 1,
       "message": "This is the part that \"removes forgotten named caches\" right?",
+      "range": {
+        "startLine": 995,
+        "startChar": 1,
+        "endLine": 1005,
+        "endChar": 29
+      },
+      "revId": "d0c69e2c0f5b9137cbdbca2836eb81f2a008e194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa20b47d_34bf1680",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T14:33:25Z",
+      "side": 1,
+      "message": "Remove the named cache symlinks, it\u0027s part of the \"Second\" section. Removed the empty line 994 to make this clearer.",
+      "parentUuid": "7bfb509e_47502a51",
       "range": {
         "startLine": 995,
         "startChar": 1,
