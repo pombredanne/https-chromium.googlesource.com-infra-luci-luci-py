@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ca00e279_83a12c44",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T13:06:48Z",
+      "side": 1,
+      "message": "I\u0027d assume yes, as often debugging a problem is non-trivial and may require multiple invocations. It\u0027s also easier for users to \"map the inputs\"",
+      "parentUuid": "b84b9149_3cd98ad2",
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6768f7d_5c83aa31",
         "filename": "client/swarming.py",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e0d86f9_ad3dd76d",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1708,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T13:06:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6768f7d_5c83aa31",
+      "range": {
+        "startLine": 1708,
+        "startChar": 59,
+        "endLine": 1708,
+        "endChar": 73
+      },
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "28d9294c_6ec26974",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T13:06:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cde6000_633b5ee7",
+      "range": {
+        "startLine": 1709,
+        "startChar": 28,
+        "endLine": 1709,
+        "endChar": 31
+      },
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef6fc195_9af20900",
         "filename": "client/swarming.py",
         "patchSetId": 3
@@ -76,6 +142,24 @@
       "writtenOn": "2018-06-15T21:55:50Z",
       "side": 1,
       "message": "Also, why is it a leak? If the contents don\u0027t fit in memory then some will be written to disk and not cleaned up later?",
+      "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0857a343_f194ed77",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1710,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-16T13:06:48Z",
+      "side": 1,
+      "message": "The cache itself is a leak. We never clean it up, so that on a second invocation it is super fast as the inputs files are already in the cache.",
+      "parentUuid": "ef6fc195_9af20900",
       "revId": "7d51ab3ec3c1bff6a68be45566f16d71dbf06b25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
