@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2568d710_f660167d",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-18T22:28:13Z",
+      "side": 1,
+      "message": "a const string might be simpler, i.e. \u0027Origin Content-Type Accept Authorization\u0027\nthere is not much value in *computing* this\nsame below",
+      "range": {
+        "startLine": 287,
+        "startChar": 66,
+        "endLine": 288,
+        "endChar": 67
+      },
+      "revId": "6b1aa6c22f797e1eb9740f79590e53febf8cd3c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
