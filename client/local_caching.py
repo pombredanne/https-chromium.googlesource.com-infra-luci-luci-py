@@ -995,12 +995,16 @@ class NamedCache(Cache):
             p = os.path.join(self.cache_dir, self.NAMED_DIR, name)
             expected_link = os.path.join(self.cache_dir, self._lru[name][0])
             if fs.islink(p):
-              link = fs.readlink(p)
-              if expected_link == link:
-                continue
-              logging.warning(
-                  'Unexpected symlink for cache %s: %s, expected %s',
-                  name, link, expected_link)
+              # TODO(maruel): Implement readlink() on Windows in fs.py, then
+              # remove this condition.
+              # https://crbug.com/853721
+              if sys.platform != 'win32':
+                link = fs.readlink(p)
+                if expected_link == link:
+                  continue
+                logging.warning(
+                    'Unexpected symlink for cache %s: %s, expected %s',
+                    name, link, expected_link)
             else:
               logging.warning('Unexpected non symlink for cache %s', name)
             if fs.isdir(p):
