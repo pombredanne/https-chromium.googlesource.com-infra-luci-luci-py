@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6d31d103_6696a731",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-20T21:02:11Z",
+      "side": 1,
+      "message": "Yeah, that makes sense.\n\nAs a side note, this kind of pylint disable (using warning names rather than codes) is nicer, warnings like the one below on line 360 could be changed over.",
+      "parentUuid": "238c1d3b_49e44a8b",
+      "revId": "1e4c78b85f523f72992151290f28837e7b4ed8d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "020674dd_105dea0b",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 5
@@ -69,6 +87,24 @@
       "revId": "1e4c78b85f523f72992151290f28837e7b4ed8d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689d5cb3_5778658e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-20T21:02:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "400c91a9_a6094b14",
+      "revId": "1e4c78b85f523f72992151290f28837e7b4ed8d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
