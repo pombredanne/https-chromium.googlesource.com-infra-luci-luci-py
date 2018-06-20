@@ -16,6 +16,24 @@
       "revId": "fd64a1e6bcd139bbda9bfff976d67248156e3493",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe29285a_2d3dac2c",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-06-20T17:28:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a590761_002e2a31",
+      "revId": "fd64a1e6bcd139bbda9bfff976d67248156e3493",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
