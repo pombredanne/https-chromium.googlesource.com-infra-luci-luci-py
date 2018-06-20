@@ -2,9 +2,8 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-/** @module swarming-ui/modules/swarming-app */
-
-/**
+/** @module swarming-ui/modules/swarming-app
+ * @description <h2><code>swarming-app</code></h2>
  * <p>
  *   A general application layout which includes a responsive
  *   side panel. This element is largely CSS, with a smattering of
@@ -21,7 +20,7 @@
  *   count of ongoing tasks to zero (or lower). See also the busy property.
  * </p>
  *
- * @evt busy-end This event is emitted when ever the app transitions from
+ * @evt busy-end This event is emitted whenever the app transitions from
  *               busy to not busy.
  *
  * @attr client_id - The Client ID for authenticating via OAuth.
@@ -33,11 +32,16 @@
 import { html, render } from 'lit-html/lib/lit-extended'
 import { upgradeProperty } from 'elements-sk/upgradeProperty'
 
+import 'elements-sk/icon/menu-icon-sk'
+import 'elements-sk/spinner-sk'
+
+import '../oauth-login'
+
 const button_template = document.createElement('template');
 button_template.innerHTML =`
 <button class=toggle-button>
-  <icon-menu-sk>
-  </icon-menu-sk>
+  <menu-icon-sk>
+  </menu-icon-sk>
 </button>
 `;
 
@@ -123,12 +127,12 @@ window.customElements.define('swarming-app', class extends HTMLElement {
    * is to insert a little bit of CSS and a few HTML elements for consistent
    * theming and functionality.
    *
-   * This function adds in the following:
+   * This function adds in the following:</br>
    *   1. A button that will toggle the side panel on small screens (and will
-   *      be hidden on large screens).
-   *   2. The spinner that indicates the busy state.
-   *   3. A spacer span to right-align the login element
-   *   4. A placeholder in which to render the login-element.
+   *      be hidden on large screens).</br>
+   *   2. The spinner that indicates the busy state.</br>
+   *   3. A spacer span to right-align the login element.</br>
+   *   4. A placeholder in which to render the login-element.</br>
    *
    * This function need only be called once, when the element is created.
    */
