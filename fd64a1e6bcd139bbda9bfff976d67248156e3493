@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a590761_002e2a31",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-06-20T15:32:36Z",
+      "side": 1,
+      "message": "Why no \u003col\u003e and \u003cli\u003e?",
+      "revId": "fd64a1e6bcd139bbda9bfff976d67248156e3493",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
