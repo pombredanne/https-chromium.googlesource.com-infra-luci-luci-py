@@ -1,0 +1,35 @@
+bot-list {
+  table {
+    border-collapse: collapse;
+    margin-left: 5px;
+  }
+  td, th {
+    border: 1px solid #DDD;
+    padding: 5px;
+  }
+  th {
+    position: relative;
+  }
+
+  main a[href] {
+    color: #1F78B4;
+  }
+
+
+  .old_version {
+    background-color: #ffffdd;
+  }
+  .quarantined, .bad-device {
+    background-color: #ffdddd;
+  }
+  .maintenance {
+    background-color: #cee9f9;
+  }
+  .dead {
+    background-color: #cccccc;
+  }
+  .alt {
+    background-color: #f8f8f8;
+  }
+
+}

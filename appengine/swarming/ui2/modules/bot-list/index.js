@@ -2,5 +2,10 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import './swarming-app.js'
-import './swarming-app.scss'
+import 'common-sk/modules/error-toast-sk'
+
+import '../sort-toggle'
+import '../swarming-app'
+
+import './bot-list.js'
+import './bot-list.scss'

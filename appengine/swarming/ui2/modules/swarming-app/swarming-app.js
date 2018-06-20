@@ -2,9 +2,8 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-/** @module swarming-ui/modules/swarming-app */
-
-/**
+/** @module swarming-ui/modules/swarming-app
+ * @description <h2><code>swarming-app</code></h2>
  * <p>
  *   A general application layout which includes a responsive
  *   side panel. This element is largely CSS, with a smattering of
@@ -21,7 +20,7 @@
  *   count of ongoing tasks to zero (or lower). See also the busy property.
  * </p>
  *
- * @evt busy-end This event is emitted when ever the app transitions from
+ * @evt busy-end This event is emitted whenever the app transitions from
  *               busy to not busy.
  *
  * @attr client_id - The Client ID for authenticating via OAuth.
@@ -33,11 +32,16 @@
 import { html, render } from 'lit-html/lib/lit-extended'
 import { upgradeProperty } from 'elements-sk/upgradeProperty'
 
+import 'elements-sk/icon/menu-icon-sk'
+import 'elements-sk/spinner-sk'
+
+import '../oauth-login'
+
 const button_template = document.createElement('template');
 button_template.innerHTML =`
 <button class=toggle-button>
-  <icon-menu-sk>
-  </icon-menu-sk>
+  <menu-icon-sk>
+  </menu-icon-sk>
 </button>
 `;
 

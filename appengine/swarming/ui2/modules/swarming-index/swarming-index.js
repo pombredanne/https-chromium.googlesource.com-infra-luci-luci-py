@@ -2,9 +2,9 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-/** @module swarming-ui/modules/swarming-index */
-
-/**
+/** @module swarming-ui/modules/swarming-index
+ * @description <h2><code>swarming-index</code></h2>
+ *
  * <p>
  *  Swarming Index is the landing page for the Swarming UI.
  *  It will have links to all other pages and a high-level overview of the fleet.
@@ -22,6 +22,7 @@ import { html, render } from 'lit-html/lib/lit-extended'
 import { upgradeProperty } from 'elements-sk/upgradeProperty'
 import { jsonOrThrow } from 'common-sk/modules/jsonOrThrow'
 import { errorMessage } from 'common-sk/modules/errorMessage'
+import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
 // Don't use html for a straight string template, otherwise, it shows up
 // as [object Object] when used as the href attribute.
@@ -114,10 +115,10 @@ const template = (ele) => html`
   <footer><error-toast-sk></error-toast-sk></footer>
 </swarming-app>`;
 
-window.customElements.define('swarming-index', class extends HTMLElement {
+window.customElements.define('swarming-index', class extends SwarmingAppBoilerplate {
 
   constructor() {
-    super();
+    super(template);
     this._server_details = {
       server_version: 'You must log in to see more details',
       bot_version: '',
@@ -130,21 +131,15 @@ window.customElements.define('swarming-index', class extends HTMLElement {
     this._auth_header = '';
   }
 
-  static get observedAttributes() {
-    return ['client_id', 'testing_offline'];
-  }
+  connectedCallback() {
+    super.connectedCallback();
 
-  get client_id() { return this.getAttribute('client_id');}
-  set client_id(val) {return this.setAttribute('client_id', val);}
+    this.addEventListener('log-in', (e) => {
+      this._auth_header = e.detail.auth_header;
+      this._update();
+    });
 
-  get testing_offline() { return this.getAttribute('testing_offline')}
-  set testing_offline(val) {
-    // handle testing_offline=false "correctly"
-    if (val && val !== 'false') {
-      this.setAttribute('testing_offline', true);
-    } else {
-      this.removeAttribute('testing_offline');
-    }
+    this.render();
   }
 
   _fetchToken() {
@@ -158,7 +153,7 @@ window.customElements.define('swarming-index', class extends HTMLElement {
       .then(jsonOrThrow)
       .then((json) => {
         this._bootstrap_token = json.bootstrap_token;
-        this._render();
+        this.render();
         app.finishedTask();
       })
       .catch((e) => {
@@ -168,7 +163,7 @@ window.customElements.define('swarming-index', class extends HTMLElement {
       });
   }
 
-  update() {
+  _update() {
     if (!this._auth_header) {
       return;
     }
@@ -179,18 +174,29 @@ window.customElements.define('swarming-index', class extends HTMLElement {
     let extra = {
       headers: {'authorization': this._auth_header}
     };
+    // TODO(kjlubick): Move details and permissions to swarming-app?
+    // That way we can display the server version in the bar and deduplicate
+    // this like it is in the Polymer version.
     let app = this.firstElementChild;
     app.addBusyTasks(2);
     fetch('/_ah/api/swarming/v1/server/details', extra)
       .then(jsonOrThrow)
       .then((json) => {
         this._server_details = json;
-        this._render();
+        this.render();
         app.finishedTask();
       })
       .catch((e) => {
-        console.error(e);
-        errorMessage(`Error loading details: ${e.body}`, 5000);
+        if (e.status === 403) {
+          this._server_details = {
+            server_version: 'User unauthorized - try logging in with a different account',
+            bot_version: '',
+          };
+          this.render();
+        } else {
+          console.error(e);
+          errorMessage(`Unexpected error loading details: ${e.body}`, 5000);
+        }
         app.finishedTask();
       });
     fetch('/_ah/api/swarming/v1/server/permissions', extra)
@@ -202,35 +208,16 @@ window.customElements.define('swarming-index', class extends HTMLElement {
         if (this._permissions.get_bootstrap_token) {
           this._fetchToken();
         }
-        this._render();
+        this.render();
         app.finishedTask();
       })
       .catch((e) => {
-        console.error(e);
-        errorMessage(`Error loading permissions: ${e.body}`, 5000);
+        if (e.status !== 403) {
+          console.error(e);
+          errorMessage(`Unexpected error loading permissions: ${e.body}`, 5000);
+        }
         app.finishedTask();
       });
-
-  }
-
-  connectedCallback() {
-    upgradeProperty(this, 'client_id');
-    upgradeProperty(this, 'testing_offline');
-
-    this.addEventListener('log-in', (e) => {
-      this._auth_header = e.detail.auth_header;
-      this.update();
-    });
-
-    this._render();
-  }
-
-  _render() {
-    render(template(this), this);
-  }
-
-  attributeChangedCallback(attrName, oldVal, newVal) {
-    this._render();
   }
 
 });

@@ -31,5 +31,8 @@ continuous_test:
 		make test
 	done
 
+docs: package-lock.json
+	npx jsdoc -c jsdoc.config.js -d docs
+
 package-lock.json: package.json
 	npm install
