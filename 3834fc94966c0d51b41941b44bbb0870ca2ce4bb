@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d62959d_001ec71b",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T23:58:23Z",
+      "side": 1,
+      "message": "Consider apply_async. Generally functions are named \u003cfn\u003e and \u003cfn\u003e_async, e.g. ndb.Key.get and ndb.Key.get_async.",
+      "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
