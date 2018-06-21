@@ -16,6 +16,24 @@
       "revId": "c6f76a09b595e5e1818089b297b162f4bd3a65ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e560506f_2b336c3e",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T00:58:29Z",
+      "side": 0,
+      "message": "See note on line 350. The adapter mimics this behavior:\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/340c674f10fd758340d56d877cee2076d349e977/appengine/components/components/endpoints_webapp2/adapter.py#132\n\nActually, I think I\u0027ll remove the note now because without the diff it probably just raises more questions.",
+      "parentUuid": "04a74a2a_1769033b",
+      "revId": "c6f76a09b595e5e1818089b297b162f4bd3a65ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
