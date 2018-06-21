@@ -744,6 +744,27 @@ def import_jinja2():
   sys.path.append(os.path.join(THIS_DIR, 'third_party'))
 
 
+# NDB Futures
+
+
+def async_apply(iter, async_fn, finished_first=False):
+  """Applies async_fn to each item and yields (item, result) tuples.
+
+  If finished_first is False (default), the order of yielded tuples corresponds to
+  the order of items in iter.
+  Otherwise, tuples are yielded in the order of how futures get resolved.
+  """
+  futs = [(async_fn(i), i) for i in iter]
+  if not finished_first:
+    for f, i in futs:
+      yield i, f.get_result()
+  else:
+    futs = dict(futs)  # future -> item
+    while futs:
+      f = ndb.Future.wait_any(futs)
+      yield futs.pop(f), f.get_result()
+
+
 def sync_of(async_fn):
   """Returns a synchronous version of an asynchronous function."""
   is_static_method = isinstance(async_fn, staticmethod)
