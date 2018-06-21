@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a947478_f77a8a2b",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-21T23:18:06Z",
+      "side": 1,
+      "message": "finish_first\u003dTrue",
+      "range": {
+        "startLine": 463,
+        "startChar": 51,
+        "endLine": 463,
+        "endChar": 67
+      },
+      "revId": "d5e0ca7222e9fbba9e946af4a73173bfb5f05f00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
