@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "95758980_9cd773c7",
+        "filename": "appengine/components/components/datastore_utils/serializable.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T21:30:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b3fcd3a_50f3dd11",
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48593258_1dafc5ec",
         "filename": "appengine/components/test_support/test_case.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-06-21T12:36:22Z",
       "side": 1,
       "message": "def __init__(self, api_service_cls, source_ip\u003d\u0027127.0.0.1\u0027, **kwargs):\n\nthen no need for lines 173-175.",
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "042b79da_3fa621af",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T21:30:49Z",
+      "side": 1,
+      "message": "That will pass regex\u003dNone to api_server which is incorrect. api_server has a non-None default.",
+      "parentUuid": "48593258_1dafc5ec",
       "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "c972960f_a7bfbc0b",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T21:30:49Z",
+      "side": 1,
+      "message": "The adapter intercepts 200s with no response (not empty response) and replaces them with 204 (OK but no content):\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/66cc650463e2cc9c8354bea04374831fd02e9a33/appengine/components/components/endpoints_webapp2/adapter.py#136",
+      "parentUuid": "5a280955_51b6abd9",
+      "range": {
+        "startLine": 180,
+        "startChar": 53,
+        "endLine": 180,
+        "endChar": 56
+      },
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81991e76_449d9984",
         "filename": "appengine/components/test_support/test_case.py",
         "patchSetId": 4
@@ -73,6 +133,24 @@
       "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb0dad47_f8abe6a2",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T21:30:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81991e76_449d9984",
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
