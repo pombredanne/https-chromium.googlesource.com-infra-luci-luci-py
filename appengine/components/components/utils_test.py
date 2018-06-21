@@ -389,6 +389,33 @@ class FingerprintTest(test_case.TestCase):
         utils.get_token_fingerprint(u'blah'))
 
 
+class AsyncApplyTest(test_case.TestCase):
+  def test_same_order(self):
+    items = range(3)
+
+    @ndb.tasklet
+    def fn_async(x):
+      raise ndb.Return(x + 10)
+
+    expected = [(0, 10), (1, 11), (2, 12)]
+    actual = utils.async_apply(items, fn_async)
+    self.assertFalse(isinstance(actual, list))
+    self.assertEqual(expected, list(actual))
+
+  def test_finished_first(self):
+    items = range(3)
+
+    @ndb.tasklet
+    def fn_async(x):
+      yield ndb.sleep(float(2-x) / 1000)
+      raise ndb.Return(x + 10)
+
+    expected = [(2, 12), (1, 11), (0, 10)]
+    actual = utils.async_apply(items, fn_async, finished_first=True)
+    self.assertFalse(isinstance(actual, list))
+    self.assertEqual(expected, list(actual))
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
