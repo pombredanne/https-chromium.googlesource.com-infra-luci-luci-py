@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b3fcd3a_50f3dd11",
+        "filename": "appengine/components/components/datastore_utils/serializable.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-21T12:36:22Z",
+      "side": 1,
+      "message": "Use the check name, not the number: # pylint: disable\u003dunidiomatic-typecheck\n\nNo need for the comment.",
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48593258_1dafc5ec",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-21T12:36:22Z",
+      "side": 1,
+      "message": "def __init__(self, api_service_cls, source_ip\u003d\u0027127.0.0.1\u0027, **kwargs):\n\nthen no need for lines 173-175.",
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a280955_51b6abd9",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-21T12:36:22Z",
+      "side": 1,
+      "message": "which case causes 204?",
+      "range": {
+        "startLine": 180,
+        "startChar": 53,
+        "endLine": 180,
+        "endChar": 56
+      },
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81991e76_449d9984",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-21T12:36:22Z",
+      "side": 1,
+      "message": "sorted()",
+      "revId": "381bf59645733de3d218ba16410306a4a33b36cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
