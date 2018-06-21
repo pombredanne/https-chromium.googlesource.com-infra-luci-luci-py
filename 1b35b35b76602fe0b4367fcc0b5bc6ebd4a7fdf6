@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "fea4d5d6_247714c6",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-21T21:57:29Z",
+      "side": 1,
+      "message": "Maybe just \"completed normally\" (and below)?",
+      "range": {
+        "startLine": 29,
+        "startChar": 29,
+        "endLine": 29,
+        "endChar": 60
+      },
+      "revId": "1b35b35b76602fe0b4367fcc0b5bc6ebd4a7fdf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4d54dfb_548eaa91",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-21T21:57:29Z",
+      "side": 1,
+      "message": "This and expired I think need a few extra words:\n  * Expired -\u003e no bot became available to run the task in time\n  * Timed out -\u003e task ran but didn\u0027t complete in time",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 42
+      },
+      "revId": "1b35b35b76602fe0b4367fcc0b5bc6ebd4a7fdf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "60a03aca_ee627ac0",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 2
@@ -36,6 +82,29 @@
       "writtenOn": "2018-06-21T17:35:46Z",
       "side": 1,
       "message": "run",
+      "range": {
+        "startLine": 48,
+        "startChar": 68,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "1b35b35b76602fe0b4367fcc0b5bc6ebd4a7fdf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f02aaf5_9bd86d77",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-21T21:57:29Z",
+      "side": 1,
+      "message": "nit: run",
       "range": {
         "startLine": 48,
         "startChar": 68,
@@ -64,6 +133,52 @@
         "startChar": 47,
         "endLine": 50,
         "endChar": 50
+      },
+      "revId": "1b35b35b76602fe0b4367fcc0b5bc6ebd4a7fdf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a393543_75f8a655",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-21T21:57:29Z",
+      "side": 1,
+      "message": "maybe \"had COMPLETED_SUCCESS\"?",
+      "range": {
+        "startLine": 50,
+        "startChar": 34,
+        "endLine": 50,
+        "endChar": 50
+      },
+      "revId": "1b35b35b76602fe0b4367fcc0b5bc6ebd4a7fdf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "549dbcda_da064c21",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-21T21:57:29Z",
+      "side": 1,
+      "message": "This may need some more explanation; when does this occur? This this only occur when you attempt to schedule a task for a dimension set that swarming doesn\u0027t think it can support?",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 44
       },
       "revId": "1b35b35b76602fe0b4367fcc0b5bc6ebd4a7fdf6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
