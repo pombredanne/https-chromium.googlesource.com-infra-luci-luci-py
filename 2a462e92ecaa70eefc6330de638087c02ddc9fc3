@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76841265_b67be43c",
+        "filename": "appengine/components/components/datastore_utils/serializable.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-21T00:01:26Z",
+      "side": 1,
+      "message": "https://chromium.googlesource.com/chromium/tools/depot_tools/+/49083eaa9300bd409c271dd69457973f804bd7d6",
+      "revId": "2a462e92ecaa70eefc6330de638087c02ddc9fc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
