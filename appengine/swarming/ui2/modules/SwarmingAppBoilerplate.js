@@ -70,7 +70,9 @@ export default class SwarmingAppBoilerplate extends HTMLElement {
 
   /** Re-renders the app, starting with the top level template. */
   render() {
+    console.time('render');
     render(this._template(this), this);
+    console.timeEnd('render');
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
