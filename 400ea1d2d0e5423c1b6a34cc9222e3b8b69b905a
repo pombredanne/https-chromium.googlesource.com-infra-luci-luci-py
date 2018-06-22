@@ -19,6 +19,69 @@
     },
     {
       "key": {
+        "uuid": "8524123d_4810ea92",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-22T21:30:20Z",
+      "side": 1,
+      "message": "fn",
+      "range": {
+        "startLine": 755,
+        "startChar": 53,
+        "endLine": 755,
+        "endChar": 61
+      },
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "941c7228_6640e6a3",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-22T21:30:20Z",
+      "side": 1,
+      "message": "This uses three functions to do something that can be done in ~10 lines:\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/47a6d1213b669bf9757211edb605e17fcc958aae/appengine/gce-backend/utilities.py#15\n\nI find it unnecessarily complex. Is this complexity necessary to support two different yield orders or could we avoid it?",
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93b3ebcf_3e174981",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-22T21:30:20Z",
+      "side": 1,
+      "message": "Add docstring. cb is not documented anywhere.",
+      "range": {
+        "startLine": 802,
+        "startChar": 58,
+        "endLine": 802,
+        "endChar": 60
+      },
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd69e7a1_2e658c23",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 11
