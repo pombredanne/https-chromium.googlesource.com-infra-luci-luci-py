@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "56dedd51_3f4bc424",
+        "filename": "appengine/auth_service/importer.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T21:56:50Z",
+      "side": 1,
+      "message": "changed default to 50\nnote that this didn\u0027t have a limit before and worked fine",
+      "parentUuid": "7896eb04_d44f9e80",
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8524123d_4810ea92",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 11
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "b3250ae0_bf1acc47",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T21:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8524123d_4810ea92",
+      "range": {
+        "startLine": 755,
+        "startChar": 53,
+        "endLine": 755,
+        "endChar": 61
+      },
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "941c7228_6640e6a3",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 11
@@ -53,6 +95,24 @@
       "writtenOn": "2018-06-22T21:30:20Z",
       "side": 1,
       "message": "This uses three functions to do something that can be done in ~10 lines:\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/47a6d1213b669bf9757211edb605e17fcc958aae/appengine/gce-backend/utilities.py#15\n\nI find it unnecessarily complex. Is this complexity necessary to support two different yield orders or could we avoid it?",
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2dbd11b_7ef9e233",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T21:56:50Z",
+      "side": 1,
+      "message": "i think there are benefits of starting processing items as soon as futures return, where order is not important. There is at least one usage of this? Are you saying it is not useful?\n\nbatch_process_async is different:\n- does not support finished-first order\n- requires a list\n- doesn\u0027t actually return items\n- does not take into account that async_fn may return same futures for different parameters.\n  buildbucket caches some futures.\n\nso, it is not exactly an apple-to-apple comparison",
+      "parentUuid": "941c7228_6640e6a3",
       "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "097dbe88_825222bc",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T21:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93b3ebcf_3e174981",
+      "range": {
+        "startLine": 802,
+        "startChar": 58,
+        "endLine": 802,
+        "endChar": 60
+      },
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd69e7a1_2e658c23",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 11
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "be33e1d1_71978538",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T21:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd69e7a1_2e658c23",
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "884cdab1_530898df",
         "filename": "appengine/components/components/utils_test.py",
         "patchSetId": 11
@@ -113,6 +215,24 @@
       "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "485350cb_5844d50e",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T21:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "884cdab1_530898df",
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
