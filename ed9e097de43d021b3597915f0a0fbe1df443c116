@@ -68,6 +68,30 @@
       "revId": "ed9e097de43d021b3597915f0a0fbe1df443c116",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f8d058d_91ce6e1b",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T18:01:35Z",
+      "side": 1,
+      "message": "i am curious about your reasoning. The signatures would be identical. The code, pretty much, too. From the user perspective, two functions would do the same thing, except the order of returned results would be different. Callers who don\u0027t care about order and process individual items, would pass True. Others would use false.",
+      "parentUuid": "b23f23be_227e8c78",
+      "range": {
+        "startLine": 757,
+        "startChar": 4,
+        "endLine": 757,
+        "endChar": 18
+      },
+      "revId": "ed9e097de43d021b3597915f0a0fbe1df443c116",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
