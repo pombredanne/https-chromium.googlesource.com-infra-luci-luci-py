@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f838e777_73c1c462",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T17:44:25Z",
+      "side": 1,
+      "message": "Default to 50",
+      "range": {
+        "startLine": 751,
+        "startChar": 74,
+        "endLine": 751,
+        "endChar": 77
+      },
+      "revId": "ed9e097de43d021b3597915f0a0fbe1df443c116",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae191a2e_c34f5710",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T17:44:25Z",
+      "side": 1,
+      "message": "async_fn",
+      "range": {
+        "startLine": 755,
+        "startChar": 53,
+        "endLine": 755,
+        "endChar": 61
+      },
+      "revId": "ed9e097de43d021b3597915f0a0fbe1df443c116",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b23f23be_227e8c78",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T17:44:25Z",
+      "side": 1,
+      "message": "I feel this almost warrant a separate function. Any strong opinion on this?",
+      "range": {
+        "startLine": 757,
+        "startChar": 4,
+        "endLine": 757,
+        "endChar": 18
+      },
+      "revId": "ed9e097de43d021b3597915f0a0fbe1df443c116",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
