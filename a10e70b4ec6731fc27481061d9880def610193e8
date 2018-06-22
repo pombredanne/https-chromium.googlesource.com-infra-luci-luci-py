@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "86e12259_4eeaff28",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T22:53:47Z",
+      "side": 1,
+      "message": "yeah, this is less efficient, but ok",
+      "parentUuid": "acfa0194_1d3f52ca",
+      "revId": "a10e70b4ec6731fc27481061d9880def610193e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9a846a3_3103ddc2",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 13
