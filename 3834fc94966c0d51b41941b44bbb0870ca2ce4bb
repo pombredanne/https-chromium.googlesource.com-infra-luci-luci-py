@@ -69,6 +69,24 @@
       "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dc7f01b_64cab875",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-22T17:37:01Z",
+      "side": 1,
+      "message": "good point regarding max concurrent futures. Added concurrent_jobs parameter.\n\nre memory exhaustion: I believe capping number of concurrently running futures addresses the problem where it may happen. In other cases, code does something like dict(async_apply(items, fn)) or return all future results in an RPC response, so it has to fit memory anyway. If it is not, it should be addressed at the higher level.",
+      "parentUuid": "e96ddc14_e9eaeb52",
+      "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
