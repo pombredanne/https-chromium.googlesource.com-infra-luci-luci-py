@@ -16,6 +16,24 @@
       "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b2bed3_d378b4fc",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-22T00:02:20Z",
+      "side": 1,
+      "message": "(I suggested this name). But it is not async! It is blocking function that launches a bunch of async functions, and waits for their result.",
+      "parentUuid": "0d62959d_001ec71b",
+      "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
