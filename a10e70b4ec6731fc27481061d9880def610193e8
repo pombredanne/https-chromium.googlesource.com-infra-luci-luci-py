@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acfa0194_1d3f52ca",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-22T22:47:05Z",
+      "side": 1,
+      "message": "Less efficient but perhaps more readable:\nfor (_, item), result in sorted(results, key\u003dlambda i: i[0][0]):\n  yield item, result\n\nI think if the user wants the output ordered no matter what, efficiency can be sacrificed.",
+      "revId": "a10e70b4ec6731fc27481061d9880def610193e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9a846a3_3103ddc2",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-22T22:47:05Z",
+      "side": 1,
+      "message": "Depending on how much the caller does with each yielded item it may be worthwhile to launch prior to every yield.",
+      "revId": "a10e70b4ec6731fc27481061d9880def610193e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
