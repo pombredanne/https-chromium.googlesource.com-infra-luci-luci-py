@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "133b9e64_b9dffb22",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T13:20:14Z",
+      "side": 1,
+      "message": "I think this, and the explicit mention of TaskState.FOO below removes the need to duplicate what EXPIRED and NO_RESOURCE means here, as the reader is redirected to read the value below. Well I hope so (?)",
+      "revId": "ce471fba2a025f992a6c2dcf30daef20ca27a8c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df4eccc7_a6b77312",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T13:20:14Z",
+      "side": 1,
+      "message": "We all make error? I thought it was worth calling out explicitly since the ALL value is now kinda lot in the noise, that\u0027s also why I call it out at line 18.",
+      "revId": "ce471fba2a025f992a6c2dcf30daef20ca27a8c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b9a273f_70f9dcf3",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T13:20:14Z",
+      "side": 1,
+      "message": "I copy pasted lines 23-24, in case they read here initially.",
+      "revId": "ce471fba2a025f992a6c2dcf30daef20ca27a8c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aae55b1a_2a058558",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T13:20:14Z",
+      "side": 1,
+      "message": "I was asked this before, so I thought it would also be worth calling out this historical accident. Once it\u0027s migrated to protobuf we can fix this.",
+      "revId": "ce471fba2a025f992a6c2dcf30daef20ca27a8c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1def2184_40d2ca44",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T13:20:14Z",
+      "side": 1,
+      "message": "The previous description wasn\u0027t clear about this.",
+      "revId": "ce471fba2a025f992a6c2dcf30daef20ca27a8c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
