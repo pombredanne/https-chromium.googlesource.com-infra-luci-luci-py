@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "a8558906_8e52d31e",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-06-22T22:13:37Z",
+      "side": 1,
+      "message": "batch_process_async also starts processing more items as soon as any futures in the batch return, so I\u0027m not saying it\u0027s not useful.\n\nI agree it\u0027s not a perfect comparison but it seems to me like this could be simplified. If you think it can\u0027t be then fine, I just wanted to link a similar function to see if it produced any ideas to simplify.",
+      "parentUuid": "b2dbd11b_7ef9e233",
+      "revId": "400ea1d2d0e5423c1b6a34cc9222e3b8b69b905a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93b3ebcf_3e174981",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 11
