@@ -11,6 +11,7 @@
 # pylint: disable=R0201
 
 import binascii
+import collections
 import datetime
 import functools
 import hashlib
@@ -742,6 +743,65 @@ def import_jinja2():
     if os.path.basename(i) == 'jinja2':
       sys.path.remove(i)
   sys.path.append(os.path.join(THIS_DIR, 'third_party'))
+
+
+# NDB Futures
+
+
+def async_apply(iterable, async_fn, finished_first=False, concurrent_jobs=100):
+  """Applies async_fn to each item and yields (item, result) tuples.
+
+  Args:
+    iterable: an iterable of items for which to call async_gn
+    async_fn: (item) => ndb.Future. It is called for each item in iterable.
+    finished_first: False to return results in the same order as iterable.
+      Otherwise, yield results as soon as futures finish.
+    concurrent_jobs: maximum number of futures running concurrently.
+  """
+  iterator = iter(iterable)
+  # maps a future to the original item
+  # invariant: len(futs) <= concurrent_jobs
+  futs = {}
+  # futures in the same order as iterable.
+  # invariant: len(futs) == len(ordered_futs) or ordered_futs is None
+  ordered_futs = None if finished_first else collections.deque()
+  # whether the iterator is exhausted
+  exhausted = [False]
+
+  def push_next():
+    # Assert the invariants.
+    assert ordered_futs is None or len(ordered_futs) == len(futs)
+    assert len(futs) <= concurrent_jobs
+
+    if exhausted[0]:
+      return False
+    try:
+      item = next(iterator)
+    except StopIteration:
+      exhausted[0] = True
+      return False
+
+    future = async_fn(item)
+    futs[future] = item
+    if ordered_futs is not None:
+      ordered_futs.append(future)
+    return True
+
+  # Start with (concurrent_jobs) futures.
+  for _ in xrange(concurrent_jobs):
+    if not push_next():
+      break
+
+  # Then wait for a future to finish, return its result and schedule next one,
+  # keeping at most (concurrent_jobs) running concurrently.
+  while futs:
+    if finished_first:
+      future = ndb.Future.wait_any(futs)
+    else:
+      future = ordered_futs.popleft()
+
+    yield futs.pop(future), future.get_result()
+    push_next()
 
 
 def sync_of(async_fn):

@@ -389,6 +389,60 @@ class FingerprintTest(test_case.TestCase):
         utils.get_token_fingerprint(u'blah'))
 
 
+class AsyncApplyTest(test_case.TestCase):
+  def test_same_order(self):
+    items = range(3)
+
+    @ndb.tasklet
+    def fn_async(x):
+      raise ndb.Return(x + 10)
+
+    expected = [(0, 10), (1, 11), (2, 12)]
+    actual = utils.async_apply(items, fn_async)
+    self.assertFalse(isinstance(actual, list))
+    self.assertEqual(expected, list(actual))
+
+  def test_finished_first(self):
+    items = range(3)
+
+    @ndb.tasklet
+    def fn_async(x):
+      yield ndb.sleep(float(2-x) / 1000)
+      raise ndb.Return(x + 10)
+
+    expected = [(2, 12), (1, 11), (0, 10)]
+    actual = utils.async_apply(items, fn_async, finished_first=True)
+    self.assertFalse(isinstance(actual, list))
+    self.assertEqual(expected, list(actual))
+
+  def test_concurrent_jobs(self):
+    items = range(4)
+
+    log = []
+
+    @ndb.tasklet
+    def fn_async(x):
+      log.append('%d started' % x)
+      yield ndb.sleep(0.01)
+      log.append('%d finishing' % x)
+      raise ndb.Return(x + 10)
+
+    expected = [(i, i + 10) for i in items]
+    actual = utils.async_apply(items, fn_async, concurrent_jobs=2)
+    self.assertFalse(isinstance(actual, list))
+    self.assertEqual(expected, list(actual))
+    self.assertEqual(log, [
+        '0 started',
+        '1 started',
+        '0 finishing',
+        '2 started',
+        '1 finishing',
+        '3 started',
+        '2 finishing',
+        '3 finishing',
+    ])
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
