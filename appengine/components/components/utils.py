@@ -11,6 +11,7 @@
 # pylint: disable=R0201
 
 import binascii
+import collections
 import datetime
 import functools
 import hashlib
@@ -742,6 +743,90 @@ def import_jinja2():
     if os.path.basename(i) == 'jinja2':
       sys.path.remove(i)
   sys.path.append(os.path.join(THIS_DIR, 'third_party'))
+
+
+# NDB Futures
+
+
+def ilen(iterable):
+  count = 0
+  for _ in iterable:
+    count += 1
+  return count
+
+
+def async_apply(iterable, async_fn, finished_first=False, concurrent_jobs=100):
+  """Applies async_fn to each item and yields (item, result) tuples.
+
+  Args:
+    iterable: an iterable of items for which to call async_gn
+    async_fn: (item) => ndb.Future. It is called for each item in iterable.
+    finished_first: False to return results in the same order as iterable.
+      Otherwise, yield results as soon as futures finish.
+    concurrent_jobs: maximum number of futures running concurrently.
+  """
+  if finished_first:
+    return _async_apply_finished_first(iterable, async_fn, concurrent_jobs)
+  return _async_apply_same_order(iterable, async_fn, concurrent_jobs)
+
+
+def _async_apply_same_order(iterable, async_fn, concurrent_jobs=100):
+  # tuples(item, future) in the same order as iterable.
+  futs = collections.deque()
+
+  launch = _future_launcher(
+      iterable, concurrent_jobs, async_fn,
+      lambda item, future: futs.append((item, future)))
+
+  launch()
+
+  while futs:
+    item, future = futs.popleft()
+    res = future.get_result()
+    launch()  # launch more before yield results.
+    yield item, res
+
+
+def _async_apply_finished_first(iterable, async_fn, concurrent_jobs=100):
+  # maps a future to the original item(s). Items is a list because async_fn
+  # is allowed to return the same future for different items.
+  futs = {}
+
+  launch = _future_launcher(
+      iterable, concurrent_jobs, async_fn,
+      lambda item, future: futs.setdefault(future, []).append(item))
+
+  launch()
+
+  # Then wait for a future to finish, return its result and schedule next one,
+  # keeping at most (concurrent_jobs) running concurrently.
+  while futs:
+    future = ndb.Future.wait_any(futs)
+    res = future.get_result()
+    launch()  # launch more before yield results.
+    for item in futs.pop(future):
+      yield item, res
+
+
+def _future_launcher(iterable, concurrent_jobs, async_fn, cb):
+  iterator = iter(iterable)
+  pending_futs = set()
+
+  def launch():
+    for f in [f for f in pending_futs if f.done()]:
+      pending_futs.remove(f)
+    while len(pending_futs) < concurrent_jobs:
+      try:
+        item = next(iterator)
+      except StopIteration:
+        break
+      else:
+        future = async_fn(item)
+        if not future.done():
+          pending_futs.add(future)
+        cb(item, future)
+
+  return launch
 
 
 def sync_of(async_fn):
