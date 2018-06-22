@@ -52,6 +52,23 @@
       "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e96ddc14_e9eaeb52",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-22T14:11:13Z",
+      "side": 1,
+      "message": "The problem is that in practice you\u0027ll get two failure modes:\n- RPCs becomes unresponsive because ndb can\u0027t cope with the number of them, or some underlying contention (network?). Anyhow, it\u0027s observed to blow up.\n- Memory exhaustion. This is more problematic as stuff can be killed in the middle. This does happen as soon as the entities are slightly large, as python is not really efficient; there\u0027s likely going to be both the packed and the \u0027exploded\u0027 versions in memory.\n\nI did an half-earthed attempt in https://cs.chromium.org/chromium/infra/luci/appengine/components/components/datastore_utils/mapping.py?g\u003d0\u0026l\u003d69\n\nwhich was very DB oriented but I often ended rewriting it anyway, e.g.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/bot_management.py?g\u003d0\u0026l\u003d550\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_queues.py?g\u003d0\u0026l\u003d313\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_to_run.py?g\u003d0\u0026l\u003d599\n\nThe problem with this function is that it incites to use a pattern that will work great locally and will fail on prod.",
+      "revId": "3834fc94966c0d51b41941b44bbb0870ca2ce4bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
