@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c8ee245_5940fc1e",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-22T16:09:55Z",
+      "side": 1,
+      "message": "So TaskState is an enum, and State is a class with public constants which are supposed to match up with TaskState (and it\u0027s also supposed to match up with the separate TaskState class in the client code). I think it\u0027s not obvious from this docstring how these two are related, and whether the enum could potentially be reused to avoid repetition, or whether it\u0027s not reused because there\u0027s some reason why RPC messages shouldn\u0027t be reused here.\n\nWhat about something like: \"For documentation, see the comments in the swarming_rpcs.TaskState enum, which is used for ...\" (I\u0027m not sure how it should be written though).",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 4
+      },
+      "revId": "08e1a0b6ad9ee715df356c68f303829eb214e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e647d2a7_4aa572a9",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-22T16:09:55Z",
+      "side": 1,
+      "message": "To match up with the comment above: Singular \"Task\"",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 9
+      },
+      "revId": "08e1a0b6ad9ee715df356c68f303829eb214e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b56d57a_0fc357be",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-22T16:09:55Z",
+      "side": 1,
+      "message": ":-P\n\nBut, real question: Is the reason why 0 would have been better because then when querying for all we could just omit the state field from TasksRequest?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "08e1a0b6ad9ee715df356c68f303829eb214e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f30b3ebc_a89d0c43",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-22T16:09:55Z",
+      "side": 1,
+      "message": "Ah, I see. :-)",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 40
+      },
+      "revId": "08e1a0b6ad9ee715df356c68f303829eb214e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b804a4b8_4f66c365",
+        "filename": "client/swarming.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-06-22T16:09:55Z",
+      "side": 1,
+      "message": "If we change the documentation for task_result.State it could also be changed here.\n\nI suppose there\u0027s no easy way to share code between the client part and that part? Maybe it would be worth adding at least a comment to note that these different TaskState definitions should be kept in sync (if there\u0027s no better way)?",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 23
+      },
+      "revId": "08e1a0b6ad9ee715df356c68f303829eb214e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
