@@ -234,8 +234,10 @@ def _get_methods(service):
     A tuple of three dicts which can be written as JSON describing the methods,
     resources, and types.
   """
-  methods = {}
-  resources = {}
+  root = {
+    'methods': {},
+    'resources': {},
+  }
   types = set()
 
   for _, method in service.all_remote_methods().iteritems():
@@ -243,15 +245,13 @@ def _get_methods(service):
     info = getattr(method, 'method_info', None)
     if info is None:
       continue
-    # info.method_id returns <service name>.<method name> or
-    # <service name>.<resource name>.<method name> for resource methods.
+    # info.method_id returns <service name>.[<resource name>.]*<method name>.
+    # There may be 0 or more resource names.
     method_id = info.method_id(service.api_info)
     parts = method_id.split('.')
-    assert len(parts) in (2, 3), method_id
+    assert len(parts) > 1, method_id
     name = parts[-1]
-    resource = None
-    if len(parts) == 3:
-      resource = parts[1]
+    resource_parts = parts[1:-1]
 
     document = {
       'httpMethod': info.http_method,
@@ -299,16 +299,18 @@ def _get_methods(service):
       }
       types.add(response.__class__)
 
-    if resource:
-      if resource not in resources:
-        resources[resource] = {
-          'methods': {},
-        }
-      resources[resource]['methods'][name] = document
-    else:
-      methods[name] = document
+    pointer = root
+    for part in resource_parts:
+      if 'resources' not in pointer:
+        pointer['resources'] = {}
+      if part not in pointer['resources']:
+        pointer['resources'][part] = {}
+      pointer = pointer['resources'][part]
+    if 'methods' not in pointer:
+      pointer['methods'] = {}
+    pointer['methods'][name] = document
 
-  return methods, resources, _get_schemas(types)
+  return root['methods'], root['resources'], _get_schemas(types)
 
 
 def generate(classes, host, base_path):
