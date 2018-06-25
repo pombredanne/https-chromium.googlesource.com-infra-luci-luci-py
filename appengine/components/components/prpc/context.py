@@ -113,3 +113,10 @@ class ServicerContext(object):
   def response_encoding(self):
     """Returns prpc.Encoding of the response."""
     return self._response_encoding
+
+  def clone(self):
+    """Returns a shallow copy of self."""
+    ret = ServicerContext()
+    # pylint: disable=attribute-defined-outside-init
+    ret.__dict__ = self.__dict__.copy()
+    return ret
