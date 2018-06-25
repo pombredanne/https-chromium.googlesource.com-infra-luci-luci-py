@@ -2,6 +2,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import copy
 import time
 
 from components.prpc import codes
@@ -113,3 +114,10 @@ class ServicerContext(object):
   def response_encoding(self):
     """Returns prpc.Encoding of the response."""
     return self._response_encoding
+
+  def clone(self):
+    """Returns a shallow copy of self."""
+    ret = ServicerContext()
+    # pylint: disable=attribute-defined-outside-init
+    ret.__dict__ = self.__dict__.copy()
+    return ret
