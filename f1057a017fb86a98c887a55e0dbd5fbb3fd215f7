@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58833f28_9ea1d814",
+        "filename": "appengine/components/components/prpc/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-25T23:05:08Z",
+      "side": 1,
+      "message": "nit: it might be nice to explain why this is needed (e.g. for running parallel handlers that each may return different result and have different timeouts)",
+      "range": {
+        "startLine": 118,
+        "startChar": 7,
+        "endLine": 118,
+        "endChar": 38
+      },
+      "revId": "f1057a017fb86a98c887a55e0dbd5fbb3fd215f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
