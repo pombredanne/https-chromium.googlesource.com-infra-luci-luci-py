@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b364d4c9_4997c7f3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-06-26T23:37:27Z",
+      "side": 1,
+      "message": "This is kinda hard to read. I think I understood that everything after the comma is a single int or None but that\u0027s a bit dense.",
+      "revId": "e6972b5e8c65e2beef6180d1d0e0c6bb1e8ca11f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
