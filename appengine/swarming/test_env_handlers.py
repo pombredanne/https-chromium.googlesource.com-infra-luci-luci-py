@@ -21,7 +21,7 @@ import swarming_rpcs
 from components import auth
 from components import auth_testing
 from components import utils
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 from test_support import test_case
 
 from proto import config_pb2
@@ -41,7 +41,6 @@ class AppTestBase(test_case.TestCase):
     self.testbed.init_user_stub()
 
     gae_ts_mon.reset_for_unittest(disable=True)
-    event_mon_metrics.initialize()
 
     # By default requests in tests are coming from bot with fake IP.
     # WSGI app that implements auth REST API.

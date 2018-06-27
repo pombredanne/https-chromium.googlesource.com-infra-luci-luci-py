@@ -4,7 +4,7 @@
 
 """Metrics to track with ts_mon and event_mon."""
 
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 
 
 lease_requests_deduped = gae_ts_mon.CounterMetric(

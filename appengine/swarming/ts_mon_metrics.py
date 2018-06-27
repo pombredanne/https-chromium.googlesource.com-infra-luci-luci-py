@@ -12,7 +12,7 @@ import logging
 from google.appengine.datastore.datastore_query import Cursor
 
 from components import utils
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 
 from server import bot_management
 from server import task_result

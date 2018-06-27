@@ -13,7 +13,7 @@ test_env.setup_test_env()
 
 from google.appengine.ext import ndb
 
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 from test_support import test_case
 
 import ts_mon_metrics
@@ -65,7 +65,6 @@ class TestMetrics(test_case.TestCase):
   def setUp(self):
     super(TestMetrics, self).setUp()
     gae_ts_mon.reset_for_unittest()
-    gae_ts_mon.initialize()
     self.now = datetime.datetime(2016, 4, 7)
     self.mock_now(self.now)
 
