@@ -5,7 +5,7 @@
 import logging
 import time
 
-import gae_event_mon
+from infra_libs import gae_event_mon
 
 from server import task_result
 
@@ -172,10 +172,6 @@ def _task_summary_to_proto(summary, event):
     for event_tag, task_tags in TAGS.iteritems():
       if name in task_tags:
         getattr(event.proto.swarming_task_event.tags, event_tag).append(value)
-
-
-def initialize():
-  gae_event_mon.initialize('swarming')
 
 
 def send_task_event(summary):

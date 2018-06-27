@@ -20,7 +20,7 @@ from protorpc import message_types
 from protorpc import protobuf
 from protorpc import remote
 
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 
 from components import auth
 from components import endpoints_webapp2
