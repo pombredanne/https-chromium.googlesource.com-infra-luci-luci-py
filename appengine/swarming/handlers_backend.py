@@ -2,7 +2,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""Main entry point for Swarming backend handlers."""
+"""Defines Swarming Server backend url handlers."""
 
 import collections
 import datetime

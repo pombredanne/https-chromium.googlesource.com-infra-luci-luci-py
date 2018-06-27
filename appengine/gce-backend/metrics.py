@@ -2,7 +2,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""Metrics to track with ts_mon and event_mon."""
+"""Metrics to track with gae_ts_mon and gae_event_mon."""
 
 import logging
 

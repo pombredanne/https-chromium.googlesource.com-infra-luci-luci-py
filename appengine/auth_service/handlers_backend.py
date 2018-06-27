@@ -2,7 +2,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""This module defines Auth Server backend url handlers."""
+"""Defines Auth Server backend url handlers."""
 
 import webapp2
 

@@ -417,7 +417,7 @@ def _project_and_ref_config_sets():
   for project in projs:
     ret.append('projects/%s' % project.id)
 
-    # Import refs of the project
+    # Import refs of the project.
     for ref in refs[project.id] or []:
       assert ref.name
       assert ref.name.startswith('refs/'), ref.name
