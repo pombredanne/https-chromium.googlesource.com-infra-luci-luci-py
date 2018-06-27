@@ -6,8 +6,8 @@
 
 import logging
 
-import gae_event_mon
-import gae_ts_mon
+from infra_libs import gae_event_mon
+from infra_libs import gae_ts_mon
 
 import config
 import instance_group_managers

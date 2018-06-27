@@ -14,7 +14,7 @@ from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
 import endpoints
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 from protorpc import messages
 from protorpc import message_types
 from protorpc import protojson

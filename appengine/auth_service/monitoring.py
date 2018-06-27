@@ -5,7 +5,7 @@
 """Monitoring related helpers."""
 
 import config
-import gae_ts_mon
+from infra_libs import gae_ts_mon
 
 
 def is_ts_monitoring_enabled():
