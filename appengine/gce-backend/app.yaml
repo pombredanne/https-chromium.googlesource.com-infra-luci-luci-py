@@ -25,7 +25,7 @@ handlers:
 includes:
 - components/auth
 - components/config
-- gae_ts_mon
+- infra_libs/gae_ts_mon
 
 libraries:
 - name: endpoints
