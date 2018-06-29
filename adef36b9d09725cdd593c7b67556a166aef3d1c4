@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7124d8a8_dd57a0ab",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-06-29T21:52:38Z",
+      "side": 1,
+      "message": "use diff var please, since type is different now.",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 12
+      },
+      "revId": "adef36b9d09725cdd593c7b67556a166aef3d1c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
