@@ -22,6 +22,30 @@
       "revId": "adef36b9d09725cdd593c7b67556a166aef3d1c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9c8a5f1_4560e92d",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-29T21:58:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7124d8a8_dd57a0ab",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 12
+      },
+      "revId": "adef36b9d09725cdd593c7b67556a166aef3d1c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
