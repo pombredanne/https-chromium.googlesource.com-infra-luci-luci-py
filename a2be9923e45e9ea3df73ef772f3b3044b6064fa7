@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b190f0b_19877d1b",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-06-29T20:03:57Z",
+      "side": 1,
+      "message": "I wish this format was default for all unittests :)",
+      "range": {
+        "startLine": 526,
+        "startChar": 6,
+        "endLine": 526,
+        "endChar": 68
+      },
+      "revId": "a2be9923e45e9ea3df73ef772f3b3044b6064fa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
