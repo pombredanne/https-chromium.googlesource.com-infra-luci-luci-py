@@ -22,6 +22,30 @@
       "revId": "a2be9923e45e9ea3df73ef772f3b3044b6064fa7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3321ac68_386d8233",
+        "filename": "appengine/config_service/gitiles_import_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-06-29T20:23:07Z",
+      "side": 1,
+      "message": "i\u0027ve copied it from another in this repo",
+      "parentUuid": "9b190f0b_19877d1b",
+      "range": {
+        "startLine": 526,
+        "startChar": 6,
+        "endLine": 526,
+        "endChar": 68
+      },
+      "revId": "a2be9923e45e9ea3df73ef772f3b3044b6064fa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
