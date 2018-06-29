@@ -38,7 +38,7 @@ class ValidationTestCase(test_case.TestCase):
         id: "a"
         config_location {
           storage_type: GITILES
-          url: "https://a.googlesource.com/project"
+          url: "https://a.googlesource.com/project/+/refs/heads/master"
         }
       }
       projects {
@@ -57,6 +57,13 @@ class ValidationTestCase(test_case.TestCase):
           url: "https://no-project.googlesource.com/bad_plus/+"
         }
       }
+      projects {
+        id: "c"
+        config_location {
+          storage_type: GITILES
+          url: "https://no-project.googlesource.com/no_ref/"
+        }
+      }
     '''
     result = validation.validate_config(
         config.self_config_set(), 'projects.cfg', cfg)
@@ -71,6 +78,7 @@ class ValidationTestCase(test_case.TestCase):
           'Project #4: id is not specified',
           ('Project #4: config_location: Invalid Gitiles repo url: '
            'https://no-project.googlesource.com/bad_plus/+'),
+          'Project c: config_location: ref/commit is not specified',
           'Projects are not sorted by id. First offending id: a',
         ]
     )
@@ -115,7 +123,7 @@ class ValidationTestCase(test_case.TestCase):
         id: "b"
         config_location {
           storage_type: GITILES
-          url: "https://gitiles.host.com/project"
+          url: "https://gitiles.host.com/project/+/refs/heads/master"
         }
       }
       services {
