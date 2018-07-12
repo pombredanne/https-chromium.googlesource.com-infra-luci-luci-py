@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64e691ff_0239f5af",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-07-12T20:37:48Z",
+      "side": 1,
+      "message": "Optional punctuation nit: period after overwhelmed.",
+      "range": {
+        "startLine": 1005,
+        "startChar": 31,
+        "endLine": 1005,
+        "endChar": 42
+      },
+      "revId": "ce2bfb3879f2805716239bd6fff7e066ad417791",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd737e85_86955471",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-07-12T20:37:48Z",
+      "side": 1,
+      "message": "Probably unrelated: looks like ok is always True here, I wonder what it\u0027s used for.",
+      "range": {
+        "startLine": 1012,
+        "startChar": 47,
+        "endLine": 1012,
+        "endChar": 59
+      },
+      "revId": "ce2bfb3879f2805716239bd6fff7e066ad417791",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
