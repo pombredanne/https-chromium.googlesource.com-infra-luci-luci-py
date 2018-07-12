@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbb30a90_36614084",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-07-12T20:40:34Z",
+      "side": 1,
+      "message": "Not changed in this CL, but maybe \"not ping\" could be \"not responded to ping\"",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 10
+      },
+      "revId": "6ab402894442ae54f9347e2afc2078ae6d48a3d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bb9a990_0d217735",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-07-12T20:40:34Z",
+      "side": 1,
+      "message": "Optional: You could add a bug link here for clarity.",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 16
+      },
+      "revId": "6ab402894442ae54f9347e2afc2078ae6d48a3d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
