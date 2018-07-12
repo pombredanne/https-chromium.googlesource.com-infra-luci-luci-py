@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d10faa32_de2f044f",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-12T20:40:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64e691ff_0239f5af",
+      "range": {
+        "startLine": 1005,
+        "startChar": 31,
+        "endLine": 1005,
+        "endChar": 42
+      },
+      "revId": "ce2bfb3879f2805716239bd6fff7e066ad417791",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd737e85_86955471",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-12T20:37:48Z",
       "side": 1,
       "message": "Probably unrelated: looks like ok is always True here, I wonder what it\u0027s used for.",
+      "range": {
+        "startLine": 1012,
+        "startChar": 47,
+        "endLine": 1012,
+        "endChar": 59
+      },
+      "revId": "ce2bfb3879f2805716239bd6fff7e066ad417791",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0072287f_71465f95",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-12T20:40:52Z",
+      "side": 1,
+      "message": "It\u0027s actually not used. I needed to return *something* so this started as {\u0027ok\u0027: True}. I later added \u0027must_stop\u0027 but hadn\u0027t removed \u0027ok\u0027 at that time. Will probably remove later.",
+      "parentUuid": "cd737e85_86955471",
       "range": {
         "startLine": 1012,
         "startChar": 47,
