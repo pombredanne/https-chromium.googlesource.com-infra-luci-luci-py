@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93b266ff_af29d500",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-13T22:43:17Z",
+      "side": 1,
+      "message": "Required due to https://chromium.googlesource.com/infra/luci/luci-py/+/579883b934bd81e66e69fca15bfd6809884badf9/appengine/swarming/server/task_request.py#1269",
+      "revId": "138e2c484ee43d923bbd0a574a47591d98c38e39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27063ee3_a919da24",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1212,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-13T22:43:17Z",
+      "side": 1,
+      "message": "Required due to https://chromium.googlesource.com/infra/luci/luci-py/+/00938ca5c9bf8139494acf468a3512a35308e149%5E%21/#F2. Note that download stats used to be commented out, but are now included.",
+      "revId": "138e2c484ee43d923bbd0a574a47591d98c38e39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
