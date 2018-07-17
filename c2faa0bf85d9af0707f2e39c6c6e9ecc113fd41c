@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f95dbaa_3f39009f",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-17T22:49:09Z",
+      "side": 1,
+      "message": "imo it would be cleaner if it didn\u0027t make changes to partial, but made the changes locally, i.e. in local variables",
+      "range": {
+        "startLine": 216,
+        "startChar": 60,
+        "endLine": 217,
+        "endChar": 53
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf507d88_cad0f180",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-17T22:49:09Z",
+      "side": 1,
+      "message": "this mutates response parameter. This behavior is not documented. L237 implies that you intend to make an in-place change. Why return the param then?",
+      "range": {
+        "startLine": 233,
+        "startChar": 6,
+        "endLine": 233,
+        "endChar": 23
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b2a48fc_b914ca7b",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-17T22:49:09Z",
+      "side": 1,
+      "message": "what if it was empty intentionally, from the start?\n\nsame in L252",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 27
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20b06d16_0ff1ddc0",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-17T22:49:09Z",
+      "side": 1,
+      "message": "what if it was an empty list?",
+      "range": {
+        "startLine": 257,
+        "startChar": 7,
+        "endLine": 259,
+        "endChar": 27
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
