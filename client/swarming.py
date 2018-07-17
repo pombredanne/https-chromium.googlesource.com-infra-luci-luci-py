@@ -1006,7 +1006,7 @@ def add_trigger_options(parser):
 
   group = optparse.OptionGroup(parser, 'TaskRequest details')
   group.add_option(
-      '--priority', type='int', default=100,
+      '--priority', type='int', default=200,
       help='The lower value, the more important the task is')
   group.add_option(
       '-T', '--task-name', metavar='NAME',
