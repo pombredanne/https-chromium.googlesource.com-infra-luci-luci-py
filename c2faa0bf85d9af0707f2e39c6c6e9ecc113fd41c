@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "84b41851_34b50b59",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-18T21:25:53Z",
+      "side": 1,
+      "message": "Done, but I do want it to at least produce sane results for arbitrary dicts (which I think it does now).",
+      "parentUuid": "00a46fb0_d75b2e01",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 27
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20b06d16_0ff1ddc0",
         "filename": "appengine/components/components/endpoints_webapp2/partial.py",
         "patchSetId": 2
