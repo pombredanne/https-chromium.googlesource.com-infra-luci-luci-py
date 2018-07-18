@@ -39,6 +39,8 @@ class CatalogMachineRetrievalResponse(messages.Message):
   pubsub_topic_project = messages.StringField(7)
   # Timestamp indicating lease expiration seconds from epoch in UTC.
   lease_expiration_ts = messages.IntegerField(8)
+  # Whether or not this machine is leased indefinitely.
+  leased_indefinitely = messages.BooleanField(9)
 
 
 class CatalogMachineAdditionRequest(messages.Message):
@@ -127,6 +129,8 @@ class LeaseRequest(messages.Message):
   on_lease = messages.MessageField(Instruction, 6)
   # UTC seconds from epoch when lease should expire.
   lease_expiration_ts = messages.IntegerField(7)
+  # Whether or not this lease is indefinite.
+  indefinite = messages.BooleanField(8)
 
 
 class BatchedLeaseRequest(messages.Message):
@@ -189,6 +193,8 @@ class LeaseResponse(messages.Message):
   hostname = messages.StringField(5)
   # Timestamp indicating lease expiration seconds from epoch in UTC.
   lease_expiration_ts = messages.IntegerField(6)
+  # Whether or not this machine is leased indefinitely.
+  leased_indefinitely = messages.BooleanField(7)
 
 
 class BatchedLeaseResponse(messages.Message):

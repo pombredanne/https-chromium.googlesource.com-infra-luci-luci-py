@@ -407,6 +407,48 @@ class LeaseRequestProcessorTest(test_case.TestCase):
     )
     self.assertEqual(key.get().response.lease_expiration_ts, ts)
 
+  def test_one_request_one_matching_machine_entry_leased_indefinitely(self):
+    request = rpc_messages.LeaseRequest(
+        dimensions=rpc_messages.Dimensions(
+            os_family=rpc_messages.OSFamily.LINUX,
+        ),
+        indefinite=True,
+        request_id='fake-id',
+    )
+    key = models.LeaseRequest(
+        deduplication_checksum=
+            models.LeaseRequest.compute_deduplication_checksum(request),
+        key=models.LeaseRequest.generate_key(
+            auth_testing.DEFAULT_MOCKED_IDENTITY.to_bytes(),
+            request,
+        ),
+        owner=auth_testing.DEFAULT_MOCKED_IDENTITY,
+        request=request,
+        response=rpc_messages.LeaseResponse(
+            client_request_id='fake-id',
+            state=rpc_messages.LeaseRequestState.UNTRIAGED,
+        ),
+    ).put()
+    dimensions = rpc_messages.Dimensions(
+        backend=rpc_messages.Backend.DUMMY,
+        hostname='fake-host',
+        os_family=rpc_messages.OSFamily.LINUX,
+    )
+    models.CatalogMachineEntry(
+        key=models.CatalogMachineEntry.generate_key(dimensions),
+        dimensions=dimensions,
+        policies=rpc_messages.Policies(
+            machine_service_account='fake-service-account',
+        ),
+        state=models.CatalogMachineEntryStates.AVAILABLE,
+    ).put()
+
+    self.app.get(
+        '/internal/cron/process-lease-requests',
+        headers={'X-AppEngine-Cron': 'true'},
+    )
+    self.assertTrue(key.get().response.leased_indefinitely)
+
 
 class MachineReclamationProcessorTest(test_case.TestCase):
   """Tests for handlers_cron.MachineReclamationProcessor."""
