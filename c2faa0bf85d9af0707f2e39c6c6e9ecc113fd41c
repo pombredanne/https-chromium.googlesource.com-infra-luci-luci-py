@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "849fbab2_85de5a31",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-18T17:53:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "595aa92f_fe71900f",
+      "range": {
+        "startLine": 216,
+        "startChar": 60,
+        "endLine": 217,
+        "endChar": 53
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf507d88_cad0f180",
         "filename": "appengine/components/components/endpoints_webapp2/partial.py",
         "patchSetId": 2
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "bf2fe411_784bb642",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-18T17:53:44Z",
+      "side": 1,
+      "message": "sorry, i forgot to adjust this comment after noticing that indeed this is documented.\n\nre returns: this is stylistic preference, so ok",
+      "parentUuid": "b2d73b43_5a05eb1b",
+      "range": {
+        "startLine": 233,
+        "startChar": 6,
+        "endLine": 233,
+        "endChar": 23
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b2a48fc_b914ca7b",
         "filename": "appengine/components/components/endpoints_webapp2/partial.py",
         "patchSetId": 2
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "The adapter uses the protorpc library to generate the JSON, and that library doesn\u0027t include empty repeated fields:\nhttps://github.com/google/protorpc/blob/master/protorpc/protojson.py#L118\n\nThis shouldn\u0027t be used to mask arbitrary JSON, but I\u0027ve added a check so that we only recurse if the value is non-empty in the first place so it does something vaguely sensible if given arbitrary JSON.",
       "parentUuid": "2b2a48fc_b914ca7b",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 27
+      },
+      "revId": "c2faa0bf85d9af0707f2e39c6c6e9ecc113fd41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00a46fb0_d75b2e01",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-18T17:53:44Z",
+      "side": 1,
+      "message": "in general, if this code is not intended to run on arbitrary dicts, please document mask() accordingly. Currently it look generic, like it would work for any dicts",
+      "parentUuid": "6c3503cc_59bb5a71",
       "range": {
         "startLine": 238,
         "startChar": 4,
