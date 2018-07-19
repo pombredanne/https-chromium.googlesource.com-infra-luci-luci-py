@@ -1,0 +1,58 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5bbbe45_b35e8274",
+        "filename": "appengine/machine_provider/handlers_cron_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-19T22:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "525351f7_9bbbc927",
+      "revId": "17c6a6540b99f1c9108c1f0a34441e5225925dc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "709f3a7b_a5ccb06f",
+        "filename": "appengine/machine_provider/handlers_cron_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-19T22:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a33128d5_86080b28",
+      "revId": "17c6a6540b99f1c9108c1f0a34441e5225925dc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14243ad2_8c5c3575",
+        "filename": "appengine/machine_provider/handlers_cron_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-19T22:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb228f19_742ee56c",
+      "revId": "17c6a6540b99f1c9108c1f0a34441e5225925dc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

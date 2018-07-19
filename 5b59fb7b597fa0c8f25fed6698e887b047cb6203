@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6eb95cce_ef659d93",
+        "filename": "appengine/components/components/machine_provider/rpc_messages.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-19T22:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77f28ed8_4422dcd1",
+      "revId": "5b59fb7b597fa0c8f25fed6698e887b047cb6203",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2f455cd_41eee499",
         "filename": "appengine/machine_provider/handlers_cron.py",
         "patchSetId": 1
@@ -39,6 +57,30 @@
       "revId": "5b59fb7b597fa0c8f25fed6698e887b047cb6203",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "477c2872_0d373af6",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-19T22:02:06Z",
+      "side": 1,
+      "message": "I thought it was covered, apparently not. I\u0027ll send a followup because there will probably be other lint errors to fix. For the time being I fixed this and added a test.",
+      "parentUuid": "f2f455cd_41eee499",
+      "range": {
+        "startLine": 186,
+        "startChar": 34,
+        "endLine": 186,
+        "endChar": 39
+      },
+      "revId": "5b59fb7b597fa0c8f25fed6698e887b047cb6203",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
