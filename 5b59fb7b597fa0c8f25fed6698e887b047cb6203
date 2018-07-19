@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77f28ed8_4422dcd1",
+        "filename": "appengine/components/components/machine_provider/rpc_messages.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-07-19T21:25:51Z",
+      "side": 1,
+      "message": "Document interaction with lease_expiration_ts, same above/below",
+      "revId": "5b59fb7b597fa0c8f25fed6698e887b047cb6203",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2f455cd_41eee499",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-07-19T21:25:51Z",
+      "side": 1,
+      "message": "not defined? Looks like this is defined in L202\n\nConsider adding this project to presubmit pylint.",
+      "range": {
+        "startLine": 186,
+        "startChar": 34,
+        "endLine": 186,
+        "endChar": 39
+      },
+      "revId": "5b59fb7b597fa0c8f25fed6698e887b047cb6203",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
