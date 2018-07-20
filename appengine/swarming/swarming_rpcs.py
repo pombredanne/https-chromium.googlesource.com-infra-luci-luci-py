@@ -706,7 +706,6 @@ class BotInfo(messages.Message):
   is_dead = messages.BooleanField(6)
   last_seen_ts = message_types.DateTimeField(7)
   quarantined = messages.BooleanField(8)
-  maintenance_msg = messages.StringField(18)
   task_id = messages.StringField(9)
   task_name = messages.StringField(10)
   version = messages.StringField(11)
@@ -717,6 +716,8 @@ class BotInfo(messages.Message):
   deleted = messages.BooleanField(15)
   machine_type = messages.StringField(16)
   machine_lease = messages.StringField(17)
+  maintenance_msg = messages.StringField(18)
+  leased_indefinitely = messages.BooleanField(19)
 
 
 class BotList(messages.Message):
