@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33f0aa01_2247152b",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-23T16:42:32Z",
+      "side": 1,
+      "message": "You could enforce this with oneof. wdyt?\nhttps://developers.google.com/protocol-buffers/docs/proto3#using-oneof",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09d17e90_e9d4c1ce",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-23T16:42:32Z",
+      "side": 1,
+      "message": "Eventually I\u0027d like to switch the bot API to proto3, which means it\u0027ll become impossible to distinguish between missing or default value (0). The code is currently written incorrectly with this but it\u0027d be nice to not add more with this logic.",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef108bcd_922c1ff2",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-23T16:42:32Z",
+      "side": 1,
+      "message": "Please enforce this in _pre_put_hook().",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0bf97a6_1d7a08b3",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-23T16:42:32Z",
+      "side": 1,
+      "message": "Same",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0304a83f_f22bf8c1",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-23T16:42:32Z",
+      "side": 1,
+      "message": "I decided to optimize for the reader, and the reader doesn\u0027t really care about the protomsg IDs. But quarantined and maintenance_msg are related.",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
