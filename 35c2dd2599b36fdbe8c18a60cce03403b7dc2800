@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaa13694_5ad0e18f",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:37:18Z",
+      "side": 1,
+      "message": "encode_message goes directly from proto -\u003e string, so unfortunately if we want to modify it we have to go from string -\u003e dict -\u003e modified dict -\u003e string.",
+      "revId": "35c2dd2599b36fdbe8c18a60cce03403b7dc2800",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2958cf9e_ade484c4",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:37:18Z",
+      "side": 1,
+      "message": "Just to be safe, rather than turning it on everywhere at once and discovering some bug. It seems to work though, and it has a lot of tests. We could just make this return 400 Bad Request.",
+      "revId": "35c2dd2599b36fdbe8c18a60cce03403b7dc2800",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
