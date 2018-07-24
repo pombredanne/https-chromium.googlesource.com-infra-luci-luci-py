@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28c20424_bf408a29",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:04:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33f0aa01_2247152b",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09d17e90_e9d4c1ce",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed2e4011_373c0658",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:04:30Z",
+      "side": 1,
+      "message": "This doesn\u0027t come from proto, it comes from ndb, where the value will correctly be None. See lease_management.log_lease_fulfillment. If the response proto from Machine Provider says it\u0027s indefinite, then lease_expiration_ts is left as None in the entity even if lease_expiration_ts is 0 in the response proto.",
+      "parentUuid": "09d17e90_e9d4c1ce",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ebf2072c_c08dfa46",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:04:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef108bcd_922c1ff2",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0bf97a6_1d7a08b3",
         "filename": "appengine/swarming/server/lease_management.py",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "9ea1c1e5_0e7e6ae2",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:04:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0bf97a6_1d7a08b3",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0304a83f_f22bf8c1",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 1
@@ -84,6 +156,24 @@
       "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e20991b_96c5d361",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-24T23:04:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0304a83f_f22bf8c1",
+      "revId": "d00a7b8ddd1bedf2c992810ded02cef35b62b7d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
