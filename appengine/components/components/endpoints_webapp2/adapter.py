@@ -24,6 +24,7 @@ from components import template
 from components import utils
 
 import discovery
+import partial
 
 
 PROTOCOL = protojson.EndpointsProtoJson()
@@ -138,6 +139,14 @@ def path_handler(api_class, api_method, service_path):
             response_body = None
           else:
             response_body = PROTOCOL.encode_message(res)
+            if self.request.get('fields'):
+              try:
+                response_body = json.dumps(partial.mask(
+                    json.loads(response_body), self.request.get('fields')))
+              except (partial.ParsingError, ValueError) as e:
+                # Log the error but return the full response.
+                logging.warning('Ignoring erroneous field mask %r: %s',
+                                self.request.get('fields'), e)
 
       if self.response.status_int != 204:
         self.response.content_type = 'application/json; charset=utf-8'
