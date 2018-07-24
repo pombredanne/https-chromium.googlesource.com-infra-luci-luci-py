@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fad5e2c5_a0665dfe",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000325
+      },
+      "writtenOn": "2018-07-24T16:06:23Z",
+      "side": 1,
+      "message": "Would \u0027os\u0027 be part of the string at all?\n\nWould the final string be \"os:Linux|Ubuntu-16.04\" ?\n\nWhat about a key with a single value?  \"host:swarm-cros-0\"?",
+      "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc750993_4bab0a0d",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -31,6 +48,24 @@
       "side": 1,
       "message": "Assuming we\u0027re talking end goal of these resulting in metrics in Monarch, filtering by these would be easy enough in a single string.  The challenge may be how to use them for grouping in terms of reporting and visuals.  Filters provide regex options but GroupBys are rather static.  \n\nI\u0027d have to do some messing in Monarch to validate options before committing to this working for all scenarios.  That said, knowing that dimensions can be rather verbose, understand that this is potentially the best option and one we should find a solution to within our queries.",
       "parentUuid": "cc750993_4bab0a0d",
+      "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1471a776_cfb2b507",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1000325
+      },
+      "writtenOn": "2018-07-24T16:06:23Z",
+      "side": 1,
+      "message": "My suspicion is that a Monarch Precompute would allow that filtering to work efficiently. pprabhu@ has more experience and could speak to that with more authority.",
+      "parentUuid": "2848d4fb_77f9bb40",
       "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
