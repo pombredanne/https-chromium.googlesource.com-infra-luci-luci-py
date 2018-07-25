@@ -2,6 +2,24 @@
   "comments": [
     {
       "key": {
+        "uuid": "400a536d_63a829e3",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-25T01:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "956ce17e_a5d71703",
+      "revId": "af5262736f1474f50bb9dd6d63dd4aa80dd708d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6dd140fc_dcd19857",
         "filename": "appengine/swarming/server/lease_management.py",
         "patchSetId": 3
@@ -14,6 +32,24 @@
       "side": 1,
       "message": "That\u0027s a true positive.",
       "parentUuid": "0a384356_0fdc4ddf",
+      "revId": "af5262736f1474f50bb9dd6d63dd4aa80dd708d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a102ec9_d410bdd3",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-25T01:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dd140fc_dcd19857",
       "revId": "af5262736f1474f50bb9dd6d63dd4aa80dd708d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -38,6 +74,24 @@
     },
     {
       "key": {
+        "uuid": "1d4812d0_9522a9b7",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-25T01:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b39ea699_0b3b12f1",
+      "revId": "af5262736f1474f50bb9dd6d63dd4aa80dd708d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2bdf8aa_e01602ee",
         "filename": "appengine/swarming/server/lease_management.py",
         "patchSetId": 3
@@ -50,6 +104,24 @@
       "side": 1,
       "message": "Same",
       "parentUuid": "47a75fe1_397eb10b",
+      "revId": "af5262736f1474f50bb9dd6d63dd4aa80dd708d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74f4d199_40915db6",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-25T01:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2bdf8aa_e01602ee",
       "revId": "af5262736f1474f50bb9dd6d63dd4aa80dd708d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
