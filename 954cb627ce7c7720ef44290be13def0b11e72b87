@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf423515_19da48a2",
+        "filename": "appengine/swarming/tools/start_servers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-25T21:20:03Z",
+      "side": 1,
+      "message": "That should be disabled, since it\u0027s needed for python3.",
+      "parentUuid": "3dbab755_d6240e97",
+      "revId": "954cb627ce7c7720ef44290be13def0b11e72b87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
