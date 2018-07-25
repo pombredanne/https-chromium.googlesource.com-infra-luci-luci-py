@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e649444f_53df3cbd",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-25T00:46:06Z",
+      "side": 1,
+      "message": "This is now obsolete, the oneof makes this clear.\n\nIn practice, what if lease_duration_secs \u003d\u003d 0 would mean to lease indefinitely?",
+      "revId": "61c626aedc3458550d3a8a674f371f573cb77293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c200430a_61d124f3",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-25T00:46:06Z",
+      "side": 1,
+      "message": "same",
+      "revId": "61c626aedc3458550d3a8a674f371f573cb77293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
