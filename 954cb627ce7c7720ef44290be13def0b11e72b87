@@ -17,6 +17,24 @@
       "revId": "954cb627ce7c7720ef44290be13def0b11e72b87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "274140c3_166dc0e5",
+        "filename": "appengine/swarming/tools/start_servers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-07-25T22:27:46Z",
+      "side": 1,
+      "message": "Got it, uploaded https://chromium-review.googlesource.com/c/infra/infra/+/1150764.",
+      "parentUuid": "bf423515_19da48a2",
+      "revId": "954cb627ce7c7720ef44290be13def0b11e72b87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
