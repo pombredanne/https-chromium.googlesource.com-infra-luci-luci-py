@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e67437fc_5d36810f",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-07-25T00:35:11Z",
+      "side": 1,
+      "message": "encode_message checks if the message is initialized before dumping it to JSON:\nhttps://github.com/google/protorpc/blob/master/protorpc/protojson.py#L171\n\nIf partial.mask operates on the message and trims a required field then it will no longer be JSON-encodable.",
+      "parentUuid": "f623227a_fd68ca35",
+      "revId": "35c2dd2599b36fdbe8c18a60cce03403b7dc2800",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2958cf9e_ade484c4",
         "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
         "patchSetId": 1
