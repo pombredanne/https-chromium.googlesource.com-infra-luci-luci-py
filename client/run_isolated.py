@@ -1243,14 +1243,7 @@ def main(args):
     for c in caches:
       c.cleanup()
     return 0
-
-  if not options.no_clean:
-    # Trim but do not clean (which is slower).
-    local_caching.trim_caches(
-        caches,
-        root,
-        min_free_space=options.min_free_space,
-        max_age_secs=MAX_AGE_SECS)
+  # Trimming *must* be done manually via periodic --clean calls.
 
   if not options.isolated and not args:
     parser.error('--isolated or command to run is required.')
@@ -1316,7 +1309,6 @@ def main(args):
     ]
     for path, name in caches:
       named_cache.install(path, name)
-    named_cache.trim()
     try:
       yield
     finally:
@@ -1328,11 +1320,12 @@ def main(args):
       # any other bot file that could not be removed.
       for path, name in caches:
         try:
+          # Uninstall doesn't trim. Trimming *must* be done manually via
+          # periodic --clean calls.
           named_cache.uninstall(path, name)
         except local_caching.NamedCacheError:
           logging.exception('Error while removing named cache %r at %r. '
                             'The cache will be lost.', path, name)
-      named_cache.trim()
 
   extra_args = []
   command = []
