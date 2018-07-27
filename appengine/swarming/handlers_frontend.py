@@ -140,7 +140,7 @@ class UIHandler(auth.AuthenticatingHandler):
       page = 'swarming'
 
     params = {
-      'client_id': config.settings().ui_client_id,
+      'client_id': '626527610293-ecepcp75p0ir9sptv5gvck1gbilsqtf1.apps.googleusercontent.com',
     }
     # Can cache for 1 week, because the only thing that would change in this
     # template is the oauth client id, which changes very infrequently.
