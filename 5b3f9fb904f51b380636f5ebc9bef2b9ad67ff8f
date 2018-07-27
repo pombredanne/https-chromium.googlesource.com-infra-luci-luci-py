@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56a86de6_80afdeec",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-27T13:28:03Z",
+      "side": 1,
+      "message": "This change in bot_main is for two reasons:\n- Make sure the tests were run :)\n- Call out that it\u0027s crucial to call the clean manually",
+      "revId": "5b3f9fb904f51b380636f5ebc9bef2b9ad67ff8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0ef134c_337523ef",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-27T13:28:03Z",
+      "side": 1,
+      "message": "Hopefully these reminder are located at a good place if someone is hunting for knowledge in a few years.",
+      "revId": "5b3f9fb904f51b380636f5ebc9bef2b9ad67ff8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
