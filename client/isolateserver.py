@@ -1196,7 +1196,6 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
     assert fetch_queue.wait_queue_empty, 'FetchQueue should have been emptied'
 
   # Cache could evict some items we just tried to fetch, it's a fatal error.
-  cache.trim()
   if not fetch_queue.verify_all_cached():
     free_disk = file_path.get_free_space(cache.cache_dir)
     msg = (
