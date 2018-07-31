@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "79f01378_1bf0ab08",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-31T17:14:39Z",
+      "side": 1,
+      "message": "Yes, updated the command to be clearer. The id would not be included, unless someone would include this in the config.",
+      "parentUuid": "fad5e2c5_a0665dfe",
+      "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc750993_4bab0a0d",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "My suspicion is that a Monarch Precompute would allow that filtering to work efficiently. pprabhu@ has more experience and could speak to that with more authority.",
       "parentUuid": "2848d4fb_77f9bb40",
+      "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f1de86d_164de2f0",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-07-31T17:14:39Z",
+      "side": 1,
+      "message": "I\u0027ve changed the description but kept the same design.\n\nRight now, we rely on a list of blacklisted keys, which I really dislike;\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/bot_code/bot_main.py?l\u003d124\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/ts_mon_metrics.py?g\u003d0\u0026l\u003d20\n\nI don\u0027t have much Monarch experience, so it\u0027s really up to you prefer. Either way, _IGNORED_DIMENSIONS has to go away and be configurable.",
+      "parentUuid": "1471a776_cfb2b507",
       "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
