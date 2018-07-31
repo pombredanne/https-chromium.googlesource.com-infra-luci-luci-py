@@ -270,7 +270,8 @@ class RunIsolatedTest(unittest.TestCase):
 
   def _store(self, filename):
     """Stores a test data file in the table and returns its hash."""
-    return self._isolated_server.add_content('default', CONTENTS[filename])
+    return unicode(
+        self._isolated_server.add_content('default', CONTENTS[filename]))
 
   def _cmd_args(self, hash_value):
     """Generates the standard arguments used with |hash_value| as the hash.
@@ -383,10 +384,10 @@ class RunIsolatedTest(unittest.TestCase):
     # Loads an .isolated that includes an ar archive.
     isolated_hash = self._store('tar_archive.isolated')
     expected = [
-      'state.json',
+      u'state.json',
       isolated_hash,
-      self._store('tar_archive'),
-      self._store('archive_files.py'),
+      self._store(u'tar_archive'),
+      self._store(u'archive_files.py'),
     ]
     out, err, returncode = self._run(self._cmd_args(isolated_hash))
     self.assertEqual('', err)

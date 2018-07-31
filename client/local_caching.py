@@ -223,8 +223,12 @@ class Cache(object):
     """
     raise NotImplementedError()
 
+  def save(self):
+    """Saves the current cache to disk."""
+    raise NotImplementedError()
+
   def trim(self):
-    """Enforces cache policies.
+    """Enforces cache policies, then call save().
 
     Returns:
       Slice with the size of evicted items.
@@ -232,7 +236,7 @@ class Cache(object):
     raise NotImplementedError()
 
   def cleanup(self):
-    """Deletes any corrupted item from the cache and trims it if necessary.
+    """Deletes any corrupted item from the cache, then call trim(), then save().
 
     It is assumed to take significantly more time than trim().
     """
@@ -332,6 +336,9 @@ class MemoryContentAddressedCache(ContentAddressedCache):
       # TODO(maruel): Update self._added.
       # (key, (value, ts))
       return len(self._lru.pop_oldest()[1][0])
+
+  def save(self):
+    pass
 
   def trim(self):
     """Trimming is not implemented for MemoryContentAddressedCache."""
@@ -443,6 +450,10 @@ class DiskContentAddressedCache(ContentAddressedCache):
     with self._lock:
       # TODO(maruel): Update self._added.
       return self._remove_lru_file(True)
+
+  def save(self):
+    with self._lock:
+      return self._save()
 
   def trim(self):
     """Forces retention policies."""
@@ -916,6 +927,10 @@ class NamedCache(Cache):
     with self._lock:
       # TODO(maruel): Update self._added.
       return self._remove_lru_item()
+
+  def save(self):
+    with self._lock:
+      return self._save()
 
   def trim(self):
     evicted = []
