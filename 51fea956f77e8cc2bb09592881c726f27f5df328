@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6210ef04_e2816242",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b806199_5aa1d48f",
+      "range": {
+        "startLine": 231,
+        "startChar": 37,
+        "endLine": 231,
+        "endChar": 41
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41237501_6daaccfe",
         "filename": "client/local_caching.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-01T16:42:55Z",
       "side": 1,
       "message": "then calls trim() and save()\n\nor, since save() is part of trim(), you could just say \"then calls trim()\".",
+      "range": {
+        "startLine": 239,
+        "startChar": 50,
+        "endLine": 239,
+        "endChar": 79
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca399aa2_124f0c77",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "I wanted to call out save for clarity.",
+      "parentUuid": "41237501_6daaccfe",
       "range": {
         "startLine": 239,
         "startChar": 50,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b5a73240_16f11cf9",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "# - The total the number of named caches is low, so the state.json file\n        #   is small, so the time it takes to write it to disk is short.",
+      "parentUuid": "e8e109a9_78376efb",
+      "range": {
+        "startLine": 898,
+        "startChar": 26,
+        "endLine": 899,
+        "endChar": 29
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3518c12f_c4dda888",
         "filename": "client/local_caching.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2018-08-01T16:42:55Z",
       "side": 1,
       "message": "Possible rephrasing: ... is low, so the number of times save() is called on tear-down isn\u0027t high enough to be significant.",
+      "range": {
+        "startLine": 900,
+        "startChar": 55,
+        "endLine": 901,
+        "endChar": 33
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff43efe5_88c061f1",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "# - The number of mapped named caches per task is low, so the number of\n        #   times save() is called on tear-down isn\u0027t high enough to be\n        #   significant.",
+      "parentUuid": "3518c12f_c4dda888",
       "range": {
         "startLine": 900,
         "startChar": 55,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9a601fd9_c307b787",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b8c1a99_8d69b2a8",
+      "range": {
+        "startLine": 903,
+        "startChar": 34,
+        "endLine": 903,
+        "endChar": 39
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "333f2ada_9be4b4fc",
         "filename": "client/local_caching.py",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "70b7586e_3814357a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "333f2ada_9be4b4fc",
+      "range": {
+        "startLine": 903,
+        "startChar": 72,
+        "endLine": 904,
+        "endChar": 26
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3a8ab2a_b95426c3",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2018-08-01T16:42:55Z",
       "side": 1,
       "message": "Does `h` stand for \"hello\"? This variable could maybe also be called `name` or something.",
+      "range": {
+        "startLine": 299,
+        "startChar": 4,
+        "endLine": 299,
+        "endChar": 5
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b66617cb_5dedbf9a",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "h is the hash. but hash is a keyboard in python.",
+      "parentUuid": "d3a8ab2a_b95426c3",
       "range": {
         "startLine": 299,
         "startChar": 4,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "c1d0b787_cb456515",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "Rewrote to use lru.LRUDict.load(), which reduces a lot the magic there.",
+      "parentUuid": "5f8995b9_69f47e3d",
+      "range": {
+        "startLine": 527,
+        "startChar": 4,
+        "endLine": 527,
+        "endChar": 36
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1b7bb3ea_4371df73",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 2
@@ -206,6 +398,30 @@
       "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7d7e79a_d1d644ef",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T17:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b7bb3ea_4371df73",
+      "range": {
+        "startLine": 669,
+        "startChar": 25,
+        "endLine": 669,
+        "endChar": 34
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
