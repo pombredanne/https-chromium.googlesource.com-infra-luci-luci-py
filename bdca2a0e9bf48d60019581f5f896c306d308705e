@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f263ce4_c25eb786",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T23:50:37Z",
+      "side": 1,
+      "message": "That doesn\u0027t exist anymore. You want something like TaskList but without cursor to not confuse users.",
+      "range": {
+        "startLine": 535,
+        "startChar": 39,
+        "endLine": 535,
+        "endChar": 53
+      },
+      "revId": "bdca2a0e9bf48d60019581f5f896c306d308705e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
