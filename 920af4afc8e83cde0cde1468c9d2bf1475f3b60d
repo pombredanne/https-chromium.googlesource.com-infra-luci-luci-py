@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "286717bc_2ddf95a1",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T20:57:03Z",
+      "side": 0,
+      "message": "Two lines between file level symbols.",
+      "revId": "920af4afc8e83cde0cde1468c9d2bf1475f3b60d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

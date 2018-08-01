@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "260d087a_edd2a127",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T20:57:03Z",
+      "side": 1,
+      "message": "Oh, my idea was more:\n\nClient knows the exact tasks is cares about. So the client sends all the task ids as a flat list, and the short result is returned.\n\nThis is better than using a query, because query are eventually consistent, which could cause issues on the long tail (e.g. once per day) which would be annoying.\n\nAnother advantage is that you don\u0027t need to support pagination, the client would be allowed to pass at most X tasks (let\u0027s say 20) and that\u0027s it. If the client wants to see more, they just send parallel queries, but that\u0027s still a 20x reduction of RPCs, which isn\u0027t too shabby.",
+      "range": {
+        "startLine": 530,
+        "startChar": 6,
+        "endLine": 530,
+        "endChar": 18
+      },
+      "revId": "44d1108f3a472e92ae2a7a346ffc36d4c8b7d631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6c05351_46efc2cc",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T20:57:03Z",
+      "side": 1,
+      "message": "Remove.",
+      "revId": "44d1108f3a472e92ae2a7a346ffc36d4c8b7d631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
