@@ -635,6 +635,13 @@ class TaskResult(messages.Message):
   # The TaskSlice contains a TaskProperties, which defines what is run.
   current_task_slice = messages.IntegerField(29)
 
+class TrimmedTaskResult(messages.Message):
+  """Representation of the TaskResultSummary or TaskRunResult ndb model."""
+  # Current state of the task (e.g. PENDING, RUNNING, COMPLETED, EXPIRED, etc).
+  state = messages.EnumField(TaskState, 19)
+  # Summary task ID (ending with '0') when creating a new task.
+  task_id = messages.StringField(20)
+
 
 class TaskList(messages.Message):
   """Wraps a list of TaskResult."""
@@ -648,6 +655,12 @@ class TaskRequests(messages.Message):
   """Wraps a list of TaskRequest."""
   cursor = messages.StringField(1)
   items = messages.MessageField(TaskRequest, 2, repeated=True)
+  now = message_types.DateTimeField(3)
+
+class TrimmedTaskRequests(messages.Message):
+  """Wraps a list of TaskRequest."""
+  cursor = messages.StringField(1)
+  items = messages.MessageField(TrimmedTaskRequest, 2, repeated=True)
   now = message_types.DateTimeField(3)
 
 
