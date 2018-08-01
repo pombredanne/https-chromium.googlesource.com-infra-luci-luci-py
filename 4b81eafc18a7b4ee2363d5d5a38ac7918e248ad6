@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ded3b778_421f2f7e",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T17:20:22Z",
+      "side": 1,
+      "message": "Nit: spacing/alignment",
+      "range": {
+        "startLine": 905,
+        "startChar": 9,
+        "endLine": 905,
+        "endChar": 10
+      },
+      "revId": "4b81eafc18a7b4ee2363d5d5a38ac7918e248ad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
