@@ -390,6 +390,11 @@ TasksRequest = endpoints.ResourceContainer(
     include_performance_stats=messages.BooleanField(8, default=False))
 
 
+TaskStatesRequest = endpoints.ResourceContainer(
+    message_types.VoidMessage,
+    task_id=messages.StringField(1, repeated=true))
+
+
 TasksCountRequest = endpoints.ResourceContainer(
     message_types.VoidMessage,
     end=messages.FloatField(3),
@@ -493,10 +498,10 @@ class SwarmingTasksService(remote.Service):
       http_method='GET')
   @auth.require(acl.can_view_all_tasks)
   def list(self, request):
-    """Returns tasks results based on the filters.
+    """Returns full task results based on the filters.
 
     This endpoint is significantly slower than 'count'. Use 'count' when
-    possible.
+    possible. If you just want the results of a task, use 'results'.
     """
     # TODO(maruel): Rename 'list' to 'results'.
     # TODO(maruel): Rename 'TaskList' to 'TaskResults'.
@@ -524,6 +529,23 @@ class SwarmingTasksService(remote.Service):
           for i in items
         ],
         now=now)
+
+  @gae_ts_mon.instrument_endpoint()
+  @auth.endpoints_method(
+      TaskStatesRequest, swarming_rpcs.TaskStateList,
+      http_method='GET')
+  @auth.require(acl.can_view_all_tasks)
+  def results(self, request):
+    """Returns task state for a specific set of tasks.
+    """
+    logging.debug('%s', request)
+    result_keys = [_to_keys(task_id)[1] for task_id in request.task_id]
+
+    results = ndb.get_multi(result_keys)
+    for task in results:
+      task_states.append(task.state)
+
+    return swarming_rpcs.TaskStateList(items=task_states)
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(

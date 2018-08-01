@@ -636,6 +636,18 @@ class TaskResult(messages.Message):
   current_task_slice = messages.IntegerField(29)
 
 
+class TaskState(messages.Message):
+  # Summary task ID (ending with '0') when creating a new task.
+  task_id = messages.StringField(1)
+  # Current state of the task (e.g. PENDING, RUNNING, COMPLETED, EXPIRED, etc).
+  state = messages.EnumField(TaskState, 2)
+
+
+class TaskStateList(messages.Message):
+  """Returns a list of task states."""
+  items = messages.MessageField(TaskState, 1, repeated=True)
+
+
 class TaskList(messages.Message):
   """Wraps a list of TaskResult."""
   # TODO(maruel): Rename to TaskResults.
