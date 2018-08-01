@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a3e0772_f41125af",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2018-08-01T23:45:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abedd2d8_d8dbfab6",
+      "revId": "b1a9e70f8b4b583e299ad48b453b0d88bc480c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "617fdaa7_c312b8cb",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 4
@@ -30,6 +48,23 @@
       "writtenOn": "2018-08-01T23:02:58Z",
       "side": 1,
       "message": "The task_id is redundant information, I don\u0027t think it\u0027s needed.",
+      "revId": "b1a9e70f8b4b583e299ad48b453b0d88bc480c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5217cfb7_7bd665cf",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2018-08-01T23:45:12Z",
+      "side": 1,
+      "message": "I think it\u0027d be nice to handle on the client side. I imagine the client will be doing something related to collecting a task which is completed, and I feel like making the client connect the dots from task id to state could maybe lead to some issues? It\u0027s only a vague feeling, but I\u0027d prefer to set the task id in the returned object. Fine if you don\u0027t think it\u0027s necessary.",
       "revId": "b1a9e70f8b4b583e299ad48b453b0d88bc480c61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -56,6 +91,30 @@
       "revId": "b1a9e70f8b4b583e299ad48b453b0d88bc480c61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba599318_35bf2517",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2018-08-01T23:45:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9be2298c_d534ca34",
+      "range": {
+        "startLine": 648,
+        "startChar": 32,
+        "endLine": 648,
+        "endChar": 41
+      },
+      "revId": "b1a9e70f8b4b583e299ad48b453b0d88bc480c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
