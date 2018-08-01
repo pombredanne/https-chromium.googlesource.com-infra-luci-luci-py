@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "f69b44d4_a6e14607",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2018-08-01T21:31:38Z",
+      "side": 1,
+      "message": "I did a flat list of state for now. Could theoretically do the full data when task is complete. I\u0027m not sure if I want the client to be that smart... Doesn\u0027t seem that hard in the current code though.",
+      "parentUuid": "9fb6ed94_41154a02",
+      "range": {
+        "startLine": 530,
+        "startChar": 6,
+        "endLine": 530,
+        "endChar": 18
+      },
+      "revId": "44d1108f3a472e92ae2a7a346ffc36d4c8b7d631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6c05351_46efc2cc",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 2
