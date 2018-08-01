@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b806199_5aa1d48f",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "calls",
+      "range": {
+        "startLine": 231,
+        "startChar": 37,
+        "endLine": 231,
+        "endChar": 41
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41237501_6daaccfe",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "then calls trim() and save()\n\nor, since save() is part of trim(), you could just say \"then calls trim()\".",
+      "range": {
+        "startLine": 239,
+        "startChar": 50,
+        "endLine": 239,
+        "endChar": 79
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8e109a9_78376efb",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "Possible rephrasing: ... number of named caches is low, so the content to save is small.",
+      "range": {
+        "startLine": 898,
+        "startChar": 26,
+        "endLine": 899,
+        "endChar": 29
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3518c12f_c4dda888",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "Possible rephrasing: ... is low, so the number of times save() is called on tear-down isn\u0027t high enough to be significant.",
+      "range": {
+        "startLine": 900,
+        "startChar": 55,
+        "endLine": 901,
+        "endChar": 33
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b8c1a99_8d69b2a8",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "throws",
+      "range": {
+        "startLine": 903,
+        "startChar": 34,
+        "endLine": 903,
+        "endChar": 39
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333f2ada_9be4b4fc",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "or access rights on Linux.",
+      "range": {
+        "startLine": 903,
+        "startChar": 72,
+        "endLine": 904,
+        "endChar": 26
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3a8ab2a_b95426c3",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "Does `h` stand for \"hello\"? This variable could maybe also be called `name` or something.",
+      "range": {
+        "startLine": 299,
+        "startChar": 4,
+        "endLine": 299,
+        "endChar": 5
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f8995b9_69f47e3d",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "Without much context here, I\u0027m not sure what the structure of content[\u0027items\u0027] is or what p should be. From below I assume it\u0027s a file or directory name in the cache dir. This may be fine and doesn\u0027t need to be changed, but maybe adding an intermediate variable or more descriptive variable name would clarify it.",
+      "range": {
+        "startLine": 527,
+        "startChar": 4,
+        "endLine": 527,
+        "endChar": 36
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b7bb3ea_4371df73",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-01T16:42:55Z",
+      "side": 1,
+      "message": "leverage",
+      "range": {
+        "startLine": 669,
+        "startChar": 25,
+        "endLine": 669,
+        "endChar": 34
+      },
+      "revId": "51fea956f77e8cc2bb09592881c726f27f5df328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
