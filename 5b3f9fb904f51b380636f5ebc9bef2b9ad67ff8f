@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "388e5212_6034d224",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T15:40:30Z",
+      "side": 1,
+      "message": "I realized that this wouldn\u0027t happen due to\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/0ae7a3c2b522db3d196ccd119e760e972b0c4854/client/isolateserver.py#1199 which unconditionally trims the isolated cache after fetching.\n\nThe problem with this line is that it unfairly puts a pressure on the isolated cache compared to the named cache, so I removed this trim so that the trimming process can be holistic.",
+      "parentUuid": "0001313a_8f14ca55",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 76
+      },
+      "revId": "5b3f9fb904f51b380636f5ebc9bef2b9ad67ff8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56a86de6_80afdeec",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
@@ -89,6 +113,24 @@
       "side": 1,
       "message": "Does manually here and below mean by invoking run_isolated.py --clean?",
       "parentUuid": "e0ef134c_337523ef",
+      "revId": "5b3f9fb904f51b380636f5ebc9bef2b9ad67ff8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b392604a_4289fe4d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T15:40:30Z",
+      "side": 1,
+      "message": "Yes. Reworded.",
+      "parentUuid": "49eb5f38_105db9e4",
       "revId": "5b3f9fb904f51b380636f5ebc9bef2b9ad67ff8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

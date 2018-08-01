@@ -22,6 +22,30 @@
       "revId": "c5479d4bee0939d1d6401dc51029b1ec5a084870",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5afc2b9_eccedf33",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-01T15:40:30Z",
+      "side": 0,
+      "message": "Indeed, it\u0027s not needed anymore, removed.",
+      "parentUuid": "eba37261_b7ba64eb",
+      "range": {
+        "startLine": 1247,
+        "startChar": 17,
+        "endLine": 1247,
+        "endChar": 25
+      },
+      "revId": "c5479d4bee0939d1d6401dc51029b1ec5a084870",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
