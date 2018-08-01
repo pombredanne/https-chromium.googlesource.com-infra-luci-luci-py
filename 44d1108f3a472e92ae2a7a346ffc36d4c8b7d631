@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a009dd2_79e648c1",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2018-08-01T20:58:13Z",
+      "side": 1,
+      "message": "Ah ok. \n\nWhat exactly would the result be? Just a list of states?\n\nAnd would I just do a bunch of parallel gets, instead of a query?",
+      "parentUuid": "260d087a_edd2a127",
+      "range": {
+        "startLine": 530,
+        "startChar": 6,
+        "endLine": 530,
+        "endChar": 18
+      },
+      "revId": "44d1108f3a472e92ae2a7a346ffc36d4c8b7d631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6c05351_46efc2cc",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 2
