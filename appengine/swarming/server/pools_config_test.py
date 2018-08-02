@@ -24,32 +24,38 @@ from server import task_request
 from google.protobuf import text_format
 
 
-TEST_CONFIG = pools_pb2.PoolsCfg(pool=[
-  pools_pb2.Pool(
-    name=['pool_name', 'another_name'],
-    schedulers=pools_pb2.Schedulers(
-      user=['user:a@example.com', 'b@example.com'],
-      group=['group1', 'group2'],
-      trusted_delegation=[
-        pools_pb2.TrustedDelegation(
-          peer_id='delegatee@example.com',
-          require_any_of=pools_pb2.TrustedDelegation.TagList(
-            tag=['k:tag1', 'k:tag2'],
-          ),
+TEST_CONFIG = pools_pb2.PoolsCfg(
+    pool=[
+      pools_pb2.Pool(
+        name=['pool_name', 'another_name'],
+        schedulers=pools_pb2.Schedulers(
+          user=['user:a@example.com', 'b@example.com'],
+          group=['group1', 'group2'],
+          trusted_delegation=[
+            pools_pb2.TrustedDelegation(
+              peer_id='delegatee@example.com',
+              require_any_of=pools_pb2.TrustedDelegation.TagList(
+                tag=['k:tag1', 'k:tag2'],
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-    allowed_service_account=[
-      'a1@example.com',
-      'a2@example.com',
+        allowed_service_account=[
+          'a1@example.com',
+          'a2@example.com',
+        ],
+        allowed_service_account_group=[
+          'accounts_group1',
+          'accounts_group2',
+        ],
+        bot_monitoring='bots',
+      ),
     ],
-    allowed_service_account_group=[
-      'accounts_group1',
-      'accounts_group2',
+    forbid_unknown_pools=True,
+    bot_monitoring=[
+      pools_pb2.BotMonitoring(name='bots', dimension_keys=['os', 'bool']),
     ],
-  ),
-], forbid_unknown_pools=True)
-
+)
 
 class PoolsConfigTest(test_case.TestCase):
   def validator_test(self, cfg, messages):
