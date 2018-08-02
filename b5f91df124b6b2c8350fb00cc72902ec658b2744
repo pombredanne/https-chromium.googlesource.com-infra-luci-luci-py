@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18705d07_723dcbc3",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-02T20:27:04Z",
+      "side": 1,
+      "message": "Oh sorry I realize you\u0027ll have to do something more complex. Basically you\u0027ll have to replicate _get_request_and_result() behavior but in a parallelized way. I think you can achieve with:\n\n  # Hot path. Fetch everything we can from memcache.\n  entities \u003d ndb.get_multi(result_keys, use_cache\u003dTrue, use_memcache\u003dTrue, use_datastore\u003dFalse)\n  states \u003d [t.state if t else task_result.State.PENDING for t in entities]\n\n  # Now fetch both the ones in non-stable state or not in memcache.\n  missings \u003d [\n    result_keys[i] for i, state in enumerate(state)\n    if state in task_result.State.STATES_RUNNING\n  ]\n  if missings:\n    more \u003d ndb_get_multi(missings, use_cache\u003dFalse, use_memcache\u003dFalse, use_datastore\u003dTrue)\n    for i, s in states:\n      if s in task_result.State.STATES_RUNNING:\n        states[i] \u003d more.pop(0)\n\nThat\u0027s because of a O(once per million) bug where memcache gets stale data. This basically causes an hang once per day, so it\u0027s important. :(",
+      "revId": "b5f91df124b6b2c8350fb00cc72902ec658b2744",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95f6315f_84cc7644",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-02T20:27:04Z",
+      "side": 1,
+      "message": "Wait, if we name this get_states (I think it should be plural), then I guess it would make sense to just return a list of TaskState and nothing else, thus removing the TaskResult wrapping. Then this would clear out the ambiguity. Sorry for having been undecided.",
+      "revId": "b5f91df124b6b2c8350fb00cc72902ec658b2744",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
