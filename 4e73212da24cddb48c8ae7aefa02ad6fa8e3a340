@@ -141,6 +141,24 @@
       "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baab5cec_5594aa56",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1273501
+      },
+      "writtenOn": "2018-08-02T16:53:27Z",
+      "side": 1,
+      "message": "Sorry, that was a draft comment that did not get sent the previous review.  I didn\u0027t even realize that until now.  \n\nPlease disregard.",
+      "parentUuid": "5d0778e4_8f45a7fc",
+      "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
