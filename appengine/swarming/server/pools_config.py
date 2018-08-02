@@ -10,6 +10,7 @@ used primarily by task_scheduler.check_schedule_request_acl.
 
 import collections
 import random
+import string
 
 from components import auth
 from components import config
@@ -43,6 +44,8 @@ PoolConfig = collections.namedtuple('PoolConfig', [
   'service_accounts_groups',
   # resolved TaskTemplateDeployment (optional).
   'task_template_deployment',
+  # resolved BotMonitoring.
+  'bot_monitoring',
 ])
 
 
@@ -401,6 +404,27 @@ def _resolve_deployment(
         ctx, pool_msg.task_template_deployment_inline, template_map)
 
 
+def _resolve_bot_monitoring(ctx, bot_monitorings):
+  """Validates and simplifies bot_monitoring entries in pools.cfg."""
+  out = {}
+  for m in bot_monitorings:
+    with ctx.prefix('bot_monitoring %r: ', m.name):
+      if not m.name or set(m.name).issubset(string.ascii_lowercase):
+        ctx.error('invalid name')
+      if m.name in out:
+        ctx.error('duplicate name')
+      keys = set(m.dimension_keys)
+      if len(keys) != len(m.dimension_keys):
+        ctx.error('duplicate dimension_keys')
+      for k in keys:
+        if not local_config.validate_dimension_key(k):
+          ctx.error('invalid dimension_keys %r' % k)
+      # pool is always implicit.
+      keys.add('pool')
+      out[m.name] = sorted(keys)
+  return out
+
+
 def _to_ident(s):
   if ':' not in s:
     s = 'user:' + s
@@ -431,6 +455,7 @@ def _fetch_pools_config():
   template_map = _resolve_task_template_inclusions(ctx, cfg.task_template)
   deployment_map = _resolve_task_template_deployments(
       ctx, template_map, cfg.task_template_deployment)
+  bot_monitorings = _resolve_bot_monitoring(ctx, cfg.bot_monitoring)
 
   pools = {}
   for msg in cfg.pool:
@@ -449,7 +474,8 @@ def _fetch_pools_config():
           service_accounts=frozenset(msg.allowed_service_account),
           service_accounts_groups=tuple(msg.allowed_service_account_group),
           task_template_deployment=_resolve_deployment(
-              ctx, msg, template_map, deployment_map))
+              ctx, msg, template_map, deployment_map),
+          bot_monitoring=bot_monitorings[name])
   return _PoolsCfg(pools, cfg.forbid_unknown_pools)
 
 
@@ -461,6 +487,7 @@ def _validate_pools_cfg(cfg, ctx):
       ctx, cfg.task_template)
   deployment_map = _resolve_task_template_deployments(
       ctx, template_map, cfg.task_template_deployment)
+  bot_monitorings = _resolve_bot_monitoring(ctx, cfg.bot_monitoring)
 
   pools = set()
   for i, msg in enumerate(cfg.pool):
@@ -512,3 +539,6 @@ def _validate_pools_cfg(cfg, ctx):
           ctx.error('bad allowed_service_account_group #%d "%s"', i, group)
 
       _resolve_deployment(ctx, msg, template_map, deployment_map)
+
+      if msg.bot_monitoring and msg.bot_monitoring not in bot_monitorings:
+        ctx.error('refer to missing bot_monitoring %r' % msg.bot_monitoring)
