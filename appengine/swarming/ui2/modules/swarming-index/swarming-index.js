@@ -26,10 +26,17 @@ import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
 import '../swarming-app'
 
+const PathKitInit = require('experimental-pathkit-wasm/bin/pathkit.js')
+
+PathKitInit().then((PathKit) => {
+  let firstPath = PathKit.FromSVGString('M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z');
+  console.log("made a path!", firstPath);
+})
+
 // Don't use html for a straight string template, otherwise, it shows up
 // as [object Object] when used as the href attribute.
 const instancesURL = (ele) => `https://console.cloud.google.com/appengine/instances`+
-    `project=${ele._project_id}&versionId=${ele._server_details.server_version}`;
+    `project=${ele._project_id}&versionId=${ele.server_details.server_version}`;
 
 const errorsURL = (project_id) =>
     `https://console.cloud.google.com/errors?project=${project_id}`;
@@ -75,8 +82,10 @@ const template = (ele) => html`
   <main>
 
     <h2>Service Status</h2>
-    <div>Server Version: <span class=server_version>${ele._server_details.server_version}</span></div>
-    <div>Bot Version: ${ele._server_details.bot_version} </div>
+    <div>Server Version:
+      <span class=server_version> ${ele.server_details.server_version}</span>
+    </div>
+    <div>Bot Version: ${ele.server_details.bot_version} </div>
     <ul>
       <li>
         <!-- TODO(kjlubick) convert these linked pages to new UI-->
@@ -112,7 +121,7 @@ const template = (ele) => html`
         <a href="/auth/groups">View/edit user groups</a>
       </li>
     </ul>
-    ${ele._permissions.get_bootstrap_token ? bootstrapTemplate(ele): ''}
+    ${ele.permissions.get_bootstrap_token ? bootstrapTemplate(ele): ''}
   </main>
   <footer><error-toast-sk></error-toast-sk></footer>
 </swarming-app>`;
@@ -121,24 +130,24 @@ window.customElements.define('swarming-index', class extends SwarmingAppBoilerpl
 
   constructor() {
     super(template);
-    this._server_details = {
-      server_version: 'You must log in to see more details',
-      bot_version: '',
-    };
-    this._permissions = {};
     this._bootstrap_token = '...';
     let idx = location.hostname.indexOf('.appspot.com');
     this._project_id = location.hostname.substring(0, idx) || 'not_found';
     this._host_url = location.origin;
-    this._auth_header = '';
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    this.addEventListener('log-in', (e) => {
-      this._auth_header = e.detail.auth_header;
-      this._update();
+    this.addEventListener('permissions-loaded', (e) => {
+      if (this.permissions.get_bootstrap_token) {
+        this._fetchToken();
+      }
+      this.render();
+    });
+
+    this.addEventListener('server-details-loaded', (e) => {
+      this.render();
     });
 
     this.render();
@@ -146,80 +155,18 @@ window.customElements.define('swarming-index', class extends SwarmingAppBoilerpl
 
   _fetchToken() {
     let post_extra = {
-      headers: {'authorization': this._auth_header},
+      headers: {'authorization': this.auth_header},
       method: 'POST',
     };
-    let app = this.firstElementChild;
-    app.addBusyTasks(1);
+    this.app.addBusyTasks(1);
     fetch('/_ah/api/swarming/v1/server/token', post_extra)
       .then(jsonOrThrow)
       .then((json) => {
         this._bootstrap_token = json.bootstrap_token;
         this.render();
-        app.finishedTask();
+        this.app.finishedTask();
       })
-      .catch((e) => {
-        console.error(e);
-        errorMessage(`Error loading token: ${e.body}`, 5000);
-        app.finishedTask();
-      });
-  }
-
-  _update() {
-    if (!this._auth_header) {
-      return;
-    }
-    this._server_details = {
-      server_version: '<loading>',
-      bot_version: '<loading>',
-    };
-    let extra = {
-      headers: {'authorization': this._auth_header}
-    };
-    // TODO(kjlubick): Move details and permissions to swarming-app?
-    // That way we can display the server version in the bar and deduplicate
-    // this like it is in the Polymer version.
-    let app = this.firstElementChild;
-    app.addBusyTasks(2);
-    fetch('/_ah/api/swarming/v1/server/details', extra)
-      .then(jsonOrThrow)
-      .then((json) => {
-        this._server_details = json;
-        this.render();
-        app.finishedTask();
-      })
-      .catch((e) => {
-        if (e.status === 403) {
-          this._server_details = {
-            server_version: 'User unauthorized - try logging in with a different account',
-            bot_version: '',
-          };
-          this.render();
-        } else {
-          console.error(e);
-          errorMessage(`Unexpected error loading details: ${e.body}`, 5000);
-        }
-        app.finishedTask();
-      });
-    fetch('/_ah/api/swarming/v1/server/permissions', extra)
-      .then(jsonOrThrow)
-      .then((json) => {
-        this._permissions = json;
-        // Avoid unnecessary 403s, only get a bootstrap_token if we have
-        // permission to do so.
-        if (this._permissions.get_bootstrap_token) {
-          this._fetchToken();
-        }
-        this.render();
-        app.finishedTask();
-      })
-      .catch((e) => {
-        if (e.status !== 403) {
-          console.error(e);
-          errorMessage(`Unexpected error loading permissions: ${e.body}`, 5000);
-        }
-        app.finishedTask();
-      });
+      .catch((e) => this.fetchError(e, 'token'));
   }
 
 });

@@ -7,8 +7,12 @@
   "license": "Apache 2.0",
   "dependencies": {
     "@webcomponents/custom-elements": "^1.1.1",
-    "common-sk": "^2.0.4",
-    "elements-sk": "^2.1.0"
+    "common-sk": "^2.0.6",
+    "copy-webpack-plugin": "^4.5.2",
+    "elements-sk": "^2.1.0",
+    "experimental-pathkit-wasm": "0.0.4",
+    "javascript-natural-sort": "^0.7.1",
+    "lit-html": "~0.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -26,13 +30,12 @@
     "html-webpack-plugin": "^3.2.0",
     "jasmine-core": "^3.1.0",
     "jsdoc": "~3.5.5",
-    "karma": "^2.0.2",
+    "karma": "^2.0.4",
     "karma-chrome-launcher": "^2.2.0",
     "karma-concat-preprocessor": "^0.1.4",
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^1.1.2",
     "karma-webpack": "^3.0.0",
-    "lit-html": "^0.10.0",
     "postcss-loader": "^2.1.5",
     "pulito": "^4.1.0",
     "sass-loader": "^7.0.0",

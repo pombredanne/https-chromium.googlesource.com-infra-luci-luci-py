@@ -4,8 +4,14 @@
 
 import 'modules/swarming-index'
 
-describe('swarming-index', function() {
+if (!mockAppGETs) {
+  // ES6 Modules don't support conditional imports (yet), and if we did this
+  // the normal way, mockAppGETs would get declared multiple times (because of the)
+  // concatenate hack we have to do with Karma and Webpack.
+  var mockAppGETs = require('modules/test_util').mockAppGETs;
+}
 
+describe('swarming-index', function() {
   const fetchMock = require('fetch-mock');
 
   beforeEach(function(){
@@ -13,13 +19,7 @@ describe('swarming-index', function() {
 
     // These are the default responses to the expected API calls (aka 'matched').
     // They can be overridden for specific tests, if needed.
-    fetchMock.get('/_ah/api/swarming/v1/server/details', {
-      server_version: '1234-abcdefg',
-      bot_version: 'abcdoeraymeyouandme',
-    });
-
-
-    fetchMock.get('/_ah/api/swarming/v1/server/permissions', {
+    mockAppGETs(fetchMock, {
       get_bootstrap_token: false
     });
 
@@ -112,7 +112,7 @@ describe('swarming-index', function() {
         // overwrite the default fetchMock behaviors to have everything return 403.
         fetchMock.get('/_ah/api/swarming/v1/server/details', 403,
                       { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/server/permissions', 403,
+        fetchMock.get('/_ah/api/swarming/v1/server/permissions', {},
                       { overwriteRoutes: true });
       }
 
@@ -243,25 +243,11 @@ describe('swarming-index', function() {
       });
     });
 
-    it('makes authenticated API calls when a user logs in', function(done) {
+    it('does not request a token when a normal user logs in', function(done) {
       createElement((ele) => {
         userLogsIn(ele, () => {
-          let calls = fetchMock.calls(true, 'GET');
-          expect(calls.length).toBe(2);
-          // calls is an array of 2-length arrays with the first element
-          // being the string of the url and the second element being
-          // the options that were passed in
-          let gets = calls.map((c) => c[0]);
-          expect(gets).toContain('/_ah/api/swarming/v1/server/details');
-          expect(gets).toContain('/_ah/api/swarming/v1/server/permissions');
-
-          // check authorization headers are set
-          calls.forEach((c) => {
-            expect(c[1].headers).toBeDefined();
-            expect(c[1].headers.authorization).toContain('Bearer ');
-          })
-
-          calls = fetchMock.calls(true, 'POST');
+          // swarming-app makes some GETs and swarming-app_test.js tests that.
+          let calls = fetchMock.calls(true, 'POST');
           expect(calls.length).toBe(0);
 
           expectNoUnmatchedCalls();
@@ -270,26 +256,13 @@ describe('swarming-index', function() {
       });
     });
 
-    it('makes more authenticated API calls when an admin logs in', function(done) {
+    it('fetches a token when an admin logs in', function(done) {
       becomeAdmin();
       createElement((ele) => {
         userLogsIn(ele, () => {
-          let calls = fetchMock.calls(true, 'GET');
-          expect(calls.length).toBe(2);
-          // calls is an array of 2-length arrays with the first element
-          // being the string of the url and the second element being
-          // the options that were passed in
-          let gets = calls.map((c) => c[0]);
-          expect(gets).toContain('/_ah/api/swarming/v1/server/details');
-          expect(gets).toContain('/_ah/api/swarming/v1/server/permissions');
+           // swarming-app makes the GETs and swarming-app_test.js tests that.
 
-          // check authorization headers are set
-          calls.forEach((c) => {
-            expect(c[1].headers).toBeDefined();
-            expect(c[1].headers.authorization).toContain('Bearer ');
-          })
-
-          calls = fetchMock.calls(true, 'POST');
+          let calls = fetchMock.calls(true, 'POST');
           let posts = calls.map((c) => c[0]);
           expect(calls.length).toBe(1);
           expect(posts).toContain('/_ah/api/swarming/v1/server/token');
