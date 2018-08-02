@@ -105,6 +105,24 @@
       "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a675b4_5a27e3f6",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1273501
+      },
+      "writtenOn": "2018-08-02T15:44:01Z",
+      "side": 1,
+      "message": "One other thought, as we were discussing, is whether these would display the key as well.  The example leaves that a bit open.  \n\npool:ChromeOS\nrole:precq\n\nFor those dimensions, how would it be displayed?",
+      "parentUuid": "2848d4fb_77f9bb40",
+      "revId": "4e73212da24cddb48c8ae7aefa02ad6fa8e3a340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
