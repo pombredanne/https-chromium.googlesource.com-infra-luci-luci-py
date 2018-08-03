@@ -24,32 +24,38 @@ from server import task_request
 from google.protobuf import text_format
 
 
-TEST_CONFIG = pools_pb2.PoolsCfg(pool=[
-  pools_pb2.Pool(
-    name=['pool_name', 'another_name'],
-    schedulers=pools_pb2.Schedulers(
-      user=['user:a@example.com', 'b@example.com'],
-      group=['group1', 'group2'],
-      trusted_delegation=[
-        pools_pb2.TrustedDelegation(
-          peer_id='delegatee@example.com',
-          require_any_of=pools_pb2.TrustedDelegation.TagList(
-            tag=['k:tag1', 'k:tag2'],
-          ),
+TEST_CONFIG = pools_pb2.PoolsCfg(
+    pool=[
+      pools_pb2.Pool(
+        name=['pool_name', 'another_name'],
+        schedulers=pools_pb2.Schedulers(
+          user=['user:a@example.com', 'b@example.com'],
+          group=['group1', 'group2'],
+          trusted_delegation=[
+            pools_pb2.TrustedDelegation(
+              peer_id='delegatee@example.com',
+              require_any_of=pools_pb2.TrustedDelegation.TagList(
+                tag=['k:tag1', 'k:tag2'],
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-    allowed_service_account=[
-      'a1@example.com',
-      'a2@example.com',
+        allowed_service_account=[
+          'a1@example.com',
+          'a2@example.com',
+        ],
+        allowed_service_account_group=[
+          'accounts_group1',
+          'accounts_group2',
+        ],
+        bot_monitoring='bots',
+      ),
     ],
-    allowed_service_account_group=[
-      'accounts_group1',
-      'accounts_group2',
+    forbid_unknown_pools=True,
+    bot_monitoring=[
+      pools_pb2.BotMonitoring(name='bots', dimension_keys=['os', 'bool']),
     ],
-  ),
-], forbid_unknown_pools=True)
-
+)
 
 class PoolsConfigTest(test_case.TestCase):
   def validator_test(self, cfg, messages):
@@ -91,7 +97,8 @@ class PoolsConfigTest(test_case.TestCase):
         },
         service_accounts=frozenset([u'a2@example.com', u'a1@example.com']),
         service_accounts_groups=(u'accounts_group1', u'accounts_group2'),
-        task_template_deployment=None)
+        task_template_deployment=None,
+        bot_monitoring=None)
     expected2 = expected1._replace(name='another_name')
 
     self.assertEqual(expected1, pools_config.get_pool_config('pool_name'))
@@ -774,6 +781,56 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
           inclusions={'a'}),
       canary_chance=5000,
     ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[1], tmap, dmap))
+
+
+class TestBotMonitoring(TaskTemplateBaseTest):
+  @staticmethod
+  def parse(textpb):
+    return text_format.Merge(textpb, pools_pb2.BotMonitoring())
+
+  def setUp(self):
+    super(TestBotMonitoring, self).setUp()
+    self.ctx = validation.Context.raise_on_error()
+
+  def test_valid_empty(self):
+    bm = self.parse('name: "hi"')
+    actual = pools_config._resolve_bot_monitoring(self.ctx, [bm])
+    self.assertEqual({u'hi': ['pool']}, actual)
+
+  def test_valid_normal(self):
+    bm = self.parse("""
+    name: "hi"
+    dimension_keys: "a"
+    dimension_keys: "z"
+    """)
+    actual = pools_config._resolve_bot_monitoring(self.ctx, [bm])
+    self.assertEqual({u'hi': [u'a', 'pool', u'z']}, actual)
+
+  def test_bad_name(self):
+    bm = self.parse('name: "hi "')
+    with self.assertRaises(ValueError):
+      pools_config._resolve_bot_monitoring(self.ctx, [bm])
+
+  def test_name_missing(self):
+    bm = self.parse('')
+    with self.assertRaises(ValueError):
+      pools_config._resolve_bot_monitoring(self.ctx, [bm])
+
+  def test_bad_dimension_keys(self):
+    bm = self.parse("""
+    name: "hi"
+    dimension_keys: "first "
+    """)
+    with self.assertRaises(ValueError):
+      pools_config._resolve_bot_monitoring(self.ctx, [bm])
+
+  def test_bad_repeated_name(self):
+    bm = [
+      self.parse('name: "hi"'),
+      self.parse('name: "hi"'),
+    ]
+    with self.assertRaises(ValueError):
+      pools_config._resolve_bot_monitoring(self.ctx, bm)
 
 
 if __name__ == '__main__':
