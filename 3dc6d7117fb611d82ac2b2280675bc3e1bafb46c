@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "086827df_6bc0eb35",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-03T18:36:45Z",
+      "side": 1,
+      "message": "Possible rephrase: Each pool above may refer to...",
+      "range": {
+        "startLine": 51,
+        "startChar": 50,
+        "endLine": 52,
+        "endChar": 38
+      },
+      "revId": "3dc6d7117fb611d82ac2b2280675bc3e1bafb46c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b5fe7a3_bb51088a",
         "filename": "appengine/swarming/proto/pools.proto",
         "patchSetId": 5
@@ -13,6 +36,30 @@
       "writtenOn": "2018-08-03T02:49:16Z",
       "side": 1,
       "message": "I have an afterthought, should it be \"dimension_key\" ?",
+      "range": {
+        "startLine": 350,
+        "startChar": 18,
+        "endLine": 350,
+        "endChar": 32
+      },
+      "revId": "3dc6d7117fb611d82ac2b2280675bc3e1bafb46c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bcc21a8_595818df",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-03T18:36:45Z",
+      "side": 1,
+      "message": "Whatever is consistent with the rest of this API is probably best; above we have\n\n  repeated TaskTemplate task_template \u003d 3;\n  repeated TaskTemplateDeployment task_template_deployment \u003d 4;\n  repeated BotMonitoring bot_monitoring \u003d 5;\n\nAll repeated fields with singular names. (But in the tricium config repeated fields have plural names.)",
+      "parentUuid": "9b5fe7a3_bb51088a",
       "range": {
         "startLine": 350,
         "startChar": 18,
