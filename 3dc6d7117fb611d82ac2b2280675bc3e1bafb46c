@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b5fe7a3_bb51088a",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-03T02:49:16Z",
+      "side": 1,
+      "message": "I have an afterthought, should it be \"dimension_key\" ?",
+      "range": {
+        "startLine": 350,
+        "startChar": 18,
+        "endLine": 350,
+        "endChar": 32
+      },
+      "revId": "3dc6d7117fb611d82ac2b2280675bc3e1bafb46c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
