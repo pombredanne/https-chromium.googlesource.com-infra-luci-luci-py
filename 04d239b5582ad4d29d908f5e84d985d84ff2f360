@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d8c84dc_a3c80824",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-03T00:13:15Z",
+      "side": 1,
+      "message": "Could you do log on else?",
+      "revId": "04d239b5582ad4d29d908f5e84d985d84ff2f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
