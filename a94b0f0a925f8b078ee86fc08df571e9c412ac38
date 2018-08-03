@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab582f36_bfda0e60",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-03T19:01:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eacacd84_f351471a",
+      "revId": "a94b0f0a925f8b078ee86fc08df571e9c412ac38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
