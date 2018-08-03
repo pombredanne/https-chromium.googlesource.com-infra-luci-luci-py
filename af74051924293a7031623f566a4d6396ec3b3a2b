@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d4016a3_9676aed6",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-03T02:02:36Z",
+      "side": 1,
+      "message": "please update",
+      "revId": "af74051924293a7031623f566a4d6396ec3b3a2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb4adc39_20f6cfc4",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-03T02:02:36Z",
+      "side": 1,
+      "message": "you have to remove this line, the following replaces this.",
+      "revId": "af74051924293a7031623f566a4d6396ec3b3a2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
