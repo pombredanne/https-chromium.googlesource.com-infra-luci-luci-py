@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccc729e5_20a37c86",
+        "filename": "appengine/gce-backend/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-04T12:44:01Z",
+      "side": 1,
+      "message": "you may also want to confirm that each side is not empty.",
+      "revId": "b79fee1a06fd4230d34145bb7452ed2654afdb66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba4eb2ef_ce250faf",
+        "filename": "appengine/gce-backend/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-04T12:44:01Z",
+      "side": 1,
+      "message": "should",
+      "revId": "b79fee1a06fd4230d34145bb7452ed2654afdb66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
