@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b92e90bd_e0633e98",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page-data.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-06T15:57:37Z",
+      "side": 1,
+      "message": "!\u003d\u003d",
+      "range": {
+        "startLine": 222,
+        "startChar": 34,
+        "endLine": 222,
+        "endChar": 36
+      },
+      "revId": "edb68e368c6d4d6966af535e4b1083a62c2be73a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a78396_c19fac1e",
+        "filename": "appengine/swarming/ui/res/imp/botpage/bot-page-summary.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-06T15:57:37Z",
+      "side": 1,
+      "message": "!\u003d\u003d",
+      "range": {
+        "startLine": 298,
+        "startChar": 29,
+        "endLine": 298,
+        "endChar": 31
+      },
+      "revId": "edb68e368c6d4d6966af535e4b1083a62c2be73a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
