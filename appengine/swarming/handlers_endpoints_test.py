@@ -908,6 +908,17 @@ class TasksApiTest(BaseTest):
         state=swarming_rpcs.TaskStateQuery.COMPLETED_SUCCESS)
     self.call_api('list', body=message_to_dict(request), status=400)
 
+  def test_get_state_ok(self):
+    """Asserts that get_state requests return correct state."""
+    first, second, _, _, _ = self._gen_two_tasks()
+    # Basic request.
+    request = handlers_endpoints.TaskStatesRequest.combined_message_class(
+        task_id=[first['task_id'], second['task_id']])
+    expected = {u'states': [first['state'], second['state']]}
+    actual = self.call_api('get_states', body=message_to_dict(request)).json
+    # Generate the actual expected values by decompressing the data.
+    self.assertEqual(expected, actual)
+
   def test_count_indexes(self):
     # Asserts that no combination crashes.
     _, _, now_120, start, end = self._gen_two_tasks()
