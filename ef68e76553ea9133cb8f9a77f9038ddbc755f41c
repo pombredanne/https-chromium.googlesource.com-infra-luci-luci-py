@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8f28000a_47a80f22",
+        "filename": "appengine/components/components/gitiles.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-08-06T22:42:39Z",
+      "side": 1,
+      "message": "gitiles does not support filtering by prefix \"refs/he\", so supporting a prefix without a slash in the end would be a lie",
+      "parentUuid": "480da6ae_9cb09f60",
+      "range": {
+        "startLine": 409,
+        "startChar": 9,
+        "endLine": 409,
+        "endChar": 33
+      },
+      "revId": "ef68e76553ea9133cb8f9a77f9038ddbc755f41c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccbbacf5_c506b36b",
         "filename": "appengine/components/components/gitiles.py",
         "patchSetId": 2
