@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbffb345_f9e9b464",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-07T02:14:05Z",
+      "side": 1,
+      "message": "I realize in practice we\u0027d want to be to work even for a \u0027user\u0027 account. This requires fetching each request. So for now add a todo:\n\n# TODO(martiniss) users should be able to view their state, albeit this requires looking up each TaskRequest.",
+      "revId": "9762961545ea70b81af9ca89e3f293d2e3811d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b76feb43_6a6e19c2",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-07T02:14:05Z",
+      "side": 1,
+      "message": "You should check one that is completed and one still pending/running.",
+      "revId": "9762961545ea70b81af9ca89e3f293d2e3811d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f483b2d7_cc494b60",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-07T02:14:05Z",
+      "side": 1,
+      "message": "decompressing?",
+      "revId": "9762961545ea70b81af9ca89e3f293d2e3811d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff15e6d_db7e2f94",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-07T02:14:05Z",
+      "side": 1,
+      "message": "Please keep two spaces between file level symbols.",
+      "revId": "9762961545ea70b81af9ca89e3f293d2e3811d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
