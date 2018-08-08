@@ -22,6 +22,30 @@
       "revId": "3bf8541cc0a678854ecf11c8aa30d2f86ef68113",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ff77962_f50e111c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-08T22:26:52Z",
+      "side": 1,
+      "message": "Oh you\u0027re right, fixed.",
+      "parentUuid": "3d5da8f4_799539da",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "3bf8541cc0a678854ecf11c8aa30d2f86ef68113",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

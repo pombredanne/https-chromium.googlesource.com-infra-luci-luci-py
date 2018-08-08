@@ -35,6 +35,24 @@
       "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dbdc95ae_d636f39c",
+        "filename": "appengine/components/components/stats_framework/stats_framework_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-08T22:26:52Z",
+      "side": 1,
+      "message": "I think including the line \"# pylint: disabled\u003d%s\" in the comment would be a good idea.",
+      "parentUuid": "e3afe139_fcfd6215",
+      "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
