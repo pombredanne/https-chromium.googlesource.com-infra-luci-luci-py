@@ -9,6 +9,7 @@ import sys
 import time
 import unittest
 
+# pylint: disable=wrong-import-position
 from test_support import test_env
 test_env.setup_test_env()
 
