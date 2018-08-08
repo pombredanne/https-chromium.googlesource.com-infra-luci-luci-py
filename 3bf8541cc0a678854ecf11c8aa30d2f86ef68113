@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d5da8f4_799539da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-08T21:17:57Z",
+      "side": 1,
+      "message": "Technically, it was a module before, now it\u0027s being moved into a separate directory together with related code. This makes it so that it\u0027s now a Python \"package\", right?",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "3bf8541cc0a678854ecf11c8aa30d2f86ef68113",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
