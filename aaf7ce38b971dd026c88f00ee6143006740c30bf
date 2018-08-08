@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9fd87b8_fbd9f6e3",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-08T01:41:47Z",
+      "side": 1,
+      "message": "Normally I\u0027d ask for a docstring but I don\u0027t know what to write here. \u003cshrug\u003e",
+      "revId": "aaf7ce38b971dd026c88f00ee6143006740c30bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

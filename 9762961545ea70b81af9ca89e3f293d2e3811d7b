@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "efa3d0bb_9ad38052",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-08T01:41:47Z",
+      "side": 1,
+      "message": "Yes, I mean the test cause to properly exercise the code would be nicer if there were a task (possibly a third one, I don\u0027t mind) that is still pending.",
+      "parentUuid": "9fee3303_9538294a",
+      "revId": "9762961545ea70b81af9ca89e3f293d2e3811d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f483b2d7_cc494b60",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 11
