@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4aadfd93_d3bbc5a5",
+        "filename": "appengine/components/components/stats_framework/stats_framework_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-08T17:50:07Z",
+      "side": 1,
+      "message": "One thing annoying here is that the pylint category is not selectable, which makes it harder to disable in the source.",
+      "parentUuid": "318b97a1_12762f3d",
+      "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

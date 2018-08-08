@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b4cf27e_b59b9510",
+        "filename": "appengine/components/components/stats_framework/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-08T17:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fd226a1_cf47c303",
+      "revId": "41655faa01d9ca71ba846b5098d1cbbb0de6a72e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
