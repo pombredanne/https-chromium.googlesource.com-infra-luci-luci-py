@@ -17,6 +17,24 @@
       "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3afe139_fcfd6215",
+        "filename": "appengine/components/components/stats_framework/stats_framework_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-08T21:45:34Z",
+      "side": 1,
+      "message": "Hm, that could potentially be changed in PolyGerrit (so that the \"robot ID\" is selectable).\n\nAnother option may be to include the Pylint symbolic name (\"ungrouped-imports\") it in the message body... possibly with a link to more details?",
+      "parentUuid": "4aadfd93_d3bbc5a5",
+      "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
