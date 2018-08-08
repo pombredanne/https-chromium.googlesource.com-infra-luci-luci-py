@@ -15,7 +15,10 @@ from components import stats_framework
 from components import utils
 
 
-class RequestLog(object):
+## Private code.
+
+
+class _RequestLog(object):
   """Simple mock of logservice.RequestLog."""
   def __init__(self):
     self.status = 200
@@ -25,7 +28,7 @@ class RequestLog(object):
     self.finished = True
 
 
-def configure(test):
+def _configure(test):
   """Mocks add_entry/_yield_logs until we figure out how to use
   init_logservice_stub() successfully.
   """
@@ -38,7 +41,7 @@ def configure(test):
             message=stats_framework.PREFIX + message))
 
   def _do_request(req, *args, **kwargs):
-    entry = RequestLog()
+    entry = _RequestLog()
     _request_logs.append(entry)
     response = None
     try:
@@ -50,7 +53,7 @@ def configure(test):
       entry.end_time = utils.time_time()
 
   def _yield_logs(_start_time, _end_time):
-    """Returns fake RequestLog entities.
+    """Returns fake _RequestLog entities.
 
     Ignore start_time and end_time, it's assumed the caller will filter them
     again.
@@ -61,6 +64,9 @@ def configure(test):
   test.mock(stats_framework, 'add_entry', _add_entry)
   test.mock(stats_framework, '_yield_logs', _yield_logs)
   _old_request = test.mock(webtest.TestApp, 'do_request', _do_request)
+
+
+## Public code.
 
 
 def reset_timestamp(handler, timestamp):
@@ -78,4 +84,4 @@ def reset_timestamp(handler, timestamp):
 
 class MockMixIn:
   def configure(self):
-    configure(self)
+    _configure(self)
