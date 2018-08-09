@@ -53,6 +53,24 @@
       "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9d4ccf_be46e690",
+        "filename": "appengine/components/components/stats_framework/stats_framework_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-09T17:18:38Z",
+      "side": 1,
+      "message": "I\u0027m hesitant about that, since it would make each comment longer and more verbose; hopefully in the vast majority of cases, people don\u0027t want to disable the warning, since hopefully we\u0027re only producing warnings that everyone agrees should be there. This would make this comment look like:\n\n\n    Imports from package test_support are not grouped.\n    To disable, add: # pylint: disable\u003dungrouped-imports\n\n    Run ID: 5115028789264384\n\nIf you don\u0027t think it\u0027s too verbose though, this should be a simple change to make, so we could try it out?",
+      "parentUuid": "dbdc95ae_d636f39c",
+      "revId": "bce98d3af6665699436e0a3ce4bcf46bd7ea933f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
