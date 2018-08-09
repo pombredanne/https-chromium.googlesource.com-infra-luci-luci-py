@@ -38,7 +38,8 @@ GLOBAL_METRICS = {
     'instances': gae_ts_mon.GaugeMetric(
         'machine_provider/gce_backend/instances',
         'Current count of the number of instances.',
-        [gae_ts_mon.StringField('instance_template')]
+        [gae_ts_mon.StringField('instance_template'),
+         gae_ts_mon.BooleanField('drained')]
     ),
 }
 
@@ -77,11 +78,21 @@ def compute_global_metrics(): # pragma: no cover
         target_fields=GLOBAL_TARGET_FIELDS,
     )
 
-  for name, count in instance_group_managers.count_instances().iteritems():
-    logging.info('%s: %s', name, count)
+  for name, counts in instance_group_managers.count_instances().iteritems():
+    logging.info('%s active: %s', name, counts[0])
     GLOBAL_METRICS['instances'].set(
-        count,
+        counts[0],
         fields={
+            'drained': False,
+            'instance_template': name,
+        },
+        target_fields=GLOBAL_TARGET_FIELDS,
+    )
+    logging.info('%s drained: %s', name, counts[1])
+    GLOBAL_METRICS['instances'].set(
+        counts[1],
+        fields={
+            'drained': True,
             'instance_template': name,
         },
         target_fields=GLOBAL_TARGET_FIELDS,
