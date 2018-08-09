@@ -14,7 +14,8 @@ import webapp2
 import webtest
 
 from components import stats_framework
-from test_support import stats_framework_mock
+from components.stats_framework import stats_logs
+from test_support import stats_framework_logs_mock
 from test_support import test_case
 
 import stats
@@ -69,15 +70,15 @@ class StatsTest(test_case.TestCase):
     self.app = webtest.TestApp(
         webapp2.WSGIApplication(fake_routes, debug=True),
         extra_environ={'REMOTE_ADDR': 'fake-ip'})
-    stats_framework_mock.configure(self)
+    stats_framework_logs_mock.configure(self)
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now, 0)
 
   def _test_handler(self, url, added_data):
-    stats_framework_mock.reset_timestamp(stats.STATS_HANDLER, self.now)
+    stats_framework_logs_mock.reset_timestamp(stats.STATS_HANDLER, self.now)
 
     self.assertEqual('Yay', self.app.get(url).body)
-    self.assertEqual(1, len(list(stats_framework.yield_entries(None, None))))
+    self.assertEqual(1, len(list(stats_logs.yield_entries(None, None))))
 
     self.mock_now(self.now, 60)
     self.assertEqual(10, stats.generate_stats())
