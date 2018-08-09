@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa44f5b5_2ff9d1cd",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-09T21:51:18Z",
+      "side": 1,
+      "message": "Unrelated to this CL: whitespace",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 350,
+        "endChar": 5
+      },
+      "revId": "4334fe3cf52c0d77e7fb460644a82a6fb5fa2268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aabee86_a5fde46a",
+        "filename": "client/utils/lru.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-09T21:51:18Z",
+      "side": 1,
+      "message": "Python question: If we changed this to:\n\n  @staticmethod\n  def time_fn():\n    return round(time.time())\n\nIt could still be overridden in individual LRUDict instances, right?\nIf so, but the 3-line version seems easier to read to me.",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 52
+      },
+      "revId": "4334fe3cf52c0d77e7fb460644a82a6fb5fa2268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
