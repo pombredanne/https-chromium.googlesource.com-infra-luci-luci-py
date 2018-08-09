@@ -23,7 +23,7 @@ class LRUDict(object):
 
   # Used to determine current timestamp.
   # Can be substituted in individual LRUDict instances.
-  time_fn = time.time
+  time_fn = staticmethod(lambda: round(time.time()))
 
   def __init__(self):
     # Ordered key -> (value, timestamp) mapping,
