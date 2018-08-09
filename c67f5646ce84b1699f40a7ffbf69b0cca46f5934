@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "35df9f28_a46e0dd8",
+        "filename": "appengine/gce-backend/instance_group_managers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-09T23:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dddc223_993a3b8c",
+      "range": {
+        "startLine": 419,
+        "startChar": 35,
+        "endLine": 419,
+        "endChar": 36
+      },
+      "revId": "c67f5646ce84b1699f40a7ffbf69b0cca46f5934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bfe554d_8ff40304",
         "filename": "appengine/gce-backend/metrics.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c67f5646ce84b1699f40a7ffbf69b0cca46f5934",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c8b64b9_5088c07b",
+        "filename": "appengine/gce-backend/metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-09T23:09:15Z",
+      "side": 1,
+      "message": "Verified",
+      "parentUuid": "3bfe554d_8ff40304",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 18
+      },
+      "revId": "c67f5646ce84b1699f40a7ffbf69b0cca46f5934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
