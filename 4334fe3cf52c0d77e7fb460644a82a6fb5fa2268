@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bbbb9fab_942a5418",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-10T01:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa44f5b5_2ff9d1cd",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 350,
+        "endChar": 5
+      },
+      "revId": "4334fe3cf52c0d77e7fb460644a82a6fb5fa2268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8aabee86_a5fde46a",
         "filename": "client/utils/lru.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "4334fe3cf52c0d77e7fb460644a82a6fb5fa2268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6018885b_0e0b6b1f",
+        "filename": "client/utils/lru.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-10T01:53:31Z",
+      "side": 1,
+      "message": "Done. It also enables a more proper docstring.",
+      "parentUuid": "8aabee86_a5fde46a",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 52
+      },
+      "revId": "4334fe3cf52c0d77e7fb460644a82a6fb5fa2268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
