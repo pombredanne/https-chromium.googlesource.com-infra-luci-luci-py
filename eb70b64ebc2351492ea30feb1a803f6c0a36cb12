@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ea7a31f_a473ac31",
+        "filename": "appengine/machine_provider/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-10T21:44:05Z",
+      "side": 1,
+      "message": "I don\u0027t think this is right, metrics, like config and handlers_*, is an import from this directory. It should be sorted with respect to imports in this directory.",
+      "parentUuid": "7b755d90_f7103bdf",
+      "revId": "eb70b64ebc2351492ea30feb1a803f6c0a36cb12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e87b53a3_a5ae740a",
+        "filename": "appengine/machine_provider/metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-10T21:44:05Z",
+      "side": 1,
+      "message": "This is the style used elsewhere for queries.",
+      "parentUuid": "6a26bfe4_ed2e80f7",
+      "revId": "eb70b64ebc2351492ea30feb1a803f6c0a36cb12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
