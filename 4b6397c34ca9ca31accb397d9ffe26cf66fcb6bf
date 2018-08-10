@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a9e7e2a4_456727a0",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-10T21:36:22Z",
+      "side": 1,
+      "message": "Most of the other transactions have logging like this to indicate why they aborted. I\u0027ll keep it for now.",
+      "parentUuid": "25a2b99b_c52e44e5",
+      "revId": "4b6397c34ca9ca31accb397d9ffe26cf66fcb6bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd3ae6a9_343625d7",
         "filename": "appengine/machine_provider/handlers_cron.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-10T01:49:15Z",
       "side": 1,
       "message": "Can you add a comment why 4 hours? Mainly why not less or more.",
+      "revId": "4b6397c34ca9ca31accb397d9ffe26cf66fcb6bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "257ee401_0ea19bc4",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-10T21:36:22Z",
+      "side": 1,
+      "message": "Added comment explaining the theory, but the exact choice here is somewhat arbitrary. I picked 4 hours after looking at the lease fulfillment time graph, but the lease fulfillment time currently includes the situation where Swarming over-requests (due to config mismatch) and MP exhausts all its machines fulfilling \u003c 100% of Swarming\u0027s requests which causes lingering requests that can\u0027t be fulfilled until Swarming returns some of its machines. The fact that this situation can occur means leases sometimes take many hours to be fulfilled. Once we start actually denying requests I can see what a more reasonable (smaller) number is.",
+      "parentUuid": "cd3ae6a9_343625d7",
       "revId": "4b6397c34ca9ca31accb397d9ffe26cf66fcb6bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
