@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a4dac617_872c1fa0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-11T01:23:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b1c3ed5_40b8a56c",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "7448c0d5a60ef70cbbdc32858c5f9147dd629128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53875956_4f7080b3",
         "filename": "appengine/components/components/stats_framework/stats_logs.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-09T21:36:01Z",
       "side": 1,
       "message": "]",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 62
+      },
+      "revId": "7448c0d5a60ef70cbbdc32858c5f9147dd629128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4eafd11_9dade0a4",
+        "filename": "appengine/components/components/stats_framework/stats_logs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-11T01:23:20Z",
+      "side": 1,
+      "message": "Oh this is intentional to mean that end_time is excluded from the interval.",
+      "parentUuid": "53875956_4f7080b3",
       "range": {
         "startLine": 59,
         "startChar": 61,
