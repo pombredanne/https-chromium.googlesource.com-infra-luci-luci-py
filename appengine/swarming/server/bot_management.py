@@ -608,3 +608,8 @@ def cron_delete_old_bot_events():
     pass
   finally:
     logging.info('Deleted %d entities', count)
+
+
+def cron_bot_monitor():
+  """Generates monitoring events."""
+  pass
