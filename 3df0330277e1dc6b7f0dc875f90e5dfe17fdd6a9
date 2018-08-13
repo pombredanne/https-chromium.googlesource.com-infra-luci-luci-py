@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9354cee_c60f7600",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-13T20:44:36Z",
+      "side": 1,
+      "message": "i.e.",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "181b05f7_498081fb",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-13T20:44:36Z",
+      "side": 1,
+      "message": "My interpretation of this is that the named cache size hint should be updated when:\n\n (1) it has expired (it\u0027s more than a day old), or\n (2) the size was too small, it needs to be increased\n\nSo the pool size can be grown if necessary within a 24 hour period, but will only maybe be decreased at most once every 24 hours.\n\n(If that sounds correct, the docstring could optionally be updated.)",
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15aa9b75_75376223",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-13T20:44:36Z",
+      "side": 1,
+      "message": "Is this an error/warning case?",
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6f91953_954fab75",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-13T20:44:36Z",
+      "side": 1,
+      "message": "Optional: Might it be potentially neater if the inside of the loop were extracted to a separate function?",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 41
+      },
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
