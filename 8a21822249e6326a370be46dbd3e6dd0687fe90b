@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "963e91b6_fd1aaaca",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-13T20:13:02Z",
+      "side": 1,
+      "message": "Unrelated to this CL: Is this ready to remove?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 13
+      },
+      "revId": "8a21822249e6326a370be46dbd3e6dd0687fe90b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb0f8f40_e1302d0a",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-13T20:13:02Z",
+      "side": 1,
+      "message": "The docs say \"If specified *with* task_retry_limit, App Engine retries the task until both limits are reached.\" My interpretation of that is: If only task_age_limit is specified, then reaching task_age_limit is sufficient to stop retrying?\n\nhttps://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters\n\nAlthough if both always need to be specified, then my earlier change to set just a retry limit for tricium was incorrect. Since I made that change, I haven\u0027t seen any tasks with \u003e10 retries, although it could just be luck.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "8a21822249e6326a370be46dbd3e6dd0687fe90b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
