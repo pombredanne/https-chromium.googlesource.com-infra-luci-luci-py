@@ -585,12 +585,18 @@ class BotPollHandler(_BotBaseHandler):
   def _cmd_run(self, request, secret_bytes, run_result, bot_id, bot_group_cfg):
     logging.info('Run: %s', request.task_id)
     props = request.task_slice(run_result.current_task_slice).properties
+
+    caches = [c.to_dict() for c in props.caches]
+    names = [c.name for c in props.caches]
+    for i, hint in enumerate(named_caches.get_hints(names)):
+      caches[i]['hint'] = hint
+
     out = {
       'cmd': 'run',
       'manifest': {
         'bot_id': bot_id,
         'bot_authenticated_as': auth.get_peer_identity().to_bytes(),
-        'caches': [c.to_dict() for c in props.caches],
+        'caches': caches,
         'cipd_input': {
           'client_package': props.cipd_input.client_package.to_dict(),
           'packages': [p.to_dict() for p in props.cipd_input.packages],
