@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dab7f6b5_c0f2a79a",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-13T21:44:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9354cee_c60f7600",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "181b05f7_498081fb",
         "filename": "appengine/swarming/server/named_caches.py",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2018-08-13T20:44:36Z",
       "side": 1,
       "message": "My interpretation of this is that the named cache size hint should be updated when:\n\n (1) it has expired (it\u0027s more than a day old), or\n (2) the size was too small, it needs to be increased\n\nSo the pool size can be grown if necessary within a 24 hour period, but will only maybe be decreased at most once every 24 hours.\n\n(If that sounds correct, the docstring could optionally be updated.)",
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ead7d5d6_62b9230f",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-13T21:44:39Z",
+      "side": 1,
+      "message": "Yes. Done.",
+      "parentUuid": "181b05f7_498081fb",
       "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "d57ec8b2_61c2b5b1",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-13T21:44:39Z",
+      "side": 1,
+      "message": "Yes, I just want to have the code not crash, but I didn\u0027t want to make this code too fancy as I think I\u0027ll switch to a more structured thing later.",
+      "parentUuid": "15aa9b75_75376223",
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6f91953_954fab75",
         "filename": "appengine/swarming/server/named_caches.py",
         "patchSetId": 2
@@ -70,6 +130,30 @@
       "writtenOn": "2018-08-13T20:44:36Z",
       "side": 1,
       "message": "Optional: Might it be potentially neater if the inside of the loop were extracted to a separate function?",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 41
+      },
+      "revId": "3df0330277e1dc6b7f0dc875f90e5dfe17fdd6a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1e30bed_16d7f010",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-13T21:44:39Z",
+      "side": 1,
+      "message": "As commented above, this will be refactored later with structured data, hence the TODO at line 116.",
+      "parentUuid": "b6f91953_954fab75",
       "range": {
         "startLine": 113,
         "startChar": 0,
