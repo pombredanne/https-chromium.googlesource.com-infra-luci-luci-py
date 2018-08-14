@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f3d9c23_8b2f3b1c",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-14T17:22:03Z",
+      "side": 1,
+      "message": "What does this input look like? Is this from the \"os\" dimension? It seems like the os dimension is often something like \"Windows-10-15063\", or \"Debian-9.4\", or \"Mac-10.13.5\" (for Tricium it\u0027s \"Ubuntu\").",
+      "range": {
+        "startLine": 103,
+        "startChar": 17,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "939d2f96_5aff848c",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-14T17:22:03Z",
+      "side": 1,
+      "message": "Optional: Could also be phrased as: # TODO(maruel): Revisit if ...",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 29
+      },
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af099dfd_f87d9a27",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-14T17:22:03Z",
+      "side": 1,
+      "message": "Just a question: Is this so that we return some consistent os string regardless of order? So min() would be just as good, and oses[0] or oses[-1] would also work generally?",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 12
+      },
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee921865_a2a978fd",
+        "filename": "appengine/swarming/server/named_caches_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-14T17:22:03Z",
+      "side": 1,
+      "message": "This could be clarified; Mac\u0027s size hint is used because it\u0027s the biggest size hint for other OSes; if there was something like `_bot_event(\u0027first2\u0027, \u0027first\u0027, {\u0027build\u0027: 95000}, [\u0027Android\u0027])`, then Mac would still be used.",
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
