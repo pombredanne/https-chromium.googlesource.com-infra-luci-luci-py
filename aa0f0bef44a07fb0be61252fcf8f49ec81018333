@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fdf68aa9_76bdbe91",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-14T17:32:05Z",
+      "side": 1,
+      "message": "That\u0027s the dimension from the bot, so it has the full list.",
+      "parentUuid": "6f3d9c23_8b2f3b1c",
+      "range": {
+        "startLine": 103,
+        "startChar": 17,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "939d2f96_5aff848c",
         "filename": "appengine/swarming/server/named_caches.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-14T17:22:03Z",
       "side": 1,
       "message": "Optional: Could also be phrased as: # TODO(maruel): Revisit if ...",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 29
+      },
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24a02f2d_60489b4b",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-14T17:32:05Z",
+      "side": 1,
+      "message": "Done but kept adhoc :)",
+      "parentUuid": "939d2f96_5aff848c",
       "range": {
         "startLine": 108,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "416acf4a_e0d2d011",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-14T17:32:05Z",
+      "side": 1,
+      "message": "Good point, changed.",
+      "parentUuid": "af099dfd_f87d9a27",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 12
+      },
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee921865_a2a978fd",
         "filename": "appengine/swarming/server/named_caches_test.py",
         "patchSetId": 3
@@ -82,6 +154,24 @@
       "writtenOn": "2018-08-14T17:22:03Z",
       "side": 1,
       "message": "This could be clarified; Mac\u0027s size hint is used because it\u0027s the biggest size hint for other OSes; if there was something like `_bot_event(\u0027first2\u0027, \u0027first\u0027, {\u0027build\u0027: 95000}, [\u0027Android\u0027])`, then Mac would still be used.",
+      "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a76995f_c21fefae",
+        "filename": "appengine/swarming/server/named_caches_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-14T17:32:05Z",
+      "side": 1,
+      "message": "Good point, done.",
+      "parentUuid": "ee921865_a2a978fd",
       "revId": "aa0f0bef44a07fb0be61252fcf8f49ec81018333",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
