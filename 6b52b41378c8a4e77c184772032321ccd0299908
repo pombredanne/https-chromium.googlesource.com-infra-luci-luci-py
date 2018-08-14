@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bc90126_bd293027",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-14T23:11:13Z",
+      "side": 0,
+      "message": "Something\u0027s wrong if this fires. if machine_lease.connection_ts, then not only has the VM been leased, but we\u0027ve asked it to connect. If the VM\u0027s been leased then we must know how long it\u0027s been leased for, either indefinitely, or until lease_expiration_ts.\n\nCreated https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1175239 to address race condition putting MachineLeases in this weird state. After that we\u0027ll need to revert, because the behavior needs to match the assertion.",
+      "revId": "6b52b41378c8a4e77c184772032321ccd0299908",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
