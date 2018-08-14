@@ -289,7 +289,8 @@ def gen_expected(**kwargs):
       u'pool:default',
       u'priority:200',
       u'service_account:none',
-      u'swarming.pool.template:no_config',
+      u'swarming.pool.template:none',
+      u'swarming.pool.version:pools_cfg_rev',
       u'user:joe@localhost',
     ],
     u'try_number': 1,
@@ -1009,7 +1010,8 @@ class Test(unittest.TestCase):
           u'pool:default',
           u'priority:40',
           u'service_account:none',
-          u'swarming.pool.template:no_config',
+          u'swarming.pool.template:none',
+          u'swarming.pool.version:pools_cfg_rev',
           u'user:None',
         ],
         user=u'')
@@ -1071,7 +1073,8 @@ class Test(unittest.TestCase):
           u'pool:default',
           u'priority:40',
           u'service_account:none',
-          u'swarming.pool.template:no_config',
+          u'swarming.pool.template:none',
+          u'swarming.pool.version:pools_cfg_rev',
           u'user:None',
         ],
         user=u'')
@@ -1140,8 +1143,12 @@ class Test(unittest.TestCase):
     # Ensure the initial wait task is completed.
     actual_summary, actual_files = self.client.task_collect(wait_task_id)
     tags = [
-      u'pool:default', u'priority:20', u'service_account:none',
-      u'swarming.pool.template:no_config', u'user:joe@localhost',
+      u'pool:default',
+      u'priority:20',
+      u'service_account:none',
+      u'swarming.pool.template:none',
+      u'swarming.pool.version:pools_cfg_rev',
+      u'user:joe@localhost',
     ]
     self.assertResults(
         self.gen_expected(
