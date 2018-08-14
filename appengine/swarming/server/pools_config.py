@@ -9,6 +9,7 @@ used primarily by task_scheduler.check_schedule_request_acl.
 """
 
 import collections
+import logging
 import random
 
 from components import auth
@@ -320,16 +321,9 @@ def get_pool_config(pool_name):
   return _fetch_pools_config().pools.get(pool_name)
 
 
-def forbid_unknown_pools():
-  """Returns True if the configuration forbids task in unknown pools.
-
-  Unknown pools are pools that are not defined in pools.cfg.
-
-  On a server without pools.cfg file, forbid_unknown_pools() returns False, to
-  be backward compatible with simple Swarming deployments that don't do pool
-  isolation.
-  """
-  return _fetch_pools_config().forbid_unknown_pools
+def known():
+  """Returns the list of all pool names."""
+  return sorted(_fetch_pools_config().pools)
 
 
 def known():
@@ -343,7 +337,6 @@ def known():
 # Parsed representation of pools.cfg ready for queries.
 _PoolsCfg = collections.namedtuple('_PoolsCfg', [
   'pools',                 # dict {pool name => PoolConfig tuple}
-  'forbid_unknown_pools',  # boolean, taken directly from the proto message
 ])
 
 
@@ -453,7 +446,8 @@ def _fetch_pools_config():
   rev, cfg = config.get_self_config(
       POOLS_CFG_FILENAME, pools_pb2.PoolsCfg, store_last_good=True)
   if not cfg:
-    return _PoolsCfg({}, False)
+    logging.warning('Ther is no pools.cfg, no task is accepted')
+    return _PoolsCfg({})
 
   # The config is already validated at this point.
 
@@ -482,7 +476,7 @@ def _fetch_pools_config():
           task_template_deployment=_resolve_deployment(
               ctx, msg, template_map, deployment_map),
           bot_monitoring=bot_monitorings.get(name))
-  return _PoolsCfg(pools, cfg.forbid_unknown_pools)
+  return _PoolsCfg(pools)
 
 
 @validation.self_rule(POOLS_CFG_FILENAME, pools_pb2.PoolsCfg)
