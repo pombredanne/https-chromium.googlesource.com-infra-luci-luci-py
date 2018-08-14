@@ -22,6 +22,30 @@
       "revId": "02bda41202b3c52c2601516f13d4a3fb3c75dce6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca4f907_6af7f5fe",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-14T21:06:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20f313fe_720e401a",
+      "range": {
+        "startLine": 339,
+        "startChar": 10,
+        "endLine": 339,
+        "endChar": 27
+      },
+      "revId": "02bda41202b3c52c2601516f13d4a3fb3c75dce6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
