@@ -775,9 +775,22 @@ def associate_bot_id(key, bot_id):
     logging.error('MachineLease does not exist\nKey: %s', key)
     return
 
-  if machine_lease.bot_id == bot_id:
+  if bot_id != machine_lease.hostname:
+    logging.error(
+        'MachineLease bot ID/hostname mismatch\nExpected: %s\nActual: %s',
+        bot_id, machine_lease.hostname)
     return
 
+  if machine_lease.bot_id and bot_id != machine_lease.bot_id:
+    logging.error(
+        'MachineLease bot ID mismatch\nExpected: %s\nActual: %s',
+        bot_id, machine_lease.bot_id)
+    return
+
+  if machine_lease.bot_id == machine_lease.hostname:
+    return
+
+  assert not machine_lease.bot_id, machine_lease
   machine_lease.bot_id = bot_id
   machine_lease.put()
 
@@ -861,6 +874,11 @@ def associate_instruction_ts(key, instruction_ts):
     logging.error('MachineLease does not exist\nKey: %s', key)
     return
 
+  if not machine_lease.bot_id:
+    logging.error(
+        'MachineLease has instruction but no bot ID:\n%s', machine_lease)
+    return
+
   if machine_lease.instruction_ts:
     return
 
@@ -874,6 +892,7 @@ def send_connection_instruction(machine_lease):
   Args:
     machine_lease: MachineLease instance.
   """
+  assert machine_lease.bot_id, machine_lease
   now = utils.utcnow()
   response = machine_provider.instruct_machine(
       machine_lease.client_request_id,
@@ -938,7 +957,8 @@ def check_for_connection(machine_lease):
   Args:
     machine_lease: MachineLease instance.
   """
-  assert machine_lease.instruction_ts
+  assert machine_lease.bot_id, machine_lease
+  assert machine_lease.instruction_ts, machine_lease
 
   # Technically this query is wrong because it looks at events in reverse
   # chronological order. The connection time we find here is actually the
