@@ -216,7 +216,7 @@ def cron_update_named_caches():
     if not utils.enqueue_task(
         '/internal/taskqueue/update_named_cache',
         'named-cache-task',
-        params={'pool': pool},
+        params=json.dumps({'pool': pool}),
     ):
       logging.error('Failed to enqueue task for pool %s', pool)
     else:
