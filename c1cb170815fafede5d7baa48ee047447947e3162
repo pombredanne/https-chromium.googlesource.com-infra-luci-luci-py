@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e9c9385_74c7fc30",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-16T00:58:58Z",
+      "side": 1,
+      "message": "Is that an error? I mean, this generates an error log, so this means this has to be handled.\n\nCould the message hint for what should be done, or what happened?",
+      "revId": "c1cb170815fafede5d7baa48ee047447947e3162",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
