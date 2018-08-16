@@ -16,6 +16,24 @@
       "revId": "c1cb170815fafede5d7baa48ee047447947e3162",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfbe8fdd_fe2faf39",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-16T01:34:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e9c9385_74c7fc30",
+      "revId": "c1cb170815fafede5d7baa48ee047447947e3162",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
