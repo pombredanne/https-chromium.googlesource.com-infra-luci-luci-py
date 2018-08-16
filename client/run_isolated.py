@@ -27,7 +27,7 @@ state of the host to tasks. It is written to by the swarming bot's
 on_before_task() hook in the swarming server's custom bot_config.py.
 """
 
-__version__ = '0.10.5'
+__version__ = '0.11.0'
 
 import argparse
 import base64
@@ -1119,9 +1119,9 @@ def create_option_parser():
       '--named-cache',
       dest='named_caches',
       action='append',
-      nargs=2,
+      nargs=3,
       default=[],
-      help='A named cache to request. Accepts two arguments, name and path. '
+      help='A named cache to request. Accepts 3 arguments: name, path, hint. '
            'name identifies the cache, must match regex [a-z0-9_]{1,4096}. '
            'path is a path relative to the run dir where the cache directory '
            'must be put to. '
@@ -1151,12 +1151,16 @@ def process_named_cache_options(parser, options, time_fn=None):
   """Validates named cache options and returns a CacheManager."""
   if options.named_caches and not options.named_cache_root:
     parser.error('--named-cache is specified, but --named-cache-root is empty')
-  for name, path in options.named_caches:
+  for name, path, hint in options.named_caches:
     if not CACHE_NAME_RE.match(name):
       parser.error(
           'cache name %r does not match %r' % (name, CACHE_NAME_RE.pattern))
     if not path:
       parser.error('cache path cannot be empty')
+    try:
+      int(hint)
+    except ValueError:
+      parser.error('cache hint must be a number')
   if options.named_cache_root:
     # Make these configurable later if there is use case but for now it's fairly
     # safe values.
@@ -1299,10 +1303,21 @@ def main(args):
     assert unicode(run_dir), repr(run_dir)
     assert os.path.isabs(run_dir), run_dir
     caches = [
-      (os.path.join(run_dir, unicode(relpath)), name)
-      for name, relpath in options.named_caches
+      (os.path.join(run_dir, unicode(relpath)), name, hint)
+      for name, relpath, hint in options.named_caches
     ]
-    for path, name in caches:
+
+    # Calculate the hints of the missing named caches.
+    present = named_cache.available
+    size = 0
+    for _, name, hint in caches:
+      if name not in present:
+        size += long(hint)
+    if size:
+      logging.info('Adding %d more free space bytes', size)
+      #free_space()
+
+    for path, name, _ in caches:
       named_cache.install(path, name)
     try:
       yield
@@ -1313,7 +1328,7 @@ def main(args):
       #
       # If the Swarming bot cannot clean up the cache, it will handle it like
       # any other bot file that could not be removed.
-      for path, name in reversed(caches):
+      for path, name, _ in reversed(caches):
         try:
           # uninstall() doesn't trim but does call save() implicitly. Trimming
           # *must* be done manually via periodic 'run_isolated.py --clean'.
