@@ -1270,12 +1270,11 @@ def main(args):
   # --clean after each task.
   if hint:
     logging.info('Additional trimming of %d bytes', hint)
-    # TODO(maruel): https://crbug.com/873736
-    #local_caching.trim_caches(
-    #    caches,
-    #    root,
-    #    min_free_space=options.min_free_space,
-    #    max_age_secs=MAX_AGE_SECS)
+    local_caching.trim_caches(
+        caches,
+        root,
+        min_free_space=options.min_free_space,
+        max_age_secs=MAX_AGE_SECS)
 
   if not options.isolated and not args:
     parser.error('--isolated or command to run is required.')
