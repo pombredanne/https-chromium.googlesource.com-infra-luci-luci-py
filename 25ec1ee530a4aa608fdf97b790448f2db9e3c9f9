@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "454295c7_5623d916",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-16T17:15:39Z",
+      "side": 1,
+      "message": "Commented out the behavior change, so that the behavior change can be moved in a separate CL.",
+      "range": {
+        "startLine": 1274,
+        "startChar": 5,
+        "endLine": 1274,
+        "endChar": 6
+      },
+      "revId": "25ec1ee530a4aa608fdf97b790448f2db9e3c9f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
