@@ -251,6 +251,30 @@
     },
     {
       "key": {
+        "uuid": "3702ecff_ca6382c6",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T01:41:30Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t like helper functions in tests, I find it makes tests harder to read\n\nI know :) but disagree in this test case. So far, it\u0027s matter of opinion.\nBut, what you didn\u0027t address my brittleness argument. It\u0027s not about required fields in model, but fields required to make snapshots.fetch(key) work. In other words, it is important that this test and and the test below use exact same fields. Copy-pasta today doesn\u0027t ensure this in the future. A helper method / common const does.",
+      "parentUuid": "1cf24691_175264e5",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 11
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "826038a7_6b36109c",
         "filename": "appengine/gce-backend/snapshots_test.py",
         "patchSetId": 1
