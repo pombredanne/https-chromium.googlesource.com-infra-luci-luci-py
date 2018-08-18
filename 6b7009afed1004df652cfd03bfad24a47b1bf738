@@ -1,0 +1,109 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e02da5e_6fcbf215",
+        "filename": "appengine/gce-backend/snapshots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T00:54:25Z",
+      "side": 1,
+      "message": "\u003e Either all return statements in a function should return an expression, or none of them should..\n\u003e To disable, add: # pylint: disable\u003dinconsistent-return-statements\n\nPlease Fix",
+      "parentUuid": "e014882a_39a61c6f",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1db52b12_89d405ca",
+        "filename": "appengine/gce-backend/snapshots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T00:54:25Z",
+      "side": 1,
+      "message": "remove.",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4a4eadb_158fb5be",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T00:54:25Z",
+      "side": 1,
+      "message": "\u003e Import \"from google.appengine.ext import ndb\" should be placed at the top of the module.\n\u003e To disable, add: # pylint: disable\u003dwrong-import-position\n\nmaybe add the disabling directive?",
+      "parentUuid": "1856bf3f_91513fd8",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1bae784_87cf58a4",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T00:54:25Z",
+      "side": 1,
+      "message": "(i\u0027m not frequent reviewer in this repo) why not use mock library here?\nmock.patch(..., autospec\u003dTrue, return_value\u003dTrue).start()\nwould actually be a better test.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 0
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfcb7d27_ad796526",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T00:54:25Z",
+      "side": 1,
+      "message": "this test is actually a bit brittle: if after refactoring one required arg is missing here, this test will not be useful.\nFrom my PoV, having a helper func like `insertValidInstanceTemplateRevision` would be better:\n  * this test gets easier to read and cheaper to maintain, `key \u003d insertValidInstanceTemplateRevision()`\n  * insertValidInstanceTemplateRevision is then also used in a test below, which ensures that it\u0027s in fact valid, and stuff works with it.\n\n(somewhat related to recent Go test verbosity discussion)",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 11
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
