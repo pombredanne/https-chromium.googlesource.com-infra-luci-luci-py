@@ -275,6 +275,30 @@
     },
     {
       "key": {
+        "uuid": "b9f405df_af600d28",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T02:00:07Z",
+      "side": 1,
+      "message": "So there should be a helper which explicitly requires every argument used by snapshots.fetch and doesn\u0027t default any of them. Then changing the arguments required to make snapshots.fetch work necessarily means changing the helper, which necessarily means changing everywhere the helper is used, which ensures every test is updated to continue testing exactly what it claims to test.\n\nIn that case I believe we don\u0027t want the helper to be insertValidInstanceTemplateRevision, but just insertInstanceTemplateRevision, without the Valid part.\n\nDone.",
+      "parentUuid": "3702ecff_ca6382c6",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 11
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "826038a7_6b36109c",
         "filename": "appengine/gce-backend/snapshots_test.py",
         "patchSetId": 1
