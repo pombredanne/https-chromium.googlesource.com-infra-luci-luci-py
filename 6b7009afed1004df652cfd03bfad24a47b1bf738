@@ -299,6 +299,30 @@
     },
     {
       "key": {
+        "uuid": "1b7b4bef_fc3919f7",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-18T02:10:48Z",
+      "side": 1,
+      "message": "Thanks! Yes, \"Valid\" was a confusing word. Sorry.",
+      "parentUuid": "b9f405df_af600d28",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 11
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "826038a7_6b36109c",
         "filename": "appengine/gce-backend/snapshots_test.py",
         "patchSetId": 1
