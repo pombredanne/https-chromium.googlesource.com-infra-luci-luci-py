@@ -20,6 +20,24 @@
     },
     {
       "key": {
+        "uuid": "4bf8e531_0fe94423",
+        "filename": "appengine/gce-backend/snapshots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e02da5e_6fcbf215",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1db52b12_89d405ca",
         "filename": "appengine/gce-backend/snapshots.py",
         "patchSetId": 1
@@ -43,6 +61,30 @@
     },
     {
       "key": {
+        "uuid": "56839733_bacb1fb2",
+        "filename": "appengine/gce-backend/snapshots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1db52b12_89d405ca",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4a4eadb_158fb5be",
         "filename": "appengine/gce-backend/snapshots_test.py",
         "patchSetId": 1
@@ -61,6 +103,60 @@
     },
     {
       "key": {
+        "uuid": "85cd0559_072b6db2",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "disable\u003dwrong-import-position is set globally in depot_tools/pylintrc, tricium is not respecting it. I believe it\u0027s a known issue.",
+      "parentUuid": "a4a4eadb_158fb5be",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13232dd0_1e46ab77",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f527b875_398af6a8",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54d3ab70_189e1f22",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8051035f_b78f6deb",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1bae784_87cf58a4",
         "filename": "appengine/gce-backend/snapshots_test.py",
         "patchSetId": 1
@@ -72,6 +168,30 @@
       "writtenOn": "2018-08-18T00:54:25Z",
       "side": 1,
       "message": "(i\u0027m not frequent reviewer in this repo) why not use mock library here?\nmock.patch(..., autospec\u003dTrue, return_value\u003dTrue).start()\nwould actually be a better test.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 0
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c733c3c_2a42dd04",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "I don\u0027t know, but it\u0027s convention here.\n$ git grep mock.patch | wc -l\n10\n$ git grep self.mock | wc -l\n1398\n\nI prefer consistency.",
+      "parentUuid": "c1bae784_87cf58a4",
       "range": {
         "startLine": 64,
         "startChar": 4,
@@ -104,6 +224,84 @@
       "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cf24691_175264e5",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "I don\u0027t like helper functions in tests, I find it makes tests harder to read. None of the entities in models.py have any required fields, each test only supplies the fields relevant for that unit under test.",
+      "parentUuid": "cfcb7d27_ad796526",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 11
+      },
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "826038a7_6b36109c",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36be9e8a_7acf4d43",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b21b234e_e7b3fb3b",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e3f08d1_79bc9fe1",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e7f2857_2e350906",
+        "filename": "appengine/gce-backend/snapshots_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-18T01:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1c4a391_26362cb1",
+      "revId": "6b7009afed1004df652cfd03bfad24a47b1bf738",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
