@@ -22,6 +22,30 @@
       "revId": "b822272d80ab8eed71b3c6ad605eed9d910ddef0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c0aa07d_487f2bc9",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-20T20:09:27Z",
+      "side": 1,
+      "message": "I thought about it, but that means \"no tooltip\" pops up *a lot* on this page, because it\u0027s once per cell.",
+      "parentUuid": "3564f22f_cba8b775",
+      "range": {
+        "startLine": 615,
+        "startChar": 8,
+        "endLine": 616,
+        "endChar": 0
+      },
+      "revId": "b822272d80ab8eed71b3c6ad605eed9d910ddef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
