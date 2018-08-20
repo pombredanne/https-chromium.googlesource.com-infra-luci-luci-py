@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3564f22f_cba8b775",
+        "filename": "appengine/swarming/ui/res/imp/tasklist/task-list.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1180854
+      },
+      "writtenOn": "2018-08-20T20:07:04Z",
+      "side": 1,
+      "message": "Would it make sense to return a default value (e.g.: \"No tooltip...\")if \u0027col\u0027 is missing in tooltipMap ?",
+      "range": {
+        "startLine": 615,
+        "startChar": 8,
+        "endLine": 616,
+        "endChar": 0
+      },
+      "revId": "b822272d80ab8eed71b3c6ad605eed9d910ddef0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
