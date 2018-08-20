@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "f6967f1f_35324b8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-20T21:01:49Z",
+      "side": 1,
+      "message": "How would JSON encoding get in the way?",
+      "revId": "25ec1ee530a4aa608fdf97b790448f2db9e3c9f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a122943_7dc488b7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-20T21:01:49Z",
+      "side": 1,
+      "message": "Formatting alignment looks maybe slightly off here.",
+      "revId": "25ec1ee530a4aa608fdf97b790448f2db9e3c9f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "454295c7_5623d916",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -22,6 +56,30 @@
       "revId": "25ec1ee530a4aa608fdf97b790448f2db9e3c9f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b886458b_d2160c43",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-08-20T21:01:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "454295c7_5623d916",
+      "range": {
+        "startLine": 1274,
+        "startChar": 5,
+        "endLine": 1274,
+        "endChar": 6
+      },
+      "revId": "25ec1ee530a4aa608fdf97b790448f2db9e3c9f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
