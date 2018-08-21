@@ -903,26 +903,8 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
       t = request.task_slice(slice_index)
       limit = to_run.created_ts + datetime.timedelta(seconds=t.expiration_secs)
       if limit < utils.utcnow():
-        # Use a low number of retries, as at worst the cron job will catch it.
-        summary, new_to_run = _expire_task(to_run.key, request, retries=1)
-        if not new_to_run:
-          if summary:
-            expired += 1
-          else:
-            stale_index += 1
-          continue
-        # Expiring a TaskToRun for TaskSlice may reenqueue a new TaskToRun.
-        # Check it out right away, just in case.
-        reenqueued += 1
-        # We need to do an adhoc validation to check the new TaskToRun, so see
-        # if we can harvest it too. This is slightly duplicating work in
-        # yield_next_available_task_to_dispatch().
-        slice_index = task_to_run.task_to_run_key_slice_index(new_to_run.key)
-        t = request.task_slice(slice_index)
-        if not task_to_run.match_dimensions(
-            t.properties.dimensions, bot_dimensions):
-          continue
-        to_run = new_to_run
+        expired += 1
+        continue  # skip expired tasks completely for now
 
       run_result, secret_bytes = _reap_task(
           bot_dimensions, bot_version, to_run.key, request)
