@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a20f585_8f0313a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-22T00:59:14Z",
+      "side": 1,
+      "message": "maruel. Although I don\u0027t think we gotta blame people for all eternity in commit messages. Could just say \"When the protos were first vendored the infra.git deps.pyl file had\" or \"When the protos were vendored in \u003csha1\u003e the infra.git deps.pyl file had\".",
+      "revId": "743a37475edc7efd8c687f7099f1e7598765cf05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
