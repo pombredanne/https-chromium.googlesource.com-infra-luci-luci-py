@@ -65,3 +65,36 @@ class DeterministicJsonProperty(ndb.BlobProperty):
 
   def _from_base_type(self, value):
     return json.loads(value)
+
+
+class ProtobufProperty(ndb.BlobProperty):
+  """A property that stores a protobuf message in binary format.
+
+  Supports compression. Not indexable.
+  """
+  _message_class = None
+
+  # pylint: disable=W0212,E1002,R0201
+  @ndb.utils.positional(1 + ndb.BlobProperty._positional)
+  def __init__(self, message_class, name=None, compressed=False, **kwds):
+    super(ProtobufProperty, self).__init__(
+        name=name, compressed=compressed, **kwds)
+    assert message_class, message_class
+    self._message_class = message_class
+
+  def _validate(self, value):
+    if not isinstance(value, self._message_class):
+      # Add the property name, otherwise it's annoying to try to figure out
+      # which property is incorrect.
+      raise TypeError(
+          'Property %s must be a %s' % (self._name, self._message_class))
+
+  def _to_base_type(self, value):
+    """Interprets value as a protobuf message and serialized to bytes."""
+    return value.SerializeToString()
+
+  def _from_base_type(self, value):
+    """Interprets value as bytes and deserializes it to a protobuf message."""
+    msg = self._message_class()
+    msg.ParseFromString(value)
+    return msg
