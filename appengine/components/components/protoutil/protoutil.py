@@ -3,6 +3,7 @@
 # that can be found in the LICENSE file.
 
 from google.protobuf import descriptor
+from google.protobuf import struct_pb2
 
 SCALAR_TYPES = {
     descriptor.FieldDescriptor.TYPE_BOOL,
@@ -57,3 +58,23 @@ def merge_dict(data, msg):
           merge_dict(value, getattr(msg, name))
     except TypeError as ex:
       raise TypeError('%s: %s' % (name, ex))
+
+
+def struct_to_dict(struct):
+  def struct_value(v):
+    oneof = v.WhichOneof('kind')
+    if oneof == 'null_value':
+      return None
+    if oneof == 'number_value':
+      return v.number_value
+    if oneof == 'string_value':
+      return v.string_value
+    if oneof == 'bool_value':
+      return v.bool_value
+    if oneof == 'struct_value':
+      return struct_to_dict(v.struct_value)
+    if oneof == 'list_value':
+      return map(struct_value, v.list_value.values)
+
+  return {k: struct_value(v) for k, v in struct.fields.iteritems()}
+

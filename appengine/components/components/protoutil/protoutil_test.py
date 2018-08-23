@@ -4,7 +4,6 @@
 # that can be found in the LICENSE file.
 
 import sys
-import textwrap
 import unittest
 
 from test_support import test_env
@@ -14,7 +13,7 @@ test_env.setup_test_env()
 from components import utils
 utils.fix_protobuf_package()
 
-from google import protobuf
+from google.protobuf import struct_pb2
 
 import protoutil
 import test_proto_pb2
@@ -63,6 +62,27 @@ class MergeDictTests(unittest.TestCase):
   def test_invalid_field_value_type(self):
     with self.assertRaises(TypeError):
       protoutil.merge_dict({'str': 0}, test_proto_pb2.Msg())
+
+
+class StructToDictTests(unittest.TestCase):
+
+  def test_works(self):
+    expected = {
+      'int': 1,
+      'str': 'a',
+      'bool': True,
+      'null': None,
+      'list': [2, 'b', {'c': 0}],
+      'struct': {
+        'd': 1,
+        'e': 2,
+      }
+    }
+
+    struct = struct_pb2.Struct()
+    struct.update(expected)
+    actual = protoutil.struct_to_dict(struct)
+    self.assertEqual(actual, expected)
 
 
 if __name__ == '__main__':
