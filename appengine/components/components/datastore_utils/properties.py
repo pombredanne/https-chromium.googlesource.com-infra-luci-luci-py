@@ -6,6 +6,7 @@
 
 import json
 
+from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
 
 from components import utils
@@ -14,6 +15,7 @@ from components import utils
 __all__ = [
   'BytesComputedProperty',
   'DeterministicJsonProperty',
+  'ProtobufProperty',
 ]
 
 
@@ -65,3 +67,45 @@ class DeterministicJsonProperty(ndb.BlobProperty):
 
   def _from_base_type(self, value):
     return json.loads(value)
+
+
+class ProtobufProperty(ndb.BlobProperty):
+  """A property that stores a protobuf message in binary format.
+
+  Supports length limiting and compression. Not indexable.
+  """
+  _message_class = None
+  _max_length = None
+
+  # pylint: disable=W0212,E1002,R0201
+  @ndb.utils.positional(2 + ndb.BlobProperty._positional)
+  def __init__(
+      self, message_class, name=None, compressed=False, max_length=None,
+      **kwds):
+    super(ProtobufProperty, self).__init__(
+        name=name, compressed=compressed, **kwds)
+    assert message_class, message_class
+    self._message_class = message_class
+    self._max_length = max_length
+
+  def _validate(self, value):
+    if not isinstance(value, self._message_class):
+      # Add the property name, otherwise it's annoying to try to figure out
+      # which property is incorrect.
+      raise TypeError(
+          'Property %s must be a %s' % (self._name, self._message_class))
+    if self._max_length is not None and value.ByteSize() > self._max_length:
+      raise datastore_errors.BadValueError(
+          'Property %s is more than %d bytes' % (self._name, self._max_length))
+
+
+
+  def _to_base_type(self, value):
+    """Interprets value as a protobuf message and serialized to bytes."""
+    return value.SerializeToString()
+
+  def _from_base_type(self, value):
+    """Interprets value as bytes and deserializes it to a protobuf message."""
+    msg = self._message_class()
+    msg.ParseFromString(value)
+    return msg
