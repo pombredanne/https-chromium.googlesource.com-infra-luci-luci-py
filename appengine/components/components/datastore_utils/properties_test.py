@@ -12,6 +12,7 @@ test_env.setup_test_env()
 from google.appengine.ext import ndb
 
 from components.datastore_utils import properties
+from components.protoutil  import test_proto_pb2
 from test_support import test_case
 
 
@@ -21,6 +22,10 @@ class BP(ndb.Model):
 
 class DJP(ndb.Model):
   prop = properties.DeterministicJsonProperty(json_type=dict)
+
+
+class PP(ndb.Model):
+  prop = properties.ProtobufProperty(test_proto_pb2.Msg)
 
 
 class PropertiesTest(test_case.TestCase):
@@ -37,6 +42,17 @@ class PropertiesTest(test_case.TestCase):
     self.assertEqual('\x00', BP().prop)
     BP().put()
     self.assertEqual('\x00', BP.query().get().prop)
+
+  def test_ProtobufProperty(self):
+    m = test_proto_pb2.Msg(num=1)
+    entity = PP(prop=m)
+    self.assertEqual(m, entity.prop)
+
+    entity.put()
+    self.assertEqual(m, PP.query().get().prop)
+
+    with self.assertRaises(TypeError):
+      PP(prop='not a protobuf message')
 
 
 if __name__ == '__main__':
