@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c048479_5a9563f1",
+        "filename": "appengine/components/components/datastore_utils/properties.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-24T21:49:22Z",
+      "side": 1,
+      "message": "ow",
+      "range": {
+        "startLine": 21,
+        "startChar": 18,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "a4196cfc82bb91a223a6a5636898cf3e1bb02969",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
