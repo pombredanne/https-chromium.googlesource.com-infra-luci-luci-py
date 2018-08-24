@@ -2,6 +2,42 @@
   "comments": [
     {
       "key": {
+        "uuid": "a96f32fa_c35aea59",
+        "filename": "appengine/gce-backend/disks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-24T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8f55a34_74004f4b",
+      "revId": "65fdb302e3db0121c9c1e30beec6fabe1937c809",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8cad6015_bcf8d601",
+        "filename": "appengine/gce-backend/disks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-24T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9035855a_ddb82c18",
+      "revId": "65fdb302e3db0121c9c1e30beec6fabe1937c809",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84480064_185cddfa",
         "filename": "appengine/gce-backend/disks.py",
         "patchSetId": 1
@@ -16,6 +52,42 @@
       "revId": "65fdb302e3db0121c9c1e30beec6fabe1937c809",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31e4347d_a61e7a0f",
+        "filename": "appengine/gce-backend/disks_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-24T00:47:21Z",
+      "side": 1,
+      "message": "Most of these are wrong (pylintrc not respected). Last one was right so I addressed it.",
+      "parentUuid": "5b6f8972_8eb06321",
+      "revId": "65fdb302e3db0121c9c1e30beec6fabe1937c809",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a70db8de_5f392786",
+        "filename": "appengine/gce-backend/disks_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-24T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47e55209_f957c526",
+      "revId": "65fdb302e3db0121c9c1e30beec6fabe1937c809",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
