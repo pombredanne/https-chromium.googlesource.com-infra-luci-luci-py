@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8af60635_07c978f8",
+        "filename": "appengine/components/components/datastore_utils/properties.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-24T21:39:06Z",
+      "side": 1,
+      "message": "Prefer names, so we it\u0027s easier to tell what these are, e.g. pylint: disable\u003dprotected-access, and maybe explain why you need to disable these.",
+      "range": {
+        "startLine": 80,
+        "startChar": 20,
+        "endLine": 80,
+        "endChar": 37
+      },
+      "revId": "25a7f750baca3cad40d5671b75c3881c56b8ba0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
