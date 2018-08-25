@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35607bdc_a8a314c4",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-25T02:05:41Z",
+      "side": 1,
+      "message": "es",
+      "range": {
+        "startLine": 582,
+        "startChar": 13,
+        "endLine": 582,
+        "endChar": 14
+      },
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932bb274_398e0de7",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-25T02:05:41Z",
+      "side": 1,
+      "message": "i think note about special return code to mean \"already attached\" should be here -- since this is THE source of truth for `attach_disk` func.\n\nand if you agree, please the same for create_disk.",
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b056fb9b_41ad97b4",
+        "filename": "appengine/gce-backend/disks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-25T02:05:41Z",
+      "side": 1,
+      "message": "Am I right that this whole method is meant to be retried, which is safe to do because this method is idempotent?\n\nI am wondering though, when should the callee know when to stop retrying?\nupdate: ah, so cronjob will keep adding tasks until instance.disk shows up.",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 12
+      },
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb340765_1dba8824",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-08-25T02:05:41Z",
+      "side": 1,
+      "message": "qq: why do you need this indexed? is that for future lookup of which vm is the disk attached to?",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 40
+      },
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
