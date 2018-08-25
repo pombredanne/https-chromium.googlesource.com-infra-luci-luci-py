@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0f687056_2d5bfac1",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-25T02:21:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35607bdc_a8a314c4",
+      "range": {
+        "startLine": 582,
+        "startChar": 13,
+        "endLine": 582,
+        "endChar": 14
+      },
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "932bb274_398e0de7",
         "filename": "appengine/components/components/gce.py",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2018-08-25T02:05:41Z",
       "side": 1,
       "message": "i think note about special return code to mean \"already attached\" should be here -- since this is THE source of truth for `attach_disk` func.\n\nand if you agree, please the same for create_disk.",
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05dd8058_6af845dd",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-25T02:21:38Z",
+      "side": 1,
+      "message": "It depends how you delineate responsibility. For most of these methods, this class is just a basic RPC client, sending a request and returning the response as received, leaving interpretation up to the caller.",
+      "parentUuid": "932bb274_398e0de7",
       "revId": "0d953420b929defa8b829439cbae0947cae5c199",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "0a4f1a3a_b3d2f441",
+        "filename": "appengine/gce-backend/disks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-25T02:21:38Z",
+      "side": 1,
+      "message": "Yeah that\u0027s right. Cron schedules task queues for whatever still needs to be processed, and the processing is expected to be tried once, but to also be idempotent. So this function, called from a task queue, never makes the determination that a retry is needed. A cron job will detect that the disk isn\u0027t set yet and keep scheduling task queues until it is. Similarly, other cron jobs detect stuff like \"Has the VM been added to Machine Provider yet? No? Schedule a task to do it.\" Most of the app is built this way, a series of cron jobs that keep triggering one-off task queues (i.e. task queue\u0027s inherent retry-on-failure feature is disabled) to converge to the expected state.",
+      "parentUuid": "b056fb9b_41ad97b4",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 12
+      },
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb340765_1dba8824",
         "filename": "appengine/gce-backend/models.py",
         "patchSetId": 1
@@ -85,6 +151,30 @@
       "revId": "0d953420b929defa8b829439cbae0947cae5c199",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9312070_2eafaa27",
+        "filename": "appengine/gce-backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-25T02:21:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure it\u0027ll be necessary. Removed for now.",
+      "parentUuid": "eb340765_1dba8824",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 40
+      },
+      "revId": "0d953420b929defa8b829439cbae0947cae5c199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
