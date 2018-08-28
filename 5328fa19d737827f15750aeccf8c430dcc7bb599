@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6775e359_e91d3639",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-08-28T16:52:54Z",
+      "side": 1,
+      "message": "Can you add a test case for a device that doesn\u0027t report all 3 of these props? (Maybe only the first 2 or something.)\n\nA KeyError might get thrown down below.. best to catch that.",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a20e4324_ea96c15d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-08-28T16:52:54Z",
+      "side": 1,
+      "message": "Looks like you\u0027ve made do, but in case you wanted to use mock, you could s/python/vpython/ at the top of the file and add the mock wheel to luci-py\u0027s vpython spec.\n\nProbably not worth it at this point, but just FYI in case you want to do more advanced testing.",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
