@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2d4d8f8_428a9a01",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-28T13:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6572be69_0f1823d4",
+      "revId": "6bba2f02c8df1efaf88ea4185c2af9c8ebdb200f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
