@@ -19,6 +19,78 @@
     },
     {
       "key": {
+        "uuid": "ca9e04ea_e505c5a4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-29T14:17:47Z",
+      "side": 1,
+      "message": "Done.  props removed from Pixel2XL (which doesn\u0027t have them IRL) I also removed the \u003cmissing\u003e logic which was not needed because the \u003cmissing\u003e is added later.",
+      "parentUuid": "6775e359_e91d3639",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c429ff8b_71dc6373",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-29T14:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dab1e2f_64b3e9da",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c13f3d3d_3de97c05",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-29T14:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af2ec6ee_42bbbfb5",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7411da20_38c9397c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-29T14:17:47Z",
+      "side": 1,
+      "message": "Keeping it there to match the other _test.py files.",
+      "parentUuid": "8ac7bcd6_35f1dd5d",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a20e4324_ea96c15d",
         "filename": "appengine/swarming/swarming_bot/api/platforms/android_test.py",
         "patchSetId": 4
@@ -30,6 +102,24 @@
       "writtenOn": "2018-08-28T16:52:54Z",
       "side": 1,
       "message": "Looks like you\u0027ve made do, but in case you wanted to use mock, you could s/python/vpython/ at the top of the file and add the mock wheel to luci-py\u0027s vpython spec.\n\nProbably not worth it at this point, but just FYI in case you want to do more advanced testing.",
+      "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00ce5f4a_f4e238c4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-08-29T14:17:47Z",
+      "side": 1,
+      "message": "Thanks for the tip - I tried to use mock, but it seemed a bit too heavy-weight for such a simple case.  (I also couldn\u0027t quite get it to work)",
+      "parentUuid": "a20e4324_ea96c15d",
       "revId": "5328fa19d737827f15750aeccf8c430dcc7bb599",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
