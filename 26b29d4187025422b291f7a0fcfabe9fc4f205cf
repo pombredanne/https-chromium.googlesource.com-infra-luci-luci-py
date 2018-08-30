@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ab952324_02878512",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-30T22:45:45Z",
+      "side": 1,
+      "message": "Add note that you update stale github URLs.",
+      "revId": "26b29d4187025422b291f7a0fcfabe9fc4f205cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43d715af_4b942b02",
         "filename": "appengine/machine_provider/handlers_frontend.py",
         "patchSetId": 1
