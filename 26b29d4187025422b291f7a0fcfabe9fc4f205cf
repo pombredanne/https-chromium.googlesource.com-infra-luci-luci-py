@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43d715af_4b942b02",
+        "filename": "appengine/machine_provider/handlers_frontend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-30T22:39:53Z",
+      "side": 1,
+      "message": "This is more complex, presumably we only want people to view their own lease requests and only let admins view all requests.",
+      "revId": "26b29d4187025422b291f7a0fcfabe9fc4f205cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
