@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b06917ed_d19665ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-30T22:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab952324_02878512",
+      "revId": "26b29d4187025422b291f7a0fcfabe9fc4f205cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43d715af_4b942b02",
         "filename": "appengine/machine_provider/handlers_frontend.py",
         "patchSetId": 1
