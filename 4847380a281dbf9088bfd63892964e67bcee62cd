@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d1bf064_452d85e2",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-30T21:59:34Z",
+      "side": 1,
+      "message": "This will also be better for the failure case. If ensure_bot_info_exists fails, we\u0027ll try again on another iteration instead of proceeding to send_connection_instruction.",
+      "revId": "4847380a281dbf9088bfd63892964e67bcee62cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
