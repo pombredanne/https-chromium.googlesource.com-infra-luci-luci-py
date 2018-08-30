@@ -1167,6 +1167,7 @@ def manage_leased_machine(machine_lease):
   # Handle a newly leased machine.
   if not machine_lease.bot_id:
     ensure_bot_info_exists(machine_lease)
+    return
 
   # Once BotInfo is created, send the instruction to join the server.
   if not machine_lease.instruction_ts:
@@ -1176,6 +1177,7 @@ def manage_leased_machine(machine_lease):
   # Once the instruction is sent, check for connection.
   if not machine_lease.connection_ts:
     check_for_connection(machine_lease)
+    return
 
   # Handle an expired lease.
   if not machine_lease.leased_indefinitely:
