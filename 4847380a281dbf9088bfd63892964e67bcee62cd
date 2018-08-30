@@ -16,6 +16,24 @@
       "revId": "4847380a281dbf9088bfd63892964e67bcee62cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "554c3c65_11aa816c",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-08-30T22:07:40Z",
+      "side": 1,
+      "message": "Maybe worth a comment here and on 1179, like\n # Defer the remaining operations for the next cron job iteration.\nor something like that.",
+      "parentUuid": "8d1bf064_452d85e2",
+      "revId": "4847380a281dbf9088bfd63892964e67bcee62cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
