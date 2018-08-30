@@ -34,6 +34,24 @@
       "revId": "4847380a281dbf9088bfd63892964e67bcee62cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1404f40e_4733fbb5",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-30T22:29:27Z",
+      "side": 1,
+      "message": "It\u0027s like this everywhere (e.g. lines 1191, 1203, 1330, 1339, 1344), it was actually unusual that we weren\u0027t deferring operations for the next iteration. Therefore I\u0027ve added a module-level comment.",
+      "parentUuid": "554c3c65_11aa816c",
+      "revId": "4847380a281dbf9088bfd63892964e67bcee62cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
