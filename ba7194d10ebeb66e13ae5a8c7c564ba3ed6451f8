@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd7b1dd6_2b615273",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-08-31T01:32:42Z",
+      "side": 1,
+      "message": "except OSError as e",
+      "revId": "ba7194d10ebeb66e13ae5a8c7c564ba3ed6451f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
