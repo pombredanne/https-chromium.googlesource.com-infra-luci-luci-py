@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "174d9c22_5dd73f90",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-04T18:55:33Z",
+      "side": 1,
+      "message": "Good point. Reworded: \"as part of a bot polling for a task to run\"",
+      "parentUuid": "858cf1fb_037d9e38",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b6af648_c31aac67",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-04T18:45:46Z",
       "side": 1,
       "message": "Is this something we may want to tune (in which case, is it worth pulling it out into its own constant)?",
+      "range": {
+        "startLine": 912,
+        "startChar": 22,
+        "endLine": 912,
+        "endChar": 23
+      },
+      "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5854999e_8537b74f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-04T18:55:33Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of extracting a number used once as a file level constant. I feel this obscure more than enlighten, since the value is hidden away.\n\nThis could benefit from tuning, but the challenge is that basically it is a judgement call about what we want to optimize for. In practice, we want to optimize for bot polling to not exceed their 60 second frontend handler deadline limit, and when you mix the DB query, plus the 5 expiration DB transaction, 5 is likely high enough. That\u0027s 6 tx (5 expirations plus one successful reap) so it\u0027s less than 10 seconds per transaction, when you substract the query overhead.\n\nIn practice, the DB performance characteristics vary quite a lot as sometimes there are temporary performance regressions. So being a bit on the conservative side is a good idea. So maybe 4 would be better, but I want the taskslice fallback flow to be churning quickly. So this is a trade off.",
+      "parentUuid": "9b6af648_c31aac67",
       "range": {
         "startLine": 912,
         "startChar": 22,
