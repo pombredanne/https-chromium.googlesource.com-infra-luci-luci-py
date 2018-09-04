@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "956e71b5_56fa2789",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-04T18:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "174d9c22_5dd73f90",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b6af648_c31aac67",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
@@ -93,6 +117,30 @@
       "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c50d3f_88e41107",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-04T18:58:22Z",
+      "side": 1,
+      "message": "OK, sure re. extraction.\n\nThanks for the detailed breakdown!",
+      "parentUuid": "5854999e_8537b74f",
+      "range": {
+        "startLine": 912,
+        "startChar": 22,
+        "endLine": 912,
+        "endChar": 23
+      },
+      "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
