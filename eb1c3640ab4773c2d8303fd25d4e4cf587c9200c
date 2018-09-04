@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "858cf1fb_037d9e38",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-04T18:45:46Z",
+      "side": 1,
+      "message": "Side note: somehow this phrasing is a bit confusing to me, as I\u0027ve usually seen crons associated with polling, but in cron_abort_expired_task_to_run we pass inline\u003dFalse.",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b6af648_c31aac67",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-04T18:45:46Z",
+      "side": 1,
+      "message": "Is this something we may want to tune (in which case, is it worth pulling it out into its own constant)?",
+      "range": {
+        "startLine": 912,
+        "startChar": 22,
+        "endLine": 912,
+        "endChar": 23
+      },
+      "revId": "eb1c3640ab4773c2d8303fd25d4e4cf587c9200c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
