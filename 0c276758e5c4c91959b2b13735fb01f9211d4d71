@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9224f847_885e5a3c",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-09-05T02:54:46Z",
+      "side": 1,
+      "message": "On line 1220 we check if drained or early_release_secs before calling this function. Since [1] we can be sure that early_release_secs iff lease_expiration_ts, so this line will never be NoneType - non-NoneType.\n\n[1] https://chromium.googlesource.com/infra/luci/luci-py/+/6e61688935326fea230c26b842781793c83ff917",
+      "revId": "0c276758e5c4c91959b2b13735fb01f9211d4d71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
