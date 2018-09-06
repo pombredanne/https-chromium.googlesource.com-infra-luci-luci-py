@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a5a99c5_6162dc32",
+        "filename": "appengine/swarming/server/named_caches.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-06T01:33:49Z",
+      "side": 1,
+      "message": "Very dead?",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 17
+      },
+      "revId": "3fd9b6e26730202c42f3ff8d823aa1d25c840daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a68d6c0_d70310f9",
+        "filename": "appengine/swarming/server/named_caches_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-06T01:33:49Z",
+      "side": 1,
+      "message": "Just for personal edification: this is what\u0027s set (and solely set) here https://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/api/os_utilities.py?l\u003d1053\u0026rcl\u003d353c65d6f9db06199c6a50253f7a9f366649c52d ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 5,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "3fd9b6e26730202c42f3ff8d823aa1d25c840daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
