@@ -49,3 +49,5 @@ class Dimensions(messages.Message):
   os_version = messages.StringField(8)
   # The project this machine was created in.
   project = messages.StringField(9)
+  # The kind of disk this machine has.
+  disk_type = messages.StringField(10)
