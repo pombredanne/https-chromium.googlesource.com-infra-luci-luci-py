@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03d7656e_6d003ed8",
+        "filename": "appengine/components/components/machine_provider/dimensions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-08T15:37:33Z",
+      "side": 1,
+      "message": "Should this be an enum?",
+      "revId": "fa9d98205c4dcb531458b50518ce624f96481bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
