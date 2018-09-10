@@ -16,6 +16,24 @@
       "revId": "fa9d98205c4dcb531458b50518ce624f96481bc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec4c3f93_7f7e48ec",
+        "filename": "appengine/components/components/machine_provider/dimensions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-09-10T23:19:30Z",
+      "side": 1,
+      "message": "I went back and forth about this. Right now it\u0027s consistent with how you specify disk type in GCE Backend config: arbitrary text. If it were an enum, it probably shouldn\u0027t enumerate GCE disk types, since it\u0027s supposed to be hypervisor agnostic.\n\nIn GCE Backend it should be restricted to valid GCE disk types (local-ssd, pd-ssd, pd-standard), but here in MP it should be restricted to either HDD or SSD. Then GCE Backend should translate *-ssd -\u003e SSD, pd-standard -\u003e HDD.\n\nThoughts?",
+      "parentUuid": "03d7656e_6d003ed8",
+      "revId": "fa9d98205c4dcb531458b50518ce624f96481bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
