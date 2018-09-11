@@ -34,6 +34,24 @@
       "revId": "fa9d98205c4dcb531458b50518ce624f96481bc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "699a7764_2639ded0",
+        "filename": "appengine/components/components/machine_provider/dimensions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-11T13:11:39Z",
+      "side": 1,
+      "message": "Ah, that\u0027s a good point about being hypervisor agnostic, that\u0027s an excellent reason.\n\nI\u0027d like this to be verified at configuration validation though, not sure how since it\u0027s gce-backend that needs to vet the value validity.",
+      "parentUuid": "ec4c3f93_7f7e48ec",
+      "revId": "fa9d98205c4dcb531458b50518ce624f96481bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
