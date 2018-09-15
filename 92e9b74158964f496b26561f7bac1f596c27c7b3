@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "094eba3b_6bf25ef5",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-15T19:24:56Z",
+      "side": 1,
+      "message": "Are they sorted? The reason I ask is that if a config gets its dimensions reordered but not changed, this would trigger. I don\u0027t think it\u0027s a big deal but that\u0027s something to keep in mind.",
+      "revId": "92e9b74158964f496b26561f7bac1f596c27c7b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
