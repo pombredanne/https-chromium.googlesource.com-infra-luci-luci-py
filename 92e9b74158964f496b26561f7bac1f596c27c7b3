@@ -16,6 +16,24 @@
       "revId": "92e9b74158964f496b26561f7bac1f596c27c7b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "844ecd6c_1eadd598",
+        "filename": "appengine/swarming/server/lease_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-09-18T22:31:44Z",
+      "side": 1,
+      "message": "mp_dimensions get converted to a messages.Message type (machine_provider.Dimensions), which is being compared here, so I think order info is discarded.",
+      "parentUuid": "094eba3b_6bf25ef5",
+      "revId": "92e9b74158964f496b26561f7bac1f596c27c7b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
