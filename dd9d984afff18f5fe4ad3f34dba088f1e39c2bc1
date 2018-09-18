@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb0f7fca_1a02c946",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-18T23:34:55Z",
+      "side": 1,
+      "message": "This package could be missing since it is not part of the stdlib, use a try/except and set it to None otherwise:\n\ntry:\n  import Quartz\nexcept ImportError:\n  Quartz \u003d None\n\nyou should move this after line 23",
+      "revId": "dd9d984afff18f5fe4ad3f34dba088f1e39c2bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c8eb21_87832874",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-18T23:34:55Z",
+      "side": 1,
+      "message": "Make this clearer:\n\n  Returns:\n    None, False or True. It is None when the state of the GUI cannot be determined, and a bool otherwise returning the state of the GUI.",
+      "revId": "dd9d984afff18f5fe4ad3f34dba088f1e39c2bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d136350_f93e778e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-18T23:34:55Z",
+      "side": 1,
+      "message": "return None",
+      "revId": "dd9d984afff18f5fe4ad3f34dba088f1e39c2bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10c16213_9007d630",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-18T23:34:55Z",
+      "side": 1,
+      "message": "This would return one of False, 0 or 1. Please make sure it only returns a bool.",
+      "revId": "dd9d984afff18f5fe4ad3f34dba088f1e39c2bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
