@@ -10,6 +10,7 @@ import logging
 import os
 import platform
 import plistlib
+import Quartz
 import re
 import struct
 import subprocess
@@ -630,6 +631,14 @@ def get_uptime():
   _sysctl(CTL_KERN, KERN_BOOTTIME, result)
   start = float(result.tv_sec) + float(result.tv_usec) / 1000000.
   return time.time() - start
+
+
+def is_locked():
+  """Returns whether the lock screen is currently displayed or not."""
+  current_session = Quartz.CGSessionCopyCurrentDictionary()
+  if not current_session:
+    return False
+  return current_session.get('CGSSessionScreenIsLocked', False)
 
 
 @tools.cached
