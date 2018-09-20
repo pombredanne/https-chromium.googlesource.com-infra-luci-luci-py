@@ -24,6 +24,8 @@ from server import bot_management
 from server import config
 from server import lease_management
 from server import named_caches
+from server import stats_bots
+from server import stats_tasks
 from server import task_pack
 from server import task_queues
 from server import task_request
@@ -318,6 +320,22 @@ class CronBotGroupsConfigHandler(webapp2.RequestHandler):
     self.response.out.write('Success.' if ok else 'Fail.')
 
 
+class CronBotsMonitoring(webapp2.RequestHandler):
+  """Update bots monitoring statistics."""
+
+  @decorators.require_cronjob
+  def post(self):
+    stats_bots.cron_generate_stats()
+
+
+class CronTasksMonitoring(webapp2.RequestHandler):
+  """Update tasks monitoring statistics."""
+
+  @decorators.require_cronjob
+  def post(self):
+    stats_tasks.cron_generate_stats()
+
+
 class CancelTasksHandler(webapp2.RequestHandler):
   """Cancels tasks given a list of their ids."""
 
@@ -436,6 +454,8 @@ def get_routes():
     ('/internal/cron/delete_old_tasks', CronDeleteOldTasks),
     ('/internal/cron/delete_old_task_output_chunks',
         CronDeleteOldTaskOutputChunks),
+    ('/internal/cron/monitoring/bots', CronBotsMonitoring),
+    ('/internal/cron/monitoring/tasks', CronTasksMonitoring),
 
     ('/internal/cron/count_task_bot_distribution',
         CronCountTaskBotDistributionHandler),

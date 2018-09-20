@@ -38,6 +38,16 @@ cron:
   schedule: every 5 minutes synchronized
   target: backend
 
+- description: Update Bots monitoring
+  url: /internal/cron/monitoring/bots
+  schedule: every 1 minutes
+  target: backend
+
+- description: Update Tasks monitoring
+  url: /internal/cron/monitoring/tasks
+  schedule: every 1 minutes
+  target: backend
+
 
 ### Named caches
 

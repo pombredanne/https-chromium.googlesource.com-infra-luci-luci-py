@@ -141,6 +141,12 @@ class PoolTaskTemplateField(messages.Enum):
   SKIP = 3
 
 
+class Resolution(messages.Enum):
+  MINUTE = 0
+  HOUR = 1
+  DAY = 2
+
+
 ### Pretend Associative Array
 
 
@@ -795,3 +801,11 @@ class DeletedResponse(messages.Message):
 class TerminateResponse(messages.Message):
   """Returns the pseudo taskid to wait for the bot to shut down."""
   task_id = messages.StringField(1)
+
+
+class MonitoringBots(messages.Message):
+  pass
+
+
+class MonitoringTasks(messages.Message):
+  pass

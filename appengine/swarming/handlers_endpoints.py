@@ -34,6 +34,8 @@ from server import bot_management
 from server import config
 from server import lease_management
 from server import service_accounts
+from server import stats_bots
+from server import stats_tasks
 from server import task_pack
 from server import task_queues
 from server import task_request
@@ -1082,6 +1084,42 @@ class SwarmingBotsService(remote.Service):
     return swarming_rpcs.BotsDimensions(bots_dimensions=fd, ts=dims.ts)
 
 
+MonitoringRequest = endpoints.ResourceContainer(
+    message_types.VoidMessage,
+    resolution=messages.EnumField(
+        swarming_rpcs.Resolution, 1, default='MINUTE'),
+    limit=messages.IntegerField(2, default=200),
+    start=messages.StringField(3),
+    pool=messages.StringField(4, repeated=True))
+
+
+@swarming_api.api_class(resource_name='monitoring', path='monitoring')
+class SwarmingMonitoringService(remote.Service):
+  """Monitoring-related API."""
+
+  @gae_ts_mon.instrument_endpoint()
+  @auth.endpoints_method(
+      MonitoringRequest, swarming_rpcs.MonitoringBots,
+      http_method='GET')
+  @auth.require(acl.can_view_bot)
+  def bots(self, request):
+    """Returns monitoring data for the bots."""
+    logging.debug('%s', request)
+    v = stats_bots.Get(request.resolution, request.length, request.start)
+    return swarming_rpcs.MonitoringBots(v)
+
+  @gae_ts_mon.instrument_endpoint()
+  @auth.endpoints_method(
+      MonitoringRequest, swarming_rpcs.MonitoringTasks,
+      http_method='GET')
+  @auth.require(acl.can_view_task)
+  def tasks(self, request):
+    """Returns monitoring data for the tasks."""
+    logging.debug('%s', request)
+    v = stats_tasks.Get(request.resolution, request.length, request.start)
+    return swarming_rpcs.MonitoringTasks(v)
+
+
 def get_routes():
   return endpoints_webapp2.api_routes([
     SwarmingServerService,
@@ -1090,6 +1128,7 @@ def get_routes():
     SwarmingQueuesService,
     SwarmingBotService,
     SwarmingBotsService,
+    SwarmingMonitoringService,
     # components.config endpoints for validation and configuring of luci-config
     # service URL.
     config.ConfigApi], base_path='/api')

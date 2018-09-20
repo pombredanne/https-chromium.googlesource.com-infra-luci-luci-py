@@ -27,6 +27,12 @@ queue:
     task_age_limit: 1s
 
 
+## Bots
+
+- name: bot-monitoring-task
+  rate: 100/s
+
+
 ## MP
 
 - name: machine-provider-manage

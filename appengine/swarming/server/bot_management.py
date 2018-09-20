@@ -437,7 +437,8 @@ def bot_event(
   bot_info = info_key.get()
   if not bot_info:
     bot_info = BotInfo(key=info_key)
-  bot_info.last_seen_ts = utils.utcnow()
+  now = utils.utcnow()
+  bot_info.last_seen_ts = now
   bot_info.external_ip = external_ip
   bot_info.authenticated_as = authenticated_as
   bot_info.maintenance_msg = maintenance_msg
@@ -470,33 +471,42 @@ def bot_event(
     # Make sure it is not in the queue since it can't reap anything.
     task_queues.cleanup_after_bot(info_key.parent())
 
-  if event_type in ('request_sleep', 'task_update'):
-    # Handle this specifically. It's not much of an even worth saving a BotEvent
-    # for but it's worth updating BotInfo. The only reason BotInfo is GET is to
-    # keep first_seen_ts. It's not necessary to use a transaction here since no
-    # BotEvent is being added, only last_seen_ts is really updated.
-    bot_info.put()
-    return
+  try:
+    if event_type in ('request_sleep', 'task_update'):
+      # Handle this specifically. It's not much of an even worth saving a
+      # BotEvent for but it's worth updating BotInfo. The only reason BotInfo is
+      # GET is to keep first_seen_ts. It's not necessary to use a transaction
+      # here since no BotEvent is being added, only last_seen_ts is really
+      # updated.
+      bot_info.put()
+      return
 
-  event = BotEvent(
-      parent=get_root_key(bot_id),
-      event_type=event_type,
-      external_ip=external_ip,
-      authenticated_as=authenticated_as,
-      dimensions_flat=bot_info.dimensions_flat,
-      quarantined=bot_info.quarantined,
-      maintenance_msg=bot_info.maintenance_msg,
-      state=bot_info.state,
-      task_id=bot_info.task_id,
-      version=bot_info.version,
-      **kwargs)
+    event = BotEvent(
+        parent=get_root_key(bot_id),
+        event_type=event_type,
+        external_ip=external_ip,
+        authenticated_as=authenticated_as,
+        dimensions_flat=bot_info.dimensions_flat,
+        quarantined=bot_info.quarantined,
+        maintenance_msg=bot_info.maintenance_msg,
+        state=bot_info.state,
+        task_id=bot_info.task_id,
+        version=bot_info.version,
+        **kwargs)
 
-  if event_type in ('task_completed', 'task_error', 'task_killed'):
-    # Special case to keep the task_id in the event but not in the summary.
-    bot_info.task_id = ''
+    if event_type in ('task_completed', 'task_error', 'task_killed'):
+      # Special case to keep the task_id in the event but not in the summary.
+      bot_info.task_id = ''
 
-  datastore_utils.store_new_version(event, BotRoot, [bot_info])
-  return event.key
+    datastore_utils.store_new_version(event, BotRoot, [bot_info])
+    return event.key
+  finally:
+    # Store the event in memcache to accelerate monitoring.
+    # key is at minute resolution, because that's monitoring precision.
+    key = '%s:%s' % (bot_id, now.format('%y-%m-%dT%h:%m'))
+    x = memcache.get(key, for_cas=True)
+    data = (x or []) + [event_type, now.seconds()]
+    memcache.set(key, data, for_cas=True)
 
 
 def has_capacity(dimensions):
@@ -538,6 +548,7 @@ def cron_update_bot_info():
     if (bot and bot.last_seen_ts <= cutoff and
         (BotInfo.ALIVE in bot.composite or BotInfo.DEAD not in bot.composite)):
       # Updating it recomputes composite.
+      # TODO(maruel): BotEvent.
       yield bot.put_async()
       logging.info('DEAD: %s', bot.id)
       raise ndb.Return(1)
@@ -610,3 +621,20 @@ def cron_delete_old_bot_events():
     pass
   finally:
     logging.info('Deleted %d BotEvent entities', count)
+
+
+def cron_bot_monitoring():
+  """Generates monitoring events.
+
+  It is sharded, once per pool.
+  """
+  # Decide which timestamp to handle, and pass this.
+  start = 0
+  end = 0
+  for pool in pools_config.known():
+    if not utils.enqueue_task(
+        '/internal/taskqueue/update_bot_monitoring',
+        'bot-monitoring-task',
+        params={'pool': pool, 'start': start, 'end': end},
+    ):
+      logging.error('Failed to enqueue task for pool %s', pool)
