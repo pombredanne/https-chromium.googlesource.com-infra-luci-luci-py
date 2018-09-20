@@ -41,28 +41,143 @@ _WIN32_SERVER_NAMES = {
     u'10.0': u'2016Server',
 }
 
+# Defaults if missing.
+_winreg = None
+win32com = None
+
+
+if sys.platform == 'cygwin':
+  try:
+    import cygwinreg as _winreg
+  except ImportError:
+    pass
+
+
+if sys.platform == 'win32':
+  # This file is imported on non-Windows so guard the Win32 setup code to only
+  # run on Windows.
+  from ctypes import wintypes
+  import _winreg
+  try:
+    # win32com is included in pywin32, which is an optional package.
+    import win32com
+    import win32com.client
+  except ImportError:
+    pass
+
+  ### Types.
+
+  # The function prototype for EnumWindows.
+  EnumWindowsProc = ctypes.WINFUNCTYPE(
+      wintypes.BOOL, wintypes.HWND, ctypes.py_object)
+
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa379595.aspx
+  class SID_AND_ATTRIBUTES(ctypes.Structure):
+    _fields_ = [
+      ('Sid', ctypes.c_void_p), # PSID
+      ('Attributes', wintypes.DWORD),
+    ]
+
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/bb394727.aspx
+  class TOKEN_MANDATORY_LABEL(ctypes.Structure):
+    _fields_ = [
+      ('Label', SID_AND_ATTRIBUTES),
+    ]
+
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa366770.aspx
+  class MemoryStatusEx(ctypes.Structure):
+    _fields_ = [
+      ('dwLength', wintypes.DWORD),
+      ('dwMemoryLoad', wintypes.DWORD),
+      ('dwTotalPhys', wintypes.DWORDLONG),
+      ('dwAvailPhys', wintypes.DWORDLONG),
+      ('dwTotalPageFile', wintypes.DWORDLONG),
+      ('dwAvailPageFile', wintypes.DWORDLONG),
+      ('dwTotalVirtual', wintypes.DWORDLONG),
+      ('dwAvailVirtual', wintypes.DWORDLONG),
+      ('dwAvailExtendedVirtual', wintypes.DWORDLONG),
+    ]
+
+  # Setup the Win32 functions needed below.
+  advapi32 = ctypes.windll.advapi32
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa446657.aspx
+  advapi32.GetSidSubAuthority.argtypes = (ctypes.c_void_p, wintypes.DWORD)
+  advapi32.GetSidSubAuthority.restype = ctypes.POINTER(wintypes.DWORD)
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa446658.aspx
+  advapi32.GetSidSubAuthorityCount.argtypes = (ctypes.c_void_p,) # PSID
+  advapi32.GetSidSubAuthorityCount.restype = ctypes.POINTER(ctypes.c_ubyte)
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa446671.aspx
+  advapi32.GetTokenInformation.argtypes = (
+      wintypes.HANDLE, ctypes.c_long, # TOKEN_INFORMATION_CLASS
+      ctypes.c_void_p, wintypes.DWORD, ctypes.POINTER(wintypes.DWORD))
+  advapi32.GetTokenInformation.restype = BOOL
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa379295.aspx
+  advapi32.OpenProcessToken.argtypes = (
+      wintypes.HANDLE, wintypes.DWORD, ctypes.POINTER(wintypes.HANDLE))
+  advapi32.OpenProcessToken.restype = wintypes.BOOL
+
+  # Setup the Win32 functions needed below.
+  kernel32 = ctypes.windll.kernel32
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms724211.aspx
+  kernel32.CloseHandle.argtypes = (wintypes.HANDLE,)
+  kernel32.CloseHandle.restype = wintypes.BOOL
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms683179.aspx
+  kernel32.GetCurrentProcess.argtypes = ()
+  kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa364937.aspx
+  kernel32.GetDiskFreeSpaceExW.argtypes = (
+      wintypes.LPCWSTR, ctypes.POINTER(wintypes.ULARGE_INTEGER),
+      ctypes.POINTER(wintypes.ULARGE_INTEGER),
+      ctypes.POINTER(wintypes.ULARGE_INTEGER))
+  kernel32.GetDiskFreeSpaceExW.restype = wintypes.BOOL
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa364939.aspx
+  kernel32.GetDriveTypeW.argtypes = (wintypes.LPCWSTR,)
+  kernel32.GetDriveTypeW.restype = wintypes.UINT
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa366589.aspx
+  kernel32.GlobalMemoryStatusEx.argtypes = (ctypes.POINTER(MemoryStatusEx),)
+  kernel32.GlobalMemoryStatusEx.retype = wintypes.BOOL
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ee662307.aspx
+  kernel32.QueryUnbiasedInterruptTime.argtypes = (
+      ctypes.POINTER(wintypes.ULONGLONG),)
+  kernel32.QueryUnbiasedInterruptTime.restype = wintypes.BOOL
+
+  # Setup the Win32 functions needed below.
+  user32 = ctypes.windll.user32
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms633497.aspx
+  user32.EnumWindows.argtypes = (EnumWindowsProc, ctypes.py_object)
+  user32.EnumWindows.restype = wintypes.BOOL
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms633582.aspx
+  user32.GetClassNameW.argtypes = (wintypes.HWND wintypes.LPWSTR, ctypes.c_int)
+  user32.GetClassNameW.restype = ctypes.c_int
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms633584.aspx
+  user32.GetWindowLongW.argtypes = (wintypes.HWND, ctypes.c_int)
+  user32.GetWindowLongW.restype = wintypes.LONG
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms633527.aspx
+  user32.IsIconic.argtypes = (wintypes.HWND,)
+  user32.IsIconic.restype = wintypes.BOOL
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/ms633530.aspx
+  user32.IsWindowVisible.argtypes = (wintypes.HWND,)
+  user32.IsWindowVisible.restype = wintypes.BOOL
+
 
 @tools.cached
 def _get_mount_points():
   """Returns the list of 'fixed' drives in format 'X:\\'."""
-  ctypes.windll.kernel32.GetDriveTypeW.argtypes = (ctypes.c_wchar_p,)
-  ctypes.windll.kernel32.GetDriveTypeW.restype = ctypes.c_ulong
   DRIVE_FIXED = 3
   # https://msdn.microsoft.com/library/windows/desktop/aa364939.aspx
   return [
     u'%s:\\' % letter
     for letter in string.lowercase
-    if ctypes.windll.kernel32.GetDriveTypeW(letter + ':\\') == DRIVE_FIXED
+    if kernel32.GetDriveTypeW(letter + ':\\') == DRIVE_FIXED
   ]
 
 
 def _get_disk_info(mount_point):
   """Returns total and free space on a mount point in Mb."""
-  total_bytes = ctypes.c_ulonglong(0)
-  free_bytes = ctypes.c_ulonglong(0)
-  ctypes.windll.kernel32.GetDiskFreeSpaceExW(
-      ctypes.c_wchar_p(mount_point), None, ctypes.pointer(total_bytes),
-      ctypes.pointer(free_bytes))
+  total_bytes = wintypes.ULARGE_INTEGER(0)
+  free_bytes = wintypes.ULARGE_INTEGER(0)
+  kernel32.GetDiskFreeSpaceExW(
+      mount_point, None, ctypes.byref(total_bytes), ctypes.byref(free_bytes))
   return {
     u'free_mb': round(free_bytes.value / 1024. / 1024., 1),
     u'size_mb': round(total_bytes.value / 1024. / 1024., 1),
@@ -131,27 +246,16 @@ def _get_os_numbers():
 
 def _is_topmost_window(hwnd):
   """Returns True if |hwnd| is a topmost window."""
-  ctypes.windll.user32.GetWindowLongW.restype = ctypes.c_long  # LONG
-  ctypes.windll.user32.GetWindowLongW.argtypes = [
-      ctypes.c_void_p,  # HWND
-      ctypes.c_int
-  ]
   # -20 is GWL_EXSTYLE
-  ex_styles = ctypes.windll.user32.GetWindowLongW(hwnd, -20)
+  ex_styles = user32.GetWindowLongW(hwnd, -20)
   # 8 is WS_EX_TOPMOST
   return bool(ex_styles & 8)
 
 
 def _get_window_class(hwnd):
   """Returns the class name of |hwnd|."""
-  ctypes.windll.user32.GetClassNameW.restype = ctypes.c_int
-  ctypes.windll.user32.GetClassNameW.argtypes = [
-      ctypes.c_void_p,  # HWND
-      ctypes.c_wchar_p,
-      ctypes.c_int
-  ]
   name = ctypes.create_unicode_buffer(257)
-  name_len = ctypes.windll.user32.GetClassNameW(hwnd, name, len(name))
+  name_len = user32.GetClassNameW(hwnd, name, len(name))
   if name_len <= 0 or name_len >= len(name):
     raise ctypes.WinError(descr='GetClassNameW failed; %s' %
                           ctypes.FormatError())
@@ -239,6 +343,8 @@ def get_startup_dir():
 
 def get_disks_info():
   """Returns disk infos on all mount point in Mb."""
+  if sys.platform != 'win32':
+    return {}
   return {p: _get_disk_info(p) for p in _get_mount_points()}
 
 
@@ -258,10 +364,12 @@ def get_audio():
 
 @tools.cached
 def get_cpuinfo():
+  """Returns CPU information."""
+  if not _winreg:
+    return {}
   # Ironically, the data returned by WMI is mostly worthless.
   # Another option is IsProcessorFeaturePresent().
   # https://msdn.microsoft.com/en-us/library/windows/desktop/ms724482.aspx
-  import _winreg
   k = _winreg.OpenKey(
       _winreg.HKEY_LOCAL_MACHINE,
       'HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0')
@@ -328,14 +436,9 @@ def get_gpu():
 
 @tools.cached
 def get_integrity_level():
-  """Returns the integrity level of the current process as a string.
-
-  TODO(maruel): It'd be nice to make it work on cygwin. The problem is that
-  ctypes.windll is unaccessible and it is not known to the author how to use
-  stdcall convention through ctypes.cdll.
-  """
-  if get_os_version_number() == u'5.1':
-    # Integrity level is Vista+.
+  """Returns the integrity level of the current process as a string."""
+  if get_os_version_number() == u'5.1' or sys.platform != 'win32':
+    # Integrity level is Vista+; can't access Win32 on cygwin.
     return None
 
   mapping = {
@@ -348,54 +451,20 @@ def get_integrity_level():
     0x5000: u'protected process',
   }
 
-  # This was specifically written this way to work on cygwin except for the
-  # windll part. If someone can come up with a way to do stdcall on cygwin, that
-  # would be appreciated.
-  BOOL = ctypes.c_long
-  DWORD = ctypes.c_ulong
-  HANDLE = ctypes.c_void_p
-  class SID_AND_ATTRIBUTES(ctypes.Structure):
-    _fields_ = [
-      ('Sid', ctypes.c_void_p),
-      ('Attributes', DWORD),
-    ]
-
-  class TOKEN_MANDATORY_LABEL(ctypes.Structure):
-    _fields_ = [
-      ('Label', SID_AND_ATTRIBUTES),
-    ]
-
   TOKEN_READ = DWORD(0x20008)
   # Use the same casing as in the C declaration:
   # https://msdn.microsoft.com/library/windows/desktop/aa379626.aspx
   TokenIntegrityLevel = ctypes.c_int(25)
   ERROR_INSUFFICIENT_BUFFER = 122
 
-  # All the functions used locally. First open the process' token, then query
-  # the SID to know its integrity level.
-  ctypes.windll.kernel32.GetLastError.argtypes = ()
-  ctypes.windll.kernel32.GetLastError.restype = DWORD
-  ctypes.windll.kernel32.GetCurrentProcess.argtypes = ()
-  ctypes.windll.kernel32.GetCurrentProcess.restype = ctypes.c_void_p
-  ctypes.windll.advapi32.OpenProcessToken.argtypes = (
-      HANDLE, DWORD, ctypes.POINTER(HANDLE))
-  ctypes.windll.advapi32.OpenProcessToken.restype = BOOL
-  ctypes.windll.advapi32.GetTokenInformation.argtypes = (
-      HANDLE, ctypes.c_long, ctypes.c_void_p, DWORD, ctypes.POINTER(DWORD))
-  ctypes.windll.advapi32.GetTokenInformation.restype = BOOL
-  ctypes.windll.advapi32.GetSidSubAuthorityCount.argtypes = [ctypes.c_void_p]
-  ctypes.windll.advapi32.GetSidSubAuthorityCount.restype = ctypes.POINTER(
-      ctypes.c_ubyte)
-  ctypes.windll.advapi32.GetSidSubAuthority.argtypes = (ctypes.c_void_p, DWORD)
-  ctypes.windll.advapi32.GetSidSubAuthority.restype = ctypes.POINTER(DWORD)
+  # First open the process' token, then query the SID to know its integrity
+  # level.
 
   # First open the current process token, query it, then close everything.
   token = ctypes.c_void_p()
-  proc_handle = ctypes.windll.kernel32.GetCurrentProcess()
-  if not ctypes.windll.advapi32.OpenProcessToken(
-      proc_handle,
-      TOKEN_READ,
-      ctypes.byref(token)):
+  proc_handle = kernel32.GetCurrentProcess()
+  if not advapi32.OpenProcessToken(
+      proc_handle, TOKEN_READ, ctypes.byref(token)):
     logging.error('Failed to get process\' token')
     return None
   if token.value == 0:
@@ -406,65 +475,45 @@ def get_integrity_level():
     # used will have the SID appened right after the TOKEN_MANDATORY_LABEL in
     # the heap allocated memory block, with .Label.Sid pointing to it.
     info_size = DWORD()
-    if ctypes.windll.advapi32.GetTokenInformation(
-        token,
-        TokenIntegrityLevel,
-        ctypes.c_void_p(),
-        info_size,
+    if advapi32.GetTokenInformation(
+        token, TokenIntegrityLevel, ctypes.c_void_p(), info_size,
         ctypes.byref(info_size)):
       logging.error('GetTokenInformation() failed expectation')
       return None
     if info_size.value == 0:
       logging.error('GetTokenInformation() returned size 0')
       return None
-    if ctypes.windll.kernel32.GetLastError() != ERROR_INSUFFICIENT_BUFFER:
-      logging.error(
-          'GetTokenInformation(): Unknown error: %d',
-          ctypes.windll.kernel32.GetLastError())
+    err = ctypes.GetLastError()
+    if err != ERROR_INSUFFICIENT_BUFFER:
+      logging.error('GetTokenInformation(): Unknown error: %d', err)
       return None
     token_info = TOKEN_MANDATORY_LABEL()
     ctypes.resize(token_info, info_size.value)
-    if not ctypes.windll.advapi32.GetTokenInformation(
-        token,
-        TokenIntegrityLevel,
-        ctypes.byref(token_info),
-        info_size,
+    if not advapi32.GetTokenInformation(
+        token, TokenIntegrityLevel, ctypes.byref(token_info), info_size,
         ctypes.byref(info_size)):
       logging.error(
           'GetTokenInformation(): Unknown error with buffer size %d: %d',
-          info_size.value,
-          ctypes.windll.kernel32.GetLastError())
+          info_size.value, ctypes.GetLastError())
       return None
-    p_sid_size = ctypes.windll.advapi32.GetSidSubAuthorityCount(
-        token_info.Label.Sid)
-    res = ctypes.windll.advapi32.GetSidSubAuthority(
+    p_sid_size = advapi32.GetSidSubAuthorityCount(token_info.Label.Sid)
+    res = advapi32.GetSidSubAuthority(
         token_info.Label.Sid, p_sid_size.contents.value - 1)
     value = res.contents.value
     return mapping.get(value) or u'0x%04x' % value
   finally:
-    ctypes.windll.kernel32.CloseHandle(token)
+    kernel32.CloseHandle(token)
 
 
 @tools.cached
 def get_physical_ram():
   """Returns the amount of installed RAM in Mb, rounded to the nearest number.
   """
-  # https://msdn.microsoft.com/library/windows/desktop/aa366589.aspx
-  class MemoryStatusEx(ctypes.Structure):
-    _fields_ = [
-      ('dwLength', ctypes.c_ulong),
-      ('dwMemoryLoad', ctypes.c_ulong),
-      ('dwTotalPhys', ctypes.c_ulonglong),
-      ('dwAvailPhys', ctypes.c_ulonglong),
-      ('dwTotalPageFile', ctypes.c_ulonglong),
-      ('dwAvailPageFile', ctypes.c_ulonglong),
-      ('dwTotalVirtual', ctypes.c_ulonglong),
-      ('dwAvailVirtual', ctypes.c_ulonglong),
-      ('dwAvailExtendedVirtual', ctypes.c_ulonglong),
-    ]
+  if sys.platform != 'win32':
+    return None
   stat = MemoryStatusEx()
   stat.dwLength = ctypes.sizeof(MemoryStatusEx)  # pylint: disable=W0201
-  ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(stat))
+  kernel32.GlobalMemoryStatusEx(ctypes.byref(stat))
   return int(round(stat.dwTotalPhys / 1024. / 1024.))
 
 
@@ -473,8 +522,10 @@ def get_uptime():
 
   Excludes sleep time.
   """
-  val = ctypes.c_ulonglong(0)
-  if ctypes.windll.kernel32.QueryUnbiasedInterruptTime(ctypes.byref(val)) != 0:
+  if sys.platform != 'win32':
+    return 0
+  val = wintypes.ULONGLONG(0)
+  if kernel32.QueryUnbiasedInterruptTime(ctypes.byref(val)) != 0:
     return val.value / 10000000.
   return 0.
 
@@ -484,22 +535,9 @@ def list_top_windows():
 
   Windows owned by the shell are ignored.
   """
-  # The function prototype of EnumWindowsProc.
-  window_enum_proc_prototype = ctypes.WINFUNCTYPE(
-      ctypes.c_long,  # BOOL
-      ctypes.c_void_p,  # HWND
-      ctypes.c_void_p)  # LPARAM
-
-  # Set up various user32 functions that are needed.
-  ctypes.windll.user32.EnumWindows.restype = ctypes.c_long  # BOOL
-  ctypes.windll.user32.EnumWindows.argtypes = [
-      window_enum_proc_prototype,
-      ctypes.py_object
-  ]
-  ctypes.windll.user32.IsWindowVisible.restype = ctypes.c_long  # BOOL
-  ctypes.windll.user32.IsWindowVisible.argtypes = [ctypes.c_void_p]  # HWND
-  ctypes.windll.user32.IsIconic.restype = ctypes.c_long  # BOOL
-  ctypes.windll.user32.IsIconic.argtypes = [ctypes.c_void_p]  # HWND
+  if sys.platform != 'win32':
+    return []
+  IGNORED = ('Button', 'Shell_TrayWnd', 'Shell_SecondaryTrayWnd')
 
   out = []
 
@@ -510,16 +548,13 @@ def list_top_windows():
     collection of topmost window class names to return.
     """
     # Dig deeper into visible, non-iconified, topmost windows.
-    if (ctypes.windll.user32.IsWindowVisible(hwnd) and
-        not ctypes.windll.user32.IsIconic(hwnd) and
+    if (user32.IsWindowVisible(hwnd) and not user32.IsIconic(hwnd) and
         _is_topmost_window(hwnd)):
       # Fetch the class name and make sure it's not owned by the Windows shell.
       class_name = _get_window_class(hwnd)
-      if (class_name and
-          class_name not in ['Button', 'Shell_TrayWnd',
-                             'Shell_SecondaryTrayWnd']):
+      if class_name and class_name not in IGNORED:
         out.append(class_name)
     return 1
 
-  ctypes.windll.user32.EnumWindows(window_enum_proc_prototype(on_window), None)
-  return out
+  user32.EnumWindows(window_enum_proc_prototype(on_window), None)
+  return sorted(out)
