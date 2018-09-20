@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb500230_f2434f09",
+        "filename": "appengine/swarming/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-09-20T23:09:17Z",
+      "side": 1,
+      "message": "is it LUCI or LUCY?",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 37
+      },
+      "revId": "617c9087f58cc0f443ae2cff8069e22f8a4234c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
