@@ -22,6 +22,30 @@
       "revId": "617c9087f58cc0f443ae2cff8069e22f8a4234c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa7b2f58_4b3ca20d",
+        "filename": "appengine/swarming/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-21T01:03:03Z",
+      "side": 1,
+      "message": "The mascot is named LUCY.",
+      "parentUuid": "fb500230_f2434f09",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 37
+      },
+      "revId": "617c9087f58cc0f443ae2cff8069e22f8a4234c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

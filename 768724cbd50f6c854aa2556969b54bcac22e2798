@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "117557c6_3cf1ec6a",
+        "filename": "appengine/swarming/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-21T01:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6e6604d_70424ec1",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 4
+      },
+      "revId": "768724cbd50f6c854aa2556969b54bcac22e2798",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
