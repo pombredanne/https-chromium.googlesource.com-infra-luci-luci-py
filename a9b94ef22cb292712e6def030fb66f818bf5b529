@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66110f1b_be85835c",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-24T18:14:34Z",
+      "side": 1,
+      "message": "remove space, then lgtm.",
+      "range": {
+        "startLine": 1454,
+        "startChar": 13,
+        "endLine": 1454,
+        "endChar": 14
+      },
+      "revId": "a9b94ef22cb292712e6def030fb66f818bf5b529",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
