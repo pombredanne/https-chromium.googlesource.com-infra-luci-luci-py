@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b5aa643_4885ab0d",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1447,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-24T19:04:08Z",
+      "side": 1,
+      "message": "That\u0027s not correct for the task slices except the first, as you need to sum the values from the previous slices\u0027 expiration_secs.",
+      "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae74d2df_9aa3629c",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-24T19:04:08Z",
+      "side": 1,
+      "message": "This is always true, there\u0027s no case where task_slices is not defined anymore.",
+      "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
