@@ -361,6 +361,10 @@
                   <td>[[_currentSlice.wait_for_capacity]]</td>
                 </tr>
                 <tr>
+                  <td>Slice Expires</td>
+                  <td>[[_sliceExpires(_request, _currentSlice)]]</td>
+                </tr>
+                <tr>
                   <td>User</td>
                   <td>[[_request.user]]</td>
                 </tr>
@@ -570,7 +574,7 @@
                     </template>
                     <tr>
                       <td>Expires</td>
-                      <td>[[_expires(_request, _currentSlice)]]</td>
+                      <td>[[_taskExpires(_request, _currentSlice)]]</td>
                     </tr>
                     <template is="dom-if" if="[[_result.human_completed_ts]]">
                       <tr>
@@ -1173,15 +1177,6 @@
         return a === b;
       },
 
-      _expires: function(request, currentSlice) {
-        var delta = parseInt(currentSlice.expiration_secs);
-        if (delta) {
-          return sk.human.localeTime(new Date(request.created_ts.getTime() + delta * 1000));
-        }
-        // Fall back to something
-        return currentSlice.expiration_secs + " seconds from created time";
-      },
-
       _extraArgs: function(properties) {
         if (!properties) {
           return "";
@@ -1446,6 +1441,15 @@ time.sleep(${leaseDuration})`];
         this.set("_currentSliceIdx", result.current_task_slice || 0);
       },
 
+      _sliceExpires: function(request, currentSlice) {
+        var delta = parseInt(currentSlice.expiration_secs);
+        if (delta) {
+          return sk.human.localeTime(new Date(request.created_ts.getTime() + delta * 1000));
+        }
+        // Fall back to something
+        return currentSlice.expiration_secs + " seconds from created time";
+      },
+
       _softRefresh: function() {
         if (this._result && this._result.state !== "RUNNING" &&
             this._result.state !==  "PENDING") {
@@ -1476,6 +1480,22 @@ time.sleep(${leaseDuration})`];
           return undefined;
         }
         return request.tagMap[col];
+      },
+
+      _taskExpires: function(request) {
+        var delta = 0;
+        if (request.task_slices && request.task_slices.length) {
+          for(var i = 0; i < request.task_slices.length; i++) {
+            delta += parseInt(request.task_slices[i].expiration_secs);
+          }
+        } else {
+          delta = parseInt(request.expiration_secs); // legacy requests
+        }
+        if (delta) {
+          return sk.human.localeTime(new Date(request.created_ts.getTime() + delta * 1000));
+        }
+        // Fall back to something
+        return request.expiration_secs + " seconds from created time";
       },
 
       _wasPickedUp: function(result) {
