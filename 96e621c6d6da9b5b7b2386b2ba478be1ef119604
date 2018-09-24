@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4563e5b7_db8093c8",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-09-24T21:05:28Z",
+      "side": 1,
+      "message": "\u003e Too many arguments for logging format string.\n\u003e To disable, add: # pylint: disable\u003dlogging-too-many-args\n\nPlease Fix. Yay, tricium found real bug.",
+      "parentUuid": "7b0e80ce_ea64a958",
+      "revId": "96e621c6d6da9b5b7b2386b2ba478be1ef119604",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
