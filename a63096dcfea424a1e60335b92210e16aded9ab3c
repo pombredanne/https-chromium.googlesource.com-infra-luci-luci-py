@@ -16,6 +16,24 @@
       "revId": "a63096dcfea424a1e60335b92210e16aded9ab3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9a7bd6e_4423c405",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-09-24T17:47:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a55e08e2_3b91b561",
+      "revId": "a63096dcfea424a1e60335b92210e16aded9ab3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
