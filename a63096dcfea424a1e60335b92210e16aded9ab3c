@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a55e08e2_3b91b561",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-24T17:35:39Z",
+      "side": 1,
+      "message": "You can tell to use https://chromium.googlesource.com/infra/luci/client-py, which is smaller.",
+      "revId": "a63096dcfea424a1e60335b92210e16aded9ab3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
