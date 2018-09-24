@@ -69,6 +69,24 @@
       "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da311efc_97c8566d",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-24T20:51:05Z",
+      "side": 1,
+      "message": "I prefer to not keep the condition since this implies this is right, but the API \"upgrades\" the old style requests transparently.",
+      "parentUuid": "de093722_99e0f2ea",
+      "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
