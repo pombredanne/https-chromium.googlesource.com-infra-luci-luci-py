@@ -194,14 +194,12 @@ the fleet.">
             value="{{_limit}}">
           </paper-input>
           <a href$="[[_matchingTasksLink(query_params)]]">View Matching Tasks</a>
-          <template is="dom-if" if=>
-            <button class="delete-button"
-                disabled$="[[!permissions.delete_bot]]"
-                title="[[_deleteBotsText(permissions, profile)]]"
-                on-tap="_promptDelete">
-              Delete All Dead bots
-            </button>
-          </template>
+          <button class="delete-button"
+              disabled$="[[!permissions.delete_bot]]"
+              title="[[_deleteBotsText(permissions, profile)]]"
+              on-tap="_promptDelete">
+            Delete All Dead bots
+          </button>
         </div>
       </div>
 
