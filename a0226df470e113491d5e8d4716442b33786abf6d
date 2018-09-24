@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6c4d006a_6f471828",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1447,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-09-24T20:08:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b5aa643_4885ab0d",
+      "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae74d2df_9aa3629c",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-09-24T19:04:08Z",
       "side": 1,
       "message": "This is always true, there\u0027s no case where task_slices is not defined anymore.",
+      "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de093722_99e0f2ea",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-09-24T20:08:51Z",
+      "side": 1,
+      "message": "Even for very old tasks?  Keeping in a bit of safety checks is cheap and prevents the whole JS train from stopping.",
+      "parentUuid": "ae74d2df_9aa3629c",
       "revId": "a0226df470e113491d5e8d4716442b33786abf6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
