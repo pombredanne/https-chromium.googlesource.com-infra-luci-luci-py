@@ -17,6 +17,24 @@
       "revId": "96e621c6d6da9b5b7b2386b2ba478be1ef119604",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105ba51b_8904521a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-24T21:10:11Z",
+      "side": 1,
+      "message": "This has been addressed?",
+      "parentUuid": "4563e5b7_db8093c8",
+      "revId": "96e621c6d6da9b5b7b2386b2ba478be1ef119604",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
