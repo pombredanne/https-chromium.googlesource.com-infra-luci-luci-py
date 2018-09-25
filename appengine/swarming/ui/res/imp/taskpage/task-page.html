@@ -347,10 +347,6 @@
                       </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Deduped on</td>
-                    <td title$="[[_request.created_ts]]">[[_request.human_created_ts]]</td>
-                  </tr>
                 </template>
                 <tr>
                   <td>Priority</td>
@@ -359,10 +355,6 @@
                 <tr>
                   <td>Wait for Capacity</td>
                   <td>[[_currentSlice.wait_for_capacity]]</td>
-                </tr>
-                <tr>
-                  <td>Slice Expires</td>
-                  <td>[[_expires(_request, _currentSliceIdx)]]</td>
                 </tr>
                 <tr>
                   <td>User</td>
@@ -574,7 +566,7 @@
                     </template>
                     <tr>
                       <td>Expires</td>
-                      <td>[[_expires(_request, -1)]]</td>
+                      <td>[[_expires(_request, _currentSlice)]]</td>
                     </tr>
                     <template is="dom-if" if="[[_result.human_completed_ts]]">
                       <tr>
@@ -746,18 +738,20 @@
                 <div class="code bottom_space" hidden$="[[_hasNoIsolated(_currentSlice.properties)]]">
                   # (if needed) git clone https://chromium.googlesource.com/infra/luci/client-py<br>
                   python ./client-py/isolateserver.py download -I [[_currentSlice.properties.inputs_ref.isolatedserver]] --namespace [[_currentSlice.properties.inputs_ref.namespace]]
-                  -s [[_currentSlice.properties.inputs_ref.isolated]] --target foo</div>
+                  -s [[_currentSlice.properties.inputs_ref.isolated]] --target foo
+                </div>
 
                 <div>Run this task locally:</div>
                 <div class="code bottom_space">
                   # (if needed) git clone https://chromium.googlesource.com/infra/luci/client-py<br>
                   python ./client-py/swarming.py reproduce -S [[_host_url]] [[task_id]]
-                </div></div>
+                </div>
 
                 <div>Download output results into directory <i>foo</i>:</div>
                 <div class="code bottom_space">
                   # (if needed) git clone https://chromium.googlesource.com/infra/luci/client-py<br>
-                  python ./client-py/swarming.py collect -S [[_host_url]] --task-output-dir=foo [[task_id]]</div>
+                  python ./client-py/swarming.py collect -S [[_host_url]] --task-output-dir=foo [[task_id]]
+                </div>
 
               </div>
             </div>
@@ -1178,19 +1172,12 @@
       },
 
       _expires: function(request, currentSlice) {
-        var delta = 0;
-        if (currentSlice < 0) {
-          // magic number for "show all"
-          currentSlice = request.task_slices && (request.task_slices.length - 1);
-        }
-        for (var i = 0; i <= currentSlice; i++) {
-          delta += parseInt(request.task_slices[i].expiration_secs);
-        }
+        var delta = parseInt(currentSlice.expiration_secs);
         if (delta) {
           return sk.human.localeTime(new Date(request.created_ts.getTime() + delta * 1000));
         }
         // Fall back to something
-        return request.expiration_secs + " seconds from created time";
+        return currentSlice.expiration_secs + " seconds from created time";
       },
 
       _extraArgs: function(properties) {
@@ -1462,11 +1449,7 @@ time.sleep(${leaseDuration})`];
             this._result.state !==  "PENDING") {
           return;
         }
-        // Maintain the current slice index for soft-refreshes.
-        // See crbug.com/887616
-        var currindex = this._currentSliceIdx;
         this._refresh();
-        this._currentSliceIdx = currindex;
       },
 
       _rowspan: function(dims) {
