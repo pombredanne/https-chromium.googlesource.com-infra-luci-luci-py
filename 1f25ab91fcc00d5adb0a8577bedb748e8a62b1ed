@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29f4643d_df733109",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-09-25T16:48:59Z",
+      "side": 1,
+      "message": "This was done in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1239027, correct?",
+      "range": {
+        "startLine": 532,
+        "startChar": 4,
+        "endLine": 532,
+        "endChar": 70
+      },
+      "revId": "1f25ab91fcc00d5adb0a8577bedb748e8a62b1ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
