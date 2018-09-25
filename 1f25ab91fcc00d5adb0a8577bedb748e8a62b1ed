@@ -22,6 +22,30 @@
       "revId": "1f25ab91fcc00d5adb0a8577bedb748e8a62b1ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45da064b_5651ccfc",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-25T17:11:13Z",
+      "side": 1,
+      "message": "Oh yes, removed the comment.",
+      "parentUuid": "29f4643d_df733109",
+      "range": {
+        "startLine": 532,
+        "startChar": 4,
+        "endLine": 532,
+        "endChar": 70
+      },
+      "revId": "1f25ab91fcc00d5adb0a8577bedb748e8a62b1ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
