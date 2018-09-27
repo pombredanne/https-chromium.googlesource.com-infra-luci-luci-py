@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a031178c_fd58e3df",
+        "filename": "appengine/config_service/handlers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-09-27T20:20:49Z",
+      "side": 1,
+      "message": "nit: \u0027\u0027\u0027\nsince this is not a docstring",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "acfabf76f9b51f93d23884d851f4d7ec910793a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fe4fdf6_41752959",
+        "filename": "appengine/config_service/handlers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-09-27T20:20:49Z",
+      "side": 1,
+      "message": "nit: blank line between docstring and method",
+      "revId": "acfabf76f9b51f93d23884d851f4d7ec910793a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
