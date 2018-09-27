@@ -22,6 +22,30 @@
       "revId": "312cb8ad1ae453f6c39f82bf2b7ab39ec7265a92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0b291d5_66019863",
+        "filename": "appengine/config_service/ui/src/config-ui/config-ui.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-09-27T21:35:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea4898ee_1ef6eece",
+      "range": {
+        "startLine": 21,
+        "startChar": 107,
+        "endLine": 21,
+        "endChar": 108
+      },
+      "revId": "312cb8ad1ae453f6c39f82bf2b7ab39ec7265a92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
