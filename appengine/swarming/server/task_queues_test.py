@@ -29,6 +29,7 @@ from server import task_queues
 from server import task_request
 
 
+
 def _assert_bot(dimensions=None):
   bot_id = u'bot1'
   bot_dimensions = {
