@@ -22,6 +22,30 @@
       "revId": "b5cb66a20f5f62f956ce835625fc29ebb06dad43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16af1baa_78bdd822",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-09-28T16:37:17Z",
+      "side": 1,
+      "message": "Done.  This is Google, sometimes we write docs that are already out of date.",
+      "parentUuid": "d62ca9ff_231a18c9",
+      "range": {
+        "startLine": 1068,
+        "startChar": 26,
+        "endLine": 1068,
+        "endChar": 27
+      },
+      "revId": "b5cb66a20f5f62f956ce835625fc29ebb06dad43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
