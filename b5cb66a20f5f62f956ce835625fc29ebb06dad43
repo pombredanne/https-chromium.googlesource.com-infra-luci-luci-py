@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d62ca9ff_231a18c9",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-28T16:08:51Z",
+      "side": 1,
+      "message": "This is incorrect, you use the version part. I\u0027d recommend to just remove the comment, since the code is right.",
+      "range": {
+        "startLine": 1068,
+        "startChar": 26,
+        "endLine": 1068,
+        "endChar": 27
+      },
+      "revId": "b5cb66a20f5f62f956ce835625fc29ebb06dad43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
