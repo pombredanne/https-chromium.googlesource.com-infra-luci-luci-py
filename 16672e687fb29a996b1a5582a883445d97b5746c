@@ -34,6 +34,24 @@
       "revId": "16672e687fb29a996b1a5582a883445d97b5746c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d36222ab_23efb2b6",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-09-28T01:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b796ad7_06b6e4a0",
+      "revId": "16672e687fb29a996b1a5582a883445d97b5746c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
