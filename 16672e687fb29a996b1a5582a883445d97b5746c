@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3c69093_94b2fe30",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-09-28T01:02:11Z",
+      "side": 1,
+      "message": "two lines",
+      "revId": "16672e687fb29a996b1a5582a883445d97b5746c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
