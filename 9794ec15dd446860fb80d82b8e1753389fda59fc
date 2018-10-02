@@ -22,6 +22,30 @@
       "revId": "9794ec15dd446860fb80d82b8e1753389fda59fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9c3eaa4_5f2cfcec",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-10-02T19:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05dffbc7_22411410",
+      "range": {
+        "startLine": 257,
+        "startChar": 46,
+        "endLine": 257,
+        "endChar": 69
+      },
+      "revId": "9794ec15dd446860fb80d82b8e1753389fda59fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
