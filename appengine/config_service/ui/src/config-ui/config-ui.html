@@ -65,7 +65,7 @@
           <app-toolbar>
             <!--<image class="logo" src="/static/images/chromium.png"/>-->
             <div main-title>
-              <a href="/#/" class="title">
+              <a href="/#/q/" class="title">
                 Configuration Service
               </a>
             </div>
@@ -103,10 +103,6 @@
                     data="{{projectData}}"
                     tail="{{projectTail}}"
                     active="{{projectActive}}"></app-route>
-
-        <app-route  route="{{route}}"
-                    pattern="/"
-                    active="{{frontPageActive}}"></app-route>
 
         <app-route  route="{{route}}"
                     pattern="/q/:query"
@@ -158,9 +154,9 @@
 
       ready: function() {
         this.async(function() {
-          // If the path is blank, redirect to /
+          // If the path is blank, redirect to /q/
           if (!this.route.path) {
-            this.set('route.path', '/');
+            this.set('route.path', '/q/');
           }
         });
       },
