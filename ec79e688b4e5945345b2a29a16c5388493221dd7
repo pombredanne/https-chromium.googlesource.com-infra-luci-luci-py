@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f691054_7485b816",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-02T19:21:14Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be necessary.\n\nI think the issue is that you call _stateChanged() in render(), and render() in setState().",
+      "range": {
+        "startLine": 218,
+        "startChar": 1,
+        "endLine": 221,
+        "endChar": 30
+      },
+      "revId": "ec79e688b4e5945345b2a29a16c5388493221dd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d0d2b16_ead42e07",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-02T19:21:14Z",
+      "side": 1,
+      "message": "let",
+      "range": {
+        "startLine": 434,
+        "startChar": 6,
+        "endLine": 434,
+        "endChar": 9
+      },
+      "revId": "ec79e688b4e5945345b2a29a16c5388493221dd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
