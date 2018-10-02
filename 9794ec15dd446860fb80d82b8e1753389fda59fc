@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05dffbc7_22411410",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-02T18:47:57Z",
+      "side": 1,
+      "message": "Do you really want to send this event in the case that the user is not logged in?",
+      "range": {
+        "startLine": 257,
+        "startChar": 46,
+        "endLine": 257,
+        "endChar": 69
+      },
+      "revId": "9794ec15dd446860fb80d82b8e1753389fda59fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
