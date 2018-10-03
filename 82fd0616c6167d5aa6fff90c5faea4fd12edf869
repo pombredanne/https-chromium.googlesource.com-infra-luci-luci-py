@@ -16,6 +16,24 @@
       "revId": "82fd0616c6167d5aa6fff90c5faea4fd12edf869",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "757d91b5_0f8878d2",
+        "filename": "appengine/config_service/ui/src/config-ui/config-ui.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-10-03T06:15:44Z",
+      "side": 0,
+      "message": "https://3802-82fd061-tainted-hinoka-dot-luci-config.appspot.com/",
+      "parentUuid": "34e397bf_36c3375d",
+      "revId": "82fd0616c6167d5aa6fff90c5faea4fd12edf869",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
