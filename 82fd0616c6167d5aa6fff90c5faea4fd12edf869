@@ -52,6 +52,24 @@
       "revId": "82fd0616c6167d5aa6fff90c5faea4fd12edf869",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6f4c033_c5b7168d",
+        "filename": "appengine/config_service/ui/src/config-ui/config-ui.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-10-04T22:34:03Z",
+      "side": 0,
+      "message": "this is intentional, /#/ should be unreachable.\n\nAlso app-route does not have a redirection ability:\nhttps://github.com/PolymerElements/app-route/blob/2.x/app-route.html#L86",
+      "parentUuid": "a5def2cd_18fea95c",
+      "revId": "82fd0616c6167d5aa6fff90c5faea4fd12edf869",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
