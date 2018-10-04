@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "686bcf2c_c2b503c8",
+        "filename": "appengine/config_service/ui/src/config-ui/config-ui.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-04T22:50:29Z",
+      "side": 1,
+      "message": "can we change this to \n\n  if (!this.route.path || this.route.path \u003d\u003d \u0027/\u0027) \n\n?",
+      "range": {
+        "startLine": 158,
+        "startChar": 10,
+        "endLine": 158,
+        "endChar": 33
+      },
+      "revId": "25fbff0c8ed40ce28cdb1c2a1c558ad63aa96770",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
