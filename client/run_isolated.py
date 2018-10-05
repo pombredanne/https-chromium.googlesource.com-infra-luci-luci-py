@@ -331,6 +331,10 @@ def set_luci_context_account(account, tmp_dir):
     yield
 
 
+def process_env_var(env_var, out_dir, bot_file):
+  """Replaces variables in envrionment variables."""
+  return replace_parameters(env_var, out_dir, bot_file)
+
 def process_command(command, out_dir, bot_file):
   """Replaces variables in a command line.
 
@@ -338,33 +342,41 @@ def process_command(command, out_dir, bot_file):
     ValueError if a parameter is requested in |command| but its value is not
       provided.
   """
-  def fix(arg):
-    arg = arg.replace(EXECUTABLE_SUFFIX_PARAMETER, cipd.EXECUTABLE_SUFFIX)
-    replace_slash = False
-    if ISOLATED_OUTDIR_PARAMETER in arg:
-      if not out_dir:
-        raise ValueError(
-            'output directory is requested in command, but not provided; '
-            'please specify one')
-      arg = arg.replace(ISOLATED_OUTDIR_PARAMETER, out_dir)
+  return [replace_parameters(arg, out_dir, bot_file) for arg in command]
+
+def replace_parameters(arg, out_dir, bot_file):
+  """Replaces parameter tokens with appropriate values in a string.
+
+  Raises:
+    ValueError if a parameter is requested in |command| but its value is not
+      provided.
+  """
+  arg = arg.replace(EXECUTABLE_SUFFIX_PARAMETER, cipd.EXECUTABLE_SUFFIX)
+  replace_slash = False
+  if ISOLATED_OUTDIR_PARAMETER in arg:
+    if not out_dir:
+      raise ValueError(
+          'output directory is requested in command, but not provided; '
+          'please specify one')
+    arg = arg.replace(ISOLATED_OUTDIR_PARAMETER, out_dir)
+    replace_slash = True
+  if SWARMING_BOT_FILE_PARAMETER in arg:
+    if bot_file:
+      arg = arg.replace(SWARMING_BOT_FILE_PARAMETER, bot_file)
       replace_slash = True
-    if SWARMING_BOT_FILE_PARAMETER in arg:
-      if bot_file:
-        arg = arg.replace(SWARMING_BOT_FILE_PARAMETER, bot_file)
-        replace_slash = True
-      else:
-        logging.warning('SWARMING_BOT_FILE_PARAMETER found in command, but no '
-                        'bot_file specified. Leaving parameter unchanged.')
-    if replace_slash:
-      # Replace slashes only if parameters are present
-      # because of arguments like '${ISOLATED_OUTDIR}/foo/bar'
-      arg = arg.replace('/', os.sep)
-    return arg
-
-  return [fix(arg) for arg in command]
+    else:
+      logging.warning('SWARMING_BOT_FILE_PARAMETER found in command, but no '
+                      'bot_file specified. Leaving parameter unchanged.')
+  if replace_slash:
+    # Replace slashes only if parameters are present
+    # because of arguments like '${ISOLATED_OUTDIR}/foo/bar'
+    arg = arg.replace('/', os.sep)
+  return arg
 
 
-def get_command_env(tmp_dir, cipd_info, run_dir, env, env_prefixes):
+
+def get_command_env(tmp_dir, cipd_info, run_dir, env, env_prefixes, out_dir,
+                    bot_file):
   """Returns full OS environment to run a command in.
 
   Sets up TEMP, puts directory with cipd binary in front of PATH, exposes
@@ -376,13 +388,15 @@ def get_command_env(tmp_dir, cipd_info, run_dir, env, env_prefixes):
     run_dir: The root directory the isolated tree is mapped in.
     env: environment variables to use
     env_prefixes: {"ENV_KEY": ['cwd', 'relative', 'paths', 'to', 'prepend']}
+    out_dir: Isolated output directory. Only required if any of the env vars
+      contain ISOLATED_OUTDIR_PARAMETER.
   """
   out = os.environ.copy()
   for k, v in env.iteritems():
     if not v:
       out.pop(k, None)
     else:
-      out[k] = v
+      out[k] = process_env_var(v, out_dir, bot_file)
 
   if cipd_info:
     bin_dir = os.path.dirname(cipd_info.client.binary_path)
@@ -756,7 +770,8 @@ def map_and_run(data, constant_run_path):
           # so it can grab correct value of LUCI_CONTEXT env var.
           with set_luci_context_account(data.switch_to_account, tmp_dir):
             env = get_command_env(
-                tmp_dir, cipd_info, run_dir, data.env, data.env_prefix)
+                tmp_dir, cipd_info, run_dir, data.env, data.env_prefix, out_dir,
+                data.bot_file)
             command = tools.fix_python_cmd(command, env)
             command = process_command(command, out_dir, data.bot_file)
             file_path.ensure_command_has_abs_path(command, cwd)
