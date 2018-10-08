@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "708e0325_d6750434",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-08T22:16:46Z",
+      "side": 1,
+      "message": "please bump to 0.11.1",
+      "revId": "5c1bc7d6b73940e9abf408cebc23ca60b0420f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d1f833_03aa3a17",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-08T22:16:46Z",
+      "side": 1,
+      "message": "This function doesn\u0027t add much, please inline, which is to replace the call at line 412.",
+      "revId": "5c1bc7d6b73940e9abf408cebc23ca60b0420f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
