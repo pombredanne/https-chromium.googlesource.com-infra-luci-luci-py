@@ -174,15 +174,16 @@ def task_request_to_raw_request(task_request):
   # use it at all.
   if not out['service_account']:
     out.pop('service_account')
-  out['task_slices'][0]['properties']['dimensions'] = [
-    {'key': k, 'value': v}
-    for k, v in out['task_slices'][0]['properties']['dimensions']
-  ]
-  out['task_slices'][0]['properties']['env'] = [
-    {'key': k, 'value': v}
-    for k, v in out['task_slices'][0]['properties']['env'].iteritems()
-  ]
-  out['task_slices'][0]['properties']['env'].sort(key=lambda x: x['key'])
+  for slice in out['task_slices']:
+    slice['properties']['dimensions'] = [
+      {'key': k, 'value': v}
+      for k, v in slice['properties']['dimensions']
+    ]
+    slice['properties']['env'] = [
+      {'key': k, 'value': v}
+      for k, v in slice['properties']['env'].iteritems()
+    ]
+    slice['properties']['env'].sort(key=lambda x: x['key'])
   return out
 
 
@@ -904,24 +905,33 @@ def add_filter_options(parser):
       '-d', '--dimension', default=[], action='append', nargs=2,
       dest='dimensions', metavar='FOO bar',
       help='dimension to filter on')
+  parser.filter_group.add_option(
+      '--fallback-dimension', default=[], action='append', nargs=2,
+      dest='fallback_dimensions', metavar='FOO bar',
+      help='dimensions to filter on for fallback slice')
   parser.add_option_group(parser.filter_group)
 
 
+def _validate_filter_option(parser, key, value, otype):
+  if ':' in key:
+    parser.error('--%s key cannot contain ":"' % otype)
+  if key.strip() != key:
+    parser.error('--%s key has whitespace' % otype)
+  if not key:
+    parser.error('--%s key is empty' % otype)
+
+  if value.strip() != value:
+    parser.error('--%s value has whitespace' % otype)
+  if not value:
+    parser.error('--%s value is empty' % otype)
+
 def process_filter_options(parser, options):
   for key, value in options.dimensions:
-    if ':' in key:
-      parser.error('--dimension key cannot contain ":"')
-    if key.strip() != key:
-      parser.error('--dimension key has whitespace')
-    if not key:
-      parser.error('--dimension key is empty')
-
-    if value.strip() != value:
-      parser.error('--dimension value has whitespace')
-    if not value:
-      parser.error('--dimension value is empty')
+    _validate_filter_option(parser, key, value, "dimension")
+  for key, value in options.fallback_dimensions:
+    _validate_filter_option(parser, key, value, "fallback-dimension")
   options.dimensions.sort()
-
+  options.fallback_dimensions.sort()
 
 def add_sharding_options(parser):
   parser.sharding_group = optparse.OptionGroup(parser, 'Sharding options')
@@ -1138,11 +1148,37 @@ def process_trigger_options(parser, options, args):
       expiration_secs=options.expiration,
       properties=properties,
       wait_for_capacity=options.wait_for_capacity)
+  slices = [task_slice]
+  # If options.fallback_dimensions is specified then we will add second
+  # task slice to be used as the fallback.  The only difference between
+  # the two task slices is the dimensions specified.
+  if options.fallback_dimensions:
+    properties = TaskProperties(
+      caches=caches,
+      cipd_input=cipd_input,
+      command=command,
+      relative_cwd=options.relative_cwd,
+      dimensions=options.fallback_dimensions,
+      env=options.env,
+      env_prefixes=[StringListPair(k, v) for k, v in env_prefixes.iteritems()],
+      execution_timeout_secs=options.hard_timeout,
+      extra_args=extra_args,
+      grace_period_secs=30,
+      idempotent=options.idempotent,
+      inputs_ref=inputs_ref,
+      io_timeout_secs=options.io_timeout,
+      outputs=options.output,
+      secret_bytes=secret_bytes)
+    fallback_task_slice = TaskSlice(
+        expiration_secs=options.expiration,
+        properties=properties,
+        wait_for_capacity=options.wait_for_capacity)
+    slices.append(fallback_task_slice)
   return NewTaskRequest(
       name=default_task_name(options),
       parent_task_id=os.environ.get('SWARMING_TASK_ID', ''),
       priority=options.priority,
-      task_slices=[task_slice],
+      task_slices=slices,
       service_account=options.service_account,
       tags=options.tags,
       user=options.user,
@@ -1304,6 +1340,8 @@ def CMDbots(parser, args):
 
   for key, value in options.dimensions:
     values.append(('dimensions', '%s:%s' % (key, value)))
+  for key, value in options.fallback_dimensions:
+    values.append(('fallback_dimensions', '%s:%s' % (key, value)))
   url += urllib.urlencode(values)
   try:
     data, yielder = get_yielder(url, 0)
