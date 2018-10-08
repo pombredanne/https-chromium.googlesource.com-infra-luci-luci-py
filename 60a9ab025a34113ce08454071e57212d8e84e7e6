@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e9ab953_e1eda27a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1000325
+      },
+      "writtenOn": "2018-10-08T23:19:12Z",
+      "side": 1,
+      "message": "Just to help me understand... why does pool have to be identical for all task slices?\n\nI\u0027m not disagreeing, just trying to understand why the restriction exists.",
+      "revId": "60a9ab025a34113ce08454071e57212d8e84e7e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
