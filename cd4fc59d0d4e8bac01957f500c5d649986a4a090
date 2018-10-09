@@ -52,6 +52,24 @@
       "revId": "cd4fc59d0d4e8bac01957f500c5d649986a4a090",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71118f28_4a124b26",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1304500
+      },
+      "writtenOn": "2018-10-09T18:46:18Z",
+      "side": 1,
+      "message": "Gotcha, OK, makes sense now.  Thanks for clarifying",
+      "parentUuid": "99dca909_e286346e",
+      "revId": "cd4fc59d0d4e8bac01957f500c5d649986a4a090",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
