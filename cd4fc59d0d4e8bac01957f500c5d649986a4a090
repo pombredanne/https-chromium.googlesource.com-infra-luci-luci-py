@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b60695c0_8fe677b8",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-09T00:53:49Z",
+      "side": 1,
+      "message": "For buildbucket, we used per dimension expiration value. I feel this is more useful for the user than having to understand task slices.\n\nIt\u0027s explained there:\nhttps://cs.chromium.org/chromium/infra/go/src/go.chromium.org/luci/buildbucket/proto/config/project_config.proto?q\u003dproject_config.proto\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d312\n\nSo basically the idea would be for the user to provide --opt-dimension \u003ckey\u003e \u003cvalue\u003e \u003cexp\u003e\n\nand the script would construct the needed task slices accordingly. It\u0027s easier for the user.",
+      "revId": "cd4fc59d0d4e8bac01957f500c5d649986a4a090",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
