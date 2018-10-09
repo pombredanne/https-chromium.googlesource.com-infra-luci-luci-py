@@ -34,6 +34,24 @@
       "revId": "cd4fc59d0d4e8bac01957f500c5d649986a4a090",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99dca909_e286346e",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-09T18:42:53Z",
+      "side": 1,
+      "message": "\u003e OK, so just to make sure I understand:  Say, for example, we have:\n\u003e \n\u003e      \u0027Mac Tests\u0027: {\n\u003e         \u0027swarming\u0027: {\n\u003e           \u0027dimension_sets\u0027: [\n\u003e             {\n\u003e               \u0027gpu\u0027: \u00278086:0a2e\u0027,\n\u003e               \u0027os\u0027: \u0027Mac-10.12.6\u0027,\n\u003e               \u0027os\u0027: \u0027Mac-10.13\u0027,\n\u003e             }\n\u003e           ],\n\u003e           \u0027expiration\u0027: 3600,\n\u003e           \u0027shards\u0027: 12,\n\u003e         },\n\u003e       },\n\u003e \n\u003e We would translate that dict into (which we will pass through to swarming.py):\n\u003e --opt-dimension gpu 8086:0a2e 3600\n\u003e --opt-dimension os \u0027Mac-10.12.6\u0027 3600\n\u003e --opt-dimension os \u0027Mac-10.13\u0027 3600\n\nNo, since this is the expiration of the task request itself, where after 1h, the task becomes EXPIRED and is not PENDING anymore. This is not about having fallback, it\u0027s about not waiting indefinitely.\n\nFallbacks is for optional dimensions.\n\n\u003e We have to have some logical grouping here and since we have two os entries we know that we\u0027ll need to swarming.py to create two slices out of the dimensions (could be the opposite if we have one os and two gpu).  This seems to follow what you wrote in \"Swarming fallback dimensions best practices: rolling fleet upgrades\".  Correct?\n\u003e \n\u003e Second part is the expiration: it\u0027s currently specified per swarming not per dimension.  So, in the case above we just apply it to all 3 but maybe it makes more sense to also allow it in the dimension sets (otherwise take the one specified outside of dimension sets and apply to all dimension args).\n\nIt\u0027s because it\u0027s separate concepts.\n\n\u003e Last question: will we ever have multiple dimensions sets?  It\u0027s technically a list but I haven\u0027t yet seen it :)\n\nI think kbr@ added this. IIRC this is triggering the same task multiple times. IIRC this is for GPU tests, like running once on AMD, once on nvidia.",
+      "parentUuid": "fbfd64b3_9fe6c570",
+      "revId": "cd4fc59d0d4e8bac01957f500c5d649986a4a090",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
