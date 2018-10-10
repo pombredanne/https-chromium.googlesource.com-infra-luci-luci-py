@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5ccdb439_8fe52d08",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-10T12:46:58Z",
+      "side": 1,
+      "message": "Yes. I think it\u0027s more explicit for the user here to use a different flag, which is unambiguous. The various expirations are already confusing enough, embedding a new one into a string doesn\u0027t help.\n\nThe only reason I used something similar for buildbucket is due to API compatibility reasons.",
+      "parentUuid": "98b3f7c5_831910ea",
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c70ab4e0_6020bc12",
         "filename": "client/swarming.py",
         "patchSetId": 6
@@ -242,6 +260,30 @@
       "side": 1,
       "message": "also, task_slices[i].expiration_secs is relative to task_slices[i-1]",
       "parentUuid": "3390537f_bd057d20",
+      "range": {
+        "startLine": 1186,
+        "startChar": 10,
+        "endLine": 1186,
+        "endChar": 48
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c1b298e_a5343e6d",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-10T12:46:58Z",
+      "side": 1,
+      "message": "The TaskSlice.expiration_secs is the value for this slice only, independent of the previous and next ones.\n\nThis means that what you need to list here is the delta between this slice\u0027s expiration and the previous one, cumulatively.",
+      "parentUuid": "ac7271f2_f9b3f56f",
       "range": {
         "startLine": 1186,
         "startChar": 10,
