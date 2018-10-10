@@ -673,6 +673,15 @@ def get_ssd():
 ## Mutating code.
 
 
+def disable_screensaver():
+  """Disables the screensaver."""
+  try:
+    subprocess.check_output([
+        'defaults', 'write', 'com.apple.screensaver', 'idleTime', '0'])
+  except (OSError, subprocess.CalledProcessError) as e:
+    logging.error('Failed to disable screensaver: %s', str(e))
+
+
 def generate_launchd_plist(command, cwd, plistname):
   """Generates a plist content with the corresponding command for launchd."""
   # The documentation is available at:
