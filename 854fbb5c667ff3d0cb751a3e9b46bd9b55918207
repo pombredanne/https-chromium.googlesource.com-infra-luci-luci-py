@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98b3f7c5_831910ea",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-10T01:14:03Z",
+      "side": 1,
+      "message": "ideally we don\u0027t introduce a new flag for \"optional\" aspect. M-A did you consciously reject extending -d syntax? e.g. `-d os:60 Windows` or something like that. We wouldn\u0027t have to extract -validate_filter_option logic",
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c70ab4e0_6020bc12",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-10T01:14:03Z",
+      "side": 1,
+      "message": "this codebase uses \u0027 not \"",
+      "range": {
+        "startLine": 930,
+        "startChar": 48,
+        "endLine": 930,
+        "endChar": 49
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bd208b6_5e2c048c",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-10T01:14:03Z",
+      "side": 1,
+      "message": "i think we should validate that this is a non-negative integer divisible by 60",
+      "range": {
+        "startLine": 931,
+        "startChar": 18,
+        "endLine": 931,
+        "endChar": 19
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28f43211_a0e00ca5",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-10T01:14:03Z",
+      "side": 1,
+      "message": "unnecessary line",
+      "range": {
+        "startLine": 1166,
+        "startChar": 2,
+        "endLine": 1166,
+        "endChar": 33
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c678751d_c9105329",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-10T01:14:03Z",
+      "side": 1,
+      "message": "this duplicates L1142-1157. Consider\n\n  slice_properties \u003d properties._replace(dimensions\u003d_merge_dimensions(options.dimensions, optional_dimension))",
+      "range": {
+        "startLine": 1169,
+        "startChar": 8,
+        "endLine": 1184,
+        "endChar": 34
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3390537f_bd057d20",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-10T01:14:03Z",
+      "side": 1,
+      "message": "we can\u0027t have multiple task slices with the same expiration. Optional dimensions must be grouped by expiration.\n\nbesides, task slices must be sorted by expiration",
+      "range": {
+        "startLine": 1186,
+        "startChar": 10,
+        "endLine": 1186,
+        "endChar": 48
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
