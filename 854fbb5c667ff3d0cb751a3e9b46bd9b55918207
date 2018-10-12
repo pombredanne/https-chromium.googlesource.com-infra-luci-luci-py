@@ -293,6 +293,30 @@
       "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5717e9_2e8c3097",
+        "filename": "client/swarming.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T18:30:23Z",
+      "side": 1,
+      "message": "Sounds good -- I tried to replicate the logic here: https://cs.chromium.org/chromium/infra/appengine/cr-buildbucket/swarming/swarming.py?type\u003dcs\u0026q\u003dexpiration_secs\u0026g\u003d0\u0026l\u003d674\n\nHopefully I got it right :)",
+      "parentUuid": "8c1b298e_a5343e6d",
+      "range": {
+        "startLine": 1186,
+        "startChar": 10,
+        "endLine": 1186,
+        "endChar": 48
+      },
+      "revId": "854fbb5c667ff3d0cb751a3e9b46bd9b55918207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
