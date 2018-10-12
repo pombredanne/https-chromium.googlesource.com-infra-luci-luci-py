@@ -174,15 +174,16 @@ def task_request_to_raw_request(task_request):
   # use it at all.
   if not out['service_account']:
     out.pop('service_account')
-  out['task_slices'][0]['properties']['dimensions'] = [
-    {'key': k, 'value': v}
-    for k, v in out['task_slices'][0]['properties']['dimensions']
-  ]
-  out['task_slices'][0]['properties']['env'] = [
-    {'key': k, 'value': v}
-    for k, v in out['task_slices'][0]['properties']['env'].iteritems()
-  ]
-  out['task_slices'][0]['properties']['env'].sort(key=lambda x: x['key'])
+  for task_slice in out['task_slices']:
+    task_slice['properties']['dimensions'] = [
+      {'key': k, 'value': v}
+      for k, v in task_slice['properties']['dimensions']
+    ]
+    task_slice['properties']['env'] = [
+      {'key': k, 'value': v}
+      for k, v in task_slice['properties']['env'].iteritems()
+    ]
+    task_slice['properties']['env'].sort(key=lambda x: x['key'])
   return out
 
 
@@ -904,22 +905,38 @@ def add_filter_options(parser):
       '-d', '--dimension', default=[], action='append', nargs=2,
       dest='dimensions', metavar='FOO bar',
       help='dimension to filter on')
+  parser.filter_group.add_option(
+      '--optional-dimension', default=[], action='append', nargs=3,
+      dest='optional_dimensions', metavar='key value expiration',
+      help='optional dimensions which will result additional task slices ')
   parser.add_option_group(parser.filter_group)
+
+
+def _validate_filter_option(parser, key, value, expiration, argname):
+  if ':' in key:
+    parser.error('%s key cannot contain ":"' % argname)
+  if key.strip() != key:
+    parser.error('%s key has whitespace' % argname)
+  if not key:
+    parser.error('%s key is empty' % argname)
+
+  if value.strip() != value:
+    parser.error('%s value has whitespace' % argname)
+  if not value:
+    parser.error('%s value is empty' % argname)
+
+  if expiration is not None:
+    if expiration <= 0:
+      parser.error('%s expiration should be postiive' % argname)
+    if expiration != 0 and expiration % 60 != 0:
+      parser.error('%s expiration is not divisible by 60' % argname)
 
 
 def process_filter_options(parser, options):
   for key, value in options.dimensions:
-    if ':' in key:
-      parser.error('--dimension key cannot contain ":"')
-    if key.strip() != key:
-      parser.error('--dimension key has whitespace')
-    if not key:
-      parser.error('--dimension key is empty')
-
-    if value.strip() != value:
-      parser.error('--dimension value has whitespace')
-    if not value:
-      parser.error('--dimension value is empty')
+    _validate_filter_option(parser, key, value, None, 'dimension')
+  for key, value, exp in options.optional_dimensions:
+    _validate_filter_option(parser, key, value, exp, 'optional-dimensions')
   options.dimensions.sort()
 
 
@@ -1134,15 +1151,50 @@ def process_trigger_options(parser, options, args):
       io_timeout_secs=options.io_timeout,
       outputs=options.output,
       secret_bytes=secret_bytes)
+
+  slices = []
+
+  # Group the optional dimensions by expiration.
+  dims_by_exp = {}
+  for key, value, exp_secs in options.optional_dimensions:
+    dims_by_exp.setdefault(exp_secs, []).append((key, value))
+
+  # Create fallback task slices with the optional dimensions and new expiration.
+  expiration_used = 0
+  for exp_secs in sorted(dims_by_exp):
+    # Replace any dimension in dimensions with the optional dimension if we
+    # match on the key.  Otherwise append the optional dimensions.
+    drequired = dict((x, y) for x, y in options.dimensions)
+    doptional = dict((x, y) for x, y in dims_by_exp[exp_secs])
+    dmerged = dict(drequired.items() + doptional.items())
+    new_dims = [(k, v) for k, v in dmerged.iteritems()]
+    slice_properties = properties._replace(dimensions=new_dims)
+
+    # The actual expiration for the slice is the delta between this slice and
+    # the one before it.
+    slice_exp = exp_secs - expiration_used
+    optional_task_slice = TaskSlice(
+        expiration_secs=slice_exp,
+        properties=slice_properties,
+        wait_for_capacity=options.wait_for_capacity)
+    expiration_used += exp_secs
+    slices.append(optional_task_slice)
+
+  # Add in the base task slice (may be the only one).  NOTE: Since the
+  # expiration_secs is the delta here we subtract any expiration we used for the
+  # optional slices.
+  properties = properties._replace(dimensions=options.dimensions)
   task_slice = TaskSlice(
-      expiration_secs=options.expiration,
+      expiration_secs=options.expiration - expiration_used,
       properties=properties,
       wait_for_capacity=options.wait_for_capacity)
+  slices.append(task_slice)
+
   return NewTaskRequest(
       name=default_task_name(options),
       parent_task_id=os.environ.get('SWARMING_TASK_ID', ''),
       priority=options.priority,
-      task_slices=[task_slice],
+      task_slices=slices,
       service_account=options.service_account,
       tags=options.tags,
       user=options.user,
