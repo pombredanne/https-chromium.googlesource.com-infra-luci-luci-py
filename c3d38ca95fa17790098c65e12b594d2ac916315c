@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "af03c68a_aa997206",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9218cfc8_d839c843",
+      "range": {
+        "startLine": 915,
+        "startChar": 60,
+        "endLine": 915,
+        "endChar": 65
+      },
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c63ceaa5_a29b4af0",
         "filename": "client/swarming.py",
         "patchSetId": 7
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "c9f11906_f5672af1",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c63ceaa5_a29b4af0",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8156072_c51ca863",
         "filename": "client/swarming.py",
         "patchSetId": 7
@@ -56,6 +98,24 @@
       "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "251bb795_c65990ea",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8156072_c51ca863",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "49515fa9_478a5eba",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d8a88473_6d608e9c",
+      "range": {
+        "startLine": 935,
+        "startChar": 48,
+        "endLine": 935,
+        "endChar": 49
+      },
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fe99810_b814ce0e",
         "filename": "client/swarming.py",
         "patchSetId": 7
@@ -96,6 +180,24 @@
       "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a16d5839_86c72eac",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5fe99810_b814ce0e",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -116,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "7a9f3edf_b43f66cb",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d2168277_73c60431",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0702b701_974d4b0b",
         "filename": "client/swarming.py",
         "patchSetId": 7
@@ -130,6 +250,24 @@
       "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eef013e_1dcef986",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Yeah, good point, fixing.",
+      "parentUuid": "0702b701_974d4b0b",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -150,6 +288,24 @@
     },
     {
       "key": {
+        "uuid": "ff4ca092_88993373",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf11d6bb_01c26d51",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7f36a49_d4f81bab",
         "filename": "client/swarming.py",
         "patchSetId": 7
@@ -164,6 +320,24 @@
       "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8669e548_47b937eb",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-12T21:12:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7f36a49_d4f81bab",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
