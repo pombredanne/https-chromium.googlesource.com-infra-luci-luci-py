@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9218cfc8_d839c843",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "argname would be better, pass \u0027--optional-dimension\u0027 / \u0027--dimension\u0027 and remove the -- from the errors below.",
+      "range": {
+        "startLine": 915,
+        "startChar": 60,
+        "endLine": 915,
+        "endChar": 65
+      },
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c63ceaa5_a29b4af0",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "0 is not valid either",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8156072_c51ca863",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "2 lines between file level symbols",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8a88473_6d608e9c",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "Use None here, so when testing inside, you can skip testing with:\n\nif expiration is not None:",
+      "range": {
+        "startLine": 935,
+        "startChar": 48,
+        "endLine": 935,
+        "endChar": 49
+      },
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fe99810_b814ce0e",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "Please move this after at least line 1161.",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2168277_73c60431",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "This would be nicer:\n\n  for key, value, exp_secs in options.optional_dimensions:",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0702b701_974d4b0b",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "This algorithm is incorrect, as one could provide:\n\n  --optional-dimension foo bar 60 --optional-dimension role truck 60\n\nThe current algorithm doesn\u0027t handle this.",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf11d6bb_01c26d51",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "Please add trailing period.",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f36a49_d4f81bab",
+        "filename": "client/swarming.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-12T19:33:38Z",
+      "side": 1,
+      "message": "An error?",
+      "revId": "c3d38ca95fa17790098c65e12b594d2ac916315c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
