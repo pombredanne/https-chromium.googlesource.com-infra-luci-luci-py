@@ -13,13 +13,8 @@ default_expiration: "10m"
 
 handlers:
 - url: /_ah/api/.*
-  script: main.endpoints_app
+  script: main_frontend.endpoints_app
   secure: always
-
-- url: /(internal|restricted)/mapreduce(/.*)?
-  script: main.mapreduce_app
-  secure: always
-  login: admin
 
 - url: /mapreduce/pipeline/images
   static_dir: third_party/mapreduce/lib/pipeline/ui/images
@@ -39,20 +34,13 @@ handlers:
     X-Frame-Options: deny
 
 - url: /api/.*
-  script: main.app
+  script: main_frontend.app
   secure: always
 
 - url: /(user|restricted)(|/.*)
-  script: main.app
+  script: main_frontend.app
   secure: always
   login: required
-
-# TODO(vadimsh): Get rid of this route after confirming it's not used on
-# default module. Old task queue tasks may potentially target 'default' module.
-- url: /internal/.+
-  script: main.backend_app
-  secure: always
-  login: admin
 
 - url: /res/(.+)
   static_files: ui/build/\1
@@ -74,7 +62,7 @@ handlers:
     X-Frame-Options: deny
 
 - url: .*
-  script: main.app
+  script: main_frontend.app
   secure: always
 
 builtins:
