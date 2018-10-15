@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87bbcc71_b82566e6",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-15T12:37:38Z",
+      "side": 1,
+      "message": "positive",
+      "range": {
+        "startLine": 930,
+        "startChar": 44,
+        "endLine": 930,
+        "endChar": 52
+      },
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7141d21e_9fc7fa04",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-15T12:37:38Z",
+      "side": 1,
+      "message": "you can remove this now",
+      "range": {
+        "startLine": 931,
+        "startChar": 7,
+        "endLine": 931,
+        "endChar": 26
+      },
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0022e250_467b1c6d",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-15T12:37:38Z",
+      "side": 1,
+      "message": "you can use the new form:\n\n  drequired \u003d {k: v for k, v in options.dimensions}\n\nThat said, there\u0027s a problem as it\u0027s not guaranteed that dimension keys are unique. It is now valid to specify the same dimension key twice. A good example is the \u0027caches\u0027 dimension, which a trigger may request both values \u0027git\u0027 and \u0027builder_12345\u0027 for cache affinity, with a command line that would look like:\n\n  --optional-dimension caches git 120 --optional-dimension caches builder_12345 120\n\nThis should work. (Sorry for the trouble)",
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cbde3f2_12b315b6",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-15T12:37:38Z",
+      "side": 1,
+      "message": "new_dims \u003d dmerge.items()\n\nso instead inline at the next line",
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83f3db88_11c62be1",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-15T12:37:38Z",
+      "side": 1,
+      "message": "- Please use 180 here instead of 120, so the expiration_secs values are different.\n- Use a dimension that is not overriding another one, so we see that \"disappearing\" dimensions works too.",
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
