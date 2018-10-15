@@ -9,11 +9,14 @@ that shouldn't be done in unit tests, can be done safely. This file must be
 tested via a smoke test.
 """
 
+import logging
 import os
 import sys
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(APP_DIR, 'components', 'third_party'))
+
+from google.appengine.api.runtime import runtime
 
 from components import ereporter2
 from components import utils
@@ -26,6 +29,21 @@ import ts_mon_metrics
 from server import acl
 from server import config
 from server import pools_config
+
+
+def report_memory(app):
+  old_dispatcher = None
+  def dispatch_and_report(*args, **kwargs):
+    before = runtime.memory_usage().current()
+    try:
+      return old_dispatcher(*args, **kwargs)
+    finally:
+      after = runtime.memory_usage().current()
+      logging.debug(
+          'Memory usage: %d -> %d MB; delta: %d MB',
+          before, after, after-before)
+  old_dispatcher = app.router.dispatch
+  app.router.dispatch = dispatch_and_report
 
 
 # pylint: disable=redefined-outer-name
@@ -51,6 +69,7 @@ def create_application():
 
   event_mon_metrics.initialize()
   ts_mon_metrics.initialize()
+  report_memory(backend_app)
   return backend_app, main.APP
 
 
