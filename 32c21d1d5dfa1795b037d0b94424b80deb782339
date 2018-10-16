@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "657648b5_d4a9c8fa",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "where exp is converted from a string to an integer?\n\ndid you try it with expiration \"60\"? I suspect it will fail with \"TypeError: not all arguments converted during string formatting\"",
+      "range": {
+        "startLine": 925,
+        "startChar": 4,
+        "endLine": 929,
+        "endChar": 0
+      },
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab99d4a9_5d77c111",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "this one is plural, while the one in L933 is singular. Why inconsistency?",
+      "range": {
+        "startLine": 935,
+        "startChar": 72,
+        "endLine": 935,
+        "endChar": 73
+      },
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bcbd393_ee4cfa21",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 1134,
+        "startChar": 52,
+        "endLine": 1134,
+        "endChar": 61
+      },
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d83e4442_f495f5e5",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "i and expiration_secs are unused here.\nno need for enumerate. Maybe use _ for expiration_secs.\n\ni suspect i was used for retrieving expirations before.",
+      "range": {
+        "startLine": 1176,
+        "startChar": 6,
+        "endLine": 1176,
+        "endChar": 7
+      },
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d9ae908_bb4dbbe2",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "i find this a bit complicated, hard to verify correctness. There are at least 3 orderings i need to keep in mind: the order of expirations list, order of iteration in this loop, order in which slices are added.\n\ni suspect it would be simpler to construct slices with absolute expiration secs, and then have another loop that makes them relative to the previous one. \nit will mean that TaskSlice.expiration_secs are temporarily incorrect though, so that\u0027s not great\nWDYT?",
+      "range": {
+        "startLine": 1184,
+        "startChar": 24,
+        "endLine": 1184,
+        "endChar": 41
+      },
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7ea4ab5_c68c6b39",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "nit: it is more efficient to add to the end, and reverse after the loop",
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78b786d0_a883ab70",
+        "filename": "client/swarming.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-16T18:14:37Z",
+      "side": 1,
+      "message": "this is a noop for two reasons:\n1) properties already has orig dimes\n2) return value of _replace is ignored\n\nperhaps rename properties to base_properties so that it is more obvious that this line is unnecessary",
+      "range": {
+        "startLine": 1192,
+        "startChar": 2,
+        "endLine": 1192,
+        "endChar": 43
+      },
+      "revId": "32c21d1d5dfa1795b037d0b94424b80deb782339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
