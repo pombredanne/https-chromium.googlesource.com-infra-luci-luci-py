@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f262a3fa_2f42d931",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-16T00:26:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87bbcc71_b82566e6",
+      "range": {
+        "startLine": 930,
+        "startChar": 44,
+        "endLine": 930,
+        "endChar": 52
+      },
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7141d21e_9fc7fa04",
         "filename": "client/swarming.py",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4e952648_9f3f25f0",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-16T00:26:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7141d21e_9fc7fa04",
+      "range": {
+        "startLine": 931,
+        "startChar": 7,
+        "endLine": 931,
+        "endChar": 26
+      },
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0022e250_467b1c6d",
         "filename": "client/swarming.py",
         "patchSetId": 9
@@ -59,6 +107,24 @@
       "writtenOn": "2018-10-15T12:37:38Z",
       "side": 1,
       "message": "you can use the new form:\n\n  drequired \u003d {k: v for k, v in options.dimensions}\n\nThat said, there\u0027s a problem as it\u0027s not guaranteed that dimension keys are unique. It is now valid to specify the same dimension key twice. A good example is the \u0027caches\u0027 dimension, which a trigger may request both values \u0027git\u0027 and \u0027builder_12345\u0027 for cache affinity, with a command line that would look like:\n\n  --optional-dimension caches git 120 --optional-dimension caches builder_12345 120\n\nThis should work. (Sorry for the trouble)",
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f311224_a8aaffec",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-16T00:26:54Z",
+      "side": 1,
+      "message": "OK, so I decided to just copy the code you have in https://cs.chromium.org/chromium/infra/appengine/cr-buildbucket/swarming/swarming.py?type\u003dcs\u0026g\u003d0\u0026l\u003d669 because it\u0027s simpler and we know it works.",
+      "parentUuid": "0022e250_467b1c6d",
       "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "d778b3f0_fe34a885",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-16T00:26:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1cbde3f2_12b315b6",
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83f3db88_11c62be1",
         "filename": "client/tests/swarming_test.py",
         "patchSetId": 9
@@ -96,6 +180,24 @@
       "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59a7fc0a_f9a3de11",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1306009
+      },
+      "writtenOn": "2018-10-16T00:26:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83f3db88_11c62be1",
+      "revId": "940c5cf1638d3274c32b7613e9cd1471577649f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
