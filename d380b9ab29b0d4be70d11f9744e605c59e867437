@@ -16,6 +16,24 @@
       "revId": "d380b9ab29b0d4be70d11f9744e605c59e867437",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a72f917_7438d006",
+        "filename": "client/swarming.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1304500
+      },
+      "writtenOn": "2018-10-16T16:48:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1eab878c_775b0375",
+      "revId": "d380b9ab29b0d4be70d11f9744e605c59e867437",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
