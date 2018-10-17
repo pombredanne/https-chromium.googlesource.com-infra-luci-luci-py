@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676e27bd_720f87da",
+        "filename": "client/swarming.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-10-17T05:43:44Z",
+      "side": 1,
+      "message": "i think parser.error should be called if it is not a valid integer string, as opposed to raising ValueError and printing a stack trace",
+      "range": {
+        "startLine": 935,
+        "startChar": 48,
+        "endLine": 935,
+        "endChar": 56
+      },
+      "revId": "bbdfca8136169bd85df641a6e56e92c6599c4c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
