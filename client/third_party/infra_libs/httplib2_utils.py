@@ -13,6 +13,7 @@ import re
 import socket
 import sys
 import time
+import urllib
 
 import httplib2
 import oauth2client.client
@@ -167,15 +168,12 @@ def get_authenticated_http(credentials_filename,
 
 
 class DelegateServiceAccountCredentials(
-    oauth2client.client.AssertionCredentials):
+    oauth2client.client.AccessTokenCredentials):
   """Authorizes an HTTP client with a service account for which we are an actor.
 
-  This class uses the IAM API to sign a JWT with the private key of another
-  service account for which we have the "Service Account Actor" role.
+  This class uses the IAM:generateAccessToken API to obtain an access token for
+  a service account for which we have the "Service Account Actor" role.
   """
-
-  MAX_TOKEN_LIFETIME_SECS = 3600 # 1 hour in seconds
-  _SIGN_BLOB_URL = 'https://iam.googleapis.com/v1/%s:signBlob'
 
   def __init__(self, http, service_account_email, scopes, project='-'):
     """
@@ -191,57 +189,36 @@ class DelegateServiceAccountCredentials(
     """
 
     super(DelegateServiceAccountCredentials, self).__init__(None)
-    self._service_account_email = service_account_email
-    self._scopes = util.scopes_to_string(scopes)
     self._http = http
-    self._name = 'projects/%s/serviceAccounts/%s' % (
-        project, service_account_email)
-
-  def sign_blob(self, blob):
-    response, content = self._http.request(
-        self._SIGN_BLOB_URL % self._name,
-        method='POST',
-        body=json.dumps({'bytesToSign': base64.b64encode(blob)}),
-        headers={'Content-Type': 'application/json'})
-    if response.status != 200:
-      raise AuthError('Failed to sign blob as %s: %d %s' % (
-          self._service_account_email, response.status, response.reason))
-
-    data = json.loads(content)
-    return data['keyId'], data['signature']
+    self._sa_email = service_account_email
+    self._scopes = scopes
+    self._project = project
 
   def _generate_assertion(self):
-    # This is copied with small modifications from
-    # oauth2client.service_account._ServiceAccountCredentials.
-
-    header = {
-        'alg': 'RS256',
-        'typ': 'JWT',
+    # Use IAM:generateAccessToken API to create an access token
+    req = {
+      "scope": self._scopes,
     }
 
-    now = int(time.time())
-    payload = {
-        'aud': self.token_uri,
-        'scope': self._scopes,
-        'iat': now,
-        'exp': now + self.MAX_TOKEN_LIFETIME_SECS,
-        'iss': self._service_account_email,
-    }
+    response, content = (
+      self._http.request(
+        uri='https://iamcredentials.googleapis.com/v1/projects/%s/'
+            'serviceAccounts/%s:generateAccessToken' %
+            (urllib.quote_plus(self._project),
+             urllib.quote_plus(self._sa_email)),
+        method='POST',
+        body=json.dumps(req),
+        headers={
+          'Accept': 'application/json',
+        },
+      ))
 
-    assertion_input = (
-        self._urlsafe_b64encode(header) + b'.' +
-        self._urlsafe_b64encode(payload))
+    if response.status != 200:
+      raise AuthError('Code: %d, Reason: %s'
+                      % (response.status, response.reason))
 
-    # Sign the assertion.
-    _, rsa_bytes = self.sign_blob(assertion_input)
-    signature = rsa_bytes.rstrip(b'=')
-
-    return assertion_input + b'.' + signature
-
-  def _urlsafe_b64encode(self, data):
-    # Copied verbatim from oauth2client.service_account.
-    return base64.urlsafe_b64encode(
-        json.dumps(data, separators=(',', ':')).encode('UTF-8')).rstrip(b'=')
+    resp = json.loads(content)
+    return resp['accessToken']
 
 
 class RetriableHttp(object):
