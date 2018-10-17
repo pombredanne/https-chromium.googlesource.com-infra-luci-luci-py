@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5f338b4_89c5f899",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-17T23:53:08Z",
+      "side": 1,
+      "message": "nit: minus one space",
+      "range": {
+        "startLine": 223,
+        "startChar": 5,
+        "endLine": 223,
+        "endChar": 6
+      },
+      "revId": "5b0a4b55664e5cefbd08e21c70dd483585795c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddb8783b_fa52d84e",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-17T23:53:08Z",
+      "side": 1,
+      "message": "nit: expired_at",
+      "revId": "5b0a4b55664e5cefbd08e21c70dd483585795c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3f26c1d_8168843e",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-17T23:53:08Z",
+      "side": 1,
+      "message": "more idiomatic in the code base would be to use \n\n  utils.datetime_to_timestamp(dt)/1e6",
+      "range": {
+        "startLine": 288,
+        "startChar": 6,
+        "endLine": 288,
+        "endChar": 22
+      },
+      "revId": "5b0a4b55664e5cefbd08e21c70dd483585795c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
