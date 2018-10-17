@@ -26,6 +26,7 @@ import urlparse
 from email import utils as email_utils
 
 from google.appengine import runtime
+from google.appengine.api import runtime as apiruntime
 from google.appengine.api import app_identity
 from google.appengine.api import memcache as gae_memcache
 from google.appengine.api import modules
@@ -103,6 +104,26 @@ def get_request_as_int(request, key, default, min_value, max_value):
   except ValueError:
     return default
   return min(max_value, max(min_value, value))
+
+
+def report_memory(app):
+  """Wraps an app so handlers log when memory usage increased by at least 0.5MB
+  after the handler completed.
+  """
+  min_delta = 0.5
+  old_dispatcher = None
+  def dispatch_and_report(*args, **kwargs):
+    before = apiruntime.runtime.memory_usage().current()
+    try:
+      return old_dispatcher(*args, **kwargs)
+    finally:
+      after = apiruntime.runtime.memory_usage().current()
+      if after >= before + min_delta:
+        logging.debug(
+            'Memory usage: %.1f -> %.1f MB; delta: %.1f MB',
+            before, after, after-before)
+  old_dispatcher = app.router.dispatch
+  app.router.dispatch = dispatch_and_report
 
 
 ## Time
