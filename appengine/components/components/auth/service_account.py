@@ -252,10 +252,8 @@ def _mint_jwt_based_token_async(scopes, signer):
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       })
-  raise ndb.Return({
-    'access_token': str(token['access_token']),
-    'exp_ts': int(utils.time_time() + token['expires_in']),
-  })
+  raise ndb.Return(str(token['access_token']),
+                   int(utils.time_time() + token['expires_in']))
 
 @ndb.tasklet
 def _mint_oauth_token_async(token_factory, email, scopes,
@@ -269,14 +267,14 @@ def _mint_oauth_token_async(token_factory, email, scopes,
       email, scopes
   )
 
-  request_body = {'scopes': scopes}
+  request_body = {'scope': scopes}
   if delegates:
     request_body['delegates'] = delegates
   if min_lifetime_secs > 0:
     # Api accepts number of seconds with trailing 's'
     request_body['lifetime'] = '%ds' % min_lifetime_secs
 
-  http_auth = yield token_factory()
+  http_auth, _ = yield token_factory()
   response = yield _call_async(
       url='https://iamcredentials.googleapis.com/v1/projects/-/'
           'serviceAccounts/%s:generateAccessToken' % urllib.quote_plus(email),
