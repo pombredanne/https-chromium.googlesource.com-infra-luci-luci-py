@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0d69961_358c8bc3",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-10-18T02:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fb90e8f_225419db",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c03f1dd8_0d5b97ec",
         "filename": "appengine/machine_provider/handlers_cron.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49790049_f0c503e7",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-10-18T02:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c03f1dd8_0d5b97ec",
+      "range": {
+        "startLine": 89,
+        "startChar": 31,
+        "endLine": 89,
+        "endChar": 41
+      },
+      "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
