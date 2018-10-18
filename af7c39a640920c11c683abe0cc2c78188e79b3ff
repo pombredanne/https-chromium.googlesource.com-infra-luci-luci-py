@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fb90e8f_225419db",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-10-18T02:02:06Z",
+      "side": 1,
+      "message": "\u003c",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c03f1dd8_0d5b97ec",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-10-18T02:02:06Z",
+      "side": 1,
+      "message": "consider inlining subfilters here directly: [ (entry_value \u003d\u003d rv) for rv ...]\nfewer vars, easier to read, and also `subfilters` name confusingly suggests that it is of the same type as filters.",
+      "range": {
+        "startLine": 89,
+        "startChar": 31,
+        "endLine": 89,
+        "endChar": 41
+      },
+      "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
