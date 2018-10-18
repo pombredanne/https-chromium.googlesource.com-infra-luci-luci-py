@@ -22,6 +22,30 @@
       "revId": "473a850bc451ce86db312d3c209a30ccffee832b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "effcdf97_df558045",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2018-10-18T00:54:43Z",
+      "side": 0,
+      "message": "Sorry, restored.",
+      "parentUuid": "5f67612d_d0454667",
+      "range": {
+        "startLine": 181,
+        "startChar": 2,
+        "endLine": 185,
+        "endChar": 58
+      },
+      "revId": "473a850bc451ce86db312d3c209a30ccffee832b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
