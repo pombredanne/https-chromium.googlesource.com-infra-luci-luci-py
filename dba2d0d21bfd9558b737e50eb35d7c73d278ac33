@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36933448_74255485",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-18T22:29:13Z",
+      "side": 1,
+      "message": "I don\u0027t think this is correct...\n\n_get_or_mint_token_async expectes a return value of _mint_jwt_based_token_async to be a dict. \n\nAnd in any case, _mint_jwt_based_token_async and _mint_oauth_token_async should return identical types, since these functions are interchangeable.",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 64
+      },
+      "revId": "dba2d0d21bfd9558b737e50eb35d7c73d278ac33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6591d84_e208f295",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-18T22:29:13Z",
+      "side": 1,
+      "message": "I believe these two changes alone are sufficient to fix the errors you\u0027ve seen.",
+      "range": {
+        "startLine": 270,
+        "startChar": 1,
+        "endLine": 278,
+        "endChar": 31
+      },
+      "revId": "dba2d0d21bfd9558b737e50eb35d7c73d278ac33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
