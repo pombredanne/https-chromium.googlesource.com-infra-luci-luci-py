@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a56ee65_e567795b",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-18T19:06:50Z",
+      "side": 1,
+      "message": "I added a small hack here as this could blow up on integration tests that are using the main() provided application.",
+      "revId": "2c661dff939920e05a164803428f48599e994e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
