@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c68b32b_2f7b7d70",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2018-10-18T23:37:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36933448_74255485",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 64
+      },
+      "revId": "dba2d0d21bfd9558b737e50eb35d7c73d278ac33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6591d84_e208f295",
         "filename": "appengine/components/components/auth/service_account.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "dba2d0d21bfd9558b737e50eb35d7c73d278ac33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14b47532_2fa6ecb9",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2018-10-18T23:37:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6591d84_e208f295",
+      "range": {
+        "startLine": 270,
+        "startChar": 1,
+        "endLine": 278,
+        "endChar": 31
+      },
+      "revId": "dba2d0d21bfd9558b737e50eb35d7c73d278ac33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
