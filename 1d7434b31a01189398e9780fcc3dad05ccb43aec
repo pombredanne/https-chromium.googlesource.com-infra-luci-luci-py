@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b08132a6_808b33e1",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-18T22:00:48Z",
+      "side": 1,
+      "message": "is there a stub for \u0027system\u0027 service? Maybe we should just enable it in https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/components/test_support/test_case.py#84",
+      "range": {
+        "startLine": 115,
+        "startChar": 22,
+        "endLine": 115,
+        "endChar": 61
+      },
+      "revId": "1d7434b31a01189398e9780fcc3dad05ccb43aec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
