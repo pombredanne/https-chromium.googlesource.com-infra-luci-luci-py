@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cfade36_60a59577",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-19T13:51:36Z",
+      "side": 1,
+      "message": "I recommend doing this in one shot so this scales trivially if we add more later.\n\n  required \u003d {\u0027disk_type\u0027, \u0027num_cpus\u0027, \u0027project\u0027}\n  missing \u003d required.difference(keys)\n  if missing:\n    ctx.error(\u0027%s is/are required in mp_dimensions\u0027, \u0027, \u0027.join(sorted(missing)))\n    return\n\n(We could have smart is/are selection but it\u0027s not worth)",
+      "revId": "c16fa1e86b598cd973236b2b1cf1ef8174a90a96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
