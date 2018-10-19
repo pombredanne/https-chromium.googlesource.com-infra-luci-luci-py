@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51605f9e_5cf7bfb4",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-19T20:03:32Z",
+      "side": 1,
+      "message": "nit: one more \\n\n\n(two \\n between functions)",
+      "revId": "ff227163268763e347803b308e2e90adbccf5a56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
