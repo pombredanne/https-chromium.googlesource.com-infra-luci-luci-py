@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2aa1ac58_672a75e4",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-20T13:43:36Z",
+      "side": 1,
+      "message": "Since from what I understand it\u0027s only field_by_name() that could throw, I\u0027d prefer to only keep line 821 in the try section.",
+      "revId": "36d480ca76603af42e0f02e5dd428f6da995b3d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
