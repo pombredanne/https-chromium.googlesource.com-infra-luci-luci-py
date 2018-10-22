@@ -66,6 +66,32 @@ bot-list {
     }
   }
 
+  .chip_container {
+    min-height: 1.5em;
+    padding: 5px 8px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .chip {
+      border: 1px solid #555;
+      /* Maxiumum roundness */
+      border-radius: 99px;
+      padding: 5px;
+      margin: 0 2px 3px 0;
+    }
+  }
+
+  cancel-icon-sk, add-circle-icon-sk {
+    fill: #555;
+    vertical-align: text-bottom;
+    cursor: pointer;
+
+    svg.icon-sk-svg {
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+
   .selector {
     border: 1px solid black;
     margin: 0 5px;

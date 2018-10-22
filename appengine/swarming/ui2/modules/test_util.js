@@ -11,7 +11,7 @@
  * </p>
  */
 
-export const toContainRegexMatcher = {
+export const customMatchers = {
   // see https://jasmine.github.io/tutorials/custom_matcher
   // for docs on the factory that returns a matcher.
   'toContainRegex': function(util, customEqualityTesters) {
@@ -43,7 +43,50 @@ export const toContainRegexMatcher = {
       },
     };
   },
+
+  'toHaveAttribute': function(util, customEqualityTesters) {
+    return {
+      'compare': function(actual, attribute) {
+        if (!isElement(actual)) {
+          throw `${actual} is not a DOM element`;
+        }
+        return {
+          pass: actual.hasAttribute(attribute),
+        };
+      },
+    };
+  },
+  // Trims off whitespace before comparing
+  'toMatchTextContent': function(util, customEqualityTesters) {
+    return {
+      'compare': function(actual, text) {
+        if (!isElement(actual)) {
+          throw `${actual} is not a DOM element`;
+        }
+        text = text.trim();
+        let actualText = actual.textContent.trim();
+        if (actualText === text) {
+          return {
+            // craft the message for the negated version
+            message: `Expected ${actualText} to not equal ${text} `+
+                     `(ignoring whitespace)`,
+            pass: true,
+          };
+        }
+        return {
+          message: `Expected ${actualText} to equal ${text} `+
+                   `(ignoring whitespace)`,
+          pass: false,
+        };
+      },
+    };
+  },
 };
+
+function isElement(ele) {
+  //https://stackoverflow.com/a/36894871
+  return ele instanceof Element || ele instanceof HTMLDocument;
+}
 
 export function mockAppGETs(fetchMock, permissions) {
   fetchMock.get('/_ah/api/swarming/v1/server/details', {

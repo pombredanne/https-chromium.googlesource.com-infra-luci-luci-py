@@ -11,14 +11,14 @@ import { colHeaderMap, column, listQueryParams, processBots, processDimensions,
          processPrimaryMap } from 'modules/bot-list/bot-list-helpers'
 
 describe('bot-list', function() {
-  // Do these have to be here?
-  const mockAppGETs = require('modules/test_util').mockAppGETs;
-  const toContainRegexMatcher = require('modules/test_util').toContainRegexMatcher;
-  // This doesn't yet support import from
+  // Things that get imported multiple times go here, using require. Otherwise,
+  // the concatenation trick we do doesn't play well with webpack, which tries
+  // to include it multiple times.
+  const { mockAppGETs, customMatchers}  = require('modules/test_util');
   const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
 
   beforeEach(function() {
-    jasmine.addMatchers(toContainRegexMatcher);
+    jasmine.addMatchers(customMatchers);
     // Clear out any query params we might have to not mess with our current state.
     history.pushState(null, '', window.location.origin + window.location.pathname + '?');
   });
@@ -119,7 +119,7 @@ describe('bot-list', function() {
           let loginMessage = ele.querySelector('swarming-app>main .message');
           expect(loginMessage).toBeTruthy();
           expect(loginMessage.hidden).toBeFalsy('Message should not be hidden');
-          expect(loginMessage.innerText).toContain('must sign in');
+          expect(loginMessage.textContent).toContain('must sign in');
           done();
         })
       })
@@ -154,7 +154,7 @@ describe('bot-list', function() {
           let loginMessage = ele.querySelector('swarming-app>main .message');
           expect(loginMessage).toBeTruthy();
           expect(loginMessage.hidden).toBeFalsy('Message should not be hidden');
-          expect(loginMessage.innerText).toContain('different account');
+          expect(loginMessage.textContent).toContain('different account');
           done();
         });
       });
@@ -195,10 +195,10 @@ describe('bot-list', function() {
             expect(colHeaders).toBeTruthy();
             expect(colHeaders.length).toBe(4, '(num colHeaders)');
 
-            expect(colHeaders[0].innerText.trim()).toBe('Bot Id');
-            expect(colHeaders[1].innerText.trim()).toBe('Current Task');
-            expect(colHeaders[2].innerText.trim()).toBe('OS');
-            expect(colHeaders[3].innerText.trim()).toBe('Status');
+            expect(colHeaders[0].textContent.trim()).toBe('Bot Id');
+            expect(colHeaders[1].textContent.trim()).toBe('Current Task');
+            expect(colHeaders[2].textContent.trim()).toBe('OS');
+            expect(colHeaders[3].textContent.trim()).toBe('Status');
 
             let rows = ele.querySelectorAll('.bot-table .bot-row');
             expect(rows).toBeTruthy();
@@ -214,37 +214,37 @@ describe('bot-list', function() {
             expect(rows[0]).not.toHaveClass('dead');
             expect(rows[0]).not.toHaveClass('quarantined');
             expect(rows[0]).not.toHaveClass('old_version');
-            expect(cell(0, 0).innerText).toBe('somebot10-a9');
+            expect(cell(0, 0)).toMatchTextContent('somebot10-a9');
             expect(cell(0, 0).innerHTML).toContain('<a ', 'has a link');
             expect(cell(0, 0).innerHTML).toContain('href="/bot?id=somebot10-a9"', 'link is correct');
-            expect(cell(0, 1).innerText).toBe('idle');
+            expect(cell(0, 1)).toMatchTextContent('idle');
             expect(cell(0, 1).innerHTML).not.toContain('<a ', 'no link');
-            expect(cell(0, 2).innerText).toBe('Ubuntu-17.04');
-            expect(cell(0, 3).innerText).toContain('Alive');
+            expect(cell(0, 2)).toMatchTextContent('Ubuntu-17.04');
+            expect(cell(0, 3).textContent).toContain('Alive');
 
             expect(rows[1]).toHaveClass('quarantined');
-            expect(cell(1, 0).innerText).toBe('somebot11-a9');
-            expect(cell(1, 1).innerText).toBe('idle');
-            expect(cell(1, 2).innerText).toBe('Android');
-            expect(cell(1, 3).innerText).toContain('Quarantined');
-            expect(cell(1, 3).innerText).toContain('[too_hot,low_battery]');
+            expect(cell(1, 0)).toMatchTextContent('somebot11-a9');
+            expect(cell(1, 1)).toMatchTextContent('idle');
+            expect(cell(1, 2)).toMatchTextContent('Android');
+            expect(cell(1, 3).textContent).toContain('Quarantined');
+            expect(cell(1, 3).textContent).toContain('[too_hot,low_battery]');
 
             expect(rows[2]).toHaveClass('dead');
             expect(rows[2]).toHaveClass('old_version');
-            expect(cell(2, 0).innerText).toBe('somebot12-a9');
-            expect(cell(2, 1).innerText).toBe('3e17182091d7ae11');
+            expect(cell(2, 0)).toMatchTextContent('somebot12-a9');
+            expect(cell(2, 1)).toMatchTextContent('3e17182091d7ae11');
             expect(cell(2, 1).innerHTML).toContain('<a ', 'has a link');
             expect(cell(2, 1).innerHTML).toContain('href="/task?id=3e17182091d7ae10"',
                                       'link is pointing to the cannonical (0 ending) page');
             expect(cell(2, 1).innerHTML).toContain('title="Perf-Win10-Clang-Golo',
                                       'Mouseover with task name');
-            expect(cell(2, 2).innerText).toBe('Windows-10-16299.431');
-            expect(cell(2, 3).innerText).toContain('Dead');
-            expect(cell(2, 3).innerText).toContain('Last seen 1w ago');
+            expect(cell(2, 2)).toMatchTextContent('Windows-10-16299.431');
+            expect(cell(2, 3).textContent).toContain('Dead');
+            expect(cell(2, 3).textContent).toContain('Last seen 1w ago');
 
             expect(rows[3]).toHaveClass('maintenance');
-            expect(cell(3, 3).innerText).toContain('Maintenance');
-            expect(cell(3, 3).innerText).toContain('Need to re-format the hard drive.');
+            expect(cell(3, 3).textContent).toContain('Maintenance');
+            expect(cell(3, 3).textContent).toContain('Need to re-format the hard drive.');
 
             expect(rows[4]).toHaveClass('old_version');
             done();
@@ -294,37 +294,40 @@ describe('bot-list', function() {
             let tds = fleetTable.querySelectorAll('tr:first-child td');
             expect(tds).toBeTruthy();
             expect(tds.length).toBe(2);
-            expect(tds[0].textContent).toEqual('All:');
+            expect(tds[0]).toMatchTextContent('All:');
             // TODO(kjlubick): Check link on tds[0]
-            expect(tds[1].textContent).toEqual('11434');
+            expect(tds[1]).toMatchTextContent('11434');
 
             tds = fleetTable.querySelectorAll('tr:nth-child(4) td');
             expect(tds).toBeTruthy();
             expect(tds.length).toBe(2);
-            expect(tds[0].textContent).toEqual('Idle:');
+            expect(tds[0]).toMatchTextContent('Idle:');
             // TODO(kjlubick): Check link on tds[0]
-            expect(tds[1].textContent).toEqual('211');
+            expect(tds[1]).toMatchTextContent('211');
 
             tds = queryTable.querySelectorAll('tr:nth-child(2) td');
             expect(tds).toBeTruthy();
             expect(tds.length).toBe(2);
-            expect(tds[0].textContent).toEqual('Alive:');
+            expect(tds[0]).toMatchTextContent('Alive:');
             // TODO(kjlubick): Check link on tds[0]
-            expect(tds[1].textContent).toEqual('429');
+            expect(tds[1]).toMatchTextContent('429');
 
             tds = queryTable.querySelectorAll('tr:nth-child(7) td');
             expect(tds).toBeTruthy();
             expect(tds.length).toBe(2);
-            expect(tds[0].textContent).toEqual('Maintenance:');
+            expect(tds[0]).toMatchTextContent('Maintenance:');
             // TODO(kjlubick): Check link on tds[0]
-            expect(tds[1].textContent).toEqual('0');
+            expect(tds[1]).toMatchTextContent('0');
 
+            // by default fleet table should be hidden
+            expect(fleetTable).toHaveAttribute('hidden', 'fleet table of counts');
+            expect(queryTable).not.toHaveAttribute('hidden', 'query table of counts');
 
             done();
           });
         });
 
-        // disabled because it's causing flakes on Chrome
+        // disabled because it is causing flakes on Chrome
         // pushState doesn't appear to be synchronous on Chrome and thus
         // we have strange behavior.
         // https://bugs.chromium.org/p/chromium/issues/detail?id=510026
@@ -469,6 +472,34 @@ describe('bot-list', function() {
       });
     });
 
+    it('toggles fleet data visibility', function(done) {
+      loggedInBotlist((ele) => {
+        ele._showFleetCounts = false;
+        ele.render();
+
+        let showMore = ele.querySelector('#fleet_header expand-more-icon-sk');
+        expect(showMore).toBeTruthy();
+        let counts = $$('#fleet_counts');
+        expect(counts).toHaveAttribute('hidden');
+
+        showMore.click();
+        showMore = ele.querySelector('#fleet_header expand-more-icon-sk');
+        let showLess = ele.querySelector('#fleet_header expand-less-icon-sk');
+        expect(showLess).toBeTruthy();
+        expect(showMore).toBeFalsy();
+        expect(counts).not.toHaveAttribute('hidden');
+
+        showLess.click();
+        showMore = ele.querySelector('#fleet_header expand-more-icon-sk');
+        showLess = ele.querySelector('#fleet_header expand-less-icon-sk');
+        expect(showLess).toBeFalsy();
+        expect(showMore).toBeTruthy();
+        expect(counts).toHaveAttribute('hidden');
+
+        done();
+      });
+    });
+
      // Disabled because it's causing some flakes on Chrome.
      xit('reads some values from query params', function(done) {
        jasmine.clock().uninstall();
@@ -546,6 +577,21 @@ describe('bot-list', function() {
         }
       }
       fail(`Could not find ${type} selector row with value ${value}`);
+    }
+
+    function getFilterChip(ele, value) {
+      let sel = ele.querySelector('.chip_container');
+      expect(sel).toBeTruthy();
+
+      for (let i = 0; i < sel.children.length; i++) {
+        let child = sel.children[i];
+        let text = child.firstElementChild;
+        expect(text).toBeTruthy(`all filter chips should have some text`);
+        if (text.textContent.trim() === value) {
+          return child;
+        }
+      }
+      fail(`Could not find filter chip with value ${value}`);
     }
 
     it('does not toggle forced columns (like "id")', function(done) {
@@ -626,7 +672,7 @@ describe('bot-list', function() {
       });
     });
 
-    it('adds a filter when the arrow is clicked', function(done) {
+    it('adds a filter when the addIcon is clicked', function(done) {
       loggedInBotlist((ele) => {
         ele._cols = ['id', 'task', 'os', 'status'];
         ele._primaryKey = 'os';  // set 'os' selected
@@ -634,18 +680,18 @@ describe('bot-list', function() {
         ele.render();
 
         let valueRow = getSelectorRow(ele, 'values', 'Android');
-        let arrow = valueRow.querySelector('arrow-forward-icon-sk');
-        expect(arrow).toBeTruthy('there should be an arrow');
-        arrow.click();
+        let addIcon = valueRow.querySelector('add-circle-icon-sk');
+        expect(addIcon).toBeTruthy('there should be an icon for adding');
+        addIcon.click();
 
         expect(ele._filters.length).toBe(1, 'a filter should be added');
         expect(ele._filters[0]).toEqual('os:Android');
 
-        let filterSelector = ele.querySelector('.selector.filters');
-        expect(filterSelector).toBeTruthy('there should be a filter selector');
-        expect(filterSelector.children.length).toBe(1);
-        expect(arrow.hasAttribute('hidden'))
-              .toBeTruthy('arrow should go away after being clicked');
+        let chipContainer = ele.querySelector('.chip_container');
+        expect(chipContainer).toBeTruthy('there should be a filter chip container');
+        expect(chipContainer.children.length).toBe(1);
+        expect(addIcon.hasAttribute('hidden'))
+              .toBeTruthy('addIcon should go away after being clicked');
         done();
       });
     });
@@ -657,17 +703,17 @@ describe('bot-list', function() {
         ele._filters = ['device_type:bullhead', 'os:Android'];
         ele.render();
 
-        let filterRow = getSelectorRow(ele, 'filters', 'os:Android');
-        let icon = filterRow.querySelector('remove-circle-outline-icon-sk');
+        let filterChip = getFilterChip(ele, 'os:Android');
+        let icon = filterChip.querySelector('cancel-icon-sk');
         expect(icon).toBeTruthy('there should be a icon to remove it');
         icon.click();
 
         expect(ele._filters.length).toBe(1, 'a filter should be removed');
         expect(ele._filters[0]).toEqual('device_type:bullhead', 'os:Android should be removed');
 
-        let filterSelector = ele.querySelector('.selector.filters');
-        expect(filterSelector).toBeTruthy('there should be a filter selector');
-        expect(filterSelector.children.length).toBe(1);
+        let chipContainer = ele.querySelector('.chip_container');
+        expect(chipContainer).toBeTruthy('there should be a filter chip container');
+        expect(chipContainer.children.length).toBe(1);
         done();
       });
     });

@@ -23,7 +23,10 @@ import { stateReflector } from 'common-sk/modules/stateReflector'
 
 import 'elements-sk/checkbox-sk'
 import 'elements-sk/error-toast-sk'
-import 'elements-sk/icon/arrow-forward-icon-sk'
+import 'elements-sk/icon/add-circle-icon-sk'
+import 'elements-sk/icon/cancel-icon-sk'
+import 'elements-sk/icon/expand-less-icon-sk'
+import 'elements-sk/icon/expand-more-icon-sk'
 import 'elements-sk/icon/remove-circle-outline-icon-sk'
 import 'elements-sk/icon/search-icon-sk'
 import 'elements-sk/select-sk'
@@ -80,20 +83,18 @@ const secondaryOptions = (ele) => {
 <div class=item>
   <span class=value>${value}</span>
   <span class=flex></span>
-  <arrow-forward-icon-sk ?hidden=${ele._filters.indexOf(makeFilter(ele._primaryKey, value)) >= 0}
-                         @click=${() => ele._addFilter(ele._primaryKey, value)}>
-  </arrow-forward-icon-sk>
+  <add-circle-icon-sk ?hidden=${ele._filters.indexOf(makeFilter(ele._primaryKey, value)) >= 0}
+                      @click=${() => ele._addFilter(ele._primaryKey, value)}>
+  </add-circle-icon-sk>
 </div>`);
 }
 
 
-const filterOption = (filter, ele) => html`
-<div class=item>
-  <span class=filter>${filter}</span>
-  <span class=flex></span>
-  <remove-circle-outline-icon-sk @click=${() => ele._removeFilter(filter)}>
-  </remove-circle-outline-icon-sk>
-</div>`
+const filterChip = (filter, ele) => html`
+<span class=chip>
+  <span>${filter}</span>
+  <cancel-icon-sk @click=${() => ele._removeFilter(filter)}></cancel-icon-sk>
+</span>`;
 
 // can't use <select> and <option> because <option> strips out non-text
 // (e.g. checkboxes)
@@ -106,10 +107,6 @@ const filters = (ele) => html`
 <!-- secondary value selector-->
 <select-sk class="selector values" disabled>
   ${secondaryOptions(ele)}
-</select-sk>
-<!-- filters selector-->
-<select-sk class="selector filters" disabled>
-  ${ele._filters.map((filter) => filterOption(filter, ele))}
 </select-sk>`;
 
 const options = (ele) => html`
@@ -121,7 +118,7 @@ const options = (ele) => html`
     <span>Verbose Entries</span>
   </div>
   <!-- TODO(kjlubick): have something like sk-input -->
-  <input placeholder='limit'></input>
+  <input placeholder="limit"></input>
   <a href="https://example.com">View Matching Tasks</a>
   <!-- TODO(kjlubick): Only make this button appear for admins -->
   <button @click=${(e) => alert('not implemented yet')}>
@@ -141,16 +138,31 @@ const summaryQueryRow = (count) => html`
   <td>${count.value}</td>
 </tr>`;
 
+// TODO(kjlubick): This could maybe be a generic helper function.
+const fleetCountsToggle = (ele) => {
+  let toggle = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    ele._showFleetCounts = !ele._showFleetCounts;
+    ele.render();
+  }
+  if (ele._showFleetCounts) {
+    return html`<expand-less-icon-sk @click=${toggle}></expand-less-icon-sk>`;
+  } else {
+    return html`<expand-more-icon-sk @click=${toggle}></expand-more-icon-sk>`;
+  }
+};
+
 const summary = (ele) => html`
-<div class=title>Fleet</div>
-<!-- TODO(kjlubick) Linkify these-->
-<!-- TODO(kjlubick) Perhaps make fleet values hidden by default?
-     It would save some vertical space.-->
-<table>
+<div id=fleet_header class=title>
+  <span>Fleet</span>
+  ${fleetCountsToggle(ele)}
+</div>
+<table id=fleet_counts ?hidden=${!ele._showFleetCounts}>
   ${ele._fleetCounts.map((count) => summaryFleetRow(count))}
 </table>
 <div class=title>Selected</div>
-<table>
+<table id=query_counts>
   ${ele._queryCounts.map((count) => summaryQueryRow(count))}
 </table>`;
 
@@ -174,7 +186,11 @@ const header = (ele) => html`
   <div class=summary>
     ${summary(ele)}
   </div>
-</div>`;
+</div>
+<div class=chip_container>
+  ${ele._filters.map((filter) => filterChip(filter, ele))}
+</div>
+`;
 
 const template = (ele) => html`
 <swarming-app id=swapp
@@ -218,6 +234,7 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
     this._sort = '';
     this._primaryKey = '';
     this._verbose = false;
+    this._showFleetCounts = false;
 
     this._fleetCounts = initCounts();
     this._queryCounts = initCounts();
@@ -233,6 +250,7 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
           'l': this._limit,
           's': this._sort,
           'v': this._verbose,
+          'e': this._showFleetCounts, // 'e' because 'f', 'l', are taken
         }
     }, /*setState*/(newState) => {
       // default values if not specified.
@@ -245,7 +263,8 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
       this._primaryKey = newState.k; // default to ''
       this._limit = newState.l || 100; // TODO(kjlubick): add limit UI element
       this._sort = newState.s || 'id';
-      this._verbose = newState.v;
+      this._verbose = newState.v;         // default to false
+      this._showFleetCounts = newState.e; // default to false
       this._fetch();
       this.render();
     });
