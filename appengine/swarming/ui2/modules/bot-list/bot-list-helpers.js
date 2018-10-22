@@ -399,10 +399,9 @@ export function processPrimaryMap(dimensions) {
   pMap['device_os'] && pMap['device_os'].push('none');
   pMap['device_type'] && pMap['device_type'].push('none');
 
-  pMap['id'] = [];
+  pMap['id'] = null;
 
   // Create custom filter/sorting options
-  pMap['disk_space'] = [];
   pMap['task'] = ['busy', 'idle'];
   pMap['status'] = ['alive', 'dead', 'quarantined', 'maintenance'];
   pMap['is_mp_bot'] = ['true', 'false'];
