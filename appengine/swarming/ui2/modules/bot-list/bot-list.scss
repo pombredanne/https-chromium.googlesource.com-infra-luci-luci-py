@@ -1,6 +1,9 @@
 bot-list {
-  main a[href] {
-    color: #1F78B4;
+  main {
+    min-height: calc(100% - 50px);
+      a[href] {
+      color: #1F78B4;
+    }
   }
 
   .bot-table {
@@ -10,6 +13,31 @@ bot-list {
     td,th {
       border: 1px solid #DDD;
       padding: 5px;
+    }
+
+    td.no_outline {
+      border: none;
+      background-color: white;
+    }
+
+    th.col_options {
+      padding: 0;
+      more-vert-icon-sk {
+        cursor: pointer;
+      }
+      .col_selector {
+        background-color: #FFF;
+        border: 1px solid black;
+        height: 60vh;
+        left: -1px;
+        overflow-y: auto;
+        position: absolute;
+        top: 28px;
+        min-width: 280px;
+        font-weight: normal;
+        z-index: 3;
+        padding: 2px;
+      }
     }
 
     th {
@@ -66,12 +94,38 @@ bot-list {
     }
   }
 
+  .chip_container {
+    min-height: 1.5em;
+    padding: 5px 8px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .chip {
+      border: 1px solid #555;
+      /* Maxiumum roundness */
+      border-radius: 99px;
+      padding: 5px;
+      margin: 0 2px 3px 0;
+    }
+  }
+
+  cancel-icon-sk, add-circle-icon-sk {
+    fill: #555;
+    vertical-align: text-bottom;
+    cursor: pointer;
+
+    svg.icon-sk-svg {
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+
   .selector {
     border: 1px solid black;
     margin: 0 5px;
     max-height: 200px;
     min-height: 130px;
-    min-width: 255px;
+    min-width: 240px;
     overflow-y: auto;
     display: inline-block;
     vertical-align: top;
