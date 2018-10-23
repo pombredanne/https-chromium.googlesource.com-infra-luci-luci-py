@@ -16,6 +16,24 @@
       "revId": "5254da8d4bd50677287ed4adc63da776e5feecc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f148650d_0a7daad0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-10-23T21:47:43Z",
+      "side": 1,
+      "message": "Right... that\u0027s something we probably want *anyway*, at least.\n\nIs there a chance we would run up against the quota limit before we can spin up an alert for it? I was under the impression that wasn\u0027t a huge concern but could be wrong.",
+      "parentUuid": "1ad4f950_d7764589",
+      "revId": "5254da8d4bd50677287ed4adc63da776e5feecc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
