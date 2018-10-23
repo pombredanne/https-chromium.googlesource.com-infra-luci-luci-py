@@ -34,6 +34,24 @@
       "revId": "5254da8d4bd50677287ed4adc63da776e5feecc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f6a8f1d_f7c74573",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-10-23T21:51:48Z",
+      "side": 1,
+      "message": "There\u0027s an API to fetch a project\u0027s quota, and templates.cfg contains the exact number of templates per project, so if we had access to the proto definition during presubmit then we could check this.\n\nI think that we should DEPS infradata/config into infra_internal or something. It\u0027s already checked out when you fetch infra_internal, if we could be certain that a properly configured dev environment had infra_internal and infra then we\u0027d have the proto definitions available and be able to load the configs and do some local processing on them.\n\nThis would also help us ensure there\u0027s enough quota for VMs.\n\nThe current quota in our project (not sure about others, since we create VMs in other projects too) is 100 and we\u0027ve got 16 templates, so that particular quota isn\u0027t a huge issue for us. I think this might even be the default, so the other projects we create VMs in should also be at \u003cfewer than a dozen\u003e/100.",
+      "parentUuid": "f148650d_0a7daad0",
+      "revId": "5254da8d4bd50677287ed4adc63da776e5feecc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
