@@ -22,6 +22,30 @@
       "revId": "ab9e482d15b0ffc6d9473b3ecb5c40d41984ee9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27cdc1e9_d1f45131",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-10-23T05:56:43Z",
+      "side": 1,
+      "message": "right; it\u0027s still a pretty unexpected thing to do, and not actually necessary. Unexpected things are the best places to be sneaky :)",
+      "parentUuid": "b62f602d_0a7c64be",
+      "range": {
+        "startLine": 10,
+        "startChar": 37,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "ab9e482d15b0ffc6d9473b3ecb5c40d41984ee9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
