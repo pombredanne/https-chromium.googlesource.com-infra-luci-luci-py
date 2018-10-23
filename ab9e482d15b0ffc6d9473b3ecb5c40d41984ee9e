@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b62f602d_0a7c64be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-10-23T02:53:12Z",
+      "side": 1,
+      "message": "Btw, this is not a security concern. There\u0027s no security boundary between \"bot account\" and \"task account\".",
+      "range": {
+        "startLine": 10,
+        "startChar": 37,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "ab9e482d15b0ffc6d9473b3ecb5c40d41984ee9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
