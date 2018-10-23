@@ -509,24 +509,12 @@ class CipdInput(ndb.Model):
   # URL of the CIPD server. Must start with "https://" or "http://".
   server = ndb.StringProperty(indexed=False, validator=_validate_url)
 
-  # CIPD package of CIPD client to use.
-  # client_package.version is required.
-  # client_package.path must be None.
-  client_package = ndb.LocalStructuredProperty(CipdPackage)
-
   # List of packages to install.
   packages = ndb.LocalStructuredProperty(CipdPackage, repeated=True)
 
   def _pre_put_hook(self):
     if not self.server:
       raise datastore_errors.BadValueError('cipd server is required')
-    if not self.client_package:
-      raise datastore_errors.BadValueError('client_package is required')
-    if self.client_package.path:
-      raise datastore_errors.BadValueError('client_package.path must be unset')
-    # _pre_put_hook() doesn't recurse correctly into
-    # ndb.LocalStructuredProperty. Call the function manually.
-    self.client_package._pre_put_hook()
 
     if not self.packages:
       raise datastore_errors.BadValueError(

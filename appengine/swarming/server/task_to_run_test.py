@@ -38,9 +38,6 @@ from server import task_to_run
 def _gen_cipd(**kwargs):
   """Creates a CipdInputs."""
   args = {
-    u'client_package': task_request.CipdPackage(
-        package_name=u'infra/tools/cipd/${platform}',
-        version=u'git_revision:deadbeef'),
     u'packages': [
       task_request.CipdPackage(
           package_name=u'rm',
