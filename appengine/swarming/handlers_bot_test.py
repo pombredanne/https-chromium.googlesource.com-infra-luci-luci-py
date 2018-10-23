@@ -288,7 +288,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cipd_input': {
           u'client_package': {
             u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
             u'version': u'git_revision:deadbeef',
           },
           u'packages': [{
@@ -348,7 +347,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cipd_input': {
           u'client_package': {
             u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
             u'version': u'git_revision:deadbeef',
           },
           u'packages': [{
@@ -413,7 +411,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cipd_input': {
           u'client_package': {
             u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
             u'version': u'git_revision:deadbeef',
           },
           u'packages': [{
@@ -509,7 +506,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cipd_input': {
           u'client_package': {
             u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
             u'version': u'git_revision:deadbeef',
           },
           u'packages': [{
@@ -577,10 +573,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'namespace': u'default-gzip',
       },
       'cipd_pins': {
-        u'client_package': {
-          u'package_name': u'infra/tools/cipd/windows-amd64',
-          u'version': u'deadbeef'*5,
-        },
         u'packages': [{
           u'package_name': u'rm',
           u'path': u'bin',
@@ -595,10 +587,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
     response = self.client_get_results(task_id)
     expected = self.gen_run_result(
         cipd_pins={
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/windows-amd64',
-            u'version': u'deadbeef'*5,
-          },
           u'packages': [{
             u'package_name': u'rm',
             u'path': u'bin',
@@ -665,7 +653,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cipd_input': {
           u'client_package': {
             u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
             u'version': u'git_revision:deadbeef',
           },
           u'packages': [{

@@ -86,8 +86,6 @@ def _task_summary_to_proto(summary, event):
     cipd_proto = properties_proto.cipd_input
     cipd_proto.server = task_properties.cipd_input.server
 
-    _cipd_package_to_proto(task_properties.cipd_input.client_package,
-                           cipd_proto.client_package)
     for package in task_properties.cipd_input.packages:
       package_proto = cipd_proto.packages.add()
       _cipd_package_to_proto(package, package_proto)

@@ -71,14 +71,9 @@ def _taskproperties_from_rpc(props):
   """
   cipd_input = None
   if props.cipd_input:
-    client_package = None
-    if props.cipd_input.client_package:
-      client_package = _rpc_to_ndb(
-          task_request.CipdPackage, props.cipd_input.client_package)
     cipd_input = _rpc_to_ndb(
         task_request.CipdInput,
         props.cipd_input,
-        client_package=client_package,
         packages=[
           _rpc_to_ndb(task_request.CipdPackage, p)
           for p in props.cipd_input.packages
@@ -121,15 +116,9 @@ def _taskproperties_to_rpc(props):
   """
   cipd_input = None
   if props.cipd_input:
-    client_package = None
-    if props.cipd_input.client_package:
-      client_package = _ndb_to_rpc(
-          swarming_rpcs.CipdPackage,
-          props.cipd_input.client_package)
     cipd_input = _ndb_to_rpc(
         swarming_rpcs.CipdInput,
         props.cipd_input,
-        client_package=client_package,
         packages=[
           _ndb_to_rpc(swarming_rpcs.CipdPackage, p)
           for p in props.cipd_input.packages
@@ -293,11 +282,6 @@ def task_result_to_rpc(entity, send_stats):
   cipd_pins = None
   if entity.cipd_pins:
     cipd_pins = swarming_rpcs.CipdPins(
-      client_package=(
-        _ndb_to_rpc(swarming_rpcs.CipdPackage,
-                    entity.cipd_pins.client_package)
-        if entity.cipd_pins.client_package else None
-      ),
       packages=[
         _ndb_to_rpc(swarming_rpcs.CipdPackage, pkg)
         for pkg in entity.cipd_pins.packages

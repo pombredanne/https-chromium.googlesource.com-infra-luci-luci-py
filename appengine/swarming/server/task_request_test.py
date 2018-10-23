@@ -32,9 +32,6 @@ from server import task_request
 def _gen_cipd_input(**kwargs):
   """Creates a CipdInput."""
   args = {
-    u'client_package': task_request.CipdPackage(
-        package_name=u'infra/tools/cipd/${platform}',
-        version=u'git_revision:deadbeef'),
     u'packages': [
       task_request.CipdPackage(
           package_name=u'rm',
@@ -469,11 +466,6 @@ class TaskRequestApiTest(TestCase):
     expected_properties = {
       'caches': [],
       'cipd_input': {
-        'client_package': {
-          'package_name': u'infra/tools/cipd/${platform}',
-          'path': None,
-          'version': u'git_revision:deadbeef',
-        },
         'packages': [{
           'package_name': u'rm',
           'path': u'bin',
@@ -538,7 +530,7 @@ class TaskRequestApiTest(TestCase):
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
-        'aa33c679b3ee30e37b9724d79a9d20bc767475c00e7f659b6191508f6b16f1ab',
+        '7b66f5bf62035418a0a9ddc7072fa00c9944855cc2fa7f6b806fe6f632ae2dc2',
         req.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_isolated(self):
@@ -568,11 +560,6 @@ class TaskRequestApiTest(TestCase):
     expected_properties = {
       'caches': [],
       'cipd_input': {
-        'client_package': {
-          'package_name': u'infra/tools/cipd/${platform}',
-          'path': None,
-          'version': u'git_revision:deadbeef',
-        },
         'packages': [{
           'package_name': u'rm',
           'path': u'bin',
@@ -638,7 +625,7 @@ class TaskRequestApiTest(TestCase):
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
-        '121c6bd6216a4cc9c4302a52da6292e5a240807ef13ace6f7f36a0c83aec6f55',
+        '707a0bb566682b31835dbd7086d7d237a85c0f0c69db05b3779919d863b1e543',
         req.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_parent(self):
@@ -665,7 +652,7 @@ class TaskRequestApiTest(TestCase):
     # Other unit tests should use the calculated value.
     # Ensure the algorithm is deterministic.
     self.assertEqual(
-        '58b6b8966199b901406b82ed15b23b7070cbf6ea8cba237838911939b387b4c6',
+        'a3e05f6a8cb046623d6970f67dfb491fb2f8cfdbae083c3dcc84478c68696cdf',
         request.task_slice(0).properties_hash().encode('hex'))
 
   def test_init_new_request_bot_service_account(self):
@@ -979,10 +966,6 @@ class TaskRequestApiTest(TestCase):
       req.put()
     with self.assertRaises(datastore_errors.BadValueError):
       mkcipdreq(server='abc')
-    with self.assertRaises(datastore_errors.BadValueError):
-      mkcipdreq(
-          client_package=task_request.CipdPackage(
-              package_name='--bad package--'))
     mkcipdreq().put()
     mkcipdreq(
         packages=[
@@ -990,9 +973,6 @@ class TaskRequestApiTest(TestCase):
               package_name='rm', path='.', version='latest'),
         ]).put()
     mkcipdreq(
-        client_package=task_request.CipdPackage(
-            package_name='infra/tools/cipd/${platform}',
-            version='git_revision:daedbeef'),
         packages=[
           task_request.CipdPackage(
               package_name='rm', path='.', version='latest'),

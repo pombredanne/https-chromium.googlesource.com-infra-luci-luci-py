@@ -403,11 +403,6 @@ class CipdPins(ndb.Model):
 
   A part of _TaskResultCommon.
   """
-  # CIPD package of CIPD client used.
-  # client_package.package_name and version are provided.
-  # client_package.path will be None.
-  client_package = ndb.LocalStructuredProperty(task_request.CipdPackage)
-
   # List of packages that were installed.
   packages = ndb.LocalStructuredProperty(task_request.CipdPackage,
                                          repeated=True)

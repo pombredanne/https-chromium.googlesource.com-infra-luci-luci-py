@@ -601,6 +601,9 @@ class BotPollHandler(_BotBaseHandler):
     for i, hint in enumerate(named_caches.get_hints(pool, oses, names)):
       caches[i]['hint'] = str(hint)
 
+    # Tell run_isolated which CIPD client to use.
+    cipd_client = config.settings().cipd.default_client_package
+
     out = {
       'cmd': 'run',
       'manifest': {
@@ -608,7 +611,10 @@ class BotPollHandler(_BotBaseHandler):
         'bot_authenticated_as': auth.get_peer_identity().to_bytes(),
         'caches': caches,
         'cipd_input': {
-          'client_package': props.cipd_input.client_package.to_dict(),
+          'client_package': {
+            'package_name': cipd_client.package_name,
+            'version': cipd_client.version,
+          },
           'packages': [p.to_dict() for p in props.cipd_input.packages],
           'server': props.cipd_input.server,
         } if props.cipd_input else None,
@@ -969,8 +975,6 @@ class BotTaskUpdateHandler(_BotApiHandler):
 
     if cipd_pins:
       cipd_pins = task_result.CipdPins(
-        client_package=task_request.CipdPackage(
-            **cipd_pins['client_package']),
         packages=[
             task_request.CipdPackage(**args) for args in cipd_pins['packages']]
       )

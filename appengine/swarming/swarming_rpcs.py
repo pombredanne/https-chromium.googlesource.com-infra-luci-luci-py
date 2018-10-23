@@ -247,29 +247,19 @@ class CipdPackage(messages.Message):
 class CipdInput(messages.Message):
   """Defines CIPD packages to install in task run directory."""
   # URL of the CIPD server. Must start with "https://" or "http://".
-  # This field or its subfields are optional if default cipd client is defined
-  # in the server config.
+  # This field is optional.
   server = messages.StringField(1)
 
-  # CIPD package of CIPD client to use.
-  # client_package.version is required.
-  # This field is optional is default value is defined in the server config.
-  # client_package.path must be empty.
-  client_package = messages.MessageField(CipdPackage, 2)
-
   # List of CIPD packages to install.
-  packages = messages.MessageField(CipdPackage, 3, repeated=True)
+  packages = messages.MessageField(CipdPackage, 2, repeated=True)
 
 
 class CipdPins(messages.Message):
   """Defines pinned CIPD packages that were installed during the task."""
 
-  # The pinned package + version of the CIPD client that was actually used.
-  client_package = messages.MessageField(CipdPackage, 1)
-
   # List of CIPD packages that were installed in the task with fully resolved
   # package names and versions.
-  packages = messages.MessageField(CipdPackage, 2, repeated=True)
+  packages = messages.MessageField(CipdPackage, 1, repeated=True)
 
 
 class CacheEntry(messages.Message):

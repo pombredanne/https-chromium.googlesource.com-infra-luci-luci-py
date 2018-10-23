@@ -61,6 +61,9 @@ class AppTestBase(test_case.TestCase):
         privileged_users_group=priv_users_group,
         users_group=users_group,
     ))
+    cfg.cipd.default_client_package.package_name = (
+      'infra/tools/cipd/${platform}')
+    cfg.cipd.default_client_package.version = 'git_revision:deadbeef'
     self.mock(config, '_get_settings', lambda: ('test_rev', cfg))
     utils.clear_cache(config.settings)
 
@@ -290,10 +293,6 @@ class AppTestBase(test_case.TestCase):
     """Returns a serialized swarming_rpcs.TaskProperties."""
     out = {
       u'cipd_input': {
-        u'client_package': {
-          u'package_name': u'infra/tools/cipd/${platform}',
-          u'version': u'git_revision:deadbeef',
-        },
         u'packages': [{
           u'package_name': u'rm',
           u'path': u'bin',
@@ -372,10 +371,6 @@ class AppTestBase(test_case.TestCase):
     """
     out = {
       u'cipd_input': {
-        u'client_package': {
-          u'package_name': u'infra/tools/cipd/${platform}',
-          u'version': u'git_revision:deadbeef',
-        },
         u'packages': [{
           u'package_name': u'rm',
           u'path': u'bin',

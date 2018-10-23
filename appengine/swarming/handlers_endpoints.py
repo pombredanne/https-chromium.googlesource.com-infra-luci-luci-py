@@ -160,14 +160,6 @@ def apply_server_property_defaults(properties):
   if cfg.HasField('cipd') and properties.cipd_input:
     properties.cipd_input.server = (
         properties.cipd_input.server or cfg.cipd.default_server)
-    properties.cipd_input.client_package = (
-        properties.cipd_input.client_package or task_request.CipdPackage())
-    properties.cipd_input.client_package.package_name = (
-        properties.cipd_input.client_package.package_name or
-        cfg.cipd.default_client_package.package_name)
-    properties.cipd_input.client_package.version = (
-        properties.cipd_input.client_package.version or
-        cfg.cipd.default_client_package.version)
 
 
 ### API
