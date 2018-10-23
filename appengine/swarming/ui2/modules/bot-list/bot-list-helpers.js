@@ -88,21 +88,50 @@ export function devices(bot) {
   return bot.state.devices || [];
 }
 
-/** fromDimensions returns the array of dimension values that match the given
- *  key or null if this bot doesn't have that dimension.
- * @param {Object} bot - The bot from which to extract data.
- * @param {string} dim - The 'key' of the dimension to look for.
- */
-export function fromDimension(bot, dim) {
-  if (!bot || !bot.dimensions || !dim) {
-    return null;
+export function filterPossibleColumns(allCols, query) {
+  if (!query) {
+    return allCols;
   }
-  for (let i = 0; i < bot.dimensions.length; i++) {
-    if (bot.dimensions[i].key === dim) {
-      return bot.dimensions[i].value;
+  return allCols.filter((c) => {
+    return matchPartCaseInsensitive(c, query);
+  });
+}
+
+export function filterPossibleKeys(allKeys, keyMap, query) {
+  if (!query) {
+    return allKeys;
+  }
+  // Allow partially typed filters to still match parts.
+  query = query.replace(':', ' ').trim();
+  return allKeys.filter((k) => {
+    if (matchPartCaseInsensitive(k, query)) {
+      return true;
     }
+    let values = keyMap[k] || [];
+    for (let value of values) {
+      if (matchPartCaseInsensitive(value, query)) {
+        return true;
+      }
+    }
+    return false;
+  });
+}
+
+export function filterPossibleValues(allValues, currentKey, query) {
+  // Only show secondary options when a primary option has been selected.
+  // If the user has typed in a query, show all secondary elements if
+  // their primary element matches.  If it doesn't match the primary
+  // element, only show those secondary elements that do.
+  query = query.replace(':', ' ').trim();
+  if (!query || matchPartCaseInsensitive(currentKey, query)) {
+    return allValues;
   }
-  return null;
+  return allValues.filter((v) => {
+    if (matchPartCaseInsensitive(v, query)) {
+      return true;
+    }
+    return false;
+  });
 }
 
 // A list of special rules for filters. In practice, this is anything
@@ -139,7 +168,7 @@ const specialFilters = {
     // Task must be 'busy'.
     return !!bot.task_id;
   }
-}
+};
 
 /** Filters the bots like they would be filtered from the server
  * filters: Array<String>: like ['alpha:beta']
@@ -171,6 +200,23 @@ export function filterBots(filters, bots) {
     }
     return matches;
   });
+}
+
+/** fromDimensions returns the array of dimension values that match the given
+ *  key or null if this bot doesn't have that dimension.
+ * @param {Object} bot - The bot from which to extract data.
+ * @param {string} dim - The 'key' of the dimension to look for.
+ */
+export function fromDimension(bot, dim) {
+  if (!bot || !bot.dimensions || !dim) {
+    return null;
+  }
+  for (let i = 0; i < bot.dimensions.length; i++) {
+    if (bot.dimensions[i].key === dim) {
+      return bot.dimensions[i].value;
+    }
+  }
+  return null;
 }
 
 /** fromState returns the array of values that match the given key
@@ -264,6 +310,28 @@ export function longestOrAll(arr, verbose) {
 export function makeFilter(key, value) {
   return `${key}:${value}`;
 }
+
+// Given a space separated list of queries, matchPartCaseInsensitive
+// returns true or false if str matches any of thoes queries case
+// insensitively.
+export function matchPartCaseInsensitive(str, queries) {
+  if (!queries) {
+    return true;
+  }
+  if (!str) {
+    return false
+  }
+  queries = queries.trim().toLocaleLowerCase();
+  str = str.toLocaleLowerCase();
+  let xq = queries.split(' ');
+  for (let query of xq) {
+    let idx = str.indexOf(query);
+    if (idx !== -1) {
+      return true;
+    }
+  }
+  return false;
+};
 
 /** processBots processes the array of bots from the server and returns it.
  *  The primary goal is to get the data ready for display.
@@ -399,10 +467,9 @@ export function processPrimaryMap(dimensions) {
   pMap['device_os'] && pMap['device_os'].push('none');
   pMap['device_type'] && pMap['device_type'].push('none');
 
-  pMap['id'] = [];
+  pMap['id'] = null;
 
   // Create custom filter/sorting options
-  pMap['disk_space'] = [];
   pMap['task'] = ['busy', 'idle'];
   pMap['status'] = ['alive', 'dead', 'quarantined', 'maintenance'];
   pMap['is_mp_bot'] = ['true', 'false'];
@@ -443,11 +510,11 @@ export function sortColumns(cols) {
   cols.sort(compareColumns);
 }
 
-/** sortKeys sorts the keys that show up in the left filter box. It puts the
+/** sortPossibleColumns sorts the columns in the column selector. It puts the
  *  selected ones on top in the order they are displayed and the rest below
  *  in alphabetical order.
  */
-export function sortKeys(keys, selectedCols) {
+export function sortPossibleColumns(keys, selectedCols) {
   let selected = {};
   for (let c of selectedCols) {
     selected[c] = true;
