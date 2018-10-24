@@ -115,7 +115,11 @@ export default class SwarmingAppBoilerplate extends HTMLElement {
                       'with a different account';
       this._notAuthorized = true;
       this.render();
-    } else {
+    } else if (e.name !== 'AbortError') {
+      // We can ignore AbortError since they fire anytime a filter is added
+      // or removed (even for fetch promises that have already been resolved).
+      // Chrome and Firefox report a DOMException in this case:
+      // https://developer.mozilla.org/en-US/docs/Web/API/DOMException
       console.error(e);
       errorMessage(`Unexpected error loading ${loadingWhat}: ${e.message}`,
                    5000);
