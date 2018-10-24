@@ -27,7 +27,7 @@ mockAuthdAppGETs(fetchMock, {
 });
 
 fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*',
-              requireLogin(data_s10));
+              requireLogin(data_s10, 500));
 
 fetchMock.get('/_ah/api/swarming/v1/bots/dimensions',
               requireLogin(fleetDimensions));

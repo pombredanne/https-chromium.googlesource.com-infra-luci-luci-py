@@ -8,11 +8,12 @@
 // If a function doesn't refer to 'this', it should go here, otherwise
 // it should go inside the element declaration.
 
-import { diffDate } from 'common-sk/modules/human'
+import { bytes, diffDate, localeTime, MB, strDuration } from 'common-sk/modules/human'
 // query.fromObject is more readable than just 'fromObject'
 import * as query from 'common-sk/modules/query'
 import { html } from 'lit-html'
 import naturalSort from 'javascript-natural-sort/naturalSort'
+import { sanitizeAndHumanizeTime } from '../util'
 
 /** aggregateTemps looks through the temperature data and computes an
  *  average temp. Beyond that, it prepares the temperature data for
@@ -88,21 +89,50 @@ export function devices(bot) {
   return bot.state.devices || [];
 }
 
-/** fromDimensions returns the array of dimension values that match the given
- *  key or null if this bot doesn't have that dimension.
- * @param {Object} bot - The bot from which to extract data.
- * @param {string} dim - The 'key' of the dimension to look for.
- */
-export function fromDimension(bot, dim) {
-  if (!bot || !bot.dimensions || !dim) {
-    return null;
+export function filterPossibleColumns(allCols, query) {
+  if (!query) {
+    return allCols;
   }
-  for (let i = 0; i < bot.dimensions.length; i++) {
-    if (bot.dimensions[i].key === dim) {
-      return bot.dimensions[i].value;
+  return allCols.filter((c) => {
+    return matchPartCaseInsensitive(c, query);
+  });
+}
+
+export function filterPossibleKeys(allKeys, keyMap, query) {
+  if (!query) {
+    return allKeys;
+  }
+  // Allow partially typed filters to still match parts.
+  query = query.replace(':', ' ').trim();
+  return allKeys.filter((k) => {
+    if (matchPartCaseInsensitive(k, query)) {
+      return true;
     }
+    let values = keyMap[k] || [];
+    for (let value of values) {
+      if (matchPartCaseInsensitive(value, query)) {
+        return true;
+      }
+    }
+    return false;
+  });
+}
+
+export function filterPossibleValues(allValues, currentKey, query) {
+  // Only show secondary options when a primary option has been selected.
+  // If the user has typed in a query, show all secondary elements if
+  // their primary element matches.  If it doesn't match the primary
+  // element, only show those secondary elements that do.
+  query = query.replace(':', ' ').trim();
+  if (!query || matchPartCaseInsensitive(currentKey, query)) {
+    return allValues;
   }
-  return null;
+  return allValues.filter((v) => {
+    if (matchPartCaseInsensitive(v, query)) {
+      return true;
+    }
+    return false;
+  });
 }
 
 // A list of special rules for filters. In practice, this is anything
@@ -139,7 +169,7 @@ const specialFilters = {
     // Task must be 'busy'.
     return !!bot.task_id;
   }
-}
+};
 
 /** Filters the bots like they would be filtered from the server
  * filters: Array<String>: like ['alpha:beta']
@@ -173,6 +203,23 @@ export function filterBots(filters, bots) {
   });
 }
 
+/** fromDimensions returns the array of dimension values that match the given
+ *  key or null if this bot doesn't have that dimension.
+ * @param {Object} bot - The bot from which to extract data.
+ * @param {string} dim - The 'key' of the dimension to look for.
+ */
+export function fromDimension(bot, dim) {
+  if (!bot || !bot.dimensions || !dim) {
+    return null;
+  }
+  for (let i = 0; i < bot.dimensions.length; i++) {
+    if (bot.dimensions[i].key === dim) {
+      return bot.dimensions[i].value;
+    }
+  }
+  return null;
+}
+
 /** fromState returns the array of values that match the given key
  *  from a bot's state or null if this bot doesn't have it..
  * @param {Object} bot - The bot from which to extract data.
@@ -204,7 +251,7 @@ export function initCounts() {
  *  @param {Array<string>} filters - a list of colon-separated key-values.
  *  @param {Number} limit - the limit of results to return.
  */
-export function listQueryParams(filters, limit) {
+export function listQueryParams(filters, limit, cursor) {
   let params = {};
   let dims = [];
   filters.forEach((f) => {
@@ -238,6 +285,9 @@ export function listQueryParams(filters, limit) {
   });
   params['dimensions'] = dims;
   params['limit'] = limit;
+  if (cursor) {
+    params['cursor'] = cursor;
+  }
   return query.fromObject(params);
 }
 
@@ -265,6 +315,30 @@ export function makeFilter(key, value) {
   return `${key}:${value}`;
 }
 
+// Given a space separated list of queries, matchPartCaseInsensitive
+// returns true or false if str matches any of thoes queries case
+// insensitively.
+export function matchPartCaseInsensitive(str, queries) {
+  if (!queries) {
+    return true;
+  }
+  if (!str) {
+    return false
+  }
+  queries = queries.trim().toLocaleLowerCase();
+  str = str.toLocaleLowerCase();
+  let xq = queries.split(' ');
+  for (let query of xq) {
+    let idx = str.indexOf(query);
+    if (idx !== -1) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const BOT_TIMES = ['first_seen_ts', 'last_seen_ts', 'lease_expiration_ts'];
+
 /** processBots processes the array of bots from the server and returns it.
  *  The primary goal is to get the data ready for display.
  */
@@ -272,7 +346,7 @@ export function processBots(arr) {
   if (!arr) {
     return [];
   }
-  arr.forEach((bot) => {
+  for (let bot of arr) {
     bot.state = (bot.state && JSON.parse(bot.state)) || {};
     // get the disks in an easier to deal with format, sorted by size.
     let disks = bot.state.disks || {};
@@ -324,7 +398,12 @@ export function processBots(arr) {
       return 0;
     });
     bot.state.devices = devices;
-  });
+
+    for (let time of BOT_TIMES) {
+      sanitizeAndHumanizeTime(bot, time);
+    };
+  };
+
   // TODO(kjlubick): do more here and write some tests for it.
 
   return arr;
@@ -399,10 +478,9 @@ export function processPrimaryMap(dimensions) {
   pMap['device_os'] && pMap['device_os'].push('none');
   pMap['device_type'] && pMap['device_type'].push('none');
 
-  pMap['id'] = [];
+  pMap['id'] = null;
 
   // Create custom filter/sorting options
-  pMap['disk_space'] = [];
   pMap['task'] = ['busy', 'idle'];
   pMap['status'] = ['alive', 'dead', 'quarantined', 'maintenance'];
   pMap['is_mp_bot'] = ['true', 'false'];
@@ -443,11 +521,11 @@ export function sortColumns(cols) {
   cols.sort(compareColumns);
 }
 
-/** sortKeys sorts the keys that show up in the left filter box. It puts the
+/** sortPossibleColumns sorts the columns in the column selector. It puts the
  *  selected ones on top in the order they are displayed and the rest below
  *  in alphabetical order.
  */
-export function sortKeys(keys, selectedCols) {
+export function sortPossibleColumns(keys, selectedCols) {
   let selected = {};
   for (let c of selectedCols) {
     selected[c] = true;
@@ -488,6 +566,13 @@ export function taskLink(taskId, disableCanonicalID) {
   return `/task?id=${taskId}`;
 }
 
+function timeDiffApprox(date) {
+  if (!date) {
+    return 'eons';
+  }
+  return diffDate(date.getTime());
+}
+
 const blacklistDimensions = ['quarantined', 'error', 'id'];
 
 /** extraKeys is a list of things we want to be able to sort by or display
@@ -497,7 +582,7 @@ export const extraKeys = ['disk_space', 'uptime', 'running_time', 'task',
 'status', 'version', 'external_ip', 'internal_ip', 'mp_lease_id',
 'mp_lease_expires', 'last_seen', 'first_seen', 'battery_level',
 'battery_voltage', 'battery_temperature', 'battery_status', 'battery_health',
-'bot_temperature', 'device_temperature', 'is_mp_bot'];
+'bot_temperature', 'device_temperature'];
 
 /** colHeaderMap maps keys to their human readable name.*/
 export const colHeaderMap = {
@@ -540,11 +625,87 @@ export const specialSortMap = {
   id: (dir, botA, botB) => dir * naturalSort(botA.bot_id, botB.bot_id),
 };
 
-// TODO(kjlubick): running_time and many others should be implemented here.
 const colMap = {
+  android_devices: (bot, ele) => {
+    let devs = attribute(bot, 'android_devices', '0');
+    if (ele._verbose) {
+      return devs.join(' | ') + ' devices available';
+    }
+    // max() works on strings as long as they can be coerced to Number.
+    return Math.max(...devs) + ' devices available';
+  },
+  bot_temperature: (bot, ele) => {
+    if (ele._verbose) {
+      return bot.state.temp.zones || 'UNKNOWN';
+    }
+    return bot.state.temp.average || 'UNKNOWN';
+  },
+  disk_space: (bot, ele) => {
+    let aliased = [];
+    for (let disk of bot.disks) {
+      let alias = bytes(disk.mb, MB);
+      aliased.push(`${disk.id} ${alias} (${disk.mb})`);
+    }
+    if (ele._verbose) {
+      return aliased.join(' | ');
+    }
+    return aliased[0];
+  },
+  external_ip: (bot, ele) => {
+    return bot.external_ip || 'none';
+  },
+  first_seen: (bot, ele) => {
+    return localeTime(bot.first_seen_ts);
+  },
   id: (bot, ele) => html`<a target=_blank
                             rel=noopener
                             href=${botLink(bot.bot_id)}>${bot.bot_id}</a>`,
+  internal_ip: (bot, ele) => {
+    return attribute(bot, 'ip', 'none')[0];
+  },
+  last_seen: (bot, ele) => {
+    if (ele._verbose) {
+      return localeTime(bot.last_seen_ts);
+    }
+    return timeDiffApprox(bot.last_seen_ts) + ' ago';
+  },
+  mp_lease_id: (bot, ele) => {
+    if (!bot.lease_id) {
+      return 'none';
+    }
+    let id = bot.lease_id;
+    if (!ele._verbose) {
+      id = id.substring(0, 10);
+    }
+    if (ele.server_details && ele.server_details.machine_provider_template) {
+      // Might not be loaded yet.
+      let mp_url = ele.server_details.machine_provider_template
+                      .replace('%s', bot.lease_id);
+      return html`<a target=_blank
+                     rel=noopener
+                     href=${mp_url}>${id}</a>`;
+    }
+    return id;
+  },
+  mp_lease_expires: (bot, ele) => {
+    if (!bot.lease_expiration_ts) {
+      return 'N/A';
+    }
+    if (ele._verbose) {
+      return sk.human.localeTime(bot.lease_expiration_ts);
+    }
+    if (bot.lease_expiration_ts < new Date()) {
+      return timeDiffApprox(bot.lease_expiration_ts) + ' ago';
+    }
+    return 'in ' + timeDiffApprox(bot.lease_expiration_ts);
+  },
+  running_time:  (bot, ele) => {
+    let r = fromState(bot, 'running_time');
+    if (!r) {
+      return 'UNKNOWN';
+    }
+    return strDuration(r);
+  },
   status: (bot, ele) => {
     if (bot.is_dead) {
       return `Dead. Last seen ${diffDate(bot.last_seen_ts)} ago`;
@@ -592,4 +753,15 @@ const colMap = {
                    title=${bot.task_name}
                    href=${taskLink(bot.task_id)}>${bot.task_id}</a>`;
   },
+  uptime: (bot, ele) => {
+    let u = fromState(bot, 'uptime');
+    if (!u) {
+      return 'UNKNOWN';
+    }
+    return strDuration(u);
+  },
+  version: (bot, ele) => {
+    let v = bot.version || 'UNKNOWN';
+    return v.substring(0, 10);
+  }
 };
