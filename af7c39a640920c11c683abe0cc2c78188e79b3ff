@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9e4ca439_16bf508b",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-10-24T01:01:26Z",
+      "side": 1,
+      "message": "Actually this is wrong.\n\nOriginally this read:\n\"if S0 is not a superset of S1\"\n\nThe suggestion was to change it to:\n\"if S0 is a subset of S1\"\n\nBut these are not equivalent.\nS0 not being a superset of S1 doesn\u0027t imply S0 is a subset of S1. They may be disjoint.\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1296800",
+      "parentUuid": "a0d69961_358c8bc3",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c03f1dd8_0d5b97ec",
         "filename": "appengine/machine_provider/handlers_cron.py",
         "patchSetId": 1
