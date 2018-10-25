@@ -22,6 +22,30 @@
       "revId": "e8d7f1da42cca80872b44eb504922bd348d7a7a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "357861e8_b6f3b856",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2018-10-25T18:34:15Z",
+      "side": 1,
+      "message": "That got fixed in PS 12 or 13.",
+      "parentUuid": "acdda942_33c1c272",
+      "range": {
+        "startLine": 304,
+        "startChar": 18,
+        "endLine": 304,
+        "endChar": 68
+      },
+      "revId": "e8d7f1da42cca80872b44eb504922bd348d7a7a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
