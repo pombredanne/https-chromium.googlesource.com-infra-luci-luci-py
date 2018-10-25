@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7a38adf_94e6664f",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-25T14:43:04Z",
+      "side": 1,
+      "message": "Left align these:\n\nhttps://screenshot.googleplex.com/XVQQp5EeZ9u.png",
+      "revId": "2226c2982b4ccbad2e07875880a983cb46ce0347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760017ea_018e2b95",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-25T14:43:04Z",
+      "side": 1,
+      "message": "Summary should flow under the search box, it\u0027s way too far away from the rest of the controls on a wide screen:\n\n   https://screenshot.googleplex.com/zng2PbS8sg4.png\n\n\nAlso should make Fleet and Selected separate entities that flex flow wrap row to avoid this:\n\n  https://screenshot.googleplex.com/xUrOr5WZehd.png",
+      "revId": "2226c2982b4ccbad2e07875880a983cb46ce0347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8366aaa1_95847b75",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-25T14:43:04Z",
+      "side": 1,
+      "message": "Put col_options on the right of the table.\n\nhttps://screenshot.googleplex.com/iNAkwZQ26GP.png",
+      "revId": "2226c2982b4ccbad2e07875880a983cb46ce0347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dca1c090_2227777c",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.scss",
+        "patchSetId": 15
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-25T14:43:04Z",
+      "side": 1,
+      "message": "Super roundness doesn\u0027t play well with descenders:\n\n  https://screenshot.googleplex.com/ayFmrsgDsrr.png\n\nInstead pull back the radius and highlight the chip with a color:\n\n    background: #e4ecf1;\n    border-radius: 4px;\n\nIn general the \"make everything round\" part of Material Design 2 is a bad idea, causing you to either have issues like here with the descenders, or you widen the element to avoid that and now you are wasting more horizontal space.",
+      "revId": "2226c2982b4ccbad2e07875880a983cb46ce0347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fdd5bc2_e5f22588",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.scss",
+        "patchSetId": 15
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-25T14:43:04Z",
+      "side": 1,
+      "message": "cancel-icon-sk should also have :hover styling to let the user know they are over the thing to click.",
+      "revId": "2226c2982b4ccbad2e07875880a983cb46ce0347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

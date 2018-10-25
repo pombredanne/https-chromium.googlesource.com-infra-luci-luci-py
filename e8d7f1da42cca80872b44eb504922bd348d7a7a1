@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acdda942_33c1c272",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-25T14:43:04Z",
+      "side": 1,
+      "message": "Since you imported $ and $$, you should use them everywhere:\n\n$(\u0027tr:nth-child(4) td\u0027, fleetTable)\n\nHere and below for both querySelector and querySelectorAll.",
+      "range": {
+        "startLine": 304,
+        "startChar": 18,
+        "endLine": 304,
+        "endChar": 68
+      },
+      "revId": "e8d7f1da42cca80872b44eb504922bd348d7a7a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
