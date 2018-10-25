@@ -46,6 +46,23 @@
       "revId": "ab9e482d15b0ffc6d9473b3ecb5c40d41984ee9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5297d481_1b3224ec",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-25T13:42:02Z",
+      "side": 1,
+      "message": "This does mean that this will instantaneously break task deduping. It\u0027s not a big deal it did happen before, but it\u0027s worth calling out in the CL description.",
+      "revId": "ab9e482d15b0ffc6d9473b3ecb5c40d41984ee9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

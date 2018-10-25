@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "669b185c_a54bff52",
+        "filename": "appengine/swarming/event_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-25T13:42:02Z",
+      "side": 0,
+      "message": "Technically, we could still want to know if a cipd client roll improves/reduces performance.",
+      "revId": "3246c5d4f43105bbecfb6fbfd2dcad4f8f1bc1db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "553307e0_888d6a1a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-25T13:42:02Z",
+      "side": 0,
+      "message": "I think we\u0027d still want to have it reported, as otherwise there\u0027s no way for the user to know if a cipd client roll had input on which task.",
+      "revId": "3246c5d4f43105bbecfb6fbfd2dcad4f8f1bc1db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07d473f8_aea0f208",
         "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
         "patchSetId": 1
@@ -37,6 +71,30 @@
       "side": 0,
       "message": "Hm, not as an explicit field on the UI. However, there\u0027s a `swarming.pool.version` tag on all tasks now (https://chromium-swarm.appspot.com/task?id\u003d40b84e6d09402410\u0026refresh\u003d10\u0026request_detail\u003dtrue\u0026show_raw\u003d1), which would be enough to query for tasks which picked up a new config version.\n\nI could also add a new tag which is the (input) version of CIPD. Getting the resolved version (e.g. if the input version is a ref) would be a bit trickier (but too hard) if you think that\u0027s worthwhile.",
       "parentUuid": "07d473f8_aea0f208",
+      "range": {
+        "startLine": 518,
+        "startChar": 16,
+        "endLine": 527,
+        "endChar": 27
+      },
+      "revId": "3246c5d4f43105bbecfb6fbfd2dcad4f8f1bc1db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b94f2e8_0d7b665a",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-25T13:42:02Z",
+      "side": 0,
+      "message": "Thinking about it, I\u0027d prefer this to be kept. As we roll new cipd client version via luci-config, it\u0027s useful to surface this information in case there\u0027s an obscure hard to debug failure.\n\nThis reminded me it could be interesting to include the luci-config revision inside the task but that\u0027s for another day.",
+      "parentUuid": "fae30eb0_c22a626f",
       "range": {
         "startLine": 518,
         "startChar": 16,
