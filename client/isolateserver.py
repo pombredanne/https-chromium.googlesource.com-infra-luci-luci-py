@@ -291,7 +291,10 @@ def create_directories(base_directory, files):
   for item in list(directories):
     while item:
       directories.add(item)
-      item = os.path.dirname(item)
+      base = os.path.dirname(item)
+      if base == item:
+        break
+      item = base
   for d in sorted(directories):
     if d:
       abs_d = os.path.join(base_directory, d)

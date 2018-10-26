@@ -1061,7 +1061,8 @@ def create_option_parser():
   parser = logging_utils.OptionParserWithLogging(
       usage='%prog <options> [command to run or extra args]',
       version=__version__,
-      log_file=RUN_ISOLATED_LOG_FILE)
+      log_file=RUN_ISOLATED_LOG_FILE,
+      pass_through_unknown_args=True)
   parser.add_option(
       '--clean', action='store_true',
       help='Cleans the cache, trimming it necessary and remove corrupted items '

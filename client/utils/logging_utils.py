@@ -233,7 +233,8 @@ class OptionParserWithLogging(optparse.OptionParser):
   # Set in unit tests.
   logger_root = None
 
-  def __init__(self, verbose=0, log_file=None, **kwargs):
+  def __init__(self, verbose=0, log_file=None, pass_through_unknown_args=False,
+               **kwargs):
     kwargs.setdefault('description', sys.modules['__main__'].__doc__)
     optparse.OptionParser.__init__(self, **kwargs)
     self.group_logging = optparse.OptionGroup(self, 'Logging')
@@ -250,13 +251,24 @@ class OptionParserWithLogging(optparse.OptionParser):
       self.group_logging.add_option(
           '--no-log', action='store_const', const='', dest='log_file',
           help='Disable log file')
+    self.pass_through_unknown_args = pass_through_unknown_args
+
+  def _process_args(self, largs, rargs, values):
+    if not self.pass_through_unknown_args:
+      return optparse.OptionParser._process_args(self,largs,rargs,values)
+    while rargs:
+      try:
+          optparse.OptionParser._process_args(self,largs,rargs,values)
+      except (optparse.BadOptionError,optparse.AmbiguousOptionError), e:
+          largs.append(e.opt_str)
 
   def parse_args(self, *args, **kwargs):
     # Make sure this group is always the last one.
     self.add_option_group(self.group_logging)
 
     options, args = optparse.OptionParser.parse_args(self, *args, **kwargs)
-    prepare_logging(self.enable_log_file and options.log_file, self.logger_root)
+    prepare_logging(self.enable_log_file and options.log_file,
+                    self.logger_root)
     set_console_level(
         LEVELS[min(len(LEVELS) - 1, options.verbose)], self.logger_root)
     return options, args
