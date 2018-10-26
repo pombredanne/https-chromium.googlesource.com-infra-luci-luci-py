@@ -95,6 +95,11 @@ message Pool {
 
   // Refer to one bot_monitoring at the file level by name.
   string bot_monitoring = 8;
+
+  // If specified, this is the description of the external scheduler to be used
+  // for all task and bot for this pool that match the dimension set for this
+  // scheduler.
+  ExternalScheduler external_scheduler = 9;
 }
 
 
@@ -338,4 +343,19 @@ message BotMonitoring {
   // More precisely, when this is used, the other bot dimensions are ignored.
   // 'pool' is always implicit.
   repeated string dimension_key = 2;
+}
+
+// Describes an external scheduler used by a particular swarming pool and
+// dimension set, via the external scheduler API.
+message ExternalScheduler {
+  // Service address of external scheduler.
+  string address = 1;
+
+  // Scheduler id within the external scheduler service to use. This value
+  // is opaque to swarming.
+  string id = 2;
+
+  // Dimension keys set for bots and tasks that will be forwarded to this
+  // external scheduler.
+  repeated string dimension_keys = 3;
 }
