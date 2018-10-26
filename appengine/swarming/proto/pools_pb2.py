@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='pools.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bpools.proto\"\xc6\x01\n\x08PoolsCfg\x12\x13\n\x04pool\x18\x01 \x03(\x0b\x32\x05.Pool\x12\x1c\n\x14\x66orbid_unknown_pools\x18\x02 \x01(\x08\x12$\n\rtask_template\x18\x03 \x03(\x0b\x32\r.TaskTemplate\x12\x39\n\x18task_template_deployment\x18\x04 \x03(\x0b\x32\x17.TaskTemplateDeployment\x12&\n\x0e\x62ot_monitoring\x18\x05 \x03(\x0b\x32\x0e.BotMonitoring\"\xa7\x02\n\x04Pool\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x0e\n\x06owners\x18\x02 \x03(\t\x12\x1f\n\nschedulers\x18\x03 \x01(\x0b\x32\x0b.Schedulers\x12\x1f\n\x17\x61llowed_service_account\x18\x04 \x03(\t\x12%\n\x1d\x61llowed_service_account_group\x18\x05 \x03(\t\x12\"\n\x18task_template_deployment\x18\x06 \x01(\tH\x00\x12\x42\n\x1ftask_template_deployment_inline\x18\x07 \x01(\x0b\x32\x17.TaskTemplateDeploymentH\x00\x12\x16\n\x0e\x62ot_monitoring\x18\x08 \x01(\tB\x18\n\x16task_deployment_scheme\"Y\n\nSchedulers\x12\x0c\n\x04user\x18\x01 \x03(\t\x12\r\n\x05group\x18\x02 \x03(\t\x12.\n\x12trusted_delegation\x18\x03 \x03(\x0b\x32\x12.TrustedDelegation\"p\n\x11TrustedDelegation\x12\x0f\n\x07peer_id\x18\x01 \x01(\t\x12\x32\n\x0erequire_any_of\x18\x02 \x01(\x0b\x32\x1a.TrustedDelegation.TagList\x1a\x16\n\x07TagList\x12\x0b\n\x03tag\x18\x01 \x03(\t\"\xcd\x02\n\x0cTaskTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\'\n\x05\x63\x61\x63he\x18\x03 \x03(\x0b\x32\x18.TaskTemplate.CacheEntry\x12/\n\x0c\x63ipd_package\x18\x04 \x03(\x0b\x32\x19.TaskTemplate.CipdPackage\x12\x1e\n\x03\x65nv\x18\x05 \x03(\x0b\x32\x11.TaskTemplate.Env\x1a(\n\nCacheEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x1a\x39\n\x0b\x43ipdPackage\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0b\n\x03pkg\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x1a?\n\x03\x45nv\x12\x0b\n\x03var\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0e\n\x06prefix\x18\x03 \x03(\t\x12\x0c\n\x04soft\x18\x04 \x01(\x08\"y\n\x16TaskTemplateDeployment\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x04prod\x18\x02 \x01(\x0b\x32\r.TaskTemplate\x12\x1d\n\x06\x63\x61nary\x18\x03 \x01(\x0b\x32\r.TaskTemplate\x12\x15\n\rcanary_chance\x18\x04 \x01(\x05\"4\n\rBotMonitoring\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rdimension_key\x18\x02 \x03(\tb\x06proto3')
+  serialized_pb=_b('\n\x0bpools.proto\"\xc6\x01\n\x08PoolsCfg\x12\x13\n\x04pool\x18\x01 \x03(\x0b\x32\x05.Pool\x12\x1c\n\x14\x66orbid_unknown_pools\x18\x02 \x01(\x08\x12$\n\rtask_template\x18\x03 \x03(\x0b\x32\r.TaskTemplate\x12\x39\n\x18task_template_deployment\x18\x04 \x03(\x0b\x32\x17.TaskTemplateDeployment\x12&\n\x0e\x62ot_monitoring\x18\x05 \x03(\x0b\x32\x0e.BotMonitoring\"\xd7\x02\n\x04Pool\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x0e\n\x06owners\x18\x02 \x03(\t\x12\x1f\n\nschedulers\x18\x03 \x01(\x0b\x32\x0b.Schedulers\x12\x1f\n\x17\x61llowed_service_account\x18\x04 \x03(\t\x12%\n\x1d\x61llowed_service_account_group\x18\x05 \x03(\t\x12\"\n\x18task_template_deployment\x18\x06 \x01(\tH\x00\x12\x42\n\x1ftask_template_deployment_inline\x18\x07 \x01(\x0b\x32\x17.TaskTemplateDeploymentH\x00\x12\x16\n\x0e\x62ot_monitoring\x18\x08 \x01(\t\x12.\n\x12\x65xternal_scheduler\x18\t \x01(\x0b\x32\x12.ExternalSchedulerB\x18\n\x16task_deployment_scheme\"Y\n\nSchedulers\x12\x0c\n\x04user\x18\x01 \x03(\t\x12\r\n\x05group\x18\x02 \x03(\t\x12.\n\x12trusted_delegation\x18\x03 \x03(\x0b\x32\x12.TrustedDelegation\"p\n\x11TrustedDelegation\x12\x0f\n\x07peer_id\x18\x01 \x01(\t\x12\x32\n\x0erequire_any_of\x18\x02 \x01(\x0b\x32\x1a.TrustedDelegation.TagList\x1a\x16\n\x07TagList\x12\x0b\n\x03tag\x18\x01 \x03(\t\"\xcd\x02\n\x0cTaskTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\'\n\x05\x63\x61\x63he\x18\x03 \x03(\x0b\x32\x18.TaskTemplate.CacheEntry\x12/\n\x0c\x63ipd_package\x18\x04 \x03(\x0b\x32\x19.TaskTemplate.CipdPackage\x12\x1e\n\x03\x65nv\x18\x05 \x03(\x0b\x32\x11.TaskTemplate.Env\x1a(\n\nCacheEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x1a\x39\n\x0b\x43ipdPackage\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0b\n\x03pkg\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x1a?\n\x03\x45nv\x12\x0b\n\x03var\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0e\n\x06prefix\x18\x03 \x03(\t\x12\x0c\n\x04soft\x18\x04 \x01(\x08\"y\n\x16TaskTemplateDeployment\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x04prod\x18\x02 \x01(\x0b\x32\r.TaskTemplate\x12\x1d\n\x06\x63\x61nary\x18\x03 \x01(\x0b\x32\r.TaskTemplate\x12\x15\n\rcanary_chance\x18\x04 \x01(\x05\"4\n\rBotMonitoring\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rdimension_key\x18\x02 \x03(\t\"D\n\x11\x45xternalScheduler\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x12\n\ndimensions\x18\x03 \x03(\tb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -148,6 +148,13 @@ _POOL = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='external_scheduler', full_name='Pool.external_scheduler', index=8,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -164,7 +171,7 @@ _POOL = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=217,
-  serialized_end=512,
+  serialized_end=560,
 )
 
 
@@ -208,8 +215,8 @@ _SCHEDULERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=514,
-  serialized_end=603,
+  serialized_start=562,
+  serialized_end=651,
 )
 
 
@@ -239,8 +246,8 @@ _TRUSTEDDELEGATION_TAGLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=695,
-  serialized_end=717,
+  serialized_start=743,
+  serialized_end=765,
 )
 
 _TRUSTEDDELEGATION = _descriptor.Descriptor(
@@ -276,8 +283,8 @@ _TRUSTEDDELEGATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=605,
-  serialized_end=717,
+  serialized_start=653,
+  serialized_end=765,
 )
 
 
@@ -314,8 +321,8 @@ _TASKTEMPLATE_CACHEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=889,
-  serialized_end=929,
+  serialized_start=937,
+  serialized_end=977,
 )
 
 _TASKTEMPLATE_CIPDPACKAGE = _descriptor.Descriptor(
@@ -358,8 +365,8 @@ _TASKTEMPLATE_CIPDPACKAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=931,
-  serialized_end=988,
+  serialized_start=979,
+  serialized_end=1036,
 )
 
 _TASKTEMPLATE_ENV = _descriptor.Descriptor(
@@ -409,8 +416,8 @@ _TASKTEMPLATE_ENV = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=990,
-  serialized_end=1053,
+  serialized_start=1038,
+  serialized_end=1101,
 )
 
 _TASKTEMPLATE = _descriptor.Descriptor(
@@ -467,8 +474,8 @@ _TASKTEMPLATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=720,
-  serialized_end=1053,
+  serialized_start=768,
+  serialized_end=1101,
 )
 
 
@@ -519,8 +526,8 @@ _TASKTEMPLATEDEPLOYMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1055,
-  serialized_end=1176,
+  serialized_start=1103,
+  serialized_end=1224,
 )
 
 
@@ -557,8 +564,53 @@ _BOTMONITORING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1178,
-  serialized_end=1230,
+  serialized_start=1226,
+  serialized_end=1278,
+)
+
+
+_EXTERNALSCHEDULER = _descriptor.Descriptor(
+  name='ExternalScheduler',
+  full_name='ExternalScheduler',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='address', full_name='ExternalScheduler.address', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='ExternalScheduler.id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dimensions', full_name='ExternalScheduler.dimensions', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1280,
+  serialized_end=1348,
 )
 
 _POOLSCFG.fields_by_name['pool'].message_type = _POOL
@@ -567,6 +619,7 @@ _POOLSCFG.fields_by_name['task_template_deployment'].message_type = _TASKTEMPLAT
 _POOLSCFG.fields_by_name['bot_monitoring'].message_type = _BOTMONITORING
 _POOL.fields_by_name['schedulers'].message_type = _SCHEDULERS
 _POOL.fields_by_name['task_template_deployment_inline'].message_type = _TASKTEMPLATEDEPLOYMENT
+_POOL.fields_by_name['external_scheduler'].message_type = _EXTERNALSCHEDULER
 _POOL.oneofs_by_name['task_deployment_scheme'].fields.append(
   _POOL.fields_by_name['task_template_deployment'])
 _POOL.fields_by_name['task_template_deployment'].containing_oneof = _POOL.oneofs_by_name['task_deployment_scheme']
@@ -591,6 +644,7 @@ DESCRIPTOR.message_types_by_name['TrustedDelegation'] = _TRUSTEDDELEGATION
 DESCRIPTOR.message_types_by_name['TaskTemplate'] = _TASKTEMPLATE
 DESCRIPTOR.message_types_by_name['TaskTemplateDeployment'] = _TASKTEMPLATEDEPLOYMENT
 DESCRIPTOR.message_types_by_name['BotMonitoring'] = _BOTMONITORING
+DESCRIPTOR.message_types_by_name['ExternalScheduler'] = _EXTERNALSCHEDULER
 
 PoolsCfg = _reflection.GeneratedProtocolMessageType('PoolsCfg', (_message.Message,), dict(
   DESCRIPTOR = _POOLSCFG,
@@ -672,6 +726,13 @@ BotMonitoring = _reflection.GeneratedProtocolMessageType('BotMonitoring', (_mess
   # @@protoc_insertion_point(class_scope:BotMonitoring)
   ))
 _sym_db.RegisterMessage(BotMonitoring)
+
+ExternalScheduler = _reflection.GeneratedProtocolMessageType('ExternalScheduler', (_message.Message,), dict(
+  DESCRIPTOR = _EXTERNALSCHEDULER,
+  __module__ = 'pools_pb2'
+  # @@protoc_insertion_point(class_scope:ExternalScheduler)
+  ))
+_sym_db.RegisterMessage(ExternalScheduler)
 
 
 # @@protoc_insertion_point(module_scope)
