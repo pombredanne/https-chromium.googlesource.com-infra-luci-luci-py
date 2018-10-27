@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "a8b22c1a_2525549f",
+        "filename": "appengine/machine_provider/handlers_cron.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2018-10-27T21:54:01Z",
+      "side": 1,
+      "message": "true, sorry!",
+      "parentUuid": "9e4ca439_16bf508b",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "af7c39a640920c11c683abe0cc2c78188e79b3ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c03f1dd8_0d5b97ec",
         "filename": "appengine/machine_provider/handlers_cron.py",
         "patchSetId": 1
