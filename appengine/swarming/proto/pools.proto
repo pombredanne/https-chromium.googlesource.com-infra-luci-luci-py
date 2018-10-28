@@ -99,8 +99,14 @@ message Pool {
 
   // If specified, this is the description of the external schedulers to be used
   // for tasks and bots for this pool that match the dimension set of a scheduler.
-  // If there are multiple items in this list, then the first one that matches
-  // the dimension set of a given task or bot will be used for that task or bot.
+  //
+  // Note: If there are multiple external_schedulers that match the dimension
+  // set for a given task or bot, then one will be selected arbitrarily and
+  // non-deterministically, resulting in unpredictable behavior. Therefore, it
+  // is important to arrange dimensions of schedulers bots and tasks such that
+  // this doesn't occur.
+  //
+  // TODO(akeshet): Fix nondeterministic behavior.
   repeated ExternalSchedulerConfig external_schedulers = 9;
 }
 
