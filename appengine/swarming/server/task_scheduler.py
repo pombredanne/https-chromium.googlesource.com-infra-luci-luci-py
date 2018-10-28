@@ -25,6 +25,7 @@ import ts_mon_metrics
 
 from server import bot_management
 from server import config
+from server import external_scheduler
 from server import pools_config
 from server import service_accounts
 from server import task_pack
@@ -370,7 +371,21 @@ def _copy_summary(src, dst, skip_list):
   dst.populate(**kwargs)
 
 
-def _maybe_taskupdate_notify_now(result_summary, request):
+# TODO(akeshet): Determine es_cfg externally to this, and pass it in.
+def _maybe_notify_external_scheduler(result_summary, request):
+  """Notify external scheduler of task request state.
+
+  Arguments:
+    result_summary: a task_result.TaskResultSummary instance.
+    request: a task_request.TaskRequest instance.
+  """
+  es_cfg = external_scheduler.config_for_task(request)
+  if es_cfg:
+    logging.debug('Found es_cfg for task %s', es_cfg)
+    external_scheduler.notify_request(es_cfg, request, result_summary)
+
+
+def _maybe_pubsub_notify_now(result_summary, request):
   """Examines result_summary and sends task completion PubSub message.
 
   Does it only if result_summary indicates a task in some finished state and
@@ -399,8 +414,14 @@ def _maybe_taskupdate_notify_now(result_summary, request):
   return True
 
 
+# TODO(akeshet): Pass in es_cfg for this pool so its not looked up inside
+# db transaction.
 def _maybe_taskupdate_notify_via_tq(result_summary, request):
   """Examines result_summary and enqueues a task to send PubSub message.
+
+  Arguments:
+    result_summary: a task_result.TaskResultSummary instance.
+    request: a task_request.TaskRequest instance.
 
   Must be called within a transaction.
 
@@ -424,6 +445,10 @@ def _maybe_taskupdate_notify_via_tq(result_summary, request):
         }))
     if not ok:
       raise datastore_utils.CommitError('Failed to enqueue task')
+  # TODO(akeshet): This seems like the wrong place to call this, because we are
+  # in a transaction; but, I don't see another obvious hook that is called on
+  # every task state change.
+  _maybe_notify_external_scheduler(result_summary, request)
 
 
 def _pubsub_notify(task_id, topic, auth_token, userdata):
@@ -845,6 +870,9 @@ def schedule_request(request, secret_bytes):
   _gen_key = lambda: _gen_new_keys(result_summary, to_run, secret_bytes)
   extra = filter(bool, [result_summary, to_run, secret_bytes])
   datastore_utils.insert(request, new_key_callback=_gen_key, extra=extra)
+  # TODO(akeshet/maruel): Is this an appropriate place to make this call?
+  logging.debug('calling maybe_notify')
+  _maybe_notify_external_scheduler(result_summary, request)
   if dupe_summary:
     logging.debug(
         'New request %s reusing %s', result_summary.task_id,
@@ -889,6 +917,13 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   The process is to find a TaskToRun where its .queue_number is set, then
   create a TaskRunResult for it.
 
+  Arguments:
+  - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+  - bot_version: String version of the bot client.
+  - deadline: UTC timestamp (as an int) that the bot must be able to
+              complete the task by. None if there is no such deadline.
+
   Returns:
     tuple of (TaskRequest, SecretBytes, TaskRunResult) for the task that was
     reaped. The TaskToRun involved is not returned.
@@ -901,8 +936,14 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   failures = 0
   stale_index = 0
   try:
-    q = task_to_run.yield_next_available_task_to_dispatch(
-        bot_dimensions, deadline)
+    es_cfg = external_scheduler.config_for_bot(bot_dimensions)
+    if es_cfg:
+      task_id = external_scheduler.assign_task(es_cfg, bot_dimensions)
+      # TODO(akeshet): Convert task_id into whatever type q is supposed to be.
+      q = []
+    else:
+      q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
+                                                            deadline)
     for request, to_run in q:
       iterated += 1
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
