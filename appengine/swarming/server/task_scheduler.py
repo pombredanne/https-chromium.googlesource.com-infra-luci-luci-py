@@ -901,6 +901,11 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   failures = 0
   stale_index = 0
   try:
+    # TODO(akeshet):
+    # pool_cfg = pools_config.get_pools_config(bot_dimensions[u'pool'])
+    # if pool_cfg.ExternalScheduler is not None and pools_cfg.ExternalScheduler.Dimensions is subset of bot_dimensions:
+    #   to_run = get_to_run_from_external_scheduler(bot_id, bot_dimensions)
+    # else (the rest of this block, up to the _reap_task call):
     q = task_to_run.yield_next_available_task_to_dispatch(
         bot_dimensions, deadline)
     for request, to_run in q:
@@ -1049,6 +1054,13 @@ def bot_update_task(
   # kind of an ugly hack but the other option is to return the whole run_result.
   if run_result.killing:
     return task_result.State.KILLED
+
+  # TODO(akeshet):
+  # if bot is in an external scheduler pool and bot dimensions match external
+  # scheduler dimensions:
+  #     then examine local cache of external scheduler cancelleations. If
+  #     (bot_id, task_request_id) is in that list, then return State.KILLED.
+
   return run_result.state
 
 
