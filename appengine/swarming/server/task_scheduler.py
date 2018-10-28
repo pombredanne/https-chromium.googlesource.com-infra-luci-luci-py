@@ -882,12 +882,62 @@ def schedule_request(request, secret_bytes):
   ts_mon_metrics.on_task_requested(result_summary, bool(dupe_summary))
   return result_summary
 
+def _bot_pool_cfg(bot_dimensions):
+  """Determine a bot's pool_cfg, if it exists.
+
+  Arguments:
+  - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+
+  Returns:
+    PoolConfig for the bot if it exists, or None otherwise.
+  """
+  pools = bot_dimensions.get(u'pool')
+  if not pools:
+    return None
+  if len(pools) == 1:
+    return pools_config.get_pool_config(pools[0])
+  # TODO(akeshet/maruel): Is it possible to have more than 1 pool for a bot?
+  # If so, which one is the definitive one that pool configuration should apply
+  # for? Should we return something here, or error out?
+  return None
+
+def _external_scheduler_for_bot(bot_dimensions):
+  """Determine external scheduler to use for bot, if appropriate.
+
+  Arguments:
+  - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+
+  Returns:
+    pool_config.ExternalSchedulerConfig for external scheduler to use for
+    this bot, if it exists, or None otherwise.
+  """
+  pool_cfg = _bot_pool_cfg(bot_dimensions)
+  if not pool_cfg or not pool_cfg.external_schedulers:
+    return None
+  bot_dimensions_flat = set(task_queues.dimensions_to_flat(bot_dimensions))
+
+  for e in pool_cfg.external_schedulers:
+    if bot_dimensions_flat.issubset(e.dimensions):
+      return e
+    # TODO(akeshet): What if bot_dimensions matches more than one external
+    # scheduler? Should we error out, or pick one deterministically? That would
+    # require iterating through all of them before selecting.
+
+  return None
 
 def bot_reap_task(bot_dimensions, bot_version, deadline):
   """Reaps a TaskToRun if one is available.
 
   The process is to find a TaskToRun where its .queue_number is set, then
   create a TaskRunResult for it.
+
+  Arguments:
+  - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+  - bot_version: String version of the bot client.
+  - deadline: Deadline for the reap request, as a datetime.datetime instance.
 
   Returns:
     tuple of (TaskRequest, SecretBytes, TaskRunResult) for the task that was
@@ -901,8 +951,13 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   failures = 0
   stale_index = 0
   try:
-    q = task_to_run.yield_next_available_task_to_dispatch(
-        bot_dimensions, deadline)
+    external_scheduler_cfg = _external_scheduler_for_bot(bot_dimensions)
+    if external_scheduler_cfg:
+      # TODO(akeshet): Call out to external scheduler to get task for bot.
+      q = []
+    else:
+      q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
+                                                            deadline)
     for request, to_run in q:
       iterated += 1
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
@@ -1049,6 +1104,13 @@ def bot_update_task(
   # kind of an ugly hack but the other option is to return the whole run_result.
   if run_result.killing:
     return task_result.State.KILLED
+
+  # TODO(akeshet):
+  # if bot is in an external scheduler pool and bot dimensions match external
+  # scheduler dimensions:
+  #     then examine local cache of external scheduler cancelleations. If
+  #     (bot_id, task_request_id) is in that list, then return State.KILLED.
+
   return run_result.state
 
 
