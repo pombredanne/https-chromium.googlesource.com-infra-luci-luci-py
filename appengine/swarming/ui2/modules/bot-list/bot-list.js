@@ -39,6 +39,7 @@ import '../sort-toggle'
 import '../swarming-app'
 
 import { stableSort, taskListLink } from '../util'
+import { applyAlias } from '../alias'
 import { aggregateTemps, attribute, botLink, column, colHeaderMap,
          devices, extraKeys, filterBots, filterPossibleColumns, filterPossibleKeys,
          filterPossibleValues, fromDimension, fromState, initCounts,
@@ -83,7 +84,7 @@ const secondaryOptions = (ele) => {
   return values.map((value) =>
     html`
 <div class=item>
-  <span class=value>${value}</span>
+  <span class=value>${applyAlias(value, ele._primaryKey)}</span>
   <span class=flex></span>
   <add-circle-icon-sk ?hidden=${ele._filters.indexOf(makeFilter(ele._primaryKey, value)) >= 0}
                       @click=${() => ele._addFilter(makeFilter(ele._primaryKey, value))}>
@@ -262,6 +263,9 @@ const template = (ele) => html`
       <thead>
         <tr>
           ${col_options(ele)}
+          <!-- Slice off the first column (which is always 'id') so we can
+               have a custom first box (including the widget to select columns.
+            -->
           ${ele._cols.slice(1).map((col) => colHead(col,ele))}
         </tr>
       </thead>
@@ -412,7 +416,7 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
     if (bot.maintenance_msg) {
       classes += 'maintenance ';
     }
-    if (bot.version !== this.server_details.server_version) {
+    if (bot.version !== this.server_details.bot_version) {
       classes += 'old_version';
     }
     return classes;
@@ -712,6 +716,7 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
     } else {
       this._cols.push(col);
     }
+    this._refilterPossibleColumns();
     this._stateChanged();
     this.render();
   }
