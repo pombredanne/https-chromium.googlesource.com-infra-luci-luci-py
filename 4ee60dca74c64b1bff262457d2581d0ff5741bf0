@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99399003_33492e94",
+        "filename": "appengine/swarming/proto/tasks.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T21:36:35Z",
+      "side": 1,
+      "message": "The current values are all over the top in swarming_rpcs.py. The expectation was that some states would eventually become a bit mask but this never concretized. So any other value is fine. We could use the current 0xN0 values but it\u0027s not a requirement; albeit it will make porting a bit harder for clients.",
+      "revId": "4ee60dca74c64b1bff262457d2581d0ff5741bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4fb4c39_494dfb7f",
+        "filename": "appengine/swarming/proto/tasks.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T21:36:35Z",
+      "side": 1,
+      "message": "if state is not PENDING ?  i.e. I would presume the value being sent with COMPLETED (?)",
+      "revId": "4ee60dca74c64b1bff262457d2581d0ff5741bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
