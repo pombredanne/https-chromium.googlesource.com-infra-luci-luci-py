@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70b59332_004e0dfe",
+        "filename": "appengine/swarming/ui2/modules/alias.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-29T14:00:36Z",
+      "side": 1,
+      "message": "if (key \u003d\u003d\u003d \u0027gpu\u0027) {\n   value \u003d value.split(\u0027-\u0027)[0];\n}\nalias \u003d aliasMap[key]value || \u0027UNKNOWN\u0027;",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 3
+      },
+      "revId": "95fe409eef7efa481bf05cd7f2aaf3a30d01cd5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f8cd499_ce789cac",
+        "filename": "appengine/swarming/ui2/modules/util.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2018-10-29T14:00:36Z",
+      "side": 1,
+      "message": "Why not replace all calls to stableSort with calls to arr.sort(comp)?",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "95fe409eef7efa481bf05cd7f2aaf3a30d01cd5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
