@@ -51,6 +51,24 @@
       "revId": "4ee60dca74c64b1bff262457d2581d0ff5741bf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "267588eb_f0018ebc",
+        "filename": "appengine/swarming/proto/tasks.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-10-29T22:51:15Z",
+      "side": 1,
+      "message": "The currently implemented scheduler doesn\u0027t need to know bot id for COMPLETED tasks (it knows bot id because it assign task to that bot), and would rather leave this as valid for RUNNING only. Given the full set of states adapted from swarming_rpcs:TaskState it will become tricky to specify which of those have something about a bot and which don\u0027t.",
+      "parentUuid": "b4fb4c39_494dfb7f",
+      "revId": "4ee60dca74c64b1bff262457d2581d0ff5741bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
