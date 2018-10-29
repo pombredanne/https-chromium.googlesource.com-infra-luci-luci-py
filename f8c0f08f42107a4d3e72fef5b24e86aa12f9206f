@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff2b030b_0cc98064",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T18:58:44Z",
+      "side": 1,
+      "message": "Yes this is fine to fetch this here. This function generally returns cached data and this code path is not inside a transaction context.",
+      "revId": "f8c0f08f42107a4d3e72fef5b24e86aa12f9206f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
