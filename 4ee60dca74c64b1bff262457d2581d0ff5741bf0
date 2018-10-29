@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "36f8fe7b_c595e976",
+        "filename": "appengine/swarming/proto/tasks.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-10-29T22:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99399003_33492e94",
+      "revId": "4ee60dca74c64b1bff262457d2581d0ff5741bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4fb4c39_494dfb7f",
         "filename": "appengine/swarming/proto/tasks.proto",
         "patchSetId": 2
