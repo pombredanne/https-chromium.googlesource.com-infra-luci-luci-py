@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce209fcc_43b9c7fb",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T20:30:30Z",
+      "side": 1,
+      "message": "I think the bug here is that \u0027files\u0027 contains absolute path and this is not enforced. This is what the fix should be instead at line 290:\n\n  assert not any(os.path.isabs(f) for f in files), \u0027Found absolute paths\u0027",
+      "revId": "80f7fc026f391016d968d975321eb7d3d712b997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b42a91fd_534b40b7",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T20:30:30Z",
+      "side": 1,
+      "message": "This is on purpose, please upgrade all calls instead. I know this is annoying but otherwise the code would become unwieldy.",
+      "revId": "80f7fc026f391016d968d975321eb7d3d712b997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af1334c7_d59bd96f",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T20:30:30Z",
+      "side": 1,
+      "message": "Can you explain which use case which inhibits from using -- as the delimiter?",
+      "revId": "80f7fc026f391016d968d975321eb7d3d712b997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
