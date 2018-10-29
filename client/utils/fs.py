@@ -196,7 +196,7 @@ else:
     UnicodeEncodeError because the default encoding is 'ascii'.
     """
     assert os.path.isabs(path), path
-    assert isinstance(path, unicode), path
+    assert isinstance(path, (unicode, str)), path
     return path.encode('utf-8')
 
 
