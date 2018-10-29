@@ -1,0 +1,99 @@
+// Copyright 2018 The LUCI Authors. All rights reserved.
+// Use of this source code is governed under the Apache License, Version 2.0
+// that can be found in the LICENSE file.
+
+// This proto file describes the external scheduler plugin API.
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "tasks.proto";
+
+message AssignTasksRequest {
+  // SchedulerID is the id of the scheduler that this request should be run on.
+  string scheduler_id = 1;
+
+  // IdleBots is the set of idle bots that are trying to get tasks assigned.
+  repeated IdleBot idle_bots = 2;
+
+  // Time is the current time (according to swarming) at which these bots
+  // are attempting to have tasks assigned to them.
+  google.protobuf.Timestamp time = 3;
+}
+
+message IdleBot {
+  // SchedulerID is the id of the scheduler that this request should be run on.
+  string scheduler_id = 1;
+
+  // Dimensions is the dimension set of the idle bot.
+  repeated string dimensions = 2;
+}
+
+message AssignTasksResponse {
+  // Assignments is the set of (bot, task) assignments that the scheduler
+  // determined should be made.
+  repeated TaskAssignment assignments = 1;
+}
+
+message TaskAssignment {
+  // BotID is the bot that should be assigned a task.
+  string bot_id = 1;
+
+  // TaskID is the task that should be assigned to the bot.
+  string task_id = 2;
+}
+
+message GetCancellationsRequest {
+  // SchedulerID is the id of the scheduler that this request should be run on.
+  string scheduler_id = 1;
+}
+
+message GetCancellationsResponse {
+  message Cancellation {
+      // BotID is the bot that a task should be cancelled on.
+      string bot_id = 1;
+
+      // TaskID is the task that should be cancelled on the bot.
+      string task_id = 2;
+  }
+
+  // Cancellations is the set of (bot, task) pairs for tasks that should be
+  // cancelled on bots.
+  repeated Cancellation cancellations = 1;
+}
+
+message NotifyTasksItem {
+  // Time is the time at which the given task was in the given state.
+  google.protobuf.Timestamp time = 1;
+
+  // Task describes a task request and its current state.
+  TaskSpec task = 2;
+}
+
+message NotifyTasksRequest {
+  // SchedulerID is the id of the scheduler that this request should be run on.
+  string scheduler_id = 1;
+
+  // Notifications is the set of task notifications to send to the scheduler.
+  repeated NotifyTasksItem notifications = 2;
+}
+
+message NotifyTasksResponse {}
+
+
+// ExternalScheduler is the API by which swarming can delegate the assigning of
+// individuals task requests to individual bots to an external service.
+service ExternalScheduler {
+  // Swarming-scheduler plugin endpoints.
+
+  // AssignTasks determines which tasks should be run on which of the supplied
+  // idle bots.
+  rpc AssignTasks(AssignTasksRequest) returns (AssignTasksResponse);
+
+  // GetCancellations determins which tasks should be cancelled on which bots.
+  rpc GetCancellations(GetCancellationsRequest) returns (GetCancellationsResponse);
+
+  // NotifyTasks informs the scheduler about the state of tasks (either new
+  // tasks, or states of existing tasks).
+  rpc NotifyTasks(NotifyTasksRequest) returns (NotifyTasksResponse);
+}
