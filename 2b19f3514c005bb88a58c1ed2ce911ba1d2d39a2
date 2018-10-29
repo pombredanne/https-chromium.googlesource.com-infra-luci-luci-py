@@ -16,6 +16,24 @@
       "revId": "2b19f3514c005bb88a58c1ed2ce911ba1d2d39a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4707376_fb920b5f",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-10-29T20:56:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38c6ee09_254302f6",
+      "revId": "2b19f3514c005bb88a58c1ed2ce911ba1d2d39a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
