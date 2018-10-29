@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38c6ee09_254302f6",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-29T19:22:20Z",
+      "side": 1,
+      "message": "s/set/keys/",
+      "revId": "2b19f3514c005bb88a58c1ed2ce911ba1d2d39a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
