@@ -4,6 +4,7 @@
 
 syntax = "proto3";
 
+option go_package = "proto";
 
 // Schema for bots.cfg service config file in luci-config.
 //
