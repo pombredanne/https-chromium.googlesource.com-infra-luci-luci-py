@@ -336,7 +336,8 @@ class TaskOutputCollector(object):
   function, in particular they call 'process_shard_result' method in parallel.
   """
 
-  def __init__(self, task_output_dir, task_output_stdout, shard_count):
+  def __init__(self, task_output_dir, task_output_stdout, shard_count,
+               filepath_filter):
     """Initializes TaskOutputCollector, ensures |task_output_dir| exists.
 
     Args:
@@ -348,6 +349,7 @@ class TaskOutputCollector(object):
         if task_output_dir else task_output_dir)
     self.task_output_stdout = task_output_stdout
     self.shard_count = shard_count
+    self.filepath_filter = filepath_filter
 
     self._lock = threading.Lock()
     self._per_shard_results = {}
@@ -401,7 +403,7 @@ class TaskOutputCollector(object):
             storage,
             local_caching.MemoryContentAddressedCache(file_mode_mask=0700),
             os.path.join(self.task_output_dir, str(shard_index)),
-            False)
+            False, self.filepath_filter)
 
   def finalize(self):
     """Assembles and returns task summary JSON, shutdowns underlying Storage."""
@@ -746,7 +748,7 @@ def decorate_shard_output(swarming, shard_index, metadata, include_stdout):
 def collect(
     swarming, task_ids, timeout, decorate, print_status_updates,
     task_summary_json, task_output_dir, task_output_stdout,
-    include_perf):
+    include_perf, filepath_filter):
   """Retrieves results of a Swarming task.
 
   Returns:
@@ -754,7 +756,7 @@ def collect(
   """
   # Collect summary JSON and output files (if task_output_dir is not None).
   output_collector = TaskOutputCollector(
-      task_output_dir, task_output_stdout, len(task_ids))
+      task_output_dir, task_output_stdout, len(task_ids), filepath_filter)
 
   seen_shards = set()
   exit_code = None
@@ -1266,6 +1268,10 @@ def add_collect_options(parser):
   parser.task_output_group.add_option(TaskOutputStdoutOption(
       '--task-output-stdout'))
   parser.task_output_group.add_option(
+    '--filepath-filter', default='.*',
+    help='This is regexp filter used to specify downloaded filepath when '
+         'collecting isolated output.')
+  parser.task_output_group.add_option(
       '--perf', action='store_true', default=False,
       help='Includes performance statistics')
   parser.add_option_group(parser.task_output_group)
@@ -1458,7 +1464,8 @@ def CMDcollect(parser, args):
         options.task_summary_json,
         options.task_output_dir,
         options.task_output_stdout,
-        options.perf)
+        options.perf,
+        options.filepath_filter)
   except Failure:
     on_error.report(None)
     return 1
