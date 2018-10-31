@@ -412,8 +412,8 @@ class IOAutoRetryThreadPool(AutoRetryThreadPool):
   worker threads is independent of number of CPU cores.
   """
   # Initial and maximum number of worker threads.
-  INITIAL_WORKERS = 2
-  MAX_WORKERS = 16 if sys.maxsize > 2L**32 else 8
+  INITIAL_WORKERS = 20
+  MAX_WORKERS = 160 if sys.maxsize > 2L**32 else 80
   RETRIES = 5
 
   def __init__(self):
