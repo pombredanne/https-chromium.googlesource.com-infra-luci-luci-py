@@ -16,6 +16,24 @@
       "revId": "6d9259c8999da786c8a7bbc496f4ca75d8b322be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b32d70d7_aee27722",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-10-31T00:03:44Z",
+      "side": 1,
+      "message": "I think so? I assumed that by dimension_keys you meant that all dimensions (such as \"foo:bar\") are known by some index or key in a database of dimensions. Maybe I misunderstood you.\n\nFor a given ExternalSchedulerConfig, we will want to specify a set of dimensions that are required for any task or bot to be forwarded to that scheduler. For instance, in skylab, with a scheduler for a particular board, it might look like [\"dut-status:ready\", \"label-board:coral\"]\n\nSo, using swarming terminology, what is the best name for that?",
+      "parentUuid": "68d94d6d_040d64d3",
+      "revId": "6d9259c8999da786c8a7bbc496f4ca75d8b322be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
