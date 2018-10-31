@@ -893,13 +893,17 @@ class FetchStreamVerifier(object):
 class IsolatedBundle(object):
   """Fetched and parsed .isolated file with all dependencies."""
 
-  def __init__(self):
+  def __init__(self, filepath_filter):
     self.command = []
     self.files = {}
     self.read_only = None
     self.relative_cwd = None
     # The main .isolated file, a IsolatedFile instance.
     self.root = None
+
+    # This is used to download files having filepath matching with this
+    # regexp object.
+    self._filepath_filter = filepath_filter
 
   def fetch(self, fetch_queue, root_isolated_hash, algo):
     """Fetches the .isolated and all the included .isolated.
@@ -989,6 +993,9 @@ class IsolatedBundle(object):
     files = isolated.data.get('files', {})
     logging.debug('fetch_files(%s, %d)', isolated.obj_hash, len(files))
     for filepath, properties in files.iteritems():
+      if self._filepath_filter and not self._filepath_filter.match(filepath):
+        continue
+
       # Root isolated has priority on the files being mapped. In particular,
       # overridden files must not be fetched.
       if filepath not in self.files:
@@ -1070,7 +1077,8 @@ def upload_tree(base_url, infiles, namespace):
     return storage.upload_items(items)
 
 
-def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
+def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
+                   filepath_filter=None):
   """Aggressively downloads the .isolated file(s), then download all the files.
 
   Arguments:
@@ -1080,6 +1088,7 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
            locally.
     outdir: Output directory to map file tree to.
     use_symlinks: Use symlinks instead of hardlinks when True.
+    filepath_filter: regexp filter that works as whitelist for downloaded files.
 
   Returns:
     IsolatedBundle object that holds details about loaded *.isolated file.
@@ -1090,7 +1099,7 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks):
   # Hash algorithm to use, defined by namespace |storage| is using.
   algo = storage.hash_algo
   fetch_queue = FetchQueue(storage, cache)
-  bundle = IsolatedBundle()
+  bundle = IsolatedBundle(filepath_filter)
 
   with tools.Profiler('GetIsolateds'):
     # Optionally support local files by manually adding them to cache.
