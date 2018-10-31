@@ -34,6 +34,24 @@
       "revId": "6d9259c8999da786c8a7bbc496f4ca75d8b322be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16f424b8_73ccd567",
+        "filename": "appengine/swarming/proto/pools.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-31T00:31:12Z",
+      "side": 1,
+      "message": "I\u0027d use dimension_key_value then and comment \u0027This is a list of \"\u003ckey\u003e:\u003cvalue\u003e\" that must match\u0027. All of them, any?\n\nI don\u0027t mind, it\u0027s as you want, as long as the doc is clear.",
+      "parentUuid": "b32d70d7_aee27722",
+      "revId": "6d9259c8999da786c8a7bbc496f4ca75d8b322be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
