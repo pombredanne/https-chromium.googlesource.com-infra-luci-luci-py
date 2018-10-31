@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc830cbc_9802ec49",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-31T21:59:57Z",
+      "side": 1,
+      "message": "I\u0027d prefer a callback \"filter_cb\" which returns True when the file should be processed.\n\nThis way the caller can use glob, re, it doesn\u0027t matter.\n\nAlso add a short docstring to explain what.",
+      "revId": "f0b8d454674bde3156d208e6c6c15533036b9e2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "872bd8bb_191e0aef",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-10-31T21:59:57Z",
+      "side": 1,
+      "message": "self._filter_cb \u003d filter_cb",
+      "revId": "f0b8d454674bde3156d208e6c6c15533036b9e2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
