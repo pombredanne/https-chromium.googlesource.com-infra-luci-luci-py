@@ -310,7 +310,7 @@ def create_symlinks(base_directory, files):
       continue
     outfile = os.path.join(base_directory, filepath)
     try:
-      os.symlink(properties['l'], outfile)  # pylint: disable=E1101
+      os.symlink(properties['l'].encode('utf8'), outfile.encode('utf8'))
     except OSError as e:
       if e.errno == errno.EEXIST:
         raise AlreadyExists('File %s already exists.' % outfile)
