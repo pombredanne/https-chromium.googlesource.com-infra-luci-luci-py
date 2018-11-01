@@ -437,12 +437,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(actual_request)
     self.assertIsNone(run_result)
     # They all got expired ...
-    for result_summary in result_summaries[:-1]:
+    for result_summary in enumerate(result_summaries[1:]):
       result_summary = result_summary.key.get()
       self.assertEqual(State.EXPIRED, result_summary.state)
-    # ... except the the very last one because of the limit of 5 task expired
+    # ... except for the most recent one because of the limit of 5 task expired
     # per poll.
-    result_summary = result_summaries[-1]
+    result_summary = result_summaries[0]
     result_summary = result_summary.key.get()
     self.assertEqual(State.PENDING, result_summary.state)
 

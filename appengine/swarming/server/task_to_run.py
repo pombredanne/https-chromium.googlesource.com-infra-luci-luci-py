@@ -151,10 +151,10 @@ def _gen_queue_number(dimensions_hash, timestamp, priority):
   task_request.validate_priority(priority)
 
   # Ignore the year.
-  year_start = datetime.datetime(timestamp.year, 1, 1)
+  next_year = datetime.datetime(timestamp.year + 1, 1, 1)
   # It is guaranteed to fit 32 bits but upgrade to long right away to ensure
   # assert works.
-  t = long(round((timestamp - year_start).total_seconds() * 10.))
+  t = long(round((next_year - timestamp).total_seconds() * 10.))
   assert t >= 0 and t <= 0x7FFFFFFF, (
       hex(t), dimensions_hash, timestamp, priority)
   # 31-22 == 9, leaving room for overflow with the addition.
