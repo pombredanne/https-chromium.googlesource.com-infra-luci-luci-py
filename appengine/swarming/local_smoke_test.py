@@ -903,7 +903,7 @@ class Test(unittest.TestCase):
     # Now assert that they ran in the expected order. started_ts encoding means
     # string sort is equivalent to timestamp sort.
     results.sort(key=lambda x: x[3][u'started_ts'])
-    expected = ['2-p6', '3-p7', '1-p8', '4-p8', '0-p9']
+    expected = ['2-p6', '3-p7', '4-p8', '1-p8', '0-p9']
     self.assertEqual(expected, [r[0] for r in results])
 
   def test_cancel_pending(self):
