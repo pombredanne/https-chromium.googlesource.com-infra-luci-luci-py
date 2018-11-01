@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "319b344f_e539628c",
+        "filename": "appengine/swarming/proto/plugin.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-01T12:52:54Z",
+      "side": 1,
+      "message": "Should we move TaskSpec and SliceSpec into this file? Since TaskSpec won\u0027t be part of the public Swarming proto-based API, but instead is plugin-specific. (unlike TaskState)",
+      "revId": "87afe1e9d822177b28407c22ceb8ed0b7086ebc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74b065a4_d5add5c1",
+        "filename": "appengine/swarming/proto/plugin.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-01T12:52:54Z",
+      "side": 1,
+      "message": "determines",
+      "range": {
+        "startLine": 95,
+        "startChar": 22,
+        "endLine": 95,
+        "endChar": 31
+      },
+      "revId": "87afe1e9d822177b28407c22ceb8ed0b7086ebc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
