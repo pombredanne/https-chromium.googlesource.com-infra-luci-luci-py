@@ -196,30 +196,29 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     # 0x3fc00000 is the priority mask.
     data = [
       # Priorities.
-      ((1, '1970-01-01 00:00:00.000',   0), (0x80000000,   0)),
-      ((1, '1970-01-01 00:00:00.000',   1), (0x80400000,   1)),
-      ((1, '1970-01-01 00:00:00.000',   2), (0x80800000,   2)),
-      ((1, '1970-01-01 00:00:00.000',   3), (0x80c00000,   3)),
-      ((1, '1970-01-01 00:00:00.000', 255), (0xbfc00000, 255)),
+      ((1, '1970-01-01 00:00:00.000',   0), (0x92cc0300,  75)),
+      ((1, '1970-01-01 00:00:00.000',   1), (0x930c0300,  76)),
+      ((1, '1970-01-01 00:00:00.000',   2), (0x934c0300,  77)),
+      ((1, '1970-01-01 00:00:00.000',   3), (0x938c0300,  78)),
+      ((1, '1970-01-01 00:00:00.000', 255), (0xd28c0300, 330)),
       # Largest hash.
-      ((0xffffffff, '1970-01-01 00:00:00.000', 255), (0x7fffffffbfc00000, 255)),
+      ((0xffffffff, '1970-01-01 00:00:00.000', 255), (0x7fffffffd28c0300, 330)),
       # Time resolution.
-      ((1, '1970-01-01 00:00:00.040',   0), (0x80000000,   0)),
-      ((1, '1970-01-01 00:00:00.050',   0), (0x80000001,   0)),
-      ((1, '1970-01-01 00:00:00.100',   0), (0x80000001,   0)),
-      ((1, '1970-01-01 00:00:00.900',   0), (0x80000009,   0)),
-      ((1, '1970-01-01 00:00:01.000',   0), (0x8000000a,   0)),  # 10
-      ((1, '2010-01-02 03:04:05.060',   0), (0x800ede73,   0)),
-      ((1, '2010-01-02 03:04:05.060',   1), (0x804ede73,   1)),
-      ((1, '2010-12-31 23:59:59.999',   0), (0x92cc0300,  75)),
-      ((1, '2010-12-31 23:59:59.999',   1), (0x930c0300,  76)),
-      ((1, '2010-12-31 23:59:59.999',   2), (0x934c0300,  77)),
-      ((1, '2010-12-31 23:59:59.999', 255), (0xd28c0300, 330)),
+      ((1, '1970-01-01 00:00:00.040',   0), (0x92cc0300,  75)),
+      ((1, '1970-01-01 00:00:00.050',   0), (0x92cc0300,  75)),
+      ((1, '1970-01-01 00:00:00.100',   0), (0x92cc02ff,  75)),
+      ((1, '1970-01-01 00:00:00.900',   0), (0x92cc02f7,  75)),
+      ((1, '1970-01-01 00:00:01.000',   0), (0x92cc02f6,  75)),  # 10
+      ((1, '2010-01-02 03:04:05.060',   0), (0x92bd248d,  74)),
+      ((1, '2010-01-02 03:04:05.060',   1), (0x92fd248d,  75)),
+      ((1, '2010-12-31 23:59:59.999',   0), (0x80000000,   0)),
+      ((1, '2010-12-31 23:59:59.999',   1), (0x80400000,   1)),
+      ((1, '2010-12-31 23:59:59.999',   2), (0x80800000,   2)),
+      ((1, '2010-12-31 23:59:59.999', 255), (0xbfc00000, 255)),
       # It's the end of the world as we know it...
-      ((1, '9999-12-31 23:59:59.999',   0), (0x92cc0300,  75)),
-      ((1, '9999-12-31 23:59:59.999',   1), (0x930c0300,  76)),
-      ((1, '9999-12-31 23:59:59.999', 255), (0xd28c0300, 330)),
-      ((1, '9999-12-31 23:59:59.999', 255), (0xd28c0300, 330)),
+      ((1, '9998-12-31 23:59:59.999',   0), (0x80000000,   0)),
+      ((1, '9998-12-31 23:59:59.999',   1), (0x80400000,   1)),
+      ((1, '9998-12-31 23:59:59.999', 255), (0xbfc00000, 255)),
     ]
     for i, (
       (dimensions_hash, timestamp, priority),
@@ -261,7 +260,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     expected = {
       'created_ts': self.now,
       'expiration_ts': self.now + datetime.timedelta(seconds=31),
-      'queue_number': '0x1a3aa663050ede72',
+      'queue_number': '0x1a3aa66317bd248e',
       'task_slice_index': 0,
       'try_number': 1,
     }
@@ -368,7 +367,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
         'expiration_ts': self.now + datetime.timedelta(seconds=31),
         'request_key': '0x7e296460f77ffdce',
         # Lower priority value means higher priority.
-        'queue_number': '0x1a3aa663028ede72',
+        'queue_number': '0x1a3aa663153d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -376,7 +375,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(seconds=31),
         'request_key': '0x7e296460f77ffede',
-        'queue_number': '0x1a3aa663050ede72',
+        'queue_number': '0x1a3aa66317bd248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -456,7 +455,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x613fbb330c8ede72',
+        'queue_number': '0x613fbb331f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -478,7 +477,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x1a3aa6630c8ede72',
+        'queue_number': '0x1a3aa6631f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -496,7 +495,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x1a3aa6630c8ede72',
+        'queue_number': '0x1a3aa6631f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -518,7 +517,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x1a3aa6630c8ede72',
+        'queue_number': '0x1a3aa6631f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -552,14 +551,14 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x613fbb330c8ede72',
+        'queue_number': '0x613fbb331f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
       {
         'created_ts': self.now + datetime.timedelta(seconds=1),
         'expiration_ts': self.now + datetime.timedelta(minutes=1, seconds=1),
-        'queue_number': '0x5385bf748c8ede7c',
+        'queue_number': '0x5385bf749f3d2484',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -581,7 +580,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
         1, properties=_gen_properties(dimensions=request_dimensions_1))
 
     # The second shard is added before the first, potentially because of a
-    # desynchronized clock. It'll have higher priority.
+    # desynchronized clock. It'll have lower priority.
     self.mock_now(self.now, -1)
     request_dimensions_2 = {u'id': [u'localhost'], u'pool': [u'default']}
     _request2, _ = self._gen_new_task_to_run(
@@ -599,14 +598,14 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
         'created_ts': self.now + datetime.timedelta(seconds=-1),
         # Due to time being late on the second requester frontend.
         'expiration_ts': self.now + datetime.timedelta(minutes=1, seconds=-1),
-        'queue_number': '0x5385bf748c8ede68',
+        'queue_number': '0x5385bf749f3d2498',
         'task_slice_index': 0,
         'try_number': 1,
       },
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x613fbb330c8ede72',
+        'queue_number': '0x613fbb331f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -615,35 +614,36 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, sorted(actual, key=lambda x: x['queue_number']))
 
   def test_yield_next_available_task_to_dispatch_priority(self):
-    # Tasks added later but with higher priority are returned first.
+    # Tasks added earlier but with higher priority are returned first.
     request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
     self._gen_new_task_to_run(
         1,
         properties=_gen_properties(dimensions=request_dimensions),
-        priority=50)
+        priority=10)
 
-    # This one is later but has higher priority.
+    # This one is later but has lower priority.
     self.mock_now(self.now, 60)
     request = self.mkreq(
         0,
         _gen_request(
             properties=_gen_properties(dimensions=request_dimensions),
-            priority=10))
+            priority=50))
     task_to_run.new_task_to_run(request, 1, 0).put()
 
-    # It should return them all, in the expected order: lowest priority first.
+    # It should return them all, in the expected order: highest priority
+    # (lowest priority value) first.
     expected = [
       {
-        'created_ts': self.now + datetime.timedelta(minutes=1),
-        'expiration_ts': self.now + datetime.timedelta(minutes=2),
-        'queue_number': '0x1a3aa663028ee0ca',
+        'created_ts': self.now,
+        'expiration_ts': self.now + datetime.timedelta(minutes=1),
+        'queue_number': '0x1a3aa663153d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
       {
-        'created_ts': self.now,
-        'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x1a3aa6630c8ede72',
+        'created_ts': self.now + datetime.timedelta(minutes=1),
+        'expiration_ts': self.now + datetime.timedelta(minutes=2),
+        'queue_number': '0x1a3aa6631f3d2236',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -657,36 +657,38 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, actual)
 
   def test_yield_next_available_task_to_dispatch_multi_priority(self):
-    # High priority tasks added later with other dimensions are returned first.
+    # High priority tasks added earlier with other dimensions are returned
+    # first.
     request_dimensions_1 = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
     _request1, _ = self._gen_new_task_to_run(
         1,
         properties=_gen_properties(dimensions=request_dimensions_1),
-        priority=50)
+        priority=10)
 
-    # This one is later but has higher priority.
+    # This one is later but has lower priority.
     self.mock_now(self.now, 60)
     request_dimensions_2 = {u'id': [u'localhost'], u'pool': [u'default']}
     request2 = self.mkreq(
         0,
         _gen_request(
             properties=_gen_properties(dimensions=request_dimensions_2),
-            priority=10))
+            priority=50))
     task_to_run.new_task_to_run(request2, 1, 0).put()
 
-    # It should return them all, in the expected order: lowest priority first.
+    # It should return them all, in the expected order: highest priority
+    # (lowest priority value) first.
     expected = [
       {
-        'created_ts': self.now + datetime.timedelta(minutes=1),
-        'expiration_ts': self.now + datetime.timedelta(minutes=2),
-        'queue_number': '0x5385bf74828ee0ca',
+        'created_ts': self.now,
+        'expiration_ts': self.now + datetime.timedelta(minutes=1),
+        'queue_number': '0x1a3aa663153d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
       {
-        'created_ts': self.now,
-        'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x1a3aa6630c8ede72',
+        'created_ts': self.now + datetime.timedelta(minutes=1),
+        'expiration_ts': self.now + datetime.timedelta(minutes=2),
+        'queue_number': '0x5385bf749f3d2236',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -731,7 +733,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x3f6b0f050c8ede72',
+        'queue_number': '0x3f6b0f051f3d248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
@@ -762,7 +764,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       {
         'created_ts': self.now,
         'expiration_ts': self.now + datetime.timedelta(minutes=1),
-        'queue_number': '0x54795e3c800ede72',
+        'queue_number': '0x54795e3c92bd248e',
         'task_slice_index': 0,
         'try_number': 1,
       },
