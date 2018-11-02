@@ -46,6 +46,8 @@ PoolConfig = collections.namedtuple('PoolConfig', [
   'task_template_deployment',
   # resolved BotMonitoring.
   'bot_monitoring',
+  # List of ExternalSchedulerConfigs for this pool, if defined (or None).
+  'external_schedulers',
 ])
 
 
@@ -57,6 +59,15 @@ TrustedDelegatee = collections.namedtuple('TrustedDelegatee', [
   'required_delegation_tags',
 ])
 
+# Read-only hashable representation of a single ExtenalSchedulerConfig
+ExternalSchedulerConfig = collections.namedtuple('ExternalScheduler', [
+  # Service address.
+  'address',
+  # Scheduler ID (opaque to swarming).
+  'id',
+  # Dimension set in {'key1:value1', 'key2:value2'} format.
+  'dimensions',
+])
 
 # Describes how task templates apply to a pool.
 _TaskTemplateDeployment = collections.namedtuple('_TaskTemplateDeployment', [
@@ -423,6 +434,16 @@ def _resolve_bot_monitoring(ctx, bot_monitorings):
       out[m.name] = sorted(keys)
   return out
 
+def _resolve_external_schedulers(external_schedulers):
+  """Turns external_schedulers into a hashable representation."""
+  l = []
+  for e in external_schedulers:
+    l.append(ExternalSchedulerConfig(
+      address=e.address,
+      id=e.id,
+      dimensions=frozenset(e.dimensions),
+    ))
+  return frozenset(l)
 
 def _to_ident(s):
   if ':' not in s:
@@ -478,7 +499,9 @@ def _fetch_pools_config():
           service_accounts_groups=tuple(msg.allowed_service_account_group),
           task_template_deployment=_resolve_deployment(
               ctx, msg, template_map, deployment_map),
-          bot_monitoring=bot_monitorings.get(name))
+          bot_monitoring=bot_monitorings.get(name),
+          external_schedulers=_resolve_external_schedulers(
+              msg.external_schedulers))
   return _PoolsCfg(pools)
 
 
