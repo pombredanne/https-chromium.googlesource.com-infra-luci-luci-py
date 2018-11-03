@@ -3,4 +3,4 @@
 # that can be found in the LICENSE file.
 
 compile:
-	../../components/tools/compile_proto.py .
+	protoc --python_out=. --prpc-python_out=. *.proto
