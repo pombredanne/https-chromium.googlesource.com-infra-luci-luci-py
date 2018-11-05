@@ -2,7 +2,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""Functions to generate and validate tokens signed with MAC tags."""
+"""Functions to generate and validate tokens signed with MAC tags or RSA."""
 
 import base64
 import hashlib
@@ -18,6 +18,7 @@ from . import api
 __all__ = [
   'InvalidTokenError',
   'TokenKind',
+  'verify_jwt',
 ]
 
 
@@ -371,3 +372,87 @@ def decode_token(algo, token, possible_secrets, message):
   # At least one secret key should match.
   raise InvalidTokenError(
       'Bad token MAC; now=%d; data=%s' % (time.time(), public))
+
+
+def verify_jwt(jwt, bundle):
+  """Verifies and decodes a JWT, returning its JSON payload.
+
+  Checks its header (must be using RS256 algo with one of the keys from the
+  bundle), its RSA signature, and its issued and expiration times. Does not
+  check the audience.
+
+  Support only RS256 algo. Tokens that use something else are rejected with
+  InvalidTokenError exception.
+
+  See https://tools.ietf.org/html/rfc7519 for more details on JWT. This function
+  supports only limited subset of the spec needed to verify JWTs produced by
+  Google backends.
+
+  TODO(vadimsh): Consider pulling a third party JWT library as a dependency if
+  we need something more advanced in the future.
+
+  Args:
+    jwt: JWT (as '<base64 hdr>.<base64 payload>.<base64 sig>' string).
+    bundle: signature.CertificateBundle object with public keys.
+
+  Returns:
+    Verified and decoded payload as dict.
+
+  Raises:
+    InvalidTokenError if JWT is malformed, unsigned or expired.
+    signature.CertificateError if the signing key is unknown or invalid.
+  """
+  jwt = jwt.encode('ascii') if isinstance(jwt, unicode) else jwt
+  if jwt.count('.') != 2:
+    raise InvalidTokenError('Bad JWT, should have 3 segments')
+  segments = jwt.split('.')
+
+  try:
+    hdr, payload, sig = (base64_decode(b64) for b64 in segments)
+  except (ValueError, TypeError) as exc:
+    raise InvalidTokenError('Malformed JWT, not valid base64: %s' % exc)
+
+  try:
+    hdr_dict = json.loads(hdr)
+    if not isinstance(hdr_dict, dict):
+      raise ValueError('not a dict')
+    alg = hdr_dict.get('alg')
+    kid = hdr_dict.get('kid')
+  except ValueError as exc:
+    raise InvalidTokenError('Malformed JWT header %r: %s' % (hdr, exc))
+
+  if alg != 'RS256':
+    raise InvalidTokenError('Only RS256 tokens are supported, got %s' % (alg,))
+  if not kid:
+    raise InvalidTokenError('Key ID is not specified in the header')
+  if not bundle.check_signature('%s.%s' % (segments[0], segments[1]), kid, sig):
+    raise InvalidTokenError('Bad JWT: invalid signature')
+
+  # Here token's signature is valid, but the token may have expired already.
+  try:
+    payload = json.loads(payload)
+    if not isinstance(payload, dict):
+      raise ValueError('not a dict')
+  except ValueError as exc:
+    raise InvalidTokenError('Malformed JWT payload %r: %s' % (payload, exc))
+
+  for key in ('iat', 'exp'):
+    ts = payload.get(key)
+    if not ts:
+      raise InvalidTokenError('Bad JWT: has no %r field' % key)
+    if not isinstance(ts, (int, long, float)):
+      raise InvalidTokenError('Bad JWT: %r (%r) is not a number' % (key, ts))
+
+  now = utils.time_time()
+  iat = payload['iat']
+  exp = payload['exp']
+
+  # Make sure token is not from the future or already expired. Give some
+  # wiggle room to account for a possible clock skew between the machine that
+  # produced the token and us.
+  if now < iat - ALLOWED_CLOCK_DRIFT_SEC:
+    raise InvalidTokenError('Bad JWT: too early (iat %d < now %d)' % (iat, now))
+  if now > exp + ALLOWED_CLOCK_DRIFT_SEC:
+    raise InvalidTokenError('Bad JWT: expired (now %d > exp %d)' % (now, exp))
+
+  return payload
