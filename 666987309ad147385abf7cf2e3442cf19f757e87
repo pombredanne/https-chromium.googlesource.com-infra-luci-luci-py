@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87aca426_c6e191da",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "Please keep two spaces between file level symbols here and below.",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1756d33e_b91db7f5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "Please put private functions in the \"private\" code group; between lines 37 and 688.",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de4e1fab_272f73f5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "It\u0027s not disallowed at the moment, so it is \"possible\". I don\u0027t recall any use case. We could probably deny this.\nPlease log for now.",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17685390_818869bc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "Please log for now.",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96439621_0647883d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "Thanks :)",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13aedf9d_11d41031",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "It\u0027s a bit different, this exists because of MP and it\u0027s an int;\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_to_run.py?g\u003d0\u0026l\u003d567\nSee yield_next_available_task_to_dispatch() description which is clearer.",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aef04b4_8a4afd24",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:23:24Z",
+      "side": 1,
+      "message": "I think I\u0027d like a test case right away to demonstrate that it\u0027s not reaping nothing. This will give a base line once the actual functionality is added.",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
