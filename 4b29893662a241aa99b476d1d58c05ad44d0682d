@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae59a6b2_49f3d728",
+        "filename": "appengine/components/components/auth/tokens.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-05T20:51:11Z",
+      "side": 1,
+      "message": "JWTs produced by Google don\u0027t have \u0027typ\u0027 :-/ Here\u0027s header and payload of a real token:\n\n{\"alg\":\"RS256\",\"kid\":\"aa436c3f63b281ce0d976da0b51a34860ff960eb\"}\n\n{\"iss\":\"https://accounts.google.com\",\"iat\":1541280140,\"exp\":1541283740,\"aud\":\"https://chromium-swarm.appspot.com\",\"sub\":\"103485835485054756085\",\"azp\":\"103485835485054756085\",\"email\":\"182615506979@project.gserviceaccount.com\",\"email_verified\":true,\"google\":{\"compute_engine\":{\"project_id\":\"google.com:chromecompute\",\"project_number\":182615506979,\"zone\":\"us-central1-b\",\"instance_id\":\"611723986534734467\",\"instance_name\":\"slave0-c1\",\"instance_creation_timestamp\":1539400949}}}\n\nI can add an extra check though, no big deal.",
+      "parentUuid": "9044520f_1ff4b4d0",
+      "revId": "4b29893662a241aa99b476d1d58c05ad44d0682d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62b83099_f5f65c7b",
         "filename": "appengine/components/components/auth/tokens.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "4b29893662a241aa99b476d1d58c05ad44d0682d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c7cc4b_4162007b",
+        "filename": "appengine/components/components/auth/tokens.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-05T20:51:11Z",
+      "side": 1,
+      "message": "Done, though there are no clients that care that much about why a token is invalid.",
+      "parentUuid": "62b83099_f5f65c7b",
+      "revId": "4b29893662a241aa99b476d1d58c05ad44d0682d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "89eee963_6ec36408",
+        "filename": "appengine/components/components/auth/tokens.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-05T20:51:11Z",
+      "side": 1,
+      "message": "Google doesn\u0027t put \u0027nbf\u0027 into the payload. But I\u0027ve added the check anyway.",
+      "parentUuid": "1a1affa7_e6ea5366",
+      "revId": "4b29893662a241aa99b476d1d58c05ad44d0682d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c248e7be_a199c59a",
         "filename": "appengine/components/components/auth/tokens.py",
         "patchSetId": 3
@@ -67,6 +121,24 @@
       "revId": "4b29893662a241aa99b476d1d58c05ad44d0682d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c918e59_63a4beaa",
+        "filename": "appengine/components/components/auth/tokens.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-05T20:51:11Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c248e7be_a199c59a",
+      "revId": "4b29893662a241aa99b476d1d58c05ad44d0682d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
