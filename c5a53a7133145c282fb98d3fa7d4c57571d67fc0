@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a9e5cf0_a79d7ae0",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:25:50Z",
+      "side": 1,
+      "message": "Please keep 2 empty lines between file level symbols.",
+      "revId": "c5a53a7133145c282fb98d3fa7d4c57571d67fc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "745b5c58_851f9eb7",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:25:50Z",
+      "side": 1,
+      "message": "You can use a list comprehension.",
+      "revId": "c5a53a7133145c282fb98d3fa7d4c57571d67fc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a6d1160_972a7ab1",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-05T20:25:50Z",
+      "side": 1,
+      "message": "Why a set?",
+      "revId": "c5a53a7133145c282fb98d3fa7d4c57571d67fc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
