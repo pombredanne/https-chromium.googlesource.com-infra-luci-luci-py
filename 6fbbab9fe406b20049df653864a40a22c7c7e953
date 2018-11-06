@@ -34,6 +34,24 @@
       "revId": "6fbbab9fe406b20049df653864a40a22c7c7e953",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52482695_d58f9f3c",
+        "filename": "appengine/components/tools/compile_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-06T19:27:04Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "b59d8bbe_91a9cdf1",
+      "revId": "6fbbab9fe406b20049df653864a40a22c7c7e953",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
