@@ -34,6 +34,24 @@
       "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d157c6_40c6e864",
+        "filename": "appengine/swarming/proto/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-06T00:36:14Z",
+      "side": 1,
+      "message": "It\u0027s just that I don\u0027t like to have two ways to do one thing, so I\u0027d rather remove compile_proto.py. I\u0027ll wait for Nodir\u0027s opinion.",
+      "parentUuid": "bc12e084_bfb81c28",
+      "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
