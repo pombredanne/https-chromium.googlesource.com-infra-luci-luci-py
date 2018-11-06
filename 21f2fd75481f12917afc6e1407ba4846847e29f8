@@ -16,6 +16,24 @@
       "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc12e084_bfb81c28",
+        "filename": "appengine/swarming/proto/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-06T00:30:39Z",
+      "side": 1,
+      "message": "I defer to nodir@ on that, I\u0027m not sure. I think it shouldn\u0027t be harmful, but this command is harder to read. Anyway, seems orthogonal to this CL.",
+      "parentUuid": "d414e381_4e75b074",
+      "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
