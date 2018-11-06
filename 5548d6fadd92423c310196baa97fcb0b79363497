@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "803a5ac2_79fa8857",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-06T19:23:11Z",
+      "side": 1,
+      "message": "Worth adding a comment, that it\u0027s processing in LIFO order within each priority level.",
+      "revId": "5548d6fadd92423c310196baa97fcb0b79363497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6740fbd4_c44ec1ca",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-06T19:23:11Z",
+      "side": 1,
+      "message": "This needs to be updated",
+      "revId": "5548d6fadd92423c310196baa97fcb0b79363497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e191e48_fae09015",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-06T19:23:11Z",
+      "side": 1,
+      "message": "The function name should be updated.",
+      "revId": "5548d6fadd92423c310196baa97fcb0b79363497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04877408_21ce2f12",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-06T19:23:11Z",
+      "side": 1,
+      "message": "Update comment.",
+      "revId": "5548d6fadd92423c310196baa97fcb0b79363497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
