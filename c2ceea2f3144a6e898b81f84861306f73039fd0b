@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f0f29d2_14f0bd1e",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-06T20:00:04Z",
+      "side": 1,
+      "message": "Is this accurate?",
+      "parentUuid": "dda7f1f6_128e73b0",
+      "revId": "c2ceea2f3144a6e898b81f84861306f73039fd0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
