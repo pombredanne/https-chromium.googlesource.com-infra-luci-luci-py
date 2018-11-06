@@ -45,6 +45,23 @@
       "revId": "f5d224bb66cb2383f68b4dbdba63113beda98271",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d12e0c7b_d93cd7f1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-06T19:10:33Z",
+      "side": 1,
+      "message": "Including or excluding https:// prefix? URL implies including, if so, no need to change the comment. Otherwise maybe use hostname.",
+      "revId": "f5d224bb66cb2383f68b4dbdba63113beda98271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
