@@ -52,6 +52,24 @@
       "revId": "6fbbab9fe406b20049df653864a40a22c7c7e953",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab698c81_e884586d",
+        "filename": "appengine/components/tools/compile_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-06T19:31:20Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1320629/",
+      "parentUuid": "52482695_d58f9f3c",
+      "revId": "6fbbab9fe406b20049df653864a40a22c7c7e953",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
