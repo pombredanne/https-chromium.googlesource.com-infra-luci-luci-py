@@ -16,6 +16,24 @@
       "revId": "6fbbab9fe406b20049df653864a40a22c7c7e953",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b59d8bbe_91a9cdf1",
+        "filename": "appengine/components/tools/compile_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-06T19:23:22Z",
+      "side": 1,
+      "message": "Do you want to take over this change? You understand this tool better than I do, I\u0027m just trying to accomplish https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1316887/",
+      "parentUuid": "6a0fa704_4fad895c",
+      "revId": "6fbbab9fe406b20049df653864a40a22c7c7e953",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
