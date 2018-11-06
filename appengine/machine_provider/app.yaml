@@ -31,6 +31,7 @@ handlers:
 
 includes:
 - components/auth
+- components/static_third_party.yaml
 - components/config
 - gae_ts_mon
 

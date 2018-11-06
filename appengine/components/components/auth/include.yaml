@@ -16,7 +16,3 @@ handlers:
   script: components.auth.main.APP
   secure: always
   login: admin
-
-
-includes:
-- components/static_third_party.yaml

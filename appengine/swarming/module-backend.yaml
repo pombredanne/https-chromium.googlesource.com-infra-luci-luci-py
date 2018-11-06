@@ -21,6 +21,7 @@ handlers:
 
 includes:
 - components/auth
+- components/static_third_party.yaml
 - components/config
 - components/ereporter2
 - gae_ts_mon

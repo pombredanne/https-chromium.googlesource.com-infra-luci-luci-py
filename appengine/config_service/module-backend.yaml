@@ -18,6 +18,7 @@ handlers:
 
 includes:
 - components/auth
+- components/static_third_party.yaml
 - components/ereporter2
 
 libraries:
