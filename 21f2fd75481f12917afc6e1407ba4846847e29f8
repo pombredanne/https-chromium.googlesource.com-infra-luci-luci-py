@@ -52,6 +52,24 @@
       "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdabf6fc_236dbfc7",
+        "filename": "appengine/swarming/proto/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-06T18:14:47Z",
+      "side": 1,
+      "message": "i think we can add --prpc-python_out to compile_proto.py\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/tools/compile_proto.py?q\u003dcompile_proto.py\u0026g\u003d0\u0026l\u003d77\u0026rcl\u003dc57f36ae15254ee1362ae4d440943a6f3e20ce8c\n\npassing --prpc-python_out is noop unless you have a proto service, so i think this change is not intrusive",
+      "parentUuid": "93d157c6_40c6e864",
+      "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
