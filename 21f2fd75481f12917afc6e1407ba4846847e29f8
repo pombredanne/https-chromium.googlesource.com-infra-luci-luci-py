@@ -106,6 +106,24 @@
       "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6230b884_32f6af3a",
+        "filename": "appengine/swarming/proto/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-06T19:22:24Z",
+      "side": 1,
+      "message": "I changed the python script as requested, in separate CL https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1319931",
+      "parentUuid": "c04da988_fd974638",
+      "revId": "21f2fd75481f12917afc6e1407ba4846847e29f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
