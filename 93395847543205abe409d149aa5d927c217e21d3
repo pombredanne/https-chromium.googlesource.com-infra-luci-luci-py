@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fd32a39_a084a789",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-06T20:18:27Z",
+      "side": 1,
+      "message": "Will we have some funny effects on new years eve? :) Did we have them before?..",
+      "range": {
+        "startLine": 154,
+        "startChar": 2,
+        "endLine": 154,
+        "endChar": 57
+      },
+      "revId": "93395847543205abe409d149aa5d927c217e21d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
