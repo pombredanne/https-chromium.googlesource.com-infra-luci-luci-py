@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f511c093_8ca68e8a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2018-11-06T01:09:05Z",
+      "side": 1,
+      "message": "This is extracted from get_metadata_uncached(). I also changed retry delay to be incrementally increasing.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "f5d224bb66cb2383f68b4dbdba63113beda98271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bdbcd58_c665e061",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2018-11-06T01:09:05Z",
+      "side": 1,
+      "message": "At least this is consistent with the rest of functions here...\n\nThe intended usage pattern is:\n\nif platforms.is_gce():\n  tok, exp \u003d platforms.gce.signed_metadata_token(...)",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 67
+      },
+      "revId": "f5d224bb66cb2383f68b4dbdba63113beda98271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
