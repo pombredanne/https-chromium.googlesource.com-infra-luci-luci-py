@@ -22,6 +22,30 @@
       "revId": "c215f65dc39885fcd97f102e7b618face225ef1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa7791f3_cac5cefc",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-07T14:52:08Z",
+      "side": 1,
+      "message": "I use the one fetched via infra.git, I changed this to call it out.",
+      "parentUuid": "054631b2_85fc5ce8",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "c215f65dc39885fcd97f102e7b618face225ef1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
