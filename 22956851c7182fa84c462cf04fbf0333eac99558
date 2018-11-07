@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0273af9_f8a98ce9",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-07T18:12:52Z",
+      "side": 1,
+      "message": "protobuf",
+      "range": {
+        "startLine": 15,
+        "startChar": 58,
+        "endLine": 15,
+        "endChar": 65
+      },
+      "revId": "22956851c7182fa84c462cf04fbf0333eac99558",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2095a484_acee0b73",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-07T18:12:52Z",
+      "side": 1,
+      "message": "install",
+      "revId": "22956851c7182fa84c462cf04fbf0333eac99558",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
