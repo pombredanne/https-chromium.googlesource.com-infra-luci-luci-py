@@ -7,8 +7,13 @@ import base64
 import sys
 import zlib
 
-from google.protobuf import descriptor_pb2
-from google.protobuf.compiler import plugin_pb2 as plugin
+try:
+  from google.protobuf import descriptor_pb2
+  from google.protobuf.compiler import plugin_pb2 as plugin
+except ImportError:
+  print >> sys.stderr, (
+      'please intall protobuf python package: pip install protbuf')
+  sys.exit(1)
 
 
 HEADER_FORMAT = '''
