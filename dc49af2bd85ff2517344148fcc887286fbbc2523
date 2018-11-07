@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d6c5b64_12068b4d",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-07T02:28:45Z",
+      "side": 1,
+      "message": "This is due to changes to how we serialize the tuple internally. I believe it should have no observable impact: bots will restart due to the server version change, and will pick up new config hash too (without restarting second time).",
+      "range": {
+        "startLine": 143,
+        "startChar": 27,
+        "endLine": 143,
+        "endChar": 41
+      },
+      "revId": "dc49af2bd85ff2517344148fcc887286fbbc2523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
