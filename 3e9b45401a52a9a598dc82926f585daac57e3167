@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "161e13bd_30a03d85",
+        "filename": "appengine/swarming/ui/res/imp/taskpage/task-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-08T19:29:13Z",
+      "side": 1,
+      "message": "let?\nYou don\u0027t use trailing ; consistently, I\u0027d prefer used everywhere or nowhere.",
+      "revId": "3e9b45401a52a9a598dc82926f585daac57e3167",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
