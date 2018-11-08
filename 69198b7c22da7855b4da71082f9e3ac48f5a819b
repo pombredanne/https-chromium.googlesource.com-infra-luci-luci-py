@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c9c6c94_065448e2",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "nit: make this a constant, no need to call it all the time",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 71
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a10909cf_d51b32ae",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "nit: either remove \u0027key\u0027 or rename it to \u0027token\u0027",
+      "range": {
+        "startLine": 172,
+        "startChar": 14,
+        "endLine": 172,
+        "endChar": 19
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bbfcce2_715da052",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "add a note that this also require using service_account_credentials",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 79
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f8e7dbe_c40e7437",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "We need a way to cache such objects or change implementation to lazily instantiate method wrappers (e.g. in __getattr__). \n\nHere\u0027s what will happen otherwise:\n1. \u0027hostname\u0027 is often comes from a config or some other dynamic parameters.\n2. Thus Client can\u0027t be put into a global variable.\n3. Client will be constructed before calling RPCs, each time.\n4. Each time __init__ will do \u0027for method_desc in desc.method\u0027 loop. This is wasteful, especially for large services with many methods.",
+      "range": {
+        "startLine": 192,
+        "startChar": 6,
+        "endLine": 192,
+        "endChar": 12
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68e8085d_964b318c",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "maybe PingAsync then? ndb guts (which also camel case) use *Async suffix",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 200,
+        "endChar": 12
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9296c1d_134fbc30",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "nit: remove @ndb.tasklet and just do \"return rpc_async(prpc_req)\" here.",
+      "range": {
+        "startLine": 265,
+        "startChar": 6,
+        "endLine": 266,
+        "endChar": 27
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76c9ef14_bc72408b",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-08T18:25:22Z",
+      "side": 1,
+      "message": "nit: use functools.wraps so generated method has proper __name__ and __doc__ (instead of just being \u003clambda\u003e).",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 30
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
