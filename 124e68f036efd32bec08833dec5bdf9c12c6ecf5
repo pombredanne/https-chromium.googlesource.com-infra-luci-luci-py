@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1078039_0d785566",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-08T18:24:37Z",
+      "side": 0,
+      "message": "What happens when an older version fetches a copy from memcache with the new tuple format? I read the code path and it seems like this is not the case (memcache is not used), and it\u0027s purely in-process caching. Is that right?",
+      "revId": "124e68f036efd32bec08833dec5bdf9c12c6ecf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
