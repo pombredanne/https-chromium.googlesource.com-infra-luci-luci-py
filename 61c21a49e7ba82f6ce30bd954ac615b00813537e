@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4d9dcc9_0a97a303",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-09T23:38:04Z",
+      "side": 1,
+      "message": "Sorry but I\u0027d prefer this to stay in ts_mon_metrics.py, otherwise it\u0027s hard for a new dev to find out which metrics are emitted.",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 7
+      },
+      "revId": "61c21a49e7ba82f6ce30bd954ac615b00813537e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
