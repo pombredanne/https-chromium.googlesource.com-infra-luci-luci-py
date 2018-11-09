@@ -22,6 +22,30 @@
       "revId": "0361907be9760488e4edcf169a46ce26d70551e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9829425d_c215bd51",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T01:59:44Z",
+      "side": 1,
+      "message": "oops, thanks",
+      "parentUuid": "252d792f_68079196",
+      "range": {
+        "startLine": 20,
+        "startChar": 18,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "0361907be9760488e4edcf169a46ce26d70551e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
