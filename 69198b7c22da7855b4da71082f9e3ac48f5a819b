@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "2894770f_45d98635",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-09T01:55:42Z",
+      "side": 1,
+      "message": "That doc is just incomplete. I guess you can keep this one incomplete too. Delegation tokens shouldn\u0027t really be used often anyway.",
+      "parentUuid": "bbf63c5b_ea784745",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 79
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f8e7dbe_c40e7437",
         "filename": "appengine/components/components/prpc/client.py",
         "patchSetId": 5
@@ -187,6 +211,30 @@
       "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb1fbfa_b5baa8aa",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-09T01:55:42Z",
+      "side": 1,
+      "message": "\u003e which part of the loop is wasteful?\n\nThe entire loop is wasteful, since it can be avoided. Python is already glacially slow on GAE, being sloopy in low-level libraries doesn\u0027t help. Whatever.",
+      "parentUuid": "567cca0d_e52d6ccc",
+      "range": {
+        "startLine": 192,
+        "startChar": 6,
+        "endLine": 192,
+        "endChar": 12
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
