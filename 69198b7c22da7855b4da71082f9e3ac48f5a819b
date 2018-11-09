@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ec8eef48_ab817ff9",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c9c6c94_065448e2",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 71
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a10909cf_d51b32ae",
         "filename": "appengine/components/components/prpc/client.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d286c44c_ae476462",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a10909cf_d51b32ae",
+      "range": {
+        "startLine": 172,
+        "startChar": 14,
+        "endLine": 172,
+        "endChar": 19
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5bbfcce2_715da052",
         "filename": "appengine/components/components/prpc/client.py",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2018-11-08T18:25:22Z",
       "side": 1,
       "message": "add a note that this also require using service_account_credentials",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 79
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf63c5b_ea784745",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "i am following the contract in\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/net.py?q\u003dcomponents/net.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d76\n\nit does not say that delegation token requires service_account_credentials. What\u0027s correct, this comment or that doc?",
+      "parentUuid": "5bbfcce2_715da052",
       "range": {
         "startLine": 175,
         "startChar": 2,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "567cca0d_e52d6ccc",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "i tried to do lazy initialization and I cannot seem to avoid O(RPCs).\nEven if I do __getattr__, I need to find the method by name \u003d\u003e O(RPCs).\n\nI believe the loop is O(RPCs). \nwhich part of the loop is wasteful?\nsymbol_database.Default() is O(1) returning a global var.\nGetSymbol is O(1) dict lookup.\nsetattr is O(1)",
+      "parentUuid": "4f8e7dbe_c40e7437",
+      "range": {
+        "startLine": 192,
+        "startChar": 6,
+        "endLine": 192,
+        "endChar": 12
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "68e8085d_964b318c",
         "filename": "appengine/components/components/prpc/client.py",
         "patchSetId": 5
@@ -114,6 +210,30 @@
       "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "398b9383_a7f373d0",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68e8085d_964b318c",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 200,
+        "endChar": 12
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "847303d8_32a3de12",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9296c1d_134fbc30",
+      "range": {
+        "startLine": 265,
+        "startChar": 6,
+        "endLine": 266,
+        "endChar": 27
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76c9ef14_bc72408b",
         "filename": "appengine/components/components/prpc/client.py",
         "patchSetId": 5
@@ -160,6 +304,30 @@
       "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93e06f20_978a23b0",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-11-09T00:00:35Z",
+      "side": 1,
+      "message": "functools.wraps wouldn\u0027t be very useful (it would say \"method_async\").\nI\u0027ve updated __name__ to actual RPC name",
+      "parentUuid": "76c9ef14_bc72408b",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 30
+      },
+      "revId": "69198b7c22da7855b4da71082f9e3ac48f5a819b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
