@@ -16,6 +16,24 @@
       "revId": "124e68f036efd32bec08833dec5bdf9c12c6ecf5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58bec1bb_27424964",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-09T01:42:44Z",
+      "side": 0,
+      "message": "Yes, this stuff is not stored in the memcache, only in local memory.",
+      "parentUuid": "b1078039_0d785566",
+      "revId": "124e68f036efd32bec08833dec5bdf9c12c6ecf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

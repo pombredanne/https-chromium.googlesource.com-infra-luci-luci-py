@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "70290179_7ec13bb6",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-09T01:42:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ae64a20_59090c87",
+      "revId": "77f79a1080bc2f7d27999566231e32bdea2415ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14121903_84801de6",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "77f79a1080bc2f7d27999566231e32bdea2415ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99ee6055_1464cfcb",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-09T01:42:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14121903_84801de6",
+      "revId": "77f79a1080bc2f7d27999566231e32bdea2415ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
