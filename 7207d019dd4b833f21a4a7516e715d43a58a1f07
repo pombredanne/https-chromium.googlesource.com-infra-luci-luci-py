@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec983f75_748c08a0",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-09T23:57:52Z",
+      "side": 1,
+      "message": "nit: this file uses 4 space indent alignment:\n\nExternalSchedulerConfig(\n    e.address, e.id, frozenset(e.dimensions), e.enabled)",
+      "range": {
+        "startLine": 445,
+        "startChar": 6,
+        "endLine": 446,
+        "endChar": 40
+      },
+      "revId": "7207d019dd4b833f21a4a7516e715d43a58a1f07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
