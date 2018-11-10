@@ -22,6 +22,30 @@
       "revId": "61c21a49e7ba82f6ce30bd954ac615b00813537e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22b3e2c8_3402feed",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-10T00:12:22Z",
+      "side": 1,
+      "message": "I disagree, but whatever.",
+      "parentUuid": "c4d9dcc9_0a97a303",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 7
+      },
+      "revId": "61c21a49e7ba82f6ce30bd954ac615b00813537e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
