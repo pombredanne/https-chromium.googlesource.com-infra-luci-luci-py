@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "17f0453b_8a7e34ab",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87aca426_c6e191da",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1756d33e_b91db7f5",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6429890_15961665",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1756d33e_b91db7f5",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "537e2ae6_3dc4a1cf",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de4e1fab_272f73f5",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17685390_818869bc",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
@@ -67,6 +121,24 @@
       "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08056fdc_55c85d19",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "Changed the semantics a bit. Semanitics are now \"first config to match gets picked\" so it is deterministic even in this situation.",
+      "parentUuid": "17685390_818869bc",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "a5efe19e_145ca4cb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "96439621_0647883d",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13aedf9d_11d41031",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "14f027d1_5563c36c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13aedf9d_11d41031",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4aef04b4_8a4afd24",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
@@ -118,6 +226,24 @@
       "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ac96c1d_4209be46",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-10T01:58:11Z",
+      "side": 1,
+      "message": "ACK. Functionality is being added in the next patchset. So far with local devserver testing, will be interested in input on unit test approach thereafter.",
+      "parentUuid": "4aef04b4_8a4afd24",
+      "revId": "666987309ad147385abf7cf2e3442cf19f757e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
