@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2042c8f1_7013aecb",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:41:44Z",
+      "side": 1,
+      "message": "You haven\u0027t changed it for lifo. Can you make two copies of this test, the original one with fifo, and a new one with lifo?",
+      "revId": "f9037e7c6f8e2c35202aed6c22a2759a6a65e1e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
