@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "185af9ba_e28b5f7b",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Then set it only when utils.is_local_dev_server().\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/utils.py?l\u003d57",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac32ff51_dbe5a970",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Retrieves the PoolConfig for the bot.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c59e2f5_b89825d8",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Run s/ +$// on the file.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cc23f36_e37f2f53",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Retrieves the active ExternalSchedulerConfig for this task request, if any.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2667ff6_3e5b2e2e",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Keep two empty lines between file level symbols.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecdabd57_7d3a6c04",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Always export the task id externally, never the task key. That\u0027s the only way to be future proof against DB schema refactoring.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ff52315_a8d31fbf",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "It\u0027s in result_summary.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f490dfa_3e2d821e",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "append(item)",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64a2dbb5_440f6daa",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Having a task queue do both is a good idea.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "254c4b0d_44af09a7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "Yes.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe4ab497_1940d4fb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "I\u0027d prefer this to be done as part of the pubsub task queue. Maybe worth renaming but that\u0027s some work, so it\u0027s not a requirement yet.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3441475_c053f7fa",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "The main challenge here is that anything that happens between \"the task is reaped in the DB\" and \"the handler returns this data to the bot\" reduces the number of 9s in the service. This is because these tasks are unconditionally lost.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a59963a5_f1c63360",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-11T19:37:11Z",
+      "side": 1,
+      "message": "This is not needed; the cron job that asks the quota scheduler for updates wlil call cancel_task(request, result_key, True), which makes this unnecessary.",
+      "revId": "b11c7394ff36554191bb33510551c26f2bd67eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
