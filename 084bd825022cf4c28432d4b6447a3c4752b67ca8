@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3e743b7_b8751a9b",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-13T13:59:29Z",
+      "side": 1,
+      "message": "Just to confirm I understood correctly:  this a function in preparation for transparently adding GCE metadata stuff later.\n\nIt\u0027s kind of confusing that it\u0027s \"public\" (no \"_\" prefix) but it\u0027s not in `__all__`. I understand it\u0027s an internal utility for other files. Just a comment.",
+      "revId": "084bd825022cf4c28432d4b6447a3c4752b67ca8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
