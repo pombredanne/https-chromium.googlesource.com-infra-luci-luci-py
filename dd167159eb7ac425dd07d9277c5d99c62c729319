@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18cc8c06_6ae89f04",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-13T14:09:11Z",
+      "side": 1,
+      "message": "Please fix this before committing, and remove line 174.",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52444556_c6382e7d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-13T14:09:11Z",
+      "side": 1,
+      "message": "This should be called before going inside a transaction, so pass this as an argument. Which basically mean to inline this function at this point.",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1acfdf4_73e7e918",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-13T14:09:11Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s necessary to log here.",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "037bfff1_10ea994d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-13T14:09:11Z",
+      "side": 1,
+      "message": "Pass es_cfg as an argument, so it\u0027s not looked up inside a DB transaction.",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cf5c6f6_3fe7da54",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-13T14:09:11Z",
+      "side": 1,
+      "message": "https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_pack.py?l\u003d149",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
