@@ -96,7 +96,7 @@ class AuthenticatingHandlerTest(test_case.TestCase):
     class Handler(handler.AuthenticatingHandler):
       @classmethod
       def get_auth_methods(cls, conf):
-        non_applicable = lambda _request: (None, False)
+        non_applicable = lambda _request: (None, None)
         return [non_applicable, non_applicable]
 
       @api.public
@@ -156,7 +156,7 @@ class AuthenticatingHandlerTest(test_case.TestCase):
     class Handler(handler.AuthenticatingHandler):
       @classmethod
       def get_auth_methods(cls, conf):
-        return [lambda _req: (mocked_ident[0], False)]
+        return [lambda _req: (mocked_ident[0], None)]
 
       @api.public
       def get(self):
@@ -186,12 +186,12 @@ class AuthenticatingHandlerTest(test_case.TestCase):
     def not_applicable(request):
       self.assertEqual('/request', request.path)
       calls.append('not_applicable')
-      return None, False
+      return None, None
 
     def applicable(request):
       self.assertEqual('/request', request.path)
       calls.append('applicable')
-      return ident, False
+      return ident, None
 
     class Handler(handler.AuthenticatingHandler):
       @classmethod
@@ -418,7 +418,7 @@ class AuthenticatingHandlerTest(test_case.TestCase):
     class Handler(handler.AuthenticatingHandler):
       @classmethod
       def get_auth_methods(cls, conf):
-        return [lambda _request: (peer_ident, False)]
+        return [lambda _request: (peer_ident, None)]
 
       @api.public
       def get(self):
@@ -478,7 +478,7 @@ class GaeCookieAuthenticationTest(test_case.TestCase):
 
   def test_non_applicable(self):
     self.assertEqual(
-        (None, False),
+        (None, None),
         handler.gae_cookie_authentication(webapp2.Request({})))
 
   def test_applicable_non_admin(self):
@@ -489,7 +489,10 @@ class GaeCookieAuthenticationTest(test_case.TestCase):
     })
     # Actual request is not used by CookieAuthentication.
     self.assertEqual(
-        (model.Identity(model.IDENTITY_USER, 'joe@example.com'), False),
+        (
+          model.Identity(model.IDENTITY_USER, 'joe@example.com'),
+          api.new_auth_details(is_superuser=False),
+        ),
         handler.gae_cookie_authentication(webapp2.Request({})))
 
   def test_applicable_admin(self):
@@ -500,7 +503,10 @@ class GaeCookieAuthenticationTest(test_case.TestCase):
     })
     # Actual request is not used by CookieAuthentication.
     self.assertEqual(
-        (model.Identity(model.IDENTITY_USER, 'joe@example.com'), True),
+        (
+          model.Identity(model.IDENTITY_USER, 'joe@example.com'),
+          api.new_auth_details(is_superuser=True),
+        ),
         handler.gae_cookie_authentication(webapp2.Request({})))
 
 
@@ -510,7 +516,7 @@ class ServiceToServiceAuthenticationTest(test_case.TestCase):
   def test_non_applicable(self):
     request = webapp2.Request({})
     self.assertEqual(
-        (None, False),
+        (None, None),
         handler.service_to_service_authentication(request))
 
   def test_applicable(self):
@@ -518,7 +524,7 @@ class ServiceToServiceAuthenticationTest(test_case.TestCase):
       'HTTP_X_APPENGINE_INBOUND_APPID': 'some-app',
     })
     self.assertEqual(
-      (model.Identity(model.IDENTITY_SERVICE, 'some-app'), False),
+      (model.Identity(model.IDENTITY_SERVICE, 'some-app'), None),
       handler.service_to_service_authentication(request))
 
 
