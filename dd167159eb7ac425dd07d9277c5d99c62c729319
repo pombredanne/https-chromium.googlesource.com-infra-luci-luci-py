@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c7bbd839_093e8590",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-15T02:55:28Z",
+      "side": 1,
+      "message": "Done. Sorry, my editor is doing a bad job with python.",
+      "parentUuid": "18cc8c06_6ae89f04",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52444556_c6382e7d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05c9bcad_85f56278",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-15T02:55:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "52444556_c6382e7d",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "b4b012d6_dcfcf2f3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-15T02:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1acfdf4_73e7e918",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "037bfff1_10ea994d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 8
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "cdf64a34_cf8a1821",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-15T02:55:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "037bfff1_10ea994d",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cf5c6f6_3fe7da54",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 8
@@ -81,6 +153,24 @@
       "writtenOn": "2018-11-13T14:09:11Z",
       "side": 1,
       "message": "https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_pack.py?l\u003d149",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0448c9ec_3c7ea7ea",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-15T02:55:28Z",
+      "side": 1,
+      "message": "semi-ACK. So q should be a TaskResultSummary?",
+      "parentUuid": "0cf5c6f6_3fe7da54",
       "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
