@@ -192,6 +192,24 @@
       "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "301aed92_8b495a06",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-15T23:05:50Z",
+      "side": 1,
+      "message": "Really? It seems based on line 948 that q should be a [(TaskRequest, TaskToRun)]\n\nAlso, it\u0027s currently unclear to me whether external_scheduler should be returning the slice to run in addition to the task_id.",
+      "parentUuid": "08d2ca78_bf587e37",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
