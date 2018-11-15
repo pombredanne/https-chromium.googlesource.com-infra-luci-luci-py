@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b4dde80_d6881abc",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-15T18:17:53Z",
+      "side": 1,
+      "message": "Please remove trailing empty spaces.",
+      "revId": "a03f2dc1159687d467e5089b8443b634f5dd03c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c03bb5_8482ecb1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-15T18:17:53Z",
+      "side": 1,
+      "message": "I think it should be done right away.",
+      "revId": "a03f2dc1159687d467e5089b8443b634f5dd03c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

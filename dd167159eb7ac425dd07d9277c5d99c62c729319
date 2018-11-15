@@ -174,6 +174,24 @@
       "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08d2ca78_bf587e37",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-15T18:17:53Z",
+      "side": 1,
+      "message": "Yes. That\u0027s what is encoded as the task id. It\u0027s a bit confusing internally but it makes sense to users.",
+      "parentUuid": "0448c9ec_3c7ea7ea",
+      "revId": "dd167159eb7ac425dd07d9277c5d99c62c729319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
