@@ -289,8 +289,8 @@ def gen_expected(**kwargs):
       u'pool:default',
       u'priority:200',
       u'service_account:none',
+      u'swarming.config.version:pools_cfg_rev',
       u'swarming.pool.template:none',
-      u'swarming.pool.version:pools_cfg_rev',
       u'user:joe@localhost',
     ],
     u'try_number': 1,
@@ -385,8 +385,8 @@ class Test(unittest.TestCase):
           u'pool:default',
           u'priority:200',
           u'service_account:none',
+          u'swarming.config.version:pools_cfg_rev',
           u'swarming.pool.template:none',
-          u'swarming.pool.version:pools_cfg_rev',
           u'user:joe@localhost',
         ]))
     self.assertOneTask(args, summary, {})
@@ -865,8 +865,8 @@ class Test(unittest.TestCase):
     tags = [
       u'pool:default',
       u'service_account:none',
+      u'swarming.config.version:pools_cfg_rev',
       u'swarming.pool.template:none',
-      u'swarming.pool.version:pools_cfg_rev',
       u'user:joe@localhost',
     ]
     with self._make_wait_task('test_priority'):
@@ -1016,8 +1016,8 @@ class Test(unittest.TestCase):
           u'pool:default',
           u'priority:40',
           u'service_account:none',
+          u'swarming.config.version:pools_cfg_rev',
           u'swarming.pool.template:none',
-          u'swarming.pool.version:pools_cfg_rev',
           u'user:None',
         ],
         user=u'')
@@ -1079,8 +1079,8 @@ class Test(unittest.TestCase):
           u'pool:default',
           u'priority:40',
           u'service_account:none',
+          u'swarming.config.version:pools_cfg_rev',
           u'swarming.pool.template:none',
-          u'swarming.pool.version:pools_cfg_rev',
           u'user:None',
         ],
         user=u'')
@@ -1156,8 +1156,8 @@ class Test(unittest.TestCase):
       u'pool:default',
       u'priority:20',
       u'service_account:none',
+      u'swarming.config.version:pools_cfg_rev',
       u'swarming.pool.template:none',
-      u'swarming.pool.version:pools_cfg_rev',
       u'user:joe@localhost',
     ]
     self.assertResults(
