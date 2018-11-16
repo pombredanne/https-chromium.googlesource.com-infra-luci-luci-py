@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "897fc4bf_0aecb422",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-16T00:22:28Z",
+      "side": 1,
+      "message": "I wonder if it is worth caching this? (Not sure)",
+      "revId": "9fea72f6ccb0ce9fc26f71bf1f8d1cbb9ee01cb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da06d4ed_8cf91af5",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 13
@@ -13,6 +30,24 @@
       "writtenOn": "2018-11-15T23:48:23Z",
       "side": 1,
       "message": "maruel@ help requested here",
+      "revId": "9fea72f6ccb0ce9fc26f71bf1f8d1cbb9ee01cb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cdfa8e6_f59eba2d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-16T00:22:28Z",
+      "side": 1,
+      "message": "https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_to_run.py?l\u003d451\n\ntask_to_run.request_to_task_to_run_key()\n\ntry_number is 1 or 2, depending if it\u0027s the original try or a retry due to a BOT_DIED.\ntask_slice_index is 0 to 7, depending on the TaskSlice this TaskToRun represents, in the case of task fallback.\n\nSorry, I just realized that a task id is not enough, the task run id does (ending with 1 or 2) gives you the try_number, but not the task_slice_index... I\u0027m not sure how to handle that.\n\nYou can hardcode to 0 for now, and figure out later. :/",
+      "parentUuid": "da06d4ed_8cf91af5",
       "revId": "9fea72f6ccb0ce9fc26f71bf1f8d1cbb9ee01cb6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
