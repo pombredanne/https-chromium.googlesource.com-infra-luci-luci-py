@@ -278,7 +278,7 @@ class BackendTest(AppTestBase):
             task_result.TagValues(
                 tag='swarming.pool.template', values=['none']),
             task_result.TagValues(
-                tag='swarming.pool.version', values=['pools_cfg_rev']),
+                tag='swarming.config.version', values=['pools_cfg_rev']),
             task_result.TagValues(tag='user', values=['joe@localhost']),
             task_result.TagValues(tag='zeta', values=['theta']),
         ],

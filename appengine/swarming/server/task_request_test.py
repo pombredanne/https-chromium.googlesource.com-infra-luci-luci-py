@@ -705,7 +705,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_SKIP)
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:skip', as_dict['tags'])
 
   def test_init_new_request_missing_template(self):
@@ -713,7 +713,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request()
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:none', as_dict['tags'])
 
   def test_init_new_request_prod_template(self):
@@ -725,7 +725,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request()
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:prod', as_dict['tags'])
     self.assertEqual(as_dict['task_slices'][0]['properties']['env']['hi'],
                      'prod')
@@ -739,7 +739,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request()
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:canary', as_dict['tags'])
     self.assertEqual(as_dict['task_slices'][0]['properties']['env']['hi'],
                      'canary')
@@ -753,7 +753,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_CANARY_NEVER)
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:prod', as_dict['tags'])
     self.assertEqual(as_dict['task_slices'][0]['properties']['env']['hi'],
                      'prod')
@@ -767,7 +767,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_CANARY_PREFER)
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:canary', as_dict['tags'])
     self.assertEqual(as_dict['task_slices'][0]['properties']['env']['hi'],
                      'canary')
@@ -780,7 +780,7 @@ class TaskRequestApiTest(TestCase):
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_CANARY_PREFER)
     as_dict = request.to_dict()
-    self.assertIn(u'swarming.pool.version:testVersion1', as_dict['tags'])
+    self.assertIn(u'swarming.config.version:testVersion1', as_dict['tags'])
     self.assertIn(u'swarming.pool.template:prod', as_dict['tags'])
     self.assertEqual(as_dict['task_slices'][0]['properties']['env']['hi'],
                      'prod')
