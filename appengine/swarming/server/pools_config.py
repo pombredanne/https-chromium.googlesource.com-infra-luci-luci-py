@@ -25,6 +25,8 @@ from server import service_accounts
 
 POOLS_CFG_FILENAME = 'pools.cfg'
 
+NAMESPACE_RE = re.compile(r'^[a-z0-9A-Z\-._]+$')
+
 
 # Validated read-only representation of one pool.
 PoolConfig = collections.namedtuple('PoolConfig', [
@@ -46,6 +48,22 @@ PoolConfig = collections.namedtuple('PoolConfig', [
   'task_template_deployment',
   # resolved BotMonitoring.
   'bot_monitoring',
+  # resolved default IsolateServer
+  'default_isolate',
+  # resolved default CipdServer
+  'default_cipd',
+])
+
+
+IsolateServer = collections.namedtuple('IsolateServer', [
+  'server',
+  'namespace',
+])
+
+
+CipdServer = collections.namedtuple('CipdServer', [
+  'server',
+  'client_version',
 ])
 
 
@@ -437,6 +455,40 @@ def _validate_ident(ctx, title, s):
     ctx.error('bad %s value "%s" - %s', title, s, exc)
 
 
+def _validate_url(ctx, value):
+  if not value:
+    ctx.error('is not set')
+  elif not validation.is_valid_secure_url(value):
+    ctx.error('must start with "https://" or "http://localhost"')
+
+
+def _validate_external_services_isolate(ctx, cfg):
+  with ctx.prefix('server '):
+    _validate_url(ctx, cfg.server)
+
+  with ctx.prefix('namespace '):
+    if not cfg.namespace:
+      ctx.error('is not set')
+    elif not NAMESPACE_RE.match(cfg.namespace):
+      ctx.error('is invalid "%s"', cfg.namespace)
+
+
+def _validate_external_services_cipd(ctx, cfg):
+  """Validates ExternalServices.CIPD message."""
+  with ctx.prefix('server '):
+    _validate_url(ctx, cfg.server)
+
+  with ctx.prefix('client_version: '):
+    if not cipd.is_valid_version(cfg.client_version):
+      ctx.error('invalid version "%s"', cfg.client_version)
+
+
+def _validate_external_services(ctx, cfg):
+  """Validates an ExternalServices message"""
+  _validate_external_services_isolate(ctx, cfg.isolate)
+  _validate_external_services_cipd(ctx, cfg.cipd)
+
+
 @utils.cache_with_expiration(60)
 def _fetch_pools_config():
   """Loads pools.cfg and parses it into a _PoolsCfg instance."""
@@ -460,6 +512,12 @@ def _fetch_pools_config():
       ctx, template_map, cfg.task_template_deployment)
   bot_monitorings = _resolve_bot_monitoring(ctx, cfg.bot_monitoring)
 
+  default_isolate = default_cipd = None
+  if cfg.HasField('default_external_services'):
+    ext = cfg.default_external_services
+    default_isolate = IsolateServer(ext.isolate.server, ext.isolate.namespace)
+    default_cipd = CipdServer(ext.cipd.server, ext.cipd.client_version)
+
   pools = {}
   for msg in cfg.pool:
     for name in msg.name:
@@ -478,7 +536,9 @@ def _fetch_pools_config():
           service_accounts_groups=tuple(msg.allowed_service_account_group),
           task_template_deployment=_resolve_deployment(
               ctx, msg, template_map, deployment_map),
-          bot_monitoring=bot_monitorings.get(name))
+          bot_monitoring=bot_monitorings.get(name),
+          default_isolate=default_isolate,
+          default_cipd=default_cipd)
   return _PoolsCfg(pools)
 
 
@@ -492,6 +552,10 @@ def _validate_pools_cfg(cfg, ctx):
       ctx, template_map, cfg.task_template_deployment)
   bot_monitorings = _resolve_bot_monitoring(ctx, cfg.bot_monitoring)
   bot_monitoring_unreferred = set(bot_monitorings)
+
+  # Currently optional
+  if cfg.HasField("default_external_services"):
+    _validate_external_services(ctx, cfg.default_external_services)
 
   pools = set()
   for i, msg in enumerate(cfg.pool):
