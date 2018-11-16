@@ -16,6 +16,24 @@
       "revId": "084bd825022cf4c28432d4b6447a3c4752b67ca8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94fcd2ec_0a8b46df",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-16T19:08:22Z",
+      "side": 1,
+      "message": "Yes, it exists only to provide default values. In components.auth \u0027_*\u0027 is for module-private things and functions not in __all__ are for package-private things.",
+      "parentUuid": "c3e743b7_b8751a9b",
+      "revId": "084bd825022cf4c28432d4b6447a3c4752b67ca8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
