@@ -415,7 +415,7 @@ class AppTestBase(test_case.TestCase):
         u'priority:20',
         u'service_account:none',
         u'swarming.pool.template:none',
-        u'swarming.pool.version:pools_cfg_rev',
+        u'swarming.config.version:pools_cfg_rev',
         u'user:joe@localhost',
       ],
       u'user': u'joe@localhost',

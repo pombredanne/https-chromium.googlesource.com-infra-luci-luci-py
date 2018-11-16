@@ -1277,7 +1277,7 @@ def _select_task_template(pool, template_apply):
   if not pool_cfg:
     return None, ('swarming.pool.template:no_config',)
 
-  tags = ('swarming.pool.version:%s' % (pool_cfg.rev,),)
+  tags = ('swarming.config.version:%s' % (pool_cfg.rev,),)
 
   if template_apply == TEMPLATE_SKIP:
     tags += ('swarming.pool.template:skip',)
