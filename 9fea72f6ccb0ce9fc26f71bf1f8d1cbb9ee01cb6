@@ -51,6 +51,24 @@
       "revId": "9fea72f6ccb0ce9fc26f71bf1f8d1cbb9ee01cb6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8025ff81_d626d787",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-16T01:38:31Z",
+      "side": 1,
+      "message": "Ok, still have a bit of an open question on how to determine try_number.",
+      "parentUuid": "9cdfa8e6_f59eba2d",
+      "revId": "9fea72f6ccb0ce9fc26f71bf1f8d1cbb9ee01cb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
