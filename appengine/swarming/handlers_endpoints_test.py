@@ -336,7 +336,12 @@ class TasksApiTest(BaseTest):
         dimensions=[
           {u'key': u'os', u'value': u'Amiga'},
           {u'key': u'pool', u'value': u'template'},
-        ])
+        ],
+        inputs_ref={
+          u'isolatedserver': u'https://pool.config.isolate.example.com',
+          u'namespace': u'default-gzip',
+        },
+    )
     expected = {
       u'request': self.gen_request(
         created_ts=fmtdate(self.now),
