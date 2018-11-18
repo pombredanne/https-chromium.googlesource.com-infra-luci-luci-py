@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92831c5f_ead1aa6f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-18T18:48:27Z",
+      "side": 1,
+      "message": "It\u0027s a 3 lines less readable form of these two lines:\n\n  settings \u003d config.settings()\n  pool \u003d pools_config.get_pool_config(properties.pool)\n\nI don\u0027t understand why you\u0027d want the form you used. I prefer \"pool_cfg\" to \"pool\" because in general \"pool\" means the pool name.",
+      "revId": "08c1d1c0482016c1874d9d77b98c4a999f095662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19fbf8cd_53a968e5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-18T18:48:27Z",
+      "side": 1,
+      "message": "The code generally use one line per symbol declaration. I find this easier to read.",
+      "revId": "08c1d1c0482016c1874d9d77b98c4a999f095662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc46a52_87492a09",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-18T18:48:27Z",
+      "side": 1,
+      "message": "This should be the default above, but these can be None too. So you should do a condition, for each of these:\n\niso_server \u003d None\niso_ns \u003d None\nif settings.isolate:\n  iso_server \u003d settings.isolate.default_server\n  iso_ns \u003d settings.isolate.default_namespace\nif pool and pool.default_isolate:\n  if pool.default_isolate.server:\n    iso_server \u003d pool.default_isolate.server\n  if pool.default_isolate.namespace:\n    iso_ns \u003d pool.default_isolate.namespace\n\nThis means that someone could override the namespace or the server, but not the other.",
+      "revId": "08c1d1c0482016c1874d9d77b98c4a999f095662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db151521_8f79f919",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-18T18:48:27Z",
+      "side": 1,
+      "message": "Same",
+      "revId": "08c1d1c0482016c1874d9d77b98c4a999f095662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a0acfb1_559f6e17",
+        "filename": "appengine/swarming/proto/config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-18T18:48:27Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this use ExternalServices instead?",
+      "revId": "08c1d1c0482016c1874d9d77b98c4a999f095662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f2c7973_f2d526d0",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-18T18:48:27Z",
+      "side": 1,
+      "message": "I can\u0027t even determine where this file comes from.",
+      "revId": "08c1d1c0482016c1874d9d77b98c4a999f095662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
