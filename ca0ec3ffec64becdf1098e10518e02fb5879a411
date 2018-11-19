@@ -16,6 +16,24 @@
       "revId": "ca0ec3ffec64becdf1098e10518e02fb5879a411",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84a9b836_9368cc19",
+        "filename": "appengine/swarming/proto/plugin.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-19T18:54:52Z",
+      "side": 1,
+      "message": "It doesn\u0027t hurt, and I found it non obvious.",
+      "parentUuid": "a75d5cf3_ff0bad75",
+      "revId": "ca0ec3ffec64becdf1098e10518e02fb5879a411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
