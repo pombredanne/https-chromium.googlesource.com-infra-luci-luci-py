@@ -16,6 +16,24 @@
       "revId": "84fa8369ba7fb7b7c21a6d81f5b9c33c57fa9c7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84988d68_bb66410a",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2018-11-19T17:00:51Z",
+      "side": 1,
+      "message": "Ah, I\u0027d done it that way because now() is provided for mocking, in case we did any testing of how this line should look in output.",
+      "parentUuid": "9abb92bd_3e5f6a1e",
+      "revId": "84fa8369ba7fb7b7c21a6d81f5b9c33c57fa9c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
