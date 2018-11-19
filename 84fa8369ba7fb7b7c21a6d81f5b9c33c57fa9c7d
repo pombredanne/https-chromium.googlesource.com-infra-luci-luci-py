@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abb92bd_3e5f6a1e",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-19T14:17:22Z",
+      "side": 1,
+      "message": "str(datetime.datetime.now())\nor\ndatetime.datetime.now(). strptime(\u0027...\u0027)",
+      "revId": "84fa8369ba7fb7b7c21a6d81f5b9c33c57fa9c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
