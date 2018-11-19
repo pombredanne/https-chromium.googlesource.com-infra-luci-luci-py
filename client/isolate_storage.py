@@ -7,6 +7,7 @@
 
 import base64
 import collections
+import hashlib
 import logging
 import os
 import re
@@ -45,6 +46,45 @@ DOWNLOAD_READ_TIMEOUT = 60
 # Stores the gRPC proxy address. Must be set if the storage API class is
 # IsolateServerGrpc (call 'set_grpc_proxy').
 _grpc_proxy = None
+
+
+class ServerRef(object):
+  """ServerRef is a reference to the remote cache."""
+  def __init__(self, url, namespace):
+    """
+    # url: URL of isolate service to use shared cloud based storage.
+    # namespace: isolate namespace to operate in, also defines hashing and
+    #    compression scheme used, i.e. namespace names that end with '-gzip'
+    #    store compressed data.
+    """
+    assert file_path.is_url(url) or not url, url
+    self._url = url.rstrip('/')
+    self._namespace = namespace
+    self._hash_algo = hashlib.sha1
+    for name, algo in isolated_format.SUPPORTED_ALGOS.iteritems():
+      if self.namespace.startswith(name + '-'):
+        self._hash_algo = algo
+        break
+    self._is_with_compression = self.namespace.endswith(
+        ('-gzip', '-deflate', '-flate'))
+
+  @property
+  def url(self):
+    return self._url
+
+  @property
+  def namespace(self):
+    return self._namespace
+
+  @property
+  def hash_algo(self):
+    """Hashing algorithm class to use when uploading to given |namespace|."""
+    return self._hash_algo
+
+  @property
+  def is_with_compression(self):
+    """True if given |namespace| stores compressed objects."""
+    return self._is_with_compression
 
 
 class Item(object):
@@ -250,17 +290,14 @@ class IsolateServer(StorageApi):
   Works only within single namespace.
   """
 
-  def __init__(self, base_url, namespace):
+  def __init__(self, server_ref):
     super(IsolateServer, self).__init__()
-    assert file_path.is_url(base_url), base_url
-    self._base_url = base_url.rstrip('/')
-    self._namespace = namespace
-    algo = isolated_format.get_hash_algo(namespace)
+    self._server_ref = server_ref
+    algo = server_ref.hash_algo()
     self._namespace_dict = {
-        'compression': 'flate' if namespace.endswith(
-            ('-gzip', '-flate')) else '',
+        'compression': 'flate' if server_ref.is_with_compression else '',
         'digest_hash': isolated_format.SUPPORTED_ALGOS_REVERSE[algo],
-        'namespace': namespace,
+        'namespace': server_ref.namespace,
     }
     self._lock = threading.Lock()
     self._server_caps = None
@@ -287,12 +324,8 @@ class IsolateServer(StorageApi):
       return self._server_caps
 
   @property
-  def location(self):
-    return self._base_url
-
-  @property
-  def namespace(self):
-    return self._namespace
+  def server_ref(self):
+    return self._server_ref
 
   def fetch(self, digest, _size, offset):
     assert offset >= 0
@@ -523,27 +556,17 @@ class IsolateServerGrpc(StorageApi):
   algo and compression), and only allows zero offsets while fetching.
   """
 
-  def __init__(self, server, namespace, proxy):
+  def __init__(self, url, proxy):
     super(IsolateServerGrpc, self).__init__()
-    logging.info('Using gRPC for Isolate with server %s, '
-                 'namespace %s, proxy %s',
-                 server, namespace, proxy)
-    self._server = server
+    logging.info(
+        'Using gRPC for Isolate with server %s, proxy %s', url, proxy)
+    self._server = url
     self._lock = threading.Lock()
     self._memory_use = 0
     self._num_pushes = 0
     self._already_exists = 0
     self._proxy = grpc_proxy.Proxy(proxy, bytestream_pb2.ByteStreamStub)
-    self._namespace = namespace
-
-
-  @property
-  def location(self):
-    return self._server
-
-  @property
-  def namespace(self):
-    return self._namespace
+    self._namespace = server_ref.namespace
 
   @property
   def internal_compression(self):
@@ -659,7 +682,7 @@ def set_grpc_proxy(proxy):
   _grpc_proxy = proxy
 
 
-def get_storage_api(url, namespace):
+def get_storage_api(server_ref):
   """Returns an object that implements low-level StorageApi interface.
 
   It is used by Storage to work with single isolate |namespace|. It should
@@ -667,14 +690,11 @@ def get_storage_api(url, namespace):
   a better alternative.
 
   Arguments:
-    url: URL of isolate service to use shared cloud based storage.
-    namespace: isolate namespace to operate in, also defines hashing and
-        compression scheme used, i.e. namespace names that end with '-gzip'
-        store compressed data.
+    server_ref: ServerRef instance.
 
   Returns:
     Instance of StorageApi subclass.
   """
   if _grpc_proxy is not None:
-    return IsolateServerGrpc(url, namespace, _grpc_proxy)
-  return IsolateServer(url, namespace)
+    return IsolateServerGrpc(server_ref.url, _grpc_proxy)
+  return IsolateServer(server_ref)

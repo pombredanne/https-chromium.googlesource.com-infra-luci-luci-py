@@ -472,13 +472,14 @@ class StorageTest(TestCase):
 
     storage_api = MockedStorageApi(missing_hashes)
     storage = isolateserver.Storage(storage_api)
-    def mock_get_storage(base_url, namespace):
-      self.assertEqual('base_url', base_url)
-      self.assertEqual('some-namespace', namespace)
+    def mock_get_storage(server_ref):
+      self.assertEqual('base_url', server_ref.url)
+      self.assertEqual('some-namespace', server_ref.namespace)
       return storage
     self.mock(isolateserver, 'get_storage', mock_get_storage)
 
-    isolateserver.upload_tree('base_url', files.iteritems(), 'some-namespace')
+    server_ref = isolate_storage.ServerRef('base_url', 'some-namespace')
+    isolateserver.upload_tree(server_ref, files.iteritems())
 
     # Was reading only missing files.
     self.assertEqualIgnoringOrder(
@@ -812,7 +813,8 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
       super(IsolateServerStorageSmokeTest, self).tearDown()
 
   def run_synchronous_push_test(self, namespace):
-    storage = isolateserver.get_storage(self.server.url, namespace)
+    storage = isolateserver.get_storage(
+        isolate_storage.ServerRef(self.server.url, namespace))
 
     # Items to upload.
     items = [isolateserver.BufferItem('item %d' % i) for i in xrange(10)]
@@ -835,7 +837,8 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
     self.run_synchronous_push_test('default-gzip')
 
   def run_upload_items_test(self, namespace):
-    storage = isolateserver.get_storage(self.server.url, namespace)
+    storage = isolateserver.get_storage(
+        isolate_storage.ServerRef(self.server.url, namespace))
 
     # Items to upload.
     items = [isolateserver.BufferItem('item %d' % i) for i in xrange(10)]
@@ -861,7 +864,8 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
     self.run_upload_items_test('default-gzip')
 
   def run_push_and_fetch_test(self, namespace):
-    storage = isolateserver.get_storage(self.server.url, namespace)
+    storage = isolateserver.get_storage(
+        isolate_storage.ServerRef(self.server.url, namespace))
 
     # Upload items.
     items = [isolateserver.BufferItem('item %d' % i) for i in xrange(10)]
@@ -1180,7 +1184,7 @@ class IsolateServerDownloadTest(TestCase):
     self.checkOutput(expected_stdout, '')
 
 
-def get_storage(_isolate_server, namespace):
+def get_storage(server_ref):
   class StorageFake(object):
     def __enter__(self, *_):
       return self
@@ -1190,7 +1194,7 @@ def get_storage(_isolate_server, namespace):
 
     @property
     def hash_algo(self):  # pylint: disable=R0201
-      return isolated_format.get_hash_algo(namespace)
+      return isolated_format.get_hash_algo(server_ref.namespace)
 
     @staticmethod
     def upload_items(items):
