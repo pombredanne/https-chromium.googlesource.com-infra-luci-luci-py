@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f620c0e8_e176125d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T20:42:25Z",
+      "side": 1,
+      "message": "Remove one empty line",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "572f939e_dc8b44cc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T20:42:25Z",
+      "side": 1,
+      "message": "We use single quotes throughout this code base. Please fix (it makes grepping easier).",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8a94acd_07457f99",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T20:42:25Z",
+      "side": 1,
+      "message": "the result key will be a TaskRunResult if it is encoded as such: ending with \u00271\u0027 or \u00272\u0027. When \u00270\u0027 is the trailing number, it refers to the overall TaskResultSummary.\n\nIt depends on how much you want the external service to know about this, if you do consider the first and second tries to be independent, then you can send the run specific task id to the external scheduler.",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08bb0ef6_274f80cd",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T20:42:25Z",
+      "side": 1,
+      "message": "It is none when it\u0027s pending: there\u0027s no try yet.",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
