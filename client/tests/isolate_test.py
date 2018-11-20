@@ -1243,12 +1243,12 @@ class IsolateCommand(IsolateBase):
   def test_CMDarchive(self):
     actual = []
 
-    def mocked_upload_tree(base_url, infiles, namespace):
+    def mocked_upload_tree(server_ref, infiles):
       # |infiles| may be a generator of pair, materialize it into a list.
       actual.append({
-        'base_url': base_url,
+        'base_url': server_ref.url,
         'infiles': dict(infiles),
-        'namespace': namespace,
+        'namespace': server_ref.namespace,
       })
     self.mock(isolateserver, 'upload_tree', mocked_upload_tree)
 
@@ -1307,12 +1307,12 @@ class IsolateCommand(IsolateBase):
     # Same as test_CMDarchive but via code path that parses *.gen.json files.
     actual = []
 
-    def mocked_upload_tree(base_url, infiles, namespace):
+    def mocked_upload_tree(server_ref, infiles):
       # |infiles| may be a generator of pair, materialize it into a list.
       actual.append({
-        'base_url': base_url,
+        'base_url': server_ref.url,
         'infiles': dict(infiles),
-        'namespace': namespace,
+        'namespace': server_ref.namespace,
       })
     self.mock(isolateserver, 'upload_tree', mocked_upload_tree)
 
