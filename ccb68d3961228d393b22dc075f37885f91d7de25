@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d80248ce_04210fda",
+        "filename": "appengine/components/components/auth/gce_vm_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-20T20:00:03Z",
+      "side": 1,
+      "message": "Removed. It\u0027s fine to raise signature.CertificateError directly.",
+      "parentUuid": "06a2fb81_2e12a579",
+      "revId": "ccb68d3961228d393b22dc075f37885f91d7de25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6283c07e_3949ebf7",
         "filename": "appengine/components/components/auth/gce_vm_auth.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "ccb68d3961228d393b22dc075f37885f91d7de25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3e8e1b9_0f6093e4",
+        "filename": "appengine/components/components/auth/gce_vm_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-20T20:00:03Z",
+      "side": 1,
+      "message": "Done, though at this point \u0027payload\u0027 is verified to be signed by Google, so if it\u0027s malformed, something is seriously wrong.",
+      "parentUuid": "6283c07e_3949ebf7",
+      "revId": "ccb68d3961228d393b22dc075f37885f91d7de25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
