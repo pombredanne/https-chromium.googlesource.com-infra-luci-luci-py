@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce4e9563_1ff0e8fa",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-20T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f620c0e8_e176125d",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "572f939e_dc8b44cc",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 17
@@ -33,6 +51,24 @@
       "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f3b0d47_8881d8ff",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-20T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "572f939e_dc8b44cc",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "923736b7_fa0c1aff",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-20T23:32:00Z",
+      "side": 1,
+      "message": "ACK. Added a breakcrumb note and TODO on this topic.",
+      "parentUuid": "f8a94acd_07457f99",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08bb0ef6_274f80cd",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 17
@@ -64,6 +118,24 @@
       "writtenOn": "2018-11-20T20:42:25Z",
       "side": 1,
       "message": "It is none when it\u0027s pending: there\u0027s no try yet.",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d29708f_df5518d7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-20T23:32:00Z",
+      "side": 1,
+      "message": "ACK.\n\nSo does this mean I actually want\n\ntry_number \u003d (result.try_number or 0) + 1\n\n?",
+      "parentUuid": "08bb0ef6_274f80cd",
       "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
