@@ -26,6 +26,7 @@ import sys
 
 import auth
 import isolate_format
+import isolate_storage
 import isolated_format
 import isolateserver
 import run_isolated
@@ -817,12 +818,11 @@ def isolate_and_archive(trees, isolate_server, namespace):
     return isolated_hashes
 
   # Now upload all necessary files at once.
+  server_ref = isolate_storage.ServerRef(isolate_server, namespace)
   with tools.Profiler('Upload'):
     try:
       isolateserver.upload_tree(
-          base_url=isolate_server,
-          infiles=itertools.chain(*files_generators),
-          namespace=namespace)
+          server_ref, infiles=itertools.chain(*files_generators))
     except Exception:
       logging.exception('Exception while uploading files')
       return None
