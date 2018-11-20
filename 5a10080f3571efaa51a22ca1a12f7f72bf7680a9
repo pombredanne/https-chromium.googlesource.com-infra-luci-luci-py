@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4b0cbd2_91f5cb67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": "Could add \"adding ServerRef\" or such to clarify the main theme of this refactoring",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f9257e0_f75386ff",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": "If this might change in the future, this could be rephrased as \"For example, the remote cache might be an isolate server\" or something like that, so that the docstring wouldn\u0027t need to be updated.\n\nIf we never expect it to change, it could be rephrased as \"This is expected to be an isolate server.\"",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a432cc2a_c4d1f058",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": "e.g.",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 38
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a69a7f5_98f51051",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": "No need for # at the start of each line, I think",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b4a5963_6f795021",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": "Decompress after downloading?",
+      "range": {
+        "startLine": 98,
+        "startChar": 28,
+        "endLine": 98,
+        "endChar": 51
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f288417_501b161d",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": ":-P I guess you could say that Pylint is \"simple\", it only checks __init__ even if there\u0027s some other set-up method.",
+      "range": {
+        "startLine": 764,
+        "startChar": 0,
+        "endLine": 765,
+        "endChar": 52
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9099eb9_fbd86ab7",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-20T17:53:12Z",
+      "side": 1,
+      "message": "Does \"python path\" refer to $PYTHONPATH / sys.path here? It looks like this comment is related to calling realpath on outdir below.",
+      "range": {
+        "startLine": 299,
+        "startChar": 22,
+        "endLine": 299,
+        "endChar": 33
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
