@@ -769,14 +769,13 @@ def prepare_for_archival(options, cwd):
   return complete_state, infiles, isolated_hash
 
 
-def isolate_and_archive(trees, isolate_server, namespace):
+def isolate_and_archive(trees, server_ref):
   """Isolates and uploads a bunch of isolated trees.
 
   Args:
     trees: list of pairs (Options, working directory) that describe what tree
         to isolate. Options are processed by 'process_isolate_options'.
-    isolate_server: URL of Isolate Server to upload to.
-    namespace: namespace to upload to.
+    server_ref: isolate_storage.ServerRef instance.
 
   Returns a dict {target name -> isolate hash or None}, where target name is
   a name of *.isolated file without an extension (e.g. 'base_unittests').
@@ -819,7 +818,6 @@ def isolate_and_archive(trees, isolate_server, namespace):
     return isolated_hashes
 
   # Now upload all necessary files at once.
-  server_ref = isolate_storage.ServerRef(isolate_server, namespace)
   with tools.Profiler('Upload'):
     try:
       isolateserver.upload_tree(
@@ -865,10 +863,9 @@ def CMDarchive(parser, args):
   process_isolate_options(parser, options)
   auth.process_auth_options(parser, options)
   isolateserver.process_isolate_server_options(parser, options, True, True)
-  result = isolate_and_archive(
-      [(options, unicode(os.getcwd()))],
-      options.isolate_server,
-      options.namespace)
+  server_ref = isolate_storage.ServerRef(
+      options.isolate_server, options.namespace)
+  result = isolate_and_archive([(options, unicode(os.getcwd()))], server_ref)
   if result is None:
     return EXIT_CODE_UPLOAD_ERROR
   assert len(result) == 1, result
@@ -927,8 +924,9 @@ def CMDbatcharchive(parser, args):
     work_units.append((parse_archive_command_line(args, cwd), cwd))
 
   # Perform the archival, all at once.
-  isolated_hashes = isolate_and_archive(
-      work_units, options.isolate_server, options.namespace)
+  server_ref = isolate_storage.ServerRef(
+      options.isolate_server, options.namespace)
+  isolated_hashes = isolate_and_archive(work_units, server_ref)
 
   # TODO(vadimsh): isolate_and_archive returns None on upload failure, there's
   # no way currently to figure out what *.isolated file from a batch were

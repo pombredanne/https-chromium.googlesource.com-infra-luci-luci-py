@@ -7,6 +7,7 @@
 
 __version__ = '0.8.6'
 
+import collections
 import errno
 import functools
 import logging
@@ -1032,36 +1033,6 @@ def get_storage(server_ref):
   return Storage(isolate_storage.get_storage_api(server_ref))
 
 
-def upload_tree(server_ref, infiles):
-  """Uploads the given tree to the given url.
-
-  Arguments:
-    server_ref: isolate_storage.ServerRef instance.
-    infiles:   iterable of pairs (absolute path, metadata dict) of files.
-  """
-  # Convert |infiles| into a list of FileItem objects, skip duplicates.
-  # Filter out symlinks, since they are not represented by items on isolate
-  # server side.
-  items = []
-  seen = set()
-  skipped = 0
-  for filepath, metadata in infiles:
-    if 'l' not in metadata and filepath not in seen:
-      seen.add(filepath)
-      item = FileItem(
-          path=filepath,
-          digest=metadata['h'],
-          size=metadata['s'],
-          high_priority=metadata.get('priority') == '0')
-      items.append(item)
-    else:
-      skipped += 1
-
-  logging.info('Skipped %d duplicated entries', skipped)
-  with get_storage(server_ref) as storage:
-    return storage.upload_items(items)
-
-
 def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
                    filter_cb=None):
   """Aggressively downloads the .isolated file(s), then download all the files.
@@ -1225,33 +1196,63 @@ def directory_to_metadata(root, algo, blacklist):
   return items, metadata
 
 
+def upload_tree(server_ref, infiles):
+  """Uploads the given tree to the given url.
+
+  Arguments:
+    server_ref: isolate_storage.ServerRef instance.
+    infiles:   iterable of pairs (absolute path, metadata dict) of files.
+  """
+  # Convert |infiles| into a list of FileItem objects, skip duplicates.
+  # Filter out symlinks, since they are not represented by items on isolate
+  # server side.
+  items = []
+  seen = set()
+  skipped = 0
+  for filepath, metadata in infiles:
+    if 'l' not in metadata and filepath not in seen:
+      seen.add(filepath)
+      item = FileItem(
+          path=filepath,
+          digest=metadata['h'],
+          size=metadata['s'],
+          high_priority=metadata.get('priority') == '0')
+      items.append(item)
+    else:
+      skipped += 1
+
+  logging.info('Skipped %d duplicated entries', skipped)
+  with get_storage(server_ref) as storage:
+    return storage.upload_items(items)
+
+
 def archive_files_to_storage(storage, files, blacklist):
-  """Stores every entries and returns the relevant data.
+  """Stores every entries into remote storage and returns stats.
 
   Arguments:
     storage: a Storage object that communicates with the remote object store.
-    files: list of file paths to upload. If a directory is specified, a
-           .isolated file is created and its hash is returned.
+    files: iterable of files to upload. If a directory is specified (with a
+          trailing slash), a .isolated file is created and its hash is returned.
+          Duplicates are skipped.
     blacklist: function that returns True if a file should be omitted.
 
   Returns:
-    tuple(list(tuple(hash, path)), list(FileItem cold), list(FileItem hot)).
+    tuple(OrderedDict(path: hash), list(FileItem cold), list(FileItem hot)).
     The first file in the first item is always the isolated file.
   """
-  assert all(isinstance(i, unicode) for i in files), files
-  if len(files) != len(set(map(os.path.abspath, files))):
-    raise AlreadyExists('Duplicate entries found.')
-
-  # List of tuple(hash, path).
-  results = []
+  # dict(path, hash)
+  results = collections.OrderedDict()
   # The temporary directory is only created as needed.
   tempdir = None
   try:
-    # TODO(maruel): Yield the files to a worker thread.
     items_to_upload = []
     hash_algo = storage.server_ref.hash_algo
     hash_algo_name = storage.server_ref.hash_algo_name
     for f in files:
+      assert isinstance(f, unicode), repr(f)
+      if f in results:
+        # Duplicate
+        continue
       try:
         filepath = os.path.abspath(f)
         if fs.isdir(filepath):
@@ -1279,7 +1280,7 @@ def archive_files_to_storage(storage, files, blacklist):
                   digest=h,
                   size=fs.stat(isolated).st_size,
                   high_priority=True))
-          results.append((h, f))
+          results[f] = h
 
         elif fs.isfile(filepath):
           h = isolated_format.hash_file(filepath, hash_algo)
@@ -1289,7 +1290,7 @@ def archive_files_to_storage(storage, files, blacklist):
                 digest=h,
                 size=fs.stat(filepath).st_size,
                 high_priority=f.endswith('.isolated')))
-          results.append((h, f))
+          results[f] = h
         else:
           raise Error('%s is neither a file or directory.' % f)
       except OSError:
@@ -1303,20 +1304,6 @@ def archive_files_to_storage(storage, files, blacklist):
   finally:
     if tempdir and fs.isdir(tempdir):
       file_path.rmtree(tempdir)
-
-
-def archive(server_ref, files, blacklist):
-  if files == ['-']:
-    files = sys.stdin.readlines()
-
-  if not files:
-    raise Error('Nothing to upload')
-
-  files = [f.decode('utf-8') for f in files]
-  blacklist = tools.gen_blacklist(blacklist)
-  with get_storage(server_ref) as storage:
-    results, _cold, _hot = archive_files_to_storage(storage, files, blacklist)
-  print('\n'.join('%s %s' % (r[0], r[1]) for r in results))
 
 
 @subcommand.usage('<file1..fileN> or - to read from stdin')
@@ -1337,10 +1324,18 @@ def CMDarchive(parser, args):
   process_isolate_server_options(parser, options, True, True)
   server_ref = isolate_storage.ServerRef(
       options.isolate_server, options.namespace)
+  if files == ['-']:
+    files = sys.stdin.readlines()
+  if not files:
+    parser.error('Nothing to upload')
+  files = [f.decode('utf-8') for f in files]
+  blacklist = tools.gen_blacklist(options.blacklist)
   try:
-    archive(server_ref, files, options.blacklist)
+    with get_storage(server_ref) as storage:
+      results, _cold, _hot = archive_files_to_storage(storage, files, blacklist)
   except (Error, local_caching.NoMoreSpace) as e:
     parser.error(e.args[0])
+  print('\n'.join('%s %s' % (h, f) for f, h in results.iteritems()))
   return 0
 
 
