@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ef521448_a9b04304",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T19:41:05Z",
+      "side": 1,
+      "message": "I used the later form as maybe maybe not this will change, I\u0027m not sure.",
+      "parentUuid": "9f9257e0_f75386ff",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a432cc2a_c4d1f058",
         "filename": "client/isolate_storage.py",
         "patchSetId": 13
@@ -68,6 +92,30 @@
       "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a39a9ab_e706222c",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T19:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a432cc2a_c4d1f058",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 38
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "745be633_06d40282",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T19:41:05Z",
+      "side": 1,
+      "message": "Yeah that was weird, probably a fallout from old refactoring, sorry about that.",
+      "parentUuid": "6a69a7f5_98f51051",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b4a5963_6f795021",
         "filename": "client/isolate_storage.py",
         "patchSetId": 13
@@ -114,6 +186,30 @@
       "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aab9344c_2fc60a2b",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T19:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b4a5963_6f795021",
+      "range": {
+        "startLine": 98,
+        "startChar": 28,
+        "endLine": 98,
+        "endChar": 51
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +247,30 @@
       "writtenOn": "2018-11-20T17:53:12Z",
       "side": 1,
       "message": "Does \"python path\" refer to $PYTHONPATH / sys.path here? It looks like this comment is related to calling realpath on outdir below.",
+      "range": {
+        "startLine": 299,
+        "startChar": 22,
+        "endLine": 299,
+        "endChar": 33
+      },
+      "revId": "5a10080f3571efaa51a22ca1a12f7f72bf7680a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b3cb41_910a387b",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T19:41:05Z",
+      "side": 1,
+      "message": "Replace with \"python\u0027s executable path\" to clarify.",
+      "parentUuid": "d9099eb9_fbd86ab7",
       "range": {
         "startLine": 299,
         "startChar": 22,
