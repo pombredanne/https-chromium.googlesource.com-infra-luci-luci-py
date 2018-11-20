@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06a2fb81_2e12a579",
+        "filename": "appengine/components/components/auth/gce_vm_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T00:22:32Z",
+      "side": 1,
+      "message": "That\u0027s an unexpected location to declare this exception.",
+      "revId": "ccb68d3961228d393b22dc075f37885f91d7de25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6283c07e_3949ebf7",
+        "filename": "appengine/components/components/auth/gce_vm_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-20T00:22:32Z",
+      "side": 1,
+      "message": "Do you want to be more resilient against malformed data, like testing for isinstance(gce, dict)?",
+      "revId": "ccb68d3961228d393b22dc075f37885f91d7de25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
