@@ -135,6 +135,7 @@ class TestOsUtilities(auto_stub.TestCase):
 
     expected = {u'cores', u'cpu', u'gpu', u'id', u'os', u'pool', u'python'}
     if platforms.is_gce():
+      expected.add(u'gce')
       expected.add(u'image')
       expected.add(u'zone')
     if sys.platform == 'darwin':
@@ -160,6 +161,7 @@ class TestOsUtilities(auto_stub.TestCase):
 
   def test_get_state(self):
     actual = os_utilities.get_state()
+    actual.pop('reboot_required', None)
     actual.pop('temp', None)
     expected = {
       u'audio', u'cost_usd_hour', u'cpu_name', u'cwd', u'disks',
