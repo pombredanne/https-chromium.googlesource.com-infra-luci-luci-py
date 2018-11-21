@@ -1227,21 +1227,6 @@ class TestArchive(TestCase):
         'from stdin\n\n'
         '%(prog)s: error: --isolate-server is required.\n' % {'prog': prog})
 
-  def test_archive_duplicates(self):
-    with self.assertRaises(SystemExit):
-      isolateserver.main(
-          [
-            'archive', '--isolate-server', 'https://localhost:1',
-            # Effective dupes.
-            '.', os.getcwd(),
-          ])
-    prog = self.get_isolateserver_prog()
-    self.checkOutput(
-        '',
-        'Usage: %(prog)s archive [options] <file1..fileN> or - to read '
-        'from stdin\n\n'
-        '%(prog)s: error: Duplicate entries found.\n' % {'prog': prog})
-
   def test_archive_files(self):
     self.mock(isolateserver, 'get_storage', get_storage)
     self.make_tree(CONTENTS)
