@@ -175,6 +175,24 @@
       "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b48a6d7f_a042e7df",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-21T18:18:57Z",
+      "side": 1,
+      "message": "I\u0027ve reread the code:\ntry_number is 0 or None when the first try is pending.\ntry_number is 1 once the first try started.\ntry_number is 1 when the second try is pending.\ntry_number is 2 once the second try started.",
+      "parentUuid": "c28ec69f_008992c0",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
