@@ -157,6 +157,24 @@
       "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c28ec69f_008992c0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-21T17:40:05Z",
+      "side": 1,
+      "message": "But what about if it is already set and equal to 1? Do we want to fetch a to_run_key with try_number 1 or 2?",
+      "parentUuid": "972cdf24_3d74fc60",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
