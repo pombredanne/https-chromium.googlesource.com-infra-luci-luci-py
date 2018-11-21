@@ -193,6 +193,24 @@
       "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc0a8dd_88941c15",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-21T18:29:17Z",
+      "side": 1,
+      "message": "Ok, I think we do want try_number \u003d (result.try_number or 0) + 1 then.",
+      "parentUuid": "b48a6d7f_a042e7df",
+      "revId": "88fe3c04e60b5e7e93fc1430b956ae0bb3edc88d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
