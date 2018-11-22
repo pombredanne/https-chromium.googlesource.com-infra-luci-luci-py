@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82df2cb1_486908e7",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-22T01:32:02Z",
+      "side": 1,
+      "message": "is this still used?",
+      "range": {
+        "startLine": 147,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 34
+      },
+      "revId": "70aae3a13ecb9296e71231e2467181a61d954e0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93701a92_0d18f661",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-22T01:32:02Z",
+      "side": 1,
+      "message": "Should we require them to be present?\n\nIf not, make sure all callers expect None. For example, \u0027details\u0027 endpoint will break trying to read a field of None.",
+      "range": {
+        "startLine": 593,
+        "startChar": 3,
+        "endLine": 593,
+        "endChar": 22
+      },
+      "revId": "70aae3a13ecb9296e71231e2467181a61d954e0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

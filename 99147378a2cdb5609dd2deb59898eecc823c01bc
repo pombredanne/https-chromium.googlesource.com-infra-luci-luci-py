@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aee32044_5b53c64f",
+        "filename": "appengine/swarming/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-11-22T01:32:02Z",
+      "side": 0,
+      "message": "Move this to reserved. luci-config stores configs in binary proto, tags are important.",
+      "range": {
+        "startLine": 28,
+        "startChar": 28,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "99147378a2cdb5609dd2deb59898eecc823c01bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
