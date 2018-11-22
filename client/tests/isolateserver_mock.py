@@ -19,7 +19,6 @@ def hash_content(content):
 
 
 class FakeSigner(object):
-
   @classmethod
   def generate(cls, message, embedded):
     return '%s_<<<%s>>>' % (repr(message), json.dumps(embedded))
@@ -53,19 +52,24 @@ class IsolateServerHandler(httpserver_mock.MockHandler):
             'c': 'flate',
             'h': 'SHA-1',
         })
-    message = ['datastore', 'gs'][
-        self._should_push_to_gs(embedded['i'], embedded['s'])]
+    message = (
+        'gs' if self._should_push_to_gs(embedded['i'], embedded['s'])
+        else 'datastore')
     return FakeSigner.generate(message, embedded)
 
-  def _storage_helper(self, body, gs=False):
+  def _storage_helper(self, body, finalize_gs):
     request = json.loads(body)
-    message = ['datastore', 'gs'][gs]
-    content = request['content'] if not gs else None
+    message = 'gs' if finalize_gs else 'datastore'
+    content = request['content'] if not finalize_gs else None
     embedded = FakeSigner.validate(request['upload_ticket'], message)
     namespace = embedded['n']
-    if namespace not in self.server.contents:
-      self.server.contents[namespace] = {}
-    self.server.contents[namespace][embedded['d']] = content
+    d = embedded['d']
+    if self.server.store_hash_instead:
+      if not finalize_gs:
+        self.server.contents.setdefault(namespace, {})[d] = hash_content(
+            content)
+    else:
+      self.server.contents.setdefault(namespace, {})[d] = content
     self.send_json({'ok': True})
 
   ### Mocked HTTP Methods
@@ -114,7 +118,7 @@ class IsolateServerHandler(httpserver_mock.MockHandler):
       logging.info('Returning %s' % response)
       self.send_json(response)
     elif self.path.startswith('/_ah/api/isolateservice/v1/store_inline'):
-      self._storage_helper(body)
+      self._storage_helper(body, False)
     elif self.path.startswith('/_ah/api/isolateservice/v1/finalize_gs_upload'):
       self._storage_helper(body, True)
     elif self.path.startswith('/_ah/api/isolateservice/v1/retrieve'):
@@ -131,14 +135,16 @@ class IsolateServerHandler(httpserver_mock.MockHandler):
       raise NotImplementedError(self.path)
 
   def do_PUT(self):
-    if self.server.discard_content:
-      body = '<skipped>'
-      self.drop_body()
-    else:
-      body = self.read_body()
+    logging.info('PUT %s', self.path)
     if self.path.startswith('/FAKE_GCS/'):
       namespace, h = self.path[len('/FAKE_GCS/'):].split('/', 1)
-      self.server.contents.setdefault(namespace, {})[h] = body
+      if self.server.store_hash_instead:
+        a = ALGO()
+        for c in self.yield_body():
+          a.update(c)
+        self.server.contents.setdefault(namespace, {})[h] = a.hexdigest()
+      else:
+        self.server.contents.setdefault(namespace, {})[h] = self.read_body()
       self.send_octet_stream('')
     else:
       raise NotImplementedError(self.path)
@@ -150,18 +156,18 @@ class MockIsolateServer(httpserver_mock.MockServer):
   def __init__(self):
     super(MockIsolateServer, self).__init__()
     self._server.contents = {}
-    self._server.discard_content = False
+    self._server.store_hash_instead = False
 
-  def discard_content(self):
+  def store_hash_instead(self):
     """Stops saving content in memory. Used to test large files."""
-    self._server.discard_content = True
+    self._server.store_hash_instead = True
 
   @property
   def contents(self):
     return self._server.contents
 
   def add_content_compressed(self, namespace, content):
-    assert not self._server.discard_content
+    assert not self._server.store_hash_instead
     h = hash_content(content)
     logging.info('add_content_compressed(%s, %s)', namespace, h)
     self._server.contents.setdefault(namespace, {})[h] = base64.b64encode(
@@ -169,7 +175,7 @@ class MockIsolateServer(httpserver_mock.MockServer):
     return h
 
   def add_content(self, namespace, content):
-    assert not self._server.discard_content
+    assert not self._server.store_hash_instead
     h = hash_content(content)
     logging.info('add_content(%s, %s)', namespace, h)
     self._server.contents.setdefault(namespace, {})[h] = base64.b64encode(
