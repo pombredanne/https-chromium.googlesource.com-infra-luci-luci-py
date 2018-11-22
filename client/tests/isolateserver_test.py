@@ -328,23 +328,10 @@ class StorageTest(TestCase):
     self.assertEqual(set(a), set(b))
 
   def get_push_state(self, storage, item):
-    missing = list(storage.get_missing_items([item]))
+    missing = list(storage._storage_api.contains([item]))
     self.assertEqual(1, len(missing))
-    self.assertEqual(item, missing[0][0])
-    return missing[0][1]
-
-  def test_batch_items_for_check(self):
-    items = [
-      isolate_storage.Item('foo', 12),
-      isolate_storage.Item('blow', 0),
-      isolate_storage.Item('bizz', 1222),
-      isolate_storage.Item('buzz', 1223),
-    ]
-    expected = [
-      [items[3], items[2], items[0], items[1]],
-    ]
-    batches = list(isolateserver.batch_items_for_check(items))
-    self.assertEqual(batches, expected)
+    self.assertEqual(item, missing[0])
+    return missing[0]
 
   def test_get_missing_items(self):
     items = [
@@ -377,7 +364,7 @@ class StorageTest(TestCase):
       storage_api = MockedStorageApi(server_ref, {item.digest: 'push_state'})
       storage = isolateserver.Storage(storage_api)
       channel = threading_utils.TaskChannel()
-      storage.async_push(channel, item, self.get_push_state(storage, item))
+      storage._async_push(channel, item, self.get_push_state(storage, item))
       # Wait for push to finish.
       pushed_item = channel.pull()
       self.assertEqual(item, pushed_item)
@@ -402,7 +389,7 @@ class StorageTest(TestCase):
       storage_api = MockedStorageApi(server_ref, {item.digest: 'push_state'})
       storage = isolateserver.Storage(storage_api)
       channel = threading_utils.TaskChannel()
-      storage.async_push(channel, item, self.get_push_state(storage, item))
+      storage._async_push(channel, item, self.get_push_state(storage, item))
       with self.assertRaises(FakeException):
         channel.pull()
       # StorageApi's push should never complete when data can not be read.
@@ -429,7 +416,7 @@ class StorageTest(TestCase):
             server_ref, {item.digest: 'push_state'}, push_side_effect)
         storage = isolateserver.Storage(storage_api)
         channel = threading_utils.TaskChannel()
-        storage.async_push(channel, item, self.get_push_state(storage, item))
+        storage._async_push(channel, item, self.get_push_state(storage, item))
         with self.assertRaises(IOError):
           channel.pull()
         # First initial attempt + all retries.
@@ -793,30 +780,6 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
     finally:
       super(IsolateServerStorageSmokeTest, self).tearDown()
 
-  def run_synchronous_push_test(self, namespace):
-    storage = isolateserver.get_storage(
-        isolate_storage.ServerRef(self.server.url, namespace))
-
-    # Items to upload.
-    items = [isolateserver.BufferItem('item %d' % i) for i in xrange(10)]
-
-    # Storage is empty, all items are missing.
-    missing = dict(storage.get_missing_items(items))
-    self.assertEqual(set(items), set(missing))
-
-    # Push, one by one.
-    for item, push_state in missing.iteritems():
-      storage.push(item, push_state)
-
-    # All items are there now.
-    self.assertFalse(dict(storage.get_missing_items(items)))
-
-  def test_synchronous_push(self):
-    self.run_synchronous_push_test('default')
-
-  def test_synchronous_push_gzip(self):
-    self.run_synchronous_push_test('default-gzip')
-
   def run_upload_items_test(self, namespace):
     storage = isolateserver.get_storage(
         isolate_storage.ServerRef(self.server.url, namespace))
@@ -827,9 +790,6 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
     # Do it.
     uploaded = storage.upload_items(items)
     self.assertEqual(set(items), set(uploaded))
-
-    # All items are there now.
-    self.assertFalse(dict(storage.get_missing_items(items)))
 
     # Now ensure upload_items skips existing items.
     more = [isolateserver.BufferItem('more item %d' % i) for i in xrange(10)]
