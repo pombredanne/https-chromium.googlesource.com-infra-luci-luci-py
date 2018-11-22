@@ -17,10 +17,6 @@ from components.config import validation
 
 from proto import config_pb2
 
-import cipd
-
-NAMESPACE_RE = re.compile(r'^[a-z0-9A-Z\-._]+$')
-
 
 ConfigApi = config.ConfigApi
 
@@ -110,35 +106,6 @@ def _validate_url(value, ctx):
     ctx.error('must start with "https://" or "http://localhost"')
 
 
-def _validate_isolate_settings(cfg, ctx):
-  if bool(cfg.default_server) != bool(cfg.default_namespace):
-    ctx.error(
-        'either specify both default_server and default_namespace or none')
-  elif cfg.default_server:
-    with ctx.prefix('default_server '):
-      _validate_url(cfg.default_server, ctx)
-
-    if not NAMESPACE_RE.match(cfg.default_namespace):
-      ctx.error('invalid namespace "%s"', cfg.default_namespace)
-
-
-def _validate_cipd_package(cfg, ctx):
-  if not cipd.is_valid_package_name_template(cfg.package_name):
-    ctx.error('invalid package_name "%s"', cfg.package_name)
-  if not cipd.is_valid_version(cfg.version):
-    ctx.error('invalid version "%s"', cfg.version)
-
-
-def _validate_cipd_settings(cfg, ctx=None):
-  """Validates CipdSettings message stored in settings.cfg."""
-  ctx = ctx or validation.Context.raise_on_error()
-  with ctx.prefix('default_server '):
-    _validate_url(cfg.default_server, ctx)
-
-  with ctx.prefix('default_client_package: '):
-    _validate_cipd_package(cfg.default_client_package, ctx)
-
-
 @validation.self_rule(_SETTINGS_CFG_FILENAME, config_pb2.SettingsCfg)
 def _validate_settings(cfg, ctx):
   """Validates settings.cfg file against proto message schema."""
@@ -152,14 +119,6 @@ def _validate_settings(cfg, ctx):
     within_year(cfg.bot_death_timeout_secs)
   with ctx.prefix('reusable_task_age_secs '):
     within_year(cfg.reusable_task_age_secs)
-
-  if cfg.HasField('isolate'):
-    with ctx.prefix('isolate: '):
-      _validate_isolate_settings(cfg.isolate, ctx)
-
-  if cfg.HasField('cipd'):
-    with ctx.prefix('cipd: '):
-      _validate_cipd_settings(cfg.cipd, ctx)
 
   if cfg.HasField('mp') and cfg.mp.server:
     with ctx.prefix('mp.server '):

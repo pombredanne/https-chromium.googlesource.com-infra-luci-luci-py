@@ -146,16 +146,12 @@ def get_or_raise(key):
 
 def apply_server_property_defaults(properties):
   """Fills ndb task properties with default values read from server settings."""
-  settings = config.settings()
   pool_cfg = pools_config.get_pool_config(properties.pool)
-  if not settings and not pool_cfg:
+  if not pool_cfg:
     return
 
-  iso_server = settings.isolate.default_server
-  iso_ns = settings.isolate.default_namespace
-  if pool_cfg and pool_cfg.default_isolate:
-    iso_server = pool_cfg.default_isolate.server
-    iso_ns = pool_cfg.default_isolate.namespace
+  iso_server = pool_cfg.default_isolate.server
+  iso_ns = pool_cfg.default_isolate.namespace
 
   if iso_server and iso_ns:
     properties.inputs_ref = properties.inputs_ref or task_request.FilesRef()
@@ -164,11 +160,8 @@ def apply_server_property_defaults(properties):
     properties.inputs_ref.namespace = (
         properties.inputs_ref.namespace or iso_ns)
 
-  cipd_server = settings.cipd.default_server
-  cipd_vers = settings.cipd.default_client_package.version
-  if pool_cfg and pool_cfg.default_cipd:
-    cipd_server = pool_cfg.default_cipd.server
-    cipd_vers = pool_cfg.default_cipd.client_version
+  cipd_server = pool_cfg.default_cipd.server
+  cipd_vers = pool_cfg.default_cipd.client_version
 
   if cipd_server and properties.cipd_input:
     properties.cipd_input.server = (
@@ -206,6 +199,7 @@ class SwarmingServerService(remote.Service):
     host = 'https://' + os.environ['HTTP_HOST']
 
     cfg = config.settings()
+    isolate, _cipd = pools_config.get_default_external_services()
 
     mpp = ''
     if cfg.mp and cfg.mp.server:
@@ -222,8 +216,8 @@ class SwarmingServerService(remote.Service):
         machine_provider_template=mpp,
         display_server_url_template=cfg.display_server_url_template,
         luci_config=config.config.config_service_hostname(),
-        default_isolate_server=cfg.isolate.default_server,
-        default_isolate_namespace=cfg.isolate.default_namespace)
+        default_isolate_server=isolate.server,
+        default_isolate_namespace=isolate.namespace)
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
@@ -442,8 +436,6 @@ class SwarmingTasksService(remote.Service):
       request_obj, secret_bytes, template_apply = (
           message_conversion.new_task_request_from_rpc(
               request, utils.utcnow()))
-      for index in xrange(request_obj.num_task_slices):
-        apply_server_property_defaults(request_obj.task_slice(index).properties)
       task_request.init_new_request(
           request_obj, acl.can_schedule_high_priority_tasks(),
           template_apply)

@@ -167,7 +167,7 @@ def _validate_url(prop, value):
 
 def _validate_namespace(prop, value):
   _validate_length(prop, value, 128)
-  if not config.NAMESPACE_RE.match(value):
+  if not pools_config.NAMESPACE_RE.match(value):
     raise datastore_errors.BadValueError('malformed %s' % prop._name)
 
 
@@ -1254,11 +1254,11 @@ def validate_request_key(request_key):
             root_entity_shard_id))
 
 
-def _select_task_template(pool, template_apply):
+def _select_task_template(pool_cfg, template_apply):
   """Selects the task template to apply from the given pool config.
 
   Args:
-    pool (str) - The name of the pool to select a task template from.
+    pool_cfg (PoolConfig|None) - The pool config for the template.
     template_apply (swarming_rpcs.PoolTaskTemplate) - The PoolTaskTemplate
       enum controlling application of the deployment.
 
@@ -1266,18 +1266,13 @@ def _select_task_template(pool, template_apply):
     (TaskTemplate, extra_tags) if there's a template to apply or else
     (None, extra_tags).
   """
-  if not pool:
-    # It shouldn't actually be possible, but here for consistency so that tasks
-    # always get a swarming.pool.template tag with SOME value.
+  if not pool_cfg:
     return None, ('swarming.pool.template:no_pool',)
 
+  assert isinstance(pool_cfg, pools_config.PoolConfig)
   assert isinstance(template_apply, TemplateApplyEnum)
 
-  pool_cfg = pools_config.get_pool_config(pool)
-  if not pool_cfg:
-    return None, ('swarming.pool.template:no_config',)
-
-  tags = ('swarming.pool.version:%s' % (pool_cfg.rev,),)
+  tags = ()
 
   if template_apply == TEMPLATE_SKIP:
     tags += ('swarming.pool.template:skip',)
@@ -1372,6 +1367,35 @@ def _apply_task_template(task_template, props):
           package_name=cp.pkg, path=cp.path, version=cp.version))
 
 
+def _apply_pool_external_service_defaults(pool_cfg, properties):
+  """Fills ndb task properties with default values read from server settings."""
+  if not pool_cfg:
+    return
+
+  if pool_cfg.default_isolate:
+    properties.inputs_ref = properties.inputs_ref or FilesRef()
+    properties.inputs_ref.isolatedserver = (
+        properties.inputs_ref.isolatedserver or
+        pool_cfg.default_isolate.server)
+    properties.inputs_ref.namespace = (
+        properties.inputs_ref.namespace or
+        pool_cfg.default_isolate.namespace)
+
+  if pool_cfg.default_cipd and properties.cipd_input:
+    properties.cipd_input.server = (
+        properties.cipd_input.server or
+        pool_cfg.default_cipd.server)
+    properties.cipd_input.client_package = (
+        properties.cipd_input.client_package or CipdPackage())
+    # TODO(iannucci) - finish removing 'client_package' as a task-configurable
+    # setting.
+    properties.cipd_input.client_package.package_name = (
+      'infra/tools/cipd/${platform}')
+    properties.cipd_input.client_package.version = (
+        properties.cipd_input.client_package.version or
+        pool_cfg.default_cipd.client_version)
+
+
 def init_new_request(request, allow_high_priority, template_apply):
   """Initializes a new TaskRequest but doesn't store it.
 
@@ -1423,8 +1447,13 @@ def init_new_request(request, allow_high_priority, template_apply):
   request.service_account = request.service_account or u'none'
   request.service_account_token = None
 
-  task_template, extra_tags = _select_task_template(
-      request.pool, template_apply)
+  pool_cfg = None
+  if request.pool:
+    pool_cfg = pools_config.get_pool_config(request.pool)
+
+  task_template, extra_tags = _select_task_template(pool_cfg, template_apply)
+  if request.pool:
+    extra_tags += ('swarming.pool.version:%s' % (pool_cfg.rev,),)
 
   if request.task_slices:
     exp = 0
@@ -1433,6 +1462,7 @@ def init_new_request(request, allow_high_priority, template_apply):
         raise ValueError('missing expiration_secs')
       exp += t.expiration_secs
       _apply_task_template(task_template, t.properties)
+      _apply_pool_external_service_defaults(pool_cfg, t.properties)
     # Always clobber the overall value.
     # message_conversion.new_task_request_from_rpc() ensures both task_slices
     # and expiration_secs cannot be used simultaneously.
