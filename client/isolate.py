@@ -1205,6 +1205,12 @@ def process_isolate_options(parser, options, cwd=None, require_isolated=True):
       (k, try_make_int(v)) for k, v in options.config_variables)
   options.path_variables = dict(options.path_variables)
   options.extra_variables = dict(options.extra_variables)
+  if (options.config_variables or options.path_variables or
+      options.extra_variables):
+    sys.stderr.write(
+        'WARNING: --config-variables, --path-variables and --extra-variables\n'
+        '         will be unsupported soon. Please contact the LUCI team.\n'
+        '         https://crbug.com/907880\n')
 
   # Normalize the path in --isolate.
   if options.isolate:
