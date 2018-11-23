@@ -4,6 +4,7 @@
 {
   'variables': {
     'files': [
+      'foo.tar.gz',
       'hello_world.py'
     ],
   },

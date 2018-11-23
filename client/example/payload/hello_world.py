@@ -8,16 +8,13 @@
 
 import os
 import sys
+import tarfile
 
 
 def main():
-  print('Hello world: ' + sys.argv[1])
-  if len(sys.argv) == 3:
-    # Write a file in ${ISOLATED_OUTDIR}.
-    p = os.path.join(sys.argv[2].decode('utf-8'), u'da 💣.txt').encode('utf-8')
-    with open(p, 'wb') as f:
-      r = 'FOO:%r' % os.environ.get('FOO')
-      f.write(r)
+  # Extract all files into output directory.
+  t = tarfile.open('foo.tar.gz')
+  t.extractall(sys.argv[2])
   return 0
 
 

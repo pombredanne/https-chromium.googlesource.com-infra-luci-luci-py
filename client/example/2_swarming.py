@@ -40,6 +40,7 @@ def main():
         '--task-name', args.task_name,
         '--dump-json', json_file,
         '--isolated', isolated_hash,
+        '--hard-timeout', '3600',
         '--raw-cmd',
       ]
       for k, v in args.dimensions:
