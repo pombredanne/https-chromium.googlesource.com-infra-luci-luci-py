@@ -1424,8 +1424,8 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual(1, task_request.cron_delete_old_task_requests())
     # Make sure the right one still exists.
     actual = task_request.TaskRequest.query().fetch(keys_only=True)
-    self.assertEqual([request_1.key], actual)
-    self.assertEqual([foo_1.key], Foo.query().fetch(keys_only=True))
+    self.assertEqual([request_2.key], actual)
+    self.assertEqual([foo_2.key], Foo.query().fetch(keys_only=True))
 
 
 if __name__ == '__main__':
