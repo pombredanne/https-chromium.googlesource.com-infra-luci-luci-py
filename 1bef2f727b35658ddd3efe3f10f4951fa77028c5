@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8ef2150_2b389b44",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-24T18:37:38Z",
+      "side": 1,
+      "message": "I think the word \"naturally\" could be removed. Or optionally it could be rephrased as \"... by default\".",
+      "range": {
+        "startLine": 1467,
+        "startChar": 22,
+        "endLine": 1467,
+        "endChar": 31
+      },
+      "revId": "1bef2f727b35658ddd3efe3f10f4951fa77028c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "890c9c27_c4f3938d",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-24T18:37:38Z",
+      "side": 1,
+      "message": "Optionally, _1 and _2 could be written as _older and _newer if you think it clarifies it. Sometimes _1 and _2 are used without much meaning, so when one first reads this method, maybe it\u0027s not obvious that 1 is supposed to mean the older one.",
+      "range": {
+        "startLine": 1418,
+        "startChar": 4,
+        "endLine": 1418,
+        "endChar": 13
+      },
+      "revId": "1bef2f727b35658ddd3efe3f10f4951fa77028c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ff31f18_14408e0d",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-24T18:37:38Z",
+      "side": 1,
+      "message": "the newer one",
+      "range": {
+        "startLine": 1425,
+        "startChar": 16,
+        "endLine": 1425,
+        "endChar": 29
+      },
+      "revId": "1bef2f727b35658ddd3efe3f10f4951fa77028c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
