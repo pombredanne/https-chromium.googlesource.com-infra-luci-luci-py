@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ed41bd3_51605a87",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1171626
+      },
+      "writtenOn": "2018-11-24T01:55:59Z",
+      "side": 1,
+      "message": "re.match() already means matching from the beginning of string, so \u0027^\u0027 is not needed here.",
+      "revId": "c877f68ed8d0fbd7ea7e5ccf449178cda7301519",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
