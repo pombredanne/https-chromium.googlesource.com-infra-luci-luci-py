@@ -16,6 +16,24 @@
       "revId": "c877f68ed8d0fbd7ea7e5ccf449178cda7301519",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f753d3b_f728fcb8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-24T02:18:26Z",
+      "side": 1,
+      "message": "That\u0027s true, but I like to keep it there for documentation purpose.\n\nFor example the Go one has different behavior, e.g. https://play.golang.org/p/PaIfbG8-N8k, so it\u0027s safer the regexp around to copy-paste if the \u0027^\u0027 prefix is left in.",
+      "parentUuid": "7ed41bd3_51605a87",
+      "revId": "c877f68ed8d0fbd7ea7e5ccf449178cda7301519",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
