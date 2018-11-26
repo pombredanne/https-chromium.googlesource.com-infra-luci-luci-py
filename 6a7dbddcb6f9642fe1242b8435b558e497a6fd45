@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b14b824d_0f0b3f46",
+        "filename": "client/isolate.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "If we\u0027re using bars to indicate literal variable names everywhere, or just in line-comments, then the `\u0027` can be replaced with `|`",
+      "range": {
+        "startLine": 773,
+        "startChar": 14,
+        "endLine": 773,
+        "endChar": 15
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95bf2e5c_25b80f81",
+        "filename": "client/isolate.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "This line could optionally be made the docstring summary and removed from here.",
+      "range": {
+        "startLine": 781,
+        "startChar": 4,
+        "endLine": 781,
+        "endChar": 71
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26de911c_559e772f",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "This comment could be written in a more English-y way, like \"Dict of path to hash\"",
+      "range": {
+        "startLine": 1239,
+        "startChar": 0,
+        "endLine": 1240,
+        "endChar": 37
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb6cc3ab_1373fca8",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "directory",
+      "range": {
+        "startLine": 1241,
+        "startChar": 43,
+        "endLine": 1241,
+        "endChar": 48
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2483de8c_2c31f457",
+        "filename": "client/tests/httpserver_mock.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "Nit: kB, or kiB (to be extra pedantic...)",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "977b3a78_121a3c4a",
+        "filename": "client/tests/httpserver_mock.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "Nit: Yields",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 12
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28460bb0_0118a34d",
+        "filename": "client/tests/isolateserver_mock.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "This is probably explaine somewhere around here, but I didn\u0027t see it when skimming isolateserver.py:\n\nThe abbreviated entry dict fields are cryptic to unfamiliar readers, is there somewhere to link to or refer to that explains what c/h//i/s/n/d etc stand for?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c32d97b6_1706ea33",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "General question: Why is it an anti-pattern and what should it be replaced with?",
+      "range": {
+        "startLine": 132,
+        "startChar": 19,
+        "endLine": 132,
+        "endChar": 56
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "442a8bd8_fd19f611",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "Optional: MB, MiB",
+      "range": {
+        "startLine": 896,
+        "startChar": 19,
+        "endLine": 896,
+        "endChar": 21
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ebbfca_6b585b79",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "Optional: GB, GiB",
+      "range": {
+        "startLine": 924,
+        "startChar": 36,
+        "endLine": 924,
+        "endChar": 38
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eab16de_f825dd39",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:33:12Z",
+      "side": 1,
+      "message": "Optional: \"32-bit platforms\" and \"64-bit platforms\" would sound slightly better to me.",
+      "range": {
+        "startLine": 927,
+        "startChar": 64,
+        "endLine": 928,
+        "endChar": 51
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
