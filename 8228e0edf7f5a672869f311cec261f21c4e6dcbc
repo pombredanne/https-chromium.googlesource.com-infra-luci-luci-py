@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bf902c4_982100ce",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:40:36Z",
+      "side": 1,
+      "message": "Is this still true?",
+      "range": {
+        "startLine": 112,
+        "startChar": 35,
+        "endLine": 113,
+        "endChar": 10
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdeb1b2f_a233af25",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:40:36Z",
+      "side": 1,
+      "message": "Looks like this doesn\u0027t happen anymore.",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 74
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "482a301e_8d1451b7",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:40:36Z",
+      "side": 1,
+      "message": "if",
+      "range": {
+        "startLine": 126,
+        "startChar": 49,
+        "endLine": 126,
+        "endChar": 51
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57eaadac_c6bf4638",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-26T19:40:36Z",
+      "side": 1,
+      "message": "This has now got enough arguments that it\u0027s probably a good idea to describe the arguments in the \ndocstring:\n  pseudo_revision (str): ...\n  mergebase (str): ...\n  pristine (bool): True if the commit is not changed from the merged version\n  user (str): ...\n  tag (str): ...\n  limit (int): Max length",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 58
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
