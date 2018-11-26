@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "52943558_5eeed566",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-26T21:12:09Z",
+      "side": 1,
+      "message": "No, thanks for double-checking. Updated.",
+      "parentUuid": "4bf902c4_982100ce",
+      "range": {
+        "startLine": 112,
+        "startChar": 35,
+        "endLine": 113,
+        "endChar": 10
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdeb1b2f_a233af25",
         "filename": "appengine/components/tools/calculate_version.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce893b35_9271a8f6",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-26T21:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdeb1b2f_a233af25",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 74
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d7f891b5_d271befe",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-26T21:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "482a301e_8d1451b7",
+      "range": {
+        "startLine": 126,
+        "startChar": 49,
+        "endLine": 126,
+        "endChar": 51
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57eaadac_c6bf4638",
         "filename": "appengine/components/tools/calculate_version.py",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5007c111_dd869dee",
+        "filename": "appengine/components/tools/calculate_version.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-26T21:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57eaadac_c6bf4638",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 58
+      },
+      "revId": "8228e0edf7f5a672869f311cec261f21c4e6dcbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
