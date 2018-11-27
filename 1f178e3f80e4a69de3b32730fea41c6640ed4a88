@@ -34,6 +34,24 @@
       "revId": "1f178e3f80e4a69de3b32730fea41c6640ed4a88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db53de3a_7e925f37",
+        "filename": "client/utils/threading_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-27T20:21:48Z",
+      "side": 1,
+      "message": "Makes sense.\n\nLooks like Python doesn\u0027t handle those expressions with comparison operators quite how we expect. It somehow evaluates the expression together in some kind of chain or something, so that it can handle expressions like x \u003c y \u003c z.\n\n  \u003e\u003e\u003e 1 is 1 is 1\n  True\n  \u003e\u003e\u003e 1 is 1 is 1 is 1\n  True\n  \u003e\u003e\u003e 1 is 1 is 1 is 1 is 1\n  True\n\nThis is similar to\n\n  \u003e\u003e\u003e 1 \u003c\u003d 1 \u003c\u003d 1\n  True\n  \u003e\u003e\u003e 1 \u003d\u003d 1 \u003d\u003d 1\n  True",
+      "parentUuid": "151af075_5beac271",
+      "revId": "1f178e3f80e4a69de3b32730fea41c6640ed4a88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
