@@ -206,6 +206,13 @@ class SwarmingServerService(remote.Service):
     host = 'https://' + os.environ['HTTP_HOST']
 
     cfg = config.settings()
+    isolate, _cipd = pools_config.get_default_external_services()
+
+    default_isolate_server = cfg.isolate.default_server
+    default_isolate_namespace = cfg.isolate.default_namespace
+    if isolate:
+      default_isolate_server = isolate.server
+      default_isolate_namespace = isolate.namespace
 
     mpp = ''
     if cfg.mp and cfg.mp.server:
@@ -222,8 +229,8 @@ class SwarmingServerService(remote.Service):
         machine_provider_template=mpp,
         display_server_url_template=cfg.display_server_url_template,
         luci_config=config.config.config_service_hostname(),
-        default_isolate_server=cfg.isolate.default_server,
-        default_isolate_namespace=cfg.isolate.default_namespace)
+        default_isolate_server=default_isolate_server,
+        default_isolate_namespace=default_isolate_namespace)
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
