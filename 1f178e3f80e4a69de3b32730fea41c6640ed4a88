@@ -52,6 +52,24 @@
       "revId": "1f178e3f80e4a69de3b32730fea41c6640ed4a88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71d3cfc5_2a2bbc73",
+        "filename": "client/utils/threading_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-27T20:28:02Z",
+      "side": 1,
+      "message": "Ah, found it:\nhttps://docs.python.org/2/reference/expressions.html#comparisons\n\n \u003e Comparisons can be chained arbitrarily, e.g., x \u003c y \u003c\u003d z is equivalent to x \u003c y and y \u003c\u003d z, except that y is evaluated only once.\n\nSo, the expression `1 is 1 is 1` is equilalent to `1 is 1 and 1 is 1`, and, `True is 1 is 1` is equivalent to `True is 1 and 1 is 1`.",
+      "parentUuid": "db53de3a_7e925f37",
+      "revId": "1f178e3f80e4a69de3b32730fea41c6640ed4a88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
