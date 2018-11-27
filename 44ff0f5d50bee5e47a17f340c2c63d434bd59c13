@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "435eb5b5_a3735fcd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-27T00:25:33Z",
+      "side": 1,
+      "message": "Longer-term, are you planning to either uncomment or delete? Leaving in commented-out lines doesn\u0027t seem right for some reason.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "44ff0f5d50bee5e47a17f340c2c63d434bd59c13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd2f01d_730228ec",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-27T00:25:33Z",
+      "side": 1,
+      "message": "(Optional)\n\nEven though I\u0027m not very familiar with using threads and queues like this, I think I got a rough idea how it\u0027s supposed to work from this description. Still I feel like there\u0027s probably potential for this to be clearer, maybe with some kind of diagram or something... e.g. these three threads run in parallel, shunting items to different queues to be processed by different threads.\n\n  create-batches\n      |\n      v\n(batches-to-lookup)\n      |\n      v\n  do-lookups\n  |        |\n  v        v\n(missing)  (to-upload, not a queue)\n  |\n  v\nhandle-missing\n  |\n  v\n(uploaded, not a queue)\n\nBut probably don\u0027t use that diagram, that\u0027s not very clear.",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 448,
+        "endChar": 57
+      },
+      "revId": "44ff0f5d50bee5e47a17f340c2c63d434bd59c13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3af956bd_51843d45",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-27T00:25:33Z",
+      "side": 1,
+      "message": "incoming",
+      "range": {
+        "startLine": 465,
+        "startChar": 13,
+        "endLine": 465,
+        "endChar": 20
+      },
+      "revId": "44ff0f5d50bee5e47a17f340c2c63d434bd59c13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47bbf39a_a1c2151f",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-27T00:25:33Z",
+      "side": 1,
+      "message": "(Optionally, use kB or kiB if you decided to use these elsewhere)",
+      "range": {
+        "startLine": 1227,
+        "startChar": 29,
+        "endLine": 1227,
+        "endChar": 31
+      },
+      "revId": "44ff0f5d50bee5e47a17f340c2c63d434bd59c13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
