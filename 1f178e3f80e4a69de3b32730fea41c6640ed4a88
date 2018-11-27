@@ -16,6 +16,24 @@
       "revId": "1f178e3f80e4a69de3b32730fea41c6640ed4a88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "151af075_5beac271",
+        "filename": "client/utils/threading_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-27T19:41:33Z",
+      "side": 1,
+      "message": "Because \u00271\u0027 is not unique; so somehow 1 could be hardcoded and \u00271 is 1\u0027 be True.\n\nThat said, I learned something new: https://twitter.com/marcaruel/status/1067503404690350080",
+      "parentUuid": "b1ab80ec_6edc955b",
+      "revId": "1f178e3f80e4a69de3b32730fea41c6640ed4a88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
