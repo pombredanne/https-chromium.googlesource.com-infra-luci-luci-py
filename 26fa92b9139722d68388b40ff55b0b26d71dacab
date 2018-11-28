@@ -16,6 +16,24 @@
       "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c14ade_562c4edc",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-28T23:37:45Z",
+      "side": 1,
+      "message": "I don\u0027t follow, can you elaborate?\n\nThis function name and behavior is consistent with the other functions in this module (e.g. assign_tasks and notify_request).",
+      "parentUuid": "347cf74e_5e6e9635",
+      "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
