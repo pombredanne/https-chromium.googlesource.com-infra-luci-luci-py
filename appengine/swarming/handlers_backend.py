@@ -22,8 +22,10 @@ from components import machine_provider
 from server import bot_groups_config
 from server import bot_management
 from server import config
+from server import external_scheduler
 from server import lease_management
 from server import named_caches
+from server import pools_config
 from server import task_pack
 from server import task_queues
 from server import task_request
@@ -318,6 +320,26 @@ class CronBotGroupsConfigHandler(webapp2.RequestHandler):
     self.response.out.write('Success.' if ok else 'Fail.')
 
 
+class CronExternalSchedulerCancellationsHandler(webapp2.RequestHandler):
+  """Fetches cancelled tasks from external scheulers, and cancels them."""
+
+  @decorators.require_cronjob
+  def get(self):
+    known_pools = pools_config.known()
+    for pool in known_pools:
+      pool_cfg = pools_config.get_pool_config(pool)
+      if not pool_cfg.external_schedulers:
+        continue
+      for es_cfg in pool_cfg.external_schedulers:
+        if es_cfg.enabled:
+          # TODO(akeshet): Push this call onto a task queue so it can
+          # be performed concurrently for all pools.
+          cancellations = external_scheduler.get_cancellations(es_cfg)
+          for c in cancellations:
+            # TODO(akeshet): Push a cancel-task-on-bot-with-reason call onto
+            # task queue (implementation forthcoming).
+
+
 class CancelTasksHandler(webapp2.RequestHandler):
   """Cancels tasks given a list of their ids."""
 
@@ -433,6 +455,9 @@ def get_routes():
         CronTasksTagsAggregationHandler),
 
     ('/internal/cron/bot_groups_config', CronBotGroupsConfigHandler),
+
+    ('/internal/cron/external_scheduler_cancellations',
+        CronExternalSchedulerCancellationsHandler),
 
     # Machine Provider.
     ('/internal/cron/machine_provider_bot_usage',
