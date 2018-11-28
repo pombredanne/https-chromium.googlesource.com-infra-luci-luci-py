@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1e5b01b4_c238f0f5",
+        "filename": "client/isolate.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "True, I wasn\u0027t consistent.",
+      "parentUuid": "b14b824d_0f0b3f46",
+      "range": {
+        "startLine": 773,
+        "startChar": 14,
+        "endLine": 773,
+        "endChar": 15
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95bf2e5c_25b80f81",
         "filename": "client/isolate.py",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6442da19_ebb26ed5",
+        "filename": "client/isolate.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95bf2e5c_25b80f81",
+      "range": {
+        "startLine": 781,
+        "startChar": 4,
+        "endLine": 781,
+        "endChar": 71
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "667f842b_454cfc19",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26de911c_559e772f",
+      "range": {
+        "startLine": 1239,
+        "startChar": 0,
+        "endLine": 1240,
+        "endChar": 37
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb6cc3ab_1373fca8",
         "filename": "client/isolateserver.py",
         "patchSetId": 12
@@ -91,6 +163,30 @@
       "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0d109ba_6c72aaf4",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb6cc3ab_1373fca8",
+      "range": {
+        "startLine": 1241,
+        "startChar": 43,
+        "endLine": 1241,
+        "endChar": 48
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,54 @@
     },
     {
       "key": {
+        "uuid": "c2380cae_9e0762d6",
+        "filename": "client/tests/httpserver_mock.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2483de8c_2c31f457",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93674047_6d5775cc",
+        "filename": "client/tests/httpserver_mock.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "977b3a78_121a3c4a",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 12
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28460bb0_0118a34d",
         "filename": "client/tests/isolateserver_mock.py",
         "patchSetId": 12
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "61f7a057_2e72efa7",
+        "filename": "client/tests/isolateserver_mock.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "I agree this code is quite cryptic. Commented a bit.",
+      "parentUuid": "28460bb0_0118a34d",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c32d97b6_1706ea33",
         "filename": "client/tests/isolateserver_test.py",
         "patchSetId": 12
@@ -174,6 +342,30 @@
       "writtenOn": "2018-11-26T19:33:12Z",
       "side": 1,
       "message": "General question: Why is it an anti-pattern and what should it be replaced with?",
+      "range": {
+        "startLine": 132,
+        "startChar": 19,
+        "endLine": 132,
+        "endChar": 56
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f94f2761_50b1e44a",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "It should have a list of the warmed up cache (present items), not what\u0027s missing.",
+      "parentUuid": "c32d97b6_1706ea33",
       "range": {
         "startLine": 132,
         "startChar": 19,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "148c0c17_ba632a8a",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "442a8bd8_fd19f611",
+      "range": {
+        "startLine": 896,
+        "startChar": 19,
+        "endLine": 896,
+        "endChar": 21
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08ebbfca_6b585b79",
         "filename": "client/tests/isolateserver_test.py",
         "patchSetId": 12
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "61f89929_9792b400",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08ebbfca_6b585b79",
+      "range": {
+        "startLine": 924,
+        "startChar": 36,
+        "endLine": 924,
+        "endChar": 38
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1eab16de_f825dd39",
         "filename": "client/tests/isolateserver_test.py",
         "patchSetId": 12
@@ -252,6 +492,30 @@
       "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1dde5db_d111f0a9",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T16:29:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1eab16de_f825dd39",
+      "range": {
+        "startLine": 927,
+        "startChar": 64,
+        "endLine": 928,
+        "endChar": 51
+      },
+      "revId": "6a7dbddcb6f9642fe1242b8435b558e497a6fd45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
