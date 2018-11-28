@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c340a7f1_e05d122e",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-28T22:01:40Z",
+      "side": 1,
+      "message": "I think I want to push the cancellations to the cancel-tasks task queue (since I already see a handler there that knows how to cancel by id, and this will allow for some parallelism).\n\nHowever, 2 questions:\n 1) I don\u0027t actually see any code within swarming that seems to reference cancel-tasks or that pushes anything on to it. Is there, that I can adapt from?\n 2) I\u0027d want to add \"cancel only if on this bot\" semantics, or \"cancel only this try #\" semantics. Opinion?",
+      "revId": "029f13a38c1aab81be6ee5d1b1b5651ec8a0f458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
