@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f9ad8ec_2b37360f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-11-28T23:57:30Z",
+      "side": 1,
+      "message": "this allows the details API to work with the pools_config values (which is what caused \u0027led\u0027 to stop working when I moved the configs in infradata)",
+      "revId": "98e74de2508a1e9018bd85940b5941e74b66a832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7efdd447_b240dbdb",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 4
