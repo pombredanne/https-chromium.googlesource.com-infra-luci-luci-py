@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b033cb49_e3112b58",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-11-28T23:56:36Z",
+      "side": 0,
+      "message": "This was actually incorrect before: some tests were hitting `pool \u003d\u003d None` cases when they didn\u0027t mean to, but this logic was havin get_pool_config return None, instead of raising ValueError (which is what the actual swarming logic does in this case).\n\nThe new version of this mocks at the _fetch_pools_config function level, so that the actual get_pool_config logic runs (and any other functions which call _fetch_pools_config are correctly mocked).",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 19
+      },
+      "revId": "d07efe857282aaa2ccd332eb974308be66c8393a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

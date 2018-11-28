@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7efdd447_b240dbdb",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-11-28T23:56:36Z",
+      "side": 1,
+      "message": "these changes cause the tests to begin pulling from the mocked pool configs, instead of mocking the old global config location",
+      "range": {
+        "startLine": 92,
+        "startChar": 9,
+        "endLine": 92,
+        "endChar": 30
+      },
+      "revId": "98e74de2508a1e9018bd85940b5941e74b66a832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "699ba688_a34b8edc",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-11-28T23:56:36Z",
+      "side": 1,
+      "message": "This is why we need to change the get_pool_config mock in test_env_handlers",
+      "range": {
+        "startLine": 362,
+        "startChar": 9,
+        "endLine": 362,
+        "endChar": 28
+      },
+      "revId": "98e74de2508a1e9018bd85940b5941e74b66a832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a233d687_5dab4b34",
+        "filename": "appengine/swarming/server/pools_config_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-11-28T23:56:36Z",
+      "side": 1,
+      "message": "add tests to ensure that the pools config is getting validated correctly",
+      "range": {
+        "startLine": 141,
+        "startChar": 6,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "98e74de2508a1e9018bd85940b5941e74b66a832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
