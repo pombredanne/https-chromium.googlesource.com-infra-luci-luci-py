@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "347cf74e_5e6e9635",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-28T23:31:12Z",
+      "side": 1,
+      "message": "I\u0027d recommend to not export it, and instead add a function cron_scheduler_cancellations().",
+      "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
