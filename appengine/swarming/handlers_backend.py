@@ -24,6 +24,7 @@ from server import bot_management
 from server import config
 from server import lease_management
 from server import named_caches
+from server import pools_config
 from server import task_pack
 from server import task_queues
 from server import task_request
@@ -318,6 +319,14 @@ class CronBotGroupsConfigHandler(webapp2.RequestHandler):
     self.response.out.write('Success.' if ok else 'Fail.')
 
 
+class CronExternalSchedulerCancellationsHandler(webapp2.RequestHandler):
+  """Fetches cancelled tasks from external scheulers, and cancels them."""
+
+  @decorators.require_cronjob
+  def get(self):
+    task_scheduler.cron_handle_external_cancellations()
+
+
 class CancelTasksHandler(webapp2.RequestHandler):
   """Cancels tasks given a list of their ids."""
 
@@ -434,6 +443,9 @@ def get_routes():
         CronTasksTagsAggregationHandler),
 
     ('/internal/cron/bot_groups_config', CronBotGroupsConfigHandler),
+
+    ('/internal/cron/external_scheduler_cancellations',
+        CronExternalSchedulerCancellationsHandler),
 
     # Machine Provider.
     ('/internal/cron/machine_provider_bot_usage',
