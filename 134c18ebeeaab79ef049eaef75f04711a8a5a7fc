@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5a2a41_24f3ec6c",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-28T18:28:47Z",
+      "side": 1,
+      "message": "Will it fall into infinite recursion and overflow stack in that case?",
+      "range": {
+        "startLine": 202,
+        "startChar": 42,
+        "endLine": 202,
+        "endChar": 68
+      },
+      "revId": "134c18ebeeaab79ef049eaef75f04711a8a5a7fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3602908_16a8d466",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-28T18:28:47Z",
+      "side": 1,
+      "message": "Since l looks like 1 in many fonts, maybe it would be more readable to just keep it as [list(items)[1]]?",
+      "range": {
+        "startLine": 1178,
+        "startChar": 0,
+        "endLine": 1179,
+        "endChar": 19
+      },
+      "revId": "134c18ebeeaab79ef049eaef75f04711a8a5a7fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
