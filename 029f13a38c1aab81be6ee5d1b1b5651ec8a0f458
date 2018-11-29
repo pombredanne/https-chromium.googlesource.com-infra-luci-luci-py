@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "1717cba6_aced9adb",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T18:51:00Z",
+      "side": 1,
+      "message": "I meant the comment here;\n\n\u003e The pattern used here is to move the actual logic inside the relevant source, so this file size is kept manageable.\n\nI should have filed it separately, sorry about that.",
+      "parentUuid": "a48bc4f4_b066a2fe",
+      "revId": "029f13a38c1aab81be6ee5d1b1b5651ec8a0f458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebdc1129_8457c72f",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 1
