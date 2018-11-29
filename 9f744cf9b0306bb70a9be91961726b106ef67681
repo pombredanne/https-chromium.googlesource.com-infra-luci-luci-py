@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d558107_14f86d17",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-11-29T22:37:05Z",
+      "side": 1,
+      "message": "Does this mean that sometimes this module can be loaded but without all of the adb stuff, which means that in that case these functions would fail if called?",
+      "revId": "9f744cf9b0306bb70a9be91961726b106ef67681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
