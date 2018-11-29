@@ -16,6 +16,24 @@
       "revId": "9f744cf9b0306bb70a9be91961726b106ef67681",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f3ac444_c6bda74b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T23:16:14Z",
+      "side": 1,
+      "message": "Exact. It\u0027s normally loaded only on linux. The problem is that import would cause OSError (vs ImportError) due to C dynamic library missing, which is an hard fail.",
+      "parentUuid": "5d558107_14f86d17",
+      "revId": "9f744cf9b0306bb70a9be91961726b106ef67681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
