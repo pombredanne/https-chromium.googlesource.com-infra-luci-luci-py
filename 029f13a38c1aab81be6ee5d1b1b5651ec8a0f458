@@ -196,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "e44bcb8e_48abf552",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T19:45:08Z",
+      "side": 1,
+      "message": "Querying pools_config, the loop.",
+      "parentUuid": "c7d8ea1b_7f56ebfc",
+      "revId": "029f13a38c1aab81be6ee5d1b1b5651ec8a0f458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ebdc1129_8457c72f",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 1
