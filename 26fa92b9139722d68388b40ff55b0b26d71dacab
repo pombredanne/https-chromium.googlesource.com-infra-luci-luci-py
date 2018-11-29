@@ -34,6 +34,24 @@
       "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef4e31e7_d1de23f6",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T01:12:52Z",
+      "side": 1,
+      "message": "See my comment in handlers_backend, do not put logic in handlers_backend, move the logic here.",
+      "parentUuid": "27c14ade_562c4edc",
+      "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
