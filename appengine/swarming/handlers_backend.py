@@ -342,6 +342,23 @@ class CancelTasksHandler(webapp2.RequestHandler):
                    task_id, ok, was_running)
 
 
+class CancelTaskOnBotHandler(webapp2.RequestHandler):
+  """Cancels a given task if it is running on the given bot.
+
+  If bot is not specified, cancel task unconditionally.
+  If bot is specified, and task is not running on bot, then do nothing."""
+
+  @decorators.require_taskqueue('cancel-task-on-bot')
+  def post(self):
+    payload = json.loads(self.request.body)
+    task_id = payload.get('task_id')
+    if not task_id:
+      logging.error('Missing task_id.')
+      return
+    bot_id = payload.get('bot_id')
+    task_scheduler.cancel_task_with_id(task_id, True, bot_id)
+
+
 class TaskDimensionsHandler(webapp2.RequestHandler):
   """Refreshes the active task queues."""
 
@@ -457,6 +474,7 @@ def get_routes():
 
     # Task queues.
     ('/internal/taskqueue/cancel-tasks', CancelTasksHandler),
+    ('/internal/taskqueue/cancel-task-on-bot', CancelTaskOnBotHandler),
     ('/internal/taskqueue/rebuild-task-cache', TaskDimensionsHandler),
     (r'/internal/taskqueue/pubsub/<task_id:[0-9a-f]+>', TaskSendPubSubMessage),
     ('/internal/taskqueue/machine-provider-manage',
