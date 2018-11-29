@@ -22,6 +22,30 @@
       "revId": "3e1dda665899d750126a83ed4de33960509e2836",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70941f0c_685f28dd",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T23:43:22Z",
+      "side": 1,
+      "message": "No, it used to be the case but not anymore.",
+      "parentUuid": "68101606_b15873f2",
+      "range": {
+        "startLine": 1283,
+        "startChar": 7,
+        "endLine": 1283,
+        "endChar": 11
+      },
+      "revId": "3e1dda665899d750126a83ed4de33960509e2836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
