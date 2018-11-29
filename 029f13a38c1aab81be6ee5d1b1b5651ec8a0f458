@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "c7d8ea1b_7f56ebfc",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-29T19:12:34Z",
+      "side": 1,
+      "message": "Which logic here are you referring to? Is your comment regarding the todo comment \"if and only if it is running on bot\"? In that case, the logic is implemented in the other CL in a different module.\n\nI\u0027ll reformulate the TODOs here to make it clearer what I think the ultimate structure is going to be.",
+      "parentUuid": "1717cba6_aced9adb",
+      "revId": "029f13a38c1aab81be6ee5d1b1b5651ec8a0f458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ebdc1129_8457c72f",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 1
