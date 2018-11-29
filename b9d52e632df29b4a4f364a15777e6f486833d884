@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "852bda48_3c3fd516",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-29T18:31:44Z",
+      "side": 1,
+      "message": "If you say so, though this increases the risk of this CL, and I\u0027m not sure I understand the rationale. Python doesn\u0027t always make it easy to find all references to a symbol.",
+      "parentUuid": "3fc8ab22_0a4183d8",
+      "revId": "b9d52e632df29b4a4f364a15777e6f486833d884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5cddd13_ee9d2e99",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "b9d52e632df29b4a4f364a15777e6f486833d884",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10656ea8_a2749a5f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-29T18:31:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5cddd13_ee9d2e99",
+      "revId": "b9d52e632df29b4a4f364a15777e6f486833d884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
