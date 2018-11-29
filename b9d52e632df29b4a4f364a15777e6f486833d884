@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fc8ab22_0a4183d8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T01:24:09Z",
+      "side": 1,
+      "message": "Please do not use a default argument and instead update all (~9) call sites. This code base uses default argument sparingly and it\u0027s been very useful to reduce the number of issues during refactoring.",
+      "revId": "b9d52e632df29b4a4f364a15777e6f486833d884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5cddd13_ee9d2e99",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-29T01:24:09Z",
+      "side": 1,
+      "message": "Add a safety check:\n\n  if not kill_running:\n    assert no bot_id, \u0027Can\u0027t use bot_id is kill_running is False\u0027",
+      "revId": "b9d52e632df29b4a4f364a15777e6f486833d884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
