@@ -1441,6 +1441,30 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(State.KILLED, run_result.state)
     self.assertEqual(4, len(pub_sub_calls)) # KILLED
 
+  def test_cancel_task_bot_id(self):
+    # Cancel a running task.
+    pub_sub_calls = self.mock_pub_sub()
+    run_result = self._quick_reap(1, 0, pubsub_topic='projects/abc/topics/def')
+    self.assertEqual(1, len(pub_sub_calls)) # RUNNING
+
+    # Denied if bot_id ('foo') doesn't match.
+    ok, was_running = task_scheduler.cancel_task(
+        run_result.request_key.get(), run_result.result_summary_key , True,
+        'foo')
+    self.assertEqual(False, ok)
+    self.assertEqual(True, was_running)
+    self.assertEqual(0, self.execute_tasks())
+    self.assertEqual(1, len(pub_sub_calls)) # No message.
+
+    # Works if bot_id matches.
+    ok, was_running = task_scheduler.cancel_task(
+        run_result.request_key.get(), run_result.result_summary_key , True,
+        'localhost')
+    self.assertEqual(True, ok)
+    self.assertEqual(True, was_running)
+    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, len(pub_sub_calls)) # CANCELED
+
   def test_cancel_task_completed(self):
     # Cancel a completed task.
     pub_sub_calls = self.mock_pub_sub()
