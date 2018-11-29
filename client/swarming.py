@@ -582,14 +582,14 @@ def convert_to_old_format(result):
   result.setdefault('tags', None)
   result.setdefault('user', None)
 
-  # Convertion back to old API.
-  duration = result.pop('duration', None)
+  # Convertion back to old API. But keep value of existing API.
+  duration = result.get('duration', None)
   result['durations'] = [duration] if duration else []
-  exit_code = result.pop('exit_code', None)
+  exit_code = result.get('exit_code', None)
   result['exit_codes'] = [int(exit_code)] if exit_code else []
-  result['id'] = result.pop('task_id')
+  result['id'] = result.get('task_id')
   result['isolated_out'] = result.get('outputs_ref', None)
-  output = result.pop('output', None)
+  output = result.get('output', None)
   result['outputs'] = [output] if output else []
   # server_version
   # Endpoints result 'state' as string. For compatibility with old code, convert
