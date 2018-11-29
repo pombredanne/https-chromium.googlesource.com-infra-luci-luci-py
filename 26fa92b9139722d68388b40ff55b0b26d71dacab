@@ -52,6 +52,24 @@
       "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08963eab_71042b5b",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-11-29T18:30:28Z",
+      "side": 1,
+      "message": "I don\u0027t see a pertinent comment in handlers_backend. Is there an unpublished draft comment?\n\nThe amount of new logic in handlers_backend seems minimal and comparable to the other handlers in that module.\n\nThis external_scheduler module so far is very focused on being a convenient interface between swarming and external scheduler, but with no swarming behaviors in it. That seems correct to me. Putting task cancellation logic into this module would break that.",
+      "parentUuid": "ef4e31e7_d1de23f6",
+      "revId": "26fa92b9139722d68388b40ff55b0b26d71dacab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
