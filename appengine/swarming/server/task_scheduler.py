@@ -1404,8 +1404,15 @@ def cron_handle_external_cancellations():
         # be performed concurrently for all pools.
         cancellations = external_scheduler.get_cancellations(es_cfg)
         for c in cancellations:
-          # TODO(akeshet): Push a cancel-task-on-bot-with-reason call onto
-          # task queue (implementation forthcoming).
+          data = {
+            u'task_id': c.task_id,
+            u'bot_id': c.bot_id,
+          }
+          payload = utils.encode_to_json(data)
+          url = '/internal/taskqueue/cancel-task-on-bot'
+          if not utils.enqueue_task(
+              url, queue_name='cancel-task-on-bot', payload=payload):
+            logging.error('Failed to enqueue task-cancellation.')
 
 
 ## Task queue tasks.
