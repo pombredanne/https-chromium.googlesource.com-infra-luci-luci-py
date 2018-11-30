@@ -346,6 +346,7 @@ class CancelTaskOnBotHandler(webapp2.RequestHandler):
       return
     bot_id = payload.get('bot_id')
     try:
+<<<<<<< HEAD
       ok, was_running = task_scheduler.cancel_task_with_id(
           task_id, True, bot_id)
       logging.info('task %s canceled: %s was running: %s',
@@ -354,6 +355,13 @@ class CancelTaskOnBotHandler(webapp2.RequestHandler):
       # Ignore errors that may be due to missing or invalid tasks.
       logging.warning('Ignoring a task cancellation due to exception.',
           exc_info=True)
+=======
+      task_scheduler.cancel_task_with_id(task_id, True, bot_id)
+    except ValueError:
+      logging.exception('Ignoring a task cancellation due to exception.')
+      # Ignore errors that may be due to missing or invalid tasks.
+      pass
+>>>>>>> ce86577d... swarming: enqueue items to cancel-task-on-bot
 
 
 class TaskDimensionsHandler(webapp2.RequestHandler):
