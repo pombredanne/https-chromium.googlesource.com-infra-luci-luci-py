@@ -356,7 +356,12 @@ class CancelTaskOnBotHandler(webapp2.RequestHandler):
       logging.error('Missing task_id.')
       return
     bot_id = payload.get('bot_id')
-    task_scheduler.cancel_task_with_id(task_id, True, bot_id)
+    try:
+      task_scheduler.cancel_task_with_id(task_id, True, bot_id)
+    except ValueError:
+      logging.exception('Ignoring a task cancellation due to exception.')
+      # Ignore errors that may be due to missing or invalid tasks.
+      pass
 
 
 class TaskDimensionsHandler(webapp2.RequestHandler):
