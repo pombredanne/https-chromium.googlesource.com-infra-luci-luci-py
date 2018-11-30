@@ -339,19 +339,17 @@ class StorageTest(TestCase):
     return missing[0][1]
 
   def test_upload_items(self):
+    server_ref = isolate_storage.ServerRef('http://localhost:1', 'default')
     items = [
-      isolateserver.BufferItem('a'*12),
-      isolateserver.BufferItem(''),
-      isolateserver.BufferItem('c'*1222),
-      isolateserver.BufferItem('d'*1223),
+      isolateserver.BufferItem('a'*12, server_ref.hash_algo),
+      isolateserver.BufferItem('', server_ref.hash_algo),
+      isolateserver.BufferItem('c'*1222, server_ref.hash_algo),
+      isolateserver.BufferItem('d'*1223, server_ref.hash_algo),
     ]
     missing = {
       items[2]: 123,
       items[3]: 456,
     }
-    server_ref = isolate_storage.ServerRef('http://localhost:1', 'default')
-    items[2].prepare(server_ref.hash_algo)
-    items[3].prepare(server_ref.hash_algo)
     storage_api = MockedStorageApi(
         server_ref,
         {item.digest: push_state for item, push_state in missing.iteritems()})
@@ -519,6 +517,21 @@ class StorageTest(TestCase):
     self.assertEqual([], cold)
     # isolated, symlink, foo file.
     self.assertEqual(3, len(hot))
+
+  def test_archive_files_to_storage_tar(self):
+    # Create 5 files, which is the minimum to create a tarball.
+    for i in xrange(5):
+      with open(os.path.join(self.tempdir, unicode(i)), 'wb') as f:
+        f.write('fooo%d' % i)
+    server_ref = isolate_storage.ServerRef('http://localhost:1', 'default')
+    storage_api = MockedStorageApi(server_ref, {})
+    storage = isolateserver.Storage(storage_api)
+    results, cold, hot = isolateserver.archive_files_to_storage(
+        storage, [self.tempdir], None)
+    self.assertEqual([self.tempdir], results.keys())
+    self.assertEqual([], cold)
+    # isolated, tar file.
+    self.assertEqual(2, len(hot))
 
 
 class IsolateServerStorageApiTest(TestCase):
@@ -820,14 +833,20 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
         isolate_storage.ServerRef(self.server.url, namespace))
 
     # Items to upload.
-    items = [isolateserver.BufferItem('item %d' % i) for i in xrange(10)]
+    items = [
+      isolateserver.BufferItem('item %d' % i, storage.server_ref.hash_algo)
+      for i in xrange(10)
+    ]
 
     # Do it.
     uploaded = storage.upload_items(items)
     self.assertEqual(set(items), set(uploaded))
 
     # Now ensure upload_items skips existing items.
-    more = [isolateserver.BufferItem('more item %d' % i) for i in xrange(10)]
+    more = [
+      isolateserver.BufferItem('more item %d' % i, storage.server_ref.hash_algo)
+      for i in xrange(10)
+    ]
 
     # Uploaded only |more|.
     uploaded = storage.upload_items(items + more)
@@ -844,7 +863,10 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
         isolate_storage.ServerRef(self.server.url, namespace))
 
     # Upload items.
-    items = [isolateserver.BufferItem('item %d' % i) for i in xrange(10)]
+    items = [
+      isolateserver.BufferItem('item %d' % i, storage.server_ref.hash_algo)
+      for i in xrange(10)
+    ]
     uploaded = storage.upload_items(items)
     self.assertEqual(set(items), set(uploaded))
 
@@ -870,7 +892,7 @@ class IsolateServerStorageSmokeTest(unittest.TestCase):
       with cache.getfileobj(i.digest) as f:
         actual.append(f.read())
 
-    self.assertEqual([i.buffer for i in items], actual)
+    self.assertEqual([''.join(i.content()) for i in items], actual)
 
   def test_push_and_fetch(self):
     self.run_push_and_fetch_test('default')
@@ -1196,8 +1218,8 @@ def get_storage(server_ref):
 
     @staticmethod
     def upload_items(items):
-      # Always returns the second item as not present.
-      return [list(items)[1]]
+      # Always returns the last item as not present.
+      return [list(items)[-1]]
   return StorageFake()
 
 

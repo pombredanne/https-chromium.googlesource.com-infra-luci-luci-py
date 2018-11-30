@@ -206,7 +206,7 @@ def chromium_save_isolated(isolated, data, path_variables, algo):
         isolated_format.hash_file(slavepath, algo))
     files.append(os.path.basename(slavepath))
 
-  files.extend(isolated_format.save_isolated(isolated, data))
+  isolated_format.save_isolated(isolated, data)
   return files
 
 
@@ -569,14 +569,12 @@ class CompleteState(object):
       follow_symlinks = sys.platform != 'win32'
     # Expand the directories by listing each file inside. Up to now, trailing
     # os.path.sep must be kept.
-    # TODO(maruel): This code is not smart enough to leverage the generator, so
-    # materialize the list.
-    infiles = list(isolated_format.expand_directories_and_symlinks(
+    infiles = _expand_directories_and_symlinks(
         self.saved_state.root_dir,
         infiles,
         tools.gen_blacklist(blacklist),
         follow_symlinks,
-        ignore_broken_items))
+        ignore_broken_items)
 
     # Finally, update the new data to be able to generate the foo.isolated file,
     # the file that is used by run_isolated.py.
@@ -596,12 +594,13 @@ class CompleteState(object):
         self.saved_state.files.pop(infile)
       else:
         filepath = os.path.join(self.root_dir, infile)
-        self.saved_state.files[infile] = isolated_format.file_to_metadata(
+        meta = isolated_format.file_to_metadata(
             filepath,
-            self.saved_state.files[infile],
             self.saved_state.read_only,
-            self.saved_state.algo,
             collapse_symlinks)
+        if 'l' not in meta:
+          meta['h'] = isolated_format.hash_file(filepath, self.saved_state.algo)
+        self.saved_state.files[infile] = meta
 
   def save_files(self):
     """Saves self.saved_state and creates a .isolated file."""
@@ -800,12 +799,41 @@ def _process_infiles(infiles):
       seen.add(filepath)
       yield isolateserver.FileItem(
           path=filepath,
+          algo=None,
           digest=metadata['h'],
           size=metadata['s'],
           high_priority=metadata.get('priority') == '0')
     else:
       skipped += 1
   logging.info('Skipped %d duplicated entries', skipped)
+
+
+def _expand_directories_and_symlinks(
+    indir, infiles, blacklist, follow_symlinks, ignore_broken_items):
+  """Expands the directories and the symlinks, applies the blacklist and
+  verifies files exist.
+
+  Files are specified in os native path separator.
+
+  Returns:
+    list of relative file path of each file inside every directory specified.
+  """
+  # TODO(maruel): The calling code is not smart enough to leverage the
+  # generator, so materialize the list.
+  out = []
+  for relfile in infiles:
+    try:
+      # Ignore the symlink hint, this code will be eventually deleted so it is
+      # not worth optimizing.
+      out.extend(
+          relpath for relpath, _issymlink
+          in isolated_format.expand_directory_and_symlink(
+              indir, relfile, blacklist, follow_symlinks))
+    except isolated_format.MappingError as e:
+      if not ignore_broken_items:
+        raise
+      logging.info('warning: %s', e)
+  return out
 
 
 def isolate_and_archive(trees, server_ref):
