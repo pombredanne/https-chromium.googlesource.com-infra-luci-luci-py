@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d0a9bb4_2ef39be1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-11-30T15:11:26Z",
+      "side": 1,
+      "message": "You need a \u0027pass\u0027 statement otherwise it\u0027s no valid python.",
+      "revId": "6ec1f64d9a33040dc91176a65b5c7a80cc739ba8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
