@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae159a2d_af08cdfb",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2018-11-30T20:08:02Z",
+      "side": 1,
+      "message": "Not sure if you want this or not, but I was surprised that \u0027make test\u0027 didn\u0027t build first.",
+      "revId": "851717a40f5473fb454af5978d59c6434b4b8a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
