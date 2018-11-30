@@ -505,6 +505,21 @@ class StorageTest(TestCase):
       self.assertEqual(os.path.join(self.tempdir, filename), pushed_item.path)
       self.assertEqual(files_content[filename], pushed_content)
 
+  def test_archive_files_to_storage_symlink(self):
+    l = os.path.join(self.tempdir, u'link')
+    with open(os.path.join(self.tempdir, u'foo'), 'wb') as f:
+      f.write('fooo')
+    fs.symlink('foo', l)
+    server_ref = isolate_storage.ServerRef('http://localhost:1', 'default')
+    storage_api = MockedStorageApi(server_ref, {})
+    storage = isolateserver.Storage(storage_api)
+    results, cold, hot = isolateserver.archive_files_to_storage(
+        storage, [self.tempdir], None)
+    self.assertEqual([self.tempdir], results.keys())
+    self.assertEqual([], cold)
+    # isolated, symlink, foo file.
+    self.assertEqual(3, len(hot))
+
 
 class IsolateServerStorageApiTest(TestCase):
   @staticmethod
