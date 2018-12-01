@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37a34240_949b8f3c",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-01T02:24:46Z",
+      "side": 1,
+      "message": "The problem with this message is that we loose how many task were ignored.",
+      "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51c20623_77b8de58",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-01T02:24:46Z",
+      "side": 1,
+      "message": "Probably worth logging though.",
+      "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbf9b8a5_00a7f2bc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-01T02:24:46Z",
+      "side": 1,
+      "message": "FTR, my proposal was to do one task queue per pool, not per task ID. I think sharding at pool is a good level for parallelism.",
+      "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
