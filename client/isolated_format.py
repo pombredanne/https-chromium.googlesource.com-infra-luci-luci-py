@@ -122,7 +122,7 @@ def walk_includes(isolated):
 
 
 @tools.profile
-def expand_symlinks(indir, relfile):
+def _expand_symlinks(indir, relfile):
   """Follows symlinks in |relfile|, but treating symlinks that point outside the
   build tree as if they were ordinary directories/files. Returns the final
   symlink-free target and a list of paths to symlinks encountered in the
@@ -134,6 +134,11 @@ def expand_symlinks(indir, relfile):
 
   Fails when a directory loop is detected, although in theory we could support
   that case.
+
+  Returns:
+    tuple(relfile, list(symlinks)): relfile is real path of relfile where all
+    symlinks were evaluated. symlinks if the chain of symlinks found along the
+    way, if any.
   """
   is_directory = relfile.endswith(os.path.sep)
   done = indir
@@ -180,10 +185,9 @@ def expand_symlinks(indir, relfile):
     symlink_path = symlink_path.split(os.path.sep)
     prefix_length = 0
     for target_piece, symlink_path_piece in zip(target, symlink_path):
-      if target_piece == symlink_path_piece:
-        prefix_length += 1
-      else:
+      if target_piece != symlink_path_piece:
         break
+      prefix_length += 1
     done = os.path.sep.join(target[:prefix_length])
     todo = os.path.join(
         os.path.sep.join(target[prefix_length:]), post_symlink)
@@ -241,7 +245,7 @@ def expand_directory_and_symlink(indir, relfile, blacklist, follow_symlinks):
   symlinks = []
   if follow_symlinks:
     try:
-      relfile, symlinks = expand_symlinks(indir, relfile)
+      relfile, symlinks = _expand_symlinks(indir, relfile)
     except OSError:
       # The file doesn't exist, it will throw below.
       pass
@@ -400,14 +404,11 @@ def save_isolated(isolated, data):
 
   Note: this reference implementation does not create child .isolated file so it
   always returns an empty list.
-
-  Returns the list of child isolated files that are included by |isolated|.
   """
   # Make sure the data is valid .isolated data by 'reloading' it.
   algo = SUPPORTED_ALGOS[data['algo']]
   load_isolated(json.dumps(data), algo)
   tools.write_json(isolated, data, True)
-  return []
 
 
 def split_path(path):
