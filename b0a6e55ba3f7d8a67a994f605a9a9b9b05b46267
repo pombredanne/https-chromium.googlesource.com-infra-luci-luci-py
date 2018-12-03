@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "064e29aa_97ddf58e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:28:51Z",
+      "side": 1,
+      "message": "I know I asked about something like this before, but - what\u0027s the \"isolated layer\"? And does \"isolate\" mainly just refer to isolate.py, which is a CLI tool for uploading data to the isolated server?",
+      "range": {
+        "startLine": 13,
+        "startChar": 13,
+        "endLine": 13,
+        "endChar": 64
+      },
+      "revId": "b0a6e55ba3f7d8a67a994f605a9a9b9b05b46267",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22e14bc7_7b7b97f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:28:51Z",
+      "side": 1,
+      "message": "or regression :-)",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "b0a6e55ba3f7d8a67a994f605a9a9b9b05b46267",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca5bb5ed_87bb6418",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:28:51Z",
+      "side": 1,
+      "message": "happens",
+      "range": {
+        "startLine": 347,
+        "startChar": 74,
+        "endLine": 347,
+        "endChar": 80
+      },
+      "revId": "b0a6e55ba3f7d8a67a994f605a9a9b9b05b46267",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a24ddfe9_9cae0bf9",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:28:51Z",
+      "side": 1,
+      "message": "or disable\u003dno-member - assuming there\u0027s a good reason why pylint can\u0027t figure out that readlink is a valid member of fs.",
+      "range": {
+        "startLine": 352,
+        "startChar": 53,
+        "endLine": 352,
+        "endChar": 66
+      },
+      "revId": "b0a6e55ba3f7d8a67a994f605a9a9b9b05b46267",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
