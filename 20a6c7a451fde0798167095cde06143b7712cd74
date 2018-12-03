@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90a5a10f_9be55e5c",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-03T20:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37a34240_949b8f3c",
+      "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51c20623_77b8de58",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "74ed5846_9ad59d9a",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-03T20:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51c20623_77b8de58",
+      "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbf9b8a5_00a7f2bc",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 8
@@ -50,6 +86,24 @@
       "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a286f859_23e774e3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-03T20:14:24Z",
+      "side": 1,
+      "message": "Each swarming pool will potentially have multiple different external schedulers (external_schedulers is a repeated field; we need different external schedulers for different dimension sets) so sharding only by pool probably won\u0027t work great. I intend to shard by pool + external scheduler number.\n\nAt that point I\u0027ll revisit this.",
+      "parentUuid": "dbf9b8a5_00a7f2bc",
+      "revId": "20a6c7a451fde0798167095cde06143b7712cd74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
