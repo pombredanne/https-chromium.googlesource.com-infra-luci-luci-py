@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dace965a_b4d3246f",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-03T21:50:07Z",
+      "side": 1,
+      "message": "cancel_task() intentionally doesn\u0027t log so I\u0027d recommend logging the results. It could be helpful when debugging.",
+      "revId": "abe1fb059e3487174709b187cc1af41846c31c03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
