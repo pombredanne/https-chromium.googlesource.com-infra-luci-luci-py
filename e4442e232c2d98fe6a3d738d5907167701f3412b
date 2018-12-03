@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91b963f7_0d880ea5",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T17:58:36Z",
+      "side": 1,
+      "message": "Docstring nits:\n  1. Ideally the first part should be a one-line summary with explanation below\n  2. You could add an Args section. Does relfile stand for \"relative file path\" or something else?",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 0
+      },
+      "revId": "e4442e232c2d98fe6a3d738d5907167701f3412b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
