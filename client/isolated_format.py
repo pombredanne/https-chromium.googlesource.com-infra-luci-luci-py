@@ -208,7 +208,7 @@ def expand_directory_and_symlink(indir, relfile, blacklist, follow_symlinks):
     ln -s .. foo
 
   Yields:
-    Relative file paths inside the directory.
+    tuple(Relative path, bool issymlink) to files and symlinks inside |indir|.
   """
   if os.path.isabs(relfile):
     raise MappingError(u'Can\'t map absolute path %s' % relfile)
@@ -250,8 +250,10 @@ def expand_directory_and_symlink(indir, relfile, blacklist, follow_symlinks):
       # The file doesn't exist, it will throw below.
       pass
 
+  # The symlinks need to be mapped in.
   for s in symlinks:
-    yield s
+    yield s, True
+
   if relfile.endswith(os.path.sep):
     if not fs.isdir(infile):
       raise MappingError(
@@ -268,9 +270,9 @@ def expand_directory_and_symlink(indir, relfile, blacklist, follow_symlinks):
         if fs.isdir(os.path.join(indir, inner_relfile)):
           inner_relfile += os.path.sep
         # Apply recursively.
-        for i in expand_directory_and_symlink(
+        for i, issymlink in expand_directory_and_symlink(
             indir, inner_relfile, blacklist, follow_symlinks):
-          yield i
+          yield i, issymlink
     except OSError as e:
       raise MappingError(
           u'Unable to iterate over directory %s.\n%s' % (infile, e))
@@ -283,11 +285,11 @@ def expand_directory_and_symlink(indir, relfile, blacklist, follow_symlinks):
     if not fs.isfile(infile):
       raise MappingError(u'Input file %s doesn\'t exist' % infile)
 
-    yield relfile
+    yield relfile, False
 
 
 @tools.profile
-def file_to_metadata(filepath, read_only, algo, collapse_symlinks):
+def file_to_metadata(filepath, read_only, collapse_symlinks):
   """Processes an input file, a dependency, and return meta data about it.
 
   Behaviors:
@@ -301,13 +303,12 @@ def file_to_metadata(filepath, read_only, algo, collapse_symlinks):
                one of 4 modes: 0755 (rwx), 0644 (rw), 0555 (rx), 0444 (r). On
                windows, mode is not set since all files are 'executable' by
                default.
-    algo:      Hashing algorithm used.
     collapse_symlinks: True if symlinked files should be treated like they were
                        the normal underlying file.
 
   Returns:
     The necessary dict to create a entry in the 'files' section of an .isolated
-    file.
+    file *except* 'h' for files.
   """
   # TODO(maruel): None is not a valid value.
   assert read_only in (None, 0, 1, 2), read_only
@@ -342,7 +343,6 @@ def file_to_metadata(filepath, read_only, algo, collapse_symlinks):
 
   if not is_link:
     out['s'] = filestats.st_size
-    out['h'] = hash_file(filepath, algo)
   else:
     # The link could be in an incorrect path case. In practice, this only happen
     # on macOS on case insensitive HFS.
