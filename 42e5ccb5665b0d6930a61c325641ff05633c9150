@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "811629d7_878ae37e",
+        "filename": "client/isolate.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:54:50Z",
+      "side": 1,
+      "message": "Optionally: this could be written as _is_symlink and below it could be is_symlink.",
+      "range": {
+        "startLine": 834,
+        "startChar": 31,
+        "endLine": 834,
+        "endChar": 41
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e67240b9_b8545966",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:54:50Z",
+      "side": 1,
+      "message": "Writing \".isolated files\" with a dot would be consistent with usage in isolated_format.py, and would make it clear that these files have the extension \".isolated\" (same below/elsehwere in this module).",
+      "range": {
+        "startLine": 1307,
+        "startChar": 1,
+        "endLine": 1313,
+        "endChar": 79
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcbf95cc_62238853",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:54:50Z",
+      "side": 1,
+      "message": "entry",
+      "range": {
+        "startLine": 1320,
+        "startChar": 12,
+        "endLine": 1320,
+        "endChar": 25
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d46a94bd_8d88d62e",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:54:50Z",
+      "side": 1,
+      "message": "Not a suggestion, just a thought: Would it be worth considering extracting this loop (or loop body) out to a private method below? If the loop body were extracted, it might be called something like _archive_file.\n\nPros:\n - less nesting\n - shorter methods\n\nCons:\n - used only once\n - must take at least 4 arguments",
+      "range": {
+        "startLine": 1349,
+        "startChar": 0,
+        "endLine": 1379,
+        "endChar": 48
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
