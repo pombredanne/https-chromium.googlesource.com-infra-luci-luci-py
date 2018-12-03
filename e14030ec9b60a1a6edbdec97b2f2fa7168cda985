@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2336721f_01d59bd8",
+        "filename": "client/isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:09:45Z",
+      "side": 1,
+      "message": "Any notes about when it\u0027s expected to be deleted? (Not super important, but hypothetically if this wasn\u0027t deleted for a while, then this comment would seem a little mysterious.)\n\nAlso, what\u0027s the symlink hint?",
+      "range": {
+        "startLine": 826,
+        "startChar": 33,
+        "endLine": 826,
+        "endChar": 69
+      },
+      "revId": "e14030ec9b60a1a6edbdec97b2f2fa7168cda985",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
