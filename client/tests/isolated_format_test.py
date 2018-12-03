@@ -63,8 +63,7 @@ class SymlinkTest(unittest.TestCase):
       fs.symlink('subDir', linkdir)
       actual = isolated_format.file_to_metadata(
           linkdir.upper(), {}, True, ALGO, False)
-      expected = {'l': u'subdir', 't': int(os.stat(linkdir).st_mtime)}
-      self.assertEqual(expected, actual)
+      self.assertEqual({'l': u'subdir'}, actual)
 
     def test_file_to_metadata_path_case_complex(self):
       # Ensure the symlink dest is saved in the right path case. This includes 2
@@ -83,17 +82,11 @@ class SymlinkTest(unittest.TestCase):
 
       actual = isolated_format.file_to_metadata(
           subsymlinkdir.upper(), {}, True, ALGO, False)
-      expected = {
-        'l': u'linkeddir1', 't': int(os.stat(subsymlinkdir).st_mtime),
-      }
-      self.assertEqual(expected, actual)
+      self.assertEqual({'l': u'linkeddir1'}, actual)
 
       actual = isolated_format.file_to_metadata(
           linkeddir1.upper(), {}, True, ALGO, False)
-      expected = {
-        'l': u'../linkeddir2', 't': int(os.stat(linkeddir1).st_mtime),
-      }
-      self.assertEqual(expected, actual)
+      self.assertEqual({'l': u'../linkeddir2'}, actual)
 
   if sys.platform != 'win32':
     def test_symlink_input_absolute_path(self):
@@ -138,7 +131,6 @@ class SymlinkTest(unittest.TestCase):
         'h': 'da39a3ee5e6b4b0d3255bfef95601890afd80709',
         'm': 288,
         's': 0,
-        't': int(round(os.stat(foo_file).st_mtime)),
       }
       self.assertEqual(expected, actual)
 

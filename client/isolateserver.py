@@ -1233,7 +1233,6 @@ def _directory_to_metadata(root, algo, blacklist):
     # TODO(maruel): This should be done lazily?
     meta = isolated_format.file_to_metadata(
         os.path.join(root, relpath), {}, 0, algo, False)
-    meta.pop('t')
     item = None
     if 'h' in meta:
       item = FileItem(
