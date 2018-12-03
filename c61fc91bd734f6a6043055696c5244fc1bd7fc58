@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc3b351e_95b8d5e4",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:16:32Z",
+      "side": 1,
+      "message": "Nit: Although \"a year\" is much more specific than \"a while\", this isn\u0027t necessarily always good, because repeating the quantity in both code and comment means that it\u0027s possible to get out of sync. (Although it\u0027s hard to get out of sync in this case, since the comment is right next to the code.) It would probably also be sufficient to say \"BotEvent entities are deleted when they are older than the cutoff.\".",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "c61fc91bd734f6a6043055696c5244fc1bd7fc58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c447e43_92f58ed1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-03T18:16:32Z",
+      "side": 1,
+      "message": "Same note as above.\n\nAlso, to be really pedantic: it would be \"no less than 18 months\" or \"no less than a year\", since \"366 days\" and \"18 * 31 days\" are usually slightly more than 1 year or 18 months, respectively.",
+      "range": {
+        "startLine": 128,
+        "startChar": 46,
+        "endLine": 128,
+        "endChar": 55
+      },
+      "revId": "c61fc91bd734f6a6043055696c5244fc1bd7fc58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
