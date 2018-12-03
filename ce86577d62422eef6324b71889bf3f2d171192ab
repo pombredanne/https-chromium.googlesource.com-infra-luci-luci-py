@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a5f6dab_df808dea",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-03T21:53:08Z",
+      "side": 1,
+      "message": "If you want to ignore, don\u0027t use logging.exception(), otherwise this causes a server-side alert in our monitoring. Instead use:\nlogging.warning(\u0027..\u0027, exc_info\u003dTrue)\n\nyou can remove the pass, and I\u0027d say to put the commend before the logging statement.",
+      "parentUuid": "9d02b499_41e21b34",
+      "revId": "ce86577d62422eef6324b71889bf3f2d171192ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
