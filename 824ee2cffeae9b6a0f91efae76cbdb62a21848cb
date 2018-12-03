@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccf188ae_b12a9d0c",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-03T14:11:49Z",
+      "side": 1,
+      "message": "This is crappy, but it\u0027s just too much work to get rid of it.",
+      "revId": "824ee2cffeae9b6a0f91efae76cbdb62a21848cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
