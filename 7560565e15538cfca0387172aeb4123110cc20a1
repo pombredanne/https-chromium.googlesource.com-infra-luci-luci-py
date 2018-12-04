@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d659c56e_9f87490e",
+        "filename": "appengine/isolate/handlers_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-04T23:19:44Z",
+      "side": 0,
+      "message": "The new code is formatted much more nicely than this deleted code, which is good.",
+      "revId": "7560565e15538cfca0387172aeb4123110cc20a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
