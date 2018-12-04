@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "08a080d0_88816799",
+        "filename": "client/isolate.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-04T01:20:28Z",
+      "side": 1,
+      "message": "\u003e Optionally: this could be written as _is_symlink and below it could be is_symlink.\n\nDone for is_symlink, but I don\u0027t understand about the \u0027below\u0027, I think you meant in the other file.",
+      "parentUuid": "811629d7_878ae37e",
+      "range": {
+        "startLine": 834,
+        "startChar": 31,
+        "endLine": 834,
+        "endChar": 41
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e67240b9_b8545966",
         "filename": "client/isolateserver.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "458e0f96_62472778",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-04T01:20:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e67240b9_b8545966",
+      "range": {
+        "startLine": 1307,
+        "startChar": 1,
+        "endLine": 1313,
+        "endChar": 79
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3c27794e_defe2684",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-04T01:20:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcbf95cc_62238853",
+      "range": {
+        "startLine": 1320,
+        "startChar": 12,
+        "endLine": 1320,
+        "endChar": 25
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d46a94bd_8d88d62e",
         "filename": "client/isolateserver.py",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cd206de_8a3c01ee",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-04T01:20:28Z",
+      "side": 1,
+      "message": "While the function is long, I don\u0027t think it\u0027s yet long/complex enough to be worth it.",
+      "parentUuid": "d46a94bd_8d88d62e",
+      "range": {
+        "startLine": 1349,
+        "startChar": 0,
+        "endLine": 1379,
+        "endChar": 48
+      },
+      "revId": "42e5ccb5665b0d6930a61c325641ff05633c9150",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
