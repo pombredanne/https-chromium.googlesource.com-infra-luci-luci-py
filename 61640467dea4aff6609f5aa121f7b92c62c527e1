@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c425c83_8dc46766",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-04T23:01:48Z",
+      "side": 1,
+      "message": "Seems like this magic number 5 could be extracted out to be a constant.",
+      "range": {
+        "startLine": 438,
+        "startChar": 37,
+        "endLine": 440,
+        "endChar": 27
+      },
+      "revId": "61640467dea4aff6609f5aa121f7b92c62c527e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
