@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5699456_2ee677d0",
+        "filename": "appengine/isolate/handlers_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-04T18:54:56Z",
+      "side": 1,
+      "message": "nit: a dict might be more readable",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 18
+      },
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac320153_c549d43c",
+        "filename": "appengine/isolate/handlers_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-04T18:54:56Z",
+      "side": 1,
+      "message": "how do you like this style of returning errors? I wrote StatusError in buildbucket with a decorator\nhttps://cs.chromium.org/chromium/infra/appengine/cr-buildbucket/v2/api.py?q\u003dbuildbucket/v2/api\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d41\n\nI could upstream it in a generic way. It would even be compatible with real grpc\n\nthis does not block this CL of course",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 49,
+        "endChar": 47
+      },
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6038b20e_474252a5",
+        "filename": "appengine/isolate/handlers_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-04T18:54:56Z",
+      "side": 1,
+      "message": "nit: request.HasField(\u0027latest\u0027) is \"more correct\"",
+      "range": {
+        "startLine": 57,
+        "startChar": 7,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a55e5df_f6648f6f",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-04T18:54:56Z",
+      "side": 1,
+      "message": "standard name for this is RESOLUTION_UNSPECIFIED go/api-style/naming_convention#enum_names",
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb88e005_3d0c6af4",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-04T18:54:56Z",
+      "side": 1,
+      "message": "this seems to relate to \"latest\" more to \"limit\"?",
+      "range": {
+        "startLine": 30,
+        "startChar": 56,
+        "endLine": 32,
+        "endChar": 42
+      },
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d86efb71_af7c525e",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-04T18:54:56Z",
+      "side": 1,
+      "message": "standard name for this is page_size go/api-style/standard_fields",
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
