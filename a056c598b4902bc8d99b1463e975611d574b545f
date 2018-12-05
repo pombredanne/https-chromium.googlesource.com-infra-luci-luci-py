@@ -70,6 +70,24 @@
       "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8043d2e1_498f8794",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-05T23:32:44Z",
+      "side": 1,
+      "message": "service_account_credentials() by default will use GAE service account, so this should work as is.",
+      "parentUuid": "fd442f9a_b2a59db2",
+      "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
