@@ -24,6 +24,8 @@ from server import bot_management
 from server import config
 from server import lease_management
 from server import named_caches
+from server import stats_bots
+from server import stats_tasks
 from server import task_pack
 from server import task_queues
 from server import task_request
@@ -315,6 +317,22 @@ class CronExternalSchedulerCancellationsHandler(webapp2.RequestHandler):
     task_scheduler.cron_handle_external_cancellations()
 
 
+class CronBotsMonitoring(webapp2.RequestHandler):
+  """Update bots monitoring statistics."""
+
+  @decorators.require_cronjob
+  def get(self):
+    stats_bots.cron_generate_stats()
+
+
+class CronTasksMonitoring(webapp2.RequestHandler):
+  """Update tasks monitoring statistics."""
+
+  @decorators.require_cronjob
+  def get(self):
+    stats_tasks.cron_generate_stats()
+
+
 class CancelTasksHandler(webapp2.RequestHandler):
   """Cancels tasks given a list of their ids."""
 
@@ -444,6 +462,8 @@ def get_routes():
     ('/internal/cron/update_bot_info', CronUpdateBotInfoComposite),
     ('/internal/cron/delete_old_bot_events', CronDeleteOldBotEvents),
     ('/internal/cron/delete_old_tasks', CronDeleteOldTasks),
+    ('/internal/cron/monitoring/bots', CronBotsMonitoring),
+    ('/internal/cron/monitoring/tasks', CronTasksMonitoring),
 
     ('/internal/cron/count_task_bot_distribution',
         CronCountTaskBotDistributionHandler),

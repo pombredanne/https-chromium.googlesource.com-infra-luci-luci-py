@@ -326,6 +326,10 @@ class BotManagementTest(test_case.TestCase):
     actual = bot_management.BotEvent.query().fetch(keys_only=True)
     self.assertEqual([event_key], actual)
 
+  def test_cron_bot_monitoring(self):
+    # TODO(maruel): https://crbug.com/864722
+    pass
+
   def test_filter_dimensions(self):
     pass # Tested in handlers_endpoints_test
 
