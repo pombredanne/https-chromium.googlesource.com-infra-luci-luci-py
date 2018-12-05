@@ -162,8 +162,8 @@ def refetch_from_config_service(ctx=None):
   ctx = ctx or validation.Context.logging()
   cfg = _fetch_and_expand_bots_cfg(ctx)
   if ctx.result().has_errors:
-    logging.error('Refusing the invalid config')
-    raise BadConfigError('Invalid bots.cfg config, see logs')
+    logging.error('Refusing the invalid bogs.cfg')
+    raise BadConfigError('Refusing the invalid bogs.cfg')
 
   # Fast path to skip the transaction if everything is up-to-date. Mostly
   # important when 'refetch_from_config_service' is called directly from
