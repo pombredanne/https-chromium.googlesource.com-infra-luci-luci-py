@@ -74,7 +74,7 @@ class AssociateBotIdTest(test_case.TestCase):
 
 
 class CheckForConnectionTest(test_case.TestCase):
-  """Tests for lease_management.check_for_connection."""
+  """Tests for lease_management._check_for_connection."""
 
   def test_not_connected(self):
     machine_lease = lease_management.MachineLease(
@@ -99,7 +99,7 @@ class CheckForConnectionTest(test_case.TestCase):
         task_name=None,
     )
 
-    lease_management.check_for_connection(machine_lease)
+    lease_management._check_for_connection(machine_lease)
     self.failUnless(bot_management.get_info_key(machine_lease.bot_id).get())
     self.failUnless(machine_lease.key.get().client_request_id)
     self.failIf(machine_lease.key.get().connection_ts)
@@ -140,7 +140,7 @@ class CheckForConnectionTest(test_case.TestCase):
         task_name=None,
     )
 
-    lease_management.check_for_connection(machine_lease)
+    lease_management._check_for_connection(machine_lease)
     self.failUnless(bot_management.get_info_key(machine_lease.bot_id).get())
     self.failUnless(machine_lease.key.get().client_request_id)
     self.failUnless(machine_lease.key.get().connection_ts)
@@ -181,7 +181,7 @@ class CheckForConnectionTest(test_case.TestCase):
         task_name=None,
     )
 
-    lease_management.check_for_connection(machine_lease)
+    lease_management._check_for_connection(machine_lease)
     self.failUnless(bot_management.get_info_key(machine_lease.bot_id).get())
     self.failUnless(machine_lease.key.get().client_request_id)
     self.failIf(machine_lease.key.get().connection_ts)
@@ -198,7 +198,7 @@ class CheckForConnectionTest(test_case.TestCase):
     )
     machine_lease.put()
 
-    lease_management.check_for_connection(machine_lease)
+    lease_management._check_for_connection(machine_lease)
     self.failIf(bot_management.get_info_key(machine_lease.bot_id).get())
     self.failIf(machine_lease.key.get().client_request_id)
     self.failIf(machine_lease.key.get().connection_ts)
@@ -231,7 +231,7 @@ class CheckForConnectionTest(test_case.TestCase):
         task_name=None,
     )
 
-    lease_management.check_for_connection(machine_lease)
+    lease_management._check_for_connection(machine_lease)
     self.failIf(bot_management.get_info_key(machine_lease.bot_id).get())
     self.failIf(machine_lease.key.get().client_request_id)
     self.failIf(machine_lease.key.get().connection_ts)
@@ -327,10 +327,10 @@ class ComputeUtilizationTest(test_case.TestCase):
 
 
 class DrainExcessTest(test_case.TestCase):
-  """Tests for lease_management.drain_excess."""
+  """Tests for lease_management._drain_excess."""
 
   def test_no_machine_types(self):
-    lease_management.drain_excess()
+    lease_management._drain_excess()
 
     self.failIf(lease_management.MachineLease.query().count())
 
@@ -343,7 +343,7 @@ class DrainExcessTest(test_case.TestCase):
         machine_type=key,
     ).put()
 
-    lease_management.drain_excess()
+    lease_management._drain_excess()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.failIf(key.get().drained)
@@ -357,7 +357,7 @@ class DrainExcessTest(test_case.TestCase):
         machine_type=key,
     ).put()
 
-    lease_management.drain_excess()
+    lease_management._drain_excess()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.assertTrue(key.get().drained)
@@ -380,7 +380,7 @@ class DrainExcessTest(test_case.TestCase):
         machine_type=key,
     ).put()
 
-    lease_management.drain_excess()
+    lease_management._drain_excess()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 3)
     for machine_lease in lease_management.MachineLease.query():
@@ -421,7 +421,7 @@ class DrainExcessTest(test_case.TestCase):
 
     # Choice of 2, 2, 1 above and 3 here ensures at least one batch contains
     # MachineLease entities created for two different MachineTypes.
-    lease_management.drain_excess(max_concurrent=3)
+    lease_management._drain_excess(max_concurrent=3)
 
     self.assertEqual(lease_management.MachineLease.query().count(), 5)
     for machine_lease in lease_management.MachineLease.query():
@@ -481,10 +481,10 @@ class EnsureBotInfoExistsTest(test_case.TestCase):
 
 
 class EnsureEntitiesExistTest(test_case.TestCase):
-  """Tests for lease_management.ensure_entities_exist."""
+  """Tests for lease_management._ensure_entities_exist."""
 
   def test_no_machine_types(self):
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.failIf(lease_management.MachineLease.query().count())
 
@@ -494,7 +494,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=3,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.failIf(lease_management.MachineLease.query().count())
 
@@ -524,7 +524,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(key.get().early_release_secs, 0)
     self.assertEqual(key.get().lease_duration_secs, 1)
@@ -567,7 +567,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 2)
     self.failUnless(lease_management.MachineLease.get_by_id('machine-type-a-0'))
@@ -597,7 +597,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
 
     # Choice of 3 here and 5 above ensures MachineLeases are created in two
     # batches of differing sizes.
-    lease_management.ensure_entities_exist(max_concurrent=3)
+    lease_management._ensure_entities_exist(max_concurrent=3)
 
     self.assertEqual(lease_management.MachineLease.query().count(), 5)
     self.failUnless(lease_management.MachineLease.get_by_id('machine-type-0'))
@@ -652,7 +652,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
 
     # Choice of 2, 2, 1 above and 3 here ensures at least one batch contains
     # MachineLease entities created for two different MachineTypes.
-    lease_management.ensure_entities_exist(max_concurrent=3)
+    lease_management._ensure_entities_exist(max_concurrent=3)
 
     self.assertEqual(lease_management.MachineLease.query().count(), 5)
     self.failUnless(lease_management.MachineLease.get_by_id('machine-type-a-0'))
@@ -688,7 +688,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.failUnless(key.get().enabled)
 
@@ -719,7 +719,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(key.get().lease_duration_secs, 2)
 
@@ -750,7 +750,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.failUnless(key.get().enabled)
     self.assertEqual(key.get().lease_duration_secs, 2)
@@ -775,7 +775,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.failIf(key.get().enabled)
 
@@ -798,7 +798,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         ),
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.assertEqual(key.get().early_release_secs, 1)
@@ -842,7 +842,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         ),
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.assertEqual(key.get().early_release_secs, 0)
@@ -884,7 +884,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         ),
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.assertFalse(key.get().early_release_secs)
@@ -926,7 +926,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         ),
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.assertEqual(key.get().lease_duration_secs, 1)
@@ -973,7 +973,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 3)
     self.assertEqual(key.get().target_size, 3)
@@ -1018,7 +1018,7 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.assertEqual(lease_management.MachineLease.query().count(), 1)
     self.assertEqual(key.get().target_size, 1)
@@ -1063,20 +1063,20 @@ class EnsureEntitiesExistTest(test_case.TestCase):
         target_size=1,
     ).put()
 
-    lease_management.ensure_entities_exist()
+    lease_management._ensure_entities_exist()
 
     self.failIf(lease_management.MachineLease.query().count())
     self.failIf(key.get().target_size)
 
 
 class GetTargetSize(test_case.TestCase):
-  """Tests for lease_management.get_target_size."""
+  """Tests for lease_management._get_target_size."""
 
   def test_no_schedules(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule())
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 2), 2)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 2), 2)
 
   def test_wrong_day(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1090,7 +1090,7 @@ class GetTargetSize(test_case.TestCase):
     now = datetime.datetime(2012, 1, 1, 1, 2)
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 2, now), 2)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 2, now), 2)
 
   def test_right_day(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1104,7 +1104,7 @@ class GetTargetSize(test_case.TestCase):
     now = datetime.datetime(2012, 1, 1, 1, 2)
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 2, now), 3)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 2, now), 3)
 
   def test_no_utilization(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1115,7 +1115,7 @@ class GetTargetSize(test_case.TestCase):
     ))
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 4), 4)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 4), 4)
 
   def test_utilization(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1131,7 +1131,7 @@ class GetTargetSize(test_case.TestCase):
     ).put()
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 3), 6)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 3), 6)
 
   def test_load_based_fallback(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1154,7 +1154,7 @@ class GetTargetSize(test_case.TestCase):
     now = datetime.datetime(2012, 1, 1, 1, 2)
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 3, now), 6)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 3, now), 6)
 
   def test_upper_bound(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1170,7 +1170,7 @@ class GetTargetSize(test_case.TestCase):
     ).put()
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 3), 4)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 3), 4)
 
   def test_drop_dampening(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1186,7 +1186,7 @@ class GetTargetSize(test_case.TestCase):
     ).put()
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 100, 50), 99)
+        lease_management._get_target_size(config.schedule, 'mt', 100, 50), 99)
 
   def test_lower_bound(self):
     config = bots_pb2.MachineType(schedule=bots_pb2.Schedule(
@@ -1202,11 +1202,11 @@ class GetTargetSize(test_case.TestCase):
     ).put()
 
     self.assertEqual(
-        lease_management.get_target_size(config.schedule, 'mt', 1, 3), 2)
+        lease_management._get_target_size(config.schedule, 'mt', 1, 3), 2)
 
 
 class ManageLeasedMachineTest(test_case.TestCase):
-  """Tests for lease_management.manage_leased_machine."""
+  """Tests for lease_management._manage_leased_machine."""
 
   def test_creates_bot_id_and_sends_connection_instruction(self):
     def send_connection_instruction(machine_lease):
@@ -1224,16 +1224,16 @@ class ManageLeasedMachineTest(test_case.TestCase):
             target_size=1,
         ).put(),
     ).put()
-    lease_management.manage_leased_machine(key.get())
+    lease_management._manage_leased_machine(key.get())
     self.assertTrue(key.get().bot_id)
     self.assertEquals(key.get().bot_id, key.get().hostname)
 
   def test_checks_for_connection(self):
-    def check_for_connection(machine_lease):
+    def _check_for_connection(machine_lease):
       self.assertTrue(machine_lease)
     def cleanup_bot(*_args, **_kwargs):
       self.fail('cleanup_bot called')
-    self.mock(lease_management, 'check_for_connection', check_for_connection)
+    self.mock(lease_management, '_check_for_connection', _check_for_connection)
     self.mock(lease_management, 'cleanup_bot', cleanup_bot)
     key = lease_management.MachineLease(
         id='machine-lease',
@@ -1248,7 +1248,7 @@ class ManageLeasedMachineTest(test_case.TestCase):
             target_size=1,
         ).put(),
     ).put()
-    lease_management.manage_leased_machine(key.get())
+    lease_management._manage_leased_machine(key.get())
     self.assertTrue(key.get().client_request_id)
 
   def test_cleans_up_bot(self):
@@ -1266,7 +1266,7 @@ class ManageLeasedMachineTest(test_case.TestCase):
             target_size=1,
         ).put(),
     ).put()
-    lease_management.manage_leased_machine(key.get())
+    lease_management._manage_leased_machine(key.get())
     self.assertFalse(key.get().client_request_id)
 
   def test_releases(self):
@@ -1285,7 +1285,7 @@ class ManageLeasedMachineTest(test_case.TestCase):
             target_size=1,
         ).put(),
     ).put()
-    lease_management.manage_leased_machine(key.get())
+    lease_management._manage_leased_machine(key.get())
     self.assertTrue(key.get().termination_task)
 
   def test_releases_drained_bot(self):
@@ -1304,7 +1304,7 @@ class ManageLeasedMachineTest(test_case.TestCase):
             target_size=1,
         ).put(),
     ).put()
-    lease_management.manage_leased_machine(key.get())
+    lease_management._manage_leased_machine(key.get())
     self.assertTrue(key.get().termination_task)
 
   def test_releases_drained_indefinite_bot(self):
@@ -1323,7 +1323,7 @@ class ManageLeasedMachineTest(test_case.TestCase):
             target_size=1,
         ).put(),
     ).put()
-    lease_management.manage_leased_machine(key.get())
+    lease_management._manage_leased_machine(key.get())
     self.assertTrue(key.get().termination_task)
 
 
@@ -1370,7 +1370,7 @@ class ScheduleLeaseManagementTest(test_case.TestCase):
     lease_management.log_lease_fulfillment(
         key, 'request-id', 'hostname', lease_expiration_ts, False, 'lease-id')
     lease_management.associate_bot_id(key, 'hostname')
-    lease_management.associate_connection_ts(key, utils.utcnow())
+    lease_management._associate_connection_ts(key, utils.utcnow())
     lease_management.schedule_lease_management()
 
   def test_expired(self):
@@ -1386,7 +1386,7 @@ class ScheduleLeaseManagementTest(test_case.TestCase):
         utils.utcnow()) / 1000 / 1000
     lease_management.log_lease_fulfillment(
         key, 'request-id', 'hostname', lease_expiration_ts, False, 'lease-id')
-    lease_management.associate_connection_ts(key, utils.utcnow())
+    lease_management._associate_connection_ts(key, utils.utcnow())
     lease_management.schedule_lease_management()
 
   def test_leased_indefinitely(self):
@@ -1400,7 +1400,7 @@ class ScheduleLeaseManagementTest(test_case.TestCase):
     lease_management.log_lease_fulfillment(
         key, 'request-id', 'hostname', 0, True, 'lease-id')
     lease_management.associate_bot_id(key, 'hostname')
-    lease_management.associate_connection_ts(key, utils.utcnow())
+    lease_management._associate_connection_ts(key, utils.utcnow())
     lease_management.schedule_lease_management()
 
   def test_drained(self):
@@ -1413,8 +1413,8 @@ class ScheduleLeaseManagementTest(test_case.TestCase):
     ).put()
     lease_management.log_lease_fulfillment(
         key, 'request-id', 'hostname', 0, True, 'lease-id')
-    lease_management.associate_connection_ts(key, utils.utcnow())
-    lease_management.drain_entity(key)
+    lease_management._associate_connection_ts(key, utils.utcnow())
+    lease_management._drain_entity(key)
     lease_management.schedule_lease_management()
 
 
@@ -1493,7 +1493,7 @@ class SendConnectionInstructionTest(test_case.TestCase):
     def instruct_machine(*_args, **_kwargs):
       # Mimic race condition by clearing the MachineLease.
       # In reality this would happen concurrently elsewhere.
-      lease_management.clear_lease_request(key, key.get().client_request_id)
+      lease_management.__clear_lease_request(key, key.get().client_request_id)
       return {'client_request_id': 'request-id'}
     self.mock(machine_provider, 'instruct_machine', instruct_machine)
 
