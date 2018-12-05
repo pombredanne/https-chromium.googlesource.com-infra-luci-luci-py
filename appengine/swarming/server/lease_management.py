@@ -53,6 +53,7 @@ from components import pubsub
 from components import utils
 from server import bot_groups_config
 from server import bot_management
+from server import config
 from server import task_queues
 from server import task_request
 from server import task_result
@@ -177,7 +178,7 @@ class MachineTypeUtilization(ndb.Model):
 
 
 @ndb.transactional_tasklet
-def create_machine_lease(machine_lease_key, machine_type):
+def _create_machine_lease(machine_lease_key, machine_type):
   """Creates a MachineLease from the given MachineType and MachineLease key.
 
   Args:
@@ -202,7 +203,7 @@ def create_machine_lease(machine_lease_key, machine_type):
 
 
 @ndb.transactional_tasklet
-def update_machine_lease(machine_lease_key, machine_type):
+def _update_machine_lease(machine_lease_key, machine_type):
   """Updates the given MachineLease from the given MachineType.
 
   Args:
@@ -220,7 +221,7 @@ def update_machine_lease(machine_lease_key, machine_type):
   put = False
   drain = False
 
-  # See ensure_entity_exists below for why we only update leased machines.
+  # See _ensure_entity_exists below for why we only update leased machines.
   if not machine_lease.lease_expiration_ts:
     if not machine_lease.leased_indefinitely:
       return
@@ -254,7 +255,7 @@ def update_machine_lease(machine_lease_key, machine_type):
 
 
 @ndb.tasklet
-def ensure_entity_exists(machine_type, n):
+def _ensure_entity_exists(machine_type, n):
   """Ensures the nth MachineLease for the given MachineType exists.
 
   Args:
@@ -266,7 +267,7 @@ def ensure_entity_exists(machine_type, n):
   machine_lease = yield machine_lease_key.get_async()
 
   if not machine_lease:
-    yield create_machine_lease(machine_lease_key, machine_type)
+    yield _create_machine_lease(machine_lease_key, machine_type)
     return
 
   # If there is a MachineLease, we may need to update it if the MachineType's
@@ -281,10 +282,10 @@ def ensure_entity_exists(machine_type, n):
         or machine_lease.lease_indefinitely != machine_type.lease_indefinitely
         or machine_lease.mp_dimensions != machine_type.mp_dimensions
     ):
-      yield update_machine_lease(machine_lease_key, machine_type)
+      yield _update_machine_lease(machine_lease_key, machine_type)
 
 
-def machine_type_pb2_to_entity(pb2):
+def _machine_type_pb2_to_entity(pb2):
   """Creates a MachineType entity from the given bots_pb2.MachineType.
 
   Args:
@@ -315,7 +316,7 @@ def machine_type_pb2_to_entity(pb2):
   )
 
 
-def get_target_size(schedule, machine_type, current, default, now=None):
+def _get_target_size(schedule, machine_type, current, default, now=None):
   """Returns the current target size for the MachineType.
 
   Args:
@@ -388,7 +389,7 @@ def get_target_size(schedule, machine_type, current, default, now=None):
   return default
 
 
-def ensure_entities_exist(max_concurrent=50):
+def _ensure_entities_exist(max_concurrent=50):
   """Ensures MachineType entities are correct, and MachineLease entities exist.
 
   Updates MachineType entities based on the config and creates corresponding
@@ -450,7 +451,7 @@ def ensure_entities_exist(max_concurrent=50):
     # If the MachineType does not match the config, update it. Copy the values
     # of certain fields so we can compare the MachineType to the config to check
     # for differences in all other fields.
-    config = machine_type_pb2_to_entity(config)
+    config = _machine_type_pb2_to_entity(config)
     config.target_size = machine_type.target_size
     if machine_type != config:
       logging.info('Updating MachineType: %s', config)
@@ -469,7 +470,7 @@ def ensure_entities_exist(max_concurrent=50):
     cursor = 0
     while cursor < machine_type.target_size:
       while len(futures) < max_concurrent and cursor < machine_type.target_size:
-        futures.append(ensure_entity_exists(machine_type, cursor))
+        futures.append(_ensure_entity_exists(machine_type, cursor))
         cursor += 1
       ndb.Future.wait_any(futures)
       # We don't bother checking success or failure. If a transient error
@@ -487,7 +488,7 @@ def ensure_entities_exist(max_concurrent=50):
     num_futures = len(futures)
     if num_futures < max_concurrent:
       futures.extend([
-          machine_type_pb2_to_entity(machine_type).put_async()
+          _machine_type_pb2_to_entity(machine_type).put_async()
           for machine_type in machine_types[:max_concurrent - num_futures]
       ])
       machine_types = machine_types[max_concurrent - num_futures:]
@@ -499,7 +500,7 @@ def ensure_entities_exist(max_concurrent=50):
 
 
 @ndb.transactional_tasklet
-def drain_entity(key):
+def _drain_entity(key):
   """Drains the given MachineLease.
 
   Args:
@@ -523,7 +524,7 @@ def drain_entity(key):
 
 
 @ndb.tasklet
-def ensure_entity_drained(machine_lease):
+def _ensure_entity_drained(machine_lease):
   """Ensures the given MachineLease is drained.
 
   Args:
@@ -532,10 +533,10 @@ def ensure_entity_drained(machine_lease):
   if machine_lease.drained:
     return
 
-  yield drain_entity(machine_lease.key)
+  yield _drain_entity(machine_lease.key)
 
 
-def drain_excess(max_concurrent=50):
+def _drain_excess(max_concurrent=50):
   """Marks MachineLeases beyond what is needed by their MachineType as drained.
 
   Args:
@@ -563,41 +564,14 @@ def drain_excess(max_concurrent=50):
         if len(futures) == max_concurrent:
           ndb.Future.wait_any(futures)
           futures = [future for future in futures if not future.done()]
-        futures.append(ensure_entity_drained(machine_lease))
+        futures.append(_ensure_entity_drained(machine_lease))
 
   if futures:
     ndb.Future.wait_all(futures)
 
 
-def schedule_lease_management():
-  """Schedules task queues to process each MachineLease."""
-  now = utils.utcnow()
-  for machine_lease in MachineLease.query():
-    # If there's no connection_ts, we're waiting on a bot so schedule the
-    # management job to check on it. If there is a connection_ts, then don't
-    # schedule the management job until it's time to release the machine.
-    if machine_lease.connection_ts:
-      if not machine_lease.drained:
-        # lease_expiration_ts is None if leased_indefinitely, check it first.
-        if machine_lease.leased_indefinitely:
-          continue
-        assert machine_lease.lease_expiration_ts, machine_lease
-        if machine_lease.lease_expiration_ts > now + datetime.timedelta(
-            seconds=machine_lease.early_release_secs or 0):
-          continue
-    if not utils.enqueue_task(
-        '/internal/taskqueue/machine-provider-manage',
-        'machine-provider-manage',
-        params={
-            'key': machine_lease.key.urlsafe(),
-        },
-    ):
-      logging.warning(
-          'Failed to enqueue task for MachineLease: %s', machine_lease.key)
-
-
 @ndb.transactional
-def clear_lease_request(key, request_id):
+def _clear_lease_request(key, request_id):
   """Clears information about given lease request.
 
   Args:
@@ -950,7 +924,7 @@ def send_connection_instruction(machine_lease):
         machine_lease.key,
         machine_lease.hostname,
     )
-    clear_lease_request(machine_lease.key, machine_lease.client_request_id)
+    _clear_lease_request(machine_lease.key, machine_lease.client_request_id)
   else:
     logging.warning(
         'MachineLease instruction error:\nKey: %s\nHostname: %s\nError: %s',
@@ -961,7 +935,7 @@ def send_connection_instruction(machine_lease):
 
 
 @ndb.transactional
-def associate_connection_ts(key, connection_ts):
+def _associate_connection_ts(key, connection_ts):
   """Associates a connection time with the given machine lease.
 
   Args:
@@ -987,7 +961,7 @@ def associate_connection_ts(key, connection_ts):
   machine_lease.put()
 
 
-def check_for_connection(machine_lease):
+def _check_for_connection(machine_lease):
   """Checks for a bot_connected event.
 
   Args:
@@ -1019,7 +993,7 @@ def check_for_connection(machine_lease):
           machine_lease.hostname,
           event.ts,
       )
-      associate_connection_ts(machine_lease.key, event.ts)
+      _associate_connection_ts(machine_lease.key, event.ts)
       ts_mon_metrics.on_machine_connected_time(
           (event.ts - machine_lease.instruction_ts).total_seconds(),
           fields={
@@ -1044,7 +1018,7 @@ def check_for_connection(machine_lease):
         machine_lease.hostname, wait_for_capacity=True)
     task_scheduler.schedule_request(task, secret_bytes=None)
     if release(machine_lease):
-      clear_lease_request(machine_lease.key, machine_lease.client_request_id)
+      _clear_lease_request(machine_lease.key, machine_lease.client_request_id)
     return
   if bot_info.is_dead:
     logging.warning(
@@ -1065,7 +1039,7 @@ def cleanup_bot(machine_lease):
   # The bot is being removed, remove it from the task queues.
   task_queues.cleanup_after_bot(bot_root_key)
   bot_management.get_info_key(machine_lease.hostname).delete()
-  clear_lease_request(machine_lease.key, machine_lease.client_request_id)
+  _clear_lease_request(machine_lease.key, machine_lease.client_request_id)
   logging.info('MachineLease cleared:\nKey: %s', machine_lease.key)
 
 
@@ -1117,7 +1091,7 @@ def release(machine_lease):
   return True
 
 
-def handle_termination_task(machine_lease):
+def _handle_termination_task(machine_lease):
   """Checks the state of the termination task, releasing the lease if completed.
 
   Args:
@@ -1156,7 +1130,7 @@ def handle_termination_task(machine_lease):
       cleanup_bot(machine_lease)
 
 
-def handle_early_release(machine_lease):
+def _handle_early_release(machine_lease):
   """Handles the early release of a leased machine.
 
   Early release can be due to configured early release time, or being drained.
@@ -1188,7 +1162,7 @@ def handle_early_release(machine_lease):
       machine_lease.key, machine_lease.hostname, task_result_summary.task_id)
 
 
-def manage_leased_machine(machine_lease):
+def _manage_leased_machine(machine_lease):
   """Manages a leased machine.
 
   Args:
@@ -1212,7 +1186,7 @@ def manage_leased_machine(machine_lease):
 
   # Once the instruction is sent, check for connection.
   if not machine_lease.connection_ts:
-    check_for_connection(machine_lease)
+    _check_for_connection(machine_lease)
     return
 
   # Handle an expired lease.
@@ -1235,16 +1209,16 @@ def manage_leased_machine(machine_lease):
         machine_lease.hostname,
         machine_lease.termination_task,
     )
-    handle_termination_task(machine_lease)
+    _handle_termination_task(machine_lease)
     return
 
   # Handle a lease ready for early release.
   if machine_lease.early_release_secs or machine_lease.drained:
-    handle_early_release(machine_lease)
+    _handle_early_release(machine_lease)
     return
 
 
-def handle_lease_request_error(machine_lease, response):
+def _handle_lease_request_error(machine_lease, response):
   """Handles an error in the lease request response from Machine Provider.
 
   Args:
@@ -1269,10 +1243,10 @@ def handle_lease_request_error(machine_lease, response):
         response['client_request_id'],
         response['error'],
     )
-    clear_lease_request(machine_lease.key, machine_lease.client_request_id)
+    _clear_lease_request(machine_lease.key, machine_lease.client_request_id)
 
 
-def handle_lease_request_response(machine_lease, response):
+def _handle_lease_request_response(machine_lease, response):
   """Handles a successful lease request response from Machine Provider.
 
   Args:
@@ -1291,7 +1265,7 @@ def handle_lease_request_response(machine_lease, response):
           machine_lease.client_request_id,
           response['lease_expiration_ts'],
       )
-      clear_lease_request(machine_lease.key, machine_lease.client_request_id)
+      _clear_lease_request(machine_lease.key, machine_lease.client_request_id)
     else:
       expires = response['lease_expiration_ts']
       if response.get('leased_indefinitely'):
@@ -1317,10 +1291,10 @@ def handle_lease_request_response(machine_lease, response):
         machine_lease.key,
         machine_lease.client_request_id,
     )
-    clear_lease_request(machine_lease.key, machine_lease.client_request_id)
+    _clear_lease_request(machine_lease.key, machine_lease.client_request_id)
 
 
-def manage_pending_lease_request(machine_lease):
+def _manage_pending_lease_request(machine_lease):
   """Manages a pending lease request.
 
   Args:
@@ -1344,10 +1318,10 @@ def manage_pending_lease_request(machine_lease):
   )
 
   if response.get('error'):
-    handle_lease_request_error(machine_lease, response)
+    _handle_lease_request_error(machine_lease, response)
     return
 
-  handle_lease_request_response(machine_lease, response)
+  _handle_lease_request_response(machine_lease, response)
 
 
 def manage_lease(key):
@@ -1362,7 +1336,7 @@ def manage_lease(key):
 
   # Manage a leased machine.
   if machine_lease.lease_expiration_ts or machine_lease.leased_indefinitely:
-    manage_leased_machine(machine_lease)
+    _manage_leased_machine(machine_lease)
     return
 
   # Lease expiration time is unknown, so there must be no leased machine.
@@ -1371,7 +1345,7 @@ def manage_lease(key):
 
   # Manage a pending lease request.
   if machine_lease.client_request_id:
-    manage_pending_lease_request(machine_lease)
+    _manage_pending_lease_request(machine_lease)
     return
 
   # Manage an uninitiated lease request.
@@ -1383,8 +1357,59 @@ def manage_lease(key):
   delete_machine_lease(key)
 
 
-def compute_utilization():
+def set_global_metrics():
+  """Set global Machine Provider-related ts_mon metrics."""
+  # Consider utilization metrics over 2 minutes old to be outdated.
+  outdated = utils.utcnow() - datetime.timedelta(minutes=2)
+  payload = {}
+  for machine_type in MachineType.query():
+    data = {
+      'enabled': machine_type.enabled,
+      'target_size': machine_type.target_size,
+    }
+    utilization = ndb.Key(MachineTypeUtilization, machine_type.key.id()).get()
+    if utilization and utilization.last_updated_ts > outdated:
+      data['busy'] = utilization.busy
+      data['idle'] = utilization.idle
+    payload[machine_type.key.id()] = data
+  ts_mon_metrics.set_global_metrics('mp', payload)
+
+
+def cron_schedule_lease_management():
+  """Schedules task queues to process each MachineLease."""
+  if not config.settings().mp.enabled:
+    logging.info('MP support is disabled')
+    return
+  now = utils.utcnow()
+  for machine_lease in MachineLease.query():
+    # If there's no connection_ts, we're waiting on a bot so schedule the
+    # management job to check on it. If there is a connection_ts, then don't
+    # schedule the management job until it's time to release the machine.
+    if machine_lease.connection_ts:
+      if not machine_lease.drained:
+        # lease_expiration_ts is None if leased_indefinitely, check it first.
+        if machine_lease.leased_indefinitely:
+          continue
+        assert machine_lease.lease_expiration_ts, machine_lease
+        if machine_lease.lease_expiration_ts > now + datetime.timedelta(
+            seconds=machine_lease.early_release_secs or 0):
+          continue
+    if not utils.enqueue_task(
+        '/internal/taskqueue/machine-provider-manage',
+        'machine-provider-manage',
+        params={
+            'key': machine_lease.key.urlsafe(),
+        },
+    ):
+      logging.warning(
+          'Failed to enqueue task for MachineLease: %s', machine_lease.key)
+
+
+def cron_compute_utilization():
   """Computes bot utilization per machine type."""
+  if not config.settings().mp.enabled:
+    logging.info('MP support is disabled')
+    return
   # A query that requires multiple batches may produce duplicate results. To
   # ensure each bot is only counted once, map machine types to [busy, idle]
   # sets of bots.
@@ -1425,19 +1450,16 @@ def compute_utilization():
     f.get_result()
 
 
-def set_global_metrics():
-  """Set global Machine Provider-related ts_mon metrics."""
-  # Consider utilization metrics over 2 minutes old to be outdated.
-  outdated = utils.utcnow() - datetime.timedelta(minutes=2)
-  payload = {}
-  for machine_type in MachineType.query():
-    data = {
-      'enabled': machine_type.enabled,
-      'target_size': machine_type.target_size,
-    }
-    utilization = ndb.Key(MachineTypeUtilization, machine_type.key.id()).get()
-    if utilization and utilization.last_updated_ts > outdated:
-      data['busy'] = utilization.busy
-      data['idle'] = utilization.idle
-    payload[machine_type.key.id()] = data
-  ts_mon_metrics.set_global_metrics('mp', payload)
+def cron_sync_config():
+  """Updates MP related configuration."""
+  settings = config.settings().mp
+  if not settings.enabled:
+    logging.info('MP support is disabled')
+    return
+  if settings.server:
+    current_config = machine_provider.MachineProviderConfiguration().cached()
+    if settings.server != current_config.instance_url:
+      logging.info('Updating Machine Provider server to %s', settings.server)
+      current_config.modify(updated_by='', instance_url=settings.server)
+  _ensure_entities_exist()
+  _drain_excess()

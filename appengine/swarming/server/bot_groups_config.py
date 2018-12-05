@@ -140,7 +140,7 @@ def warmup():
     logging.error('Failed to warm up bots.cfg cache: %s', exc)
 
 
-def refetch_from_config_service(ctx=None):
+def cron_refetch_from_config_service(ctx=None):
   """Updates the cached expanded copy of bots.cfg in the datastore.
 
   Fetches the bots config from the config service and expands all includes,
@@ -159,78 +159,81 @@ def refetch_from_config_service(ctx=None):
   Raises:
     BadConfigError if the config is present, but not valid.
   """
-  ctx = ctx or validation.Context.logging()
-  cfg = _fetch_and_expand_bots_cfg(ctx)
-  if ctx.result().has_errors:
-    logging.error('Refusing the invalid config')
-    raise BadConfigError('Invalid bots.cfg config, see logs')
+  try:
+    ctx = ctx or validation.Context.logging()
+    cfg = _fetch_and_expand_bots_cfg(ctx)
+    if ctx.result().has_errors:
+      logging.error('Refusing the invalid bogs.cfg')
+      return None
 
-  # Fast path to skip the transaction if everything is up-to-date. Mostly
-  # important when 'refetch_from_config_service' is called directly from
-  # '_get_expanded_bots_cfg', since there may be large stampede of such calls.
-  cur = _bots_cfg_head_key().get()
-  if cur:
-    # Either 'is empty?' flag or the current digest are already set.
-    if (cur.empty and not cfg) or cur.digest == cfg.digest:
-      logging.info(
-          'Config is up-to-date at rev "%s" (digest "%s"), updated %s ago',
-          cfg.rev if cfg else 'none',
-          cfg.digest if cfg else 'none',
-          utils.utcnow()-cur.last_update_ts)
-      return cfg
-
-  bots_cfg_pb = cfg.bots.SerializeToString() if cfg else ''
-
-  # pylint: disable=no-value-for-parameter
-  @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT)
-  def update():
-    now = utils.utcnow()
+    # Fast path to skip the transaction if everything is up-to-date. Mostly
+    # important when 'refetch_from_config_service' is called directly from
+    # '_get_expanded_bots_cfg', since there may be large stampede of such calls.
     cur = _bots_cfg_head_key().get()
+    if cur:
+      # Either 'is empty?' flag or the current digest are already set.
+      if (cur.empty and not cfg) or cur.digest == cfg.digest:
+        logging.info(
+            'Config is up-to-date at rev "%s" (digest "%s"), updated %s ago',
+            cfg.rev if cfg else 'none',
+            cfg.digest if cfg else 'none',
+            utils.utcnow()-cur.last_update_ts)
+        return cfg
 
-    # If the config file is missing, we need to let consumers know, otherwise
-    # they can't distinguish between "missing the config" and "the fetch cron
-    # hasn't run yet".
-    if not cfg:
-      if not cur or not cur.empty:
-        ndb.put_multi([
-          BotsCfgHead(
-              key=_bots_cfg_head_key(),
-              empty=True,
-              last_update_ts=now),
-          BotsCfgBody(
-              key=_bots_cfg_body_key(),
-              empty=True,
-              last_update_ts=now),
-        ])
-      return
+    bots_cfg_pb = cfg.bots.SerializeToString() if cfg else ''
 
-    # This digest check exists mostly to avoid clobbering memcache if nothing
-    # has actually changed.
-    if cur and cur.digest == cfg.digest:
+    # pylint: disable=no-value-for-parameter
+    @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT)
+    def update():
+      now = utils.utcnow()
+      cur = _bots_cfg_head_key().get()
+
+      # If the config file is missing, we need to let consumers know, otherwise
+      # they can't distinguish between "missing the config" and "the fetch cron
+      # hasn't run yet".
+      if not cfg:
+        if not cur or not cur.empty:
+          ndb.put_multi([
+            BotsCfgHead(
+                key=_bots_cfg_head_key(),
+                empty=True,
+                last_update_ts=now),
+            BotsCfgBody(
+                key=_bots_cfg_body_key(),
+                empty=True,
+                last_update_ts=now),
+          ])
+        return None
+
+      # This digest check exists mostly to avoid clobbering memcache if nothing
+      # has actually changed.
+      if cur and cur.digest == cfg.digest:
+        logging.info(
+            'Config is up-to-date at rev "%s" (digest "%s"), updated %s ago',
+            cfg.rev, cfg.digest, now-cur.last_update_ts)
+        return None
+
       logging.info(
-          'Config is up-to-date at rev "%s" (digest "%s"), updated %s ago',
-          cfg.rev, cfg.digest, now-cur.last_update_ts)
-      return
+          'Storing expanded bots.cfg, its size before compression is %d bytes',
+          len(bots_cfg_pb))
+      ndb.put_multi([
+        BotsCfgHead(
+            key=_bots_cfg_head_key(),
+            bots_cfg_rev=cfg.rev,
+            digest=cfg.digest,
+            last_update_ts=now),
+        BotsCfgBody(
+            key=_bots_cfg_body_key(),
+            bots_cfg=bots_cfg_pb,
+            bots_cfg_rev=cfg.rev,
+            digest=cfg.digest,
+            last_update_ts=now),
+      ])
 
-    logging.info(
-        'Storing expanded bots.cfg, its size before compression is %d bytes',
-        len(bots_cfg_pb))
-    ndb.put_multi([
-      BotsCfgHead(
-          key=_bots_cfg_head_key(),
-          bots_cfg_rev=cfg.rev,
-          digest=cfg.digest,
-          last_update_ts=now),
-      BotsCfgBody(
-          key=_bots_cfg_body_key(),
-          bots_cfg=bots_cfg_pb,
-          bots_cfg_rev=cfg.rev,
-          digest=cfg.digest,
-          last_update_ts=now),
-    ])
-
-  update()
-  return cfg
+    update()
+    return cfg
+  except BadConfigError as e:
+    logging.info('Got a bad config: %s', e)
 
 
 # pylint: disable=no-value-for-parameter
