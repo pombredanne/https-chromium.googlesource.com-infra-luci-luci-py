@@ -52,6 +52,24 @@
       "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd442f9a_b2a59db2",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T23:10:30Z",
+      "side": 1,
+      "message": "I recall that on the isolate server, we used a different account that the default one for performance reasons but the exact rationale is vague in my memory. Maybe Vadim calls more.\n\nThe prpc code is only a wrapper around components/net.py. I don\u0027t see a way to use GAE\u0027s default account with this code.",
+      "parentUuid": "d4ff3a35_e44cac29",
+      "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
