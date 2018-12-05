@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d678dd0a_79e85f02",
+        "filename": "appengine/components/components/stats_framework/__init__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-05T17:47:14Z",
+      "side": 1,
+      "message": "Ack, agreed.",
+      "parentUuid": "cb986ae3_da3b6db1",
+      "range": {
+        "startLine": 445,
+        "startChar": 0,
+        "endLine": 447,
+        "endChar": 57
+      },
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cde2a0d9_2bfddf42",
         "filename": "appengine/isolate/handlers_prpc_test.py",
         "patchSetId": 6
@@ -175,6 +199,30 @@
       "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34e1b1aa_1f06b5d0",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-05T17:47:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "85c1166e_d3262b59",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

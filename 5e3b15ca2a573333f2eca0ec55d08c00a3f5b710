@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "11a7cf73_cd025770",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-05T17:47:14Z",
+      "side": 1,
+      "message": "This is helpful, I wouldn\u0027t have thought to check go/api-style, but I should try to remember to check when changing APIs later",
+      "parentUuid": "1a5beb31_2fd5ee3f",
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb88e005_3d0c6af4",
         "filename": "appengine/isolate/proto/isolated.proto",
         "patchSetId": 5
