@@ -34,6 +34,24 @@
       "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4ff3a35_e44cac29",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-05T22:27:38Z",
+      "side": 1,
+      "message": "For context, I would like to make these requests using the App Engine default service account.",
+      "parentUuid": "e63559be_c627b735",
+      "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
