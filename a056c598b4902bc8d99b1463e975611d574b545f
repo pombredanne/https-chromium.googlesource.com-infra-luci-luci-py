@@ -106,6 +106,24 @@
       "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfe3aef5_0a272445",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-05T23:59:08Z",
+      "side": 1,
+      "message": "Ok, in this case I\u0027m ready for lgtm and to land this.",
+      "parentUuid": "3c2a9853_4b99f4d5",
+      "revId": "a056c598b4902bc8d99b1463e975611d574b545f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
