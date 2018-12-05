@@ -21,7 +21,6 @@ from components import datastore_utils
 from components import machine_provider
 from server import bot_groups_config
 from server import bot_management
-from server import config
 from server import lease_management
 from server import named_caches
 from server import task_pack
@@ -134,11 +133,7 @@ class CronMachineProviderBotsUtilizationHandler(webapp2.RequestHandler):
   @decorators.require_cronjob
   def get(self):
     ndb.get_context().set_cache_policy(lambda _: False)
-    if not config.settings().mp.enabled:
-      logging.info('MP support is disabled')
-      return
-
-    lease_management.compute_utilization()
+    lease_management.cron_compute_utilization()
 
 
 class CronMachineProviderConfigHandler(webapp2.RequestHandler):
@@ -147,19 +142,7 @@ class CronMachineProviderConfigHandler(webapp2.RequestHandler):
   @decorators.require_cronjob
   def get(self):
     ndb.get_context().set_cache_policy(lambda _: False)
-    if not config.settings().mp.enabled:
-      logging.info('MP support is disabled')
-      return
-
-    if config.settings().mp.server:
-      new_server = config.settings().mp.server
-      current_config = machine_provider.MachineProviderConfiguration().cached()
-      if new_server != current_config.instance_url:
-        logging.info('Updating Machine Provider server to %s', new_server)
-        current_config.modify(updated_by='', instance_url=new_server)
-
-    lease_management.ensure_entities_exist()
-    lease_management.drain_excess()
+    lease_management.cron_sync_config()
 
 
 class CronMachineProviderManagementHandler(webapp2.RequestHandler):
@@ -168,11 +151,7 @@ class CronMachineProviderManagementHandler(webapp2.RequestHandler):
   @decorators.require_cronjob
   def get(self):
     ndb.get_context().set_cache_policy(lambda _: False)
-    if not config.settings().mp.enabled:
-      logging.info('MP support is disabled')
-      return
-
-    lease_management.schedule_lease_management()
+    lease_management.cron_schedule_lease_management()
 
 
 class CronNamedCachesUpdate(webapp2.RequestHandler):
@@ -402,7 +381,7 @@ class TaskMachineProviderManagementHandler(webapp2.RequestHandler):
     ndb.get_context().set_cache_policy(lambda _: False)
     key = ndb.Key(urlsafe=self.request.get('key'))
     assert key.kind() == 'MachineLease', key
-    lease_management.manage_lease(key)
+    lease_management.task_manage_lease(key)
 
 
 class TaskNamedCachesPool(webapp2.RequestHandler):
