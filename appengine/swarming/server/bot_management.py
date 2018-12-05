@@ -648,3 +648,22 @@ def cron_delete_old_bot_events():
     pass
   finally:
     logging.info('Deleted %d BotEvent entities', count)
+
+
+def cron_aggregate_dimensions():
+  """Foo"""
+  seen = {}
+  now = utils.utcnow()
+  for b in BotInfo.query():
+    for i in b.dimensions_flat:
+      k, v = i.split(':', 1)
+      if k != 'id':
+        seen.setdefault(k, set()).add(v)
+  dims = [
+    DimensionValues(dimension=k, values=sorted(values))
+    for k, values in sorted(seen.iteritems())
+  ]
+
+  logging.info('Saw dimensions %s', dims)
+  DimensionAggregation(
+      key=DimensionAggregation.KEY, dimensions=dims, ts=now).put()

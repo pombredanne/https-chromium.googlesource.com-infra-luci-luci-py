@@ -807,7 +807,7 @@ def set_has_capacity(dimensions, seconds):
       dimensions_hash, True, time=seconds, namespace='task_queues_tasks')
 
 
-def rebuild_task_cache(payload):
+def task_rebuild_task_cache(payload):
   """Rebuilds the TaskDimensions cache.
 
   This function is called in two cases:
