@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "1a5beb31_2fd5ee3f",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a55e5df_f6648f6f",
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb88e005_3d0c6af4",
         "filename": "appengine/isolate/proto/isolated.proto",
         "patchSetId": 5
@@ -183,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "cd00b55a_9f4f3370",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Good point, moved comment.",
+      "parentUuid": "bb88e005_3d0c6af4",
+      "range": {
+        "startLine": 30,
+        "startChar": 56,
+        "endLine": 32,
+        "endChar": 42
+      },
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d86efb71_af7c525e",
         "filename": "appengine/isolate/proto/isolated.proto",
         "patchSetId": 5
@@ -197,6 +239,24 @@
       "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15d618fb_d50513a3",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d86efb71_af7c525e",
+      "revId": "5e3b15ca2a573333f2eca0ec55d08c00a3f5b710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

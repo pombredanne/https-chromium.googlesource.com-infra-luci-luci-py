@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cb986ae3_da3b6db1",
+        "filename": "appengine/components/components/stats_framework/__init__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "This would require fetching the parent entity, or to create helper functions which would result in more LoC anyway, so I don\u0027t feel this worth here.",
+      "parentUuid": "8ff3561b_b81d72e3",
+      "range": {
+        "startLine": 445,
+        "startChar": 0,
+        "endLine": 447,
+        "endChar": 57
+      },
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cde2a0d9_2bfddf42",
         "filename": "appengine/isolate/handlers_prpc_test.py",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca60f339_bab686e3",
+        "filename": "appengine/isolate/handlers_prpc_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Ugh thanks for catching.",
+      "parentUuid": "cde2a0d9_2bfddf42",
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "de77aa76_babddf95",
+        "filename": "appengine/isolate/handlers_prpc_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fb4eb2a_706eb0a9",
+      "range": {
+        "startLine": 144,
+        "startChar": 6,
+        "endLine": 144,
+        "endChar": 18
+      },
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf1329e6_ce4f3726",
         "filename": "appengine/isolate/proto/isolated.proto",
         "patchSetId": 6
@@ -76,6 +142,30 @@
       "writtenOn": "2018-12-04T23:19:44Z",
       "side": 1,
       "message": "I guess INVALID is never to be used, and we list INVALID above just to catch the case where the requester forgets to include Resolution? Otherwise, we could also have some default resolution?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85c1166e_d3262b59",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Exact.\n\nThe other option is to have MINUTE be the default, but I prefer to require the client to be explicit about this.",
+      "parentUuid": "bf1329e6_ce4f3726",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -108,6 +198,30 @@
       "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35fc613f_1da3a2df",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-05T13:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "faa1639e_2195940a",
+      "range": {
+        "startLine": 55,
+        "startChar": 30,
+        "endLine": 55,
+        "endChar": 46
+      },
+      "revId": "6498cb49078fa3f1d2c0b031ccb9fc60204b2188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
