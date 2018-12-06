@@ -396,9 +396,14 @@ def _generate_stats_day_cls(snapshot_cls):
       year, month, day = self.key.id().split('-', 2)
       return datetime.datetime(int(year), int(month), int(day))
 
+    @property
+    def timestamp_str(self):
+      """Returns the timestamp as a string."""
+      return self.key.string_id()
+
     def to_dict(self):
       out = self.values.to_dict()
-      out['key'] = self.timestamp.date()
+      out['key'] = self.timestamp_str
       return out
 
     def _pre_put_hook(self):
@@ -412,8 +417,8 @@ def _generate_stats_hour_cls(snapshot_cls):
   class StatsHour(ndb.Model):
     """Statistics for a single hour.
 
-    The Key format is HH with 0 prefix so the key sort naturally. Ancestor is
-    self.stats_day_cls.
+    Key id is 'HH' as a string with 0 prefix so the key sort naturally. Ancestor
+    is self.stats_day_cls.
 
     This entity is updated every time a new self.stats_minute_cls is generated
     under a transaction, so ~1 transaction per minute.
@@ -447,9 +452,15 @@ def _generate_stats_hour_cls(snapshot_cls):
       return datetime.datetime(
           int(year), int(month), int(day), int(key.id()))
 
+    @property
+    def timestamp_str(self):
+      """Returns the timestamp as a string."""
+      key = self.key
+      return '%sT%s' % (key.parent().string_id(), key.string_id())
+
     def to_dict(self):
       out = self.values.to_dict()
-      out['key'] = self.timestamp
+      out['key'] = self.timestamp_str
       return out
 
     def _pre_put_hook(self):
@@ -493,9 +504,17 @@ def _generate_stats_minute_cls(snapshot_cls):
       return datetime.datetime(
           int(year), int(month), int(day), int(hour), int(key.id()))
 
+    @property
+    def timestamp_str(self):
+      """Returns the timestamp as a string."""
+      key = self.key
+      parent = key.parent()
+      return '%sT%s:%s' % (
+          parent.parent().string_id(), parent.string_id(), key.string_id())
+
     def to_dict(self):
       out = self.values.to_dict()
-      out['key'] = self.timestamp
+      out['key'] = self.timestamp_str
       return out
 
     def _pre_put_hook(self):
