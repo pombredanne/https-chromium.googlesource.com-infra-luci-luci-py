@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aba72e12_77bb24ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-06T18:52:28Z",
+      "side": 1,
+      "message": "Presumably in the case of non-success, we\u0027d get an error, so no error means success?",
+      "revId": "8d8ba15b010687e82b2529be71629dcf6841d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6117d97_c5d30eeb",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-06T18:52:28Z",
+      "side": 1,
+      "message": "And also, I guess, because they don\u0027t tend to repeatedly fetch the same entities? -- And if there were a particular cron job that repeatedly fetched the same entities, then we could override get() for that one.",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "8d8ba15b010687e82b2529be71629dcf6841d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c83bdc0_48daf102",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-06T18:52:28Z",
+      "side": 1,
+      "message": "\"is an arbitrary\"\nAlso, this line could have a period at the end for consistency.",
+      "range": {
+        "startLine": 1345,
+        "startChar": 18,
+        "endLine": 1345,
+        "endChar": 19
+      },
+      "revId": "8d8ba15b010687e82b2529be71629dcf6841d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8a39e5a_12a1515d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-06T18:52:28Z",
+      "side": 1,
+      "message": "Optional, rephrase as \"First, ...\"",
+      "range": {
+        "startLine": 1433,
+        "startChar": 3,
+        "endLine": 1433,
+        "endChar": 13
+      },
+      "revId": "8d8ba15b010687e82b2529be71629dcf6841d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0b15e0a_8d584bbd",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1468,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-06T18:52:28Z",
+      "side": 1,
+      "message": "Optional: Add a period for consistency.",
+      "range": {
+        "startLine": 1468,
+        "startChar": 48,
+        "endLine": 1468,
+        "endChar": 49
+      },
+      "revId": "8d8ba15b010687e82b2529be71629dcf6841d61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
