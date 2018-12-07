@@ -422,12 +422,18 @@ class InternalStatsUpdateHandler(webapp2.RequestHandler):
   """Called every few minutes to update statistics."""
   @decorators.require_cronjob
   def get(self):
-    self.response.headers['Content-Type'] = 'text/plain'
-    minutes = stats.generate_stats()
+    minutes = stats.cron_generate_stats()
     if minutes is not None:
-      msg = 'Processed %d minutes' % minutes
-      logging.info(msg)
-      self.response.write(msg)
+      logging.info('Processed %d minutes', minutes)
+
+
+class InternalStatsSendToBQHandler(webapp2.RequestHandler):
+  """Called every few minutes to update statistics."""
+  @decorators.require_cronjob
+  def get(self):
+    failed = stats.cron_send_to_bq()
+    if failed:
+      logging.error('Failed: %s', failed)
 
 
 ### Mapreduce related handlers
@@ -481,6 +487,8 @@ def get_routes():
     # Stats
     webapp2.Route(
         r'/internal/cron/stats/update', InternalStatsUpdateHandler),
+    webapp2.Route(
+        r'/internal/cron/stats/send_to_bq', InternalStatsSendToBQHandler),
 
     # Mapreduce related urls.
     webapp2.Route(
