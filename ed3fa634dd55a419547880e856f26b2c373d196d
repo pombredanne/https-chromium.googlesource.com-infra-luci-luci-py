@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c50b8892_f651de53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e59ae00_0cb867f9",
+      "range": {
+        "startLine": 10,
+        "startChar": 33,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3737296e_eb141803",
         "filename": "appengine/swarming/doc/Monitoring.md",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fac49b0_f1dd81a6",
+        "filename": "appengine/swarming/doc/Monitoring.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3737296e_eb141803",
+      "range": {
+        "startLine": 5,
+        "startChar": 9,
+        "endLine": 5,
+        "endChar": 11
+      },
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c54dcf50_b2dd076d",
+        "filename": "appengine/swarming/doc/Monitoring.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "603da5ab_a27d76e5",
+      "range": {
+        "startLine": 14,
+        "startChar": 29,
+        "endLine": 14,
+        "endChar": 36
+      },
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3e7937d_29d51213",
         "filename": "appengine/swarming/doc/Monitoring.md",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e27349f8_a1d3f4eb",
+        "filename": "appengine/swarming/doc/Monitoring.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "Tends to be slow, rewrote.",
+      "parentUuid": "f3e7937d_29d51213",
+      "range": {
+        "startLine": 27,
+        "startChar": 9,
+        "endLine": 28,
+        "endChar": 78
+      },
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "4642581d_1ca1a479",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c3b6fea_afa430bc",
+      "range": {
+        "startLine": 522,
+        "startChar": 43,
+        "endLine": 522,
+        "endChar": 50
+      },
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96e19ebb_a1da1c9d",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9031fec_ac4e6b63",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "Renamed to \u0027prev_val\u0027. It\u0027s a memcache value.",
+      "parentUuid": "96e19ebb_a1da1c9d",
+      "range": {
+        "startLine": 529,
+        "startChar": 6,
+        "endLine": 529,
+        "endChar": 7
+      },
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -177,6 +321,24 @@
       "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "741959d5_be2f3b9e",
+        "filename": "appengine/swarming/server/stats_bots.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T12:51:29Z",
+      "side": 1,
+      "message": "I like adding pile of poo emoji and when I need to specify the encoding to enable me to paste the character in (or any other non-ascii character), this makes me sad. :D",
+      "parentUuid": "acfbba8b_42ccc973",
+      "revId": "ed3fa634dd55a419547880e856f26b2c373d196d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
