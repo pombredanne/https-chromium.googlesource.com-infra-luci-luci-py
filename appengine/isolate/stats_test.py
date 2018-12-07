@@ -72,6 +72,16 @@ class StatsTest(test_case.TestCase):
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now, 0)
 
+  def test_all_apis_are_tested(self):
+    # Ensures there's a test for each public API.
+    module = stats
+    expected = frozenset(
+        i for i in dir(module)
+        if i[0] != '_' and hasattr(getattr(module, i), 'func_name'))
+    missing = expected - frozenset(
+        i[5:] for i in dir(self) if i.startswith('test_'))
+    self.assertFalse(missing)
+
   def _test_handler(self, url, added_data):
     stats_framework_logs_mock.reset_timestamp(stats.STATS_HANDLER, self.now)
 
@@ -79,7 +89,7 @@ class StatsTest(test_case.TestCase):
     self.assertEqual(1, len(list(stats_logs.yield_entries(None, None))))
 
     self.mock_now(self.now, 60)
-    self.assertEqual(10, stats.generate_stats())
+    self.assertEqual(10, stats.cron_generate_stats())
 
     actual = stats_framework.get_stats(
         stats.STATS_HANDLER, 'minutes', self.now, 1, True)
@@ -90,7 +100,7 @@ class StatsTest(test_case.TestCase):
         'downloads': 0,
         'downloads_bytes': 0,
         'failures': 0,
-        'key': datetime.datetime(2010, 1, 2, 3, 4),
+        'key': '2010-01-02T03:04',
         'requests': 1,
         'uploads': 0,
         'uploads_bytes': 0,
@@ -123,6 +133,38 @@ class StatsTest(test_case.TestCase):
   def test_dupe(self):
     expected = {}
     self._test_handler('/dupe', expected)
+
+  def test_add_entry(self):
+    # Tested by other test cases.
+    pass
+
+  def test_snapshot_to_proto(self):
+    # TODO(maruel): Implement.
+    pass
+
+  def test_cron_generate_stats(self):
+    self.assertEqual(120, stats.cron_generate_stats())
+
+  def test_cron_send_to_bq(self):
+    def json_request(url, method, payload, scopes, deadline):
+      self.assertEqual(
+          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
+            'isolated/tables/stats/insertAll',
+          url)
+      self.assertEqual('POST', method)
+      self.assertEqual(
+          {
+            'ignoreUnknownValues': False,
+            'kind': 'bigquery#tableDataInsertAllRequest',
+            'rows': [],
+            'skipInvalidRows': True,
+          },
+          payload)
+      self.assertEqual(stats.helper.INSERT_ROWS_SCOPE, scopes)
+      self.assertEqual(600, deadline)
+      return {}
+    self.mock(stats.net, 'json_request', json_request)
+    self.assertEqual([], stats.cron_send_to_bq())
 
 
 if __name__ == '__main__':
