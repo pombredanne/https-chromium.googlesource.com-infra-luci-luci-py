@@ -11,11 +11,16 @@ log entry at info level per request.
 
 import logging
 
+from google.appengine.api import app_identity
 from google.appengine.ext import ndb
 
 from components import stats_framework
 from components.stats_framework import stats_logs
+from components import net
 from components import utils
+from infra_libs.bigquery import helper
+
+from proto import isolated_pb2
 
 
 ### Models
@@ -99,6 +104,53 @@ def _extract_snapshot_from_logs(start_time, end_time):
   return values
 
 
+def _to_proto(s):
+  """Shorthand to create a proto."""
+  out = isolated_pb2.StatsSnapshot()
+  snapshot_to_proto(s, out)
+  return out
+
+def _save_to_bq(snapshots, deadline):
+  """Saves statistics snapshots to BigQuery.
+
+  Logs insert errors and returns a list of timestamps of snapshots that could
+  not be inserted.
+  """
+  # BigQuery API doc:
+  # https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/insertAll
+  logging.info('sending %d rows', len(snapshots))
+
+  table_name = 'isolated'
+  dataset = 'stats'
+  url = (
+      'https://www.googleapis.com/bigquery/v2/projects/%s/datasets/%s/tables/'
+      '%s/insertAll') % (app_identity.get_application_id(), dataset, table_name)
+  payload = {
+    'kind': 'bigquery#tableDataInsertAllRequest',
+    # Do not fail entire request because of one bad snapshot.
+    # We handle invalid rows below.
+    'skipInvalidRows': True,
+    'ignoreUnknownValues': False,
+    'rows': [
+      {
+        'insertId': s.timestamp_str,
+        'json': helper.message_to_dict(_to_proto(s)),
+      } for s in snapshots
+    ],
+  }
+  res = net.json_request(
+      url=url, method='POST', payload=payload, scopes=helper.INSERT_ROWS_SCOPE,
+      # deadline parameter here is duration in seconds.
+      deadline=(deadline - utils.utcnow()).total_seconds())
+
+  failed = []
+  for err in res.get('insertErrors', []):
+    t = snapshots[err['index']].timestamp_str
+    failed.append(t)
+    logging.error('failed to insert row for snapshot %s: %r', t, err['errors'])
+  return failed
+
+
 ### Public API
 
 
@@ -119,6 +171,25 @@ def add_entry(action, number, where):
   stats_logs.add_entry('%s; %d; %s' % (_ACTION_NAMES[action], number, where))
 
 
-def generate_stats():
+def snapshot_to_proto(s, out):
+  """Converts a stats._Snapshot to isolated_pb2.Snapshot."""
+  out.ts.FromDatetime(s.timestamp)
+  out.span.FromTimedelta(s.span)
+  v = s.values
+  out.uploads = v.uploads
+  out.uploads_bytes = v.uploads_bytes
+  out.downloads = v.downloads
+  out.downloads_bytes = v.downloads_bytes
+  out.contains_requests = v.contains_requests
+  out.contains_lookups = v.contains_lookups
+  out.requests = v.requests
+  out.failures = v.failures
+
+
+def cron_generate_stats():
   """Returns the number of minutes processed."""
   return STATS_HANDLER.process_next_chunk(stats_framework.TOO_RECENT)
+
+
+def cron_send_to_bq():
+  _save_to_bq(snapshots, 100)

@@ -79,7 +79,7 @@ class StatsTest(test_case.TestCase):
     self.assertEqual(1, len(list(stats_logs.yield_entries(None, None))))
 
     self.mock_now(self.now, 60)
-    self.assertEqual(10, stats.generate_stats())
+    self.assertEqual(10, stats.cron_generate_stats())
 
     actual = stats_framework.get_stats(
         stats.STATS_HANDLER, 'minutes', self.now, 1, True)
@@ -90,7 +90,7 @@ class StatsTest(test_case.TestCase):
         'downloads': 0,
         'downloads_bytes': 0,
         'failures': 0,
-        'key': datetime.datetime(2010, 1, 2, 3, 4),
+        'key': '2010-01-02T03:04',
         'requests': 1,
         'uploads': 0,
         'uploads_bytes': 0,

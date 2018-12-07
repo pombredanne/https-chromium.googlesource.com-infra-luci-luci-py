@@ -6,6 +6,7 @@ syntax = "proto3";
 
 package isolated;
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 service Isolated {
@@ -38,9 +39,12 @@ message StatsResponse {
   repeated StatsSnapshot measurements = 1;
 }
 
-// StatsSnapshot contains service statistics.
+// StatsSnapshot contains service statistics for a window of time.
 message StatsSnapshot {
+  // Timestamp that represents the start of the window.
   google.protobuf.Timestamp ts = 1;
+  // Duration of the window for this snapshot.
+  google.protobuf.Duration span = 10;
 
   int64 uploads = 2;
   int64 uploads_bytes = 3;
