@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5fc1630_cdaba815",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T21:19:09Z",
+      "side": 1,
+      "message": "IIUC, that\u0027s designed so later we can use individual bot id as a second value?",
+      "revId": "d290f169ed276539edd88e829a590361e5825661",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c99f140e_a1d1a37d",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T21:19:09Z",
+      "side": 1,
+      "message": "Since there\u0027s now 4 different ways, I wonder if the valid combinations should be specified at the top, around line 223, in something like:\n\n// The following combinations are valid:\n//  Either one below alone\n//  IP + require_gce_vm_token; requires both to pass\n//  IP + require_luci_machine_token; requires both to pass\n//  IP + require_service_account; requires both to pass\n\nI don\u0027t think there\u0027s any other sensible combination.",
+      "revId": "d290f169ed276539edd88e829a590361e5825661",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef3fa3e7_ce73ec7f",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-07T21:19:09Z",
+      "side": 1,
+      "message": "you cannot do this? i.e. will this throw when the message is not specified? (I\u0027m really noob with proto3)\n\n  if cfg.require_gce_vm_token.project",
+      "revId": "d290f169ed276539edd88e829a590361e5825661",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
