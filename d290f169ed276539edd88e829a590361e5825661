@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "939b7016_56f22bf3",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-07T22:06:49Z",
+      "side": 1,
+      "message": "Yeah, we can add conditions on any part of google.compute_engine.* signed JSON. It has stuff like zone and GCE service account.\n\nBut mostly this is in reply to Nodir\u0027s comment on the doc.",
+      "parentUuid": "f5fc1630_cdaba815",
+      "revId": "d290f169ed276539edd88e829a590361e5825661",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c99f140e_a1d1a37d",
         "filename": "appengine/swarming/proto/bots.proto",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d0c227f3_6f999996",
+        "filename": "appengine/swarming/proto/bots.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-07T22:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c99f140e_a1d1a37d",
+      "revId": "d290f169ed276539edd88e829a590361e5825661",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef3fa3e7_ce73ec7f",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "d290f169ed276539edd88e829a590361e5825661",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2877fb95_86049fbb",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-07T22:06:49Z",
+      "side": 1,
+      "message": "This always evaluates as True regardless of whether the field is set or not (see my comments on the first patch set).",
+      "parentUuid": "ef3fa3e7_ce73ec7f",
+      "revId": "d290f169ed276539edd88e829a590361e5825661",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
