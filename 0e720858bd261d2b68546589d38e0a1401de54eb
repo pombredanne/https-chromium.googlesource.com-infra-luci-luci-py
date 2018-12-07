@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77ba81b6_3d18c709",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-07T21:12:55Z",
+      "side": 1,
+      "message": "simple \"if cfg.require_gce_vm_token\" check doesn\u0027t work, it is always True even if the message wasn\u0027t really defined :-/",
+      "range": {
+        "startLine": 589,
+        "startChar": 15,
+        "endLine": 589,
+        "endChar": 51
+      },
+      "revId": "0e720858bd261d2b68546589d38e0a1401de54eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a14fe487_f076cd7c",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-07T21:12:55Z",
+      "side": 1,
+      "message": "HasField doesn\u0027t work with non-message fields :-/ So this doesn\u0027t work:\n\n  fields \u003d [f for f in FIELDS if a.HasField(f)]\n\nNor this (because \u0027require_gce_vm_token\u0027 is always true-ish):\n\n  fields \u003d [f for f in FIELDS if getattr(a, f)]",
+      "range": {
+        "startLine": 985,
+        "startChar": 5,
+        "endLine": 985,
+        "endChar": 33
+      },
+      "revId": "0e720858bd261d2b68546589d38e0a1401de54eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b2b990e_01ba4e93",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-07T21:12:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb1f29d9_85dbd995",
+      "revId": "0e720858bd261d2b68546589d38e0a1401de54eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
