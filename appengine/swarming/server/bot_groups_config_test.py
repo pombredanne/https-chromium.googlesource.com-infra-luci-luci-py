@@ -76,11 +76,13 @@ EXPECTED_GROUP_1 = bot_groups_config._make_bot_group_config(
       bot_groups_config.BotAuth(
         require_luci_machine_token=True,
         require_service_account=(),
+        require_gce_vm_token=None,
         ip_whitelist=u'',
       ),
       bot_groups_config.BotAuth(
         require_luci_machine_token=False,
         require_service_account=('z@example.com',),
+        require_gce_vm_token=None,
         ip_whitelist=u'',
       ),
     ),
@@ -95,6 +97,7 @@ EXPECTED_GROUP_2 = bot_groups_config._make_bot_group_config(
       bot_groups_config.BotAuth(
         require_luci_machine_token=False,
         require_service_account=(u'a@example.com',),
+        require_gce_vm_token=None,
         ip_whitelist=u'',
       ),
     ),
@@ -109,6 +112,7 @@ EXPECTED_GROUP_3 = bot_groups_config._make_bot_group_config(
       bot_groups_config.BotAuth(
         require_luci_machine_token=False,
         require_service_account=(),
+        require_gce_vm_token=None,
         ip_whitelist=u'bots',
       ),
     ),
@@ -148,8 +152,8 @@ class BotGroupsConfigTest(test_case.TestCase):
     bot_groups_config.clear_cache()
 
   def test_version(self):
-    self.assertEqual('hash:7854e3d3c41023', EXPECTED_GROUP_1.version)
-    self.assertEqual('hash:8a870232025b97', EXPECTED_GROUP_2.version)
+    self.assertEqual('hash:a098ca55bb4587', EXPECTED_GROUP_1.version)
+    self.assertEqual('hash:7074c01e3b7f5d', EXPECTED_GROUP_2.version)
 
   def test_expand_bot_id_expr_success(self):
     def check(expected, expr):
@@ -301,7 +305,22 @@ class BotGroupsConfigTest(test_case.TestCase):
       ])
     self.validator_test(cfg, [
       'bot_group #0: require_luci_machine_token and require_service_account '
-      'can\'t both be used at the same time'
+      'can\'t be used at the same time'
+    ])
+
+  def test_bad_auth_cfg_three_methods(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(auth=[
+          bots_pb2.BotAuth(
+            require_luci_machine_token=True,
+            require_service_account=['abc@example.com'],
+            require_gce_vm_token=bots_pb2.BotAuth.GCE(project='zzz')),
+        ])
+      ])
+    self.validator_test(cfg, [
+      'bot_group #0: require_luci_machine_token and require_service_account '
+      'and require_gce_vm_token can\'t be used at the same time'
     ])
 
   def test_bad_auth_cfg_no_ip_whitelist(self):
@@ -310,8 +329,8 @@ class BotGroupsConfigTest(test_case.TestCase):
         bots_pb2.BotGroup(auth=[bots_pb2.BotAuth()])
       ])
     self.validator_test(cfg, [
-      'bot_group #0: if both require_luci_machine_token and '
-      'require_service_account are unset, ip_whitelist is required'
+      'bot_group #0: if all other auth requirements are unset, '
+      'ip_whitelist must be set'
     ])
 
   def test_bad_required_service_account(self):
@@ -323,6 +342,17 @@ class BotGroupsConfigTest(test_case.TestCase):
       ])
     self.validator_test(cfg, [
       'bot_group #0: invalid service account email "not-an-email"'
+    ])
+
+  def test_bad_require_gce_vm_token_no_proj(self):
+    cfg = bots_pb2.BotsCfg(
+      bot_group=[
+        bots_pb2.BotGroup(auth=[
+          bots_pb2.BotAuth(require_gce_vm_token=bots_pb2.BotAuth.GCE()),
+        ])
+      ])
+    self.validator_test(cfg, [
+      'bot_group #0: missing project in require_gce_vm_token'
     ])
 
   def test_bad_ip_whitelist_name(self):
