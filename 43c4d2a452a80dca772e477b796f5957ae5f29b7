@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "414c5c2c_aa02c983",
+        "filename": "appengine/isolate/doc/Monitoring.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-08T00:06:27Z",
+      "side": 1,
+      "message": "Possible notes to add: Does this ever need to be run more than once for each instance, or should it only ever be run once per instance. What if someone runs it again when it was already set up for that instance?\n\nYou could also add a comment at the top of the script.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fb39d05_7dfc6b8a",
+        "filename": "appengine/isolate/setup_bigquery.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-08T00:06:27Z",
+      "side": 1,
+      "message": "I guess APPID can never have spaces, right?",
+      "range": {
+        "startLine": 61,
+        "startChar": 39,
+        "endLine": 61,
+        "endChar": 47
+      },
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4ca1a8d_8eb387ea",
+        "filename": "appengine/isolate/stats.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-08T00:06:27Z",
+      "side": 1,
+      "message": "Nit: could be lower-cased or made global.",
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
