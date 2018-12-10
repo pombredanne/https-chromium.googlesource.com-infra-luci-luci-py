@@ -22,6 +22,30 @@
       "revId": "eb2332f1c79a2e8611cdfa504cf43dba649bf8b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45fea001_dd84b0b2",
+        "filename": "appengine/isolate/stats_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T14:05:10Z",
+      "side": 1,
+      "message": "Most tests in Swarming are designed this way. In practice I add the test_foo() function when there\u0027s no obvious single test case, like line 139.\n\nThe primary value of this is: when a contributor adds a new public symbol, the test starts failing, so the contributor *has* to modify the test file.",
+      "parentUuid": "4954579b_28a2c3ac",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "eb2332f1c79a2e8611cdfa504cf43dba649bf8b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
