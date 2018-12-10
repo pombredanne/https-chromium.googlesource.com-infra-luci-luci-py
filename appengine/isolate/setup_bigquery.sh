@@ -57,7 +57,6 @@ cd ..
 # https://cloud.google.com/iam/docs/granting-roles-to-service-accounts
 # https://cloud.google.com/bigquery/docs/access-control
 echo "- Grant access to the AppEngine app to the role account:"
-roles/bigquery.user
 gcloud projects add-iam-policy-binding ${APPID} \
     --member serviceAccount:${APPID}@appspot.gserviceaccount.com \
     --role roles/bigquery.dataEditor
