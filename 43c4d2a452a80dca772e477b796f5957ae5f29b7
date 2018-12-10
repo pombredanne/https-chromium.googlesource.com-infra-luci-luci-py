@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c30361f_4833f4c9",
+        "filename": "appengine/isolate/doc/Monitoring.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T14:22:08Z",
+      "side": 1,
+      "message": "Moved it back into ../README.md, since it should be part of the initial setup. In practice I\u0027ll have to run this on each individual instance, which I\u0027ll do shortly. :)",
+      "parentUuid": "414c5c2c_aa02c983",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1fb39d05_7dfc6b8a",
         "filename": "appengine/isolate/setup_bigquery.sh",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2018-12-08T00:06:27Z",
       "side": 1,
       "message": "I guess APPID can never have spaces, right?",
+      "range": {
+        "startLine": 61,
+        "startChar": 39,
+        "endLine": 61,
+        "endChar": 47
+      },
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acde06b8_20555c34",
+        "filename": "appengine/isolate/setup_bigquery.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T14:22:08Z",
+      "side": 1,
+      "message": "Yes since it\u0027s a valid cloud project ID.",
+      "parentUuid": "1fb39d05_7dfc6b8a",
       "range": {
         "startLine": 61,
         "startChar": 39,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6f2a2b66_135d2b22",
+        "filename": "appengine/isolate/stats.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T14:22:08Z",
+      "side": 1,
+      "message": "I did think about it and got a few challenges:\n- stats_framework doesn\u0027t use a transaction. It\u0027s designed to work without one to reduce the strain on the DB.\n- I don\u0027t want to do one task per minute, that sounds inefficient.\n\nIn practice if I had used one task per minute, I don\u0027t think I could have back filled statistics from 2013 so fast on the dev instance; it would have taken weeks.\n\nOn the other hand, this definitely looks clunky but I feel it is (ironically) more resilient and lower overall system load.\n\nAnother reason for this is that on the Swarming case it will become *way* more complicated with multiple tables (capacity vs throughput) so I felt it could need the scale.\n\nIn the end, the cost of switching back from this design to a pure task queue design is cheap in term of engineering, so I think it\u0027s fine to deploy with this for now (backfill 5 years of stats) and iterate if we\u0027re unhappy with the design in a way that inhibit agility. I don\u0027t think it\u0027s the case in practice.",
+      "parentUuid": "4c3bc40f_be4945b1",
+      "range": {
+        "startLine": 211,
+        "startChar": 2,
+        "endLine": 213,
+        "endChar": 8
+      },
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4ca1a8d_8eb387ea",
         "filename": "appengine/isolate/stats.py",
         "patchSetId": 13
@@ -85,6 +157,24 @@
       "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1b419e_056e3bd6",
+        "filename": "appengine/isolate/stats.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T14:22:08Z",
+      "side": 1,
+      "message": "Lowered.",
+      "parentUuid": "d4ca1a8d_8eb387ea",
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
