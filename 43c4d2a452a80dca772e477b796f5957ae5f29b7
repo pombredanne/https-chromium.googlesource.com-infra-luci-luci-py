@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "b574a591_0bdfe6e0",
+        "filename": "appengine/isolate/stats.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-10T18:24:53Z",
+      "side": 1,
+      "message": "pull tasks are not limited to 1/m. Bb processes up to 1000 pull tasks per minute.\n\nif stats_framework just created a lightweight pull task per \"new piece of data\", then it would be fast, and processing/aggregation/accumulation/export-to-bq can be done in background.\nBut I am not suggesting that of course, because that would be a wrong place to invest, to me (ideally we outsource this complexity to services that do it better than us and maintained by other teams)",
+      "parentUuid": "6f2a2b66_135d2b22",
+      "range": {
+        "startLine": 211,
+        "startChar": 2,
+        "endLine": 213,
+        "endChar": 8
+      },
+      "revId": "43c4d2a452a80dca772e477b796f5957ae5f29b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4ca1a8d_8eb387ea",
         "filename": "appengine/isolate/stats.py",
         "patchSetId": 13
