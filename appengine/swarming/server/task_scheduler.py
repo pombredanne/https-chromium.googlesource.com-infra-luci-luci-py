@@ -745,6 +745,17 @@ def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
   to_run_key = task_to_run.request_to_task_to_run_key(request, try_number,
                                                       slice_number)
   to_run = to_run_key.get()
+  # Note: This is a workaround for the fact that swarming_scheduler's opinion
+  # about which slice should have run may differ from that of external
+  # scheduler (in which case external scheduler's desired slice may not
+  # have a TaskToRun record). In such a case, create the TaskToRun and store
+  # it for the desired slice.
+  # TODO(akeshet/maruel): Determine whether this is good behaviour. In
+  # particular this is a potentially surprising side effet of "getting"
+  # the desired task, which has observable effect in the swarming database.
+  if not to_run:
+    to_run = task_to_run.new_task_to_run(request, try_number, slice_number)
+    to_run.put()
   # TODO(akeshet/maruel): Figure out how to unpack a TaskToRun from the
   # returned result_key.
   return [(request, to_run)]
