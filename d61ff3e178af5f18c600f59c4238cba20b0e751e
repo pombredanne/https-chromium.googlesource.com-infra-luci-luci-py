@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "751151df_bd1f46db",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T23:25:36Z",
+      "side": 1,
+      "message": "Create new simpler function that accepts task_slice_index and try_number instead of to_run_key.",
+      "revId": "d61ff3e178af5f18c600f59c4238cba20b0e751e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ae493f_058e6a23",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T23:25:36Z",
+      "side": 1,
+      "message": "You won\u0027t need this.",
+      "revId": "d61ff3e178af5f18c600f59c4238cba20b0e751e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c19e67bd_957f2577",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T23:25:36Z",
+      "side": 1,
+      "message": "You won\u0027t need this anymore.",
+      "revId": "d61ff3e178af5f18c600f59c4238cba20b0e751e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe00df6e_8a767b2c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-10T23:25:36Z",
+      "side": 1,
+      "message": "_reap_task_ext_sched(...)",
+      "revId": "d61ff3e178af5f18c600f59c4238cba20b0e751e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
