@@ -24,6 +24,7 @@ import gae_ts_mon
 import event_mon_metrics
 import handlers_endpoints
 import handlers_frontend
+import handlers_prpc
 import template
 import ts_mon_metrics
 from server import acl
@@ -63,6 +64,8 @@ def create_application():
     config.ConfigApi,
   ])
 
+  prpc_api = webapp2.WSGIApplication(handlers_prpc.get_routes())
+
   # Local import, because it instantiates the mapreduce app.
   # This is for the Web UI.
   from mapreduce import main
@@ -71,8 +74,9 @@ def create_application():
   event_mon_metrics.initialize()
   ts_mon_metrics.initialize()
   utils.report_memory(frontend_app)
-  utils.report_memory(api)
-  return frontend_app, api, main.APP
+  utils.report_memory(endpoints_api)
+  utils.report_memory(prpc_api)
+  return frontend_app, endpoints_api, prpc_api, main.APP
 
 
-app, endpoints_app, mapreduce_app = create_application()
+app, endpoints_app, prpc_api, mapreduce_app = create_application()
