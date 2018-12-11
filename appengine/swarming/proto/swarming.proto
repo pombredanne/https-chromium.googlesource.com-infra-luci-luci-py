@@ -13,13 +13,257 @@ syntax = "proto3";
 
 package swarming;
 
+import "google/protobuf/timestamp.proto";
+
 // API.
 
 service Swarming {
+  // BotEvents returns events relating to bots.
+  rpc BotEvents(BotEventsRequest) returns (BotEventsResponse) {};
+
   // TODO(maruel): Finish implementation. https://913953
 }
 
+message BotEventsRequest {
+}
+
+message BotEventsResponse {
+}
+
+
+// Bot description.
+
+// Bot describes a Swarming bot.
+//
+// Because a Swarming bot is a single execution unit unlike RBE, it doesn't have
+// a concept of owned device at the moment. This may change later.
+message Bot {
+  // Bot id. This value is also normally included in dimensions.
+  string bot_id = 1;
+  // Bot session id. There is normally one bot session id per bot process on the
+  // host. When the bot self-upgrades, it creates a new bot session id.
+  string session_id = 2; // Not used yet. https://crbug.com/786735
+
+  // Current bot status.
+  BotStatus status = 3;
+  // Supplementation information to describe the bot status.
+  //
+  // See BotStatus for the meaning of this string for each status.
+  string status_msg = 4;
+  // Current task being handled by the bot, if relevant.
+  string task_id = 5;
+
+  // Bot reported dimensions. This can be used for the host or for the DUT under
+  // control.
+  //
+  // This is used for task selection.
+  Dimensions dimensions = 6;
+  // Bot reported state. This can be used for the host or for the DUT under
+  // control.
+  //
+  // This is NOT used for task selection.
+  BotState state = 7;
+}
+
+// BotStatus is one of the bot can be in.
+//
+// Some values are more important than others. For example if a bot is now DEAD
+// but used to be QUARANTINED, the value is still DEAD.
+enum BotStatus {
+  BOTSTATE_UNSPECIFIED = 0;
+
+  // Bad states
+
+  // The server detected that the bot is not pinging the server anymore. Unlike
+  // other statuses, this value is set after a timeout.
+  //
+  // Bot.status_msg shall not be set.
+  DEAD = 1;
+  // Bot was quarantined by the server.
+  //
+  // Bot.status_msg shall include the server provided rationale.
+  QUARANTINED = 2; // Not used yet. https://crbug.com/757931
+  // Bot self-reported as unhealthy.
+  //
+  // Bot.status_msg shall include the bot provided rationale.
+  UNHEALTHY = 3;  // What is currently called as 'quarantined' in the old API.
+
+  // Overheads
+
+  // Bot self-reported as unable to run tasks due to externally induced
+  // overhead.
+  //
+  // Examples include:
+  // - DUT (Device Under Test) has too high temperature and it's waiting for
+  //   cool down
+  // - host is doing self-cleaning work out of the bot's control (puppet is
+  //   running), etc.
+  // - The host is rebooting, causing temporary unavailability
+  //
+  // Bot.status_msg shall include the bot provided rationale.
+  MAINTENANCE = 4;
+  // Bot self-reported as unable to run tasks due to doing internal overhead.
+  //
+  // Examples include:
+  // - Running hooks
+  // - Cleaning up or verifying its local cache
+  // - Bot is starting for a version upgrade
+  //
+  // Bot.status_msg shall disambiguate the type of work item done. 
+  BOT_OVERHEAD = 5;
+  // Bot is down as its host is rebooting and contact was lost.
+  //
+  // If the bot doesn't contact back soon enough, it will be considered DEAD.
+  //
+  // Bot.status_msg shall not be set.
+  HOST_REBOOTING = 6;
+
+  // Valid states
+
+  // Running a task.
+  //
+  // Bot.status_msg shall not be set.
+  BUSY = 7;
+  // Bot is 'reserved' for operations outside of normal operations. This can be
+  // relevant for SUT (System Under Test).
+  //
+  // Bot.status_msg shall not be set.
+  RESERVED = 8;  // Not used yet. https://crbug.com/913978
+  // Bot is healthy and waiting for tasks.
+  //
+  // Bot.status_msg shall not be set.
+  IDLE = 9;
+}
+
+// BotState declares the state of a bot, including any information that is not
+// relevant for the task scheduling.
+message BotState {
+  // raw contains the current free form json data. This will eventually be
+  // subsummed by structured data.
+  string raw = 1;
+  // Bot's version. This is Swarming instance and configuration dependent.
+  string version = 2;
+}
+
+// BotEventType defines the reason why BotEvent was created.
+enum BotEventType {
+  BOTEVENTTYPE_UNSPECIFIED = 0;
+ 
+  // Bot specific events that are outside the scope of a task.
+
+  // Bot connected and started a new session.
+  //
+  // BotEvent.event_msg shall not be set.
+  BOT_NEW_SESSION = 1;
+  // Bot had an internal failure to report to the server outside of a task
+  // context. This shall send a report to the administrator of the instance and
+  // service author.
+  //
+  // BotEvent.event_msg shall contain the error message.
+  BOT_INTERNAL_FAILURE = 2;
+  // Bot had an hook error to report to the server. This shall send a report to
+  // the administrator of the instance.
+  //
+  // BotEvent.event_msg shall contain the error message.
+  BOT_HOOK_ERROR = 3;
+  // Bot hook logged information.
+  //
+  // BotEvent.event_msg shall contain the log entry.
+  BOT_HOOK_LOG = 4;
+  // Bot initiated a host reboot. An example is a bot hook requesting to reboot
+  // the host after a task failure.
+  //
+  // BotEvent.event_msg shall contain the reason for rebooting the host, if any.
+  BOT_REBOOT_HOST = 5;
+  // Bot is shutting down. It may be restarting for an update.
+  //
+  // BotEvent.event_msg shall contain the reason.
+  BOT_SHUTDOWN = 6;
+
+  // Bot polling result; these are commands sent to the bot to do actions.
+
+  // The server instructs the bot to stay idle. This is when there is no task
+  // pending for this bot.
+  //
+  // BotEvent.event_msg shall not be set.
+  INSTRUCT_IDLE = 10;
+  // The server instructs the bot to start a task.
+  //
+  // BotEvent.event_msg shall not be set.
+  INSTRUCT_START_TASK = 11;
+  // The server instructs the bot to restart without self-updating. This is to
+  // initiate a new bot session.
+  //
+  // BotEvent.event_msg shall not be set.
+  INSTRUCT_RESTART_BOT = 12;
+  // The server instructs the bot to self-update.
+  //
+  // BotEvent.event_msg shall not be set.
+  INSTRUCT_UPDATE_BOT_CODE = 13;
+  // The server instructs the bot to stop its process.
+  //
+  // BotEvent.event_msg shall not be set.
+  INSTRUCT_TERMINATE_BOT = 14;
+
+  // Task lifetime as processed by the bot. In these event types,
+  // Bot.bot.task_id shall be set.
+
+  // Bot completed a task.
+  //
+  // BotEvent.event_msg shall not be set.
+  TASK_COMPLETED = 20;
+  // Bot had an internal failure to report to the server while processing a
+  // task. This shall send a report to the administrator of the instance and
+  // service author.
+  //
+  // BotEvent.event_msg shall contain the error message and the task id.
+  TASK_INTERNAL_FAILURE = 21;
+  // Bot is forcibly killing the task.
+  //
+  // BotEvent.event_msg shall not be set.
+  TASK_KILLED = 22;
+}
+
+// BotEvent represents an event on the bot.
+message BotEvent {
+  google.protobuf.Timestamp ts = 1;
+
+  // Bot to which this event pertains about.
+  Bot bot = 2;
+  // Type of state change (event) that trigger this message.
+  BotEventType event = 3;
+  // Supplementation information to describe the bot event.
+  //
+  // See BotEventType for the meaning of this string for each status.
+  string event_msg = 4;
+}
+
 // Task scheduling.
+
+// Dimensions is a collection of dimensions.
+//
+// In RBE, this is called Property. The difference is that RBE's Property is a
+// string:string flat dictionary, it doesn't allow repeated values.
+//
+// To be valid, dimension MUST be sorted by keys.
+message Dimensions {
+  Dimension dimension = 1;
+}
+
+// Dimension is a single key: [values] for either a bot exposed dimension, or
+// for a task request dimension.
+//
+// In the case of the bot, the values is effectively an OR, a task may match any
+// of the value.
+//
+// In the case of a task request, the values is effectively an AND, the bot must
+// expose every single values to be selected.
+//
+// To be valid, values MUST be sorted.
+message Dimension {
+  string key = 1;
+  repeated string value = 2;
+}
 
 // TaskState represents the different allowed states for a Task.
 //
