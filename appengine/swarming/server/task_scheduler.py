@@ -218,7 +218,8 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request):
       return None, None
     to_run.queue_number = None
     run_result = task_result.new_run_result(
-        request, to_run, bot_id, bot_version, bot_dimensions)
+        request, bot_id, bot_version, bot_dimensions, to_run.try_number,
+        to_run.task_slice_index)
     # Upon bot reap, both .started_ts and .modified_ts matches. They differ on
     # the first ping.
     run_result.started_ts = now
