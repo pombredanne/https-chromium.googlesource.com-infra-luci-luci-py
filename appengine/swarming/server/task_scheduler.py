@@ -188,6 +188,9 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request):
   logging.info(
       '_reap_task(%s)', task_pack.pack_result_summary_key(result_summary_key))
 
+  # Note: In practice this should almost always be None, except in the case of
+  # races between pool config updates and tasks being scheduler. Nevertheless,
+  # there's no harm in being accurate here.
   es_cfg = external_scheduler.config_for_task(request)
 
   def run():
@@ -238,6 +241,91 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request):
   if not task_to_run.set_lookup_cache(to_run_key, False):
     logging.debug('hit negative cache')
     return None, None
+
+  try:
+    run_result, secret_bytes = datastore_utils.transaction(run, retries=0)
+  except datastore_utils.CommitError:
+    # The challenge here is that the transaction may have failed because:
+    # - The DB had an hickup and the TaskToRun, TaskRunResult and
+    #   TaskResultSummary haven't been updated.
+    # - The entities had been updated by a concurrent transaction on another
+    #   handler so it was not reapable anyway. This does cause exceptions as
+    #   both GET returns the TaskToRun.queue_number != None but only one succeed
+    #   at the PUT.
+    #
+    # In the first case, we may want to reset the negative cache, while we don't
+    # want to in the later case. The trade off are one of:
+    # - negative cache is incorrectly set, so the task is not reapable for 15s
+    # - resetting the negative cache would cause even more contention
+    #
+    # We chose the first one here for now, as the when the DB starts misbehaving
+    # and the index becomes stale, it means the DB is *already* not in good
+    # shape, so it is preferable to not put more stress on it, and skipping a
+    # few tasks for 15s may even actively help the DB to stabilize.
+    logging.info('CommitError; reaping failed')
+    # The bot will reap the next available task in case of failure, no big deal.
+    run_result = None
+    secret_bytes = None
+  return run_result, secret_bytes
+
+
+def _reap_task_external_scheduler(bot_dimensions, bot_version, request,
+                                  try_number, slice_number):
+  """Reaps a task and insert the results entity.
+
+  This is a simplified variant of _reap_task, which has no need of a TaskToRun,
+  and is intended to be used when reaping a (task request, slice) determined by
+  an external scheduler.
+
+  Returns:
+    (TaskRunResult, SecretBytes) if successful, (None, None) otherwise.
+  """
+  result_summary_key = task_pack.request_key_to_result_summary_key(request.key)
+  bot_id = bot_dimensions[u'id'][0]
+
+  now = utils.utcnow()
+  # Log before the task id in case the function fails in a bad state where the
+  # DB TX ran but the reply never comes to the bot. This is the worst case as
+  # this leads to a task that results in BOT_DIED without ever starting. This
+  # case is specifically handled in cron_handle_bot_died().
+  logging.info(
+      '_reap_task_external_scheduler(%s)',
+      task_pack.pack_result_summary_key(result_summary_key))
+
+  es_cfg = external_scheduler.config_for_task(request)
+
+  def run():
+    # 2 GET, 1 PUT at the end.
+    result_summary_future = result_summary_key.get_async()
+    t = request.task_slice(slice_number)
+    if t.properties.has_secret_bytes:
+      secret_bytes_future = request.secret_bytes_key.get_async()
+    result_summary = result_summary_future.get_result()
+    orig_summary_state = result_summary.state
+    secret_bytes = None
+    if t.properties.has_secret_bytes:
+      secret_bytes = secret_bytes_future.get_result()
+    if result_summary.bot_id == bot_id:
+      # This means two things, first it's a retry, second it's that the first
+      # try failed and the retry is being reaped by the same bot. Deny that, as
+      # the bot may be deeply broken and could be in a killing spree.
+      # TODO(maruel): Allow retry for bot locked task using 'id' dimension.
+      logging.warning(
+          '%s can\'t retry its own internal failure task',
+          result_summary.task_id)
+      return None, None
+
+    run_result = task_result.new_run_result_without_to_run(
+        request, bot_id, bot_version, bot_dimensions, try_number, slice_number)
+    # Upon bot reap, both .started_ts and .modified_ts matches. They differ on
+    # the first ping.
+    run_result.started_ts = now
+    run_result.modified_ts = now
+    result_summary.set_from_run_result(run_result, request)
+    ndb.put_multi([run_result, result_summary])
+    if result_summary.state != orig_summary_state:
+      _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg)
+    return run_result, secret_bytes
 
   try:
     run_result, secret_bytes = datastore_utils.transaction(run, retries=0)
@@ -707,19 +795,19 @@ def _bot_update_tx(
   return result_summary, run_result, None
 
 
-def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
+def _reap_task_from_external_scheduler(es_cfg, bot_dimensions, bot_version):
   """Gets a task to run from external scheduler.
 
   Arguments:
     es_cfg: pool_config.ExternalSchedulerConfig instance.
     bot_dimensions: dimensions {string key: list of string values}
 
-  Returns: [(TaskRequest, TaskToRun)] if a task was available,
-           or [] otherwise.
+  Returns: (TaskRequest, SecretBytes, TaskRunResult) for the task that was
+    reaped. The TaskToRun involved is not returned.
   """
   task_id, slice_number = external_scheduler.assign_task(es_cfg, bot_dimensions)
   if not task_id:
-    return []
+    return None, None, None
 
   logging.info('Got task id %s', task_id)
   request_key, result_key = task_pack.get_request_and_result_keys(task_id)
@@ -742,12 +830,10 @@ def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
 
   logging.info('Determined try_number, slice_number %s %s', try_number,
                slice_number)
-  to_run_key = task_to_run.request_to_task_to_run_key(request, try_number,
-                                                      slice_number)
-  to_run = to_run_key.get()
-  # TODO(akeshet/maruel): Figure out how to unpack a TaskToRun from the
-  # returned result_key.
-  return [(request, to_run)]
+
+  result, secret_bytes = _reap_task_external_scheduler(
+      bot_dimensions, bot_version, request, try_number, slice_number)
+  return request, result, secret_bytes
 
 
 ### Public API.
@@ -990,10 +1076,11 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   try:
     es_cfg = external_scheduler.config_for_bot(bot_dimensions)
     if es_cfg:
-      q = _get_task_from_external_scheduler(es_cfg, bot_dimensions)
-    else:
-      q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
-                                                            deadline)
+      return _reap_task_from_external_scheduler(es_cfg, bot_dimensions,
+                                                bot_version)
+
+    q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
+                                                          deadline)
     for request, to_run in q:
       iterated += 1
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)

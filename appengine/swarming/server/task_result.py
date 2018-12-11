@@ -1261,6 +1261,29 @@ def new_run_result(request, to_run, bot_id, bot_version, bot_dimensions):
       server_versions=[utils.get_app_version()])
 
 
+def new_run_result_without_to_run(request, bot_id, bot_version, bot_dimensions,
+                                  try_number, slice_number):
+  """Returns a new TaskRunResult for a TaskRequest.
+
+  Initializes only the immutable parts.
+
+  The caller must save it in the DB.
+
+  Variant of new_run_result that uses explicitly specified try_number and
+  slice_number, rather than requiring a TaskToRun argument.
+  """
+  assert isinstance(request, task_request.TaskRequest)
+  summary_key = task_pack.request_key_to_result_summary_key(request.key)
+  return TaskRunResult(
+      key=task_pack.result_summary_key_to_run_result_key(
+          summary_key, try_number),
+      bot_dimensions=bot_dimensions,
+      bot_id=bot_id,
+      bot_version=bot_version,
+      current_task_slice=slice_number,
+      server_versions=[utils.get_app_version()])
+
+
 def yield_run_result_keys_with_dead_bot():
   """Yields all the TaskRunResult ndb.Key where the bot died recently.
 
