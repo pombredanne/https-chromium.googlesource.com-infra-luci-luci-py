@@ -750,6 +750,60 @@ def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
   return [(request, to_run)]
 
 
+def _ensure_active_slice(request, try_number, task_slice_index):
+  """Ensures the existence of a TaskToRun for the given request, try, slice.
+
+  Ensure that the given request is currently active at a given try_number and
+  task_slice_index (modifying the current try or slice if necessary), and that
+  no other TaskToRun is pending.
+
+  Internally, this runs a 1 GET 1 (possible) PUT transaction.
+
+  Arguments:
+    request: TaskRequest instance
+    try_number: try_number to ensure exists.
+    task_slice_index: slice index to ensure is active.
+
+  Returns:
+    A saved TaskToRun instance corresponding to the given request, try_number,
+    and slice, if exists, or None otherwise.
+  """
+  def run():
+    # TODO(akeshet/maruel): Should we first assert that request is PENDING?
+    # For example what happens here or elsewhere if request is already running?
+    # TODO(akeshet/maruel): Should this query construction be moved to
+    # task_to_run.py?
+    results = task_to_run.TaskToRun.query(
+      task_to_run.TaskToRun.queue_number!=None,
+      ancestor=request.key,
+        ).fetch()
+    if results:
+      assert len(results) == 1, 'Too many TaskToRun entities.'
+
+    running = results[0] if results else None
+
+    if running:
+      if (running.try_number == try_number and
+          running.task_slice_index == task_slice_index):
+        return running
+      else:
+        # Deactivate old TaskToRun, create new one.
+        running.queue_number = None
+        new_running = task_to_run.new_task_to_run(request, try_number,
+                                                  task_slice_index)
+        ndb.put_multi([running, new_running])
+        return new_running
+    else:
+      # TODO(akeshet/maruel): There was no previous pending TaskToRun. Does
+      # that mean the task was not pending, in which case we should return
+      # here with None? Or could there have been still a pending task with
+      # no TaskToRun (due to no-such-bot logic at task schedule time) in which
+      # case we should create one?
+      return None
+
+  return datastore_utils.transaction(run)
+
+
 ### Public API.
 
 
