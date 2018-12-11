@@ -562,6 +562,10 @@ def set_lookup_cache(to_run_key, is_available_to_schedule):
   return memcache.add(key, True, time=cache_lifetime, namespace='task_to_run')
 
 
+def for_request_query(request):
+  """Returns a TaskToRun query for child entities of given request."""
+  return TaskToRun.query(ancestor=request.key)
+
 def yield_next_available_task_to_dispatch(bot_dimensions, deadline):
   """Yields next available (TaskRequest, TaskToRun) in decreasing order of
   priority.
