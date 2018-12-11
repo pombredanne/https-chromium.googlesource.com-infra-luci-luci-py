@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "cb6b599f_7a0ff9c2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T21:25:59Z",
+      "side": 1,
+      "message": "In the normal scheduling, yes.",
+      "parentUuid": "06eac177_33504e17",
+      "revId": "d1b7ab05518f37f654293686f4e75f29cd8b24fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e977581_bf0631ad",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2

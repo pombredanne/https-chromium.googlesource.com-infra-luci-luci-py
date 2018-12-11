@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00be40b0_696e58b5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T21:25:59Z",
+      "side": 1,
+      "message": "Yes, since it only handles TaskToRun entities.",
+      "revId": "bf1f90f522b06b7054e8cefe2f5a8c7fe3355334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f0226e2_584ea929",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T21:25:59Z",
+      "side": 1,
+      "message": "Better to either:\n- Try to repair\n- Permanently deny\n- logging.error()\n\nan assert will cause an HTTP 500, which will be retried.",
+      "revId": "bf1f90f522b06b7054e8cefe2f5a8c7fe3355334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "296316e6_08f2e384",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T21:25:59Z",
+      "side": 1,
+      "message": "logging.error() to detect this",
+      "revId": "bf1f90f522b06b7054e8cefe2f5a8c7fe3355334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
