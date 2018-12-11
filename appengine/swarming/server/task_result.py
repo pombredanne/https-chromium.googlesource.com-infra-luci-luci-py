@@ -1242,7 +1242,8 @@ def new_result_summary(request):
       tags=request.tags)
 
 
-def new_run_result(request, to_run, bot_id, bot_version, bot_dimensions):
+def new_run_result(request, bot_id, bot_version, bot_dimensions,
+                   try_number, task_slice_index):
   """Returns a new TaskRunResult for a TaskRequest.
 
   Initializes only the immutable parts.
@@ -1253,11 +1254,11 @@ def new_run_result(request, to_run, bot_id, bot_version, bot_dimensions):
   summary_key = task_pack.request_key_to_result_summary_key(request.key)
   return TaskRunResult(
       key=task_pack.result_summary_key_to_run_result_key(
-          summary_key, to_run.try_number),
+          summary_key, try_number),
       bot_dimensions=bot_dimensions,
       bot_id=bot_id,
       bot_version=bot_version,
-      current_task_slice=to_run.task_slice_index,
+      current_task_slice=task_slice_index,
       server_versions=[utils.get_app_version()])
 
 
