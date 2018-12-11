@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "1fc5966d_c118082e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-11T22:05:42Z",
+      "side": 1,
+      "message": "Ok, removing the TODO for now.",
+      "parentUuid": "cb6b599f_7a0ff9c2",
+      "revId": "d1b7ab05518f37f654293686f4e75f29cd8b24fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e977581_bf0631ad",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
