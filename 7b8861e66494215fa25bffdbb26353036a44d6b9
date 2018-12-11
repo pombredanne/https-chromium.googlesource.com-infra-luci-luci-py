@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "927c26ea_57ef4d4e",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T01:49:07Z",
+      "side": 1,
+      "message": "You can delete this, since it\u0027s not used anymore. I\u0027m surprised pylint didn\u0027t complain.",
+      "revId": "7b8861e66494215fa25bffdbb26353036a44d6b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
