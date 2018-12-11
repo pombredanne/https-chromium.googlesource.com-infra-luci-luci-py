@@ -5,8 +5,10 @@
 """This module defines Swarming Server frontend pRPC handlers."""
 
 from components import prpc
+from components.prpc.codes import StatusCode
 
 from proto import swarming_prpc_pb2 # pylint: disable=no-name-in-module
+from proto import swarming_pb2 # pylint: disable=no-name-in-module
 
 
 class SwarmingService(object):
@@ -15,6 +17,10 @@ class SwarmingService(object):
   DESCRIPTION = swarming_prpc_pb2.SwarmingServiceDescription
 
   # TODO(maruel): Add implementation. https://crbug.com/913953
+  def BotEvents(self, _request, context):
+    context.set_code(StatusCode.UNIMPLEMENTED)
+    context.set_details('Sorry, not yet implemented')
+    return swarming_pb2.BotEventsResponse()
 
 
 def get_routes():
