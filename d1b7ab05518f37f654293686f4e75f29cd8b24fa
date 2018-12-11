@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58515a59_81461722",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T20:35:51Z",
+      "side": 1,
+      "message": "Should we first assert that TaskResultSummary.state \u003d\u003d PENDING?",
+      "revId": "d1b7ab05518f37f654293686f4e75f29cd8b24fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e977581_bf0631ad",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T20:35:51Z",
+      "side": 1,
+      "message": "s/results/to_runs/ ?",
+      "revId": "d1b7ab05518f37f654293686f4e75f29cd8b24fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca4221dd_e38b3116",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T20:35:51Z",
+      "side": 1,
+      "message": "I recommend to not use a filter, just query them all. There won\u0027t be many, and they are small. In practice it\u0027s likely going to be faster.",
+      "revId": "d1b7ab05518f37f654293686f4e75f29cd8b24fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7996937_9cacbb14",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-11T20:35:51Z",
+      "side": 1,
+      "message": "Then figure out if any with queue_number set after fetching.",
+      "revId": "d1b7ab05518f37f654293686f4e75f29cd8b24fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
