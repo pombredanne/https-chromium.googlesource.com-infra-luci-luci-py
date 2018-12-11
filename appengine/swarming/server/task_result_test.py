@@ -86,7 +86,7 @@ def _gen_result(**kwargs):
   ndb.transaction(result_summary.put)
   to_run = task_to_run.new_task_to_run(request, 1, 0)
   run_result = task_result.new_run_result(
-      request, to_run, 'localhost', 'abc', {})
+      request, 'localhost', 'abc', {}, 1, 0)
   run_result.started_ts = result_summary.modified_ts
   run_result.modified_ts = utils.utcnow()
   ndb.transaction(
@@ -263,8 +263,8 @@ class TaskResultApiTest(TestCase):
     request = _gen_request()
     to_run = task_to_run.new_task_to_run(request, 1, 0)
     actual = task_result.new_run_result(
-        request, to_run, u'localhost', u'abc',
-        {u'id': [u'localhost'], u'foo': [u'bar', u'biz']})
+        request, u'localhost', u'abc',
+        {u'id': [u'localhost'], u'foo': [u'bar', u'biz']}, 1, 0)
     actual.modified_ts = self.now
     actual.started_ts = self.now
     # Trigger _pre_put_hook().
@@ -279,8 +279,8 @@ class TaskResultApiTest(TestCase):
     request = _gen_request()
     to_run = task_to_run.new_task_to_run(request, 1, 0)
     actual = task_result.new_run_result(
-        request, to_run, u'localhost', u'abc',
-        {u'id': [u'localhost'], u'foo': [u'bar', u'biz']})
+        request, u'localhost', u'abc',
+        {u'id': [u'localhost'], u'foo': [u'bar', u'biz']}, 1, 0)
     actual.modified_ts = self.now
     actual.started_ts = self.now
     actual.duration = 1.
@@ -317,7 +317,7 @@ class TaskResultApiTest(TestCase):
     to_run.queue_number = None
     to_run.put()
     run_result = task_result.new_run_result(
-        request, to_run, u'localhost', u'abc', {})
+        request, u'localhost', u'abc', {}, 1, 0)
     run_result.started_ts = utils.utcnow()
     run_result.modified_ts = run_result.started_ts
     ndb.transaction(
@@ -436,7 +436,7 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(result_summary.put)
     to_run = task_to_run.new_task_to_run(request, 1, 0)
     run_result = task_result.new_run_result(
-        request, to_run, 'localhost', 'abc', {})
+        request, 'localhost', 'abc', {}, 1, 0)
     run_result.started_ts = utils.utcnow()
     run_result.completed_ts = run_result.started_ts
     run_result.modified_ts = run_result.started_ts
@@ -458,7 +458,7 @@ class TaskResultApiTest(TestCase):
     result_summary = task_result.new_result_summary(request)
     to_run = task_to_run.new_task_to_run(request, 1, 0)
     run_result = task_result.new_run_result(
-        request, to_run, 'localhost', 'abc', {})
+        request, 'localhost', 'abc', {}, 1, 0)
     run_result.started_ts = utils.utcnow()
     self.assertTrue(result_summary.need_update_from_run_result(run_result))
     result_summary.modified_ts = utils.utcnow()
@@ -477,7 +477,7 @@ class TaskResultApiTest(TestCase):
     result_summary = task_result.new_result_summary(request)
     to_run = task_to_run.new_task_to_run(request, 1, 0)
     run_result = task_result.new_run_result(
-        request, to_run, 'localhost', 'abc', {})
+        request, 'localhost', 'abc', {}, 1, 0)
     run_result.started_ts = utils.utcnow()
     self.assertTrue(result_summary.need_update_from_run_result(run_result))
     result_summary.modified_ts = utils.utcnow()
@@ -504,11 +504,11 @@ class TaskResultApiTest(TestCase):
     result_summary = task_result.new_result_summary(request)
     to_run_1 = task_to_run.new_task_to_run(request, 1, 0)
     run_result_1 = task_result.new_run_result(
-        request, to_run_1, 'localhost', 'abc', {})
+        request, 'localhost', 'abc', {}, 1, 0)
     run_result_1.started_ts = utils.utcnow()
     to_run_2 = task_to_run.new_task_to_run(request, 2, 0)
     run_result_2 = task_result.new_run_result(
-        request, to_run_2, 'localhost', 'abc', {})
+        request, 'localhost', 'abc', {}, 2, 0)
     run_result_2.started_ts = utils.utcnow()
     self.assertTrue(result_summary.need_update_from_run_result(run_result_1))
     run_result_2.modified_ts = utils.utcnow()
@@ -557,7 +557,7 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(result_summary.put)
     to_run = task_to_run.new_task_to_run(request, 1, 0)
     run_result = task_result.new_run_result(
-        request, to_run, 'localhost', 'abc', {})
+        request, 'localhost', 'abc', {}, 1, 0)
     run_result.state = task_result.State.TIMED_OUT
     run_result.duration = 0.1
     run_result.exit_code = -1
