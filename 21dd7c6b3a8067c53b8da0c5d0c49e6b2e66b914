@@ -596,6 +596,30 @@
     },
     {
       "key": {
+        "uuid": "18d377ac_58096367",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T20:53:03Z",
+      "side": 1,
+      "message": "I\u0027m happy with that, especially if it can contain a fairly large amount of bot-related info and not just one of several states :-)",
+      "parentUuid": "48184fb7_90e2eeb3",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 16
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d587506c_b727f120",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
