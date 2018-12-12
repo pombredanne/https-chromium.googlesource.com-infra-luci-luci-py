@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dc81b80_ba8d43bd",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-12T21:48:19Z",
+      "side": 1,
+      "message": "this tests prpc server implementation. Why?\nwhy not call your Events method of the service class directly?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 0
+      },
+      "revId": "e110549c0cb2d64601eb00ee78138783fef7a7dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae650cea_af814466",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-12T21:48:19Z",
+      "side": 1,
+      "message": "imo this should be a comment for values field, not message",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "e110549c0cb2d64601eb00ee78138783fef7a7dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
