@@ -22,6 +22,30 @@
       "revId": "6f2c979e1210a750f78e67b7998fd5f838a22890",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aed39740_34a98f7a",
+        "filename": "appengine/isolate/stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:28:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58dc0a6f_262d4e9a",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 138,
+        "endChar": 13
+      },
+      "revId": "6f2c979e1210a750f78e67b7998fd5f838a22890",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
