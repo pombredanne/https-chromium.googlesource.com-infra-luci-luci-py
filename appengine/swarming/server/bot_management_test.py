@@ -54,7 +54,7 @@ def _bot_event(
       external_ip=external_ip,
       authenticated_as=authenticated_as,
       dimensions=dimensions,
-      state=state or {'ram': 65},
+      state_json=utils.encode_to_json(state or {'ram': 65}),
       version=version,
       quarantined=quarantined,
       maintenance_msg=maintenance_msg,
@@ -90,7 +90,7 @@ def _gen_bot_info(**kwargs):
     'machine_type': None,
     'quarantined': False,
     'maintenance_msg': None,
-    'state': {u'ram': 65},
+    'state_json': u'{"ram":65}',
     'task_id': None,
     'task_name': None,
     'version': _VERSION,
@@ -116,7 +116,7 @@ def _gen_bot_event(**kwargs):
     'message': None,
     'quarantined': False,
     'maintenance_msg': None,
-    'state': {u'ram': 65},
+    'state_json': u'{"ram":65}',
     'task_id': None,
     'ts': utils.utcnow(),
     'version': _VERSION,
@@ -152,7 +152,8 @@ class BotManagementTest(test_case.TestCase):
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
-        dimensions=d, state={'ram': 65}, version=_VERSION, quarantined=False,
+        dimensions=d, state_json=utils.encode_to_json({'ram': 65}),
+        version=_VERSION, quarantined=False,
         maintenance_msg=None, task_id=None, task_name=None)
 
     expected = _gen_bot_info()

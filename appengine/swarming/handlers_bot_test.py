@@ -867,12 +867,13 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'message': u'for the best',
         'quarantined': False,
         'maintenance_msg': None,
-        'state': {
-          u'bot_group_cfg_version': u'default',
-          u'running_time': 1234.0,
-          u'sleep_streak': 0,
-          u'started_ts': 1410990411.111,
-        },
+        'state_json': utils.encode_to_json(
+            {
+              u'bot_group_cfg_version': u'default',
+              u'running_time': 1234.0,
+              u'sleep_streak': 0,
+              u'started_ts': 1410990411.111,
+            }),
         'task_id': u'',
         'ts': self.now,
         'version': self.bot_version,
@@ -897,11 +898,12 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'message': None,
         'quarantined': False,
         'maintenance_msg': None,
-        'state': {
-          u'running_time': 1234.0,
-          u'sleep_streak': 0,
-          u'started_ts': 1410990411.111,
-        },
+        'state_json': utils.encode_to_json(
+            {
+              u'running_time': 1234.0,
+              u'sleep_streak': 0,
+              u'started_ts': 1410990411.111,
+            }),
         'task_id': u'',
         'ts': self.now,
         'version': u'123',
