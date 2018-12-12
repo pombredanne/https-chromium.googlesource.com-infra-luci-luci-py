@@ -19,6 +19,47 @@
     },
     {
       "key": {
+        "uuid": "920a6b6f_2014a936",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b629c06_04f0390b",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72cdf338_14d4570b",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "You could optionally write ID instead of id in comments. (If you change this it should be changed everywhere.)",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 11
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "458feb18_91320b32",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -30,6 +71,47 @@
       "writtenOn": "2018-12-12T18:24:53Z",
       "side": 1,
       "message": "I decided to immediately add some forward looking members for a few things I really want to do. At worst I\u0027ll remove them later on and mark the value as reserved.\n\nEach of these has an issue for tracking purpose.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73a2b2a8_ec8e06c9",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "458feb18_91320b32",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe32e84b_b4d14954",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Optional rephrasing: if there is one",
+      "range": {
+        "startLine": 60,
+        "startChar": 44,
+        "endLine": 60,
+        "endChar": 53
+      },
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +135,29 @@
     },
     {
       "key": {
+        "uuid": "552e37fb_ebaf9aa0",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Perhaps BOT_STATUS_UNSPECIFIED?",
+      "range": {
+        "startLine": 84,
+        "startChar": 2,
+        "endLine": 84,
+        "endChar": 22
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cb586b9_ebc56b96",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -64,6 +169,24 @@
       "writtenOn": "2018-12-12T18:24:53Z",
       "side": 1,
       "message": "RBE uses \"LOST\", but I feel this is not as informative.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d047bccc_63b351e5",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "DEAD and LOST both seem about the same to me.\n\nAnother possible word would be UNRESPONSIVE.",
+      "parentUuid": "1cb586b9_ebc56b96",
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +210,208 @@
     },
     {
       "key": {
+        "uuid": "d1570b5c_e5fe7484",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "813d78ec_a21a4dc1",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "588d9950_8e7d0ed3",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Overhead states",
+      "range": {
+        "startLine": 102,
+        "startChar": 5,
+        "endLine": 102,
+        "endChar": 21
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c71e2185_608f42e8",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Or: The temperature of the DUT (Device Under Test) is too high, ...",
+      "range": {
+        "startLine": 108,
+        "startChar": 6,
+        "endLine": 108,
+        "endChar": 55
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a1f3cd0_8333295b",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Not sure whether this is the right word... I guess these are \"healthy, non-overhead\" states, but \"active\" or \"productive\" doesn\u0027t sound right since it includes \"idle\".",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 14
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00871ca2_f6b0a0eb",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "BotStatus and BotState are really easily confused, so I feel like this should be either renamed or explained a bit more. \"raw\" looks like it could contain anything... what kind of information is included in the state of the bot that is not relevant for task scheduling? Is this a lot of information?",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 16
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fd00779_bd97d038",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Or: BOT_EVENT_TYPE_UNSPECIFIED",
+      "range": {
+        "startLine": 161,
+        "startChar": 2,
+        "endLine": 161,
+        "endChar": 26
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7405b8d3_bf8b437b",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "\"results\"... or \"bot command events\" or such.",
+      "range": {
+        "startLine": 194,
+        "startChar": 17,
+        "endLine": 194,
+        "endChar": 23
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89ce7887_63768513",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "Optional: \"lifetime events\" or \"lifecycle events\"",
+      "range": {
+        "startLine": 219,
+        "startChar": 10,
+        "endLine": 219,
+        "endChar": 18
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e187c81_e65a01fa",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "\"Dimension\" is actually not an obvious description of this unless you\u0027re already familiar with it.\n\nI guess it\u0027s a list of key-value pairs that describe attributes of the bot, with potentially multiple values for one key.",
+      "range": {
+        "startLine": 254,
+        "startChar": 3,
+        "endLine": 254,
+        "endChar": 43
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "acdf96e3_bcffc9cf",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -98,6 +423,24 @@
       "writtenOn": "2018-12-12T18:24:53Z",
       "side": 1,
       "message": "I\u0027m not sure of the value of this one, or just inlining where relevant.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88a126a1_437e339a",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T19:35:27Z",
+      "side": 1,
+      "message": "i.e., using type `repeated Dimension` where relevant, rather than `Dimensions`? I\u0027m also not sure, either way seems good to me. Maybe inlining... especially if it\u0027s not used in very many places?",
+      "parentUuid": "acdf96e3_bcffc9cf",
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
