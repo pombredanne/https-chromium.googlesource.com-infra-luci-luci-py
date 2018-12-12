@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b629c06_04f0390b",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:24:53Z",
+      "side": 1,
+      "message": "The following is the important part of this review.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "458feb18_91320b32",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:24:53Z",
+      "side": 1,
+      "message": "I decided to immediately add some forward looking members for a few things I really want to do. At worst I\u0027ll remove them later on and mark the value as reserved.\n\nEach of these has an issue for tracking purpose.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "376439be_9a0a4de0",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:24:53Z",
+      "side": 1,
+      "message": "I\u0027m pondering about what\u0027s useful here. In particular lease_id with potential MP changes, so I decided to skip and add them later on. I should probably add authenticated_as though.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cb586b9_ebc56b96",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:24:53Z",
+      "side": 1,
+      "message": "RBE uses \"LOST\", but I feel this is not as informative.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "813d78ec_a21a4dc1",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:24:53Z",
+      "side": 1,
+      "message": "That also matches RBE.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acdf96e3_bcffc9cf",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T18:24:53Z",
+      "side": 1,
+      "message": "I\u0027m not sure of the value of this one, or just inlining where relevant.",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
