@@ -230,7 +230,8 @@ class BackendTest(AppTestBase):
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['beta'], 'id': ['id1']}, state={'ram': 65},
+        dimensions={'foo': ['beta'], 'id': ['id1']},
+        state_json=utils.encode_to_json({'ram': 65}),
         version='123456789', quarantined=False, maintenance_msg=None,
         task_id=None, task_name=None)
     bot_management.bot_event(
