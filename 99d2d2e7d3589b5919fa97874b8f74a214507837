@@ -1,0 +1,641 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "361c534a_58acebb4",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "needs moar docs :)",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 24
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b454510_89699bc5",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "i.e. where does this come from?",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a6a9cf3_9c6672ce",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "are these mutually exclusive with \u0027page_token\u0027? Or do they have to match the original request?\n\nWhich fields are optional, which ones are not?",
+      "range": {
+        "startLine": 31,
+        "startChar": 28,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "274035c9_963e501c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "Can I distinguish between \"there are no more events\" and \"there are no more events _right now_\"? Or will `next_page_token` always be populated, but `events` might be empty?",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7707f751_2ffb2935",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "comment when stringy fields are opaque vs. parsable. I.e. can I expect them to be comparable in some way, or should I only assume equality? Are session IDs unique across bots, or only unique to a single bot?",
+      "range": {
+        "startLine": 50,
+        "startChar": 9,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aca87980_d15f6194",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "document if this is human or machine readable (sounds like human readable?)",
+      "range": {
+        "startLine": 56,
+        "startChar": 18,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "315f39e4_5ee3737c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "maybe \u0027current_task_id\u0027?",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29b00c8d_26deb21c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "this seems like something the server would enforce? Maybe just document to the user of this API that this will always be sorted by key?",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fdce8d4_8e36711f",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "maybe expand acronyms at least once per file?",
+      "range": {
+        "startLine": 78,
+        "startChar": 28,
+        "endLine": 78,
+        "endChar": 31
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d0b093_7efefd58",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "missing \u0027states\u0027?",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17a8efce_5b748ad8",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "maybe \"GONE\" or \"MISSING\"? There could be other reasons why the bot isn\u0027t talking to the server without being \u0027dead\u0027. To me, \u0027dead\u0027 implies that the server KNOWS that the physical machine (or VM) is actually not running, which I don\u0027t think is true? So you can end up in a situation where swarming says \"bot-XYZ is DEAD\", but `ssh bot-XYZ` still works.",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 6
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aac1bb39_9bd84e2a",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "could these be SERVER_QUARANTINED and SELF_QUARANTINED? So that the two states are similar to each other (since I think in practice they\u0027re pretty similar?)",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 13
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eef6455_0d5c4363",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "similarly, could these be EXTERNAL_MAINTENANCE and INTERNAL_MAINTENANCE? i.e. \"external\" is \"I can\u0027t take a task because something outside the bot process is happening\" and \"internal\" is \"I can\u0027t take a task because long tasks inside the bot process are happening\"",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a8abcd6_1fdcdbb7",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "This seems to be covered under the last bullet for MAINTENANCE?",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34dcfe7d_deb6f9f4",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "maybe \u0027raw_json\u0027?\n\nMaybe use the well-known https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/struct.proto type? In JSONPB the Struct type renders to a plain old JSON object. This would prevent the need for having string-encoded-JSON inside of a JSON document.",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59c0102c_42d05ae1",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "document if this is opaque or somehow parsable (sounds like \u0027this is opaque\u0027).",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f72a46c_d87aa711",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "what actually uses this? This seems a bit weird to include, since there\u0027s very little guarantee that this IP will be useful.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 25
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9847451a_a00a90a7",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "definitely document what forms this string can take; this sounds like it could be parsable data.\n\n\"LUCI token\" doesn\u0027t mean that the bot will actually send some token though, right?",
+      "range": {
+        "startLine": 170,
+        "startChar": 5,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49945346_c94b5f98",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "when do we expect to see this? What does it mean to have an event without a type?",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 28
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d63187ec_3eb61560",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "does this include a stack trace? Should the error message and the stack trace be separate fields? If they\u0027re separate, it could allow the \u0027message\u0027 to be displayed on the swarming UI, and the stack trace to be separately expandable with a + button or something.",
+      "range": {
+        "startLine": 190,
+        "startChar": 42,
+        "endLine": 190,
+        "endChar": 55
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c635457e_b5281624",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "same q",
+      "range": {
+        "startLine": 195,
+        "startChar": 42,
+        "endLine": 195,
+        "endChar": 55
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8039ac6d_cabcc63c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "are there different log levels? Or is everything the same (e.g. info)?",
+      "range": {
+        "startLine": 199,
+        "startChar": 42,
+        "endLine": 199,
+        "endChar": 51
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d963c9_003f1ad3",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "would it be worth including structured data about how long the bot was told to idle for?",
+      "range": {
+        "startLine": 217,
+        "startChar": 24,
+        "endLine": 217,
+        "endChar": 40
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4d45deb_fb805976",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "similarly, maybe the task id of the task it was told to start?",
+      "range": {
+        "startLine": 221,
+        "startChar": 24,
+        "endLine": 221,
+        "endChar": 40
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cac2197a_56efde84",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "structured data with current/next versions?",
+      "range": {
+        "startLine": 230,
+        "startChar": 24,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c05600b5_abbc2edf",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "this definitely seems like it should be structured; error message, task id and stack trace shouldn\u0027t be all bodged together in an unstructured string (imo).",
+      "range": {
+        "startLine": 248,
+        "startChar": 38,
+        "endLine": 248,
+        "endChar": 71
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f81afe95_3330e815",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "don\u0027t need \u0027pertains\u0027 and also \u0027about\u0027",
+      "range": {
+        "startLine": 260,
+        "startChar": 38,
+        "endLine": 260,
+        "endChar": 43
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbc32e1b_63f8971b",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "this seems like a very heavyweight message to put on every bot event! Maybe the bot event response should contain bot_id-\u003eBot mapping, and then the event should just have bot_id? The current service API only lets you query for a single bot id (I think?) anyway.",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e7ee06a_ebc47a03",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-12T21:58:24Z",
+      "side": 1,
+      "message": "the server should enforce this, and the documentation here should state that these are sorted.",
+      "range": {
+        "startLine": 281,
+        "startChar": 2,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
