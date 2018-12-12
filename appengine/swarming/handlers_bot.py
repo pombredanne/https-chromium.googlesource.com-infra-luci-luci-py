@@ -439,7 +439,7 @@ class BotHandshakeHandler(_BotBaseHandler):
         event_type='bot_connected', bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=res.dimensions, state=res.state,
+        dimensions=res.dimensions, state_json=utils.encode_to_json(res.state),
         version=res.version, quarantined=bool(res.quarantined_msg),
         maintenance_msg=res.maintenance_msg,
         task_id='', task_name=None, message=res.quarantined_msg)
@@ -502,7 +502,7 @@ class BotPollHandler(_BotBaseHandler):
           event_type=event_type, bot_id=res.bot_id,
           external_ip=self.request.remote_addr,
           authenticated_as=auth.get_peer_identity().to_bytes(),
-          dimensions=res.dimensions, state=res.state,
+          dimensions=res.dimensions, state_json=utils.encode_to_json(res.state),
           version=res.version, quarantined=quarantined,
           maintenance_msg=res.maintenance_msg, task_id=task_id,
           task_name=task_name, message=res.quarantined_msg)
@@ -705,7 +705,7 @@ class BotEventHandler(_BotBaseHandler):
         event_type=event, bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=res.dimensions, state=res.state,
+        dimensions=res.dimensions, state_json=utils.encode_to_json(res.state),
         version=res.version, quarantined=bool(res.quarantined_msg),
         maintenance_msg=res.maintenance_msg, task_id=None,
         task_name=None, message=message)
@@ -1010,7 +1010,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
           event_type=action, bot_id=bot_id,
           external_ip=self.request.remote_addr,
           authenticated_as=auth.get_peer_identity().to_bytes(),
-          dimensions=None, state=None,
+          dimensions=None, state_json=None,
           version=None, quarantined=None, maintenance_msg=None, task_id=task_id,
           task_name=None)
     except ValueError as e:
@@ -1068,7 +1068,7 @@ class BotTaskErrorHandler(_BotApiHandler):
         event_type='task_error', bot_id=bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=None, state=None,
+        dimensions=None, state_json=None,
         version=None, quarantined=None, maintenance_msg=None, task_id=task_id,
         task_name=None, message=message)
     line = (
