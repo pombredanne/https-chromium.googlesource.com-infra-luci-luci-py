@@ -477,6 +477,30 @@
     },
     {
       "key": {
+        "uuid": "20b854c4_e3c8cd56",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T20:02:49Z",
+      "side": 1,
+      "message": "Yeah, that sounds good to me.",
+      "parentUuid": "434c663d_390be9de",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 14
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00871ca2_f6b0a0eb",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -517,6 +541,53 @@
         "startChar": 8,
         "endLine": 151,
         "endChar": 16
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d69db10f_d8d04319",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T20:02:49Z",
+      "side": 1,
+      "message": "Got it. Anyway, I think this is fine, but it will be important to avoid confusing BotState and BotStatus if these two names are used. BotStatusType definitely sounds like it\u0027s describing BotStatus, but I don\u0027t think that\u0027s accurate. I\u0027d suggest \"BotStateInfo\" just to make the name more different, although \"Info\" is usually a meaningless word to add in names.",
+      "parentUuid": "7ab5d11b_6fa94bad",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 16
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d587506c_b727f120",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T20:02:49Z",
+      "side": 1,
+      "message": "subsumed",
+      "range": {
+        "startLine": 153,
+        "startChar": 5,
+        "endLine": 153,
+        "endChar": 14
       },
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
@@ -762,6 +833,47 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffc19c52_066107d2",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T20:02:49Z",
+      "side": 1,
+      "message": "SGTM",
+      "parentUuid": "0ade5da2_4499cc43",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6755d1e8_3214f7b4",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T20:02:49Z",
+      "side": 1,
+      "message": "every single value",
+      "range": {
+        "startLine": 271,
+        "startChar": 10,
+        "endLine": 271,
+        "endChar": 29
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
