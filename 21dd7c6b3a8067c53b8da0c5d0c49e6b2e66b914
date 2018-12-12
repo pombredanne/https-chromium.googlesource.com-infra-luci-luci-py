@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "3ffca874_2c864222",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72cdf338_14d4570b",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 11
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "458feb18_91320b32",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -118,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "71adb669_4d150a20",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe32e84b_b4d14954",
+      "range": {
+        "startLine": 60,
+        "startChar": 44,
+        "endLine": 60,
+        "endChar": 53
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "376439be_9a0a4de0",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -132,6 +180,24 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f5a1092_73bc3451",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Decided to add external_ip and authenticated_as, as it could be useful to \"grep through the logs\".",
+      "parentUuid": "376439be_9a0a4de0",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -155,6 +221,30 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dde314e9_711c34f5",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "552e37fb_ebaf9aa0",
+      "range": {
+        "startLine": 84,
+        "startChar": 2,
+        "endLine": 84,
+        "endChar": 22
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -190,6 +280,24 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4ae7c7c_239ae14a",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d047bccc_63b351e5",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -251,6 +359,30 @@
     },
     {
       "key": {
+        "uuid": "1a97d0ef_ac92aca7",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "588d9950_8e7d0ed3",
+      "range": {
+        "startLine": 102,
+        "startChar": 5,
+        "endLine": 102,
+        "endChar": 21
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c71e2185_608f42e8",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -271,6 +403,30 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aa43dd2_e3dc2637",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c71e2185_608f42e8",
+      "range": {
+        "startLine": 108,
+        "startChar": 6,
+        "endLine": 108,
+        "endChar": 55
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -297,6 +453,30 @@
     },
     {
       "key": {
+        "uuid": "434c663d_390be9de",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Replaced with Healthy",
+      "parentUuid": "1a1f3cd0_8333295b",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 14
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00871ca2_f6b0a0eb",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -308,6 +488,30 @@
       "writtenOn": "2018-12-12T19:35:27Z",
       "side": 1,
       "message": "BotStatus and BotState are really easily confused, so I feel like this should be either renamed or explained a bit more. \"raw\" looks like it could contain anything... what kind of information is included in the state of the bot that is not relevant for task scheduling? Is this a lot of information?",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 16
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ab5d11b_6fa94bad",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "raw is the current \"bot.state\", it\u0027s a potentially huge json blob. I eventually plan to structure it.\n\nI thought about BotStatusType but wasn\u0027t sure.",
+      "parentUuid": "00871ca2_f6b0a0eb",
       "range": {
         "startLine": 151,
         "startChar": 8,
@@ -343,6 +547,30 @@
     },
     {
       "key": {
+        "uuid": "437db553_2798fcb0",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fd00779_bd97d038",
+      "range": {
+        "startLine": 161,
+        "startChar": 2,
+        "endLine": 161,
+        "endChar": 26
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7405b8d3_bf8b437b",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -363,6 +591,30 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c0cbce_70bade82",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Used results.",
+      "parentUuid": "7405b8d3_bf8b437b",
+      "range": {
+        "startLine": 194,
+        "startChar": 17,
+        "endLine": 194,
+        "endChar": 23
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -389,6 +641,30 @@
     },
     {
       "key": {
+        "uuid": "2facb1f3_57ccc44d",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Use lifecycle events.",
+      "parentUuid": "89ce7887_63768513",
+      "range": {
+        "startLine": 219,
+        "startChar": 10,
+        "endLine": 219,
+        "endChar": 18
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e187c81_e65a01fa",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -409,6 +685,30 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d81f9e25_0b864c4e",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Yes. Added link to doc.",
+      "parentUuid": "8e187c81_e65a01fa",
+      "range": {
+        "startLine": 254,
+        "startChar": 3,
+        "endLine": 254,
+        "endChar": 43
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -444,6 +744,24 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ade5da2_4499cc43",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T19:54:31Z",
+      "side": 1,
+      "message": "Inlined, because it\u0027s not going to used at that many places.",
+      "parentUuid": "88a126a1_437e339a",
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
