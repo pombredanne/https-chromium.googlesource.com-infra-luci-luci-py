@@ -572,6 +572,30 @@
     },
     {
       "key": {
+        "uuid": "48184fb7_90e2eeb3",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T20:50:02Z",
+      "side": 1,
+      "message": "Replaced with \"BotInfo\". wdyt?",
+      "parentUuid": "d69db10f_d8d04319",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 16
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d587506c_b727f120",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 7
@@ -592,6 +616,30 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbbf73b5_8d372888",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T20:50:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d587506c_b727f120",
+      "range": {
+        "startLine": 153,
+        "startChar": 5,
+        "endLine": 153,
+        "endChar": 14
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -874,6 +922,30 @@
       "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8058e8ac_8f33f6d1",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-12T20:50:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6755d1e8_3214f7b4",
+      "range": {
+        "startLine": 271,
+        "startChar": 10,
+        "endLine": 271,
+        "endChar": 29
+      },
+      "revId": "21dd7c6b3a8067c53b8da0c5d0c49e6b2e66b914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
