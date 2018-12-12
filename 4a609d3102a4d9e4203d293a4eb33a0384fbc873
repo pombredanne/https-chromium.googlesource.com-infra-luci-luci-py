@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "105b8e38_dd4707f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T21:59:09Z",
+      "side": 1,
+      "message": "I think I didn\u0027t see the part of the CL that makes it so that fewer JSON decodes are done; how is it that fewer decodes are done after this change?",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 43
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "414e1334_19a19f10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T21:59:09Z",
+      "side": 1,
+      "message": "lose",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d858792_735c367d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T21:59:09Z",
+      "side": 1,
+      "message": "The terminology differs for difference places, but usually:\n\n [] are called brackets (US usage), or square brackets\n {} are called braces, or sometimes curly brackets\n\nSo you could call this _starts_with_brace, or anything else like that.",
+      "range": {
+        "startLine": 88,
+        "startChar": 17,
+        "endLine": 88,
+        "endChar": 24
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ca7c1ca_e7b1ddd8",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T21:59:09Z",
+      "side": 1,
+      "message": "it\u0027s a JSON encoding of a dict",
+      "range": {
+        "startLine": 89,
+        "startChar": 25,
+        "endLine": 89,
+        "endChar": 49
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa6c7bca_cf483783",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-12T21:59:09Z",
+      "side": 1,
+      "message": "If state_old is a dict should we still call _starts_with_bracket on it?",
+      "range": {
+        "startLine": 98,
+        "startChar": 55,
+        "endLine": 98,
+        "endChar": 75
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
