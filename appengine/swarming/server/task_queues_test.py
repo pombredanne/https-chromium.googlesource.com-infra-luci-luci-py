@@ -39,8 +39,17 @@ def _assert_bot(dimensions=None):
   }
   bot_dimensions.update(dimensions or {})
   bot_management.bot_event(
-      'bot_connected', bot_id, '1.2.3.4', 'bot1', bot_dimensions, {},
-      '1234', False, None, None, None)
+      event_type='bot_connected',
+      bot_id=bot_id,
+      external_ip='1.2.3.4',
+      authenticated_as='bot1',
+      dimensions=bot_dimensions,
+      state_json='{}',
+      version='1234',
+      quarantined=False,
+      maintenance_msg=None,
+      task_id=None,
+      task_name=None)
   bot_root_key = bot_management.get_root_key(bot_id)
   return task_queues.assert_bot_async(bot_root_key, bot_dimensions).get_result()
 
