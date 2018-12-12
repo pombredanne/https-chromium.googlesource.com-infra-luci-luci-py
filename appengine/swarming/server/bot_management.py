@@ -62,11 +62,14 @@ import hashlib
 import logging
 
 from google.appengine import runtime
+from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
+import bqh
 from components import datastore_utils
+from components import net
 from components import utils
 from proto import swarming_pb2  # pylint: disable=no-name-in-module
 from server import config
@@ -386,7 +389,73 @@ class DimensionAggregation(ndb.Model):
   KEY = ndb.Key('DimensionAggregation', 'current')
 
 
+class BqStateBotEvents(ndb.Model):
+  """Stores the last BigQuery successful writes.
+
+  Key id: 1
+
+  By storing the successful writes, this enables not having to read from BQ. Not
+  having to sync state *from* BQ means one less RPC that could fail randomly.
+  """
+  # Last time this entity was updated.
+  ts = ndb.DateTimeProperty(indexed=False)
+  # Timestamp of the last BotEvent.ts uploaded.
+  last = ndb.DateTimeProperty(indexed=False)
+  # Encoded ndb.Key of the BotEvent previously uploaded that had failed and
+  # should be retried.
+  failed = ndb.DateTimeProperty(repeated=True, indexed=False)
+
+
 ### Private APIs.
+
+
+def _to_proto(e):
+  """Shorthand to create a proto."""
+  out = swarming_pb2.BotEvent()
+  e.to_proto(out)
+  return out
+
+
+def _send_to_bq(events):
+  """Sends the snapshots to BigQuery.
+
+  Returns:
+    encoded ndb.Key of events that failed to be sent.
+  """
+  # See doc/Monitoring.md.
+  dataset = 'swarming'
+  table_name = 'bot_events'
+
+  # BigQuery API doc:
+  # https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/insertAll
+  url = (
+      'https://www.googleapis.com/bigquery/v2/projects/%s/datasets/%s/tables/'
+      '%s/insertAll') % (app_identity.get_application_id(), dataset, table_name)
+  payload = {
+    'kind': 'bigquery#tableDataInsertAllRequest',
+    # Do not fail entire request because of one bad snapshot.
+    # We handle invalid rows below.
+    'skipInvalidRows': True,
+    'ignoreUnknownValues': False,
+    'rows': [
+      {
+        'insertId': e.ts.strftime(u'%Y-%m-%dT%H:%M:%SZ'),
+        'json': bqh.message_to_dict(_to_proto(e)),
+      } for e in events
+    ],
+  }
+  res = net.json_request(
+      url=url, method='POST', payload=payload, scopes=bqh.INSERT_ROWS_SCOPE,
+      deadline=600)
+
+  failed = []
+  for err in res.get('insertErrors', []):
+    e = events[err['index']]
+    if not failed:
+      # Log the error for the first entry, useful to diagnose schema failure.
+      logging.error('Failed to insert row %s: %r', e.ts, err['errors'])
+    failed.append(e.key.urlsafe())
+  return failed
 
 
 ### Public APIs.
@@ -830,3 +899,90 @@ def cron_aggregate_dimensions():
   DimensionAggregation(
       key=DimensionAggregation.KEY, dimensions=dims, ts=now).put()
   return len(dims)
+
+
+def cron_send_to_bq():
+  """Sends the bot events to BigQuery.
+
+  To ensure no items is missing, we query the last item in the table, then look
+  the last item in the DB, and stream these.
+
+  Logs insert errors and returns a list of timestamps of snapshots that could
+  not be inserted.
+
+  Returns:
+    total number of statistics snapshot sent to BQ.
+  """
+  total = 0
+  start = utils.utcnow()
+  state = BqStateBotEvents.get_by_id(1)
+  if not state:
+    # No saved state found. Find the oldest entity to send.
+    oldest = BotEvent.query().order(BotEvent.ts).get()
+    if not oldest:
+      logging.info('No BotEvent found!')
+      return total
+    state = BqStateBotEvents(id=1, ts=start, last=oldest.ts)
+    state.put()
+
+  if not memcache.add(
+      'running', 'yep', time=400, namespace='bot_management.cron_send_to_bq'):
+    logging.info('Other cron already running')
+    return total
+  # At worst if it dies, the cron job will run for a while.
+  # At worst if memcache is cleared, two cron job will run concurrently. It's
+  # inefficient but it's not going to break.
+
+  try:
+    should_stop = start + datetime.timedelta(seconds=300)
+    while utils.utcnow() < should_stop:
+      if not memcache.get(
+          'running', namespace='bot_management.cron_send_to_bq'):
+        logging.info('memcache was cleared')
+        return total
+
+      # Send at most 500 items at a time to reduce the risks of failure.
+      max_batch = 500
+      # There cannot be more than 500 failed pending send.
+      size = max_batch - len(state.failed)
+
+      events = BotEvent.query(BotEvent.ts >= state.last).order(
+          BotEvent.ts).fetch(limit=size)
+      if not events:
+        if not state.failed:
+          # We're done!
+          return total
+
+      logging.info(
+          'Fetched %d entities starting from %s and %d failed backlog',
+          len(events), state.last, len(state.failed))
+
+      # Do them last in case they fail again.
+      failed = [ndb.Key(urlsafe=k) for k in state.failed]
+      if any(not f for f in failed):
+        # Remove them from the failed state, they don't exist anymore.
+        state.failed -= stuff
+      events.extend(failed)
+      if not events and not state.failed:
+        # We've hit the end.
+        return total
+
+      # We continue is state.failed was set, so BqStateBotEvents.failed can be
+      # zapped below.
+
+      if events:
+        logging.info('Sending %d rows', len(events))
+        failed = _send_to_bq(events)
+        if failed:
+          logging.error('Failed to insert %s rows', len(failed))
+        total += len(events) - len(failed)
+
+      # The next cron job round will retry the ones that failed.
+      state = BqStateBotEvents(
+          id=1,
+          ts=utils.utcnow(),
+          last=state.last + datetime.timedelta(seconds=60*size),
+          failed=failed)
+      state.put()
+  finally:
+    memcache.delete('running', namespace='bot_management.cron_send_to_bq')
