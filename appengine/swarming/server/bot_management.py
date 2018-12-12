@@ -85,10 +85,19 @@ _OLD_BOT_EVENTS_CUT_OFF = datetime.timedelta(days=366)
 BotRoot = datastore_utils.get_versioned_root_model('BotRoot')
 
 
+def _starts_with_bracket(prop, value):
+  """Cheap way to ensure it's json that is a dict."""
+  if value and not value.startswith('{'):
+    raise datastore_errors.BadValueError('Bad json: %r' % value)
+
+
 class _BotCommon(ndb.Model):
   """Data that is copied from the BotEvent into BotInfo for performance."""
   # State is purely informative. It is completely free form.
-  state = datastore_utils.DeterministicJsonProperty(json_type=dict)
+  # TODO(maruel): Remove in 2020-01-01.
+  state_old = ndb.BlobProperty(name='state', validator=_starts_with_bracket)
+  state_new = ndb.BlobProperty(
+      name='state_json', validator=_starts_with_bracket, compressed=True)
 
   # IP address as seen by the HTTP handler.
   external_ip = ndb.StringProperty(indexed=False)
@@ -139,6 +148,15 @@ class _BotCommon(ndb.Model):
   dimensions_flat = ndb.StringProperty(repeated=True)
 
   @property
+  def state_json(self):
+    """Returns the state encoded as JSON or None."""
+    if self.state_new:
+      return self.state_new
+    if self.state_old:
+      return utils.encode_to_json(self.state_old)
+    return None
+
+  @property
   def dimensions(self):
     """Returns a dict representation of self.dimensions_flat."""
     out = {}
@@ -154,9 +172,10 @@ class _BotCommon(ndb.Model):
     return task_pack.unpack_run_result_key(self.task_id)
 
   def to_dict(self, exclude=None):
-    exclude = ['dimensions_flat'] + (exclude or [])
+    exclude = ['dimensions_flat', 'state_new', 'state_old'] + (exclude or [])
     out = super(_BotCommon, self).to_dict(exclude=exclude)
     out['dimensions'] = self.dimensions
+    out['state_json'] = self.state_json
     return out
 
   def _pre_put_hook(self):
@@ -403,7 +422,7 @@ def filter_availability(
 
 
 def bot_event(
-    event_type, bot_id, external_ip, authenticated_as, dimensions, state,
+    event_type, bot_id, external_ip, authenticated_as, dimensions, state_json,
     version, quarantined, maintenance_msg, task_id, task_name, **kwargs):
   """Records when a bot has queried for work.
 
@@ -422,8 +441,8 @@ def bot_event(
   - authenticated_as: bot identity as seen by the HTTP handler.
   - dimensions: Bot's dimensions as self-reported. If not provided, keep
         previous value.
-  - state: ephemeral state of the bot. It is expected to change constantly. If
-        not provided, keep previous value.
+  - state_json: ephemeral state of the bot encoded as JSON. It is expected to
+        change constantly. If not provided, keep previous value.
   - version: swarming_bot.zip version as self-reported. Used to spot if a bot
         failed to update promptly. If not provided, keep previous value.
   - quarantined: bool to determine if the bot was declared quarantined.
@@ -461,8 +480,9 @@ def bot_event(
   bot_info.maintenance_msg = maintenance_msg
   if dimensions:
     bot_info.dimensions_flat = task_queues.dimensions_to_flat(dimensions)
-  if state:
-    bot_info.state = state
+  if state_json:
+    bot_info.state_new = state_json
+    bot_info.state_old = None
   if quarantined is not None:
     bot_info.quarantined = quarantined
   if task_id is not None:
@@ -506,7 +526,7 @@ def bot_event(
         dimensions_flat=bot_info.dimensions_flat,
         quarantined=bot_info.quarantined,
         maintenance_msg=bot_info.maintenance_msg,
-        state=bot_info.state,
+        state_new=bot_info.state_json,
         task_id=bot_info.task_id,
         version=bot_info.version,
         **kwargs)
