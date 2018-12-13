@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae900a52_1d0da6dd",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T21:32:10Z",
+      "side": 1,
+      "message": "Optional: This is really long, could it be made shorter without reducing coverage?",
+      "revId": "bb8b9a975250e36ad2f36ee25a19096fab18b3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f63a0291_71389f1c",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T21:32:10Z",
+      "side": 1,
+      "message": "Question: Does this just test that no error is raised?",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 408,
+        "endChar": 32
+      },
+      "revId": "bb8b9a975250e36ad2f36ee25a19096fab18b3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "061aa5eb_c65c82cb",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T21:32:10Z",
+      "side": 1,
+      "message": "Question: What does this mean? Is it supposed to mean that bot_error can mean multiple different things depending on when the BotEvent was put?",
+      "range": {
+        "startLine": 291,
+        "startChar": 6,
+        "endLine": 291,
+        "endChar": 28
+      },
+      "revId": "bb8b9a975250e36ad2f36ee25a19096fab18b3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dc584a0_9f6a0e84",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T21:32:10Z",
+      "side": 1,
+      "message": "Optional: Here and below: If the current name doesn\u0027t clearly describe reality, it would be helpful for the comment to clarify what the thing really is.",
+      "range": {
+        "startLine": 293,
+        "startChar": 6,
+        "endLine": 293,
+        "endChar": 26
+      },
+      "revId": "bb8b9a975250e36ad2f36ee25a19096fab18b3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfe0f205_64e808e1",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T21:32:10Z",
+      "side": 1,
+      "message": "Optional: IMO calling this dimensions would make it easier to see how/where it\u0027s used. `d` looks like an abbreviation for just `dict`. If you change this here then also change below.",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 5
+      },
+      "revId": "bb8b9a975250e36ad2f36ee25a19096fab18b3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
