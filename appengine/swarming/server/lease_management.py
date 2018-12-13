@@ -824,7 +824,7 @@ def _ensure_bot_info_exists(machine_lease):
         external_ip=None,
         authenticated_as=None,
         dimensions=None,
-        state=None,
+        state_json=None,
         version=None,
         quarantined=False,
         maintenance_msg=None,

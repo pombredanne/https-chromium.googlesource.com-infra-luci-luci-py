@@ -185,7 +185,7 @@ def bot_info_to_rpc(entity, deleted=False):
       dimensions=_string_list_pairs_from_dict(entity.dimensions),
       is_dead=entity.is_dead,
       machine_type=entity.machine_type,
-      state=json.dumps(entity.state, sort_keys=True, separators=(',', ':')))
+      state=entity.state_json)
 
 
 def bot_event_to_rpc(entity):
@@ -194,7 +194,7 @@ def bot_event_to_rpc(entity):
       swarming_rpcs.BotEvent,
       entity,
       dimensions=_string_list_pairs_from_dict(entity.dimensions),
-      state=json.dumps(entity.state, sort_keys=True, separators=(',', ':')),
+      state=entity.state_json,
       task_id=entity.task_id if entity.task_id else None)
 
 
