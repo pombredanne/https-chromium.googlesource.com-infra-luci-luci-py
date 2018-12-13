@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a7c10fc_0cc4a179",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "is this a problem for pagination? Should it default to \u0027time max\u0027?",
+      "range": {
+        "startLine": 50,
+        "startChar": 23,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "820ce88b5e55338b144bc04ca8e3f9e4c6c729f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

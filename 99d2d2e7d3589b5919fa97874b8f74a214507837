@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "092480e1_b8b42ce3",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "That\u0027s unfortunate :(. I think all protos which users are expected to fill out need docs (and the lack of docs elsewhere is the bug)",
+      "parentUuid": "796a35bf_92423f63",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 24
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b454510_89699bc5",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -366,6 +390,30 @@
     },
     {
       "key": {
+        "uuid": "3a4922d5_d5510480",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "Got it; this will be an input proto in the API too then?",
+      "parentUuid": "5ce79b60_fc0c426b",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fdce8d4_8e36711f",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -554,6 +602,30 @@
     },
     {
       "key": {
+        "uuid": "708d5b1e_e82833f9",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "tbh I think \"self quarantined\" makes sense in the context of BotStatus (\"self\" is the bot here). QUARANTINED_BY_BOT would be explicit.\n\nI guess I was assuming that e.g. \u0027QUARANTINED_BY_BOT\u0027 and \u0027QUARANTINED_BY_SERVER\u0027 have the same \u0027effect\u0027, and was hoping that the two statuses could share a word to reflect this.",
+      "parentUuid": "d79fa378_7f21db2e",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 13
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3eef6455_0d5c4363",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -583,6 +655,24 @@
       "side": 1,
       "message": "You think the users will understand EXTERNAL_MAINTENANCE and INTERNAL_MAINTENANCE? To me it sounds even more opaque than MAINTENANCE and BOT_OVERHEAD. But I\u0027m not in a good vantage point to call this out.",
       "parentUuid": "3eef6455_0d5c4363",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6260627_7e8b171f",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "What I was getting at is that statuses which reflect a similar practical outcome (i.e. \"bot cannot take tasks right now because its busy with non-task stuff\") should (imo) share a word. Almost like a (status, substatus) tuple. \u0027status\u0027 indicates behavior class, and \u0027substatus\u0027 gives a hint of why we\u0027re in that behavior class.",
+      "parentUuid": "46f57bf3_3eabcba3",
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -636,6 +726,30 @@
     },
     {
       "key": {
+        "uuid": "6d084d90_99922910",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "I guess what I was meaning is that the documentation for MAINTENANCE literally says \"The host is rebooting, causing temporary unavailability\"... maybe that bullet should just be removed?",
+      "parentUuid": "beaae493_aa35ac9e",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34dcfe7d_deb6f9f4",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -668,6 +782,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01fe3122_df91d032",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "nodir just realized that Struct doesn\u0027t support precise integer values, only float64 values. In case this is a problem.\n\nNote that javascript also doesn\u0027t support precise integer values either, so Struct\u0027s behavior is in-line with javascript\u0027s JSON object behavior... but both of these are different than python\u0027s json parser behavior (which will preserve integers when parsing and serializing).",
+      "parentUuid": "67d94e36_34e4d922",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
@@ -847,6 +979,30 @@
     },
     {
       "key": {
+        "uuid": "cdad58eb_f1c3a0ad",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "got it... maybe document that this is to satisfy proto3 requirements, but is an error and will not be served from swarming?",
+      "parentUuid": "987266f3_6eaa94e8",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 28
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d63187ec_3eb61560",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -894,6 +1050,30 @@
     },
     {
       "key": {
+        "uuid": "fbac9a3d_94ebc0ca",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "ookie dokie",
+      "parentUuid": "c63c998e_768c4a50",
+      "range": {
+        "startLine": 190,
+        "startChar": 42,
+        "endLine": 190,
+        "endChar": 55
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c635457e_b5281624",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -938,6 +1118,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9718edf3_a13f3a62",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "728016aa_f2cc24c3",
+      "range": {
+        "startLine": 195,
+        "startChar": 42,
+        "endLine": 195,
+        "endChar": 55
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -1255,6 +1459,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfe93a8b_8fa81613",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-12-13T23:11:44Z",
+      "side": 1,
+      "message": "I see, because the actual bot info is snapshoted with each Event, this is required to reconstruct the full event information\n\nMaybe mention this in the comment?",
+      "parentUuid": "5a4fb333_439895bc",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
