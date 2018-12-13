@@ -18,6 +18,7 @@ from google.appengine.ext import ndb
 from components import utils
 from test_support import test_case
 
+from proto import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bot_management
 from server import config
 from server import task_queues
@@ -141,6 +142,27 @@ class BotManagementTest(test_case.TestCase):
         if i[0] != '_' and hasattr(getattr(bot_management, i), 'func_name'))
     missing = expected - actual
     self.assertFalse(missing)
+
+  def test_proto(self):
+    # Ensures all bot event states can be converted to a proto.
+    dimensions = {
+      u'id': [u'id1'],
+      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+      u'pool': [u'default'],
+    }
+    for name in bot_management.BotEvent.ALLOWED_EVENTS:
+      event_key = bot_management.bot_event(
+          event_type=name, bot_id='id1',
+          external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
+          dimensions=dimensions, state={'ram': 65}, version=_VERSION,
+          quarantined=False, maintenance_msg=None, task_id=None, task_name=None)
+      if name in ('request_sleep', 'task_update'):
+        # TODO(maruel): Store request_sleep IFF the state changed.
+        self.assertIsNone(event_key, name)
+        continue
+      event = event_key.get()
+      p = swarming_pb2.BotEvent()
+      event.to_proto(p)
 
   def test_bot_event(self):
     # connected.
