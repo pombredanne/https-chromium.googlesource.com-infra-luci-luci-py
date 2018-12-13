@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "edff0954_621dd0cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:29:33Z",
+      "side": 1,
+      "message": "Everytime BotEvent.state was touched, it was decoded on the fly. A good example is in messages_conversion.py.",
+      "parentUuid": "105b8e38_dd4707f1",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 43
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "414e1334_19a19f10",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69bd1bcd_89d30a8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "414e1334_19a19f10",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "206be660_5b56bdef",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d858792_735c367d",
+      "range": {
+        "startLine": 88,
+        "startChar": 17,
+        "endLine": 88,
+        "endChar": 24
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ca7c1ca_e7b1ddd8",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "d1c0f076_22d1d031",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:29:33Z",
+      "side": 1,
+      "message": "Done with \"it\u0027s a JSON encoded dict\"",
+      "parentUuid": "6ca7c1ca_e7b1ddd8",
+      "range": {
+        "startLine": 89,
+        "startChar": 25,
+        "endLine": 89,
+        "endChar": 49
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa6c7bca_cf483783",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -114,6 +210,30 @@
       "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c660be25_cf88aa4c",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:29:33Z",
+      "side": 1,
+      "message": "I removed the validator since it\u0027s not updated.",
+      "parentUuid": "fa6c7bca_cf483783",
+      "range": {
+        "startLine": 98,
+        "startChar": 55,
+        "endLine": 98,
+        "endChar": 75
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
