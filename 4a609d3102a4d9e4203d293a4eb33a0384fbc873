@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3f02f2b7_69f09c86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T22:42:37Z",
+      "side": 1,
+      "message": "Ah, now I see. Makes sense.",
+      "parentUuid": "edff0954_621dd0cd",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 43
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "414e1334_19a19f10",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "Done with \"it\u0027s a JSON encoded dict\"",
       "parentUuid": "6ca7c1ca_e7b1ddd8",
+      "range": {
+        "startLine": 89,
+        "startChar": 25,
+        "endLine": 89,
+        "endChar": 49
+      },
+      "revId": "4a609d3102a4d9e4203d293a4eb33a0384fbc873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3b51e62_e31b75b8",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T22:42:37Z",
+      "side": 1,
+      "message": "SGTM",
+      "parentUuid": "d1c0f076_22d1d031",
       "range": {
         "startLine": 89,
         "startChar": 25,
