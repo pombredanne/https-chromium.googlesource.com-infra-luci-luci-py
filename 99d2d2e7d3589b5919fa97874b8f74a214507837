@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "796a35bf_92423f63",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I glanced internally and FooRequest \u0026 FooResponse are generally not document, only Foo is.",
+      "parentUuid": "361c534a_58acebb4",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 24
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b454510_89699bc5",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb1ad62a_0afa1cd4",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "https://cloud.google.com/apis/design/design_patterns#list_pagination :)\n\nI decided to follow the Cloud API patterns as much as relevant. I pasted the relevant text from this page.",
+      "parentUuid": "9b454510_89699bc5",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a3a828fb_e0ea83f7",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Explained.",
+      "parentUuid": "4a6a9cf3_9c6672ce",
+      "range": {
+        "startLine": 31,
+        "startChar": 28,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "274035c9_963e501c",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bf99861_5d886e3c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Added comment.",
+      "parentUuid": "274035c9_963e501c",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "08201b30_18e73bbd",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Reworded.",
+      "parentUuid": "7707f751_2ffb2935",
+      "range": {
+        "startLine": 50,
+        "startChar": 9,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aca87980_d15f6194",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "f35b4197_925a4885",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Done, also called out Big Query.",
+      "parentUuid": "aca87980_d15f6194",
+      "range": {
+        "startLine": 56,
+        "startChar": 18,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "315f39e4_5ee3737c",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -154,6 +298,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "326e1bf2_ac4464f5",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "315f39e4_5ee3737c",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "5ce79b60_fc0c426b",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I will, but I wanted to document it here too, since when an user is constructing the proto they will have an additional reminder.",
+      "parentUuid": "29b00c8d_26deb21c",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fdce8d4_8e36711f",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -200,6 +386,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed1d514f_cf70f65c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I do, but far away, added at every single place, since we can\u0027t assume the user will read the whole file.",
+      "parentUuid": "5fdce8d4_8e36711f",
+      "range": {
+        "startLine": 78,
+        "startChar": 28,
+        "endLine": 78,
+        "endChar": 31
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -226,6 +436,30 @@
     },
     {
       "key": {
+        "uuid": "9a7a15a0_99e7d252",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9d0b093_7efefd58",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17a8efce_5b748ad8",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -249,6 +483,30 @@
     },
     {
       "key": {
+        "uuid": "3391d4b5_e71b56ac",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "RBE uses LOST.\n\nGONE could implies it\u0027s on purpose.\n\nMISSING is good. Renamed to it.",
+      "parentUuid": "17a8efce_5b748ad8",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 6
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aac1bb39_9bd84e2a",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -260,6 +518,30 @@
       "writtenOn": "2018-12-12T21:58:24Z",
       "side": 1,
       "message": "could these be SERVER_QUARANTINED and SELF_QUARANTINED? So that the two states are similar to each other (since I think in practice they\u0027re pretty similar?)",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 13
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d79fa378_7f21db2e",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Good point for the server. I used QUARANTINED_BY_SERVER, which is super clear.\n\nFor SELF_QUARANTINED, I\u0027m ambivalent. I prefer to use UNHEALTHY as in RBE\u0027s definition, but BOT_UNHEALTHY is less clear, and SELF_ is not clear about who\u0027s self.\n\nI think that UNHEALTHY becomes clearer by opposition of QUARANTINED_BY_SERVER. wdyt?",
+      "parentUuid": "aac1bb39_9bd84e2a",
       "range": {
         "startLine": 104,
         "startChar": 2,
@@ -289,6 +571,24 @@
     },
     {
       "key": {
+        "uuid": "46f57bf3_3eabcba3",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "You think the users will understand EXTERNAL_MAINTENANCE and INTERNAL_MAINTENANCE? To me it sounds even more opaque than MAINTENANCE and BOT_OVERHEAD. But I\u0027m not in a good vantage point to call this out.",
+      "parentUuid": "3eef6455_0d5c4363",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a8abcd6_1fdcdbb7",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -300,6 +600,30 @@
       "writtenOn": "2018-12-12T21:58:24Z",
       "side": 1,
       "message": "This seems to be covered under the last bullet for MAINTENANCE?",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beaae493_aa35ac9e",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I\u0027m ambivalent;\n\nI decided to call this out as part of my reflection for go/swarming-monitoring-v2:\n- I want to differentiate between bots wasting their time rebooting vs other overheads.\n- Rebooting is different enough because the bot explicitly dies and come back, and this can take time, or the bot can disappear.\n\nIn practice, we could have rules like \"if the bot reboots, gives it XX minutes to come back, but under other circumstances (any other state), it must ping every 1 minute\". Having this BotStatus called out makes it easier to create these kind of rules.",
+      "parentUuid": "9a8abcd6_1fdcdbb7",
       "range": {
         "startLine": 138,
         "startChar": 2,
@@ -329,6 +653,24 @@
     },
     {
       "key": {
+        "uuid": "67d94e36_34e4d922",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Cool, done.",
+      "parentUuid": "34dcfe7d_deb6f9f4",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59c0102c_42d05ae1",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -343,6 +685,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8a89ebf_9c76dcf1",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59c0102c_42d05ae1",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -369,6 +729,30 @@
     },
     {
       "key": {
+        "uuid": "3eddbd7c_d7983041",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "It\u0027s been useful for users to fix IP whitelisting, and to detect any anomaly (i.e. unexpected IPs). :)",
+      "parentUuid": "6f72a46c_d87aa711",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 25
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9847451a_a00a90a7",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -392,6 +776,30 @@
     },
     {
       "key": {
+        "uuid": "66aea38d_f980e551",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "For LUCI token, it looks like \"bot:foo-bar\".\nFor IP whitelist, it looks like \"bot:whitelisted-ip\".\nFor service account, it looks like \"user:foo@bar.iam.gserviceacount.com\".\n\nIt\u0027s what bot_auth returns as-is. I decided to call it as opaque for now, we can update the description later. I don\u0027t think would become a struct, so I think it\u0027s relatively future proof.",
+      "parentUuid": "9847451a_a00a90a7",
+      "range": {
+        "startLine": 170,
+        "startChar": 5,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49945346_c94b5f98",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -403,6 +811,30 @@
       "writtenOn": "2018-12-12T21:58:24Z",
       "side": 1,
       "message": "when do we expect to see this? What does it mean to have an event without a type?",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 28
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "987266f3_6eaa94e8",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "It means the value is not set, which is an error. i.e. there\u0027s no default event type.",
+      "parentUuid": "49945346_c94b5f98",
       "range": {
         "startLine": 178,
         "startChar": 2,
@@ -438,6 +870,30 @@
     },
     {
       "key": {
+        "uuid": "c63c998e_768c4a50",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I plan to merge everything as a single string, like it\u0027s currently done. It\u0027s been \"good enough\".",
+      "parentUuid": "d63187ec_3eb61560",
+      "range": {
+        "startLine": 190,
+        "startChar": 42,
+        "endLine": 190,
+        "endChar": 55
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c635457e_b5281624",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -449,6 +905,30 @@
       "writtenOn": "2018-12-12T21:58:24Z",
       "side": 1,
       "message": "same q",
+      "range": {
+        "startLine": 195,
+        "startChar": 42,
+        "endLine": 195,
+        "endChar": 55
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "728016aa_f2cc24c3",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I didn\u0027t plan for this. With eventual out-of-process hooks, this would be even harder to extract.",
+      "parentUuid": "c635457e_b5281624",
       "range": {
         "startLine": 195,
         "startChar": 42,
@@ -484,6 +964,30 @@
     },
     {
       "key": {
+        "uuid": "8c8ee5fb_ee3e6e86",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Good point; this is only for things worth reporting to the server. The rest should only be stored in the bot\u0027s own logs. I called this out more clearly.\n\nIn practice there\u0027s only two levels: error and log.",
+      "parentUuid": "8039ac6d_cabcc63c",
+      "range": {
+        "startLine": 199,
+        "startChar": 42,
+        "endLine": 199,
+        "endChar": 51
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56d963c9_003f1ad3",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -495,6 +999,30 @@
       "writtenOn": "2018-12-12T21:58:24Z",
       "side": 1,
       "message": "would it be worth including structured data about how long the bot was told to idle for?",
+      "range": {
+        "startLine": 217,
+        "startChar": 24,
+        "endLine": 217,
+        "endChar": 40
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebaf3ecb_14a8ed11",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "This can be calculated, and really this BotEventType is just to signal state changes, otherwise it will not be reported.\n\nThat said, I could add a generic \"since last event\" duration, but while querying what we want is \"until next event\", which means that the entity cannot be streamed until the next event comes up. This can be problematic in some cases: the bot died thus a several minutes timer, or is idle for hours.",
+      "parentUuid": "56d963c9_003f1ad3",
       "range": {
         "startLine": 217,
         "startChar": 24,
@@ -530,6 +1058,30 @@
     },
     {
       "key": {
+        "uuid": "977969e1_c3713e63",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Done, explained the change below.",
+      "parentUuid": "b4d45deb_fb805976",
+      "range": {
+        "startLine": 221,
+        "startChar": 24,
+        "endLine": 221,
+        "endChar": 40
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cac2197a_56efde84",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -550,6 +1102,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e559e4_159130fa",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Updated text.",
+      "parentUuid": "cac2197a_56efde84",
+      "range": {
+        "startLine": 230,
+        "startChar": 24,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -576,6 +1152,30 @@
     },
     {
       "key": {
+        "uuid": "55f0f918_3a533be1",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "I had made a mistake, replaced with:\n\n  // BotEvent.event_msg shall not be set. BotEvent.bot.task_id shall contain the\n  // task ID.\n\nI also updated INSTRUCT_START_TASK, INSTRUCT_TERMINATE_BOT, TASK_COMPLETED and TASK_KILLED. It\u0027s called up at line 238 but it\u0027s worth repeating.\n\nI also updated INSTRUCT_RESTART_BOT (it can have a event_msg).\n\nI thought about moving task_id to the event but since it\u0027s a state instead of an edge, I prefer to leave it in Bot.",
+      "parentUuid": "c05600b5_abbc2edf",
+      "range": {
+        "startLine": 248,
+        "startChar": 38,
+        "endLine": 248,
+        "endChar": 71
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f81afe95_3330e815",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -599,6 +1199,30 @@
     },
     {
       "key": {
+        "uuid": "bb188892_9d596930",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Replaced with \"Bot that had this event\"",
+      "parentUuid": "f81afe95_3330e815",
+      "range": {
+        "startLine": 260,
+        "startChar": 38,
+        "endLine": 260,
+        "endChar": 43
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fbc32e1b_63f8971b",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -613,6 +1237,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a4fb333_439895bc",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Bot state evolves over time. BotEvent in the DB is a 2.3Tb of data on chromium-swarm so it\u0027s not too bad.",
+      "parentUuid": "fbc32e1b_63f8971b",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -636,6 +1278,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78fdb5ed_7e9f11fb",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "New patchset is clearer about this.",
+      "parentUuid": "8e7ee06a_ebc47a03",
+      "range": {
+        "startLine": 281,
+        "startChar": 2,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

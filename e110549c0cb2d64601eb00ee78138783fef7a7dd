@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "29bc3c6c_dcb14bde",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "That\u0027s how I tested the other services. It\u0027s fast enough and feels closer to reality; calling the methods directly would enable using slightly different types by accident (i.e. while refactoring) while going through the pRPC stack would catch this.",
+      "parentUuid": "5dc81b80_ba8d43bd",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 0
+      },
+      "revId": "e110549c0cb2d64601eb00ee78138783fef7a7dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae650cea_af814466",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "e110549c0cb2d64601eb00ee78138783fef7a7dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c634666_a61aa442",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-13T15:18:39Z",
+      "side": 1,
+      "message": "Done. Also tweaked the doc.",
+      "parentUuid": "ae650cea_af814466",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "e110549c0cb2d64601eb00ee78138783fef7a7dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
