@@ -6,6 +6,7 @@
 import datetime
 import logging
 import os
+import random
 import sys
 import unittest
 
@@ -15,6 +16,9 @@ import webapp2
 import webtest
 
 from google.appengine.ext import ndb
+
+from google.protobuf import struct_pb2
+from google.protobuf import timestamp_pb2
 
 from components import utils
 from components.prpc import encoding
@@ -73,14 +77,335 @@ class PRPCTest(test_env_handlers.AppTestBase):
     self.fail(url)
     return False
 
-  def test_botevents(self):
+  def _test_bot_events_simple(self, request):
+    self.set_as_bot()
+    self.do_handshake()
+    self.set_as_user()
+    raw_resp = self.app.post(
+        '/prpc/swarming.BotAPI/Events', _encode(request), self._headers)
+    expected = swarming_pb2.BotEventsResponse(
+      events=[
+        swarming_pb2.BotEvent(
+          event_time=timestamp_pb2.Timestamp(seconds=1262401445),
+          bot=swarming_pb2.Bot(
+            bot_id='bot1',
+            info=swarming_pb2.BotInfo(
+              raw=struct_pb2.Struct(
+                fields={
+                  'running_time': struct_pb2.Value(number_value=1234.0),
+                  'sleep_streak': struct_pb2.Value(number_value=0),
+                  'started_ts': struct_pb2.Value(number_value=1410990411.11),
+                }),
+              external_ip='192.168.2.2',
+              authenticated_as='bot:whitelisted-ip',
+              version='123',
+              ),
+            dimensions=[
+              swarming_pb2.Dimension(key='id', values=['bot1']),
+              swarming_pb2.Dimension(key='os', values=['Amiga']),
+              swarming_pb2.Dimension(key='pool', values=['default']),
+            ]),
+          event=swarming_pb2.BOT_NEW_SESSION,
+        ),
+      ])
+    resp = swarming_pb2.BotEventsResponse()
+    _decode(raw_resp.body, resp)
+    self.assertEqual(unicode(expected), unicode(resp))
+
+  def test_botevents_empty(self):
+    # Minimum request, all optional fields left out.
+    self._test_bot_events_simple(swarming_pb2.BotEventsRequest(bot_id=u'bot1'))
+
+  def test_botevents_empty_time(self):
+    msg = swarming_pb2.BotEventsRequest(bot_id=u'bot1')
+    msg.start_time.FromDatetime(self.now)
+    msg.end_time.FromDatetime(self.now + datetime.timedelta(seconds=1))
+    self._test_bot_events_simple(msg)
+
+  def test_botevents_missing(self):
+    # No such bot.
+    msg = swarming_pb2.BotEventsRequest(bot_id=u'unknown')
+    raw_resp = self.app.post(
+        '/prpc/swarming.BotAPI/Events', _encode(msg), self._headers,
+        expect_errors=True)
+    self.assertEqual(raw_resp.status, '404 Not Found')
+    self.assertEqual(raw_resp.body, 'Bot does not exist')
+
+  def test_botevents_invalid_page_size(self):
+    msg = swarming_pb2.BotEventsRequest(bot_id=u'bot1', page_size=-1)
+    raw_resp = self.app.post(
+        '/prpc/swarming.BotAPI/Events', _encode(msg), self._headers,
+        expect_errors=True)
+    self.assertEqual(raw_resp.status, '400 Bad Request')
+    self.assertEqual(raw_resp.body, 'page_size must be positive')
+
+  def test_botevents_invalid_bot_id(self):
+    # Missing bot_id
     msg = swarming_pb2.BotEventsRequest()
     raw_resp = self.app.post(
         '/prpc/swarming.BotAPI/Events', _encode(msg), self._headers,
         expect_errors=True)
-    self.assertEqual(raw_resp.status, '501 Not Implemented')
-    self.assertEqual(raw_resp.body, ')]}\'\n{}')
+    self.assertEqual(raw_resp.status, '400 Bad Request')
+    self.assertEqual(raw_resp.body, 'specify bot_id')
 
+  def test_botevents_start_end(self):
+    msg = swarming_pb2.BotEventsRequest(bot_id=u'bot1')
+    msg.start_time.FromDatetime(self.now)
+    msg.end_time.FromDatetime(self.now)
+    raw_resp = self.app.post(
+        '/prpc/swarming.BotAPI/Events', _encode(msg), self._headers,
+        expect_errors=True)
+    self.assertEqual(raw_resp.status, '400 Bad Request')
+    self.assertEqual(raw_resp.body, 'start_time must be before end_time')
+
+  def test_botevents(self):
+    # Run one task, push an event manually.
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+
+    self.set_as_bot()
+    params = self.do_handshake()
+    self.set_as_user()
+    self.client_create_task_raw()
+    self.set_as_bot()
+    res = self.bot_poll(params=params)
+    now_60 = self.mock_now(self.now, 60)
+    # Large page_size is automatically reduced.
+    response = self.bot_complete_task(task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
+
+    params['event'] = 'bot_rebooting'
+    params['message'] = 'for the best'
+    # TODO(maruel): https://crbug.com/913953
+    response = self.post_json('/swarming/api/v1/bot/event', params)
+    self.assertEqual({}, response)
+
+    self.set_as_privileged_user()
+    msg = swarming_pb2.BotEventsRequest(bot_id=u'bot1', page_size=1001)
+    msg.start_time.FromDatetime(self.now)
+    msg.end_time.FromDatetime(now_60 + datetime.timedelta(seconds=1))
+    raw_resp = self.app.post(
+        '/prpc/swarming.BotAPI/Events', _encode(msg), self._headers)
+    resp = swarming_pb2.BotEventsResponse()
+    _decode(raw_resp.body, resp)
+
+    expected = ur"""events {
+  event_time {
+    seconds: 1262401505
+  }
+  bot {
+    bot_id: "bot1"
+    dimensions {
+      key: "id"
+      values: "bot1"
+    }
+    dimensions {
+      key: "os"
+      values: "Amiga"
+    }
+    dimensions {
+      key: "pool"
+      values: "default"
+    }
+    info {
+      raw {
+        fields {
+          key: "bot_group_cfg_version"
+          value {
+            string_value: "default"
+          }
+        }
+        fields {
+          key: "running_time"
+          value {
+            number_value: 1234.0
+          }
+        }
+        fields {
+          key: "sleep_streak"
+          value {
+            number_value: 0
+          }
+        }
+        fields {
+          key: "started_ts"
+          value {
+            number_value: 1410990411.11
+          }
+        }
+      }
+      version: "a5d3d1f287ed010ccfe16c496b9423d9f322737c98a793d8fb97c9a67c312314"
+      external_ip: "192.168.2.2"
+      authenticated_as: "bot:whitelisted-ip"
+    }
+  }
+  event: BOT_REBOOTING_HOST
+  event_msg: "for the best"
+}
+events {
+  event_time {
+    seconds: 1262401505
+  }
+  bot {
+    bot_id: "bot1"
+    status: BUSY
+    current_task_id: "5cee488008811"
+    dimensions {
+      key: "id"
+      values: "bot1"
+    }
+    dimensions {
+      key: "os"
+      values: "Amiga"
+    }
+    dimensions {
+      key: "pool"
+      values: "default"
+    }
+    info {
+      raw {
+        fields {
+          key: "bot_group_cfg_version"
+          value {
+            string_value: "default"
+          }
+        }
+        fields {
+          key: "running_time"
+          value {
+            number_value: 1234.0
+          }
+        }
+        fields {
+          key: "sleep_streak"
+          value {
+            number_value: 0
+          }
+        }
+        fields {
+          key: "started_ts"
+          value {
+            number_value: 1410990411.11
+          }
+        }
+      }
+      version: "a5d3d1f287ed010ccfe16c496b9423d9f322737c98a793d8fb97c9a67c312314"
+      external_ip: "192.168.2.2"
+      authenticated_as: "bot:whitelisted-ip"
+    }
+  }
+  event: TASK_COMPLETED
+}
+events {
+  event_time {
+    seconds: 1262401445
+  }
+  bot {
+    bot_id: "bot1"
+    status: BUSY
+    current_task_id: "5cee488008811"
+    dimensions {
+      key: "id"
+      values: "bot1"
+    }
+    dimensions {
+      key: "os"
+      values: "Amiga"
+    }
+    dimensions {
+      key: "pool"
+      values: "default"
+    }
+    info {
+      raw {
+        fields {
+          key: "bot_group_cfg_version"
+          value {
+            string_value: "default"
+          }
+        }
+        fields {
+          key: "running_time"
+          value {
+            number_value: 1234.0
+          }
+        }
+        fields {
+          key: "sleep_streak"
+          value {
+            number_value: 0
+          }
+        }
+        fields {
+          key: "started_ts"
+          value {
+            number_value: 1410990411.11
+          }
+        }
+      }
+      version: "a5d3d1f287ed010ccfe16c496b9423d9f322737c98a793d8fb97c9a67c312314"
+      external_ip: "192.168.2.2"
+      authenticated_as: "bot:whitelisted-ip"
+    }
+  }
+  event: INSTRUCT_START_TASK
+}
+events {
+  event_time {
+    seconds: 1262401445
+  }
+  bot {
+    bot_id: "bot1"
+    dimensions {
+      key: "id"
+      values: "bot1"
+    }
+    dimensions {
+      key: "os"
+      values: "Amiga"
+    }
+    dimensions {
+      key: "pool"
+      values: "default"
+    }
+    info {
+      raw {
+        fields {
+          key: "running_time"
+          value {
+            number_value: 1234.0
+          }
+        }
+        fields {
+          key: "sleep_streak"
+          value {
+            number_value: 0
+          }
+        }
+        fields {
+          key: "started_ts"
+          value {
+            number_value: 1410990411.11
+          }
+        }
+      }
+      version: "123"
+      external_ip: "192.168.2.2"
+      authenticated_as: "bot:whitelisted-ip"
+    }
+  }
+  event: BOT_NEW_SESSION
+}
+"""
+    self.assertEqual(expected, unicode(resp))
+
+    # Now test with a subset.
+    msg = swarming_pb2.BotEventsRequest(bot_id=u'bot1')
+    msg.start_time.FromDatetime(now_60)
+    msg.end_time.FromDatetime(now_60 + datetime.timedelta(seconds=1))
+    raw_resp = self.app.post(
+        '/prpc/swarming.BotAPI/Events', _encode(msg), self._headers)
+    resp = swarming_pb2.BotEventsResponse()
+    _decode(raw_resp.body, resp)
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
