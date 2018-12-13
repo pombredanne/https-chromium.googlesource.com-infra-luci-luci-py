@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e425d893_b2590e7a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-13T22:45:00Z",
+      "side": 1,
+      "message": "Are the commented-out parts unnecessary because these fields will default to these values if not set here?",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 22
+      },
+      "revId": "3ecc76545ac2a4b3872df1e7f2f32b878a7e47d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
