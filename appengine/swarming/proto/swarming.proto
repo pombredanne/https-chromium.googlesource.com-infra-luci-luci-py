@@ -349,38 +349,93 @@ message Dimension {
 enum TaskState {
   // Invalid task state, do not use.
   TASK_STATE_UNSPECIFIED = 0;
-  // The task is currently running. This is in fact 3 phases: the initial
-  // overhead to fetch input files, the actual task running, and the tear down
-  // overhead to archive output files to the server.
-  RUNNING = 0x10;
-  // The task is currently pending. This means that no bot reaped the task. It
-  // will stay in this state until either a task reaps it or the expiration
-  // elapsed. The task pending expiration is specified as
-  // TaskSlice.expiration_secs, one per task slice.
-  PENDING = 0x20;
-  // The task is not pending anymore, and never ran due to lack of capacity.
-  // This means that other higher priority tasks ran instead and that not enough
-  // bots were available to run this task for TaskSlice.expiration_secs seconds.
-  EXPIRED = 0x30;
-  // The task ran for longer than the allowed time in
-  // TaskProperties.execution_timeout_secs or TaskProperties.io_timeout_secs.
-  // This means the bot forcefully killed the task process as described in the
-  // graceful termination dance in the documentation.
-  TIMED_OUT = 0x40;
+
+  //
+  // Active states.
+  //
+
+  // The task is currently pending.
+  //
+  // This means that no bot reaped the task. It will stay in this state until
+  // either a task reaps it or the expiration elapsed. The task pending
+  // expiration is specified as TaskSlice.expiration_secs, one per task slice.
+  //
+  // The task may go through multiple pending TaskSlice as they expire or are
+  // skipped due to NO_RESOURCE (see definition below). In this situation the
+  // task state still stays in PENDING state as long as there's a chance for a
+  // bot to reap the task.
+  PENDING = 1;
+  // The task is currently pending, but another task was identified to be
+  // deduped against.
+  PENDING_DEDUPING = 2;  // Not used yet, https://crbug.com/915342
+  // The task is assigned to a bot. The bot is fetching input files and setting
+  // up the runtime environment.
+  RUNNING_OVERHEAD_START = 3;  // Not used yet, https://crbug.com/796757
+  // The task is currently running.
+  //
+  // For new tasks, this is only the actual tasks runtime. For old tasks, this
+  // includes RUNNING_OVERHEAD_START and RUNNING_OVERHEAD_END.
+  RUNNING = 4;
+  // Task completed and result metadata is available, but not all outputs and
+  // other associated logs, as they are still being uploaded and the environment
+  // is being teared down.
+  //
+  // A client that only needs the exit code may chose to stop waiting for the
+  // task, as the task will end with COMPLETED, unless there's a failure during
+  // outputs upload, which would result in BOT_DIED.
+  RUNNING_OVERHEAD_END = 5;  // Not used yet, https://crbug.com/813412
+
+  //
+  // These states are in ambivalent state. They can trigger the Swarming
+  // internal retry mechanism.
+  //
+
+  // The task ran and completed normally, but returned an exit code that was
+  // provided in the TaskProperties as signaling an hardware failure of the DUT
+  // (Device Under Test).
+  //
+  // As such, the task may need to be retried.
+  DUT_FAILURE = 6;  // Not used yet, https://crbug.com/902807
   // The task ran but the bot had an internal failure, unrelated to the task
   // itself. It can be due to the server being unavailable to get task update,
   // the host on which the bot is running crashing or rebooting, etc.
-  BOT_DIED = 0x50;
-  // The task never ran, and was manually cancelled via the 'cancel' API before
-  // it was reaped.
-  CANCELED = 0x60;
+  BOT_DIED = 7;
+  // The task ran but was killed in a way that should still be retried.
+  //
+  // This can happen via the external scheduler or an API yet to be defined.
+  PREEMPTED = 8;  // Not used yet, TODO(maruel): File bug.
+
+  //
+  // All the states below up to the end are inactive final states.
+  //
+
+  // The task ran, and it done.
+
   // The task ran and completed normally. The task process exit code may be 0 or
   // another value.
-  COMPLETED = 0x70;
-  // The task ran but was manually killed via the 'cancel' API. This means the
-  // bot forcefully killed the task process as described in the graceful
-  // termination dance in the documentation.
-  KILLED = 0x80;
+  COMPLETED = 9;
+  // The task ran for longer than the allowed time in
+  // TaskProperties.execution_timeout_secs or TaskProperties.io_timeout_secs.
+  //
+  // This means the bot forcefully killed the task process as described in the
+  // graceful termination dance in the documentation.
+  TIMED_OUT = 10;
+  // The task ran but was manually killed via the 'cancel' API.
+  //
+  // This means the bot forcefully killed the task process as described in the
+  // graceful termination dance in the documentation.
+  KILLED = 11;
+
+  // The Task did not run, and won't.
+
+  // The task is not pending anymore, never ran due to lack of capacity.
+  //
+  // This means that other higher priority tasks ran instead and that not enough
+  // bots were available to run this task for TaskSlice.expiration_secs seconds.
+  EXPIRED = 13;
+  // The task never ran, and was manually cancelled via the 'cancel' API before
+  // it was reaped.
+  CANCELED = 14;
   // The task was never set to PENDING and was immediately refused, as the
   // server determined that there is no bot capacity to run this task. This
   // happens because no bot exposes a superset of the requested task dimensions.
@@ -390,5 +445,5 @@ enum TaskState {
   // eventually switch to EXPIRED, as there's no bot to run it. That said, there
   // are situations where it is known that in some not-too-distant future a wild
   // bot will appear that will be able to run this task.
-  NO_RESOURCE = 0x100;
+  NO_RESOURCE = 15;
 }
