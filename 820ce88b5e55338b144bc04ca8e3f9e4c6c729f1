@@ -22,6 +22,30 @@
       "revId": "820ce88b5e55338b144bc04ca8e3f9e4c6c729f1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4474d0d1_c96cba47",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "It\u0027s a good question. It\u0027s not a problem because ordering is done via ordering via timestamp, and the page_token will contain the timestamp marker in the index.",
+      "parentUuid": "2a7c10fc_0cc4a179",
+      "range": {
+        "startLine": 50,
+        "startChar": 23,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "820ce88b5e55338b144bc04ca8e3f9e4c6c729f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

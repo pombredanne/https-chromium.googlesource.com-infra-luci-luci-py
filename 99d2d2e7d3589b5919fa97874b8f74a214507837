@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "957e5c61_0b2c44d4",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "Added a small doc just for you 💖",
+      "parentUuid": "092480e1_b8b42ce3",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 24
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b454510_89699bc5",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -414,6 +438,30 @@
     },
     {
       "key": {
+        "uuid": "788dd951_4145beee",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "Yes, eventually.",
+      "parentUuid": "3a4922d5_d5510480",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fdce8d4_8e36711f",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -626,6 +674,30 @@
     },
     {
       "key": {
+        "uuid": "7ecff503_2e0ee9ff",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "Having slept on this, I switched to QUARANTINED_BY_BOT and QUARANTINED_BY_SERVER.\n\nI think that QUARANTINED_BY_FOO is clear, contrary to your initial recommendation.",
+      "parentUuid": "708d5b1e_e82833f9",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 13
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3eef6455_0d5c4363",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -673,6 +745,24 @@
       "side": 1,
       "message": "What I was getting at is that statuses which reflect a similar practical outcome (i.e. \"bot cannot take tasks right now because its busy with non-task stuff\") should (imo) share a word. Almost like a (status, substatus) tuple. \u0027status\u0027 indicates behavior class, and \u0027substatus\u0027 gives a hint of why we\u0027re in that behavior class.",
       "parentUuid": "46f57bf3_3eabcba3",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d081bf5_facc529c",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "What about OVERHEAD_MAINTENANCE_EXTERNAL and OVERHEAD_BOT_INTERNAL? They share a prefix, and I think it\u0027s worth being a bit overly verbose here in the name as people will assume an implicit context without reading the documentation.",
+      "parentUuid": "a6260627_7e8b171f",
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -750,6 +840,30 @@
     },
     {
       "key": {
+        "uuid": "5aca3164_c0d4b31f",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "lol thanks for catching!",
+      "parentUuid": "6d084d90_99922910",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34dcfe7d_deb6f9f4",
         "filename": "appengine/swarming/proto/swarming.proto",
         "patchSetId": 10
@@ -800,6 +914,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3248a11_db5551e0",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "It\u0027s fine. It\u0027s not a problem here since it\u0027s not structural data, only for presentation. I plan for real structure later, yet this switch was really a good idea because the state data is now accessible in big query, which is very cool!",
+      "parentUuid": "01fe3122_df91d032",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -1000,6 +1132,30 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "906cf4a2_e6435fbb",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "Added a doc line to all FOO_UNSPECIFIED items.",
+      "parentUuid": "cdad58eb_f1c3a0ad",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 28
+      },
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -1477,6 +1633,24 @@
       "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f810f7b_66d02734",
+        "filename": "appengine/swarming/proto/swarming.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T15:26:51Z",
+      "side": 1,
+      "message": "Done. In practice, I\u0027d like to only include the delta but that causes two issues:\n- Similar to MPEG, I\u0027d need to provide an \"I frame\" which then \"P frame\" could be decoded.\n- That would be fine with the API, but for BigQuery that would make querying hell on Earth as the missing data would have to be reconstructed in each SQL request.\n\nSo snapshot it is for now, and maybe later something about delta. I documented this.",
+      "parentUuid": "cfe93a8b_8fa81613",
+      "revId": "99d2d2e7d3589b5919fa97874b8f74a214507837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
