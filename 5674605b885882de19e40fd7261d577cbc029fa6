@@ -16,6 +16,24 @@
       "revId": "5674605b885882de19e40fd7261d577cbc029fa6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6444e816_f281a9d2",
+        "filename": "appengine/isolate/proto/isolated.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-14T19:46:10Z",
+      "side": 1,
+      "message": "I pondered about this, I could add a google.protobuf.Duration but I felt ambivalent about this:\n- If it were stored in the BQ table, then users could start thinking that some entity could represent something other than 1 minute\n- In the API, the user knows what the user is asking for, so I don\u0027t feel there\u0027s a point wasting bandwidth/encoding/decoding time on this.",
+      "parentUuid": "49392ed9_fee2dd24",
+      "revId": "5674605b885882de19e40fd7261d577cbc029fa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
