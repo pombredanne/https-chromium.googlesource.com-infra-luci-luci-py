@@ -22,6 +22,30 @@
       "revId": "78d2329bfc1598267bba57a2d50d9799bb75e9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b860e15_6feba61b",
+        "filename": "appengine/third_party/python-adb/adb/contrib/high.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-15T00:13:00Z",
+      "side": 1,
+      "message": "SG. I prob shouldn\u0027t be surprised that we can\u0027t even ask for a reasonable way of getting a pkg\u0027s version",
+      "parentUuid": "f614f5b1_d420f51e",
+      "range": {
+        "startLine": 774,
+        "startChar": 15,
+        "endLine": 774,
+        "endChar": 47
+      },
+      "revId": "78d2329bfc1598267bba57a2d50d9799bb75e9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
