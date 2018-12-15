@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f614f5b1_d420f51e",
+        "filename": "appengine/third_party/python-adb/adb/contrib/high.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-15T00:01:55Z",
+      "side": 1,
+      "message": "This seems to work on all the devices on chromium-swarm-dev, although I wouldn\u0027t be surprised if some package has some weird format that doesn\u0027t work with this.\n\nI did try sticking with regex by doing:\nversionName\u003d([^\\s]*) \nwhich works on examples like versionName\u003d14.7.99 (090400-223214910) and versionName\u003d12.8.23-all [0] [PR] 224256688, but fails on examples like versionName\u003d1.2.3",
+      "range": {
+        "startLine": 774,
+        "startChar": 15,
+        "endLine": 774,
+        "endChar": 47
+      },
+      "revId": "78d2329bfc1598267bba57a2d50d9799bb75e9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
