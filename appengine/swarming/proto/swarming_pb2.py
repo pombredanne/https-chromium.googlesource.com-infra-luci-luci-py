@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='swarming.v1',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0eswarming.proto\x12\x0bswarming.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa7\x01\n\x10\x42otEventsRequest\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\x12.\n\nstart_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"S\n\x11\x42otEventsResponse\x12%\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x15.swarming.v1.BotEvent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"\xd2\x01\n\x03\x42ot\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x12\n\nsession_id\x18\x02 \x01(\t\x12*\n\x06status\x18\x03 \x01(\x0e\x32\x1a.swarming.v1.BotStatusType\x12\x12\n\nstatus_msg\x18\x04 \x01(\t\x12\x17\n\x0f\x63urrent_task_id\x18\x05 \x01(\t\x12*\n\ndimensions\x18\x06 \x03(\x0b\x32\x16.swarming.v1.Dimension\x12\"\n\x04info\x18\x07 \x01(\x0b\x32\x14.swarming.v1.BotInfo\"o\n\x07\x42otInfo\x12$\n\x03raw\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0f\n\x07version\x18\x02 \x01(\t\x12\x13\n\x0b\x65xternal_ip\x18\x03 \x01(\t\x12\x18\n\x10\x61uthenticated_as\x18\x04 \x01(\t\"\x96\x01\n\x08\x42otEvent\x12.\n\nevent_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x03\x62ot\x18\x02 \x01(\x0b\x32\x10.swarming.v1.Bot\x12(\n\x05\x65vent\x18\x03 \x01(\x0e\x32\x19.swarming.v1.BotEventType\x12\x11\n\tevent_msg\x18\x04 \x01(\t\"(\n\tDimension\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x0e\n\x06values\x18\x02 \x03(\t*\xdf\x01\n\rBotStatusType\x12\x1a\n\x16\x42OT_STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07MISSING\x10\x01\x12\x19\n\x15QUARANTINED_BY_SERVER\x10\x02\x12\x16\n\x12QUARANTINED_BY_BOT\x10\x03\x12!\n\x1dOVERHEAD_MAINTENANCE_EXTERNAL\x10\x04\x12\x19\n\x15OVERHEAD_BOT_INTERNAL\x10\x05\x12\x12\n\x0eHOST_REBOOTING\x10\x06\x12\x08\n\x04\x42USY\x10\x07\x12\x0c\n\x08RESERVED\x10\x08\x12\x08\n\x04IDLE\x10\t*\xed\x02\n\x0c\x42otEventType\x12\x1e\n\x1a\x42OT_EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x13\n\x0f\x42OT_NEW_SESSION\x10\x01\x12\x18\n\x14\x42OT_INTERNAL_FAILURE\x10\x02\x12\x12\n\x0e\x42OT_HOOK_ERROR\x10\x03\x12\x10\n\x0c\x42OT_HOOK_LOG\x10\x04\x12\x16\n\x12\x42OT_REBOOTING_HOST\x10\x05\x12\x10\n\x0c\x42OT_SHUTDOWN\x10\x06\x12\x11\n\rINSTRUCT_IDLE\x10\n\x12\x17\n\x13INSTRUCT_START_TASK\x10\x0b\x12\x18\n\x14INSTRUCT_RESTART_BOT\x10\x0c\x12\x1c\n\x18INSTRUCT_UPDATE_BOT_CODE\x10\r\x12\x1a\n\x16INSTRUCT_TERMINATE_BOT\x10\x0e\x12\x12\n\x0eTASK_COMPLETED\x10\x14\x12\x19\n\x15TASK_INTERNAL_FAILURE\x10\x15\x12\x0f\n\x0bTASK_KILLED\x10\x16*\xa7\x01\n\tTaskState\x12\x1a\n\x16TASK_STATE_UNSPECIFIED\x10\x00\x12\x0b\n\x07RUNNING\x10\x10\x12\x0b\n\x07PENDING\x10 \x12\x0b\n\x07\x45XPIRED\x10\x30\x12\r\n\tTIMED_OUT\x10@\x12\x0c\n\x08\x42OT_DIED\x10P\x12\x0c\n\x08\x43\x41NCELED\x10`\x12\r\n\tCOMPLETED\x10p\x12\x0b\n\x06KILLED\x10\x80\x01\x12\x10\n\x0bNO_RESOURCE\x10\x80\x02\x32S\n\x06\x42otAPI\x12I\n\x06\x45vents\x12\x1d.swarming.v1.BotEventsRequest\x1a\x1e.swarming.v1.BotEventsResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0eswarming.proto\x12\x0bswarming.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa7\x01\n\x10\x42otEventsRequest\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\x12.\n\nstart_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"S\n\x11\x42otEventsResponse\x12%\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x15.swarming.v1.BotEvent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"\xd2\x01\n\x03\x42ot\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x12\n\nsession_id\x18\x02 \x01(\t\x12*\n\x06status\x18\x03 \x01(\x0e\x32\x1a.swarming.v1.BotStatusType\x12\x12\n\nstatus_msg\x18\x04 \x01(\t\x12\x17\n\x0f\x63urrent_task_id\x18\x05 \x01(\t\x12*\n\ndimensions\x18\x06 \x03(\x0b\x32\x16.swarming.v1.Dimension\x12\"\n\x04info\x18\x07 \x01(\x0b\x32\x14.swarming.v1.BotInfo\"o\n\x07\x42otInfo\x12$\n\x03raw\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0f\n\x07version\x18\x02 \x01(\t\x12\x13\n\x0b\x65xternal_ip\x18\x03 \x01(\t\x12\x18\n\x10\x61uthenticated_as\x18\x04 \x01(\t\"\x96\x01\n\x08\x42otEvent\x12.\n\nevent_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x03\x62ot\x18\x02 \x01(\x0b\x32\x10.swarming.v1.Bot\x12(\n\x05\x65vent\x18\x03 \x01(\x0e\x32\x19.swarming.v1.BotEventType\x12\x11\n\tevent_msg\x18\x04 \x01(\t\"(\n\tDimension\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x0e\n\x06values\x18\x02 \x03(\t*\xdf\x01\n\rBotStatusType\x12\x1a\n\x16\x42OT_STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07MISSING\x10\x01\x12\x19\n\x15QUARANTINED_BY_SERVER\x10\x02\x12\x16\n\x12QUARANTINED_BY_BOT\x10\x03\x12!\n\x1dOVERHEAD_MAINTENANCE_EXTERNAL\x10\x04\x12\x19\n\x15OVERHEAD_BOT_INTERNAL\x10\x05\x12\x12\n\x0eHOST_REBOOTING\x10\x06\x12\x08\n\x04\x42USY\x10\x07\x12\x0c\n\x08RESERVED\x10\x08\x12\x08\n\x04IDLE\x10\t*\xed\x02\n\x0c\x42otEventType\x12\x1e\n\x1a\x42OT_EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x13\n\x0f\x42OT_NEW_SESSION\x10\x01\x12\x18\n\x14\x42OT_INTERNAL_FAILURE\x10\x02\x12\x12\n\x0e\x42OT_HOOK_ERROR\x10\x03\x12\x10\n\x0c\x42OT_HOOK_LOG\x10\x04\x12\x16\n\x12\x42OT_REBOOTING_HOST\x10\x05\x12\x10\n\x0c\x42OT_SHUTDOWN\x10\x06\x12\x11\n\rINSTRUCT_IDLE\x10\n\x12\x17\n\x13INSTRUCT_START_TASK\x10\x0b\x12\x18\n\x14INSTRUCT_RESTART_BOT\x10\x0c\x12\x1c\n\x18INSTRUCT_UPDATE_BOT_CODE\x10\r\x12\x1a\n\x16INSTRUCT_TERMINATE_BOT\x10\x0e\x12\x12\n\x0eTASK_COMPLETED\x10\x14\x12\x19\n\x15TASK_INTERNAL_FAILURE\x10\x15\x12\x0f\n\x0bTASK_KILLED\x10\x16*\x85\x04\n\tTaskState\x12\x0b\n\x07INVALID\x10\x00\x12\x0f\n\x0bPENDING_MIN\x10\x01\x12\x0f\n\x0bPENDING_MAX\x10\x02\x12\x0f\n\x0bRUNNING_MIN\x10\x03\x12\x0f\n\x0bRUNNING_MAX\x10\x06\x12\x11\n\rTRANSIENT_MIN\x10\x07\x12\x11\n\rTRANSIENT_MAX\x10\n\x12\x0c\n\x08\x44ONE_MIN\x10\x0b\x12\x0c\n\x08\x44ONE_MAX\x10\x14\x12\x0b\n\x07PENDING\x10\x01\x12\x14\n\x10PENDING_DEDUPING\x10\x02\x12\x1a\n\x16RUNNING_OVERHEAD_START\x10\x03\x12\x0b\n\x07RUNNING\x10\x04\x12\x18\n\x14RUNNING_OVERHEAD_END\x10\x05\x12\x0f\n\x0bTERMINATING\x10\x06\x12\x0f\n\x0b\x44UT_FAILURE\x10\x07\x12\x14\n\x10INTERNAL_FAILURE\x10\x08\x12\x13\n\x0f\x42OT_DISAPPEARED\x10\t\x12\r\n\tPREEMPTED\x10\n\x12\r\n\tCOMPLETED\x10\x0b\x12\r\n\tTIMED_OUT\x10\x0c\x12\x15\n\x11TIMED_OUT_SILENCE\x10\r\x12\n\n\x06KILLED\x10\x0e\x12\x0b\n\x07\x44\x45\x44UPED\x10\x0f\x12\x0b\n\x07\x45XPIRED\x10\x10\x12\x0c\n\x08\x43\x41NCELED\x10\x11\x12\x0f\n\x0bNO_RESOURCE\x10\x12\x12\r\n\tLOAD_SHED\x10\x13\x12\x16\n\x12RESOURCE_EXHAUSTED\x10\x14\x1a\x02\x10\x01\x32S\n\x06\x42otAPI\x12I\n\x06\x45vents\x12\x1d.swarming.v1.BotEventsRequest\x1a\x1e.swarming.v1.BotEventsResponse\"\x00\x62\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -163,50 +163,126 @@ _TASKSTATE = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='TASK_STATE_UNSPECIFIED', index=0, number=0,
+      name='INVALID', index=0, number=0,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='RUNNING', index=1, number=16,
+      name='PENDING_MIN', index=1, number=1,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PENDING', index=2, number=32,
+      name='PENDING_MAX', index=2, number=2,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='EXPIRED', index=3, number=48,
+      name='RUNNING_MIN', index=3, number=3,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TIMED_OUT', index=4, number=64,
+      name='RUNNING_MAX', index=4, number=6,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='BOT_DIED', index=5, number=80,
+      name='TRANSIENT_MIN', index=5, number=7,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CANCELED', index=6, number=96,
+      name='TRANSIENT_MAX', index=6, number=10,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='COMPLETED', index=7, number=112,
+      name='DONE_MIN', index=7, number=11,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='KILLED', index=8, number=128,
+      name='DONE_MAX', index=8, number=20,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='NO_RESOURCE', index=9, number=256,
+      name='PENDING', index=9, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PENDING_DEDUPING', index=10, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RUNNING_OVERHEAD_START', index=11, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RUNNING', index=12, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RUNNING_OVERHEAD_END', index=13, number=5,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TERMINATING', index=14, number=6,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DUT_FAILURE', index=15, number=7,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='INTERNAL_FAILURE', index=16, number=8,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BOT_DISAPPEARED', index=17, number=9,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PREEMPTED', index=18, number=10,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='COMPLETED', index=19, number=11,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TIMED_OUT', index=20, number=12,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TIMED_OUT_SILENCE', index=21, number=13,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KILLED', index=22, number=14,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DEDUPED', index=23, number=15,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='EXPIRED', index=24, number=16,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CANCELED', index=25, number=17,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='NO_RESOURCE', index=26, number=18,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LOAD_SHED', index=27, number=19,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RESOURCE_EXHAUSTED', index=28, number=20,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
-  serialized_options=None,
+  serialized_options=_b('\020\001'),
   serialized_start=1465,
-  serialized_end=1632,
+  serialized_end=1982,
 )
 _sym_db.RegisterEnumDescriptor(_TASKSTATE)
 
@@ -236,16 +312,35 @@ INSTRUCT_TERMINATE_BOT = 14
 TASK_COMPLETED = 20
 TASK_INTERNAL_FAILURE = 21
 TASK_KILLED = 22
-TASK_STATE_UNSPECIFIED = 0
-RUNNING = 16
-PENDING = 32
-EXPIRED = 48
-TIMED_OUT = 64
-BOT_DIED = 80
-CANCELED = 96
-COMPLETED = 112
-KILLED = 128
-NO_RESOURCE = 256
+INVALID = 0
+PENDING_MIN = 1
+PENDING_MAX = 2
+RUNNING_MIN = 3
+RUNNING_MAX = 6
+TRANSIENT_MIN = 7
+TRANSIENT_MAX = 10
+DONE_MIN = 11
+DONE_MAX = 20
+PENDING = 1
+PENDING_DEDUPING = 2
+RUNNING_OVERHEAD_START = 3
+RUNNING = 4
+RUNNING_OVERHEAD_END = 5
+TERMINATING = 6
+DUT_FAILURE = 7
+INTERNAL_FAILURE = 8
+BOT_DISAPPEARED = 9
+PREEMPTED = 10
+COMPLETED = 11
+TIMED_OUT = 12
+TIMED_OUT_SILENCE = 13
+KILLED = 14
+DEDUPED = 15
+EXPIRED = 16
+CANCELED = 17
+NO_RESOURCE = 18
+LOAD_SHED = 19
+RESOURCE_EXHAUSTED = 20
 
 
 
@@ -624,6 +719,7 @@ Dimension = _reflection.GeneratedProtocolMessageType('Dimension', (_message.Mess
 _sym_db.RegisterMessage(Dimension)
 
 
+_TASKSTATE._options = None
 
 _BOTAPI = _descriptor.ServiceDescriptor(
   name='BotAPI',
@@ -631,8 +727,8 @@ _BOTAPI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1634,
-  serialized_end=1717,
+  serialized_start=1984,
+  serialized_end=2067,
   methods=[
   _descriptor.MethodDescriptor(
     name='Events',
