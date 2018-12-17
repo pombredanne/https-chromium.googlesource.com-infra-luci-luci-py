@@ -171,6 +171,10 @@ class _BotCommon(ndb.Model):
     # Used by BotEvent.to_proto().
     out.bot_id = self.key.parent().string_id()
     #out.session_id = ''  # https://crbug.com/786735
+    for l in self.dimensions_flat:
+      if l.startswith(u'pool:'):
+        out.pool = l[len(u'pool:'):]
+        break
 
     # TODO(maruel): Many state cannot be discovered here.
     #out.status = swarming_pb2.BOTSTATE_UNSPECIFIED
