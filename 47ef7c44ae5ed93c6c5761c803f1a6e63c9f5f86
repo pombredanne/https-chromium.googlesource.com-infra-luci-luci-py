@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "30bc2ba1_bb412efe",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T17:44:16Z",
+      "side": 1,
+      "message": "The only benefit would potentially be readability (maybe) since \"explicit is better than implicit\" -- anyway I agree this is better.",
+      "parentUuid": "8f9614b5_68940504",
+      "range": {
+        "startLine": 946,
+        "startChar": 9,
+        "endLine": 946,
+        "endChar": 21
+      },
+      "revId": "47ef7c44ae5ed93c6c5761c803f1a6e63c9f5f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ce23e93_ff5d479a",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -257,6 +281,24 @@
       "revId": "47ef7c44ae5ed93c6c5761c803f1a6e63c9f5f86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3e16c4f_34f1893a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T17:44:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5f689a1f_129b9d2e",
+      "revId": "47ef7c44ae5ed93c6c5761c803f1a6e63c9f5f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -383,6 +425,24 @@
       "side": 1,
       "message": "I plan to add more functions to this, as I\u0027m going to add more BigQuery tables, the next one being Tasks.\n\nI plan to refactor the 3 copies into a generic function once I figured out what\u0027s the common part.",
       "parentUuid": "09cca339_3edb5bae",
+      "revId": "47ef7c44ae5ed93c6c5761c803f1a6e63c9f5f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9be31c46_dac4c44c",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T17:44:16Z",
+      "side": 1,
+      "message": "Got it, sounds good.",
+      "parentUuid": "1489a9f1_1658e172",
       "revId": "47ef7c44ae5ed93c6c5761c803f1a6e63c9f5f86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
