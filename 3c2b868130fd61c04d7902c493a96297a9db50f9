@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f97a997e_6d69b0d2",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-17T22:03:33Z",
+      "side": 1,
+      "message": "If the quotascheduler sees a task in this state, is it eligible to be assigned to a bot? I.e. should it be treated in the same way as PENDING?",
+      "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e6942cc_ee921d97",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-17T22:03:33Z",
+      "side": 1,
+      "message": "This is interesting. I guess this is for the purpose of metrics/analytics?\n\nWe might have need for \"user-defined setup and teardown\" time within skylab; for instance we ideally want DUT provisioning / verify to be tracked as separate overhead from test, but currently swarming considers this all to be task time.",
+      "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a49c647c_5271e28c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2018-12-17T22:03:33Z",
+      "side": 1,
+      "message": "Is this also appropriate for internal failures for tasks that didn\u0027t actually run on a bot? I\u0027d think so, but the comment suggests otherwise.\n\nFor instance, external scheduler may reject the task due to malformed dimensions, so it never ran on bot but we still want to kill it with some informative message.\\\n\n(or, would we want to add this as a sub-state of CATEGORY_NEVER_RAN_DONE ?)",
+      "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
