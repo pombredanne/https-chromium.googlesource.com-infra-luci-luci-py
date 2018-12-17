@@ -383,11 +383,17 @@ def CMDupload(parser, args):
 
   app.update(version, modules)
 
+  hostname = 'appspot.com'
+  app_id = app.app_id
+  if app.app_id.startswith('google.com:'):
+    hostname = 'googleplex.com'
+    app_id = app.app_id.replace('google.com:','')
+
   print('-' * 80)
   print('New version:')
   print('  %s' % version)
   print('Uploaded as:')
-  print('  https://%s-dot-%s.appspot.com' % (version, app.app_id))
+  print('  https://%s-dot-%s.%s' % (version, app_id, hostname))
   print('Manage at:')
   print('  https://console.cloud.google.com/appengine/versions?project=' +
         app.app_id)
