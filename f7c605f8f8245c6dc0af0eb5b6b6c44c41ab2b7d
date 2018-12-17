@@ -187,6 +187,30 @@
       "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1eb5c46b_18d3f37f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T21:05:38Z",
+      "side": 1,
+      "message": "Sorry for the delay -- I think I like the inlined version (the current version).",
+      "parentUuid": "92a57e64_aad80843",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 29
+      },
+      "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
