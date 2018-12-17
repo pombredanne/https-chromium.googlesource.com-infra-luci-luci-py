@@ -101,9 +101,9 @@ class PRPCTest(test_env_handlers.AppTestBase):
               version='123',
               ),
             dimensions=[
-              swarming_pb2.Dimension(key='id', values=['bot1']),
-              swarming_pb2.Dimension(key='os', values=['Amiga']),
-              swarming_pb2.Dimension(key='pool', values=['default']),
+              swarming_pb2.StringListPair(key='id', values=['bot1']),
+              swarming_pb2.StringListPair(key='os', values=['Amiga']),
+              swarming_pb2.StringListPair(key='pool', values=['default']),
             ]),
           event=swarming_pb2.BOT_NEW_SESSION,
         ),
@@ -190,9 +190,9 @@ class PRPCTest(test_env_handlers.AppTestBase):
     _decode(raw_resp.body, resp)
 
     dimensions = [
-      swarming_pb2.Dimension(key='id', values=['bot1']),
-      swarming_pb2.Dimension(key='os', values=['Amiga']),
-      swarming_pb2.Dimension(key='pool', values=['default']),
+      swarming_pb2.StringListPair(key='id', values=['bot1']),
+      swarming_pb2.StringListPair(key='os', values=['Amiga']),
+      swarming_pb2.StringListPair(key='pool', values=['default']),
     ]
     common_info = swarming_pb2.BotInfo(
         raw=struct_pb2.Struct(
