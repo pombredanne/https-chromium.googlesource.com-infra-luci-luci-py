@@ -13,8 +13,10 @@ syntax = "proto3";
 
 package swarming.v1;
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+
 
 // APIs.
 
@@ -64,6 +66,17 @@ message BotEventsResponse {
 
 
 // Common messages.
+
+// Represents a mapping of string to a string.
+//
+// The same as a map<key, value>, except that the encoding is deterministic.
+//
+// If the StringPair is itself repeated inside another message, the list
+// must be sorted by key and the keys must be unique.
+message StringPair {
+  string key = 1;
+  string value = 2;
+}
 
 // Represents a mapping of string to a list of strings.
 //
@@ -394,6 +407,293 @@ message BotEvent {
 
 // Task scheduling.
 
+// Defines a data tree reference, normally a reference to a .isolated file.
+message FilesRef {
+  // TODO(maruel): Make this a bit more generic.
+
+  // The hash of an isolated archive.
+  string isolated = 1;
+  // The hostname of the isolated server to use.
+  string isolatedserver = 2;
+  // Namespace on the isolate server.
+  string namespace = 3;
+}
+
+// A CIPD package to install in the run dir before task execution.
+message CipdPackage {
+  // A template of a full CIPD package name, e.g.
+  // "infra/tools/authutil/${platform}"
+  // See also cipd.ALL_PARAMS.
+  string package_name = 1;
+  // Valid package version for all packages matched by package name.
+  string version = 2;
+  // Path to dir, relative to the root dir, where to install the package.
+  // If empty, the package will be installed a the root of the mapped directory.
+  // If file names in the package and in the isolate clash, it will cause a
+  // failure.
+  string path = 3;
+}
+
+// Defines CIPD packages to install in task run directory.
+message CipdInputs {
+  // URL of the CIPD server. Must start with "https://" or "http://".
+  // This field or its subfields are optional if default cipd client is defined
+  // in the server config.
+  string server = 1;
+  // List of CIPD packages to install.
+  repeated CipdPackage packages = 2;
+}
+
+// Defines pinned CIPD packages that were installed during the task.
+message CipdPins {
+  // The pinned package + version of the CIPD client that was actually used.
+  CipdPackage client_package = 1;
+  // List of CIPD packages that were installed in the task with fully resolved
+  // package names and versions.
+  repeated CipdPackage packages = 2;
+}
+
+// Describes a named cache that should be present on the bot.
+//
+// A NamedCacheEntry in a task specified that the task prefers the cache to be
+// present on the bot. The cache directory is created at <run_dir>/|path|. If
+// cache is not present on the machine, the directory is empty. Any change done
+// by the task is persisted on the bot after the task completes.
+//
+// If another task runs on the same bot and requests the same named cache, even
+// if mapped to a different path, it will see the changes.
+message NamedCacheEntry {
+  // Unique name of the cache. Required. Length is limited to 4096.
+  string name = 1;
+  // Relative path to the directory that will be linked to the named cache.
+  // Required.
+  // A path cannot be shared among multiple caches or CIPD installations.
+  // A task will fail if a file/dir with the same name already exists.
+  string path = 2;
+}
+
+// Defines the 'what' to run.
+//
+// A serialization of this message is hashed and this hash is what is used for
+// task deduping.
+message TaskProperties {
+  // Inputs.
+
+  // Isolated inputs to map in the working directory.
+  //
+  // Deprecated: the isolated file may optionally specify a command to run.
+  // Otherwise, 'command' must be specified.
+  FilesRef inputs_ref = 1;
+  // CIPD packages to install. These packages are meant to be software that is
+  // needed (a dependency) to the task being run. Unlike isolated files, the
+  // CIPD packages do not expire from the server.
+  //
+  // Items must be sorted per the CIPD package name.
+  CipdInputs cipd_inputs = 2;
+  // Specifies named caches to map into the working directory. These caches
+  // outlives the task, which can then be reused by tasks later used on this bot
+  // that request the same named cache.
+  //
+  // Items must be sorted per the named cache name.
+  repeated NamedCacheEntry named_caches = 3;
+  // Command to run. This has priority over a command specified in the isolated
+  // files. Only one of 'command' or 'extra_args' can be specified.
+  repeated string command = 4;
+  // Relative working directory to start the 'command' in, defaults to the root
+  // mapped directory or what is provided in the isolated file, if any.
+  string relative_cwd = 5;
+  // Extraneous arguments to append to the command specified in the isolated
+  // file. Can only be used when an isolated file specifies a command. Only one
+  // of 'command' or 'extra_args' can be specified.
+  //
+  // Deprecated.
+  repeated string extra_args = 6;
+  // Secret bytes to provide to the task. Write only, cannot be retrieved back.
+  bytes secret_bytes = 7;
+  // When retrieved back, has_secret_bytes is set to true.
+  bool has_secret_bytes = 8;
+
+  // Environment.
+
+  // Dimensions are what is used to determine which bot can run the task. The
+  // bot must have all the matching dimensions, even for repeated keys with
+  // multiple different values. It is a logical AND, all values must match.
+  //
+  // Items must be sorted.
+  repeated StringListPair dimensions = 9;
+  // Environment variables to set when running the task.
+  //
+  // Items must be sorted.
+  repeated StringPair env = 10;
+  // Swarming-root relative paths to prepend to a given environment variable.
+  //
+  // These allow you to put certain subdirectories of the task into PATH,
+  // PYTHONPATH, or other PATH-like environment variables. The order of
+  // operations is:
+  //   * Turn slashes into native-platform slashes.
+  //   * Make the path absolute
+  //   * Prepend it to the current value of the envvar using the os-native list
+  //     separator (i.e. `;` on windows, `:` on POSIX).
+  //
+  // Each envvar can have multiple paths to prepend. They will be prepended in
+  // the order seen here.
+  //
+  // For example, if env_prefixes was:
+  //   [("PATH", ["foo", "bar"]),
+  //    ("CUSTOMPATH", ["custom"])]
+  //
+  // The task would see:
+  //   PATH=/path/to/swarming/rundir/foo:/path/to/swarming/rundir/bar:$PATH
+  //   CUSTOMPATH=/path/to/swarming/rundir/custom
+  //
+  // The path should always be specified here with forward-slashes, and it must
+  // not attempt to escape the swarming root (i.e. must not contain `..`).
+  //
+  // These are applied AFTER evaluating `env` entries.
+  //
+  // Items must be sorted.
+  repeated StringListPair env_prefixes = 11;
+
+  // Timing.
+
+  // Maximum number of seconds the task can run before its process is forcibly
+  // terminated and the task results in TIMED_OUT.
+  google.protobuf.Duration execution_timeout = 12;
+  // Maximum number of seconds the task may be silent (no output to stdout nor
+  // stderr) before it is considered hung and it forcibly terminated early and
+  // the task results in TIMED_OUT.
+  google.protobuf.Duration io_timeout = 13;
+  // Number of second to give the child process after a SIGTERM before sending a
+  // SIGKILL. See ../../doc/Bot.md#timeout-handling
+  google.protobuf.Duration grace_period = 14;
+
+  // True if the task does not access any service through the network and is
+  // believed to be 100% reproducible with the same outcome. In the case of a
+  // successful task, previous results will be reused if possible, leading to
+  // DEDUPED task result for the tasks that could reuse previous task's outcome.
+  bool idempotent = 15;
+
+  // Paths in the working directory to archive back.
+  //
+  // Items must be sorted.
+  repeated string outputs = 16;
+}
+
+// Defines a possible task execution for a task request to be run on the
+// Swarming infrastructure.
+//
+// When there is more than one specified in TaskRequest, this represents a
+// possible fallback on a task request.
+message TaskSlice {
+  // The property of the task to try to run.
+  //
+  // If there is no bot that can serve this properties.dimensions when this task
+  // slice is enqueued, it is immediately denied. This can trigger if:
+  // - There is no bot with these dimensions currently known (NO_RESOURCE).
+  // - Bots that could run this task are either all missing or quarantined.
+  TaskProperties properties = 1;
+  // If this task request slice is not scheduled after waiting this long, the
+  // next one will be processed.
+  google.protobuf.Duration expiration = 2;
+  // When a task is scheduled and there are currently no bots available to run
+  // the task, the TaskSlice can either be PENDING, or be denied immediately.
+  // When denied, the next TaskSlice is enqueued, and if there's no following
+  // TaskSlice, the task state is set to NO_RESOURCE. This should normally be
+  // set to False to avoid unnecessary waiting.
+  bool wait_for_capacity = 3;
+}
+
+// Description of a new task request as described by the client.
+//
+// This message is used to create a new task.
+message TaskRequest {
+  // Scheduling: what to run, when to run, under which service account.
+
+  // Slice of TaskSlice, along their scheduling parameters.
+  //
+  // This defines all the various possible task execution for a task request to
+  // be run on the Swarming infrastructure. They are processed in order, and it
+  // is guaranteed that at most one of these will be processed.
+  //
+  // At least one must be specified, and a maximum number of 8 can be included.
+  repeated TaskSlice task_slices = 1;
+  // Task priority, the lower the more important.
+  //
+  // Valid values are between 1 and 255.
+  int32 priority = 2;
+  // Defines what OAuth2 credentials the task uses when calling other services.
+  //
+  // Possible values are:
+  //   - 'none': do not use task service accounts at all, this is default.
+  //   - 'bot': use bot's own account, works only if bots authenticate with
+  //       OAuth2.
+  //   - 'email': use this account (if token server's service_accounts.cfg rules
+  //       allow it). Not implemented yet.
+  //
+  // Note that the service account name is specified outside of task properties,
+  // and thus it is possible to have two tasks with different service accounts,
+  // but identical properties hash (so one can be deduped). If this is
+  // unsuitable use 'idempotent=False' or include a service account name in
+  // properties separately.
+  //
+  // TODO(vadimsh): Link to a doc that describes Swarming Service Accounts, when
+  // it exists.
+  string service_account = 3;
+
+  // Task information metadata: doesn't affect what is run.
+
+  // Task name for display purpose.
+  //
+  // Note: this value is not indexed. If you want to be able to query for tasks
+  // based on names, use tags below.
+  string name = 4;
+  // Tags are 'key:value' strings that describes what the task is about (it's
+  // semantic meaning).
+  //
+  // The tags are indexed, thus can be used for search with exact matches.
+  //
+  // Items must be sorted.
+  repeated string tags = 5;
+  // User on which behalf this task is run, if relevant. Not validated.
+  string user = 6;
+
+  // Task hierarchy and notifications
+
+  // Parent Swarming task ID of the process requesting this task. This is to
+  // tell the server about reentrancy: when a task creates children Swarming
+  // tasks, so that the tree of tasks can be presented in the UI; the parent
+  // task will list all the children tasks that were triggered.
+  //
+  // TODO(maruel): Should not be necessary at task creation, can be infered.
+  string parent_task_id = 7;
+  // Send notification to this pubsub topic for updates of this task.
+  PubSub pubsub_notification = 8;
+}
+
+// PubSub is a pubsub topic to send to.
+message PubSub {
+  // Full topic name to post task state updates to, e.g.
+  // "projects/<id>/topics/<id>".
+  //
+  // TODO(maruel): Document how to setup the ACL.
+  string topic = 1;
+  // Secret string to put into "auth_token" attribute of PubSub message.
+  string auth_token = 2;
+  // Will be but into "userdata" fields of PubSub message.
+  string userdata = 3;
+}
+
+// Flag to control the application of the pool's TaskTemplate in a new
+// TaskRequest.
+//
+// The non-endpoints counterpart is in task_request.
+enum PoolTaskTemplateField {
+  AUTO = 0;
+  CANARY_PREFER = 1;
+  CANARY_NEVER = 2;
+  SKIP = 3;
+}
+
 // TaskStateCategory represents the 5 different categories of task state.
 //
 // For active state categories (RUNNING_MASK and TRANSIENT_DONE_MASK), it is
@@ -520,13 +820,13 @@ enum TaskState {
   // This value is also used when the task is deduped against a previous task.
   COMPLETED = 0x40;
   // The task ran for longer than the allowed time in
-  // TaskProperties.execution_timeout_secs.
+  // TaskProperties.execution_timeout.
   //
   // This means the bot forcefully killed the task process as described in the
   // graceful termination dance in the documentation.
   TIMED_OUT = 0x41;
   // The task timed out due to not sending updates to stdout or stderr within
-  // the period specified in TaskProperties.io_timeout_secs.
+  // the period specified in TaskProperties.io_timeout.
   //
   // This means the bot forcefully killed the task process as described in the
   // graceful termination dance in the documentation.
