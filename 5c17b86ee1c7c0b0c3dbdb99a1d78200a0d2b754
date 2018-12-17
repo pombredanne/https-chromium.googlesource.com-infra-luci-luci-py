@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cabbf631_9f31bb1e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "state",
+      "range": {
+        "startLine": 392,
+        "startChar": 14,
+        "endLine": 392,
+        "endChar": 20
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "260ea4ca_b5095da2",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "... category; for example, when ...",
+      "range": {
+        "startLine": 393,
+        "startChar": 41,
+        "endLine": 393,
+        "endChar": 70
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aab39192_4d50c19c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "Trailing comma, change to period.",
+      "range": {
+        "startLine": 394,
+        "startChar": 70,
+        "endLine": 394,
+        "endChar": 71
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39a107bb_09e9cbcf",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "Possible rephrasing: \"Transient done states are uncertain states; something ran but the result was inconclusive.\"",
+      "range": {
+        "startLine": 406,
+        "startChar": 5,
+        "endLine": 406,
+        "endChar": 21
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f1a9863_6d5bd80e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "and",
+      "range": {
+        "startLine": 442,
+        "startChar": 39,
+        "endLine": 442,
+        "endChar": 42
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01a3d61e_8b3120b1",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "succeeded",
+      "range": {
+        "startLine": 446,
+        "startChar": 52,
+        "endLine": 446,
+        "endChar": 59
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760f61a1_355005ba",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "All the states below",
+      "range": {
+        "startLine": 498,
+        "startChar": 5,
+        "endLine": 498,
+        "endChar": 28
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e7c1d6b_bc0a4650",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:45:29Z",
+      "side": 1,
+      "message": "... anymore; it never ran ...",
+      "range": {
+        "startLine": 532,
+        "startChar": 28,
+        "endLine": 532,
+        "endChar": 43
+      },
+      "revId": "5c17b86ee1c7c0b0c3dbdb99a1d78200a0d2b754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
