@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a621fbd_f1e08682",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:17:19Z",
+      "side": 1,
+      "message": "This is an interesting note; I guess the point is that dimensions are shown in the UI and bots can be filtered by the user based on dimension, so a meaningless key/value code only used by machines might be confusing.",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 44
+      },
+      "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bb6e6ce_e95dc5f3",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:17:19Z",
+      "side": 1,
+      "message": "\"Pool that this bot belongs to\", or \"Pool to which this bot belongs\"",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 102,
+        "endChar": 38
+      },
+      "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b99df13_b013b6d4",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:17:19Z",
+      "side": 1,
+      "message": "Possible rephrasing: \"each values list\", or \"each list of values\"",
+      "range": {
+        "startLine": 129,
+        "startChar": 44,
+        "endLine": 129,
+        "endChar": 55
+      },
+      "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dddfb30_980bf04f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-17T18:17:19Z",
+      "side": 1,
+      "message": "In an earlier CL you were thinking about whether it makes sense to have a separate Dimension and Dimensions message, where the \"plural\" version just contains a repeated field of the \"singular\" version.\n\nIs there any reason why you decided to do it this way here, instead of directly putting a `repeated CIPDPackageCacheStats` and `repeated NameCacheStats` in BotInfo?",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 29
+      },
+      "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
