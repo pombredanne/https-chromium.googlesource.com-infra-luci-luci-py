@@ -163,6 +163,30 @@
       "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92a57e64_aad80843",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-17T19:10:16Z",
+      "side": 1,
+      "message": "I\u0027ll commit anyway, since it\u0027s not populated yet and BigQuery tables are not yet generated, so it is still time to fiddle with this.",
+      "parentUuid": "1379f731_3f6ed522",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 29
+      },
+      "revId": "f7c605f8f8245c6dc0af0eb5b6b6c44c41ab2b7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
