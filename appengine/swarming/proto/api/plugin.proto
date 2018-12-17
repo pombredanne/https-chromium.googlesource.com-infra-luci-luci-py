@@ -6,10 +6,13 @@
 
 syntax = "proto3";
 
+package swarming.v1;
+
+option go_package = "swarming_api_v1";
+
 import "google/protobuf/timestamp.proto";
 import "swarming.proto";
 
-package swarming.v1;
 
 // Basic types used by the plugin API.
 
