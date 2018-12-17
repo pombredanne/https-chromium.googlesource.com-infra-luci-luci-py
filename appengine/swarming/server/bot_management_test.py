@@ -410,6 +410,118 @@ class BotManagementTest(test_case.TestCase):
   def test_filter_availability(self):
     pass # Tested in handlers_endpoints_test
 
+  def test_cron_send_to_bq_empty(self):
+    # Empty, nothing is done. No need to mock the HTTP client.
+    self.assertEqual(0, bot_management.cron_send_to_bq())
+    # State is not stored if nothing was found.
+    self.assertEqual(None, bot_management.BqStateBotEvents.get_by_id(1))
+
+  def test_cron_send_to_bq(self):
+    payloads = []
+    def json_request(url, method, payload, scopes, deadline):
+      self.assertEqual(
+          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
+            'swarming/tables/bot_events/insertAll',
+          url)
+      payloads.append(payload)
+      self.assertEqual('POST', method)
+      self.assertEqual(bot_management.bqh.INSERT_ROWS_SCOPE, scopes)
+      self.assertEqual(600, deadline)
+      return {'insertErrors': []}
+    self.mock(bot_management.net, 'json_request', json_request)
+
+    # Generate a few events.
+    _bot_event(bot_id=u'id1', event_type='bot_connected')
+    _bot_event(event_type='request_sleep', quarantined=True)
+    _bot_event(event_type='request_task', task_id='12311', task_name='yo')
+
+    # request_sleep is not streamed.
+    self.assertEqual(2, bot_management.cron_send_to_bq())
+    expected = {
+      'failed': [],
+      'last': self.now + datetime.timedelta(seconds=8*60*60+20*60),
+      'ts': self.now,
+    }
+    self.assertEqual(
+        expected, bot_management.BqStateBotEvents.get_by_id(1).to_dict())
+
+    expected = [
+      {
+        'ignoreUnknownValues': False,
+        'kind': 'bigquery#tableDataInsertAllRequest',
+        'skipInvalidRows': True,
+      },
+    ]
+    actual_rows = payloads[0].pop('rows')
+    self.assertEqual(expected, payloads)
+    self.assertEqual(2, len(actual_rows))
+
+    # Next cron skips everything that was processed.
+    self.assertEqual(0, bot_management.cron_send_to_bq())
+
+  def test_cron_send_to_bq_fail(self):
+    # Test the failure code path.
+    payloads = []
+    def json_request(url, method, payload, scopes, deadline):
+      self.assertEqual(
+          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
+            'swarming/tables/bot_events/insertAll',
+          url)
+      first = not payloads
+      payloads.append(payload)
+      self.assertEqual('POST', method)
+      self.assertEqual(bot_management.bqh.INSERT_ROWS_SCOPE, scopes)
+      self.assertEqual(600, deadline)
+      # Return an error on the first call.
+      if first:
+        return {
+          'insertErrors': [
+            {
+              'index': 0,
+              'errors': 'Oh gosh',
+            },
+          ],
+        }
+      return {'insertErrors': []}
+    self.mock(bot_management.net, 'json_request', json_request)
+
+    # Generate two events.
+    _bot_event(bot_id=u'id1', event_type='bot_connected')
+    _bot_event(event_type='request_task', task_id='12311', task_name='yo')
+
+    # The cron job will loop twice.
+    self.assertEqual(2, bot_management.cron_send_to_bq())
+    expected = {
+      'failed': [],
+      'last': self.now + datetime.timedelta(seconds=16*60*60+39*60),
+      'ts': self.now,
+    }
+    self.assertEqual(
+        expected, bot_management.BqStateBotEvents.get_by_id(1).to_dict())
+
+    self.assertEqual(2, len(payloads), payloads)
+    expected = {
+      'ignoreUnknownValues': False,
+      'kind': 'bigquery#tableDataInsertAllRequest',
+      'skipInvalidRows': True,
+    }
+    actual_rows = payloads[0].pop('rows')
+    self.assertEqual(expected, payloads[0])
+    self.assertEqual(2, len(actual_rows))
+
+    expected = {
+      'ignoreUnknownValues': False,
+      'kind': 'bigquery#tableDataInsertAllRequest',
+      'skipInvalidRows': True,
+    }
+    actual_rows = payloads[1].pop('rows')
+    self.assertEqual(expected, payloads[1])
+    self.assertEqual(1, len(actual_rows))
+
+    # Next cron skips everything that was processed.
+    self.assertEqual(0, bot_management.cron_send_to_bq())
+
+
 
 if __name__ == '__main__':
   logging.basicConfig(
