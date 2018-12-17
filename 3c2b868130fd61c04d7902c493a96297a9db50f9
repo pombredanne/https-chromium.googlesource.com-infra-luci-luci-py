@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90da0103_bac1711f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-17T22:42:57Z",
+      "side": 1,
+      "message": "Exact. But this gives an hint that it\u0027s possible that the task may not need to be run at all.",
+      "parentUuid": "f97a997e_6d69b0d2",
+      "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e6942cc_ee921d97",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 16
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-17T22:03:33Z",
       "side": 1,
       "message": "This is interesting. I guess this is for the purpose of metrics/analytics?\n\nWe might have need for \"user-defined setup and teardown\" time within skylab; for instance we ideally want DUT provisioning / verify to be tracked as separate overhead from test, but currently swarming considers this all to be task time.",
+      "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0371ad3_0e064530",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-17T22:42:57Z",
+      "side": 1,
+      "message": "Yes, for instantaneous information.\n\nDUT is outside the scope of this, this if purely for the bot itself, at least as defined.",
+      "parentUuid": "7e6942cc_ee921d97",
       "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f36b65_c4f79dda",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-17T22:42:57Z",
+      "side": 1,
+      "message": "Yes, it would be in never_ran_done.",
+      "parentUuid": "a49c647c_5271e28c",
+      "revId": "3c2b868130fd61c04d7902c493a96297a9db50f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
