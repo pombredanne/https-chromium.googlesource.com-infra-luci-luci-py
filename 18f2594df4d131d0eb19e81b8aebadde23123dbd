@@ -496,6 +496,30 @@
     },
     {
       "key": {
+        "uuid": "429bcfc8_a4ddbe83",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-18T20:45:08Z",
+      "side": 1,
+      "message": "Ok I decided to go with env_path_prefixes, for both future proofing and clarity, since this is not obvious for a casual reader.\n\nI also reformatted the example.",
+      "parentUuid": "1faa1392_7aad51be",
+      "range": {
+        "startLine": 531,
+        "startChar": 4,
+        "endLine": 538,
+        "endChar": 49
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab8563fe_831b3fee",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 3
