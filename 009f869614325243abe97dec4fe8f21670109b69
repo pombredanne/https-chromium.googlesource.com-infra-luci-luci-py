@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca84a2f9_22203129",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:14:48Z",
+      "side": 1,
+      "message": "Note: \"Result\" makes it sound like this is only for finished tasks, although TaskResult seems to exist also for pending/running tasks as well (right?). Since the name TaskState is already used, calling this TaskStatus or something would just be confusing.\n\nSo, I don\u0027t think it\u0027s helpful to rename this (unless you can think of a better name), but the comment here could clarify that the task is not necessarily completed. Fields like completed_time and abandoned_time will be set to some special value (zero timestamp?) if it never completed or was abandoned.",
+      "range": {
+        "startLine": 677,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 20
+      },
+      "revId": "009f869614325243abe97dec4fe8f21670109b69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c37c4a_175c7722",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:14:48Z",
+      "side": 1,
+      "message": "Maybe \"Task outputs\" -- this whole message is supposed to be \"task results\".",
+      "revId": "009f869614325243abe97dec4fe8f21670109b69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
