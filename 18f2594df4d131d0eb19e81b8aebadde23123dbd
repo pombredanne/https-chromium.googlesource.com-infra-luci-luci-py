@@ -1,0 +1,533 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b01136b_cd0c7138",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "What else might it be besides a reference to a .isolated file? If there is not another use-case for this, it could perhaps be called IsolatedRef. Later if there\u0027s another similar use-case, a new FilesRef message could be made that could perhaps contain an IsolatedRef?",
+      "range": {
+        "startLine": 410,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 48
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8f3aa9b_29ffad9a",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Or, isolated_hash?",
+      "range": {
+        "startLine": 415,
+        "startChar": 9,
+        "endLine": 415,
+        "endChar": 17
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a2ea40d_8a948a7d",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Possibly this could be two words, e.g. \"isolated_server\" or \"isolate_server\". To clarify, this is definitely without schema, so \"isolateserver.appspot.com\" would be a valid value?",
+      "range": {
+        "startLine": 417,
+        "startChar": 9,
+        "endLine": 417,
+        "endChar": 23
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffd4fcf2_c8734834",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Possible rephrasing: \"Path to dir relative to the root dir where the package is to be installed.\"",
+      "range": {
+        "startLine": 430,
+        "startChar": 5,
+        "endLine": 430,
+        "endChar": 72
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7aca542_8876eb48",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "at",
+      "range": {
+        "startLine": 431,
+        "startChar": 45,
+        "endLine": 431,
+        "endChar": 46
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af2211d4_5a6e3bd6",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "the task run directory",
+      "range": {
+        "startLine": 437,
+        "startChar": 39,
+        "endLine": 437,
+        "endChar": 57
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "869a00c8_ee2fe627",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "specifies",
+      "range": {
+        "startLine": 449,
+        "startChar": 31,
+        "endLine": 449,
+        "endChar": 40
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bda31ae_31de3e17",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "by",
+      "range": {
+        "startLine": 479,
+        "startChar": 27,
+        "endLine": 479,
+        "endChar": 29
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5537c0b1_ea80d7d7",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "outlive",
+      "range": {
+        "startLine": 485,
+        "startChar": 5,
+        "endLine": 485,
+        "endChar": 13
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b28ef01_fe59dbbb",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Random question: What would happen if you put other types of environment variables here?\n\nLike, if you added [(\"FOO\", [\"bar\"])], I guess you\u0027d accidentally get FOO\u003d/path/to/swarming/rundir/bar?\n\nIs env_prefixes the clearest name here, or is it used for legacy reasons? What about env_paths or something?",
+      "range": {
+        "startLine": 531,
+        "startChar": 4,
+        "endLine": 538,
+        "endChar": 49
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab8563fe_831b3fee",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "paths",
+      "range": {
+        "startLine": 540,
+        "startChar": 9,
+        "endLine": 540,
+        "endChar": 13
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c12c3c60_478f7817",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Should this be TIMED_OUT_SILENCE?",
+      "range": {
+        "startLine": 555,
+        "startChar": 25,
+        "endLine": 555,
+        "endChar": 34
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8a7f636_bff61d7c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "I think that this could also be phrased as:\n - \"100% reproducible with the same input\"\n - \"certain to produce the same output given the same input\"",
+      "range": {
+        "startLine": 562,
+        "startChar": 20,
+        "endLine": 562,
+        "endChar": 59
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd620d51_1dfcaedb",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Or: When there is more than one TaskSlice specified in a TaskRequest, the second TaskSlice onwards represent possible fallbacks.",
+      "range": {
+        "startLine": 576,
+        "startChar": 17,
+        "endLine": 576,
+        "endChar": 40
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1cb5204_7e8533dd",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Or perhaps \"task slice\" or \"TaskSlice\"",
+      "range": {
+        "startLine": 586,
+        "startChar": 13,
+        "endLine": 586,
+        "endChar": 31
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aab822c4_414cc485",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "I guess this is Go terminology; maybe \"List of TaskSlice\"?",
+      "range": {
+        "startLine": 603,
+        "startChar": 5,
+        "endLine": 603,
+        "endChar": 13
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fcbbbeb_fba02b89",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "along with",
+      "range": {
+        "startLine": 603,
+        "startChar": 25,
+        "endLine": 603,
+        "endChar": 30
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02825fab_cd21b3f1",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "And, I suppose it\u0027s not necessary to say, but keys can be repeated. Maybe a particular \u0027key:value\u0027 string could be repeated, but that would be meaningless?",
+      "range": {
+        "startLine": 641,
+        "startChar": 5,
+        "endLine": 641,
+        "endChar": 33
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7501620_32906629",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Possible rephrasing:\n - User for which this task is run\n - User on whose behalf this task is run",
+      "range": {
+        "startLine": 648,
+        "startChar": 5,
+        "endLine": 648,
+        "endChar": 42
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c91dddc6_14ffc35c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "This sentence is pretty long, it can probably be broken up: \"This is to tell the server about reentrancy, i.e. when a task creates children Swarming tasks. This way, the tree of tasks can be presented in the UI. The parent task page can list all of the children tasks that were triggered.\"",
+      "range": {
+        "startLine": 655,
+        "startChar": 10,
+        "endLine": 656,
+        "endChar": 63
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61f88cd8_2503b84d",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "And not *just* a topic, since it contains a topic plus extras. Is it a topic plus default values to put into messages?",
+      "range": {
+        "startLine": 664,
+        "startChar": 10,
+        "endLine": 664,
+        "endChar": 27
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78b4f822_cf064d74",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "messages",
+      "range": {
+        "startLine": 673,
+        "startChar": 50,
+        "endLine": 673,
+        "endChar": 57
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80b50d71_4abce046",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T00:05:28Z",
+      "side": 1,
+      "message": "Should these be uncommented?",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 753,
+        "endChar": 41
+      },
+      "revId": "18f2594df4d131d0eb19e81b8aebadde23123dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
