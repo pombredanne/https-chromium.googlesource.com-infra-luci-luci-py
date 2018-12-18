@@ -22,6 +22,30 @@
       "revId": "120d157189707442b58d8f25f6beca6c6b9cb6a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fedee124_20a65f33",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-18T15:16:06Z",
+      "side": 1,
+      "message": "The proto is not used, I\u0027m committing as multiple changes and intentionally refactoring as I feel it\u0027s easier to get clarity, than doing the whole implementation as one huge chunk and then splitting multiple CLs.\n\nThat\u0027s why there are still a few renumbering happening, and this will likely happen until the second week of January.",
+      "parentUuid": "412e69df_fc225358",
+      "range": {
+        "startLine": 109,
+        "startChar": 28,
+        "endLine": 110,
+        "endChar": 0
+      },
+      "revId": "120d157189707442b58d8f25f6beca6c6b9cb6a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
