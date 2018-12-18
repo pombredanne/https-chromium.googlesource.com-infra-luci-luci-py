@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabddb6d_c091f71a",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-18T23:59:10Z",
+      "side": 1,
+      "message": "More bikeshedding:\n\nNot sure if we\u0027re using a naming style guide for deciding on the names, but it seems like the general guideline I\u0027ve seen is to usually avoid abbreviations except in the case of certain common abbreviations (config, ID, info, spec), where the abbreviation should always be used; e.g.  https://cloud.google.com/apis/design/naming_convention#name_abbreviation\n\nAnyway optionally you could also call this destination_path or dest_path.",
+      "range": {
+        "startLine": 452,
+        "startChar": 9,
+        "endLine": 452,
+        "endChar": 17
+      },
+      "revId": "b960fd96468865405fa9c756c5e392d75e1b6b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
