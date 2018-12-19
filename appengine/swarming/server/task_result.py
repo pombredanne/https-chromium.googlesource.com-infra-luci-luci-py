@@ -680,6 +680,34 @@ class _TaskResultCommon(ndb.Model):
     out['id'] = self.task_id
     return out
 
+  def to_proto(self, out):
+    """Converts self to a swarming_pb2.TaskResult"""
+    out.created_time.FromDatetime(self.created_ts)
+    if self.started_ts:
+      out.started_time.FromDatetime(self.started_ts)
+    if self.completed_ts:
+      out.completed_time.FromDatetime(self.completed_ts)
+    if self.abandoned_ts:
+      out.abandoned_time.FromDatetime(self.abandoned_ts)
+    if self.duration:
+      out.duration.seconds = self.duration
+    out.state = self.task_state
+    out.state_category = self.task_state & 0xF0
+    out.try_number = self.try_number
+    out.current_task_slice = self.current_task_slice
+    out.server_versions.extend(self.server_versions)
+    out.children_task_ids.extend(self.children_task_ids)
+    if self.deduped_from:
+      out.deduped_from = self.deduped_from
+    out.task_id = self.task_id
+    #out.run_id = self.run_id
+    #out.cipd_pins
+    #out.performance
+    if self.exit_code is not None:
+      out.exit_code = self.exit_code
+    if self.outputs_ref:
+      self.outputs_ref.to_proto(out.outputs)
+
   def signal_server_version(self, server_version):
     """Adds `server_version` to self.server_versions if relevant."""
     if not self.server_versions or self.server_versions[-1] != server_version:

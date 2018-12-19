@@ -605,6 +605,22 @@ class TaskResultApiTest(TestCase):
     # Not implemented: LOAD_SHED
     # Not implemented: RESOURCE_EXHAUSTED
 
+  def test_to_proto(self):
+    result = _gen_result()
+
+    expected = swarming_pb2.TaskResult(
+        state=swarming_pb2.RUNNING,
+        state_category=swarming_pb2.CATEGORY_RUNNING,
+        try_number=1,
+        server_versions=[u'v1a'],
+        task_id=u'1d69b9f088008811')
+    expected.created_time.FromDatetime(self.now)
+    expected.started_time.FromDatetime(self.now)
+
+    actual = swarming_pb2.TaskResult()
+    result.to_proto(actual)
+    self.assertEqual(unicode(expected), unicode(actual))
+
   def test_performance_stats_pre_put_hook(self):
     with self.assertRaises(datastore_errors.BadValueError):
       task_result.PerformanceStats().put()
