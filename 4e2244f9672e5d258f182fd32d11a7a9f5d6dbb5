@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af131d0d_5be030e2",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "For a host",
+      "range": {
+        "startLine": 297,
+        "startChar": 5,
+        "endLine": 297,
+        "endChar": 13
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cadd397_35ee97ad",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "Just a question for clarification: \"the bot\" always refers to the process running bot_main.py, right? So \"the bot\" is running on a machine (physical or virtual, called \"the host\") and it can optionally also run programs on devices under test?",
+      "range": {
+        "startLine": 307,
+        "startChar": 30,
+        "endLine": 307,
+        "endChar": 44
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86c2f9b5_5b99230d",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "addresses",
+      "range": {
+        "startLine": 309,
+        "startChar": 41,
+        "endLine": 309,
+        "endChar": 62
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75061754_2455bc73",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "Linux is also usually capitalized.",
+      "range": {
+        "startLine": 545,
+        "startChar": 15,
+        "endLine": 545,
+        "endChar": 31
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c35854e_1a9addb2",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "in",
+      "range": {
+        "startLine": 641,
+        "startChar": 5,
+        "endLine": 641,
+        "endChar": 9
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54d1359c_a7b2aec6",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "inferred",
+      "range": {
+        "startLine": 762,
+        "startChar": 5,
+        "endLine": 762,
+        "endChar": 12
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c644c4b_6c66b983",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:12:37Z",
+      "side": 1,
+      "message": "Possible rephrasing: For example, the cas_inputs or cipd_inputs refers to missing items, or the requested containment cannot be achieved.",
+      "range": {
+        "startLine": 946,
+        "startChar": 5,
+        "endLine": 947,
+        "endChar": 53
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
