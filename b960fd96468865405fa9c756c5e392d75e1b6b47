@@ -22,6 +22,30 @@
       "revId": "b960fd96468865405fa9c756c5e392d75e1b6b47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4706eda3_b350572e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-19T01:48:47Z",
+      "side": 1,
+      "message": "Changed to dest_path. I felt \u0027path\u0027 alone was a bit ambiguous.",
+      "parentUuid": "dabddb6d_c091f71a",
+      "range": {
+        "startLine": 452,
+        "startChar": 9,
+        "endLine": 452,
+        "endChar": 17
+      },
+      "revId": "b960fd96468865405fa9c756c5e392d75e1b6b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
