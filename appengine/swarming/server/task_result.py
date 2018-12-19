@@ -389,6 +389,18 @@ class PerformanceStats(ndb.Model):
     out['isolated_upload'] = self.isolated_upload.to_dict()
     return out
 
+  def to_proto(self, out):
+    """Converts self to a swarming_pb2.TaskPerformance"""
+    # out.cost_usd is not set here.
+    if self.bot_overhead:
+      out.other_overhead.seconds = self.bot_overhead
+    if self.package_installation.duration:
+      out.setup.duration.seconds += self.package_installation.duration
+    if self.isolated_download.duration:
+      out.setup.duration.seconds += self.isolated_download.duration
+    if self.isolated_upload.duration:
+      out.teardown.duration.seconds = self.isolated_upload.duration
+
   def _pre_put_hook(self):
     if self.bot_overhead is None:
       raise datastore_errors.BadValueError(
@@ -679,6 +691,55 @@ class _TaskResultCommon(ndb.Model):
     out.pop('stdout_chunks')
     out['id'] = self.task_id
     return out
+
+  def to_proto(self, out):
+    """Converts self to a swarming_pb2.TaskResult"""
+    out.created_time.FromDatetime(self.created_ts)
+    if self.started_ts:
+      out.started_time.FromDatetime(self.started_ts)
+    if self.completed_ts:
+      out.completed_time.FromDatetime(self.completed_ts)
+    if self.abandoned_ts:
+      out.abandoned_time.FromDatetime(self.abandoned_ts)
+    if self.duration:
+      out.duration.FromTimedelta(datetime.timedelta(seconds=self.duration))
+    out.state = self.task_state
+    out.state_category = self.task_state & 0xF0
+    out.try_number = self.try_number
+    out.current_task_slice = self.current_task_slice
+    if self.bot_dimensions:
+      # TODO(maruel): Keep a complete snapshot. This is a bit clunky at the
+      # moment.
+      for key, values in sorted(self.bot_dimensions.iteritems()):
+        dst = out.bot.dimensions.add()
+        dst.key = key
+        dst.values.extend(values)
+        if key == u'id':
+          out.bot.bot_id = values[0]
+        elif key == u'pool':
+          out.bot.pools.extend(values)
+    out.server_versions.extend(self.server_versions)
+    out.children_task_ids.extend(self.children_task_ids)
+    if self.deduped_from:
+      out.deduped_from = self.deduped_from
+    out.task_id = task_pack.pack_result_summary_key(self.result_summary_key)
+    if self.run_result_key:
+      out.run_id = task_pack.pack_run_result_key(self.run_result_key)
+    #out.cipd_pins.server = 'TODO'
+    if self.cipd_pins:
+      if self.cipd_pins.client_package:
+        self.cipd_pins.client_package.to_proto(out.cipd_pins.client_package)
+      for pkg in self.cipd_pins.packages:
+        dst = out.cipd_pins.packages.add()
+        pkg.to_proto(pkg)
+    if self.cost_usd:
+      out.performance.cost_usd = self.cost_usd
+    if self.performance_stats:
+      self.performance_stats.to_proto(out.performance)
+    if self.exit_code is not None:
+      out.exit_code = self.exit_code
+    if self.outputs_ref:
+      self.outputs_ref.to_proto(out.outputs)
 
   def signal_server_version(self, server_version):
     """Adds `server_version` to self.server_versions if relevant."""
