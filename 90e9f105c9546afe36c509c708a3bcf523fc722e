@@ -16,6 +16,24 @@
       "revId": "90e9f105c9546afe36c509c708a3bcf523fc722e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e537096_08566f0a",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-12-19T01:54:59Z",
+      "side": 1,
+      "message": "Same as the current behavior. Agree it should be validated, but I\u0027m trying not to add much more to this service since it\u0027s going to be deleted.",
+      "parentUuid": "2cfb7bde_544a7d60",
+      "revId": "90e9f105c9546afe36c509c708a3bcf523fc722e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
