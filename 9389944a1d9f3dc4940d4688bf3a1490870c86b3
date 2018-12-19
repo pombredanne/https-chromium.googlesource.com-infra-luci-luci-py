@@ -16,6 +16,24 @@
       "revId": "9389944a1d9f3dc4940d4688bf3a1490870c86b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ca91f8d_9a349e25",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2018-12-19T01:45:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fe8a4f8_fa0af12d",
+      "revId": "9389944a1d9f3dc4940d4688bf3a1490870c86b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
