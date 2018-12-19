@@ -34,6 +34,24 @@
       "revId": "90e9f105c9546afe36c509c708a3bcf523fc722e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47346fe6_06c51754",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-19T01:59:24Z",
+      "side": 1,
+      "message": "Fair enough.",
+      "parentUuid": "1e537096_08566f0a",
+      "revId": "90e9f105c9546afe36c509c708a3bcf523fc722e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
