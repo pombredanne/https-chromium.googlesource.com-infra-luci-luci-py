@@ -196,14 +196,17 @@ class _BotCommon(ndb.Model):
       d.key = key
       for value in values:
         d.values.append(value)
+
+    # The BotInfo part.
     if self.state:
-      out.info.raw.update(self.state)
+      out.info.supplemental.update(self.state)
     if self.version:
       out.info.version = self.version
     if self.authenticated_as:
       out.info.authenticated_as = self.authenticated_as
     if self.external_ip:
       out.info.external_ip = self.external_ip
+    # https://crbug.com/916570
 
   def _pre_put_hook(self):
     super(_BotCommon, self)._pre_put_hook()

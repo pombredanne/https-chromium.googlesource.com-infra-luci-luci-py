@@ -456,7 +456,7 @@ class FilesRef(ndb.Model):
   def to_proto(self, out):
     """Converts self to a swarming_pb2.CASTree."""
     if self.isolated:
-      out.digest = str(self.isolated).decode('hex')
+      out.digest = self.isolated
     if self.isolatedserver:
       out.server = self.isolatedserver
     if self.namespace:

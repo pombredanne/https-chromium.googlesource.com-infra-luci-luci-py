@@ -91,7 +91,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
             bot_id='bot1',
             pools=[u'default'],
             info=swarming_pb2.BotInfo(
-              raw=struct_pb2.Struct(
+              supplemental=struct_pb2.Struct(
                 fields={
                   'running_time': struct_pb2.Value(number_value=1234.0),
                   'sleep_streak': struct_pb2.Value(number_value=0),
