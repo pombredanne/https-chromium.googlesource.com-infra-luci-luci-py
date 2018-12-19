@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cfb7bde_544a7d60",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-19T01:51:36Z",
+      "side": 1,
+      "message": "The assert means that if someone commits an invalid machine type, this will crash loop the server. In particular, I don\u0027t see the config being explicitly validated.",
+      "revId": "90e9f105c9546afe36c509c708a3bcf523fc722e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
