@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "5c396398_65284624",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-19T22:40:30Z",
+      "side": 1,
+      "message": "Hm, apparently not. Might as well turn it on eh?",
+      "parentUuid": "6d5470b0_2d8ace91",
+      "range": {
+        "startLine": 762,
+        "startChar": 5,
+        "endLine": 762,
+        "endChar": 12
+      },
+      "revId": "4e2244f9672e5d258f182fd32d11a7a9f5d6dbb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c644c4b_6c66b983",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 9
