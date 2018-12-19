@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fe8a4f8_fa0af12d",
+        "filename": "appengine/components/components/gce.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-19T01:25:26Z",
+      "side": 1,
+      "message": "I\u0027d prefer a format regex like\n\nm \u003d re.match(r\u0027^custom-([0-9]+)-([0-9]+)\u0027, machine_type)",
+      "revId": "9389944a1d9f3dc4940d4688bf3a1490870c86b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
