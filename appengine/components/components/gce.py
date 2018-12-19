@@ -769,11 +769,23 @@ def region_from_zone(zone):
 
 def machine_type_to_num_cpus(machine_type):
   """Given a machine type returns its number of CPUs."""
-  assert machine_type in MACHINE_TYPES, machine_type
-  return MACHINE_TYPES[machine_type]['cpus']
+  if machine_type in MACHINE_TYPES:
+    return MACHINE_TYPES[machine_type]['cpus']
+  # GCE also supports custom machine types, of the form:
+  # custom-<num cpus>-<RAM in MB>
+  try:
+    return int(machine_type.split('-')[1])
+  except IndexError, ValueError:
+    assert False, machine_type
 
 
 def machine_type_to_memory(machine_type):
   """Given a machine type returns its memory in GB."""
-  assert machine_type in MACHINE_TYPES, machine_type
-  return MACHINE_TYPES[machine_type]['memory']
+  if machine_type in MACHINE_TYPES:
+    return MACHINE_TYPES[machine_type]['memory']
+  # GCE also supports custom machine types, of the form:
+  # custom-<num cpus>-<RAM in MB>
+  try:
+    return int(machine_type.split('-')[2]) / 1024
+  except IndexError, ValueError:
+    assert False, machine_type
