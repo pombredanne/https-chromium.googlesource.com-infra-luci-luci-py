@@ -204,10 +204,11 @@ class ConfigApi(remote.Service):
     # return the severities and the texts
     return self.ValidateConfigResponseMessage(messages=[
       cfg_endpoint.ValidationMessage(
+          path=request.files[i].path,
           severity=common.Severity.lookup_by_number(msg.severity),
           text=msg.text,
       )
-      for msg in messages
+      for i, msg in enumerate(messages)
     ])
 
   ##############################################################################

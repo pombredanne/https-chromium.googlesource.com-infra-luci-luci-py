@@ -801,7 +801,9 @@ class ApiTest(test_case.EndpointsTestCase):
     resp = self.call_api('validate_config', req).json_body
     self.assertEqual(resp, {
       'messages': [
-        {'severity': 'WARNING', 'text': 'myproj.cfg: problem'},
+        {'path': 'myproj.cfg',
+         'severity': 'WARNING',
+         'text': 'myproj.cfg: problem'},
       ]
     })
 

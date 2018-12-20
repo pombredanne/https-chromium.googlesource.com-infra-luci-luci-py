@@ -40,8 +40,9 @@ class ValidateRequestMessage(messages.Message):
 
 
 class ValidationMessage(messages.Message):
-  text = messages.StringField(1, required=True)
-  severity = messages.EnumField(common.Severity, 2, required=True)
+  path = messages.StringField(1, required=True)
+  text = messages.StringField(2, required=True)
+  severity = messages.EnumField(common.Severity, 3, required=True)
 
 
 class ValidateResponseMessage(messages.Message):
