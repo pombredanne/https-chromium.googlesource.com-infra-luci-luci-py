@@ -46,6 +46,30 @@
       "revId": "6fb5b8e3d71ff04524600463778c1e414cffc677",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc557781_a43ea50d",
+        "filename": "appengine/components/tools/compile_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-20T23:08:35Z",
+      "side": 1,
+      "message": "Nah, this lgtm already.",
+      "parentUuid": "30c6c0ba_1d752634",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 70
+      },
+      "revId": "6fb5b8e3d71ff04524600463778c1e414cffc677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
