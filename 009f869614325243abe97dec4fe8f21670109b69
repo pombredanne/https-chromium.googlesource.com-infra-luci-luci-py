@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "854e4945_c5ef3cb8",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T00:55:41Z",
+      "side": 1,
+      "message": "Fair point, commented.",
+      "parentUuid": "ca84a2f9_22203129",
+      "range": {
+        "startLine": 677,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 20
+      },
+      "revId": "009f869614325243abe97dec4fe8f21670109b69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66c37c4a_175c7722",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "009f869614325243abe97dec4fe8f21670109b69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c421de74_6c32e3ac",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T00:55:41Z",
+      "side": 1,
+      "message": "Replaced with \"Task\u0027s process result\" to clarify it\u0027s not about the task, but the process inside the task.",
+      "parentUuid": "66c37c4a_175c7722",
+      "revId": "009f869614325243abe97dec4fe8f21670109b69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
