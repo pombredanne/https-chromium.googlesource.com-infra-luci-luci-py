@@ -78,7 +78,8 @@ def attempt_to_msg(entity):
     success=entity.success,
     message=entity.message,
     validation_messages=[
-      cfg_endpoint.ValidationMessage(severity=m.severity, text=m.text)
+      cfg_endpoint.ValidationMessage(
+          path=m.path, severity=m.severity, text=m.text)
       for m in entity.validation_messages
     ],
   )
@@ -204,10 +205,11 @@ class ConfigApi(remote.Service):
     # return the severities and the texts
     return self.ValidateConfigResponseMessage(messages=[
       cfg_endpoint.ValidationMessage(
+          path=request.files[i].path,
           severity=common.Severity.lookup_by_number(msg.severity),
           text=msg.text,
       )
-      for msg in messages
+      for i, msg in enumerate(messages)
     ])
 
   ##############################################################################
