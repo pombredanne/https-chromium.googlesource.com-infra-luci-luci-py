@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a8b1461_93e4d118",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T18:45:19Z",
+      "side": 1,
+      "message": "General. I\u0027ve removed since it wasn\u0027t relevant here.",
+      "parentUuid": "69d93c5f_aae30b5f",
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58acc9d0_2691f41d",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 11
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "ceab4478_09b59d29",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T18:45:19Z",
+      "side": 1,
+      "message": "Yes and yes. I was hoping to use the same message to embed in RPCs and to use as the BQ schema.\n\nI thought about including the request here, I was ambivalent about that. Probably worth doing after all, and for RPC only include if the user asks for.",
+      "parentUuid": "58acc9d0_2691f41d",
+      "range": {
+        "startLine": 806,
+        "startChar": 8,
+        "endLine": 806,
+        "endChar": 18
+      },
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fa6dbb4_9c00b070",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 11
@@ -62,6 +104,30 @@
       "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4522c166_7d462a6e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T18:45:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fa6dbb4_9c00b070",
+      "range": {
+        "startLine": 810,
+        "startChar": 28,
+        "endLine": 810,
+        "endChar": 40
+      },
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
