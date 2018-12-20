@@ -1100,6 +1100,7 @@ class TaskRequest(ndb.Model):
       out.service_account = self.service_account
 
     # Information.
+    out.created_time.FromDatetime(self.created_ts)
     if self.name:
       out.name = self.name
     out.tags.extend(self.tags)
@@ -1107,6 +1108,10 @@ class TaskRequest(ndb.Model):
       out.user = self.user
 
     # Hierarchy and notifications.
+    # For the following line to work, the entity must be stored and have a valid
+    # key.
+    if self.key:
+      out.task_id = self.task_id
     if self.parent_task_id:
       out.parent_task_id = self.parent_task_id
     if self.pubsub_topic:
