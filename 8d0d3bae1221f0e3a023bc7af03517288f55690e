@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "454151e7_d39569f6",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T19:43:28Z",
+      "side": 1,
+      "message": "Done. Filed bug too.",
+      "parentUuid": "1dd794ae_4cf7e85b",
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58acc9d0_2691f41d",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 11
