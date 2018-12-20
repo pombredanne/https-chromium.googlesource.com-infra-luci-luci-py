@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1dd794ae_4cf7e85b",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-20T19:08:55Z",
+      "side": 1,
+      "message": "thanks for removing, but I it is still unclear if there will be multiple BQ rows per task result :) can this be made explicit?",
+      "parentUuid": "3a8b1461_93e4d118",
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58acc9d0_2691f41d",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 11
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "Yes and yes. I was hoping to use the same message to embed in RPCs and to use as the BQ schema.\n\nI thought about including the request here, I was ambivalent about that. Probably worth doing after all, and for RPC only include if the user asks for.",
       "parentUuid": "58acc9d0_2691f41d",
+      "range": {
+        "startLine": 806,
+        "startChar": 8,
+        "endLine": 806,
+        "endChar": 18
+      },
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a41baf9_1b6a1aed",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-20T19:08:55Z",
+      "side": 1,
+      "message": "\u003e Probably worth doing after all, and for RPC only include if the user asks for.\n\n\nyeah, with partial responses this makes perfect sense.\nSee https://cs.chromium.org/chromium/infra/luci/appengine/components/components/protoutil/field_masks.py?q\u003dfield_masks\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d1\nand here is conditional loading from datastore\nhttps://cs.chromium.org/chromium/infra/appengine/cr-buildbucket/v2/api.py?q\u003dv2/api\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d127",
+      "parentUuid": "ceab4478_09b59d29",
       "range": {
         "startLine": 806,
         "startChar": 8,
