@@ -22,6 +22,30 @@
       "revId": "5cfc63ad9330937397e51fd28fcd11db650b52dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1a1d855_73ceec92",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-20T18:47:22Z",
+      "side": 1,
+      "message": "The task request is denied, since it is not valid.",
+      "parentUuid": "cd3b56cb_b185d1bd",
+      "range": {
+        "startLine": 751,
+        "startChar": 2,
+        "endLine": 751,
+        "endChar": 22
+      },
+      "revId": "5cfc63ad9330937397e51fd28fcd11db650b52dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
