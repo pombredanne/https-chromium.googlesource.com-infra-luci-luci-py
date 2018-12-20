@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd3b56cb_b185d1bd",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-20T18:33:32Z",
+      "side": 1,
+      "message": "Random question, what happens if a tag string has no colon, and is just \"value\". Is it then a useless tag that can\u0027t be used for searching? Or could someone still search for tasks with such a tag?",
+      "range": {
+        "startLine": 751,
+        "startChar": 2,
+        "endLine": 751,
+        "endChar": 22
+      },
+      "revId": "5cfc63ad9330937397e51fd28fcd11db650b52dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
