@@ -79,4 +79,26 @@ if ! (bqschemaupdater -force -message swarming.v1.BotEvent \
   echo "and run this script again."
   exit 1
 fi
+if ! (bqschemaupdater -force -message swarming.v1.TaskRequest \
+  -table ${APPID}.swarming.task_requests); then
+  echo ""
+  echo ""
+  echo "Oh no! You may need to restart from scratch. You can do so with:"
+  echo ""
+  echo "  bq rm ${APPID}:swarming.task_requests"
+  echo ""
+  echo "and run this script again."
+  exit 1
+fi
+if ! (bqschemaupdater -force -message swarming.v1.TaskResult \
+  -table ${APPID}.swarming.task_results); then
+  echo ""
+  echo ""
+  echo "Oh no! You may need to restart from scratch. You can do so with:"
+  echo ""
+  echo "  bq rm ${APPID}:swarming.task_results"
+  echo ""
+  echo "and run this script again."
+  exit 1
+fi
 cd -
