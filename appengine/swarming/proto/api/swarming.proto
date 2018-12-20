@@ -620,16 +620,6 @@ message TaskProperties {
   // Each envvar can have multiple paths to prepend. They will be prepended in
   // the order seen here.
   //
-  // For example, if env_paths is:
-  //   [
-  //     (key="PATH", values=["foo", "bar"]),
-  //     (key="CUSTOMPATH", values=["custom"]),
-  //   ]
-  //
-  // The task would see:
-  //   PATH=/path/to/swarming/rundir/foo:/path/to/swarming/rundir/bar:$PATH
-  //   CUSTOMPATH=/path/to/swarming/rundir/custom
-  //
   // The paths should always be specified here with forward-slashes, and it must
   // not attempt to escape the swarming root (i.e. must not contain `..`).
   //
