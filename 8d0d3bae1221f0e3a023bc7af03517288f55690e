@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69d93c5f_aae30b5f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-20T18:13:48Z",
+      "side": 1,
+      "message": "from reading this, it is still unclear if this doc talks about tasks in general, or tasks in BQ can also have multiple states? Do we store a history of task result state transitions in BQ, i.e. multiple BQ row per task? L835 seems to suggest the latter?",
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58acc9d0_2691f41d",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-20T18:13:48Z",
+      "side": 1,
+      "message": "this message does not have task request fields, and does not embed TaskRequest, which means users will have to JOIN the two tables. JOINs in BQ are very expensive (copy of one table has to be sent to each node of the other table) and simply does not work after certain size threshold. It seems users will have to JOIN all the time because most of meaningful analysis need both request and result (example: which task slice usually runs in tasks with a requested optional cache)\n\nis this message going to be used for RPCs too?",
+      "range": {
+        "startLine": 806,
+        "startChar": 8,
+        "endLine": 806,
+        "endChar": 18
+      },
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fa6dbb4_9c00b070",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-20T18:13:48Z",
+      "side": 1,
+      "message": "go/api-style/standard_fields uses present tense: create_time\nso does isolate (https://cs.chromium.org/chromium/infra/luci/appengine/isolate/proto/isolated.proto?type\u003dcs\u0026q\u003df:proto+f:isolate\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d47) and buildbucket\na small diff may be annoying to a user of both tables\n\napplies to fields below too",
+      "range": {
+        "startLine": 810,
+        "startChar": 28,
+        "endLine": 810,
+        "endChar": 40
+      },
+      "revId": "8d0d3bae1221f0e3a023bc7af03517288f55690e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
