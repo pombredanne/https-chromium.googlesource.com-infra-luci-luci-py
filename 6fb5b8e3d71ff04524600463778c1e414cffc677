@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56545eff_7a0f1857",
+        "filename": "appengine/components/tools/compile_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-12-20T01:56:03Z",
+      "side": 1,
+      "message": "This is not always desired outcome, e.g. https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/swarming/proto/config/ (these protos not even under //appengine/components).\n\nI think we should make this CLI flag, and default to root_dir.",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 70
+      },
+      "revId": "6fb5b8e3d71ff04524600463778c1e414cffc677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
