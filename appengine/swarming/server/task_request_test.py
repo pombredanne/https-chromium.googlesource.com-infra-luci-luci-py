@@ -930,7 +930,7 @@ class TaskRequestApiTest(TestCase):
 
     actual = swarming_pb2.TaskRequest()
     request.to_proto(actual)
-    self.assertEqual(unicode(expected), unicode(actual))
+    self.assertEqual(expected, actual)
 
   def test_request_bad_values(self):
     with self.assertRaises(AttributeError):

@@ -111,7 +111,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
       ])
     resp = swarming_pb2.BotEventsResponse()
     _decode(raw_resp.body, resp)
-    self.assertEqual(unicode(expected), unicode(resp))
+    self.assertEqual(expected, resp)
 
   def test_botevents_empty(self):
     # Minimum request, all optional fields left out.
@@ -264,8 +264,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
           event=swarming_pb2.BOT_NEW_SESSION,
       ),
     ]
-    self.assertEqual(
-        unicode(swarming_pb2.BotEventsResponse(events=events)), unicode(resp))
+    self.assertEqual(swarming_pb2.BotEventsResponse(events=events), resp)
 
     # Now test with a subset. It will retrieve events 1 and 2.
     msg = swarming_pb2.BotEventsRequest(bot_id=u'bot1')
@@ -275,9 +274,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
         '/prpc/swarming.v1.BotAPI/Events', _encode(msg), self._headers)
     resp = swarming_pb2.BotEventsResponse()
     _decode(raw_resp.body, resp)
-    self.assertEqual(
-        unicode(swarming_pb2.BotEventsResponse(events=events[1:3])),
-        unicode(resp))
+    self.assertEqual(swarming_pb2.BotEventsResponse(events=events[1:3]), resp)
 
 
 if __name__ == '__main__':
