@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+# DO NOT SUBMIT! This is here only to force this test to get run in CQ
+
 import datetime
 import logging
 import os
