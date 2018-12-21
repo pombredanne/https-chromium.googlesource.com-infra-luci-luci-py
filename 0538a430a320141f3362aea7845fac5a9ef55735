@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0bf56422_9bf2f5fe",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-21T03:22:32Z",
+      "side": 1,
+      "message": "let\u0027s not add new required fields, reasoning is same as http://wiki/Main/RequiredFieldsConsideredHarmful\nthis message is constructed in https://cs.chromium.org/chromium/infra/luci/appengine/config_service/api.py?type\u003dcs\u0026q\u003dendpoint.ValidationMessage\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d58\nfrom the state in datastore which does not guarantee to have path\n\nalso this is inconsistent with changes in the .proto file (where field is not made required)",
+      "range": {
+        "startLine": 43,
+        "startChar": 31,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "0538a430a320141f3362aea7845fac5a9ef55735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90f66181_04deed8f",
         "filename": "appengine/config_service/api.py",
         "patchSetId": 3
@@ -13,6 +36,30 @@
       "writtenOn": "2018-12-21T01:36:28Z",
       "side": 1,
       "message": "I think this won\u0027t work if some file has more than one error message. \u0027i\u0027 here is an index of an error message in a combined list of all messages. We should iterate over \u0027futs\u0027 instead, they map to files 1-to-1.\n\n(Please add a test case to confirm).",
+      "range": {
+        "startLine": 208,
+        "startChar": 15,
+        "endLine": 208,
+        "endChar": 36
+      },
+      "revId": "0538a430a320141f3362aea7845fac5a9ef55735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63b30809_55a9883c",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-21T03:22:32Z",
+      "side": 1,
+      "message": "+1\n\nlooks like we need to move ValidationMessage creation to L203",
+      "parentUuid": "90f66181_04deed8f",
       "range": {
         "startLine": 208,
         "startChar": 15,
