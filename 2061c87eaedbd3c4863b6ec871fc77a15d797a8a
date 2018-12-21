@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31db80_166b8b5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T18:58:11Z",
+      "side": 1,
+      "message": "Noob question: In general, is there a choice not to do table partitioning, or is it always done and the default way is using time added to the table? Does it inhibit sending rows older than 1 year because the field used may be a date without year, or some other reason?",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f187bd42_58a807cc",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T18:58:11Z",
+      "side": 1,
+      "message": "This description could be made a bit clearer, or possibly removed.\n\nI guess the main thing here is cron_send_to_bq, which a function to send entities to BQ, expected to be run in a cron job.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 19
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "718f55f4_d2462272",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T18:58:11Z",
+      "side": 1,
+      "message": "It\u0027s done if result.state is in STATES_DONE (TIMED_OUT, COMPLETED, KILLED), right?\n\nIs it that we can\u0027t do a query for that and we\u0027ll want to add another bool property?",
+      "range": {
+        "startLine": 1346,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 41
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1b5d401_1426db09",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T18:58:11Z",
+      "side": 1,
+      "message": "You could potentially avoid some repetition by extracting out a function here.\n\nAlso, another possible way to organize this script would be to put each part in a named function and have a main function or block at the end all together, e.g.\n\n  set -eu\n  cd \"$(dirname $0)\"\n  check_deps($#)\n  APPID\u003d$1\n  setup_project($APP_ID)\n  create_dataset($APP_ID)\n  populate($APP_ID, BotEvent, bot_events, event_time)\n  populate($APP_ID, TaskRequest, task_request, created_time)\n  populate($APP_ID, TaskResult, task_results, completed_time)\n  cd -",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 2
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
