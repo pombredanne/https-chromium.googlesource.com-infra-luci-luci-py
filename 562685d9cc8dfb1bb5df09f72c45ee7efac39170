@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01d252fe_6106b23f",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1137164
+      },
+      "writtenOn": "2018-12-21T19:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd430c9b_731890bb",
+      "revId": "562685d9cc8dfb1bb5df09f72c45ee7efac39170",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a278c9d8_99be85d4",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1137164
+      },
+      "writtenOn": "2018-12-21T19:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c377840_702a6df1",
+      "revId": "562685d9cc8dfb1bb5df09f72c45ee7efac39170",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
