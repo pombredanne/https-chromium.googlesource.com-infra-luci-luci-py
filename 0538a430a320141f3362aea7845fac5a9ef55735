@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "508c69d0_0922f966",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1137164
+      },
+      "writtenOn": "2018-12-21T18:51:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bf56422_9bf2f5fe",
+      "range": {
+        "startLine": 43,
+        "startChar": 31,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "0538a430a320141f3362aea7845fac5a9ef55735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90f66181_04deed8f",
         "filename": "appengine/config_service/api.py",
         "patchSetId": 3
@@ -69,6 +93,30 @@
       "revId": "0538a430a320141f3362aea7845fac5a9ef55735",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "250d046c_0f99467f",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1137164
+      },
+      "writtenOn": "2018-12-21T18:51:01Z",
+      "side": 1,
+      "message": "Ah I didn\u0027t realize there could be more than one message per file.\nAdded test case, verified that it failed before my fix, applied fix, now it passes.\nThanks for catching this!",
+      "parentUuid": "63b30809_55a9883c",
+      "range": {
+        "startLine": 208,
+        "startChar": 15,
+        "endLine": 208,
+        "endChar": 36
+      },
+      "revId": "0538a430a320141f3362aea7845fac5a9ef55735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
