@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00c53d9a_1796a9f0",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T19:04:54Z",
+      "side": 1,
+      "message": "prefix",
+      "range": {
+        "startLine": 914,
+        "startChar": 29,
+        "endLine": 914,
+        "endChar": 35
+      },
+      "revId": "0c94371c99a9cee3538c3b9501b8e02cdc72a2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c672855_0014b50e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T19:04:54Z",
+      "side": 1,
+      "message": "the default CIPD client",
+      "range": {
+        "startLine": 916,
+        "startChar": 56,
+        "endLine": 916,
+        "endChar": 69
+      },
+      "revId": "0c94371c99a9cee3538c3b9501b8e02cdc72a2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fba0dbc_b1891781",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T19:04:54Z",
+      "side": 1,
+      "message": "Commented-out line",
+      "revId": "0c94371c99a9cee3538c3b9501b8e02cdc72a2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "528e3df9_e51a68f4",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T19:04:54Z",
+      "side": 1,
+      "message": "It\u0027s slightly better to phrase TODOs as an action, e.g. Enforce the same CIPD server for all TaskSlices.",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 753,
+        "endChar": 16
+      },
+      "revId": "0c94371c99a9cee3538c3b9501b8e02cdc72a2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f200101f_d7b6bb25",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2018-12-21T19:04:54Z",
+      "side": 1,
+      "message": "Commented-out line.",
+      "revId": "0c94371c99a9cee3538c3b9501b8e02cdc72a2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
