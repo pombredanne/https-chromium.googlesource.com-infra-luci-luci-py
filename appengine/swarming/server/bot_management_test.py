@@ -197,7 +197,7 @@ class BotManagementTest(test_case.TestCase):
         ),
     )
     expected.event_time.FromDatetime(self.now)
-    self.assertEqual(unicode(expected), unicode(actual))
+    self.assertEqual(expected, actual)
 
   def test_BotEvent_proto_quarantine(self):
     # Also test that a bot can belong to two pools.
@@ -236,7 +236,7 @@ class BotManagementTest(test_case.TestCase):
         ),
     )
     expected.event_time.FromDatetime(self.now)
-    self.assertEqual(unicode(expected), unicode(actual))
+    self.assertEqual(expected, actual)
 
   def test_bot_event(self):
     # connected.
