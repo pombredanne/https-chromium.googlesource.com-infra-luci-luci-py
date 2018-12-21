@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e0d2f9c_b90a74b0",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-21T19:02:42Z",
+      "side": 1,
+      "message": "nit: \n\n  for file, fut in zip(request.files, futs):\n\nwould be more \"pythonic\"",
+      "range": {
+        "startLine": 202,
+        "startChar": 4,
+        "endLine": 202,
+        "endChar": 33
+      },
+      "revId": "9fe9da260b51b96e2a817bc059ca59937c6834e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9218863f_a38c8238",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-21T19:02:42Z",
+      "side": 1,
+      "message": "nit: placement of this comment is now odd",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 41
+      },
+      "revId": "9fe9da260b51b96e2a817bc059ca59937c6834e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
