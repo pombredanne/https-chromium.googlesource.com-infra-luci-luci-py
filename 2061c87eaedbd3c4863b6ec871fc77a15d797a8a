@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3899f134_fc913afd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-21T21:39:04Z",
+      "side": 1,
+      "message": "It\u0027s done automatically by ingestion time, but that\u0027s not what we want when backfilling.\n\nIt is BigQuery that has this limitation.",
+      "parentUuid": "fa31db80_166b8b5e",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f187bd42_58a807cc",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7748c602_f5a634e2",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-21T21:39:04Z",
+      "side": 1,
+      "message": "Just removed.",
+      "parentUuid": "f187bd42_58a807cc",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 19
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3430ee12_b8e9ac39",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-21T21:39:04Z",
+      "side": 1,
+      "message": "That would result in 4 queries (there\u0027s BOT_DIED too), so this would be 2x more workload; there\u0027s currently 2.\n\nI plan to always set completed_ts, so one query will be sufficient.",
+      "parentUuid": "718f55f4_d2462272",
+      "range": {
+        "startLine": 1346,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 41
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1b5d401_1426db09",
         "filename": "appengine/swarming/setup_bigquery.sh",
         "patchSetId": 9
@@ -91,6 +163,30 @@
       "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe70e1af_7a84420c",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2018-12-21T21:39:04Z",
+      "side": 1,
+      "message": "True but I prefer to keep a linear flow in this script, it\u0027s easier to follow as a long list of linear steps. I may change it later.",
+      "parentUuid": "c1b5d401_1426db09",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 2
+      },
+      "revId": "2061c87eaedbd3c4863b6ec871fc77a15d797a8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
