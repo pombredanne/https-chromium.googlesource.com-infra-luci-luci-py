@@ -62,7 +62,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
     }
     self._enqueue_task_orig = self.mock(
         utils, 'enqueue_task', self._enqueue_task)
-    self.now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 0)
     self.mock_now(self.now)
     self.mock_default_pool_acl([])
 
