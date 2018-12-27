@@ -88,3 +88,19 @@ export function taskListLink(filters, columns) {
   }
   return '/tasklist?' + query.fromParamSet(obj);
 }
+
+/** taskPageLink creates the href attribute for linking to a single task.*/
+export function taskPageLink(taskId, disableCanonicalID) {
+  if (!taskId) {
+    return undefined;
+  }
+  if (!disableCanonicalID) {
+    // task abcefgh0 is the 'canonical' task id. The first try has the id
+    // abcefgh1. If there is a second (transparent retry), it will be
+    // abcefgh2.  We almost always want to link to the canonical one,
+    // because the milo output (if any) will only be generated for
+    // abcefgh0, not abcefgh1 or abcefgh2.
+    taskId = taskId.substring(0, taskId.length - 1) + '0';
+  }
+  return `/task?id=${taskId}`;
+}

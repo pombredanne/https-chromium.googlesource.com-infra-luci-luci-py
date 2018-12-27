@@ -44,7 +44,7 @@ import { aggregateTemps, attribute, botLink, column, colHeaderMap,
          filterPossibleValues, fromDimension, fromState, initCounts,
          listQueryParams, longestOrAll, makeFilter, processBots, processCounts,
          processDimensions, processPrimaryMap, sortColumns, sortPossibleColumns,
-         specialFilters, specialSortMap, taskLink } from './bot-list-helpers'
+         specialFilters, specialSortMap } from './bot-list-helpers'
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
 const colHead = (col, ele) => html`
