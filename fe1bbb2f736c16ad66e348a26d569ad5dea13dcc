@@ -1,0 +1,52 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f41c0ae2_cc21021b",
+        "filename": "appengine/swarming/ui2/dist/public_botlist_index-bundle.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-02T20:56:12Z",
+      "side": 1,
+      "message": "\u003e \"primay\" is a possible misspelling of \"primary\".\n\nPlease Fix",
+      "parentUuid": "4bf3894a_581d3310",
+      "range": {
+        "startLine": 1,
+        "startChar": 44706,
+        "endLine": 1,
+        "endChar": 44712
+      },
+      "revId": "fe1bbb2f736c16ad66e348a26d569ad5dea13dcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be074fee_bddc31d4",
+        "filename": "appengine/swarming/ui2/dist/public_botlist_index-bundle.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-02T20:56:12Z",
+      "side": 1,
+      "message": "\u003e \"primay\" is a possible misspelling of \"primary\".\n\nPlease Fix",
+      "parentUuid": "530d3245_3c56a124",
+      "range": {
+        "startLine": 1,
+        "startChar": 55029,
+        "endLine": 1,
+        "endChar": 55035
+      },
+      "revId": "fe1bbb2f736c16ad66e348a26d569ad5dea13dcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
