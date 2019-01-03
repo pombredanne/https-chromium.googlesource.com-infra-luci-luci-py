@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dae043f4_d3fb11e0",
+        "filename": "appengine/swarming/ui2/modules/util.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-03T18:30:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3580b528_6b2f1a68",
+      "revId": "8b8f7393c1ddd7455489f012e77329d711b5baf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "256c4406_6d588100",
         "filename": "appengine/swarming/ui2/modules/util.js",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "8b8f7393c1ddd7455489f012e77329d711b5baf8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97eb0c04_ce904b73",
+        "filename": "appengine/swarming/ui2/modules/util.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-03T18:30:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "256c4406_6d588100",
+      "revId": "8b8f7393c1ddd7455489f012e77329d711b5baf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
