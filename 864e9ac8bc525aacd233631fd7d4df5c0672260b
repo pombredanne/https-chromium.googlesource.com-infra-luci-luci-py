@@ -1,0 +1,175 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61055782_a38ef514",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-demo.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "One blank line.",
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9b02126_a4c184f4",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "Document all exported values in this format.",
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5afe79e_46e2d449",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "No blank line here.",
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cee8c7ef_729c7fbe",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "Never used.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b911e2e0_89cfdeb6",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "Never used.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 59
+      },
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9833b102_1a522469",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "Never used.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 0
+      },
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aefe40c9_c25aad31",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "only 1 blank line here",
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d5207f_c59bae6c",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "Add removeEventListener in disconnectedCallback.",
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a3bdc46_60b36dc9",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-03T14:34:26Z",
+      "side": 1,
+      "message": "Blank line before.",
+      "revId": "864e9ac8bc525aacd233631fd7d4df5c0672260b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
