@@ -6,6 +6,30 @@ import { html } from 'lit-html'
 import { botPageLink, compareWithFixedOrder, humanDuration, sanitizeAndHumanizeTime,
          taskPageLink } from '../util'
 
+const BLACKLIST_DIMENSIONS = ['quarantined', 'error'];
+
+export function appendPossibleColumns(possibleColumns, data) {
+  // Use name as a sentinal value
+  if (!possibleColumns['name']) {
+    for (let col of extraKeys) {
+      possibleColumns[col] = true;
+    }
+  }
+  if (Array.isArray(data)) {
+    // we have a list of dimensions, which are {key: String, value: Array}
+    for (let dim of data) {
+      if (BLACKLIST_DIMENSIONS.indexOf(dim.key) === -1) {
+        possibleColumns[dim.key + '-tag'] = true;
+      }
+    }
+  } else {
+    // data is a map of tag -> values
+    for (let tag in data) {
+      possibleColumns[tag + '-tag'] = true;
+    }
+  }
+}
+
 /** column returns the display-ready value for a column (aka key)
  *  from a task. It requires the entire state (ele) for potentially complicated
  *  data lookups (and also visibility of the 'verbose' setting).
@@ -23,42 +47,117 @@ export function column(col, task, ele) {
     console.warn('falsey task passed into column');
     return '';
   }
+  if (col.endsWith('-tag')) {
+    col = col.substring(0, col.length - 4);
+  }
   let c = colMap[col];
   if (c) {
     return c(task, ele);
   }
+  let tags = task.tagMap[col];
+  if (tags) {
+    if (ele._verbose) {
+      return tags.join(' | ');
+    }
+    return tags[0];
+  }
   return task[col] || 'none';
+}
+
+export function getColHeader(col) {
+  if (col.endsWith('-tag')) {
+    return `${col.substring(0, col.length - 4)} (tag)`;
+  }
+  return colHeaderMap[col] || col;
 }
 
 // This puts the times in a aesthetically pleasing order, roughly in
 // the order everything happened.
 const specialColOrder = ['name', 'created_ts', 'pending_time',
     'started_ts', 'duration', 'completed_ts', 'abandoned_ts', 'modified_ts'];
+const compareColumns = compareWithFixedOrder(specialColOrder);
 
-/** sortColumns sorts the task-list columns in mostly alphabetical order. Some
- *  columns go in a fixed order to make them easier to reason about.
- *
- * @param cols Array<String> The columns
- */
+/** sortColumns sorts the bot-list columns in mostly alphabetical order. Some
+  columns (id, task) go first to maintain with behavior from previous
+  versions.
+  @param cols Array<String> The columns
+*/
 export function sortColumns(cols) {
-  cols.sort(compareWithFixedOrder(specialColOrder));
+  cols.sort(compareColumns);
+}
+
+/** sortPossibleColumns sorts the columns in the column selector. It puts the
+ *  selected ones on top in the order they are displayed and the rest below
+ *  in alphabetical order.
+ */
+export function sortPossibleColumns(keys, selectedCols) {
+  let selected = {};
+  for (let c of selectedCols) {
+    selected[c] = true;
+  }
+
+  keys.sort((a, b) => {
+      // Show selected columns above non selected columns
+      let selA = selected[a];
+      let selB = selected[b];
+      if (selA && !selB) {
+        return -1;
+      }
+      if (selB && !selA) {
+        return 1;
+      }
+      if (selA && selB) {
+        // Both keys are selected, thus we put them in display order.
+        return compareColumns(a, b);
+      }
+      // neither column was selected, fallback to alphabetical sorting.
+      return a.localeCompare(b);
+  });
 }
 
 const TASK_TIMES = ['abandoned_ts', 'completed_ts', 'created_ts', 'modified_ts',
-                  'started_ts'];
+                    'started_ts'];
 
 /** processTasks processes the array of tasks from the server and returns it.
  *  The primary goal is to get the data ready for display.
  *
  * @param cols Array<Object> The raw tasks objects.
  */
-export function processTasks(arr) {
+export function processTasks(arr, existingTags) {
   if (!arr) {
     return [];
   }
   let now = new Date();
+  let knownTags = {};
 
   for (let task of arr) {
+    let tagMap = {};
+    task.tags = task.tags || [];
+    for (let tag of task.tags) {
+      let split = tag.split(':', 1)
+      let key = split[0];
+      let rest = tag.substring(key.length + 1);
+      // tags are free-form, and could be duplicated
+      if (!tagMap[key]) {
+        tagMap[key] = [rest];
+      } else {
+        tagMap[key].push(rest);
+      }
+      existingTags[key] = true;
+    }
+    task.tagMap = tagMap;
+
+    if (!task.costs_usd || !Array.isArray(task.costs_usd)) {
+      task.costs_usd = '‑‑';
+    } else {
+      task.costs_usd.forEach(function(c, idx) {
+        task.costs_usd[idx] = '$' + c.toFixed(4);
+        if (task.state === 'RUNNING' && task.started_ts) {
+          task.costs_usd[idx] = task.costs_usd[idx] + '*';
+        }
+      });
+    }
+
     for (let time of TASK_TIMES) {
       sanitizeAndHumanizeTime(task, time);
 
@@ -85,18 +184,34 @@ export function processTasks(arr) {
       if (!deduped && task.created_ts && !task.started_ts && !task.abandoned_ts) {
         task.human_pending_time = task.human_pending_time + '*';
       }
-
     };
   }
-  // TODO(kjlubick): more data processing
   return arr;
+}
+
+export function taskClass(task) {
+  let state = column('state', task);
+   if (state === 'CANCELED' || state === 'TIMED_OUT' || state === 'EXPIRED' || state === 'NO_RESOURCE') {
+      return 'exception';
+    }
+    if (state === 'BOT_DIED') {
+      return 'bot_died';
+    }
+    if (state === 'COMPLETED (FAILURE)') {
+      return 'failed_task';
+    }
+    if (state === 'RUNNING' || state === 'PENDING') {
+      return 'pending_task';
+    }
+    return '';
 }
 
 
 /** colHeaderMap maps keys to their human readable name.*/
-export const colHeaderMap = {
+const colHeaderMap = {
   'abandoned_ts': 'Abandoned On',
   'completed_ts': 'Completed On',
+  'bot': 'Bot Assigned',
   'costs_usd': 'Cost (USD)',
   'created_ts': 'Created On',
   'duration': 'Duration',
@@ -107,6 +222,9 @@ export const colHeaderMap = {
   // TODO(kjlubick) old version has special handling of tags -
   // turns foo-tag into foo (tag)
 }
+
+const extraKeys = ['name', 'state', 'costs_usd', 'deduped_from', 'duration', 'pending_time',
+  'server_versions', 'bot', ...TASK_TIMES];
 
 // Given a time attribute like 'abandoned_ts', humanTime returns a function
 // that returns the human-friendly version of that attribute. The human
@@ -121,13 +239,16 @@ const colMap = {
   abandoned_ts: humanTime('abandoned_ts'),
   bot: function(task) {
     let id = task.bot_id;
-    return html`<a target=_blank
+    if (id) {
+      return html`<a target=_blank
                    rel=noopener
                    href=${botPageLink(id)}>${id}</a>`;
+    }
+    return '--';
   },
   completed_ts: humanTime('completed_ts'),
   costs_usd: function(task) {
-    return task.costs_usd || 0;
+    return task.costs_usd;
   },
   created_ts: humanTime('created_ts'),
   duration: humanTime('duration'),
