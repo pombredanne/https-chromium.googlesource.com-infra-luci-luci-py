@@ -244,7 +244,8 @@ describe('task-list', function() {
 
     it('turns the dates into DateObjects', function() {
       // Make a copy of the object because processTasks will modify it in place.
-      let tasks = processTasks([deepCopy(ANDROID_TASK)]);
+      let tasks = [deepCopy(ANDROID_TASK)];
+      processTasks(tasks, {});
       let task = tasks[0]
       expect(task.created_ts).toBeTruthy();
       expect(task.created_ts instanceof Date).toBeTruthy('Should be a date object');
@@ -258,6 +259,18 @@ describe('task-list', function() {
 
       expect(tasks).toBeTruthy();
       expect(tasks.length).toBe(0);
+    });
+
+    it('produces a list of tags', function() {
+      let tasks = deepCopy(tasks_20.items);
+      let tags = {};
+      processTasks(tasks, tags);
+      let keys = Object.keys(tags);
+      expect(keys).toBeTruthy();
+      expect(keys.length).toBe(76);
+      expect(keys).toContain('pool');
+      expect(keys).toContain('purpose');
+      expect(keys).toContain('source_revision');
     });
 
   }); //end describe('data parsing')

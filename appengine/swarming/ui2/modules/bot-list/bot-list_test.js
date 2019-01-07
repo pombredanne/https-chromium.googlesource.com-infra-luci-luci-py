@@ -7,7 +7,7 @@ import { deepCopy } from 'common-sk/modules/object'
 import { $, $$ } from 'common-sk/modules/dom'
 
 import { data_s10, fleetCount, fleetDimensions, queryCount } from 'modules/bot-list/test_data'
-import { colHeaderMap, column, listQueryParams, processBots, processDimensions,
+import { colHeaderMap, column, listQueryParams, processBots, makePossibleColumns,
          processPrimaryMap } from 'modules/bot-list/bot-list-helpers'
 
 describe('bot-list', function() {
@@ -1052,24 +1052,26 @@ describe('bot-list', function() {
     });
 
     it('turns the dimension map into a list', function() {
-      // processDimensions may modify the passed in variable.
-      let dimensions = processDimensions(deepCopy(fleetDimensions.bots_dimensions));
+      // makePossibleColumns may modify the passed in variable.
+      let possibleCols = makePossibleColumns(deepCopy(fleetDimensions.bots_dimensions));
 
-      expect(dimensions).toBeTruthy();
-      expect(dimensions.length).toBe(14);
-      expect(dimensions).toContain('id');
-      expect(dimensions).toContain('cores');
-      expect(dimensions).toContain('device_type');
-      expect(dimensions).toContain('xcode_version');
-      expect(dimensions).not.toContain('error');
+      expect(possibleCols).toBeTruthy();
+      expect(possibleCols.length).toBe(34);
+      expect(possibleCols).toContain('id');
+      expect(possibleCols).toContain('cores');
+      expect(possibleCols).toContain('device_type');
+      expect(possibleCols).toContain('xcode_version');
+      expect(possibleCols).toContain('mp_lease_id');
+      expect(possibleCols).toContain('battery_health');
+      expect(possibleCols).not.toContain('error');
     });
 
     it('gracefully handles null data', function() {
-      // processDimensions may modify the passed in variable.
-      let dimensions = processDimensions(null);
+      // makePossibleColumns may modify the passed in variable.
+      let possibleCols = makePossibleColumns(null);
 
-      expect(dimensions).toBeTruthy();
-      expect(dimensions.length).toBe(0);
+      expect(possibleCols).toBeTruthy();
+      expect(possibleCols.length).toBe(0);
 
       let bots = processBots(null);
 
@@ -1078,7 +1080,7 @@ describe('bot-list', function() {
     });
 
     it('extracts the key->value map', function() {
-      // processDimensions may modify the passed in variable.
+      // makePossibleColumns may modify the passed in variable.
       let pMap = processPrimaryMap(deepCopy(fleetDimensions.bots_dimensions));
 
       expect(pMap).toBeTruthy();
