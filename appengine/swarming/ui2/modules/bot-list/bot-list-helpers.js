@@ -98,76 +98,6 @@ export function devices(bot) {
   return bot.state.devices || [];
 }
 
-/** filterPossibleColumns shows only those columns that match the given query.
- *  This means, if there is a part of the query in the column (ignoring case).
- */
-export function filterPossibleColumns(allCols, query) {
-  if (!query) {
-    return allCols;
-  }
-  return allCols.filter((c) => {
-    return matchPartCaseInsensitive(c, query);
-  });
-}
-
-/** filterPossibleKeys shows only those keys that match the given query.
- *  This means, if there is a part of the key in the column (ignoring case),
- *  or if any value associated to the key (via keyMap) matches.
- */
-export function filterPossibleKeys(allKeys, keyMap, query) {
-  if (!query) {
-    return allKeys;
-  }
-  query = query.trim();
-  if (query.indexOf(':') === -1) {
-    return allKeys.filter((k) => {
-      if (matchPartCaseInsensitive(k, query)) {
-        return true;
-      }
-      let values = keyMap[k] || [];
-      for (let value of values) {
-        value = applyAlias(value, k);
-        if (matchPartCaseInsensitive(value, query)) {
-          return true;
-        }
-      }
-      return false;
-    });
-  }
-  // partial queries should only show the key that exactly matches
-  query = query.split(':')[0];
-  return allKeys.filter((k) => {
-    if (k === query) {
-      return true;
-    }
-    return false;
-  });
-}
-
-/** filterPossibleValues shows some values associated with the given query.
- * If the user has typed in a query, show all secondary elements if
- * their primary element matches.  If it doesn't match the primary
- * element, only show those secondary elements that do.
- */
-export function filterPossibleValues(allValues, selectedKey, query) {
-  // only look for first index, since value can have colons (e.g. gpu)
-  query = query.trim();
-  let colonIdx = query.indexOf(':');
-  if (colonIdx !== -1) {
-    query = query.substring(colonIdx+1);
-  }
-  if (!query || matchPartCaseInsensitive(selectedKey, query)) {
-    return allValues;
-  }
-  return allValues.filter((v) => {
-    v = applyAlias(v, selectedKey);
-    if (matchPartCaseInsensitive(v, query)) {
-      return true;
-    }
-    return false;
-  });
-}
-
 // A list of special rules for filters. In practice, this is anything
 // that is not a dimension, since the API only supports filtering by
 // dimensions and these values.
@@ -355,27 +285,27 @@ export function makeFilter(key, value) {
   return `${key}:${value}`;
 }
 
-/** matchPartCaseInsensitive returns true or false if str matches any
- *of a space separated list of queries,
+/** makePossibleColumns processes the array of dimensions from the server
+ *  and returns it. The primary objective is to remove blacklisted
+ *  dimensions and make sure any are there that the server doesn't provide.
+ *  This will be turned into possible columns
  */
-export function matchPartCaseInsensitive(str, queries) {
-  if (!queries) {
-    return true;
+export function makePossibleColumns(arr) {
+  if (!arr) {
+    return [];
   }
-  if (!str) {
-    return false
-  }
-  queries = queries.trim().toLocaleLowerCase();
-  str = str.toLocaleLowerCase();
-  let xq = queries.split(' ');
-  for (let query of xq) {
-    let idx = str.indexOf(query);
-    if (idx !== -1) {
-      return true;
+  let dims = [];
+  arr.forEach(function(d) {
+    if (blacklistDimensions.indexOf(d.key) === -1) {
+      dims.push(d.key);
     }
-  }
-  return false;
-};
+  });
+  // Make sure 'id' is in there, but not duplicated (see blacklistDimensions)
+  dims.push('id');
+  Array.prototype.push.apply(dims, extraKeys);
+  dims.sort();
+  return dims;
+}
 
 const BOT_TIMES = ['first_seen_ts', 'last_seen_ts', 'lease_expiration_ts'];
 
@@ -466,28 +396,7 @@ export function processCounts(output, countJSON) {
   return output;
 }
 
-/** processDimensions processes the array of dimensions from the server
- *  and returns it. The primary objective is to remove blacklisted
- *  dimensions and make sure any are there that the server doesn't provide.
- *  It will get fed into processPrimaryMap.
- */
-export function processDimensions(arr) {
-  if (!arr) {
-    return [];
-  }
-  let dims = [];
-  arr.forEach(function(d) {
-    if (blacklistDimensions.indexOf(d.key) === -1) {
-      dims.push(d.key);
-    }
-  });
-  // Make sure 'id' is in there, but not duplicated (see blacklistDimensions)
-  dims.push('id');
-  dims.sort();
-  return dims;
-}
-
-/** processDimensions creates a map of primary keys (e.g. left column) based
+/** processPrimaryMap creates a map of primary keys (e.g. left column) based
  *  on dimensions and other interesting options (e.g. device-related things).
  *  The primary keys map to the values they could be filtered by.
  */
@@ -585,7 +494,7 @@ const blacklistDimensions = ['quarantined', 'error', 'id'];
 /** extraKeys is a list of things we want to be able to sort by or display
  *  that are not dimensions.
 .*/
-export const extraKeys = ['disk_space', 'uptime', 'running_time', 'task',
+const extraKeys = ['disk_space', 'uptime', 'running_time', 'task',
 'status', 'version', 'external_ip', 'internal_ip', 'mp_lease_id',
 'mp_lease_expires', 'last_seen', 'first_seen', 'battery_level',
 'battery_voltage', 'battery_temperature', 'battery_status', 'battery_health',
