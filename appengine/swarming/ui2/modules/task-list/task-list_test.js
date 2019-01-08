@@ -4,7 +4,7 @@
 
 import 'modules/task-list'
 
-import { processTasks } from 'modules/task-list/task-list-helpers'
+import { filterTasks, processTasks } from 'modules/task-list/task-list-helpers'
 import { tasks_20 } from 'modules/task-list/test_data'
 
 describe('task-list', function() {
@@ -28,6 +28,7 @@ describe('task-list', function() {
     });
 
     fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', tasks_20);
+    fetchMock.get('/_ah/api/swarming/v1/bots/dimensions', fleetDimensions);
 
     // Everything else
     fetchMock.catch(404);
@@ -221,10 +222,10 @@ describe('task-list', function() {
       expectNoUnmatchedCalls();
     }
 
-    it('makes auth\'d API calls when a logged in user views landing page', function(done) {
+    fit('makes auth\'d API calls when a logged in user views landing page', function(done) {
       loggedInTasklist((ele) => {
         let calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+1, '2 GETs from swarming-app, 1 from task-list');
+        expect(calls.length).toBe(2+2, '2 GETs from swarming-app, 2 from task-list');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
@@ -244,7 +245,8 @@ describe('task-list', function() {
 
     it('turns the dates into DateObjects', function() {
       // Make a copy of the object because processTasks will modify it in place.
-      let tasks = processTasks([deepCopy(ANDROID_TASK)]);
+      let tasks = [deepCopy(ANDROID_TASK)];
+      processTasks(tasks, {});
       let task = tasks[0]
       expect(task.created_ts).toBeTruthy();
       expect(task.created_ts instanceof Date).toBeTruthy('Should be a date object');
@@ -258,6 +260,62 @@ describe('task-list', function() {
 
       expect(tasks).toBeTruthy();
       expect(tasks.length).toBe(0);
+    });
+
+    it('produces a list of tags', function() {
+      let tasks = deepCopy(tasks_20.items);
+      let tags = {};
+      processTasks(tasks, tags);
+      let keys = Object.keys(tags);
+      expect(keys).toBeTruthy();
+      expect(keys.length).toBe(76);
+      expect(keys).toContain('pool');
+      expect(keys).toContain('purpose');
+      expect(keys).toContain('source_revision');
+    });
+
+    it('filters tasks based on special keys', function() {
+      let tasks = processTasks(deepCopy(tasks_20.items), {});
+
+      expect(tasks).toBeTruthy();
+      expect(tasks.length).toBe(20);
+
+      let filtered = filterTasks(['state:COMPLETED_FAILURE'], tasks);
+      expect(filtered.length).toBe(2);
+      const expectedIds = ['41e0310fe0b7c410', '41e031b2c8b46710'];
+      let actualIds = filtered.map((task) => task.task_id);
+      actualIds.sort();
+      expect(actualIds).toEqual(expectedIds);
+    });
+
+    it('filters tasks based on dimensions', function() {
+      let tasks = processTasks(deepCopy(tasks_20.items), {});
+
+      expect(tasks).toBeTruthy();
+      expect(tasks.length).toBe(20);
+
+      let filtered = filterTasks(['pool-tag:Chrome'], tasks);
+      expect(filtered.length).toBe(7);
+      let actualIds = filtered.map((task) => task.task_id);
+      expect(actualIds).toContain('41e0204f39d06210'); // spot check
+      expect(actualIds).not.toContain('41e0182a00fcc110');
+
+      // some tasks have multiple "purpose" tags
+      filtered = filterTasks(['purpose-tag:luci'], tasks);
+      expect(filtered.length).toBe(8);
+      actualIds = filtered.map((task) => task.task_id);
+      expect(actualIds).toContain('41e020504d0a5110'); // spot check
+      expect(actualIds).not.toContain('41e0310fe0b7c410');
+
+      filtered = filterTasks(['pool-tag:Skia', 'gpu-tag:none'], tasks);
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].task_id).toBe('41e031b2c8b46710');
+
+      filtered = filterTasks(['pool-tag:Skia', 'gpu-tag:10de:1cb3-384.59'], tasks);
+      expect(filtered.length).toBe(2);
+      actualIds = filtered.map((task) => task.task_id);
+      expect(actualIds).toContain('41dfa79d3bf29010');
+      expect(actualIds).toContain('41df677202f20310');
     });
 
   }); //end describe('data parsing')

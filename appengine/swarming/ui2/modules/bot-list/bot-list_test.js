@@ -7,7 +7,7 @@ import { deepCopy } from 'common-sk/modules/object'
 import { $, $$ } from 'common-sk/modules/dom'
 
 import { data_s10, fleetCount, fleetDimensions, queryCount } from 'modules/bot-list/test_data'
-import { colHeaderMap, column, listQueryParams, processBots, processDimensions,
+import { colHeaderMap, column, filterBots, listQueryParams, processBots, makePossibleColumns,
          processPrimaryMap } from 'modules/bot-list/bot-list-helpers'
 
 describe('bot-list', function() {
@@ -847,7 +847,7 @@ describe('bot-list', function() {
         expect(cell(0, 3)).toMatchTextContent('7h  1m 48s');
 
         expect(cell(1, 0)).toMatchTextContent('somebot10-a9');
-        expect(cell(1, 1)).toMatchTextContent('N/A');
+        expect(cell(1, 1)).toMatchTextContent('--');
         expect(cell(1, 2).innerHTML).not.toContain('<a ', 'no mp link');
         expect(cell(1, 3)).toMatchTextContent('5h 53m 32s');
         done();
@@ -1052,24 +1052,26 @@ describe('bot-list', function() {
     });
 
     it('turns the dimension map into a list', function() {
-      // processDimensions may modify the passed in variable.
-      let dimensions = processDimensions(deepCopy(fleetDimensions.bots_dimensions));
+      // makePossibleColumns may modify the passed in variable.
+      let possibleCols = makePossibleColumns(deepCopy(fleetDimensions.bots_dimensions));
 
-      expect(dimensions).toBeTruthy();
-      expect(dimensions.length).toBe(14);
-      expect(dimensions).toContain('id');
-      expect(dimensions).toContain('cores');
-      expect(dimensions).toContain('device_type');
-      expect(dimensions).toContain('xcode_version');
-      expect(dimensions).not.toContain('error');
+      expect(possibleCols).toBeTruthy();
+      expect(possibleCols.length).toBe(34);
+      expect(possibleCols).toContain('id');
+      expect(possibleCols).toContain('cores');
+      expect(possibleCols).toContain('device_type');
+      expect(possibleCols).toContain('xcode_version');
+      expect(possibleCols).toContain('mp_lease_id');
+      expect(possibleCols).toContain('battery_health');
+      expect(possibleCols).not.toContain('error');
     });
 
     it('gracefully handles null data', function() {
-      // processDimensions may modify the passed in variable.
-      let dimensions = processDimensions(null);
+      // makePossibleColumns may modify the passed in variable.
+      let possibleCols = makePossibleColumns(null);
 
-      expect(dimensions).toBeTruthy();
-      expect(dimensions.length).toBe(0);
+      expect(possibleCols).toBeTruthy();
+      expect(possibleCols.length).toBe(0);
 
       let bots = processBots(null);
 
@@ -1078,7 +1080,7 @@ describe('bot-list', function() {
     });
 
     it('extracts the key->value map', function() {
-      // processDimensions may modify the passed in variable.
+      // makePossibleColumns may modify the passed in variable.
       let pMap = processPrimaryMap(deepCopy(fleetDimensions.bots_dimensions));
 
       expect(pMap).toBeTruthy();
@@ -1108,6 +1110,42 @@ describe('bot-list', function() {
       expect(pMap['is_mp_bot']).toBeTruthy();
       expect(pMap['is_mp_bot']).toContain('false');
       expect(pMap['id']).toEqual(null);
+    });
+
+    it('filters bots based on special keys', function() {
+      let bots = processBots(deepCopy(data_s10.items));
+
+      expect(bots).toBeTruthy();
+      expect(bots.length).toBe(10);
+
+      let filtered = filterBots(['status:quarantined'], bots);
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].bot_id).toEqual('somebot11-a9');
+
+      filtered = filterBots(['is_mp_bot:true'], bots);
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].bot_id).toEqual('somebot18-a9');
+
+      filtered = filterBots(['task:busy'], bots);
+      expect(filtered.length).toBe(4);
+      const expectedIds = ['somebot12-a9', 'somebot16-a9', 'somebot17-a9', 'somebot77-a3'];
+      let actualIds = filtered.map((bot) => bot.bot_id);
+      actualIds.sort();
+      expect(actualIds).toEqual(expectedIds);
+    });
+
+    it('filters bots based on dimensions', function() {
+      let bots = processBots(deepCopy(data_s10.items));
+
+      expect(bots).toBeTruthy();
+      expect(bots.length).toBe(10);
+
+      let filtered = filterBots(['os:Ubuntu-17.04', 'gpu:10de:1cb3'], bots);
+      expect(filtered.length).toBe(5);
+      const expectedIds = ['somebot10-a9', 'somebot13-a2', 'somebot13-a9', 'somebot15-a9', 'somebot77-a3'];
+      let actualIds = filtered.map((bot) => bot.bot_id);
+      actualIds.sort();
+      expect(actualIds).toEqual(expectedIds);
     });
 
     it('correctly makes query params from filters', function() {
