@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "591d1c08_edeb57c6",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-09T20:41:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6d96318_f1f84fa9",
+      "range": {
+        "startLine": 644,
+        "startChar": 30,
+        "endLine": 644,
+        "endChar": 34
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bd5c248_bea191ff",
         "filename": "appengine/swarming/ui2/modules/queryfilter.js",
         "patchSetId": 4
