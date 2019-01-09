@@ -16,8 +16,6 @@ import naturalSort from 'javascript-natural-sort/naturalSort'
 import { compareWithFixedOrder, sanitizeAndHumanizeTime, taskPageLink } from '../util'
 import { applyAlias } from '../alias'
 
-const EMPTY_VAL = '--';
-
 /** aggregateTemps looks through the temperature data and computes an
  *  average temp. Beyond that, it prepares the temperature data for
  *  better displaying.
@@ -87,7 +85,7 @@ export function column(col, bot, ele) {
   if (c) {
     return c(bot, ele);
   }
-  let emptyVal = EMPTY_VAL;
+  let emptyVal = '--';
   if (noneDimensions.indexOf(col) !== -1) {
     emptyVal = 'none';
   }
@@ -643,7 +641,7 @@ const colMap = {
     return aliased[0];
   },
   external_ip: (bot, ele) => {
-    return bot.external_ip || EMPTY_VAL;
+    return bot.external_ip || '--';
   },
   first_seen: (bot, ele) => {
     return human.localeTime(bot.first_seen_ts);
@@ -652,7 +650,7 @@ const colMap = {
                             rel=noopener
                             href=${botLink(bot.bot_id)}>${bot.bot_id}</a>`,
   internal_ip: (bot, ele) => {
-    return attribute(bot, 'ip', EMPTY_VAL)[0];
+    return attribute(bot, 'ip', '--')[0];
   },
   last_seen: (bot, ele) => {
     if (ele._verbose) {
@@ -662,7 +660,7 @@ const colMap = {
   },
   mp_lease_id: (bot, ele) => {
     if (!bot.lease_id) {
-      return EMPTY_VAL;
+      return '--';
     }
     let id = bot.lease_id;
     if (!ele._verbose) {
@@ -680,7 +678,7 @@ const colMap = {
   },
   mp_lease_expires: (bot, ele) => {
     if (!bot.lease_expiration_ts) {
-      return EMPTY_VAL;
+      return '--';
     }
     if (ele._verbose) {
       return human.localeTime(bot.lease_expiration_ts);
