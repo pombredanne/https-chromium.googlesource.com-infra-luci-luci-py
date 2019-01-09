@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7e62ba8a_87644d0e",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-09T20:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6d96318_f1f84fa9",
+      "range": {
+        "startLine": 644,
+        "startChar": 30,
+        "endLine": 644,
+        "endChar": 34
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bd5c248_bea191ff",
         "filename": "appengine/swarming/ui2/modules/queryfilter.js",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d88fe87_0f07bad9",
+        "filename": "appengine/swarming/ui2/modules/queryfilter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-09T20:39:13Z",
+      "side": 1,
+      "message": "This functionality was in bot-list.js and tested via bot-list_test.js",
+      "parentUuid": "3bd5c248_bea191ff",
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "85c655dc_635a1319",
+        "filename": "appengine/swarming/ui2/modules/queryfilter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-09T20:39:13Z",
+      "side": 1,
+      "message": "values is an array.  See how we iterate through them?",
+      "parentUuid": "0b891a6c_b9a54b1a",
+      "range": {
+        "startLine": 32,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60ef773b_998f0d69",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
         "patchSetId": 4
@@ -85,6 +151,30 @@
       "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a29cc609_7fb93584",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-09T20:39:13Z",
+      "side": 1,
+      "message": "Not that I could find.  I recall spending a while trying to get a work around, and this was the best I could do.  At least until conditional imports are a thing.",
+      "parentUuid": "60ef773b_998f0d69",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
