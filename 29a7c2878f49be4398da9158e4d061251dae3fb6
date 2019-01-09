@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6d96318_f1f84fa9",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-09T18:54:37Z",
+      "side": 1,
+      "message": "Maybe make a const EMPTY_VAL for this and use it everywhere?",
+      "range": {
+        "startLine": 644,
+        "startChar": 30,
+        "endLine": 644,
+        "endChar": 34
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd5c248_bea191ff",
+        "filename": "appengine/swarming/ui2/modules/queryfilter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-09T18:54:37Z",
+      "side": 1,
+      "message": "Are there tests for this file?",
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b891a6c_b9a54b1a",
+        "filename": "appengine/swarming/ui2/modules/queryfilter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-09T18:54:37Z",
+      "side": 1,
+      "message": "{} ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60ef773b_998f0d69",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-09T18:54:37Z",
+      "side": 1,
+      "message": "This seems so awkward, there\u0027s no other workaround either in karma or babel?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "29a7c2878f49be4398da9158e4d061251dae3fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
