@@ -14,7 +14,7 @@ describe('task-list', function() {
   const { childrenAsArray, customMatchers, getChildItemWithText, mockAppGETs } = require('modules/test_util');
   const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
 
-  const { column, filterTasks, getColHeader, processTasks } = require('modules/task-list/task-list-helpers');
+  const { column, filterTasks, getColHeader, listQueryParams, processTasks } = require('modules/task-list/task-list-helpers');
   const { tasks_20 } = require('modules/task-list/test_data');
   const { fleetDimensions } = require('modules/bot-list/test_data');
 
@@ -578,27 +578,51 @@ describe('task-list', function() {
         // Spy on the list call to make sure a request is made with the right filter.
         let calledTimes = 0;
         fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', (url, _) => {
-          // TODO(kjlubick)
-          //expect(url).toContain(encodeURIComponent('valid:filter:gpu:can:have:many:colons'));
+          expect(url).toContain(encodeURIComponent('valid:filter:gpu:can:have:many:colons'));
           calledTimes++;
           return '[]'; // pretend no bots match
         }, {overwriteRoutes: true});
 
-        filterInput.value = 'valid:filter:gpu:can:have:many:colons';
+        filterInput.value = 'valid-tag:filter:gpu:can:have:many:colons';
         ele._filterSearch({key: 'Enter'});
-        expect(ele._filters).toEqual(['valid:filter:gpu:can:have:many:colons']);
+        expect(ele._filters).toEqual(['valid-tag:filter:gpu:can:have:many:colons']);
         // Empty the input for next time.
         expect(filterInput.value).toEqual('');
-        filterInput.value = 'valid:filter:gpu:can:have:many:colons';
+        filterInput.value = 'valid-tag:filter:gpu:can:have:many:colons';
         ele._filterSearch({key: 'Enter'});
         // No duplicates
-        expect(ele._filters).toEqual(['valid:filter:gpu:can:have:many:colons']);
+        expect(ele._filters).toEqual(['valid-tag:filter:gpu:can:have:many:colons']);
 
         fetchMock.flush(true).then(() => {
           expect(calledTimes).toEqual(1, 'Only request tasks once');
 
           done();
         });
+      });
+    });
+
+    it('allows auto-corrects filters added from the search box', function(done) {
+      loggedInTasklist((ele) => {
+        ele._filters = [];
+        ele._limit = 0; // turn off requests
+        ele.render();
+
+        let filterInput = $$('#filter_search', ele);
+        filterInput.value = 'state:BOT_DIED';
+        ele._filterSearch({key: 'Enter'});
+        expect(ele._filters).toEqual(['state:BOT_DIED']);
+
+        filterInput.value = 'gpu-tag:something';
+        ele._filterSearch({key: 'Enter'});
+        expect(ele._filters).toContain('gpu-tag:something');
+
+        // there are no valid filters that aren't a tag or state, so
+        // correct those that don't have a -tag.
+        filterInput.value = 'gpu:something-else';
+        ele._filterSearch({key: 'Enter'});
+        expect(ele._filters).toContain('gpu-tag:something-else');
+
+        done();
       });
     });
 
@@ -806,6 +830,37 @@ describe('task-list', function() {
       actualIds = filtered.map((task) => task.task_id);
       expect(actualIds).toContain('41dfa79d3bf29010');
       expect(actualIds).toContain('41df677202f20310');
+    });
+
+    it('correctly makes query params from filters', function() {
+      // We know query.fromObject is used and it puts the query params in
+      // a deterministic, sorted order. This means we can compare
+      let expectations = [
+        { // basic 'state'
+          'limit': 7,
+          'filters': ['state:BOT_DIED'],
+          'output': 'limit=7&state=BOT_DIED',
+        },
+        { // two tags
+          'limit': 342,
+          'filters': ['os-tag:Window', 'gpu-tag:10de'],
+          'output': 'limit=342&tags=os%3AWindow&tags=gpu%3A10de',
+        },
+        { // tags and state
+          'limit': 57,
+          'filters': ['os-tag:Window', 'state:RUNNING', 'gpu-tag:10de'],
+          'output': 'limit=57&state=RUNNING&tags=os%3AWindow&tags=gpu%3A10de',
+        },
+      ];
+
+      for (let testcase of expectations) {
+        let qp = listQueryParams(testcase.filters, testcase.limit);
+        expect(qp).toEqual(testcase.output);
+      }
+
+      let testcase = expectations[0];
+      let qp = listQueryParams(testcase.filters, testcase.limit, 'mock_cursor12345');
+      expect(qp).toEqual('cursor=mock_cursor12345&'+testcase.output);
     });
 
   }); //end describe('data parsing')

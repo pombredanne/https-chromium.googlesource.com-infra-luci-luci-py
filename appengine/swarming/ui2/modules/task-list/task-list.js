@@ -34,8 +34,13 @@ import 'elements-sk/styles/buttons'
 import '../sort-toggle'
 import '../swarming-app'
 
+import flatpickr from 'flatpickr'
+import 'flatpickr/dist/flatpickr.min.css'
+
 import { applyAlias } from '../alias'
-import { appendPossibleColumns, appendPrimaryMap, column, filterTasks, getColHeader, processTasks, sortColumns, sortPossibleColumns, specialSortMap, stripTag, taskClass } from './task-list-helpers'
+import { appendPossibleColumns, appendPrimaryMap, column, filterTasks, getColHeader,
+         listQueryParams, processTasks, sortColumns, sortPossibleColumns, specialSortMap,
+         stripTag, taskClass } from './task-list-helpers'
 import { filterPossibleColumns, filterPossibleKeys,
          filterPossibleValues, makeFilter } from '../queryfilter'
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
@@ -150,11 +155,24 @@ const options = (ele) => html`
 <div class=options>
   <div class=verbose>
     <checkbox-sk ?checked=${ele._verbose}
-                 @click=${ele._toggleVerbose}>
+                 @click=${ele._toggleVerbose}
+                 label="Verbose Entries">
     </checkbox-sk>
-    <span>Verbose Entries</span>
   </div>
-  <div>TODO datepicker</div>
+  <div class=picker>
+    <div class=time>
+      <span class=label>Start:</span>
+      <input id=start_time></input>
+    </div>
+    <div class=time>
+      <span class=label>End:</span>
+      <input id=end_time ?disabled=${ele._now}></input>
+      <checkbox-sk ?checked=${ele._now}
+                   @click=${ele._toggleNow}>
+      </checkbox-sk>
+      <span>Now</span>
+    </div>
+  </div>
   <a href=${ele._matchingBotsLink()}>View Matching Bots</a>
   <button
       ?disabled=${!ele.permissions.cancel_task}
@@ -271,6 +289,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     this._primaryKey = '';
     this._showAll = false;
     this._sort = '';
+    this._now = true;
     this._verbose = false;
 
     this._queryCounts = [
@@ -296,6 +315,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
           'f': this._filters,
           'k': this._primaryKey,
           's': this._sort,
+          'n': this._now,
           'show_all': this._showAll,
           'v': this._verbose,
         }
@@ -311,6 +331,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
       this._primaryKey = newState.k; // default to ''
       this._verbose = newState.v;         // default to false
       this._sort = newState.s || 'created_ts';
+      this._now = newState.n; //default to true
       this._limit = INITIAL_LOAD;
       this._showAll = newState.show_all; // default to false
       this._fetch();
@@ -335,6 +356,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     this._loginEvent = (e) => {
       this._fetch();
       this.render();
+      this._initDatePickers();
     };
     this.addEventListener('log-in', this._loginEvent);
 
@@ -407,7 +429,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     };
     // Fetch the tasks
     this.app.addBusyTasks(1);
-    let queryParams = `?limit=${INITIAL_LOAD}`; // TODO
+    let queryParams = listQueryParams(this._filters, this._limit);
     fetch(`/_ah/api/swarming/v1/tasks/list?${queryParams}`, extra)
       .then(jsonOrThrow)
       .then((json) => {
@@ -425,7 +447,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
           // with the showAll button.
           if ((this._filters.length || this._showAll) && json.cursor) {
             this._limit = BATCH_LOAD;
-            queryParams = `?limit=${BATCH_LOAD}&json.cursor`; // TODO
+            queryParams = listQueryParams(this._filters, this._limit, json.cursor);
             fetch(`/_ah/api/swarming/v1/tasks/list?${queryParams}`, extra)
               .then(jsonOrThrow)
               .then(maybeLoadMore)
@@ -469,9 +491,16 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     }
     let input = $$('#filter_search', this);
     let newFilter = input.value.trim();
-    if (newFilter.indexOf(':') === -1) {
+    let idx = newFilter.indexOf(':');
+    if (idx === -1) {
       errorMessage('Invalid filter.  Should be like "foo:bar"', 5000);
       return;
+    }
+    let key = newFilter.substring(0, idx);
+    if (key !== 'state' && !key.endsWith('-tag')) {
+      errorMessage(`Filters should only be on state or something-tag.
+                   Auto-correcting ${key} to ${key}-tag.`, 6000);
+      newFilter = key + '-tag' + newFilter.substring(idx);
     }
     input.value = '';
     this._filterQuery = '';
@@ -483,6 +512,22 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     }
     this._addFilter(newFilter);
     this._refilterPrimaryKeys();
+  }
+
+  _initDatePickers() {
+    if (this._startEle) {
+      return;
+    }
+    this._startEle = $$('#start_time', this);
+    this._endEle = $$('#end_time', this);
+    flatpickr(this._startEle, {
+      enableTime: true,
+      defaultDate: Date.now()-24*60*60*1000,
+    });
+    flatpickr(this._endEle, {
+      enableTime: true,
+      defaultDate: Date.now(),
+    });
   }
 
   _makeSummaryURL() {
@@ -618,6 +663,14 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     e.stopPropagation();
     this._showColSelector = !this._showColSelector;
     this._refilterPossibleColumns(); // also renders
+  }
+
+  _toggleNow(e) {
+    // This prevents a double event from happening.
+    e.preventDefault();
+    this._now = !this._now;
+    this._stateChanged();
+    this.render();
   }
 
   _toggleVerbose(e) {
