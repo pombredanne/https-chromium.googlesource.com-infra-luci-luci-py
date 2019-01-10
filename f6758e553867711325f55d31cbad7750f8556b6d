@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaa1fd03_fc778774",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-10T19:40:07Z",
+      "side": 1,
+      "message": "document params",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39774df1_e85f9aef",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-10T19:40:07Z",
+      "side": 1,
+      "message": "Comment style keeps changing between // and /* */.\n\n\nAlso check that all params for all func are documented.",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45cdde82_a76ffc54",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-10T19:40:07Z",
+      "side": 1,
+      "message": "vertical align",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ff68e25_1aa7a434",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-10T19:40:07Z",
+      "side": 1,
+      "message": "Was this called _render() in the other file? Or maybe I am mis-remembering.",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
