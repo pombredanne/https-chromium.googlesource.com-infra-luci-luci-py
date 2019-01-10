@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f513719_ab5fe512",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-10T16:11:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c743e0a3_b95f4614",
+      "range": {
+        "startLine": 12,
+        "startChar": 19,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "37628931f2fdfbd626026fb9bc5c4803708aa45f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
