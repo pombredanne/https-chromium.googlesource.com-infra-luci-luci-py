@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4adcada5_852b9902",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-10T20:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaa1fd03_fc778774",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39774df1_e85f9aef",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11aae63_9cec10e3",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-10T20:15:02Z",
+      "side": 1,
+      "message": "Done.  Omitted params where there was only one param and it was obvious, like getColHeader and taskClass.\n\nI had used // for \u0027internal\u0027 methods, but it makes sense to make them all JSDoc style.",
+      "parentUuid": "39774df1_e85f9aef",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "375f1f7d_550cb065",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-10T20:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45cdde82_a76ffc54",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ff68e25_1aa7a434",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
         "patchSetId": 5
@@ -67,6 +121,24 @@
       "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b6512ce_02e6b514",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-10T20:15:02Z",
+      "side": 1,
+      "message": "in bot-list, it is render()",
+      "parentUuid": "9ff68e25_1aa7a434",
+      "revId": "f6758e553867711325f55d31cbad7750f8556b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
