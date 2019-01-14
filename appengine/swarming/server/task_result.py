@@ -732,16 +732,9 @@ class _TaskResultCommon(ndb.Model):
     out.try_number = self.try_number
     out.current_task_slice = self.current_task_slice
     if self.bot_dimensions:
-      # TODO(maruel): Keep a complete snapshot. This is a bit clunky at the
-      # moment. https://crbug.com/850560
-      for key, values in sorted(self.bot_dimensions.iteritems()):
-        dst = out.bot.dimensions.add()
-        dst.key = key
-        dst.values.extend(values)
-        if key == u'id':
-          out.bot.bot_id = values[0]
-        elif key == u'pool':
-          out.bot.pools.extend(values)
+      # TODO(maruel): Keep a complete snapshot of the bot, not only dimensions.
+      # https://crbug.com/850560
+      task_request.dimensions_to_proto(out.bot.dimensions, self.bot_dimensions)
     out.server_versions.extend(self.server_versions)
     out.children_task_ids.extend(self.children_task_ids)
     if self.deduped_from:

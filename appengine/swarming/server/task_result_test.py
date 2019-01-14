@@ -673,10 +673,7 @@ class TaskResultApiTest(TestCase):
                       ),
                     ],
                     command=[u'command1'],
-                    dimensions=[
-                      swarming_pb2.StringListPair(
-                          key=u'pool', values=[u'default']),
-                    ],
+                    dimensions=swarming_pb2.Dimensions(pool=[u'default']),
                     execution_timeout=duration_pb2.Duration(seconds=86400),
                     grace_period=duration_pb2.Duration(seconds=30),
                   ),
@@ -686,14 +683,10 @@ class TaskResultApiTest(TestCase):
             priority=50,
             service_account=u'none',
             name=u'Request name',
-            tags=[
-              u'pool:default',
-              u'priority:50',
-              u'service_account:none',
-              u'swarming.pool.template:no_config',
-              u'tag:1',
-              u'user:Jesus',
-            ],
+            tags=swarming_pb2.Tags(
+                supplemental={
+                  u'tag': swarming_pb2.Strings(values=[u'1']),
+                }),
             user=u'Jesus',
             task_id=u'1d69b9f088008810',
         ),
@@ -703,12 +696,9 @@ class TaskResultApiTest(TestCase):
         try_number=1,
         current_task_slice=2,
         bot=swarming_pb2.Bot(
-            bot_id=u'bot1',
-            pools=[u'default'],
-            dimensions=[
-              swarming_pb2.StringListPair(key=u'id', values=[u'bot1']),
-              swarming_pb2.StringListPair(key=u'pool', values=[u'default']),
-            ],
+            dimensions=swarming_pb2.Dimensions(
+                id=[u'bot1'],
+                pool=[u'default']),
         ),
         server_versions=[u'v1a'],
         children_task_ids=[u'12310'],

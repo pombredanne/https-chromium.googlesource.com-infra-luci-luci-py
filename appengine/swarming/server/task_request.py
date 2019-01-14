@@ -755,19 +755,12 @@ class TaskProperties(ndb.Model):
     if self.extra_args:
       out.extra_args.extend(self.extra_args)
     out.has_secret_bytes = self.has_secret_bytes
-    for key, values in sorted(self.dimensions.iteritems()):
-      v = out.dimensions.add()
-      v.key = key
-      v.values.extend(sorted(values))
-    for key, value in sorted(self.env.iteritems()):
-      v = out.env.add()
-      v.key = key
-      v.value = value
+    dimensions_to_proto(out.dimensions, self.dimensions)
+    for key, value in self.env.iteritems():
+      out.env[key] = value
     if self.env_prefixes:
-      for key, values in sorted(self.env_prefixes.iteritems()):
-        v = out.env_paths.add()
-        v.key = key
-        v.values.extend(sorted(values))
+      for key, values in self.env_prefixes.iteritems():
+        out.env_paths[key].values.extend(values)
     # TODO(maruel): Define containment; https://crbug.com/808836
     if self.execution_timeout_secs:
       out.execution_timeout.seconds = self.execution_timeout_secs
@@ -1109,7 +1102,7 @@ class TaskRequest(ndb.Model):
     out.create_time.FromDatetime(self.created_ts)
     if self.name:
       out.name = self.name
-    out.tags.extend(self.tags)
+    tags_to_proto(out.tags, self.manual_tags)
     if self.user:
       out.user = self.user
 
@@ -1624,6 +1617,41 @@ def cron_delete_old_task_requests():
         _format_delta(last_ts, first_ts),
         _format_ts(end_ts), _format_delta(end_ts, last_ts))
 
+
+def dimensions_to_proto(out, dimensions):
+  """Fill a swarming_pb2.Dimensions with the dimensions.
+
+  Arguments:
+    dimensions: dict(key: list of values).
+  """
+  fields = set(f.name for f in swarming_pb2.Dimensions.DESCRIPTOR.fields)
+  fields.discard('supplemental')
+  for key, values in dimensions.iteritems():
+    if key in fields:
+      getattr(out, key).extend(values)
+    else:
+      out.supplemental[key].values.extend(values)
+
+
+def tags_to_proto(out, tags):
+  """Fill a swarming_pb2.Tags with the tags.
+
+  Arguments:
+    tags: flat list of strings.
+  """
+  fields = set(f.name for f in swarming_pb2.Tags.DESCRIPTOR.fields)
+  fields.discard('supplemental')
+  for tag in tags:
+    key, val = tag.split(':', 2)
+    if key in fields:
+      dst = getattr(out, key)
+    else:
+      dst = out.supplemental[key].values
+    dst.append(val)
+    dst.sort()
+
+
+## Cron.
 
 def cron_send_to_bq():
   """Sends the TaskRequest to BigQuery.
