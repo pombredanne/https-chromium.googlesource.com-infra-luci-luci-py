@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f364304_c991f932",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-01-14T20:17:01Z",
+      "side": 1,
+      "message": "const?",
+      "range": {
+        "startLine": 234,
+        "startChar": 7,
+        "endLine": 234,
+        "endChar": 10
+      },
+      "revId": "ac0a682790919859a2e949ec753848b126eabe84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
