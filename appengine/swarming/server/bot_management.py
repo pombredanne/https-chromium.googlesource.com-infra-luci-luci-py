@@ -195,11 +195,8 @@ class _BotCommon(ndb.Model):
 
     if self.task_id:
       out.current_task_id = self.task_id
-    for key, values in sorted(self.dimensions.iteritems()):
-      d = out.dimensions.add()
-      d.key = key
-      for value in values:
-        d.values.append(value)
+    for key, values in self.dimensions.iteritems():
+      d = out.dimensions[key].values.extend(values)
 
     # The BotInfo part.
     if self.state:

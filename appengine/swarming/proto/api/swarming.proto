@@ -67,30 +67,9 @@ message BotEventsResponse {
 
 // Common messages.
 
-// Represents a mapping of string to a string.
-//
-// The same as a map<key, value>, except that the encoding is deterministic.
-//
-// If the StringPair is itself repeated inside another message, the list
-// must be sorted by key and the keys must be unique.
-message StringPair {
-  string key = 1;
-  string value = 2;
-}
-
-// Represents a mapping of string to a list of strings.
-//
-// The same as a map<key, repeated values>, except that the encoding is
-// deterministic.
-//
-// If the StringListPair is itself repeated inside another message, the list
-// must be sorted by key and the keys must be unique.
-message StringListPair {
-  string key = 1;
-  // All the values for this key. values must be sorted. Human readable.
-  //
-  // This string should make sense to a user in the context of 'key'.
-  repeated string values = 2;
+// Meant to be used as map<string, Strings>.
+message Strings {
+  repeated string values = 1;
 }
 
 
@@ -142,13 +121,11 @@ message Bot {
   //
   // https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Detailed-Design.md#bot-dimensions
   //
-  // dimensions MUST be sorted by keys, and each values list must be sorted.
-  // Each dimension key must be unique.
-  //
-  // The values are effectively an OR, a task may match any of the value.
+  // The values are effectively an OR, a task may match any of the value. values
+  // must be sorted.
   //
   // Human readable.
-  repeated StringListPair dimensions = 7;
+  map<string, Strings> dimensions = 7;
 
   // Bot reported informational state. This can be used to describe the host,
   // the bot itself and the DUT (Device Under Test) under control as applicable.
@@ -596,47 +573,39 @@ message TaskProperties {
 
   // Environment.
 
-  // Dimensions are what is used to determine which bot can run the task. The
-  // bot must have all the matching dimensions, even for repeated keys with
+  // Dimensions are what is used to determine which bot can run the task.
+  //
+  // The bot must have all the matching dimensions, even for repeated keys with
   // multiple different values. It is a logical AND, all values must match.
   //
-  // Items must be sorted.
-  repeated StringListPair dimensions = 9;
+  // values must be sorted.
+  map<string, Strings> dimensions = 9;
   // Environment variables to set when running the task.
+  map<string, string> env = 10;
+  // Task root relative paths to prepend to a given environment variable.
   //
-  // Items must be sorted.
-  repeated StringPair env = 10;
-  // Swarming task root relative paths to prepend to a given environment
-  // variable.
-  //
-  // These allow you to put certain subdirectories of the task into PATH,
+  // This allows to put certain subdirectories of the task into PATH,
   // PYTHONPATH, or other PATH-like environment variables. The order of
   // operations is:
-  //   * Turn slashes into native-platform slashes.
+  //   * Turn slashes into native-platform slashes
   //   * Make the path absolute
   //   * Prepend it to the current value of the envvar using the os-native list
-  //     separator (i.e. `;` on windows, `:` on POSIX).
+  //     separator (i.e. `;` on windows, `:` on POSIX)
   //
-  // Each envvar can have multiple paths to prepend. They will be prepended in
-  // the order seen here.
+  // Each value for a key is prepend in order.
   //
   // For example, if env_paths is:
-  //   [
-  //     (key="PATH", values=["foo", "bar"]),
-  //     (key="CUSTOMPATH", values=["custom"]),
-  //   ]
+  //   {"PATH": ["foo", "bar"], "CUSTOMPATH": ["custom"]}
   //
   // The task would see:
   //   PATH=/path/to/swarming/rundir/foo:/path/to/swarming/rundir/bar:$PATH
   //   CUSTOMPATH=/path/to/swarming/rundir/custom
   //
-  // The paths should always be specified here with forward-slashes, and it must
-  // not attempt to escape the swarming root (i.e. must not contain `..`).
+  // Paths should always be specified with forward-slashes, and it must not
+  // attempt to escape the task's root (i.e. must not contain `..`).
   //
-  // These are applied AFTER evaluating `env` entries.
-  //
-  // Items must be sorted by key, but exceptionally not by values.
-  repeated StringListPair env_paths = 11;
+  // This is applied AFTER evaluating `env`.
+  map<string, Strings> env_paths = 11;
   // Declare what kind of containment shall be used to run the task process
   // in.
   Containment containment = 12;  // Not used yet. https://crbug.com/808836
@@ -742,13 +711,11 @@ message TaskRequest {
   // Tags are 'key:value' strings that describes what the task is about (it's
   // semantic meaning).
   //
-  // It is fine to reuse the same 'key' multiple times. It is not fine to use a
+  // It is fine to pass multiple values for one 'key'. It is not fine to use a
   // key that is also used as a dimension.
   //
   // The tags are indexed, thus can be used for search with exact matches.
-  //
-  // Items must be sorted.
-  repeated string tags = 6;
+  map<string, Strings> tags = 6;
   // User for this task is run, if relevant. Not validated.
   string user = 7;
 
