@@ -901,18 +901,19 @@ class TaskRequestApiTest(TestCase):
         # extra_args cannot be specified with command.
         # secret_bytes cannot be retrieved.
         has_secret_bytes=True,
-        dimensions=[
-          swarming_pb2.StringListPair(key=u'OS', values=[u'Windows-3.1.1']),
-          swarming_pb2.StringListPair(key=u'hostname', values=[u'localhost']),
-          swarming_pb2.StringListPair(key=u'pool', values=[u'default']),
-        ],
-        env=[
-          swarming_pb2.StringPair(key=u'foo', value=u'bar'),
-          swarming_pb2.StringPair(key=u'joe', value=u'2'),
-        ],
-        env_paths=[
-          swarming_pb2.StringListPair(key=u'PATH', values=[u'local/path']),
-        ],
+        dimensions=swarming_pb2.Dimensions(
+            supplemental={
+              u'OS': swarming_pb2.Strings(values=[u'Windows-3.1.1']),
+              u'hostname': swarming_pb2.Strings(values=[u'localhost']),
+            },
+            pool=[u'default']),
+        env={
+          u'foo': u'bar',
+          u'joe': u'2',
+        },
+        env_paths={
+          u'PATH': swarming_pb2.Strings(values=[u'local/path']),
+        },
         execution_timeout=duration_pb2.Duration(seconds=30),
         grace_period=duration_pb2.Duration(seconds=30),
         idempotent=True,
@@ -932,16 +933,11 @@ class TaskRequestApiTest(TestCase):
         # Information.
         create_time=timestamp_pb2.Timestamp(seconds=1262304000),
         name=u'Request name',
-        tags=[
-          u'OS:Windows-3.1.1',
-          u'hostname:localhost',
-          u'pool:default',
-          u'priority:50',
-          u'service_account:foo@gserviceaccount.com',
-          u'swarming.pool.template:no_config',
-          u'tag:1',
-          u'user:Jesus',
-        ],
+        tags=swarming_pb2.Tags(
+          supplemental={
+            u'tag': swarming_pb2.Strings(values=[u'1']),
+          },
+        ),
         user=u'Jesus',
         # Hierarchy.
         task_id=u'776610',
@@ -954,6 +950,46 @@ class TaskRequestApiTest(TestCase):
     actual = swarming_pb2.TaskRequest()
     request.to_proto(actual)
     self.assertEqual(unicode(expected), unicode(actual))
+
+  def test_dimensions_to_proto(self):
+    out = swarming_pb2.Dimensions()
+    dimensions = {
+      u'id': [u'bot1'],
+      u'os': [u'Windows', u'Windows-3.1.1'],
+      u'pool': [u'default'],
+      u'caches': [u'bar', u'foo'],
+    }
+    task_request.dimensions_to_proto(out, dimensions)
+    expected = swarming_pb2.Dimensions(
+        id=[u'bot1'],
+        pool=[u'default'],
+        os=[u'Windows', u'Windows-3.1.1'],
+        supplemental={
+          u'caches': swarming_pb2.Strings(values=[u'bar', u'foo']),
+        })
+    self.assertEqual(expected, out)
+
+  def test_tags_to_proto(self):
+    out = swarming_pb2.Tags()
+    tags = [
+      u'asan:1',
+      u'asan:a_lot',
+      u'bucket:infra',
+      u'build_invocation:foo',
+      u'step_name:unit_test on steroid',
+      u'target_binary:unit_test',
+    ]
+    task_request.tags_to_proto(out, tags)
+    expected = swarming_pb2.Tags(
+        supplemental={
+          u'asan': swarming_pb2.Strings(values=[u'1', u'a_lot']),
+        },
+        bucket=[u'infra'],
+        build_invocation=[u'foo'],
+        step_name=[u'unit_test on steroid'],
+        target_binary=[u'unit_test'],
+    )
+    self.assertEqual(expected, out)
 
   def test_request_bad_values(self):
     with self.assertRaises(AttributeError):
