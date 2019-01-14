@@ -755,19 +755,13 @@ class TaskProperties(ndb.Model):
     if self.extra_args:
       out.extra_args.extend(self.extra_args)
     out.has_secret_bytes = self.has_secret_bytes
-    for key, values in sorted(self.dimensions.iteritems()):
-      v = out.dimensions.add()
-      v.key = key
-      v.values.extend(sorted(values))
-    for key, value in sorted(self.env.iteritems()):
-      v = out.env.add()
-      v.key = key
-      v.value = value
+    for key, values in self.dimensions.iteritems():
+      out.dimensions[key].values.extend(sorted(values))
+    for key, value in self.env.iteritems():
+      out.env[key] = value
     if self.env_prefixes:
-      for key, values in sorted(self.env_prefixes.iteritems()):
-        v = out.env_paths.add()
-        v.key = key
-        v.values.extend(sorted(values))
+      for key, values in self.env_prefixes.iteritems():
+        out.env_paths[key].values.extend(sorted(values))
     # TODO(maruel): Define containment; https://crbug.com/808836
     if self.execution_timeout_secs:
       out.execution_timeout.seconds = self.execution_timeout_secs
@@ -1109,7 +1103,9 @@ class TaskRequest(ndb.Model):
     out.create_time.FromDatetime(self.created_ts)
     if self.name:
       out.name = self.name
-    out.tags.extend(self.tags)
+    for tag in self.tags:
+      key, value = tag.split(':', 1)
+      out.tags[key].values.append(value)
     if self.user:
       out.user = self.user
 
