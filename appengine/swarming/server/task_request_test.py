@@ -901,11 +901,11 @@ class TaskRequestApiTest(TestCase):
         # extra_args cannot be specified with command.
         # secret_bytes cannot be retrieved.
         has_secret_bytes=True,
-        dimensions=[
-          swarming_pb2.StringListPair(key=u'OS', values=[u'Windows-3.1.1']),
-          swarming_pb2.StringListPair(key=u'hostname', values=[u'localhost']),
-          swarming_pb2.StringListPair(key=u'pool', values=[u'default']),
-        ],
+        dimensions={
+          swarming_pb2.Strings(key=u'OS', values=[u'Windows-3.1.1']),
+          swarming_pb2.Strings(key=u'hostname', values=[u'localhost']),
+          swarming_pb2.Strings(key=u'pool', values=[u'default']),
+        },
         env=[
           swarming_pb2.StringPair(key=u'foo', value=u'bar'),
           swarming_pb2.StringPair(key=u'joe', value=u'2'),
