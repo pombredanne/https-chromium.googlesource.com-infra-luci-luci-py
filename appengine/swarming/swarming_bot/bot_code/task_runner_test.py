@@ -1312,6 +1312,30 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     finally:
       server.close()
 
+  def test_kill_and_wait(self):
+    # Test the case where the script swallows the SIGTERM signal and hangs.
+    # TODO(maruel): Fix on Windows with signal.CTRL_BREAK_EVENT.
+    script = os.path.join(self.root_dir, 'ignore_sigterm.py')
+    with open(script, 'wb') as f:
+      f.write(
+          'import signal, sys, time\n'
+          'def handler(_signum, _frame):\n'
+          '  sys.stdout.write("got it\\n")\n'
+          'signal.signal(signal.SIGTERM, handler)\n'
+          'sys.stdout.write("ok\\n")\n'
+          'while True:\n'
+          '  time.sleep(1)\n')
+    cmd = [sys.executable, '-u', script]
+    p = subprocess42.Popen(cmd, detached=True, stdout=subprocess42.PIPE)
+    # Wait for it to write 'ok', so we know it's handling signals. It's
+    # important because otherwise SIGTERM could be sent before the signal
+    # handler is installed, and this is not what we're testing here.
+    self.assertEqual('ok\n', p.stdout.readline())
+
+    # Send a SIGTERM, the process ignores it, send a SIGKILL.
+    exit_code = task_runner.kill_and_wait(p, 0.1, 'testing purposes')
+    self.assertEqual(-signal.SIGKILL, exit_code)
+
 
 class TaskRunnerSmoke(unittest.TestCase):
   # Runs a real process and a real Swarming fake server.
