@@ -46,6 +46,7 @@ import { aggregateTemps, attribute, botLink, column, devices,
          specialFilters, specialSortMap } from './bot-list-helpers'
 import { filterPossibleColumns, filterPossibleKeys,
          filterPossibleValues, makeFilter } from '../queryfilter'
+import { moreOrLess } from '../templates'
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
 const colHead = (col, ele) => html`
@@ -140,20 +141,11 @@ const summaryQueryRow = (ele, count) => html`
   <td>${count.value}</td>
 </tr>`;
 
-// TODO(kjlubick): This could maybe be a generic helper function.
-const fleetCountsToggleSwitch = (ele) => {
-  if (ele._showFleetCounts) {
-    return html`<expand-less-icon-sk></expand-less-icon-sk>`;
-  } else {
-    return html`<expand-more-icon-sk></expand-more-icon-sk>`;
-  }
-};
-
 const summary = (ele) => html`
 <div class=summary ?hidden=${!ele._showFleetCounts}>
   <div class="fleet_header hider title" @click=${ele._toggleFleetsCount}>
     <span>Fleet</span>
-    ${fleetCountsToggleSwitch(ele)}
+    ${moreOrLess(ele._showFleetCounts)}
   </div>
   <table id=fleet_counts>
     ${ele._fleetCounts.map((count) => summaryFleetRow(ele, count))}
@@ -163,7 +155,7 @@ const summary = (ele) => html`
 <div class=summary>
   <div class="fleet_header shower title" ?hidden=${ele._showFleetCounts} @click=${ele._toggleFleetsCount}>
     <span>Fleet</span>
-    ${fleetCountsToggleSwitch(ele)}
+    ${moreOrLess(ele._showFleetCounts)}
   </div>
 
   <div class=title>Selected</div>

@@ -46,6 +46,7 @@ import { appendPossibleColumns, appendPrimaryMap, column, filterTasks, getColHea
          stripTag, taskClass } from './task-list-helpers'
 import { filterPossibleColumns, filterPossibleKeys,
          filterPossibleValues, makeFilter } from '../queryfilter'
+import { moreOrLess } from '../templates'
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
 
@@ -190,18 +191,11 @@ const summaryQueryRow = (ele, count) => html`
   <td>${count.value}</td>
 </tr>`;
 
-// TODO(kjlubick): show only displayed, total, Success, Failure, Pending, Running
-// (deduped?) and hide the rest by default
 const summary = (ele) => html`
 <div class=summary>
-  <div class=title>
+  <div class=title @click=${ele._toggleAllStates}>
     Selected Tasks
-    <expand-more-icon-sk ?hidden=${ele._allStates}
-                         @click=${ele._toggleAllStates}>
-    </expand-more-icon-sk>
-    <expand-less-icon-sk ?hidden=${!ele._allStates}
-                         @click=${ele._toggleAllStates}>
-    </expand-less-icon-sk>
+    ${moreOrLess(ele._allStates)}
   </div>
   <table id=query_counts>
     ${summaryQueryRow(ele, {label: 'Displayed', value: ele._tasks.length})}
