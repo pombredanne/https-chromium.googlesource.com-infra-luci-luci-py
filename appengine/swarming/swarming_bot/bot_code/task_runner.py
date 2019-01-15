@@ -350,11 +350,11 @@ def kill_and_wait(proc, grace_period, reason):
   proc.terminate()
   try:
     proc.wait(grace_period)
-  except subprocess42.TimeoutError:
+  except subprocess42.TimeoutExpired:
     logging.warning('SIGKILL finally due to %s', reason)
     proc.kill()
   exit_code = proc.wait()
-  logging.info('Waiting for process exit in finally - done')
+  logging.info('Process exited with: %d', exit_code)
   return exit_code
 
 
