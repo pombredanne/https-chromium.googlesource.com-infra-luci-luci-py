@@ -20,6 +20,24 @@
     },
     {
       "key": {
+        "uuid": "05ee9fdb_db2af310",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-15T21:20:06Z",
+      "side": 1,
+      "message": "No, it\u0027s just that it\u0027s going to be used in the next CL and I had copy pasted from the next one, without realizing it wasn\u0027t used yet. Removed here.",
+      "parentUuid": "fc5012c8_92f046cd",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4d0821a_aa27f79b",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2019-01-15T21:12:47Z",
       "side": 1,
       "message": "I\u0027m not sure how helpful it is to explicitly list where modules are imported from; is this done elsewhere?",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3dcf66_9d75d17c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-15T21:20:06Z",
+      "side": 1,
+      "message": "No, but here it was confusing since this test does a scatter-gather like fetching of modules.",
+      "parentUuid": "f4d0821a_aa27f79b",
       "revId": "04e7453945a153776d405da01d194a281f0d5681",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -85,6 +121,24 @@
       "side": 1,
       "message": "Adding a return after the raise would seem confusing, so I\u0027m not sure what\u0027s best here.\n\nNote though, doing an explicit `return None` on line 38 might be good though, since sometimes this method does return something.",
       "parentUuid": "5cbf2b09_9255c432",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "260ab918_22229133",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-15T21:20:06Z",
+      "side": 1,
+      "message": "None is fine, done.",
+      "parentUuid": "51490331_cd0f4506",
       "revId": "04e7453945a153776d405da01d194a281f0d5681",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
