@@ -20,9 +20,6 @@ import unittest
 import test_env_bot_code
 test_env_bot_code.setup_test_env()
 
-# Creates a server mock for functions in net.py.
-import net_utils
-
 CLIENT_DIR = os.path.normpath(
     os.path.join(test_env_bot_code.BOT_DIR, '..', '..', '..', 'client'))
 
@@ -70,6 +67,10 @@ def get_manifest(script=None, isolated=None, **kwargs):
   return out
 
 
+def get_task_details(*args, **kwargs):
+  return task_runner.TaskDetails(get_manifest(*args, **kwargs))
+
+
 class FakeAuthSystem(object):
   local_auth_context = None
 
@@ -93,7 +94,7 @@ class FakeAuthSystem(object):
     return {'Fake': 'Header'}, int(time.time() + 300)
 
 
-class TestTaskRunnerBase(net_utils.TestCase):
+class TestTaskRunnerBase(auto_stub.TestCase):
   def setUp(self):
     super(TestTaskRunnerBase, self).setUp()
     self.root_dir = unicode(tempfile.mkdtemp(prefix=u'task_runner'))
@@ -104,9 +105,12 @@ class TestTaskRunnerBase(net_utils.TestCase):
     os.mkdir(self.work_dir)
     os.mkdir(self.logs_dir)
     logging.info('Temp: %s', self.root_dir)
+
+    # Mock this since sawrming_bot.zip is not accessible.
     def _get_run_isolated():
-      return [sys.executable, os.path.join(CLIENT_DIR, 'run_isolated.py')]
+      return [sys.executable, '-u', os.path.join(CLIENT_DIR, 'run_isolated.py')]
     self.mock(task_runner, 'get_run_isolated', _get_run_isolated)
+
     # In case this test itself is running on Swarming, clear the bot
     # environment.
     os.environ.pop('LUCI_CONTEXT', None)
@@ -117,114 +121,43 @@ class TestTaskRunnerBase(net_utils.TestCase):
     os.environ.pop('ISOLATE_SERVER', None)
     # Make HTTP headers consistent
     self.mock(remote_client, 'make_appengine_id', lambda *a: 42)
+    self._server = None
+
+  @property
+  def server(self):
+    if not self._server:
+      self._server = swarming_bot_fake.FakeSwarmingServer()
+    return self._server
 
   def tearDown(self):
     os.chdir(test_env_bot_code.BOT_DIR)
     try:
-      logging.debug(self.logs_dir)
-      for i in os.listdir(self.logs_dir):
-        with open(os.path.join(self.logs_dir, i), 'rb') as f:
-          logging.debug('%s:\n%s', i, ''.join('  ' + line for line in f))
-      file_path.rmtree(self.root_dir)
+      try:
+        if self._server:
+          self._server.close()
+      finally:
+        logging.debug(self.logs_dir)
+        for i in os.listdir(self.logs_dir):
+          with open(os.path.join(self.logs_dir, i), 'rb') as f:
+            logging.debug('%s:\n%s', i, ''.join('  ' + line for line in f))
+        file_path.rmtree(self.root_dir)
     except OSError:
       print >> sys.stderr, 'Failed to delete %s' % self.root_dir
     finally:
       super(TestTaskRunnerBase, self).tearDown()
 
-  @classmethod
-  def get_task_details(cls, *args, **kwargs):
-    return task_runner.TaskDetails(get_manifest(*args, **kwargs))
-
-  def gen_requests(self, cost_usd=0., auth_headers=None, **kwargs):
-    headers = {'Cookie': 'GOOGAPPUID=42'}
-    if auth_headers is not None:
-      headers.update(auth_headers)
-    return [
-      (
-        'https://localhost:1/swarming/api/v1/bot/task_update/23',
-        self.get_check_first(cost_usd, headers=headers),
-        {'must_stop': False, 'ok': True},
-      ),
-      (
-        'https://localhost:1/swarming/api/v1/bot/task_update/23',
-        self.get_check_final(headers=headers, **kwargs),
-        {'must_stop': False, 'ok': True},
-      ),
-    ]
-
-  def requests(self, **kwargs):
-    """Generates the expected HTTP requests for a task run."""
-    self.expected_requests(self.gen_requests(**kwargs))
-
-  def get_check_first(self, cost_usd, headers):
-    def check_first(kwargs):
-      self.assertLessEqual(cost_usd, kwargs['data'].pop('cost_usd'))
-      self.assertEqual(
-        {
-          'data': {
-            'id': 'localhost',
-            'task_id': 23,
-          },
-          'follow_redirects': False,
-          'timeout': 180,
-          'headers': headers,
-        },
-        kwargs)
-    return check_first
-
 
 class TestTaskRunner(TestTaskRunnerBase):
+  """Mocks time for reproducibility."""
   def setUp(self):
     super(TestTaskRunner, self).setUp()
     self.mock(time, 'time', lambda: 1000000000.)
 
-  def get_check_final(
-      self, exit_code=0, output_re=r'^hi\n$', outputs_ref=None,
-      headers=None, isolated_stats=True):
-    def check_final(kwargs):
-      # Ignore these values.
-      kwargs['data'].pop('bot_overhead', None)
-      kwargs['data'].pop('duration', None)
-
-      output = ''
-      if 'output' in kwargs['data']:
-        output = base64.b64decode(kwargs['data'].pop('output'))
-      self.assertTrue(
-          re.match(output_re, output),
-          '%r does not match %s' % (output, output_re))
-
-      expected = {
-        'data': {
-          'cost_usd': 10.,
-          'exit_code': exit_code,
-          'hard_timeout': False,
-          'id': 'localhost',
-          'io_timeout': False,
-          'output_chunk_start': 0,
-          'task_id': 23,
-        },
-        'follow_redirects': False,
-        'timeout': 180,
-        'headers': headers,
-      }
-      if outputs_ref:
-        expected['data']['outputs_ref'] = outputs_ref
-      if isolated_stats:
-        expected['data']['isolated_stats'] = {
-          'download': {
-            'initial_number_items': 0,
-            'initial_size': 0,
-          },
-        }
-      self.assertEqual(expected, kwargs, kwargs)
-    return check_final
-
   def _run_command(self, task_details, headers_cb=None):
     start = time.time()
     self.mock(time, 'time', lambda: start + 10)
-    remote = remote_client.createRemoteClient('https://localhost:1', headers_cb,
-                                              'localhost', self.work_dir,
-                                              False)
+    remote = remote_client.createRemoteClient(
+        self.server.url, headers_cb, 'localhost', self.work_dir, False)
     with luci_context.stage(local_auth=None) as ctx_file:
       return task_runner.run_command(
           remote, task_details, self.work_dir, 3600.,
@@ -361,7 +294,7 @@ class TestTaskRunner(TestTaskRunnerBase):
   def test_run_command_raw(self):
     # This runs the command for real.
     self.requests(cost_usd=1, exit_code=0)
-    task_details = self.get_task_details('print(\'hi\')')
+    task_details = get_task_details('print(\'hi\')')
     expected = {
       u'exit_code': 0,
       u'hard_timeout': False,
@@ -375,7 +308,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     # This runs the command for real.
     self.requests(cost_usd=1, exit_code=0,
                   output_re='.*%slocal%ssmurf\n$' % (os.sep, os.sep))
-    task_details = self.get_task_details(
+    task_details = get_task_details(
       'import os\nprint os.getenv("PATH").split(os.pathsep)[0]',
       env_prefixes={
         'PATH': ['./local/smurf', './other/thing'],
@@ -401,7 +334,7 @@ class TestTaskRunner(TestTaskRunnerBase):
           r'(?P=cwd)%sother%sthing\n'
           r'$'
         ) % (os.sep, os.sep, os.sep, os.sep))
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         '\n'.join([
           'import os',
           'print os.path.realpath(os.getcwd())',
@@ -424,7 +357,7 @@ class TestTaskRunner(TestTaskRunnerBase):
   def test_run_command_raw_with_auth(self):
     # This runs the command for real.
     self.requests(cost_usd=1, exit_code=0, auth_headers={'A': 'a'})
-    task_details = self.get_task_details('print(\'hi\')')
+    task_details = get_task_details('print(\'hi\')')
     expected = {
       u'exit_code': 0,
       u'hard_timeout': False,
@@ -446,7 +379,7 @@ class TestTaskRunner(TestTaskRunnerBase):
           u'namespace': u'default-gzip',
         },
         isolated_stats=False)
-    task_details = self.get_task_details(isolated={
+    task_details = get_task_details(isolated={
       'input': '123',
       'server': 'localhost:1',
       'namespace': 'default-gzip',
@@ -494,8 +427,7 @@ class TestTaskRunner(TestTaskRunnerBase):
   def test_run_command_fail(self):
     # This runs the command for real.
     self.requests(cost_usd=10., exit_code=1)
-    task_details = self.get_task_details(
-        'import sys; print(\'hi\'); sys.exit(1)')
+    task_details = get_task_details('import sys; print(\'hi\'); sys.exit(1)')
     expected = {
       u'exit_code': 1,
       u'hard_timeout': False,
@@ -669,7 +601,7 @@ class TestTaskRunner(TestTaskRunnerBase):
       ),
     ]
     self.expected_requests(requests)
-    task_details = self.get_task_details('print(\'hi\')')
+    task_details = get_task_details('print(\'hi\')')
     expected = {
       u'exit_code': -1,
       u'hard_timeout': False,
@@ -730,7 +662,7 @@ class TestTaskRunner(TestTaskRunnerBase):
       '  f.write(cached)\n'
       'with open("cache_foo/bar", "wb") as f:\n'
       '  f.write("updated_cache")\n')
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         script, caches=[{'name': 'foo', 'path': 'cache_foo', 'hint': '100'}])
     expected = {
       u'exit_code': 0,
@@ -849,7 +781,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     '  l.append(signum);\n'
     '  print(\'got signal %%d\' %% signum);\n'
     '  sys.stdout.flush();\n'
-    'signal.signal(%s, handler);\n'
+    'signal.signal(signal.%s, handler);\n'
     'print(\'hi\');\n'
     'sys.stdout.flush();\n'
     'while not l:\n'
@@ -857,8 +789,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     '    time.sleep(0.01);\n'
     '  except IOError:\n'
     '    pass;\n'
-    'print(\'bye\')') % (
-        'signal.SIGBREAK' if sys.platform == 'win32' else 'signal.SIGTERM')
+    'print(\'bye\')') % ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM')
 
   SCRIPT_SIGNAL_HANG = (
     'import signal, sys, time;\n'
@@ -867,7 +798,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     '  l.append(signum);\n'
     '  print(\'got signal %%d\' %% signum);\n'
     '  sys.stdout.flush();\n'
-    'signal.signal(%s, handler);\n'
+    'signal.signal(signal.%s, handler);\n'
     'print(\'hi\');\n'
     'sys.stdout.flush();\n'
     'while not l:\n'
@@ -876,52 +807,9 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     '  except IOError:\n'
     '    pass;\n'
     'print(\'bye\');\n'
-    'time.sleep(100)') % (
-        'signal.SIGBREAK' if sys.platform == 'win32' else 'signal.SIGTERM')
+    'time.sleep(100)') % ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM')
 
   SCRIPT_HANG = 'import time; print(\'hi\'); time.sleep(100)'
-
-  def get_check_final(
-      self, hard_timeout=False, io_timeout=False, exit_code=None,
-      output_re='^hi\n$', headers=None):
-    def check_final(kwargs):
-      kwargs['data'].pop('bot_overhead', None)
-      if hard_timeout or io_timeout:
-        self.assertLess(
-            self.SHORT_TIME_OUT, kwargs['data'].pop('cost_usd', None))
-        self.assertLess(
-            self.SHORT_TIME_OUT, kwargs['data'].pop('duration', None))
-      else:
-        self.assertLess(0., kwargs['data'].pop('cost_usd', None))
-        self.assertLess(0., kwargs['data'].pop('duration', None))
-
-      output = ''
-      if 'output' in kwargs['data']:
-        output = base64.b64decode(kwargs['data'].pop('output'))
-      self.assertTrue(re.match(output_re, output), (kwargs, output))
-
-      self.assertEqual(
-          {
-            'data': {
-              'exit_code': exit_code,
-              'hard_timeout': hard_timeout,
-              'id': 'localhost',
-              'io_timeout': io_timeout,
-              'isolated_stats': {
-                'download': {
-                  'initial_number_items': 0,
-                  'initial_size': 0,
-                },
-              },
-              'output_chunk_start': 0,
-              'task_id': 23,
-            },
-            'follow_redirects': False,
-            'timeout': 180,
-            'headers': headers,
-          },
-          kwargs)
-    return check_final
 
   def _load_and_run(self, manifest):
     # Dot not mock time since this test class is testing timeouts.
@@ -950,7 +838,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     # Actually 0xc000013a
     sig = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     self.requests(hard_timeout=True, exit_code=sig)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_HANG, hard_timeout=self.SHORT_TIME_OUT)
     expected = {
       u'exit_code': sig,
@@ -967,7 +855,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     # Actually 0xc000013a
     sig = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     self.requests(io_timeout=True, exit_code=sig)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_HANG, io_timeout=self.SHORT_TIME_OUT)
     expected = {
       u'exit_code': sig,
@@ -983,7 +871,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
         hard_timeout=True,
         exit_code=0,
         output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_SIGNAL, hard_timeout=self.SHORT_TIME_OUT)
     # Returns 0 because the process cleaned up itself.
     expected = {
@@ -999,7 +887,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     self.requests(
         io_timeout=True, exit_code=0,
         output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_SIGNAL, io_timeout=self.SHORT_TIME_OUT)
     # Returns 0 because the process cleaned up itself.
     expected = {
@@ -1015,7 +903,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     # Actually 0xc000013a
     sig = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     self.requests(hard_timeout=True, exit_code=sig)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_HANG, hard_timeout=self.SHORT_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     expected = {
@@ -1031,7 +919,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     # Actually 0xc000013a
     sig = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     self.requests(io_timeout=True, exit_code=sig)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_HANG, io_timeout=self.SHORT_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     expected = {
@@ -1048,7 +936,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     self.requests(
         hard_timeout=True, exit_code=exit_code,
         output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG, hard_timeout=self.SHORT_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     # Returns 0 because the process cleaned up itself.
@@ -1066,7 +954,7 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
     self.requests(
         io_timeout=True, exit_code=exit_code,
         output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
-    task_details = self.get_task_details(
+    task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG, io_timeout=self.SHORT_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     # Returns 0 because the process cleaned up itself.
@@ -1092,66 +980,6 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
             '[sys.executable, \'-u\', \'grand_children.py\']))\n'),
       'grand_children.py': 'print \'hi\'',
     }
-
-    def check_final(kwargs):
-      # Warning: this modifies input arguments.
-      # Makes the diffing easier.
-      kwargs['data']['output'] = base64.b64decode(kwargs['data']['output'])
-      self.assertLess(0, kwargs['data'].pop('cost_usd'))
-      self.assertLess(
-          0, kwargs['data'].pop('bot_overhead', None), kwargs['data'])
-      self.assertLess(0, kwargs['data'].pop('duration'))
-      self.assertLess(
-          0., kwargs['data']['isolated_stats']['download'].pop('duration'))
-      # duration==0 can happen on Windows when the clock is in the default
-      # resolution, 15.6ms.
-      self.assertLessEqual(
-          0., kwargs['data']['isolated_stats']['upload'].pop('duration'))
-      for k in ('download', 'upload'):
-        for j in ('items_cold', 'items_hot'):
-          kwargs['data']['isolated_stats'][k][j] = large.unpack(
-              base64.b64decode(kwargs['data']['isolated_stats'][k][j]))
-      self.assertEqual(
-          {
-            'data': {
-              'exit_code': 0,
-              'hard_timeout': False,
-              'id': u'localhost',
-              'io_timeout': False,
-              'isolated_stats': {
-                u'download': {
-                  u'initial_number_items': 0,
-                  u'initial_size': 0,
-                  u'items_cold': [10, 86, 94, 276],
-                  u'items_hot': [],
-                },
-                u'upload': {
-                  u'items_cold': [],
-                  u'items_hot': [],
-                },
-              },
-              'output': 'hi\n',
-              'output_chunk_start': 0,
-              'task_id': 23,
-            },
-            'follow_redirects': False,
-            'timeout': 180,
-            'headers': {'Cookie': 'GOOGAPPUID=42'},
-          },
-          kwargs)
-    requests = [
-      (
-        'https://localhost:1/swarming/api/v1/bot/task_update/23',
-        self.get_check_first(0., {'Cookie': 'GOOGAPPUID=42'}),
-        {'must_stop': False, 'ok': True},
-      ),
-      (
-        'https://localhost:1/swarming/api/v1/bot/task_update/23',
-        check_final,
-        {'must_stop': False, 'ok': True},
-      ),
-    ]
-    self.expected_requests(requests)
 
     server = isolateserver_fake.FakeIsolateServer()
     try:
@@ -1322,25 +1150,8 @@ class TestTaskRunnerNoTimeMock(TestTaskRunnerBase):
       server.close()
 
 
-class TaskRunnerSmoke(unittest.TestCase):
+class TaskRunnerSmoke(TestTaskRunnerBase):
   # Runs a real process and a real Swarming fake server.
-  def setUp(self):
-    super(TaskRunnerSmoke, self).setUp()
-    self.root_dir = tempfile.mkdtemp(prefix='task_runner')
-    logging.info('Temp: %s', self.root_dir)
-    self._server = swarmingserver_bot_fake.Server()
-
-  def tearDown(self):
-    try:
-      self._server.close()
-    finally:
-      try:
-        file_path.rmtree(self.root_dir)
-      except OSError:
-        print >> sys.stderr, 'Failed to delete %s' % self.root_dir
-      finally:
-        super(TaskRunnerSmoke, self).tearDown()
-
   def test_signal(self):
     # Tests when task_runner gets a SIGTERM.
 
@@ -1350,26 +1161,25 @@ class TaskRunnerSmoke(unittest.TestCase):
     # on failure (see TODO in task_runner.py).
     # exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
 
-    os.mkdir(os.path.join(self.root_dir, 'w'))
-    signal_file = os.path.join(self.root_dir, 'w', 'signal')
+    signal_file = os.path.join(self.work_dir, 'signal')
     open(signal_file, 'wb').close()
 
     # As done by bot_main.py.
     manifest = get_manifest(
         script='import os,time;os.remove(%r);time.sleep(60)' % signal_file,
         hard_timeout=60., io_timeout=60.)
-    task_in_file = os.path.join(self.root_dir, 'w', 'task_runner_in.json')
-    task_result_file = os.path.join(self.root_dir, 'w', 'task_runner_out.json')
+    task_in_file = os.path.join(self.work_dir, 'task_runner_in.json')
+    task_result_file = os.path.join(self.work_dir, 'task_runner_out.json')
     with open(task_in_file, 'wb') as f:
       json.dump(manifest, f)
 
     bot = os.path.join(self.root_dir, 'swarming_bot.1.zip')
-    code, _ = swarmingserver_bot_fake.gen_zip(self._server.url)
+    code, _ = swarmingserver_bot_fake.gen_zip(self.server.url)
     with open(bot, 'wb') as f:
       f.write(code)
     cmd = [
       sys.executable, bot, 'task_runner',
-      '--swarming-server', self._server.url,
+      '--swarming-server', self.server.url,
       '--in-file', task_in_file,
       '--out-file', task_result_file,
       '--cost-usd-hour', '1',
@@ -1388,11 +1198,11 @@ class TaskRunnerSmoke(unittest.TestCase):
     # such thing as SIGTERM.
     proc.send_signal(signal.SIGTERM)
     proc.wait()
-    task_runner_log = os.path.join(self.root_dir, 'logs', 'task_runner.log')
+    task_runner_log = os.path.join(self.logs_dir, 'task_runner.log')
     with open(task_runner_log, 'rb') as f:
       logging.info('task_runner.log:\n---\n%s---', f.read())
-    self.assertEqual([], self._server.get_events())
-    tasks = self._server.get_tasks()
+    self.assertEqual([], self.server.get_events())
+    tasks = self.server.get_tasks()
     for task in tasks.itervalues():
       for event in task:
         event.pop('cost_usd')
@@ -1439,7 +1249,7 @@ class TaskRunnerSmoke(unittest.TestCase):
     self.assertEqual(0, proc.returncode)
 
     # Also verify the correct error was posted.
-    errors = self._server.get_errors()
+    errors = self.server.get_errors()
     expected = {
       '23': [{
         u'message': u'task_runner received signal 15',
