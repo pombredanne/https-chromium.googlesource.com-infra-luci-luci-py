@@ -33,8 +33,8 @@ from utils import logging_utils
 from utils import subprocess42
 from utils import tools
 
-import httpserver_mock
-import isolateserver_mock
+import httpserver
+import isolateserver_fake
 
 
 FILE_HASH = u'1' * 40
@@ -181,7 +181,7 @@ class NonBlockingEvent(threading._Event):  # pylint: disable=W0212
     return super(NonBlockingEvent, self).wait(0)
 
 
-class SwarmingServerHandler(httpserver_mock.MockHandler):
+class FakeSwarmingServerHandler(httpserver.Handler):
   """An extremely minimal implementation of the swarming server API v1.0."""
 
   def do_GET(self):
@@ -207,11 +207,11 @@ class SwarmingServerHandler(httpserver_mock.MockHandler):
     raise NotImplementedError(self.path)
 
 
-class MockSwarmingServer(httpserver_mock.MockServer):
-  _HANDLER_CLS = SwarmingServerHandler
+class FakeSwarmingServer(httpserver.Server):
+  _HANDLER_CLS = FakeSwarmingServerHandler
 
   def __init__(self):
-    super(MockSwarmingServer, self).__init__()
+    super(FakeSwarmingServer, self).__init__()
     self._server.tasks = {}
 
 
@@ -275,8 +275,8 @@ class TestIsolated(auto_stub.TestCase, Common):
   def setUp(self):
     auto_stub.TestCase.setUp(self)
     Common.setUp(self)
-    self._isolate = isolateserver_mock.MockIsolateServer()
-    self._swarming = MockSwarmingServer()
+    self._isolate = isolateserver_fake.FakeIsolateServer()
+    self._swarming = FakeSwarmingServer()
 
   def tearDown(self):
     try:
@@ -1447,7 +1447,7 @@ class TestMain(NetTestCase):
     with open(isolated, 'wb') as f:
       f.write(content)
 
-    isolated_hash = isolateserver_mock.hash_content(content)
+    isolated_hash = isolateserver_fake.hash_content(content)
     request = gen_request_data(
         task_slices=[
           {
