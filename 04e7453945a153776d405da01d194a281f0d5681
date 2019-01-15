@@ -1,0 +1,93 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc5012c8_92f046cd",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-15T21:12:47Z",
+      "side": 1,
+      "message": "Is this imported for its side-effects? If so, a comment would be helpful.",
+      "parentUuid": "c785b9da_7d628a18",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4d0821a_aa27f79b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-15T21:12:47Z",
+      "side": 1,
+      "message": "I\u0027m not sure how helpful it is to explicitly list where modules are imported from; is this done elsewhere?",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d8dffee_019254b1",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-15T21:12:47Z",
+      "side": 1,
+      "message": "\u003e Unused import logging.\n\u003e To disable, add: # pylint: disable\u003dunused-import\n\nPlease Fix",
+      "parentUuid": "9af1b7ae_aa44123c",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcab21ee_a2dedea6",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-15T21:12:47Z",
+      "side": 1,
+      "message": "\u003e Unused import SocketServer.\n\u003e To disable, add: # pylint: disable\u003dunused-import\n\nPlease Fix",
+      "parentUuid": "086c420a_ed8b0931",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51490331_cd0f4506",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-15T21:12:47Z",
+      "side": 1,
+      "message": "Adding a return after the raise would seem confusing, so I\u0027m not sure what\u0027s best here.\n\nNote though, doing an explicit `return None` on line 38 might be good though, since sometimes this method does return something.",
+      "parentUuid": "5cbf2b09_9255c432",
+      "revId": "04e7453945a153776d405da01d194a281f0d5681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
