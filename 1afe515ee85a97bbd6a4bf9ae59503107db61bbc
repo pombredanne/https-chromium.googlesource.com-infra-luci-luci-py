@@ -52,6 +52,24 @@
       "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b015a09_6e2e63f0",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-16T22:22:58Z",
+      "side": 1,
+      "message": "I\u0027ve been thinking a bit about this and also wrote this change, which creates a new message Dimensions and Tags:\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1409925\n\nI was thinking about committing this first and iterating on the second one, but maybe it\u0027s worth addressing this right away.",
+      "parentUuid": "b3cc2a67_a8d7f037",
+      "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
