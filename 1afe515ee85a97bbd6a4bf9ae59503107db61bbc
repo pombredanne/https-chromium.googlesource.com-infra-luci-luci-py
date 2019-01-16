@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d64de89_a847b202",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-01-16T22:05:24Z",
+      "side": 1,
+      "message": "This is not how Buildbucket represented dimensions. I think we should be consistent. So either buildbucket or swarming needs to change.",
+      "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
