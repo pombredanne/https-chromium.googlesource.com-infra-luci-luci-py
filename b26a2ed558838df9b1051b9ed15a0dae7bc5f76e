@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19bbac55_1d90c117",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:47:20Z",
+      "side": 1,
+      "message": "Does this mean that the \"-u\" switch disables stdout buffering? If so, this could be made explicit.",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6910894e_1580a40a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:47:20Z",
+      "side": 1,
+      "message": "I\u0027m not sure what finally means in these warning messages; maybe this word could just be removed, or could be rephrased as \"sending SIGTERM due to\" etc.",
+      "range": {
+        "startLine": 351,
+        "startChar": 27,
+        "endLine": 351,
+        "endChar": 34
+      },
+      "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c8b630b_cf4d921e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:47:20Z",
+      "side": 1,
+      "message": "Is this a general thing for Python on POSIX, that the exit code when killed with SIGKILL is -(SIGKILL)? If so, that might be worth adding a comment for.",
+      "range": {
+        "startLine": 1066,
+        "startChar": 49,
+        "endLine": 1066,
+        "endChar": 64
+      },
+      "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
