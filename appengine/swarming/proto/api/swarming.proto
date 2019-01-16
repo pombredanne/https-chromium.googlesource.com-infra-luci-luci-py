@@ -67,30 +67,9 @@ message BotEventsResponse {
 
 // Common messages.
 
-// Represents a mapping of string to a string.
-//
-// The same as a map<key, value>, except that the encoding is deterministic.
-//
-// If the StringPair is itself repeated inside another message, the list
-// must be sorted by key and the keys must be unique.
-message StringPair {
-  string key = 1;
-  string value = 2;
-}
-
-// Represents a mapping of string to a list of strings.
-//
-// The same as a map<key, repeated values>, except that the encoding is
-// deterministic.
-//
-// If the StringListPair is itself repeated inside another message, the list
-// must be sorted by key and the keys must be unique.
-message StringListPair {
-  string key = 1;
-  // All the values for this key. values must be sorted. Human readable.
-  //
-  // This string should make sense to a user in the context of 'key'.
-  repeated string values = 2;
+// Meant to be used as map<string, Strings>.
+message Strings {
+  repeated string values = 1;
 }
 
 
@@ -101,25 +80,11 @@ message StringListPair {
 // Because a Swarming bot is a single execution unit unlike RBE, it doesn't have
 // a concept of owned device at the moment. This may change later.
 message Bot {
-  // Bot ID. It must be unique accross the Swarming fleet. Generally based on
-  // the hostname where the bot runs, but that's not a requirement. Must be
-  // predefined in bots.cfg.
-  //
-  // This value is also included in dimensions for the key 'id'.
-  string bot_id = 1;
   // Bot session ID. An opaque value.
   //
   // There is one bot session ID per bot process ID on the host. When the bot
   // self-upgrades, it creates a new bot session ID.
   string session_id = 2; // Not used yet. https://crbug.com/786735
-  // Pools that this bot belongs to. Normally assigned via bots.cfg. The
-  // pools must be defined in pools.cfg.
-  //
-  // Normally a bot shall belong to a single pool, but belonging to multiple
-  // pool is allowed. This is generally helpful for transitioning bots.
-  //
-  // This value is also included in dimensions for the key 'pool'.
-  repeated string pools = 3;
 
   // Current bot status. A bot status is a state in which the bot is for a
   // certain amount of time.
@@ -133,22 +98,10 @@ message Bot {
   // In Swarming, only a single task can be assigned to a bot at any given time.
   string current_task_id = 6;
 
-  // Bot reported dimensions. dimensions is a {key: [values]} dictionary. This
-  // can be used to declare the properties of the host or for the DUT (Device
-  // Under Test) under control. This is used for task selection.
-  //
-  // In RBE, this is called Property. The difference is that RBE's Property is a
-  // string:string flat dictionary, it doesn't allow repeated values.
-  //
-  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Detailed-Design.md#bot-dimensions
-  //
-  // dimensions MUST be sorted by keys, and each values list must be sorted.
-  // Each dimension key must be unique.
+  // Bot reported dimensions.
   //
   // The values are effectively an OR, a task may match any of the value.
-  //
-  // Human readable.
-  repeated StringListPair dimensions = 7;
+  Dimensions dimensions = 7;
 
   // Bot reported informational state. This can be used to describe the host,
   // the bot itself and the DUT (Device Under Test) under control as applicable.
@@ -596,47 +549,37 @@ message TaskProperties {
 
   // Environment.
 
-  // Dimensions are what is used to determine which bot can run the task. The
-  // bot must have all the matching dimensions, even for repeated keys with
-  // multiple different values. It is a logical AND, all values must match.
+  // Dimensions are what is used to determine which bot can run the task.
   //
-  // Items must be sorted.
-  repeated StringListPair dimensions = 9;
+  // The values are effectively an AND, a bot must expose all of the values to
+  // be chosen.
+  Dimensions dimensions = 9;
   // Environment variables to set when running the task.
+  map<string, string> env = 10;
+  // Task root relative paths to prepend to a given environment variable.
   //
-  // Items must be sorted.
-  repeated StringPair env = 10;
-  // Swarming task root relative paths to prepend to a given environment
-  // variable.
-  //
-  // These allow you to put certain subdirectories of the task into PATH,
+  // This allows to put certain subdirectories of the task into PATH,
   // PYTHONPATH, or other PATH-like environment variables. The order of
   // operations is:
-  //   * Turn slashes into native-platform slashes.
+  //   * Turn slashes into native-platform slashes
   //   * Make the path absolute
   //   * Prepend it to the current value of the envvar using the os-native list
-  //     separator (i.e. `;` on windows, `:` on POSIX).
+  //     separator (i.e. `;` on windows, `:` on POSIX)
   //
-  // Each envvar can have multiple paths to prepend. They will be prepended in
-  // the order seen here.
+  // Each value for a key is prepend in order.
   //
   // For example, if env_paths is:
-  //   [
-  //     (key="PATH", values=["foo", "bar"]),
-  //     (key="CUSTOMPATH", values=["custom"]),
-  //   ]
+  //   {"PATH": ["foo", "bar"], "CUSTOMPATH": ["custom"]}
   //
   // The task would see:
   //   PATH=/path/to/swarming/rundir/foo:/path/to/swarming/rundir/bar:$PATH
   //   CUSTOMPATH=/path/to/swarming/rundir/custom
   //
-  // The paths should always be specified here with forward-slashes, and it must
-  // not attempt to escape the swarming root (i.e. must not contain `..`).
+  // Paths should always be specified with forward-slashes, and it must not
+  // attempt to escape the task's root (i.e. must not contain `..`).
   //
-  // These are applied AFTER evaluating `env` entries.
-  //
-  // Items must be sorted by key, but exceptionally not by values.
-  repeated StringListPair env_paths = 11;
+  // This is applied AFTER evaluating `env`.
+  map<string, Strings> env_paths = 11;
   // Declare what kind of containment shall be used to run the task process
   // in.
   Containment containment = 12;  // Not used yet. https://crbug.com/808836
@@ -739,16 +682,8 @@ message TaskRequest {
   // Note: this value is not indexed. If you want to be able to query for tasks
   // based on names, use tags below.
   string name = 5;
-  // Tags are 'key:value' strings that describes what the task is about (it's
-  // semantic meaning).
-  //
-  // It is fine to reuse the same 'key' multiple times. It is not fine to use a
-  // key that is also used as a dimension.
-  //
-  // The tags are indexed, thus can be used for search with exact matches.
-  //
-  // Items must be sorted.
-  repeated string tags = 6;
+  // Tags are indexed, thus can be used for search with exact matches.
+  Tags tags = 6;
   // User for this task is run, if relevant. Not validated.
   string user = 7;
 
@@ -767,6 +702,78 @@ message TaskRequest {
   string parent_task_id = 9;
   // Send notification to this pubsub topic for updates of this task.
   PubSub pubsub_notification = 10;
+}
+
+// Dimensions are scheduling metadata about the task or a bot.
+message Dimensions {
+  // Dimensions is a {key: [values]} dictionary, with some well known keys.
+  //
+  // This can be used to declare the properties of the host or for the DUT
+  // (Device Under Test) under control. This is used for task selection.
+  //
+  // In RBE, this is called Property. The difference is that RBE's Property is a
+  // string:string flat dictionary, it doesn't allow repeated values.
+  //
+  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Detailed-Design.md#bot-dimensions
+  //
+  // values must be sorted.
+  //
+  // Human readable.
+  map<string, Strings> supplemental = 1;
+  // Bot id.
+  //
+  // Generally based on the hostname where the bot runs, but that's not a
+  // requirement.
+  //
+  // Must be predefined in bots.cfg.
+  //
+  // The value must be unique accross the fleet.
+  //
+  // While it is a repeated value for consistency with the rest of the code,
+  // only a single value is allowed.
+  repeated string id = 2;
+  // Pools that this bot belongs to.
+  //
+  // Normally assigned via bots.cfg. The pools must be defined in pools.cfg.
+  //
+  // It is valid but heavily discouraged to have a bot in multiple pools. This
+  // is generally helpful for transitioning bots.
+  repeated string pool = 3;
+  // Operating system.
+  repeated string os = 4;
+}
+
+// Tags are semantic metadata about the task. It can be thought as labels.
+//
+// Tags are serialized as 'key:value' strings.
+message Tags {
+  // supplemental contains the free form tags that are not well known.
+  //
+  // It is fine to reuse the same key multiple times. It is not fine to use a
+  // key that is also used as a task request dimension, nor one that is well
+  // known below.
+  //
+  // TODO(maruel): How to future proof this, as new tags are added but not yet
+  // known by either the server or the client.
+  map<string, Strings> supplemental = 1;
+
+  // Following is the well known tags. It is recommended to fill the relevant
+  // ones, to help with monitoring.
+  //
+  // While the following are repeated values for consistency with the rest of
+  // the code, only a single value is allowed.
+
+  // build_invocation is a UUID, RBE-style or buildbucket-style.
+  repeated string build_invocation = 2;
+  // target_binary is the primary binary being used. The exact value is context
+  // dependent. It can be a toolchain (e.g. cc) or a test binary (e.g.
+  // foo_test).
+  repeated string target_binary = 3;
+  // step_name is the logical step name. For compilation, the value can be 'CC
+  // foo.cc' and for tests it can be 'foo_test'.
+  repeated string step_name = 4;
+  // bucket is the buildbucket name, if relevant.
+  repeated string bucket = 5;
 }
 
 // PubSub is a Cloud Pub/Sub topic to send task updates to.

@@ -72,6 +72,7 @@ from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bq_state
 from server import config
 from server import task_pack
+from server import task_request
 from server import task_queues
 
 
@@ -170,12 +171,7 @@ class _BotCommon(ndb.Model):
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.Bot."""
-    # Used by BotEvent.to_proto() and BotInfo.to_proto().
-    out.bot_id = self.key.parent().string_id()
     #out.session_id = ''  # https://crbug.com/786735
-    for l in self.dimensions_flat:
-      if l.startswith(u'pool:'):
-        out.pools.append(l[len(u'pool:'):])
 
     # https://crbug.com/916578: MISSSING
     # https://crbug.com/757931: QUARANTINED_BY_SERVER
@@ -195,11 +191,7 @@ class _BotCommon(ndb.Model):
 
     if self.task_id:
       out.current_task_id = self.task_id
-    for key, values in sorted(self.dimensions.iteritems()):
-      d = out.dimensions.add()
-      d.key = key
-      for value in values:
-        d.values.append(value)
+    task_request.dimensions_to_proto(out.dimensions, self.dimensions)
 
     # The BotInfo part.
     if self.state:
