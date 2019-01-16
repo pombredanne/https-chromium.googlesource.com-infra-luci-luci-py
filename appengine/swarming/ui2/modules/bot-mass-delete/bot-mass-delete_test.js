@@ -52,7 +52,6 @@ describe('bot-mass-delete', function() {
     });
   });
 
-
   it('has a list of the passed in dimensions', function(done) {
     createElement((ele) => {
       ele.render();
