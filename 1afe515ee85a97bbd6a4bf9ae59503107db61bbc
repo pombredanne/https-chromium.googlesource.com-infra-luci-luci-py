@@ -34,6 +34,24 @@
       "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3cc2a67_a8d7f037",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-01-16T22:12:01Z",
+      "side": 1,
+      "message": "I mean in general, same data structure is needlessly represented differently in Buildbucket and Swarming protos.\n\n\u0027tags\u0027 is a better example. In Buildbucket tags are \"repeated StringPair tags\". Here they are \u0027map\u003cstring, Strings\u003e\u0027. FWIW, I prefer how Buildbucket does it. It is simpler to work with and more strict (we have an option to preserve order if we want to).",
+      "parentUuid": "ab658b3a_a4f41be4",
+      "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
