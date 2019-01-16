@@ -16,6 +16,24 @@
       "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab658b3a_a4f41be4",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-16T22:06:50Z",
+      "side": 1,
+      "message": "Buildbucket explicitly translates the \u0027optional\u0027 dimensions into task slices, the same way the client does.",
+      "parentUuid": "0d64de89_a847b202",
+      "revId": "1afe515ee85a97bbd6a4bf9ae59503107db61bbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
