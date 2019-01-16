@@ -100,11 +100,11 @@ class PRPCTest(test_env_handlers.AppTestBase):
               authenticated_as='bot:whitelisted-ip',
               version='123',
               ),
-            dimensions=[
-              swarming_pb2.StringListPair(key='id', values=['bot1']),
-              swarming_pb2.StringListPair(key='os', values=['Amiga']),
-              swarming_pb2.StringListPair(key='pool', values=['default']),
-            ]),
+            dimensions={
+              u'id': swarming_pb2.Strings(values=['bot1']),
+              u'os': swarming_pb2.Strings(values=['Amiga']),
+              u'pool': swarming_pb2.Strings(values=['default']),
+            }),
           event=swarming_pb2.BOT_NEW_SESSION,
         ),
       ])
@@ -189,11 +189,11 @@ class PRPCTest(test_env_handlers.AppTestBase):
     resp = swarming_pb2.BotEventsResponse()
     _decode(raw_resp.body, resp)
 
-    dimensions = [
-      swarming_pb2.StringListPair(key='id', values=['bot1']),
-      swarming_pb2.StringListPair(key='os', values=['Amiga']),
-      swarming_pb2.StringListPair(key='pool', values=['default']),
-    ]
+    dimensions = {
+      u'id': swarming_pb2.Strings(values=['bot1']),
+      u'os': swarming_pb2.Strings(values=['Amiga']),
+      u'pool': swarming_pb2.Strings(values=['default']),
+    }
     common_info = swarming_pb2.BotInfo(
         supplemental=struct_pb2.Struct(
             fields={

@@ -734,10 +734,8 @@ class _TaskResultCommon(ndb.Model):
     if self.bot_dimensions:
       # TODO(maruel): Keep a complete snapshot. This is a bit clunky at the
       # moment. https://crbug.com/850560
-      for key, values in sorted(self.bot_dimensions.iteritems()):
-        dst = out.bot.dimensions.add()
-        dst.key = key
-        dst.values.extend(values)
+      for key, values in self.bot_dimensions.iteritems():
+        out.bot.dimensions[key].values.extend(values)
         if key == u'id':
           out.bot.bot_id = values[0]
         elif key == u'pool':
