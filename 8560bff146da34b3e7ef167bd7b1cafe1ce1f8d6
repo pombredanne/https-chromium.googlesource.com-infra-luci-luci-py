@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c60a7a7_8eb5bb8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "guarantee",
+      "range": {
+        "startLine": 16,
+        "startChar": 69,
+        "endLine": 16,
+        "endChar": 79
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6e460bc_3e7a1b0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "I\u0027m not sure whether this is ironic. Although I usually have trouble with telling whether something counts as \"ironic\" :-P",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 10
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4628ab1_736ac01a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "\"Lazily\"",
+      "range": {
+        "startLine": 175,
+        "startChar": 7,
+        "endLine": 175,
+        "endChar": 11
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82ce98f6_d09e8e4c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "\"Lazily\"",
+      "range": {
+        "startLine": 182,
+        "startChar": 7,
+        "endLine": 182,
+        "endChar": 11
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "171d7a84_0c3a4a1f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "Is the main point of this test that 3-level-deep subprocesses are OK and should work?",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 65
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f330d90_9198f23d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "The description of this test could potentially be made clearer; I don\u0027t think I understand how it works.",
+      "range": {
+        "startLine": 750,
+        "startChar": 0,
+        "endLine": 750,
+        "endChar": 39
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07bbe9c6_b936ba15",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-16T22:59:23Z",
+      "side": 1,
+      "message": "Why? Is this a general windows thing that this is the constant used for exit code for terminated processes?",
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
