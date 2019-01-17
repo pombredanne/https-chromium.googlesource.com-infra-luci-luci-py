@@ -180,9 +180,9 @@ class BotManagementTest(test_case.TestCase):
         event=swarming_pb2.BOT_NEW_SESSION,
         bot=swarming_pb2.Bot(
             bot_id=u'id1',
-            dimensions=[
-              swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
-            ],
+            dimensions={
+              u'id': swarming_pb2.Strings(values=[u'id1']),
+            },
             status=swarming_pb2.OVERHEAD_MAINTENANCE_EXTERNAL,
             status_msg=u'Too hot',
             info=swarming_pb2.BotInfo(
@@ -216,11 +216,10 @@ class BotManagementTest(test_case.TestCase):
         bot=swarming_pb2.Bot(
             bot_id=u'id1',
             pools=[u'next', u'previous'],
-            dimensions=[
-              swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
-              swarming_pb2.StringListPair(
-                  key=u'pool', values=[u'next', u'previous']),
-            ],
+            dimensions={
+              u'id': swarming_pb2.Strings(values=[u'id1']),
+              u'pool': swarming_pb2.Strings(values=[u'next', u'previous']),
+            },
             status=swarming_pb2.QUARANTINED_BY_BOT,
             status_msg=u'sad bot',
             info=swarming_pb2.BotInfo(
