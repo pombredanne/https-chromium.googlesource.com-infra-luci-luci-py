@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1684b5d9_a6a66de5",
+        "filename": "appengine/components/components/endpoints_webapp2/partial_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-01-17T21:25:24Z",
+      "side": 1,
+      "message": "\u0027 a (b, c) \u0027",
+      "range": {
+        "startLine": 588,
+        "startChar": 36,
+        "endLine": 588,
+        "endChar": 45
+      },
+      "revId": "0e0f0cbf7914648b02c0a5cf2fb17b5c42297023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
