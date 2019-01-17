@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8f27f34_e0c6f7b6",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-01-17T22:19:40Z",
+      "side": 1,
+      "message": "Style here is:\nif \u003ccond\u003e\n  ...\n\u003cblank line\u003e\nelif \u003ccond\u003e\n  ...\n\u003cblank line\u003e\n\nPrefer matching the existing style, even though the new condition has very limited processing (i.e. add blank line above 162 and below 163).",
+      "revId": "f047f37199815ee3b4102df6f06f28c3fca012c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
