@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cea08ef7_056d1035",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-17T19:13:58Z",
+      "side": 1,
+      "message": "Does expose mean something other than \"have\" here? (i.e. is there such a thing as a bot having a dimension but not exposing it?) If not, this could be rephrased as \"a bot must match all dimensions to be selected\".",
+      "range": {
+        "startLine": 601,
+        "startChar": 51,
+        "endLine": 601,
+        "endChar": 57
+      },
+      "revId": "62c744159bed7c9c06d3005bde38d5a2c6931601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c9cec8_88107f9c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-17T19:13:58Z",
+      "side": 1,
+      "message": "\"allows one\" or \"allows you\" still sounds better to me.",
+      "range": {
+        "startLine": 612,
+        "startChar": 10,
+        "endLine": 612,
+        "endChar": 16
+      },
+      "revId": "62c744159bed7c9c06d3005bde38d5a2c6931601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
