@@ -43,6 +43,24 @@
     },
     {
       "key": {
+        "uuid": "609dd02e_8e05dd97",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:30:30Z",
+      "side": 1,
+      "message": "That\u0027s the challenge with this solution. It makes the processing of this message more cumbersome, especially as more values are added. That\u0027s why I\u0027m ambivalent about this solution.",
+      "parentUuid": "72030c92_4e77b076",
+      "revId": "e7cbafd2529f0ba82008bbfede0b85df2a54d369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34180f38_d01dcf28",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 3
@@ -54,6 +72,24 @@
       "writtenOn": "2019-01-17T00:24:58Z",
       "side": 1,
       "message": "can we have buildername too?",
+      "revId": "e7cbafd2529f0ba82008bbfede0b85df2a54d369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c86a1349_be9a9678",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:30:30Z",
+      "side": 1,
+      "message": "The exact list of items is to be determined, but we need to decide if we want this kind of solution in the first place.",
+      "parentUuid": "34180f38_d01dcf28",
       "revId": "e7cbafd2529f0ba82008bbfede0b85df2a54d369",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
