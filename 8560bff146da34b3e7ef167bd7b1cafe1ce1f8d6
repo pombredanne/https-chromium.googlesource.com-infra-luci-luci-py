@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7b7bc0de_bc670ec4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c60a7a7_8eb5bb8d",
+      "range": {
+        "startLine": 16,
+        "startChar": 69,
+        "endLine": 16,
+        "endChar": 79
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6e460bc_3e7a1b0a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 19
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-16T22:59:23Z",
       "side": 1,
       "message": "I\u0027m not sure whether this is ironic. Although I usually have trouble with telling whether something counts as \"ironic\" :-P",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 10
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c242669_649a342b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Yeah it\u0027s not ironic, but it was way more pain than worth to get this advantage.",
+      "parentUuid": "c6e460bc_3e7a1b0a",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8b3ad1d0_06ab2dbe",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4628ab1_736ac01a",
+      "range": {
+        "startLine": 175,
+        "startChar": 7,
+        "endLine": 175,
+        "endChar": 11
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82ce98f6_d09e8e4c",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 19
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ac04cd8b_2eca44dc",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82ce98f6_d09e8e4c",
+      "range": {
+        "startLine": 182,
+        "startChar": 7,
+        "endLine": 182,
+        "endChar": 11
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "171d7a84_0c3a4a1f",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 19
@@ -105,6 +201,30 @@
       "writtenOn": "2019-01-16T22:59:23Z",
       "side": 1,
       "message": "Is the main point of this test that 3-level-deep subprocesses are OK and should work?",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 65
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2659640c_55b3366e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Yes. In practice, it is the equivalent of test_isolated_io_signal_grand_children() that fails, I wanted one that succeeds too.",
+      "parentUuid": "171d7a84_0c3a4a1f",
       "range": {
         "startLine": 432,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "a65d07a8_a11817a6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Rewrote as:\n\n    # Case where a task started and a client asks the server to kill the task.\n    # In this case the task results in state KILLED.",
+      "parentUuid": "4f330d90_9198f23d",
+      "range": {
+        "startLine": 750,
+        "startChar": 0,
+        "endLine": 750,
+        "endChar": 39
+      },
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07bbe9c6_b936ba15",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 19
@@ -154,6 +298,24 @@
       "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "993492f7_2688f9ba",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T00:01:10Z",
+      "side": 1,
+      "message": "Yes, but only in the case of Ctrl-C. I\u0027ve put it here to help searching.",
+      "parentUuid": "07bbe9c6_b936ba15",
+      "revId": "8560bff146da34b3e7ef167bd7b1cafe1ce1f8d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
