@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ded77b98_ff1968fe",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T01:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19bbac55_1d90c117",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6910894e_1580a40a",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-16T22:47:20Z",
       "side": 1,
       "message": "I\u0027m not sure what finally means in these warning messages; maybe this word could just be removed, or could be rephrased as \"sending SIGTERM due to\" etc.",
+      "range": {
+        "startLine": 351,
+        "startChar": 27,
+        "endLine": 351,
+        "endChar": 34
+      },
+      "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2290112d_662094bf",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T01:04:22Z",
+      "side": 1,
+      "message": "It has been useful when tracing issues.",
+      "parentUuid": "6910894e_1580a40a",
       "range": {
         "startLine": 351,
         "startChar": 27,
@@ -68,6 +116,30 @@
       "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f7b4e3f_367faccd",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-17T01:04:22Z",
+      "side": 1,
+      "message": "That\u0027s normal for any posix process. you can do the same at the console with `kill -9 1234` to kill process 1234, which will return the exit code -9.",
+      "parentUuid": "0c8b630b_cf4d921e",
+      "range": {
+        "startLine": 1066,
+        "startChar": 49,
+        "endLine": 1066,
+        "endChar": 64
+      },
+      "revId": "b26a2ed558838df9b1051b9ed15a0dae7bc5f76e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
