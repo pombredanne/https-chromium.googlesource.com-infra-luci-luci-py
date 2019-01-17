@@ -159,7 +159,8 @@ def _parse(fields):
       if stack[-1].expecting_name:
         stack[-1].add_field(i)
       stack[-1].expecting_name = True
-
+    elif fields[i] == ' ':
+      pass
     elif fields[i] == '(':
       # Maintain accumulator invariant.
       # A name must occur before any (.
