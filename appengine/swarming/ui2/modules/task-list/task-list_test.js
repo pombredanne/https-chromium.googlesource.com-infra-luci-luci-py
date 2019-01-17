@@ -281,6 +281,12 @@ describe('task-list', function() {
 
             expect(countRows[0]).toMatchTextContent('Displayed: 20');
 
+            expect(countRows[3].innerHTML).toContain('<a ', 'contains a link');
+            let link = $$('a', countRows[3]);
+            expect(link.href).toContain('/tasklist?at=false&c=name&c=created_ts&c=pending_time&' +
+                  'c=duration&c=bot&c=pool-tag&c=state&d=desc&et=1545237983234&' +
+                  'f=state%3ACOMPLETED_FAILURE&k=&n=true&s=created_ts&st=1545151583000&v=false');
+
             // The true on flush waits for res.json() to resolve too
             fetchMock.flush(true).then(() => {
               expect(countRows[5]).toMatchTextContent('Running: 12345');
@@ -776,6 +782,40 @@ describe('task-list', function() {
           });
         });
 
+    it('updates the links with filters and other settings', function(done) {
+      loggedInTasklist((ele) => {
+        ele._startTime = 1545151583000;
+        ele._endTime = 1545237981000;
+        ele._sort = 'completed_ts';
+        ele._filters = ['pool-tag:Chrome', 'state:DEDUPED'];
+        ele.render();
+
+        let countRows = $('#query_counts tr', ele);
+        expect(countRows).toBeTruthy();
+
+        expect(countRows[3].innerHTML).toContain('<a ', 'contains a link');
+        let link = $$('a', countRows[3]);
+        expect(link.href).toContain('/tasklist?at=false&c=name&c=created_ts&' +
+            'c=pending_time&c=duration&c=bot&c=pool-tag&c=state&d=desc&et=1545237981000&' +
+            'f=pool-tag%3AChrome&f=state%3ACOMPLETED_FAILURE&k=&n=true&s=completed_ts&' +
+            'st=1545151583000&v=false');
+        done();
+      });
+    });
+
+    it('updates the matching bots link', function(done) {
+      loggedInTasklist((ele) => {
+        ele._filters = ['device_type-tag:nemo', 'state:DEDUPED'];
+        ele._knownDimensions = ['device_type', 'os'];
+        ele.render();
+
+        let link = $$('.options > a', ele);
+        expect(link).toBeTruthy();
+
+        expect(link.href).toContain('/botlist?c=id&c=os&c=task&c=status&c=device_type&f=device_type%3Anemo');
+        done();
+      });
+    });
   }); // end describe('dynamic behavior')
 
   describe('api calls', function() {
@@ -820,8 +860,30 @@ describe('task-list', function() {
         // limit=100 comes from the default limit value.
         expect(gets).toContainRegex(/\/_ah\/api\/swarming\/v1\/tasks\/list.+limit=100.*/);
 
-        checkAuthorizationAndNoPosts(calls)
+        checkAuthorizationAndNoPosts(calls);
         done();
+      });
+    });
+
+    it('counts correctly with filters', function(done) {
+      loggedInTasklist((ele) => {
+        ele._filters = ['os-tag:Android'];
+        fetchMock.resetHistory();
+        ele._addFilter('state:PENDING_RUNNING');
+        fetchMock.flush(true).then(() => {
+          let calls = fetchMock.calls(MATCHED, 'GET');
+          expect(calls.length).toBe(1+11, '1 from task-list and 11 counts');
+
+          let gets = calls.map((c) => c[0]);
+          for (let get of gets) {
+            // make sure there aren't two states when we do the count (which
+            // appends a state)
+            expect(get).not.toMatch(/state.+state/);
+            // %3A is url encoded colon (:)
+            expect(get).toMatch(/tags=os%3AAndroid/);
+          }
+          done();
+        });
       });
     });
   }); // end describe('api calls')
