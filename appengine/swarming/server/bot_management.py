@@ -184,7 +184,7 @@ class _BotCommon(ndb.Model):
     # https://crbug.com/913978: RESERVED
     if self.quarantined:
       out.status = swarming_pb2.QUARANTINED_BY_BOT
-      msg = self.state.get(u'quarantined')
+      msg = (self.state or {}).get(u'quarantined')
       if msg:
         out.status_msg = msg
     elif self.maintenance_msg:
