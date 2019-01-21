@@ -814,7 +814,11 @@ def _run_manifest(botobj, manifest, start):
       # start.
       work_dir = tempfile.mkdtemp(dir=botobj.base_dir, prefix='w')
     else:
-      os.makedirs(work_dir)
+      try:
+        fs.makedirs(work_dir)
+      except OSError:
+        # Sometimes it's a race condition, so do a last ditch attempt.
+        work_dir = tempfile.mkdtemp(dir=botobj.base_dir, prefix='w')
 
     env = os.environ.copy()
     # Windows in particular does not tolerate unicode strings in environment
