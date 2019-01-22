@@ -22,6 +22,30 @@
       "revId": "70a3501003deeb4f1ee21ae11377d9f02aeb4696",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33853652_eb694347",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-22T17:45:57Z",
+      "side": 1,
+      "message": "Because we don\u0027t know the encoding yet. This is especially problematic on Windows, but even some linux systems do not use UTF8 (like in China).",
+      "parentUuid": "171b4026_7304a88d",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "70a3501003deeb4f1ee21ae11377d9f02aeb4696",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
