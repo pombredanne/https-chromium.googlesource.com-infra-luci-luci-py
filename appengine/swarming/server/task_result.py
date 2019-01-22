@@ -488,14 +488,13 @@ class _TaskResultCommon(ndb.Model):
   # Time when a bot reaped this task.
   started_ts = ndb.DateTimeProperty()
 
-  # Time when the bot completed the task. Note that if the job was improperly
-  # handled, for example state is BOT_DIED, abandoned_ts is used instead of
-  # completed_ts.
+  # Time when the task was not considered for execution anymore, or the bot
+  # completed its execution.
   #
-  # In case of KILLED, both can be set, abandoned_ts is the time the user
-  # requested the task to be killed, and completed_ts is the time the task
-  # completed.
+  # For old entities prior to 2019-02-01, this value can be unset.
   completed_ts = ndb.DateTimeProperty()
+  # Set when a task had an internal failure, timed out or was killed by a client
+  # request.
   abandoned_ts = ndb.DateTimeProperty()
 
   # Children tasks that were triggered by this task. This is set when the task
@@ -545,6 +544,7 @@ class _TaskResultCommon(ndb.Model):
 
   @property
   def ended_ts(self):
+    # TODO(maruel): 2020-07-01: Remove and use completed_ts.
     return self.completed_ts or self.abandoned_ts
 
   @property
@@ -720,10 +720,7 @@ class _TaskResultCommon(ndb.Model):
       out.end_time.FromDatetime(self.completed_ts)
     if self.abandoned_ts:
       out.abandon_time.FromDatetime(self.abandoned_ts)
-      # Eventually abandoned_ts will be when the task is killed or timed out,
-      # and completed_ts always when the task completed. Stay compatible with
-      # entities not storing completed_ts in this case by copying the value in
-      # the proto.
+      # Stay compatible with old entities.
       if not self.completed_ts:
         out.end_time.FromDatetime(self.abandoned_ts)
     if self.duration:
