@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f5a247a_ee399085",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-01-22T23:40:36Z",
+      "side": 1,
+      "message": "I believe pop(0) is O(n).\nfor char in self.accumulator:\n  if char !\u003d \u0027 \u0027:\n    break\n  i +\u003d 1\n\nThen strip instead of rstrip on L108.",
+      "revId": "b13ffb887f4145c3966eed6cd7437c1b012376d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

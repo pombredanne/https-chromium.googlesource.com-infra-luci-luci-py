@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49d815f2_44dc1c7e",
+        "filename": "appengine/components/components/endpoints_webapp2/partial.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-01-22T23:40:36Z",
+      "side": 0,
+      "message": "Really minor useless comment, but per style elsewhere in this if/elif.../else block, this blank line should be restored.",
+      "revId": "b47734c968e7ff9472a8099401b1052be9b3a5b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
