@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0e9565f_4b4d7167",
+        "filename": "appengine/config_service/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-01-22T17:32:39Z",
+      "side": 1,
+      "message": "this is the default. Please remove, and is_enabled_callback too",
+      "range": {
+        "startLine": 65,
+        "startChar": 33,
+        "endLine": 65,
+        "endChar": 68
+      },
+      "revId": "accb14da75c736dbf85fbea72a2fcc6e81f3c3db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
