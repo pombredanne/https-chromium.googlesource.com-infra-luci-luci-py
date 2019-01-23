@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a76cb5ae_0fdfb828",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-23T21:39:57Z",
+      "side": 1,
+      "message": "Ah so it\u0027s a list, not a dict. Fixed.",
+      "parentUuid": "633ad674_7ebf20bb",
+      "revId": "c860e8c190ef77a72f1aa7ae134f819ead5f8d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "523ce13b_bb459d59",
         "filename": "appengine/swarming/server/pools_config.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "c860e8c190ef77a72f1aa7ae134f819ead5f8d02",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bff870a7_e1ad1e67",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-23T21:39:57Z",
+      "side": 1,
+      "message": "Fixed and changed {} to [].",
+      "parentUuid": "523ce13b_bb459d59",
+      "revId": "c860e8c190ef77a72f1aa7ae134f819ead5f8d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
