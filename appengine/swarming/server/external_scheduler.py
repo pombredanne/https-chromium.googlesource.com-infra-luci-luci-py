@@ -167,7 +167,7 @@ def notify_request(es_cfg, request, result_summary):
     s_pb = item.task.slices.add()
     s_pb.dimensions.extend(flat_dimensions)
 
-  item.task.state = result_summary.state
+  item.task.state = State.to_proto(result_summary.state)
   if result_summary.bot_id:
     # TODO(akeshet): We should only actually set this is state is running.
     item.task.bot_id = result_summary.bot_id

@@ -105,7 +105,7 @@ class State(object):
   is using the same values:
   https://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_rpcs.py?q=TaskState\(
 
-  It's in fact an enum.
+  NOTE: These values are NOT THE SAME as swarming.proto:TaskState.
   """
   RUNNING = 0x10      # 16
   PENDING = 0x20      # 32
@@ -142,6 +142,18 @@ class State(object):
     NO_RESOURCE: 'No resource available',
   }
 
+  _TO_PROTO = {
+    RUNNING: swarming_pb2.RUNNING,
+    PENDING: swarming_pb2.PENDING,
+    EXPIRED: swarming_pb2.EXPIRED,
+    TIMED_OUT: swarming_pb2.TIMED_OUT,
+    BOT_DIED: swarming_pb2.BOT_DISAPPEARED,
+    CANCELED: swarming_pb2.CANCELED,
+    COMPLETED: swarming_pb2.COMPLETED,
+    KILLED: swarming_pb2.KILLED,
+    NO_RESOURCE: swarming_pb2.NO_RESOURCE,
+  }
+
   @classmethod
   def to_string(cls, state):
     """Returns a user-readable string representing a State."""
@@ -149,6 +161,12 @@ class State(object):
       raise ValueError('Invalid state %s' % state)
     return cls._NAMES[state]
 
+  @classmethod
+  def to_proto(cls, state):
+    """Converts a state to a swarming.proto:TaskState."""
+    if state not in cls._TO_PROTO:
+      raise ValueError('Invalid state %s' % state)
+    return cls._TO_PROTO[state]
 
 class StateProperty(ndb.IntegerProperty):
   """State of a single task as a model property."""
