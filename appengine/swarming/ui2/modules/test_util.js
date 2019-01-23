@@ -136,7 +136,7 @@ export function requireLogin(logged_in, delay=100) {
         if (logged_in instanceof Function) {
           return {
             status: 200,
-            body: JSON.stringify(logged_in()),
+            body: JSON.stringify(logged_in(url, opts)),
             headers: {'Content-Type':'application/json'},
           };
         }
