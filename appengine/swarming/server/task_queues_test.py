@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -231,9 +232,68 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     pass
 
   def test_dimensions_to_flat(self):
-    self.assertEqual(
-        ['a:bee', 'a:c', 'cee:zee'],
-        task_queues.dimensions_to_flat({'a': ['c', 'bee'], 'cee': ['zee']}))
+    actual = task_queues.dimensions_to_flat(
+        {u'a': [u'c', u'bee'], u'cee': [u'zee']})
+    self.assertEqual([u'a:bee', u'a:c', u'cee:zee'], actual)
+
+  def test_dimensions_to_flat_long_ascii(self):
+    key = u'a' * 64
+    actual = task_queues.dimensions_to_flat(
+        {
+          key: [
+            # Too long.
+            u'b' * 257,
+            # Ok.
+            u'c' * 256,
+          ],
+        })
+    expected = [
+        key + u':' + u'b' * 256 + u'…',
+        key + u':' + u'c' * 256,
+    ]
+    self.assertEqual(expected, actual)
+
+  def test_dimensions_to_flat_long_unicode(self):
+    key = u'a' * 64
+    actual = task_queues.dimensions_to_flat(
+        {
+          key: [
+            # Ok.
+            u'⌛' * 256,
+            # Too long.
+            u'⛔' * 257,
+          ],
+        })
+    expected = [
+        key + u':' + u'⌛' * 256,
+        key + u':' + u'⛔' * 256 + u'…',
+    ]
+    self.assertEqual(expected, actual)
+
+  def test_dimensions_to_flat_long_unicode_non_BMP(self):
+    # For non-BMP characters, the length is effectively halved for now.
+    key = u'a' * 64
+    actual = task_queues.dimensions_to_flat(
+        {
+          key: [
+            # Too long.
+            u'💥' * 129,
+            # Ok.
+            u'😬' * 128,
+          ],
+        })
+    expected = [
+        key + u':' + u'💥' * 128 + u'…',
+        key + u':' + u'😬' * 128,
+    ]
+    self.assertEqual(expected, actual)
+  def test_oh_god_python(self):
+    # An emoji in the base plane is 1 character.
+    self.assertEqual(1, len(u'⌛'))
+    self.assertEqual(1, len(u'⛔'))
+    # Python considers emojis in the supplemental page to be 2 characters.
+    self.assertEqual(2, len(u'😬'))
+    self.assertEqual(2, len(u'💥'))
 
   def test_probably_has_capacity_empty(self):
     # The bot can service this dimensions.
