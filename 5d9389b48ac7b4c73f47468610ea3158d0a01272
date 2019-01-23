@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3133ceb_a99b5e80",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-23T15:20:46Z",
+      "side": 1,
+      "message": "What happens if f contains a filter that is a superset, like \u0027os:Windows\u0027 vs \u0027os:Windows-7\u0027 ?",
+      "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b8117c8_4cd5e2dd",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-23T15:20:46Z",
+      "side": 1,
+      "message": "I wish the columns were not specified in the URL when it\u0027s the default ones, but I don\u0027t know how painful it is to implement. As a matter of fact, anything that is the default value should be skipped, like sort. That\u0027s low priority though.",
+      "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2860c9c6_43f5e22d",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-23T15:20:46Z",
+      "side": 1,
+      "message": "Later, we\u0027ll probably want to revisit once https://crbug.com/913953 is done and we can use https://cs.chromium.org/chromium/infra/luci/appengine/swarming/proto/api/swarming.proto as more values will be usable statically.",
+      "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
