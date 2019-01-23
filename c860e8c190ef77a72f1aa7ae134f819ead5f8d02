@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "633ad674_7ebf20bb",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-01-23T21:28:53Z",
+      "side": 1,
+      "message": "\"key1:value1\", \"key2:value2\"",
+      "revId": "c860e8c190ef77a72f1aa7ae134f819ead5f8d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "523ce13b_bb459d59",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-01-23T21:28:53Z",
+      "side": 1,
+      "message": "This is not correct, see https://cs.chromium.org/chromium/infra/luci/appengine/swarming/proto/config/pools.proto?sq\u003dpackage:chromium\u0026dr\u003dCSs\u0026g\u003d0\u0026l\u003d363",
+      "revId": "c860e8c190ef77a72f1aa7ae134f819ead5f8d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
