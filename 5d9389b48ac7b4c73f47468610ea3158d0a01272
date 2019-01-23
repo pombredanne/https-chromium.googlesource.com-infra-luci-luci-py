@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "789927bb_658d9df2",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-23T15:27:27Z",
+      "side": 1,
+      "message": "newFilter is only ever a status:FOO, so none of those have supersets.\n\nFurther, searchParams is a list of strings, so indexOf only does a strict match, so os:Windows would not match against os:Windows-7",
+      "parentUuid": "d3133ceb_a99b5e80",
+      "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b8117c8_4cd5e2dd",
         "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ae78e493_8e1a6ec0",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-23T15:27:27Z",
+      "side": 1,
+      "message": "That could be done, but would add some code complexity to the stateReflector function called in the constructor. Agreed that it\u0027s low priority.",
+      "parentUuid": "9b8117c8_4cd5e2dd",
+      "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2860c9c6_43f5e22d",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2019-01-23T15:20:46Z",
       "side": 1,
       "message": "Later, we\u0027ll probably want to revisit once https://crbug.com/913953 is done and we can use https://cs.chromium.org/chromium/infra/luci/appengine/swarming/proto/api/swarming.proto as more values will be usable statically.",
+      "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f27986c_d934c368",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-01-23T15:27:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2860c9c6_43f5e22d",
       "revId": "5d9389b48ac7b4c73f47468610ea3158d0a01272",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
