@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "5cf07fed_7c23f465",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-23T19:03:12Z",
+      "side": 1,
+      "message": "SGTM",
+      "parentUuid": "45a17f97_846ae192",
+      "range": {
+        "startLine": 665,
+        "startChar": 38,
+        "endLine": 666,
+        "endChar": 7
+      },
+      "revId": "f378f0ccaed0ca1735def218b52aa7e77ba19974",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41891885_ff243e62",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 4
