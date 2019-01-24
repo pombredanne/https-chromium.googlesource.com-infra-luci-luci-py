@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66ce1677_7fd29b1c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-24T17:56:24Z",
+      "side": 1,
+      "message": "This comment is a bit unclear, and could possibly be expanded; if I understand correctly, cron_delete_old_task_requests enqueues task queue tasks to delete swarming tasks. tasks_succeeded and tasks_failed are the numbers of task queue tasks that were enqueued (or not).",
+      "range": {
+        "startLine": 1588,
+        "startChar": 4,
+        "endLine": 1588,
+        "endChar": 20
+      },
+      "revId": "49f1ec81cf229e5fa155cc23234042e82b7d2310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7530bf54_596c2993",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-24T17:56:24Z",
+      "side": 1,
+      "message": "Optional: Technically the task_ids aren\u0027t yet ndb keys, they have to be converted or unpacked, it looks like, so this could also be phrased as \"Deletes the tasks with the specified IDs\".",
+      "range": {
+        "startLine": 1652,
+        "startChar": 27,
+        "endLine": 1652,
+        "endChar": 31
+      },
+      "revId": "49f1ec81cf229e5fa155cc23234042e82b7d2310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
