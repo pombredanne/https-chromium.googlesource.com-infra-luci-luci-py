@@ -16,6 +16,24 @@
       "revId": "dcba72549f5d3a15266ca5bca61f7c08d5852814",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a04747_b6cb5ea0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2019-01-25T15:16:34Z",
+      "side": 1,
+      "message": "Done. Page at https://www.kernel.org/doc/Documentation/cputopology.txt seems to only describe using the new path (i.e. cpuX after /sys/devices/system/cpu/), so I\u0027d skip referencing it until we\u0027ve removed the old path. Otherwise, it may be unclear the old path is still kept here.",
+      "parentUuid": "67cc953a_63954734",
+      "revId": "dcba72549f5d3a15266ca5bca61f7c08d5852814",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
