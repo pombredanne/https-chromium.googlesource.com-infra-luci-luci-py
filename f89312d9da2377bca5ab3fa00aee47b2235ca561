@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ea0d1d0_4db2d5dc",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1115956
+      },
+      "writtenOn": "2019-01-25T14:40:45Z",
+      "side": 1,
+      "message": "So this is a fallback location? Could you add a comment?",
+      "range": {
+        "startLine": 345,
+        "startChar": 7,
+        "endLine": 345,
+        "endChar": 61
+      },
+      "revId": "f89312d9da2377bca5ab3fa00aee47b2235ca561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
