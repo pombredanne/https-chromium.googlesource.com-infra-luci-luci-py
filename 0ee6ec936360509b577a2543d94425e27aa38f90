@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b8392fa7_ed928944",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-25T20:12:56Z",
+      "side": 1,
+      "message": "Improved comment.",
+      "parentUuid": "e5c561fa_770bbc2f",
+      "revId": "0ee6ec936360509b577a2543d94425e27aa38f90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a24dd6e9_649d39f2",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 4
@@ -39,6 +57,30 @@
       "revId": "0ee6ec936360509b577a2543d94425e27aa38f90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e656b0a_94601bbf",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1628,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-25T20:12:56Z",
+      "side": 1,
+      "message": "Oops, you are right, thanks!",
+      "parentUuid": "a24dd6e9_649d39f2",
+      "range": {
+        "startLine": 1628,
+        "startChar": 29,
+        "endLine": 1628,
+        "endChar": 33
+      },
+      "revId": "0ee6ec936360509b577a2543d94425e27aa38f90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
