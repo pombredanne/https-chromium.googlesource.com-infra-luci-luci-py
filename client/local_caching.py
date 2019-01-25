@@ -823,7 +823,7 @@ class NamedCache(Cache):
           raise NamedCacheError(
               'installation directory %r already exists' % dst)
 
-        # Removed the named symlink if it exists.
+        # Remove the named symlink if it exists.
         link_name = os.path.join(self.cache_dir, 'named', name)
         if fs.exists(link_name):
           # Remove the symlink itself, not its destination.
