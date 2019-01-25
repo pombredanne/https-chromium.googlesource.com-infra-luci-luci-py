@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53136b17_9317d62b",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-25T21:51:21Z",
+      "side": 1,
+      "message": "Possible small rephasing: \"If the size is zero, it shall be deleted.\"",
+      "range": {
+        "startLine": 887,
+        "startChar": 57,
+        "endLine": 888,
+        "endChar": 46
+      },
+      "revId": "e89fe15dae39a644b9c9fa7b58c2e9774dc5210f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a655b416_d1d02236",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-25T21:51:21Z",
+      "side": 1,
+      "message": "2-letter string",
+      "range": {
+        "startLine": 1133,
+        "startChar": 25,
+        "endLine": 1133,
+        "endChar": 41
+      },
+      "revId": "e89fe15dae39a644b9c9fa7b58c2e9774dc5210f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
