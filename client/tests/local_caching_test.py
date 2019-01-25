@@ -475,8 +475,10 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     a_path = os.path.join(dest_dir, u'a')
     b_path = os.path.join(dest_dir, u'b')
 
-    cache.install(a_path, u'1')
-    cache.install(b_path, u'2')
+    self.assertEqual(0, cache.install(a_path, u'1'))
+    self.assertEqual(0, cache.install(b_path, u'2'))
+    self.assertEqual(
+        False, os.path.exists(os.path.join(cache.cache_dir, cache.NAMED_DIR)))
 
     self.assertEqual({u'a', u'b'}, set(os.listdir(dest_dir)))
     self.assertFalse(cache.available)
@@ -485,17 +487,23 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     write_file(os.path.join(a_path, u'x'), u'x')
     write_file(os.path.join(b_path, u'y'), u'y')
 
-    cache.uninstall(a_path, u'1')
-    cache.uninstall(b_path, u'2')
+    self.assertEqual(1, cache.uninstall(a_path, u'1'))
+    self.assertEqual(1, cache.uninstall(b_path, u'2'))
 
     self.assertEqual(4, len(os.listdir(cache.cache_dir)))
     path1 = os.path.join(cache.cache_dir, cache._lru['1'][0])
-    path2 = os.path.join(cache.cache_dir, cache._lru['2'][0])
-
     self.assertEqual('x', read_file(os.path.join(path1, u'x')))
+    path2 = os.path.join(cache.cache_dir, cache._lru['2'][0])
     self.assertEqual('y', read_file(os.path.join(path2, u'y')))
-    self.assertEqual(os.readlink(cache._get_named_path('1')), path1)
-    self.assertEqual(os.readlink(cache._get_named_path('2')), path2)
+    self.assertEqual(
+        os.path.join(u'..', cache._lru['1'][0]),
+        os.readlink(cache._get_named_path('1')))
+    self.assertEqual(
+        os.path.join(u'..', cache._lru['2'][0]),
+        os.readlink(cache._get_named_path('2')))
+    self.assertEqual(
+        [u'1', u'2'],
+        sorted(os.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
 
   def test_existing_cache(self):
     dest_dir = os.path.join(self.tempdir, 'dest')
@@ -504,35 +512,99 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     a_path = os.path.join(dest_dir, u'a')
     b_path = os.path.join(dest_dir, u'b')
 
-    cache.install(a_path, u'1')
+    self.assertEqual(0, cache.install(a_path, u'1'))
     write_file(os.path.join(dest_dir, u'a', u'x'), u'x')
-    cache.uninstall(a_path, u'1')
+    self.assertEqual(1, cache.uninstall(a_path, u'1'))
 
     # Test starts here.
-    cache.install(a_path, u'1')
-    cache.install(b_path, u'2')
+    self.assertEqual(1, cache.install(a_path, u'1'))
+    self.assertEqual(0, cache.install(b_path, u'2'))
     self.assertEqual({'a', 'b'}, set(os.listdir(dest_dir)))
     self.assertFalse(cache.available)
     self.assertEqual(
         sorted([cache.NAMED_DIR, cache.STATE_FILE]),
         sorted(os.listdir(cache.cache_dir)))
+    self.assertEqual(
+        [], os.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR)))
 
     self.assertEqual(
         'x', read_file(os.path.join(os.path.join(dest_dir, u'a', u'x'))))
     write_file(os.path.join(a_path, 'x'), 'x2')
     write_file(os.path.join(b_path, 'y'), 'y')
 
-    cache.uninstall(a_path, '1')
-    cache.uninstall(b_path, '2')
+    self.assertEqual(2, cache.uninstall(a_path, '1'))
+    self.assertEqual(1, cache.uninstall(b_path, '2'))
 
     self.assertEqual(4, len(os.listdir(cache.cache_dir)))
     path1 = os.path.join(cache.cache_dir, cache._lru['1'][0])
-    path2 = os.path.join(cache.cache_dir, cache._lru['2'][0])
-
     self.assertEqual('x2', read_file(os.path.join(path1, 'x')))
+    path2 = os.path.join(cache.cache_dir, cache._lru['2'][0])
     self.assertEqual('y', read_file(os.path.join(path2, 'y')))
-    self.assertEqual(os.readlink(cache._get_named_path('1')), path1)
-    self.assertEqual(os.readlink(cache._get_named_path('2')), path2)
+    self.assertEqual(
+        os.path.join(u'..', cache._lru['1'][0]),
+        os.readlink(cache._get_named_path('1')))
+    self.assertEqual(
+        os.path.join(u'..', cache._lru['2'][0]),
+        os.readlink(cache._get_named_path('2')))
+    self.assertEqual(
+        [u'1', u'2'],
+        sorted(os.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
+  def test_install_throws(self):
+    old_isdir = None
+    banged = []
+    # Crashes, but only on the first call.
+    def bang(path):
+      if not banged:
+        banged.append(True)
+        raise IOError('fake')
+      return old_isdir(path)
+
+    cache = self.get_cache(_get_policies())
+    dest_dir = os.path.join(self.tempdir, 'dest')
+
+    # fs.isdir() happens to be the first function called.
+    old_isdir = self.mock(fs, 'isdir', bang)
+    with self.assertRaises(local_caching.NamedCacheError):
+      cache.install(dest_dir, u'1')
+
+  def test_uninstall_throws(self):
+    old_isdir = None
+    banged = []
+    # Crashes, but only on the first call.
+    def bang(path):
+      if not banged:
+        banged.append(True)
+        raise IOError('fake')
+      return old_isdir(path)
+
+    cache = self.get_cache(_get_policies())
+    dest_dir = os.path.join(self.tempdir, 'dest')
+    self.assertEqual(0, cache.install(dest_dir, u'1'))
+
+    # fs.isdir() happens to be the first function called.
+    old_isdir = self.mock(fs, 'isdir', bang)
+    with self.assertRaises(local_caching.NamedCacheError):
+      cache.uninstall(dest_dir, u'1')
+
+  def test_cycle_twice(self):
+    # Ensure that named symlink works.
+    cache = self.get_cache(_get_policies())
+    dest_dir = os.path.join(self.tempdir, 'dest')
+    self.assertEqual(0, cache.install(dest_dir, u'1'))
+    with open(os.path.join(dest_dir, u'hi'), 'wb') as f:
+      f.write('hello')
+    self.assertEqual(5, cache.uninstall(dest_dir, u'1'))
+    self.assertEqual(
+        [u'1'], os.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR)))
+    self.assertEqual(True, cache.cleanup())
+    self.assertEqual(5, cache.install(dest_dir, u'1'))
+    self.assertEqual(5, cache.uninstall(dest_dir, u'1'))
+    self.assertEqual(
+        [u'1'], os.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR)))
+    self.assertEqual(
+        [u'hi'],
+        os.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR, u'1')))
 
   def test_save_named(self):
     cache = self.get_cache(_get_policies())
