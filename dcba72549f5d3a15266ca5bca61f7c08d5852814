@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67cc953a_63954734",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-25T14:53:37Z",
+      "side": 1,
+      "message": "I did a quick look (Ubuntu, RaspberryPi, ODROID-C1) and all systems seem to have both. I\u0027d recommend inverting the other, and list this one as the legacy one. Personally, I think it\u0027s safe to remove but lets keep the fallback for now.\n\nYou can even refer to https://www.kernel.org/doc/Documentation/cputopology.txt",
+      "revId": "dcba72549f5d3a15266ca5bca61f7c08d5852814",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
