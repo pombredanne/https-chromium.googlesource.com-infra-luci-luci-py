@@ -340,7 +340,11 @@ def get_device_tree_compatible():
 
 def get_cpu_scaling_governor(cpu_num):
   """Returns the current CPU scaling governor, if available."""
-  p = '/sys/devices/system/cpu/cpufreq/policy%d/scaling_governor' % cpu_num
+  files = [
+      '/sys/devices/system/cpu/cpufreq/policy%d/scaling_governor' % cpu_num,
+      '/sys/devices/system/cpu/cpu%d/cpufreq/scaling_governor' % cpu_num,
+  ]
+  for p in files:
   try:
     with open(p, 'rb') as f:
       return [unicode(f.read().strip())]
