@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "969972c1_99b2d444",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-01-26T01:47:32Z",
+      "side": 1,
+      "message": "path is still referenced here. e.g. https://chromium-swarm-dev.appspot.com/task?id\u003d429f59cee1c41c10\u0026show_raw\u003d1",
+      "revId": "bd2a81bbd3a1c96392edce9f85604215a77e9d5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
