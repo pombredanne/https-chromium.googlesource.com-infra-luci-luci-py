@@ -16,6 +16,24 @@
       "revId": "bd2a81bbd3a1c96392edce9f85604215a77e9d5f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d276162_630e578b",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-01-26T01:49:27Z",
+      "side": 1,
+      "message": "Never mind, this is fixed in https://chromium.googlesource.com/infra/luci/luci-py/+/5807903d5d0a93786bd0c6c6d04c0c84cec683aa.",
+      "parentUuid": "969972c1_99b2d444",
+      "revId": "bd2a81bbd3a1c96392edce9f85604215a77e9d5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
