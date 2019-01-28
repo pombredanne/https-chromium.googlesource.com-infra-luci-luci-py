@@ -55,7 +55,7 @@ class FilePathTest(auto_stub.TestCase):
   @property
   def tempdir(self):
     if not self._tempdir:
-      self._tempdir = tempfile.mkdtemp(prefix=u'run_isolated_test')
+      self._tempdir = tempfile.mkdtemp(prefix=u'file_path_test')
     return self._tempdir
 
   def test_atomic_replace_new_file(self):
@@ -298,8 +298,8 @@ class FilePathTest(auto_stub.TestCase):
 
     def test_filter_processes_dir_win(self):
       python_dir = os.path.dirname(sys.executable)
-      processes = file_path.filter_processes_dir_win(
-          file_path.enum_processes_win(), python_dir)
+      processes = file_path._filter_processes_dir_win(
+          file_path._enum_processes_win(), python_dir)
       self.assertTrue(processes)
       proc_names = [proc.ExecutablePath for proc in processes]
       # Try to find at least one python process.
@@ -326,7 +326,7 @@ class FilePathTest(auto_stub.TestCase):
       try:
         proc.stdout.read(1)
         processes = file_path.filter_processes_tree_win(
-            file_path.enum_processes_win())
+            file_path._enum_processes_win())
         self.assertEqual(3, len(processes), processes)
         proc.stdin.write('a')
         proc.wait()
