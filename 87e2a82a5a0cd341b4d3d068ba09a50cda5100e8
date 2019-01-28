@@ -1,0 +1,102 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a889997_9abf575c",
+        "filename": "client/tests/fs_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-28T22:16:55Z",
+      "side": 1,
+      "message": "If FILE_PATH was defined before BASE_DIR, you could also write\n\n    BASE_DIR \u003d os.path.dirname(FILE_PATH)",
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fd92973_c9af34a3",
+        "filename": "client/tests/fs_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-28T22:16:55Z",
+      "side": 1,
+      "message": "Nit: It\u0027s a little tricky that file_path and filepath are both defined here; the name `path` could also be used.",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3103abf_ed96228b",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-28T22:16:55Z",
+      "side": 1,
+      "message": "Is the change from LPWSTR to LPCWSTR one of the important changes here? This is pretty subtle ... this whole block is pretty opaque to me, but I\u0027m not sure if anything should be done about that.",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 22
+      },
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59af1392_bd13f88c",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-28T22:16:55Z",
+      "side": 1,
+      "message": "This looks like a lot of magic, if there are any more helpful linkes or comments that might help future readers they could be added somewhere here.",
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b409691c_bdcbfb5f",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-28T22:16:55Z",
+      "side": 1,
+      "message": "Where is WindowsError defined?",
+      "parentUuid": "6e1008d9_f8dfd5aa",
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
