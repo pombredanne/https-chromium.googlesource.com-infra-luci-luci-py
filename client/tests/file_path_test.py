@@ -55,7 +55,7 @@ class FilePathTest(auto_stub.TestCase):
   @property
   def tempdir(self):
     if not self._tempdir:
-      self._tempdir = tempfile.mkdtemp(prefix=u'run_isolated_test')
+      self._tempdir = tempfile.mkdtemp(prefix=u'file_path_test')
     return self._tempdir
 
   def test_atomic_replace_new_file(self):
