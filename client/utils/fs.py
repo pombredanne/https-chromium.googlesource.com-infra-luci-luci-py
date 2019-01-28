@@ -14,24 +14,56 @@ import sys
 
 
 if sys.platform == 'win32':
-
-
   import ctypes
   CreateSymbolicLinkW = ctypes.windll.kernel32.CreateSymbolicLinkW
   CreateSymbolicLinkW.argtypes = (
-      ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32)
-  CreateSymbolicLinkW.restype = ctypes.c_ubyte
+      ctypes.wintypes.LPCWSTR, ctypes.wintypes.LPCWSTR, ctypes.wintypes.DWORD)
+  CreateSymbolicLinkW.restype = ctypes.wintypes.BOOL
   DeleteFile = ctypes.windll.kernel32.DeleteFileW
-  DeleteFile.argtypes = (ctypes.c_wchar_p,)
-  DeleteFile.restype = ctypes.c_bool
+  DeleteFile.argtypes = (ctypes.wintypes.LPCWSTR,)
+  DeleteFile.restype = ctypes.wintypes.BOOL
   GetFileAttributesW = ctypes.windll.kernel32.GetFileAttributesW
-  GetFileAttributesW.argtypes = (ctypes.c_wchar_p,)
-  GetFileAttributesW.restype = ctypes.c_uint
+  GetFileAttributesW.argtypes = (ctypes.wintypes.LPCWSTR,)
+  GetFileAttributesW.restype = ctypes.wintypes.DWORD
   RemoveDirectory = ctypes.windll.kernel32.RemoveDirectoryW
-  RemoveDirectory.argtypes = (ctypes.c_wchar_p,)
-  RemoveDirectory.restype = ctypes.c_bool
+  RemoveDirectory.argtypes = (ctypes.wintypes.LPCWSTR,)
+  RemoveDirectory.restype = ctypes.wintypes.BOOL
+  DeviceIoControl = ctypes.windll.kernel32.DeviceIoControl
+  DeviceIoControl.argtypes = (
+      ctypes.wintypes.HANDLE,
+      ctypes.wintypes.DWORD,
+      ctypes.wintypes.LPVOID,
+      ctypes.wintypes.DWORD,
+      ctypes.wintypes.LPVOID,
+      ctypes.wintypes.DWORD,
+      ctypes.wintypes.LPDWORD,
+      ctypes.wintypes.LPOVERLAPPED)
+  DeviceIoControl.restype = ctypes.wintypes.BOOL
 
+  # https://msdn.microsoft.com/en-us/library/windows/desktop/aa373931.aspx
+  class GUID(ctypes.Structure):
+    _fields_ = [
+      ('Data1', ctypes.wintypes.DWORD),
+      ('Data2', ctypes.wintypes.WORD),
+      ('Data3', ctypes.wintypes.WORD),
+      ('Data4', ctypes.wintypes.BYTE*8),
+    ]
+
+  # https://docs.microsoft.com/en-us/windows/desktop/api/winnt/ns-winnt-_reparse_guid_data_buffer
+  class REPARSE_GUID_DATA_BUFFER(ctypes.Structure):
+    _fields_ = [
+      ('ReparseTag', ctypes.wintypes.DWORD),
+      ('ReparseDataLength', ctypes.wintypes.WORD),
+      ('Reserved', ctypes.wintypes.WORD),
+      ('ReparseGuid', GUID),
+      # Workaround dynamic size probing by always having the largest possible
+      # path length as the buffer size.
+      ('DataBuffer', ctypes.wintypes.WCHAR * 32768),
+    ]
+
+  # Set to true or false once symlink support is initialized.
   _SUPPORTS_SYMLINKS = None
+
 
   def _supports_unprivileged_symlinks():
     """Returns True if the OS supports sane symlinks without any user privilege
@@ -122,10 +154,16 @@ if sys.platform == 'win32':
     Windows 10 and developer mode:
       https://blogs.windows.com/buildingapps/2016/12/02/symlinks-windows-10/
     """
+    SYMBOLIC_LINK_FLAG_DIRECTORY = 1
     SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE = 2
-    # TODO(maruel): This forces always creating absolute path symlinks.
-    source = extend(source)
-    flags = 1 if os.path.isdir(source) else 0
+    # Accept relative links but still require unicode.
+    assert isinstance(source, unicode), repr(source)
+    f = extend(link_name)
+    # We need to convert to absolute path, so we can test if it points to a
+    # directory or a file.
+    real_source = extend(
+        os.path.clean(os.path.join(os.path.dirname(f), source)))
+    flags = SYMBOLIC_LINK_FLAG_DIRECTORY if isdir(real_source) else 0
     if _supports_unprivileged_symlinks():
       # This enables support for this specific case:
       # - Windows 10 with build 14971 or later
@@ -136,7 +174,7 @@ if sys.platform == 'win32':
       # In this specific case, file_path.enable_symlink() is unnecessary and the
       # following flag make it magically work.
       flags |= SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE
-    if not CreateSymbolicLinkW(extend(link_name), source, flags):
+    if not CreateSymbolicLinkW(f, source, flags):
       # pylint: disable=undefined-variable
       raise WindowsError(
           u'symlink(%r, %r) failed: %s' %
@@ -160,7 +198,7 @@ if sys.platform == 'win32':
       https://msdn.microsoft.com/en-us/library/windows/desktop/aa365488(v=vs.85).aspx
     """
     path = extend(path)
-    if os.path.isdir(path):
+    if isdir(path):
       if not RemoveDirectory(path):
         # pylint: disable=undefined-variable
         raise WindowsError(
@@ -175,11 +213,32 @@ if sys.platform == 'win32':
 
 
   def readlink(path):
-    extend(path)
-    # https://crbug.com/853721
-    raise NotImplementedError(
-        'Implement readlink() via DeviceIoControl(h, FSCTL_GET_REPARSE_POINT, '
-        '...)')
+    """Reads a symlink on Windows."""
+    path = unicode(path)
+    handle = ctypes.windll.kernel32.CreateFileW(
+        extend(path),
+        GENERIC_READ,
+        FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
+        None,
+        OPEN_ALWAYS,
+        FILE_ATTRIBUTE_NORMAL,
+        None)
+    if handle == -1:
+      raise WindowsError(
+          u'readlink(%r): failed to open: %s' % (path, ctypes.GetLastError()))
+    try:
+      buf = REPARSE_GUID_DATA_BUFFER()
+      returned = ctypes.wintypes.DWORD()
+      ret = DeviceIoControl(
+          handle, FSCTL_GET_REPARSE_POINT, None, 0, ctypes.addressof(buf),
+          ctypes.sizeof(buf), ctypes.addressof(returned),
+          None)
+      if not ret:
+        raise WindowsError(
+            u'readlink(%r): failed to read: %s' % (path, ctypes.GetLastError()))
+      return buf.DataBuffer[:buf.ReparseDataLength]
+    finally:
+      ctypes.windll.kernel32.CloseHandle(handle)
 
 
   def walk(top, *args, **kwargs):

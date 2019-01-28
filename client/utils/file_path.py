@@ -74,11 +74,11 @@ if sys.platform == 'win32':
   OpenProcessToken.restype = ctypes.wintypes.BOOL
   LookupPrivilegeValue = ctypes.windll.advapi32.LookupPrivilegeValueW
   LookupPrivilegeValue.argtypes = (
-      ctypes.wintypes.LPWSTR, ctypes.wintypes.LPWSTR, ctypes.POINTER(LUID))
+      ctypes.wintypes.LPCWSTR, ctypes.wintypes.LPCWSTR, ctypes.POINTER(LUID))
   LookupPrivilegeValue.restype = ctypes.wintypes.BOOL
   LookupPrivilegeName = ctypes.windll.advapi32.LookupPrivilegeNameW
   LookupPrivilegeName.argtypes = (
-      ctypes.wintypes.LPWSTR, ctypes.POINTER(LUID), ctypes.wintypes.LPWSTR,
+      ctypes.wintypes.LPCWSTR, ctypes.POINTER(LUID), ctypes.wintypes.LPWSTR,
       ctypes.POINTER(ctypes.wintypes.DWORD))
   LookupPrivilegeName.restype = ctypes.wintypes.BOOL
   PTOKEN_PRIVILEGES = ctypes.POINTER(TOKEN_PRIVILEGES)
