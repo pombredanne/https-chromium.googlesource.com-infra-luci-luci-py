@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c72dc84c_99d8fc9c",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-29T22:43:54Z",
+      "side": 1,
+      "message": "Spaced it more.",
+      "parentUuid": "929e01ab_77f87c18",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 166
+      },
+      "revId": "16cd0cb1974b2db78ce5f017285a8b70733a546b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79dd90ab_e84b9540",
         "filename": "appengine/swarming/setup_bigquery.sh",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "16cd0cb1974b2db78ce5f017285a8b70733a546b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e64a644c_e96f355f",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-29T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79dd90ab_e84b9540",
+      "range": {
+        "startLine": 130,
+        "startChar": 25,
+        "endLine": 130,
+        "endChar": 30
+      },
+      "revId": "16cd0cb1974b2db78ce5f017285a8b70733a546b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
