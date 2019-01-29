@@ -851,8 +851,10 @@ class NamedCache(Cache):
         file_path.ensure_tree(dst)
         return 0
       except (IOError, OSError) as ex:
-        raise NamedCacheError(
+        # Raise using the original traceback.
+        exc = NamedCacheError(
             'cannot install cache named %r at %r: %s' % (name, dst, ex))
+        raise exc, None, sys.exc_info()[2]
       finally:
         self._save()
 
@@ -922,8 +924,10 @@ class NamedCache(Cache):
             raise
         return size
       except (IOError, OSError) as ex:
-        raise NamedCacheError(
+        # Raise using the original traceback.
+        exc = NamedCacheError(
             'cannot uninstall cache named %r at %r: %s' % (name, src, ex))
+        raise exc, None, sys.exc_info()[2]
       finally:
         # Call save() at every uninstall. The assumptions are:
         # - The total the number of named caches is low, so the state.json file
