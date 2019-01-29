@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "ebd49b13_fb7b4eb2",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-29T17:57:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe613424_1604de12",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 22
+      },
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59af1392_bd13f88c",
         "filename": "client/utils/fs.py",
         "patchSetId": 15
@@ -196,6 +220,24 @@
       "side": 1,
       "message": "It\u0027s defined as a builtin on Windows; https://docs.python.org/2/library/exceptions.html#exceptions.WindowsError\n\nbut since pylint analyzer is run on linux, it\u0027s not defined there. Shrug.",
       "parentUuid": "b409691c_bdcbfb5f",
+      "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5bf8177b_35216446",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-29T17:57:34Z",
+      "side": 1,
+      "message": "Ah, that makes sense.",
+      "parentUuid": "f1cf9882_18ed8ade",
       "revId": "87e2a82a5a0cd341b4d3d068ba09a50cda5100e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
