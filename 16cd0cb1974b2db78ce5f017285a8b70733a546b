@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "929e01ab_77f87c18",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-29T22:14:51Z",
+      "side": 1,
+      "message": "Nit: lines could be wrapped.\nAlso, why is TIMESTAMP_DIFF(...) multiplied by 0.000001, what does that mean?",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 166
+      },
+      "revId": "16cd0cb1974b2db78ce5f017285a8b70733a546b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79dd90ab_e84b9540",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-29T22:14:51Z",
+      "side": 1,
+      "message": "exists",
+      "range": {
+        "startLine": 130,
+        "startChar": 25,
+        "endLine": 130,
+        "endChar": 30
+      },
+      "revId": "16cd0cb1974b2db78ce5f017285a8b70733a546b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
