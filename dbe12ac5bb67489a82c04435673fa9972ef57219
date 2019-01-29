@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0d3afa2_3d22b759",
+        "filename": "client/swarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-29T21:10:22Z",
+      "side": 1,
+      "message": "Please put the space on the initial line.",
+      "revId": "dbe12ac5bb67489a82c04435673fa9972ef57219",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
