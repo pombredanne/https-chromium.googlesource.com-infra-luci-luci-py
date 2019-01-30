@@ -898,8 +898,9 @@ def cron_send_to_bq():
   def get_oldest_key():
     """Returns a tuple(db_key, bq_key)."""
     # BigQuery requires partitioned table to not insert items older than 365
-    # days old, so start at entities only 364 days old.
-    cutoff = (utils.utcnow() - datetime.timedelta(days=364))
+    # days old. The problem is that churning through the back log can take a
+    # *long* time, so only go back 7 days.
+    cutoff = (utils.utcnow() - datetime.timedelta(days=7))
     cutoff = datetime.datetime(cutoff.year, cutoff.month, cutoff.day)
     oldest = BotEvent.query(BotEvent.ts >= cutoff).order(BotEvent.ts).get()
     if not oldest:
