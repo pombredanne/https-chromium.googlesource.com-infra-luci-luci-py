@@ -316,8 +316,34 @@ if sys.platform == 'win32':
       windll.kernel32.CloseHandle(handle)
 
 
-  def walk(top, *args, **kwargs):
-    return os.walk(extend(top), *args, **kwargs)
+  def walk(top, topdown=True, onerror=None, followlinks=False):
+    # We need to reimplement walk here because the standard library ignores the
+    # flag followlinks=False. This is because ntpath.islink() is hardcoded to
+    # return false.
+    utop = extend(top)
+    try:
+      names = listdir(utop)  # pylint: disable=undefined-variable
+    except os.error as err:
+      if onerror is not None:
+        onerror(err)
+      return
+
+    dirs, nondirs = [], []
+    for name in names:
+      if isdir(os.path.join(top, name)):   # pylint: disable=undefined-variable
+        dirs.append(name)
+      else:
+        nondirs.append(name)
+
+    if topdown:
+      yield top, dirs, nondirs
+    for name in dirs:
+      new_path = os.path.join(top, name)
+      if followlinks or not islink(new_path):
+        for x in walk(new_path, topdown, onerror, followlinks):
+          yield x
+    if not topdown:
+      yield top, dirs, nondirs
 
 
 else:
