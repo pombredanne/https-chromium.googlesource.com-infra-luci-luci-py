@@ -68,7 +68,7 @@ echo "  Warning: On first 'bqschemaupdater' invocation, it'll request default"
 echo "    credentials which is stored independently than 'bq'."
 cd proto/api
 if ! (bqschemaupdater -force \
-    -partitioning-expiration 4320h \
+    -partitioning-expiration 13128h \
     -message swarming.v1.BotEvent \
     -table ${APPID}.swarming.bot_events \
     -partitioning-field event_time); then
@@ -82,7 +82,7 @@ if ! (bqschemaupdater -force \
   exit 1
 fi
 if ! (bqschemaupdater -force \
-    -partitioning-expiration 4320h \
+    -partitioning-expiration 13128h \
     -message swarming.v1.TaskRequest \
     -table ${APPID}.swarming.task_requests \
     -partitioning-field create_time); then
@@ -96,7 +96,7 @@ if ! (bqschemaupdater -force \
   exit 1
 fi
 if ! (bqschemaupdater -force \
-    -partitioning-expiration 4320h \
+    -partitioning-expiration 13128h \
     -message swarming.v1.TaskResult \
     -table ${APPID}.swarming.task_results \
     -partitioning-field end_time); then
