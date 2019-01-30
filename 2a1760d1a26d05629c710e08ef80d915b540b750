@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27dd930a_328d53e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T21:47:01Z",
+      "side": 1,
+      "message": "rephrase",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 10,
+        "endChar": 42
+      },
+      "revId": "2a1760d1a26d05629c710e08ef80d915b540b750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "074d1864_2c9cd841",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T21:47:01Z",
+      "side": 1,
+      "message": "These two fixes fix :-P",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "2a1760d1a26d05629c710e08ef80d915b540b750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67c23756_114b3ce8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T21:47:01Z",
+      "side": 1,
+      "message": "Excellent :-)",
+      "revId": "2a1760d1a26d05629c710e08ef80d915b540b750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "156101f8_6fd49c7a",
+        "filename": "client/tests/fs_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T21:47:01Z",
+      "side": 1,
+      "message": "Another possible alternate type of test for walk() might be to assert that os.walk and fs.walk return the same thing on non-windows, since presumably they should behave the same right?",
+      "revId": "2a1760d1a26d05629c710e08ef80d915b540b750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f41c2a50_a51681b1",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T21:47:01Z",
+      "side": 1,
+      "message": "Just on Windows, right?",
+      "range": {
+        "startLine": 320,
+        "startChar": 39,
+        "endLine": 321,
+        "endChar": 28
+      },
+      "revId": "2a1760d1a26d05629c710e08ef80d915b540b750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
