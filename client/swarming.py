@@ -233,8 +233,13 @@ def setup_googletest(env, shards, index):
   return env
 
 
-def trigger_task_shards(swarming, task_request, shards):
+def trigger_task_shards(swarming, task_request, shards, shard_index):
   """Triggers one or many subtasks of a sharded task.
+
+  Args:
+    shards: The number of shards to divide the task into.
+    shard_index: If None, all shards are triggered. Otherwise, the index of the
+                 shard to trigger.
 
   Returns:
     Dict with task details, returned to caller as part of --dump-json output.
@@ -249,10 +254,13 @@ def trigger_task_shards(swarming, task_request, shards):
       req['name'] += ':%s:%s' % (index, shards)
     return req
 
-  requests = [convert(index) for index in xrange(shards)]
+  if shard_index is None:
+    requests = [(convert(index), index) for index in xrange(shards)]
+  else:
+    requests = [(convert(shard_index), shard_index)]
   tasks = {}
   priority_warning = False
-  for index, request in enumerate(requests):
+  for (request, index) in requests:
     task = swarming_trigger(swarming, request)
     if not task:
       break
@@ -910,6 +918,10 @@ def add_sharding_options(parser):
   parser.sharding_group.add_option(
       '--shards', type='int', default=1, metavar='NUMBER',
       help='Number of shards to trigger and collect.')
+  parser.sharding_group.add_option(
+      '--shard-index', type='int', default=None, metavar='NUMBER',
+      help='If unspecified, all shards are triggered. Otherwise, the index of '
+           'the shard to trigger.')
   parser.add_option_group(parser.sharding_group)
 
 
@@ -1610,7 +1622,7 @@ def CMDrun(parser, args):
   task_request = process_trigger_options(parser, options, args)
   try:
     tasks = trigger_task_shards(
-        options.swarming, task_request, options.shards)
+        options.swarming, task_request, options.shards, options.shard_index)
   except Failure as e:
     on_error.report(
         'Failed to trigger %s(%s): %s' %
@@ -1841,7 +1853,7 @@ def CMDtrigger(parser, args):
   task_request = process_trigger_options(parser, options, args)
   try:
     tasks = trigger_task_shards(
-        options.swarming, task_request, options.shards)
+        options.swarming, task_request, options.shards, options.shard_index)
     if tasks:
       print('Triggered task: %s' % task_request.name)
       tasks_sorted = sorted(
