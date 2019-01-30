@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "822e87cf_f9929f1b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T22:04:08Z",
+      "side": 1,
+      "message": "The problem with going back all the way to 364 days is...",
+      "range": {
+        "startLine": 901,
+        "startChar": 16,
+        "endLine": 901,
+        "endChar": 27
+      },
+      "revId": "26c3b6e00605c17028af6a3ae983ec64a2ae4444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d752d0c_7867030a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T22:04:08Z",
+      "side": 1,
+      "message": "backlog",
+      "range": {
+        "startLine": 901,
+        "startChar": 57,
+        "endLine": 901,
+        "endChar": 65
+      },
+      "revId": "26c3b6e00605c17028af6a3ae983ec64a2ae4444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff840e20_8ff0edcf",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1699,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T22:04:08Z",
+      "side": 1,
+      "message": "Same suggestions from the other file apply here too.",
+      "revId": "26c3b6e00605c17028af6a3ae983ec64a2ae4444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5550dbdf_45ae15b1",
+        "filename": "appengine/swarming/setup_bigquery.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-01-30T22:04:08Z",
+      "side": 1,
+      "message": "You could extract 13128h to a constant with a comment above, e.g.\n\n    # 1.5 years \u003d 24 * (365 + 182) hours \u003d 13128 hours.\n    PARTITION_EXPIRATION\u003d13128h",
+      "range": {
+        "startLine": 71,
+        "startChar": 29,
+        "endLine": 71,
+        "endChar": 35
+      },
+      "revId": "26c3b6e00605c17028af6a3ae983ec64a2ae4444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
