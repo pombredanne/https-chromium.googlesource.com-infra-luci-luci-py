@@ -847,7 +847,7 @@ class SwarmingBotService(remote.Service):
           key=bot_management.get_info_key(bot_id),
           dimensions_flat=task_queues.dimensions_to_flat(
               events[0].dimensions),
-          state=events[0].state,
+          state_new=events[0].state_json,
           external_ip=events[0].external_ip,
           authenticated_as=events[0].authenticated_as,
           version=events[0].version,
