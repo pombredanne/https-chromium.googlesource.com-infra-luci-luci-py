@@ -812,17 +812,17 @@ class _TaskResultCommon(ndb.Model):
     if not self.modified_ts:
       raise datastore_errors.BadValueError('Must update .modified_ts')
 
-    if self.state in State.STATES_DONE:
+    # Allow duration and exit_code to be missing for TIMED_OUT.
+    # Differentiate between TERMINATING and TIMED_OUT; https://crbug.com/916560
+    if self.state != State.TIMED_OUT and self.state in State.STATES_DONE:
       if self.duration is None:
         raise datastore_errors.BadValueError(
             'duration must be set with state %s' %
             State.to_string(self.state))
-      # Allow exit_code to be missing for TIMED_OUT.
-      if self.state != State.TIMED_OUT:
-        if self.exit_code is None:
-          raise datastore_errors.BadValueError(
-              'exit_code must be set with state %s' %
-              State.to_string(self.state))
+      if self.exit_code is None:
+        raise datastore_errors.BadValueError(
+            'exit_code must be set with state %s' %
+            State.to_string(self.state))
     elif self.state != State.BOT_DIED:
       # Allow duration and exit_code to be either missing or set for BOT_DIED,
       # but they should be not present for any running/pending states.
