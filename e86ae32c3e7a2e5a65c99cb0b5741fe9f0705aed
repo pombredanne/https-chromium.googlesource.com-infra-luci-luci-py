@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c8286e9_f69ddec3",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-01T23:36:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438c5229_34326f83",
+      "range": {
+        "startLine": 473,
+        "startChar": 32,
+        "endLine": 473,
+        "endChar": 43
+      },
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f0bf317_55e10417",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8d8d707d_9323ea8c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-01T23:36:57Z",
+      "side": 1,
+      "message": "I\u0027ll just remove this preposition, it was not useful. RBE doesn\u0027t have plan for each.",
+      "parentUuid": "0f0bf317_55e10417",
+      "range": {
+        "startLine": 498,
+        "startChar": 19,
+        "endLine": 498,
+        "endChar": 33
+      },
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37f5f5bb_d00ea666",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "bafefa0c_81fd2817",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-01T23:36:57Z",
+      "side": 1,
+      "message": "I reduced to 30 but I don\u0027t want to be overly strict here. It\u0027s really just to make sure it\u0027s not obviously wrong, but it doesn\u0027t need to be foolproof.",
+      "parentUuid": "37f5f5bb_d00ea666",
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1e7b0a9_7c8cb2aa",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 4
@@ -79,6 +145,24 @@
       "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28c70b52_2ef04f4f",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-01T23:36:57Z",
+      "side": 1,
+      "message": "Yeah I know, I should have been told 5 years ago. :)\n\nI\u0027ll probably refactor a bit later.",
+      "parentUuid": "a1e7b0a9_7c8cb2aa",
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
