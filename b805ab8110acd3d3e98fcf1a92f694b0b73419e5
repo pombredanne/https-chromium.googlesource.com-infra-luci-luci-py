@@ -16,6 +16,24 @@
       "revId": "b805ab8110acd3d3e98fcf1a92f694b0b73419e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "043a75e3_bcbf8e65",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-01T15:37:18Z",
+      "side": 0,
+      "message": "Idk, I must have fat fingered this after I had ran tests before uploading the previous CL.  I have brought shame on me, my family, my cows, etc.",
+      "parentUuid": "4cb68bcb_e45e83a4",
+      "revId": "b805ab8110acd3d3e98fcf1a92f694b0b73419e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
