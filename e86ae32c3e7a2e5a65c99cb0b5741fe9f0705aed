@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "438c5229_34326f83",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-01T22:22:53Z",
+      "side": 1,
+      "message": "either a",
+      "range": {
+        "startLine": 473,
+        "startChar": 32,
+        "endLine": 473,
+        "endChar": 43
+      },
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f0bf317_55e10417",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-01T22:22:53Z",
+      "side": 1,
+      "message": "This type of comment has the potential to become stale if not updated quickly later when this changes... You could optionally change it to \"As of \u003cMonth, Year\u003e...\" or maybe link to documentation somewhere (which would presumably be updated) about what is supported.",
+      "range": {
+        "startLine": 498,
+        "startChar": 19,
+        "endLine": 498,
+        "endChar": 33
+      },
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37f5f5bb_d00ea666",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-01T22:22:53Z",
+      "side": 1,
+      "message": "It looks like you could easily be a little stricter.\n\nhttps://edu.google.com/openonline/course-builder/docs/1.10/set-up-course-builder/create-a-cloud-project.html#naming-considerations seems to say it can\u0027t be more than 30 characters and it must consist of letters, numbers, quotes, hyphens, spaces or exclamation points, i.e. a subset of ASCII (which doesn\u0027t include colons or slashes at all).",
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1e7b0a9_7c8cb2aa",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-01T22:22:53Z",
+      "side": 1,
+      "message": "Ideally each of the different types of bad inputs could be a different test method.",
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
