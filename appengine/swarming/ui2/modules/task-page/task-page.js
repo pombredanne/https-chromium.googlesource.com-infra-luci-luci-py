@@ -5,15 +5,15 @@
 import { html, render } from 'lit-html'
 import { jsonOrThrow } from 'common-sk/modules/jsonOrThrow'
 
-import 'elements-sk/styles/buttons'
 import 'elements-sk/icon/add-circle-outline-icon-sk'
+import 'elements-sk/styles/buttons'
 import '../swarming-app'
 
 import * as human from 'common-sk/modules/human'
 
 import { cipdLink, humanState, isolateLink, parseRequest, parseResult,
-         sliceExpires, taskCost, taskExpires, wasDeduped,
-         wasPickedUp } from './task-page-helpers'
+         sliceExpires, taskCost, taskExpires, taskInfoClass, wasDeduped,
+         wasPickedUp} from './task-page-helpers'
 import { botPageLink, humanDuration, taskPageLink } from '../util'
 
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
@@ -40,9 +40,9 @@ const taskInfoTable = (ele, request, result, currentSlice) => {
   <button>debug</button>
 </div>
 
-<!-- TODO(kjlubick) slices-->
+${slicePicker(ele)}
 
-<table class="task-info request-info">
+<table class="task-info request-info ${taskInfoClass(ele, result)}">
 <tbody>
   <tr>
     <td>Name</td>
@@ -50,7 +50,7 @@ const taskInfoTable = (ele, request, result, currentSlice) => {
   </tr>
   <tr>
     <td>State</td>
-    <td>${humanState(result)}</td>
+    <td>${humanState(result, ele._currentSliceIdx)}</td>
   </tr>
   <tr>
     <td>
@@ -122,6 +122,22 @@ const taskInfoTable = (ele, request, result, currentSlice) => {
 `;
 }
 
+const slicePicker = (ele) => {
+  if (!(ele._request.task_slices && ele._request.task_slices.length > 1)) {
+    return '';
+  }
+
+  return html`
+<div class=slice-picker>
+  ${ele._request.task_slices.map((_, idx) => sliceTab(ele, idx))}
+</div>
+`}
+
+const sliceTab = (ele, idx) => html`
+  <div class=tab ?selected=${ele._currentSliceIdx === idx}
+                 @click=${() => ele._setSlice(idx)}>Task Slice ${idx+1}</div>
+`;
+
 const requestBlock = (request, result, currentSlice) => html`
 <tr>
   <td>Priority</td>
@@ -189,7 +205,7 @@ const isolateBlock = (title, ref) => {
       ${ref.isolated}
     </a>
   </td>
-</tr>`
+</tr>`;
 };
 
 const arrayInTable = (array, label, keyFn) => {
@@ -612,6 +628,7 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
     this._request = {};
     this._result = {};
     this._currentSlice = {};
+    this._currentSliceIdx = -1;
     this._showDetails = false;
 
     this._stateChanged = () => console.log('update state');
@@ -657,8 +674,6 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
       .then(jsonOrThrow)
       .then((json) => {
         this._request = parseRequest(json);
-        // TODO(kjlubick): default this to the one that ran.
-        this._currentSlice = this._request.task_slices[0];
         this.render();
         this.app.finishedTask();
       })
@@ -667,7 +682,7 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
       .then(jsonOrThrow)
       .then((json) => {
         this._result = parseResult(json);
-        this.render();
+        this._setSlice(this._result.current_task_slice); // calls render
         this.app.finishedTask();
       })
       .catch((e) => this.fetchError(e, 'task/result'));
@@ -675,6 +690,16 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
 
   render() {
     super.render();
+  }
+
+  _setSlice(idx) {
+    this._currentSliceIdx = idx;
+    if (!this._request.task_slices) {
+      return;
+    }
+    this._currentSlice = this._request.task_slices[idx];
+    this._stateChanged();
+    this.render();
   }
 
   _toggleDetails(e) {
