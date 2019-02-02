@@ -22,6 +22,30 @@
       "revId": "fb2fe29a9d6f1f712f5b9e4ac630fef8df27b448",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ad8e802_a164bb8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-02T00:00:54Z",
+      "side": 1,
+      "message": "lol the funny thing is that it\u0027s not even close",
+      "parentUuid": "d0b13293_8e5d11cc",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "fb2fe29a9d6f1f712f5b9e4ac630fef8df27b448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
