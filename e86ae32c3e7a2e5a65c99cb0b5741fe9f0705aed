@@ -163,6 +163,24 @@
       "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50ef66bf_160dac10",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-02T00:27:47Z",
+      "side": 1,
+      "message": ":-)",
+      "parentUuid": "28c70b52_2ef04f4f",
+      "revId": "e86ae32c3e7a2e5a65c99cb0b5741fe9f0705aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
