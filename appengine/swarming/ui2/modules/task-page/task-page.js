@@ -7,6 +7,7 @@ import { html, render } from 'lit-html'
 import { jsonOrThrow } from 'common-sk/modules/jsonOrThrow'
 import { stateReflector } from 'common-sk/modules/stateReflector'
 
+import 'elements-sk/checkbox-sk'
 import 'elements-sk/icon/add-circle-outline-icon-sk'
 import 'elements-sk/styles/buttons'
 import '../swarming-app'
@@ -194,7 +195,7 @@ ${dimensions.map(dimension_row)}
 
 const dimension_row = (dimension) => html`
 <tr>
-  <td><b>${dimension.key}:</b> ${dimension.value}</td>
+  <td class=break-all><b>${dimension.key}:</b> ${dimension.value}</td>
 </tr>
 `;
 
@@ -587,8 +588,21 @@ const reproduceSection = (ele, currentSlice) => {
 }
 
 const taskLogs = (ele) => html`
-  Task logs goes here
-`;
+<div class="horizontal layout">
+  <div class=output-picker>
+    <div class=tab ?selected=${!ele._showRawOutput}
+         @click=${ele._toggleOutput}>Rich Output</div>
+    <div class=tab ?selected=${ele._showRawOutput}
+          @click=${ele._toggleOutput}>Raw Output</div>
+    <span> Refresh</span>
+    <input class=refresh_input placeholder="in seconds"
+        title="how often to refresh the page">
+    </input>
+    <checkbox-sk ?checked=${ele._wideLogs}></checkbox-sk>
+    <span>Full Width Logs</span>
+  </div>
+</div>
+<div class="code stdout tabbed break-all">${ele._stdout}</div>`;
 
 const template = (ele) => html`
 <swarming-app id=swapp
@@ -636,6 +650,7 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
     this._showDetails = false;
     this._refresh = 0;
     this._showRawOutput = false;
+    this._wideLogs = false;
 
     this._stateChanged = stateReflector(
       /*getState*/() => {
@@ -645,16 +660,19 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
           'd': this._showDetails,
           'r': this._refresh,
           'o': this._showRawOutput,
+          'w': this._wideLogs,
         }
     }, /*setState*/(newState) => {
       // default values if not specified.
       this._taskId = newState.id || this._taskId;
       this._showDetails = newState.d; // default to false
-      this._refresh = newState.r || 1000;
+      this._refresh = newState.r || 120;
       this._showRawOutput = newState.o; // default to false
+      this._wideLogs = newState.w;
       this._fetch();
       this.render();
     });
+
 
     this._request = {};
     this._result = {};
@@ -696,7 +714,7 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
       headers: {'authorization': this.auth_header},
       signal: this._fetchController.signal,
     };
-    this.app.addBusyTasks(2);
+    this.app.addBusyTasks(3);
     fetch(`/_ah/api/swarming/v1/task/${this._taskId}/request`, extra)
       .then(jsonOrThrow)
       .then((json) => {
@@ -713,12 +731,22 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
         this.app.finishedTask();
       })
       .catch((e) => this.fetchError(e, 'task/result'));
+    fetch(`/_ah/api/swarming/v1/task/${this._taskId}/stdout`, extra)
+      .then(jsonOrThrow)
+      .then((json) => {
+        this._stdout = json.output;
+        this.render();
+        this.app.finishedTask();
+      })
+      .catch((e) => this.fetchError(e, 'task/request'));
   }
 
   render() {
     super.render();
     const idInput = $$('.id_input', this);
     idInput.value = this._taskId;
+    const refreshInput = $$('.refresh_input', this);
+    refreshInput.value = this._refresh;
   }
 
   _setSlice(idx) {
@@ -735,6 +763,14 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
     // This prevents a double event from happening.
     e.preventDefault();
     this._showDetails = !this._showDetails;
+    this._stateChanged();
+    this.render();
+  }
+
+  _toggleOutput(e) {
+    // This prevents a double event from happening.
+    e.preventDefault();
+    this._showRawOutput = !this._showRawOutput;
     this._stateChanged();
     this.render();
   }

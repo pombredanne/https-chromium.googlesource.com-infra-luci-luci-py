@@ -11,6 +11,10 @@ task-page {
     a[href] {
       color: #1F78B4;
     }
+
+    .right {
+      margin-top: 8px;
+    }
   }
 
   .id_buttons {
@@ -106,23 +110,46 @@ task-page {
     margin-left: 8px;
   }
 
-  .slice-picker {
+  .slice-picker, .output-picker {
     margin-left: 5px;
     display: flex;
     > * {
       display: inline-block;
     }
-    .tab {
-      padding: 10px 20px;
-      margin: 0;
-      background-color: #a6cee3;
-      color: black;
-      cursor: pointer;
+  }
+
+  .output-picker {
+    > span {
+      margin: auto;
+      padding: 2px;
     }
-    .tab[selected] {
-      background-color: #1f78b4;
-      color: white;
-      font-weight: 700;
+    .refresh_input {
+      margin: 8px 4px;
+      width: 4em;
     }
+  }
+
+  .tab {
+    padding: 10px 20px;
+    margin: 0;
+    background-color: #a6cee3;
+    color: black;
+    cursor: pointer;
+  }
+  .tab[selected] {
+    background-color: #1f78b4;
+    color: white;
+    font-weight: 700;
+  }
+
+  .tabbed {
+    border: 3px solid #1F78B4;
+    margin-left: 5px;
+    min-height: 80vh;
+    min-width: 550px;
+  }
+  .stdout {
+    white-space: pre-wrap;
+    padding: 2px;
   }
 }
