@@ -297,6 +297,23 @@ describe('task-list', function() {
 
           });
         });
+
+        it('shows aliases on filter chips', function(done) {
+          loggedInTasklist((ele) => {
+            ele._filters=['cpu-tag:x86-64-Haswell_GCE', 'gpu-tag:10de:1cb3-415.27', 'device_type-tag:flo']
+            ele.render();
+
+            const chips = $('.chip_container .chip', ele);
+            expect(chips).toBeTruthy();
+            expect(chips.length).toBe(3, '3 filters, 3 chips');
+
+            // They are displayed in order, so check content
+            expect(chips[0]).toMatchTextContent('cpu-tag:x86-64-Haswell_GCE');
+            expect(chips[1]).toMatchTextContent('gpu-tag:NVIDIA Quadro P400 (10de:1cb3-415.27)');
+            expect(chips[2]).toMatchTextContent('device_type-tag:Nexus 7 [2013] (flo)');
+            done();
+          });
+        });
       }); // end describe('default landing page')
     });// end describe('when logged in as user')
 
