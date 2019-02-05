@@ -12,7 +12,7 @@ describe('task-page', function() {
   const { $, $$ } = require('common-sk/modules/dom');
   const { customMatchers, expectNoUnmatchedCalls, mockAppGETs } = require('modules/test_util');
   const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
-  const { taskResults, taskRequests } = require('modules/task-page/test_data');
+  const { taskOutput, taskResults, taskRequests } = require('modules/task-page/test_data');
 
   const TEST_TASK_ID = 'test0b3c0fac7810';
 
@@ -109,6 +109,7 @@ describe('task-page', function() {
 
     fetchMock.get(`/_ah/api/swarming/v1/task/${TEST_TASK_ID}/request`, request);
     fetchMock.get(`/_ah/api/swarming/v1/task/${TEST_TASK_ID}/result?include_performance_stats=true`, result);
+    fetchMock.get(`/_ah/api/swarming/v1/task/${TEST_TASK_ID}/stdout`, taskOutput);
   }
 
 //===============TESTS START====================================
@@ -384,7 +385,7 @@ describe('task-page', function() {
       serveTask(0, 'Completed task with 2 slices');
       loggedInTaskPage((ele) => {
         let calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+2, '2 GETs from swarming-app, 2 from task-page');
+        expect(calls.length).toBe(2+3, '2 GETs from swarming-app, 3 from task-page');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
@@ -392,6 +393,7 @@ describe('task-page', function() {
 
         expect(gets).toContain(`/_ah/api/swarming/v1/task/${TEST_TASK_ID}/request`);
         expect(gets).toContain(`/_ah/api/swarming/v1/task/${TEST_TASK_ID}/result?include_performance_stats=true`);
+        expect(gets).toContain(`/_ah/api/swarming/v1/task/${TEST_TASK_ID}/stdout`);
 
         checkAuthorizationAndNoPosts(calls);
         done();
