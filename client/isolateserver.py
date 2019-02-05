@@ -1742,11 +1742,7 @@ def process_cache_options(options, trim, **kwargs):
     server_ref = isolate_storage.ServerRef(
         options.isolate_server, options.namespace)
     return local_caching.DiskContentAddressedCache(
-        unicode(os.path.abspath(options.cache)),
-        policies,
-        server_ref.hash_algo(),  # pylint: disable=not-callable
-        trim,
-        **kwargs)
+        unicode(os.path.abspath(options.cache)), policies, trim, **kwargs)
   else:
     return local_caching.MemoryContentAddressedCache()
 
