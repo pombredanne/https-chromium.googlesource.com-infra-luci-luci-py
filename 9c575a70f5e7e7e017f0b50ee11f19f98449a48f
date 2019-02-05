@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d59a8d7_ba4c0d17",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-05T23:19:12Z",
+      "side": 1,
+      "message": "content",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "9c575a70f5e7e7e017f0b50ee11f19f98449a48f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6203ef8_953df784",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-05T23:19:12Z",
+      "side": 1,
+      "message": "Do the roundtrip tests do requests to the real isolated service?\n\nAlso, nit: roundtip -\u003e round_trip (or roundtrip)",
+      "revId": "9c575a70f5e7e7e017f0b50ee11f19f98449a48f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
