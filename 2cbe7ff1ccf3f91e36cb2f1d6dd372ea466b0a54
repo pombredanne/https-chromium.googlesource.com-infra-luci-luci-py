@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7de2690_659c8670",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-05T19:54:01Z",
+      "side": 1,
+      "message": "FWIW, this event triggers after the input was modified and focus was lost, which is much better than the \"instantaneous update\" that the Polymer one had and we had to hack around.",
+      "range": {
+        "startLine": 41,
+        "startChar": 44,
+        "endLine": 41,
+        "endChar": 50
+      },
+      "revId": "2cbe7ff1ccf3f91e36cb2f1d6dd372ea466b0a54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
