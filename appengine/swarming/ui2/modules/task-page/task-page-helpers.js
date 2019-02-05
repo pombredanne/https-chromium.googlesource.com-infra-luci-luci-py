@@ -24,6 +24,32 @@ export function cipdLink(actualVersion, server) {
   return `${server}/p/${pkg}/+/${version}`;
 }
 
+export function getRichLogsLink(ele) {
+  if (!ele || !ele._request || !ele._request.tagMap) {
+    return undefined;
+  }
+  const tagMap = ele._request.tagMap;
+  const miloHost = tagMap['milo_host'];
+  let logs = tagMap['log_location'];
+  if (logs && miloHost) {
+    logs = logs.replace('logdog://', '');
+    return miloHost.replace('%s', logs);
+  }
+  const displayTemplate = ele.server_details.display_server_url_template;
+  if (!displayTemplate) {
+    return undefined;
+  }
+  return displayTemplate.replace('%s', ele._taskId);
+}
+
+export function hasRichOutput(ele) {
+  if (!ele || !ele._request || !ele._request.tagMap) {
+    return false;
+  }
+  const tagMap = ele._request.tagMap;
+  return tagMap['allow_milo'] || tagMap['luci_project'];
+}
+
 /** humanState returns a human readable string corresponding to
  *  the task's state. It takes into account what slice this is
  *  and what slice ran, so as not to confuse the user.
@@ -54,6 +80,10 @@ export function humanState(result, currentSliceIdx) {
 export function isolateLink(ref) {
   return ref.isolatedserver + '/browse?namespace='+ref.namespace +
          '&hash=' + ref.isolated;
+}
+
+export function isSummaryTask(id) {
+  return id && id.endsWith(0);
 }
 
 /** parseRequest pre-processes any data in the task request object.
