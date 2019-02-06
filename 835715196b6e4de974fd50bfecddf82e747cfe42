@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40de3147_79b82973",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T14:13:27Z",
+      "side": 1,
+      "message": "Align function arguments at +4",
+      "revId": "835715196b6e4de974fd50bfecddf82e747cfe42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
