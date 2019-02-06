@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b6a21e8_fe9a84cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-06T17:54:11Z",
+      "side": 1,
+      "message": "Nice :-)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "f900eef8fa09bc37d5b8323e75f922d9e42215f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c541a0b_af0340b5",
+        "filename": "client/isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-06T17:54:11Z",
+      "side": 1,
+      "message": "If the algo is loaded here (from a .isolated.state file?), why does it need to be specified again? Is this because older saved data may not contain the saved hash algo?",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 72
+      },
+      "revId": "f900eef8fa09bc37d5b8323e75f922d9e42215f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a8dd6a2_492816e2",
+        "filename": "client/isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-06T17:54:11Z",
+      "side": 1,
+      "message": "How is it incorrect? namespace may not be \u0027default\u0027 if its missing from options? Also, if it\u0027s not worth fixing, it seems strange to me to use TODO, since I think TODO implies that you\u0027d like to fix it later.",
+      "revId": "f900eef8fa09bc37d5b8323e75f922d9e42215f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
