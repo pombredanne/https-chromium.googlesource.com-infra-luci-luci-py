@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "586d657a_a1f55744",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-06T01:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13dc0eff_cdf73958",
+      "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a98743dd_d7169ac4",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9e685b6d_94d2f47e",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-06T01:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a98743dd_d7169ac4",
+      "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "118d6c5d_3c456d4c",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a76c5ddb_dd4ffeb1",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-06T01:51:38Z",
+      "side": 1,
+      "message": "Yes, the taskqueue handler will call this in a followup.",
+      "parentUuid": "118d6c5d_3c456d4c",
+      "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
