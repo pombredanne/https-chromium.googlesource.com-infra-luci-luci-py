@@ -151,7 +151,7 @@ def assign_task(es_cfg, bot_dimensions):
 
 
 # TODO(akeshet): Add a blocking and non-blocking variant of this.
-def notify_request(es_cfg, request, result_summary):
+def notify_request(es_cfg, request, result_summary, use_tq=False):
   """Calls external scheduler to notify it of a task state.
 
   Arguments:
@@ -159,6 +159,8 @@ def notify_request(es_cfg, request, result_summary):
         notify.
     - request: task_request.TaskRequest
     - result_summary: task_result.TaskResultSummary
+    - use_tq: If true, make this call asynchronously on a task queue (not
+              yet implemented).
   """
   req = plugin_pb2.NotifyTasksRequest()
   item = req.notifications.add()
@@ -183,9 +185,22 @@ def notify_request(es_cfg, request, result_summary):
 
   req.scheduler_id = es_cfg.id
 
-  c = _get_client(es_cfg.address)
-  return c.NotifyTasks(req, credentials=_creds())
+  if use_tq:
+    # Push a payload containing |req| proto and es_host to
+    # a task-queue.
+    pass
+  else:
+    return notify_request_now(es_cfg.address, req)
 
+def notify_request_now(es_host, proto):
+  """Calls external scheduler's NotifyTask endpoint immediately.
+
+  Arguments:
+    es_host: Address of external scheduler to use.
+    proto: plugin_pb2.NotifyTasksRequest instance to call with.
+  """
+  c = _get_client(es_host)
+  return c.NotifyTasks(proto, credentials=_creds())
 
 def get_cancellations(es_cfg):
   """Calls external scheduler and returns task cancellations."""
