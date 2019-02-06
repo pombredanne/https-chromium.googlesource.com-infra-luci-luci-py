@@ -70,6 +70,7 @@ class FakeExternalScheduler(object):
     self._test = test
     self.called_with_requests = []
 
+
   def NotifyTasks(self, req, credentials):  # pylint: disable=unused-argument
     self._test.assertIsInstance(req, plugin_pb2.NotifyTasksRequest)
     self.called_with_requests.append(req)
@@ -89,16 +90,18 @@ class ExternalSchedulerApiTest(test_case.TestCase):
     # Make the values deterministic.
     self.mock_now(datetime.datetime(2014, 1, 2, 3, 4, 5, 6))
     self.mock(random, 'getrandbits', lambda _: 0x88)
-    # Skip task_scheduler.schedule_request() enqueued work.
+    self._tq_tasks_enqueued = []
     self.mock(utils, 'enqueue_task', self._enqueue)
     # Use the local fake.
     self.mock(external_scheduler, '_get_client', self._get_client)
     self._client = None
 
-  def _enqueue(self, url, queue_name, payload):
-    self.assertEqual('/internal/taskqueue/rebuild-task-cache', url)
-    self.assertEqual('rebuild-task-cache', queue_name)
-    self.assertTrue(payload)
+  def _enqueue(self, url, queue_name, params=None, payload=None,
+               transactional=False):
+    if queue_name == 'es-notify-tasks':
+      self._tq_tasks_enqueued.append(
+        (url, queue_name, params, payload, transactional)
+      )
     return True
 
   def _get_client(self, addr):
@@ -138,6 +141,8 @@ class ExternalSchedulerApiTest(test_case.TestCase):
     res = external_scheduler.notify_request(self.es_cfg, request,
                                             result_summary)
 
+    self.assertEqual(len(self._tq_tasks_enqueued), 0)
+
     self.assertEqual(len(self._client.called_with_requests), 1)
     called_with = self._client.called_with_requests[0]
     self.assertEqual(len(called_with.notifications), 1)
@@ -147,6 +152,17 @@ class ExternalSchedulerApiTest(test_case.TestCase):
                      notification.task.enqueued_time.ToDatetime())
     self.assertEqual(request.task_id, notification.task.id)
     self.assertEqual(request.num_task_slices, len(notification.task.slices))
+
+  def test_notify_request_with_tq(self):
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+    res = external_scheduler.notify_request(self.es_cfg, request,
+                                            result_summary, use_tq=True)
+
+    self.assertEqual(len(self._tq_tasks_enqueued), 1)
+
+    # There should have been no call to _get_client.
+    self.assertEqual(self._client, None)
 
   def test_notify_request_now(self):
     r = plugin_pb2.NotifyTasksRequest()
