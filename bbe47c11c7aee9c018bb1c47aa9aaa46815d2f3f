@@ -17,6 +17,24 @@
       "revId": "bbe47c11c7aee9c018bb1c47aa9aaa46815d2f3f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "652f4fab_182e7e35",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-06T23:00:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "512d8f40_6c3f05e3",
+      "revId": "bbe47c11c7aee9c018bb1c47aa9aaa46815d2f3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
