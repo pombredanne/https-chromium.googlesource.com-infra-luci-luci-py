@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2b0e851f_c0a0a881",
+        "filename": "client/isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T18:17:37Z",
+      "side": 1,
+      "message": "Ah man, that\u0027s a long story of misfeatures.\n\nisolate.py (and only isolate.py) stores a foo.isolated.state file and it verifies that it\u0027s still valid. This will all disappear once we can convert everything to use isolated/isolateserver.py directly so I\u0027m not bothering to improve this code, just keep it working enough.\n\nI have regrets.",
+      "parentUuid": "1c541a0b_af0340b5",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 72
+      },
+      "revId": "f900eef8fa09bc37d5b8323e75f922d9e42215f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a8dd6a2_492816e2",
         "filename": "client/isolate.py",
         "patchSetId": 7
@@ -62,6 +86,24 @@
       "revId": "f900eef8fa09bc37d5b8323e75f922d9e42215f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8138899_7a470174",
+        "filename": "client/isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T18:17:37Z",
+      "side": 1,
+      "message": "Indeed, removed the TODO part of the comment.",
+      "parentUuid": "1a8dd6a2_492816e2",
+      "revId": "f900eef8fa09bc37d5b8323e75f922d9e42215f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
