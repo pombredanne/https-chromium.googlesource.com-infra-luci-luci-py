@@ -10,11 +10,14 @@ import logging
 import webapp2
 from google.appengine.ext import ndb
 
+from proto.api import plugin_pb2
+
 import mapreduce_jobs
 from components import decorators
 from server import bot_groups_config
 from server import bot_management
 from server import config
+from server import external_scheduler
 from server import lease_management
 from server import named_caches
 from server import stats_bots
@@ -296,6 +299,17 @@ class TaskSendPubSubMessage(webapp2.RequestHandler):
   def post(self, task_id):  # pylint: disable=unused-argument
     ndb.get_context().set_cache_policy(lambda _: False)
     task_scheduler.task_handle_pubsub_task(json.loads(self.request.body))
+
+
+class TaskESNotifyTasksHandler(webapp2.RequestHandler):
+  """Sends task notifications to external scheduler."""
+
+  @decorators.require_taskqueue('es-notify-tasks')
+  def post(self, es_host):
+    payload = self.request.body
+    request = plugin_pb2.NotifyTaskRequest()
+    request.ParseFromString(request_bytes)
+    external_scheduler.notify_request_now(es_host, request)
 
 
 class TaskMachineProviderManagementHandler(webapp2.RequestHandler):
