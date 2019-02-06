@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13dc0eff_cdf73958",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T01:16:00Z",
+      "side": 1,
+      "message": "Ah ha!\n\n\u003c/James Bond meme\u003e",
+      "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a98743dd_d7169ac4",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T01:16:00Z",
+      "side": 1,
+      "message": "Please add another empty line for separation.",
+      "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "118d6c5d_3c456d4c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T01:16:00Z",
+      "side": 1,
+      "message": "Does this need to be exported? If not, please prefix with underscore (even if unit tested, which is fine).",
+      "revId": "f6b17d16724b45eedab9f2361b3e5a9e4fbedb78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
