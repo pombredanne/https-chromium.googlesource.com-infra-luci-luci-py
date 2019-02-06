@@ -159,8 +159,8 @@ def notify_request(es_cfg, request, result_summary, use_tq=False):
         notify.
     - request: task_request.TaskRequest
     - result_summary: task_result.TaskResultSummary
-    - use_tq: If true, make this call asynchronously on a task queue (not
-              yet implemented).
+    - use_tq: If true, push this call to a task queue (transactionally in
+              any pending datastore transaction).
   
   Returns: Nothing.
   """
@@ -188,9 +188,14 @@ def notify_request(es_cfg, request, result_summary, use_tq=False):
   req.scheduler_id = es_cfg.id
 
   if use_tq:
-    # Push a payload containing |req| proto and es_host to
-    # a task-queue.
-    pass
+    request_bytes = req.SerializeToString()
+    enqueued = utils.enqueue_task(
+      url='/internal/taskqueue/es-notify-tasks',
+      queue_name='es-notify-tasks',
+      params={"es_host": es_cfg.address},
+      transactional=True,
+      payload=request_bytes)
+    assert enqueued
   else:
     # Ignore return value, the response proto is empty.
     notify_request_now(es_cfg.address, req)
