@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6d56dcc0_d8611da2",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-06T15:42:54Z",
+      "side": 1,
+      "message": "As discussed offline, the implementation wouldn\u0027t be very difficult (I can just change this to filter based on the count here), but I worry it would be confusing for users when the counts are different between pages.",
+      "parentUuid": "a49f0b90_b2c4276d",
+      "revId": "1fc18188dafc1883b3a529fc9f749819a4d82f2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d7cca50_304f7ea2",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "1fc18188dafc1883b3a529fc9f749819a4d82f2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bd0bd5f_7e678717",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-06T15:42:54Z",
+      "side": 1,
+      "message": "It becomes annoying when this isn\u0027t on screen.  For example, when a user on mobile presses to open the columns, this triggers, forcing a scroll up to the filter box, which means the user has to scroll back down to the column box...",
+      "parentUuid": "5d7cca50_304f7ea2",
+      "revId": "1fc18188dafc1883b3a529fc9f749819a4d82f2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
