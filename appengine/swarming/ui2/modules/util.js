@@ -130,6 +130,10 @@ export function initPropertyFromAttrOrProperty(ele, prop, removeAttr=true) {
   }
 }
 
+export function onSmallScreen() {
+  return window.innerWidth < 600 || window.innerHeight < 600;
+}
+
 /** sanitizeAndHumanizeTime parses a date string or ms_since_epoch into a JS
  *  Date object, assuming UTC time. It also creates a human readable form in
  *  the obj under a key with a human_ prefix.  E.g.
