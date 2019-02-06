@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a49f0b90_b2c4276d",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T15:26:17Z",
+      "side": 1,
+      "message": "I had an idea during the night, as a user, I actually care about any value that is non-zero, so the idea would be to hide some/all while it\u0027s being calculated, then update and show all the non-zero values. wdyt? I don\u0027t know if it\u0027d be hard to implement.",
+      "revId": "1fc18188dafc1883b3a529fc9f749819a4d82f2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d7cca50_304f7ea2",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-06T15:26:17Z",
+      "side": 1,
+      "message": "Why not on mobile? It fails to scroll properly?",
+      "revId": "1fc18188dafc1883b3a529fc9f749819a4d82f2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
