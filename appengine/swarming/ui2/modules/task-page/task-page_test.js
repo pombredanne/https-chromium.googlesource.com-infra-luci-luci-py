@@ -89,9 +89,11 @@ describe('task-page', function() {
   // convenience function to save indentation and boilerplate.
   // expects a function test that should be called with the created
   // <task-page> after the user has logged in.
-  function loggedInTaskPage(test) {
+  function loggedInTaskPage(test, emptyTaskId) {
     createElement((ele) => {
-      ele._taskId = TEST_TASK_ID;
+      if (!emptyTaskId) {
+        ele._taskId = TEST_TASK_ID;
+      }
       userLogsIn(ele, () => {
         test(ele);
       });
@@ -153,8 +155,8 @@ describe('task-page', function() {
           const topDivs = $('main > div', ele);
           expect(topDivs).toBeTruthy();
           expect(topDivs.length).toBe(2);
-          expect(topDivs[0].hidden).toBeTruthy('left side hidden');
-          expect(topDivs[1].hidden).toBeTruthy('right side hidden');
+          expect(topDivs[0]).toHaveAttribute('hidden', 'left side hidden');
+          expect(topDivs[1]).toHaveAttribute('hidden', 'right side hidden');
           done();
         });
       });
@@ -178,23 +180,46 @@ describe('task-page', function() {
         loggedInTaskPage((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage.hidden).toBeFalsy('Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
           expect(loginMessage.textContent).toContain('different account');
           done();
         });
       });
 
-      it('does not display filters or tasks', function(done) {
-        createElement((ele) => {
+      it('does not display logs or task details', function(done) {
+        loggedInTaskPage((ele) => {
           const topDivs = $('main > div', ele);
           expect(topDivs).toBeTruthy();
           expect(topDivs.length).toBe(2);
-          expect(topDivs[0].hidden).toBeTruthy('left side hidden');
-          expect(topDivs[1].hidden).toBeTruthy('right side hidden');
+          expect(topDivs[0]).toHaveAttribute('hidden', 'left side hidden');
+          expect(topDivs[1]).toHaveAttribute('hidden', 'right side hidden');
           done();
         });
       });
     }); // end describe('when logged in as unauthorized user')
+
+    describe('authorized user, but no taskid', function() {
+
+      it('tells the user they should enter a task id', function(done) {
+        loggedInTaskPage((ele) => {
+          const loginMessage = $$('.id_buttons .message', ele);
+          expect(loginMessage).toBeTruthy();
+          expect(loginMessage.textContent).toContain('Enter a Task ID');
+          done();
+        }, true);
+      });
+
+      it('does not display filters or tasks', function(done) {
+        loggedInTaskPage((ele) => {
+          const topDivs = $('main > div', ele);
+          expect(topDivs).toBeTruthy();
+          expect(topDivs.length).toBe(2);
+          expect(topDivs[0].children.length).toEqual(1); // only .id_buttons
+          expect(topDivs[1].children.length).toEqual(0); // everything else removed
+          done();
+        }, true);
+      });
+    }); // end describe('authorized user, but no taskid')
 
     describe('Completed task with 2 slices', function() {
       beforeEach(() => serveTask(0, 'Completed task with 2 slices'));
