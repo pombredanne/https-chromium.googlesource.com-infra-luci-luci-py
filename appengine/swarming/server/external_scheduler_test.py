@@ -69,13 +69,21 @@ def _gen_request(**kwargs):
 
 
 class FakeExternalScheduler(object):
-  # TODO(akeshet): Make a superset of
-  # plugin_prpc_pb2.ExternalSchedulerServiceDescription.
   def __init__(self, test):
     self._test = test
     self.called_with_requests = []
 
-  def NotifyTasks(self, req, credentials):  # pylint: disable=unused-argument
+  def AssignTasks(self, req, creds): # pylint: disable=unused-argument
+    self._test.assertIsInstance(req, plugin_pb2.AssignTasksRequest)
+    self.called_with_requests.append(req)
+    return plugin_pb2.AssignTasksResponse()
+
+  def GetCancellations(self, req, creds): # pylint: disable=unused-argument
+    self._test.assertIsInstance(req, plugin_pb2.GetCancellationsRequest)
+    self.called_with_requests.append(req)
+    return plugin_pb2.GetCancellationsResponse()
+
+  def NotifyTasks(self, req, creds):  # pylint: disable=unused-argument
     self._test.assertIsInstance(req, plugin_pb2.NotifyTasksRequest)
     self.called_with_requests.append(req)
     return plugin_pb2.NotifyTasksResponse()
