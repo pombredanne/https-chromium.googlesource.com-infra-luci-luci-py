@@ -13,14 +13,15 @@ import 'elements-sk/icon/add-circle-outline-icon-sk'
 import 'elements-sk/icon/remove-circle-outline-icon-sk'
 import 'elements-sk/styles/buttons'
 import '../swarming-app'
+import '../stacked-time-chart'
 
 import * as human from 'common-sk/modules/human'
 import * as query from 'common-sk/modules/query'
 
 import { applyAlias } from '../alias'
-import { cipdLink, hasRichOutput, humanState, isolateLink, isSummaryTask,
-         parseRequest, parseResult, richLogsLink, sliceExpires, stateClass,
-         taskCost, taskExpires,
+import { cipdLink, durationChart, hasRichOutput, humanState,
+         isolateLink, isSummaryTask, parseRequest, parseResult,
+         richLogsLink, sliceExpires, stateClass, taskCost, taskExpires,
          taskInfoClass, wasDeduped, wasPickedUp} from './task-page-helpers'
 import { botListLink, botPageLink, humanDuration, taskListLink,
          taskPageLink } from '../util'
@@ -510,11 +511,10 @@ const taskTimingSection = (ele, request, result) => {
     </tbody>
   </table>
   <div class=right>
-    <!-- TODO(kjlubick) -->
     <stacked-time-chart
       labels='["Pending", "Overhead", "Running", "Overhead"]'
       colors='["#E69F00", "#D55E00", "#0072B2", "#D55E00"]'
-      values='[[_durationChart(_result, _result.*)}'>
+      .values=${durationChart(result)}>
     </stacked-time-chart>
   </div>
 </div>

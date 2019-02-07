@@ -24,6 +24,29 @@ export function cipdLink(actualVersion, server) {
   return `${server}/p/${pkg}/+/${version}`;
 }
 
+export function durationChart(result) {
+  const oneDecimalPlace = function(a) {
+    if (!a) {
+      return 0.0;
+    }
+    return Math.round(a * 10)/10;
+  }
+  let preOverhead = 0;
+  let postOverhead = 0;
+  // These are only put in upon task completion.
+  if (result.performance_stats) {
+    postOverhead = (result.performance_stats.isolated_upload &&
+                    result.performance_stats.isolated_upload.duration) || 0;
+    // We only know the certain timings of isolating. To get
+    // close enough (tm) overhead timings, we assume CIPD is the only
+    // other source of overhead and all of CIPD's overhead is done pre-task.
+    preOverhead = result.performance_stats.bot_overhead - postOverhead;
+  }
+  const foo= [result.pending, preOverhead,
+         result.duration, postOverhead].map(oneDecimalPlace);
+  console.log(foo)
+  return foo;
+}
 
 /** hasRichOutput returns true if a task supports a rich logs representation
  *  (e.g. Milo), false otherwise.
