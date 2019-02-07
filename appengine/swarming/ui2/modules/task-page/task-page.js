@@ -22,7 +22,8 @@ import { cipdLink, hasRichOutput, humanState, isolateLink, isSummaryTask,
          parseRequest, parseResult, richLogsLink, sliceExpires, stateClass,
          taskCost, taskExpires,
          taskInfoClass, wasDeduped, wasPickedUp} from './task-page-helpers'
-import { botPageLink, humanDuration, taskPageLink } from '../util'
+import { botListLink, botPageLink, humanDuration, taskListLink,
+         taskPageLink } from '../util'
 
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
@@ -76,7 +77,7 @@ const taskDisambiguation = (ele, result) => {
     </tr>
   </thead>
   <tbody>
-    ${ele._extraTries.map(taskRow)}
+${ele._extraTries.map(taskRow)}
   </tbody>
 </table>`;
 }
@@ -87,16 +88,16 @@ const taskRow = (result, idx) => {
   }
   // Convert the summary id to the run id
   let taskId = result.task_id.substring(0, result.task_id.length - 1);
-  taskId += (idx+1);
+  taskId += (idx)+1;
   return html`
 <tr>
   <td>
-    <a href=${ifDefined(taskPageLink(taskId, true))} target=_blank>
+    <a href=${ifDefined(taskPageLink(taskId, true))}>
       ${taskId}
     </a>
   </td>
   <td>
-    <a href=${ifDefined(botPageLink(result.bot_id))} target=_blank>
+    <a href=${ifDefined(botPageLink(result.bot_id))}>
       ${result.bot_id}
     </a>
   </td>
@@ -193,7 +194,8 @@ const stateLoadBlock = (ele, request, result) => html`
 </tr>
 ${countBlocks(result, ele._capacityCounts[ele._currentSliceIdx],
                       ele._pendingCounts[ele._currentSliceIdx],
-                      ele._runningCounts[ele._currentSliceIdx])}
+                      ele._runningCounts[ele._currentSliceIdx],
+                      ele._currentSlice.properties || {})}
 <tr ?hidden=${!result.deduped_from} class=highlighted>
   <td><b>Deduped From</b></td>
   <td>
@@ -210,13 +212,16 @@ ${countBlocks(result, ele._capacityCounts[ele._currentSliceIdx],
 </tr>
 `;
 
-const countBlocks = (result, capacityCount, pendingCount, runningCount) => html`
+const countBlocks = (result, capacityCount, pendingCount,
+                     runningCount, properties) => html`
 <tr>
   <td class=${result.state === 'PENDING'? 'bold': ''}>
     ${result.state === 'PENDING' ? 'Why Pending?' : 'Fleet Capacity'}
   </td>
   <td>
-    ${count(capacityCount, 'count')} bots could possibly run this task
+    ${count(capacityCount, 'count')}
+    <a href=${botListLink(properties.dimensions)}>bots</a>
+    could possibly run this task
     (${count(capacityCount, 'busy')} busy,
     ${count(capacityCount, 'dead')} dead,
     ${count(capacityCount, 'quarantined')} quarantined,
@@ -226,8 +231,12 @@ const countBlocks = (result, capacityCount, pendingCount, runningCount) => html`
 <tr>
   <td>Similar Load</td>
   <td>
-      ${count(pendingCount)} similar pending tasks,
-      ${count(runningCount)} similar running tasks
+      ${count(pendingCount)}
+      <a href=${taskListLink(properties.dimensions, [], 'state:PENDING')}>
+        similar pending tasks</a>,
+      ${count(runningCount)}
+      <a href=${taskListLink(properties.dimensions, [], 'state:RUNNING')}>
+        similar running tasks</a>
   </td>
 </tr>
 `;
