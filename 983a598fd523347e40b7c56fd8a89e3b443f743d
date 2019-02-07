@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3a510a3_8f4fdae1",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-07T17:44:50Z",
+      "side": 1,
+      "message": "Not a fan of default values, especially that the number of call sites is low.",
+      "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c12baee9_939232ad",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-07T17:44:50Z",
+      "side": 1,
+      "message": "Please remove this line, since it\u0027s inside a class.",
+      "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52bd6265_392154d4",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-07T17:44:50Z",
+      "side": 1,
+      "message": "I generally assert the value returned to make sure the number of tasks enqueued is known. Same for line 172.",
+      "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
