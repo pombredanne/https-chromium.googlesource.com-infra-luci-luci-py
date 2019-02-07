@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "eac9ead1_f9bf1595",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-07T18:34:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a510a3_8f4fdae1",
+      "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c12baee9_939232ad",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 9
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "22220afe_772db56d",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-07T18:34:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c12baee9_939232ad",
+      "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52bd6265_392154d4",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 9
@@ -50,6 +86,24 @@
       "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b8f95c_899de742",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-07T18:34:55Z",
+      "side": 1,
+      "message": "There are some taskqueue entries created as a side effect of e.g. _gen_request that are outside the scope of this test, so asserting on their number seems fragile to me. Instead, I assert on the desired behavior of the tasks that I expect (e.g. in the next test).",
+      "parentUuid": "52bd6265_392154d4",
+      "revId": "983a598fd523347e40b7c56fd8a89e3b443f743d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
