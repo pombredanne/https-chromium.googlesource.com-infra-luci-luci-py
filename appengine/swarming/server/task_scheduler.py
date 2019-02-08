@@ -427,7 +427,7 @@ def _maybe_pubsub_notify_now(result_summary, request):
 
 
 def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg):
-  """Examines result_summary and enqueues a task to send PubSub message.
+  """Enqueues tasks to send PubSub and es notifications for given request.
 
   Arguments:
     result_summary: a task_result.TaskResultSummary instance.
@@ -786,6 +786,8 @@ def _ensure_active_slice(request, try_number, task_slice_index):
     and slice, if exists, or None otherwise.
   """
   def run():
+    logging.debug('Ensuring active try_number, slice_index of (%s, %s) on'
+                  'task %s.', try_number, task_slice_index, request)
     to_runs = task_to_run.TaskToRun.query(ancestor=request.key).fetch()
     to_runs = [r for r in to_runs if r.queue_number]
     if to_runs:
@@ -799,6 +801,7 @@ def _ensure_active_slice(request, try_number, task_slice_index):
     if to_run:
       if (to_run.try_number == try_number and
           to_run.task_slice_index == task_slice_index):
+        logging.debug('Desired try_number and slice_index already active.')
         return to_run
 
       # Deactivate old TaskToRun, create new one.
@@ -806,6 +809,7 @@ def _ensure_active_slice(request, try_number, task_slice_index):
       new_to_run = task_to_run.new_task_to_run(request, try_number,
                                                task_slice_index)
       ndb.put_multi([to_run, new_to_run])
+      logging.debug('Added a to_run at desired try_number and slice_index.')
       return new_to_run
 
     logging.error('Attempted to _ensure_active_slice on a task with no '
@@ -1047,18 +1051,19 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   """
   start = time.time()
   bot_id = bot_dimensions[u'id'][0]
+  es_cfg = external_scheduler.config_for_bot(bot_dimensions)
+  if es_cfg:
+    return _bot_reap_task_external_scheduler(bot_dimensions, bot_version,
+                                             es_cfg)
+
   iterated = 0
   reenqueued = 0
   expired = 0
   failures = 0
   stale_index = 0
   try:
-    es_cfg = external_scheduler.config_for_bot(bot_dimensions)
-    if es_cfg:
-      q = _get_task_from_external_scheduler(es_cfg, bot_dimensions)
-    else:
-      q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
-                                                            deadline)
+    q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
+                                                          deadline)
     for request, to_run in q:
       iterated += 1
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
@@ -1113,6 +1118,34 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
         '%d stale_index, %d failured',
         bot_id, time.time()-start, iterated, reenqueued, expired, stale_index,
         failures)
+
+
+def _bot_reap_task_external_scheduler(bot_dimensions, bot_version, es_cfg):
+  """Reaps a TaskToRun (chosed by external scheduler) if available.
+
+  This is a simpler version of bot_reap_task that skips a lot of the steps
+  normally taken by swarming's native scheduler.
+
+  Arguments:
+    - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+    - bot_version: String version of the bot client.
+    - es_cfg: ExternalSchedulerConfig for this bot.
+
+  """
+  q = _get_task_from_external_scheduler(es_cfg, bot_dimensions)
+  if not q:
+    return None, None, None
+
+  request, to_run = q[0]
+  run_result, secret_bytes = _reap_task(
+      bot_dimensions, bot_version, to_run.key, request)
+  if not run_result:
+      logging.info(
+          'failed to reap (external scheduler): %s0',
+          task_pack.pack_request_key(to_run.request_key))
+  logging.info('Reaped (external scheduler): %s', run_result.task_id)
+  return request, secret_bytes, run_result
 
 
 def bot_update_task(
