@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11c81fec_f04c8150",
+        "filename": "appengine/swarming/ui2/modules/stacked-time-chart/stacked-time-chart.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-08T15:22:37Z",
+      "side": 1,
+      "message": "This is copied almost verbatim from https://chromium.googlesource.com/infra/luci/luci-py/+/0a4fdfc25f89833026be6a8b29c0a27b8f3c5fc4/appengine/swarming/ui/res/imp/taskpage/stacked-time-chart.html#90 the old implementation as a Polymer element",
+      "revId": "b584146e1818cf67ddc3dad785fa1155179f6532",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
