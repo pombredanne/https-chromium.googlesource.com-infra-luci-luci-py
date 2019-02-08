@@ -50,6 +50,20 @@ export function durationChart(result) {
          result.duration, postOverhead].map(oneDecimalPlace);
 }
 
+export function firstDimension(dimensionArr, key) {
+  const dimensions = dimensionArr.filter(function(d) {
+    return d.key === key;
+  });
+  if (!dimensions.length) {
+    return null;
+  }
+  const values = dimensions[0].value;
+  if (!values.length) {
+    return null;
+  }
+  return values[0];
+}
+
 /** hasRichOutput returns true if a task supports a rich logs representation
  *  (e.g. Milo), false otherwise.
  */

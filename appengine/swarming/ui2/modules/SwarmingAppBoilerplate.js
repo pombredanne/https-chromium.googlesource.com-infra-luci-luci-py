@@ -45,6 +45,7 @@ export default class SwarmingAppBoilerplate extends HTMLElement {
     this._template = template;
     this._app = null;
     this._auth_header = '';
+    this._profile = null;
     // True until we see a 403 and get a call to setUserNotAuthorized();
     this._notAuthorized = false;
   }
@@ -88,6 +89,10 @@ export default class SwarmingAppBoilerplate extends HTMLElement {
                         included &lt;swarming-app&gt;
                         Read only.*/
   get permissions() { return (this._app && this._app.permissions) || {}; }
+
+  /** @prop {Object} profile An object with keys email and imageURL of the
+                             logged in user. Read Only. */
+  get profile() { return (this._app && this._app.profile) || {}  }
 
   /** @prop {Object} server_details - reflects the server_details from the
                         included &lt;swarming-app&gt;
