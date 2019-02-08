@@ -427,7 +427,7 @@ def _maybe_pubsub_notify_now(result_summary, request):
 
 
 def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg):
-  """Examines result_summary and enqueues a task to send PubSub message.
+  """Enqueues tasks to send PubSub and es notifications for given request.
 
   Arguments:
     result_summary: a task_result.TaskResultSummary instance.
@@ -786,6 +786,8 @@ def _ensure_active_slice(request, try_number, task_slice_index):
     and slice, if exists, or None otherwise.
   """
   def run():
+    logging.debug('Ensuring active try_number, slice_index of (%s, %s) on'
+                  'task %s.', try_number, task_slice_index, request)
     to_runs = task_to_run.TaskToRun.query(ancestor=request.key).fetch()
     to_runs = [r for r in to_runs if r.queue_number]
     if to_runs:
@@ -799,6 +801,7 @@ def _ensure_active_slice(request, try_number, task_slice_index):
     if to_run:
       if (to_run.try_number == try_number and
           to_run.task_slice_index == task_slice_index):
+        logging.debug('Desired try_number and slice_index already active.')
         return to_run
 
       # Deactivate old TaskToRun, create new one.
@@ -806,6 +809,7 @@ def _ensure_active_slice(request, try_number, task_slice_index):
       new_to_run = task_to_run.new_task_to_run(request, try_number,
                                                task_slice_index)
       ndb.put_multi([to_run, new_to_run])
+      logging.debug('Added a to_run at desired try_number and slice_index.')
       return new_to_run
 
     logging.error('Attempted to _ensure_active_slice on a task with no '
