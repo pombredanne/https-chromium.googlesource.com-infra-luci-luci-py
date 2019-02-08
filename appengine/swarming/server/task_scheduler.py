@@ -1047,18 +1047,19 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
   """
   start = time.time()
   bot_id = bot_dimensions[u'id'][0]
+  es_cfg = external_scheduler.config_for_bot(bot_dimensions)
+  if es_cfg:
+    return _bot_reap_task_external_scheduler(bot_dimensions, bot_version,
+                                             es_cfg)
+
   iterated = 0
   reenqueued = 0
   expired = 0
   failures = 0
   stale_index = 0
   try:
-    es_cfg = external_scheduler.config_for_bot(bot_dimensions)
-    if es_cfg:
-      q = _get_task_from_external_scheduler(es_cfg, bot_dimensions)
-    else:
-      q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
-                                                            deadline)
+    q = task_to_run.yield_next_available_task_to_dispatch(bot_dimensions,
+                                                          deadline)
     for request, to_run in q:
       iterated += 1
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
@@ -1113,6 +1114,34 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
         '%d stale_index, %d failured',
         bot_id, time.time()-start, iterated, reenqueued, expired, stale_index,
         failures)
+
+
+def _bot_reap_task_external_scheduler(bot_dimensions, bot_version, es_cfg):
+  """Reaps a TaskToRun (chosen by external scheduler) if available.
+
+  This is a simpler version of bot_reap_task that skips a lot of the steps
+  normally taken by swarming's native scheduler.
+
+  Arguments:
+    - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+    - bot_version: String version of the bot client.
+    - es_cfg: ExternalSchedulerConfig for this bot.
+
+  """
+  q = _get_task_from_external_scheduler(es_cfg, bot_dimensions)
+  if not q:
+    return None, None, None
+
+  request, to_run = q[0]
+  run_result, secret_bytes = _reap_task(
+      bot_dimensions, bot_version, to_run.key, request)
+  if not run_result:
+      logging.info(
+          'failed to reap (external scheduler): %s0',
+          task_pack.pack_request_key(to_run.request_key))
+  logging.info('Reaped (external scheduler): %s', run_result.task_id)
+  return request, secret_bytes, run_result
 
 
 def bot_update_task(
