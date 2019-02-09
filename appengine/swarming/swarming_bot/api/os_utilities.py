@@ -275,6 +275,8 @@ def get_cpu_dimensions():
     model = _parse_intel_model(name)
     if model:
       out.append(u'%s-%s-%s' % (cpu_type, bitness, model.replace(' ', '_')))
+  elif (cpu_type, bitness) == (u'x86', u'64'):
+    out.append('x64')
   elif cpu_type.startswith(u'arm'):
     if name:
       out.append(u'%s-%s-%s' % (cpu_type, bitness, name.replace(' ', '_')))
