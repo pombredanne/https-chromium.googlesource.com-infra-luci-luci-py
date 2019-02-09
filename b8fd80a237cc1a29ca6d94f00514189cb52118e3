@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20a77c78_a61d84a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2019-02-09T23:55:51Z",
+      "side": 1,
+      "message": "Fuchsia is not the first system to use this spelling. It\u0027s used by Windows (https://en.wikipedia.org/wiki/X86-64#Windows), and as a consequence was later chosen by GN, and even later by Fuchsia.",
+      "revId": "b8fd80a237cc1a29ca6d94f00514189cb52118e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
