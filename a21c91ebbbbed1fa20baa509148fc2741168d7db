@@ -34,6 +34,24 @@
       "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3cd6e55_9357c323",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T20:15:24Z",
+      "side": 1,
+      "message": "Yes and this relates to my question, there\u0027s already a clear way to declare preference, why add a second knob?",
+      "parentUuid": "b5c4e160_2ba52b8c",
+      "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
