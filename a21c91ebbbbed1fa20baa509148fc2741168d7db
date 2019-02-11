@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "486fdab2_e5feea8f",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T19:17:21Z",
+      "side": 1,
+      "message": "preferred is kinda misleading, it\u0027s already using order of field auth for preference in validate_bot_id_and_fetch_config(). It\u0027s more like \"log_on_fallback\" or something like that. wdyt?",
+      "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
