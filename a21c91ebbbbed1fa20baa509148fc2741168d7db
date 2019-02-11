@@ -52,6 +52,24 @@
       "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d5d857_6d9c0599",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-11T20:35:57Z",
+      "side": 1,
+      "message": "Renamed to \u0027log_if_failed\u0027 and restored the original evaluation order.",
+      "parentUuid": "c3cd6e55_9357c323",
+      "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
