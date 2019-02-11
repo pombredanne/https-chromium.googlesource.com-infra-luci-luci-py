@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe03383d_44787d1a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T18:22:33Z",
+      "side": 1,
+      "message": "You may want to update this one too to have the same format.",
+      "revId": "93edf063ec757348fbfd005e2599741002aa9675",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "402adbad_6d629f1e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T18:22:33Z",
+      "side": 1,
+      "message": "Side note I had forgotten: personally, I generally try to not log from inside the transaction and instead log outside, because otherwise there\u0027s a risk of doing an unrelated RPC from within the transaction.",
+      "revId": "93edf063ec757348fbfd005e2599741002aa9675",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
