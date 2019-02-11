@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af1b2af6_36e7e791",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "Please consistently return a tuple instead instead of a list wrapped tuple.",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2e01f7_555ecc8c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "So this becomes:\n\n  return None, None",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3de14791_6e46ad63",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "Please move this function above line 818, the file is optimized for readability by having the public functions grouped together. It\u0027s unfortunate that _gen_new_keys() is misplaced, I can do in a follow up.",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b223b9e2_77f2703a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "\" by the native scheduler\"\n\nSince we\u0027re in Swarming\u0027s code, it\u0027s fine to skip the name.",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f918d52_aa9be46d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1132,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "request, to_run \u003d _get_task_from_external_scheduler(es_cfg, bot_dimensions)\n  if not request:\n    return None, None, None",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e14910f7_370bd5ef",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1141,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "_reap_task() already logs, I don\u0027t think this is necessary.",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9a80901_9769e458",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:26:50Z",
+      "side": 1,
+      "message": "Same",
+      "revId": "1aff849f58faaab157096743f39babc35509bc5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
