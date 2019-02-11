@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af809331_65b81b06",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T14:32:52Z",
+      "side": 1,
+      "message": "I\u0027d prefer something like:\n\n   logging.debug(\n       \u0027_ensure_active_slice(%s, %d, %d)\u0027,\n       request.task_id, try_number, task_slice_index)\n\nIt\u0027s clear and dense.\n\n\nOr you could only log this once, based on the return value, i.e. you remove this line, but for every exit point, you do something like:\n\n   logging.error(\n       \u0027_ensure_active_slice(%s, %d, %d): Too many pending TaskToRun\\\u0027s\u0027,\n       request.task_id, try_number, task_slice_index)\n\n   logging.debug(\n       \u0027_ensure_active_slice(%s, %d, %d): Already active\u0027,\n       request.task_id, try_number, task_slice_index)\n\n   logging.info(\n       \u0027_ensure_active_slice(%s, %d, %d): Added new TaskToRun at desired indexes\u0027,\n       request.task_id, try_number, task_slice_index)",
+      "revId": "1a1c2f99c7e0cbce2b77ca9d49f300412ea4ea92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
