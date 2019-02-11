@@ -16,6 +16,24 @@
       "revId": "0217e6a53961768953447b42aed28fafb74b1db7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93528249_a83614d0",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-11T21:57:10Z",
+      "side": 1,
+      "message": "Forgot to change it after I renamed the field.",
+      "parentUuid": "101cec48_fb6d6379",
+      "revId": "0217e6a53961768953447b42aed28fafb74b1db7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
