@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "101cec48_fb6d6379",
+        "filename": "appengine/swarming/server/bot_groups_config_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T20:44:31Z",
+      "side": 1,
+      "message": "Weird, the try job found another value;\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8921787555815030400/+/steps/presubmit/0/stdout",
+      "revId": "0217e6a53961768953447b42aed28fafb74b1db7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
