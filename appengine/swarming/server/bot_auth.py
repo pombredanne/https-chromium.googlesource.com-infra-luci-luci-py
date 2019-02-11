@@ -59,33 +59,54 @@ def validate_bot_id_and_fetch_config(bot_id, machine_type):
   ip = auth.get_peer_ip()
   peer_ident = auth.get_peer_identity()
 
-  # Sequentially try all auth methods. If at least one applies, the bot is
-  # successfully authenticated (and logs from unsuccessful methods are emitted
-  # at 'debug' level). If none applies, dump all errors messages to the log and
-  # raise AuthorizationError with a list of rejection reasons from all auth
-  # methods.
-  public_errs = []
-  internal_details = []
-  for i, bot_auth in enumerate(cfg.auth):
+  # Errors from all auth methods.
+  auth_errs = []
+
+  # First check auth methods marked as 'preferred: true' in the config. Errors
+  # from such methods are always logged at 'error' verbosity, so we can spot
+  # when we fallback to a non-preferred method below. If a preferred method
+  # succeeds, skip the rest of the checks.
+  for bot_auth in _filter_bot_auth(cfg, preferred=True):
     err, details = _check_bot_auth(bot_auth, bot_id, peer_ident, ip)
     if not err:
-      if internal_details:
-        logging.debug('Auth method #%d succeeded! Logs from other methods:', i)
-        for msg in internal_details:
-          logging.debug('%s', msg)
+      logging.debug('Using auth method: %s', bot_auth)
       return cfg
-    public_errs.append(err)
-    internal_details.extend(details)
+    auth_errs.append(err)
+    logging.error('Preferred auth method failed: %s', err)
+    logging.error('Failed auth method: %s', bot_auth)
+    for msg in details:
+      logging.error('%s', msg)
 
-  for msg in internal_details:
+  # Try the fallback (non-preferred) methods. Delay logging until all methods
+  # are tried. We don't need to spam logs with successful fallbacks.
+  logs = []
+  for bot_auth in _filter_bot_auth(cfg, preferred=False):
+    err, details = _check_bot_auth(bot_auth, bot_id, peer_ident, ip)
+    if not err:
+      logging.debug('Using auth method: %s', bot_auth)
+      return cfg
+    auth_errs.append(err)
+    logs.append('Fallback auth method failed: %s' % (err,))
+    logs.append('Failed auth method: %s' % (bot_auth,))
+    logs.extend(details)
+
+  # All fallback methods failed. Need their logs to investigate.
+  for msg in logs:
     logging.error('%s', msg)
 
   # In most cases there's only one auth method used, so we can simplify the
   # error message to be less confusing.
-  if len(public_errs) == 1:
-    raise auth.AuthorizationError(public_errs[0])
+  if len(auth_errs) == 1:
+    raise auth.AuthorizationError(auth_errs[0])
   raise auth.AuthorizationError(
-      'All auth methods failed: %s' % '; '.join(public_errs))
+      'All auth methods failed: %s' % '; '.join(auth_errs))
+
+
+def _filter_bot_auth(cfg, preferred):
+  """Yields BotAuth tuples."""
+  for bot_auth in cfg.auth:
+    if bot_auth.preferred == preferred:
+      yield bot_auth
 
 
 def _check_bot_auth(bot_auth, bot_id, peer_ident, ip):
