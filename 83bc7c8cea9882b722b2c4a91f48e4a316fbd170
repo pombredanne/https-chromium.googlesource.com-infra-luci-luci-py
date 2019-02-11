@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "45e69ac8_81d4936e",
+        "filename": "appengine/swarming/ui2/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-11T14:41:48Z",
+      "side": 1,
+      "message": "That works great!",
+      "parentUuid": "3d6a251b_589b54b4",
+      "revId": "83bc7c8cea9882b722b2c4a91f48e4a316fbd170",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f7daa00_96a4f163",
         "filename": "appengine/swarming/ui2/dist/public_botlist_index-bundle.css",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "e82ed04e_e32ed2d3",
+        "filename": "appengine/swarming/ui2/dist/public_botlist_index-bundle.css",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-11T14:41:48Z",
+      "side": 1,
+      "message": "Yeah, I think it\u0027s a known issue with webpack or whatever css loader we use.",
+      "parentUuid": "1f7daa00_96a4f163",
+      "revId": "83bc7c8cea9882b722b2c4a91f48e4a316fbd170",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3f4899f_902730e9",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.scss",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "83bc7c8cea9882b722b2c4a91f48e4a316fbd170",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "664f500c_e031d164",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-11T14:41:48Z",
+      "side": 1,
+      "message": "There is no easy fix for this with iframes.  I can only avoid the double scrollbar on domains that have consented for swarming-foo.appspot.com to mess with them.",
+      "parentUuid": "c3f4899f_902730e9",
+      "revId": "83bc7c8cea9882b722b2c4a91f48e4a316fbd170",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
