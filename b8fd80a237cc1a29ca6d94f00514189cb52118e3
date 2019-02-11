@@ -16,6 +16,24 @@
       "revId": "b8fd80a237cc1a29ca6d94f00514189cb52118e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5159d7d2_dbeba7c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-11T13:32:46Z",
+      "side": 1,
+      "message": "A long time ago, due to the lack of structured hierarchy in the dimension values, I decided to use hierarchical values delimited via a dash to enable a somewhat coherent value system. One exception being gpu because of the historical semi-column delimitation for PCI ID (a side effect of my previous work experience).\n\nIn configuration languages, it\u0027s preferable to have only one way to do one thing. Exposing redundant values is not something I want to encourage.\n\nThere\u0027s another more important reason: monitoring. Once you include two ways to address the same property, you add a new axis you need to \u0027OR\u0027 on when monitoring tasks. Because now, some task may trigger with os:x64-32 and other tasks with os:x64, and they will both use the exact same fleet. This makes monitoring much harder, as you need to treat the two values as a single one.\n\nTaken alone, you may rationalize it\u0027s not that bad, but the problem is combinational; the minute you add a second axis of such redundant values for a different dimension key, then you need to look at the combinations of key:values; it becomes a matrix of possibilities. It seems innocuous at the moment because I never allowed this to happen in the first place; it is were the case already, it would already be too late from a monitoring perspective; monitoring would become an untractable problem.\n\nThis is why I\u0027m fine for you to do it in your fleet (you keep the pieces) but not for all instance.",
+      "parentUuid": "20a77c78_a61d84a7",
+      "revId": "b8fd80a237cc1a29ca6d94f00514189cb52118e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
