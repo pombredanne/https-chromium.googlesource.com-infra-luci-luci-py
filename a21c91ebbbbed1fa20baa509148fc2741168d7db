@@ -16,6 +16,24 @@
       "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c4e160_2ba52b8c",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-11T20:11:28Z",
+      "side": 1,
+      "message": "This CL also makes all \u0027preferred\u0027 auth sections be checked before any other ones (regardless of how they are ordered in the config). In that sense they are preferred.",
+      "parentUuid": "486fdab2_e5feea8f",
+      "revId": "a21c91ebbbbed1fa20baa509148fc2741168d7db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
