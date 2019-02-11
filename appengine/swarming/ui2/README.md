@@ -78,3 +78,9 @@ To generate the HTML docs, run
     make docs
 
 which will open docs/index.html after build.
+
+## Misc
+
+If `make *` is calling `npm install` every time, try `touch package-lock.json`. This should tell
+Makefile that the "built" `package-lock.json` file is older than the "source"
+`package.json` and thus does not require to be "rebuilt".
