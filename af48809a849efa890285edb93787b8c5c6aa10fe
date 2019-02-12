@@ -16,6 +16,24 @@
       "revId": "af48809a849efa890285edb93787b8c5c6aa10fe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5446f45_0e5bb3c7",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-12T15:49:05Z",
+      "side": 1,
+      "message": "Not sure if the API likes floating point.  Besides, it makes cache hits more likely (especially in other places where we round to the nearest minute)",
+      "parentUuid": "34a03fcf_024cbafb",
+      "revId": "af48809a849efa890285edb93787b8c5c6aa10fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
