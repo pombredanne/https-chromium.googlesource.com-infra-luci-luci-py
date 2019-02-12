@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34a03fcf_024cbafb",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-12T15:42:23Z",
+      "side": 1,
+      "message": "Why round?",
+      "revId": "af48809a849efa890285edb93787b8c5c6aa10fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
