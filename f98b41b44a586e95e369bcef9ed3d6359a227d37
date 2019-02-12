@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c7716f5_796252cd",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-12T14:46:05Z",
+      "side": 1,
+      "message": "It\u0027s unclear that the input is in milliseconds. IMHO, you should instead do:\n\nconst now \u003d\u003e Date.now() * 0.001\n\nand the only work in seconds, so that line 191 would become:\n  start: now() - 7*24*60*60,\n\nwhich is much nicer IMO.",
+      "revId": "f98b41b44a586e95e369bcef9ed3d6359a227d37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
