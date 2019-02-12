@@ -16,6 +16,24 @@
       "revId": "f98b41b44a586e95e369bcef9ed3d6359a227d37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7c780a2_a6c0cd1c",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-12T15:41:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c7716f5_796252cd",
+      "revId": "f98b41b44a586e95e369bcef9ed3d6359a227d37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
