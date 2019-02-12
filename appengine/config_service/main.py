@@ -20,6 +20,8 @@ import admin
 import api
 import handlers
 
+import gae_ts_mon
+
 
 def bootstrap_templates():
   TEMPLATES_DIR = os.path.join(
@@ -33,22 +35,27 @@ def bootstrap_templates():
 
 def create_html_app():  # pragma: no cover
   """Returns WSGI app that serves HTML pages."""
-  return webapp2.WSGIApplication(
+  app = webapp2.WSGIApplication(
       handlers.get_frontend_routes(), debug=utils.is_local_dev_server())
+  gae_ts_mon.initialize(app)
+  return app
 
 
 def create_endpoints_app():  # pragma: no cover
   """Returns WSGI app that serves cloud endpoints requests."""
   # The default regex doesn't allow / but config_sets and paths have / in them.
-  return endpoints_webapp2.api_server(
+  app = endpoints_webapp2.api_server(
       [api.ConfigApi, admin.AdminApi], regex='.+')
-
+  gae_ts_mon.initialize(app)
+  return app
 
 def create_backend_app():  # pragma: no cover
   """Returns WSGI app for backend."""
   bootstrap_templates()
-  return webapp2.WSGIApplication(
+  app = webapp2.WSGIApplication(
       handlers.get_backend_routes(), debug=utils.is_local_dev_server())
+  gae_ts_mon.initialize(app)
+  return app
 
 
 def initialize():  # pragma: no cover
