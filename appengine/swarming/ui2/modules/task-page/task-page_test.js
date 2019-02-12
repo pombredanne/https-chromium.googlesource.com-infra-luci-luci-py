@@ -743,7 +743,7 @@ describe('task-page', function() {
         });
       });
     });
-  });
+  });  // end describe('dynamic behavior')
 
   describe('api calls', function() {
     it('makes no API calls when not logged in', function(done) {
@@ -770,7 +770,7 @@ describe('task-page', function() {
       });
 
       calls = fetchMock.calls(MATCHED, 'POST');
-      expect(calls.length).toBe(0, 'no POSTs on task-list');
+      expect(calls.length).toBe(0, 'no POSTs on task-page');
 
       expectNoUnmatchedCalls(fetchMock);
     }
