@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62e4b1d8_56adfe17",
+        "filename": "appengine/swarming/cron.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-12T19:55:46Z",
+      "side": 1,
+      "message": "\u003e- means \"ignore \\n and dedent\".\n\nThe spec is https://yaml.org/spec/1.2/spec.html#id2779048 albeit it\u0027s incomprehensible, I figured out from StackOverflow...",
+      "revId": "f06471370e8acafcc30b7ec3115a1afa78f9bc8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
