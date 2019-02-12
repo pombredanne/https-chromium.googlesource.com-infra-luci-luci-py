@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3a914b_2d7dd5e6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-12T19:16:10Z",
+      "side": 1,
+      "message": "I edited the code via the web UI to fix indentation at +2.",
+      "revId": "c7ced06b52d1ec5ee87e6b8e06b1e6c23d6511e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62eb2a42_6e954515",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-12T19:16:10Z",
+      "side": 1,
+      "message": "Technically, we could use the to_run.try_number here but it\u0027s not a big deal.",
+      "revId": "c7ced06b52d1ec5ee87e6b8e06b1e6c23d6511e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
