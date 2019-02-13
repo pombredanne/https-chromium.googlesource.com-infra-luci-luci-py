@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2a7de13_922b9a0b",
+        "filename": "appengine/components/components/ereporter2/logscraper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-13T19:20:10Z",
+      "side": 1,
+      "message": "Side question, what does soft memory exceeded mean anyway? Exceeded some limit that\u0027s less than the actual amount of memory that could possibly be used?",
+      "range": {
+        "startLine": 230,
+        "startChar": 15,
+        "endLine": 230,
+        "endChar": 26
+      },
+      "revId": "2e6f7c46cfec72b4fe9d929b3e88759dcad0e562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e971ac2_5c6ced75",
+        "filename": "appengine/components/components/ereporter2/logscraper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-13T19:20:10Z",
+      "side": 1,
+      "message": "nit: a unique",
+      "range": {
+        "startLine": 337,
+        "startChar": 16,
+        "endLine": 337,
+        "endChar": 25
+      },
+      "revId": "2e6f7c46cfec72b4fe9d929b3e88759dcad0e562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
