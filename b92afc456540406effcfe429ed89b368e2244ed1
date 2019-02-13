@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4917a251_cf430908",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-13T23:17:16Z",
+      "side": 1,
+      "message": "Another option is to not make it a member, but instead at the end of the function do:\n  return er_calls, r_calls\n\n\nso that lines 509 and 519 become:\n  er_calls, r_calls \u003d self._setup_es(\u003cval\u003e)",
+      "revId": "b92afc456540406effcfe429ed89b368e2244ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
