@@ -12,7 +12,8 @@ import 'elements-sk/icon/remove-circle-outline-icon-sk'
 import 'elements-sk/styles/buttons'
 import '../swarming-app'
 
-import { parseBotData } from './bot-page-helpers'
+import { parseBotData, parseTasks, TASKS_QUERY_PARAMS } from './bot-page-helpers'
+import { stateClass as taskClass } from '../task-page/task-page-helpers'
 import { timeDiffApprox, timeDiffExact, taskPageLink } from '../util'
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
 
@@ -141,6 +142,43 @@ const stateSection = (ele, bot) => html`
 </div>
 `;
 
+const tasksTable = (ele, tasks) => {
+  if (!ele._botId || !ele._showTasks) {
+    return '';
+  }
+  return html`
+<table class=tasks_table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Started</th>
+      <th>Duration</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    ${tasks.map(taskRow)}
+  </tbody>
+</table>
+
+<button ?disabled=${!ele._taskCursor}>Show More</button>
+`;
+}
+
+const taskRow = (task) => html`
+<tr class=${taskClass(task)}>
+  <td class=break-all>
+    <a target=_blank rel=noopener
+        href=${taskPageLink(task.task_id)}>
+      ${task.name}
+    </a>
+  </td>
+  <td>${task.human_started_ts}</td>
+  <td title=${task.human_completed_ts}>${task.human_total_duration}</td>
+  <td>${task.human_state}</td>
+</tr>
+`;
+
 const template = (ele) => html`
 <swarming-app id=swapp
               client_id=${ele.client_id}
@@ -176,6 +214,21 @@ const template = (ele) => html`
       <div class="stats grow">Stats Table will go here</div>
     </div>
 
+    <div class=tasks-events-picker>
+      <div class=tab
+           @click=${(e) => ele._setShowTasks(true)}
+           ?selected=${ele._showTasks}>
+        Tasks
+      </div>
+      <div class=tab
+           @click=${(e) => ele._setShowTasks(false)}
+           ?selected=${!ele._showTasks}>
+        Events
+      </div>
+    </div>
+
+    ${tasksTable(ele, ele._tasks)}
+
   </main>
   <footer></footer>
 </swarming-app>
@@ -191,11 +244,16 @@ window.customElements.define('bot-page', class extends SwarmingAppBoilerplate {
     // help stateReflector with types.
     this._botId = '';
     this._showState = false;
+    this._showTasks = true;
 
     this._urlParamsLoaded = true;
     this._stateChanged = () => console.log('TODO');
 
     this._bot = {};
+    this._tasks = [];
+    this._events = [];
+    this._resetCursors();
+
     this._message = 'You must sign in to see anything useful.';
     // Allows us to abort fetches that are tied to the id when the id changes.
     this._fetchController = null;
@@ -241,12 +299,37 @@ window.customElements.define('bot-page', class extends SwarmingAppBoilerplate {
         this.app.finishedTask();
       })
       .catch((e) => this.fetchError(e, 'bot/data'));
+    if (!this._taskCursor) {
+      this.app.addBusyTasks(1);
+      fetch(`/_ah/api/swarming/v1/bot/${this._botId}/tasks?${TASKS_QUERY_PARAMS}`, extra)
+        .then(jsonOrThrow)
+        .then((json) => {
+          console.log(json);
+          this._taskCursor = json.cursor;
+          this._tasks = parseTasks(json.items);
+          this.render();
+          this.app.finishedTask();
+        })
+        .catch((e) => this.fetchError(e, 'bot/tasks'));
+    }
   }
 
   render() {
     super.render();
     const idInput = $$('#id_input', this);
     idInput.value = this._botId;
+  }
+
+  // _resetCursors indicates we should forget any tasks and events we have
+  // seen and start over (when _fetch() is next called).
+  _resetCursors() {
+    this._taskCursor = '';
+    this._eventsCursor = '';
+  }
+
+  _setShowTasks(shouldShow) {
+    this._showTasks = shouldShow;
+    this.render();
   }
 
   _toggleBotState(e) {
@@ -258,6 +341,7 @@ window.customElements.define('bot-page', class extends SwarmingAppBoilerplate {
   _updateID(e) {
     const idInput = $$('#id_input', this);
     this._botId = idInput.value;
+    this._resetCursors();
     this._stateChanged();
     this._fetch();
     this.render();
