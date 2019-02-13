@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "958ce09d_6a83dede",
+        "filename": "appengine/components/components/ereporter2/logscraper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-13T20:16:58Z",
+      "side": 1,
+      "message": "Exact, it\u0027s a bit over, but not over enough.",
+      "parentUuid": "f2a7de13_922b9a0b",
+      "range": {
+        "startLine": 230,
+        "startChar": 15,
+        "endLine": 230,
+        "endChar": 26
+      },
+      "revId": "2e6f7c46cfec72b4fe9d929b3e88759dcad0e562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e971ac2_5c6ced75",
         "filename": "appengine/components/components/ereporter2/logscraper.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "2e6f7c46cfec72b4fe9d929b3e88759dcad0e562",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf5bd03_3966a6cb",
+        "filename": "appengine/components/components/ereporter2/logscraper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-13T20:16:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e971ac2_5c6ced75",
+      "range": {
+        "startLine": 337,
+        "startChar": 16,
+        "endLine": 337,
+        "endChar": 25
+      },
+      "revId": "2e6f7c46cfec72b4fe9d929b3e88759dcad0e562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
