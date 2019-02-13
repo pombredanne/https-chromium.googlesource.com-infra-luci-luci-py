@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2c80d3f_335f54b5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-13T13:37:52Z",
+      "side": 1,
+      "message": "else is not needed",
+      "revId": "c701f968f19c7131055f810f201c9c7599297f0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40c4bb70_458dacf8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-13T13:37:52Z",
+      "side": 1,
+      "message": "Please use single quotes here.\n\nThat\u0027s interesting behavior, I didn\u0027t know you wanted that.",
+      "revId": "c701f968f19c7131055f810f201c9c7599297f0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
