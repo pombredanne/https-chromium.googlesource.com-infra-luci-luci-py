@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d228e869_b1da0418",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T15:45:08Z",
+      "side": 1,
+      "message": "Does this work, or is it a leftover from Polymer?",
+      "range": {
+        "startLine": 312,
+        "startChar": 18,
+        "endLine": 312,
+        "endChar": 39
+      },
+      "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb5f0eb_68c41653",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T15:45:08Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 429,
+        "startChar": 41,
+        "endLine": 429,
+        "endChar": 56
+      },
+      "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abbd9f97_3f10c341",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T15:45:08Z",
+      "side": 1,
+      "message": "Either cap Authorization or lowercase content-type.\n\nHere and below.",
+      "range": {
+        "startLine": 428,
+        "startChar": 8,
+        "endLine": 429,
+        "endChar": 24
+      },
+      "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
