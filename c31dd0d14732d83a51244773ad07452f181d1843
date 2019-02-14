@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42786eca_1231b938",
+        "filename": "appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary-demo.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:25:39Z",
+      "side": 1,
+      "message": "one blank line",
+      "revId": "c31dd0d14732d83a51244773ad07452f181d1843",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32640901_a27b55cc",
+        "filename": "appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:25:39Z",
+      "side": 1,
+      "message": "mildly confusing to use \u0027name\u0027 here and \u0027n\u0027 in the code above.",
+      "range": {
+        "startLine": 254,
+        "startChar": 15,
+        "endLine": 254,
+        "endChar": 19
+      },
+      "revId": "c31dd0d14732d83a51244773ad07452f181d1843",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d2c285_5cca43bb",
+        "filename": "appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:25:39Z",
+      "side": 1,
+      "message": "blank line above",
+      "revId": "c31dd0d14732d83a51244773ad07452f181d1843",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401cdb83_98fdfaa5",
+        "filename": "appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:25:39Z",
+      "side": 1,
+      "message": "blank line between",
+      "revId": "c31dd0d14732d83a51244773ad07452f181d1843",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4df5850d_76ed5a85",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page-helpers.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:25:39Z",
+      "side": 1,
+      "message": "there is no param serverDetails.",
+      "revId": "c31dd0d14732d83a51244773ad07452f181d1843",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
