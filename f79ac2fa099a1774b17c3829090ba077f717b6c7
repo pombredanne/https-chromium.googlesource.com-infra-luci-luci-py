@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c7dfb7b_9dc6f49f",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page-helpers.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:08:09Z",
+      "side": 1,
+      "message": "needs jsdoc",
+      "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db612148_3c08754b",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:08:09Z",
+      "side": 1,
+      "message": "case",
+      "range": {
+        "startLine": 455,
+        "startChar": 8,
+        "endLine": 456,
+        "endChar": 21
+      },
+      "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cd1c96e_9af2975c",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T19:08:09Z",
+      "side": 1,
+      "message": "Does _closePopup() not get called in the case of an error, i.e. catch()?",
+      "range": {
+        "startLine": 460,
+        "startChar": 13,
+        "endLine": 460,
+        "endChar": 24
+      },
+      "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
