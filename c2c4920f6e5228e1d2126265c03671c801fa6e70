@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4bf69987_e991d59f",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-14T16:32:21Z",
+      "side": 1,
+      "message": "I think it reads well, so I ported it from Polymer.",
+      "parentUuid": "d228e869_b1da0418",
+      "range": {
+        "startLine": 312,
+        "startChar": 18,
+        "endLine": 312,
+        "endChar": 39
+      },
+      "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bb5f0eb_68c41653",
         "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
         "patchSetId": 3
@@ -68,6 +92,54 @@
       "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a825ac87_833ed870",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-14T16:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abbd9f97_3f10c341",
+      "range": {
+        "startLine": 428,
+        "startChar": 8,
+        "endLine": 429,
+        "endChar": 24
+      },
+      "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acdbd388_2eb6a897",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-14T16:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bb5f0eb_68c41653",
+      "range": {
+        "startLine": 429,
+        "startChar": 41,
+        "endLine": 429,
+        "endChar": 56
+      },
+      "revId": "c2c4920f6e5228e1d2126265c03671c801fa6e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
