@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38f34c6f_6ae02055",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page-helpers.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-02-14T15:52:26Z",
+      "side": 1,
+      "message": "jsdoc for params, here and below",
+      "revId": "238aed5ae532ad6cb6193199fd7f834ee79f05c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
