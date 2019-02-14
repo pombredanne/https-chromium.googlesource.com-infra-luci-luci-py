@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "045c00ce_e05b15e8",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page-helpers.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-14T19:29:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c7dfb7b_9dc6f49f",
+      "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db612148_3c08754b",
         "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
         "patchSetId": 7
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "e2168c3c_8e398ef8",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-14T19:29:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db612148_3c08754b",
+      "range": {
+        "startLine": 455,
+        "startChar": 8,
+        "endLine": 456,
+        "endChar": 21
+      },
+      "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cd1c96e_9af2975c",
         "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
         "patchSetId": 7
@@ -62,6 +104,30 @@
       "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "728beb58_8029141b",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-14T19:29:25Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "4cd1c96e_9af2975c",
+      "range": {
+        "startLine": 460,
+        "startChar": 13,
+        "endLine": 460,
+        "endChar": 24
+      },
+      "revId": "f79ac2fa099a1774b17c3829090ba077f717b6c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
