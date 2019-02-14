@@ -109,6 +109,7 @@ export function parseTasks(tasks) {
     // being "busy", e.g. when uploading isolated outputs.
     task.total_duration = task.duration + total_overhead;
     task.human_total_duration = humanDuration(task.total_duration);
+    task.total_overhead = total_overhead;
 
     task.human_state = task.state || 'UNKNOWN';
     if (task.state === 'COMPLETED') {
@@ -126,6 +127,10 @@ export function parseTasks(tasks) {
   return tasks;
 }
 
+/** quarantineMessage produces a machine provider link for this bot
+ *  @param {Object} bot - The bot object
+ *  @param {Object} serverDetails - The server details returned via the API.
+ */
 export function quarantineMessage(bot) {
   if (bot && bot.quarantined) {
     let msg = bot.state.quarantined;
