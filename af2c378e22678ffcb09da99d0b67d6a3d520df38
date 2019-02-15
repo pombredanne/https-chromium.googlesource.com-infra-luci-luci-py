@@ -70,6 +70,24 @@
       "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78725515_c54690f4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-15T20:48:22Z",
+      "side": 1,
+      "message": "It was already notified at line 1032 and the task is not pending anymore. So there\u0027s no reason to do it again here.\n\nrequest is the request being triggered.\nresult_summary is the result summary. This code path triggers only if the task is not pending (deduped, NO_RESOURCE or invalid).",
+      "parentUuid": "add1360f_e90e4163",
+      "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
