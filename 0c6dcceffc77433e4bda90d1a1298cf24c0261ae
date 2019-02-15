@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dcefb3d_eb2779cb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-15T19:44:00Z",
+      "side": 1,
+      "message": "I think it might be nice to make transactional a keyword arg with default value True, and then omit it from most of the calls above where True is passed, WDYT?",
+      "range": {
+        "startLine": 429,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 52
+      },
+      "revId": "0c6dcceffc77433e4bda90d1a1298cf24c0261ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f17e9934_89c175d5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-15T19:44:00Z",
+      "side": 1,
+      "message": "Nit: For arguments like True, False, or None, where it\u0027s not clear what it might mean unless you go look at the function definition, it can be helpful to explicitly write the arg name.",
+      "revId": "0c6dcceffc77433e4bda90d1a1298cf24c0261ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
