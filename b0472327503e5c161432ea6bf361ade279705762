@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecdd9fad_9d6c25f5",
+        "filename": "appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-15T14:51:58Z",
+      "side": 1,
+      "message": "I\u0027m not fan of this.\n\nCan we call out things that are Chromium specific with a \"chromium\" in the function name?\n\nThe retry/debug is separate, but the \"with patch\" is a chromiumism.",
+      "revId": "b0472327503e5c161432ea6bf361ade279705762",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
