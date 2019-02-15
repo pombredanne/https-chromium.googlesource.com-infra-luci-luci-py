@@ -52,6 +52,24 @@
       "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add1360f_e90e4163",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-15T20:38:47Z",
+      "side": 1,
+      "message": "Is |request| corresponding to the request that is being deduped, or the one it is being deduped into?\n\nIs result_summary.state corresponding to a pending state, or a done state?",
+      "parentUuid": "f5db4007_e40ba01b",
+      "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
