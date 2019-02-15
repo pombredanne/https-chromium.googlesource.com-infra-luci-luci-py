@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "449959a6_f464637f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-15T19:55:00Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of default values, as I feel it makes refactoring harder.",
+      "parentUuid": "5dcefb3d_eb2779cb",
+      "range": {
+        "startLine": 429,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 52
+      },
+      "revId": "0c6dcceffc77433e4bda90d1a1298cf24c0261ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f17e9934_89c175d5",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "0c6dcceffc77433e4bda90d1a1298cf24c0261ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbe94724_f128166e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-15T19:55:00Z",
+      "side": 1,
+      "message": "Good point, done everywhere.",
+      "parentUuid": "f17e9934_89c175d5",
+      "revId": "0c6dcceffc77433e4bda90d1a1298cf24c0261ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
