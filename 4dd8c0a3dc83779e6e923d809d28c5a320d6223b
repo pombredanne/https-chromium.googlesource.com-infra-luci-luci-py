@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad8c352a_d9b8fa75",
+        "filename": "appengine/config_service/infra_libs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-15T21:57:24Z",
+      "side": 1,
+      "message": "That\u0027s the bug, it needs to point to ../third_party/infra_libs",
+      "revId": "4dd8c0a3dc83779e6e923d809d28c5a320d6223b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
