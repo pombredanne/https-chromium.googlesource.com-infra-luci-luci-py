@@ -34,6 +34,24 @@
       "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5db4007_e40ba01b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-15T20:37:26Z",
+      "side": 1,
+      "message": "I know that this is the method that notifies external scheduler.\n\nWhat I don\u0027t understand is what type of message you are avoiding to send here.",
+      "parentUuid": "e5a5139e_e4552431",
+      "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
