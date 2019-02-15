@@ -16,6 +16,24 @@
       "revId": "b0472327503e5c161432ea6bf361ade279705762",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669a7864_9c67c3fa",
+        "filename": "appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-15T15:10:33Z",
+      "side": 1,
+      "message": "Done in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1474622",
+      "parentUuid": "ecdd9fad_9d6c25f5",
+      "revId": "b0472327503e5c161432ea6bf361ade279705762",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
