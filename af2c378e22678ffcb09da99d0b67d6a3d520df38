@@ -88,6 +88,24 @@
       "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb971f25_05704a7d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-15T21:15:11Z",
+      "side": 1,
+      "message": "Sounds like there is also no harm in the notification then. For simplicity, may as well send this to ES anyway.\n\nIt\u0027s easier to understand \"all notifications are sent to both pubsub and es\"",
+      "parentUuid": "78725515_c54690f4",
+      "revId": "af2c378e22678ffcb09da99d0b67d6a3d520df38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
