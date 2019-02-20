@@ -345,6 +345,10 @@ export function processTasks(arr, existingTags) {
       });
     }
 
+    if (task.cost_saved_usd) {
+      task.cost_saved_usd = '-$'+task.cost_saved_usd.toFixed(4);
+    }
+
     for (const time of TASK_TIMES) {
       sanitizeAndHumanizeTime(task, time);
 
@@ -519,6 +523,9 @@ const colMap = {
   },
   completed_ts: (task) => task.human_completed_ts,
   costs_usd: function(task) {
+    if (task.cost_saved_usd) {
+      return task.cost_saved_usd;
+    }
     return task.costs_usd;
   },
   created_ts: (task) => task.human_created_ts,
