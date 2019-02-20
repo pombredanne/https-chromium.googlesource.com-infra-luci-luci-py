@@ -21,6 +21,9 @@ import "google/protobuf/timestamp.proto";
 
 // APIs.
 
+// BotAPI is a service containing RPCs to interact with bots.
+//
+// Bots provide capacity.
 service BotAPI {
   // Events returns events relating to one bot.
   rpc Events(BotEventsRequest) returns (BotEventsResponse) {};
@@ -65,6 +68,50 @@ message BotEventsResponse {
   string next_page_token = 2;
 }
 
+// TaskAPI is a service containing RPCs to interact with tasks.
+//
+// Tasks consumes throughput.
+service TaskAPI {
+  // Results returns task results.
+  rpc Results(TaskResultsRequest) returns (TaskResultsResponse) {};
+
+  // TODO(maruel): Finish implementation. https://crbug.com/913953
+}
+
+message NewTaskRequest {
+  // Only evaluate the task, as if we were going to schedule it, but don't
+  // actually schedule it. This will return the TaskRequest, but without
+  // a task_id.
+  //
+  // Never set in actual tasks.
+  bool evaluate_only = 2;
+
+  // Controls the application of the pool's TaskTemplate to the creation of this
+  // task. By default this will automatically select the pool's preference for
+  // template, but you can also instruct swarming to prefer/prevent the
+  // application of canary templates, as well as skipping the template
+  // altogether.
+  PoolTaskTemplateField pool_task_template = 3;
+}
+
+// Request for TaskAPI.Results.
+message TaskResultsRequest {
+}
+
+// Response of TaskAPI.Results.
+message TaskResultsResponse {
+}
+
+// Flag to control the application of the pool's TaskTemplate in a new
+// TaskRequest.
+//
+// The non-endpoints counterpart is in task_request.
+enum PoolTaskTemplateField {
+  AUTO = 0;
+  CANARY_PREFER = 1;
+  CANARY_NEVER = 2;
+  SKIP = 3;
+}
 
 // Common messages.
 
