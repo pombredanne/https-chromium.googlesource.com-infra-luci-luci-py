@@ -87,6 +87,23 @@ describe('bot-mass-delete', function() {
     });
   });
 
+  it('handles when the users supply a status', function(done) {
+    createElement((ele) => {
+      ele.dimensions=['pool:Chrome', 'status:dead'];
+      fetchMock.get('/_ah/api/swarming/v1/bots/count?dimensions=pool%3AChrome', {'dead': 532});
+
+      ele.show();
+      // The true on flush waits for res.json() to resolve too, which
+      // is when we know the element has updated the _tasks.
+      fetchMock.flush(true).then(() => {
+        expectNoUnmatchedCalls(fetchMock);
+        const calls = fetchMock.calls(MATCHED, 'GET');
+        expect(calls.length).toBe(1);
+        done();
+      });
+    });
+  });
+
   it('makes an API call to list after clicking, then deletes', function(done) {
     createElement((ele) => {
 
