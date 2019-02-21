@@ -181,6 +181,7 @@ window.customElements.define('bot-mass-delete', class extends HTMLElement {
 
   /** show prepares the UI to be shown to the user */
   show() {
+    this.dimensions = this.dimensions.filter((f) => !f.startsWith('status'));
     this._readyToDelete = false;
     this._started = false;
     this._finished = false;
