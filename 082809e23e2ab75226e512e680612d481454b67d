@@ -16,6 +16,24 @@
       "revId": "082809e23e2ab75226e512e680612d481454b67d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e758e44d_6c954402",
+        "filename": "appengine/swarming/ui2/modules/bot-mass-delete/bot-mass-delete.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-21T21:39:33Z",
+      "side": 1,
+      "message": "You are right, this wasn\u0027t a thorough solution.  Better solution now by fixing it at the interface.",
+      "parentUuid": "6eb9f793_c4cdd836",
+      "revId": "082809e23e2ab75226e512e680612d481454b67d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
