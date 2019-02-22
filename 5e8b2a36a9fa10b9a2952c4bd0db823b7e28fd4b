@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "048bb7a9_f37ff3d8",
+        "filename": "appengine/swarming/ui2/modules/bot-mass-delete/bot-mass-delete.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-22T14:24:26Z",
+      "side": 1,
+      "message": "There\u0027s a few things like that which could use a little cleanup",
+      "parentUuid": "55706a75_38493e17",
+      "range": {
+        "startLine": 15,
+        "startChar": 22,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "5e8b2a36a9fa10b9a2952c4bd0db823b7e28fd4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9336b0e6_897aabcd",
         "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.scss",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2019-02-22T14:19:58Z",
       "side": 1,
       "message": "Why not set it on all buttons? I find it odd that it\u0027s done for every individual button.",
+      "revId": "5e8b2a36a9fa10b9a2952c4bd0db823b7e28fd4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b15d8ac3_d462ca44",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-02-22T14:24:26Z",
+      "side": 1,
+      "message": "Buttons normally have a focus indicator (grey background) but it\u0027s overwritten because this button is always red.  CSS selector priorities keep it red.\n\nPlus I want this focus look to be very obvious.",
+      "parentUuid": "9336b0e6_897aabcd",
       "revId": "5e8b2a36a9fa10b9a2952c4bd0db823b7e28fd4b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
