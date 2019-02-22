@@ -696,6 +696,14 @@ message TaskSlice {
   // TaskSlice, the task state is set to NO_RESOURCE. This should normally be
   // set to False to avoid unnecessary waiting.
   bool wait_for_capacity = 3;
+
+  // Digest of a serialized form of TaskProperties.
+  //
+  // This is used for DEDUPED and PENDING_DEDUPING when idempotent is true.
+  // Consider this value as opaque string, only use to check equality.
+  //
+  // It is set even if idempotent is false.
+  string properties_hash = 4;
 }
 
 // This message is used to create a new task and can be retrieved back, except
@@ -760,13 +768,16 @@ message TaskRequest {
 
   // Task hierarchy and notifications
 
-  // Its own task result ID.
+  // Its own task result ID. By definition the request wasn't "run" so it is the
+  // summary (ending with '0').
   string task_id = 8;
   // Parent Swarming task ID of the process requesting this task.
   //
   // This is to tell the server about reentrancy: when a task creates children
   // Swarming tasks. This way, the tree of tasks can be presented in the UI. The
   // parent task can list all the children tasks that were triggered.
+  //
+  // This points to the run_id (ending with '1', '2' or more).
   //
   // TODO(maruel): Should not be necessary to specify at task creation, can be
   // inferred.
@@ -809,6 +820,9 @@ message PubSub {
 }
 
 // TaskResult is the state of a TaskRequest as it is processed by Swarming.
+//
+// There is two type on TaskResult. One per attempt (run) and one for the final
+// result (summary).
 //
 // When stored in BigQuery, it is stored once per try attempt, once the
 // state_category is one of CATEGORY_TRANSIENT_DONE or CATEGORY_EXECUTION_DONE.
@@ -885,6 +899,8 @@ message TaskResult {
   // set as their 'TaskRequest.parent_task_id'.
   repeated string children_task_ids = 13;
   // Task ID which results was reused for state DEDUPED.
+  //
+  // This is the run_id (ending with '1', '2' or more).
   string deduped_from = 14;
   // Summary task ID (ending with '0') when creating a new task.
   string task_id = 15;
