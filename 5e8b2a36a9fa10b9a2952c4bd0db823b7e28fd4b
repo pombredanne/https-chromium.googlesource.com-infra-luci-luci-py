@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9336b0e6_897aabcd",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-22T14:19:58Z",
+      "side": 1,
+      "message": "Why not set it on all buttons? I find it odd that it\u0027s done for every individual button.",
+      "revId": "5e8b2a36a9fa10b9a2952c4bd0db823b7e28fd4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
