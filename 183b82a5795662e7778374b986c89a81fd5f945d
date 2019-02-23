@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "40fa4db6_409aa294",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-23T00:18:12Z",
+      "side": 1,
+      "message": "Got it, and it sounds like the last digit currently may be 0, 1, or 2, but probably not anything other than that for now?",
+      "parentUuid": "b656c63c_95e01ba2",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 28
+      },
+      "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7ae835c_bb51d1a8",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 3
@@ -81,6 +105,24 @@
       "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35b63b8b_6362eaa3",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-23T00:18:12Z",
+      "side": 1,
+      "message": "That text looks good, and I think that makes sense -- normally when I look at a task page (e.g. https://chromium-swarm.appspot.com/task?id\u003d42b6b967e44f2410 I\u0027m looking at the \"task summary\", but I can also change that last 0 to a 1 to get the task run result ID.",
+      "parentUuid": "1da92467_6b3bad18",
+      "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
