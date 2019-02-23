@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b656c63c_95e01ba2",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-23T00:05:14Z",
+      "side": 1,
+      "message": "1) Rewrote as:\n\n  // The task request ID.\n  //\n  // The request wasn\u0027t \"run\" so it is the same ID as the summary (ending with\n  // \u00270\u0027).\n\n2) Yes you can look at it this way but it\u0027s not appended, it\u0027s the last number that is changed, it\u0027s a 1 or 2 instead of a 0.\n\nIf you read task_pack.py it\u0027s different because internally it does cut off the last letter, but at the API level it\u0027s this way.",
+      "parentUuid": "8c90d052_8acda302",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 28
+      },
+      "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7ae835c_bb51d1a8",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2019-02-22T22:45:58Z",
       "side": 1,
       "message": "are two types of TaskResult?",
+      "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1da92467_6b3bad18",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-23T00:05:14Z",
+      "side": 1,
+      "message": "Rereading it, this was misleading, rewrote as:\n\n  // TaskResult is the state of a TaskRequest as it is processed by Swarming.\n  //\n  // The TaskResult may represent one per attempt (run) and one for the final\n  // result (summary). This happens because a task may be transparently retried\n  // (for example with RAN_INTERNAL_FAILURE). In this case a second try may be\n  // attempted. For the client\u0027s perspective when looking at the summary (ID\n  // ending with \u00270\u0027), the task went from PENDING to RUNNING and then back to\n  // PENDING. The task run result (ending with \u00271\u0027) will contain the real result\n  // for the attempt (e.g. RAN_INTERNAL_FAILURE) and the retry (ending with \u00272\u0027)\n  // will contain the final result once it\u0027s done.\n  //\n  // When stored in BigQuery, it is stored once per try attempt (run ID \u00271\u0027, \u00272\u0027,\n  // etc), as soon as \u0027state_category\u0027 is one of CATEGORY_TRANSIENT_DONE or\n  // CATEGORY_EXECUTION_DONE.\n  //\n  // Storing BQ for CATEGORY_NEVER_RAN_DONE is https://crbug.com/917106.",
+      "parentUuid": "f7ae835c_bb51d1a8",
       "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
