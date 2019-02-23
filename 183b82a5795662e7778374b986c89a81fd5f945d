@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "10d5f3d1_983a5e6b",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-23T00:20:05Z",
+      "side": 1,
+      "message": "This will likely change with the quota scheduler that Aviv works on, but for the general case it\u0027s 0, 1 or 2.",
+      "parentUuid": "40fa4db6_409aa294",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 28
+      },
+      "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7ae835c_bb51d1a8",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 3
@@ -120,6 +144,24 @@
       "side": 1,
       "message": "That text looks good, and I think that makes sense -- normally when I look at a task page (e.g. https://chromium-swarm.appspot.com/task?id\u003d42b6b967e44f2410 I\u0027m looking at the \"task summary\", but I can also change that last 0 to a 1 to get the task run result ID.",
       "parentUuid": "1da92467_6b3bad18",
+      "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a7da3b8_f90e94cb",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-23T00:20:05Z",
+      "side": 1,
+      "message": "Exact. Normally users don\u0027t care about individual runs, and 99.99% of the time there was only one try. (I need to generate data about that :))",
+      "parentUuid": "35b63b8b_6362eaa3",
       "revId": "183b82a5795662e7778374b986c89a81fd5f945d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
