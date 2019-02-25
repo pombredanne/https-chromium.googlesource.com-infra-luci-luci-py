@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18d7d034_1a10ac29",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-25T21:25:03Z",
+      "side": 1,
+      "message": "Does this mean that some \"grace period\" is separately defined in multiple places?\n\nWhat does grace period mean, exactly? Is it a portion of the hard timeout?",
+      "range": {
+        "startLine": 759,
+        "startChar": 42,
+        "endLine": 760,
+        "endChar": 23
+      },
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ff797a_13965df9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-25T21:25:03Z",
+      "side": 1,
+      "message": "What possible values are there for manifest[\u0027grace_period\u0027] -- is the manifest user-specified JSON that could potentially have arbitrary strings, bools, numbers or other objects?",
+      "range": {
+        "startLine": 761,
+        "startChar": 21,
+        "endLine": 761,
+        "endChar": 45
+      },
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afc625de_fffb5d64",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-25T21:25:03Z",
+      "side": 1,
+      "message": "The CL description says last resort timeout, I assume that refers to this hard_timeout?",
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
