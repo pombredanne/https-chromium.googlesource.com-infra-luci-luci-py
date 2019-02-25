@@ -758,14 +758,13 @@ def _run_manifest(botobj, manifest, start):
   hard_timeout = manifest['hard_timeout'] or None
   # Default the grace period to 30s here, this doesn't affect the grace period
   # for the actual task.
-  grace_period = manifest['grace_period'] or 30
-  if manifest['hard_timeout']:
+  grace_period = max(manifest['grace_period'] or 0, 30)
+  if hard_timeout:
     # One for the child process, one for run_isolated, one for task_runner.
     hard_timeout += 3 * manifest['grace_period']
-    # For isolated task, download time is not counted for hard timeout so add
-    # more time.
-    if not manifest['command']:
-      hard_timeout += manifest['io_timeout'] or 600
+    # CIPD, isolated download time, plus named cache cleanup is not counted for
+    # hard timeout so add more time.
+    hard_timeout += max(manifest['io_timeout'] or 0, 1200)
 
   # Get the server info to pass to the task runner so it can provide updates.
   url = botobj.remote.server
@@ -901,7 +900,7 @@ def _run_manifest(botobj, manifest, start):
         internal_failure = True
         msg = 'task_runner hung'
         try:
-          proc.wait(grace_period)
+          proc.wait(2*grace_period)
         except subprocess42.TimeoutExpired:
           logging.error('Sending SIGKILL to task_runner')
           proc.kill()
