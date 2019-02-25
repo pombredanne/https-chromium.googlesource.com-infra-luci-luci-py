@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "409eb216_e612697d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-25T17:55:25Z",
+      "side": 1,
+      "message": "Because of the way that this is used, I think it might be simpler (in terms of reading/understanding) if you had a separate _get_win32com and _get_pythoncom.",
+      "revId": "3cfc7fc7436813f7e43a9ae5daed207c34019c6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
