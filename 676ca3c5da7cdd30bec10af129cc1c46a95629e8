@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93a4e2e6_281cbc73",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-26T08:14:00Z",
+      "side": 1,
+      "message": "values",
+      "revId": "676ca3c5da7cdd30bec10af129cc1c46a95629e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9499f5a2_1a8ee3d4",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-02-26T08:14:00Z",
+      "side": 1,
+      "message": "values",
+      "revId": "676ca3c5da7cdd30bec10af129cc1c46a95629e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
