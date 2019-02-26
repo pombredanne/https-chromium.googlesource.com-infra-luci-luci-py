@@ -391,16 +391,22 @@ class _BotBaseHandler(_BotApiHandler):
         quarantined_msg = 'Missing \'pool\' dimension'
         break
 
-      if not all(
-          config.validate_dimension_key(key) and
-          isinstance(values, list) and
-          all(config.validate_dimension_value(value) for value in values) and
-          len(values) == len(set(values))
-          for key, values in dimensions.iteritems()):
-        quarantined_msg = (
-            'Invalid dimensions type:\n%s' % json.dumps(dimensions,
-              sort_keys=True, indent=2, separators=(',', ': ')))
-        break
+      for key, values in dimensions.iteritems():
+        if not config.validate_dimensions_key(key):
+          quarantined_msg = "Invalid dimension key: %s" % key
+          break
+        if not isinstance(values, list):
+          quarantined_msg = "Key %s has non-list value %s" % (key, value)
+          break
+        if len(values) != len(set(values)):
+          quarantined_msg = "Key %s has duplicate values %s" % (key, value)
+          break
+        for value in values:
+          if not config.validate_dimension_value(value):
+            quarantined_msg "Key %s has invalid value %s" % (key, value)
+            break
+        if quarantined_msg:
+          break
 
     if quarantined_msg:
       line = 'Quarantined Bot\nhttps://%s/restricted/bot/%s\n%s' % (
