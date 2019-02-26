@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4bfaabe8_55f9535f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-26T00:51:37Z",
+      "side": 1,
+      "message": "grace period is part of https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Bot.md#graceful-termination_aka-the-sigterm-and-sigkill-dance\n\nI changed the comment to:\n  # The grace period is the time between SIGTERM and SIGKILL.",
+      "parentUuid": "18d7d034_1a10ac29",
+      "range": {
+        "startLine": 759,
+        "startChar": 42,
+        "endLine": 760,
+        "endChar": 23
+      },
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91ff797a_13965df9",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9d5ba238_6b832a8d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-26T00:51:37Z",
+      "side": 1,
+      "message": "It\u0027s a float. Eventually this will all be proto based but for now it\u0027s untyped.",
+      "parentUuid": "91ff797a_13965df9",
+      "range": {
+        "startLine": 761,
+        "startChar": 21,
+        "endLine": 761,
+        "endChar": 45
+      },
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afc625de_fffb5d64",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
@@ -62,6 +110,24 @@
       "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2882fa3_d569e696",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-26T00:51:37Z",
+      "side": 1,
+      "message": "Yes, but to the extent that the timeout *should* have been handled by run_isolated or task_runner. bot_main is really the last ditch effort. You raised a good point, so I renamed the timeout to last_ditch_timeout.",
+      "parentUuid": "afc625de_fffb5d64",
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
