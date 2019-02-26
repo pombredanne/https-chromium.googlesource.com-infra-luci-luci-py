@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2817fe7d_7a512a4a",
+        "filename": "appengine/swarming/handlers_backend_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-26T19:09:38Z",
+      "side": 1,
+      "message": "I guess now that it\u0027s split it\u0027s technically a new file so the copyright gets reset to the current year, right?\nAlso applies to the other file.",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "da58a94d30bef0938d8a522d1cdafa5a88b6975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45088755_954543d1",
+        "filename": "appengine/swarming/handlers_backend_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-26T19:09:38Z",
+      "side": 1,
+      "message": "Nit: \"Sets up environment.\"\nSame nit also applies to the other file.",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "da58a94d30bef0938d8a522d1cdafa5a88b6975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
