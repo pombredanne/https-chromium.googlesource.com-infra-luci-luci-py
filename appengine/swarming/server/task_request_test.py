@@ -1788,6 +1788,54 @@ class TaskRequestApiTest(TestCase):
     # Next cron skips everything that was processed.
     self.assertEqual(0, task_request.cron_send_to_bq())
 
+  def test_task_bq(self):
+    def getrandbits(i):
+      self.assertEqual(i, 16)
+      return 0x7766
+    self.mock(random, 'getrandbits', getrandbits)
+    payloads = []
+    def json_request(url, method, payload, scopes, deadline):
+      self.assertEqual(
+          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
+            'swarming/tables/task_requests/insertAll',
+          url)
+      payloads.append(payload)
+      self.assertEqual('POST', method)
+      self.assertEqual(task_request.bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
+      self.assertEqual(600, deadline)
+      return {'insertErrors': []}
+    self.mock(task_request.bq_state.net, 'json_request', json_request)
+
+    # Generate two tasks requests.
+    now = datetime.datetime(2014, 1, 2, 3, 4, 5, 6)
+    start = self.mock_now(now, 10)
+    request_1 = _gen_request()
+    request_1.key = task_request.new_request_key()
+    request_1.put()
+    self.mock_now(now, 20)
+    request_2 = _gen_request()
+    request_2.key = task_request.new_request_key()
+    request_2.put()
+    end = self.mock_now(now, 30)
+
+    self.assertEqual((2, 0), task_request.task_bq(start, end))
+    expected = [
+      {
+        'ignoreUnknownValues': False,
+        'kind': 'bigquery#tableDataInsertAllRequest',
+        'skipInvalidRows': True,
+      },
+    ]
+    self.assertEqual(1, len(payloads), payloads)
+    actual_rows = payloads[0].pop('rows')
+    self.assertEqual(expected, payloads)
+    self.assertEqual(2, len(actual_rows))
+    expected = [
+      request_1.task_id,
+      request_2.task_id,
+    ]
+    self.assertEqual(expected, [r['insertId'] for r in actual_rows])
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

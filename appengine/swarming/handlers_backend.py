@@ -4,6 +4,7 @@
 
 """Main entry point for Swarming backend handlers."""
 
+import datetime
 import json
 import logging
 
@@ -337,7 +338,40 @@ class TaskNamedCachesPool(webapp2.RequestHandler):
     named_caches.task_update_pool(params['pool'])
 
 
-class TaskGlobalMetrics(webapp2.RequestHandler):
+class TaskMonitoringBotsEventsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.bot_events table."""
+
+  @decorators.require_taskqueue('monitoring-bq-bots-events')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    bot_management.task_bq_events(start, end)
+
+
+class TaskMonitoringTasksRequestsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.task_requests table."""
+
+  @decorators.require_taskqueue('monitoring-bq-tasks-requests')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    task_request.task_bq(start, end)
+
+
+class TaskMonitoringTasksResultsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.task_results table."""
+
+  @decorators.require_taskqueue('monitoring-bq-tasks-results')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    task_request.task_bq(start, end)
+
+
+class TaskMonitoringTSMon(webapp2.RequestHandler):
   """Compute global metrics for timeseries monitoring."""
 
   @decorators.require_taskqueue('tsmon')
@@ -429,8 +463,17 @@ def get_routes():
         TaskMachineProviderManagementHandler),
     (r'/internal/taskqueue/important/named_cache/update-pool',
         TaskNamedCachesPool),
+    (r'/internal/taskqueue/monitoring/bq/bots/events/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringBotsEventsBQ),
+    (r'/internal/taskqueue/monitoring/bq/tasks/requests/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringTasksRequestsBQ),
+    (r'/internal/taskqueue/monitoring/bq/tasks/results/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringTasksResultsBQ),
     (r'/internal/taskqueue/monitoring/tsmon/<kind:[0-9A-Za-z_]+>',
-        TaskGlobalMetrics),
+        TaskMonitoringTSMon),
 
     # Mapreduce related urls.
     (r'/internal/taskqueue/mapreduce/launch/<job_id:[^\/]+>',
