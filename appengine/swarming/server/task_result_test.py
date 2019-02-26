@@ -951,6 +951,61 @@ class TaskResultApiTest(TestCase):
     # Next cron skips everything that was processed.
     self.assertEqual(0, task_result.cron_send_to_bq())
 
+  def test_task_bq(self):
+    payloads = []
+    def json_request(url, method, payload, scopes, deadline):
+      self.assertEqual(
+          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
+            'swarming/tables/task_results/insertAll',
+          url)
+      payloads.append(payload)
+      self.assertEqual('POST', method)
+      self.assertEqual(task_result.bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
+      self.assertEqual(600, deadline)
+      return {'insertErrors': []}
+    self.mock(task_result.bq_state.net, 'json_request', json_request)
+
+    # Generate 4 tasks results.
+    self.mock_now(self.now, 10)
+    run_result_1 = _gen_result()
+    run_result_1.abandoned_ts = utils.utcnow()
+    run_result_1.completed_ts = utils.utcnow()
+    run_result_1.modified_ts = utils.utcnow()
+    run_result_1.put()
+    start = self.mock_now(self.now, 20)
+    run_result_2 = _gen_result()
+    run_result_2.completed_ts = utils.utcnow()
+    run_result_2.modified_ts = utils.utcnow()
+    run_result_2.put()
+    end = self.mock_now(self.now, 30)
+    run_result_3 = _gen_result()
+    run_result_3.completed_ts = utils.utcnow()
+    run_result_3.modified_ts = utils.utcnow()
+    run_result_3.put()
+    self.mock_now(self.now, 40)
+    run_result_4 = _gen_result()
+    run_result_4.completed_ts = utils.utcnow()
+    run_result_4.modified_ts = utils.utcnow()
+    run_result_4.put()
+
+    self.assertEqual((2, 0), task_result.task_bq(start, end))
+    expected = [
+      {
+        'ignoreUnknownValues': False,
+        'kind': 'bigquery#tableDataInsertAllRequest',
+        'skipInvalidRows': True,
+      },
+    ]
+    self.assertEqual(1, len(payloads), payloads)
+    actual_rows = payloads[0].pop('rows')
+    self.assertEqual(expected, payloads)
+    self.assertEqual(2, len(actual_rows))
+    expected = [
+      run_result_2.task_id,
+      run_result_3.task_id,
+    ]
+    self.assertEqual(expected, [r['insertId'] for r in actual_rows])
+
   def test_get_result_summaries_query(self):
     # Indirectly tested by API.
     pass

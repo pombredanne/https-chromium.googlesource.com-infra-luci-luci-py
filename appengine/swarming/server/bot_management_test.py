@@ -594,6 +594,42 @@ class BotManagementTest(test_case.TestCase):
     # Next cron skips everything that was processed.
     self.assertEqual(0, bot_management.cron_send_to_bq())
 
+  def test_task_bq_events(self):
+    payloads = []
+    def json_request(url, method, payload, scopes, deadline):
+      self.assertEqual(
+          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
+            'swarming/tables/bot_events/insertAll',
+          url)
+      payloads.append(payload)
+      self.assertEqual('POST', method)
+      self.assertEqual(bot_management.bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
+      self.assertEqual(600, deadline)
+      return {'insertErrors': []}
+    self.mock(bot_management.bq_state.net, 'json_request', json_request)
+
+    # Generate a few events.
+    start = self.mock_now(self.now, 10)
+    _bot_event(bot_id=u'id1', event_type='bot_connected')
+    self.mock_now(self.now, 20)
+    _bot_event(event_type='request_sleep', quarantined=True)
+    self.mock_now(self.now, 30)
+    _bot_event(event_type='request_task', task_id='12311', task_name='yo')
+    end = self.mock_now(self.now, 40)
+
+    # request_sleep is not streamed.
+    self.assertEqual((2, 0), bot_management.task_bq_events(start, end))
+    expected = [
+      {
+        'ignoreUnknownValues': False,
+        'kind': 'bigquery#tableDataInsertAllRequest',
+        'skipInvalidRows': True,
+      },
+    ]
+    actual_rows = payloads[0].pop('rows')
+    self.assertEqual(expected, payloads)
+    self.assertEqual(2, len(actual_rows))
+
 
 if __name__ == '__main__':
   logging.basicConfig(
