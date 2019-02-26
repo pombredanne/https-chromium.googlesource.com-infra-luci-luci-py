@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ae4a0dae_592cbdd2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-26T19:19:17Z",
+      "side": 1,
+      "message": "Ah, much clearer.",
+      "parentUuid": "4bfaabe8_55f9535f",
+      "range": {
+        "startLine": 759,
+        "startChar": 42,
+        "endLine": 760,
+        "endChar": 23
+      },
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91ff797a_13965df9",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "b2b74a08_2ffbb2a4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-26T19:19:17Z",
+      "side": 1,
+      "message": "Alright, so it could potentially be NaN or negative, which is why we\u0027re doing max(0, ...)?",
+      "parentUuid": "9d5ba238_6b832a8d",
+      "range": {
+        "startLine": 761,
+        "startChar": 21,
+        "endLine": 761,
+        "endChar": 45
+      },
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afc625de_fffb5d64",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
@@ -128,6 +176,24 @@
       "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "edcfd4c0_0f7562ed",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-26T19:19:17Z",
+      "side": 1,
+      "message": "I guess that name does make it clearer -- although the comments still refer to \"hard timeout\" and \"hard_timeout\", you could potentially note that timeout should be handled by run_isolated or task_runner, and \"last ditch timeout\" is for the case when bot_main still hasn\u0027t been killed after a long time (although it should have already been terminated)?",
+      "parentUuid": "d2882fa3_d569e696",
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
