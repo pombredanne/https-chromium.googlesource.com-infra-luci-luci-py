@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "7dfe5713_b764129b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-26T13:54:49Z",
+      "side": 1,
+      "message": "sorted() otherwise if there\u0027s multiple invalid values, the error message will alternate randomly at each poll, which will be confusing.",
+      "revId": "676ca3c5da7cdd30bec10af129cc1c46a95629e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2456f16_5a102953",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-26T13:54:49Z",
+      "side": 1,
+      "message": "Consider %r because it\u0027s untype, it could be any kind of bad data. It happened, like None :)",
+      "revId": "676ca3c5da7cdd30bec10af129cc1c46a95629e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93a4e2e6_281cbc73",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 1
