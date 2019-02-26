@@ -1571,3 +1571,34 @@ def cron_send_to_bq():
 
   return bq_state.cron_send_to_bq(
       'task_results', get_oldest_key, get_rows, fetch_rows)
+
+
+def task_bq(start, end):
+  """Sends TaskRunResult to BigQuery swarming.task_results table."""
+  def _convert(e):
+    """Returns a tuple(bq_key, row)."""
+    out = swarming_pb2.TaskResult()
+    e.to_proto(out)
+    if not e.ended_ts:
+      # Inconsistent query. This is extremely rare but may happen.
+      return None, None
+    return (e.task_id, out)
+
+  q = TaskRunResult.query(
+      TaskRunResult.completed_ts >= start,
+      TaskRunResult.completed_ts <= end).order(
+          TaskRunResult.completed_ts)
+  cursor = None
+  more = True
+  failed = 0
+  total = 0
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = []
+    for e in entities:
+      p = _convert(e)
+      if p:
+        rows.append(p)
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results', rows)
+  return total, failed
