@@ -1733,3 +1733,26 @@ def cron_send_to_bq():
 
   return bq_state.cron_send_to_bq(
       'task_requests', get_oldest_key, get_rows, fetch_rows)
+
+
+def task_bq(start, end):
+  """Sends TaskRequest to BigQuery swarming.task_requests table."""
+  def _convert(e):
+    """Returns a tuple(bq_key, row)."""
+    out = swarming_pb2.TaskRequest()
+    e.to_proto(out)
+    return (e.task_id, out)
+
+  q = TaskRequest.query(
+      TaskRequest.created_ts >= start, TaskRequest.created_ts <= end).order(
+          TaskRequest.created_ts)
+  cursor = None
+  more = True
+  total = 0
+  failed = 0
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    total += len(entities)
+    failed += bq_state.send_to_bq(
+        'task_requests', [_convert(e) for e in entities])
+  return total, failed
