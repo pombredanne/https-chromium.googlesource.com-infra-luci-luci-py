@@ -236,6 +236,24 @@
       "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e95971dd_9ffea224",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-26T20:57:36Z",
+      "side": 1,
+      "message": "Oh, I think I see, the fact that the comment still refers to hard_timeout (\" hard_timeout is handled by run_isolated\") is intentional because hard_timeout is still a thing. last_ditch_timeout is a separate thing based on hard_timeout.",
+      "parentUuid": "5d71a155_6517063f",
+      "revId": "cfb1cdeb6ae31675afa196d81991002224070e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
