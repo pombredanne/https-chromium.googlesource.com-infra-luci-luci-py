@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a398958_a9f11f97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "Hey Vadim. \n\nSpinnaker Cloud is a normal Google cloud project so this is handled by IAM. \nI\u0027ve added you as a viewer of the project. \n\nAny suggestion of a good group to use?",
+      "parentUuid": "f6aea51f_e026e05f",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 145
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c68eed3f_71d1d679",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "249253bf_f56db21d",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "The reason we ended up with this command is pretty much to have a working way to deref symlinks properly.  Tar failed us, honestly I didnt\u0027 try just plain old copy, I do use the --exclude flag in a later commit though to handle the tool/protoc pointing to nothing. \n\nI\u0027ll keep as is for now if that\u0027s fine with you.",
+      "parentUuid": "c68eed3f_71d1d679",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +136,48 @@
     },
     {
       "key": {
+        "uuid": "3b6b42a7_547a9fad",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "Yes, we already have that working. A discussion is needed with you and SRE what you want here.\n\n- I\u0027d expect for the dev env. you\u0027d like to push the working folder as is in this Makefile.\n- For Staging/Prod  pushing only checked in code would be the norm.\n   - Pushing from the local workspace to Staging/Prod would need SRE involvement.\n\nSo as a dev, would a `deploy-dev` and a `deploy` be enough? First option pushing your local changes to the dev instance , second pushing checked in code through staging to prod?",
+      "parentUuid": "d78c1e72_cc67fab7",
+      "range": {
+        "startLine": 32,
+        "startChar": 78,
+        "endLine": 32,
+        "endChar": 79
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6d4a585_bc047301",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "Yes that\u0027s exactly what it is .. :).. \n\nAnd we are thinking if it\u0027d be nice to drop a Dockerfile in the project folder that will provide the env needed to build/dev_appserver/tinker.",
+      "parentUuid": "d90d43c8_76aa8f70",
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be09b52d_6a952b61",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 6
@@ -102,6 +192,24 @@
       "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47aa6404_aefe2f4a",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "Yes we try to make it general , and yes we\u0027d like to make this general. First for Appengine apps but in the longer run all applicable services.\n\ngo/chrome-infra-appengine-deployments\n\nAs for gae.py, it\u0027s a wrapper around gcloud. The gcloud in this release process is run by Spinnaker so I\u0027d either say we stop using gae.py or gut it and have it wrap around this new process instead.",
+      "parentUuid": "be09b52d_6a952b61",
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "1711fe8a_dacd8a8a",
+        "filename": "appengine/config_service/app-spin.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5924dc25_3e9332eb",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "125d535f_b4f7cd12",
         "filename": "appengine/config_service/cloudbuild.yaml",
         "patchSetId": 6
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "1be8fc49_aed3fdec",
+        "filename": "appengine/config_service/cloudbuild.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "This is something we\u0027re actively reaching out to you guys to get some pointers. \n\nI reached out to Andrii but he didn\u0027t have any cycles atm. so 302d me to luci-eng@ .. This would be to discuss a good place to put these files and if we have and test,lint going for Dockerfiles.",
+      "parentUuid": "125d535f_b4f7cd12",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 42
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f45e8a7a_52f2cf2e",
         "filename": "appengine/config_service/cloudbuild.yaml",
         "patchSetId": 6
@@ -171,6 +327,30 @@
       "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efcd6481_2099920c",
+        "filename": "appengine/config_service/cloudbuild.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-02-27T23:50:40Z",
+      "side": 1,
+      "message": "This specific bucket is owned by the project \"chrome-infra-spinnaker\".  This is not in any way mandatory though, the bucket can live anywhere, including inside the project. Yes permissions can be set on cloud build to be the only writer.\n\nAbout multiple services, this as with the buckets is up to us. An instance of Cloud Spinnaker can handle multiple services, it does have a permission system to limit what applications/accounts/etc. users can access. \n\nThis gives we can group a bunch of services in one Cloud Spinnaker instance and still have some separation on what different users can see do. \n\nFor projects of higher security levels I\u0027d say we spin up separate Cloud Spinnakers for them.",
+      "parentUuid": "f45e8a7a_52f2cf2e",
+      "range": {
+        "startLine": 9,
+        "startChar": 20,
+        "endLine": 9,
+        "endChar": 39
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
