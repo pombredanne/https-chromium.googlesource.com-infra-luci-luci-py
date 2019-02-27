@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4387eef6_8c6edeea",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-27T21:34:37Z",
+      "side": 1,
+      "message": "Or: dataset name (to be clear that it\u0027s a string). (Same below in _send_to_bq)",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6cd5639_3ce3c534",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-27T21:34:37Z",
+      "side": 1,
+      "message": "Nit: BigQuery",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "504809e3_12ff2e82",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-27T21:34:37Z",
+      "side": 1,
+      "message": "indexes",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adfeb510_2e6cd608",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-27T21:34:37Z",
+      "side": 1,
+      "message": "Nit: BigQuery",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 24
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a0fb8f5_497e7497",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-02-27T21:34:37Z",
+      "side": 1,
+      "message": "keys\nOr more verbosely: \"Datastore keys and BQ keys of rows that failed to be sent.\"",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 7
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
