@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "f6aea51f_e026e05f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-27T20:51:58Z",
+      "side": 1,
+      "message": "how do I login? It says \"You don\u0027t have access\" (I tried my @google.com)",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 145
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c68eed3f_71d1d679",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-27T20:51:58Z",
+      "side": 1,
+      "message": "nit: considering GCBDIR is a temp directory deleted after each build, rsync is overkill and cp would be fine",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d78c1e72_cc67fab7",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-27T20:51:58Z",
+      "side": 1,
+      "message": "Will there be a way in the future to ensure we deploy to production environment only builds produced from checked in source code?",
+      "range": {
+        "startLine": 32,
+        "startChar": 78,
+        "endLine": 32,
+        "endChar": 79
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d90d43c8_76aa8f70",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-27T20:51:58Z",
+      "side": 1,
+      "message": "do I understand correctly that this is basically glorified remote docker runner and we can potentially just use local docker? (but it would be inconvenient because no everyone have it etc).",
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be09b52d_6a952b61",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 6
@@ -35,6 +121,52 @@
         "startChar": 15,
         "endLine": 1,
         "endChar": 16
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "125d535f_b4f7cd12",
+        "filename": "appengine/config_service/cloudbuild.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-27T20:51:58Z",
+      "side": 1,
+      "message": "Where are these images defined? How are they updated? Who will have access to upload images to chrome-infra-spinnaker GCR? Will we be able to setup CI for them and generate them only from checked in source code?",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 42
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f45e8a7a_52f2cf2e",
+        "filename": "appengine/config_service/cloudbuild.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-02-27T20:51:58Z",
+      "side": 1,
+      "message": "In what Cloud Project this bucket is defined? Who has write access to it? Is there a way to enforce that Spinnaker picks up only builds produced by Cloud Build (e.g. either limit write access to this bucket ONLY to Cloud Build or make Cloud Build sign artifacts and Spinnaker verify them)?\n\nSimilar question: what is the plan for supporting multiple services? Will it all be in a single project with single ACL? \n\nThe concern is that we have different levels of criticality of services from security PoV. Some (if compromised) may taint official Chrome builds, which is pretty bad. Many services are less important. Set of people that works on security critical services is much smaller that set of all chops engineers that need to deploy services.\n\nThus it is very important to make sure set of people that can update security sensitive services doesn\u0027t grow to include everyone in chops. Today we can do this by tweaking project ACLs of each individual service. But if *all* updates are funneled through single Cloud Build/Spinnaker instance, we\u0027ll lose this capability.",
+      "range": {
+        "startLine": 9,
+        "startChar": 20,
+        "endLine": 9,
+        "endChar": 39
       },
       "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
