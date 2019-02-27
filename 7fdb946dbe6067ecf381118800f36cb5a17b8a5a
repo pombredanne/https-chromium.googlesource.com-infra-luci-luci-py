@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be09b52d_6a952b61",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-02-27T07:27:21Z",
+      "side": 1,
+      "message": "nothing here is luci-config-specific. Are we still in experimentation stage and the plan is to put this into a reusable script (perhaps gae.py) eventually?",
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5924dc25_3e9332eb",
+        "filename": "appengine/config_service/app-spin.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-02-27T07:27:21Z",
+      "side": 1,
+      "message": "9",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "7fdb946dbe6067ecf381118800f36cb5a17b8a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
