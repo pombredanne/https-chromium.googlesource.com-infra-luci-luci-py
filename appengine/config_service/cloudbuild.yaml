@@ -1,0 +1,13 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/chrome-infra-spinnaker/infra-luci-config-staging", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["run", "--volume","/workspace:/workspace", "gcr.io/chrome-infra-spinnaker/infra-luci-config-staging"]
+#  - name: "gcr.io/cloud-builders/gsutil"
+#    args: ["-m", "cp", "-r", "appengine", "gs://olakar-spinnaker-rotang/version"]
+
+artifacts:
+  images: ["gcr.io/chrome-infra-spinnaker/infra-luci-config-staging"]
+  objects:
+    location: "gs://chrome-infra-builds/luci-config-staging/"
+    paths:   "/workspace/*.tar"

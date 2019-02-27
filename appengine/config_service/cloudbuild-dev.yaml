@@ -1,0 +1,26 @@
+steps:
+- name: gcr.io/chrome-infra-spinnaker/base
+  args: ['make', 'external_deps']
+- name: gcr.io/chrome-infra-spinnaker/tar
+  args: ['cf', '$BUILD_ID.tar','.']
+
+artifacts:
+  objects:
+    location: 'gs://chrome-infra-builds/luci-config'
+    paths: ['$BUILD_ID.tar']
+#  - name: "gcr.io/cloud-builders/gsutil"
+#    args: ["rsync", "-d", "-L", "-K", "--exclude=workspace_gcb", ".", "./workspace_gcb"]
+#  - name: "gcr.io/cloud-builders/tar"
+#    args: ["cvf", "luci-config-dev.tar", "-C", "worspace_gcb", "."]
+#  - name: "gcr.io/cloud-builders/docker"
+#    args: ["build", "-t", "gcr.io/chrome-infra-spinnaker/infra-luci-config-staging", "."]
+#  - name: "gcr.io/cloud-builders/docker"
+#   args: ["run", "--volume","/workspace:/workspace", "gcr.io/chrome-infra-spinnaker/infra-luci-config-staging"]
+#  - name: "gcr.io/cloud-builders/gsutil"
+#    args: ["-m", "cp", "-r", "appengine", "gs://olakar-spinnaker-rotang/version"]
+#
+#artifacts:
+#  # images: ["gcr.io/chrome-infra-spinnaker/infra-luci-config-staging"]
+#  objects:
+#    location: "gs://chrome-infra-builds/luci-config/"
+#    paths:   "/workspace/*.tar"
