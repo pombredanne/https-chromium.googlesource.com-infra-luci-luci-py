@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d14ce3f_f2f606a3",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-28T01:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4387eef6_8c6edeea",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6cd5639_3ce3c534",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10e7d2e3_cf82dc6f",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-28T01:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6cd5639_3ce3c534",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3238b6a8_1b59d4e4",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-28T01:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "504809e3_12ff2e82",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "adfeb510_2e6cd608",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "19777cbf_2fd62b99",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-28T01:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adfeb510_2e6cd608",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 24
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0fb8f5_497e7497",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79dc3b8e_b6652fae",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-28T01:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0fb8f5_497e7497",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 7
+      },
+      "revId": "4e3b0ac84878c55930b990e00cbd5fa9d81248f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
