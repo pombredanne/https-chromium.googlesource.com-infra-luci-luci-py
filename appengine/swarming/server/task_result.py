@@ -1509,65 +1509,32 @@ def cron_update_tags():
   return len(tags)
 
 
-def cron_send_to_bq():
-  """Sends the completed TaskRunResult to BigQuery.
-
-  Returns:
-    total number of task results sent to BQ.
-  """
-  fmt = u'%Y-%m-%dT%H:%M:%S.%fZ'
+def task_bq(start, end):
+  """Sends TaskRunResult to BigQuery swarming.task_results table."""
   def _convert(e):
-    """Converts a TaskRunResult to a tuple(db_key, bq_key, row)."""
+    """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.TaskResult()
     e.to_proto(out)
     if not e.ended_ts:
-      # Inconsistent query. This is extremely rare, a TaskRunResult was returned
-      # from the _yield_done_tasks() query but e.ended_ts isn't set after all
-      # due to an inconsistency in the database.
-      return None, None, None
-    return (e.ended_ts.strftime(fmt), e.task_id, out)
-
-  def get_oldest_key():
-    """Returns a tuple(db_key, bq_key)."""
-    # BigQuery requires partitioned table to not insert items older than 365
-    # days old. The problem with going back all the way to 364 days is that
-    # churning through the backlog can take a *long* time, so only go back 7
-    # days.
-    cutoff = (utils.utcnow() - datetime.timedelta(days=7))
-    cutoff = datetime.datetime(cutoff.year, cutoff.month, cutoff.day)
-    oldest = TaskRunResult.query(TaskRunResult.completed_ts >= cutoff).order(
-        TaskRunResult.completed_ts).get()
-    if not oldest:
+      # Inconsistent query. This is extremely rare but may happen.
       return None, None
-    # Since the query is an inequality > (and not >=), go back in time 1 second
-    # to not discard the very first entity.
-    return (
-      (oldest.completed_ts - datetime.timedelta(seconds=1)).strftime(fmt),
-      oldest.task_id,
-    )
+    return (e.task_id, out)
 
-  def get_rows(db_key, _bq_key, size):
-    """Returns a list of tuple(db_key, bq_key, row)."""
-    # bq_key is not usable here, see get_oldest_key() to see why.
-    earliest = datetime.datetime.strptime(db_key, fmt)
-    items = (
-        _convert(e) for e in
-        TaskRunResult.query(TaskRunResult.completed_ts > earliest).order(
-            TaskRunResult.completed_ts).fetch(limit=size)
-        if e
-    )
-    # Ignore _convert() failure.
-    return [e for e in items if e[0]]
-
-  def fetch_rows(_db_keys, bq_keys):
-    """Returns a list of tuple(db_key, bq_key, row)."""
-    items = (
-      _convert(e)
-      for e in ndb.get_multi(
-          task_pack.unpack_run_result_key(k) for k in bq_keys)
-      if e)
-    # Ignore _convert() failure.
-    return [e for e in items if e[0]]
-
-  return bq_state.cron_send_to_bq(
-      'task_results', get_oldest_key, get_rows, fetch_rows)
+  q = TaskRunResult.query(
+      TaskRunResult.completed_ts >= start,
+      TaskRunResult.completed_ts <= end).order(
+          TaskRunResult.completed_ts)
+  cursor = None
+  more = True
+  failed = 0
+  total = 0
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = []
+    for e in entities:
+      p = _convert(e)
+      if p:
+        rows.append(p)
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results', rows)
+  return total, failed
