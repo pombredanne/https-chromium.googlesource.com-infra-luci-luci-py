@@ -22,6 +22,30 @@
       "revId": "30e6ceea07e45e9003e732b37ee5512c33cf877a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b532233_ef5bd760",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-28T17:24:31Z",
+      "side": 1,
+      "message": "Yes, and the tests concurred. :)",
+      "parentUuid": "23f558f8_7107d5df",
+      "range": {
+        "startLine": 922,
+        "startChar": 32,
+        "endLine": 922,
+        "endChar": 39
+      },
+      "revId": "30e6ceea07e45e9003e732b37ee5512c33cf877a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
