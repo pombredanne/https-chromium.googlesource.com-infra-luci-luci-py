@@ -25,6 +25,7 @@ from components import utils
 from test_support import test_case
 
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
+from server import bq_state
 from server import large
 from server import task_pack
 from server import task_request
@@ -805,151 +806,52 @@ class TaskResultApiTest(TestCase):
     # TODO(maruel): https://crbug.com/912154
     self.assertEqual(0, task_result.cron_update_tags())
 
-  def test_cron_send_to_bq_empty(self):
-    # Empty, nothing is done. No need to mock the HTTP client.
-    self.assertEqual(0, task_result.cron_send_to_bq())
-    # State is not stored if nothing was found.
-    self.assertEqual(
-        None, task_result.bq_state.BqState.get_by_id('task_results'))
+  def test_task_bq_empty(self):
+    # Empty, nothing is done.
+    start = utils.utcnow()
+    end = start+datetime.timedelta(seconds=60)
+    self.assertEqual((0, 0), task_result.task_bq(start, end))
 
-  def test_cron_send_to_bq(self):
+  def test_task_bq(self):
     payloads = []
-    def json_request(url, method, payload, scopes, deadline):
-      self.assertEqual(
-          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
-            'swarming/tables/task_results/insertAll',
-          url)
-      payloads.append(payload)
-      self.assertEqual('POST', method)
-      self.assertEqual(task_result.bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
-      self.assertEqual(600, deadline)
-      return {'insertErrors': []}
-    self.mock(task_result.bq_state.net, 'json_request', json_request)
+    def send_to_bq(table_name, rows):
+      self.assertEqual('task_results', table_name)
+      payloads.append(rows)
+      return 0
+    self.mock(bq_state, 'send_to_bq', send_to_bq)
 
-    # Generate two tasks results.
+    # Generate 4 tasks results.
     self.mock_now(self.now, 10)
     run_result_1 = _gen_result()
     run_result_1.abandoned_ts = utils.utcnow()
     run_result_1.completed_ts = utils.utcnow()
     run_result_1.modified_ts = utils.utcnow()
     run_result_1.put()
-    self.mock_now(self.now, 20)
+    start = self.mock_now(self.now, 20)
     run_result_2 = _gen_result()
     run_result_2.completed_ts = utils.utcnow()
     run_result_2.modified_ts = utils.utcnow()
     run_result_2.put()
-    self.mock_now(self.now, 30)
+    end = self.mock_now(self.now, 30)
+    run_result_3 = _gen_result()
+    run_result_3.completed_ts = utils.utcnow()
+    run_result_3.modified_ts = utils.utcnow()
+    run_result_3.put()
+    self.mock_now(self.now, 40)
+    run_result_4 = _gen_result()
+    run_result_4.completed_ts = utils.utcnow()
+    run_result_4.modified_ts = utils.utcnow()
+    run_result_4.put()
 
-    self.assertEqual(2, task_result.cron_send_to_bq())
-    expected = {
-      'failed_bq_keys': [],
-      'failed_db_keys': [],
-      'last_bq_key': u'1d69ba3ea8008811',
-      'last_db_key': u'2014-01-02T03:04:25.000006Z',
-      'ts': self.now + datetime.timedelta(seconds=30),
-    }
-    self.assertEqual(
-        expected,
-        task_result.bq_state.BqState.get_by_id('task_results').to_dict())
-
-    expected = [
-      {
-        'ignoreUnknownValues': False,
-        'kind': 'bigquery#tableDataInsertAllRequest',
-        'skipInvalidRows': True,
-      },
-    ]
+    self.assertEqual((2, 0), task_result.task_bq(start, end))
     self.assertEqual(1, len(payloads), payloads)
-    actual_rows = payloads[0].pop('rows')
-    self.assertEqual(expected, payloads)
+    actual_rows = payloads[0]
     self.assertEqual(2, len(actual_rows))
     expected = [
-      run_result_1.task_id,
       run_result_2.task_id,
+      run_result_3.task_id,
     ]
-    self.assertEqual(expected, [r['insertId'] for r in actual_rows])
-
-    # Next cron skips everything that was processed.
-    self.assertEqual(0, task_result.cron_send_to_bq())
-
-  def test_cron_send_to_bq_fail(self):
-    payloads = []
-    def json_request(url, method, payload, scopes, deadline):
-      self.assertEqual(
-          'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
-            'swarming/tables/task_results/insertAll',
-          url)
-      first = not payloads
-      payloads.append(payload)
-      self.assertEqual('POST', method)
-      self.assertEqual(task_result.bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
-      self.assertEqual(600, deadline)
-      # Return an error on the first call.
-      if first:
-        return {
-          'insertErrors': [
-            {
-              'index': 0,
-              'errors': [
-                {
-                  'reason': 'sadness',
-                  'message': 'Oh gosh',
-                },
-              ],
-            },
-          ],
-        }
-      return {'insertErrors': []}
-    self.mock(task_result.bq_state.net, 'json_request', json_request)
-
-    # Generate two tasks results.
-    self.mock_now(self.now, 10)
-    run_result_1 = _gen_result()
-    run_result_1.abandoned_ts = utils.utcnow()
-    run_result_1.completed_ts = utils.utcnow()
-    run_result_1.modified_ts = utils.utcnow()
-    run_result_1.put()
-    self.mock_now(self.now, 20)
-    run_result_2 = _gen_result()
-    run_result_2.completed_ts = utils.utcnow()
-    run_result_2.modified_ts = utils.utcnow()
-    run_result_2.put()
-    self.mock_now(self.now, 30)
-
-    # The cron job will loop twice.
-    self.assertEqual(2, task_result.cron_send_to_bq())
-    expected = {
-      'failed_bq_keys': [],
-      'failed_db_keys': [],
-      'last_bq_key': u'1d69ba3ea8008811',
-      'last_db_key': u'2014-01-02T03:04:25.000006Z',
-      'ts': self.now + datetime.timedelta(seconds=30),
-    }
-    self.assertEqual(
-        expected,
-        task_result.bq_state.BqState.get_by_id('task_results').to_dict())
-
-    self.assertEqual(2, len(payloads), payloads)
-    expected = {
-      'ignoreUnknownValues': False,
-      'kind': 'bigquery#tableDataInsertAllRequest',
-      'skipInvalidRows': True,
-    }
-    actual_rows = payloads[0].pop('rows')
-    self.assertEqual(expected, payloads[0])
-    self.assertEqual(2, len(actual_rows))
-
-    expected = {
-      'ignoreUnknownValues': False,
-      'kind': 'bigquery#tableDataInsertAllRequest',
-      'skipInvalidRows': True,
-    }
-    actual_rows = payloads[1].pop('rows')
-    self.assertEqual(expected, payloads[1])
-    self.assertEqual(1, len(actual_rows))
-
-    # Next cron skips everything that was processed.
-    self.assertEqual(0, task_result.cron_send_to_bq())
+    self.assertEqual(expected, [r[0] for r in actual_rows])
 
   def test_get_result_summaries_query(self):
     # Indirectly tested by API.
