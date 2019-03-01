@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "658dc2f0_4518bd60",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T00:01:41Z",
+      "side": 1,
+      "message": "is set on the children tasks?",
+      "range": {
+        "startLine": 787,
+        "startChar": 16,
+        "endLine": 787,
+        "endChar": 22
+      },
+      "revId": "feb1d108208d4c5b31c1f25b304371e5f7744d66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7be7e52_2886153d",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T00:01:41Z",
+      "side": 1,
+      "message": "but no run",
+      "range": {
+        "startLine": 832,
+        "startChar": 3,
+        "endLine": 832,
+        "endChar": 14
+      },
+      "revId": "feb1d108208d4c5b31c1f25b304371e5f7744d66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
