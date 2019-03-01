@@ -4,6 +4,7 @@
 
 """Main entry point for Swarming backend handlers."""
 
+import datetime
 import json
 import logging
 
@@ -16,6 +17,7 @@ from proto.api import plugin_pb2
 
 import mapreduce_jobs
 from components import decorators
+from server import bq_state
 from server import bot_groups_config
 from server import bot_management
 from server import config
@@ -206,6 +208,7 @@ class CronBotsSendToBQ(_CronHandlerBase):
   """Streams BotEvent to BigQuery."""
 
   def run_cron(self):
+    # Deprecated.
     bot_management.cron_send_to_bq()
 
 
@@ -213,6 +216,7 @@ class CronTasksSendRequestsToBQ(_CronHandlerBase):
   """Streams TaskRequest to BigQuery."""
 
   def run_cron(self):
+    # Deprecated.
     task_request.cron_send_to_bq()
 
 
@@ -220,7 +224,28 @@ class CronTasksSendResultsToBQ(_CronHandlerBase):
   """Streams TaskResult to BigQuery."""
 
   def run_cron(self):
+    # Deprecated.
     task_result.cron_send_to_bq()
+
+
+class CronSendToBQ(_CronHandlerBase):
+  """Triggers many tasks queues to send data to BigQuery."""
+
+  def run_cron(self):
+    # It can trigger up to 2*60*3 = 360 tasks. It should complete within ~45
+    # seconds as each function will try to limit themselves to 15 seconds.
+    bq_state.cron_trigger_tasks(
+        'bot_events',
+        '/internal/taskqueue/monitoring/bq/bots/events/',
+        'monitoring-bq-bots-events')
+    bq_state.cron_trigger_tasks(
+        'task_requests',
+        '/internal/taskqueue/monitoring/bq/tasks/requests/',
+        'monitoring-bq-tasks-requests')
+    bq_state.cron_trigger_tasks(
+        'task_results',
+        '/internal/taskqueue/monitoring/bq/tasks/requests/',
+        'monitoring-bq-tasks-requests')
 
 
 ## Task queues.
@@ -337,7 +362,40 @@ class TaskNamedCachesPool(webapp2.RequestHandler):
     named_caches.task_update_pool(params['pool'])
 
 
-class TaskGlobalMetrics(webapp2.RequestHandler):
+class TaskMonitoringBotsEventsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.bot_events table."""
+
+  @decorators.require_taskqueue('monitoring-bq-bots-events')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    bot_management.task_bq_events(start, end)
+
+
+class TaskMonitoringTasksRequestsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.task_requests table."""
+
+  @decorators.require_taskqueue('monitoring-bq-tasks-requests')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    task_request.task_bq(start, end)
+
+
+class TaskMonitoringTasksResultsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.task_results table."""
+
+  @decorators.require_taskqueue('monitoring-bq-tasks-results')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    task_request.task_bq(start, end)
+
+
+class TaskMonitoringTSMon(webapp2.RequestHandler):
   """Compute global metrics for timeseries monitoring."""
 
   @decorators.require_taskqueue('tsmon')
@@ -394,6 +452,7 @@ def get_routes():
       CronTasksSendRequestsToBQ),
     ('/internal/cron/monitoring/tasks/send_results_to_bq',
       CronTasksSendResultsToBQ),
+    ('/internal/cron/monitoring/bq', CronSendToBQ),
     ('/internal/cron/monitoring/count_task_bot_distribution',
         CronCountTaskBotDistributionHandler),
     ('/internal/cron/monitoring/bots/aggregate_dimensions',
@@ -429,8 +488,17 @@ def get_routes():
         TaskMachineProviderManagementHandler),
     (r'/internal/taskqueue/important/named_cache/update-pool',
         TaskNamedCachesPool),
+    (r'/internal/taskqueue/monitoring/bq/bots/events/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringBotsEventsBQ),
+    (r'/internal/taskqueue/monitoring/bq/tasks/requests/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringTasksRequestsBQ),
+    (r'/internal/taskqueue/monitoring/bq/tasks/results/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringTasksResultsBQ),
     (r'/internal/taskqueue/monitoring/tsmon/<kind:[0-9A-Za-z_]+>',
-        TaskGlobalMetrics),
+        TaskMonitoringTSMon),
 
     # Mapreduce related urls.
     (r'/internal/taskqueue/mapreduce/launch/<job_id:[^\/]+>',
