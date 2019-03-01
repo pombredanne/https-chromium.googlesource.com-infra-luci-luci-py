@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6c586354_f3902b5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7b63432_273717c0",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7e9977c_f7387325",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88c279c0_4409adc0",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7e9977c_f7387325",
+      "range": {
+        "startLine": 6,
+        "startChar": 18,
+        "endLine": 6,
+        "endChar": 24
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +136,48 @@
     },
     {
       "key": {
+        "uuid": "be657b9c_f460f1a9",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "039ec5a5_36bc228f",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7b2bf19_279b5602",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Yeah the comment was stale, took your suggestion.",
+      "parentUuid": "897f7f2a_7fe4e49d",
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef2397f7_c00b2041",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 6
@@ -99,6 +189,24 @@
       "writtenOn": "2019-03-01T19:50:41Z",
       "side": 1,
       "message": "Optional possible rephrasing:\n - one task\n - one task queue task",
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cdde4cd_7e7cba2d",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Use task queue task.",
+      "parentUuid": "ef2397f7_c00b2041",
       "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "f881e5c7_7eb20998",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f16d9b69_f0cfeddb",
+      "range": {
+        "startLine": 283,
+        "startChar": 18,
+        "endLine": 283,
+        "endChar": 37
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a4696dd_892576b6",
         "filename": "appengine/swarming/server/bq_state.py",
         "patchSetId": 6
@@ -148,6 +280,30 @@
       "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5fcbbc1_c54714fc",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a4696dd_892576b6",
+      "range": {
+        "startLine": 300,
+        "startChar": 19,
+        "endLine": 300,
+        "endChar": 31
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -197,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "af43a9f6_a256e1c0",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28488701_291b17a3",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 29
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59fdbc79_e856b420",
         "filename": "appengine/swarming/server/bq_state_test.py",
         "patchSetId": 6
@@ -220,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "8f3a0319_11731354",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "2, it was a copy paste failure.",
+      "parentUuid": "59fdbc79_e856b420",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 8
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a18ef7d_9d066869",
         "filename": "appengine/swarming/server/bq_state_test.py",
         "patchSetId": 6
@@ -234,6 +438,24 @@
       "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3503b438_a807dc40",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T20:11:38Z",
+      "side": 1,
+      "message": "Yes, added a comment to clarify.",
+      "parentUuid": "4a18ef7d_9d066869",
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
