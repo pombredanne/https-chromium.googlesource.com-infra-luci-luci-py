@@ -32,10 +32,6 @@ class BotManagementTest(test_case.TestCase):
     missing = expected - actual
     self.assertFalse(missing)
 
-  def test_cron_send_to_bq(self):
-    # Deprecated.
-    pass
-
   def test_BqState(self):
     now = datetime.datetime(2020, 1, 2, 3, 4)
     bq_state.BqState(id='foo').put()
