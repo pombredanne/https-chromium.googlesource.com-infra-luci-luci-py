@@ -1,0 +1,239 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7b63432_273717c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "BigQuery",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7e9977c_f7387325",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "stream (and backfill)",
+      "range": {
+        "startLine": 6,
+        "startChar": 18,
+        "endLine": 6,
+        "endChar": 24
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "039ec5a5_36bc228f",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "mode",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "897f7f2a_7fe4e49d",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "Below we note that this is exclusive, but \"the oldest item\" makes it sound like it\u0027s the time of an item that was already processed. Maybe: \"when in backfill mode, the time of the next item that should be processed\" or something would also be accurate?",
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef2397f7_c00b2041",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "Optional possible rephrasing:\n - one task\n - one task queue task",
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f16d9b69_f0cfeddb",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "keeping up with",
+      "range": {
+        "startLine": 283,
+        "startChar": 18,
+        "endLine": 283,
+        "endChar": 37
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a4696dd_892576b6",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "Or, this could be phrased as:\n - number of tasks\n - number of task queue tasks",
+      "range": {
+        "startLine": 300,
+        "startChar": 19,
+        "endLine": 300,
+        "endChar": 31
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a47eda8_b525c421",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "I know this isn\u0027t new, it\u0027s already done elsewhere, but anything I think this is quite nice. (Although, the possible disadvantage in general is that it might encourage you to write one test per method rather than one test per behavior -- but below I see you do have behavior-specific tests for send_to_bq)",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28488701_291b17a3",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "exclusive",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 29
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59fdbc79_e856b420",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "Are we using two-space indent or four-space indent for lists and dicts?",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 8
+      },
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a18ef7d_9d066869",
+        "filename": "appengine/swarming/server/bq_state_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T19:50:41Z",
+      "side": 1,
+      "message": "These tasks are doing backfill, right?",
+      "revId": "443275bfd23f6bba4ad401e48d947366e4935a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
