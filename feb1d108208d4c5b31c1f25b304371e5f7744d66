@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0b49fb96_eb39c32c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T00:11:04Z",
+      "side": 1,
+      "message": "Added, but the sentence was\u0026is a bit clunky.",
+      "parentUuid": "658dc2f0_4518bd60",
+      "range": {
+        "startLine": 787,
+        "startChar": 16,
+        "endLine": 787,
+        "endChar": 22
+      },
+      "revId": "feb1d108208d4c5b31c1f25b304371e5f7744d66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7be7e52_2886153d",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "feb1d108208d4c5b31c1f25b304371e5f7744d66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ca842ea_e60a27aa",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-01T00:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7be7e52_2886153d",
+      "range": {
+        "startLine": 832,
+        "startChar": 3,
+        "endLine": 832,
+        "endChar": 14
+      },
+      "revId": "feb1d108208d4c5b31c1f25b304371e5f7744d66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
