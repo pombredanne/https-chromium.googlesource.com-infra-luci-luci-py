@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aca5ab18_c8706648",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T23:49:47Z",
+      "side": 1,
+      "message": "optionally you could explicitly write the parameter names, e.g. max_taskqueues\u003d120",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 11
+      },
+      "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0042d840_07e7fde6",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1607,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T23:49:47Z",
+      "side": 1,
+      "message": "Just to confirm, this won\u0027t send duplicate rows for entities that have both completed_ts and abandoned_ts, right? I assume we don\u0027t want to send duplicate rows but it looks like it might. Is `seen` in the right place?",
+      "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd45c11f_d45fcca9",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-01T23:49:47Z",
+      "side": 1,
+      "message": "Note, this test looks simpler now than before, which is good. Upon first looking it was hard to tell why there are 4 task results, but it looks like it\u0027s to test both the start and end time bounds for task_bq_summary.",
+      "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
