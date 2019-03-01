@@ -232,7 +232,7 @@ class CronSendToBQ(_CronHandlerBase):
   """Triggers many tasks queues to send data to BigQuery."""
 
   def run_cron(self):
-    # It can trigger up to 2*120 = 240 tasks.
+    # It can trigger up to 4*120 = 480 tasks.
     # It should complete within close to 50 seconds as each function will try to
     # limit itself to its allocated chunk.
     max_seconds = 50. / 2
@@ -246,6 +246,18 @@ class CronSendToBQ(_CronHandlerBase):
         'task_results_summary',
         '/internal/taskqueue/monitoring/bq/tasks/results/summary/',
         'monitoring-bq-tasks-results-summary',
+        max_seconds,
+        120)
+    bq_state.cron_trigger_tasks(
+        'bot_events',
+        '/internal/taskqueue/monitoring/bq/bots/events/',
+        'monitoring-bq-bots-events',
+        max_seconds,
+        120)
+    bq_state.cron_trigger_tasks(
+        'task_requests',
+        '/internal/taskqueue/monitoring/bq/tasks/requests/',
+        'monitoring-bq-tasks-requests',
         max_seconds,
         120)
 
@@ -364,6 +376,28 @@ class TaskNamedCachesPool(webapp2.RequestHandler):
     named_caches.task_update_pool(params['pool'])
 
 
+class TaskMonitoringBotsEventsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.bot_events table."""
+
+  @decorators.require_taskqueue('monitoring-bq-bots-events')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    bot_management.task_bq_events(start, end)
+
+
+class TaskMonitoringTasksRequestsBQ(webapp2.RequestHandler):
+  """Sends rows to BigQuery swarming.task_requests table."""
+
+  @decorators.require_taskqueue('monitoring-bq-tasks-requests')
+  def post(self, timestamp):
+    ndb.get_context().set_cache_policy(lambda _: False)
+    start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
+    end = start + datetime.timedelta(seconds=60)
+    task_request.task_bq(start, end)
+
+
 class TaskMonitoringTasksResultsRunBQ(webapp2.RequestHandler):
   """Sends rows to BigQuery swarming.task_results_run table."""
 
@@ -479,6 +513,12 @@ def get_routes():
         TaskMachineProviderManagementHandler),
     (r'/internal/taskqueue/important/named_cache/update-pool',
         TaskNamedCachesPool),
+    (r'/internal/taskqueue/monitoring/bq/bots/events/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringBotsEventsBQ),
+    (r'/internal/taskqueue/monitoring/bq/tasks/requests/'
+        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+        TaskMonitoringTasksRequestsBQ),
     (r'/internal/taskqueue/monitoring/bq/tasks/results/run/'
         r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
         TaskMonitoringTasksResultsRunBQ),
