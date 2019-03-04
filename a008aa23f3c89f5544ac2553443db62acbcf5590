@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "001029e0_4bdb5e66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-04T01:33:13Z",
+      "side": 1,
+      "message": "a git commit message usually starts with a single line of subject, then blank line, then the contents of the message. For reference see history of any luci repo.\n\nthis is why CL title is long",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "103195e2_184d94bc",
+        "filename": "appengine/third_party/gae_ts_mon/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-04T01:33:13Z",
+      "side": 1,
+      "message": "it isn\u0027t gae_ts_mon\u0027s job to fix protobuf package\nplease add this line in https://chromium.googlesource.com/infra/luci/luci-py/+/refs/changes/18/1496618/2/appengine/config_service/main.py#18",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
