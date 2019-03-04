@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aca8d2af_e00cdca2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-04T01:13:38Z",
+      "side": 1,
+      "message": "explaining the reason of a change is good, but change description must describe the change (the delta) too",
+      "revId": "65c7d020455939943de17aadffe48b0f13fc3c97",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
