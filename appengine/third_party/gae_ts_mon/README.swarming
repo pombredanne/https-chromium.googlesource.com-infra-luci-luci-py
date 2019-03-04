@@ -14,3 +14,4 @@ compatible at the version you need.
 Local Modifications:
 - Removed all of the following directories: protobuf/, test/, third_party/ .
 - Copied the content of the symlinks.
+- Modified import path handling at top of __init__.py
