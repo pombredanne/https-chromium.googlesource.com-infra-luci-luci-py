@@ -7,6 +7,11 @@ import imp
 import os
 import sys
 
+# If ts_mon is the first handler to get called, the protobuf package import path
+# won't be set up properly.
+from components.utils import fix_protobuf_package
+fix_protobuf_package()
+
 # Pretend that we are the infra_libs.ts_mon package, so users can use the same
 # import lines in gae and non-gae code.
 if 'infra_libs' not in sys.modules:  # pragma: no cover
