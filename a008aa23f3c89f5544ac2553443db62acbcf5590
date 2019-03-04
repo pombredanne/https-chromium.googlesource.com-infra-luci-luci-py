@@ -69,6 +69,24 @@
       "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8990d067_9cd01400",
+        "filename": "appengine/third_party/gae_ts_mon/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-04T02:13:23Z",
+      "side": 1,
+      "message": "i don\u0027t follow. app.yaml specifies yaml files specify apps.py. apps.py load main.py. then main.py loads the rest of py files including gae_ts_mon. There is no way gae_ts_mon can load before main.py",
+      "parentUuid": "3b3e04a7_62694310",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
