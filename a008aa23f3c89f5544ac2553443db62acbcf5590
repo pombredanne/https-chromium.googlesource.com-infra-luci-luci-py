@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "98eeef29_f9c67cad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-03-04T02:01:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "001029e0_4bdb5e66",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "103195e2_184d94bc",
         "filename": "appengine/third_party/gae_ts_mon/__init__.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-03-04T01:33:13Z",
       "side": 1,
       "message": "it isn\u0027t gae_ts_mon\u0027s job to fix protobuf package\nplease add this line in https://chromium.googlesource.com/infra/luci/luci-py/+/refs/changes/18/1496618/2/appengine/config_service/main.py#18",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b3e04a7_62694310",
+        "filename": "appengine/third_party/gae_ts_mon/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-03-04T02:01:32Z",
+      "side": 1,
+      "message": "Sometimes gae_ts_mon/app.py is the first handler that runs on a new instance - there\u0027s no opportunity for the main.py script to run. This is why we\u0027re only seeing the errors on new instances, and then they settle down after a while.",
+      "parentUuid": "103195e2_184d94bc",
       "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
