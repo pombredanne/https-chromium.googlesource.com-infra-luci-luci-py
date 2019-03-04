@@ -123,6 +123,24 @@
       "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3682584_a07e75cc",
+        "filename": "appengine/third_party/gae_ts_mon/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-03-04T06:36:27Z",
+      "side": 1,
+      "message": "Now that you mention it, I\u0027d recommend just adding fix_protobuf_package() to appengine_config.py. My understanding is that appengine_config.py is ALWAYS evaluated before any application handler is called.\n\nThen we just need one fix_protobuf_package() call per app - in appengine_config.py. The documentation for any lib that requires it can be updated to tell the user that they should ensure the fix_protobuf_package() call is present in  appengine_config.py of the app that the lib is being installed in to.\n\nI\u0027ve gone ahead and changed this CL to make the change to appengine_config.py instead of adding it in to gae_ts_mon - I\u0027ve tested it on luci-config-dev and it works.",
+      "parentUuid": "2c83bc76_bb7a247a",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
