@@ -87,6 +87,24 @@
       "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "317575f9_c1f4f6e0",
+        "filename": "appengine/third_party/gae_ts_mon/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-03-04T02:57:13Z",
+      "side": 1,
+      "message": "app.yaml includes gae_ts_mon\u0027s \"include.yaml\" file: https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/config_service/app.yaml#61\n\nThis \"include.yaml\" file adds a handler for \"/internal/cron/ts_mon/.*\", which is linked to the script \"gae_ts_mon.app\" https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/third_party/gae_ts_mon/include.yaml#1\n\nSo when a new instance spins up, if the first request it gets is for \"/internal/cron/ts_mon/.*\" (ie, the cron job fires, which happens once a minute), then gae_ts_mon/__init__.py is going to be the first application code to run on that instance",
+      "parentUuid": "8990d067_9cd01400",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
