@@ -105,6 +105,24 @@
       "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c83bc76_bb7a247a",
+        "filename": "appengine/third_party/gae_ts_mon/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-04T03:26:10Z",
+      "side": 1,
+      "message": "i see. Here is what happened, I believe:\n\nSome fix_protobuf_package() calls are done at app bootstrap. When done so, there are no flaky behavior like we observed.\nSome calls are made in libs, such as components.config and components.auth. These cause the flaky behavior.\nHere is the full list of calls https://cs.chromium.org/search/?q\u003dfix_protobuf_package+-f:test\u0026sq\u003dpackage:chromium\u0026type\u003dcs\n\nthis CL adds yet anotther fix_protobuf_package() call to a lib (as opposed to app bootstrap). It is not great, but solves the particular instance of the problem. It is a topical solution, an improvement, so LGTM, but at the same it wouldn\u0027t be hard (one CL) to solve the problem once and for all:\n- call fix_protobuf_package() only in bootstrap code\n- remove fix_protobuf_package() calls from libs, such as https://cs.chromium.org/chromium/infra/luci/appengine/components/components/auth/__init__.py?type\u003dcs\u0026q\u003dfix_protobuf_package+-f:test\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d24\n- move gae_ts_mon.app to a separate file. In that file, call fix_protobuf_package(). Update gae_ts_mon\u0027s yaml file to point to the new file.\n\nfeel free to land this. I can make those changes in a separate CL",
+      "parentUuid": "317575f9_c1f4f6e0",
+      "revId": "a008aa23f3c89f5544ac2553443db62acbcf5590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
