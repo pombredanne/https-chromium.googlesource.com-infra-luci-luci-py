@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ed81928_b149d0e2",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1185239
+      },
+      "writtenOn": "2019-03-05T15:46:10Z",
+      "side": 1,
+      "message": "\u003e \"relevent\" is a possible misspelling of \"relevant\".\n\nPlease Fix",
+      "parentUuid": "4c9e2815_741d7fef",
+      "range": {
+        "startLine": 760,
+        "startChar": 29,
+        "endLine": 760,
+        "endChar": 37
+      },
+      "revId": "f01afc1902632e6c311eaaa7d8791de71cc8fb16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
