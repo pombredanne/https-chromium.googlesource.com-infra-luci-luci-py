@@ -12,15 +12,17 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from components.auth.proto import security_config_pb2 as components_dot_auth_dot_proto_dot_security__config__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='components/auth/proto/replication.proto',
   package='components.auth',
   syntax='proto3',
-  serialized_options=None,
-  serialized_pb=_b('\n\'components/auth/proto/replication.proto\x12\x0f\x63omponents.auth\"b\n\x11ServiceLinkTicket\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0bprimary_url\x18\x02 \x01(\t\x12\x14\n\x0cgenerated_by\x18\x03 \x01(\t\x12\x0e\n\x06ticket\x18\x04 \x01(\x0c\"O\n\x12ServiceLinkRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\x0c\x12\x13\n\x0breplica_url\x18\x02 \x01(\t\x12\x14\n\x0cinitiated_by\x18\x03 \x01(\t\"\x9e\x01\n\x13ServiceLinkResponse\x12;\n\x06status\x18\x01 \x01(\x0e\x32+.components.auth.ServiceLinkResponse.Status\"J\n\x06Status\x12\x0b\n\x07SUCCESS\x10\x00\x12\x13\n\x0fTRANSPORT_ERROR\x10\x01\x12\x0e\n\nBAD_TICKET\x10\x02\x12\x0e\n\nAUTH_ERROR\x10\x03\"\xc0\x01\n\tAuthGroup\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07members\x18\x02 \x03(\t\x12\r\n\x05globs\x18\x03 \x03(\t\x12\x0e\n\x06nested\x18\x04 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x12\n\ncreated_ts\x18\x06 \x01(\x03\x12\x12\n\ncreated_by\x18\x07 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x08 \x01(\x03\x12\x13\n\x0bmodified_by\x18\t \x01(\t\x12\x0e\n\x06owners\x18\n \x01(\t\"\x97\x01\n\x0f\x41uthIPWhitelist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x06 \x01(\x03\x12\x13\n\x0bmodified_by\x18\x07 \x01(\t\"|\n\x19\x41uthIPWhitelistAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x14\n\x0cip_whitelist\x18\x02 \x01(\t\x12\x0f\n\x07\x63omment\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\"\xb6\x02\n\x06\x41uthDB\x12\x17\n\x0foauth_client_id\x18\x01 \x01(\t\x12\x1b\n\x13oauth_client_secret\x18\x02 \x01(\t\x12#\n\x1boauth_additional_client_ids\x18\x03 \x03(\t\x12*\n\x06groups\x18\x04 \x03(\x0b\x32\x1a.components.auth.AuthGroup\x12\x37\n\rip_whitelists\x18\x06 \x03(\x0b\x32 .components.auth.AuthIPWhitelist\x12L\n\x18ip_whitelist_assignments\x18\x07 \x03(\x0b\x32*.components.auth.AuthIPWhitelistAssignment\x12\x18\n\x10token_server_url\x18\x08 \x01(\tJ\x04\x08\x05\x10\x06\"N\n\x0e\x41uthDBRevision\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0b\x61uth_db_rev\x18\x02 \x01(\x03\x12\x13\n\x0bmodified_ts\x18\x03 \x01(\x03\"G\n\x12\x43hangeNotification\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\"\x90\x01\n\x16ReplicationPushRequest\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12(\n\x07\x61uth_db\x18\x02 \x01(\x0b\x32\x17.components.auth.AuthDB\x12\x19\n\x11\x61uth_code_version\x18\x03 \x01(\t\"\xbf\x03\n\x17ReplicationPushResponse\x12?\n\x06status\x18\x01 \x01(\x0e\x32/.components.auth.ReplicationPushResponse.Status\x12\x39\n\x10\x63urrent_revision\x18\x02 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12\x46\n\nerror_code\x18\x03 \x01(\x0e\x32\x32.components.auth.ReplicationPushResponse.ErrorCode\x12\x19\n\x11\x61uth_code_version\x18\x04 \x01(\t\"H\n\x06Status\x12\x0b\n\x07\x41PPLIED\x10\x00\x12\x0b\n\x07SKIPPED\x10\x01\x12\x13\n\x0fTRANSIENT_ERROR\x10\x02\x12\x0f\n\x0b\x46\x41TAL_ERROR\x10\x03\"{\n\tErrorCode\x12\x11\n\rERROR_UNKNOWN\x10\x00\x12\x11\n\rNOT_A_REPLICA\x10\x01\x12\r\n\tFORBIDDEN\x10\x02\x12\x15\n\x11MISSING_SIGNATURE\x10\x03\x12\x11\n\rBAD_SIGNATURE\x10\x04\x12\x0f\n\x0b\x42\x41\x44_REQUEST\x10\x05\x62\x06proto3')
-)
+  serialized_options=_b('Z:go.chromium.org/luci/server/auth/service/protocol;protocol'),
+  serialized_pb=_b('\n\'components/auth/proto/replication.proto\x12\x0f\x63omponents.auth\x1a+components/auth/proto/security_config.proto\"b\n\x11ServiceLinkTicket\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0bprimary_url\x18\x02 \x01(\t\x12\x14\n\x0cgenerated_by\x18\x03 \x01(\t\x12\x0e\n\x06ticket\x18\x04 \x01(\x0c\"O\n\x12ServiceLinkRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\x0c\x12\x13\n\x0breplica_url\x18\x02 \x01(\t\x12\x14\n\x0cinitiated_by\x18\x03 \x01(\t\"\x9e\x01\n\x13ServiceLinkResponse\x12;\n\x06status\x18\x01 \x01(\x0e\x32+.components.auth.ServiceLinkResponse.Status\"J\n\x06Status\x12\x0b\n\x07SUCCESS\x10\x00\x12\x13\n\x0fTRANSPORT_ERROR\x10\x01\x12\x0e\n\nBAD_TICKET\x10\x02\x12\x0e\n\nAUTH_ERROR\x10\x03\"\xc0\x01\n\tAuthGroup\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07members\x18\x02 \x03(\t\x12\r\n\x05globs\x18\x03 \x03(\t\x12\x0e\n\x06nested\x18\x04 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x12\n\ncreated_ts\x18\x06 \x01(\x03\x12\x12\n\ncreated_by\x18\x07 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x08 \x01(\x03\x12\x13\n\x0bmodified_by\x18\t \x01(\t\x12\x0e\n\x06owners\x18\n \x01(\t\"\x97\x01\n\x0f\x41uthIPWhitelist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x06 \x01(\x03\x12\x13\n\x0bmodified_by\x18\x07 \x01(\t\"|\n\x19\x41uthIPWhitelistAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x14\n\x0cip_whitelist\x18\x02 \x01(\t\x12\x0f\n\x07\x63omment\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\"\xf0\x02\n\x06\x41uthDB\x12\x17\n\x0foauth_client_id\x18\x01 \x01(\t\x12\x1b\n\x13oauth_client_secret\x18\x02 \x01(\t\x12#\n\x1boauth_additional_client_ids\x18\x03 \x03(\t\x12*\n\x06groups\x18\x04 \x03(\x0b\x32\x1a.components.auth.AuthGroup\x12\x37\n\rip_whitelists\x18\x06 \x03(\x0b\x32 .components.auth.AuthIPWhitelist\x12L\n\x18ip_whitelist_assignments\x18\x07 \x03(\x0b\x32*.components.auth.AuthIPWhitelistAssignment\x12\x18\n\x10token_server_url\x18\x08 \x01(\t\x12\x38\n\x0fsecurity_config\x18\t \x01(\x0b\x32\x1f.components.auth.SecurityConfigJ\x04\x08\x05\x10\x06\"N\n\x0e\x41uthDBRevision\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0b\x61uth_db_rev\x18\x02 \x01(\x03\x12\x13\n\x0bmodified_ts\x18\x03 \x01(\x03\"G\n\x12\x43hangeNotification\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\"\x90\x01\n\x16ReplicationPushRequest\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12(\n\x07\x61uth_db\x18\x02 \x01(\x0b\x32\x17.components.auth.AuthDB\x12\x19\n\x11\x61uth_code_version\x18\x03 \x01(\t\"\xbf\x03\n\x17ReplicationPushResponse\x12?\n\x06status\x18\x01 \x01(\x0e\x32/.components.auth.ReplicationPushResponse.Status\x12\x39\n\x10\x63urrent_revision\x18\x02 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12\x46\n\nerror_code\x18\x03 \x01(\x0e\x32\x32.components.auth.ReplicationPushResponse.ErrorCode\x12\x19\n\x11\x61uth_code_version\x18\x04 \x01(\t\"H\n\x06Status\x12\x0b\n\x07\x41PPLIED\x10\x00\x12\x0b\n\x07SKIPPED\x10\x01\x12\x13\n\x0fTRANSIENT_ERROR\x10\x02\x12\x0f\n\x0b\x46\x41TAL_ERROR\x10\x03\"{\n\tErrorCode\x12\x11\n\rERROR_UNKNOWN\x10\x00\x12\x11\n\rNOT_A_REPLICA\x10\x01\x12\r\n\tFORBIDDEN\x10\x02\x12\x15\n\x11MISSING_SIGNATURE\x10\x03\x12\x11\n\rBAD_SIGNATURE\x10\x04\x12\x0f\n\x0b\x42\x41\x44_REQUEST\x10\x05\x42<Z:go.chromium.org/luci/server/auth/service/protocol;protocolb\x06proto3')
+  ,
+  dependencies=[components_dot_auth_dot_proto_dot_security__config__pb2.DESCRIPTOR,])
 
 
 
@@ -49,8 +51,8 @@ _SERVICELINKRESPONSE_STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=326,
-  serialized_end=400,
+  serialized_start=371,
+  serialized_end=445,
 )
 _sym_db.RegisterEnumDescriptor(_SERVICELINKRESPONSE_STATUS)
 
@@ -79,8 +81,8 @@ _REPLICATIONPUSHRESPONSE_STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1741,
-  serialized_end=1813,
+  serialized_start=1844,
+  serialized_end=1916,
 )
 _sym_db.RegisterEnumDescriptor(_REPLICATIONPUSHRESPONSE_STATUS)
 
@@ -117,8 +119,8 @@ _REPLICATIONPUSHRESPONSE_ERRORCODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1815,
-  serialized_end=1938,
+  serialized_start=1918,
+  serialized_end=2041,
 )
 _sym_db.RegisterEnumDescriptor(_REPLICATIONPUSHRESPONSE_ERRORCODE)
 
@@ -170,8 +172,8 @@ _SERVICELINKTICKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=60,
-  serialized_end=158,
+  serialized_start=105,
+  serialized_end=203,
 )
 
 
@@ -215,8 +217,8 @@ _SERVICELINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=160,
-  serialized_end=239,
+  serialized_start=205,
+  serialized_end=284,
 )
 
 
@@ -247,8 +249,8 @@ _SERVICELINKRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=242,
-  serialized_end=400,
+  serialized_start=287,
+  serialized_end=445,
 )
 
 
@@ -341,8 +343,8 @@ _AUTHGROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=403,
-  serialized_end=595,
+  serialized_start=448,
+  serialized_end=640,
 )
 
 
@@ -414,8 +416,8 @@ _AUTHIPWHITELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=598,
-  serialized_end=749,
+  serialized_start=643,
+  serialized_end=794,
 )
 
 
@@ -473,8 +475,8 @@ _AUTHIPWHITELISTASSIGNMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=751,
-  serialized_end=875,
+  serialized_start=796,
+  serialized_end=920,
 )
 
 
@@ -534,6 +536,13 @@ _AUTHDB = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='security_config', full_name='components.auth.AuthDB.security_config', index=7,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -546,8 +555,8 @@ _AUTHDB = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=878,
-  serialized_end=1188,
+  serialized_start=923,
+  serialized_end=1291,
 )
 
 
@@ -591,8 +600,8 @@ _AUTHDBREVISION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1190,
-  serialized_end=1268,
+  serialized_start=1293,
+  serialized_end=1371,
 )
 
 
@@ -622,8 +631,8 @@ _CHANGENOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1270,
-  serialized_end=1341,
+  serialized_start=1373,
+  serialized_end=1444,
 )
 
 
@@ -667,8 +676,8 @@ _REPLICATIONPUSHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1344,
-  serialized_end=1488,
+  serialized_start=1447,
+  serialized_end=1591,
 )
 
 
@@ -721,8 +730,8 @@ _REPLICATIONPUSHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1491,
-  serialized_end=1938,
+  serialized_start=1594,
+  serialized_end=2041,
 )
 
 _SERVICELINKRESPONSE.fields_by_name['status'].enum_type = _SERVICELINKRESPONSE_STATUS
@@ -730,6 +739,7 @@ _SERVICELINKRESPONSE_STATUS.containing_type = _SERVICELINKRESPONSE
 _AUTHDB.fields_by_name['groups'].message_type = _AUTHGROUP
 _AUTHDB.fields_by_name['ip_whitelists'].message_type = _AUTHIPWHITELIST
 _AUTHDB.fields_by_name['ip_whitelist_assignments'].message_type = _AUTHIPWHITELISTASSIGNMENT
+_AUTHDB.fields_by_name['security_config'].message_type = components_dot_auth_dot_proto_dot_security__config__pb2._SECURITYCONFIG
 _CHANGENOTIFICATION.fields_by_name['revision'].message_type = _AUTHDBREVISION
 _REPLICATIONPUSHREQUEST.fields_by_name['revision'].message_type = _AUTHDBREVISION
 _REPLICATIONPUSHREQUEST.fields_by_name['auth_db'].message_type = _AUTHDB
@@ -829,4 +839,5 @@ ReplicationPushResponse = _reflection.GeneratedProtocolMessageType('ReplicationP
 _sym_db.RegisterMessage(ReplicationPushResponse)
 
 
+DESCRIPTOR._options = None
 # @@protoc_insertion_point(module_scope)

@@ -10,6 +10,10 @@ syntax = "proto3";
 
 package components.auth;
 
+option go_package = "go.chromium.org/luci/server/auth/service/protocol;protocol";
+
+import "components/auth/proto/security_config.proto";
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Linking protocol, used to associate Replicas with Primary.
@@ -167,6 +171,8 @@ message AuthDB {
   repeated AuthIPWhitelistAssignment ip_whitelist_assignments = 7;
   // URL of a token server to use to generate delegation tokens.
   string token_server_url = 8;
+  // Arbitrary security-related configuration to distribute across all services.
+  SecurityConfig security_config = 9;
 }
 
 
