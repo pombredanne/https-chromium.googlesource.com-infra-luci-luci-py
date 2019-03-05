@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9667fe7e_4d1e8144",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-05T05:42:59Z",
+      "side": 1,
+      "message": "Go away.",
+      "parentUuid": "53d9aaac_dc9c4a9b",
+      "revId": "8e41ab3cd603d421a6ba704102fc4c96e28c3fa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
