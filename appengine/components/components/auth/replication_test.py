@@ -46,7 +46,8 @@ def make_snapshot_obj(
   """Returns AuthDBSnapshot with omitted fields set to default values."""
   return replication.AuthDBSnapshot(
       global_config=global_config or model.AuthGlobalConfig(
-          key=model.root_key()),
+          key=model.root_key(),
+          security_config=''),  # otherwise None == '' checks fail, avoid them
       groups=groups or [],
       ip_whitelists=ip_whitelists or [],
       ip_whitelist_assignments=(
@@ -73,6 +74,7 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         'oauth_additional_client_ids': [],
         'oauth_client_id': u'',
         'oauth_client_secret': u'',
+        'security_config': None,
         'token_server_url': u'',
       },
       'groups': [],
@@ -106,7 +108,8 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         oauth_client_id='oauth_client_id',
         oauth_client_secret='oauth_client_secret',
         oauth_additional_client_ids=['a', 'b'],
-        token_server_url='https://token-server')
+        token_server_url='https://token-server',
+        security_config='security config blob')
     global_config.put()
 
     group = model.AuthGroup(
@@ -172,6 +175,7 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         'oauth_additional_client_ids': [u'a', u'b'],
         'oauth_client_id': u'oauth_client_id',
         'oauth_client_secret': u'oauth_client_secret',
+        'security_config': 'security config blob',
         'token_server_url': u'https://token-server',
       },
       'groups': [
@@ -266,7 +270,8 @@ class SnapshotToProtoConversionTest(test_case.TestCase):
             key=model.root_key(),
             oauth_client_id='some-client-id',
             oauth_client_secret='some-client-secret',
-            oauth_additional_client_ids=['id1', 'id2']))
+            oauth_additional_client_ids=['id1', 'id2'],
+            security_config='security config blob'))
     self.assert_serialization_works(snapshot)
 
   def test_group_serialization(self):
@@ -388,7 +393,8 @@ class ReplaceAuthDbTest(test_case.TestCase):
             oauth_client_id='another_oauth_client_id',
             oauth_client_secret='another_oauth_client_secret',
             oauth_additional_client_ids=[],
-            token_server_url='https://token-server'),
+            token_server_url='https://token-server',
+            security_config='security config blob'),
         groups=[
           group('New'),
           group('Modify', description='blah', owners='some-other-owners'),
@@ -438,6 +444,7 @@ class ReplaceAuthDbTest(test_case.TestCase):
         'oauth_additional_client_ids': [],
         'oauth_client_id': u'another_oauth_client_id',
         'oauth_client_secret': u'another_oauth_client_secret',
+        'security_config': 'security config blob',
         'token_server_url': u'https://token-server',
       },
       'groups': [

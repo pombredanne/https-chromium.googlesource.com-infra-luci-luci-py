@@ -23,6 +23,9 @@ from . import config
 from . import model
 
 
+# TODO(vadimsh): Recognize security_config changes.
+
+
 def process_change(auth_db_rev):
   """Called via task queue to convert AuthDB commit into a set of changes."""
   # We need an initial snapshot of all groups to be able to reconstruct any
