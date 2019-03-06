@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fb10346_e6da3608",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-06T21:54:01Z",
+      "side": 1,
+      "message": "Heh, this is a less \"brittle\" comment :-)",
+      "range": {
+        "startLine": 235,
+        "startChar": 27,
+        "endLine": 235,
+        "endChar": 67
+      },
+      "revId": "d33f5bc4c962534afb035ed915957d104606f5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
