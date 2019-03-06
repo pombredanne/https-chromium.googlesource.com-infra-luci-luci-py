@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dde96df_0a5bf23e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1746,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-06T19:18:51Z",
+      "side": 1,
+      "message": "Optional: The other similar method is called task_bq_events, might this be renamed?",
+      "revId": "ed7ad6447951ffe28a0481e78faf70ea6bb86cde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0aa190a_7c3fb5ae",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-06T19:18:51Z",
+      "side": 1,
+      "message": "Optional: \"TaskRequests\"",
+      "revId": "ed7ad6447951ffe28a0481e78faf70ea6bb86cde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
