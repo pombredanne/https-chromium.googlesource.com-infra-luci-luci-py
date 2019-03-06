@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28463911_e9d368ba",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T20:24:28Z",
+      "side": 1,
+      "message": "Can you add a comment that this points to a model.AuthGlobalConfig? At this point it becomes a bit tricky to follow.\n\nAfter reading more, I see the asserts below, so it\u0027s as you prefer.",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6263b530_f17c6c47",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T20:24:28Z",
+      "side": 1,
+      "message": "I almost feel like this should be a method on the entity class but I understand you may not want to have this code in components/auth/model.py.",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdd08787_cdf1cc96",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T20:24:28Z",
+      "side": 1,
+      "message": "FTR, I confirmed that re.compile(\u0027^^$$\u0027) succeeds.",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53bf82a5_9fdcc803",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T20:24:28Z",
+      "side": 1,
+      "message": "It\u0027ll be great once it\u0027s moved to pRPC. :)",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e146a25e_bda29f9e",
+        "filename": "appengine/components/components/auth/proto/replication.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T20:24:28Z",
+      "side": 1,
+      "message": "I don\u0027t understand why you do this: even if they don\u0027t understand field 9, and that field 9 is a message, it\u0027ll be handled just fine by services running the old code (?)",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
