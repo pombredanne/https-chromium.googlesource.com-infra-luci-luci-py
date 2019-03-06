@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4768667a_20f2c915",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-06T22:16:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28463911_e9d368ba",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6263b530_f17c6c47",
         "filename": "appengine/auth_service/config.py",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1e5aab6a_bdb20cce",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-06T22:16:51Z",
+      "side": 1,
+      "message": "Yeah, I do not want to mix the boundaries between \"auth library deployed to all services\" and \"auth service implementation\".",
+      "parentUuid": "6263b530_f17c6c47",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdd08787_cdf1cc96",
         "filename": "appengine/auth_service/config.py",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2019-03-06T20:24:28Z",
       "side": 1,
       "message": "FTR, I confirmed that re.compile(\u0027^^$$\u0027) succeeds.",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f91f9e36_56ee986f",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-06T22:16:51Z",
+      "side": 1,
+      "message": "Eh, no big deal. What\u0027s important is that \u0027^\u0027 and \u0027$\u0027 are not required in the config. Otherwise it may be possible to forget them and have unintentionally wide regexp.",
+      "parentUuid": "bdd08787_cdf1cc96",
       "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -81,6 +135,24 @@
       "writtenOn": "2019-03-06T20:24:28Z",
       "side": 1,
       "message": "I don\u0027t understand why you do this: even if they don\u0027t understand field 9, and that field 9 is a message, it\u0027ll be handled just fine by services running the old code (?)",
+      "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce76c8f9_4763dfbd",
+        "filename": "appengine/components/components/auth/proto/replication.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-06T22:16:51Z",
+      "side": 1,
+      "message": "Imagine field 9 is a message and auth_service is running newer code that has some new field in SecurityConfig proto, not yet understood by all other services.\n\nWhen AuthDB is pushed everywhere, all other services will totally ignore the new field (it is discarded during the deserialization) and will story a copy of SecurityConfig that doesn\u0027t have this new field.\n\nWhen these other services are updated to understand the new field, they\u0027ll discover it is absent in their local copy of SecurityConfig. The new field will \"appear\" only on the next push from Auth Service.\n\nNow, if we transport and store security_config as a blob, it doesn\u0027t matter what version of the code a service is running when it accepts a push from Auth Service. It will just store the blob. And as soon as service is updated to understand new field, it will be readily available in the local copy of security_config, without any additional pushes from Auth Service.",
+      "parentUuid": "e146a25e_bda29f9e",
       "revId": "d80d1025c52283fcf738e800b24d88874f8ec39e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
