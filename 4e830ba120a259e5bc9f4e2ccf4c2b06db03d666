@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "05ec35b9_81f88e36",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T15:52:57Z",
+      "side": 1,
+      "message": "Done for max_taskqueues, not for max_seconds because it\u0027s relatively obvious.",
+      "parentUuid": "aca5ab18_c8706648",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 11
+      },
+      "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0042d840_07e7fde6",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 4
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "a48c8e84_452d2e0f",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1607,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T15:52:57Z",
+      "side": 1,
+      "message": "Oh gosh thanks for catching. Fixed. The previous code sent the results twice, it was still \"working\", just very inefficient due to 2x the I/O churn for recent entities that were aborted (but not old ones).",
+      "parentUuid": "0042d840_07e7fde6",
+      "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd45c11f_d45fcca9",
         "filename": "appengine/swarming/server/task_result_test.py",
         "patchSetId": 4
@@ -53,6 +95,24 @@
       "writtenOn": "2019-03-01T23:49:47Z",
       "side": 1,
       "message": "Note, this test looks simpler now than before, which is good. Upon first looking it was hard to tell why there are 4 task results, but it looks like it\u0027s to test both the start and end time bounds for task_bq_summary.",
+      "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fce1cf98_3ef3ae9b",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-06T15:52:57Z",
+      "side": 1,
+      "message": "Added a comment to clarify this.",
+      "parentUuid": "cd45c11f_d45fcca9",
       "revId": "4e830ba120a259e5bc9f4e2ccf4c2b06db03d666",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
