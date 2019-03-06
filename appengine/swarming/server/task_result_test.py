@@ -813,10 +813,6 @@ class TaskResultApiTest(TestCase):
     # TODO(maruel): https://crbug.com/912154
     self.assertEqual(0, task_result.cron_update_tags())
 
-  def test_cron_send_to_bq(self):
-    # Deprecated.
-    pass
-
   def test_task_bq_run_empty(self):
     # Empty, nothing is done.
     start = utils.utcnow()
