@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "340d0d67_72b3c837",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-07T17:58:31Z",
+      "side": 1,
+      "message": "This cutoff date is used a couple of times and also referenced in tests, optionally it could extracted to a global.\n\nAlthough, then readers might have to jump around to see the actual value, and also it\u0027s hard to think of a good name for that global (ABANDONED_TS_CUTOFF?)",
+      "range": {
+        "startLine": 1603,
+        "startChar": 13,
+        "endLine": 1603,
+        "endChar": 42
+      },
+      "revId": "3248dd8ebe84eaa461f639f23392e91cc42035f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f56977d_3ae93b68",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-07T17:58:31Z",
+      "side": 1,
+      "message": "Could optionally be rephrased, e.g. \"When rows is empty, send_to_bq() can exit early.\"",
+      "revId": "3248dd8ebe84eaa461f639f23392e91cc42035f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
