@@ -1576,21 +1576,26 @@ def cron_send_to_bq():
 
 
 def task_bq_run(start, end):
-  """Sends TaskRunResult to BigQuery swarming.task_results_run table."""
+  """Sends TaskRunResult to BigQuery swarming.task_results_run table.
+
+  Multiple queries are run one after the other. ndb.OR() cannot be used because
+  the queries are inequalities.
+  """
   def _convert(e):
     """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.TaskResult()
     e.to_proto(out)
     return (e.task_id, out)
 
+  failed = 0
+  total = 0
+  seen = set()
+
   q = TaskRunResult.query(
       TaskRunResult.completed_ts >= start,
       TaskRunResult.completed_ts <= end)
   cursor = None
   more = True
-  failed = 0
-  total = 0
-  seen = set()
   while more:
     entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
     rows = [_convert(e) for e in entities]
@@ -1613,25 +1618,42 @@ def task_bq_run(start, end):
       total += len(rows)
       failed += bq_state.send_to_bq('task_results_run', rows)
 
+  # Running
+  q = TaskRunResult.query(
+      TaskRunResult.started_ts >= start,
+      TaskRunResult.started_ts <= end)
+  cursor = None
+  more = True
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = [_convert(e) for e in entities if e.task_id not in seen]
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results_run', rows)
+
   return total, failed
 
 
 def task_bq_summary(start, end):
-  """Sends TaskResultSummary to BigQuery swarming.task_results_summary table."""
+  """Sends TaskResultSummary to BigQuery swarming.task_results_summary table.
+
+  Multiple queries are run one after the other. ndb.OR() cannot be used because
+  the queries are inequalities.
+  """
   def _convert(e):
     """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.TaskResult()
     e.to_proto(out)
     return (e.task_id, out)
 
+  failed = 0
+  total = 0
+  seen = set()
+
   q = TaskResultSummary.query(
       TaskResultSummary.completed_ts >= start,
       TaskResultSummary.completed_ts <= end)
   cursor = None
   more = True
-  failed = 0
-  total = 0
-  seen = set()
   while more:
     entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
     rows = [_convert(e) for e in entities]
@@ -1653,5 +1675,30 @@ def task_bq_summary(start, end):
       seen.update(e.task_id for e in entities)
       total += len(rows)
       failed += bq_state.send_to_bq('task_results_summary', rows)
+
+  # Pending
+  q = TaskResultSummary.query(
+      TaskResultSummary.created_ts >= start,
+      TaskResultSummary.created_ts <= end)
+  cursor = None
+  more = True
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = [_convert(e) for e in entities if e.task_id not in seen]
+    seen.update(e.task_id for e in entities)
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results_summary', rows)
+
+  # Running
+  q = TaskResultSummary.query(
+      TaskResultSummary.started_ts >= start,
+      TaskResultSummary.started_ts <= end)
+  cursor = None
+  more = True
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = [_convert(e) for e in entities if e.task_id not in seen]
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results_summary', rows)
 
   return total, failed
