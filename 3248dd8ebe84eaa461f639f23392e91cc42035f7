@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ca9a6354_825d01f8",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-07T18:52:08Z",
+      "side": 1,
+      "message": "Good point, done but used _COMPLETED_TS_CUTOFF because it\u0027s about the fact that completed_ts is missing, not that abandoned_ts is present.",
+      "parentUuid": "340d0d67_72b3c837",
+      "range": {
+        "startLine": 1603,
+        "startChar": 13,
+        "endLine": 1603,
+        "endChar": 42
+      },
+      "revId": "3248dd8ebe84eaa461f639f23392e91cc42035f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f56977d_3ae93b68",
         "filename": "appengine/swarming/server/task_result_test.py",
         "patchSetId": 10
@@ -36,6 +60,24 @@
       "writtenOn": "2019-03-07T17:58:31Z",
       "side": 1,
       "message": "Could optionally be rephrased, e.g. \"When rows is empty, send_to_bq() can exit early.\"",
+      "revId": "3248dd8ebe84eaa461f639f23392e91cc42035f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f906661_0deaa8f5",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-07T18:52:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f56977d_3ae93b68",
       "revId": "3248dd8ebe84eaa461f639f23392e91cc42035f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
