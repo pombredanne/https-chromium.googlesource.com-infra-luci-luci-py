@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "772571eb_26ca2514",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "No good suggestions... We can introduce a function in net.py:\n\ndef verify_monitored():\n  assert http_metrics, \"gae_ts_mon library is not available\"\n\nAnd then call it from individual services, e.g. from here https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/config_service/main.py#56\n\nBut it won\u0027t help if this function is forgotten.",
+      "parentUuid": "b60a798c_4717898c",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2127967f_f1b977e8",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 2
@@ -234,6 +258,30 @@
       "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd627b97_6be78eb2",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "I meant the logic of how the value is constructed, i.e. use only the hostname. Here\u0027s an example of metrics exposed by luci-go version: https://viceroy.corp.google.com/chrome_infra/Appengine/luci_scheduler#_VG_TwNfcCW8 As you see, it uses hostnames.",
+      "parentUuid": "b681db76_2093115c",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 60
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

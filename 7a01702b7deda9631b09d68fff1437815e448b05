@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "659083d7_1a1c63bd",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "\\n",
+      "revId": "7a01702b7deda9631b09d68fff1437815e448b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac1a7d05_0ca7c61e",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "\\n\n\n(every top level definition in this file is separated by two \\n, let\u0027s not break this consistency)",
+      "revId": "7a01702b7deda9631b09d68fff1437815e448b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1743d571_280b60b0",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "fyi: this is 0 for Go version (I haven\u0027t checked what STATUS_EXCEPTION resolves into here)",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 45
+      },
+      "revId": "7a01702b7deda9631b09d68fff1437815e448b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b39277_49886ef2",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "\\n",
+      "revId": "7a01702b7deda9631b09d68fff1437815e448b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66ba80f7_61e63bc6",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T04:04:51Z",
+      "side": 1,
+      "message": "👍",
+      "range": {
+        "startLine": 178,
+        "startChar": 21,
+        "endLine": 178,
+        "endChar": 38
+      },
+      "revId": "7a01702b7deda9631b09d68fff1437815e448b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
