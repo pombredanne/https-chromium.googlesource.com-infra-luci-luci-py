@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e49b986e_691cfbb5",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T01:32:00Z",
+      "side": 1,
+      "message": "\u0027luci-py-server\u0027 to be consistent with already existing \u0027luci-go-server\u0027",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b33c376_7075e8a4",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T01:32:00Z",
+      "side": 1,
+      "message": "nit: 2 spaces",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 4
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de4a0692_efdccdee",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T01:32:00Z",
+      "side": 1,
+      "message": "this is an invitation for code errors in gae_ts_mon or misconfiguration in dependencies to silently result in disappearance of metrics :(",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2127967f_f1b977e8",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T01:32:00Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 96,
+        "startChar": 21,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f411070e_2aa385a3",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T01:32:00Z",
+      "side": 1,
+      "message": "It would be great if this is consistent with what luci-go does. See:\nhttps://cs.chromium.org/chromium/infra/go/src/go.chromium.org/luci/common/tsmon/metric/http_transport.go?type\u003dcs\u0026q\u003dUpdateHTTPMetrics\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d68\nhttps://cs.chromium.org/chromium/infra/go/src/go.chromium.org/luci/common/tsmon/metric/standard_metrics.go?type\u003dcs\u0026q\u003dUpdateHTTPMetrics\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d124\nhttps://cs.chromium.org/chromium/infra/go/src/go.chromium.org/luci/server/auth/client.go?type\u003dcs\u0026q\u003dInstrumentTransport\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d478",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 60
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bfd88f9_22f0615e",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-07T01:32:00Z",
+      "side": 1,
+      "message": "can this be extracted in a separate function?",
+      "range": {
+        "startLine": 183,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 71
+      },
+      "revId": "f4abbaf2e3727e06e50b1016c4a05a0fdb626d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
