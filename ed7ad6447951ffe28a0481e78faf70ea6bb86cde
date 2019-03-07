@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4cb81c13_9e009364",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1746,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-07T00:27:11Z",
+      "side": 1,
+      "message": "Got it, alright.",
+      "parentUuid": "ac4b24a4_39384f3c",
+      "revId": "ed7ad6447951ffe28a0481e78faf70ea6bb86cde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0aa190a_7c3fb5ae",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 6
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I felt bad about making it plural.",
       "parentUuid": "b0aa190a_7c3fb5ae",
+      "revId": "ed7ad6447951ffe28a0481e78faf70ea6bb86cde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3f67516_2cff35a4",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-07T00:27:11Z",
+      "side": 1,
+      "message": ":-P It\u0027s awkward since `TaskRequest` is a thing but `TaskRequests` isn\u0027t.",
+      "parentUuid": "1f2d81c4_69f0a362",
       "revId": "ed7ad6447951ffe28a0481e78faf70ea6bb86cde",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
