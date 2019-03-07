@@ -1586,14 +1586,15 @@ def task_bq_run(start, end):
       return None, None
     return (e.task_id, out)
 
+  failed = 0
+  total = 0
+  seen = set()
+
   q = TaskRunResult.query(
       TaskRunResult.completed_ts >= start,
       TaskRunResult.completed_ts <= end)
   cursor = None
   more = True
-  failed = 0
-  total = 0
-  seen = set()
   while more:
     entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
     rows = []
@@ -1626,6 +1627,24 @@ def task_bq_run(start, end):
         total += len(rows)
         failed += bq_state.send_to_bq('task_results_run', rows)
 
+  # Running
+  q = TaskRunResult.query(
+      TaskRunResult.started_ts >= start,
+      TaskRunResult.started_ts <= end)
+  cursor = None
+  more = True
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = []
+    for e in entities:
+      if e.task_id not in seen:
+        p = _convert(e)
+        if p[0]:
+          rows.append(p)
+          seen.add(e.task_id)
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results_run', rows)
+
   return total, failed
 
 
@@ -1640,14 +1659,15 @@ def task_bq_summary(start, end):
       return None, None
     return (e.task_id, out)
 
+  failed = 0
+  total = 0
+  seen = set()
+
   q = TaskResultSummary.query(
       TaskResultSummary.completed_ts >= start,
       TaskResultSummary.completed_ts <= end)
   cursor = None
   more = True
-  failed = 0
-  total = 0
-  seen = set()
   while more:
     entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
     rows = []
@@ -1679,5 +1699,41 @@ def task_bq_summary(start, end):
       if rows:
         total += len(rows)
         failed += bq_state.send_to_bq('task_results_summary', rows)
+
+  # Pending
+  q = TaskResultSummary.query(
+      TaskResultSummary.created_ts >= start,
+      TaskResultSummary.created_ts <= end)
+  cursor = None
+  more = True
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = []
+    for e in entities:
+      if e.task_id not in seen:
+        p = _convert(e)
+        if p[0]:
+          rows.append(p)
+          seen.add(e.task_id)
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results_summary', rows)
+
+  # Running
+  q = TaskResultSummary.query(
+      TaskResultSummary.started_ts >= start,
+      TaskResultSummary.started_ts <= end)
+  cursor = None
+  more = True
+  while more:
+    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+    rows = []
+    for e in entities:
+      if e.task_id not in seen:
+        p = _convert(e)
+        if p[0]:
+          rows.append(p)
+          seen.add(e.task_id)
+    total += len(rows)
+    failed += bq_state.send_to_bq('task_results_summary', rows)
 
   return total, failed
