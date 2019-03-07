@@ -1588,8 +1588,7 @@ def task_bq_run(start, end):
 
   q = TaskRunResult.query(
       TaskRunResult.completed_ts >= start,
-      TaskRunResult.completed_ts <= end).order(
-          TaskRunResult.completed_ts)
+      TaskRunResult.completed_ts <= end)
   cursor = None
   more = True
   failed = 0
@@ -1600,7 +1599,7 @@ def task_bq_run(start, end):
     rows = []
     for e in entities:
       p = _convert(e)
-      if p:
+      if p[0]:
         rows.append(p)
         seen.add(e.task_id)
     total += len(rows)
@@ -1608,23 +1607,25 @@ def task_bq_run(start, end):
 
   # Compatibility code for old tasks that didn't set completed_ts.
   # TODO(maruel): Remove in 2020-07-01 once there's no such entity left.
-  q = TaskRunResult.query(
-      TaskRunResult.abandoned_ts >= start,
-      TaskRunResult.abandoned_ts <= end).order(
-          TaskRunResult.abandoned_ts)
-  cursor = None
-  more = True
-  while more:
-    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
-    rows = []
-    for e in entities:
-      if e.task_id not in seen:
-        p = _convert(e)
-        if p:
-          rows.append(p)
-    if rows:
-      total += len(rows)
-      failed += bq_state.send_to_bq('task_results_run', rows)
+  if start < datetime.datetime(2019, 3, 1):
+    q = TaskRunResult.query(
+        TaskRunResult.abandoned_ts >= start,
+        TaskRunResult.abandoned_ts <= end)
+    cursor = None
+    more = True
+    while more:
+      entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+      rows = []
+      for e in entities:
+        if e.task_id not in seen:
+          p = _convert(e)
+          if p[0]:
+            rows.append(p)
+            seen.add(e.task_id)
+      if rows:
+        total += len(rows)
+        failed += bq_state.send_to_bq('task_results_run', rows)
+
   return total, failed
 
 
@@ -1641,8 +1642,7 @@ def task_bq_summary(start, end):
 
   q = TaskResultSummary.query(
       TaskResultSummary.completed_ts >= start,
-      TaskResultSummary.completed_ts <= end).order(
-          TaskResultSummary.completed_ts)
+      TaskResultSummary.completed_ts <= end)
   cursor = None
   more = True
   failed = 0
@@ -1653,7 +1653,7 @@ def task_bq_summary(start, end):
     rows = []
     for e in entities:
       p = _convert(e)
-      if p:
+      if p[0]:
         rows.append(p)
         seen.add(e.task_id)
     total += len(rows)
@@ -1661,21 +1661,23 @@ def task_bq_summary(start, end):
 
   # Compatibility code for old tasks that didn't set completed_ts.
   # TODO(maruel): Remove in 2020-07-01 once there's no such entity left.
-  q = TaskResultSummary.query(
-      TaskResultSummary.abandoned_ts >= start,
-      TaskResultSummary.abandoned_ts <= end).order(
-          TaskResultSummary.abandoned_ts)
-  cursor = None
-  more = True
-  while more:
-    entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
-    rows = []
-    for e in entities:
-      if e.task_id not in seen:
-        p = _convert(e)
-        if p:
-          rows.append(p)
-    if rows:
-      total += len(rows)
-      failed += bq_state.send_to_bq('task_results_summary', rows)
+  if start < datetime.datetime(2019, 3, 1):
+    q = TaskResultSummary.query(
+        TaskResultSummary.abandoned_ts >= start,
+        TaskResultSummary.abandoned_ts <= end)
+    cursor = None
+    more = True
+    while more:
+      entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
+      rows = []
+      for e in entities:
+        if e.task_id not in seen:
+          p = _convert(e)
+          if p[0]:
+            rows.append(p)
+            seen.add(e.task_id)
+      if rows:
+        total += len(rows)
+        failed += bq_state.send_to_bq('task_results_summary', rows)
+
   return total, failed
