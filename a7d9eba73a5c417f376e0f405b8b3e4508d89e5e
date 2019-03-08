@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1655d418_65127d07",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-08T13:29:54Z",
+      "side": 1,
+      "message": "\u003e Undefined variable \u0027es_cfq\u0027.\n\u003e This check could give false positives when there are wildcard imports\n\u003e (from module import *). It is recommended to avoid wildcard imports; see\n\u003e https://www.python.org/dev/peps/pep-0008/#imports.\n\u003e To disable, add: # pylint: disable\u003dundefined-variable\n\nPlease Fix",
+      "parentUuid": "0bc46e46_ac12088f",
+      "revId": "a7d9eba73a5c417f376e0f405b8b3e4508d89e5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
