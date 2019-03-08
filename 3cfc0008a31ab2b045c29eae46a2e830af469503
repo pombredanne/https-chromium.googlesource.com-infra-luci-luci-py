@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "630ef17f_5ea061e9",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-08T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c43065c4_3a75c91a",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 540,
+        "endChar": 1
+      },
+      "revId": "3cfc0008a31ab2b045c29eae46a2e830af469503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1368bc9_e591ca62",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-08T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a70e85_b1cdf24e",
+      "revId": "3cfc0008a31ab2b045c29eae46a2e830af469503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "425c376f_72d8f2e7",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-08T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72590aad_e61dba63",
+      "revId": "3cfc0008a31ab2b045c29eae46a2e830af469503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2355061_4a48185b",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-08T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20a03025_9036770f",
+      "range": {
+        "startLine": 576,
+        "startChar": 0,
+        "endLine": 576,
+        "endChar": 1
+      },
+      "revId": "3cfc0008a31ab2b045c29eae46a2e830af469503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
