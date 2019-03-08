@@ -8,11 +8,10 @@ import json
 import os
 import posixpath
 import socket
-import sys
 import threading
 import types
 
-from libs.logdog import streamname, varint
+from . import streamname, varint
 
 
 _StreamParamsBase = collections.namedtuple('_StreamParamsBase',
@@ -190,6 +189,9 @@ class StreamClient(object):
 
     @property
     def fd(self):
+      return self._fd
+
+    def fileno(self):
       return self._fd
 
     def write(self, data):

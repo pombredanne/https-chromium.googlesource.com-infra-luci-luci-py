@@ -5,7 +5,6 @@
 import collections
 import re
 import string
-import types
 import urllib
 import urlparse
 
