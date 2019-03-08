@@ -227,3 +227,11 @@ def get_cancellations(es_cfg):
   c = _get_client(es_cfg.address)
   resp = c.GetCancellations(req, credentials=_creds())
   return resp.cancellations
+
+def desired_callbacks(es_cfg):
+  """Calls external scheduler and returns callback task ids."""
+  req = plugin_pb2.DesiredCallbacksRequest()
+  req.scheduler_id = es_cfg.id
+  c = _get_client(es_cfg.address)
+  resp = c.DesiredCallbacks(req, credentials=_creds())
+  return resp.task_ids
