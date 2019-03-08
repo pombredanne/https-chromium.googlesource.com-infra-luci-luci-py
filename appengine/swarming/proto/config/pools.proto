@@ -370,6 +370,8 @@ message ExternalSchedulerConfig {
   //
   // Note of care: if this list is empty, that means all requests in the pool
   // are eligible to be forwarded to it.
+  //
+  // Note: To be deprecated, in favor of dimension_sets.
   repeated string dimensions = 3;
 
   // If not enabled, this external scheduler config will be ignored. This
@@ -393,6 +395,24 @@ message ExternalSchedulerConfig {
   //   case, the unusual task will be able to run on the bot whenever the
   //   external scheduler has no other work for the bot.
   bool fallback_when_empty = 5;
+
+  message DimensionSet {
+    // Dimensions is a list of dimension strings in "key:value" format (e.g.
+    // ["os:foo", "featureX:bar"]) that determines eligibility for a bot or task
+    // to use this external scheduler. In particular:
+    // - a bot will be eligible if it contains all of these dimensions.
+    // - a task will be eligible if all its slices contain all these dimensions.
+    //
+    // Note of care: if this list is empty, that means all requests in the pool
+    // are eligible to be forwarded to it.
+    repeated string dimensions = 1;
+  }
+
+  // DimensionSets is a list of dimension sets. If a task or bot matches any
+  // of these, then it will be eligible to be forward to this scheduler.
+  //
+  // Note: Support not yet implemented.
+  repeated DimensionSet dimension_sets = 6;
 }
 
 message ExternalServices {

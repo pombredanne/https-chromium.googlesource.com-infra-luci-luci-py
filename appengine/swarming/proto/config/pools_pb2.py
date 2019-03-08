@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='swarming',
   syntax='proto3',
   serialized_options=_b('Z3go.chromium.org/luci/swarming/proto/config;configpb'),
-  serialized_pb=_b('\n\x0bpools.proto\x12\x08swarming\"\x91\x02\n\x08PoolsCfg\x12\x1c\n\x04pool\x18\x01 \x03(\x0b\x32\x0e.swarming.Pool\x12=\n\x19\x64\x65\x66\x61ult_external_services\x18\x06 \x01(\x0b\x32\x1a.swarming.ExternalServices\x12-\n\rtask_template\x18\x03 \x03(\x0b\x32\x16.swarming.TaskTemplate\x12\x42\n\x18task_template_deployment\x18\x04 \x03(\x0b\x32 .swarming.TaskTemplateDeployment\x12/\n\x0e\x62ot_monitoring\x18\x05 \x03(\x0b\x32\x17.swarming.BotMonitoringJ\x04\x08\x02\x10\x03\"\xf9\x02\n\x04Pool\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x0e\n\x06owners\x18\x02 \x03(\t\x12(\n\nschedulers\x18\x03 \x01(\x0b\x32\x14.swarming.Schedulers\x12\x1f\n\x17\x61llowed_service_account\x18\x04 \x03(\t\x12%\n\x1d\x61llowed_service_account_group\x18\x05 \x03(\t\x12\"\n\x18task_template_deployment\x18\x06 \x01(\tH\x00\x12K\n\x1ftask_template_deployment_inline\x18\x07 \x01(\x0b\x32 .swarming.TaskTemplateDeploymentH\x00\x12\x16\n\x0e\x62ot_monitoring\x18\x08 \x01(\t\x12>\n\x13\x65xternal_schedulers\x18\t \x03(\x0b\x32!.swarming.ExternalSchedulerConfigB\x18\n\x16task_deployment_scheme\"b\n\nSchedulers\x12\x0c\n\x04user\x18\x01 \x03(\t\x12\r\n\x05group\x18\x02 \x03(\t\x12\x37\n\x12trusted_delegation\x18\x03 \x03(\x0b\x32\x1b.swarming.TrustedDelegation\"y\n\x11TrustedDelegation\x12\x0f\n\x07peer_id\x18\x01 \x01(\t\x12;\n\x0erequire_any_of\x18\x02 \x01(\x0b\x32#.swarming.TrustedDelegation.TagList\x1a\x16\n\x07TagList\x12\x0b\n\x03tag\x18\x01 \x03(\t\"\xe8\x02\n\x0cTaskTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x30\n\x05\x63\x61\x63he\x18\x03 \x03(\x0b\x32!.swarming.TaskTemplate.CacheEntry\x12\x38\n\x0c\x63ipd_package\x18\x04 \x03(\x0b\x32\".swarming.TaskTemplate.CipdPackage\x12\'\n\x03\x65nv\x18\x05 \x03(\x0b\x32\x1a.swarming.TaskTemplate.Env\x1a(\n\nCacheEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x1a\x39\n\x0b\x43ipdPackage\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0b\n\x03pkg\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x1a?\n\x03\x45nv\x12\x0b\n\x03var\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0e\n\x06prefix\x18\x03 \x03(\t\x12\x0c\n\x04soft\x18\x04 \x01(\x08\"\x8b\x01\n\x16TaskTemplateDeployment\x12\x0c\n\x04name\x18\x01 \x01(\t\x12$\n\x04prod\x18\x02 \x01(\x0b\x32\x16.swarming.TaskTemplate\x12&\n\x06\x63\x61nary\x18\x03 \x01(\x0b\x32\x16.swarming.TaskTemplate\x12\x15\n\rcanary_chance\x18\x04 \x01(\x05\"4\n\rBotMonitoring\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rdimension_key\x18\x02 \x03(\t\"x\n\x17\x45xternalSchedulerConfig\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x12\n\ndimensions\x18\x03 \x03(\t\x12\x0f\n\x07\x65nabled\x18\x04 \x01(\x08\x12\x1b\n\x13\x66\x61llback_when_empty\x18\x05 \x01(\x08\"\xd4\x01\n\x10\x45xternalServices\x12\x33\n\x07isolate\x18\x01 \x01(\x0b\x32\".swarming.ExternalServices.Isolate\x12-\n\x04\x63ipd\x18\x02 \x01(\x0b\x32\x1f.swarming.ExternalServices.CIPD\x1a,\n\x07Isolate\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x11\n\tnamespace\x18\x02 \x01(\t\x1a.\n\x04\x43IPD\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x16\n\x0e\x63lient_version\x18\x02 \x01(\tB5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3')
+  serialized_pb=_b('\n\x0bpools.proto\x12\x08swarming\"\x91\x02\n\x08PoolsCfg\x12\x1c\n\x04pool\x18\x01 \x03(\x0b\x32\x0e.swarming.Pool\x12=\n\x19\x64\x65\x66\x61ult_external_services\x18\x06 \x01(\x0b\x32\x1a.swarming.ExternalServices\x12-\n\rtask_template\x18\x03 \x03(\x0b\x32\x16.swarming.TaskTemplate\x12\x42\n\x18task_template_deployment\x18\x04 \x03(\x0b\x32 .swarming.TaskTemplateDeployment\x12/\n\x0e\x62ot_monitoring\x18\x05 \x03(\x0b\x32\x17.swarming.BotMonitoringJ\x04\x08\x02\x10\x03\"\xf9\x02\n\x04Pool\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x0e\n\x06owners\x18\x02 \x03(\t\x12(\n\nschedulers\x18\x03 \x01(\x0b\x32\x14.swarming.Schedulers\x12\x1f\n\x17\x61llowed_service_account\x18\x04 \x03(\t\x12%\n\x1d\x61llowed_service_account_group\x18\x05 \x03(\t\x12\"\n\x18task_template_deployment\x18\x06 \x01(\tH\x00\x12K\n\x1ftask_template_deployment_inline\x18\x07 \x01(\x0b\x32 .swarming.TaskTemplateDeploymentH\x00\x12\x16\n\x0e\x62ot_monitoring\x18\x08 \x01(\t\x12>\n\x13\x65xternal_schedulers\x18\t \x03(\x0b\x32!.swarming.ExternalSchedulerConfigB\x18\n\x16task_deployment_scheme\"b\n\nSchedulers\x12\x0c\n\x04user\x18\x01 \x03(\t\x12\r\n\x05group\x18\x02 \x03(\t\x12\x37\n\x12trusted_delegation\x18\x03 \x03(\x0b\x32\x1b.swarming.TrustedDelegation\"y\n\x11TrustedDelegation\x12\x0f\n\x07peer_id\x18\x01 \x01(\t\x12;\n\x0erequire_any_of\x18\x02 \x01(\x0b\x32#.swarming.TrustedDelegation.TagList\x1a\x16\n\x07TagList\x12\x0b\n\x03tag\x18\x01 \x03(\t\"\xe8\x02\n\x0cTaskTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x30\n\x05\x63\x61\x63he\x18\x03 \x03(\x0b\x32!.swarming.TaskTemplate.CacheEntry\x12\x38\n\x0c\x63ipd_package\x18\x04 \x03(\x0b\x32\".swarming.TaskTemplate.CipdPackage\x12\'\n\x03\x65nv\x18\x05 \x03(\x0b\x32\x1a.swarming.TaskTemplate.Env\x1a(\n\nCacheEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x1a\x39\n\x0b\x43ipdPackage\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0b\n\x03pkg\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x1a?\n\x03\x45nv\x12\x0b\n\x03var\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0e\n\x06prefix\x18\x03 \x03(\t\x12\x0c\n\x04soft\x18\x04 \x01(\x08\"\x8b\x01\n\x16TaskTemplateDeployment\x12\x0c\n\x04name\x18\x01 \x01(\t\x12$\n\x04prod\x18\x02 \x01(\x0b\x32\x16.swarming.TaskTemplate\x12&\n\x06\x63\x61nary\x18\x03 \x01(\x0b\x32\x16.swarming.TaskTemplate\x12\x15\n\rcanary_chance\x18\x04 \x01(\x05\"4\n\rBotMonitoring\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rdimension_key\x18\x02 \x03(\t\"\xe4\x01\n\x17\x45xternalSchedulerConfig\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x12\n\ndimensions\x18\x03 \x03(\t\x12\x0f\n\x07\x65nabled\x18\x04 \x01(\x08\x12\x1b\n\x13\x66\x61llback_when_empty\x18\x05 \x01(\x08\x12\x46\n\x0e\x64imension_sets\x18\x06 \x03(\x0b\x32..swarming.ExternalSchedulerConfig.DimensionSet\x1a\"\n\x0c\x44imensionSet\x12\x12\n\ndimensions\x18\x01 \x03(\t\"\xd4\x01\n\x10\x45xternalServices\x12\x33\n\x07isolate\x18\x01 \x01(\x0b\x32\".swarming.ExternalServices.Isolate\x12-\n\x04\x63ipd\x18\x02 \x01(\x0b\x32\x1f.swarming.ExternalServices.CIPD\x1a,\n\x07Isolate\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x11\n\tnamespace\x18\x02 \x01(\t\x1a.\n\x04\x43IPD\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x16\n\x0e\x63lient_version\x18\x02 \x01(\tB5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3')
 )
 
 
@@ -568,6 +568,36 @@ _BOTMONITORING = _descriptor.Descriptor(
 )
 
 
+_EXTERNALSCHEDULERCONFIG_DIMENSIONSET = _descriptor.Descriptor(
+  name='DimensionSet',
+  full_name='swarming.ExternalSchedulerConfig.DimensionSet',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dimensions', full_name='swarming.ExternalSchedulerConfig.DimensionSet.dimensions', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1658,
+  serialized_end=1692,
+)
+
 _EXTERNALSCHEDULERCONFIG = _descriptor.Descriptor(
   name='ExternalSchedulerConfig',
   full_name='swarming.ExternalSchedulerConfig',
@@ -610,10 +640,17 @@ _EXTERNALSCHEDULERCONFIG = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='dimension_sets', full_name='swarming.ExternalSchedulerConfig.dimension_sets', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_EXTERNALSCHEDULERCONFIG_DIMENSIONSET, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -622,8 +659,8 @@ _EXTERNALSCHEDULERCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1463,
-  serialized_end=1583,
+  serialized_start=1464,
+  serialized_end=1692,
 )
 
 
@@ -660,8 +697,8 @@ _EXTERNALSERVICES_ISOLATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1706,
-  serialized_end=1750,
+  serialized_start=1815,
+  serialized_end=1859,
 )
 
 _EXTERNALSERVICES_CIPD = _descriptor.Descriptor(
@@ -697,8 +734,8 @@ _EXTERNALSERVICES_CIPD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1752,
-  serialized_end=1798,
+  serialized_start=1861,
+  serialized_end=1907,
 )
 
 _EXTERNALSERVICES = _descriptor.Descriptor(
@@ -734,8 +771,8 @@ _EXTERNALSERVICES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1586,
-  serialized_end=1798,
+  serialized_start=1695,
+  serialized_end=1907,
 )
 
 _POOLSCFG.fields_by_name['pool'].message_type = _POOL
@@ -763,6 +800,8 @@ _TASKTEMPLATE.fields_by_name['cipd_package'].message_type = _TASKTEMPLATE_CIPDPA
 _TASKTEMPLATE.fields_by_name['env'].message_type = _TASKTEMPLATE_ENV
 _TASKTEMPLATEDEPLOYMENT.fields_by_name['prod'].message_type = _TASKTEMPLATE
 _TASKTEMPLATEDEPLOYMENT.fields_by_name['canary'].message_type = _TASKTEMPLATE
+_EXTERNALSCHEDULERCONFIG_DIMENSIONSET.containing_type = _EXTERNALSCHEDULERCONFIG
+_EXTERNALSCHEDULERCONFIG.fields_by_name['dimension_sets'].message_type = _EXTERNALSCHEDULERCONFIG_DIMENSIONSET
 _EXTERNALSERVICES_ISOLATE.containing_type = _EXTERNALSERVICES
 _EXTERNALSERVICES_CIPD.containing_type = _EXTERNALSERVICES
 _EXTERNALSERVICES.fields_by_name['isolate'].message_type = _EXTERNALSERVICES_ISOLATE
@@ -860,11 +899,19 @@ BotMonitoring = _reflection.GeneratedProtocolMessageType('BotMonitoring', (_mess
 _sym_db.RegisterMessage(BotMonitoring)
 
 ExternalSchedulerConfig = _reflection.GeneratedProtocolMessageType('ExternalSchedulerConfig', (_message.Message,), dict(
+
+  DimensionSet = _reflection.GeneratedProtocolMessageType('DimensionSet', (_message.Message,), dict(
+    DESCRIPTOR = _EXTERNALSCHEDULERCONFIG_DIMENSIONSET,
+    __module__ = 'pools_pb2'
+    # @@protoc_insertion_point(class_scope:swarming.ExternalSchedulerConfig.DimensionSet)
+    ))
+  ,
   DESCRIPTOR = _EXTERNALSCHEDULERCONFIG,
   __module__ = 'pools_pb2'
   # @@protoc_insertion_point(class_scope:swarming.ExternalSchedulerConfig)
   ))
 _sym_db.RegisterMessage(ExternalSchedulerConfig)
+_sym_db.RegisterMessage(ExternalSchedulerConfig.DimensionSet)
 
 ExternalServices = _reflection.GeneratedProtocolMessageType('ExternalServices', (_message.Message,), dict(
 
