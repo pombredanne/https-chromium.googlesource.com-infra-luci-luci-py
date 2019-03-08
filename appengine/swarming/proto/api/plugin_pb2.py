@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='swarming.v1',
   syntax='proto3',
   serialized_options=_b('Z\010swarming'),
-  serialized_pb=_b('\n\x0cplugin.proto\x12\x0bswarming.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0eswarming.proto\"\xb6\x01\n\x08TaskSpec\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04tags\x18\x02 \x03(\t\x12&\n\x06slices\x18\x03 \x03(\x0b\x32\x16.swarming.v1.SliceSpec\x12%\n\x05state\x18\x04 \x01(\x0e\x32\x16.swarming.v1.TaskState\x12\x0e\n\x06\x62ot_id\x18\x05 \x01(\t\x12\x31\n\renqueued_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x1f\n\tSliceSpec\x12\x12\n\ndimensions\x18\x01 \x03(\t\"-\n\x07IdleBot\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x12\n\ndimensions\x18\x02 \x03(\t\"}\n\x12\x41ssignTasksRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\x12\'\n\tidle_bots\x18\x02 \x03(\x0b\x32\x14.swarming.v1.IdleBot\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"G\n\x13\x41ssignTasksResponse\x12\x30\n\x0b\x61ssignments\x18\x01 \x03(\x0b\x32\x1b.swarming.v1.TaskAssignment\"G\n\x0eTaskAssignment\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12\x14\n\x0cslice_number\x18\x03 \x01(\x05\"/\n\x17GetCancellationsRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\"\xa7\x02\n\x18GetCancellationsResponse\x12I\n\rcancellations\x18\x01 \x03(\x0b\x32\x32.swarming.v1.GetCancellationsResponse.Cancellation\x1a\xbf\x01\n\x0c\x43\x61ncellation\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12I\n\x06reason\x18\x03 \x01(\x0e\x32\x39.swarming.v1.GetCancellationsResponse.Cancellation.Reason\x12\x12\n\nextra_info\x18\x04 \x01(\t\"/\n\x06Reason\x12\x0b\n\x07INVALID\x10\x00\x12\r\n\tPREEMPTED\x10\x01\x12\t\n\x05\x45RROR\x10\x02\"`\n\x0fNotifyTasksItem\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12#\n\x04task\x18\x02 \x01(\x0b\x32\x15.swarming.v1.TaskSpec\"_\n\x12NotifyTasksRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\x12\x33\n\rnotifications\x18\x02 \x03(\x0b\x32\x1c.swarming.v1.NotifyTasksItem\"\x15\n\x13NotifyTasksResponse2\x98\x02\n\x11\x45xternalScheduler\x12P\n\x0b\x41ssignTasks\x12\x1f.swarming.v1.AssignTasksRequest\x1a .swarming.v1.AssignTasksResponse\x12_\n\x10GetCancellations\x12$.swarming.v1.GetCancellationsRequest\x1a%.swarming.v1.GetCancellationsResponse\x12P\n\x0bNotifyTasks\x12\x1f.swarming.v1.NotifyTasksRequest\x1a .swarming.v1.NotifyTasksResponseB\nZ\x08swarmingb\x06proto3')
+  serialized_pb=_b('\n\x0cplugin.proto\x12\x0bswarming.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0eswarming.proto\"\xb6\x01\n\x08TaskSpec\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04tags\x18\x02 \x03(\t\x12&\n\x06slices\x18\x03 \x03(\x0b\x32\x16.swarming.v1.SliceSpec\x12%\n\x05state\x18\x04 \x01(\x0e\x32\x16.swarming.v1.TaskState\x12\x0e\n\x06\x62ot_id\x18\x05 \x01(\t\x12\x31\n\renqueued_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x1f\n\tSliceSpec\x12\x12\n\ndimensions\x18\x01 \x03(\t\"-\n\x07IdleBot\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x12\n\ndimensions\x18\x02 \x03(\t\"}\n\x12\x41ssignTasksRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\x12\'\n\tidle_bots\x18\x02 \x03(\x0b\x32\x14.swarming.v1.IdleBot\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"G\n\x13\x41ssignTasksResponse\x12\x30\n\x0b\x61ssignments\x18\x01 \x03(\x0b\x32\x1b.swarming.v1.TaskAssignment\"G\n\x0eTaskAssignment\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12\x14\n\x0cslice_number\x18\x03 \x01(\x05\"/\n\x17GetCancellationsRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\"\xa7\x02\n\x18GetCancellationsResponse\x12I\n\rcancellations\x18\x01 \x03(\x0b\x32\x32.swarming.v1.GetCancellationsResponse.Cancellation\x1a\xbf\x01\n\x0c\x43\x61ncellation\x12\x0e\n\x06\x62ot_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12I\n\x06reason\x18\x03 \x01(\x0e\x32\x39.swarming.v1.GetCancellationsResponse.Cancellation.Reason\x12\x12\n\nextra_info\x18\x04 \x01(\t\"/\n\x06Reason\x12\x0b\n\x07INVALID\x10\x00\x12\r\n\tPREEMPTED\x10\x01\x12\t\n\x05\x45RROR\x10\x02\"`\n\x0fNotifyTasksItem\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12#\n\x04task\x18\x02 \x01(\x0b\x32\x15.swarming.v1.TaskSpec\"t\n\x12NotifyTasksRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\x12\x33\n\rnotifications\x18\x02 \x03(\x0b\x32\x1c.swarming.v1.NotifyTasksItem\x12\x13\n\x0bis_callback\x18\x03 \x01(\x08\"\x15\n\x13NotifyTasksResponse\"/\n\x17\x44\x65siredCallbacksRequest\x12\x14\n\x0cscheduler_id\x18\x01 \x01(\t\",\n\x18\x44\x65siredCallbacksResponse\x12\x10\n\x08task_ids\x18\x01 \x03(\t2\xf9\x02\n\x11\x45xternalScheduler\x12P\n\x0b\x41ssignTasks\x12\x1f.swarming.v1.AssignTasksRequest\x1a .swarming.v1.AssignTasksResponse\x12_\n\x10GetCancellations\x12$.swarming.v1.GetCancellationsRequest\x1a%.swarming.v1.GetCancellationsResponse\x12P\n\x0bNotifyTasks\x12\x1f.swarming.v1.NotifyTasksRequest\x1a .swarming.v1.NotifyTasksResponse\x12_\n\x10\x44\x65siredCallbacks\x12$.swarming.v1.DesiredCallbacksRequest\x1a%.swarming.v1.DesiredCallbacksResponseB\nZ\x08swarmingb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,swarming__pb2.DESCRIPTOR,])
 
@@ -483,6 +483,13 @@ _NOTIFYTASKSREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='is_callback', full_name='swarming.v1.NotifyTasksRequest.is_callback', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -496,7 +503,7 @@ _NOTIFYTASKSREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1061,
-  serialized_end=1156,
+  serialized_end=1177,
 )
 
 
@@ -519,8 +526,70 @@ _NOTIFYTASKSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1158,
-  serialized_end=1179,
+  serialized_start=1179,
+  serialized_end=1200,
+)
+
+
+_DESIREDCALLBACKSREQUEST = _descriptor.Descriptor(
+  name='DesiredCallbacksRequest',
+  full_name='swarming.v1.DesiredCallbacksRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='scheduler_id', full_name='swarming.v1.DesiredCallbacksRequest.scheduler_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1202,
+  serialized_end=1249,
+)
+
+
+_DESIREDCALLBACKSRESPONSE = _descriptor.Descriptor(
+  name='DesiredCallbacksResponse',
+  full_name='swarming.v1.DesiredCallbacksResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_ids', full_name='swarming.v1.DesiredCallbacksResponse.task_ids', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1251,
+  serialized_end=1295,
 )
 
 _TASKSPEC.fields_by_name['slices'].message_type = _SLICESPEC
@@ -547,6 +616,8 @@ DESCRIPTOR.message_types_by_name['GetCancellationsResponse'] = _GETCANCELLATIONS
 DESCRIPTOR.message_types_by_name['NotifyTasksItem'] = _NOTIFYTASKSITEM
 DESCRIPTOR.message_types_by_name['NotifyTasksRequest'] = _NOTIFYTASKSREQUEST
 DESCRIPTOR.message_types_by_name['NotifyTasksResponse'] = _NOTIFYTASKSRESPONSE
+DESCRIPTOR.message_types_by_name['DesiredCallbacksRequest'] = _DESIREDCALLBACKSREQUEST
+DESCRIPTOR.message_types_by_name['DesiredCallbacksResponse'] = _DESIREDCALLBACKSRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 TaskSpec = _reflection.GeneratedProtocolMessageType('TaskSpec', (_message.Message,), dict(
@@ -634,6 +705,20 @@ NotifyTasksResponse = _reflection.GeneratedProtocolMessageType('NotifyTasksRespo
   ))
 _sym_db.RegisterMessage(NotifyTasksResponse)
 
+DesiredCallbacksRequest = _reflection.GeneratedProtocolMessageType('DesiredCallbacksRequest', (_message.Message,), dict(
+  DESCRIPTOR = _DESIREDCALLBACKSREQUEST,
+  __module__ = 'plugin_pb2'
+  # @@protoc_insertion_point(class_scope:swarming.v1.DesiredCallbacksRequest)
+  ))
+_sym_db.RegisterMessage(DesiredCallbacksRequest)
+
+DesiredCallbacksResponse = _reflection.GeneratedProtocolMessageType('DesiredCallbacksResponse', (_message.Message,), dict(
+  DESCRIPTOR = _DESIREDCALLBACKSRESPONSE,
+  __module__ = 'plugin_pb2'
+  # @@protoc_insertion_point(class_scope:swarming.v1.DesiredCallbacksResponse)
+  ))
+_sym_db.RegisterMessage(DesiredCallbacksResponse)
+
 
 DESCRIPTOR._options = None
 
@@ -643,8 +728,8 @@ _EXTERNALSCHEDULER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1182,
-  serialized_end=1462,
+  serialized_start=1298,
+  serialized_end=1675,
   methods=[
   _descriptor.MethodDescriptor(
     name='AssignTasks',
@@ -671,6 +756,15 @@ _EXTERNALSCHEDULER = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_NOTIFYTASKSREQUEST,
     output_type=_NOTIFYTASKSRESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DesiredCallbacks',
+    full_name='swarming.v1.ExternalScheduler.DesiredCallbacks',
+    index=3,
+    containing_service=None,
+    input_type=_DESIREDCALLBACKSREQUEST,
+    output_type=_DESIREDCALLBACKSRESPONSE,
     serialized_options=None,
   ),
 ])
