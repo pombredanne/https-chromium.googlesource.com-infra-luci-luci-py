@@ -299,7 +299,9 @@ def cron_trigger_tasks(
   Returns:
     total number of task queue tasks triggered.
   """
-  OLDEST = datetime.timedelta(days=365+183)
+  # TODO(maruel): Switch back to 365+183 once quota issues are fixed.
+  # https://crbug.com/939204
+  OLDEST = datetime.timedelta(days=32)
   RECENT_OFFSET = datetime.timedelta(seconds=120)
   minute = datetime.timedelta(seconds=60)
 
