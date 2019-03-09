@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45f87bdd_6133eceb",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-09T18:37:28Z",
+      "side": 1,
+      "message": "I prefer to only keep 8 and not 6 and 7. There\u0027s no reason to have two ways to specify the same thing.",
+      "revId": "8a05b14dc786bb2a649cde4b6ec63048ff4f134e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
