@@ -97,7 +97,7 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     self.es_cfg = pools_config.ExternalSchedulerConfig(
         address=u'http://localhost:1',
         id=u'foo',
-        dimensions=['key1:value1', 'key2:value2'],
+        all_dimensions=['key1:value1', 'key2:value2'],
         enabled=True,
         fallback_when_empty=True)
 
