@@ -137,8 +137,7 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertFalse(missing)
 
   def test_assign_task(self):
-    # TODO(akeshet): Add.
-    pass
+    external_scheduler.assign_task(self.es_cfg, {u'id': 'bot_id'})
 
   def test_config_for_bot(self):
     # TODO(akeshet): Add.
@@ -149,8 +148,7 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     pass
 
   def test_get_cancellations(self):
-    # TODO(akeshet): Add.
-    pass
+    external_scheduler.get_cancellations(self.es_cfg)
 
   def test_notify_requests(self):
     request = _gen_request()
