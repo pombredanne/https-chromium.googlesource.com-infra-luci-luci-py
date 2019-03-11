@@ -34,6 +34,24 @@
       "revId": "8a05b14dc786bb2a649cde4b6ec63048ff4f134e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "166091c4_0d5c251b",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-11T18:22:29Z",
+      "side": 1,
+      "message": "simplified to have just 6 and 7, I think that\u0027s probably all we need for a while",
+      "parentUuid": "890b9a3b_7768874c",
+      "revId": "8a05b14dc786bb2a649cde4b6ec63048ff4f134e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
