@@ -16,6 +16,24 @@
       "revId": "8a05b14dc786bb2a649cde4b6ec63048ff4f134e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "890b9a3b_7768874c",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-11T01:47:56Z",
+      "side": 1,
+      "message": "It\u0027s not quite the same, this is \"global\" to this and the items from 8 are \"local\".\n\ni.e. the condition is (all of #6 AND any #7) AND any of (all of #8.#1 AND any of #8.#2)\n\nI actually think most use cases would be covered by just 6 and 7, so maybe I\u0027ll drop 8 entirely.",
+      "parentUuid": "45f87bdd_6133eceb",
+      "revId": "8a05b14dc786bb2a649cde4b6ec63048ff4f134e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
