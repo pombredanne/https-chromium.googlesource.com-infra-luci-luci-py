@@ -22,6 +22,30 @@
       "revId": "b98a1e370fdccadf6a64c144934819b0b8734892",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66af7d75_0849fb33",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T17:21:54Z",
+      "side": 1,
+      "message": "It depends if the handlers for this task queue are fast or not. Basically if your requests takes 200ms to complete, then rate must be 5x the bucket size. It\u0027s a bit hand wavy.\n\nI may take a look at the others but for now it\u0027s not a problem.",
+      "parentUuid": "a65340e9_29c68597",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "b98a1e370fdccadf6a64c144934819b0b8734892",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
