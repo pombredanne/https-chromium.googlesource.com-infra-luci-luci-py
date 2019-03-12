@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f242814_f71cf91e",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T00:50:21Z",
+      "side": 1,
+      "message": "requests",
+      "range": {
+        "startLine": 194,
+        "startChar": 23,
+        "endLine": 194,
+        "endChar": 31
+      },
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "670f7382_9c7b4a80",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T00:50:21Z",
+      "side": 1,
+      "message": "Add a line here for consistency.",
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ce284de_7047ff01",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T00:50:21Z",
+      "side": 1,
+      "message": "I\u0027d recommend a ndb.get_multi() to reduce overall latency.\n\nWhat is the scale you expect the server\u0027s reply as per number of task ids?",
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
