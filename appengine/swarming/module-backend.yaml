@@ -3,7 +3,7 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
-# Approximatively 512MB / 2.4GHz
+# Approximately 512MB / 2.4GHz
 instance_class: F4
 automatic_scaling:
   # Backend requests are not latency sensitive. The default value of 30ms causes
