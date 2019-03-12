@@ -134,6 +134,24 @@
       "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61920ab3_5b71da48",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-12T20:01:31Z",
+      "side": 1,
+      "message": "Ack will followup",
+      "parentUuid": "bb6bad99_1bc1516f",
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
