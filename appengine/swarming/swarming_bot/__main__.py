@@ -43,6 +43,11 @@ def fix_protobuf_package():
 
   Inspired by components/utils.py
   """
+  # In some system, google is preloaded when using runit.py, which is implicitly
+  # loaded by using the zip support. Using 'python -s -S' doesn't do a thing. So
+  # use the nuclear option, unload the package is found.
+  if 'google' in sys.modules:
+    del sys.modules['google']
   # Completely zap out preinstalled google. This works because package google
   # itself has no functionality.
   path_to_google = os.path.join(THIS_FILE, 'third_party', 'google')
