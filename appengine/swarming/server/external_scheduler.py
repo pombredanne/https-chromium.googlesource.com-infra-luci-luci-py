@@ -61,9 +61,21 @@ def _config_for_dimensions(pool_cfg, dimensions_flat):
   """Determines the external scheduler for pool config and dimension set."""
   if not pool_cfg or not pool_cfg.external_schedulers:
     return None
+
   for e in pool_cfg.external_schedulers:
-    if e.enabled and e.dimensions.issubset(dimensions_flat):
-      return e
+    if not e.enabled:
+      continue
+
+    all_dimensions = pool_cfg.dimensions or pool_cfg.all_dimensions
+    if not all_dimensions.issubset(dimensions_flat):
+      continue
+
+    if (pool_cfg.any_dimensions and not
+        pool_cfg.any_dimensions.intersection(dimensions_flat)):
+        continue
+
+    return e
+
   return None
 
 
