@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02390633_39758c64",
+        "filename": "appengine/isolate/module-backend.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T16:36:38Z",
+      "side": 1,
+      "message": "Approximately",
+      "range": {
+        "startLine": 8,
+        "startChar": 2,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "484c80a1a220b9a8d947adc7bcffaf1d3aa53af8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee4bda4_8d4e85f0",
+        "filename": "appengine/isolate/module-backend.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T16:36:38Z",
+      "side": 1,
+      "message": "churn",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "484c80a1a220b9a8d947adc7bcffaf1d3aa53af8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
