@@ -157,6 +157,8 @@ class AuthenticatingHandler(webapp2.RequestHandler):
           peer_ip=ipaddr.ip_from_string(self.request.remote_addr),
           auth_details=auth_details,
           delegation_token=self.request.headers.get(delegation.HTTP_HEADER),
+          project_header=self.request.headers.get(check.X_LUCI_PROJECT),
+          use_project_identitites=conf.USE_PROJECT_IDENTITIES,
           use_bots_ip_whitelist=self.use_bots_ip_whitelist)
 
       # XSRF token is required only if using Cookie based or IP whitelist auth.
