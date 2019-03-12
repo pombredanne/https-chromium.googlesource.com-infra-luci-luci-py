@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a65340e9_29c68597",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T16:41:51Z",
+      "side": 1,
+      "message": "I don\u0027t really understand the relationship between bucket size and max concurrent requests and rate, but I see that the docs say \"the recommended size is the processing rate divided by 5 (rate/5).\", so this seems good.\n\nWould there be any advantage to increasing the bucket size of any of the other task queues with high rates?",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "b98a1e370fdccadf6a64c144934819b0b8734892",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
