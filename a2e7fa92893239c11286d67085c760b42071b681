@@ -16,6 +16,24 @@
       "revId": "a2e7fa92893239c11286d67085c760b42071b681",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ef0975a_49a5e37f",
+        "filename": "appengine/swarming/cron.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-12T19:08:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26536be4_cb006f1b",
+      "revId": "a2e7fa92893239c11286d67085c760b42071b681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
