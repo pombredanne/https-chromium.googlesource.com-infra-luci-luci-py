@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1df6260_7d5b328f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T16:49:02Z",
+      "side": 1,
+      "message": "Does this refer to the ndb in-process cache disabled in the other current CL (https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1518312)? if so, this will probably already be done when this change is deployed right?",
+      "range": {
+        "startLine": 14,
+        "startChar": 18,
+        "endLine": 14,
+        "endChar": 49
+      },
+      "revId": "a3b0de005b14d5751ccc528355497c70d0a6053e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "002ff19a_4181ccf4",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T16:49:02Z",
+      "side": 1,
+      "message": "Nit: the order that options are listed here is slightly different than in module-backend.yaml.",
+      "revId": "a3b0de005b14d5751ccc528355497c70d0a6053e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
