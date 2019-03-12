@@ -16,6 +16,41 @@
       "revId": "5ec39e16f3aa44c5f1b967c0212d37405bc0cd39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2614d3f5_641dcd67",
+        "filename": "appengine/components/components/auth/check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T23:05:07Z",
+      "side": 1,
+      "message": "Fine with the name.",
+      "parentUuid": "67c8eab1_c75427af",
+      "revId": "5ec39e16f3aa44c5f1b967c0212d37405bc0cd39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6504dd45_2004950d",
+        "filename": "appengine/components/components/auth/check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T23:05:07Z",
+      "side": 1,
+      "message": "Is there a case where use_project_identities is False but project_header is still provided?",
+      "revId": "5ec39e16f3aa44c5f1b967c0212d37405bc0cd39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
