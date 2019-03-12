@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8d29c285_1300966f",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-12T19:06:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f242814_f71cf91e",
+      "range": {
+        "startLine": 194,
+        "startChar": 23,
+        "endLine": 194,
+        "endChar": 31
+      },
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "670f7382_9c7b4a80",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "425ec091_a449c9a9",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-12T19:06:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "670f7382_9c7b4a80",
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ce284de_7047ff01",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 6
@@ -53,6 +95,24 @@
       "writtenOn": "2019-03-12T00:50:21Z",
       "side": 1,
       "message": "I\u0027d recommend a ndb.get_multi() to reduce overall latency.\n\nWhat is the scale you expect the server\u0027s reply as per number of task ids?",
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64149dd9_5e31746b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-03-12T19:06:40Z",
+      "side": 1,
+      "message": "At current usage, ~10 (1% of the ongoing queue). This can be tuned.\n\nCan I investigate get_multi as a follow-up? Added  a TODO",
+      "parentUuid": "0ce284de_7047ff01",
       "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
