@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67c8eab1_c75427af",
+        "filename": "appengine/components/components/auth/check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-12T22:51:54Z",
+      "side": 1,
+      "message": "There\u0027s an existing group unfortunately called \u0027auth-trusted-services\u0027 with a list of services that can subscribe to AuthDB notifications. It is NOT actually trusted enough to impersonate LUCI projects. (There are many \"random\" non-LUCI services there we don\u0027t really fully trust since we don\u0027t manage them).\n\nauth-luci-services will contain ONLY services that are part of single LUCI deployment and which want to make outbound calls with X-Luci-Project headers. For prod it initially will contain:\n  * luci-scheduler@\n  * luci-milo@\n  * cr-buildbucket@\n  * commit queue\n\nMore will be added as needed.\n\nAnother naming option is to reuse https://chrome-infra-auth.appspot.com/auth/groups/auth-project-actors, but trim it to contain only very few services.\n\nWdyt?",
+      "revId": "5ec39e16f3aa44c5f1b967c0212d37405bc0cd39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
