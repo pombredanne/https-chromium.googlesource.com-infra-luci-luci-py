@@ -116,6 +116,24 @@
       "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb6bad99_1bc1516f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T19:51:39Z",
+      "side": 1,
+      "message": "ok but this would have been a one liner:\n\n  request, result \u003d ndb.get_multi((request_key, result_key))\n\nwhich can be densified to:\n\n items.append(ndb.get_multi((request_key, result_key)))",
+      "parentUuid": "64149dd9_5e31746b",
+      "revId": "fcb06fad64f0c0e3ee4710993255c9b348c75e2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
