@@ -40,6 +40,7 @@ TODO(nodir): replace spec above with a link to a spec when it is available.
 
 from google import protobuf
 from google.protobuf import descriptor
+from google.protobuf import descriptor
 
 __all__ = [
     'EXCLUDE',
@@ -183,6 +184,41 @@ class Mask(object):
       # Nothing matched.
       return EXCLUDE
     return max(c._includes(path, start_at + 1) for c in children)
+
+  def merge(self, src, dest):
+    """Merges fields included in the mask from src to dest.
+
+    Merges even empty/unset fields, as long as they are present in the mask.
+
+    Overwrites repeated/map fields entirely. Does not support partial updates of
+    such fields.
+    """
+    assert type(src) == type(dest)  # pylint: disable=unidiomatic-typecheck
+    for f, src_value in src.ListFields():
+      incl = self._includes((f.name,))
+      if incl == EXCLUDE:
+        # Skip merging.
+        continue
+
+      assert incl in (INCLUDE_PARTIALLY, INCLUDE_ENTIRELY)
+      dest_value = getattr(dest, f.name)
+      is_repeated = f.label == descriptor.FieldDescriptor.LABEL_REPEATED
+      is_message = isinstance(dest_value, protobuf.message.Message)
+
+      # Only non-repeated submessages can be merged partially.
+      if incl == INCLUDE_PARTIALLY and not is_repeated and is_message:
+        # Child for this field must exist because INCLUDE_PARTIALLY.
+        self.children[f.name].merge(src_value, dest_value)
+      # The rest is overwritten entirely.
+      elif is_repeated:
+        dest.ClearField(f.name)
+        dest_value.extend(src_value)
+      elif is_message:
+        dest_value.CopyFrom(src_value)
+      else:
+        # Scalar value.
+        setattr(dest, f.name, src_value)
+
 
   def submask(self, path):
     """Returns a sub-mask given a path from self to it.
