@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e25e95a5_b7b3ed5f",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T20:24:12Z",
+      "side": 1,
+      "message": "Nit: Docstring could be more descriptive, e.g. \"Ensures that the imported `google` package is our version.\" We could still include the note \"This is copied from components/utils.py.\" as well.",
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8e545bb_6e3aa918",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T20:24:12Z",
+      "side": 1,
+      "message": "Maybe print an error to stderr if that might be useful.",
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72c01cff_17ac85b4",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T20:24:12Z",
+      "side": 1,
+      "message": "Would we expect this to be the right `google` package after reloading? Could it still be the wrong one (not from ./third_party/google)?",
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e82421dd_09858be1",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-12T20:24:12Z",
+      "side": 1,
+      "message": "Are these imports affected by the imported `google` module?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
