@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b7b978e7_ad051d87",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e25e95a5_b7b3ed5f",
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8e545bb_6e3aa918",
         "filename": "appengine/swarming/swarming_bot/__main__.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "57ab0801_f0f61b26",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e545bb_6e3aa918",
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72c01cff_17ac85b4",
         "filename": "appengine/swarming/swarming_bot/__main__.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2019-03-12T20:24:12Z",
       "side": 1,
       "message": "Would we expect this to be the right `google` package after reloading? Could it still be the wrong one (not from ./third_party/google)?",
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69468eae_1dd07f8b",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T20:50:43Z",
+      "side": 1,
+      "message": "I don\u0027t think it works after all. Trying to redo in new CL.",
+      "parentUuid": "72c01cff_17ac85b4",
       "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -73,6 +127,30 @@
       "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdb02841_6cf4b3b0",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-12T20:50:43Z",
+      "side": 1,
+      "message": "ts_mon is the first one to import protobuf, but there will be more. I just didn\u0027t want to take a chance.",
+      "parentUuid": "e82421dd_09858be1",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "81471cd3167449e1afb8d6708b802d9918d1d876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
