@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efbe0025_bb313893",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-13T23:30:15Z",
+      "side": 1,
+      "message": "running",
+      "revId": "05193ecb21696e6d3cbb054778fa3dfa0c8a1118",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af80c082_27e412ef",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-13T23:30:15Z",
+      "side": 1,
+      "message": "Would it be correct to say \"...handle downloading and uploading isolated files\"? (Does run_isolated fetch input from isolated server and send output to isolated server?)",
+      "range": {
+        "startLine": 11,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "05193ecb21696e6d3cbb054778fa3dfa0c8a1118",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
