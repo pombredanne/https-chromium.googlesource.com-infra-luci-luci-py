@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21767ed7_dcc09abc",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-13T21:48:05Z",
+      "side": 1,
+      "message": "This is good as is; optionally could add more explanation, e.g.:\n\nThe task likely failed due to DB transaction contention,\nso we can reply that the service has had too many requests (429).\nUsing a 400-level response also prevents failures here from causing\nunactionable alerts due to a high rate of 500s.",
+      "revId": "bfd5559999638e1971a1b3ad289965f4f5f31d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
