@@ -135,26 +135,6 @@ def delete_file(bucket, filename, ignore_missing=False):
       raise
 
 
-def delete_files(bucket, filenames, ignore_missing=False):
-  """Deletes multiple files stored in GS.
-
-  Arguments:
-    bucket: a bucket that contains the files.
-    filenames: list of file paths to delete (relative to a bucket root).
-    ignore_missing: if True, will silently skip missing files, otherwise will
-        print a warning to log.
-
-  Returns:
-    An empty list so this function can be used with functions that expect
-    the RPC to return a Future.
-  """
-  # Sadly Google Cloud Storage client library doesn't support batch deletes,
-  # so do it one by one.
-  for filename in filenames:
-    delete_file(bucket, filename, ignore_missing)
-  return []
-
-
 def get_file_info(bucket, filename):
   """Returns information about stored file.
 

@@ -26,10 +26,6 @@ from components import decorators
 from components import utils
 
 
-# The maximum number of items to delete at a time.
-ITEMS_TO_DELETE_ASYNC = 100
-
-
 ### Utility
 
 
@@ -79,22 +75,19 @@ def payload_to_hashes(request, namespace):
   return split_payload(request, h.digest_size, model.MAX_KEYS_PER_DB_OPS)
 
 
-def incremental_delete(query, delete, check=None):
+def _incremental_delete(query, delete, check=None):
   """Applies |delete| to objects in a query asynchrously.
 
   This function is itself synchronous.
 
   Arguments:
   - query: iterator of items to process.
-  - delete: callback that accepts a list of objects to delete and returns a list
-            of objects that have a method .wait() to make sure all calls
-            completed.
+  - delete: callback that accepts an object to delete and returns a Future.
   - check: optional callback that can filter out items from |query| from
           deletion.
 
   Returns the number of objects found.
   """
-  to_delete = []
   count = 0
   deleted_count = 0
   futures = []
@@ -104,25 +97,22 @@ def incremental_delete(query, delete, check=None):
       logging.debug('Found %d items', count)
     if check and not check(item):
       continue
-    to_delete.append(item)
+    futures.append(delete(item))
     deleted_count += 1
-    if len(to_delete) == ITEMS_TO_DELETE_ASYNC:
-      logging.info('Deleting %s entries', len(to_delete))
-      futures.extend(delete(to_delete) or [])
-      to_delete = []
 
-    # That's a lot of on-going operations which could take a significant amount
-    # of memory. Wait a little on the oldest operations.
-    # TODO(maruel): Profile memory usage to see if a few thousands of on-going
-    # RPC objects is a problem in practice.
-    while len(futures) > 10 * ITEMS_TO_DELETE_ASYNC:
-      futures.pop(0).wait()
+    # Throttle.
+    while len(futures) > 100:
+      ndb.Future.wait_any(futures)
+      t = []
+      for f in futures:
+        if f.done():
+          f.get_result()
+        else:
+          t.append(f)
+      futures = t
 
-  if to_delete:
-    logging.info('Deleting %s entries', len(to_delete))
-    futures.extend(delete(to_delete) or [])
-
-  ndb.Future.wait_all(futures)
+  for f in futures:
+    f.get_result()
   return deleted_count
 
 
@@ -145,7 +135,7 @@ class InternalCleanupOldEntriesWorkerHandler(webapp2.RequestHandler):
     q = model.ContentEntry.query(
         model.ContentEntry.expiration_ts < utils.utcnow()
         ).iter(keys_only=True)
-    total = incremental_delete(q, delete=model.delete_entry_and_gs_entry)
+    total = _incremental_delete(q, delete=model.delete_entry_and_gs_entry_async)
     logging.info('Deleting %s expired entries', total)
 
 
@@ -160,15 +150,15 @@ class InternalObliterateWorkerHandler(webapp2.RequestHandler):
   @decorators.require_taskqueue('cleanup')
   def post(self):
     logging.info('Deleting ContentEntry')
-    incremental_delete(
+    _incremental_delete(
         model.ContentEntry.query().iter(keys_only=True),
-        ndb.delete_multi_async)
+        lambda k: k.delete_async())
 
     gs_bucket = config.settings().gs_bucket
     logging.info('Deleting GS bucket %s', gs_bucket)
-    incremental_delete(
+    _incremental_delete(
         (i[0] for i in gcs.list_files(gs_bucket)),
-        lambda filenames: gcs.delete_files(gs_bucket, filenames))
+        lambda filenames: gcs.delete_file_async(gs_bucket, filenames))
 
     logging.info('Flushing memcache')
     # High priority (.isolated files) are cached explicitly. Make sure ghosts
@@ -216,7 +206,7 @@ class InternalCleanupTrimLostWorkerHandler(webapp2.RequestHandler):
         futures[future] = filepath
 
         if len(futures) > 20:
-          future = ndb.Future.wait_any(futures)
+          ndb.Future.wait_any(futures)
           filepath = futures.pop(future)
           if future.get_result():
             continue
@@ -228,8 +218,8 @@ class InternalCleanupTrimLostWorkerHandler(webapp2.RequestHandler):
           continue
         yield filepath
 
-    gs_delete = lambda filenames: gcs.delete_files(gs_bucket, filenames)
-    total = incremental_delete(filter_missing(), gs_delete)
+    gs_delete_async = lambda f: gcs.delete_file_async(gs_bucket, f)
+    total = _incremental_delete(filter_missing(), gs_delete_async)
     logging.info('Deleted %d lost GS files', total)
     # TODO(maruel): Find all the empty directories that are old and remove them.
     # We need to safe guard against the race condition where a user would upload
@@ -311,7 +301,7 @@ class InternalVerifyWorkerHandler(webapp2.RequestHandler):
     """Logs error message, deletes |entry| from datastore and GS."""
     logging.error(
         'Verification failed for %s: %s', entry.key.id(), message % args)
-    model.delete_entry_and_gs_entry([entry.key])
+    model.delete_entry_and_gs_entry_async(entry.key).get_result()
 
   @decorators.silence(
       datastore_errors.InternalError,
