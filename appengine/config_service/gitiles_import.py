@@ -13,6 +13,7 @@ from project.config_location.
 """
 
 import contextlib
+import datetime
 import json
 import logging
 import os
@@ -20,6 +21,7 @@ import random
 import re
 import StringIO
 import tarfile
+import time
 
 from google.appengine.api import memcache
 from google.appengine.api import taskqueue
@@ -31,6 +33,7 @@ from components import config
 from components import gitiles
 from components import net
 from components.config.proto import service_config_pb2
+from gae_ts_mon.common import metrics
 
 import admin
 import common
@@ -47,6 +50,32 @@ DEFAULT_GITILES_IMPORT_CONFIG = service_config_pb2.ImportCfg.Gitiles(
     fetch_archive_deadline=15,
     ref_config_default_path='luci',
 )
+UNIX_EPOCH = datetime.datetime.utcfromtimestamp(0)
+
+
+last_import_attempt_timestamp = metrics.GaugeMetric(
+    'config_service/last_import_attempt_timestamp',
+    'Unix timestamp (microseconds) of the last import attempt',
+    [metrics.StringField('config_set')])
+
+
+last_import_success_timestamp = metrics.GaugeMetric(
+    'config_service/last_import_success_timestamp',
+    'Unix timestamp (microseconds) of the last successful import attempt',
+    [metrics.StringField('config_set')])
+
+
+currently_imported_version = metrics.StringMetric(
+    'config_service/currently_imported_version',
+    'Git commmit hash of currently imported version',
+    [metrics.StringField('config_set')])
+
+
+currently_imported_version_timestamp = metrics.GaugeMetric(
+    'config_service/currently_imported_version_timestamp',
+    ('Unix timestamp (microseconds) of the commit time of currently imported'
+    ' version'),
+    [metrics.StringField('config_set')])
 
 
 class Error(Exception):
@@ -235,6 +264,14 @@ def _read_and_validate_archive(config_set, rev_key, archive, location):
   ndb.Future.wait_all(blob_futures)
   return entities, ctx.result()
 
+def _update_import_success_metrics(config_set, commit):
+  timestamp = int((commit.committer.time - UNIX_EPOCH).total_seconds() * 10**6)
+  currently_imported_version_timestamp.set(timestamp,
+                                           fields={"config_set": config_set})
+  last_import_success_timestamp.set(int(time.time() * 10**6),
+                                    fields={"config_set": config_set})
+  currently_imported_version.set(commit.sha, fields={"config_set": config_set})
+
 
 def _import_config_set(config_set, location):
   """Imports the latest version of config set from a Gitiles location.
@@ -277,7 +314,6 @@ def _import_config_set(config_set, location):
       raise NotFoundError('Could not load commit log for %s' % (location,))
 
     commit = log.commits[0]
-
     config_set_key = ndb.Key(storage.ConfigSet, config_set)
     config_set_entity = config_set_key.get()
     force_update = (config_set_entity and
@@ -286,12 +322,14 @@ def _import_config_set(config_set, location):
         and not force_update):
       save_attempt(True, 'Up-to-date')
       logging.debug('Up-to-date')
+      _update_import_success_metrics(config_set, commit)
       return
 
     logging.info(
         'Rolling %s => %s',
         config_set_entity and config_set_entity.latest_revision, commit.sha)
     _import_revision(config_set, location, commit, force_update)
+    _update_import_success_metrics(config_set, commit)
   except urlfetch_errors.DeadlineExceededError:
     save_attempt(False, 'Could not import: deadline exceeded')
     raise Error(
@@ -395,6 +433,8 @@ def import_ref(project_id, ref_name):
 
 
 def import_config_set(config_set):
+  last_import_attempt_timestamp.set(int(time.time() * 10**6),  # microseconds
+                                    fields={"config_set": config_set})
   """Imports a config set."""
   service_match = config.SERVICE_CONFIG_SET_RGX.match(config_set)
   if service_match:
