@@ -22,6 +22,30 @@
       "revId": "f51bf29f349fc3e50e9c2a52f4555b4cb13e2fb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a38087f8_1e6cac57",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-13T23:17:02Z",
+      "side": 1,
+      "message": "Reworded, please take a look.",
+      "parentUuid": "95805175_ae5cfb7e",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "f51bf29f349fc3e50e9c2a52f4555b4cb13e2fb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
