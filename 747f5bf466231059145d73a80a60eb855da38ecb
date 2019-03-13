@@ -16,6 +16,24 @@
       "revId": "747f5bf466231059145d73a80a60eb855da38ecb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9006ca18_323f00f9",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-03-13T17:52:35Z",
+      "side": 1,
+      "message": "I\u0027ll swap the order of removing -tag.",
+      "parentUuid": "26ff0594_d1d5a5b7",
+      "revId": "747f5bf466231059145d73a80a60eb855da38ecb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

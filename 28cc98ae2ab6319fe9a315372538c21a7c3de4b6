@@ -33,6 +33,24 @@
       "revId": "28cc98ae2ab6319fe9a315372538c21a7c3de4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73137372_5955a8e2",
+        "filename": "appengine/swarming/ui2/package-lock.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 4986,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-03-13T17:52:35Z",
+      "side": 0,
+      "message": "Reverted",
+      "parentUuid": "9b7973e6_8f2c3e0a",
+      "revId": "28cc98ae2ab6319fe9a315372538c21a7c3de4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
