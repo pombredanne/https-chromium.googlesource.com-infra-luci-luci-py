@@ -51,6 +51,24 @@
       "revId": "5ec39e16f3aa44c5f1b967c0212d37405bc0cd39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2147f766_74867712",
+        "filename": "appengine/components/components/auth/check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-03-13T01:37:57Z",
+      "side": 1,
+      "message": "It is possible when a caller is migrated to X-Luci-Project before the service that accepts the call. It is fine to totally ignore X-Luci-Project header in this case (which will ~\u003d happen once this CL lands). Buildbucket will in fact rely on this for a bit until it is migrated to understand X-Luci-Project (it will see calls coming as from luci-scheduler@..., which matches existing behavior).",
+      "parentUuid": "6504dd45_2004950d",
+      "revId": "5ec39e16f3aa44c5f1b967c0212d37405bc0cd39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
