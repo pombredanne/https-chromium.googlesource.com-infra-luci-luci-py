@@ -16,6 +16,24 @@
       "revId": "162d366b973cd3b74095e514f5934ae8c0fe2f63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "202e0ebb_473a0f61",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-03-13T18:16:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae7a4efd_99211dfc",
+      "revId": "162d366b973cd3b74095e514f5934ae8c0fe2f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
