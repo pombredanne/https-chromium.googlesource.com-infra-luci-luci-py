@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae7a4efd_99211dfc",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list-helpers.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-13T17:56:03Z",
+      "side": 1,
+      "message": "Still, it should look for nt + \u0027:\u0027 ?",
+      "revId": "162d366b973cd3b74095e514f5934ae8c0fe2f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
