@@ -298,10 +298,8 @@ class TaskDimensionsHandler(webapp2.RequestHandler):
   @decorators.require_taskqueue('rebuild-task-cache')
   def post(self):
     if not task_queues.rebuild_task_cache(self.request.body):
-      # The task needs to be retried. Reply that the service is unavailable
-      # (503) instead of an internal server error (500) to help differentiating
-      # in the logs, even if it is not technically correct.
-      self.response.set_status(503)
+      # The task needs to be retried, normally due to DB transaction contention.
+      self.response.set_status(429)
 
 
 class TaskSendPubSubMessage(webapp2.RequestHandler):
