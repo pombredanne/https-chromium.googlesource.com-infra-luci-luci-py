@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70a70cf3_6e488b90",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-13T23:20:40Z",
+      "side": 1,
+      "message": "Optional: Below there\u0027s a little \"header\" comment noting that the query is for \"Running\" TaskRunResult; you could now add a little header here saying that this query is for \"Completed\" TaskRunResult. Same for below with the query for completed TaskResultSummary.",
+      "revId": "77f217e89f7eb55c4586311c584a0fb3035feef1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
