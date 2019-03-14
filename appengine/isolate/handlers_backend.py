@@ -180,13 +180,14 @@ class InternalCleanupOldEntriesWorkerHandler(webapp2.RequestHandler):
       datastore_errors.Timeout,
       datastore_errors.TransactionFailedError,
       runtime.DeadlineExceededError)
-  @decorators.require_taskqueue('cleanup')
-  def post(self):
+  @decorators.require_cronjob
+  def get(self):
+    # Lasts 10 minutes at most, to be triggered every 15 minutes.
     q = model.ContentEntry.query(
         model.ContentEntry.expiration_ts < utils.utcnow()
         ).iter(keys_only=True)
     total = _incremental_delete(q, model.delete_entry_and_gs_entry)
-    logging.info('Deleting %s expired entries', total)
+    logging.info('Deleting %d expired entries', total)
 
 
 class InternalObliterateWorkerHandler(webapp2.RequestHandler):
@@ -256,17 +257,14 @@ class InternalCleanupTriggerHandler(webapp2.RequestHandler):
       runtime.DeadlineExceededError)
   @decorators.require_cronjob
   def get(self, name):
-    if name in ('obliterate', 'old', 'orphaned', 'trim_lost'):
+    if name in ('obliterate', 'orphaned', 'trim_lost'):
       url = '/internal/taskqueue/cleanup/' + name
-      # The push task queue name must be unique over a ~7 days period so use
-      # the date at second precision, there's no point in triggering each of
-      # time more than once a second anyway.
-      now = utils.utcnow().strftime('%Y-%m-%d_%I-%M-%S')
-      if utils.enqueue_task(url, 'cleanup', name=name + '_' + now):
+      if utils.enqueue_task(url, 'cleanup'):
         self.response.out.write('Triggered %s' % url)
       else:
         self.abort(500, 'Failed to enqueue a cleanup task, see logs')
     else:
+      logging.error('Unknown cleanup job %s', name)
       self.abort(404, 'Unknown job')
 
 
@@ -482,7 +480,7 @@ def get_routes():
 
     # Cleanup tasks.
     webapp2.Route(
-        r'/internal/taskqueue/cleanup/old',
+        r'/internal/cron/cleanup/delete_aold',
         InternalCleanupOldEntriesWorkerHandler),
     webapp2.Route(
         r'/internal/taskqueue/cleanup/obliterate',
