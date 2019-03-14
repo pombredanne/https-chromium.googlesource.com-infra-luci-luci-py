@@ -22,6 +22,30 @@
       "revId": "d8938a0953c492f792fe5d550ad17e3cf27cfa4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea0e5f6b_adfde0c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-14T16:36:53Z",
+      "side": 1,
+      "message": "Yes, reduce memory usage in the situation:\n- long running handlers touching a lot of entities\n- threading handling is enabled with a lot of current requests",
+      "parentUuid": "4fb5a4e9_683c1dd1",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "d8938a0953c492f792fe5d550ad17e3cf27cfa4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
