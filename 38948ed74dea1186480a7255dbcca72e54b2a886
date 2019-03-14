@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00e5fd30_69c9c2d8",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-14T22:21:30Z",
+      "side": 1,
+      "message": "Iterates",
+      "revId": "38948ed74dea1186480a7255dbcca72e54b2a886",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec73b729_12a936ce",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-14T22:21:30Z",
+      "side": 1,
+      "message": "paths of unreferenced files",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 12
+      },
+      "revId": "38948ed74dea1186480a7255dbcca72e54b2a886",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b72c099_92217110",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-14T22:21:30Z",
+      "side": 1,
+      "message": "every item",
+      "range": {
+        "startLine": 139,
+        "startChar": 28,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "38948ed74dea1186480a7255dbcca72e54b2a886",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
