@@ -25,10 +25,6 @@ from components import decorators
 from components import utils
 
 
-# The maximum number of items to delete at a time.
-ITEMS_TO_DELETE_ASYNC = 100
-
-
 ### Utility
 
 
@@ -78,20 +74,35 @@ def _payload_to_hashes(request, namespace):
   return _split_payload(request, h.digest_size, model.MAX_KEYS_PER_DB_OPS)
 
 
-def _incremental_delete(query, delete):
+def _throttle_futures(futures, limit):
+  finished = []
+  if len(futures) <= limit:
+    return futures, finished
+  while len(futures) > limit:
+    ndb.Future.wait_any(futures)
+    tmp = []
+    for f in futures:
+      if f.done():
+        f.get_result()
+        finished.append(f)
+      else:
+        tmp.append(f)
+    futures = tmp
+  return futures, finished
+
+
+def _incremental_delete(query, delete_async):
   """Applies |delete| to objects in a query asynchrously.
 
   This function is itself synchronous.
 
   Arguments:
   - query: iterator of items to process.
-  - delete: callback that accepts a list of objects to delete and returns a list
-            of objects that have a method .wait() to make sure all calls
-            completed.
+  - delete_async: callback that accepts an object to delete and returns a
+        ndb.Future.
 
   Returns the number of objects found.
   """
-  to_delete = []
   count = 0
   deleted_count = 0
   futures = []
@@ -99,25 +110,14 @@ def _incremental_delete(query, delete):
     count += 1
     if not (count % 1000):
       logging.debug('Found %d items', count)
-    to_delete.append(item)
+    futures.append(delete_async(item))
     deleted_count += 1
-    if len(to_delete) == ITEMS_TO_DELETE_ASYNC:
-      logging.info('Deleting %s entries', len(to_delete))
-      futures.extend(delete(to_delete) or [])
-      to_delete = []
 
-    # That's a lot of on-going operations which could take a significant amount
-    # of memory. Wait a little on the oldest operations.
-    # TODO(maruel): Profile memory usage to see if a few thousands of on-going
-    # RPC objects is a problem in practice.
-    while len(futures) > 10 * ITEMS_TO_DELETE_ASYNC:
-      futures.pop(0).wait()
+    # Throttle.
+    futures, _ = _throttle_futures(futures, 100)
 
-  if to_delete:
-    logging.info('Deleting %s entries', len(to_delete))
-    futures.extend(delete(to_delete) or [])
-
-  ndb.Future.wait_all(futures)
+  for f in futures:
+    f.get_result()
   return deleted_count
 
 
@@ -194,13 +194,13 @@ class InternalObliterateWorkerHandler(webapp2.RequestHandler):
     logging.info('Deleting ContentEntry')
     _incremental_delete(
         model.ContentEntry.query().iter(keys_only=True),
-        ndb.delete_multi_async)
+        lambda k: k.delete_async())
 
     gs_bucket = config.settings().gs_bucket
     logging.info('Deleting GS bucket %s', gs_bucket)
     _incremental_delete(
         (i[0] for i in gcs.list_files(gs_bucket)),
-        lambda filenames: gcs.delete_files(gs_bucket, filenames))
+        lambda filenames: gcs.delete_file_async(gs_bucket, filenames))
 
     logging.info('Flushing memcache')
     # High priority (.isolated files) are cached explicitly. Make sure ghosts
@@ -208,6 +208,47 @@ class InternalObliterateWorkerHandler(webapp2.RequestHandler):
     memcache.flush_all()
     logging.info('Finally done!')
 
+
+def _find_orphan_gcs_files(gs_bucket):
+  """Iterate over the whole GCS bucket for unreferenced files.
+
+  Yields:
+    filepath in the bucket
+  """
+  futures = {}
+  cutoff = time.time() - 60*60
+  for filepath, filestats in gcs.list_files(gs_bucket):
+    # If the file was uploaded in the last hour, ignore it.
+    if filestats.st_ctime >= cutoff:
+      continue
+
+    # This must match the logic in model.get_entry_key(). Since this request
+    # will touch every ContentEntry, do not use memcache since it'll
+    # overflow it up by loading every items in it.
+    future = model.entry_key_from_id(filepath).get_async(use_memcache=False)
+    futures[future] = filepath
+
+    if len(futures) > 100:
+      ndb.Future.wait_any(futures)
+      tmp = {}
+      for f, p in futures.iteritems():
+        if f.done():
+          f.get_result()
+          yield p
+          continue
+        tmp[f] = p
+      futures = tmp
+
+  while futures:
+    ndb.Future.wait_any(futures)
+    tmp = {}
+    for f, p in futures.iteritems():
+      if f.done():
+        f.get_result()
+        yield p
+        continue
+      tmp[f] = p
+    futures = tmp
 
 class InternalCleanupTrimLostWorkerHandler(webapp2.RequestHandler):
   """Removes the GS files that are not referenced anymore.
@@ -229,9 +270,11 @@ class InternalCleanupTrimLostWorkerHandler(webapp2.RequestHandler):
     ContentEntry.
     """
     gs_bucket = config.settings().gs_bucket
-    gs_delete = lambda filenames: gcs.delete_files(gs_bucket, filenames)
-    total = _incremental_delete(_yield_orphan_gcs_files(gs_bucket), gs_delete)
+    total = _incremental_delete(
+        _find_orphan_gcs_files(gs_bucket),
+        lambda f: gcs.delete_file_async(gs_bucket, f))
     logging.info('Deleted %d lost GS files', total)
+
     # TODO(maruel): Find all the empty directories that are old and remove them.
     # We need to safe guard against the race condition where a user would upload
     # to this directory.
@@ -275,30 +318,35 @@ class InternalTagWorkerHandler(webapp2.RequestHandler):
       runtime.DeadlineExceededError)
   @decorators.require_taskqueue('tag')
   def post(self, namespace, timestamp):
+    saved = 0
     digests = []
     now = utils.timestamp_to_datetime(long(timestamp))
     expiration = config.settings().default_expiration
     try:
       digests = _payload_to_hashes(self, namespace)
       # Requests all the entities at once.
-      futures = ndb.get_multi_async(
+      fetch_futures = ndb.get_multi_async(
           model.get_entry_key(namespace, binascii.hexlify(d)) for d in digests)
 
-      to_save = []
-      while futures:
+      save_futures = []
+      while fetch_futures:
         # Return opportunistically the first entity that can be retrieved.
-        future = ndb.Future.wait_any(futures)
-        futures.remove(future)
-        item = future.get_result()
-        if item and item.next_tag_ts < now:
-          # Update the timestamp. Add a bit of pseudo randomness.
-          item.expiration_ts, item.next_tag_ts = model.expiration_jitter(
-              now, expiration)
-          to_save.append(item)
-      if to_save:
-        ndb.put_multi(to_save)
+        fetch_futures, done = _throttle_futures(
+            fetch_futures, len(fetch_futures)-1)
+        for f in done:
+          item = f.get_result()
+          if item and item.next_tag_ts < now:
+            # Update the timestamp. Add a bit of pseudo randomness.
+            item.expiration_ts, item.next_tag_ts = model.expiration_jitter(
+                now, expiration)
+            save_futures.append(item.put_async())
+            saved += 1
+        save_futures, _ = _throttle_futures(save_futures, 100)
+
+      for f in save_futures:
+        f.get_result()
       logging.info(
-          'Timestamped %d entries out of %s', len(to_save), len(digests))
+          'Timestamped %d entries out of %d', saved, len(digests))
     except Exception as e:
       logging.error('Failed to stamp entries: %s\n%d entries', e, len(digests))
       raise
@@ -312,7 +360,7 @@ class InternalVerifyWorkerHandler(webapp2.RequestHandler):
     """Logs error message, deletes |entry| from datastore and GS."""
     logging.error(
         'Verification failed for %s: %s', entry.key.id(), message % args)
-    model.delete_entry_and_gs_entry([entry.key])
+    model.delete_entry_and_gs_entry_async(entry.key).get_result()
 
   @decorators.silence(
       datastore_errors.InternalError,
