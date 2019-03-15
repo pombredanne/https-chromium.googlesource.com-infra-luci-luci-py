@@ -180,6 +180,16 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
       logging.warning('Failed to trigger task')
 
 
+class CronCleanupOrphanHandler(webapp2.RequestHandler):
+  """Triggers a taskqueue."""
+  @decorators.require_cronjob
+  def get(self):
+    if not utils.enqueue_task(
+        '/internal/taskqueue/cleanup/orphan',
+        'cleanup-orphan'):
+      logging.warning('Failed to trigger task')
+
+
 class CronStatsUpdateHandler(webapp2.RequestHandler):
   """Called every few minutes to update statistics."""
   @decorators.require_cronjob
@@ -244,7 +254,7 @@ class TaskObliterateWorkerHandler(webapp2.RequestHandler):
     logging.info('Finally done!')
 
 
-class TaskCleanupTrimLostWorkerHandler(webapp2.RequestHandler):
+class TaskCleanupOrphanHandler(webapp2.RequestHandler):
   """Removes the GS files that are not referenced anymore.
 
   It can happen for example when a ContentEntry is deleted without the file
@@ -258,7 +268,7 @@ class TaskCleanupTrimLostWorkerHandler(webapp2.RequestHandler):
       datastore_errors.Timeout,
       datastore_errors.TransactionFailedError,
       runtime.DeadlineExceededError)
-  @decorators.require_taskqueue('cleanup')
+  @decorators.require_taskqueue('cleanup-orphan')
   def post(self):
     """Enumerates all GS files and delete those that do not have an associated
     ContentEntry.
@@ -467,6 +477,9 @@ def get_routes():
     webapp2.Route(
         r'/internal/cron/cleanup/trigger/expired',
         CronCleanupExpiredHandler),
+    webapp2.Route(
+        r'/internal/cron/cleanup/trigger/orphan',
+        CronCleanupOrphanHandler),
 
     # Cleanup tasks.
     webapp2.Route(
@@ -476,8 +489,8 @@ def get_routes():
         r'/internal/taskqueue/cleanup/obliterate',
         TaskObliterateWorkerHandler),
     webapp2.Route(
-        r'/internal/taskqueue/cleanup/trim_lost',
-        TaskCleanupTrimLostWorkerHandler),
+        r'/internal/taskqueue/cleanup/orphan',
+        TaskCleanupOrphanHandler),
 
     # Tasks triggered by other request handlers.
     webapp2.Route(
