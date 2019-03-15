@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04e8f3c2_5da38992",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-15T17:40:44Z",
+      "side": 1,
+      "message": "OR: \"...to send statistics to BigQuery\"",
+      "range": {
+        "startLine": 194,
+        "startChar": 33,
+        "endLine": 194,
+        "endChar": 50
+      },
+      "revId": "1045b087ac839bf5bfd352a8db75cd294fc83140",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa43b807_d308cff9",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-15T17:40:44Z",
+      "side": 1,
+      "message": "Could change the code R0201 to the name \"no-self-use\"",
+      "range": {
+        "startLine": 223,
+        "startChar": 20,
+        "endLine": 223,
+        "endChar": 25
+      },
+      "revId": "1045b087ac839bf5bfd352a8db75cd294fc83140",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84f4d6c2_88800b9f",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-15T17:40:44Z",
+      "side": 1,
+      "message": "Or: Cron job(s) to trigger cleanup tasks.",
+      "range": {
+        "startLine": 476,
+        "startChar": 6,
+        "endLine": 476,
+        "endChar": 27
+      },
+      "revId": "1045b087ac839bf5bfd352a8db75cd294fc83140",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eed92792_ba575af6",
+        "filename": "appengine/isolate/queue.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-03-15T17:40:44Z",
+      "side": 1,
+      "message": "hash\nAlso: period at end of line for consistency with the above lines",
+      "range": {
+        "startLine": 24,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "1045b087ac839bf5bfd352a8db75cd294fc83140",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
