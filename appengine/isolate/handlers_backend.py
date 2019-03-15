@@ -162,15 +162,6 @@ def _yield_orphan_gcs_files(gs_bucket):
 ### Cron handlers
 
 
-class CronCleanupOldHandler(webapp2.RequestHandler):
-  """Triggers a taskqueue."""
-  @decorators.require_cronjob
-  def get(self):
-    # Deprecated.
-    if not utils.enqueue_task('/internal/taskqueue/cleanup/old', 'cleanup'):
-      logging.warning('Failed to trigger task')
-
-
 class CronCleanupExpiredHandler(webapp2.RequestHandler):
   """Triggers a taskqueue."""
   @decorators.require_cronjob
@@ -198,24 +189,6 @@ class CronStatsSendToBQHandler(webapp2.RequestHandler):
 
 
 ### Task queue handlers
-
-
-class TaskCleanupOldHandler(webapp2.RequestHandler):
-  """Removes the old expired data from the datastore."""
-  # pylint: disable=R0201
-  @decorators.silence(
-      datastore_errors.InternalError,
-      datastore_errors.Timeout,
-      datastore_errors.TransactionFailedError,
-      runtime.DeadlineExceededError)
-  @decorators.require_taskqueue('cleanup')
-  def post(self):
-    # Deprecated.
-    q = model.ContentEntry.query(
-        model.ContentEntry.expiration_ts < utils.utcnow()
-        ).iter(keys_only=True)
-    total = _incremental_delete(q, model.delete_entry_and_gs_entry)
-    logging.info('Deleted %d expired entries', total)
 
 
 class TaskCleanupExpiredHandler(webapp2.RequestHandler):
@@ -475,16 +448,10 @@ def get_routes():
   return [
     # Triggers a taskqueue.
     webapp2.Route(
-        r'/internal/cron/cleanup/trigger/old',  # Deprecated
-        CronCleanupOldHandler),
-    webapp2.Route(
         r'/internal/cron/cleanup/trigger/expired',
         CronCleanupExpiredHandler),
 
     # Cleanup tasks.
-    webapp2.Route(
-        r'/internal/taskqueue/cleanup/old',  # Deprecated
-        TaskCleanupOldHandler),
     webapp2.Route(
         r'/internal/taskqueue/cleanup/expired',
         TaskCleanupExpiredHandler),
