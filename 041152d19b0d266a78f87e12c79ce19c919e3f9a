@@ -46,6 +46,30 @@
       "revId": "041152d19b0d266a78f87e12c79ce19c919e3f9a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00accb81_cad2d8de",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-03-18T21:49:52Z",
+      "side": 1,
+      "message": "It could work with defining a dict\n counters \u003d {\u0027good\u0027: 0, \u0027orphaned\u0027: 0, \u0027size_good\u0027: 0, \u0027size_orphaned\u0027: 0}\nin _yield_orphan_gcs_files and defining a helper function in its scope that modified each of those values, but I agree that it\u0027s a little messy referencing those variables.\n\nRight, yes, thanks.",
+      "parentUuid": "033e4fee_ba4fc978",
+      "range": {
+        "startLine": 194,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 21
+      },
+      "revId": "041152d19b0d266a78f87e12c79ce19c919e3f9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
