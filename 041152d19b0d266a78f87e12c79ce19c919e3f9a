@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d1c8733_35389fe7",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-03-18T20:48:31Z",
+      "side": 1,
+      "message": "Worth it to define helper function for this? I don\u0027t feel strongly.\n\nAnd IIUC basically we\u0027re batching into ~100 per go, and then handle the remainder in the while?",
+      "range": {
+        "startLine": 194,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 21
+      },
+      "revId": "041152d19b0d266a78f87e12c79ce19c919e3f9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
