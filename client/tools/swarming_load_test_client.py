@@ -19,15 +19,17 @@ import string
 import sys
 import time
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
+CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
     __file__.decode(sys.getfilesystemencoding()))))
+sys.path.insert(0, CLIENT_DIR)
 
-sys.path.insert(0, ROOT_DIR)
+from utils import tools
+tools.force_local_third_party()
 
-from third_party import colorama
+# third_party/
+import colorama
 
 import swarming
-
 from utils import graph
 from utils import net
 from utils import threading_utils
