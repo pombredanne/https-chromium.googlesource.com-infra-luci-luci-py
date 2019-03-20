@@ -15,31 +15,29 @@ import time
 import traceback
 import unittest
 
-# net_utils adjusts sys.path.
-import net_utils
+# Mutates sys.path.
+import test_env
 
+# third_party/
 from depot_tools import auto_stub
+
+import httpserver
+import isolateserver_fake
+import net_utils
+import swarmingserver_fake
 
 import auth
 import isolateserver
 import local_caching
 import swarming
-import test_utils
-
-from depot_tools import fix_encoding
 from utils import file_path
 from utils import logging_utils
 from utils import subprocess42
 from utils import tools
 
-import httpserver
-import isolateserver_fake
-import swarmingserver_fake
-
 
 FILE_HASH = u'1' * 40
 TEST_NAME = u'unit_tests'
-
 
 OUTPUT = 'Ran stuff\n'
 
@@ -170,8 +168,7 @@ def gen_result_response(**kwargs):
   return out
 
 
-# Silence pylint 'Access to a protected member _Event of a client class'.
-class NonBlockingEvent(threading._Event):  # pylint: disable=W0212
+class NonBlockingEvent(threading._Event):
   """Just like threading.Event, but a class and ignores timeout in 'wait'.
 
   Intended to be used as a mock for threading.Event in tests.
@@ -1409,7 +1406,6 @@ class TestMain(NetTestCase):
         '')
 
   def test_trigger_isolated_hash(self):
-    # pylint: disable=unused-argument
     self.mock(swarming, 'now', lambda: 123456)
 
     request = gen_request_data(
@@ -1466,7 +1462,6 @@ class TestMain(NetTestCase):
         '')
 
   def test_trigger_isolated_and_json(self):
-    # pylint: disable=unused-argument
     write_json_calls = []
     self.mock(tools, 'write_json', lambda *args: write_json_calls.append(args))
     subprocess_calls = []
@@ -1670,7 +1665,7 @@ class TestMain(NetTestCase):
 
   def test_trigger_no_swarming_env_var(self):
     with self.assertRaises(SystemExit):
-      with test_utils.EnvVars({'ISOLATE_SERVER': 'https://host'}):
+      with test_env.EnvVars({'ISOLATE_SERVER': 'https://host'}):
         main(['trigger', '-T' 'foo', 'foo.isolated'])
     self._check_output(
         '',
@@ -1682,7 +1677,7 @@ class TestMain(NetTestCase):
 
   def test_trigger_no_isolate_server(self):
     with self.assertRaises(SystemExit):
-      with test_utils.EnvVars({'SWARMING_SERVER': 'https://host'}):
+      with test_env.EnvVars({'SWARMING_SERVER': 'https://host'}):
         main(['trigger', 'foo.isolated', '-d', 'pool', 'default'])
     self._check_output(
         '',
@@ -2239,11 +2234,7 @@ class TestCommandBot(NetTestCase):
 
 
 if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  logging.basicConfig(
-      level=logging.DEBUG if '-v' in sys.argv else logging.CRITICAL)
-  if '-v' in sys.argv:
-    unittest.TestCase.maxDiff = None
-  for e in ('ISOLATE_SERVER', 'SWARMING_TASK_ID', 'SWARMING_SERVER'):
-    os.environ.pop(e, None)
-  unittest.main()
+  for env_var_to_remove in (
+      'ISOLATE_SERVER', 'SWARMING_TASK_ID', 'SWARMING_SERVER'):
+    os.environ.pop(env_var_to_remove, None)
+  test_env.main()
