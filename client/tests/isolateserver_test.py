@@ -3,8 +3,6 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-# pylint: disable=W0212,W0223,W0231,W0613
-
 import base64
 import hashlib
 import json
@@ -19,7 +17,10 @@ import tempfile
 import unittest
 import zlib
 
-# net_utils adjusts sys.path.
+# Mutates sys.path.
+import test_env
+
+import isolateserver_fake
 import net_utils
 
 import auth
@@ -28,14 +29,10 @@ import isolate_storage
 import isolateserver
 import isolate_storage
 import local_caching
-import test_utils
-from depot_tools import fix_encoding
 from utils import file_path
 from utils import fs
 from utils import logging_utils
 from utils import threading_utils
-
-import isolateserver_fake
 
 
 CONTENTS = {
@@ -73,7 +70,7 @@ class TestCase(net_utils.TestCase):
     return self._tempdir
 
   def make_tree(self, contents):
-    test_utils.make_tree(self.tempdir, contents)
+    test_env.make_tree(self.tempdir, contents)
 
   def checkOutput(self, expected_out, expected_err):
     try:
@@ -1032,7 +1029,7 @@ class IsolateServerDownloadTest(TestCase):
       'download',
       '--isolate-server', server_ref.url,
       '--namespace', server_ref.namespace,
-      '--target', net_utils.ROOT_DIR,
+      '--target', test_env.CLIENT_DIR,
       '--file', coucou_sha1, 'path/to/a',
       '--file', byebye_sha1, 'path/to/b',
       # Even if everything is mocked, the cache directory will still be created.
@@ -1040,8 +1037,8 @@ class IsolateServerDownloadTest(TestCase):
     ]
     self.assertEqual(0, isolateserver.main(cmd))
     expected = {
-      os.path.join(net_utils.ROOT_DIR, 'path/to/a'): 'Coucou',
-      os.path.join(net_utils.ROOT_DIR, 'path/to/b'): 'Bye Bye',
+      os.path.join(test_env.CLIENT_DIR, 'path/to/a'): 'Coucou',
+      os.path.join(test_env.CLIENT_DIR, 'path/to/b'): 'Bye Bye',
     }
     self.assertEqual(expected, actual)
 
@@ -1290,20 +1287,11 @@ class TestArchive(TestCase):
     self.help_test_archive(['archive', '-I', 'https://localhost:1'])
 
   def test_archive_directory_envvar(self):
-    with test_utils.EnvVars({'ISOLATE_SERVER': 'https://localhost:1'}):
+    with test_env.EnvVars({'ISOLATE_SERVER': 'https://localhost:1'}):
       self.help_test_archive(['archive'])
 
 
-def clear_env_vars():
+if __name__ == '__main__':
   for e in ('ISOLATE_DEBUG', 'ISOLATE_SERVER'):
     os.environ.pop(e, None)
-
-
-if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  if '-v' in sys.argv:
-    unittest.TestCase.maxDiff = None
-  logging.basicConfig(
-      level=(logging.DEBUG if '-v' in sys.argv else logging.CRITICAL))
-  clear_env_vars()
-  unittest.main()
+  test_env.main()

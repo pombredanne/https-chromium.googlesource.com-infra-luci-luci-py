@@ -14,13 +14,12 @@ import subprocess
 import sys
 import tempfile
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
-sys.path.insert(0, os.path.join(ROOT_DIR, 'third_party'))
+# Mutates sys.path.
+import test_env
 
+# third_party/
 from depot_tools import auto_stub
-from depot_tools import fix_encoding
+
 import auth
 import isolate
 import isolate_format
@@ -29,7 +28,6 @@ import isolateserver
 from utils import file_path
 from utils import logging_utils
 from utils import tools
-import test_utils
 
 ALGO = hashlib.sha1
 
@@ -338,7 +336,7 @@ class IsolateLoad(IsolateBase):
         self.assertTrue(values.pop('m'))
 
   def make_tree(self, contents):
-    test_utils.make_tree(self.isolate_dir, contents)
+    test_env.make_tree(self.isolate_dir, contents)
 
   def size(self, *args):
     return os.stat(os.path.join(self.isolate_dir, *args)).st_size
@@ -1267,7 +1265,7 @@ class IsolateCommand(IsolateBase):
     out = isolate.CompleteState(None, isolate.SavedState('sha-1', self.cwd))
     out.saved_state.isolate_file = u'blah.isolate'
     out.saved_state.relative_cwd = u''
-    out.saved_state.root_dir = ROOT_DIR
+    out.saved_state.root_dir = test_env.CLIENT_DIR
     return out
 
   def test_CMDarchive(self):
@@ -1614,12 +1612,7 @@ class IsolateCommand(IsolateBase):
     self.assertEqual(0, isolate.CMDrun(optparse.OptionParser(), cmd))
 
 
-def clear_env_vars():
+if __name__ == '__main__':
   for e in ('ISOLATE_DEBUG', 'ISOLATE_SERVER'):
     os.environ.pop(e, None)
-
-
-if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  clear_env_vars()
-  test_utils.main()
+  test_env.main()
