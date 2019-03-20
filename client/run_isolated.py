@@ -55,7 +55,11 @@ import sys
 import tempfile
 import time
 
-from third_party.depot_tools import fix_encoding
+from utils import tools
+tools.force_local_third_party()
+
+# third_party/
+from depot_tools import fix_encoding
 
 from utils import file_path
 from utils import fs
@@ -63,7 +67,6 @@ from utils import large
 from utils import logging_utils
 from utils import on_error
 from utils import subprocess42
-from utils import tools
 
 from libs import luci_context
 
