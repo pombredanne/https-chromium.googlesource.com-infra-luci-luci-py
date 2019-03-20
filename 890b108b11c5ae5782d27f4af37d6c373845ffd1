@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce0ced66_d4fb5722",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-03-20T01:51:16Z",
+      "side": 1,
+      "message": "I\u0027ve based these metrics on what other, similar services do - e.g CDPush (a Google Prod service a bit like luci-config) which exports the following metrics: http://go/cdpush-monitoring#server-side-monitoring\n\nAlso, borgcron exports the following metrics: http://go/monarch-existing-metrics#borgcron-jobs\n\nI think we should go back and discuss this in the bug and reach consensus there. Then once we\u0027re agreed on the right metrics, I can follow up with the implementation.",
+      "parentUuid": "fafa4a89_d8844679",
+      "revId": "890b108b11c5ae5782d27f4af37d6c373845ffd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09be3e2_a02f2ab4",
         "filename": "appengine/config_service/gitiles_import.py",
         "patchSetId": 2
