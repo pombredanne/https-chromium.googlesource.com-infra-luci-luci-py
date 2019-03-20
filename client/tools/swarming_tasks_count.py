@@ -21,13 +21,16 @@ import threading
 import sys
 import urllib
 
-
 CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
     __file__.decode(sys.getfilesystemencoding()))))
 sys.path.insert(0, CLIENT_DIR)
 
+from utils import tools
+tools.force_local_third_party()
 
-from third_party import colorama
+# third_party/
+import colorama
+
 from utils import graph
 from utils import threading_utils
 

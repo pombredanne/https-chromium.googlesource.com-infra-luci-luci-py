@@ -567,6 +567,7 @@ class Subprocess42Test(unittest.TestCase):
       expected = ['A\n', 'B\n']
       called = []
       def timeout():
+        # pylint: disable=cell-var-from-loop
         called.append(0)
         return 0
       try:
