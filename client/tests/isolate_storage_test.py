@@ -11,12 +11,14 @@ import sys
 import time
 import unittest
 
-# Somehow this lets us find isolate_storage
-import net_utils
+# Mutates sys.path.
+import test_env
 
+# third_party/
 from depot_tools import auto_stub
+
 import isolate_storage
-import test_utils
+import net_utils
 
 
 class ByteStreamStubMock(object):
@@ -324,4 +326,4 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
 
 if __name__ == '__main__':
-  test_utils.main()
+  test_env.main()

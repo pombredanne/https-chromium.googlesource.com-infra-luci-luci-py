@@ -15,16 +15,12 @@ import sys
 import tempfile
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
+# Mutates sys.path.
+import test_env
 
 import isolate
 import isolated_format
-from depot_tools import fix_encoding
 from utils import file_path
-
-import test_utils
 
 
 ALGO = hashlib.sha1
@@ -154,7 +150,7 @@ DEPENDENCIES = {
           'the answer to life the universe and everything\n',
       'tests/isolate/files1/test_file1.txt': 'Foo\n',
       'tests/isolate/files1/test_file2.txt': 'Bar\n',
-      'tests/isolate/files2': test_utils.SymLink('files1'),
+      'tests/isolate/files2': test_env.SymLink('files1'),
       'tests/isolate/symlink_full.isolate':
         """{
           'conditions': [
@@ -208,7 +204,7 @@ DEPENDENCIES = {
           'the answer to life the universe and everything\n',
       'tests/isolate/files1/test_file1.txt': 'Foo\n',
       'tests/isolate/files1/test_file2.txt': 'Bar\n',
-      'tests/isolate/files2': test_utils.SymLink('files1'),
+      'tests/isolate/files2': test_env.SymLink('files1'),
       'tests/isolate/symlink_partial.isolate':
         """{
           'conditions': [
@@ -243,7 +239,7 @@ DEPENDENCIES = {
     {
       'tests/directory_outside_build_root/test_file3.txt': 'asdf\n',
       'tests/isolate/link_outside_build_root':
-          test_utils.SymLink('../directory_outside_build_root'),
+          test_env.SymLink('../directory_outside_build_root'),
       'tests/isolate/symlink_outside_build_root.isolate':
         """{
           'conditions': [
@@ -471,11 +467,14 @@ def _fix_file_mode(filename, read_only):
 class Isolate(unittest.TestCase):
   def test_help_modes(self):
     # Check coherency in the help and implemented modes.
+    cmd = [
+      sys.executable, os.path.join(test_env.CLIENT_DIR, 'isolate.py'), '--help',
+    ]
     p = subprocess.Popen(
-        [sys.executable, os.path.join(ROOT_DIR, 'isolate.py'), '--help'],
+        cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        cwd=ROOT_DIR)
+        cwd=test_env.CLIENT_DIR)
     out = p.communicate()[0].splitlines()
     self.assertEqual(0, p.returncode)
     out = out[out.index('Commands are:') + 1:]
@@ -514,7 +513,7 @@ class IsolateTempdirBase(unittest.TestCase):
     case = case or self.case()
     if not case:
       return
-    test_utils.make_tree(self.isolate_dir, DEPENDENCIES[case][0])
+    test_env.make_tree(self.isolate_dir, DEPENDENCIES[case][0])
 
   def _gen_files(self, read_only, empty_file):
     """Returns a dict of files like calling isolate.files_to_metadata() on each
@@ -612,7 +611,7 @@ class IsolateTempdirBase(unittest.TestCase):
 
   def _get_cmd(self, mode):
     return [
-      sys.executable, os.path.join(ROOT_DIR, 'isolate.py'),
+      sys.executable, os.path.join(test_env.CLIENT_DIR, 'isolate.py'),
       mode,
       '--isolated', self.isolated,
       '--isolate', self.filename(),
@@ -620,7 +619,7 @@ class IsolateTempdirBase(unittest.TestCase):
       '--config-variable', 'chromeos', '0',
     ]
 
-  def _execute(self, mode, case, args, cwd=ROOT_DIR):
+  def _execute(self, mode, case, args, cwd=test_env.CLIENT_DIR):
     """Executes isolate.py."""
     self.assertEqual(
         case,
@@ -934,7 +933,7 @@ class IsolateNoOutdir(IsolateTempdirBase):
   def _execute(self, mode, args):  # pylint: disable=W0221
     """Executes isolate.py."""
     cmd = [
-      sys.executable, os.path.join(ROOT_DIR, 'isolate.py'),
+      sys.executable, os.path.join(test_env.CLIENT_DIR, 'isolate.py'),
       mode,
       '--isolated', self.isolated,
       '--config-variable', 'OS', 'mac',
@@ -1005,7 +1004,7 @@ class IsolateOther(IsolateTempdirBase):
     # Test when a user mapped from a directory and then replay from another
     # directory. This is a very rare corner case.
     indir = os.path.join(self.tempdir, 'input')
-    test_utils.make_tree(indir, SIMPLE_ISOLATE)
+    test_env.make_tree(indir, SIMPLE_ISOLATE)
     proc = subprocess.Popen(
         [
           sys.executable, 'isolate.py',
@@ -1016,7 +1015,7 @@ class IsolateOther(IsolateTempdirBase):
         ],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        cwd=ROOT_DIR)
+        cwd=test_env.CLIENT_DIR)
     stdout = proc.communicate()[0]
     self.assertEqual(isolate._VARIABLE_WARNING, stdout)
     self.assertEqual(0, proc.returncode)
@@ -1038,7 +1037,7 @@ class IsolateOther(IsolateTempdirBase):
         ],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        cwd=ROOT_DIR,
+        cwd=test_env.CLIENT_DIR,
         universal_newlines=True)
     stdout = proc.communicate()[0]
     self.assertEqual(1, proc.returncode)
@@ -1053,15 +1052,14 @@ class IsolateOther(IsolateTempdirBase):
         sys.executable, 'isolate.py', 'check',
         '-s', os.path.join(self.tempdir, 'out.isolated'),
     ]
-    subprocess.check_call(cmd + ['-i', a_isolate], cwd=ROOT_DIR)
+    subprocess.check_call(cmd + ['-i', a_isolate], cwd=test_env.CLIENT_DIR)
 
     # Move the .isolate file aside and rerun the command with the new source but
     # same destination.
     b_isolate = os.path.join(self.tempdir, 'b.isolate')
     os.rename(a_isolate, b_isolate)
-    subprocess.check_call(cmd + ['-i', b_isolate], cwd=ROOT_DIR)
+    subprocess.check_call(cmd + ['-i', b_isolate], cwd=test_env.CLIENT_DIR)
 
 
 if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  test_utils.main()
+  test_env.main()

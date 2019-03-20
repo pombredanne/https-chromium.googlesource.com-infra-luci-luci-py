@@ -10,8 +10,8 @@ import sys
 import tempfile
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, ROOT_DIR)
+# Mutates sys.path.
+import test_env
 
 from utils import subprocess42
 
@@ -720,9 +720,6 @@ class Subprocess42Test(unittest.TestCase):
       ('stdout', 'incomplete last stdout'),
     ])
 
+
 if __name__ == '__main__':
-  if '-v' in sys.argv:
-    unittest.TestCase.maxDiff = None
-  logging.basicConfig(
-      level=logging.DEBUG if '-v' in sys.argv else logging.ERROR)
-  unittest.main()
+  test_env.main()
