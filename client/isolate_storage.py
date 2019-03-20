@@ -19,8 +19,11 @@ import uuid
 
 from utils import file_path
 from utils import net
+from utils import tools
 
 import isolated_format
+
+tools.fix_third_party()
 
 try:
   import grpc # for error codes

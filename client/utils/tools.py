@@ -370,3 +370,18 @@ def sliding_timeout(timeout):
     return lambda: None
   deadline = time.time() + timeout
   return lambda: deadline - time.time()
+
+
+_THIRD_PARTY_FIXED = False
+
+def fix_third_party():
+  """Fix the third_party import path."""
+  global _THIRD_PARTY_FIXED
+  if _THIRD_PARTY_FIXED:
+    return
+  _THIRD_PARTY_FIXED = True
+  src = os.path.abspath(zip_package.get_main_script_path())
+  root = os.path.dirname(src)
+  sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
+  sys.path.insert(0, os.path.join(root, 'third_party', 'rsa'))
+  sys.path.insert(0, os.path.join(root, 'third_party'))
