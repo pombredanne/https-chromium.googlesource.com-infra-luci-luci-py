@@ -13,11 +13,12 @@ import sys
 import tempfile
 import time
 
-BASE_DIR = os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding())))
-ROOT_DIR = os.path.dirname(BASE_DIR)
+CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
+    __file__.decode(sys.getfilesystemencoding()))))
+sys.path.insert(0, CLIENT_DIR)
 
-sys.path.insert(0, ROOT_DIR)
+from utils import tools
+tools.force_local_third_party()
 
 import auth
 import isolateserver
@@ -38,7 +39,7 @@ def capture(cmd):
   assert all(isinstance(i, basestring) for i in cmd), cmd
   start = time.time()
   p = subprocess.Popen(
-      [sys.executable] + cmd, cwd=ROOT_DIR, stdout=subprocess.PIPE)
+      [sys.executable] + cmd, cwd=CLIENT_DIR, stdout=subprocess.PIPE)
   out = p.communicate()[0]
   return p.returncode, out, time.time() - start
 
