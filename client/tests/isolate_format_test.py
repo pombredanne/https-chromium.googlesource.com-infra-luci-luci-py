@@ -10,19 +10,14 @@ import sys
 import tempfile
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
-sys.path.insert(0, os.path.join(ROOT_DIR, 'third_party'))
+# Mutates sys.path.
+import test_env
+
+# third_party/
+from depot_tools import auto_stub
 
 import isolate_format
-from depot_tools import auto_stub
-from depot_tools import fix_encoding
 from utils import file_path
-
-
-# Access to a protected member XXX of a client class
-# pylint: disable=W0212
 
 
 FAKE_DIR = (
@@ -996,10 +991,4 @@ class IsolateFormatTmpDirTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  logging.basicConfig(
-      level=logging.DEBUG if '-v' in sys.argv else logging.ERROR,
-      format='%(levelname)5s %(filename)15s(%(lineno)3d): %(message)s')
-  if '-v' in sys.argv:
-    unittest.TestCase.maxDiff = None
-  unittest.main()
+  test_env.main()

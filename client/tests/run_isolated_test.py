@@ -3,8 +3,6 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-# pylint: disable=R0201
-
 import StringIO
 import base64
 import contextlib
@@ -18,10 +16,14 @@ import tempfile
 import time
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
-sys.path.insert(0, os.path.join(ROOT_DIR, 'third_party'))
+# Mutates sys.path.
+import test_env
+
+# third_party/
+from depot_tools import auto_stub
+
+import isolateserver_fake
+import cipdserver_fake
 
 import cipd
 import isolate_storage
@@ -29,8 +31,6 @@ import isolated_format
 import isolateserver
 import local_caching
 import run_isolated
-from depot_tools import auto_stub
-from depot_tools import fix_encoding
 from libs import luci_context
 from utils import file_path
 from utils import fs
@@ -39,9 +39,6 @@ from utils import logging_utils
 from utils import on_error
 from utils import subprocess42
 from utils import tools
-
-import isolateserver_fake
-import cipdserver_fake
 
 
 ALGO = hashlib.sha1
@@ -832,8 +829,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
         u'files': {
           u'foo': {
             u'h': output_hash,
-            # TODO(maruel): Handle umask.
-            u'm': 0640,
+            u'm': 0600,
             u's': 3,
           },
         },
@@ -1198,20 +1194,17 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
         u'files': {
           u'foo1': {
             u'h': foo1_output_hash,
-            # TODO(maruel): Handle umask.
-            u'm': 0640,
+            u'm': 0600,
             u's': 4,
           },
           u'foodir/foo2_sl': {
             u'h': foo2_output_hash,
-            # TODO(maruel): Handle umask.
-            u'm': 0640,
+            u'm': 0600,
             u's': 4,
           },
           u'bardir/bar1': {
             u'h': bar1_output_hash,
-            # TODO(maruel): Handle umask.
-            u'm': 0640,
+            u'm': 0600,
             u's': 4,
           },
         },
@@ -1331,7 +1324,7 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
         'out.txt': {
           'h': isolateserver_fake.hash_content('generated data\n'),
           's': 15,
-          'm': 0640,
+          'm': 0600,
         },
       },
       'version': isolated_format.ISOLATED_FILE_VERSION,
@@ -1380,9 +1373,4 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
 
 
 if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  if '-v' in sys.argv:
-    unittest.TestCase.maxDiff = None
-  logging.basicConfig(
-      level=logging.DEBUG if '-v' in sys.argv else logging.ERROR)
-  unittest.main()
+  test_env.main()
