@@ -9,9 +9,8 @@ import random
 import sys
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
+# Mutates sys.path.
+import test_env
 
 from utils import large
 
@@ -43,6 +42,4 @@ class LargeTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-  VERBOSE = '-v' in sys.argv
-  logging.basicConfig(level=logging.DEBUG if VERBOSE else logging.ERROR)
-  unittest.main()
+  test_env.main()

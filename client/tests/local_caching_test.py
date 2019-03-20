@@ -14,20 +14,16 @@ import tempfile
 import time
 import unittest
 
-TEST_DIR = os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding())))
-ROOT_DIR = os.path.dirname(TEST_DIR)
-sys.path.insert(0, ROOT_DIR)
-sys.path.insert(0, os.path.join(ROOT_DIR, 'third_party'))
+# Mutates sys.path.
+import test_env
 
+# third_party/
 from depot_tools import auto_stub
-from depot_tools import fix_encoding
 
+import local_caching
 from utils import file_path
 from utils import fs
 from utils import lru
-
-import local_caching
 
 
 def write_file(path, contents):
@@ -916,9 +912,4 @@ class FnTest(TestCase):
 
 
 if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  if '-v' in sys.argv:
-    unittest.TestCase.maxDiff = None
-  logging.basicConfig(
-      level=(logging.DEBUG if '-v' in sys.argv else logging.CRITICAL))
-  unittest.main()
+  test_env.main()

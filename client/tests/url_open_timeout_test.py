@@ -13,12 +13,12 @@ import threading
 import time
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
-sys.path.insert(0, os.path.join(ROOT_DIR, 'third_party'))
+# Mutates sys.path.
+import test_env
 
+# third_party/
 from depot_tools import auto_stub
+
 from utils import authenticators
 from utils import net
 
@@ -174,6 +174,4 @@ class UrlOpenTimeoutTest(auto_stub.TestCase):
 
 
 if __name__ == '__main__':
-  VERBOSE = '-v' in sys.argv
-  logging.basicConfig(level=logging.DEBUG if VERBOSE else logging.ERROR)
-  unittest.main()
+  test_env.main()

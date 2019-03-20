@@ -13,14 +13,12 @@ import tempfile
 import time
 import unittest
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
-sys.path.insert(0, ROOT_DIR)
+# Mutates sys.path.
+import test_env
 
 import isolated_format
-import test_utils
-from third_party.depot_tools import fix_encoding
 from utils import file_path
+
 
 # Ensure that the testing machine has access to this server.
 ISOLATE_SERVER = 'https://isolateserver.appspot.com/'
@@ -45,7 +43,7 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
     self.tempdir = tempfile.mkdtemp(prefix=u'isolateserver')
     self.rootdir = os.path.join(self.tempdir, 'rootdir')
     self.test_data = os.path.join(self.tempdir, 'test_data')
-    test_utils.make_tree(self.test_data, CONTENTS)
+    test_env.make_tree(self.test_data, CONTENTS)
 
   def tearDown(self):
     try:
@@ -56,14 +54,13 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
   def _run(self, args):
     """Runs isolateserver.py."""
     cmd = [
-        sys.executable,
-        os.path.join(ROOT_DIR, 'isolateserver.py'),
+        sys.executable, os.path.join(test_env.CLIENT_DIR, 'isolateserver.py'),
     ]
     cmd.extend(args)
     cmd.extend(
         [
           '--isolate-server', ISOLATE_SERVER,
-          '--namespace', self.namespace
+          '--namespace', self.namespace,
         ])
     if '-v' in sys.argv:
       cmd.append('--verbose')
@@ -80,7 +77,11 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
 
   def _download_given_files(self, files):
     """Tries to download the files from the server."""
-    args = ['download', '--target', self.rootdir]
+    args = [
+      'download',
+      '--cache', os.path.join(self.tempdir, 'cache'),
+      '--target', self.rootdir,
+    ]
     file_hashes = [isolated_format.hash_file(f, hashlib.sha1) for f in files]
     for f in file_hashes:
       args.extend(['--file', f, f])
@@ -125,9 +126,4 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-  fix_encoding.fix_encoding()
-  if len(sys.argv) > 1 and sys.argv[1].startswith('http'):
-    ISOLATE_SERVER = sys.argv.pop(1).rstrip('/') + '/'
-  logging.basicConfig(
-      level=logging.DEBUG if '-v' in sys.argv else logging.ERROR)
-  unittest.main()
+  test_env.main()
