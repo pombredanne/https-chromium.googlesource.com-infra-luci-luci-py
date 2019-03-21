@@ -902,7 +902,7 @@ def set_read_only(path, read_only):
 
 
 def set_read_only_swallow(path, read_only):
-  """Returns if an OSError exception occured."""
+  """Returns if an OSError exception occurred."""
   try:
     set_read_only(path, read_only)
   except OSError as e:
