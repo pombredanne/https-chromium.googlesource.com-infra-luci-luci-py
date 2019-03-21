@@ -125,7 +125,7 @@ def fileobj_path(fileobj):
   """
   name = getattr(fileobj, 'name', None)
   if name is None:
-    return
+    return None
 
   # If the file like object was created using something like open("test.txt")
   # name will end up being a str (such as a function outside our control, like
@@ -138,10 +138,11 @@ def fileobj_path(fileobj):
   # fs.exists requires an absolute path, otherwise it will fail with an
   # assertion error.
   if not os.path.isabs(name):
-      return
+      return None
 
   if fs.exists(name):
     return name
+  return None
 
 
 # TODO(tansell): Replace fileobj_copy with shutil.copyfileobj once proper file
@@ -1341,7 +1342,7 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
 
             else:
               raise isolated_format.IsolatedError(
-                    'Unknown file type %r', filetype)
+                    'Unknown file type %r' % filetype)
 
         # Report progress.
         duration = time.time() - last_update
@@ -1699,6 +1700,7 @@ def process_isolate_server_options(
     return auth.ensure_logged_in(options.isolate_server)
   except ValueError as e:
     parser.error(str(e))
+  return None
 
 
 def add_cache_options(parser):
@@ -1743,8 +1745,7 @@ def process_cache_options(options, trim, **kwargs):
     # instance is created.
     return local_caching.DiskContentAddressedCache(
         unicode(os.path.abspath(options.cache)), policies, trim, **kwargs)
-  else:
-    return local_caching.MemoryContentAddressedCache()
+  return local_caching.MemoryContentAddressedCache()
 
 
 class OptionParserIsolateServer(logging_utils.OptionParserWithLogging):
