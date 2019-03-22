@@ -52,6 +52,24 @@
       "revId": "76de56671e3608a195031ff52bbca45ef315ce88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b175973_33aba068",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-22T21:15:23Z",
+      "side": 1,
+      "message": "Ah yes if it fails it\u0027ll be nearly silently skipped, but it\u0027s fine because the cron job runs every 15 minutes. This is good because if the task enqueue fails, it means GAE is somewhat sick. If it\u0027s somewhat partially available, it\u0027s better to temporarily reduce the workload.",
+      "parentUuid": "f18c4b6c_9fde635a",
+      "revId": "76de56671e3608a195031ff52bbca45ef315ce88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
