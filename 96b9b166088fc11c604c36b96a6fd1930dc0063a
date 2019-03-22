@@ -22,6 +22,30 @@
       "revId": "96b9b166088fc11c604c36b96a6fd1930dc0063a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39df75c2_eff712b2",
+        "filename": "appengine/isolate/model.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-22T18:17:19Z",
+      "side": 1,
+      "message": "Yes it\u0027s a no-op for the services already using sharding_letters:4. This is only meant to affect the misconfigured instances. I sent an internal email to explain a bit more.\n\nI cannot change sharding_letters value because it\u0027d be a breaking change: all entities would disappear all at once.",
+      "parentUuid": "96b6536f_e87ac6f2",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "96b9b166088fc11c604c36b96a6fd1930dc0063a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
