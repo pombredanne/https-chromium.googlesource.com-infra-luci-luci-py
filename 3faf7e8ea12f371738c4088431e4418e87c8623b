@@ -164,6 +164,24 @@
       "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "890a99a1_265aefbc",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-22T12:17:57Z",
+      "side": 1,
+      "message": "Also we cannot approve this until we know the latency involved for an emergency push. While normal push can be canaries for N hours, we (at least I) do expect to be able to do an emergency push to resolve issues within 5 minutes or less. Right now I\u0027m able to do a staging then prod deployment with adhoc verification for simple fixes within 10 minutes.",
+      "parentUuid": "39a1a775_5c7ed629",
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
