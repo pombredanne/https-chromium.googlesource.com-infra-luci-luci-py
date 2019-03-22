@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a24c4551_ef887451",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-22T06:32:47Z",
+      "side": 1,
+      "message": "CL comments aren\u0027t an appropriate for this discussion. ML would be more appropriate.\n\nend of a quarter is not a good reason to change the prod deployment procedure. An approval of stakeholders would be a better reason.\n\nit seems your OKR is ultimately depends on decision of another team. Consider making the OKR joint with that team.",
+      "parentUuid": "543de2ed_8bf9bcb1",
+      "range": {
+        "startLine": 39,
+        "startChar": 42,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9cadbb3_d33af374",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 5
