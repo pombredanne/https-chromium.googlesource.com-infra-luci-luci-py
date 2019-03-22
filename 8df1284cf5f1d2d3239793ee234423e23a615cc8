@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94f54a5b_4a954da8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-22T12:55:57Z",
+      "side": 1,
+      "message": "The bug was here. I really prefer typed languages.",
+      "revId": "8df1284cf5f1d2d3239793ee234423e23a615cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
