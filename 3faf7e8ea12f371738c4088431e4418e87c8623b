@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "543de2ed_8bf9bcb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-22T05:50:01Z",
+      "side": 1,
+      "message": "This is something we\u0027ve worked with Chrome SRE to get done, they have a P0 OKR to take luci-config on end of Q1.\n\nhttps://easyokrs.googleplex.com/view/chrome-ops-sre/\n\nPart of this is to have an SRE acceptable release process.\nThis is a Prod Tech P0 OKR.\n\nhttps://easyokrs.googleplex.com/view/chops-devx-prodtech/\n\nFrom the Project Review using Spinnaker is a go.\nThe discussion about using LUCI and deciding on a preferred path is ongoing and not expected to be done by end of Q1. \n\nIf we really can\u0027t change anything in prod by the end of Q1 our and Chrome SREs OKRs will not be met.",
+      "parentUuid": "79880dea_42f38ea4",
+      "range": {
+        "startLine": 39,
+        "startChar": 42,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9cadbb3_d33af374",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 5
