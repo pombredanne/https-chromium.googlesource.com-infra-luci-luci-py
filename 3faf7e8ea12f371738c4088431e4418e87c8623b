@@ -62,6 +62,24 @@
       "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95c9ef56_6d2090dc",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-22T05:09:47Z",
+      "side": 1,
+      "message": "I\u0027d like for people to not use gae.py to deploy to staging/prod.\n\nWhen we\u0027ve confirmed deploying using the new pipeline working gae.py should either just be removed from here or left only in-case of emergency manual deploy.",
+      "parentUuid": "d9cadbb3_d33af374",
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
