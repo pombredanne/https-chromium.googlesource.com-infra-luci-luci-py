@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9fb9cc6d_83666dee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-22T14:28:22Z",
+      "side": 1,
+      "message": "\u003e Part of this is to have an SRE acceptable release process\n\nhere \"acceptable\" must also mean \"accepted by service owners\"\n\n\u003e From the Project Review using Spinnaker is a go.\n\nyes, Spinnaker is a Go.\nit does not necessarily mean that any set of Spinnaker pipeline is a go.\nIt is like saying that \"C++ is a go, therefore any C++ code is a go\". Nobody sent luci-config spinnaker pipeline definitions for us to review.",
+      "parentUuid": "a24c4551_ef887451",
+      "range": {
+        "startLine": 39,
+        "startChar": 42,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9cadbb3_d33af374",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 5
