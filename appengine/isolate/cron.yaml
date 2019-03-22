@@ -4,6 +4,11 @@ cron:
   url: /internal/cron/cleanup/trigger/expired
   schedule: every 15 minutes
 
+- description: Delete orphan GCS files
+  target: backend
+  url: /internal/cron/cleanup/trigger/orphan
+  schedule: every 1 hours
+
 - description: Cron job that gathers statistics
   target: backend
   url: /internal/cron/stats/update
