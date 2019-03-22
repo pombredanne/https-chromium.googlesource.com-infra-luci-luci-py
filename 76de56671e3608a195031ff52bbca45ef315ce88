@@ -70,6 +70,24 @@
       "revId": "76de56671e3608a195031ff52bbca45ef315ce88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b97a4faf_74233e3c",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-03-22T21:16:40Z",
+      "side": 1,
+      "message": "Got it, thanks for the confirmation!",
+      "parentUuid": "8b175973_33aba068",
+      "revId": "76de56671e3608a195031ff52bbca45ef315ce88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
