@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96b6536f_e87ac6f2",
+        "filename": "appengine/isolate/model.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-03-22T18:14:22Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused by what\u0027s going on here: the commit message states \"[all isolate instances are using] non default-gzip but already on a sharding_letters:4 setting\" --- it that\u0027s the case, wouldn\u0027t this be a no-op? Or is this instead starting to set sharding_letters to 4 (which is a content-affecting change) before removing sharding_letters entirely?",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "96b9b166088fc11c604c36b96a6fd1930dc0063a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
