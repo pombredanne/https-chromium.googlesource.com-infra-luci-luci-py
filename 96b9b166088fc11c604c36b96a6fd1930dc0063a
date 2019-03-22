@@ -46,6 +46,30 @@
       "revId": "96b9b166088fc11c604c36b96a6fd1930dc0063a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b76984_163e3660",
+        "filename": "appengine/isolate/model.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-03-22T18:32:48Z",
+      "side": 1,
+      "message": "Ah, OK, I think the root of confusion was which deployed instances would be affected. Thanks!",
+      "parentUuid": "39df75c2_eff712b2",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "96b9b166088fc11c604c36b96a6fd1930dc0063a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
