@@ -339,6 +339,7 @@ class TaskCleanupQueryExpiredHandler(webapp2.RequestHandler):
     data = json.loads(self.request.body)
     start = utils.parse_datetime(data['start'])
     end = utils.parse_datetime(data['end'])
+    logging.info('Deleting between %s and %s', start, end)
 
     triggered = 0
     total = 0
