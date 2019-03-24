@@ -281,8 +281,8 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
         # The cron job ran for too long. There's a lot of backlog. Not a big
         # deal, it will be triggered again soon.
         break
-      if days == 20:
-        # Limit for now to 20 parallel queries at a time, we don't want to blow
+      if days == 40:
+        # Limit the number of parallel queries at a time, we don't want to blow
         # up quota.
         break
 
@@ -339,6 +339,7 @@ class TaskCleanupQueryExpiredHandler(webapp2.RequestHandler):
     data = json.loads(self.request.body)
     start = utils.parse_datetime(data['start'])
     end = utils.parse_datetime(data['end'])
+    logging.info('Deleting between %s and %s', start, end)
 
     triggered = 0
     total = 0
