@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a558396_7177897a",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-25T15:01:36Z",
+      "side": 1,
+      "message": "- Rename it to _map_file.\n- Rename fullpath to dst.",
+      "revId": "72e98e3c6a1d55c7e5a868eacdc164e0b9dd7433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a88aa8db_8bd59d08",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-25T15:01:36Z",
+      "side": 1,
+      "message": "- Align arguments at +4.\n- I don\u0027t think using the number of processors here is a good idea; this is I/O bound. As a matter of fact, while it likely helps a lot on GCE, it is probably has significant negative performance on Windows on ESX or macOS with an HDD. 4308c9ee376f0610 ran on Win7 on ESX so that\u0027s good, but I\u0027d like to have a broader view: GCE Win10 and linux, macOS.\n- The queue is unbounded. I think using a fairly small bound would help with the progress issue that I refer to below.",
+      "revId": "72e98e3c6a1d55c7e5a868eacdc164e0b9dd7433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8492d5c_02449094",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-25T15:01:36Z",
+      "side": 1,
+      "message": "This means that progress will not be printed anymore, which may be problematic when there\u0027s a lot of files. This could hit the I/O timeout.",
+      "revId": "72e98e3c6a1d55c7e5a868eacdc164e0b9dd7433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
