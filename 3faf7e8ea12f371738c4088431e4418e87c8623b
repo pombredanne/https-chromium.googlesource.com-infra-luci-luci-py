@@ -120,6 +120,29 @@
     },
     {
       "key": {
+        "uuid": "2087b3ae_cf94fb18",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1309003
+      },
+      "writtenOn": "2019-03-25T00:21:36Z",
+      "side": 1,
+      "message": "Can you use hyphens and underscores consistently?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9cadbb3_d33af374",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 5
@@ -206,6 +229,70 @@
       "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c48d8ce9_4ea9f6f8",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1309003
+      },
+      "writtenOn": "2019-03-25T00:21:36Z",
+      "side": 1,
+      "message": "Release latency needs to be aligned with service SLO, not how long it took in the past. There will most likely be some latency increase for a normal release, because there will be a canary analysis phase in Spinnaker.\n\nEveryone will be able to comment on changes to the release, in CLs like this one, and in other appropriate forums. We aren\u0027t going to enforce a new process without consultation (but we don\u0027t want endless bikeshedding for changes we can easily revert, please).",
+      "parentUuid": "890a99a1_265aefbc",
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cf22a2c_3a7f567e",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1309003
+      },
+      "writtenOn": "2019-03-25T00:21:36Z",
+      "side": 1,
+      "message": "Can you add a comment to each target, explaining what it does, and when it should be used.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcc4e51d_681e3733",
+        "filename": "appengine/config_service/cloudbuild.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1309003
+      },
+      "writtenOn": "2019-03-25T00:21:36Z",
+      "side": 1,
+      "message": "Could you add a comment to the different cloudbuild files, explaining what they each do.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
