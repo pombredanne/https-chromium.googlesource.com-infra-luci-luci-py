@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5b3648e_2fd4ca16",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-25T16:45:49Z",
+      "side": 1,
+      "message": "\u003e Exception arguments suggest string formatting might be intended.\n\u003e To disable, add: # pylint: disable\u003draising-format-tuple\n\nPlease Fix",
+      "parentUuid": "38a60851_0975e3a2",
+      "revId": "fd03a0cd763bfc1e21e115f2e10be2efdc43c81c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
