@@ -261,23 +261,40 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
     time_to_stop = time.time() + 9*60
     now = utils.utcnow()
 
-    # Get the very oldest item. We suspect that the filter helps a bit with the
-    # query performance. This has to to be tested (and confirmed) on production.
+    # Get the very oldest item. The reason for keys_only=True is that we suspect
+    # (to be verified) that the datastore will accept more inconsistency, which
+    # increases the likelihood of not timing out.
     q = model.ContentEntry.query(
-          model.ContentEntry.expiration_ts < now).order(
-              model.ContentEntry.expiration_ts)
+        default_options=ndb.QueryOptions(keys_only=True)).order(
+            model.ContentEntry.expiration_ts)
+    entity = None
     try:
-      # This query may take more than 60s to complete, so increase the deadline.
-      entity = q.get(deadline=360)
-      if not entity:
-        logging.debug('No oldest found')
-        return
-      logging.debug('Oldest: %s', entity.expiration_ts)
-      if entity.expiration_ts >= now:
-        logging.info('Didn\'t expect %s, skipping', entity.expiration_ts)
-        return
+      key = q.get()
+      entity = key.get()
     except datastore_errors.Timeout:
-      logging.warning('Query timed out')
+      # This happens on prod instance with a huge table. We're talking range of
+      # 8 billions entities. This is because the query above is exact, not an
+      # estimation.
+      logging.warning('Query timed out; guessing instead')
+      for i in xrange(500, -1, -20):
+        q = model.ContentEntry.query(
+            model.ContentEntry.expiration_ts < now - datetime.timedelta(days=i))
+        try:
+          # Don't order() here otherwise the query will likely time out. Don't
+          # bother with keys_only=True since the lack of order() should suffice.
+          # Just find a goddam expired entity, that's sufficient for our needs.
+          entity = q.get()
+        except datastore_errors.Timeout:
+          logging.warning('Still no dice, got a timeout with %d days ago', i)
+        if entity:
+          logging.info('Found something %d days ago', i)
+          break
+    if not entity:
+      logging.debug('No oldest found')
+      return
+    logging.debug('Oldest: %s', entity.expiration_ts)
+    if entity.expiration_ts >= now:
+      logging.info('Didn\'t expect %s, skipping', entity.expiration_ts)
       return
 
     # As a crude way to parallelise the query, shard subqueries to be bounded
