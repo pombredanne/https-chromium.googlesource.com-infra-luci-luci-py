@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2947ae83_4ce8bc75",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-25T14:39:27Z",
+      "side": 1,
+      "message": "Can you extract it as a separate stand alone function? It\u0027s a bit overwhelming now.",
+      "revId": "de08763020d09d5f32c3610d848503e91cfdd6b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
