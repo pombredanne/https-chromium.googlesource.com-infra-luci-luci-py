@@ -17,6 +17,24 @@
       "revId": "fd03a0cd763bfc1e21e115f2e10be2efdc43c81c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f483531a_f6530adb",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-03-25T22:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5b3648e_2fd4ca16",
+      "revId": "fd03a0cd763bfc1e21e115f2e10be2efdc43c81c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
