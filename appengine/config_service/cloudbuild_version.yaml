@@ -1,0 +1,9 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: ['run', '--volume', '/workspace:/workspace', 'gcr.io/chrome-infra-spinnaker/luci-config:$_AID', 'make', 'package_release']
+  - name: "gcr.io/chrome-infra-spinnaker/tar"
+    args: ['cf', '$BUILD_ID.tar', '-C', 'package', '.']
+artifacts:
+  objects:
+    location: "gs://chrome-infra-builds/luci-config"
+    paths:   ["$BUILD_ID.tar"]
