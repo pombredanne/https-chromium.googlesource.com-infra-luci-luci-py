@@ -1224,6 +1224,53 @@ def get_storage(server_ref):
   return Storage(isolate_storage.get_storage_api(server_ref))
 
 
+def _process_filepath(fullpath, digest, props, cache, read_only, use_symlinks):
+  """Put downloaded file to destination path. This function is used for multi
+  threaded file putting.
+  """
+  with cache.getfileobj(digest) as srcfileobj:
+    filetype = props.get('t', 'basic')
+
+    if filetype == 'basic':
+      # Ignore all bits apart from the user.
+      file_mode = (props.get('m') or 0500) & 0700
+      if read_only:
+        # Enforce read-only if the root bundle does.
+        file_mode &= 0500
+      putfile(srcfileobj, fullpath, file_mode,
+              use_symlink=use_symlinks)
+
+    elif filetype == 'tar':
+      basedir = os.path.dirname(fullpath)
+      with tarfile.TarFile(fileobj=srcfileobj, encoding='utf-8') as t:
+        for ti in t:
+          if not ti.isfile():
+            logging.warning(
+                'Path(%r) is nonfile (%s), skipped',
+                ti.name, ti.type)
+            continue
+          # Handle files created on Windows fetched on POSIX and the
+          # reverse.
+          other_sep = '/' if os.path.sep == '\\' else '\\'
+          name = ti.name.replace(other_sep, os.path.sep)
+          fp = os.path.normpath(os.path.join(basedir, name))
+          if not fp.startswith(basedir):
+            logging.error(
+                'Path(%r) is outside root directory',
+                fp)
+          ifd = t.extractfile(ti)
+          file_path.ensure_tree(os.path.dirname(fp))
+          file_mode = ti.mode & 0700
+          if read_only:
+            # Enforce read-only if the root bundle does.
+            file_mode &= 0500
+          putfile(ifd, fp, file_mode, ti.size)
+
+    else:
+      raise isolated_format.IsolatedError(
+            'Unknown file type %r', filetype)
+
+
 def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
                    filter_cb=None):
   """Aggressively downloads the .isolated file(s), then download all the files.
@@ -1286,6 +1333,10 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
     logging.info('Retrieving remaining files (%d of them)...',
         fetch_queue.pending_count)
     last_update = time.time()
+
+    putfile_thread_pool = threading_utils.ThreadPool(
+      2, threading_utils.num_processors() * 10, 0)
+
     with threading_utils.DeadlockDetector(DEADLOCK_TIMEOUT) as detector:
       while remaining:
         detector.ping()
@@ -1298,48 +1349,10 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
         for filepath, props in remaining.pop(digest):
           fullpath = os.path.join(outdir, filepath)
 
-          with cache.getfileobj(digest) as srcfileobj:
-            filetype = props.get('t', 'basic')
-
-            if filetype == 'basic':
-              # Ignore all bits apart from the user.
-              file_mode = (props.get('m') or 0500) & 0700
-              if bundle.read_only:
-                # Enforce read-only if the root bundle does.
-                file_mode &= 0500
-              putfile(
-                  srcfileobj, fullpath, file_mode,
-                  use_symlink=use_symlinks)
-
-            elif filetype == 'tar':
-              basedir = os.path.dirname(fullpath)
-              with tarfile.TarFile(fileobj=srcfileobj, encoding='utf-8') as t:
-                for ti in t:
-                  if not ti.isfile():
-                    logging.warning(
-                        'Path(%r) is nonfile (%s), skipped',
-                        ti.name, ti.type)
-                    continue
-                  # Handle files created on Windows fetched on POSIX and the
-                  # reverse.
-                  other_sep = '/' if os.path.sep == '\\' else '\\'
-                  name = ti.name.replace(other_sep, os.path.sep)
-                  fp = os.path.normpath(os.path.join(basedir, name))
-                  if not fp.startswith(basedir):
-                    logging.error(
-                        'Path(%r) is outside root directory',
-                        fp)
-                  ifd = t.extractfile(ti)
-                  file_path.ensure_tree(os.path.dirname(fp))
-                  file_mode = ti.mode & 0700
-                  if bundle.read_only:
-                    # Enforce read-only if the root bundle does.
-                    file_mode &= 0500
-                  putfile(ifd, fp, file_mode, ti.size)
-
-            else:
-              raise isolated_format.IsolatedError(
-                    'Unknown file type %r', filetype)
+          putfile_thread_pool.add_task(threading_utils.PRIORITY_HIGH,
+                                       _process_filepath, fullpath, digest,
+                                       props, cache, bundle.read_only,
+                                       use_symlinks)
 
         # Report progress.
         duration = time.time() - last_update
@@ -1350,6 +1363,8 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
           logging.info(msg)
           last_update = time.time()
     assert fetch_queue.wait_queue_empty, 'FetchQueue should have been emptied'
+
+  putfile_thread_pool.close()
 
   # Save the cache right away to not loose the state of the new objects.
   cache.save()
