@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "018a0e7e_394b003b",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1238297
+      },
+      "writtenOn": "2019-03-26T20:19:40Z",
+      "side": 1,
+      "message": "Shouldn\u0027t there be a putfile_thread_pool.join() at the end of this block?\n\nBecause otherwise only close() is called which doesn\u0027t join().\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/threading_utils.py?q\u003dthreading_utils.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d290\n\nInstead, it enqueues None, so all worker threads will stop. But None is less than anything else in tasks PriorityQueue so even though close() joins the threads, the threads stop before all tasks are processed.\n\n\u003e\u003e\u003e import queue;\n\u003e\u003e\u003e q \u003d queue.PriorityQueue()\n\u003e\u003e\u003e q.put(\"Something\")\n\u003e\u003e\u003e q.put(None)\n\u003e\u003e\u003e q.get() # \u003c- worker dies\n\u003e\u003e\u003e q.get() # \u003c- never gets this task\n\u0027Something\u0027",
+      "range": {
+        "startLine": 1337,
+        "startChar": 4,
+        "endLine": 1337,
+        "endChar": 70
+      },
+      "revId": "fa1f8ebf0aae66231bcde7b9f70ec86306ad1720",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
