@@ -81,6 +81,24 @@
       "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5aa6dae_429b5568",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T02:07:58Z",
+      "side": 1,
+      "message": "New link, learned that bookmarks are not needed .. \n\n\nhttps://docs.google.com/document/d/1sPjvQNqkIucfF_XUmu8ef8lwwGiBoZFsgsSxBSdtPPM/edit?ts\u003d5c998484#heading\u003dh.hd1gduybmo6g",
+      "parentUuid": "180bfbe4_7817a577",
+      "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
