@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "14e44cd1_38ef92c5",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T01:46:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d974887c_a575f993",
+      "range": {
+        "startLine": 30,
+        "startChar": 36,
+        "endLine": 30,
+        "endChar": 47
+      },
+      "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "737bcf5e_943b3bbc",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 9
@@ -39,6 +63,24 @@
       "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "180bfbe4_7817a577",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T01:46:20Z",
+      "side": 1,
+      "message": "This was pointed out in \ngo/chrome-infra-appengine-deployments as a Caveat: \n\nhttps://docs.google.com/document/d/1sPjvQNqkIucfF_XUmu8ef8lwwGiBoZFsgsSxBSdtPPM/edit#bookmark\u003did.hku9d35h0k92\n\nIt\u0027s a limitation of Spinnaker and how it handles Appengine versions.",
+      "parentUuid": "737bcf5e_943b3bbc",
+      "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
