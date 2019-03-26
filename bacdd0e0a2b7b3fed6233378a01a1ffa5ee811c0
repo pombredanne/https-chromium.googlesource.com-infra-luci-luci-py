@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d974887c_a575f993",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-26T00:26:38Z",
+      "side": 1,
+      "message": "environment",
+      "range": {
+        "startLine": 30,
+        "startChar": 36,
+        "endLine": 30,
+        "endChar": 47
+      },
+      "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "737bcf5e_943b3bbc",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-26T00:26:38Z",
+      "side": 1,
+      "message": "The version name at\nhttps://pantheon.corp.google.com/appengine/versions?project\u003dluci-config-staging\n\nis a net regression IMHO, I\u0027d really like to keep the pseudo revision number and git commit short hash.",
+      "revId": "bacdd0e0a2b7b3fed6233378a01a1ffa5ee811c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
