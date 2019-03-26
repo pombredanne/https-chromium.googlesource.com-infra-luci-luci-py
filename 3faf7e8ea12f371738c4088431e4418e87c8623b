@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "a88f9221_c4a4ee2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T00:12:12Z",
+      "side": 1,
+      "message": "This is the CL enabling Spinnaker pipelines. We have provided a base in go/luci-config-spin. It\u0027s expected that SRE and Devs will tune these as we start getting some use.",
+      "parentUuid": "9fb9cc6d_83666dee",
+      "range": {
+        "startLine": 39,
+        "startChar": 42,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2087b3ae_cf94fb18",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 5
@@ -140,6 +164,30 @@
       "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ded8f93_15a4b2ce",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T00:12:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2087b3ae_cf94fb18",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -250,6 +298,24 @@
     },
     {
       "key": {
+        "uuid": "8a4f4ba4_37b441b3",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T00:12:12Z",
+      "side": 1,
+      "message": "This CL does not remove manual deployments.\n\nThe previous targets are still there with \u0027-gae\u0027 added. Multiple ways to deploy in emergency is also described in the document in the CL description. \n\ngo/luci-config-deploy\n\nSo yes deploying using the Spinnaker pipeline will take longer than current method of pushing directly to prod. In an emergency the current methods will still work as they do now.",
+      "parentUuid": "c48d8ce9_4ea9f6f8",
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7cf22a2c_3a7f567e",
         "filename": "appengine/config_service/Makefile",
         "patchSetId": 5
@@ -273,6 +339,30 @@
     },
     {
       "key": {
+        "uuid": "52a0b96d_ae8075c7",
+        "filename": "appengine/config_service/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T00:12:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cf22a2c_3a7f567e",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc4e51d_681e3733",
         "filename": "appengine/config_service/cloudbuild.yaml",
         "patchSetId": 5
@@ -293,6 +383,30 @@
       "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22d30dae_3e75f709",
+        "filename": "appengine/config_service/cloudbuild.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2019-03-26T00:12:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcc4e51d_681e3733",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "3faf7e8ea12f371738c4088431e4418e87c8623b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
