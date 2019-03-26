@@ -22,6 +22,30 @@
       "revId": "fa1f8ebf0aae66231bcde7b9f70ec86306ad1720",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bda7419e_6d9ab70c",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-03-26T21:52:59Z",
+      "side": 1,
+      "message": "Ugg, thank you for finding.",
+      "parentUuid": "018a0e7e_394b003b",
+      "range": {
+        "startLine": 1337,
+        "startChar": 4,
+        "endLine": 1337,
+        "endChar": 70
+      },
+      "revId": "fa1f8ebf0aae66231bcde7b9f70ec86306ad1720",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
