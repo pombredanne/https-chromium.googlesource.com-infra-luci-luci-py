@@ -76,6 +76,8 @@ from server import task_pack
 # value to up 10 minutes early.
 _ADVANCE = datetime.timedelta(hours=1, minutes=10)
 
+_KEEP_DEAD = datetime.timedelta(days=1, minutes=10)
+
 
 class Error(Exception):
   pass
@@ -165,6 +167,10 @@ class TaskDimensionsSet(ndb.Model):
   # becomes lower than TaskRequest.expiration_ts for a later task. This enables
   # not updating the entity too frequently, at the cost of keeping a dead queue
   # "alive" for a bit longer than strictly necessary.
+  #
+  # In practice, do not remove this set until _KEEP_DEAD has expired, to
+  # furthur reduce the workload when tasks keep on coming when there's no bot
+  # available.
   valid_until_ts = ndb.DateTimeProperty()
 
   # 'key:value' strings. This is stored to enable match_bot(). This is important
@@ -174,6 +180,7 @@ class TaskDimensionsSet(ndb.Model):
 
   def match_bot(self, bot_dimensions):
     """Returns True if this bot can run this request dimensions set."""
+    # Always called via TaskDimensions.match_bot().
     for d in self.dimensions_flat:
       key, value = d.split(':', 1)
       if value not in bot_dimensions.get(key, []):
@@ -206,8 +213,10 @@ class TaskDimensions(ndb.Model):
   bot is triggered, which leads to have at <number of bots> TaskDimensions
   entities.
   """
-  # Lowest value of TaskDimensionsSet.valid_until_ts. See its documentation for
-  # more details.
+  # Lowest value of TaskDimensionsSet.valid_until_ts where this entity must be
+  # updated. See its documentation for more details.
+  #
+  # It may be in the past up to _KEEP_DEAD.
   valid_until_ts = ndb.ComputedProperty(
       lambda self: self._calc_valid_until_ts())
 
@@ -221,21 +230,25 @@ class TaskDimensions(ndb.Model):
       True if the entity was updated; it can be that a TaskDimensionsSet was
       added, updated or a stale one was removed.
     """
+    result = True
+    cutoff = now - _KEEP_DEAD
     s = self._match_request_flat(dimensions_flat)
-    if not s:
+    if s:
+      if s.valid_until_ts > valid_until_ts:
+        # It was updated already, skip storing again.
+        old = len(self.sets)
+        # Trim.
+        self.sets = [s for s in self.sets if s.valid_until_ts >= cutoff]
+        return len(self.sets) != old
+      # Bump valid_until_ts.
+      s.valid_until_ts = valid_until_ts
+    else:
       self.sets.append(
           TaskDimensionsSet(
               valid_until_ts=valid_until_ts, dimensions_flat=dimensions_flat))
-      self.sets = [s for s in self.sets if s.valid_until_ts >= now]
-      return True
-    if s.valid_until_ts < valid_until_ts:
-      s.valid_until_ts = valid_until_ts
-      self.sets = [s for s in self.sets if s.valid_until_ts >= now]
-      return True
-    # It was updated already, skip storing again.
-    old = len(self.sets)
-    self.sets = [s for s in self.sets if s.valid_until_ts >= now]
-    return len(self.sets) != old
+    # Trim.
+    self.sets = [s for s in self.sets if s.valid_until_ts >= cutoff]
+    return True
 
   def match_request(self, dimensions):
     """Confirms that this instance actually stores this set."""
@@ -251,6 +264,7 @@ class TaskDimensions(ndb.Model):
     for s in self.sets:
       if s.match_bot(bot_dimensions):
         return s
+    return None
 
   def _match_request_flat(self, dimensions_flat):
     d = frozenset(dimensions_flat)
@@ -362,7 +376,8 @@ def _update_BotTaskDimensions_slice(
   qit = q.iter(batch_size=100, deadline=15)
   while (yield qit.has_next_async()):
     task_dimensions = qit.next()
-    # match_bot() returns a TaskDimensionsSet if there's a match.
+    # match_bot() returns a TaskDimensionsSet if there's a match. It may be
+    # expired.
     s = task_dimensions.match_bot(bot_dimensions)
     if s and s.valid_until_ts >= now:
       # Valid TaskDimensionsSet.
@@ -539,15 +554,19 @@ def _refresh_BotTaskDimensions(
 
 @ndb.tasklet
 def _tidy_stale_TaskDimensions(now):
-  """Removes all stale TaskDimensions entities."""
-  qit = TaskDimensions.query(TaskDimensions.valid_until_ts < now).iter(
+  """Removes all stale TaskDimensions entities.
+
+  Leave entities in the DB for at least _KEEP_DEAD to reduce churn.
+  """
+  cutoff = now - _KEEP_DEAD
+  qit = TaskDimensions.query(TaskDimensions.valid_until_ts < cutoff).iter(
       batch_size=64, keys_only=True)
   td = []
   while (yield qit.has_next_async()):
     key = qit.next()
     # This function takes care of confirming that the entity is indeed
     # expired.
-    res = yield _remove_old_entity_async(key, now)
+    res = yield _remove_old_entity_async(key, cutoff)
     td.append(res)
     if res:
       logging.info('- TD: %s', res.integer_id())
@@ -794,6 +813,8 @@ def get_queues(bot_root_key):
   bot_id = bot_root_key.string_id()
   data = memcache.get(bot_id, namespace='task_queues')
   if data is not None:
+    # Note: This may return stale queues. We may want to change the format to
+    # include the expiration.
     logging.debug(
         'get_queues(%s): can run from %d queues (memcache)\n%s',
         bot_id, len(data), data)

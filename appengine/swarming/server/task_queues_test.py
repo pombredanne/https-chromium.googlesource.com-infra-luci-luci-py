@@ -238,6 +238,7 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     _assert_bot(bot_id=u'bot1')
     _assert_bot(bot_id=u'bot2')
     _assert_bot(bot_id=u'bot3')
+    bot_root_key = bot_management.get_root_key(u'bot1')
     self.assertEqual(0, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(0, task_queues.TaskDimensions.query().count())
 
@@ -284,16 +285,38 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(True, task_queues.rebuild_task_cache(payloads[-1]))
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(2, task_queues.TaskDimensions.query().count())
+    self.assertEqual(
+        [227177418, 1843498234], task_queues.get_queues(bot_root_key))
+    memcache.flush_all()
+    self.assertEqual(
+        [227177418, 1843498234], task_queues.get_queues(bot_root_key))
 
     # Now expire the two TaskDimensions, one at a time, and rebuild the task
     # queue.
     self.mock_now(datetime.datetime(2010, 1, 2, 4, 15, 5), 1)
     self.assertEqual(True, task_queues.rebuild_task_cache(payloads[0]))
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
-    self.assertEqual(1, task_queues.TaskDimensions.query().count())
+    self.assertEqual(2, task_queues.TaskDimensions.query().count())
+    self.assertEqual(
+        [227177418, 1843498234], task_queues.get_queues(bot_root_key))
+    # Observe the effect of memcache. See comment in get_queues().
+    memcache.flush_all()
+    self.assertEqual([], task_queues.get_queues(bot_root_key))
+
     self.assertEqual(True, task_queues.rebuild_task_cache(payloads[1]))
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
-    self.assertEqual(0, task_queues.TaskDimensions.query().count())
+    self.assertEqual(2, task_queues.TaskDimensions.query().count())
+    self.assertEqual([], task_queues.get_queues(bot_root_key))
+
+    # Get past _KEEP_DEAD.
+    self.mock_now(
+        datetime.datetime(2010, 1, 2, 4, 15, 5),
+        task_queues._KEEP_DEAD.total_seconds() + 1)
+    self.assertEqual([], task_queues.get_queues(bot_root_key))
+    self.assertEqual(True, task_queues.rebuild_task_cache(payloads[0]))
+    self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
+    self.assertEqual(1, task_queues.TaskDimensions.query().count())
+    self.assertEqual([], task_queues.get_queues(bot_root_key))
 
   def test_rebuild_task_cache_fail(self):
     # pylint: disable=unused-argument
@@ -522,15 +545,23 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assert_count(1, task_queues.TaskDimensions)
     self.assertEqual([2980491642], task_queues.get_queues(bot_root_key))
 
-    # One second before expiration.
-    self.mock_now(now, exp.total_seconds())
-    task_queues.cron_tidy_stale()
-    self.assert_count(1, task_queues.BotTaskDimensions)
-    self.assert_count(1, task_queues.TaskDimensions)
-    self.assertEqual([2980491642], task_queues.get_queues(bot_root_key))
-
-    # TaskDimension expired.
+    # TaskDimension expired but is still kept; get_queues() doesn't return it
+    # anymore even if still in the DB. BotTaskDimensions was evicted.
     self.mock_now(now, exp.total_seconds() + 1)
+    task_queues.cron_tidy_stale()
+    self.assert_count(0, task_queues.BotTaskDimensions)
+    self.assert_count(1, task_queues.TaskDimensions)
+    self.assertEqual([], task_queues.get_queues(bot_root_key))
+
+    # Just before _KEEP_DEAD.
+    self.mock_now(now, (exp + task_queues._KEEP_DEAD).total_seconds())
+    task_queues.cron_tidy_stale()
+    self.assert_count(0, task_queues.BotTaskDimensions)
+    self.assert_count(1, task_queues.TaskDimensions)
+    self.assertEqual([], task_queues.get_queues(bot_root_key))
+
+    # TaskDimension expired, after KEEP_DEAD.
+    self.mock_now(now, (exp + task_queues._KEEP_DEAD).total_seconds() + 1)
     task_queues.cron_tidy_stale()
     self.assert_count(0, task_queues.BotTaskDimensions)
     self.assert_count(0, task_queues.TaskDimensions)
