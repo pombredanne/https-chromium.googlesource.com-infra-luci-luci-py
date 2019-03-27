@@ -22,6 +22,30 @@
       "revId": "bb991121f1c32ea76149e5144b1230a8ea0b83ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2564ed4c_cb3a6b12",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-03-27T12:33:25Z",
+      "side": 1,
+      "message": "pylint complain otherwise. I decided to reduce pylint complaints. I agree that it\u0027s not needed, but for longer functions it does serve as \"documentation\".",
+      "parentUuid": "410042ee_745272e9",
+      "range": {
+        "startLine": 269,
+        "startChar": 4,
+        "endLine": 270,
+        "endChar": 0
+      },
+      "revId": "bb991121f1c32ea76149e5144b1230a8ea0b83ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
