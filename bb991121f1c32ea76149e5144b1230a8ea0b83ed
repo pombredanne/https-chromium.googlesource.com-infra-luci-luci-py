@@ -46,6 +46,30 @@
       "revId": "bb991121f1c32ea76149e5144b1230a8ea0b83ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06983a70_19b4131c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-03-27T17:02:27Z",
+      "side": 1,
+      "message": "Ah, I see, makes sense.",
+      "parentUuid": "2564ed4c_cb3a6b12",
+      "range": {
+        "startLine": 269,
+        "startChar": 4,
+        "endLine": 270,
+        "endChar": 0
+      },
+      "revId": "bb991121f1c32ea76149e5144b1230a8ea0b83ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
