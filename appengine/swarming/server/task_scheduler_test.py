@@ -527,17 +527,24 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def _mock_reap_calls(self):
     """Mock out external scheduler and native scheduler reap calls.
 
-    Returns: (list of es calls, lisr of native reap calls)
+    Returns: (list of es calls, list of native reap calls)
     """
     er_calls = []
     def ext_reap(*args):
       er_calls.append(args)
       return None, None, None
 
+    result_summary = self._quick_schedule(1)
+    to_run_key = task_to_run.request_to_task_to_run_key(
+        result_summary.request, 1, 0)
+
     r_calls = []
     def reap(*args):
       r_calls.append(args)
-      return []
+      # TODO(maruel): to_run_key.get() is returning None here, consistently. I'm
+      # not sure what is the correct way to get a valid TaskToRun out of the
+      # return value from self._quick_scheduler(). Provide any clues?
+      return [(result_summary.request, to_run_key.get())]
 
     self.mock(task_scheduler, '_bot_reap_task_external_scheduler', ext_reap)
     self.mock(task_to_run, 'yield_next_available_task_to_dispatch', reap)
@@ -569,7 +576,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task_es_with_fallback(self):
     self._setup_es(True)
+    notify_calls = self._mock_es_notify()
     er_calls, r_calls = self._mock_reap_calls()
+
+    # Ignore es notifications that were side-effects of the setup code, they
+    # are incidental to this test.
+    del notify_calls[:]
 
     task_scheduler.bot_reap_task(self.bot_dimensions, 'abc', None)
 
@@ -580,7 +592,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task_es_no_fallback(self):
     self._setup_es(False)
+    notify_calls = self._mock_es_notify()
     er_calls, r_calls = self._mock_reap_calls()
+
+    # Ignore es notifications that were side-effects of the setup code, they
+    # are incidental to this test.
+    del notify_calls[:]
 
     task_scheduler.bot_reap_task(self.bot_dimensions, 'abc', None)
 
@@ -588,6 +605,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         len(er_calls), 1, 'external scheduler was not called')
     self.assertEqual(
         len(r_calls), 0, 'native scheduler was called')
+    self.assertEqual(
+        len(notify_calls), 0, 'notify_requests was called')
 
   def test_bot_reap_task_es_no_task(self):
     self._setup_es(False)
