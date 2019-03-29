@@ -888,6 +888,9 @@ const template = (ele) => html`
 </swarming-app>
 `;
 
+// 100kb is the native page size on the server
+const STDOUT_REQUEST_SIZE = 100 * 1024;
+
 window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
 
   constructor() {
@@ -923,6 +926,8 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
 
     this._request = {};
     this._result = {};
+    this._stdout = '';
+    this._stdoutOffset = 0;
     this._currentSlice = {};
     this._currentSliceIdx = -1;
     this._notFound = false;
@@ -1124,17 +1129,42 @@ time.sleep(${leaseDuration})`];
         this.app.finishedTask();
       })
       .catch((e) => this.fetchError(e, 'task/result'));
-    fetch(`/_ah/api/swarming/v1/task/${this._taskId}/stdout`, extra)
+
+    const fetchNextStdout = () => {
+    fetch(`/_ah/api/swarming/v1/task/${this._taskId}/stdout?offset=${this._stdoutOffset}&`+
+          `length=${STDOUT_REQUEST_SIZE}`, extra)
       .then(jsonOrThrow)
       .then((json) => {
         const s = json.output || '';
+        this._stdoutOffset += s.length;
         // Remove carriage returns for easier copy-paste and presentation.
         // https://crbug.com/944974
-        this._stdout = s.replace(/\r\n/g, '\n');
+        this._stdout += s.replace(/\r\n/g, '\n');
         this.render();
-        this.app.finishedTask();
+
+        if (json.state === 'RUNNING' || json.state === 'PENDING') {
+          if (!s) {
+            // wait 10 seconds because no new input from last fetch
+            setTimeout(fetchNextStdout, 10*1000);
+          } else {
+            //fetch right away because we are not at the end of input
+            fetchNextStdout();
+          }
+
+        } else {
+          // no more
+          if (s.length < STDOUT_REQUEST_SIZE) {
+            this.app.finishedTask();
+          } else {
+            //fetch right away because we are not at the end of input
+            fetchNextStdout();
+          }
+
+        }
       })
       .catch((e) => this.fetchError(e, 'task/request'));
+    }
+    fetchNextStdout();
   }
 
   _fetchCounts(request, extra) {
@@ -1340,6 +1370,8 @@ time.sleep(${leaseDuration})`];
   _updateID(e) {
     const idInput = $$('#id_input', this);
     this._taskId = idInput.value;
+    this._stdout = ''; // erase stdout when switching tasks.
+    this._stdoutOffset = 0;
     this._stateChanged();
     this._fetch();
     this.render();
