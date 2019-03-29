@@ -42,6 +42,11 @@ from server import task_to_run
 
 _PROBABILITY_OF_QUICK_COMEBACK = 0.05
 
+# When falling back from external scheduler, requests are ignored for this many
+# seconds at the beginning of their life. This number should be larger than the
+# tail of notify_requests handling time of external_scheduler.
+_ES_FALLBACK_SLACK_SECONDS = 10
+
 
 def _secs_to_ms(value):
   """Converts a seconds value in float to the number of ms as an integer."""
@@ -1119,6 +1124,12 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
                                                           deadline)
     for request, to_run in q:
       iterated += 1
+      # When falling back from external scheduler, ignore requests for the
+      # first few seconds of their life.
+      if es_cfg:
+        age = datetime.datetime.now() - to_run.created_ts
+        if age.total_seconds() < _ES_FALLBACK_SLACK_SECONDS:
+          continue
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
       t = request.task_slice(slice_index)
       limit = to_run.created_ts + datetime.timedelta(seconds=t.expiration_secs)
