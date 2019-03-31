@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71a62a60_fa19136c",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-31T23:44:09Z",
+      "side": 1,
+      "message": "\u0027\n\nsame below",
+      "range": {
+        "startLine": 302,
+        "startChar": 52,
+        "endLine": 302,
+        "endChar": 53
+      },
+      "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07f9162e_6befdfdc",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-31T23:44:09Z",
+      "side": 1,
+      "message": "just increment(), not increment_by()\n\nsame below",
+      "range": {
+        "startLine": 302,
+        "startChar": 28,
+        "endLine": 302,
+        "endChar": 40
+      },
+      "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc33505_43fd4383",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-03-31T23:44:09Z",
+      "side": 1,
+      "message": "docstring must be the first expression",
+      "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
