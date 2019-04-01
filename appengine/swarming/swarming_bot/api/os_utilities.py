@@ -24,12 +24,14 @@ import os
 import pipes
 import platform
 import re
+import resource
 import signal
 import socket
 import subprocess
 import sys
 import tempfile
 import time
+import uuid
 import urllib
 import urllib2
 
@@ -331,6 +333,7 @@ def get_ip():
       time.sleep(0.05)
     finally:
       s.close()
+  return None
 
 
 @tools.cached
@@ -359,6 +362,23 @@ def get_hostname():
 def get_hostname_short():
   """Returns the base host name."""
   return get_hostname().split(u'.', 1)[0]
+
+
+@tools.cached
+def get_mac():
+  """Returns the MAC address of the primary network, if any."""
+  # Leverage stdlib uuid's internal code but zap the 'return random data upon
+  # failure'. We could be concerned that 'this is racy', but uuid.py doesn't use
+  # locking anyway, and since the returned value is None when not found and None
+  # is the market to say it's uninitialized, it should work. The only potential
+  # failure mode is if it had failed previously.
+  old = uuid._random_getnode
+  uuid._random_getnode = lambda: None
+  try:
+    mac = uuid.getnode()
+  finally:
+    uuid._random_getnode = old
+  return mac
 
 
 @tools.cached
@@ -1050,6 +1070,7 @@ def get_state():
     u'gpu': get_gpu()[1],
     u'hostname': get_hostname(),
     u'ip': get_ip(),
+    u'mac': get_mac(),
     u'nb_files_in_temp': nb_files_in_temp,
     u'pid': os.getpid(),
     u'python': {
@@ -1061,6 +1082,7 @@ def get_state():
     u'running_time': int(round(time.time() - _STARTED_TS)),
     u'ssd': list(get_ssd()),
     u'started_ts': int(round(_STARTED_TS)),
+    u'ulimit': resource.getrlimit(resource.RLIMIT_NOFILE),
     u'uptime': int(round(get_uptime())),
     u'user': getpass.getuser().decode('utf-8'),
   }
