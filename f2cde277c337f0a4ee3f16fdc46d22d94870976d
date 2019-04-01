@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a6ae60b_79e0d74f",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T17:11:06Z",
+      "side": 1,
+      "message": "Please update to:\n\n  // 100kb is the native page size on the server, so use this for efficiency.\n  // The value is hardcoded in task_result.py as TaskOutput.CHUNK_SIZE.\n\nThis gives a clue to potential reader as to where this comes from.",
+      "revId": "f2cde277c337f0a4ee3f16fdc46d22d94870976d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "100e23e9_89ed18a4",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T17:11:06Z",
+      "side": 1,
+      "message": "Can you point me to the doc where this says this is safe with regards to encoding/escaping? Mostly for my own learning.",
+      "range": {
+        "startLine": 1134,
+        "startChar": 67,
+        "endLine": 1134,
+        "endChar": 88
+      },
+      "revId": "f2cde277c337f0a4ee3f16fdc46d22d94870976d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46263fb0_8f807b82",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T17:11:06Z",
+      "side": 1,
+      "message": "I think this should be:\n\n  if (s.length \u003c STDOUT_REQUEST_SIZE) {\n\nso that fetching a byte doesn\u0027t imply two consecutive requests. So this is closer to the non running case.",
+      "revId": "f2cde277c337f0a4ee3f16fdc46d22d94870976d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
