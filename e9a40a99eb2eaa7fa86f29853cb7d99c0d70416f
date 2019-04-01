@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b97b3199_db23200d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T21:52:55Z",
+      "side": 1,
+      "message": "Please use datetime.timedelta(seconds\u003d10) instead.",
+      "revId": "e9a40a99eb2eaa7fa86f29853cb7d99c0d70416f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21c54e42_f842b7c1",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
@@ -34,6 +51,23 @@
       "revId": "e9a40a99eb2eaa7fa86f29853cb7d99c0d70416f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "871fdfaa_29663985",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T21:52:55Z",
+      "side": 1,
+      "message": "Please use utils.utcnow(); capture it at the start of the loop with:\n  now \u003d utils.utcnow()\n\nThen\n\n  if to_run.created_ts + _ES_FALLBACK_SLACK \u003e now:\n    continue",
+      "revId": "e9a40a99eb2eaa7fa86f29853cb7d99c0d70416f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
