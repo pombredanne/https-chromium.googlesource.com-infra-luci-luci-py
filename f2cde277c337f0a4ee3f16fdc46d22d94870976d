@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "3a48d835_2b576077",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-04-01T18:37:43Z",
+      "side": 1,
+      "message": "To be clear, this isn\u0027t even lit-html, it\u0027s just normal JS string concatenation \nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals\n\nIf we are worried about people copying/pasting this into a bad place, we should also be concerned about them copying and pasting the equivalent\n\u0027/_ah/api/swarming/v1/task/\u0027 + this._taskId + \u0027/stdout?offset\u0027...\nwhich, I don\u0027t think is too much of a concern.",
+      "parentUuid": "c7bbf790_1a179a24",
+      "range": {
+        "startLine": 1134,
+        "startChar": 67,
+        "endLine": 1134,
+        "endChar": 88
+      },
+      "revId": "f2cde277c337f0a4ee3f16fdc46d22d94870976d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46263fb0_8f807b82",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 3
