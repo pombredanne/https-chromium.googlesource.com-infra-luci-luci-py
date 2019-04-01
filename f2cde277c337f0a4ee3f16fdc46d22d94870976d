@@ -132,6 +132,30 @@
     },
     {
       "key": {
+        "uuid": "0b1fab04_391f625a",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T18:39:45Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "3a48d835_2b576077",
+      "range": {
+        "startLine": 1134,
+        "startChar": 67,
+        "endLine": 1134,
+        "endChar": 88
+      },
+      "revId": "f2cde277c337f0a4ee3f16fdc46d22d94870976d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46263fb0_8f807b82",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 3
