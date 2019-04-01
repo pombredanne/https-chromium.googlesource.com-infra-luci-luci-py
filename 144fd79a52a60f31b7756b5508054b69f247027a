@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c665270c_a27cbc90",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-01T18:29:45Z",
+      "side": 1,
+      "message": "One of the drawback of doing it here is that if there\u0027s a CR on the previous page and LF on the next one, it won\u0027t be caught. I\u0027m ambivalent about this.\nAlso note this is a problem that the data is not chunked at utf-8 character boundary, but is really a byte stream.\n\nI think we can survive this until someone complains but I\u0027d recommend keeping a note in the code so if this is ever brought up, it\u0027s easier to find where to fix the bug.",
+      "revId": "144fd79a52a60f31b7756b5508054b69f247027a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
