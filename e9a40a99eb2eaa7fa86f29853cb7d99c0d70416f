@@ -16,6 +16,24 @@
       "revId": "e9a40a99eb2eaa7fa86f29853cb7d99c0d70416f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9b500b1_db8f5247",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-04-01T17:58:56Z",
+      "side": 1,
+      "message": "commented on bug. fallback_when_empty gives better behavior when turning on and off a new es.",
+      "parentUuid": "21c54e42_f842b7c1",
+      "revId": "e9a40a99eb2eaa7fa86f29853cb7d99c0d70416f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
