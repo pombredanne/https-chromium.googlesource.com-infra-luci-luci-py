@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dc429f8_5ec22cee",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-02T20:14:05Z",
+      "side": 1,
+      "message": "Align at +2, not +4.",
+      "revId": "e9f46e1bc1da27e2b8b868ee1148e89b6171c0ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
