@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3e6520_a00d3a41",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-04T17:58:35Z",
+      "side": 1,
+      "message": "This is broken.",
+      "revId": "f195a4a9ba9bf05762f9e9c8fed0f6cda02d9080",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af947819_c0e2bcc3",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-04T17:58:35Z",
+      "side": 1,
+      "message": "I think the len(request_ids) value is redundant here since you display the values anyway.",
+      "revId": "f195a4a9ba9bf05762f9e9c8fed0f6cda02d9080",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
