@@ -171,6 +171,13 @@ def notify_requests(es_cfg, requests, use_tq, is_callback):
 
   Returns: Nothing.
   """
+  request_ids = [r.task_id for r in requests]
+  logging.debug(
+      'notify_requests(es_cfg=(%s,%s), %d requests %s, use_tq=%s, '
+      'is_callback=%s)',
+      es_cfg.address, es_cfg.id, len(request_ids), request_ids, use_tq,
+      is_callback)
+
   req = plugin_pb2.NotifyTasksRequest()
   req.is_callback = is_callback
 
