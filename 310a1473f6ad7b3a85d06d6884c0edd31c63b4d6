@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "d0c88447_4faea7a9",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-04-04T23:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07f9162e_6befdfdc",
+      "range": {
+        "startLine": 302,
+        "startChar": 28,
+        "endLine": 302,
+        "endChar": 40
+      },
+      "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4773ef4_d7fae57e",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-04-04T23:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71a62a60_fa19136c",
+      "range": {
+        "startLine": 302,
+        "startChar": 52,
+        "endLine": 302,
+        "endChar": 53
+      },
+      "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efc33505_43fd4383",
         "filename": "appengine/config_service/gitiles_import.py",
         "patchSetId": 5
@@ -62,6 +110,24 @@
       "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "645ff8ae_c985cff6",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1165234
+      },
+      "writtenOn": "2019-04-04T23:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efc33505_43fd4383",
+      "revId": "310a1473f6ad7b3a85d06d6884c0edd31c63b4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
