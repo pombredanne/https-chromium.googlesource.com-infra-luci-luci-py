@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9aefb63_c84c5222",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-04T13:21:12Z",
+      "side": 1,
+      "message": "This is already loaded for line 855, I think you could pass it as an argument at line 1157 to reduce duplicate work.",
+      "revId": "52e98323b3b65e4dff59c066ba15f48c6cb12242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b040b2da_bec2a136",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-04T13:21:12Z",
+      "side": 1,
+      "message": "As you noted in https://crbug.com/949380, I think the negative cache should not be used for the case of external scheduler. This is a pure Cloud Datastore transaction contingency workaround. You can add a bool as an argument.",
+      "revId": "52e98323b3b65e4dff59c066ba15f48c6cb12242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
