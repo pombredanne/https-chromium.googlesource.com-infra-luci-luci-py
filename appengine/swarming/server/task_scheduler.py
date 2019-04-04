@@ -1575,6 +1575,8 @@ def cron_handle_get_callbacks():
         request = request_key.get()
         result = result_key.get()
         items.append((request, result))
+      logging.info(
+          'Sending callbacks about %d tasks: %s', len(request_ids), request_ids)
       external_scheduler.notify_requests(es_cfg, items, True, True)
 
 
