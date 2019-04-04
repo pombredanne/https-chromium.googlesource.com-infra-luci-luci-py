@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9648d64a_11a0de90",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-04T18:13:43Z",
+      "side": 1,
+      "message": "I think I prefer it to be inlined, otherwise it feels like it\u0027s meant to be used below, but it is not.",
+      "revId": "2397d759000c90d4c1b30e9be9947bae859b271d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
