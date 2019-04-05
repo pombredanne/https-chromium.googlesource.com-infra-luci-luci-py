@@ -97,7 +97,7 @@ window.customElements.define('bot-mass-delete', class extends HTMLElement {
     let queryParams = query.fromObject({
       dimensions: this.dimensions,
       limit: 200, // see https://crbug.com/908423
-      fields: 'items/bot_id',
+      fields: 'cursor,items/bot_id',
     });
     queryParams += '&is_dead=TRUE';
 
@@ -117,8 +117,9 @@ window.customElements.define('bot-mass-delete', class extends HTMLElement {
               cursor: json.cursor,
               dimensions: this.dimensions,
               limit: 200, // see https://crbug.com/908423
-              fields: 'items/bot_id'
+              fields: 'cursor,items/bot_id'
             });
+            queryParams += '&is_dead=TRUE';
             fetch(`/_ah/api/swarming/v1/bots/list?${queryParams}`, extra)
               .then(jsonOrThrow)
               .then(maybeLoadMore)
