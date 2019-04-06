@@ -22,6 +22,30 @@
       "revId": "3d8881b2f0f2df9e743b7fcfdc39aa2255b2f02e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3037e314_f26ffc43",
+        "filename": "appengine/swarming/ui2/modules/bot-mass-delete/bot-mass-delete.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-04-06T14:09:38Z",
+      "side": 1,
+      "message": "I think the link is useful, as it explains \"why\".  I do think we can close the bug as limits should be in place for the new UI",
+      "parentUuid": "29824b74_6c589619",
+      "range": {
+        "startLine": 99,
+        "startChar": 19,
+        "endLine": 99,
+        "endChar": 49
+      },
+      "revId": "3d8881b2f0f2df9e743b7fcfdc39aa2255b2f02e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
