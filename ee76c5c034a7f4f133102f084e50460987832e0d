@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22b97a26_3508562a",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-04-08T23:15:49Z",
+      "side": 1,
+      "message": "\u0027",
+      "range": {
+        "startLine": 414,
+        "startChar": 42,
+        "endLine": 414,
+        "endChar": 43
+      },
+      "revId": "ee76c5c034a7f4f133102f084e50460987832e0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
