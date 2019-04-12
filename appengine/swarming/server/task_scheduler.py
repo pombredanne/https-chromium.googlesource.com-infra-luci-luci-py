@@ -1131,6 +1131,8 @@ def bot_reap_task(bot_dimensions, bot_version, deadline):
       # When falling back from external scheduler, ignore requests for the
       # first few seconds of their life.
       if es_cfg and to_run.created_ts + _ES_FALLBACK_SLACK > now:
+        logging.debug(
+            'Skipped too-young request %s during es fallback', request.task_id)
         continue
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
       t = request.task_slice(slice_index)
