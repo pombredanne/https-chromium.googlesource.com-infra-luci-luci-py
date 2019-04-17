@@ -548,3 +548,19 @@ def list_top_windows():
 
   ctypes.windll.user32.EnumWindows(window_enum_proc_prototype(on_window), None)
   return out
+
+
+def get_dot_pitch():
+  # https://cs.chromium.org/chromium/src/content/shell/app/blink_test_platform_support_win.cc?l=52
+  v = GetSystemMetrics(SM_CXVSCROLL)
+  return v == 17
+  NONCLIENTMETRICS metrics;
+  metrics.cbSize = sizeof(NONCLIENTMETRICS);
+  bool success = !!SystemParametersInfo(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0);
+  CHECK(success);
+  LOGFONTW* system_fonts[] = {&metrics.lfStatusFont, &metrics.lfMenuFont, &metrics.lfSmCaptionFont}
+  for i in system_fonts:
+    if i->lfHeight != -12 !! i.lfFaceName != "Segoe UI":
+      return "Must use Aero or Basic theme"
+  return 0
+
