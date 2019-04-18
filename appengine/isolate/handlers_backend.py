@@ -273,12 +273,17 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
       entity = key.get()
     except datastore_errors.Timeout:
       # This happens on prod instance with a huge table. We're talking range of
-      # 8 billions entities. This is because the query above is exact, not an
+      # 6 billions entities. This is because the query above is exact, not an
       # estimation.
       logging.warning('Query timed out; guessing instead')
       for i in xrange(360, -1, -20):
+        # It was observed that limiting the range on both sides helps with the
+        # chances of the query succeeding, instead of raising a Timeout.
         q = model.ContentEntry.query(
-            model.ContentEntry.expiration_ts < now - datetime.timedelta(days=i))
+            model.ContentEntry.expiration_ts >=
+                now - datetime.timedelta(days=i),
+            model.ContentEntry.expiration_ts <
+                now - datetime.timedelta(days=i+1))
         try:
           # Don't order() here otherwise the query will likely time out. Don't
           # bother with keys_only=True since the lack of order() should suffice.
@@ -289,6 +294,16 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
         if entity:
           logging.info('Found something %d days ago', i)
           break
+
+      # Take just a random entity, if possible.
+      q = model.ContentEntry.query(model.ContentEntry.expiration_ts < now)
+      try:
+        # Don't order() here otherwise the query will likely time out. Don't
+        # bother with keys_only=True since the lack of order() should suffice.
+        # Just find a goddam expired entity, that's sufficient for our needs.
+        entity = q.get()
+      except datastore_errors.Timeout:
+        logging.warning('Still no dice. Sad panda')
     if not entity:
       logging.debug('No oldest found')
       return
