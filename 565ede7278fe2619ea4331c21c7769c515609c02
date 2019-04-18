@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4b60425_96b7d161",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-18T20:59:15Z",
+      "side": 1,
+      "message": "\u003e \"disbled\" is a possible misspelling of \"disabled\".\n\nPlease Fix",
+      "parentUuid": "6a9eae42_661aff20",
+      "range": {
+        "startLine": 420,
+        "startChar": 33,
+        "endLine": 420,
+        "endChar": 40
+      },
+      "revId": "565ede7278fe2619ea4331c21c7769c515609c02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
