@@ -243,6 +243,7 @@ def _import_config_set(config_set, location):
     config_set (str): name of a config set to import.
     location (gitiles.Location): location of the config set.
   """
+  # TODO(fmatenaar): Use project scoped service accounts.
   assert config_set
   assert location
 
