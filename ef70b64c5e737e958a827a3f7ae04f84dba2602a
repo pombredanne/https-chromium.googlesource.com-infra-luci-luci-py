@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f28965c_cb8bb6e8",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-22T13:58:20Z",
+      "side": 0,
+      "message": "Don\u0027t you need to rebuild the pb2.py file?",
+      "revId": "ef70b64c5e737e958a827a3f7ae04f84dba2602a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
