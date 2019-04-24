@@ -61,6 +61,55 @@ class AccessTokenError(Exception):
 ndb.add_flow_exception(AccessTokenError)
 
 @ndb.tasklet
+def get_access_project_async(
+    scopes, project_id, min_lifetime_sec=5*60):
+  """Returns an OAuth2 access token for a project.
+
+
+  """
+  # Limit min_lifetime_sec, since requesting very long-lived tokens reduces
+  # efficiency of the cache (we need to constantly update it to keep tokens
+  # fresh).
+  if min_lifetime_sec <= 0 or min_lifetime_sec > 30 * 60:
+    raise ValueError(
+        '"min_lifetime_sec" should be in range (0; 1800], actual: %d'
+        % min_lifetime_sec)
+
+  # Accept a single string to mimic app_identity.get_access_token behavior.
+  if isinstance(scopes, basestring):
+    scopes = [scopes]
+  scopes = sorted(scopes)
+
+  # Cache key for the target token! Not the IAM-scoped one. The key ID is not
+  # known in advance when using signJwt RPC.
+  cache_key = _memcache_key(
+      method='iam',
+      email=project_id,
+      scopes=scopes,
+      key_id=None)
+  # We need IAM-scoped token only on cache miss, so generate it lazily.
+  iam_token_factory = (
+    lambda: get_access_token_async(
+      scopes=['https://www.googleapis.com/auth/iam'],
+      service_account_key=service_account_key,
+      act_as=None,
+      min_lifetime_sec=5*60))
+  token = yield _get_or_mint_token_async(
+      cache_key,
+      min_lifetime_sec,
+      lambda: _mint_project_token_async(
+
+      ),
+      #lambda: _mint_oauth_token_async(
+      #    iam_token_factory,
+      #    act_as,
+      #    scopes,
+      #    min_lifetime_sec)
+      namespace=_MEMCACHE_NS_PROJECT_TOKENS)
+  raise ndb.Return(token)
+
+
+@ndb.tasklet
 def get_access_token_async(
     scopes, service_account_key=None, act_as=None, min_lifetime_sec=5*60):
   """Returns an OAuth2 access token for a service account.
@@ -170,6 +219,7 @@ def get_access_token(*args, **kwargs):
 
 
 _MEMCACHE_NS = 'access_tokens'
+_MEMCACHE_NS_PROJECT_TOKEN = 'project_access_tokens'
 
 
 def _memcache_key(method, email, scopes, key_id=None):
@@ -190,14 +240,17 @@ def _memcache_key(method, email, scopes, key_id=None):
   return hashlib.sha256(blob).hexdigest()
 
 @ndb.tasklet
-def _get_or_mint_token_async(cache_key, min_lifetime_secs, minter):
+def _get_or_mint_token_async(cache_key,
+    min_lifetime_secs,
+    minter,
+    namespace=_MEMCACHE_NS):
   """Gets an accress token from the cache or triggers mint flow."""
   # Randomize refresh time to avoid thundering herd effect when token expires.
   # Also add 5 sec extra to make sure callers will get the token that lives for
   # at least min_lifetime_sec even taking into account possible delays in
   # propagating the token up the stack. We can't give any strict guarantees
   # here though (need to be able to stop time to do that).
-  token_info = yield _memcache_get(cache_key, namespace=_MEMCACHE_NS)
+  token_info = yield _memcache_get(cache_key, namespace=namespace)
 
   min_allowed_exp = (
     utils.time_time() +
