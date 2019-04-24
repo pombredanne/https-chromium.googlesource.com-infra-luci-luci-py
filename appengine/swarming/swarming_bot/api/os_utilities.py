@@ -900,6 +900,7 @@ def get_dimensions_all_devices_android(devices):
 
   # Pop a few dimensions otherwise there will be too many dimensions.
   del dimensions[u'cpu']
+  del dimensions[u'cpu_governor']
   del dimensions[u'cores']
   del dimensions[u'gpu']
   dimensions.pop(u'kvm', None)
