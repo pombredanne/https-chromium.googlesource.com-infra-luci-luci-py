@@ -10,6 +10,7 @@ api.py and delegation.py.
 
 from . import api
 from . import delegation
+from . import exceptions
 from . import model
 
 
@@ -71,7 +72,7 @@ def check_request(
       ctx.current_identity = ident
       ctx.delegation_token = unwrapped_tok
       ctx.auth_details = None
-    except delegation.BadTokenError as exc:
+    except exceptions.BadTokenError as exc:
       raise api.AuthorizationError('Bad delegation token: %s' % exc)
   else:
     ctx.current_identity = ctx.peer_identity
