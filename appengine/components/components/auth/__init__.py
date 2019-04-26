@@ -35,6 +35,7 @@ from service_account import *
 from signature import *
 from tokens import *
 from ui.app import *
+from project_tokens import *
 
 # Endpoints support is optional, enabled only when endpoints library is
 # specified in app.yaml.
