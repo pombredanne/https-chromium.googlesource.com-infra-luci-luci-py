@@ -12,11 +12,8 @@ import datetime
 import hashlib
 import json
 import logging
-import urllib
 
-from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
-from google.appengine.runtime import apiproxy_errors
 from google.protobuf import message
 
 from components import utils
@@ -33,7 +30,6 @@ __all__ = [
   'delegate',
   'delegate_async',
   'DelegationToken',
-  'DelegationTokenCreationError',
 ]
 
 
@@ -49,22 +45,6 @@ ALLOWED_CLOCK_DRIFT_SEC = 30
 
 # Name of the HTTP header to look for delegation token.
 HTTP_HEADER = 'X-Delegation-Token-V1'
-
-
-class BadTokenError(Exception):
-  """Raised on fatal errors (like bad signature). Results in 403 HTTP code."""
-
-
-class TransientError(Exception):
-  """Raised on errors that can go away with retry. Results in 500 HTTP code."""
-
-
-class DelegationTokenCreationError(Exception):
-  """Raised on delegation token creation errors."""
-
-
-class DelegationAuthorizationError(DelegationTokenCreationError):
-  """Raised on authorization error during delegation token creation."""
 
 
 # A minted delegation token returned by delegate_async and delegate.
@@ -197,72 +177,6 @@ def unseal_token(tok):
 
 ## Token creation.
 
-
-def _urlfetch_async(**kwargs):
-  """To be mocked in tests."""
-  return ndb.get_context().urlfetch(**kwargs)
-
-
-@ndb.tasklet
-def _authenticated_request_async(url, method='GET', payload=None, params=None):
-  """Sends an authenticated JSON API request, returns deserialized response.
-
-  Raises:
-    DelegationTokenCreationError if request failed or response is malformed.
-    DelegationAuthorizationError on HTTP 401 or 403 response from auth service.
-  """
-  scope = 'https://www.googleapis.com/auth/userinfo.email'
-  access_token = service_account.get_access_token(scope)[0]
-  headers = {
-    'Accept': 'application/json; charset=utf-8',
-    'Authorization': 'Bearer %s' % access_token,
-  }
-
-  if payload is not None:
-    assert method in ('CREATE', 'POST', 'PUT'), method
-    headers['Content-Type'] = 'application/json; charset=utf-8'
-    payload = utils.encode_to_json(payload)
-
-  if utils.is_local_dev_server():
-    protocols = ('http://', 'https://')
-  else:
-    protocols = ('https://',)
-  assert url.startswith(protocols) and '?' not in url, url
-  if params:
-    url += '?' + urllib.urlencode(params)
-
-  try:
-    res = yield _urlfetch_async(
-        url=url,
-        payload=payload,
-        method=method,
-        headers=headers,
-        follow_redirects=False,
-        deadline=10,
-        validate_certificate=True)
-  except (apiproxy_errors.DeadlineExceededError, urlfetch.Error) as e:
-    raise DelegationTokenCreationError(str(e))
-
-  if res.status_code in (401, 403):
-    logging.error('Token server HTTP %d: %s', res.status_code, res.content)
-    raise DelegationAuthorizationError(
-        'HTTP %d: %s' % (res.status_code, res.content))
-
-  if res.status_code >= 300:
-    logging.error('Token server HTTP %d: %s', res.status_code, res.content)
-    raise DelegationTokenCreationError(
-        'HTTP %d: %s' % (res.status_code, res.content))
-
-  try:
-    content = res.content
-    if content.startswith(")]}'\n"):
-      content = content[5:]
-    json_res = json.loads(content)
-  except ValueError as e:
-    raise DelegationTokenCreationError('Bad JSON response: %s' % e)
-  raise ndb.Return(json_res)
-
-
 @ndb.tasklet
 def delegate_async(
     audience,
@@ -372,7 +286,9 @@ def delegate_async(
   if not token_server_url:
     token_server_url = api.get_request_auth_db().token_server_url
     if not token_server_url:
-      raise DelegationTokenCreationError('Token server URL is not configured')
+      raise service_account.TokenCreationError(
+          'Token server URL is not configured'
+      )
 
   # End of validation.
 
@@ -405,7 +321,7 @@ def delegate_async(
       'Minting a delegation token for %r',
       {k: v for k, v in req.iteritems() if v},
   )
-  res = yield _authenticated_request_async(
+  res = yield service_account.authenticated_request_async(
       '%s/prpc/tokenserver.minter.TokenMinter/MintDelegationToken' %
           token_server_url,
       method='POST',
@@ -414,22 +330,24 @@ def delegate_async(
   signed_token = res.get('token')
   if not signed_token or not isinstance(signed_token, basestring):
     logging.error('Bad MintDelegationToken response: %s', res)
-    raise DelegationTokenCreationError('Bad response, no token')
+    raise service_account.TokenCreationError('Bad response, no token')
 
   token_struct = res.get('delegationSubtoken')
   if not token_struct or not isinstance(token_struct, dict):
     logging.error('Bad MintDelegationToken response: %s', res)
-    raise DelegationTokenCreationError('Bad response, no delegationSubtoken')
+    raise service_account.TokenCreationError(
+        'Bad response, no delegationSubtoken'
+    )
 
   if token_struct.get('kind') != 'BEARER_DELEGATION_TOKEN':
     logging.error('Bad MintDelegationToken response: %s', res)
-    raise DelegationTokenCreationError(
+    raise service_account.TokenCreationError(
         'Bad response, not BEARER_DELEGATION_TOKEN')
 
   actual_validity_duration_sec = token_struct.get('validityDuration')
   if not isinstance(actual_validity_duration_sec, (int, float)):
     logging.error('Bad MintDelegationToken response: %s', res)
-    raise DelegationTokenCreationError(
+    raise service_account.TokenCreationError(
         'Unexpected response, validityDuration is absent or not a number')
 
   token = DelegationToken(
