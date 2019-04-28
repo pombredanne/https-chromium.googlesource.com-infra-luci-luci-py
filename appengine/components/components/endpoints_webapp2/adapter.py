@@ -124,6 +124,7 @@ def path_handler(api_class, api_method, service_path):
 
       try:
         req = decode_message(api_method.remote, self.request)
+        req.check_initialized()
       except (messages.DecodeError, messages.ValidationError, ValueError) as ex:
         response_body = json.dumps({'error': {'message': ex.message}})
         self.response.set_status(httplib.BAD_REQUEST)
