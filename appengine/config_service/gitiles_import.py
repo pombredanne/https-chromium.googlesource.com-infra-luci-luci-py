@@ -243,6 +243,7 @@ def _import_config_set(config_set, location):
     config_set (str): name of a config set to import.
     location (gitiles.Location): location of the config set.
   """
+  # TODO(fmatenaar): Use project scoped service accounts.
   assert config_set
   assert location
 
@@ -257,6 +258,14 @@ def _import_config_set(config_set, location):
 
   try:
     logging.debug('Importing %s from %s', config_set, location)
+
+    import traceback
+    try:
+      int('k')
+    except:
+      stack = traceback.format_exc()
+    logging.debug('Stack = %s', stack)
+    logging.info('Location kwargs: %s', location.get_op_kwargs())
 
     log = location.get_log(
         limit=1, deadline=get_gitiles_config().fetch_log_deadline)
@@ -338,6 +347,7 @@ def import_project(project_id):
 
   try:
     loc = _resolved_location(project.config_location.url)
+    loc.set_op_kwargs({'project_id': project_id})
   except gitiles.TreeishResolutionError:
 
     @ndb.transactional
@@ -375,6 +385,7 @@ def import_ref(project_id, ref_name):
   # We don't call _resolved_location here because we are replacing treeish and
   # path below anyway.
   loc = gitiles.Location.parse(project.config_location.url)
+  loc.set_op_kwargs({'project_id': project_id})
 
   ref = None
   for r in projects.get_refs([project_id])[project_id] or ():
