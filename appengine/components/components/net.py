@@ -83,7 +83,8 @@ def request_async(
     service_account_key=None,
     delegation_token=None,
     deadline=None,
-    max_attempts=None):
+    max_attempts=None,
+    project_id=None):
   """Sends a REST API request, returns raw unparsed response.
 
   Retries the request on transient errors for up to |max_attempts| times.
@@ -121,7 +122,23 @@ def request_async(
 
   headers = (headers or {}).copy()
 
-  if scopes:
+
+  logging.info('project_id = %s', project_id)
+  if project_id:
+    try:
+      tok, _ = yield auth.get_project_access_token_async(project_id, scopes)
+      headers['Authorization'] = 'Bearer %s' % tok
+    except Exception as e:
+      logging.error('unable to obtain project token: %s', e)
+      import traceback
+      tb = traceback.format_exc()
+      logging.error('Traceback: %s', tb)
+      # TODO(fmatenaar): Remove this after migration.
+      # Fall back if project token acquisition failed
+      tok, _ = yield auth.get_access_token_async(scopes, service_account_key)
+      headers['Authorization'] = 'Bearer %s' % tok
+
+  elif scopes:
     tok, _ = yield auth.get_access_token_async(scopes, service_account_key)
     headers['Authorization'] = 'Bearer %s' % tok
 
