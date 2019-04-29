@@ -378,6 +378,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'server': u'https://pool.config.cipd.example.com',
         },
         u'command': [u'python', u'run_test.py'],
+        u'containment': {},
         u'relative_cwd': u'de/ep',
         u'dimensions': {
           u'os': [u'Amiga'],
@@ -442,6 +443,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'server': u'https://pool.config.cipd.example.com',
         },
         u'command': [u'python', u'run_test.py'],
+        u'containment': {},
         u'relative_cwd': None,
         u'dimensions': {
           u'os': [u'Amiga'],
@@ -511,6 +513,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'server': u'https://pool.config.cipd.example.com',
         },
         u'command': [u'python', u'run_test.py'],
+        u'containment': {},
         u'relative_cwd': None,
         u'dimensions': {
           u'os': [u'Amiga'],
@@ -623,6 +626,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'server': u'https://pool.config.cipd.example.com',
         },
         u'command': [],
+        u'containment': {},
         u'relative_cwd': None,
         u'dimensions': {
           u'os': [u'Amiga'],
@@ -779,6 +783,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'server': u'https://pool.config.cipd.example.com',
         },
         u'command': [],
+        u'containment': {},
         u'relative_cwd': None,
         u'dimensions': {
           u'os': [u'Amiga'],
