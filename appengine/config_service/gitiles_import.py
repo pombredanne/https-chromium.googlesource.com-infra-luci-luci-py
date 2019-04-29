@@ -243,6 +243,7 @@ def _import_config_set(config_set, location):
     config_set (str): name of a config set to import.
     location (gitiles.Location): location of the config set.
   """
+  # TODO(fmatenaar): Use project scoped service accounts.
   assert config_set
   assert location
 
@@ -375,6 +376,7 @@ def import_ref(project_id, ref_name):
   # We don't call _resolved_location here because we are replacing treeish and
   # path below anyway.
   loc = gitiles.Location.parse(project.config_location.url)
+  loc.set_op_kwargs({'project_id': project_id})
 
   ref = None
   for r in projects.get_refs([project_id])[project_id] or ():
