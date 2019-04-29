@@ -75,6 +75,7 @@ from google.appengine.api import datastore_errors
 from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
 
+from components import cipd
 from components import datastore_utils
 from components import utils
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
@@ -82,8 +83,6 @@ from server import bq_state
 from server import large
 from server import task_pack
 from server import task_request
-
-import cipd
 
 # Amount of time after which a bot is considered dead. In short, if a bot has
 # not sent an update in the last N minutes while running a task, it is
