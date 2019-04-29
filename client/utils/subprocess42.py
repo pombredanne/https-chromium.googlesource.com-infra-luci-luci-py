@@ -221,6 +221,7 @@ class Popen(subprocess.Popen):
   Additional arguments:
   - detached: If True, the process is created in a new process group. On
     Windows, use CREATE_NEW_PROCESS_GROUP. On posix, use os.setpgid(0, 0).
+  - lower_priority: reduce the process priority a bit.
 
   Additional members:
   - start: timestamp when this process started.
@@ -243,14 +244,11 @@ class Popen(subprocess.Popen):
   popen_lock = threading.Lock()
 
   def __init__(self, args, **kwargs):
-    assert 'creationflags' not in kwargs
-    assert 'preexec_fn' not in kwargs, 'Use detached=True instead'
-
     # Windows version of subprocess.Popen() really doens't like unicode. In
     # practice we should use the current ANSI code page, but settle for utf-8
     # across all OSes for consistency.
     to_str = lambda i: i if isinstance(i, str) else i.encode('utf-8')
-    args = [to_str(i) for i in args]
+    self.args = [to_str(i) for i in args]
     if kwargs.get('cwd') is not None:
       kwargs['cwd'] = to_str(kwargs['cwd'])
     if kwargs.get('env'):
@@ -258,18 +256,37 @@ class Popen(subprocess.Popen):
         to_str(k): to_str(v) for k, v in kwargs['env'].iteritems()
       }
 
-    self.start = time.time()
-    self.end = None
-    self.gid = None
     self.detached = kwargs.pop('detached', False)
     if self.detached:
       if subprocess.mswindows:
-        kwargs['creationflags'] = subprocess.CREATE_NEW_PROCESS_GROUP
+        prev = kwargs.get('creationflags') or 0
+        kwargs['creationflags'] = prev | subprocess.CREATE_NEW_PROCESS_GROUP
       else:
-        kwargs['preexec_fn'] = lambda: os.setpgid(0, 0)
+        old_preexec_fn_1 = kwargs.get('preexec_fn')
+        def new_preexec_fn_1():
+          if old_preexec_fn_1:
+            old_preexec_fn_1()
+          os.setpgid(0, 0)
+        kwargs['preexec_fn'] = new_preexec_fn_1
+
+    if kwargs.pop('lower_priority', False):
+      if subprocess.mswindows:
+        BELOW_NORMAL_PRIORITY_CLASS = 0x00004000
+        prev = kwargs.get('creationflags') or 0
+        kwargs['creationflags'] = prev | BELOW_NORMAL_PRIORITY_CLASS
+      else:
+        old_preexec_fn_2 = kwargs.get('preexec_fn')
+        def new_preexec_fn_2():
+          if old_preexec_fn_2:
+            old_preexec_fn_2()
+          os.nice(1)
+        kwargs['preexec_fn'] = new_preexec_fn_2
+
+    self.end = None
+    self.gid = None
+    self.start = time.time()
     with self.popen_lock:
-      super(Popen, self).__init__(args, **kwargs)
-    self.args = args
+      super(Popen, self).__init__(self.args, **kwargs)
     if self.detached and not subprocess.mswindows:
       try:
         self.gid = os.getpgid(self.pid)

@@ -316,7 +316,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
         install_packages_fn=run_isolated.noop_install_packages,
         use_symlinks=False,
         env={},
-        env_prefix={})
+        env_prefix={},
+        lower_priority=False)
     ret = run_isolated.run_tha_test(data, None)
     self.assertEqual(0, ret)
     return make_tree_call
@@ -820,7 +821,8 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           install_packages_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
           env={},
-          env_prefix={})
+          env_prefix={},
+          lower_priority=False)
       ret = run_isolated.run_tha_test(data, None)
       self.assertEqual(0, ret)
 
@@ -1182,7 +1184,8 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           install_packages_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
           env={},
-          env_prefix={})
+          env_prefix={},
+          lower_priority=False)
       ret = run_isolated.run_tha_test(data, None)
       self.assertEqual(0, ret)
 
