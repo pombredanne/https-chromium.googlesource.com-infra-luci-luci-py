@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import ctypes
 import itertools
 import os
 import sys
@@ -105,6 +106,11 @@ if __name__ == '__main__':
   sys.exit(main())
 """
 
+# See
+# https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-getpriorityclass
+BELOW_NORMAL_PRIORITY_CLASS = 0x4000
+NORMAL_PRIORITY_CLASS = 0x20
+
 
 def to_native_eol(string):
   if string is None:
@@ -154,6 +160,14 @@ def get_output_sleep_proc_err(sleep_duration):
   cmd = [sys.executable, '-c', ';'.join(command)]
   return subprocess42.Popen(
       cmd, env=ENV, stderr=subprocess42.PIPE, universal_newlines=True)
+
+
+def _not_normal_priority():
+  """Returns True if the current process is not running at normal priority."""
+  if sys.platform == 'win32':
+    v = ctypes.windll.kernel32.GetPriorityClass(-1)
+    return v == NORMAL_PRIORITY_CLASS
+  return os.nice(0) == 0
 
 
 class Subprocess42Test(unittest.TestCase):
@@ -322,6 +336,42 @@ class Subprocess42Test(unittest.TestCase):
       self.assertTrue(proc.kill())
       proc.wait()
       self.assertLessEqual(0.5, proc.duration())
+
+  def _test_lower_priority(self, lower_priority):
+    if sys.platform == 'win32':
+      cmd = [
+        sys.executable, '-u', '-c',
+        'import ctypes,sys; v=ctypes.windll.kernel32.GetPriorityClass(-1);'
+        'sys.stdout.write(hex(v))'
+      ]
+    else:
+      cmd = [
+        sys.executable, '-u', '-c',
+        'import os,sys;sys.stdout.write(str(os.nice(0)))',
+      ]
+    proc = subprocess42.Popen(
+        cmd, stdout=subprocess42.PIPE, lower_priority=lower_priority)
+    out, err = proc.communicate()
+    self.assertEqual(None, err)
+    return out
+
+  @unittest.skipIf(
+      _not_normal_priority(), 'Test process is not running at normal priority')
+  def test_lower_priority(self):
+    out = self._test_lower_priority(True)
+    if sys.platform == 'win32':
+      self.assertEqual(hex(BELOW_NORMAL_PRIORITY_CLASS), out)
+    else:
+      self.assertEqual('1', out)
+
+  @unittest.skipIf(
+      _not_normal_priority(), 'Test process is not running at normal priority')
+  def test_lower_priority_False(self):
+    out = self._test_lower_priority(False)
+    if sys.platform == 'win32':
+      self.assertEqual(hex(NORMAL_PRIORITY_CLASS), out)
+    else:
+      self.assertEqual('0', out)
 
   def test_call(self):
     cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
