@@ -48,12 +48,24 @@ RGX_HASH = re.compile(r'^[0-9a-f]{40}$')
 LocationTuple = collections.namedtuple(
     'LocationTuple', ['hostname', 'project', 'treeish', 'path'])
 
+def insert_op_kwargs(method):
+  """Decorator to insert stored dict or args to each call."""
+  def wrapper(obj, *args, **kwargs):
+    add_kwargs = obj.get_op_kwargs()
+    add_kwargs.update(kwargs)
+    kwargs = add_kwargs
+    return method(obj, *args, **kwargs)
+  return wrapper
 
 class Location(LocationTuple):
   """Gitiles URL. Immutable.
 
   Contains gitiles methods, such as get_log, for convenience.
   """
+
+  def __init__(self, *args, **kwargs):
+    self._op_kwargs = {}
+    super(Location, self).__init__(*args, **kwargs)
 
   def __eq__(self, other):
     return str(self) == str(other)
@@ -214,41 +226,57 @@ class Location(LocationTuple):
       path = '/' + path
     return path
 
+  def set_op_kwargs(self, **kwargs):
+    """Sets kwargs to add to each operation."""
+    self._op_kwargs = kwargs
+
+  def get_op_kwargs(self):
+    """Returns _op_kwargs property."""
+    return self._op_kwargs
+
+  @insert_op_kwargs
   def get_log_async(self, **kwargs):
     return get_log_async(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_log(self, **kwargs):
     return get_log(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_tree_async(self, **kwargs):
     return get_tree_async(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_tree(self, **kwargs):
     return get_tree(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_archive_async(self, **kwargs):
     return get_archive(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_archive(self, **kwargs):
     return get_archive(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_file_content_async(self, **kwargs):
     return get_file_content_async(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_file_content(self, **kwargs):
     return get_file_content(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
