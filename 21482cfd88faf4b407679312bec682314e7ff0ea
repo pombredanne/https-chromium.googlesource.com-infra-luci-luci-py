@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95a064d5_495b94bc",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-04-30T12:11:53Z",
+      "side": 1,
+      "message": "I\u0027m having a second thought on the message name; alternatives are ProcessContainment, TaskContainment, TaskProcessContainment. I think it\u0027s probably fine as is but I just wanted to register this.",
+      "range": {
+        "startLine": 561,
+        "startChar": 8,
+        "endLine": 561,
+        "endChar": 19
+      },
+      "revId": "21482cfd88faf4b407679312bec682314e7ff0ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
