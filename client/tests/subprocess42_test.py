@@ -361,6 +361,30 @@ class Subprocess42Test(unittest.TestCase):
     else:
       self.assertEqual(str(os.nice(0)), out)
 
+  def test_use_job_object(self):
+    # Minimal test case.
+    cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
+    containment = subprocess42.Containment(
+        containment_type=subprocess42.Containment.AUTO,
+        limit_processes=1,
+        limit_total_committed_memory=1024*1024*1024)
+    self.assertEqual(0, subprocess42.check_call(cmd, containment=containment))
+
+  def test_use_job_object_kill(self):
+    # Test process killing.
+    cmd = [
+      sys.executable, '-u', '-c', 'import sys,time; print("hi");time.sleep(60)',
+    ]
+    containment = subprocess42.Containment(
+        containment_type=subprocess42.Containment.AUTO,
+        limit_processes=1,
+        limit_total_committed_memory=1024*1024*1024)
+    p = subprocess42.Popen(
+        cmd, stdout=subprocess42.PIPE, containment=containment)
+    itr = p.yield_any_line()
+    self.assertEqual(('stdout', 'hi'), next(itr))
+    p.kill()
+
   def test_call(self):
     cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
     self.assertEqual(0, subprocess42.call(cmd))
