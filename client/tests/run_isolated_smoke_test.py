@@ -444,6 +444,24 @@ class RunIsolatedTest(unittest.TestCase):
     # This needs to be fixed.
     self.assertNotEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
+  def test_minimal_lower_priority(self):
+    cmd = ['--lower-priority', '--raw-cmd', '--', sys.executable, '-c']
+    if sys.platform == 'win32':
+      cmd.append(
+          'import ctypes,sys; v=ctypes.windll.kernel32.GetPriorityClass(-1);'
+          'sys.stdout.write(hex(v))')
+    else:
+      cmd.append('import os,sys; sys.stdout.write(str(os.nice(0)))')
+    out, err, returncode = self._run(cmd)
+    self.assertEqual('', err)
+    if sys.platform == 'win32':
+      # Should be NORMAL_PRIORITY_CLASS.
+      p = ctypes.windll.kernel32.GetPriorityClass(-1)
+      self.assertEqual(hex(p), out)
+    else:
+      self.assertEqual(str(os.nice(0)+1), out)
+    self.assertEqual(0, returncode)
+
   def test_named_cache(self):
     # Runs a task that drops a file in the named cache, and assert that it's
     # correctly saved.
