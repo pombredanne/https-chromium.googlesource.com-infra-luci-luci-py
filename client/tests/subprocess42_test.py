@@ -361,6 +361,23 @@ class Subprocess42Test(unittest.TestCase):
     else:
       self.assertEqual(str(os.nice(0)), out)
 
+  @unittest.skipIf(lambda: sys.platform != 'win32', 'Windows only test')
+  def test_use_job_object(self):
+    # Minimal test case.
+    cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
+    self.assertEqual(0, subprocess42.check_call(cmd, use_job_object=True))
+
+  @unittest.skipIf(lambda: sys.platform != 'win32', 'Windows only test')
+  def test_use_job_object_kill(self):
+    # Test process killing.
+    cmd = [
+      sys.executable, '-u', '-c', 'import sys,time; print("hi");time.sleep(60)',
+    ]
+    p = subprocess42.Popen(cmd, stdout=subprocess42.PIPE, use_job_object=True)
+    itr = p.yield_any_line()
+    self.assertEqual('hi\r\n', next(itr))
+    p.kill()
+
   def test_call(self):
     cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
     self.assertEqual(0, subprocess42.call(cmd))
