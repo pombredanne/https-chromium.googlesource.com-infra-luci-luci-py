@@ -22,6 +22,30 @@
       "revId": "21482cfd88faf4b407679312bec682314e7ff0ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e06122b1_9a38d6e6",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-04-30T17:51:44Z",
+      "side": 1,
+      "message": "Maybe ProcessContainment, if this will stay scoped to OS-specific process handling? (And then the \"task\" aspect is implicit in how the message is used --- is there a chance that we might have non-task process containment?)",
+      "parentUuid": "95a064d5_495b94bc",
+      "range": {
+        "startLine": 561,
+        "startChar": 8,
+        "endLine": 561,
+        "endChar": 19
+      },
+      "revId": "21482cfd88faf4b407679312bec682314e7ff0ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
