@@ -6,6 +6,7 @@
 import ctypes
 import itertools
 import os
+import signal
 import sys
 import tempfile
 import unittest
@@ -360,6 +361,58 @@ class Subprocess42Test(unittest.TestCase):
       self.assertEqual(hex(p), out)
     else:
       self.assertEqual(str(os.nice(0)), out)
+
+  def test_containment_auto(self):
+    # Minimal test case.
+    cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
+    containment = subprocess42.Containment(
+        containment_type=subprocess42.Containment.AUTO,
+        limit_processes=1,
+        limit_total_committed_memory=1024*1024*1024)
+    self.assertEqual(0, subprocess42.check_call(cmd, containment=containment))
+
+  def test_containment_auto_kill(self):
+    # Test process killing.
+    cmd = [
+      sys.executable, '-u', '-c', 'import sys,time; print("hi");time.sleep(60)',
+    ]
+    containment = subprocess42.Containment(
+        containment_type=subprocess42.Containment.AUTO,
+        limit_processes=1,
+        limit_total_committed_memory=1024*1024*1024)
+    p = subprocess42.Popen(
+        cmd, stdout=subprocess42.PIPE, containment=containment)
+    itr = p.yield_any_line()
+    self.assertEqual(('stdout', 'hi'), next(itr))
+    p.kill()
+    p.wait()
+    if sys.platform != 'win32':
+      # signal.SIGKILL is not defined on Windows. Validate our assumption here.
+      self.assertEqual(9, signal.SIGKILL)
+    self.assertEqual(-9, p.returncode)
+
+  def test_containment_auto_limit_process(self):
+    # Process creates a children process. It should fail, throwing.
+    cmd = [
+      sys.executable, '-u', '-c',
+      'import subprocess,sys; '
+      'subprocess.call([sys.executable, "-c", "import time;time.sleep(60)"])',
+    ]
+    containment = subprocess42.Containment(
+        containment_type=subprocess42.Containment.JOB_OBJECT,
+        limit_processes=1,
+        limit_total_committed_memory=1024*1024*1024)
+    start = lambda: subprocess42.Popen(
+        cmd, stdout=subprocess42.PIPE, containment=containment)
+
+    if sys.platform == 'win32':
+      p = start()
+      p.wait()
+      self.assertEqual(-9, p.returncode)
+    else:
+      # JOB_OBJECT is not usable on non-Windows.
+      with self.assertRaises(NotImplementedError):
+        start()
 
   def test_call(self):
     cmd = [sys.executable, '-u', '-c', 'import sys; sys.exit(0)']
