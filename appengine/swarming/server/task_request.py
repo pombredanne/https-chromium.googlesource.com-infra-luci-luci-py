@@ -613,6 +613,11 @@ class CacheEntry(ndb.Model):
       raise datastore_errors.BadValueError('name is not specified')
 
 
+class Containment(ndb.Model):
+  """Describes the task process containment."""
+  lower_priority = ndb.BooleanProperty(default=False)
+
+
 class TaskProperties(ndb.Model):
   """Defines all the properties of a task to be run on the Swarming
   infrastructure.
@@ -704,6 +709,9 @@ class TaskProperties(ndb.Model):
   # If True, the TaskRequest embedding these TaskProperties has an associated
   # SecretBytes entity.
   has_secret_bytes = ndb.BooleanProperty(default=False, indexed=False)
+
+  # Task process containment. Highly OS specific.
+  containment = ndb.LocalStructuredProperty(Containment)
 
   @property
   def pool(self):
