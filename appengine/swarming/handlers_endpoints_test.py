@@ -277,6 +277,7 @@ class TasksApiTest(BaseTest):
     expected[u'task_id'] = u'5cee488008810'
     expected[u'task_result'] = {
       u'abandoned_ts': u'2010-01-02T03:04:05',
+      u'cipd_pins': {},
       u'completed_ts': u'2010-01-02T03:04:05',
       u'created_ts': u'2010-01-02T03:04:05',
       u'current_task_slice': u'0',
@@ -377,6 +378,7 @@ class TasksApiTest(BaseTest):
       u'task_id': u'5cee488008810',
       u'task_result': {
         u'abandoned_ts': u'2010-01-02T03:04:05',
+        u'cipd_pins': {},
         u'completed_ts': u'2010-01-02T03:04:05',
         u'created_ts': u'2010-01-02T03:04:05',
         u'current_task_slice': u'0',
@@ -630,6 +632,7 @@ class TasksApiTest(BaseTest):
       u'task_id': u'5cee488008810',
       u'task_result': {
         u'abandoned_ts': u'2010-01-02T03:04:05',
+        u'cipd_pins': {},
         u'completed_ts': u'2010-01-02T03:04:05',
         u'created_ts': u'2010-01-02T03:04:05',
         u'current_task_slice': u'0',
@@ -682,6 +685,7 @@ class TasksApiTest(BaseTest):
       u'task_id': u'5cee488008810',
       u'task_result': {
         u'abandoned_ts': u'2010-01-02T03:04:05',
+        u'cipd_pins': {},
         u'completed_ts': u'2010-01-02T03:04:05',
         u'created_ts': u'2010-01-02T03:04:05',
         u'current_task_slice': u'0',
@@ -742,6 +746,7 @@ class TasksApiTest(BaseTest):
       u'task_id': u'5cee488008810',
       u'task_result': {
         u'abandoned_ts': u'2010-01-02T03:04:05',
+        u'cipd_pins': {},
         u'completed_ts': u'2010-01-02T03:04:05',
         u'created_ts': u'2010-01-02T03:04:05',
         u'current_task_slice': u'0',
@@ -809,6 +814,7 @@ class TasksApiTest(BaseTest):
       u'task_id': u'5cee488008810',
       u'task_result': {
         u'abandoned_ts': u'2010-01-02T03:04:05',
+        u'cipd_pins': {},
         u'completed_ts': u'2010-01-02T03:04:05',
         u'created_ts': u'2010-01-02T03:04:05',
         u'current_task_slice': u'0',
@@ -879,6 +885,7 @@ class TasksApiTest(BaseTest):
       u'task_id': u'5cee488008810',
       u'task_result': {
         u'abandoned_ts': u'2010-01-02T03:04:05',
+        u'cipd_pins': {},
         u'completed_ts': u'2010-01-02T03:04:05',
         u'created_ts': u'2010-01-02T03:04:05',
         u'current_task_slice': u'0',
@@ -1381,6 +1388,7 @@ class TaskApiTest(BaseTest):
     # determine that the task's state updates correctly
     expected = {
       u'abandoned_ts': fmtdate(self.now),
+      u'cipd_pins': {},
       u'completed_ts': fmtdate(self.now),
       u'created_ts': fmtdate(self.now),
       u'current_task_slice': u'0',
@@ -1569,6 +1577,7 @@ class TaskApiTest(BaseTest):
     _, task_id = self.client_create_task_raw()
     response = self.call_api('result', body={'task_id': task_id})
     expected = {
+      u'cipd_pins': {},
       u'created_ts': fmtdate(self.now),
       u'current_task_slice': u'0',
       u'failure': False,

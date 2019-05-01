@@ -561,19 +561,17 @@ class CipdInput(ndb.Model):
       c.to_proto(dst)
 
   def _pre_put_hook(self):
-    if not self.server:
-      raise datastore_errors.BadValueError('cipd server is required')
-    if not self.client_package:
-      raise datastore_errors.BadValueError('client_package is required')
-    if self.client_package.path:
+    if self.packages:
+      if not self.server:
+        raise datastore_errors.BadValueError('cipd server is required')
+      if not self.client_package:
+        raise datastore_errors.BadValueError('client_package is required')
+    if self.client_package and self.client_package.path:
       raise datastore_errors.BadValueError('client_package.path must be unset')
     # _pre_put_hook() doesn't recurse correctly into
     # ndb.LocalStructuredProperty. Call the function manually.
     self.client_package._pre_put_hook()
 
-    if not self.packages:
-      raise datastore_errors.BadValueError(
-          'cipd_input cannot have an empty package list')
     if len(self.packages) > 64:
       raise datastore_errors.BadValueError(
           'Up to 64 CIPD packages can be listed for a task')

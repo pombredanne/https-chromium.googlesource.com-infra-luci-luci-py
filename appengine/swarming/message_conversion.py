@@ -69,7 +69,7 @@ def _rpc_to_ndb(cls, entity, **overrides):
 def _taskproperties_from_rpc(props):
   """Converts a swarming_rpcs.TaskProperties to a task_request.TaskProperties.
   """
-  cipd_input = None
+  cipd_input = task_request.CipdInput()
   if props.cipd_input:
     client_package = None
     if props.cipd_input.client_package:
@@ -88,7 +88,7 @@ def _taskproperties_from_rpc(props):
   if props.containment:
     containment = _rpc_to_ndb(task_request.Containment, props.containment)
 
-  inputs_ref = None
+  inputs_ref = task_request.FilesRef()
   if props.inputs_ref:
     inputs_ref = _rpc_to_ndb(task_request.FilesRef, props.inputs_ref)
 
@@ -124,7 +124,7 @@ def _taskproperties_from_rpc(props):
 def _taskproperties_to_rpc(props):
   """Converts a task_request.TaskProperties to a swarming_rpcs.TaskProperties.
   """
-  cipd_input = None
+  cipd_input = swarming_rpcs.CipdInput()
   if props.cipd_input:
     client_package = None
     if props.cipd_input.client_package:
@@ -144,7 +144,7 @@ def _taskproperties_to_rpc(props):
   if props.containment:
     containment = _ndb_to_rpc(swarming_rpcs.Containment, props.containment)
 
-  inputs_ref = None
+  inputs_ref = swarming_rpcs.FilesRef()
   if props.inputs_ref:
     inputs_ref = _ndb_to_rpc(swarming_rpcs.FilesRef, props.inputs_ref)
 
@@ -300,7 +300,7 @@ def task_result_to_rpc(entity, send_stats):
   outputs_ref = (
       _ndb_to_rpc(swarming_rpcs.FilesRef, entity.outputs_ref)
       if entity.outputs_ref else None)
-  cipd_pins = None
+  cipd_pins = swarming_rpcs.CipdPins()
   if entity.cipd_pins:
     cipd_pins = swarming_rpcs.CipdPins(
       client_package=(
