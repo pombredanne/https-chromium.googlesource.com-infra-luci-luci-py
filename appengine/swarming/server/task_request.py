@@ -456,24 +456,15 @@ class FilesRef(ndb.Model):
 
   def _pre_put_hook(self):
     super(FilesRef, self)._pre_put_hook()
-    if not self.isolatedserver or not self.namespace:
+    if bool(self.isolatedserver) != bool(self.namespace):
       raise datastore_errors.BadValueError(
-          'isolate server and namespace are required')
-
-    if self.namespace == 'sha256-GCP':
-      # Minimally validate GCP project name. For now, just assert length and
-      # that it doesn't contain '://'.
-      if ((not 3 <= len(self.isolatedserver) <= 30) or
-          '://' in self.isolatedserver):
-        raise datastore_errors.BadValueError(
-            'isolatedserver must be valid GCP project')
-    else:
-      _validate_url(self.__class__.isolatedserver, self.isolatedserver)
-      _validate_length(self.__class__.namespace, self.namespace, 128)
-      if not pools_config.NAMESPACE_RE.match(self.namespace):
-        raise datastore_errors.BadValueError('malformed namespace')
+          'isolate server and namespace must both be set or unset')
 
     if self.isolated:
+      if not self.isolatedserver or not self.namespace:
+        raise datastore_errors.BadValueError(
+            'isolate server and namespace are required')
+
       if not _HASH_CHARS.issuperset(self.isolated):
         raise datastore_errors.BadValueError(
             'isolated must be lowercase hex')
@@ -487,6 +478,21 @@ class FilesRef(ndb.Model):
         raise datastore_errors.BadValueError(
             'isolated must be lowercase hex of length %d, but length is %d' %
             (expected, length))
+
+    if self.namespace:
+      if self.namespace == 'sha256-GCP':
+        # Minimally validate GCP project name. For now, just assert length and
+        # that it doesn't contain '://'.
+        if ((not 3 <= len(self.isolatedserver) <= 30) or
+            '://' in self.isolatedserver):
+          raise datastore_errors.BadValueError(
+              'isolatedserver must be valid GCP project')
+      else:
+        _validate_url(self.__class__.isolatedserver, self.isolatedserver)
+        _validate_length(self.__class__.namespace, self.namespace, 128)
+        if not pools_config.NAMESPACE_RE.match(self.namespace):
+          raise datastore_errors.BadValueError('malformed namespace')
+
 
 class SecretBytes(ndb.Model):
   """Defines an optional secret byte string logically defined with the
@@ -561,19 +567,20 @@ class CipdInput(ndb.Model):
       c.to_proto(dst)
 
   def _pre_put_hook(self):
-    if not self.server:
-      raise datastore_errors.BadValueError('cipd server is required')
-    if not self.client_package:
-      raise datastore_errors.BadValueError('client_package is required')
-    if self.client_package.path:
-      raise datastore_errors.BadValueError('client_package.path must be unset')
-    # _pre_put_hook() doesn't recurse correctly into
-    # ndb.LocalStructuredProperty. Call the function manually.
-    self.client_package._pre_put_hook()
+    if self.packages:
+      if not self.server:
+        raise datastore_errors.BadValueError('cipd server is required')
+      if not self.client_package:
+        raise datastore_errors.BadValueError('client_package is required')
+    if self.client_package:
+      if self.client_package.path:
+        raise datastore_errors.BadValueError(
+            'client_package.path must be unset')
+      # _pre_put_hook() doesn't recurse correctly into
+      # ndb.LocalStructuredProperty. Call the function manually.
+      if self.client_package:
+        self.client_package._pre_put_hook()
 
-    if not self.packages:
-      raise datastore_errors.BadValueError(
-          'cipd_input cannot have an empty package list')
     if len(self.packages) > 64:
       raise datastore_errors.BadValueError(
           'Up to 64 CIPD packages can be listed for a task')

@@ -618,17 +618,24 @@ class BotPollHandler(_BotBaseHandler):
     for i, hint in enumerate(named_caches.get_hints(pool, oses, names)):
       caches[i]['hint'] = str(hint)
 
+    cipd_input = {
+      'client_package': {},
+      'packages': [],
+      'server': '',
+    }
+    if props.cipd_input:
+      if props.cipd_input.client_package:
+        cipd_input['client_package'] = props.cipd_input.client_package.to_dict()
+      cipd_input['packages'] = [p.to_dict() for p in props.cipd_input.packages]
+      cipd_input['server'] = props.cipd_input.server
+
     out = {
       'cmd': 'run',
       'manifest': {
         'bot_id': bot_id,
         'bot_authenticated_as': auth.get_peer_identity().to_bytes(),
         'caches': caches,
-        'cipd_input': {
-          'client_package': props.cipd_input.client_package.to_dict(),
-          'packages': [p.to_dict() for p in props.cipd_input.packages],
-          'server': props.cipd_input.server,
-        } if props.cipd_input else None,
+        'cipd_input': cipd_input,
         'command': props.command,
         'containment': props.containment.to_dict() if props.containment else {},
         'dimensions': props.dimensions,

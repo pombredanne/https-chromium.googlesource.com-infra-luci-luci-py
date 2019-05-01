@@ -368,9 +368,9 @@ class AppTestBase(test_case.TestCase):
     """
     properties = (properties or {}).copy()
     properties['inputs_ref'] = {
-      'isolated': '0123456789012345678901234567890123456789',
-      'isolatedserver': 'http://localhost:1',
-      'namespace': 'default-gzip',
+      u'isolated': u'0123456789012345678901234567890123456789',
+      u'isolatedserver': u'http://localhost:1',
+      u'namespace': u'default-gzip',
     }
     return self.client_create_task(
         properties=self.create_props(**properties), **kwargs)
@@ -416,8 +416,8 @@ class AppTestBase(test_case.TestCase):
       u'grace_period_secs': u'30',
       u'idempotent': False,
       u'inputs_ref': {
-        'isolatedserver': 'https://pool.config.isolate.example.com',
-        'namespace': 'default-gzip',
+        u'isolatedserver': u'https://pool.config.isolate.example.com',
+        u'namespace': u'default-gzip',
       },
       u'io_timeout_secs': u'1200',
       u'outputs': [u'foo', u'path/to/foobar']
@@ -498,6 +498,7 @@ class AppTestBase(test_case.TestCase):
       ],
       u'bot_id': u'bot1',
       u'bot_version': self.bot_version,
+      u'cipd_pins': {},
       u'current_task_slice': u'0',
       u'failure': False,
       u'internal_failure': False,
@@ -535,6 +536,7 @@ class AppTestBase(test_case.TestCase):
       ],
       u'bot_id': u'bot1',
       u'bot_version': self.bot_version,
+      u'cipd_pins': {},
       u'costs_usd': [0.0],
       u'current_task_slice': u'0',
       u'failure': False,
