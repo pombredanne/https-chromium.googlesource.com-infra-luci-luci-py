@@ -316,6 +316,26 @@ class RunIsolatedTest(unittest.TestCase):
     actual = list_files_tree(self._isolated_cache_dir)
     self.assertEqual(sorted(set(expected)), actual)
 
+  @unittest.skipIf(sys.platform != 'win32', 'Windows only for now')
+  def test_isolated_limit_processes(self):
+    # Loads the .isolated from the store as a hash. Execution fails because it
+    # tries to run a second process.
+    isolated_hash = self._store('repeated_files.isolated')
+    expected = [
+      'state.json',
+      isolated_hash,
+      self._store('file1.txt'),
+      self._store('repeated_files.py'),
+    ]
+    cmd = self._cmd_args(isolated_hash)
+    cmd.extend(('--containment-type', 'JOB_OBJECT', '--limit-processes', '1'))
+    out, err, returncode = self._run(cmd)
+    self.assertEqual('', err)
+    self.assertEqual('Success\n', out, out)
+    self.assertEqual(0, returncode)
+    actual = list_files_tree(self._isolated_cache_dir)
+    self.assertEqual(sorted(set(expected)), actual)
+
   def test_isolated_max_path(self):
     # Make sure we can map and delete a tree that has paths longer than
     # MAX_PATH.
