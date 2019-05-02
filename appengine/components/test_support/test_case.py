@@ -5,10 +5,8 @@
 import base64
 import contextlib
 import datetime
-import json
 import logging
 import time
-import urllib
 
 import webtest
 
