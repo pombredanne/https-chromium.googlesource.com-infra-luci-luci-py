@@ -404,6 +404,27 @@ class GitilesTestCase(test_case.TestCase):
         hostname='localhost', project='project', treeish=None, path='/path')
     self.assertEqual(loc, 'https://localhost/project/+/HEAD/path')
 
+  def test_set_op_kwargs_constructor(self):
+    loc = gitiles.Location(
+      hostname='localhost', project='project', treeish=None, path='/path')
+    self.assertTrue(hasattr(loc, "_op_kwargs"))
+
+  def test_set_op_kwargs_explicitly(self):
+    loc = gitiles.Location(
+      hostname='localhost', project='project', treeish=None, path='/path')
+    self.assertEqual(loc.get_op_kwargs(), {})
+    loc.set_op_kwargs(foo='bar')
+    self.assertEqual(loc.get_op_kwargs(), {'foo':'bar'})
+    loc.set_op_kwargs()
+    self.assertEqual(loc.get_op_kwargs(), {})
+
+  def test_set_op_kwargs_preserved(self):
+    loc = gitiles.Location(
+      hostname='localhost', project='project', treeish=None, path='/path')
+    loc.set_op_kwargs(foo='bar')
+    self.assertEqual(loc.get_op_kwargs(), {'foo':'bar'})
+    newloc = loc._replace(project='foo')
+    self.assertEqual(newloc.get_op_kwargs(), {'foo':'bar'})
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
