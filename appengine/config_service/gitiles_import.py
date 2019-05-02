@@ -353,6 +353,7 @@ def import_project(project_id):
 
   try:
     loc = _resolved_location(project.config_location.url)
+    loc.set_op_kwargs(project_id=project_id)
   except gitiles.TreeishResolutionError:
 
     @ndb.transactional
@@ -390,6 +391,7 @@ def import_ref(project_id, ref_name):
   # We don't call _resolved_location here because we are replacing treeish and
   # path below anyway.
   loc = gitiles.Location.parse(project.config_location.url)
+  loc.set_op_kwargs(project_id=project_id)
 
   ref = None
   for r in projects.get_refs([project_id])[project_id] or ():
