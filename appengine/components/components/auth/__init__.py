@@ -30,6 +30,7 @@ from handler import *
 from ipaddr import *
 from machine_auth import *
 from model import *
+from project_tokens import *
 from prpc import *
 from service_account import *
 from signature import *
