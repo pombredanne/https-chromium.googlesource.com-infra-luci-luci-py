@@ -53,13 +53,13 @@ def json_dumps(data):
 
 def read_tree(path):
   """Returns a dict with {filepath: content}."""
-  if not os.path.isdir(path):
+  if not fs.isdir(path):
     return None
   out = {}
-  for root, _, filenames in os.walk(path):
+  for root, _, filenames in fs.walk(path):
     for filename in filenames:
       p = os.path.join(root, filename)
-      with open(p, 'rb') as f:
+      with fs.open(p, 'rb') as f:
         out[os.path.relpath(p, path)] = f.read()
   return out
 
@@ -107,15 +107,22 @@ class StorageFake(object):
 
 
 class RunIsolatedTestBase(auto_stub.TestCase):
+  @classmethod
+  def setUpClass(cls):
+    if not file_path.enable_symlink():
+      raise Exception(
+          'Failed to enable symlink; this test requires it. On Windows, maybe '
+          'try running as Administrator')
+
   def setUp(self):
     super(RunIsolatedTestBase, self).setUp()
     os.environ.pop('LUCI_CONTEXT', None)
-    self._previous_dir = os.getcwd()
+    self._previous_dir = unicode(os.getcwd())
     self.tempdir = tempfile.mkdtemp(prefix=u'run_isolated_test')
     logging.debug(self.tempdir)
     cwd = os.path.join(self.tempdir, 'cwd')
-    os.mkdir(cwd)
-    os.chdir(cwd)
+    fs.mkdir(cwd)
+    fs.chdir(cwd)
     self.mock(run_isolated, 'make_temp_dir', self.fake_make_temp_dir)
     self.mock(run_isolated.auth, 'ensure_logged_in', lambda _: None)
     self.mock(
@@ -127,7 +134,7 @@ class RunIsolatedTestBase(auto_stub.TestCase):
   def tearDown(self):
     # Remove mocks.
     super(RunIsolatedTestBase, self).tearDown()
-    os.chdir(self._previous_dir)
+    fs.chdir(self._previous_dir)
     file_path.rmtree(self.tempdir)
     if self._cipd_server:
       self._cipd_server.close()
@@ -145,8 +152,8 @@ class RunIsolatedTestBase(auto_stub.TestCase):
         (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
           run_isolated.ISOLATED_TMP_DIR, 'cipd_site_root'))
     temp_dir = os.path.join(self.tempdir, prefix)
-    self.assertFalse(os.path.isdir(temp_dir))
-    os.makedirs(temp_dir)
+    self.assertFalse(fs.isdir(temp_dir))
+    fs.makedirs(temp_dir)
     return temp_dir
 
   def ir_dir(self, *args):
@@ -509,7 +516,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertEqual(
         [
           (
-            [u'/bin/echo', u'hello', u'world'],
+            ['/bin/echo', 'hello', 'world'],
             {
               'cwd': self.ir_dir(),
               'detached': True,
@@ -663,7 +670,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         os.path.join(cipd_cache, 'cache'))
 
     # Test cipd client cache. `git:wowza` was a tag and so is cacheable.
-    self.assertEqual(len(os.listdir(os.path.join(cipd_cache, 'versions'))), 2)
+    self.assertEqual(len(fs.listdir(os.path.join(cipd_cache, 'versions'))), 2)
     version_file = unicode(os.path.join(
         cipd_cache, 'versions', '765a0de4c618f91faf923cb68a47bb564aed412d'))
     self.assertTrue(fs.isfile(version_file))
@@ -716,7 +723,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertEqual(
         [
           (
-            [self.ir_dir(u'a', 'bin', 'echo'), u'hello', u'world'],
+            [self.ir_dir(u'a', 'bin', 'echo'), 'hello', 'world'],
             {
               'cwd': self.ir_dir('a'),
               'detached': True,
@@ -786,7 +793,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
 
     for cache_name in ('cache_foo', 'cache_bar'):
       named_path = os.path.join(nc, 'named', cache_name)
-      self.assertFalse(os.path.exists(named_path))
+      self.assertFalse(fs.exists(named_path))
     self.assertTrue(trimmed)
 
   def test_modified_cwd(self):
@@ -835,7 +842,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertEqual([os.path.join(u'..', 'out', 'cmd.py'), u'arg'], cmd[1:])
 
   def test_run_tha_test_non_isolated(self):
-    _ = self._run_tha_test(command=['/bin/echo', 'hello', 'world'])
+    _ = self._run_tha_test(command=[u'/bin/echo', u'hello', u'world'])
     self.assertEqual(
         [
           (
@@ -955,13 +962,13 @@ class RunIsolatedTestOutputs(RunIsolatedTestBase):
       if t == FILE:
         open(full_path, 'w').write(content)
       elif t == RELATIVE_LINK:
-        os.symlink(content, full_path)
+        fs.symlink(content, full_path)
       elif t == LINK:
         root_dir = os.path.join(self.tempdir, 'ir')
         real_path = os.path.join(root_dir, content)
-        os.symlink(real_path, full_path)
+        fs.symlink(real_path, full_path)
       else:
-        os.mkdir(full_path)
+        fs.mkdir(full_path)
         self.create_src_tree(os.path.join(run_dir, path), content)
 
   def assertExpectedTree(self, expected):
@@ -973,12 +980,12 @@ class RunIsolatedTestOutputs(RunIsolatedTestBase):
       # Assume expected path are always relative to root.
       root_dir = os.path.join(self.tempdir, 'io')
       full_path = os.path.join(root_dir, path)
-      self.assertTrue(os.path.exists(full_path))
+      self.assertTrue(fs.exists(full_path))
       while fs.islink(full_path):
-        full_path = os.readlink(full_path)
+        full_path = fs.readlink(full_path)
       # If we expect a non-empty directory, check the entries in dir.
       # If we expect an empty dir, its existence (checked above) is sufficient.
-      if not os.path.isdir(full_path):
+      if not fs.isdir(full_path):
         with open(full_path, 'r') as f:
           self.assertEqual(f.read(), content)
       count += 1
@@ -987,8 +994,8 @@ class RunIsolatedTestOutputs(RunIsolatedTestBase):
   def link_outputs_test(self, src_dir, outputs):
     run_dir = os.path.join(self.tempdir, 'ir')
     out_dir = os.path.join(self.tempdir, 'io')
-    os.mkdir(run_dir)
-    os.mkdir(out_dir)
+    fs.mkdir(run_dir)
+    fs.mkdir(out_dir)
     self.create_src_tree(run_dir, src_dir)
     run_isolated.link_outputs_to_outdir(run_dir, out_dir, outputs)
 
@@ -1286,12 +1293,12 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
             u'm': 0600,
             u's': 4,
           },
-          u'foodir/foo2_sl': {
+          os.path.join(u'foodir', 'foo2_sl'): {
             u'h': foo2_output_hash,
             u'm': 0600,
             u's': 4,
           },
-          u'bardir/bar1': {
+          os.path.join(u'bardir', 'bar1'): {
             u'h': bar1_output_hash,
             u'm': 0600,
             u's': 4,
@@ -1301,8 +1308,8 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
       }
       if sys.platform == 'win32':
         isolated['files']['foo1'].pop('m')
-        isolated['files']['foodir/foo2_sl'].pop('m')
-        isolated['files']['bardir/bar1'].pop('m')
+        isolated['files']['foodir\\foo2_sl'].pop('m')
+        isolated['files']['bardir\\bar1'].pop('m')
       uploaded = json_dumps(isolated)
       uploaded_hash = isolateserver_fake.hash_content(uploaded)
       hashes.add(uploaded_hash)
