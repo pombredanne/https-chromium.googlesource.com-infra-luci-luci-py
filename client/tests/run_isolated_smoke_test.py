@@ -464,6 +464,23 @@ class RunIsolatedTest(unittest.TestCase):
       self.assertEqual(str(os.nice(0)+1), out)
     self.assertEqual(0, returncode)
 
+  def test_limit_processes(self):
+    # Execution fails because it tries to run a second process.
+    cmd = ['--limit-processes', '1', '--raw-cmd']
+    if sys.platform == 'win32':
+      cmd.extend(('--containment-type', 'JOB_OBJECT'))
+    cmd.extend(('--', sys.executable, '-c'))
+    if sys.platform == 'win32':
+      cmd.append(
+          'import subprocess,sys; '
+          'subprocess.call([sys.executable, "-c", "print 0"])')
+    else:
+      cmd.append('import os,sys; sys.stdout.write(str(os.nice(0)))')
+    out, err, returncode = self._run(cmd)
+    self.assertEqual('', err)
+    self.assertEqual('0', out, out)
+    self.assertEqual(0, returncode)
+
   def test_named_cache(self):
     # Runs a task that drops a file in the named cache, and assert that it's
     # correctly saved.
