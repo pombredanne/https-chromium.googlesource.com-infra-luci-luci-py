@@ -10,7 +10,6 @@ api.py and delegation.py.
 
 from . import api
 from . import delegation
-from . import exceptions
 from . import model
 
 
@@ -103,7 +102,7 @@ def check_request(
           delegation_token, peer_identity, auth_db)
       ctx.current_identity = ident
       ctx.delegation_token = unwrapped_tok
-    except exceptions.BadTokenError as exc:
+    except delegation.BadTokenError as exc:
       raise api.AuthorizationError('Bad delegation token: %s' % exc)
   elif use_project_identites and project_header:
     # X-Luci-Project header can be used only by LUCI services (which we
