@@ -12,6 +12,8 @@ import re
 import string
 import subprocess
 import sys
+import win32con
+import win32gui
 
 from utils import tools
 
@@ -404,7 +406,7 @@ def get_integrity_level():
     return None
   try:
     # The size of the structure is dynamic because the TOKEN_MANDATORY_LABEL
-    # used will have the SID appened right after the TOKEN_MANDATORY_LABEL in
+    # used will have the SID appended right after the TOKEN_MANDATORY_LABEL in
     # the heap allocated memory block, with .Label.Sid pointing to it.
     info_size = DWORD()
     if ctypes.windll.advapi32.GetTokenInformation(
@@ -548,3 +550,14 @@ def list_top_windows():
 
   ctypes.windll.user32.EnumWindows(window_enum_proc_prototype(on_window), None)
   return out
+
+def get_default_system_fonts():
+  metrics = win32gui.SystemParametersInfo(win32con.SPI_GETNONCLIENTMETRICS);
+  return [metrics['lfSmCaptionFont'],
+          metrics['lfCaptionFont'],
+          metrics['lfStatusFont'],
+          metrics['lfMessageFont'],
+          metrics['lfMenuFont']]
+
+def get_default_system_aliasing():
+  return win32gui.SystemParametersInfo(win32con.SPI_GETFONTSMOOTHING);

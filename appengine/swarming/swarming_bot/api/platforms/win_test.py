@@ -55,6 +55,17 @@ class TestWin(unittest.TestCase):
         win._CMD_RE, 'Microsoft Windows [version 10.0.16299.19]', re.IGNORECASE)
     self.assertEqual(('10.0', '16299.19'), m.groups())
 
+  def test_fonts(self):
+    # Must use Aero or Basic theme.
+    system_fonts = win.get_default_system_fonts()
+    for font in system_fonts:
+      self.assertEqual(font.lfFaceName, "Segoe UI")
+      self.assertEqual(font.lfHeight, -12)
+
+  def test_aliasing(self):
+    system_aliasing = win.get_default_system_aliasing()
+    self.assertTrue(system_aliasing)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
