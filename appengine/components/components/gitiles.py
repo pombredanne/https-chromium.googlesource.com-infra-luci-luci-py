@@ -46,14 +46,25 @@ RGX_HASH = re.compile(r'^[0-9a-f]{40}$')
 
 
 LocationTuple = collections.namedtuple(
-    'LocationTuple', ['hostname', 'project', 'treeish', 'path'])
+    'LocationTuple', ['hostname', 'project', 'treeish', 'path', 'netargs'])
 
+def insert_op_kwargs(method):
+  """Decorator to insert stored dict or args to each call."""
+  def wrapper(obj, *args, **kwargs):
+    if obj.netargs:
+        kwargs.update(obj.netargs)
+    return method(obj, *args, **kwargs)
+  return wrapper
 
 class Location(LocationTuple):
   """Gitiles URL. Immutable.
 
   Contains gitiles methods, such as get_log, for convenience.
   """
+
+
+  def __init__(self, *args, **kwargs):
+    super(Location, self).__init__(*args, **kwargs)
 
   def __eq__(self, other):
     return str(self) == str(other)
@@ -80,7 +91,7 @@ class Location(LocationTuple):
     }
 
   @classmethod
-  def from_dict(cls, d):
+  def from_dict(cls, d, netargs={}):
     """Restores Location from a dict produced by to_dict."""
     hostname = d.get('hostname')
     project = d.get('project')
@@ -92,10 +103,10 @@ class Location(LocationTuple):
         treeish,
         path,
         path_required=True)
-    return cls(hostname, project, treeish, path)
+    return cls(hostname, project, treeish, path, netargs)
 
   @classmethod
-  def parse(cls, url, treeishes=None):
+  def parse(cls, url, treeishes=None, netargs={}):
     """Parses a Gitiles-formatted url.
 
     If /a authentication prefix is present in |url|, it is omitted.
@@ -158,10 +169,10 @@ class Location(LocationTuple):
     path_str = '/' + '/'.join(path)  # must start with slash
     # Check yourself.
     _validate_args(hostname, project, treeish_str, path_str, path_required=True)
-    return cls(hostname, project, treeish_str, path_str)
+    return cls(hostname, project, treeish_str, path_str, netargs)
 
   @classmethod
-  def parse_resolve(cls, url):
+  def parse_resolve(cls, url, netargs={}):
     """Like parse, but supports refs with slashes.
 
     Does not support refs that start with "refs/heads/master/".
@@ -171,7 +182,7 @@ class Location(LocationTuple):
     Raises:
       TreeishResolutionError if url contains an invalid ref.
     """
-    loc = cls.parse(url)
+    loc = cls.parse(url, netargs=netargs)
     if loc.path and loc.path != '/':
       # If true ref name contains slash, a prefix of path might be a suffix of
       # ref. Try to resolve it.
@@ -189,7 +200,7 @@ class Location(LocationTuple):
           if ref.startswith(prefix):
             treeishes.add(ref[len(prefix):])
             break
-      loc = cls.parse(url, treeishes=treeishes)
+      loc = cls.parse(url, treeishes=treeishes, netargs=netargs)
     return loc
 
   def __str__(self):
@@ -214,41 +225,57 @@ class Location(LocationTuple):
       path = '/' + path
     return path
 
+  def set_op_kwargs(self, **kwargs):
+    """Sets kwargs to add to each operation."""
+    self._op_kwargs = kwargs
+
+  def get_op_kwargs(self):
+    """Returns _op_kwargs property."""
+    return self._op_kwargs
+
+  @insert_op_kwargs
   def get_log_async(self, **kwargs):
     return get_log_async(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_log(self, **kwargs):
     return get_log(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_tree_async(self, **kwargs):
     return get_tree_async(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_tree(self, **kwargs):
     return get_tree(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_archive_async(self, **kwargs):
     return get_archive(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_archive(self, **kwargs):
     return get_archive(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_file_content_async(self, **kwargs):
     return get_file_content_async(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
         **kwargs)
 
+  @insert_op_kwargs
   def get_file_content(self, **kwargs):
     return get_file_content(
         self.hostname, self.project, self.treeish_safe, self.path_safe,
