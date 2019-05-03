@@ -381,29 +381,47 @@ class GitilesTestCase(test_case.TestCase):
   def test_location_neq(self):
     loc1 = gitiles.Location(
         hostname='localhost', project='project',
-        treeish='treeish', path='/path')
+        treeish='treeish', path='/path', netargs={})
     loc2 = gitiles.Location(
         hostname='localhost', project='project',
-        treeish='treeish', path='/path')
+        treeish='treeish', path='/path', netargs={})
     self.assertFalse(loc1.__ne__(loc2))
 
   def test_location_str(self):
     loc = gitiles.Location(
         hostname='localhost', project='project',
-        treeish='treeish', path='/path')
+        treeish='treeish', path='/path', netargs={})
     self.assertEqual(loc, 'https://localhost/project/+/treeish/path')
 
   def test_location_str_with_slash_path(self):
     loc = gitiles.Location(
         hostname='localhost', project='project',
-        treeish='treeish', path='/')
+        treeish='treeish', path='/', netargs={})
     self.assertEqual(loc, 'https://localhost/project/+/treeish')
 
   def test_location_str_defaults_to_head(self):
     loc = gitiles.Location(
-        hostname='localhost', project='project', treeish=None, path='/path')
+      hostname='localhost', project='project',
+      treeish=None, path='/path', netargs={})
     self.assertEqual(loc, 'https://localhost/project/+/HEAD/path')
 
+  def test_netargs(self):
+    loc = gitiles.Location(
+      hostname='localhost', project='project',
+      treeish=None, path='/path', netargs={})
+    self.assertEqual(loc.netargs, {})
+    loc = gitiles.Location(
+      hostname='localhost', project='project',
+      treeish=None, path='/path', netargs={'project_id':'project1'})
+    self.assertEqual(loc.netargs, {'project_id':'project1'})
+
+  def test_set_op_kwargs_preserved(self):
+    loc = gitiles.Location(
+      hostname='localhost', project='project',
+      treeish=None, path='/path', netargs={'project_id':'project1'})
+    self.assertEqual(loc.netargs, {'project_id':'project1'})
+    newloc = loc._replace(path='/bar')
+    self.assertEqual(newloc.netargs, {'project_id':'project1'})
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
