@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4747140f_31f09f91",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-06T22:23:00Z",
+      "side": 1,
+      "message": "nit: this project uses a different indentation style\n\ndef _import_revision(\n  config_set, base_location, commit, force_update, project_id):",
+      "revId": "bbc324e7d63476b8c7b26ed04666808ece4a8292",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4773e544_07b29718",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-06T22:23:00Z",
+      "side": 1,
+      "message": "document the new param",
+      "revId": "bbc324e7d63476b8c7b26ed04666808ece4a8292",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
