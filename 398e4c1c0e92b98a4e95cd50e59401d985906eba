@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3394ac1_52970952",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-05-09T20:24:38Z",
+      "side": 1,
+      "message": "That\u0027s... not very helpful. Just link the whole url pls",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da13895d_ac336db2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-05-09T20:24:38Z",
+      "side": 1,
+      "message": "I\u0027ll defer to MA, but this seems very tailored for a single client\u0027s need (just perf, right?).\n\nWhy not remove this here, and instead call get_synthetic_product_name() in get_dimensions() from bot-config scripts for perf\u0027s pools.",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35f1d2ea_d6eb85c9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-05-09T20:24:38Z",
+      "side": 1,
+      "message": "nit: two newlines between top level definitions",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
