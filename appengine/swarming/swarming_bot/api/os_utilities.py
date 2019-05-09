@@ -614,6 +614,15 @@ def get_ssd():
     return platforms.linux.get_ssd()
   return ()
 
+def get_synthetic_product_name():
+  """Returns a name which can uniquely identify the bots' hardware
+
+  Same name means the bots have the same hardwares
+  """
+  if sys.platform == 'win32':
+    return platforms.win.get_synthetic_product_name()
+  return None
+
 
 def get_cipd_cache_info():
   """Returns the items in cipd cache."""
@@ -976,6 +985,10 @@ def get_dimensions():
   ssd = get_ssd()
   if ssd:
     dimensions[u'ssd'] = [u'1']
+
+  syn_prod_name = get_synthetic_product_name()
+  if syn_prod_name:
+    dimensions[u'synthetic_product_name'] = [syn_prod_name]
 
   if sys.platform == 'linux2':
     inside_docker = platforms.linux.get_inside_docker()
