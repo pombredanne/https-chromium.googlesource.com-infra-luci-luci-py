@@ -548,3 +548,31 @@ def list_top_windows():
 
   ctypes.windll.user32.EnumWindows(window_enum_proc_prototype(on_window), None)
   return out
+
+@tools.cached
+def get_synthetic_product_name():
+  """Return the product name as String.
+
+  The value is constructed via querying the wmi client for the class
+  Win32_ComputerSystemProduct, and get the value of name, vendor, and version
+
+  When version has a meanful value (not None), the value will be
+    name [version] (vendor)
+  Otherwise, it will be
+    name (vendor)
+  """
+  wbem = _get_wmi_wbem()
+  if not webm:
+    return None
+  syn_prod_name = None
+  # https://msdn.microsoft.com/en-us/library/aa394105
+  for device in wbem.ExecQuery('SELECT * FROM Win32_ComputerSystemProduct'):
+    name = device.Name
+    vendor = device.Vendor
+    version = device.Version
+    if version and version != u'None':
+      syn_prod_name = u'%s [%s] (%s)' % (name, version, vendor)
+    else:
+      # When the value of version is u'' or u'None'
+      syn_prod_name = u'%s (%s)' % (name, vendor)
+  return syn_prod_name
