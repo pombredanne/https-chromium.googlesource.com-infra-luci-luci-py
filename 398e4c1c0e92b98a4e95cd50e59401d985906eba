@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4592929b_222f94e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-09T22:32:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3394ac1_52970952",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da13895d_ac336db2",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 2
@@ -90,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "f45a701a_04d5f6f4",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-09T22:32:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f3ce003_dc23d18b",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35f1d2ea_d6eb85c9",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 2
@@ -104,6 +140,24 @@
       "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a4bb7e_96c084b0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-09T22:32:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35f1d2ea_d6eb85c9",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
