@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "79e9e747_3e5575a6",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-09T20:36:24Z",
+      "side": 1,
+      "message": "It\u0027s noise for teams that do not care about it, fuchsia, home, stadia, etc. I don\u0027t think this passes the bar here.\n\nLet\u0027s start with adding it into the relevant bot_config.py and go from there, it\u0027s easy to backport here if desired.",
+      "parentUuid": "5c9a2537_4e595cd1",
+      "revId": "398e4c1c0e92b98a4e95cd50e59401d985906eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35f1d2ea_d6eb85c9",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 2
