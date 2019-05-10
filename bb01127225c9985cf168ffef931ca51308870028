@@ -16,6 +16,24 @@
       "revId": "bb01127225c9985cf168ffef931ca51308870028",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6199f14_a6aabdf1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-10T21:48:39Z",
+      "side": 1,
+      "message": "by export, do you mean renaming _get_wmi_wbem() to get_wmi_wbem(), and move the get_synthetic_product_name into related bot_config.py files?",
+      "parentUuid": "e6fe0f6d_fef3a0ed",
+      "revId": "bb01127225c9985cf168ffef931ca51308870028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
