@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c95a874a_bf4e5fc2",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-10T20:47:02Z",
+      "side": 1,
+      "message": "please document new param",
+      "revId": "24a73e06690fe3bc418e7aa43d5c621240114e5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32fa6b38_6ab6da4b",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-10T20:47:02Z",
+      "side": 1,
+      "message": "exception\n\nthen you don\u0027t need `, e` and log includes stack",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 19
+      },
+      "revId": "24a73e06690fe3bc418e7aa43d5c621240114e5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d82e0226_03dd2e23",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-10T20:47:02Z",
+      "side": 1,
+      "message": "can this line be deduplicated?",
+      "revId": "24a73e06690fe3bc418e7aa43d5c621240114e5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
