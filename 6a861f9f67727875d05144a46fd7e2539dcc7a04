@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "328bb142_277136a7",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T23:33:33Z",
+      "side": 1,
+      "message": "auth.NotFoundError (since I believe tokenserver returns 404 if project-scoped account is not configured). Or at most auth.TokenCreationError.\n\nOtherwise this \u0027except\u0027 block will be catching various random shit like memcache timeouts and even typos in the code. They should not trigger the fallback.",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 20
+      },
+      "revId": "6a861f9f67727875d05144a46fd7e2539dcc7a04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
