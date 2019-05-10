@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6fe0f6d_fef3a0ed",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-10T21:33:00Z",
+      "side": 1,
+      "message": "The main blocker here is that _get_wmi_wbem() is not exported, I think that function should be exporté instead of adding this function.",
+      "revId": "bb01127225c9985cf168ffef931ca51308870028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
