@@ -14,6 +14,11 @@ from components import utils
 from . import exceptions
 from . import api
 
+__all__ = [
+  'project_token',
+  'project_token_async',
+]
+
 @ndb.tasklet
 def project_token_async(
     project_id,
@@ -37,8 +42,9 @@ def project_token_async(
     min_validity_duration_sec (int): defines requested lifetime of a new token.
       It will bet set as tokens' TTL if there's no existing cached tokens with
       sufficiently long lifetime. Default is 5 minutes.
-    tags (list of str): optional list of key:value pairs to use as audit tags
-      along with the request to obtain a token.
+    tags (list of str): optional list of key:value pairs to embed into the
+      token. Services that accept the token may use them for additional
+      authorization decisions.
     token_server_url (str): the URL for the token service that will mint the
       token. Defaults to the URL provided by the primary auth service.
 
@@ -47,8 +53,8 @@ def project_token_async(
 
   Raises:
     ValueError if args are invalid.
-    TokenCreationError if could not create a token.
-    TokenAuthorizationError on HTTP 403 response from auth service.
+    ProjectTokenCreationError if could not create a token.
+    ProjectTokenAuthorizationError on HTTP 403 response from auth service.
   """
 
   # Validate tags.
@@ -81,7 +87,7 @@ def project_token_async(
   # Request a new one.
   logging.info(
       'Minting a project token for %r',
-      {k: v for k, v in sorted(req.items()) if v},
+      {k: v for k, v in req.iteritems() if v},
   )
   res = yield auth_request_func(
       '%s/prpc/tokenserver.minter.TokenMinter/MintProjectToken' %
@@ -113,9 +119,8 @@ def project_token_async(
   }
 
   logging.info(
-      'Token server "%s" generated project token for %s, fingerprint=%s)',
+      'Token server "%s" generated project token, fingerprint=%s)',
       res.get('serviceVersion'),
-      service_account_email,
       utils.get_token_fingerprint(str(token))
   )
 

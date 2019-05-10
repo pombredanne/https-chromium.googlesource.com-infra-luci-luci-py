@@ -37,6 +37,8 @@ __all__ = [
   'get_access_token_async',
   'get_project_access_token',
   'get_project_access_token_async',
+  'authenticated_request',
+  'authenticated_request_async',
   'AccessTokenError',
   'ServiceAccountKey',
 ]
@@ -165,13 +167,14 @@ def get_project_access_token_async(
     scopes = [scopes]
   scopes = sorted(scopes)
 
-  # Cache key for the target token!
+  # Cache key for the target token! Not the IAM-scoped one. The key ID is not
+  # known in advance when using signJwt RPC.
   cache_key = _memcache_key(
-      method='tokenserver',
+      method='iam',
       email=project_id,
       scopes=scopes,
       key_id=None)
-  # We need token only on cache miss, so generate it lazily.
+  # We need IAM-scoped token only on cache miss, so generate it lazily.
   token = yield _get_or_mint_token_async(
       cache_key,
       min_lifetime_sec,
@@ -180,7 +183,8 @@ def get_project_access_token_async(
           scopes,
           authenticated_request_async,
           min_lifetime_sec,
-      ))
+      ),
+      namespace=_MEMCACHE_NS_PROJECT_TOKENS)
   raise ndb.Return(token)
 
 
@@ -298,13 +302,15 @@ def get_access_token(*args, **kwargs):
 ## Private stuff.
 
 _MEMCACHE_NS = 'access_tokens'
+_MEMCACHE_NS_PROJECT_TOKENS = 'project_access_tokens'
+
 
 def _memcache_key(method, email, scopes, key_id=None):
   """Returns a string to use as a memcache key for a token.
 
   Args:
     method: 'pkey' or 'iam'.
-    email: identity (usually service account email) we are getting a token for.
+    email: service account email we are getting a token for.
     scopes: list of strings with scopes.
     key_id: private key ID used (if known).
   """

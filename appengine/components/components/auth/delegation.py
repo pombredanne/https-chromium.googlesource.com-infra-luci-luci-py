@@ -226,7 +226,7 @@ def delegate_async(
   Raises:
     ValueError if args are invalid.
     TokenCreationError if could not create a token.
-    TokenAuthorizationError on HTTP 403 response from auth service.
+    AuthorizationError on HTTP 403 response from auth service.
   """
   assert isinstance(audience, list), audience
   assert isinstance(services, list), services
