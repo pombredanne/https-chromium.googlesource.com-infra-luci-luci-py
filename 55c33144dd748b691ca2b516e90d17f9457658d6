@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c061e94_00b1a783",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T23:25:53Z",
+      "side": 1,
+      "message": "nit: :) this is not so exciting anymore, please remove \u0027!\u0027. In the original code the exclamation was important to warn that there are two tokens involved and we are getting a cache key for a particular one, and not the other. Here there\u0027s only one token.",
+      "range": {
+        "startLine": 168,
+        "startChar": 34,
+        "endLine": 168,
+        "endChar": 35
+      },
+      "revId": "55c33144dd748b691ca2b516e90d17f9457658d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
