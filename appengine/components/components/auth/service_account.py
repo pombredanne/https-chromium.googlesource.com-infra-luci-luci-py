@@ -165,7 +165,7 @@ def get_project_access_token_async(
     scopes = [scopes]
   scopes = sorted(scopes)
 
-  # Cache key for the token.
+  # Cache key for the target token!
   cache_key = _memcache_key(
       method='tokenserver',
       email=project_id,

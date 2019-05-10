@@ -25,7 +25,6 @@ utils.fix_protobuf_package()
 
 from api import *
 from delegation import *
-from exceptions import *
 from gce_vm_auth import *
 from handler import *
 from ipaddr import *
