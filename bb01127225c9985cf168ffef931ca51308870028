@@ -34,6 +34,24 @@
       "revId": "bb01127225c9985cf168ffef931ca51308870028",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f98369bb_86ba4efb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-10T22:36:52Z",
+      "side": 1,
+      "message": "BTW, the reason I am adding this new function here is that I have future plans to add the same function in other platforms.",
+      "parentUuid": "b6199f14_a6aabdf1",
+      "revId": "bb01127225c9985cf168ffef931ca51308870028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
