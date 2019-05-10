@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8c21e044_9649c73b",
+        "filename": "appengine/components/components/auth/exceptions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T23:30:37Z",
+      "side": 1,
+      "message": "I think this now needs to be exposed as part of public API of components auth:\n\n__all__ \u003d [\n  # all stuff here\n]\n\nand in __init__.py:\n\nfrom exceptions import *",
+      "revId": "55c33144dd748b691ca2b516e90d17f9457658d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c061e94_00b1a783",
         "filename": "appengine/components/components/auth/service_account.py",
         "patchSetId": 11
