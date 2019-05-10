@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01a376fc_2de63458",
+        "filename": "appengine/components/components/auth/delegation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "TokenAuthorizationError",
+      "range": {
+        "startLine": 229,
+        "startChar": 4,
+        "endLine": 229,
+        "endChar": 22
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15f5dcdc_4ccad6a5",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "this shoulnd\u0027t be here, project_token is not a public API of components.auth (get_project_access_token is). Consequently, \"from project_tokens import *\" in __init__.py is also unnecessary.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "587253cd_c4d7ece1",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "this comment is wrong, we can\u0027t embed anything into google access tokens. \"list of key:value pairs to annotate an audit log entry with\".",
+      "range": {
+        "startLine": 45,
+        "startChar": 60,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65f5f91b_8dc4cfbe",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "TokenCreationError",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a90499b8_0b849eaa",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "TokenAuthorizationError",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 34
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8cf419b_5afac815",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "does this really work when there are multiple OAuth scopes? Maybe we should do oauth_scopes.split(\u0027 \u0027) instead.",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 33
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0419da37_bae05675",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "sorted(req.items()), otherwise log entries will have unpredictable order of keys",
+      "range": {
+        "startLine": 90,
+        "startChar": 24,
+        "endLine": 90,
+        "endChar": 39
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7031202a_7f02c979",
+        "filename": "appengine/components/components/auth/project_tokens.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "Well, if we go through trouble of validating it, can at least log it in the final logging line below (because it is totally ignored now).",
+      "range": {
+        "startLine": 103,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 23
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9266ffa_338f7064",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "this should not be here, it\u0027s not a public API of component.auth (as in, external package must not use it)",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfddea2a_910bee17",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "this comment is not appropriate here, we are not using IAM or signJwt",
+      "range": {
+        "startLine": 170,
+        "startChar": 36,
+        "endLine": 171,
+        "endChar": 44
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c91f3ec_58eed710",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "\u0027tokenserver\u0027",
+      "range": {
+        "startLine": 173,
+        "startChar": 13,
+        "endLine": 173,
+        "endChar": 17
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49fe4da3_820a04c3",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "this comment is not appropriate either",
+      "range": {
+        "startLine": 177,
+        "startChar": 2,
+        "endLine": 177,
+        "endChar": 71
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e96b2b94_47f194ce",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "This is unnecessary, using different value for method in _memcache_key (as I suggested above) is sufficient to namespace different sorts of token (it\u0027s the reason this argument exists).",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 53
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bfdc38f_7ca1e251",
+        "filename": "appengine/components/components/auth/service_account.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-10T22:27:14Z",
+      "side": 1,
+      "message": "\"identity (usually service account email) we are getting a token for\"\n\nto somewhat justify a hack of passing project_id as email",
+      "range": {
+        "startLine": 313,
+        "startChar": 11,
+        "endLine": 313,
+        "endChar": 60
+      },
+      "revId": "877d47f2debaf7aa4bbd75369e88510cdb2b2cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
