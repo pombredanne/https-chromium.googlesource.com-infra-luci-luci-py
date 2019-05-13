@@ -155,9 +155,7 @@ def get_isolated_args(work_dir, task_details, isolated_result,
   for key, value in (task_details.env or {}).iteritems():
     cmd.extend(('--env', '%s=%s' % (key, value)))
 
-  if task_details.containment.lower_priority:
-    cmd.append('--lower-priority')
-
+  cmd.extend(task_details.containment.flags())
   cmd.extend(run_isolated_flags)
 
   for key, values in task_details.env_prefixes.iteritems():
@@ -179,6 +177,25 @@ class Containment(object):
   """Containment details."""
   def __init__(self, obj):
     self.lower_priority = bool(obj.get('lower_priority'))
+    self.containment_type = obj.get('containment_type') or 'NONE'
+    self.limit_processes = obj.get('limit_processes') or 0
+    self.limit_total_committed_memory = obj.get(
+        'limit_total_committed_memory') or 0
+
+  def flags(self):
+    """Returns flags to use for run_isolated.py."""
+    out = []
+    if self.lower_priority:
+      out.append('--lower-priority')
+    if self.containment_type != 'NONE':
+      pass
+    if self.limit_processes:
+      out.extend(('--limit-processes', str(self.limit_processes)))
+    if self.limit_total_committed_memory:
+      out.extend(
+          ('--limit-total-committed-memory',
+            str(self.limit_total_committed_memory)))
+    return out
 
 
 class TaskDetails(object):
