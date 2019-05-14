@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ca47338_2f8dde5d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T23:50:11Z",
+      "side": 1,
+      "message": "I think this should have been updated.",
+      "revId": "fcf68f1b4397680eb82277cbba3055d3b855cace",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aa37c5d_36bd02e3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T23:50:11Z",
+      "side": 1,
+      "message": "Same",
+      "revId": "fcf68f1b4397680eb82277cbba3055d3b855cace",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
