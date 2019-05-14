@@ -36,6 +36,11 @@ from libs import luci_context
 from utils import tools
 
 
+# Disable warnings. https://crbug.com/958933
+# https://urllib3.readthedocs.org/en/latest/security.html#ssl-warnings
+urllib3.disable_warnings()
+
+
 # Path to a file with cached OAuth2 credentials used by default. Can be
 # overridden by command line option or env variable.
 DEFAULT_OAUTH_TOKENS_CACHE = os.path.join(
