@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e69f585_f33da8ff",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T23:28:10Z",
+      "side": 1,
+      "message": "I prefer to call out each values. Otherwise it\u0027s brittle to change and one has to look common.py to figure out what is what.. In practice, this is the same amount of lines and is quite readable:\n\nreturn common.ComputerSystemInfo(\n    name\u003d_read_dmi_file(\u0027product_name\u0027),\n    vendor\u003d_read_dmi_file(\u0027sys_vendor\u0027),\n    version\u003d_read_dmi_file(\u0027product_version\u0027),\n    serial\u003d_read_dmi_file(\u0027product_serial\u0027),\n)",
+      "revId": "850f34e3b06552b83f7dfefe7beb52efd24301a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
