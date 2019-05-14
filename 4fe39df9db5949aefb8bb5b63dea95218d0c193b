@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e52bdf92_1943a4f8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T21:34:54Z",
+      "side": 1,
+      "message": "Add another empty line.",
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "197b356c_a1516ce2",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T21:34:54Z",
+      "side": 1,
+      "message": "Maybe serial? On linux you can use systemd\u0027s uuid, so it checks out. I don\u0027t know for mac.",
+      "range": {
+        "startLine": 24,
+        "startChar": 34,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73db21f7_3a74ef63",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T21:34:54Z",
+      "side": 1,
+      "message": "Interestingly on my vanilla Ubuntu 18.04 on a z620:\n- I couldn\u0027t read product_uuid without root, nor product_serial. I find product_serial more valuable than the UUID because it\u0027s actually the serial string shown in the BIOS.\n- product_version is empty but product_family has good data. So maybe worth doing a fallback for this one.",
+      "range": {
+        "startLine": 516,
+        "startChar": 65,
+        "endLine": 516,
+        "endChar": 77
+      },
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c114d15a_a00dacac",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T21:34:54Z",
+      "side": 1,
+      "message": "I\u0027d prefer an explicit construction of the namedtuple.",
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
