@@ -52,6 +52,24 @@
       "revId": "bb01127225c9985cf168ffef931ca51308870028",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cd4d581_7e3ea83c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-14T00:00:12Z",
+      "side": 1,
+      "message": "We discussed over IM and lets return the values including UUID as a namedtuple, so that our team can then create string as they see fit.",
+      "parentUuid": "f98369bb_86ba4efb",
+      "revId": "bb01127225c9985cf168ffef931ca51308870028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
