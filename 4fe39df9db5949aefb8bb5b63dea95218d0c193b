@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8c1e6a03_d2639daa",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-14T21:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e52bdf92_1943a4f8",
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "197b356c_a1516ce2",
         "filename": "appengine/swarming/swarming_bot/api/platforms/common.py",
         "patchSetId": 10
@@ -39,6 +57,30 @@
       "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eecf20d8_dcd69e5f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-14T21:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "197b356c_a1516ce2",
+      "range": {
+        "startLine": 24,
+        "startChar": 34,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "772fb477_4a48b1af",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-14T21:55:37Z",
+      "side": 1,
+      "message": "* uuid and serial: probably because they are sensitive data. How can we read them if it needs root?\n* product_version: this is included because in machines made by Lonovo, it contains model info, which cannot be found in product_name, and also it is aligned with windows platform.\nCan you show me the values of product_name, product_family from your z620?",
+      "parentUuid": "73db21f7_3a74ef63",
+      "range": {
+        "startLine": 516,
+        "startChar": 65,
+        "endLine": 516,
+        "endChar": 77
+      },
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c114d15a_a00dacac",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 10
@@ -79,6 +145,24 @@
       "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73917c85_a1e0b1ba",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-05-14T21:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c114d15a_a00dacac",
+      "revId": "4fe39df9db5949aefb8bb5b63dea95218d0c193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
