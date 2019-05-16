@@ -32,9 +32,6 @@ message SettingsCfg {
   // (deprecated, see pools.proto) Configuration for swarming-cipd integration.
   CipdSettings cipd = 6;
 
-  // Configuration for swarming-mp integration.
-  MachineProviderSettings mp = 7;
-
   // Emergency setting to disable bot task reaping. When set, all bots are
   // always put to sleep and are never granted task.
   bool force_bots_to_sleep_and_not_run_task = 8;
@@ -107,15 +104,6 @@ message CipdSettings {
   // Package of the default CIPD client to use if it is not specified in a
   // task.
   CipdPackage default_client_package = 2;
-}
-
-
-// Settings for Swarming-MP integration.
-message MachineProviderSettings {
-  // Whether or not Swarming-MP integration is enabled.
-  bool enabled = 1;
-  // URL of the Machine Provider server to use.
-  string server = 2;
 }
 
 
