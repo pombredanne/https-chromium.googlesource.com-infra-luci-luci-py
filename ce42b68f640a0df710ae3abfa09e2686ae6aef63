@@ -16,6 +16,24 @@
       "revId": "ce42b68f640a0df710ae3abfa09e2686ae6aef63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4944eb2e_d2b0ec22",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-05-16T21:42:51Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "d29fe65b_956c790d",
+      "revId": "ce42b68f640a0df710ae3abfa09e2686ae6aef63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
