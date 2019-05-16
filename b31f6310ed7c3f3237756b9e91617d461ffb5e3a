@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1250ac_2d151140",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-16T21:54:55Z",
+      "side": 1,
+      "message": "What I\u0027d like here is a list of the entities that can now be deleted. Once it\u0027s done I can go and deleted them manually.\n\nFrom browsing on chromium-swarm, I see MachineLease, MachineType, MachineTypeUtilization, MachineProviderConfiguration, MachineProviderConfigurationRoot. Is that right?",
+      "revId": "b31f6310ed7c3f3237756b9e91617d461ffb5e3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
