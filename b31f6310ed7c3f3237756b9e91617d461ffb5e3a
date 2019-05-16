@@ -16,6 +16,24 @@
       "revId": "b31f6310ed7c3f3237756b9e91617d461ffb5e3a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b830fa0b_5c992d87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-05-16T22:43:17Z",
+      "side": 1,
+      "message": "That\u0027s correct. MachineLeases should all be deleted and MachineTypes should all have enabled \u003d\u003d false. I was planning on deleting them, but if you prefer to do it that\u0027s fine too.",
+      "parentUuid": "3f1250ac_2d151140",
+      "revId": "b31f6310ed7c3f3237756b9e91617d461ffb5e3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
