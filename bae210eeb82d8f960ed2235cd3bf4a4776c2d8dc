@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16633eb6_ac1cebcd",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-18T23:02:59Z",
+      "side": 0,
+      "message": "That\u0027s cool that\u0027s one less serial DB RPC here and in _process() below.",
+      "revId": "bae210eeb82d8f960ed2235cd3bf4a4776c2d8dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c3546a_6dc955d9",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-18T23:02:59Z",
+      "side": 0,
+      "message": "Keep this, this is to ensure the query doesn\u0027t raise with the default 5s timeout.",
+      "revId": "bae210eeb82d8f960ed2235cd3bf4a4776c2d8dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
