@@ -25,20 +25,26 @@ import base64
 import calendar
 import copy
 import email
-import email.FeedParser
-import email.Message
-import email.Utils
+try:  # Python 2
+  import email.FeedParser
+  import email.Message
+  import email.Utils as email_utils
+except ImportError: # Python 3
+  from email.feedparser import FeedParser
+  from email.message import Message
+  from email import utils as email_utils
 import errno
 import gzip
-import httplib
 import os
 import random
 import re
-import StringIO
 import sys
 import time
 import urllib
-import urlparse
+try: # Python 2
+  import urlparse
+except ImportError: # Python 3
+  from urllib import parse as urlparse
 import zlib
 
 try:
@@ -61,6 +67,10 @@ except ImportError:
         import socks
     except (ImportError, AttributeError):
         socks = None
+
+from six.moves import http_client as httplib
+from six import StringIO
+from six import string_types
 
 # Build the appropriate socket wrapper for ssl
 ssl = None
@@ -121,7 +131,7 @@ def _ssl_wrap_socket_unsupported(
 if ssl is None:
     _ssl_wrap_socket = _ssl_wrap_socket_unsupported
 
-if sys.version_info >= (2, 3):
+if sys.version_info >= (2, 3) and sys.version_info <= (3, 0):
     from iri2uri import iri2uri
 else:
 
@@ -479,7 +489,7 @@ def _entry_disposition(response_headers, request_headers):
     elif "only-if-cached" in cc:
         retval = "FRESH"
     elif "date" in response_headers:
-        date = calendar.timegm(email.Utils.parsedate_tz(response_headers["date"]))
+        date = calendar.timegm(email_utils.parsedate_tz(response_headers["date"]))
         now = time.time()
         current_age = max(0, now - date)
         if "max-age" in cc_response:
@@ -488,7 +498,7 @@ def _entry_disposition(response_headers, request_headers):
             except ValueError:
                 freshness_lifetime = 0
         elif "expires" in response_headers:
-            expires = email.Utils.parsedate_tz(response_headers["expires"])
+            expires = email_utils.parsedate_tz(response_headers["expires"])
             if None == expires:
                 freshness_lifetime = 0
             else:
@@ -1615,7 +1625,7 @@ class Http(object):
         self.connections = {}
         # The location of the cache, for now a directory
         # where cached responses are held.
-        if cache and isinstance(cache, basestring):
+        if cache and isinstance(cache, string_types):
             self.cache = FileCache(cache)
         else:
             self.cache = cache

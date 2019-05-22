@@ -4,7 +4,6 @@
 
 """Classes and functions for generic network communication over HTTP."""
 
-import cookielib
 import itertools
 import json
 import logging
@@ -17,7 +16,13 @@ import ssl
 import threading
 import time
 import urllib
-import urlparse
+try: # Python 2
+  import urlparse
+except ImportError: # Python 3
+  from urllib import parse as urlparse
+
+from utils import tools
+tools.force_local_third_party()
 
 # third_party/
 import requests
@@ -25,6 +30,7 @@ from requests import adapters
 from requests import structures
 import urllib3
 
+from six.moves import http_cookiejar as cookielib
 from utils import authenticators
 from utils import oauth
 from utils import tools
@@ -55,6 +61,9 @@ JSON_CONTENT_TYPE = 'application/json; charset=UTF-8'
 DEFAULT_CONTENT_TYPE = URL_ENCODED_FORM_CONTENT_TYPE
 
 # Content type -> function that encodes a request body.
+if not hasattr(urllib, 'urlencode'):
+  urllib.urlencode = urllib.parse.urlencode
+
 CONTENT_ENCODERS = {
   URL_ENCODED_FORM_CONTENT_TYPE:
     urllib.urlencode,

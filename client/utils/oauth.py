@@ -6,8 +6,9 @@
 
 # pylint: disable=W0613
 
+from __future__ import print_function
+
 import base64
-import BaseHTTPServer
 import collections
 import datetime
 import json
@@ -19,7 +20,10 @@ import sys
 import threading
 import time
 import urllib
-import urlparse
+try:
+  import urlparse # Python 2
+except:
+  from urllib import parse # Python 3
 import webbrowser
 
 # third_party/
@@ -33,6 +37,7 @@ from oauth2client import multistore_file
 import requests
 
 from libs import luci_context
+from six.moves import BaseHTTPServer
 from utils import tools
 
 
@@ -550,9 +555,9 @@ def _make_signed_jwt(payload, pkey):
 def _run_oauth_dance(urlhost, config):
   """Perform full OAuth2 dance with the browser."""
   def out(s):
-    print s
+    print(s)
   def err(s):
-    print >> sys.stderr, s
+    print(s, file=sys.stderr)
 
   # Fetch client_id and client_secret from the service itself.
   service_config = _fetch_service_config(urlhost)

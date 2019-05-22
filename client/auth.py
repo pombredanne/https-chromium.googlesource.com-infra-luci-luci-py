@@ -5,6 +5,8 @@
 
 """Client tool to perform various authentication related tasks."""
 
+from __future__ import print_function
+
 __version__ = '0.4'
 
 import logging
@@ -121,9 +123,9 @@ def CMDlogin(parser, args):
   process_auth_options(parser, options)
   service = AuthService(options.service)
   if service.login(True):
-    print 'Logged in as \'%s\'.' % service.get_current_identity()
+    print('Logged in as \'%s\'.' % service.get_current_identity())
     return 0
-  print 'Login failed or canceled.'
+  print('Login failed or canceled.')
   return 1
 
 
@@ -144,7 +146,7 @@ def CMDcheck(parser, args):
   process_auth_options(parser, options)
   service = AuthService(options.service)
   service.login(False)
-  print service.get_current_identity()
+  print(service.get_current_identity())
   return 0
 
 
