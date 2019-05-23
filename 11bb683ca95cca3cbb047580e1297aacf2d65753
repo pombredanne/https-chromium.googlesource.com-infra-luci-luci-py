@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39118631_63bee3b9",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T23:50:04Z",
+      "side": 1,
+      "message": "I think this should be \"service_id\" e.g. \"chromium-swarm\". Hostname is not unique, one service can have multiple host names (e.g. luci-milo.appspot.com and ci.chromium.org are same thing).",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 32
+      },
+      "revId": "11bb683ca95cca3cbb047580e1297aacf2d65753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "820ff79c_d961bbb4",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T23:50:04Z",
+      "side": 1,
+      "message": "make it repeated? If we want to allow multiple different actions to same set of accounts.",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "11bb683ca95cca3cbb047580e1297aacf2d65753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc39a1f0_83bcb3c5",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T23:50:04Z",
+      "side": 1,
+      "message": "Strictly speaking also \"project:\u003cname\u003e\".",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "11bb683ca95cca3cbb047580e1297aacf2d65753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "708d5169_6e00697c",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T23:50:04Z",
+      "side": 1,
+      "message": "make it repeated? Otherwise there\u0027ll be a lot of repetition in the configs... They will also be unnecessarily larger.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 10
+      },
+      "revId": "11bb683ca95cca3cbb047580e1297aacf2d65753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edd11aaa_566cb655",
+        "filename": "appengine/components/components/auth/proto/replication.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T23:50:04Z",
+      "side": 1,
+      "message": "I strongly advice you to copy implementation and structure of AuthGroup (structure of datastore entities, proto messages, how they are queries, updated, but into snapshot, the way they are cached in memory for serving etc). It will simplify the development, since buckets can be just implemented by \"analogy\" to groups.\n\nIt means this field should be:\n\nrepeated Bucket buckets \u003d 10;\n\nAnd each Bucket should have a globally unique name (\"\u003cproject\u003e/\u003cname\u003e\" tuple), which will also be entity ID. I think Bucket.name field in buckets.proto can be changed to:\n\n// Full bucket name as \"\u003cproject\u003e/\u003cname\u003e\".\n//\n// If used in bucket.cfg, \"\u003cproject\u003e\" can be omitted. If it\u0027s not omitted, it must match the project\n// that owns this config.\n\n(Or something like that).\n\nAnother alternative is have two different representations of a bucket: one for buckets.cfg, another for internal protos (like AuthDB). The one in buckets.cfg can be optimized for readability (e.g. have repeated fields), and the internal one can be optimized for querying (e.g. all repeated fields are normalized, so bucket is just a set of triples).",
+      "range": {
+        "startLine": 174,
+        "startChar": 2,
+        "endLine": 174,
+        "endChar": 34
+      },
+      "revId": "11bb683ca95cca3cbb047580e1297aacf2d65753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
