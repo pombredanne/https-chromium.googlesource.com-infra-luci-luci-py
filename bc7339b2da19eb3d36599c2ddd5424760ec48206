@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52fb83b4_42e25c5a",
+        "filename": "appengine/auth_service/proto/buckets.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T21:18:08Z",
+      "side": 1,
+      "message": "This should live in components/auth/.... It is part of data model consumed by ALL apps.",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "bc7339b2da19eb3d36599c2ddd5424760ec48206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b05cd56_c4a5589e",
+        "filename": "appengine/auth_service/proto/buckets.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-23T21:18:08Z",
+      "side": 1,
+      "message": "This can stay here, other services don\u0027t care about it, it is detail of auth_service.",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "bc7339b2da19eb3d36599c2ddd5424760ec48206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
