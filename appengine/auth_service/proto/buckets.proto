@@ -1,0 +1,59 @@
+// Copyright 2019 The LUCI Authors. All rights reserved.
+// Use of this source code is governed under the Apache License, Version 2.0
+// that can be found in the LICENSE file.
+
+// Bucket schema for per-project ACLs fetched via a config service.
+
+syntax = "proto3";
+
+package auth_service;
+
+// Bucket is a container of LUCI project resources, e.g. builds, logs.
+message Bucket {
+
+  // Grants a role to a group or identity.
+  message AccessControl {
+    // Service host name, e.g. "chromium-swarm.appspot.com".
+    // It is needed because we have multiple deployments of the same service.
+    string service_hostname = 1;
+
+    // A LUCI action.
+    Action action = 2;
+
+    // A group or identity. Supported formats:
+    // - "group:<group name>"
+    // - "user:<email>"
+    string granted_to = 3;
+  }
+
+  // Action is a concrete action that can be performed on a project resource.
+  // Each member is prefixed with the name of the service owning a resource.
+  enum Action {
+    BUILDBUCKET_READ_BUILD = 0;
+    BUILDBUCKET_SEARCH_BUILDS = 1;
+    BUILDBUCKET_SCHEDULE_BUILD = 2;
+
+    SCHEDULER_READ_JOB = 100;
+    SCHEDULER_TRIGGER_JOB = 101;
+
+    LOGDOG_READER = 200;
+    LOGDOG_WRITER = 201;
+
+    SWARMING_READ_TASK = 300;
+    SWARMING_SCHEDULE_TASK = 301;
+  }
+
+  // Name of the bucket, unique within the LUCI project.
+  // Required. Must match regex '^[0-9a-z_\.\-]{1,100}$'.
+  // Examples: "try", "ci".
+  string name = 1;
+
+  // The access control list.
+  repeated AccessControl acl = 2;
+}
+
+// Schema for buckets.cfg
+message BucketsCfg {
+  repeated Bucket buckets = 1;
+}
+
