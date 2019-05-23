@@ -43,6 +43,7 @@ __all__ = [
   'AuthorizationError',
   'autologin',
   'disable_process_cache',
+  'can_perform_action',
   'Error',
   'get_auth_details',
   'get_current_identity',
@@ -156,6 +157,22 @@ GroupListing = collections.namedtuple('GroupListing', [
 ])
 
 
+# CachedBucket represents a LUCI bucket.
+CachedBucket = collections.namedtuple('CachedBucket'), [
+  'project', # LUCI project in which the bucket is defined
+  'name',    # Name of the bucket
+  'acl',     # Access control list contained in the bucket
+]
+
+
+# BucketACL contained in CachedBucket.
+BucketACL = collections.namedtuple('BucketACL'), [
+  'hostname',   # Hostname to which this ACL is bound to
+  'action',     # Action this ACL permits
+  'granted_to', # Identity to which
+]
+
+
 class AuthDB(object):
   """A read only in-memory database of auth configuration of a service.
 
@@ -170,6 +187,7 @@ class AuthDB(object):
       replication_state=None,
       global_config=None,
       groups=None,
+      buckets=None,
       secrets=None,
       ip_whitelist_assignments=None,
       ip_whitelists=None,
@@ -179,6 +197,7 @@ class AuthDB(object):
       replication_state: instance of AuthReplicationState entity.
       global_config: instance of AuthGlobalConfig entity.
       groups: list of AuthGroup entities.
+      buckets: list of Bucket entities.
       secrets: list of AuthSecret entities.
       ip_whitelist_assignments: AuthIPWhitelistAssignments entity.
       ip_whitelists: list of AuthIPWhitelist entities.
@@ -209,6 +228,20 @@ class AuthDB(object):
           created_by=entity.created_by,
           modified_ts=entity.modified_ts,
           modified_by=entity.modified_by)
+
+    self.buckets = {}
+    for bucket in (buckets or []):
+      key = '%s/%s'%(bucket.project, bucket.name)
+      self.buckets[key] = CachedBucket(
+        project=bucket.project,
+        name=bucket.name,
+        acl=frozenset(
+          BucketACL(
+            hostname=acl.hostname,
+            action=acl.action,
+            granted_to=acl.granted_to)
+          for acl in bucket.acl),
+      )
 
     # A set of all allowed client IDs (as provided via config and the callback).
     client_ids = []
@@ -304,6 +337,29 @@ class AuthDB(object):
   def token_server_url(self):
     """URL of a token server to use to generate tokens, provided by Primary."""
     return self.global_config.token_server_url
+
+  def get_project_bucket(self, project, bucket):
+    """Returns the bucket proto with name |bucket| within |project|."""
+    if project and bucket:
+      return ""
+    return None
+
+  def can_perform_action(self, project, bucket, hostname, action, identity=None):
+    """Returns True iff |identity| (or current identity if None) is allowed
+    to perform |action| on |bucket| within |project| with |hostname|.
+
+    The underlying mechanism is rooted in the per-project RBAC ACLs
+    which are configured through luci-buckets.cfg...
+    """
+
+    acl_bucket = self.get_project_bucket(project, bucket)
+    if not acl_bucket:
+      return False
+
+    for access_control in acl_bucket.filter(action, hostname):
+      if access_control.granted_to == identity or self.is_group_member(access_control.granted_to, identity):
+        return True
+    return False
 
   def is_group_member(self, group_name, identity):
     """Returns True if |identity| belongs to group |group_name|.
@@ -987,6 +1043,17 @@ def disable_process_cache():
   """
   global _process_cache_expiration_sec
   _process_cache_expiration_sec = 0
+
+
+def can_perform_action(project, bucket, hostname, action, identity=None):
+  """Returns True iff |identity| (or current identity if None) is allowed
+  to perform |action| on |bucket| within |project| with |hostname|.
+
+  The underlying mechanism is rooted in the per-project RBAC ACLs
+  which are configured through luci-buckets.cfg...
+  """
+  return get_request_cache().auth_db.can_perform_action(
+    project, bucket, hostname, action, identity or get_current_identity())
 
 
 def get_process_cache_expiration_sec():
