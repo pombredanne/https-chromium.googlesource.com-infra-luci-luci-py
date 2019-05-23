@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import re
+import six
 import stat
 import sys
 
@@ -35,7 +36,8 @@ SUPPORTED_ALGOS = {
 
 
 # Used for serialization.
-SUPPORTED_ALGOS_REVERSE = dict((v, k) for k, v in SUPPORTED_ALGOS.iteritems())
+SUPPORTED_ALGOS_REVERSE = dict(
+    (v, k) for k, v in six.iteritems(SUPPORTED_ALGOS))
 
 
 SUPPORTED_FILE_TYPES = ['basic', 'tar']

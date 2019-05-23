@@ -10,6 +10,7 @@ import io
 import logging
 import os
 import random
+import six
 import string
 import sys
 import time
@@ -89,7 +90,7 @@ def trim_caches(caches, path, min_free_space, max_age_secs):
       oldest = [(c, c.get_oldest()) for c in caches if len(c) > 0]
       if not oldest:
         break
-      oldest.sort(key=lambda (_, ts): ts)
+      oldest.sort(key=lambda p: (lambda _, ts: ts)(*p))
       c, ts = oldest[0]
       if ts >= min_ts and free_disk >= min_free_space:
         break
@@ -302,7 +303,7 @@ class ContentAddressedCache(Cache):
 class MemoryContentAddressedCache(ContentAddressedCache):
   """ContentAddressedCache implementation that stores everything in memory."""
 
-  def __init__(self, file_mode_mask=0500):
+  def __init__(self, file_mode_mask=0o500):
     """Args:
       file_mode_mask: bit mask to AND file mode with. Default value will make
           all mapped files to be read only.
@@ -476,16 +477,16 @@ class DiskContentAddressedCache(ContentAddressedCache):
     policies.
     """
     with self._lock:
-      fs.chmod(self.cache_dir, 0700)
+      fs.chmod(self.cache_dir, 0o700)
       # Ensure that all files listed in the state still exist and add new ones.
       previous = set(self._lru)
       # It'd be faster if there were a readdir() function.
       for filename in fs.listdir(self.cache_dir):
         if filename == self.STATE_FILE:
-          fs.chmod(os.path.join(self.cache_dir, filename), 0600)
+          fs.chmod(os.path.join(self.cache_dir, filename), 0o600)
           continue
         if filename in previous:
-          fs.chmod(os.path.join(self.cache_dir, filename), 0400)
+          fs.chmod(os.path.join(self.cache_dir, filename), 0o400)
           previous.remove(filename)
           continue
 
@@ -852,7 +853,7 @@ class NamedCache(Cache):
         # Raise using the original traceback.
         exc = NamedCacheError(
             'cannot install cache named %r at %r: %s' % (name, dst, ex))
-        raise exc, None, sys.exc_info()[2]
+        six.reraise(exc, None, sys.exc_info()[2])
       finally:
         self._save()
 
@@ -925,7 +926,7 @@ class NamedCache(Cache):
         # Raise using the original traceback.
         exc = NamedCacheError(
             'cannot uninstall cache named %r at %r: %s' % (name, src, ex))
-        raise exc, None, sys.exc_info()[2]
+        six.reraise(exc, None, sys.exc_info()[2])
       finally:
         # Call save() at every uninstall. The assumptions are:
         # - The total the number of named caches is low, so the state.json file

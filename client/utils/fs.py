@@ -4,14 +4,12 @@
 
 """Wraps os, os.path and shutil functions to work around MAX_PATH on Windows."""
 
-import __builtin__
 import inspect
 import os
 import re
 import shutil
 import subprocess
 import sys
-
 
 if sys.platform == 'win32':
   import ctypes
@@ -392,7 +390,13 @@ else:
 
 
 def open(path, *args, **kwargs):  # pylint: disable=redefined-builtin
-  return __builtin__.open(extend(path), *args, **kwargs)
+  if sys.version_info[0] <= 2:
+     import __builtin__
+     builtins_local = __builtin__
+  else:
+    import builtins
+    builtins_local = builtins
+  return builtins_local.open(extend(path), *args, **kwargs)
 
 
 ## os
