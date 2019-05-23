@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "113aa1a5_e1b71966",
+        "filename": "appengine/auth_service/proto/buckets.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2019-05-23T21:46:15Z",
+      "side": 1,
+      "message": "Moved.",
+      "parentUuid": "52fb83b4_42e25c5a",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "bc7339b2da19eb3d36599c2ddd5424760ec48206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b05cd56_c4a5589e",
         "filename": "appengine/auth_service/proto/buckets.proto",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "bc7339b2da19eb3d36599c2ddd5424760ec48206",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "420f898c_2f908b22",
+        "filename": "appengine/auth_service/proto/buckets.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2019-05-23T21:46:15Z",
+      "side": 1,
+      "message": "I\u0027ll move it as well. Maybe come in handy in auth/ package and prefer not to tear the file apart.",
+      "parentUuid": "4b05cd56_c4a5589e",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "bc7339b2da19eb3d36599c2ddd5424760ec48206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
