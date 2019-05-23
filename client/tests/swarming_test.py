@@ -90,8 +90,7 @@ def gen_properties(**kwargs):
     'cipd_input': None,
     'command': None,
     'containment': {
-      'lower_priority': False,
-      'containment_type': 'NONE',
+      'lower_priority': False, 
     },
     'relative_cwd': None,
     'dimensions': [
@@ -332,8 +331,7 @@ class TestSwarmingTrigger(NetTestCase):
                   cipd_input=None,
                   command=['a', 'b'],
                   containment=swarming.Containment(
-                    lower_priority=False,
-                    containment_type='NONE',
+                    lower_priority=False, 
                   ),
                   relative_cwd=None,
                   dimensions=[('os', 'Mac'), ('pool', 'default')],
@@ -418,8 +416,7 @@ class TestSwarmingTrigger(NetTestCase):
                   cipd_input=None,
                   command=['a', 'b'],
                   containment=swarming.Containment(
-                    lower_priority=False,
-                    containment_type='NONE',
+                    lower_priority=False, 
                   ),
                   relative_cwd=None,
                   dimensions=[('os', 'Mac'), ('pool', 'default')],
@@ -487,8 +484,7 @@ class TestSwarmingTrigger(NetTestCase):
                   cipd_input=None,
                   command=['a', 'b'],
                   containment=swarming.Containment(
-                    lower_priority=False,
-                    containment_type='NONE',
+                    lower_priority=False, 
                   ),
                   relative_cwd=None,
                   dimensions=[('os', 'Mac'), ('pool', 'default')],
@@ -565,8 +561,7 @@ class TestSwarmingTrigger(NetTestCase):
                       server=None),
                   command=['a', 'b'],
                   containment=swarming.Containment(
-                    lower_priority=False,
-                    containment_type='NONE',
+                    lower_priority=False, 
                   ),
                   relative_cwd=None,
                   dimensions=[('os', 'Mac'), ('pool', 'default')],

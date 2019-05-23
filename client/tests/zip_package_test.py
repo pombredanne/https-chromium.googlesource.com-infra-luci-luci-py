@@ -3,7 +3,6 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-import cStringIO as StringIO
 import os
 import subprocess
 import sys
@@ -14,6 +13,7 @@ import zipfile
 # Mutates sys.path.
 import test_env
 
+from six.moves import cStringIO as StringIO
 from utils import file_path
 from utils import zip_package
 
@@ -196,7 +196,7 @@ class ZipPackageTest(unittest.TestCase):
     # Test zip_into_buffer produces readable zip with same content.
     for compress in (True, False):
       buf = pkg.zip_into_buffer(compress=compress)
-      self.assertEqual(data, self.read_zip(StringIO.StringIO(buf)))
+      self.assertEqual(data, self.read_zip(StringIO(buf)))
     # Test zip_into_file produces readable zip with same content.
     for compress in (True, False):
       path = os.path.join(self.temp_dir, 'pkg.zip')
@@ -257,7 +257,11 @@ class ZipPackageTest(unittest.TestCase):
     ]))
     zip_file = os.path.join(self.temp_dir, 'out.zip')
     pkg.zip_into_file(zip_file)
-    actual = check_output([sys.executable, zip_file]).strip()
+    try:
+        actual = check_output([sys.executable, zip_file]).strip()
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        raise
     self.assertEqual(tempfile.gettempdir(), os.path.dirname(actual))
     basename = os.path.basename(actual)
     self.assertTrue(basename.startswith('.zip_pkg-'), actual)

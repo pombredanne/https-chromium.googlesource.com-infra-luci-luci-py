@@ -8,11 +8,13 @@ import functools
 import inspect
 import logging
 import os
-import Queue
+import six
 import sys
 import threading
 import time
 import traceback
+
+from six.moves import queue as Queue
 
 
 # Priorities for tasks in AutoRetryThreadPool, particular values are important.
@@ -234,8 +236,8 @@ class ThreadPool(object):
     self.tasks.join()
     with self._outputs_exceptions_cond:
       if self._exceptions:
-        e = self._exceptions.pop(0)
-        raise e[0], e[1], e[2]
+        e = self._exceptions.pop(0)  
+        six.reraise(e[0], e[1], e[2])
       out = self._outputs
       self._outputs = []
     return out
@@ -261,8 +263,8 @@ class ThreadPool(object):
       self._on_iter_results_step()
       with self._outputs_exceptions_cond:
         if self._exceptions:
-          e = self._exceptions.pop(0)
-          raise e[0], e[1], e[2]
+          e = self._exceptions.pop(0) 
+          six.reraise(e[0], e[1], e[2])
         if self._outputs:
           # Remember the result to yield it outside of the lock.
           result = self._outputs.pop(0)
@@ -288,7 +290,7 @@ class ThreadPool(object):
     for _ in range(len(self._workers)):
       # Enqueueing None causes the worker to stop.
       self.tasks.put(None)
-    for t in self._workers:
+    for t in self._workers: 
       # 'join' without timeout blocks signal handlers, spin with timeout.
       while t.is_alive():
         t.join(30)
@@ -413,7 +415,7 @@ class IOAutoRetryThreadPool(AutoRetryThreadPool):
   """
   # Initial and maximum number of worker threads.
   INITIAL_WORKERS = 2
-  MAX_WORKERS = 16 if sys.maxsize > 2L**32 else 8
+  MAX_WORKERS = 16 if sys.maxsize > 2**32 else 8
   RETRIES = 5
 
   def __init__(self):
@@ -787,8 +789,8 @@ class TaskChannel(object):
       # 'value' is captured sys.exc_info() 3-tuple. Use extended raise syntax
       # to preserve stack frame of original exception (that was raised in
       # another thread).
-      assert isinstance(value, tuple) and len(value) == 3
-      raise value[0], value[1], value[2]
+      assert isinstance(value, tuple) and len(value) == 3 
+      six.reraise(value[0], value[1], value[2])
     if item_type == self._ITEM_DONE:
       raise StopIteration()
     assert False, 'Impossible queue item type: %r' % item_type

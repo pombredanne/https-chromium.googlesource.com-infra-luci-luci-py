@@ -485,8 +485,10 @@ class AutoRetryThreadPoolTest(unittest.TestCase):
       exc_traceback = ''
       try:
         channel.next()
-      except OSError:
+      except OSError as e:
+        print('exception: ' + str(e))
         exc_traceback = traceback.format_exc()
+      print(exc_traceback)
       self.assertIn('function_with_some_unusual_name', exc_traceback)
 
   def test_max_value(self):
