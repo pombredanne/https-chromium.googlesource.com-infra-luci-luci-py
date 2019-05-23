@@ -153,7 +153,6 @@ message AuthIPWhitelistAssignment {
 
 // An entire database of auth configuration that is being replicated.
 message AuthDB {
-  // Next use: 11
   reserved 5; // used to be 'secrets', no longer used
 
   // OAuth2 client_id to use to mint new OAuth2 tokens.
@@ -169,9 +168,6 @@ message AuthDB {
   repeated AuthIPWhitelist ip_whitelists = 6;
   // Mapping 'account -> IP whitlist to use for that account'.
   repeated AuthIPWhitelistAssignment ip_whitelist_assignments = 7;
-  // Mapping 'project -> serialized BucketsCfg'.
-  // Used to define the set of project ACL configurations.
-  map<string, bytes> buckets = 10;
 
   // URL of a token server to use to generate delegation tokens.
   string token_server_url = 8;
