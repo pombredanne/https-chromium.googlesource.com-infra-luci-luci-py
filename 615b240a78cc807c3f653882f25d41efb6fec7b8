@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "745b2a67_d3b273b1",
+        "filename": "appengine/components/components/auth/proto/replication.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-24T00:58:04Z",
+      "side": 1,
+      "message": "Crime!\n\nDo you need to do it? Otherwise just \"reserve 1;\" and move on. I know it pains me too!",
+      "revId": "615b240a78cc807c3f653882f25d41efb6fec7b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
