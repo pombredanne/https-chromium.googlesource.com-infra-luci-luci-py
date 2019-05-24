@@ -16,6 +16,24 @@
       "revId": "615b240a78cc807c3f653882f25d41efb6fec7b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c9e3c75_4decf1e5",
+        "filename": "appengine/components/components/auth/proto/replication.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-24T00:59:34Z",
+      "side": 1,
+      "message": "This message was added few CLs ago (https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1627062), no one is using it yet.",
+      "parentUuid": "745b2a67_d3b273b1",
+      "revId": "615b240a78cc807c3f653882f25d41efb6fec7b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
