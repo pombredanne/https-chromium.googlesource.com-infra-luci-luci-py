@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35114860_b2e4a39e",
+        "filename": "client/auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "This is not necessary, we don\u0027t support python 2.6.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe0c81e1_133fe233",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "Use SUPPORTED_ALGOS.items(), it\u0027s not worth the import.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6159138f_90957d33",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "I don\u0027t understand. In practice, this just should be:\n\n  oldest.sort(key\u003dlambda k: k[1])",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61cbe7f3_16dcfb88",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "You can remove.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "092c8d9d_b31e7c04",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "Inner () is not necessary.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae2c2e66_8af6ccd8",
+        "filename": "client/third_party/httplib2/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "Let\u0027s try to not modifying third parties. But oh god httplib2.\n\nhttps://github.com/httplib2/httplib2/tree/master/python3\n\nI guess I\u0027ll make an exception with this one, but let\u0027s keep a local diff files, and updating will be a pain so we should update prior.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1acab1a1_35d4249e",
+        "filename": "client/utils/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "I\u0027d prefer a formal check for version instead of a try/except, e.g.\n\n  if sys.version_info.major \u003d\u003d 2:",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db93a36b_692de993",
+        "filename": "client/utils/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "Make a variable at import time.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb3acc72_23f3f18c",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "This function is called often, I\u0027d prefer the import to be done globally.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c31075fc_dcf950b7",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "You are significantly changing the behavior here.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25aec1e5_049f1455",
+        "filename": "client/utils/zip_package.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 1,
+      "message": "I prefer a condition on python version than probing objects.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

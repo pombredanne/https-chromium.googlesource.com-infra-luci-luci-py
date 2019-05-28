@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "494abe88_4b18993b",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 0,
+      "message": "This is necessary on 32 bits python.",
+      "revId": "27999b5e89413452cbefc7de55227b57845e176c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b32b674_1878280c",
+        "filename": "client/utils/large.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T19:48:54Z",
+      "side": 0,
+      "message": "Necessary on 32 bits python.",
+      "revId": "27999b5e89413452cbefc7de55227b57845e176c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
