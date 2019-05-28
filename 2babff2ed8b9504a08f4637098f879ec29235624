@@ -16,6 +16,24 @@
       "revId": "2babff2ed8b9504a08f4637098f879ec29235624",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65b0ac32_1752a0f4",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T21:49:14Z",
+      "side": 1,
+      "message": "It\u0027s imported so it\u0027s exported, then used in bot_main.",
+      "parentUuid": "c903425a_76985420",
+      "revId": "2babff2ed8b9504a08f4637098f879ec29235624",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
