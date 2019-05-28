@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "817db0d0_afbf2dfc",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-28T18:02:29Z",
+      "side": 1,
+      "message": "No, it raises net.Error exception on failure (replies with status code \u003e\u003d400). Added to the doc string. (We can potentially wrap the exception, but I see no value in doing so).",
+      "parentUuid": "bdd10be9_dfc9e2b9",
+      "revId": "b883752db5637236ec3f8e859608508f11d314a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "824a14e7_8a0b26b5",
         "filename": "appengine/auth_service/replication.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "b883752db5637236ec3f8e859608508f11d314a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c385d49d_0c7719d0",
+        "filename": "appengine/auth_service/replication.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-28T18:02:29Z",
+      "side": 1,
+      "message": "It raise net.Error on errors. Added to the doc string.",
+      "parentUuid": "824a14e7_8a0b26b5",
+      "revId": "b883752db5637236ec3f8e859608508f11d314a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
