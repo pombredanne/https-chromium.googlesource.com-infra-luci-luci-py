@@ -11,7 +11,6 @@ This only works with sorted list of integers. The resulting compression level
 can be very high for monotonically increasing sets.
 """
 
-import cStringIO
 import zlib
 
 
@@ -28,7 +27,7 @@ def pack(values):
   if not values:
     return ''
   last = 0
-  max_value = 2L**63
+  max_value = 2**63
   assert 0 <= values[0] < max_value, 'Values must be between 0 and 2**63'
   assert 0 <= values[-1] < max_value, 'Values must be between 0 and 2**63'
   for value in values:

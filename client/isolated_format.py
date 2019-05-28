@@ -15,7 +15,10 @@ import sys
 from utils import file_path
 from utils import fs
 from utils import tools
+tools.force_local_third_party()
 
+# third_party/
+import six
 
 # Version stored and expected in .isolated files.
 ISOLATED_FILE_VERSION = '1.6'
@@ -35,7 +38,8 @@ SUPPORTED_ALGOS = {
 
 
 # Used for serialization.
-SUPPORTED_ALGOS_REVERSE = dict((v, k) for k, v in SUPPORTED_ALGOS.iteritems())
+SUPPORTED_ALGOS_REVERSE = dict(
+    (v, k) for k, v in six.iteritems(SUPPORTED_ALGOS))
 
 
 SUPPORTED_FILE_TYPES = ['basic', 'tar']
