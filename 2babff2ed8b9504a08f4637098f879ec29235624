@@ -52,6 +52,24 @@
       "revId": "2babff2ed8b9504a08f4637098f879ec29235624",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f70eead_5f548cbd",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T21:55:52Z",
+      "side": 1,
+      "message": "Doh! You\u0027re right, fixed.",
+      "parentUuid": "fdb9d3d5_fc3d7122",
+      "revId": "2babff2ed8b9504a08f4637098f879ec29235624",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
