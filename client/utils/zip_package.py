@@ -6,7 +6,6 @@
 
 import atexit
 import collections
-import cStringIO as StringIO
 import hashlib
 import os
 import pkgutil
@@ -37,8 +36,13 @@ _extracted_files_lock = threading.Lock()
 
 # Patch zipimport.zipimporter hook to accept unicode strings
 def zipimporter_unicode(archivepath):
-  if isinstance(archivepath, unicode):
-    archivepath = archivepath.encode(sys.getfilesystemencoding())
+  if sys.version_info[0] <= 2:
+    str_type = unicode
+  else:
+    str_type = str
+  if isinstance(archivepath, str_type):
+    if hasattr(archivepath, 'encode'):
+      archivepath = archivepath.encode(sys.getfilesystemencoding())
   return zipimport.zipimporter(archivepath)
 
 
@@ -173,7 +177,12 @@ class ZipPackage(object):
 
   def zip_into_buffer(self, compress=True):
     """Zips added files into in-memory zip file and returns it as str."""
-    stream = StringIO.StringIO()
+    if sys.version_info[0] <= 2:
+      import StringIO
+      stream = StringIO.StringIO()
+    else:
+      import io
+      stream = io.StringIO()
     try:
       self._zip_into_stream(stream, compress)
       return stream.getvalue()
@@ -213,7 +222,7 @@ class ZipPackage(object):
         info.compress_type = compression
         info.create_system = 3
         if isinstance(ref, ZipPackage._FileRef):
-          info.external_attr = (os.stat(ref.abs_path)[0] & 0xFFFF) << 16L
+          info.external_attr = (os.stat(ref.abs_path)[0] & 0xFFFF) << 16
           with open(ref.abs_path, 'rb') as f:
             buf = f.read()
         elif isinstance(ref, ZipPackage._BufferRef):
@@ -254,7 +263,9 @@ def get_main_script_path():
 
   path = getattr(main, '__file__', None)
   if path:
-    return path.decode(sys.getfilesystemencoding())
+    if hasattr(path, 'decode'):
+      return path.decode(sys.getfilesystemencoding())
+    return path
 
 
 def _write_temp_data(name, data, temp_dir):
@@ -270,7 +281,7 @@ def _write_temp_data(name, data, temp_dir):
     return None
 
   try:
-    fd = os.open(filepath, os.O_WRONLY|os.O_CREAT|os.O_EXCL, 0600)
+    fd = os.open(filepath, os.O_WRONLY|os.O_CREAT|os.O_EXCL, 0o600)
     with os.fdopen(fd, 'wb') as f:
       f.write(data)
     return filepath

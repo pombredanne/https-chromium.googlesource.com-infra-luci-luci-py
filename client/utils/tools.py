@@ -5,7 +5,6 @@
 """Various utility functions and classes not specific to any single area."""
 
 import atexit
-import cStringIO
 import functools
 import json
 import logging
@@ -311,7 +310,12 @@ def format_json(data, dense):
 
   If dense is True, the json is packed. Otherwise, it is human readable.
   """
-  buf = cStringIO.StringIO()
+  if sys.version_info[0] <= 2:
+    import cStringIO
+    buf = cStringIO.StringIO()
+  else:
+    import io
+    buf = io.StringIO()
   write_json(buf, data, dense)
   return buf.getvalue()
 
@@ -384,8 +388,11 @@ def force_local_third_party():
   if _THIRD_PARTY_FIXED:
     return
   _THIRD_PARTY_FIXED = True
-  src = os.path.abspath(zip_package.get_main_script_path())
-  root = os.path.dirname(src)
+  path = __file__
+  if hasattr(__file__, 'decode'):
+    path = __file__.decode(sys.getfilesystemencoding())
+  root = os.path.dirname(os.path.dirname(os.path.abspath(path)))
+  sys.path.insert(0, os.path.join(root, 'third_party'))
+  sys.path.insert(0, os.path.join(root, 'third_party', 'six'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'rsa'))
-  sys.path.insert(0, os.path.join(root, 'third_party'))
