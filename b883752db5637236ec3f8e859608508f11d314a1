@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdd10be9_dfc9e2b9",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T17:11:00Z",
+      "side": 1,
+      "message": "When it fails, it\u0027ll return None, so its return value should be returned?",
+      "revId": "b883752db5637236ec3f8e859608508f11d314a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "824a14e7_8a0b26b5",
+        "filename": "appengine/auth_service/replication.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T17:11:00Z",
+      "side": 1,
+      "message": "If it fails, we want it to raise or return False",
+      "revId": "b883752db5637236ec3f8e859608508f11d314a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
