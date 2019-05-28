@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdbee115_b892744c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-05-28T22:03:01Z",
+      "side": 1,
+      "message": "nit: kwargs.get(\u0027creationflags\u0027, 0) ?",
+      "range": {
+        "startLine": 696,
+        "startChar": 11,
+        "endLine": 696,
+        "endChar": 43
+      },
+      "revId": "024f8b7192473bbbeeba6fbb47a6983800be6cf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
