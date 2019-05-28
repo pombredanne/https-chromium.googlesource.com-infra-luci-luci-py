@@ -22,6 +22,30 @@
       "revId": "024f8b7192473bbbeeba6fbb47a6983800be6cf9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e51332b_d06ce82d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-28T22:51:42Z",
+      "side": 1,
+      "message": "The reason I generally do this is that a caller could use \"creationflags\u003dNone\" and that is generally interpreted as the default values. But looking at\nhttps://github.com/python/cpython/blob/v2.7.16/Lib/subprocess.py#L338\n\nit\u0027s actually 0, not None. Fixed in https://chromium-review.googlesource.com/1633027.",
+      "parentUuid": "bdbee115_b892744c",
+      "range": {
+        "startLine": 696,
+        "startChar": 11,
+        "endLine": 696,
+        "endChar": 43
+      },
+      "revId": "024f8b7192473bbbeeba6fbb47a6983800be6cf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
