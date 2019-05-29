@@ -5,7 +5,6 @@
 """Various utility functions and classes not specific to any single area."""
 
 import atexit
-import cStringIO
 import functools
 import json
 import logging
@@ -18,6 +17,10 @@ import time
 import utils
 from . import zip_package
 
+if sys.version_info.major == 2:
+  import cStringIO
+else:
+  import io as cStringIO
 
 # Path to (possibly extracted from zip) cacert.pem bundle file.
 # See get_cacerts_bundle().
@@ -384,8 +387,14 @@ def force_local_third_party():
   if _THIRD_PARTY_FIXED:
     return
   _THIRD_PARTY_FIXED = True
-  src = os.path.abspath(zip_package.get_main_script_path())
-  root = os.path.dirname(src)
+  path = __file__
+  if sys.version_info.major == 2:
+    path = __file__.decode(sys.getfilesystemencoding())
+  root = os.path.dirname(os.path.dirname(os.path.abspath(path)))
+  if sys.version_info.major == 2:
+    sys.path.insert(0, os.path.join(root, 'third_party', 'httplib2', 'python2'))
+  else:
+    sys.path.insert(0, os.path.join(root, 'third_party', 'httplib2', 'python3'))
+  sys.path.insert(0, os.path.join(root, 'third_party'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'rsa'))
-  sys.path.insert(0, os.path.join(root, 'third_party'))
