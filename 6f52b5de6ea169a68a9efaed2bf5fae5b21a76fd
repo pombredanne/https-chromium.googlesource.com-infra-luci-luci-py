@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8076565f_5c674e6a",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-29T22:34:05Z",
+      "side": 1,
+      "message": "I think we may have issues with this structure in the future. Imagine we added a new action BUILDBUCKET_READ_METADATA (or something) and want it to apply to all existing \"readers\" by default. \n\nWe\u0027ll:\n1. Modify this proto.\n2. (presumably) Modify `lucicfg` to emit BUILDBUCKET_READ_METADATA for readers.\n3. Ask ALL users to regenerate their configs :( This will be hard.\n\nMaybe it should be roles? And mapping of roles to a set of actions be defined elsewhere (either in the source code or in some global config).",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cf06cdc_d6b7bec3",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-29T22:34:05Z",
+      "side": 1,
+      "message": "these look like roles, not actions",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46543b59_a9f3c4b9",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-29T22:34:05Z",
+      "side": 1,
+      "message": "Will it be used in any way? If not, comments in text proto files are good enough, IMHO. It is easier to add a field later than to remove it.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc12e7ca_b6635469",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-29T22:34:05Z",
+      "side": 1,
+      "message": "eh.. a separate field will still cause inconveniences when dealing with bucket messages. Consider reusing \u0027name\u0027:\n\n  // Full name of the bucket, as \"\u003cproject\u003e/\u003cbucket\u003e\".\n  //\n  // When Bucket message is specified in a project config file,\n  // \"\u003cproject\u003e/\" part can be omitted (it will be inferred from the location \n  // of the config file).\n  string name \u003d 1;\n\nBut I don\u0027t have a very strong opinion. I just think it will be more convenient to have bucket ID be defined by a single field. Note that you will need to join \u0027project\u0027 and \u0027name\u0027 later anyway to construct datastore entity key that will store Bucket.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
