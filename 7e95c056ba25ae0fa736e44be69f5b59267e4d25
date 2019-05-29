@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2019ce35_7988965d",
+        "filename": "client/auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35114860_b2e4a39e",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe0c81e1_133fe233",
         "filename": "client/isolated_format.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3170ce1e_bab374f7",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe0c81e1_133fe233",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "60c37582_5160b521",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "I updated it to  oldest.sort(key\u003dlambda k: k[1]), since tuple parameters is not supported in Python 3, https://www.python.org/dev/peps/pep-3113/.",
+      "parentUuid": "6159138f_90957d33",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61cbe7f3_16dcfb88",
         "filename": "client/swarming.py",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2019-05-28T19:48:54Z",
       "side": 1,
       "message": "You can remove.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bd70720_d06adfc3",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "I need this import, otherwise will get syntax error for print(..., file\u003dsys.stderr), the default print function doesn\u0027t support file parameter.",
+      "parentUuid": "61cbe7f3_16dcfb88",
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "2427a05d_2c60c662",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "092c8d9d_b31e7c04",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae2c2e66_8af6ccd8",
         "filename": "client/third_party/httplib2/__init__.py",
         "patchSetId": 3
@@ -101,6 +191,24 @@
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b192dfa0_6e09d43d",
+        "filename": "client/third_party/httplib2/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Updated httplib2 library to import both python2 and python3 versions.",
+      "parentUuid": "ae2c2e66_8af6ccd8",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "70dcb93c_765731cd",
+        "filename": "client/utils/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1acab1a1_35d4249e",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db93a36b_692de993",
         "filename": "client/utils/net.py",
         "patchSetId": 3
@@ -135,6 +261,24 @@
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2eff33ea_96ffc4e7",
+        "filename": "client/utils/net.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db93a36b_692de993",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "dc9036d4_58a65aa8",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb3acc72_23f3f18c",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c31075fc_dcf950b7",
         "filename": "client/utils/tools.py",
         "patchSetId": 3
@@ -166,6 +328,24 @@
       "writtenOn": "2019-05-28T19:48:54Z",
       "side": 1,
       "message": "You are significantly changing the behavior here.",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d7050a_0d2f682a",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "This is the previous logic, see https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1531491/10/client/utils/oauth.py.\n\nThe latest code doesn\u0027t work internally, so I switched back to previous logic.",
+      "parentUuid": "c31075fc_dcf950b7",
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -186,6 +366,24 @@
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79402dc5_114e0801",
+        "filename": "client/utils/zip_package.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-29T23:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25aec1e5_049f1455",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
