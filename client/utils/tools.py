@@ -389,3 +389,7 @@ def force_local_third_party():
   sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'rsa'))
   sys.path.insert(0, os.path.join(root, 'third_party'))
+  if sys.version_info.major == 2:
+    sys.path.insert(0, os.path.join(root, 'third_party', 'httplib2', 'python2'))
+  else:
+    sys.path.insert(0, os.path.join(root, 'third_party', 'httplib2', 'python3'))
