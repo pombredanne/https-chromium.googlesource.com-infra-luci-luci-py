@@ -384,8 +384,17 @@ def force_local_third_party():
   if _THIRD_PARTY_FIXED:
     return
   _THIRD_PARTY_FIXED = True
-  src = os.path.abspath(zip_package.get_main_script_path())
-  root = os.path.dirname(src)
+  if zip_package.is_zipped_module(sys.modules['__main__']):
+    src = os.path.abspath(zip_package.get_main_script_path())
+    root = os.path.dirname(src)
+  else:
+    # The __file__ is always the absolute path to this file
+    # if it is not running from a zip file,
+    # so it needs to go up 2 folders to get the path to client folder.
+    path = __file__
+    if sys.version_info.major == 2:
+      path = __file__.decode(sys.getfilesystemencoding())
+    root = os.path.dirname(os.path.dirname(os.path.abspath(path)))
   sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'rsa'))
   sys.path.insert(0, os.path.join(root, 'third_party'))

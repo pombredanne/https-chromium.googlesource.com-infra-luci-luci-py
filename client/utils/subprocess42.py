@@ -50,7 +50,7 @@ MAX_SIZE = 16384
 _OS_ERROR_REPORTING_INHIBITED = False
 
 
-if subprocess.mswindows:
+if sys.platform == 'win32':
   import ctypes
   import msvcrt  # pylint: disable=F0401
   from ctypes import wintypes
