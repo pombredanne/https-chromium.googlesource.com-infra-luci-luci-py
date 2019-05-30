@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3db0c978_7937a318",
+        "filename": "client/third_party/httplib2/README.swarming",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-30T18:08:45Z",
+      "side": 1,
+      "message": "Update about python3.",
+      "revId": "63776dd4f152cdf4b14aee6c2f78397290980acf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
