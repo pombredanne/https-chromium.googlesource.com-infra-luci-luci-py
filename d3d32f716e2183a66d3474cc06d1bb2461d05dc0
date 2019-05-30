@@ -33,6 +33,24 @@
       "revId": "d3d32f716e2183a66d3474cc06d1bb2461d05dc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6abfd79_50a14e10",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2019-05-30T22:08:12Z",
+      "side": 1,
+      "message": "get_main_script_path() will return the path to the test file when run unit tests, is_zipped_module will try to load the module by filename, which is not supported.\n\nGot the follow error when use get_main_script_path:\nTraceback (most recent call last):\n  File \"tests/auth_server_test.py\", line 13, in \u003cmodule\u003e\n    import test_env\n  File \"/usr/local/google/home/leilei/clients/luci-py/client/tests/test_env.py\", line 26, in \u003cmodule\u003e\n    from utils import fs\n  File \"/usr/local/google/home/leilei/clients/luci-py/client/utils/fs.py\", line 15, in \u003cmodule\u003e\n    tools.force_local_third_party()\n  File \"/usr/local/google/home/leilei/clients/luci-py/client/utils/tools.py\", line 387, in force_local_third_party\n    if zip_package.is_zipped_module(zip_package.get_main_script_path()):\n  File \"/usr/local/google/home/leilei/clients/luci-py/client/utils/zip_package.py\", line 246, in is_zipped_module\n    return bool(get_module_zip_archive(module))\n  File \"/usr/local/google/home/leilei/clients/luci-py/client/utils/zip_package.py\", line 238, in get_module_zip_archive\n    loader \u003d pkgutil.get_loader(module)\n  File \"/usr/lib/python2.7/pkgutil.py\", line 462, in get_loader\n    return find_loader(fullname)\n  File \"/usr/lib/python2.7/pkgutil.py\", line 472, in find_loader\n    for importer in iter_importers(fullname):\n  File \"/usr/lib/python2.7/pkgutil.py\", line 428, in iter_importers\n    __import__(pkg)\nImportError: Import by filename is not supported.",
+      "parentUuid": "fcad0e71_b185af93",
+      "revId": "d3d32f716e2183a66d3474cc06d1bb2461d05dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
