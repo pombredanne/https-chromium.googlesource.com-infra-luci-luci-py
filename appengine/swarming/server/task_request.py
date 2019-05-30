@@ -104,7 +104,7 @@ MAX_EXPIRATION_SECS = 7*24*60*60 + 10
 
 
 # Minimum value for timeouts.
-_MIN_TIMEOUT_SECS = 1 if utils.is_local_dev_server() else 30
+_MIN_TIMEOUT_SECS = 30
 
 
 # The world started on 2010-01-01 at 00:00:00 UTC. The rationale is that using
@@ -317,8 +317,19 @@ def _validate_task_run_id(_prop, value):
   return value
 
 
-def _validate_timeout(prop, value):
-  """Validates timeouts in seconds in TaskProperties."""
+def _validate_hard_timeout(prop, value):
+  """Validates execution_timeout_secs in seconds in TaskProperties."""
+  # pylint: disable=protected-access
+  if value and not (_MIN_TIMEOUT_SECS <= value <= MAX_TIMEOUT_SECS):
+    # 0 is tolerated for termination task, but we don't advertize that, that's
+    # an internal detail.
+    raise datastore_errors.BadValueError(
+        '%s (%ds) must be between %ds and three days' %
+            (prop._name, value, _MIN_TIMEOUT_SECS))
+
+
+def _validate_io_timeout(prop, value):
+  """Validates io_timeout_secs in seconds in TaskProperties."""
   # pylint: disable=protected-access
   if value and not (_MIN_TIMEOUT_SECS <= value <= MAX_TIMEOUT_SECS):
     raise datastore_errors.BadValueError(
@@ -706,7 +717,7 @@ class TaskProperties(ndb.Model):
   # Maximum duration the bot can take to run this task. It's named hard_timeout
   # in the bot.
   execution_timeout_secs = ndb.IntegerProperty(
-      validator=_validate_timeout, required=True, indexed=False)
+      validator=_validate_hard_timeout, required=True, indexed=False)
 
   # Extra arguments to supply to the command `python run_isolated ...`. Can only
   # be set if inputs_ref.isolated is set.
@@ -722,7 +733,7 @@ class TaskProperties(ndb.Model):
   # doesn't output new data to stdout for .io_timeout_secs, consider the command
   # timed out. Optional.
   io_timeout_secs = ndb.IntegerProperty(
-      validator=_validate_timeout, indexed=False)
+      validator=_validate_io_timeout, indexed=False)
 
   # If True, the task can safely be served results from a previously succeeded
   # task.
@@ -822,7 +833,6 @@ class TaskProperties(ndb.Model):
       v = out.env_paths.add()
       v.key = key
       v.values.extend(sorted(values))
-    # TODO(maruel): Define containment; https://crbug.com/808836
     if self.execution_timeout_secs:
       out.execution_timeout.seconds = self.execution_timeout_secs
     if self.io_timeout_secs:
@@ -844,6 +854,12 @@ class TaskProperties(ndb.Model):
       # Only terminate task may not use 'pool'. Others must specify one.
       raise datastore_errors.BadValueError(
           u'\'pool\' must be used as dimensions')
+
+    if not self.execution_timeout_secs:
+      # Unlike I/O timeout, hard timeout is required.
+      # The name in the API is different than in the DB.
+      raise datastore_errors.BadValueError(
+          u'\'hard_timeout\' must be specified')
 
     # Isolated input and commands.
     isolated_input = self.inputs_ref and self.inputs_ref.isolated
@@ -1735,6 +1751,7 @@ def task_delete_tasks(task_ids):
 
 def task_bq(start, end):
   """Sends TaskRequest to BigQuery swarming.task_requests table."""
+  # TODO(maruel): What about shutdown requests.
   def _convert(e):
     """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.TaskRequest()

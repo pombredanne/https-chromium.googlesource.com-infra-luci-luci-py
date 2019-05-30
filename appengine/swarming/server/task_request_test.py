@@ -1441,6 +1441,11 @@ class TaskRequestApiTest(TestCase):
     _gen_request(priority=task_request.MAXIMUM_PRIORITY).put()
 
   def test_request_bad_execution_timeout(self):
+    p = _gen_request(properties=_gen_properties(execution_timeout_secs=0))
+    with self.assertRaises(datastore_errors.BadValueError):
+      p.put()
+    with self.assertRaises(datastore_errors.BadValueError):
+      p = _gen_request(properties=_gen_properties(execution_timeout_secs=29))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
           properties=_gen_properties(
