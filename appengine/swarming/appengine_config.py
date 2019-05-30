@@ -50,3 +50,4 @@ if os.__file__[0] != '/':
   # Hack for smoke tests to pass on Windows. dev_appserver hacks the python
   # sys.platform value by setting it to 'linux3' on all platforms.
   hack_windows()
+
