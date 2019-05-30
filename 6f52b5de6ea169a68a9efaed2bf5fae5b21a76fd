@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "151783e4_40bf8c45",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2019-05-30T00:20:35Z",
+      "side": 1,
+      "message": "As per discussion, we\u0027ll defer the exact content of \"Bucket\" and will focus on the delivery mechanism into the services.",
+      "parentUuid": "8076565f_5c674e6a",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6cf06cdc_d6b7bec3",
         "filename": "appengine/components/components/auth/proto/buckets.proto",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6629674_97352864",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2019-05-30T00:20:35Z",
+      "side": 1,
+      "message": "Removed, although they\u0027re just examples for now.",
+      "parentUuid": "6cf06cdc_d6b7bec3",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ef111fb0_0accb901",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2019-05-30T00:20:35Z",
+      "side": 1,
+      "message": "I don\u0027t think it hurts to have the description programmatic accessible  so customers. I imagine it will be used in debugging cases.",
+      "parentUuid": "46543b59_a9f3c4b9",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc12e7ca_b6635469",
         "filename": "appengine/components/components/auth/proto/buckets.proto",
         "patchSetId": 11
@@ -91,6 +163,30 @@
       "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd185d09_35466aa6",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1307247
+      },
+      "writtenOn": "2019-05-30T00:20:35Z",
+      "side": 1,
+      "message": "Don\u0027t have a very strong preference either, will just accept \u003cproject\u003e/\u003cbucket\u003e schema in name.",
+      "parentUuid": "dc12e7ca_b6635469",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "6f52b5de6ea169a68a9efaed2bf5fae5b21a76fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
