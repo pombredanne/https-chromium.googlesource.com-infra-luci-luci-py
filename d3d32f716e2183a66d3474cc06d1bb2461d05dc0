@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e1ea9ec_d95f8df1",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-30T20:44:56Z",
+      "side": 1,
+      "message": "There\u0027s a few others.",
+      "revId": "d3d32f716e2183a66d3474cc06d1bb2461d05dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcad0e71_b185af93",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-30T20:44:56Z",
+      "side": 1,
+      "message": "Can you expand on why you cannot use get_main_script_path() here?",
+      "revId": "d3d32f716e2183a66d3474cc06d1bb2461d05dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
