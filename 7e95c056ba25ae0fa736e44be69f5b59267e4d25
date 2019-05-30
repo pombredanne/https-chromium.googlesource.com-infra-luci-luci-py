@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "d5931a39_f6895f82",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-30T15:38:53Z",
+      "side": 1,
+      "message": "Ah ok I never realized that.",
+      "parentUuid": "5bd70720_d06adfc3",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "092c8d9d_b31e7c04",
         "filename": "client/swarming.py",
         "patchSetId": 3
@@ -346,6 +364,24 @@
       "side": 1,
       "message": "This is the previous logic, see https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1531491/10/client/utils/oauth.py.\n\nThe latest code doesn\u0027t work internally, so I switched back to previous logic.",
       "parentUuid": "c31075fc_dcf950b7",
+      "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10aef35d_af0e137f",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-05-30T15:38:53Z",
+      "side": 1,
+      "message": "The previous logic was done at import time, where __file__ is relative to the current working directory.\n\nAt function call time, this guarantee doesn\u0027t hold up anymore.",
+      "parentUuid": "a1d7050a_0d2f682a",
       "revId": "7e95c056ba25ae0fa736e44be69f5b59267e4d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
