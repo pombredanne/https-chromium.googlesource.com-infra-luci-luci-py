@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53f8924c_6c66f5b6",
+        "filename": "appengine/components/components/auth/proto/replication.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-05-31T17:57:40Z",
+      "side": 1,
+      "message": "Consider naming it AuthBucket for consistency.\n\nAlso when implementing datastore entities, the entity kind MUST be namespaced to something (e.g. be AuthBucket), since if we use simply Bucket, it will have a high change to clash with some existing entities (e.g. when we deploy this stuff to cr-buildbucket). So might just as well name the proto as AuthBucket too.",
+      "range": {
+        "startLine": 175,
+        "startChar": 11,
+        "endLine": 175,
+        "endChar": 17
+      },
+      "revId": "d431de34e3efd8d72dae249184d278729fb07ddc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
