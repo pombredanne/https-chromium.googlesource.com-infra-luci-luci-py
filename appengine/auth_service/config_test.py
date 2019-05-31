@@ -16,6 +16,7 @@ from google.appengine.ext import ndb
 from components import config as config_component
 from components import utils
 from components.auth import model
+from components.auth.proto import buckets_pb2
 from components.auth.proto import security_config_pb2
 from components.config import validation
 from test_support import test_case
@@ -32,6 +33,25 @@ class ConfigTest(test_case.TestCase):
         key=model.root_key(),
         auth_db_rev=0,
     ).put()
+
+  def test_validate_luci_buckets_cfg(self):
+    def is_valid(**fields):
+      ctx = validation.Context()
+      config.validate_luci_buckets_cfg(buckets_pb2.BucketsCfg(**fields), ctx)
+      return not ctx.messages
+
+    self.assertTrue(
+        is_valid(
+            buckets=[]))
+    self.assertTrue(
+        is_valid(
+            buckets=[
+                buckets_pb2.Bucket(name='foo')]))
+
+    self.assertFalse(
+        is_valid(
+            buckets=[
+                buckets_pb2.Bucket(name='someproject/foo')]))
 
   def test_validate_settings_cfg(self):
     def is_valid(**fields):
