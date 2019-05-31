@@ -27,6 +27,12 @@ class InternalUpdateConfigCronHandler(webapp2.RequestHandler):
     config.refetch_config()
 
 
+class InternalUpdateProjectConfigCronHandler(webapp2.RequestHandler):
+    @decorators.require_cronjob
+    def get(self):
+        config.refetch_project_configs()
+
+
 class InternalImportGroupsCronHandler(webapp2.RequestHandler):
   @decorators.require_cronjob
   def get(self):
@@ -58,6 +64,10 @@ def get_routes():
     webapp2.Route(
         r'/internal/taskqueue/replication/<auth_db_rev:\d+>',
         InternalReplicationTaskHandler),
+    webapp2.Route(
+        r'/internal/cron/update_project_config',
+        InternalUpdateProjectConfigCronHandler
+    )
   ])
   return routes
 

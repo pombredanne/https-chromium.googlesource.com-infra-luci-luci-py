@@ -4,6 +4,11 @@ cron:
   url: /internal/cron/update_config
   schedule: every 1 minutes
 
+- description: fetch project configs from luci-config
+  target: backend
+  url: /internal/cron/update_project_config
+  schedule: every 15 minutes
+
 - description: group import from external sources
   target: backend
   url: /internal/cron/import_groups

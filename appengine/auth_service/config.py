@@ -34,6 +34,7 @@ from components import gitiles
 from components import utils
 from components.auth import ipaddr
 from components.auth import model
+from components.auth.proto import buckets_pb2
 from components.auth.proto import security_config_pb2
 from components.config import validation
 
@@ -47,6 +48,76 @@ Revision = collections.namedtuple('Revision', ['revision', 'url'])
 
 class CannotLoadConfigError(Exception):
   """Raised when fetching configs if they are missing or invalid."""
+
+
+### Description of all known config files: how to validate and import them.
+
+# Config file name -> {
+#   'proto_class': protobuf class of the config or None to keep it as text,
+#   'revision_getter': lambda: ndb.Future with <latest imported Revision>
+#   'validator': lambda config: <raises ValueError on invalid format>
+#   'updater': lambda root, rev, config: True if applied, False if not.
+#   'use_authdb_transaction': True to call 'updater' in AuthDB transaction.
+#       Transactional updaters receive mutable AuthGlobalConfig entity as
+#       'root'. Non-transactional updaters receive None instead.
+#   'default': Default config value to use if the config file is missing.
+# }
+_CONFIG_SCHEMAS = {
+  'imports.cfg': {
+    'proto_class': None, # importer configs are stored as text
+    'revision_getter': _get_imports_config_revision_async,
+    'updater': _update_imports_config,
+    'use_authdb_transaction': False,
+  },
+  'ip_whitelist.cfg': {
+    'proto_class': config_pb2.IPWhitelistConfig,
+    'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
+    'updater': _update_ip_whitelist_config,
+    'use_authdb_transaction': True,
+  },
+  'oauth.cfg': {
+    'proto_class': config_pb2.OAuthConfig,
+    'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
+    'updater': _update_oauth_config,
+    'use_authdb_transaction': True,
+  },
+  'settings.cfg': {
+    'proto_class': None, # settings are stored as text in datastore
+    'default': '',  # it's fine if config file is not there
+    'revision_getter': lambda: _get_service_config_rev_async('settings.cfg'),
+    'updater': lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
+    'use_authdb_transaction': False,
+  },
+  'security.cfg': {
+    'proto_class': security_config_pb2.SecurityConfig,
+    'default': security_config_pb2.SecurityConfig(),
+    'revision_getter': lambda: _get_authdb_config_rev_async('security.cfg'),
+    'updater': _update_security_config,
+    'use_authdb_transaction': True,
+  },
+}
+
+
+# Similar to _CONFIG_SCHEMAS, but each config exists per project.
+# Hence project related schemas are created at runtime.
+def project_config_schemas(projectid):
+  schemas = {
+    'luci-buckets.cfg':{
+      'proto_class': buckets_pb2.BucketsCfg,
+      'default': buckets_pb2.BucketsCfg(),
+      'revision_getter':
+        lambda:
+        _get_project_config_rev_async(
+          projectid, 'luci-buckets.cfg'),
+      'updater':
+        lambda rev, c:
+        _update_project_config(
+          projectid, 'luci-buckets.cfg', rev, c),
+      'use_authdb_transaction': True,
+    },
+  }
+  return schemas
+
 
 
 def is_remote_configured():
@@ -101,7 +172,7 @@ def get_settings():
     return config_pb2.SettingsCfg()
 
 
-def refetch_config(force=False):
+def refetch_config(force=False, schemas=_CONFIG_SCHEMAS):
   """Refetches all configs from luci-config (if enabled).
 
   Called as a cron job.
@@ -112,7 +183,7 @@ def refetch_config(force=False):
 
   # Grab and validate all new configs in parallel.
   try:
-    configs = _fetch_configs(_CONFIG_SCHEMAS)
+    configs = _fetch_configs(schemas)
   except CannotLoadConfigError as exc:
     logging.error('Failed to fetch configs\n%s', exc)
     return
@@ -146,6 +217,21 @@ def refetch_config(force=False):
     _update_authdb_configs(dirty_in_authdb)
 
 
+def refetch_project_configs():
+  """Refetches all per-project configurations from all projects (if enabled).
+
+  Called as a cron job.
+  """
+  if not is_remote_configured():
+    logging.info('Config remote is not configured')
+    return
+
+  projects = yield config.get_projects_async()
+  for project in projects:
+    config_schemas = project_config_schemas(project.id)
+    refetch_config(force=False, schemas=config_schemas)
+
+
 ### Integration with config validation framework.
 
 
@@ -156,6 +242,15 @@ def validate_settings_cfg(conf, ctx):
     chunks = conf.auth_db_gs_path.split('/')
     if len(chunks) < 2 or any(not ch for ch in chunks):
       ctx.error('auth_db_gs_path: must have form <bucket>/<path>')
+
+
+@validation.rule(
+  'regex:^projects/.*$', 'luci-buckets.cfg', buckets_pb2.BucketsCfg)
+def validate_luci_buckets_cfg(conf, ctx):
+  assert isinstance(conf, buckets_pb2.BucketsCfg)
+  for bucket in conf.buckets:
+    if "/" in bucket.name:
+      ctx.error('bucket name must not specify project section: %s'%bucket.name)
 
 
 # TODO(vadimsh): Below use validation context for real (e.g. emit multiple
@@ -211,6 +306,11 @@ def _get_service_config_rev_async(cfg_name):
   raise ndb.Return(Revision(e.revision, e.url) if e else None)
 
 
+@ndb.tasklet
+def _get_project_config_rev_async(projectid, cfg_name):
+  """Returns last processed Revision of given project/config."""
+  return _get_service_config_rev_async('%s/%s'%(projectid, cfg_name))
+
 def _get_service_config(cfg_name):
   """Returns text of given config file or None if missing."""
   e = _AuthServiceConfig.get_by_id(cfg_name)
@@ -229,6 +329,11 @@ def _update_service_config(cfg_name, rev, conf):
   e.populate(config=conf, revision=rev.revision, url=rev.url)
   e.put()
   return old != conf
+
+
+def _update_project_config(projectid, cfg_name, rev, conf):
+  """Stores new project/config (and its revision)."""
+  return _update_service_config('%s/%s'%(projectid, cfg_name), rev, conf)
 
 
 ### Group importer config implementation details.
@@ -529,60 +634,15 @@ def _update_security_config(root, _rev, conf):
   return True
 
 
-### Description of all known config files: how to validate and import them.
-
-# Config file name -> {
-#   'proto_class': protobuf class of the config or None to keep it as text,
-#   'revision_getter': lambda: ndb.Future with <latest imported Revision>
-#   'validator': lambda config: <raises ValueError on invalid format>
-#   'updater': lambda root, rev, config: True if applied, False if not.
-#   'use_authdb_transaction': True to call 'updater' in AuthDB transaction.
-#       Transactional updaters receive mutable AuthGlobalConfig entity as
-#       'root'. Non-transactional updaters receive None instead.
-#   'default': Default config value to use if the config file is missing.
-# }
-_CONFIG_SCHEMAS = {
-  'imports.cfg': {
-    'proto_class': None, # importer configs are stored as text
-    'revision_getter': _get_imports_config_revision_async,
-    'updater': _update_imports_config,
-    'use_authdb_transaction': False,
-  },
-  'ip_whitelist.cfg': {
-    'proto_class': config_pb2.IPWhitelistConfig,
-    'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
-    'updater': _update_ip_whitelist_config,
-    'use_authdb_transaction': True,
-  },
-  'oauth.cfg': {
-    'proto_class': config_pb2.OAuthConfig,
-    'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
-    'updater': _update_oauth_config,
-    'use_authdb_transaction': True,
-  },
-  'settings.cfg': {
-    'proto_class': None, # settings are stored as text in datastore
-    'default': '',  # it's fine if config file is not there
-    'revision_getter': lambda: _get_service_config_rev_async('settings.cfg'),
-    'updater': lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
-    'use_authdb_transaction': False,
-  },
-  'security.cfg': {
-    'proto_class': security_config_pb2.SecurityConfig,
-    'default': security_config_pb2.SecurityConfig(),
-    'revision_getter': lambda: _get_authdb_config_rev_async('security.cfg'),
-    'updater': _update_security_config,
-    'use_authdb_transaction': True,
-  },
-}
-
-
 @utils.memcache('auth_service:get_configs_url', time=300)
 def _get_configs_url():
   """Returns URL where luci-config fetches configs from."""
   url = config.get_config_set_location(config.self_config_set())
   return url or 'about:blank'
 
+def _fetch_project_configs(paths):
+  pass
+  #config.get_projects()
 
 def _fetch_configs(paths):
   """Fetches a bunch of config files in parallel and validates them.
