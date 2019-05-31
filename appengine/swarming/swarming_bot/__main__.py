@@ -22,20 +22,20 @@ import zipfile
 # are preferred over the ones on the system.
 # pylint: disable=ungrouped-imports
 
-
+from utils import tools
 from utils import zip_package
+tools.force_local_third_party()
 
 # This file can *only* be run as a zip.
 THIS_FILE = os.path.abspath(zip_package.get_main_script_path())
 
 # libusb1 expects to be directly in sys.path.
+# It takes more work to move this code into client/utils/tools.py,
+# it needs to update the path to python_libusb1 in
+# appengine/swarming/server/bot_archive.py to point to the files
+# in client/third_party/python-libusb1, then remove the symlink
+# under appengine/swarming/swarming_bot.
 sys.path.insert(0, os.path.join(THIS_FILE, 'python_libusb1'))
-
-# Copied from //client/utils/oauth.py.
-sys.path.insert(0, os.path.join(THIS_FILE, 'third_party'))
-sys.path.insert(0, os.path.join(THIS_FILE, 'third_party', 'pyasn1'))
-sys.path.insert(0, os.path.join(THIS_FILE, 'third_party', 'pyasn1-modules'))
-sys.path.insert(0, os.path.join(THIS_FILE, 'third_party', 'rsa'))
 
 
 def fix_protobuf_package():
