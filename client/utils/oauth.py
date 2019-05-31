@@ -22,6 +22,9 @@ import urllib
 import urlparse
 import webbrowser
 
+from utils import tools
+tools.force_local_third_party()
+
 # third_party/
 import httplib2
 import rsa
@@ -33,7 +36,6 @@ from oauth2client import multistore_file
 import requests
 
 from libs import luci_context
-from utils import tools
 
 
 # Path to a file with cached OAuth2 credentials used by default. Can be
