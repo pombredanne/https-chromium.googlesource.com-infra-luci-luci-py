@@ -809,7 +809,6 @@ class AuthGroup(
   # Who created the group.
   created_by = IdentityProperty()
 
-
 def group_key(group):
   """Returns ndb.Key for AuthGroup entity."""
   return ndb.Key(AuthGroup, group, parent=root_key())
@@ -948,6 +947,73 @@ def find_group_dependency_cycle(group):
 
   visit(group)
   return [group.key.id() for group in visiting]
+
+
+################################################################################
+## Bucket store.
+
+
+class AuthBucketACL(
+  ndb.Model,
+  AuthVersionedEntityMixin,
+  datastore_utils.SerializableModelMixin):
+  """A set of ACLs called 'buckets'.
+
+  Defines authorization on LUCI service API calls based
+  on an (identity, action, resource) triple.
+  """
+
+  # Disable useless in-process per-request cache.
+  _use_cache = False
+
+  serializable_properties = {
+    ''
+  }
+
+class AuthGroup(
+    ndb.Model,
+    AuthVersionedEntityMixin,
+    datastore_utils.SerializableModelMixin):
+  """A group of identities, entity id is a group name.
+
+  Parent is AuthGlobalConfig entity keyed at root_key().
+
+  Primary service holds authoritative list of Groups, that gets replicated to
+  all Replicas.
+  """
+  # Disable useless in-process per-request cache.
+  _use_cache = False
+
+  # How to convert this entity to or from serializable dict.
+  serializable_properties = {
+    'members': datastore_utils.READABLE | datastore_utils.WRITABLE,
+    'globs': datastore_utils.READABLE | datastore_utils.WRITABLE,
+    'nested': datastore_utils.READABLE | datastore_utils.WRITABLE,
+    'description': datastore_utils.READABLE | datastore_utils.WRITABLE,
+    'owners': datastore_utils.READABLE | datastore_utils.WRITABLE,
+    'created_ts': datastore_utils.READABLE,
+    'created_by': datastore_utils.READABLE,
+    'modified_ts': datastore_utils.READABLE,
+    'modified_by': datastore_utils.READABLE,
+  }
+
+  # List of members that are explicitly in this group. Indexed.
+  members = IdentityProperty(repeated=True)
+  # List of identity-glob expressions (like 'user:*@example.com'). Indexed.
+  globs = IdentityGlobProperty(repeated=True)
+  # List of nested group names. Indexed.
+  nested = ndb.StringProperty(repeated=True)
+
+  # Human readable description.
+  description = ndb.TextProperty(default='')
+  # A name of the group that can modify or delete this group.
+  owners = ndb.StringProperty(default=ADMIN_GROUP)
+
+  # When the group was created.
+  created_ts = ndb.DateTimeProperty()
+  # Who created the group.
+  created_by = IdentityProperty()
+
 
 
 ################################################################################
