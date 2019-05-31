@@ -34,6 +34,7 @@ from components import gitiles
 from components import utils
 from components.auth import ipaddr
 from components.auth import model
+from components.auth.proto import buckets_pb2
 from components.auth.proto import security_config_pb2
 from components.config import validation
 
@@ -156,6 +157,15 @@ def validate_settings_cfg(conf, ctx):
     chunks = conf.auth_db_gs_path.split('/')
     if len(chunks) < 2 or any(not ch for ch in chunks):
       ctx.error('auth_db_gs_path: must have form <bucket>/<path>')
+
+
+@validation.rule(
+  'regex:^projects/.*$', 'luci-buckets.cfg', buckets_pb2.BucketsCfg)
+def validate_luci_buckets_cfg(conf, ctx):
+  assert isinstance(conf, buckets_pb2.BucketsCfg)
+  for bucket in conf.buckets:
+    if "/" in bucket.name:
+      ctx.error('bucket name must not specify project section: %s'%bucket.name)
 
 
 # TODO(vadimsh): Below use validation context for real (e.g. emit multiple

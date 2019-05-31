@@ -28,8 +28,27 @@ class MembershipResponse(messages.Message):
   is_member = messages.BooleanField(1)
 
 
+AuthorizationRequest = endpoints.ResourceContainer(
+  message_types.VoidMessage,
+  identity=messages.StringField(1, required=True),
+  project=messages.StringField(2, required=True),
+  bucket=messages.StringField(3, required=True),
+  service=messages.StringField(4, required=True))
+
+class AuthorizationResponse(messages.Message):
+  is_authorized = messages.BooleanField(1)
+
 ### API
 
+
+def normalize_identity(identity):
+  if ':' not in identity:
+    identity = 'user:%s' % identity
+  try:
+    identity = model.Identity.from_bytes(identity)
+  except ValueError as e:
+    raise endpoints.BadRequestException('Invalid identity: %s.' % e)
+  return identity
 
 @endpoints_support.endpoints_api(name='auth', version='v1')
 class AuthService(remote.Service):
@@ -41,12 +60,21 @@ class AuthService(remote.Service):
       path='/membership')
   @api.require(acl.has_access)
   def membership(self, request):
-    identity = request.identity
-    if ':' not in identity:
-      identity = 'user:%s' % identity
-    try:
-      identity = model.Identity.from_bytes(identity)
-    except ValueError as e:
-      raise endpoints.BadRequestException('Invalid identity: %s.' % e)
+    identity = normalize_identity(request.identity)
     is_member = api.is_group_member(request.group, identity)
     return MembershipResponse(is_member=is_member)
+
+  @endpoints_support.endpoints_method(
+    AuthorizationRequest, AuthorizationResponse,
+    http_method='GET',
+    path='/authorized')
+  @api.require(acl.has_access)
+  def authorized(self, request):
+    identity = normalize_identity(request.identity)
+    authorized = api.can_perform_action(
+      request.project,
+      request.bucket,
+      request.service,
+      request.action,
+      identity)
+    return AuthorizationResponse(is_authorized=authorized)
