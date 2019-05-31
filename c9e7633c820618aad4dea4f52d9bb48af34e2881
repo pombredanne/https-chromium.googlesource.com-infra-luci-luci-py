@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e79510c8_1b16b641",
+        "filename": "appengine/components/components/auth/proto/buckets.proto",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-31T19:31:16Z",
+      "side": 1,
+      "message": "nit: excessive blank line",
+      "revId": "c9e7633c820618aad4dea4f52d9bb48af34e2881",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
