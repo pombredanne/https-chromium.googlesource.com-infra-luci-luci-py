@@ -16,6 +16,24 @@
       "revId": "bb435dd4a8b98a3f13297c32fb304b8f7d1d6f38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6977ca90_f8425d8d",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-06-05T20:28:12Z",
+      "side": 1,
+      "message": "There\u0027s at least 2 Simpson\u0027s memes that apply here and at least one XKCD.  So we have that going for us.\n\nLess hacky approach would be to have the task-mass-cancel emit an event when it is ready, but I didn\u0027t feel like adding that in and making sure it really worked (tm).",
+      "parentUuid": "539cc8dd_65772a44",
+      "revId": "bb435dd4a8b98a3f13297c32fb304b8f7d1d6f38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
