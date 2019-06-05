@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58b8626b_ecb3a65c",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-06-05T21:37:19Z",
+      "side": 1,
+      "message": "Note that SSD isn\u0027t detected on Windows (https://crbug.com/881609) so this changes Windows bots to explicitly display ssd:0 even if they have an SSD (before they just didn\u0027t display anything because they don\u0027t know how to set this dimension).",
+      "revId": "ea11ca4bc4e43e61408d9484b788446c2a424add",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
