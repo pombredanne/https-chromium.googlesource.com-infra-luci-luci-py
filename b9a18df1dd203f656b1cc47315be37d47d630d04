@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1f26d6e_e19aaf7b",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-06T00:27:37Z",
+      "side": 1,
+      "message": "You can add \"del email\" in the meantime.",
+      "parentUuid": "d5102f94_9cea2cf7",
+      "revId": "b9a18df1dd203f656b1cc47315be37d47d630d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16455067_6d0d8d14",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-06T00:27:37Z",
+      "side": 1,
+      "message": "I wonder how this will be implemented.",
+      "revId": "b9a18df1dd203f656b1cc47315be37d47d630d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
