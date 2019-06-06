@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8d292da_6d96bf6e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-06T12:20:46Z",
+      "side": 1,
+      "message": "I always prefer to use COM directly to shelling out, since shelling out has more risks and is slower. Also it\u0027s not guaranteed that powershell is correctly installed.\n\nget_audio() above is a good example. I think the following would work:\n\n  wbem \u003d _get_wmi_wbem()\n  if not wbem:\n    return None\n  # https://docs.microsoft.com/en-us/previous-versions/windows/desktop/stormgmt/msft-physicaldisk\n  return sorted(set(\n    \u00271\u0027 if d.MediaType \u003d\u003d 4 else \u00270\u0027\n    for d in wbem.ExecQuery(\u0027SELECT * FROM MSFT_PhysicalDisk\u0027)\n  ))\n\nI think having the other get_ssd() functions returning a list is an error in hindsight but it\u0027s not worth fixing for now.",
+      "revId": "e76c09c6ca6a70aa3e68ef947346e491e9409340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
