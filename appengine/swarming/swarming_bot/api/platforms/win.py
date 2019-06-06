@@ -504,6 +504,26 @@ def get_reboot_required():
     if k:
       k.Close()
 
+@tools.cached
+def get_ssd():
+  """Returns a list of SSD disks."""
+  try:
+    out = subprocess.check_output([
+        'powershell.exe', '-Command',
+        'Get-PhysicalDisk | '
+        'Format-Table -HideTableHeaders -Property DeviceId,MediaType'
+    ])
+
+    ssd = []
+    for i in out.splitlines():
+      i = i.split()
+      if len(i) == 2 and i[1] == 'SSD':
+        ssd.append(i[0].decode('utf-8'))
+    return tuple(sorted(ssd))
+  except (OSError, subprocess.CalledProcessError) as e:
+    logging.error('Failed to read disk info: %s', e)
+    return ()
+
 
 def list_top_windows():
   """Returns a list of the class names of topmost windows.
