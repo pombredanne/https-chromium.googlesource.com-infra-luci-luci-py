@@ -504,6 +504,18 @@ def get_reboot_required():
     if k:
       k.Close()
 
+@tools.cached
+def get_ssd():
+  """Returns a list of SSD disks."""
+  wbem = _get_wmi_wbem()
+  if not wbem:
+    return ()
+  # https://docs.microsoft.com/en-us/previous-versions/windows/desktop/stormgmt/msft-physicaldisk
+  return sorted(set(
+    '1' if d.MediaType == 4 else '0'
+    for d in wbem.ExecQuery('SELECT * FROM MSFT_PhysicalDisk')
+  ))
+
 
 def list_top_windows():
   """Returns a list of the class names of topmost windows.
