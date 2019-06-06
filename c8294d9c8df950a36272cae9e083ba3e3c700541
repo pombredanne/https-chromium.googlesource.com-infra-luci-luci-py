@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2a303dd_a554eabc",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-06T15:05:46Z",
+      "side": 1,
+      "message": "Just do on \u0027win32\u0027. There used to be case where we needed it to work on cygwin but it\u0027s less important now.",
+      "revId": "c8294d9c8df950a36272cae9e083ba3e3c700541",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aea448d_3dd2916e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-06T15:05:46Z",
+      "side": 1,
+      "message": "From https://docs.microsoft.com/en-us/previous-versions/windows/desktop/stormgmt/msft-physicaldisk\nThis was introduced in Windows 8. But it\u0027s fine, just return nothing on Windows7 and skip the check altogether. And catch WindowsError (or whatever exception)",
+      "revId": "c8294d9c8df950a36272cae9e083ba3e3c700541",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
