@@ -34,6 +34,24 @@
       "revId": "b9a18df1dd203f656b1cc47315be37d47d630d04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44acace9_f443a946",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-06T00:33:02Z",
+      "side": 1,
+      "message": "Very simple. We don\u0027t keep historical copies in GS. There are only two files. We\u0027ll just change their ACL.",
+      "parentUuid": "16455067_6d0d8d14",
+      "revId": "b9a18df1dd203f656b1cc47315be37d47d630d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
