@@ -194,7 +194,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
         self.assertEqual(0.1, timeout)
         return ()
 
-      def wait(self2, timeout=None):
+      def wait(self2, timeout=None, poll_initial_interval=None,
+               poll_max_interval=None):
         self.assertIn(timeout, (None, 60))
         self2.returncode = 0
         for mock_fn in self.popen_fakes:
@@ -1443,7 +1444,8 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
         self2._path = args[-1]
         self2.returncode = None
 
-      def wait(self2, timeout=None):
+      def wait(self2, timeout=None, poll_initial_interval=None,
+               poll_max_interval=None):
         self.assertEqual(None, timeout)
         self2.returncode = 0
         with open(self2._path, 'wb') as f:
