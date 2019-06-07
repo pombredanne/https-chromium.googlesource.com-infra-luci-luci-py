@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29bfce72_c76bec95",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-07T12:28:05Z",
+      "side": 1,
+      "message": "I prefer return None but it\u0027s not a big deal.",
+      "revId": "400b3c24bbec75c1b099a1e3e75b54aaad250b92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
