@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a248bd0_bd11f3d8",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-07T17:42:14Z",
+      "side": 1,
+      "message": "Please add a link to the bug here, in case it doesn\u0027t change anything.",
+      "revId": "89a3511f4e2f1ebd7d2e46f0cfa4c03e8becdc49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
