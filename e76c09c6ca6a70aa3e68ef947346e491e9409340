@@ -52,6 +52,24 @@
       "revId": "e76c09c6ca6a70aa3e68ef947346e491e9409340",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "979b0bae_688d51ee",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-07T02:59:16Z",
+      "side": 1,
+      "message": "I figured out the issue, let me stick to use COM so that this works for non GCE win10.\nThanks.",
+      "parentUuid": "433435ca_bf916f18",
+      "revId": "e76c09c6ca6a70aa3e68ef947346e491e9409340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
