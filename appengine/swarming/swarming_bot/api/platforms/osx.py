@@ -20,10 +20,13 @@ from utils import tools
 import common
 import gpu
 
+from Foundation import NSBundle
+
 try:
   import Quartz
 except ImportError:
   Quartz = None
+
 
 
 ## Private stuff.
@@ -652,6 +655,24 @@ def is_locked():
   if not current_session:
     return None
   return bool(current_session.get('CGSSessionScreenIsLocked', False))
+
+
+def is_beta():
+  """Returns whether the version of macOS is a beta release or not.
+
+  The SUAdminInstallController class was introduced in macOS 10.13. So this only
+  works on macOS >= 10.13. On macOS <= 10.12, this will always return false.
+
+  Returns:
+    False or True.
+  """
+  SoftwareUpdate = NSBundle.bundleWithPath_(
+      '/System/Library/PrivateFrameworks/SoftwareUpdate.framework')
+  SUAdminInstallController = SoftwareUpdate.classNamed_(
+      'SUAdminInstallController')
+  if SUAdminInstallController is not None:
+    return SUAdminInstallController.isSeedBuild() == 1
+  return False
 
 
 @tools.cached
