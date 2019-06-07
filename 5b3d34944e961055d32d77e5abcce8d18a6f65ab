@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd5b1b1b_f23953ed",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-07T16:44:08Z",
+      "side": 1,
+      "message": "It did throw on windows 7.\n(-2147352567, \u0027Exception occurred.\u0027, (0, u\u0027SWbemLocator\u0027, u\u0027Invalid namespace \u0027, None, 0, -2147217394), None)\n\nYou need to do like at like 340:\n\n  except pythoncom.com_error as e:",
+      "revId": "5b3d34944e961055d32d77e5abcce8d18a6f65ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
