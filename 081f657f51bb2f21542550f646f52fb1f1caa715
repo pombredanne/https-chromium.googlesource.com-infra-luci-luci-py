@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "ae33534c_f0834f6b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1000023
+      },
+      "writtenOn": "2019-06-08T01:25:36Z",
+      "side": 1,
+      "message": "Where did you get this info? I think it\u0027s wrong.\n\nOn my 10.11 Mac, the SoftwareUpdate.framework has a class named SUAdminInstallController, but it doesn\u0027t have an +isSeedBuild method. While you check for the existence of the SUAdminInstallController class, you don\u0027t check for the +isSeedBuild method and I don\u0027t know what will happen if you blindly call it.\n\nIf this info came from Apple, I\u0027m assuming they meant that +[SUAdminInstallController isSeedBuild] only exists on 10.13+, so IMO you should explicitly do a version check and bail early for earlier OSes rather than rely on the existence of the class.",
+      "range": {
+        "startLine": 662,
+        "startChar": 2,
+        "endLine": 662,
+        "endChar": 66
+      },
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca5a2053_9b0224d4",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 2
