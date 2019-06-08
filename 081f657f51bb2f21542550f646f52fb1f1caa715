@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4479187_ed12258e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-08T01:16:08Z",
+      "side": 1,
+      "message": "This is not necessarily available. For example I use python from homebrew, so this fails for me. So I recommend to do the same try/except dance as below for Quartz.",
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca5a2053_9b0224d4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-08T01:16:08Z",
+      "side": 1,
+      "message": "False",
+      "range": {
+        "startLine": 663,
+        "startChar": 70,
+        "endLine": 663,
+        "endChar": 75
+      },
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c3d6e8_ea053ad0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-08T01:16:08Z",
+      "side": 1,
+      "message": "True if the installed OS is a beta release.",
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
