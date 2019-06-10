@@ -95,6 +95,21 @@ def _get_wmi_wbem():
   return wmi_service.ConnectServer('.', 'root\\cimv2')
 
 
+@tools.cached
+def _get_wmi_wbem_for_storage():
+  """
+  Returns a WMI client connected to localhost ready to do queries for storage.
+  """
+  client, _ = _get_win32com()
+  if not client:
+    return None
+  wmi_service = client.Dispatch('WbemScripting.SWbemLocator')
+  try:
+    return wmi_service.ConnectServer('.', 'Root\\Microsoft\\Windows\\Storage')
+  except pythoncom.com_error as e:
+    return None
+
+
 # Regexp for _get_os_numbers()
 _CMD_RE = r'\[version (\d+\.\d+)\.(\d+(?:\.\d+|))\]'
 
@@ -503,6 +518,22 @@ def get_reboot_required():
   finally:
     if k:
       k.Close()
+
+
+@tools.cached
+def get_ssd():
+  """Returns a list of SSD disks."""
+  wbem = _get_wmi_wbem_for_storage()
+  if not wbem:
+    return ()
+  # https://docs.microsoft.com/en-us/previous-versions/windows/desktop/stormgmt/msft-physicaldisk
+  try:
+    return sorted(set(
+      '1' if d.MediaType == 4 else '0'
+      for d in wbem.ExecQuery('SELECT * FROM MSFT_PhysicalDisk')
+    ))
+  except WindowsError:  # pylint: disable=undefined-variable
+    return ()
 
 
 def list_top_windows():
