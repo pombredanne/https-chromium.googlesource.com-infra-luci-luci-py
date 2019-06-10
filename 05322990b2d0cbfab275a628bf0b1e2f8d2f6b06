@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e49e0d1d_ca9ca506",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-10T12:37:26Z",
+      "side": 1,
+      "message": "Note here, it\u0027s looking if it\u0027s none or not, but in the Windows implementation you return [\u00270\u0027], which will become [\u00271\u0027]. That\u0027s not what you want.",
+      "revId": "05322990b2d0cbfab275a628bf0b1e2f8d2f6b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
