@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f067554_ba4da41d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-10T13:01:11Z",
+      "side": 1,
+      "message": "You don\u0027t need it to be a set anymore, just sorted is sufficient.",
+      "range": {
+        "startLine": 531,
+        "startChar": 18,
+        "endLine": 531,
+        "endChar": 22
+      },
+      "revId": "6a3a77c2f8b001306a4a447771e3cc876a40366f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
