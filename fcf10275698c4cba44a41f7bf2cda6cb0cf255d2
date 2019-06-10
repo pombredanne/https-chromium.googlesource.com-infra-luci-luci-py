@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d3b69e5_43e087fe",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-10T12:09:06Z",
+      "side": 1,
+      "message": "client, pythoncom \u003d _get_win32com()",
+      "revId": "fcf10275698c4cba44a41f7bf2cda6cb0cf255d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
