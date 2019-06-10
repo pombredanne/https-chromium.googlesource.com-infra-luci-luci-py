@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f587b130_b2f36e10",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-10T12:53:41Z",
+      "side": 1,
+      "message": "See what the other functions return:\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/api/platforms/linux.py?l\u003d306\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/api/platforms/osx.py?l\u003d669\n\nThey return the \"name\" of the SSDs. In practice this looks like \"sda\" on linux and \"disk0\" on mac.",
+      "revId": "39cc69923daffb5605ea37b529cf132ef8ec81c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
