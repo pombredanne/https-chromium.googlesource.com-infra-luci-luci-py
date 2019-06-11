@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "86f4cc5e_e92639de",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2019-06-11T14:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4479187_ed12258e",
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae33534c_f0834f6b",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2019-06-08T01:25:36Z",
       "side": 1,
       "message": "Where did you get this info? I think it\u0027s wrong.\n\nOn my 10.11 Mac, the SoftwareUpdate.framework has a class named SUAdminInstallController, but it doesn\u0027t have an +isSeedBuild method. While you check for the existence of the SUAdminInstallController class, you don\u0027t check for the +isSeedBuild method and I don\u0027t know what will happen if you blindly call it.\n\nIf this info came from Apple, I\u0027m assuming they meant that +[SUAdminInstallController isSeedBuild] only exists on 10.13+, so IMO you should explicitly do a version check and bail early for earlier OSes rather than rely on the existence of the class.",
+      "range": {
+        "startLine": 662,
+        "startChar": 2,
+        "endLine": 662,
+        "endChar": 66
+      },
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45fd458c_ba286ea1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2019-06-11T14:21:20Z",
+      "side": 1,
+      "message": "You are right. I must have meant isSeedBuild, but clearly wrote the wrong thing. So I gathered two of each OS we currently run from 10.10 to 10.13 and tested this out at the same time to be sure.\n\nOn 10.10...\nNo SUAdminInstallController\n\nOn 10.{11,12}...\nisSeedBuild is not present\n\nOn 10.{13,14,15}...\nIt works. (False or True)",
+      "parentUuid": "ae33534c_f0834f6b",
       "range": {
         "startLine": 662,
         "startChar": 2,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "7f75bd34_9d123813",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2019-06-11T14:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca5a2053_9b0224d4",
+      "range": {
+        "startLine": 663,
+        "startChar": 70,
+        "endLine": 663,
+        "endChar": 75
+      },
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18c3d6e8_ea053ad0",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 2
@@ -79,6 +145,24 @@
       "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7161aa78_799941a4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2019-06-11T14:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18c3d6e8_ea053ad0",
+      "revId": "081f657f51bb2f21542550f646f52fb1f1caa715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
