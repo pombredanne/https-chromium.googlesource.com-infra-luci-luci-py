@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27c25266_ae6504ec",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T13:49:21Z",
+      "side": 1,
+      "message": "Looking at https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?q\u003dinternal_failure\u0026l\u003d339, it should not happen.\n\nOne way to confirm this is to add a check in _TaskResultCommon._pre_put_hook().\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_result.py?g\u003d0\u0026l\u003d787\n\nThe bug is about nothing being sent, not having parts missing.",
+      "revId": "f13414051c760da49c5f6fcba9f66bb3bf14b207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
