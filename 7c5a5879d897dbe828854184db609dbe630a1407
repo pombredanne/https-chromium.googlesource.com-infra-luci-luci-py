@@ -16,6 +16,24 @@
       "revId": "7c5a5879d897dbe828854184db609dbe630a1407",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1bb26a8_bebf2633",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T20:33:16Z",
+      "side": 0,
+      "message": "I confirmed it to work on Win7 on staging. I prefer to not add it back unless we know it\u0027s useful.",
+      "parentUuid": "3754d5ad_c40a4adf",
+      "revId": "7c5a5879d897dbe828854184db609dbe630a1407",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
