@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3754d5ad_c40a4adf",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1134874
+      },
+      "writtenOn": "2019-06-11T20:32:37Z",
+      "side": 0,
+      "message": "Do we know we\u0027re not losing any existing WindowsErrors?",
+      "revId": "7c5a5879d897dbe828854184db609dbe630a1407",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
