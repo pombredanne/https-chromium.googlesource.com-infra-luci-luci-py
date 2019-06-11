@@ -1003,6 +1003,9 @@ def get_dimensions():
     model = platforms.osx.get_hardware_model_string()
     if model:
       dimensions[u'mac_model'] = [model]
+    mac_beta = platforms.osx.is_beta()
+    if mac_beta is not None:
+      dimensions[u'beta_os'] = [unicode(int(mac_beta))]
     xcode_versions = platforms.osx.get_xcode_versions()
     if xcode_versions:
       dimensions[u'xcode_version'] = xcode_versions
