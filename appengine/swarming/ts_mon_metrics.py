@@ -446,7 +446,7 @@ def on_task_completed(summary):
     _tasks_expired.increment(fields=fields)
     return
 
-  if summary.internal_failure:
+  if summary.internal_failure or summary.state == task_result.State.BOT_DIED:
     fields['result'] = 'infra-failure'
   elif summary.failure:
     fields['result'] = 'failure'
