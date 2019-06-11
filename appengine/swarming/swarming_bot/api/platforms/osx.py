@@ -21,6 +21,11 @@ import common
 import gpu
 
 try:
+  from Foundation import NSBundle
+except ImportError:
+  NSBundle = None
+
+try:
   import Quartz
 except ImportError:
   Quartz = None
@@ -652,6 +657,34 @@ def is_locked():
   if not current_session:
     return None
   return bool(current_session.get('CGSSessionScreenIsLocked', False))
+
+
+def is_beta():
+  """Returns whether the version of macOS is a beta release or not.
+
+  The SUAdminInstallController class and the isSeedBuild method may not be
+  available on all installations of macOS. This works with macOS >= 10.13 if the
+  necessary import and framework paths are available to the running python.
+
+  Returns:
+    None, False or True. It is None when the necessary import is not found or
+    macOS < 10.13. Otherwise, it returns True if the installed OS is a beta
+    release and False if not.
+  """
+  if NSBundle is None:
+    return None
+  try:
+    os_ver = get_os_version_number()
+  except AssertionError:
+    return None
+  major, minor = os_ver.split('.')[:2]
+  if int(major) != 10 or int(minor) < 13:
+    return None
+  SoftwareUpdate = NSBundle.bundleWithPath_(
+      '/System/Library/PrivateFrameworks/SoftwareUpdate.framework')
+  SUAdminInstallController = SoftwareUpdate.classNamed_(
+      'SUAdminInstallController')
+  return bool(SUAdminInstallController.isSeedBuild())
 
 
 @tools.cached
