@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96d9ecc9_c29d7b98",
+        "filename": "client/isolated_format.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T16:51:54Z",
+      "side": 1,
+      "message": "This can fit a single line;\n\nSUPPORTED_ALGOS_REVERSE \u003d {v: k for k, v in SUPPORTED_ALGOS.items()}",
+      "revId": "8f3c33ec456ea071abbce23a4e9f80a2a15cd3b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e52238b_d8314a42",
+        "filename": "client/utils/zip_package.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T16:51:54Z",
+      "side": 1,
+      "message": "I think this can be simplified with:\n\n  if sys.version_info.major \u003d\u003d 2 and isinstance(archivepath, unicode):\n    archivepath \u003d archivepath.encode(sys.getfilesystemencoding())",
+      "revId": "8f3c33ec456ea071abbce23a4e9f80a2a15cd3b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
