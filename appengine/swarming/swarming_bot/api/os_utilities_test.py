@@ -142,6 +142,7 @@ class TestOsUtilities(auto_stub.TestCase):
     if sys.platform == 'darwin':
       expected.add(u'hidpi')
       expected.add(u'mac_model')
+      expected.add(u'beta_os')
       expected.add(u'xcode_version')
     if sys.platform == 'linux2':
       expected.add(u'inside_docker')
