@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "631e4ee4_37eca9e5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2019-06-11T14:52:51Z",
+      "side": 1,
+      "message": "Are there other things that rely on this behavior?\n\nIf the assertion is removed, then it seems the entire function is nearly pointless. It simply becomes a split and a join with the same character plus a unicode conversion that can be done another way. The split and the join will not fail.\n\nWithout the assertion, the whole function could just be...\nreturn unicode(platform.mac_ver()[0])",
+      "parentUuid": "bb5f4994_579c74c1",
+      "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a36c9ac0_3b7a571f",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2019-06-11T14:27:06Z",
       "side": 1,
       "message": "But then this could fail, so you\u0027d need to check manually for the number of parts, like:\n\n\nparts \u003d os_ver.split(\u0027.\u0027)[:2]\nif len(parts) !\u003d 2 or (int(major) \u003d\u003d 10 and int(minor) \u003c 13) or int(major) \u003c 10:\n  return None\n\nThis makes the code work once macOS 11 is released.",
+      "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a8d4b63_8c8d81ac",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2019-06-11T14:52:51Z",
+      "side": 1,
+      "message": "I think macOS 11 is far enough off that we ought not worry too much about it, but I can easily rework the expression to support it (as you have suggested here). This also makes the assumption that a future macOS 11 would follow the same semver style versioning scheme that macOS 10 does.\n\nConsidering we are running this on macOS 10 where the version string format has been pretty consistent, should I just ignore the assertion check? Because if we run into an issue where we do not get 2 parts that are integers, then I would imagine we have bigger issues. And I would rather the get_os_version_number function be the point of failure/reporting if it is a problem.",
+      "parentUuid": "a36c9ac0_3b7a571f",
       "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
