@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "82a685ec_fca8a1d8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T14:59:36Z",
+      "side": 1,
+      "message": "Yes it\u0027s fine. With a comment. :)",
+      "parentUuid": "631e4ee4_37eca9e5",
+      "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a36c9ac0_3b7a571f",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I think macOS 11 is far enough off that we ought not worry too much about it, but I can easily rework the expression to support it (as you have suggested here). This also makes the assumption that a future macOS 11 would follow the same semver style versioning scheme that macOS 10 does.\n\nConsidering we are running this on macOS 10 where the version string format has been pretty consistent, should I just ignore the assertion check? Because if we run into an issue where we do not get 2 parts that are integers, then I would imagine we have bigger issues. And I would rather the get_os_version_number function be the point of failure/reporting if it is a problem.",
       "parentUuid": "a36c9ac0_3b7a571f",
+      "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4d12cc_2812fc2a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T14:59:36Z",
+      "side": 1,
+      "message": "I think; if we not get two parts, just return None and move on, it\u0027s fine here, it\u0027s better than throwing.",
+      "parentUuid": "9a8d4b63_8c8d81ac",
       "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
