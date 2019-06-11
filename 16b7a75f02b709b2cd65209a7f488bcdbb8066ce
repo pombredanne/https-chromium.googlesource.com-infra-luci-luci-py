@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb5f4994_579c74c1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T14:27:06Z",
+      "side": 1,
+      "message": "Oh, you are right that the assert at line 477 is a dumb idea. Can you replace it with a comment, then you can remove the try/except here.\n\nThe comment at line 477 could be:\n\n  // We expect at least 2 parts. Don\u0027t fail if it is not the case.",
+      "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a36c9ac0_3b7a571f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-11T14:27:06Z",
+      "side": 1,
+      "message": "But then this could fail, so you\u0027d need to check manually for the number of parts, like:\n\n\nparts \u003d os_ver.split(\u0027.\u0027)[:2]\nif len(parts) !\u003d 2 or (int(major) \u003d\u003d 10 and int(minor) \u003c 13) or int(major) \u003c 10:\n  return None\n\nThis makes the code work once macOS 11 is released.",
+      "revId": "16b7a75f02b709b2cd65209a7f488bcdbb8066ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
