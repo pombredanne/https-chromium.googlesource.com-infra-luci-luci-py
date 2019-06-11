@@ -130,6 +130,13 @@ class TestMetrics(test_case.TestCase):
     ts_mon_metrics.on_task_completed(summary)
     self.assertEqual(1, ts_mon_metrics._jobs_completed.get(fields=fields))
 
+    summary.internal_failure = False
+    summary.state = task_result.State.BOT_DIED
+    fields['result'] = 'infra-failure'
+    self.assertIsNone(ts_mon_metrics._jobs_completed.get(fields=fields))
+    ts_mon_metrics.on_task_completed(summary)
+    self.assertEqual(1, ts_mon_metrics._jobs_completed.get(fields=fields))
+
   def test_on_task_requested(self):
     tags = [
         'project:test_project',
