@@ -11,6 +11,12 @@ import sys
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 CLIENT_DIR = os.path.dirname(os.path.dirname(THIS_DIR))
 sys.path.insert(0, CLIENT_DIR)
+if sys.version_info.major == 2:
+  sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party',
+      'httplib2', 'python2'))
+else:
+  sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party',
+      'httplib2', 'python3'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party', 'pyasn1'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party', 'rsa'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
