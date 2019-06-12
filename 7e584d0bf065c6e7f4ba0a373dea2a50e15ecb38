@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9584cc7_dbf9daee",
+        "filename": "appengine/swarming/server/bot_code_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-12T22:30:16Z",
+      "side": 1,
+      "message": "Other option:\n\n  sys.path.insert(\n      0,\n      os.path.join(\n          CLIENT_DIR, \u0027third_party\u0027, \u0027httplib2\u0027, \u0027python%d\u0027 % sys.version_info.major))",
+      "revId": "7e584d0bf065c6e7f4ba0a373dea2a50e15ecb38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
