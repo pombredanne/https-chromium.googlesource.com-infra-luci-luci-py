@@ -52,6 +52,24 @@
       "revId": "1b829504a2a0d24d26bf43df08b405c0c0ca57e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eb48297_87f8b9ea",
+        "filename": "appengine/swarming/proto/jsonrpc/taskstate.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-06-12T19:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f65c0e6b_8b0b06ba",
+      "revId": "1b829504a2a0d24d26bf43df08b405c0c0ca57e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
