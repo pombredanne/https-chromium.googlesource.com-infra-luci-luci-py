@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5553b7f2_1dfe9e97",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-13T19:37:25Z",
+      "side": 1,
+      "message": "Apologies for the back and forth;\n\nThe more I think about it, the more I think it should be part of the os version name.\n\nBy changing get_os_values() at\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/api/os_utilities.py?l\u003d166\n\n    number \u003d platforms.osx.get_os_version_number()\n    out.append(u\u0027%s-%s\u0027 % (os_name, number.rsplit(\u0027.\u0027, 1)[0]))\n    out.append(u\u0027%s-%s\u0027 % (os_name, number))\n\nyou could change to:\n\n    number \u003d platforms.osx.get_os_version_number()\n    suffix \u003d \u0027Beta\u0027 if platforms.osx.is_beta() else \u0027\u0027\n    out.append(u\u0027%s-%s%s\u0027 % (os_name, number.rsplit(\u0027.\u0027, 1)[0], suffix))\n    out.append(u\u0027%s-%s%s\u0027 % (os_name, number, suffix))\n\n\nwhich then would give strings like:\n\n[\u0027Mac\u0027, \u0027Mac-10.15Beta\u0027, \u0027Mac-10.15.0Beta\u0027]\n\nwhich I think is more interesting.",
+      "revId": "fdca46895cfc02ed1301ea936064a7ea381adbfd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
