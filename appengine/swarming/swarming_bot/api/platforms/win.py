@@ -29,7 +29,6 @@ _WIN32_CLIENT_NAMES = {
     u'6.1': u'7',
     u'6.2': u'8',
     u'6.3': u'8.1',
-    u'10.0': u'10',
 }
 
 _WIN32_SERVER_NAMES = {
@@ -38,9 +37,35 @@ _WIN32_SERVER_NAMES = {
     u'6.1': u'2008ServerR2',
     u'6.2': u'2012Server',
     u'6.3': u'2012ServerR2',
-    u'10.0': u'2016Server',
 }
 
+# For Win10, the correspondence between build numbers and versions is published
+# at https://docs.microsoft.com/en-us/windows/release-information/ and will need
+# to be updated for each new Win10 release.
+_WIN10_CLIENT_BUILD_TO_MARKETING_NAME_MAPPING = {
+    u'10240': u'10-v1509',
+    u'14393': u'10-v1607',
+    u'15063': u'10-v1703',
+    u'16299': u'10-v1709',
+    u'17134': u'10-v1803',
+    u'17763': u'10-v1809',
+    u'18362': u'10-v1903',
+}
+
+# For Windows Server, the correspondence between build numbers and versions is
+# published at
+# https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info
+# and will need to be updated for each new Windows Server release.
+_WIN10_SERVER_BUILD_TO_MARKETING_NAME_MAPPING = {
+    u'14393': u'2016Server',
+    u'16299': u'v1709Server',
+    u'17134': u'v1803Server',
+    # If we need to distinguish between Windows Server version 1809 and Windows
+    # Server 2019, we'll have to do something smarter. Just assume it's 2019 for
+    # now.
+    u'17763': u'2019Server',
+    u'18362': u'v1903Server',
+}
 
 @tools.cached
 def _get_mount_points():
@@ -198,22 +223,58 @@ def get_os_version_number():
 
 @tools.cached
 def get_os_version_names():
-  """Returns the marketing name of the OS, without and with the service pack.
+  """Returns the marketing names of the OS.
 
-  On Windows 10, use the build number since there will be no service pack.
+  The first item of the returned list is the base marketing name, e.g. Vista,
+  10, or 2008Server. For Windows Server post-2016, this marketing name includes
+  the YYMM version when applicable, e.g. v1709Server; also, 2019Server is
+  distinguished from 2016Server.
+
+  For versions released before Windows 10, the second item is the name with the
+  service pack, e.g. 7-SP1 or 2012ServerR2-SP0.
+
+  For Windows 10 (client), the second item is the name with the version (YYMM),
+  e.g. Windows-10-v1809.
+
+  For both Windows 10 (client) and Windows Server starting with 2016, the last
+  item is the name with the full build number, e.g. Windows-10-17763.437.
   """
   # Python keeps a local map in platform.py and it is updated at newer python
   # release. Since our python release is a bit old, do not rely on it.
   is_server = sys.getwindowsversion().product_type == 3
-  lookup = _WIN32_SERVER_NAMES if is_server else _WIN32_CLIENT_NAMES
   version_number, build_number = _get_os_numbers()
-  marketing_name = lookup.get(version_number, version_number)
   if version_number == u'10.0':
-    # Windows 10 doesn't have service packs, the build number now is the
-    # reference number.
-    return marketing_name, u'%s-%s' % (marketing_name, build_number)
-  service_pack = platform.win32_ver()[2] or u'SP0'
-  return marketing_name, u'%s-%s' % (marketing_name, service_pack)
+    # The build number has major and minor versions; the major version
+    # corresponds to releases like 1703, 1809, etc.
+    major_minor = build_number.split(u'.')
+    if is_server:
+      # Both Windows Server 2016 and 2019 have a version number of 10.0. We
+      # distinguish them by build number.
+      lookup = _WIN10_SERVER_BUILD_TO_MARKETING_NAME_MAPPING
+      if major_minor[0] in lookup:
+        marketing_name = lookup[major_minor[0]]
+        # For backwards compatibility, also return a version based on raw
+        # build_number.
+        return [marketing_name, u'%s-%s' % (marketing_name, build_number)]
+      # There's no good value to return here. We could make up something, e.g.
+      # "Post2016Server-<build_number>" but we don't want anyone to actually
+      # rely on that value, so it's not worth generating.
+      return []
+    else:
+      version_names = [u'10']
+      lookup = _WIN10_CLIENT_BUILD_TO_MARKETING_NAME_MAPPING
+      if major_minor[0] in lookup:
+        version_names.append(lookup[major_minor[0]])
+        # For backwards compatibility and as a fallback if
+        # _WIN10_CLIENT_BUILD_TO_MARKETING_NAME_MAPPING is not updated after a
+        # new Windows release, also return a version based on raw build_number.
+      version_names.append(u'10-%s' % build_number)
+      return version_names
+  else:
+    lookup = _WIN32_SERVER_NAMES if is_server else _WIN32_CLIENT_NAMES
+    marketing_name = lookup.get(version_number, version_number)
+    service_pack = platform.win32_ver()[2] or u'SP0'
+    return marketing_name, u'%s-%s' % (marketing_name, service_pack)
 
 
 def get_startup_dir():

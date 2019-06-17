@@ -40,7 +40,10 @@ class TestWin(unittest.TestCase):
   def test_get_os_version_names(self):
     if sys.platform == 'win32':
       names = win.get_os_version_names()
-      self.assertEqual(2, len(names))
+      if len(names) == 3:
+        self.assertEqual(u'10', names[0])
+      else:
+        self.assertEqual(2, len(names))
       self.assertTrue(isinstance(name, unicode) for name in names)
 
   def test_list_top_windows(self):
