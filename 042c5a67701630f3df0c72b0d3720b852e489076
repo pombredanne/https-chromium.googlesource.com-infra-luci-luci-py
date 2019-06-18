@@ -22,6 +22,30 @@
       "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b605aedf_e8271f52",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-18T17:36:41Z",
+      "side": 1,
+      "message": "It\u0027s not too important to me.\n\nHowever, we should try not to remove any dimension values unless we know for sure that no one is depending on them. M-A, is there a way to look across Swarming instances to see which of the \"Windows-2016Server.*\" dimensions are in use?",
+      "parentUuid": "11fa00d5_2fa04bf3",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
