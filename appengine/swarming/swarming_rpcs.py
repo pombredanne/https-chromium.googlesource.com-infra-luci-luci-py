@@ -506,6 +506,10 @@ class NewTaskRequest(messages.Message):
   pool_task_template = messages.EnumField(
       PoolTaskTemplateField, 14, default='AUTO')
 
+  # If limited_lifetime_to_parent is set, this task is cancelled or killed if
+  # parent task is not running nor pending.
+  limited_lifetime_to_parent = messages.BooleanField(15)
+
 
 class TaskRequest(messages.Message):
   """Description of a task request as registered by the server.
