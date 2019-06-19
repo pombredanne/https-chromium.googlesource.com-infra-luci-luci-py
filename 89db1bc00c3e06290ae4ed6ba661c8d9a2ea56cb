@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "210e5025_7b65495e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-19T22:05:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a0780986_e4afae03",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6d7e74_04b84942",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 9
@@ -131,6 +149,30 @@
     },
     {
       "key": {
+        "uuid": "44c046f9_0048087e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-19T22:05:36Z",
+      "side": 1,
+      "message": "Done. But which case do we want to set this flag?\nMaybe we can abandon this CL and just changing default behavior is sufficient now?",
+      "parentUuid": "535646bd_00a118e8",
+      "range": {
+        "startLine": 819,
+        "startChar": 7,
+        "endLine": 819,
+        "endChar": 33
+      },
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44be7858_63c37eae",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
@@ -148,6 +190,24 @@
     },
     {
       "key": {
+        "uuid": "0834a139_b307b2b8",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-19T22:05:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44be7858_63c37eae",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29ec42de_2cea2581",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 9
@@ -162,6 +222,24 @@
       "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81836fef_1d076b5c",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-19T22:05:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29ec42de_2cea2581",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
