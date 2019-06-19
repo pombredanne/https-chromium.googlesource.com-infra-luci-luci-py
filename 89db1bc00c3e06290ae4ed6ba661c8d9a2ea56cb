@@ -173,6 +173,30 @@
     },
     {
       "key": {
+        "uuid": "1e1e84bb_38f6be2d",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-19T22:09:20Z",
+      "side": 1,
+      "message": "The only reason to expose this is in case a team wants to trigger \"fire-and-forget\" tasks.\n\nI think we could look at Big Query data to determine if there\u0027s a task that has a parent_task_id and that its end_time is greater than the parent\u0027s end_time.\n\nIf there\u0027s none, then we don\u0027t even need the flag. Well there will be at least some because we did kill tasks before, they they should be only on a few days when we had outages.\n\nIf there\u0027s some on a continuous basis, then we should add this flag.",
+      "parentUuid": "44c046f9_0048087e",
+      "range": {
+        "startLine": 819,
+        "startChar": 7,
+        "endLine": 819,
+        "endChar": 33
+      },
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44be7858_63c37eae",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
