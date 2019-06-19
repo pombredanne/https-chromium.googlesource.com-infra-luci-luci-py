@@ -1102,6 +1102,10 @@ class TaskRequest(ndb.Model):
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
 
+  # If limited_lifetime_to_parent is set, this task is cancelled or killed if
+  # parent task is not running nor pending.
+  limited_lifetime_to_parent = ndb.BooleanProperty(indexed=False)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
@@ -1202,6 +1206,8 @@ class TaskRequest(ndb.Model):
     if self.parent_task_id:
       out.parent_run_id = self.parent_task_id
       out.parent_task_id = self.parent_task_id[:-1] + '0'
+    if self.limited_lifetime_to_parent:
+      out.limited_lifetime_to_parent = self.limited_lifetime_to_parent
     if self.pubsub_topic:
       out.pubsub_notification.topic = self.pubsub_topic
     # self.pubsub_auth_token cannot be retrieved.
