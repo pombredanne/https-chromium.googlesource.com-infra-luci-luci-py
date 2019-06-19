@@ -506,6 +506,10 @@ class NewTaskRequest(messages.Message):
   pool_task_template = messages.EnumField(
       PoolTaskTemplateField, 14, default='AUTO')
 
+  # If allow_children_tasks_outlive_parent is set, this task outlives even if
+  # parent task is not running nor pending.
+  allow_children_tasks_outlive_parent = messages.BooleanField(15)
+
 
 class TaskRequest(messages.Message):
   """Description of a task request as registered by the server.
@@ -533,7 +537,7 @@ class TaskRequest(messages.Message):
 
   pubsub_topic = messages.StringField(11)
   pubsub_userdata = messages.StringField(12)
-
+  limited_lifetime_to_parent = messages.BooleanField(13)
 
 class TaskCancelRequest(messages.Message):
   """Request to cancel one task."""

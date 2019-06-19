@@ -814,6 +814,9 @@ message TaskRequest {
   string parent_run_id = 11;
   // Send notification to this pubsub topic for updates of this task.
   PubSub pubsub_notification = 10;
+  // If allow_children_tasks_outlive_parent is set, this task outlives even if
+  // parent task is not running nor pending.
+  bool allow_children_tasks_outlive_parent = 12;
 }
 
 // PubSub is a Cloud Pub/Sub topic to send task updates to.
