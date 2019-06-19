@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93a43b9e_037ea7b8",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-19T19:38:46Z",
+      "side": 1,
+      "message": "// requires parent_task_id to be set.",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f6d7e74_04b84942",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-19T19:38:46Z",
+      "side": 1,
+      "message": "shall this be a trinary YES/NO/UNSET?\n\nif it stays bool, we basically make \"false\" as a permanent default.\n\nM-A WDYT?",
+      "range": {
+        "startLine": 819,
+        "startChar": 2,
+        "endLine": 819,
+        "endChar": 6
+      },
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44be7858_63c37eae",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-19T19:38:46Z",
+      "side": 1,
+      "message": "# requires parent_task_id to be set.",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
