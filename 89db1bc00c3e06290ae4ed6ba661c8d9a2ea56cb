@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a0780986_e4afae03",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-19T21:36:21Z",
+      "side": 1,
+      "message": "no longer relevant given below suggestion by maruel@",
+      "parentUuid": "93a43b9e_037ea7b8",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f6d7e74_04b84942",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 9
@@ -62,6 +80,54 @@
       "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "535646bd_00a118e8",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-19T21:36:21Z",
+      "side": 1,
+      "message": "I like the idea.",
+      "parentUuid": "42306fad_c05e6995",
+      "range": {
+        "startLine": 819,
+        "startChar": 7,
+        "endLine": 819,
+        "endChar": 33
+      },
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acd67bd2_060f68d9",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-19T21:36:21Z",
+      "side": 1,
+      "message": "see maruel@ suggestion instead.",
+      "parentUuid": "9f6d7e74_04b84942",
+      "range": {
+        "startLine": 819,
+        "startChar": 2,
+        "endLine": 819,
+        "endChar": 6
+      },
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
