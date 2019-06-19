@@ -89,6 +89,7 @@ def _gen_request_slices(**kwargs):
   template_apply = kwargs.pop('_template_apply', task_request.TEMPLATE_AUTO)
   now = utils.utcnow()
   args = {
+    u'allow_children_tasks_outlive_parent': False,
     u'created_ts': now,
     u'manual_tags': [u'tag:1'],
     u'name': u'Request name',
@@ -511,6 +512,7 @@ class TaskRequestApiTest(TestCase):
       'outputs': [],
     }
     expected_request = {
+      'allow_children_tasks_outlive_parent': False,
       'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
       'name': u'Request name',
       'parent_task_id': unicode(parent_id),
@@ -616,6 +618,7 @@ class TaskRequestApiTest(TestCase):
       'has_secret_bytes': True,
     }
     expected_request = {
+      'allow_children_tasks_outlive_parent': False,
       'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
       'name': u'Request name',
       'parent_task_id': unicode(parent_id),
