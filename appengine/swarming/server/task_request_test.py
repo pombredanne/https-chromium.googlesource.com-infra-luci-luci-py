@@ -90,6 +90,7 @@ def _gen_request_slices(**kwargs):
   now = utils.utcnow()
   args = {
     u'created_ts': now,
+    u'limited_lifetime_to_parent': False,
     u'manual_tags': [u'tag:1'],
     u'name': u'Request name',
     u'priority': 50,
@@ -512,6 +513,7 @@ class TaskRequestApiTest(TestCase):
     }
     expected_request = {
       'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+      'limited_lifetime_to_parent': False,
       'name': u'Request name',
       'parent_task_id': unicode(parent_id),
       'priority': 50,
@@ -617,6 +619,7 @@ class TaskRequestApiTest(TestCase):
     }
     expected_request = {
       'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+      'limited_lifetime_to_parent': False,
       'name': u'Request name',
       'parent_task_id': unicode(parent_id),
       'priority': 50,
