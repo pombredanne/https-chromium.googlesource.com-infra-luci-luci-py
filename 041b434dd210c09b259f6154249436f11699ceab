@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc79385e_b146b0f3",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-19T00:47:57Z",
+      "side": 1,
+      "message": "Technically speaking, you don\u0027t need to call list() since sorted() will create a list out of an iterator.",
+      "range": {
+        "startLine": 510,
+        "startChar": 8,
+        "endLine": 510,
+        "endChar": 13
+      },
+      "revId": "041b434dd210c09b259f6154249436f11699ceab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
