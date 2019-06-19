@@ -197,6 +197,30 @@
     },
     {
       "key": {
+        "uuid": "892799ba_af1b8661",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-19T23:26:23Z",
+      "side": 1,
+      "message": "Extracted such tasks from BigQuery.\nhttps://pantheon.corp.google.com/bigquery?project\u003dchromium-swarm\u0026organizationId\u003d433637338589\u0026folder\u003d\u0026j\u003dbq:US:bquxjob_811701d_16b7206f4e3\u0026page\u003dqueryresults\nSome child tasks ended after parent tasks, but all samples I saw can be killed when parent tasks completed.",
+      "parentUuid": "1e1e84bb_38f6be2d",
+      "range": {
+        "startLine": 819,
+        "startChar": 7,
+        "endLine": 819,
+        "endChar": 33
+      },
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44be7858_63c37eae",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
