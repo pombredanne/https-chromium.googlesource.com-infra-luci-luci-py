@@ -145,6 +145,23 @@
       "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29ec42de_2cea2581",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-19T21:49:04Z",
+      "side": 1,
+      "message": "Please keep two lines between file level symbols.",
+      "revId": "89db1bc00c3e06290ae4ed6ba661c8d9a2ea56cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
