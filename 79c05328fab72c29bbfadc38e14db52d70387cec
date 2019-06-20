@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d44e051d_562b538a",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-20T06:21:35Z",
+      "side": 1,
+      "message": "`_children_` is redundant. Also, WDYT about this doc:\n\n// If allow_to_outlive_parent is false (default) and parent_task_id is provided,\n// then this task will not be allowed to outlive its parent. In other words, once parent\n// task is no longer pending or running, this task will automatically canceled \n// or killed.\n// Setting allow_to_outlive_parent to true, will allow this task to run even\n// after parent has completed. parent_task_id is required in such case.\nbool allow_to_outlive_parent",
+      "range": {
+        "startLine": 819,
+        "startChar": 7,
+        "endLine": 819,
+        "endChar": 42
+      },
+      "revId": "79c05328fab72c29bbfadc38e14db52d70387cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
