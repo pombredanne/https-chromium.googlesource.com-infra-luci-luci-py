@@ -1303,6 +1303,8 @@ def bot_update_task(
   if smry.state not in task_result.State.STATES_RUNNING:
     event_mon_metrics.send_task_event(smry)
     ts_mon_metrics.on_task_completed(smry)
+    for task_child_id in smry.task_children_id:
+      cancel_task_with_id(task_child_id, True, None)
 
   # Hack a bit to tell the bot what it needs to hear (see handler_bot.py). It's
   # kind of an ugly hack but the other option is to return the whole run_result.
