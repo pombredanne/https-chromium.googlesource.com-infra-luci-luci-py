@@ -814,6 +814,13 @@ message TaskRequest {
   string parent_run_id = 11;
   // Send notification to this pubsub topic for updates of this task.
   PubSub pubsub_notification = 10;
+  // If allow_to_outlive_parent is false (default) and parent_task_id is
+  // provided, then this task will not be allowed to outlive its parent. In
+  // other words, once parent task is no longer pending or running, this task
+  // will automatically canceled or killed.
+  // Setting allow_to_outlive_parent to true, will allow this task to run even
+  // after parent has completed. parent_task_id is required in such case.
+  bool allow_to_outlive_parent = 12;
 }
 
 // PubSub is a Cloud Pub/Sub topic to send task updates to.
