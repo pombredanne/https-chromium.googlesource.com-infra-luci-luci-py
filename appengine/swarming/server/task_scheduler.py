@@ -632,7 +632,8 @@ def _bot_update_tx(
     performance_stats, now, result_summary_key, server_version, request):
   """Runs the transaction for bot_update_task().
 
-  Returns tuple(TaskRunResult, bool(completed), str(error)).
+  Returns
+    tuple(TaskRunResult, bool(completed), bool(need_cancel), str(error)).
 
   Any error is returned as a string to be passed to logging.error() instead of
   logging inside the transaction for performance.
@@ -652,16 +653,16 @@ def _bot_update_tx(
   run_result = run_result_future.get_result()
   if not run_result:
     result_summary_future.wait()
-    return None, None, 'is missing'
+    return None, None, False, 'is missing'
 
   if run_result.bot_id != bot_id:
     result_summary_future.wait()
-    return None, None, (
+    return None, None, False, (
         'expected bot (%s) but had update from bot %s' % (
         run_result.bot_id, bot_id))
 
   if not run_result.started_ts:
-    return None, None, 'TaskRunResult is broken; %s' % (
+    return None, None, False, 'TaskRunResult is broken; %s' % (
         run_result.to_dict())
 
   if exit_code is not None:
@@ -670,15 +671,22 @@ def _bot_update_tx(
       # but it still returned HTTP 500.
       if run_result.exit_code != exit_code:
         result_summary_future.wait()
-        return None, None, 'got 2 different exit_code; %s then %s' % (
+        return None, None, False, 'got 2 different exit_code; %s then %s' % (
             run_result.exit_code, exit_code)
       if run_result.duration != duration:
         result_summary_future.wait()
-        return None, None, 'got 2 different durations; %s then %s' % (
+        return None, None, False, 'got 2 different durations; %s then %s' % (
             run_result.duration, duration)
     else:
       run_result.duration = duration
       run_result.exit_code = exit_code
+
+  need_cancel = False
+  # Kill this task if parent task is not running nor pending.
+  if request.parent_task_id:
+    parent_run_key = task_pack.unpack_run_result_key(request.parent_task_id)
+    parent = ndb.get(parent_run_key)
+    need_cancel = parent.state not in task_result.State.STATES_RUNNING
 
   if outputs_ref:
     run_result.outputs_ref = outputs_ref
@@ -740,7 +748,7 @@ def _bot_update_tx(
   to_put.append(result_summary)
   ndb.put_multi(to_put)
 
-  return result_summary, run_result, None
+  return result_summary, run_result, need_cancel, None
 
 
 def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
@@ -1281,7 +1289,7 @@ def bot_update_task(
       hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
       performance_stats, now, result_summary_key, server_version, request)
   try:
-    smry, run_result, error = datastore_utils.transaction(run)
+    smry, run_result, need_cancel, error = datastore_utils.transaction(run)
   except datastore_utils.CommitError as e:
     logging.info('Got commit error: %s', e)
     # It is important that the caller correctly surface this error as the bot
@@ -1297,6 +1305,10 @@ def bot_update_task(
   if error:
     logging.error('Task %s %s', packed, error)
     return None
+  if need_cancel:
+    cancel_task_with_id(request.task_id, True, bot_id)
+    run_result.killing = True
+
   # Caller must retry if PubSub enqueue fails.
   if not _maybe_pubsub_notify_now(smry, request):
     return None
