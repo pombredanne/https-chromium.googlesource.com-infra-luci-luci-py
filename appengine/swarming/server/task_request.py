@@ -1102,6 +1102,14 @@ class TaskRequest(ndb.Model):
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
 
+  # If allow_to_outlive_parent is false (default) and parent_task_id is
+  # provided, then this task will not be allowed to outlive its parent. In
+  # other words, once parent task is no longer pending or running, this task
+  # will automatically canceled or killed.
+  # Setting allow_to_outlive_parent to true, will allow this task to run even
+  # after parent has completed. parent_task_id is required in such case.
+  allow_to_outlive_parent = ndb.BooleanProperty(indexed=False)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
@@ -1202,6 +1210,9 @@ class TaskRequest(ndb.Model):
     if self.parent_task_id:
       out.parent_run_id = self.parent_task_id
       out.parent_task_id = self.parent_task_id[:-1] + '0'
+    if self.allow_to_outlive_parent:
+      out.allow_to_outlive_parent = \
+          self.allow_to_outlive_parent
     if self.pubsub_topic:
       out.pubsub_notification.topic = self.pubsub_topic
     # self.pubsub_auth_token cannot be retrieved.
