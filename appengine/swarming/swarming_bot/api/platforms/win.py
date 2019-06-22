@@ -42,6 +42,20 @@ _WIN32_SERVER_NAMES = {
     u'10.0': u'2016Server',
 }
 
+# For Win10, the correspondence between build numbers and versions is published
+# at https://docs.microsoft.com/en-us/windows/release-information/ for clients and
+# https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info
+# for servers. This mapping will need to be updated for each new Win10 release.
+_WIN10_BUILD_TO_VERSION_MAPPING = {
+    u'10240': u'v1509',
+    u'10586': u'v1511',
+    u'14393': u'v1607',
+    u'15063': u'v1703',
+    u'16299': u'v1709',
+    u'17134': u'v1803',
+    u'17763': u'v1809',
+    u'18362': u'v1903',
+}
 
 @tools.cached
 def _get_mount_points():
@@ -214,22 +228,47 @@ def get_os_version_number():
 
 @tools.cached
 def get_os_version_names():
-  """Returns the marketing name of the OS, without and with the service pack.
+  """Returns the marketing/user-friendly names of the OS.
 
-  On Windows 10, use the build number since there will be no service pack.
+  The first item of the returned list is the base marketing name, e.g. Vista,
+  10, or 2008Server. (For Windows Server starting with 2016, this name is
+  deprecated because it's confusing/misleading, e.g. Windows Server v1709 is
+  also considered "2016Server", since both have version "10.0".)
+
+  The second item is verbatim what "cmd.exe /c ver" outputs. See
+  _get_os_numbers(). This value can distinguish among "Fast Ring" releases.
+  https://insider.windows.com/en-us/how-to-overview/#definition-of-rings
+
+  For versions released before Windows 10, the third item is the name with the
+  service pack, e.g. 7-SP1 or 2012ServerR2-SP0.
+
+  For Windows 10 and Windows Server starting with 2016, the third item is the
+  YYMM version e.g. "v1809". A final deprecated item is included for backwards
+  compatibility: the base marketing name with the full build number, e.g.
+  10-17763.437 or 2016Server-17763.557 (which is actually Windows Server 2019,
+  which also has version "10.0"). If you require this granularity, please use
+  the second item, described above, instead.
   """
   # Python keeps a local map in platform.py and it is updated at newer python
   # release. Since our python release is a bit old, do not rely on it.
   is_server = sys.getwindowsversion().product_type == 3
   lookup = _WIN32_SERVER_NAMES if is_server else _WIN32_CLIENT_NAMES
   version_number, build_number = _get_os_numbers()
+  raw_version = u'%s.%s' % (version_number, build_number)
   marketing_name = lookup.get(version_number, version_number)
   if version_number == u'10.0':
+    version_names = [marketing_name, raw_version]
+    # The build number has major and minor versions; the major version
+    # corresponds to releases like 1703, 1809, etc.
+    major_minor = build_number.split(u'.')
+    yymm = _WIN10_BUILD_TO_VERSION_MAPPING.get(major_minor[0])
+    if yymm:
+      version_names.append(yymm)
     # Windows 10 doesn't have service packs, the build number now is the
     # reference number.
-    return marketing_name, u'%s-%s' % (marketing_name, build_number)
+    return version_names + [u'%s-%s' % (marketing_name, build_number)]
   service_pack = platform.win32_ver()[2] or u'SP0'
-  return marketing_name, u'%s-%s' % (marketing_name, service_pack)
+  return marketing_name, raw_version, u'%s-%s' % (marketing_name, service_pack)
 
 
 def get_startup_dir():

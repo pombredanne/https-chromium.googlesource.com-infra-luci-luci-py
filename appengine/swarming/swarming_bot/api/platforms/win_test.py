@@ -40,7 +40,15 @@ class TestWin(unittest.TestCase):
   def test_get_os_version_names(self):
     if sys.platform == 'win32':
       names = win.get_os_version_names()
-      self.assertEqual(2, len(names))
+      expected_len = 3 # names has 3 items for versions before 10/Server 2016.
+      if len(names) >= 2:
+        # The second item should be a raw version number.
+        m = re.match(names[1], '^[0-9.]$')
+        self.assertTrue(m)
+        # If Windows 10/Server 2016 or later, expect four items.
+        if names[1].split(u'.')[0] == u'10':
+          expected_len = 4
+      self.assertEqual(expected_len, len(names))
       self.assertTrue(isinstance(name, unicode) for name in names)
 
   def test_list_top_windows(self):
