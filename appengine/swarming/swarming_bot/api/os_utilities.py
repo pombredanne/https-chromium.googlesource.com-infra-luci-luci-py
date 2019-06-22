@@ -1027,6 +1027,7 @@ def get_dimensions():
     integrity = platforms.win.get_integrity_level()
     if integrity is not None:
       dimensions[u'integrity'] = [integrity]
+    dimensions[u'os_product_type'] = platforms.win.get_os_product_type()
 
   return dimensions
 
