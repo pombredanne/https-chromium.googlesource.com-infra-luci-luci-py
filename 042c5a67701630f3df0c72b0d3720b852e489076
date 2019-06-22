@@ -46,6 +46,40 @@
       "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a846ce0_e96a021b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-22T15:13:00Z",
+      "side": 1,
+      "message": "I\u0027d prefer something like this (plus comments):\n\nmarketing_name \u003d _WIN10_SERVER_BUILD_TO_MARKETING_NAME_MAPPING.get(major_minor[0])\nif marketing_name:\n  return [marketing_name, u\u0027%s-%s\u0027 % (marketing_name, build_number)]\nreturn []\n\nI\u0027m a bit sad about returning nothing, I think having u\u0027Server-%s\u0027 % build_number could still be valuable, but the problem is that then we\u0027d have to add it everywhere, a bit like it has to be done with client.",
+      "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be6b8e57_45377759",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-22T15:13:00Z",
+      "side": 1,
+      "message": "I\u0027d prefer something like this (plus your comments which are good):\n\nversion_names \u003d [u\u002710\u0027, u\u002710-%s\u0027 % build_number]\nmarketing_name \u003d _WIN10_CLIENT_BUILD_TO_MARKETING_NAME_MAPPING.get(major_minor[0])\nif marketing_name:\n  version_names.append(marketing_name)\nreturn version_names",
+      "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
