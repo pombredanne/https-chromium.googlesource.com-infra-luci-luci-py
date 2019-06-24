@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "61e70bc2_616adcbc",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-24T01:19:41Z",
+      "side": 1,
+      "message": "Ah, I was thinking about the reverse, where we set this at the parent task to allow children tasks to outlive. The way the comment is written is that recipes triggering tests would set this flag.\n\nThe value of setting it on the parent is safety, we know where it\u0027s set. If we do that from the task itself when triggering children, it\u0027s trickier as we essentially allow a free-for-all escape hatch.",
+      "range": {
+        "startLine": 817,
+        "startChar": 52,
+        "endLine": 817,
+        "endChar": 56
+      },
+      "revId": "79c05328fab72c29bbfadc38e14db52d70387cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d44e051d_562b538a",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 12
