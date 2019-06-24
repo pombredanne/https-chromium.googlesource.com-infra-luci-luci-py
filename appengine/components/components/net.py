@@ -12,6 +12,7 @@ import urlparse
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
+from google.auth import app_engine
 
 from components import auth
 from components import utils
@@ -202,6 +203,25 @@ def request(*args, **kwargs):
   """Blocking version of request_async."""
   return request_async(*args, **kwargs).get_result()
 
+def _sign_jwt_headers(*args, **kwargs):
+  """Can be mocked in tests."""
+  now = kwargs.get('now', int(time.time()))
+  credentials = app_engine.Credentials()
+  return {
+      'Authorization': 'Bearer {}'.format(
+          credentials.sign(
+              json.dumps({
+                  'iat': now,
+                  'exp': now + 3600,
+                  'iss': crendetials.service_account_email,
+                  'aud': kwargs.get('audience', '')
+                  'sub': credentials.service_account_email,
+                  'email': credentials.service_account_email,
+              })
+          )
+      )
+  }
+
 
 @ndb.tasklet
 def json_request_async(
@@ -215,7 +235,8 @@ def json_request_async(
     delegation_token=None,
     project_id=None,
     deadline=None,
-    max_attempts=None):
+    max_attempts=None,
+    use_jwt_auth=None):
   """Sends a JSON REST API request, returns deserialized response.
 
   Automatically strips prefixes formed from characters in the set ")]}'\n"
@@ -236,6 +257,8 @@ def json_request_async(
     project_id: request should be performed under a project authority.
     deadline: deadline for a single attempt.
     max_attempts: how many times to retry on errors.
+    use_jwt_auth: whether to use JSON Web Token authentication,
+                  for Cloud Endpoints v2 support.
 
   Returns:
     Deserialized JSON response.
@@ -250,6 +273,8 @@ def json_request_async(
     headers['Accept'] = 'application/json; charset=utf-8'
     headers['Content-Type'] = 'application/json; charset=utf-8'
     payload = utils.encode_to_json(payload)
+  if use_jwt_auth:
+    headers = (headers or {}).copy().extend(_sign_jwt_headers())
   response = yield request_async(
       url=url,
       method=method,
