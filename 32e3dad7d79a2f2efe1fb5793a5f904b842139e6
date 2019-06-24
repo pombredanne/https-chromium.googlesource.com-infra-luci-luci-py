@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "e25ddc67_4d3a0665",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-24T01:17:51Z",
+      "side": 1,
+      "message": "Ah! I just saw you added this in the CL description.\n\nPlease include this kind of message in the review request instead of the CL description.",
+      "revId": "32e3dad7d79a2f2efe1fb5793a5f904b842139e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af24b050_1f02d7aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-24T01:17:51Z",
+      "side": 1,
+      "message": "Remove.",
+      "revId": "32e3dad7d79a2f2efe1fb5793a5f904b842139e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4d5d4ee_e10e8431",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
