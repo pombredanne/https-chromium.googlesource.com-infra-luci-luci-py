@@ -458,7 +458,7 @@ class Popen(subprocess.Popen):
   - start: timestamp when this process started.
   - end: timestamp when this process exited, as seen by this process.
   - detached: If True, the child process was started as a detached process.
-  - gid: process group id, if any.
+  - gid: process group id, if child is detached. Only works on !windows.
   - duration: time in seconds the process lasted.
 
   Additional methods:
@@ -538,7 +538,6 @@ class Popen(subprocess.Popen):
         kwargs['creationflags'] = prev | CREATE_SUSPENDED
 
     self.end = None
-    self.gid = None
     self.start = time.time()
     try:
       with self.popen_lock:
@@ -565,12 +564,6 @@ class Popen(subprocess.Popen):
       raise
 
     self.args = args
-    if self.detached and sys.platform != 'win32':
-      try:
-        self.gid = os.getpgid(self.pid)
-      except OSError:
-        # sometimes the process can run+finish before we collect its pgid. fun.
-        pass
 
     if self._job:
       try:
@@ -578,6 +571,23 @@ class Popen(subprocess.Popen):
       except OSError:
         self.kill()
         self.wait()
+
+    # Lazily set by gid/poll/wait
+    self._gid = None
+
+  def gid(self):
+    """Returns the group ID of the subprocess if the process was detached.
+
+    Always returns None on windows.
+    """
+    if not self._gid and self.detached and sys.platform != 'win32':
+      try:
+        self._gid = os.getpgid(self.pid)
+      except OSError:
+        # sometimes the process can run+finish before we collect its pgid. fun.
+        pass
+
+    return self._gid  # None on Windows
 
   def duration(self):
     """Duration of the child process.
@@ -668,6 +678,9 @@ class Popen(subprocess.Popen):
     """
     assert timeout is None or isinstance(timeout, (int, float)), timeout
     if timeout is None:
+      # attempt to resolve the gid, if applicable, before waiting on the
+      # process.
+      _ = self.gid
       super(Popen, self).wait()
     elif self.returncode is None:
       if sys.platform == 'win32':
@@ -684,6 +697,9 @@ class Popen(subprocess.Popen):
         end = time.time() + timeout
         delay = poll_initial_interval
         while True:
+          # attempt to resolve the gid, if applicable, before waiting on the
+          # process.
+          _ = self.gid
           try:
             pid, sts = subprocess._eintr_retry_call(
                 os.waitpid, self.pid, os.WNOHANG)
@@ -709,6 +725,9 @@ class Popen(subprocess.Popen):
     return self.returncode
 
   def poll(self):
+    # attempt to resolve the gid, if applicable, before polling the process.
+    _ = self.gid
+
     ret = super(Popen, self).poll()
     if ret is not None and not self.end:
       self.end = time.time()
