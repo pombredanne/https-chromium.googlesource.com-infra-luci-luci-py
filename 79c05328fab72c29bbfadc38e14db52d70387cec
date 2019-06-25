@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bae4634b_d984ab22",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-06-25T21:12:01Z",
+      "side": 1,
+      "message": "I am afraid we need an \"escape hatch\" on a per-child basis, specifically for migrating Chromium tryjobs to this mode -- at least on design doc there were concerns about some test tasks being non cancel-friendly, ie we may not be able to migrate all or nothing.\n\nPersonally, I don\u0027t see a problem of having such escape hatch long term so long as default is limited lifetime for each child. Do you?",
+      "parentUuid": "61e70bc2_616adcbc",
+      "range": {
+        "startLine": 817,
+        "startChar": 52,
+        "endLine": 817,
+        "endChar": 56
+      },
+      "revId": "79c05328fab72c29bbfadc38e14db52d70387cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d44e051d_562b538a",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 12
