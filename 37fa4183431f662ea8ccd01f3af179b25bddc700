@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "845512c3_e0f46200",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-25T20:58:10Z",
+      "side": 1,
+      "message": "Should we accelerate the conversion of current python services from cloud endpoints to pRPC instead? I already told Erik this needs to happen eventually and for Swarming this may be done this quarter anyway.",
+      "range": {
+        "startLine": 92,
+        "startChar": 51,
+        "endLine": 92,
+        "endChar": 78
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b2ee79e_5374bfca",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 5
