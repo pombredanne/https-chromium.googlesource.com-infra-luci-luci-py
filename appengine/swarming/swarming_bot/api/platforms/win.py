@@ -273,6 +273,40 @@ def get_audio():
   ]
 
 
+# Regex for matching Visual Studio version string.
+_VS_VERSION_RE = re.compile(r'\d+\.\d+')
+
+
+@tools.cached
+def get_visual_studio_versions():
+  """Retrieves all installed Visual Studio versions.
+
+  The returned version list is sorted such that the first element is the highest
+  version number.
+
+  Returns:
+    A list of Visual Studio version strings.
+  """
+  import _winreg
+
+  try:
+    k = _winreg.OpenKey(
+        _winreg.HKEY_LOCAL_MACHINE,
+        'SOFTWARE\\Wow6432Node\\Microsoft\\VSCommon')
+  except WindowsError:
+    return None
+
+  try:
+    versions = []
+    for i in range(_winreg.QueryInfoKey(k)[0]):
+      sub_key = _winreg.EnumKey(k, i)
+      if _VS_VERSION_RE.match(sub_key):
+        versions.append(sub_key)
+    return sorted(versions, key=float, reverse=True)
+  finally:
+    k.Close()
+
+
 @tools.cached
 def get_cpuinfo():
   # Ironically, the data returned by WMI is mostly worthless.
