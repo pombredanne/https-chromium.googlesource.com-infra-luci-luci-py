@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b2ee79e_5374bfca",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-25T17:10:10Z",
+      "side": 1,
+      "message": "Where this library is coming from? As in, won\u0027t it break existing apps because they don\u0027t have this dependency?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 34
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76e8cfa6_6d0609a8",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-25T17:10:10Z",
+      "side": 1,
+      "message": "Tokens with empty audience is of limited usability. Cloud Endpoint 2 is the only platform I\u0027m aware of that accepts them. Other Google APIs that accept JWTs:\n  * Firebase wants \"https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit\" (https://firebase.google.com/docs/auth/admin/create-custom-tokens).\n  * Cloud IoT wants Cloud Project ID (https://cloud.google.com/iot/docs/how-tos/credentials/jwts).\n  * Other Google APIs want \"https://oauth2.googleapis.com/token\" (https://github.com/golang/oauth2/blob/master/jwt/jwt.go#L101 and https://github.com/golang/oauth2/blob/master/google/google.go#L125).\n\nSo I think either audience should be made configurable here or this code should be moved from generic net.py into a more specific luci-config code that explicitly mentions this would work only with Cloud Endpoints v2.",
+      "range": {
+        "startLine": 218,
+        "startChar": 18,
+        "endLine": 218,
+        "endChar": 27
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e7075cf_b079fbfd",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-25T17:10:10Z",
+      "side": 1,
+      "message": "Please move this to request_async instead (not only JSON requests need authorization tokens) and make it raise ValueError if both use_jwt_auth and (scopes or project_id) are used (they both try to write \u0027Authorization\u0027 header).",
+      "range": {
+        "startLine": 277,
+        "startChar": 2,
+        "endLine": 278,
+        "endChar": 64
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68ff2e34_62a68007",
+        "filename": "appengine/components/components/net_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-25T17:10:10Z",
+      "side": 1,
+      "message": "These arguments are for generating OAuth access tokens. They should be incompatible with JWTs (we can\u0027t put both OAuth access token and JWT into single \"Authorization\" header).",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 66
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d7c055a_eacbc57a",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-25T17:10:10Z",
+      "side": 1,
+      "message": "this should be \n  scopes\u003dNone if service.use_jwt_auth else net.EMAIL_SCOPE",
+      "range": {
+        "startLine": 88,
+        "startChar": 30,
+        "endLine": 88,
+        "endChar": 52
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
