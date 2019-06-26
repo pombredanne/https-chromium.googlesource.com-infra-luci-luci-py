@@ -92,6 +92,24 @@
       "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c1f9c59_51777b3c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-26T14:01:59Z",
+      "side": 1,
+      "message": "This is example.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/api/os_utilities_test.py?q\u003dmock+file:%5Einfra/luci/appengine/+package:%5Echromium$\u0026dr\u003dCSs\u0026l\u003d57",
+      "parentUuid": "5edb8ef1_05402cdf",
+      "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

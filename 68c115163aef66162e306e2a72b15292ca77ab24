@@ -35,6 +35,24 @@
       "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70ed6037_8b93bf70",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-26T14:01:59Z",
+      "side": 1,
+      "message": "could you disable warning by append \"# pylint: disable\u003dno-member\" here?",
+      "parentUuid": "482e313c_0ea1a62d",
+      "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
