@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "abd954e5_e53f54b1",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:38:51Z",
+      "side": 1,
+      "message": "I don\u0027t know how that would work for services that are not in the infra repository, and don\u0027t already use prpc. The Chromeperf Dashboard does not use any of the existing LUCI components as far as I can tell, and doing so will be much more work than just using whatever GCP provides natively.",
+      "parentUuid": "845512c3_e0f46200",
+      "range": {
+        "startLine": 92,
+        "startChar": 51,
+        "endLine": 92,
+        "endChar": 78
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b2ee79e_5374bfca",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4a013ad_99120b22",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:38:51Z",
+      "side": 1,
+      "message": "Oh, right -- I hadn\u0027t realised that this was embedded in other apps.\n\nThis is the google-auth library, (pip install google-auth) which is the recommended/supported way for authorising requests to Google APIs.",
+      "parentUuid": "0b2ee79e_5374bfca",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 34
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "984a2d84_d7e7f9c0",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76e8cfa6_6d0609a8",
+      "range": {
+        "startLine": 218,
+        "startChar": 18,
+        "endLine": 218,
+        "endChar": 27
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e7075cf_b079fbfd",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b787c88_68025a2a",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e7075cf_b079fbfd",
+      "range": {
+        "startLine": 277,
+        "startChar": 2,
+        "endLine": 278,
+        "endChar": 64
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -137,6 +233,30 @@
       "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6c1fff3_78612686",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d7c055a_eacbc57a",
+      "range": {
+        "startLine": 88,
+        "startChar": 30,
+        "endLine": 88,
+        "endChar": 52
+      },
+      "revId": "37fa4183431f662ea8ccd01f3af179b25bddc700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
