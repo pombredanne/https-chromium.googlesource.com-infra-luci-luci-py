@@ -89,6 +89,10 @@ message Service {
   //
   // If not specified, only admins and trusted services have access.
   repeated string access = 5;
+  // Determine whether we need to use JWT Auth, for Cloud Endpoints v2 support.
+  bool use_jwt_auth = 6;
+  // When using JWT Auth, use the provided audience when making requests.
+  string audience = 7;
 }
 
 // Machine-generated service metadata, exposed by a service endpoint.
