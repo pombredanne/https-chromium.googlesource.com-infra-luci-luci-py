@@ -4,11 +4,14 @@
 
 """Wrapper around urlfetch to call REST API with service account credentials."""
 
+import base64
 import json
 import logging
+import datetime
 import urllib
 import urlparse
 
+from google.appengine.api import app_identity
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
@@ -72,6 +75,34 @@ def _error_class_for_status(status_code):
   return Error
 
 
+def _sign_jwt_headers(audience):
+  now = int(datetime.datetime.utcnow().timestamp())
+  encoded_header = base64.urlsafe_b64encode(
+      json.dumps({
+          # We hard-encode the algorithm here, since we're relying on the App
+          # Engine SDK's signing algorithm.
+          'alg': 'RS256',
+          'typ': 'JWT',
+      }))
+  sa_email = app_identity.get_service_account_name()
+  encoded_claim = base64.urlsafe_b64encode(
+      json.dumps({
+          'aud': audience,
+          'email': sa_email,
+          'exp': now + 3600,
+          'iat': now,
+          'iss': sa_email,
+          'sub': sa_email,
+      }))
+  payload = '.'.join((encoded_header, encoded_claim))
+  encoded_signature = base64.urlsafe_b64encode(
+      app_identity.sign_blob(payload)[1])
+  return {
+      'Authorization':
+          'Bearer {}'.format('.'.join((payload, encoded_signature)))
+  }
+
+
 @ndb.tasklet
 def request_async(
     url,
@@ -84,7 +115,9 @@ def request_async(
     delegation_token=None,
     project_id=None,
     deadline=None,
-    max_attempts=None):
+    max_attempts=None,
+    use_jwt_auth=None,
+    audience=None):
   """Sends a REST API request, returns raw unparsed response.
 
   Retries the request on transient errors for up to |max_attempts| times.
@@ -134,6 +167,9 @@ def request_async(
   elif scopes:
     tok, _ = yield auth.get_access_token_async(scopes, service_account_key)
   if scopes or project_id:
+    if use_jwt_auth:
+      raise ValueError('Cannot use either `scopes` or `project_id` ' +
+                       'and `use_jwt_auth` together.')
     headers['Authorization'] = 'Bearer %s' % tok
 
   if delegation_token:
@@ -141,6 +177,9 @@ def request_async(
       delegation_token = delegation_token.token
     assert isinstance(delegation_token, basestring)
     headers[delegation.HTTP_HEADER] = delegation_token
+
+  if use_jwt_auth:
+    headers.extend(_sign_jwt_headers(audience or ''))
 
   if payload is not None:
     assert isinstance(payload, str), type(payload)
@@ -202,7 +241,6 @@ def request(*args, **kwargs):
   """Blocking version of request_async."""
   return request_async(*args, **kwargs).get_result()
 
-
 @ndb.tasklet
 def json_request_async(
     url,
@@ -215,7 +253,10 @@ def json_request_async(
     delegation_token=None,
     project_id=None,
     deadline=None,
-    max_attempts=None):
+    max_attempts=None,
+    use_jwt_auth=None,
+    audience=None,
+):
   """Sends a JSON REST API request, returns deserialized response.
 
   Automatically strips prefixes formed from characters in the set ")]}'\n"
@@ -236,6 +277,9 @@ def json_request_async(
     project_id: request should be performed under a project authority.
     deadline: deadline for a single attempt.
     max_attempts: how many times to retry on errors.
+    use_jwt_auth: whether to use JSON Web Token authentication,
+                  for Cloud Endpoints v2 support.
+    audience: a string identifying the audience of the JWT authorization.
 
   Returns:
     Deserialized JSON response.
@@ -261,7 +305,9 @@ def json_request_async(
       delegation_token=delegation_token,
       project_id=project_id,
       deadline=deadline,
-      max_attempts=max_attempts)
+      max_attempts=max_attempts,
+      use_jwt_auth=use_jwt_auth,
+      audience=audience)
   try:
     response = json.loads(response.lstrip(")]}'\n"))
   except ValueError as e:
