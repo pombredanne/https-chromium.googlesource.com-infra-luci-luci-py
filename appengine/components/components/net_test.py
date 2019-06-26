@@ -206,6 +206,33 @@ class NetTest(test_case.TestCase):
         max_attempts=5)
     self.assertEqual({'a': 'b'}, response)
 
+  def test_json_with_jwt_auth_works(self):
+    self.mock_urlfetch([
+      ({
+        'deadline': 123,
+        'headers': {
+          'Authorization': 'Bearer token',
+          'Accept': 'application/json; charset=utf-8',
+          'Content-Type': 'application/json; charset=utf-8',
+          'Header': 'value',
+        },
+        'method': 'POST',
+        'payload': '{"key":"value"}',
+        'url': 'http://localhost/123?a=%3D&b=%26',
+      }, Response(200, ')]}\'\n{"a":"b"}', {})),
+    ])
+    response = net.json_request(
+        url='http://localhost/123',
+        method='POST',
+        payload={'key': 'value'},
+        params={'a': '=', 'b': '&'},
+        headers={'Header': 'value'},
+        deadline=123,
+        max_attempts=5,
+        use_jwt_auth=True,
+        audience='my-service.appspot.com')
+    self.assertEqual({'a': 'b'}, response)
+
   def test_json_bad_response(self):
     self.mock_urlfetch([
       ({'url': 'http://localhost/123'}, Response(200, 'not a json', {})),
