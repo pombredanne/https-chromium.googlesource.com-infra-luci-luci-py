@@ -53,6 +53,24 @@
       "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad00d81_34d3bde2",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T20:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70ed6037_8b93bf70",
+      "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
