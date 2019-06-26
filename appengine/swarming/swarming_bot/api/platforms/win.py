@@ -289,7 +289,6 @@ def get_visual_studio_versions():
     k = _winreg.OpenKey(
         _winreg.HKEY_LOCAL_MACHINE,
         'SOFTWARE\\Wow6432Node\\Microsoft\\VSCommon')
-  # pylint: disable=undefined-variable
   except WindowsError:
     return None
 
