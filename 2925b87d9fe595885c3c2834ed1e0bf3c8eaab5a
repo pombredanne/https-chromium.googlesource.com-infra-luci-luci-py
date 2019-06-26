@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "675b24b1_269e9d8b",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T13:43:34Z",
+      "side": 1,
+      "message": "That\u0027s not idempotent. Let\u0027s say the first RPC gets to delete the entities but fails at updating GCS, the retry will not update GCS.",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ef9a53a_2a2721c9",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T13:43:34Z",
+      "side": 1,
+      "message": "When this changes value from False to True, you need to edit an ACL to force a refresh? It\u0027s not a big deal but should be noted somewhere.\n\nWhen this changes value from True to False, it will leave stale files. I guess this should not happen much neither matter? Probably worth noting somewhere too. :)",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4a083c6_81543b76",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T13:43:34Z",
+      "side": 1,
+      "message": "I\u0027d be fine with making this a global. Less function call the better. At call site it\u0027s less ambiguous IMHO.",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69b01cd6_2f773b86",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T13:43:34Z",
+      "side": 1,
+      "message": "Maybe worth asserting that the length is less than 200 characters. Otherwise ndb will helpfully hash it, and line 133 won\u0027t do what you expect.",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b4e7b0_e3c3317a",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T13:43:34Z",
+      "side": 1,
+      "message": "Sometimes people do \"del readers\" inside the function. I\u0027m starting to like this.",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b367f39e_2bcd3be6",
         "filename": "appengine/auth_service/gcs.py",
         "patchSetId": 2
