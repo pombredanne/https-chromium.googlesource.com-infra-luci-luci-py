@@ -158,7 +158,7 @@ def assign_task(es_cfg, bot_dimensions):
   return resp.assignments[0].task_id, resp.assignments[0].slice_number
 
 
-def notify_requests(es_cfg, requests, use_tq, is_callback):
+def notify_requests(es_cfg, requests, use_tq, is_callback, use_pq=False):
   """Calls external scheduler to notify it of a task state.
 
   Arguments:
@@ -173,6 +173,7 @@ def notify_requests(es_cfg, requests, use_tq, is_callback):
     - is_callback: If true, indicates that this notification was in response
                    to a external-scheduler-requested callback. This is for
                    diagnostic purposes.
+    - use_pq: TODO(lxn) add comment
 
   Returns: Nothing.
   """
@@ -211,12 +212,29 @@ def notify_requests(es_cfg, requests, use_tq, is_callback):
   if use_tq:
     request_json = json_format.MessageToJson(req)
     enqueued = utils.enqueue_task(
-        '/internal/taskqueue/important/external_scheduler/notify-tasks',
-        'es-notify-tasks',
-        params={'es_host': es_cfg.address, 'request_json': request_json},
-        transactional=ndb.in_transaction())
+      '/internal/taskqueue/important/external_scheduler/notify-tasks',
+      'es-notify-tasks',
+      params={'es_host': es_cfg.address, 'request_json': request_json},
+      transactional=ndb.in_transaction())
     if not enqueued:
       raise datastore_utils.CommitError('Failed to enqueue task')
+  elif use_pq:
+    req_enqueued = utils.enqueue_task(
+      '',
+      'es-notify-requests',
+      payload=request_json,
+      method='PULL',
+      tag=es_cfg.address)
+    if not req_enqueued:
+      raise datastore_utils.CommitError('Failed to enqueue task')
+    # TOOD(lxn): add comment
+    job_enqueued = utils.enqueue_task(
+      '/internal/taskqueue/important/external_scheduler/es-notify-tasks',
+      'es-notify-tasks',
+      params={'es_host': es_cfg.address},
+      transactional=ndb.in_transaction())
+    if not job_enqueued:
+       logging.info('Failed to add a notify-task for request: %r', request_json)
   else:
     # Ignore return value, the response proto is empty.
     notify_request_now(es_cfg.address, req)
@@ -231,6 +249,42 @@ def notify_request_now(es_host, proto):
   """
   c = _get_client(es_host)
   return c.NotifyTasks(proto, credentials=_creds())
+
+
+def notify_request_batch(es_host):
+  """Leases the notification-tasks from es-notify-requests. Combines tasks
+     into HTTP requests by their scheduler ID.
+
+    Arguments:
+      es_host: Address of external scheduler to use.
+  """
+  tasks = utils.lease_tasks('es-notify-requests', 60, 100, tag=es_host)
+  requests = collections.defaultdict(object)
+  delete_tasks = collections.defaultdict(list)
+  for task in tasks:
+    notify_task = plugin_pb2.NotifyTasksRequest(is_callback=False)
+    json_format.Parse(task.payload, notify_task)
+    if notify_task.scheduler_id not in requests.keys():
+      requests[notify_task.scheduler_id] = notify_task
+      delete_tasks[notify_task.scheduler_id] = [task]
+      continue
+    requests[notify_task.scheduler_id].notifications.extend(
+        notify_task.notifications)
+    delete_tasks[notify_task.scheduler_id].append(task)
+
+  c = _get_client(es_host)
+  for k, v in requests.iteritems():
+    try:
+      c.NotifyTasks(v, credentials=_creds())
+      utils.delete_tasks('es-notify-requests', delete_tasks[k])
+    except:
+      # We do not delete those tasks if failed, but add one notify-task back.
+      utils.enqueue_task(
+          '/internal/taskqueue/important/external_scheduler/es-notify-jobs',
+          'es-notify-jobs',
+          params={'es_host': es_host},
+          transactional=ndb.in_transaction())
+  return
 
 
 def get_cancellations(es_cfg):

@@ -655,6 +655,28 @@ def enqueue_task(*args, **kwargs):
   return enqueue_task_async(*args, **kwargs).get_result()
 
 
+def lease_tasks(queue_name, lease_seconds, max_tasks, deadline=10, tag=None):
+  """Leases tasks from a pull queue.
+
+  This method only works for a pull type queue, or it raises an exception.
+
+  Returns:
+    A list of tasks from the queue.
+  """
+  queue = taskqueue.Queue(queue_name)
+  return queue.lease_tasks_by_tag(lease_seconds, max_tasks, tag)
+
+
+def delete_tasks(queue_name, tasks):
+  """Deletes a task or list of tasks from a queue.
+
+  Returns:
+    The task or list of tasks passed into this call.
+  """
+  queue = taskqueue.Queue(queue_name)
+  return queue.delete_tasks(tasks)
+
+
 ## JSON
 
 

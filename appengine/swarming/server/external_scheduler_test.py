@@ -169,6 +169,10 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     # TODO(akeshet): Add.
     pass
 
+  def test_notify_request_batch(self):
+    # TODO(lxn): Add.
+    pass
+
   def test_get_cancellations(self):
     c = external_scheduler.get_cancellations(self.es_cfg)
     self.assertEqual(len(c), 1)
