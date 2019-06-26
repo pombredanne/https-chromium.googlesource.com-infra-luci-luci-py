@@ -30,6 +30,12 @@ This file is used by a swarming bot to communicate state of the host to tasks.
 It is written to by the swarming bot's on_before_task() hook in the swarming
 server's custom bot_config.py.
 
+Any ${SWARMING_TASK_ID} on the command line or the environment variables passed
+with the --env option will be replaced by the value of the SWARMING_TASK_ID
+environment variable. This is useful for substituting the task ID into the
+command or environment variables, since the command is not run in a shell and
+thus any variables are not substituted by default.
+
 See
 https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Magic-Values.md
 for all the variables.
@@ -80,6 +86,7 @@ from utils import subprocess42
 ISOLATED_OUTDIR_PARAMETER = '${ISOLATED_OUTDIR}'
 EXECUTABLE_SUFFIX_PARAMETER = '${EXECUTABLE_SUFFIX}'
 SWARMING_BOT_FILE_PARAMETER = '${SWARMING_BOT_FILE}'
+SWARMING_TASK_ID_PARAMETER = '${SWARMING_TASK_ID}'
 
 
 # The name of the log file to use.
@@ -342,6 +349,9 @@ def replace_parameters(arg, out_dir, bot_file):
       logging.warning('SWARMING_BOT_FILE_PARAMETER found in command or env '
                       'var, but no bot_file specified. Leaving parameter '
                       'unchanged.')
+  if SWARMING_TASK_ID_PARAMETER in arg:
+    arg = arg.replace(SWARMING_TASK_ID_PARAMETER,
+                      os.environ.get('SWARMING_TASK_ID', ''))
   if replace_slash:
     # Replace slashes only if parameters are present
     # because of arguments like '${ISOLATED_OUTDIR}/foo/bar'

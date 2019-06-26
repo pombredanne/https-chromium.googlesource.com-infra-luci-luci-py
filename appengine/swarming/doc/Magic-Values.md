@@ -30,6 +30,9 @@ environment variables passed in the command line with the `--env` option.
     variable, it will replaced by a file written to by the Swarming bot's
     on_before_task() hook in the Swarming server's custom bot_config.py. This is
     used by a Swarming bot to communicate state of the bot to tasks.
+*   `${SWARMING_TASK_ID}`: If found on command line argument or environment
+    variable, it will be replaced by the value of the SWARMING_TASK_ID
+    environment variable, which is set to the ID of the Swarming task.
 
 
 ## Swarming
