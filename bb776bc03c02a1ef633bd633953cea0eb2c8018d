@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7284de71_63e27ec0",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T18:52:34Z",
+      "side": 1,
+      "message": "I\u0027d prefer the following signature:\n\n  @property\n  def gid(self):\n\nso it\u0027s not changing what\u0027s visible by clients.",
+      "revId": "bb776bc03c02a1ef633bd633953cea0eb2c8018d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cc8e62_7806c138",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T18:52:34Z",
+      "side": 1,
+      "message": "I\u0027m wondering about the following path:\n\n  p \u003d subprocess42.Popen(...)\n  p.poll()\n\nIn this case, the race would be the same as in the current state.",
+      "revId": "bb776bc03c02a1ef633bd633953cea0eb2c8018d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

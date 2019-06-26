@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef573f28_0f1fff38",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T18:52:34Z",
+      "side": 0,
+      "message": "Please add:\n\n  self._gid \u003d None",
+      "revId": "fc2e7bab6a8a387c69038662fbfede7a3af6c875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
