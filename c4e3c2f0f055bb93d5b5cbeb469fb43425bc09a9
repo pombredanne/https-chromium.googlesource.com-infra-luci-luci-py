@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ad83a90_1efbe4c1",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T00:12:02Z",
+      "side": 1,
+      "message": "xcode_version is singular, and I think I\u0027d prefer singular here too. Otherwise when requesting it sounds weird, \"visual_studio_versions:10.10\"",
+      "revId": "c4e3c2f0f055bb93d5b5cbeb469fb43425bc09a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b17af105_d949e816",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T00:12:02Z",
+      "side": 1,
+      "message": "Use r\u0027\\d+\\.\\d+\u0027 just to reduce risks.",
+      "revId": "c4e3c2f0f055bb93d5b5cbeb469fb43425bc09a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1abd3299_0dce1ee4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T00:12:02Z",
+      "side": 1,
+      "message": "Use instead:\n\n  Returns",
+      "revId": "c4e3c2f0f055bb93d5b5cbeb469fb43425bc09a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
