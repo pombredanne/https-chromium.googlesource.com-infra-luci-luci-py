@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d3760119_dcce738e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T00:03:07Z",
+      "side": 1,
+      "message": "For now, I am keeping the existing dimension values and documenting them as deprecated.",
+      "parentUuid": "b605aedf_e8271f52",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a846ce0_e96a021b",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 4
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "1279124a_6954161d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T00:03:07Z",
+      "side": 1,
+      "message": "This code is gone now, but I took your comments into account.",
+      "parentUuid": "2a846ce0_e96a021b",
+      "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be6b8e57_45377759",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 4
@@ -80,6 +122,24 @@
       "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2be5c560_8826f867",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T00:03:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be6b8e57_45377759",
+      "revId": "042c5a67701630f3df0c72b0d3720b852e489076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
