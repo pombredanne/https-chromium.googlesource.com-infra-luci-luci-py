@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4138ac84_e52b5a28",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T20:39:38Z",
+      "side": 1,
+      "message": "Sorry for the additional comment; I just realized it\u0027d be safer to do \"!\u003d 1\" or \"not in (2, 3)\"",
+      "range": {
+        "startLine": 255,
+        "startChar": 51,
+        "endLine": 255,
+        "endChar": 55
+      },
+      "revId": "b74438dc68d5673f3253f8e926ce9ea0f977798f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3dae11a_fce2f612",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T20:39:38Z",
+      "side": 1,
+      "message": "Thanks, these are useful.",
+      "revId": "b74438dc68d5673f3253f8e926ce9ea0f977798f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
