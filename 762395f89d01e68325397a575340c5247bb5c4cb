@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e240d51a_1c06fab5",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T23:56:32Z",
+      "side": 1,
+      "message": "this is not 100% right check, it should be something like:\n\nif audience and not use_jwt_auth:\n  ...\n\n(outside of \u0027project_id or scopes\u0027 if block)",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 79
+      },
+      "revId": "762395f89d01e68325397a575340c5247bb5c4cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
