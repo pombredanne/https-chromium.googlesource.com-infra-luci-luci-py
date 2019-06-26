@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b075d7ce_189a9151",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-26T00:08:59Z",
+      "side": 1,
+      "message": "\u003e Module \u0027sys\u0027 has no \u0027getwindowsversion\u0027 member.\n\u003e To disable, add: # pylint: disable\u003dno-member\n\nPlease Fix",
+      "parentUuid": "540383c0_495229a4",
+      "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

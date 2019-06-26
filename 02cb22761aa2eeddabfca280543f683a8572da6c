@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f1ae72b_5c4b81b6",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-26T00:08:59Z",
+      "side": 1,
+      "message": "could you use mock to test behavior of the function in non-windows?",
+      "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
