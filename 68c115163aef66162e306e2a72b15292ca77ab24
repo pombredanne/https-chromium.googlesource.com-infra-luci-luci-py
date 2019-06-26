@@ -17,6 +17,24 @@
       "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "482e313c_0ea1a62d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T13:43:26Z",
+      "side": 1,
+      "message": "I don\u0027t really understand this. What is the correct fix?",
+      "parentUuid": "b075d7ce_189a9151",
+      "revId": "68c115163aef66162e306e2a72b15292ca77ab24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

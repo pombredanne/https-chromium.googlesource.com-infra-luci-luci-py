@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "2328bb98_aa11021c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T13:43:26Z",
+      "side": 1,
+      "message": "Yes, I mentioned that here (see last bullet): https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1660974/10#message-cf82b556a719ed4b832f6dcf4de2f9d14fcba47e\n\nAFAICT, \"server core\" is just a different installation option for the \u0027server\u0027 \"product_type\". Not sure exactly how we would want to specify that in dimensions, but if someone needs it, they will hopefully have a good idea of what they need.",
+      "parentUuid": "80cc0b11_f01ed04b",
+      "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f1ae72b_5c4b81b6",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
         "patchSetId": 10
@@ -53,6 +71,24 @@
       "writtenOn": "2019-06-26T00:08:59Z",
       "side": 1,
       "message": "could you use mock to test behavior of the function in non-windows?",
+      "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5edb8ef1_05402cdf",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-06-26T13:43:26Z",
+      "side": 1,
+      "message": "Is there an example of that I can follow? Sorry, my Python skills are not great.",
+      "parentUuid": "2f1ae72b_5c4b81b6",
       "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
