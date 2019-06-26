@@ -85,7 +85,9 @@ def get_metadata_async(service_id):
     raise ndb.Return(service_config_pb2.ServiceDynamicMetadata())
   try:
     res = yield net.json_request_async(
-        service.metadata_url, scopes=net.EMAIL_SCOPE)
+        service.metadata_url,
+        scopes=None if service.use_jwt_auth else net.EMAIL_SCOPE,
+        use_jwt_auth=service.use_jwt_auth, audience=service.audience)
   except net.Error as ex:
     raise DynamicMetadataError('Net error: %s' % ex.message)
   msg = _dict_to_dynamic_metadata(res)
