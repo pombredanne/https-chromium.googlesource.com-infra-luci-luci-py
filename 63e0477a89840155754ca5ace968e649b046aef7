@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "b7f6b74f_27b62bb0",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T23:51:46Z",
+      "side": 1,
+      "message": "Cool -- yeah, I think the \u0027exp\u0027 and \u0027iat\u0027 values in the claim could be a guide for how long the value could be cached and re-used. I\u0027m interested in seeing how that\u0027s done when you do the refactoring too.",
+      "parentUuid": "348f9537_eac77819",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b33c7c0_4b0b955a",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 12
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "915bbcd0_eb391cd3",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T23:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b33c7c0_4b0b955a",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 12
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba6a19d0_01d77a5f",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 12
@@ -85,6 +133,24 @@
       "revId": "63e0477a89840155754ca5ace968e649b046aef7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8953118_a8636c15",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T23:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba6a19d0_01d77a5f",
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "496b7532_5894f16b",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T23:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11d443c0_0f1e7bda",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 2
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fe7c2c4_777b58c6",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 12
@@ -131,6 +221,30 @@
       "revId": "63e0477a89840155754ca5ace968e649b046aef7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "196165b6_43146025",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T23:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fe7c2c4_777b58c6",
+      "range": {
+        "startLine": 281,
+        "startChar": 1,
+        "endLine": 283,
+        "endChar": 73
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
