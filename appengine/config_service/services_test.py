@@ -116,10 +116,59 @@ class ProjectsTestCase(test_case.TestCase):
     )
 
     net.json_request_async.assert_called_once_with(
-        'https://foo.com/metadata', scopes=net.EMAIL_SCOPE)
+        'https://foo.com/metadata', scopes=net.EMAIL_SCOPE, use_jwt_auth=False,
+        audience='')
 
     storage.get_self_config_async.assert_called_once_with(
         common.SERVICES_REGISTRY_FILENAME, service_config_pb2.ServicesCfg)
+
+  def test_get_metadata_async_with_jwt(self):
+    self.mock(storage, 'get_self_config_async', mock.Mock())
+    storage.get_self_config_async.return_value = future(
+        service_config_pb2.ServicesCfg(services=[
+            service_config_pb2.Service(
+                id='example',
+                metadata_url='https://service.example.com/metadata',
+                use_jwt_auth=True,
+                audience='https://service.example.com')
+        ]))
+
+    self.mock(net, 'json_request_async', mock.Mock())
+    net.json_request_async.return_value = future({
+        'version': '1.0',
+        'validation': {
+          'url': 'https://service.example.com/validate',
+          'patterns': [
+            {'config_set': 'projects/foo', 'path': 'bar.cfg'},
+            {'config_set': 'regex:services/.+', 'path': 'regex:.+'},
+          ]
+        }
+    })
+
+    metadata = services.get_metadata_async(
+        'example').get_result()  # pylint: disable=no-member
+    self.assertEqual(
+      metadata,
+      service_config_pb2.ServiceDynamicMetadata(
+          validation=service_config_pb2.Validator(
+              url='https://service.example.com/validate',
+              patterns=[
+                service_config_pb2.ConfigPattern(
+                    config_set='projects/foo', path='bar.cfg'),
+                service_config_pb2.ConfigPattern(
+                    config_set='regex:services/.+', path='regex:.+'),
+              ]
+          )
+      )
+    )
+
+    net.json_request_async.assert_called_once_with(
+        'https://service.example.com/metadata',
+        scopes=None, use_jwt_auth=True, audience='https://service.example.com')
+
+    storage.get_self_config_async.assert_called_once_with(
+        common.SERVICES_REGISTRY_FILENAME, service_config_pb2.ServicesCfg)
+
 
   def test_get_metadata_async_not_found(self):
     with self.assertRaises(services.ServiceNotFoundError):
