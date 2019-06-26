@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8cac6497_bbd080b0",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T23:59:03Z",
+      "side": 1,
+      "message": "optional nit: FYI + is unnecessary here.",
+      "range": {
+        "startLine": 167,
+        "startChar": 69,
+        "endLine": 167,
+        "endChar": 70
+      },
+      "revId": "762395f89d01e68325397a575340c5247bb5c4cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e240d51a_1c06fab5",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 13
@@ -19,6 +42,40 @@
         "endLine": 170,
         "endChar": 79
       },
+      "revId": "762395f89d01e68325397a575340c5247bb5c4cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffd408c3_4a914a7a",
+        "filename": "appengine/components/components/net_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T23:59:03Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "762395f89d01e68325397a575340c5247bb5c4cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6da26c8d_6fc3c9e0",
+        "filename": "appengine/components/components/net_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T23:59:03Z",
+      "side": 1,
+      "message": "It\u0027s set here when you pass -v",
       "revId": "762395f89d01e68325397a575340c5247bb5c4cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
