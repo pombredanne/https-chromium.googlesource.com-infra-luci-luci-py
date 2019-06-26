@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "19d7ec32_d7acc276",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:18:51Z",
+      "side": 1,
+      "message": "Good observation. Made it always call _update_gcs_acls(), that way on a retry we apply freshest ACL regardless of what happened before.",
+      "parentUuid": "675b24b1_269e9d8b",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ef9a53a_2a2721c9",
         "filename": "appengine/auth_service/gcs.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1e2a08c_44311f90",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:18:51Z",
+      "side": 1,
+      "message": "Added comment to config.proto. But I think it is very pedantic... It will never change after we set it.",
+      "parentUuid": "1ef9a53a_2a2721c9",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0bf14a4a_865d655a",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:18:51Z",
+      "side": 1,
+      "message": "Globals don\u0027t work well in tests. app_id is secretly a part of the key, if the key is initialized during module loading time, and app_id is not available yet (because we haven\u0027t installed GAE testbed), it blows up.",
+      "parentUuid": "b4a083c6_81543b76",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69b01cd6_2f773b86",
         "filename": "appengine/auth_service/gcs.py",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "cc75cb5e_acf480d2",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:18:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69b01cd6_2f773b86",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19b4e7b0_e3c3317a",
         "filename": "appengine/auth_service/gcs.py",
         "patchSetId": 2
@@ -84,6 +156,24 @@
       "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52cc7cc3_6a80542f",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:18:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19b4e7b0_e3c3317a",
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
