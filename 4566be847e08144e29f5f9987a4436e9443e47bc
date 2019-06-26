@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d33c17c_aed02290",
+        "filename": "appengine/config_service/services_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T09:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed96fc4c_8fe47ba3",
+      "revId": "4566be847e08144e29f5f9987a4436e9443e47bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
