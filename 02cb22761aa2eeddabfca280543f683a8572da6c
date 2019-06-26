@@ -128,6 +128,24 @@
       "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e9d84ee_98f65b32",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T18:08:31Z",
+      "side": 1,
+      "message": "auto_stub won\u0027t mock something that doesn\u0027t exist to help catch typos. You can force it by doing this first:\n\n  sys.getwindowsversion \u003d None",
+      "parentUuid": "8d491d8b_1c935b63",
+      "revId": "02cb22761aa2eeddabfca280543f683a8572da6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
