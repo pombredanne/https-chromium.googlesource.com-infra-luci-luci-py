@@ -417,11 +417,8 @@ class TarBundle(isolate_storage.Item):
   def try_add(self, item):
     """Try to add this file to the bundle.
 
-    It is extremely naive but this should be just enough for
-    https://crbug.com/825418.
-
-    Future improvements should be in the Go code, and the Swarming bot should be
-    migrated to use the Go code instead.
+    It is extremely naive but this should be just enough for the python code. If
+    you care about performance, use the Go client.
     """
     if not item.size:
       return False
@@ -429,8 +426,6 @@ class TarBundle(isolate_storage.Item):
     rounded = (item.size + 512) & ~511
     if rounded + self._size > self._archive_max_size:
       return False
-    # https://crbug.com/825418
-    return False
     self._size += rounded
     self._items.append(item)
     return True

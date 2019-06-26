@@ -536,8 +536,8 @@ class StorageTest(TestCase):
         storage, [self.tempdir], None)
     self.assertEqual([self.tempdir], results.keys())
     self.assertEqual([], cold)
-    # 5 files, the isolated file.
-    self.assertEqual(6, len(hot))
+    # 1 tar file, the isolated file.
+    self.assertEqual(2, len(hot))
 
 
 class IsolateServerStorageApiTest(TestCase):
