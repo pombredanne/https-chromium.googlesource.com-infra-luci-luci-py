@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dc39ef2_3c59397a",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:49:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c79e1310_d8f4c1f5",
+      "revId": "1a364b9a2bbeda99eb9c6147f7c1f7b0fcd6f39d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88709113_9508ed44",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-26T06:49:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab7e0069_66dc7970",
+      "revId": "1a364b9a2bbeda99eb9c6147f7c1f7b0fcd6f39d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
