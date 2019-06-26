@@ -22,6 +22,30 @@
       "revId": "61640467dea4aff6609f5aa121f7b92c62c527e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e372d0e_efc936cd",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-26T18:22:02Z",
+      "side": 1,
+      "message": "I generally prefer to not use named globals unless it\u0027s useful in tests or something else. If people read the code, the fact it\u0027s a global or in the code won\u0027t change the readability that much, and up to an extent it\u0027s an implementation details.",
+      "parentUuid": "2c425c83_8dc46766",
+      "range": {
+        "startLine": 438,
+        "startChar": 37,
+        "endLine": 440,
+        "endChar": 27
+      },
+      "revId": "61640467dea4aff6609f5aa121f7b92c62c527e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
