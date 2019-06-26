@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90ccc3fe_d0644065",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 1,
+      "message": "nit:\n\nmessage Service {\n  message JWTAuth {\n    // Value for \u0027aud\u0027 field of the JWT. \n    string audience \u003d 1;\n  }\n\n  ...\n\n  // If set, use JWT auth for authentication, for Cloud Endpoints v2 support.\n  JWTAuth jwt_auth \u003d 6;\n}\n\nThen in configs it will look cleaner:\n\nservice {\n  ...\n  jwt_auth {\n    audience: \"...\"\n  }\n}\n\n(or just \"jwt_auth {}\" if we insist on using empty audience)",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 95,
+        "endChar": 22
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "348f9537_eac77819",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 1,
+      "message": "Note: I\u0027ll refactor this a little bit after this CL lands. At very least I want to move it to https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/components/components/auth/tokens.py which already has symmetric \u0027verify_jwt\u0027. Ideally we also want to cache and reuse JWTs to avoid hammering sing_blob(...) on each RPC call. This is not a big deal for luci-config, but may become significant if we start using JWT auth for some high traffic services.\n\nFor now this can land as is.",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b33c7c0_4b0b955a",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 1,
+      "message": "nit: jwt_audience, just to make it clear this works only for JWTs.\n\nAlso please move these two args after \u0027project_id\u0027, before \u0027max_attempts\u0027. Args are organized in groups: \"what request to send\", \"how to authenticate\", \"how to retry\". JWT stuff should be in \"how to authenticate\" group.",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 12
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba6a19d0_01d77a5f",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 1,
+      "message": "also raise ValueError if \u0027audience\u0027 is not empty, but use_jwt_auth is False.",
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11d443c0_0f1e7bda",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 1,
+      "message": "please move it to the previous line to be consistent with existing code style",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 2
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fe7c2c4_777b58c6",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 1,
+      "message": "this should also be copied to request_async doc string",
+      "range": {
+        "startLine": 281,
+        "startChar": 1,
+        "endLine": 283,
+        "endChar": 73
+      },
+      "revId": "63e0477a89840155754ca5ace968e649b046aef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

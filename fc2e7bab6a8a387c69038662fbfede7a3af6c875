@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "690e688d_5089ee9c",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T17:50:10Z",
+      "side": 0,
+      "message": "please bring back this \\n. In luci code base we use two new lines between top level functions.",
+      "revId": "fc2e7bab6a8a387c69038662fbfede7a3af6c875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
