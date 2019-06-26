@@ -46,6 +46,30 @@
       "revId": "61640467dea4aff6609f5aa121f7b92c62c527e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ef4979d_267611ab",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-06-26T21:22:20Z",
+      "side": 1,
+      "message": "I guess how much it helps readability depends on the specific case, I think there are some cases where giving a name to a \"magic number\" makes it a lot clearer.\n\nIn this case, I guess I\u0027d read this and say \"why 5? I guess it\u0027s probably an arbitrary small number and could be 4 or 6 instead?\"",
+      "parentUuid": "7e372d0e_efc936cd",
+      "range": {
+        "startLine": 438,
+        "startChar": 37,
+        "endLine": 440,
+        "endChar": 27
+      },
+      "revId": "61640467dea4aff6609f5aa121f7b92c62c527e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
