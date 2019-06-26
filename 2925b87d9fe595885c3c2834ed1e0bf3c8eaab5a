@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b367f39e_2bcd3be6",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T04:04:57Z",
+      "side": 1,
+      "message": "There\u0027s a way to atomically create a file and set its ALCs in one call. It will be used here.",
+      "range": {
+        "startLine": 155,
+        "startChar": 21,
+        "endLine": 155,
+        "endChar": 49
+      },
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeb7a6e1_f2431713",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-26T04:04:57Z",
+      "side": 1,
+      "message": "This will just update ACLs on existing files.",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "2925b87d9fe595885c3c2834ed1e0bf3c8eaab5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
