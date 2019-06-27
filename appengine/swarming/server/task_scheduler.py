@@ -628,7 +628,7 @@ def _is_allowed_service_account(service_account, pool_cfg):
 
 def _bot_update_tx(
     run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-    hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
+    hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel,
     performance_stats, now, result_summary_key, server_version, request):
   """Runs the transaction for bot_update_task().
 
@@ -653,6 +653,9 @@ def _bot_update_tx(
   if not run_result:
     result_summary_future.wait()
     return None, None, 'is missing'
+
+  if need_cancel:
+    cancel_task_with_id(request.task_id, True, None)
 
   if run_result.bot_id != bot_id:
     result_summary_future.wait()
@@ -1274,11 +1277,19 @@ def bot_update_task(
   request_future = request_key.get_async()
   server_version = utils.get_app_version()
   request = request_future.get_result()
+
+  need_cancel = False
+  # Kill this task if parent task is not running nor pending.
+  if request.parent_task_id:
+    parent_run_key = task_pack.unpack_run_result_key(request.parent_task_id)
+    parent = ndb.get(parent_run_key)
+    need_cancel = parent.state not in task_result.State.STATES_RUNNING
+
   now = utils.utcnow()
 
   run = lambda: _bot_update_tx(
       run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-      hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
+      hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel,
       performance_stats, now, result_summary_key, server_version, request)
   try:
     smry, run_result, error = datastore_utils.transaction(run)
