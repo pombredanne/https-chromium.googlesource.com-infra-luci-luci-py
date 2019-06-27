@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "99063776_10067290",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-27T00:22:21Z",
+      "side": 1,
+      "message": "Yes, only because the default is an empty string -- changed to check whether the field is set explicitly.",
+      "parentUuid": "f8195a25_d5df9d86",
+      "range": {
+        "startLine": 89,
+        "startChar": 23,
+        "endLine": 89,
+        "endChar": 48
+      },
+      "revId": "2f5a7ea90479c13131f66763af39b39435dabbf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7efd71a_a8220a0a",
         "filename": "appengine/config_service/validation.py",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "2f5a7ea90479c13131f66763af39b39435dabbf3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da0ecd98_7c4d2f20",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-27T00:22:21Z",
+      "side": 1,
+      "message": "Whoops -- indeed. Fixed.",
+      "parentUuid": "c7efd71a_a8220a0a",
+      "range": {
+        "startLine": 342,
+        "startChar": 29,
+        "endLine": 342,
+        "endChar": 41
+      },
+      "revId": "2f5a7ea90479c13131f66763af39b39435dabbf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
