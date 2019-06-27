@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96c3d9d4_c1dcdd51",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "I find the call site awkward with an empty url. I think I\u0027d prefer a separate function enqueue_pull_task_async(). That would be less confusing.",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dcfde5e_2752dbaa",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "Frankly I don\u0027t see much value in these two functions, I\u0027d recommend to just inline them.",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89e8b2dc_cd0a8487",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "Keep 2 lines between entries to help \"scanability\".",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62e0d8c3_a3a40606",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "Align call arguments at +4 to stay consistent with the rest of the code",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ccf806_1182e3e1",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "guarantee",
+      "range": {
+        "startLine": 229,
+        "startChar": 38,
+        "endLine": 229,
+        "endChar": 47
+      },
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10a09afa_7af48aca",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "+4",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec7cdd00_390d7414",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "Personally I\u0027d prefer typed exception, not untyped.",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77619bce_14b7bc5e",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T23:31:52Z",
+      "side": 1,
+      "message": "Do not swallow the exception, at least log it as warning.",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
