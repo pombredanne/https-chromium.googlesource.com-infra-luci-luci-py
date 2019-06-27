@@ -7,6 +7,8 @@
 
 It launches two local services (Primary and Replica) via dev_appserver and sets
 up auth db replication between them.
+
+Boo.
 """
 
 import base64
