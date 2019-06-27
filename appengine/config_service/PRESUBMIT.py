@@ -1,8 +1,8 @@
-# Copyright 2013 The LUCI Authors. All rights reserved.
+# Copyright 2019 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""Top-level presubmit script for isolateserver.
+"""Top-level presubmit script for config_service.
 
 See http://dev.chromium.org/developers/how-tos/depottools/presubmit-scripts for
 details on the presubmit API built into gclient.
