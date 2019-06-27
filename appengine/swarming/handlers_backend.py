@@ -300,6 +300,16 @@ class TaskESNotifyTasksHandler(webapp2.RequestHandler):
     external_scheduler.notify_request_now(es_host, request)
 
 
+class TaskESNotifyJobsHandler(webapp2.RequestHandler):
+  """Sends task notifications to external scheduler."""
+
+  @decorators.require_taskqueue('es-notify-jobs')
+  def post(self):
+    es_host = self.request.get('es_host')
+    es_scheduler_id = self.request.get('es_scheduler_id')
+    external_scheduler.notify_request_batch(es_host, es_scheduler_id)
+
+
 class TaskNamedCachesPool(webapp2.RequestHandler):
   """Update named caches cache for a pool."""
 
@@ -422,6 +432,8 @@ def get_routes():
         TaskSendPubSubMessage),
     ('/internal/taskqueue/important/external_scheduler/notify-tasks',
         TaskESNotifyTasksHandler),
+    ('/internal/taskqueue/important/external_scheduler/notify-jobs',
+        TaskESNotifyJobsHandler),
     (r'/internal/taskqueue/important/named_cache/update-pool',
         TaskNamedCachesPool),
     (r'/internal/taskqueue/monitoring/bq/bots/events/'

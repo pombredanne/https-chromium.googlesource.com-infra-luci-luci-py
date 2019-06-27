@@ -169,6 +169,10 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     # TODO(akeshet): Add.
     pass
 
+  def test_notify_request_batch(self):
+    # TODO(lxn): Add.
+    pass
+
   def test_get_cancellations(self):
     c = external_scheduler.get_cancellations(self.es_cfg)
     self.assertEqual(len(c), 1)
@@ -214,6 +218,27 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
                      notification.task.enqueued_time.ToDatetime())
     self.assertEqual(request.task_id, notification.task.id)
     self.assertEqual(request.num_task_slices, len(notification.task.slices))
+
+  def test_notify_request_with_tq_batch_mode(self):
+    # TODO(lxn): Add more tests with various patterns.
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+    external_scheduler.notify_requests(
+      self.es_cfg, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+      self.es_cfg, [(request, result_summary)], True, False, batch_mode=True)
+
+    # There should have been no call to _get_client yet.
+    self.assertEqual(self._client, None)
+
+    self.execute_tasks()
+
+    # After taskqueue executes, there should be a call to the client.
+    self.assertEqual(len(self._client.called_with_requests), 1)
+    called_with = self._client.called_with_requests[0]
+    # There should be two notifcations in the call.
+    self.assertEqual(len(called_with.notifications), 2)
+
 
   def test_notify_request_now(self):
     r = plugin_pb2.NotifyTasksRequest()
