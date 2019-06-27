@@ -158,7 +158,7 @@ def assign_task(es_cfg, bot_dimensions):
   return resp.assignments[0].task_id, resp.assignments[0].slice_number
 
 
-def notify_requests(es_cfg, requests, use_tq, is_callback):
+def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode=False):
   """Calls external scheduler to notify it of a task state.
 
   Arguments:
@@ -173,6 +173,9 @@ def notify_requests(es_cfg, requests, use_tq, is_callback):
     - is_callback: If true, indicates that this notification was in response
                    to a external-scheduler-requested callback. This is for
                    diagnostic purposes.
+    - batch_mode: If true, the notify-tasks will be stored in a pull queue,
+                  whose worker then combines tasks into fewer requests per the
+                  scheduler id. Only valid when use_tq is true too.
 
   Returns: Nothing.
   """
@@ -208,18 +211,40 @@ def notify_requests(es_cfg, requests, use_tq, is_callback):
 
   req.scheduler_id = es_cfg.id
 
-  if use_tq:
-    request_json = json_format.MessageToJson(req)
-    enqueued = utils.enqueue_task(
-        '/internal/taskqueue/important/external_scheduler/notify-tasks',
-        'es-notify-tasks',
-        params={'es_host': es_cfg.address, 'request_json': request_json},
-        transactional=ndb.in_transaction())
-    if not enqueued:
-      raise datastore_utils.CommitError('Failed to enqueue task')
-  else:
+  if not use_tq:
     # Ignore return value, the response proto is empty.
     notify_request_now(es_cfg.address, req)
+    return
+
+  request_json = json_format.MessageToJson(req)
+  if batch_mode:
+    req_enqueued = utils.enqueue_task(
+      '',
+      'es-notify-requests',
+      payload=request_json,
+      method='PULL',
+      tag=es_cfg.id)
+    if not req_enqueued:
+      raise datastore_utils.CommitError('Failed to enqueue task')
+    # Add a job to a push queue, thus guraantee the pull queue worker
+    # can be kicked off instantly.
+    job_enqueued = utils.enqueue_task(
+      '/internal/taskqueue/important/external_scheduler/notify-jobs',
+      'es-notify-jobs',
+      params={'es_host': es_cfg.address,
+              'es_scheduler_id': es_cfg.id},
+      transactional=ndb.in_transaction())
+    if not job_enqueued:
+       logging.info('Failed to add a notify-task for request: %r', request_json)
+    return
+
+  enqueued = utils.enqueue_task(
+    '/internal/taskqueue/important/external_scheduler/notify-tasks',
+    'es-notify-tasks',
+    params={'es_host': es_cfg.address, 'request_json': request_json},
+    transactional=ndb.in_transaction())
+  if not enqueued:
+    raise datastore_utils.CommitError('Failed to enqueue task')
 
 
 def notify_request_now(es_host, proto):
@@ -231,6 +256,39 @@ def notify_request_now(es_host, proto):
   """
   c = _get_client(es_host)
   return c.NotifyTasks(proto, credentials=_creds())
+
+
+def notify_request_batch(es_host, es_scheduler_id):
+  """Leases the notification-tasks with the same scheduler id from
+     es-notify-requests. Combines them into single request and
+     calls to NotifyTask endpoint.
+
+    Arguments:
+      es_host: Address of external scheduler to use.
+      es_scheduler_id: ID of the external scheduler.
+  """
+  tasks = utils.lease_tasks('es-notify-requests', 60, 100, tag=es_scheduler_id)
+  if not tasks:
+    return
+  req = plugin_pb2.NotifyTasksRequest(is_callback=False)
+  req.scheduler_id = es_scheduler_id
+  for task in tasks:
+    proto = plugin_pb2.NotifyTasksRequest(is_callback=False)
+    json_format.Parse(task.payload, proto)
+    req.notifications.extend(proto.notifications)
+  # TODO(linxinan): revisit here if we have multiple external schedulers.
+  c = _get_client(es_host)
+  try:
+    c.NotifyTasks(req, credentials=_creds())
+    utils.delete_tasks('es-notify-requests', tasks)
+  except:
+    # We do not delete those tasks if failed, but add one notify-job back.
+    utils.enqueue_task(
+        '/internal/taskqueue/important/external_scheduler/notify-jobs',
+        'es-notify-jobs',
+        params={'es_host': es_host, 'es_scheduler_id': es_scheduler_id},
+        transactional=ndb.in_transaction())
+  return
 
 
 def get_cancellations(es_cfg):
