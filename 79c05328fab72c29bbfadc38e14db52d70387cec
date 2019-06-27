@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7fd0dd7d_549ba9b7",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-27T20:06:55Z",
+      "side": 1,
+      "message": "From the BQ data, the only legitimate user seems to be v8-flako, so we\u0027ll see if they really need it, and we\u0027ll be able to decide accordingly.",
+      "parentUuid": "bae4634b_d984ab22",
+      "range": {
+        "startLine": 817,
+        "startChar": 52,
+        "endLine": 817,
+        "endChar": 56
+      },
+      "revId": "79c05328fab72c29bbfadc38e14db52d70387cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d44e051d_562b538a",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 12
