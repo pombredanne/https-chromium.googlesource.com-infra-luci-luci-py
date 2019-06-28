@@ -16,6 +16,24 @@
       "revId": "7d5d890482100c8ef1a79fa3ee7239dfb31bfde6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5d95ed0_22a01596",
+        "filename": "appengine/config_service/httplib2",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-06-28T02:57:08Z",
+      "side": 1,
+      "message": "It was auth_service. This is config_service. I haven\u0027t checked other apps.",
+      "parentUuid": "3cad2ec3_d1ba1512",
+      "revId": "7d5d890482100c8ef1a79fa3ee7239dfb31bfde6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
