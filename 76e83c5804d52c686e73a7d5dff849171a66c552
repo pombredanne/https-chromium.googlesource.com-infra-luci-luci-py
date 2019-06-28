@@ -110,6 +110,29 @@
     },
     {
       "key": {
+        "uuid": "d44c7b8f_6a7d2560",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-06-28T03:40:47Z",
+      "side": 1,
+      "message": "I think we should not use scheduler ID as the tag here. Say we have tags, A,B,C and requests came in a pattern of `A B C`. Then requests with scheduler id C, have to wait 2 seconds to get sent. Worker should lease 100 requests with any scheduler ID and send them out.",
+      "range": {
+        "startLine": 270,
+        "startChar": 59,
+        "endLine": 270,
+        "endChar": 78
+      },
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec7cdd00_390d7414",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 9
@@ -121,6 +144,29 @@
       "writtenOn": "2019-06-27T23:31:52Z",
       "side": 1,
       "message": "Personally I\u0027d prefer typed exception, not untyped.",
+      "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e16a27e1_4eb8bb16",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-06-28T03:40:47Z",
+      "side": 1,
+      "message": "Per failure, we must delete tasks from the queue and add them back. Or it takes 60 seconds for the lease to expire and the job could not wait that long.",
+      "range": {
+        "startLine": 285,
+        "startChar": 6,
+        "endLine": 285,
+        "endChar": 74
+      },
       "revId": "76e83c5804d52c686e73a7d5dff849171a66c552",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
