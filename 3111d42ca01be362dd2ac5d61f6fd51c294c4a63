@@ -106,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "3cfc56b3_9f8c5c22",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-06-28T20:58:31Z",
+      "side": 1,
+      "message": "I see the problem here. Another approach is to have a cronjob instead of push queue. The cronjob kick off the worker to batch notify-tasks for every minute. The worker then run for a minute.\n```\nstart \u003d time.time()\nwhile (time.time() - start) \u003c timeout \u003c 60:\n  tasks \u003d req_queue.lease_tasks(60, 100)\n  (... combine the tasks with same hosts and scheduler id...)\n  time.sleep(1)\n```\nThus, the worker can not lease tasks after 60 sec and won\u0027t compete with its successors. \nLooks good?",
+      "parentUuid": "a83f611a_c16bd69f",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7980dec3_d3e2ab4e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 11
