@@ -919,6 +919,32 @@ class RunIsolatedTest(RunIsolatedTestBase):
         ],
         self.popen_calls)
 
+  def test_swarming_task_id_substitution(self):
+    isolated = json_dumps({
+        'command': ['/bin/echo', '${SWARMING_TASK_ID}'],
+    })
+    isolated_hash = isolateserver_fake.hash_content(isolated)
+    files = {isolated_hash:isolated}
+    old_env = os.environ
+    try:
+      os.environ['SWARMING_TASK_ID'] = 'fake-task-id'
+      _ = self._run_tha_test(isolated_hash, files)
+    finally:
+      os.environ = old_env
+    self.assertEqual(
+        [
+          (
+            [u'/bin/echo', u'fake-task-id'],
+            {
+              'cwd': self.ir_dir(),
+              'detached': True,
+              'close_fds': True,
+              'lower_priority': False,
+              'containment': None,
+            },
+          ),
+        ],
+        self.popen_calls)
 
 class RunIsolatedTestRun(RunIsolatedTestBase):
   # Runs the actual command requested.
