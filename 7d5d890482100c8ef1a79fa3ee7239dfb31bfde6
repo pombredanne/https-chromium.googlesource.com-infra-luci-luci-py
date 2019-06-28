@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cad2ec3_d1ba1512",
+        "filename": "appengine/config_service/httplib2",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T02:11:30Z",
+      "side": 1,
+      "message": "Weird, I thought you had fixed it in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1677731/4/appengine/auth_service/httplib2",
+      "revId": "7d5d890482100c8ef1a79fa3ee7239dfb31bfde6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
