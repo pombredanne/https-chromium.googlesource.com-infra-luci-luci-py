@@ -19,6 +19,7 @@ import acl
 import config
 import gcs
 
+# Boo.
 
 class GCSTest(test_case.TestCase):
   def setUp(self):
