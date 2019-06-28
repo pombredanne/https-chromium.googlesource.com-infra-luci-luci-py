@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dcf3b29_56387461",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "Remove one line here",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c2b605_e73f2dfe",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "Add one line here.\n\nIt\u0027s so the titles are more obvious, making scanning the file easier.",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b13f3e0_6c72e29f",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "sort",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2334ae98_7f3b6880",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "If you trigger one push queue per pull queue insert, won\u0027t batching never really take more than one item?",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7980dec3_d3e2ab4e",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "You need to pull only the ones for this host. We\u0027ll have multiple hosts soon.",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f1bc84_5d67fa35",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "I find the following much more readable:\n\nrequests \u003d {}\ndelete_tasks \u003d {}\nfor task in tasks:\n  proto \u003d plugin_pb2.NotifyTasksRequest(is_callback\u003dFalse)\n  json_format.Parse(task.payload, proto)\n  delete_tasks.setdefault(proto.scheduler_id).append(task)\n  if proto.scheduler_id not in requests:\n    requests[proto.scheduler_id] \u003d proto\n  else:\n    requests[proto.scheduler_id].notifications.extend(\n        proto.notifications)",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3634d9bd_26c651d5",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T18:59:03Z",
+      "side": 1,
+      "message": "We do, https://crbug.com/977304",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
