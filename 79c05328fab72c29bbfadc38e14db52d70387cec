@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "b851dc2f_e3f1c8a7",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-06-28T01:00:18Z",
+      "side": 1,
+      "message": "I see, thank you for sending confirmation.",
+      "parentUuid": "7fd0dd7d_549ba9b7",
+      "range": {
+        "startLine": 817,
+        "startChar": 52,
+        "endLine": 817,
+        "endChar": 56
+      },
+      "revId": "79c05328fab72c29bbfadc38e14db52d70387cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d44e051d_562b538a",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 12
