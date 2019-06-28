@@ -88,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "a83f611a_c16bd69f",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-28T20:00:08Z",
+      "side": 1,
+      "message": "Still, they would accumulate.",
+      "parentUuid": "7fcef6a5_982101d2",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7980dec3_d3e2ab4e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 11
