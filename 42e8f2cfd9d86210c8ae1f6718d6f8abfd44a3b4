@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9395ed33_a54ca369",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-06-29T03:16:25Z",
+      "side": 1,
+      "message": "The default install path name is google-cloud-sdk. I assume it\u0027s irrelevant since we it will likely be in path anyway, just want to confirm that\u0027s intended.",
+      "range": {
+        "startLine": 71,
+        "startChar": 37,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "42e8f2cfd9d86210c8ae1f6718d6f8abfd44a3b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
