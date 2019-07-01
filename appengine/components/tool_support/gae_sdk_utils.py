@@ -255,6 +255,8 @@ def setup_gae_sdk(sdk_path):
     raise ValueError('setup_gae_sdk was already called.')
   _GAE_SDK_PATH = sdk_path
 
+  print >> sys.stderr, 'Using SDK at %s' % (sdk_path,)
+
   sys.path.insert(0, sdk_path)
   # Sadly, coverage may inject google.protobuf in the path. Forcibly expulse it.
   if 'google' in sys.modules:
