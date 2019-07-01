@@ -9,6 +9,7 @@ import logging
 import os
 import random
 import sys
+import time
 import unittest
 
 # Setups environment.
@@ -123,6 +124,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     # Make the values deterministic.
     self.mock_now(datetime.datetime(2014, 1, 2, 3, 4, 5, 6))
     self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.mock(time, 'time', self._time)
+    self.now = 0
 
     # Use the local fake client to external scheduler..
     self.mock(external_scheduler, '_get_client', self._get_client)
@@ -146,6 +149,11 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     self._client = FakeExternalScheduler(self)
     return self._client
 
+  # Speed up the time for the test of batch request.
+  def _time(self):
+    self.now = self.now + 30
+    return self.now
+
   def test_all_apis_are_tested(self):
     actual = frozenset(i[5:] for i in dir(self) if i.startswith('test_'))
     # Contains the list of all public APIs.
@@ -167,6 +175,10 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_config_for_task(self):
     # TODO(akeshet): Add.
+    pass
+
+  def test_batch_tasks(self):
+    # TODO(linxinan): Add.
     pass
 
   def test_get_cancellations(self):
@@ -214,6 +226,27 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
                      notification.task.enqueued_time.ToDatetime())
     self.assertEqual(request.task_id, notification.task.id)
     self.assertEqual(request.num_task_slices, len(notification.task.slices))
+
+  def test_notify_request_with_tq_batch_mode(self):
+    # TODO(linxinan): Add more tests with various patterns.
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+    external_scheduler.notify_requests(
+      self.es_cfg, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+      self.es_cfg, [(request, result_summary)], True, False, batch_mode=True)
+
+    # There should have been no call to _get_client yet.
+    self.assertEqual(self._client, None)
+
+    external_scheduler.batch_tasks()
+    self.execute_tasks()
+
+    # After taskqueue executes, there should be a call to the client.
+    self.assertEqual(len(self._client.called_with_requests), 1)
+    called_with = self._client.called_with_requests[0]
+    # There should be two notifications in the call.
+    self.assertEqual(len(called_with.notifications), 2)
 
   def test_notify_request_now(self):
     r = plugin_pb2.NotifyTasksRequest()

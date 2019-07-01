@@ -90,6 +90,12 @@ cron:
   schedule: every 1 minutes
   target: backend
 
+- description: Call the worker to process notify-tasks in batch mode.
+  url: /internal/cron/important/external_scheduler/batch_tasks
+  schedule: every 1 minutes
+  target: backend
+
+
 ### ereporter2
 
 - description: ereporter2 cleanup
