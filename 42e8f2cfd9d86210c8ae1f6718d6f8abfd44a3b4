@@ -22,6 +22,30 @@
       "revId": "42e8f2cfd9d86210c8ae1f6718d6f8abfd44a3b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4db9013_f8a7b233",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-01T16:15:54Z",
+      "side": 1,
+      "message": "Yes, that\u0027s intended. This is primarily for bots. On bots the SDK will be installed into \u0027\u003cgclient solution root\u003e/gcloud\u0027. We can rename it into whatever we want, but currently other directories there use \u0027_\u0027 in their names, so \u0027google-cloud-sdk\u0027 will look odd.",
+      "parentUuid": "9395ed33_a54ca369",
+      "range": {
+        "startLine": 71,
+        "startChar": 37,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "42e8f2cfd9d86210c8ae1f6718d6f8abfd44a3b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
