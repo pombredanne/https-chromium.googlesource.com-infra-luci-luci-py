@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d59166c8_e2ce5825",
+        "filename": "appengine/swarming/cron.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "Warning: because of the way AppEngine works, when we upload a new version of the code, cron.yaml takes effect immediately but the code run is still the old code until the version is switched.\n\nSo often to make the release smoother we add the handlers, and push that, and only then we update cron.yaml. But it\u0027s not necessarily a big deal.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105d636b_1b243025",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "Similarly, this will take effect as soon as it is uploaded, but this is fine, since this is what we want for queues (unlike cron).",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aed7227_782efeba",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "Keep sorted, in this case api is before ext.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6929dae5_c54a9a7d",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "This fits 80 cols, put all on one line.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eeba5cda_785e4757",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "if not req.add(queue_name\u003d\u0027es-notify-tasks-batch\u0027):",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ac218aa_6fa9735c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of the function name but I don\u0027t have a better idea.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "845990ad_b3cd85f1",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "I\u0027d recommend 55, since the actual work takes time.\n\nAlso, I recommend using:\n\n  end_time \u003d utils.utcnow() + datetime.timedelta(seconds\u003d55)\n  while utils.utcnow() \u003c end_time:\n\n\nso then you can use mock_now() in the tests.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6f025a5_e2fc7700",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "You never do anything with it.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bffc862a_bdef8d28",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "+4",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe0a9582_fc3c14ad",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "The problem here is that the items are lost.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "940db456_58c395a8",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "Unnecessary?",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77899406_49e9d48a",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-02T04:20:50Z",
+      "side": 1,
+      "message": "I recommend more extensive testing, since when this breaks, this has catastrophic outcome when pushed to prod.",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
