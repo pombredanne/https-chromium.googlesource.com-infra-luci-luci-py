@@ -230,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "a2a0bf5c_cae723dd",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-03T19:19:38Z",
+      "side": 1,
+      "message": "Thanks. cron_batch_request() looks good.",
+      "parentUuid": "abe3a737_d613547c",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "845990ad_b3cd85f1",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 13
