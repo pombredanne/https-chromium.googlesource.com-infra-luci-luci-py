@@ -9,6 +9,7 @@ import logging
 import os
 import random
 import sys
+import time
 import unittest
 
 # Setups environment.
@@ -123,6 +124,7 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     # Make the values deterministic.
     self.mock_now(datetime.datetime(2014, 1, 2, 3, 4, 5, 6))
     self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.mock(time, 'time', self._time)
 
     # Use the local fake client to external scheduler..
     self.mock(external_scheduler, '_get_client', self._get_client)
@@ -136,6 +138,9 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
           'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
     self._enqueue_orig = self.mock(utils, 'enqueue_task', self._enqueue)
+    self._now = 0
+
+    self.called_with_requests = []
 
   def _enqueue(self, *args, **kwargs):
     return self._enqueue_orig(*args, use_dedicated_module=False, **kwargs)
@@ -145,6 +150,16 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertFalse(self._client)
     self._client = FakeExternalScheduler(self)
     return self._client
+
+  def _get_client_batch(self, addr):
+    self.assertEqual(u'http://localhost:1', addr)
+    return self._client
+
+
+    # Speed up the time for the test of batch request.
+  def _time(self):
+    self._now = self._now + 10
+    return self._now
 
   def test_all_apis_are_tested(self):
     actual = frozenset(i[5:] for i in dir(self) if i.startswith('test_'))
@@ -167,6 +182,10 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_config_for_task(self):
     # TODO(akeshet): Add.
+    pass
+
+  def test_gen_batch_requests(self):
+    # TODO(linxinan): Add.
     pass
 
   def test_get_cancellations(self):
@@ -214,6 +233,51 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
                      notification.task.enqueued_time.ToDatetime())
     self.assertEqual(request.task_id, notification.task.id)
     self.assertEqual(request.num_task_slices, len(notification.task.slices))
+
+  def test_notify_request_with_tq_batch_mode(self):
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+    base = {
+        'address': u'http://localhost:1',
+        'id': u'foo',
+        'dimensions': ['key1:value1', 'key2:value2'],
+        'all_dimensions': None,
+        'any_dimensions': None,
+        'enabled': True,
+        'allow_es_fallback': True,
+    }
+    # Create requests with different scheduler ID.
+    cfg_foo = pools_config.ExternalSchedulerConfig(**base)
+    external_scheduler.notify_requests(
+        cfg_foo, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+        cfg_foo, [(request, result_summary)], True, False, batch_mode=True)
+    base['id'] = u'hoe'
+    cfg_hoe = pools_config.ExternalSchedulerConfig(**base)
+    external_scheduler.notify_requests(
+        cfg_hoe, [(request, result_summary)], True, False, batch_mode=True)
+
+    # Call the cron job to process tasks in the pull queue.
+    external_scheduler.gen_batch_requests()
+
+    # There should have been no call to _get_client yet.
+    self.assertEqual(self._client, None)
+    # Prepare the mock client.
+    self._client = FakeExternalScheduler(self)
+    self.mock(external_scheduler, '_get_client', self._get_client_batch)
+    # Excute the requests in the push queue. The fake scheduler will be
+    # called.
+    self.execute_tasks()
+
+    called_with = self._client.called_with_requests
+    self.assertEqual(len(called_with), 2)
+    called_with.sort(key=lambda x: x.scheduler_id)
+    # Request foo should have 2 notifications.
+    self.assertEqual(len(called_with[0].notifications), 2)
+    self.assertEqual(called_with[0].scheduler_id, u'foo')
+    # Request hoe should have 1 notification.
+    self.assertEqual(len(called_with[1].notifications), 1)
+    self.assertEqual(called_with[1].scheduler_id, u'hoe')
 
   def test_notify_request_now(self):
     r = plugin_pb2.NotifyTasksRequest()
