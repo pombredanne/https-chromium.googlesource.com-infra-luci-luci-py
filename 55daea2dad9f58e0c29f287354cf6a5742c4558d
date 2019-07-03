@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb434e80_1bd637a2",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-03T06:14:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f003274e_be59fa57",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 268,
+        "endChar": 12
+      },
+      "revId": "55daea2dad9f58e0c29f287354cf6a5742c4558d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
