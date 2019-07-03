@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "abe3a737_d613547c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-03T06:47:25Z",
+      "side": 1,
+      "message": "Oh I forgot to mention, in this project the cron job functions have the prefix \"cron_\" by convention, so cron_batch_requests() would be fine.",
+      "parentUuid": "2b6058d0_5c0b33c3",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "845990ad_b3cd85f1",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 13
@@ -241,6 +259,24 @@
       "side": 1,
       "message": "Not 100% sure, but I think mock_now() could not help here. If we don\u0027t mock anything, the unit test may still complete in one minute. To accelerate it, I mocked the time() method. Every time when it is called, I return now + 30 sec, so that it just loops twice at most in the unit test. \nPer my understanding, if I called \"external_scheduler.gen_batch_requests()\", I could not change mock_now() during it is running, correct?\n\n+1 on 55 seconds. Also named those constants, I think high possibility we may need to tune them in the future.",
       "parentUuid": "845990ad_b3cd85f1",
+      "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0dc9f544_a0c6ddd9",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-03T06:47:25Z",
+      "side": 1,
+      "message": "Ok this is fine.",
+      "parentUuid": "ab68ae95_218fcc22",
       "revId": "e52bd68f1a3902d061d8ec68510897179f779c12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false

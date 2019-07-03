@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea949e0d_d41a71ee",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-03T06:47:25Z",
+      "side": 1,
+      "message": "If it throws, let\u0027s just the cron job abort. This will throw when the service is overloaded. The best thing to do when the service is overloaded is to back off. So I\u0027d say let\u0027s just not catch the exception, and the next cron job in one minute will catch it.",
+      "revId": "b8e71694c8aee64c21640445f5ee75c70aa980c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73da5a29_1eca3e83",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-03T06:47:25Z",
+      "side": 1,
+      "message": "Since it\u0027s only used in one test case, let\u0027s put all that into the test case as a local closure.\n\nOr create a new test suite.",
+      "revId": "b8e71694c8aee64c21640445f5ee75c70aa980c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "120822c2_5e06ef3d",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-03T06:47:25Z",
+      "side": 1,
+      "message": "Since it\u0027s used at only one place, put it in the test case function closure. (Or create a new test suite)",
+      "revId": "b8e71694c8aee64c21640445f5ee75c70aa980c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
