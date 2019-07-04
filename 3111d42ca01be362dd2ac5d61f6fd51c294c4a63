@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "2fc52917_2632d2a4",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-04T01:19:47Z",
+      "side": 1,
+      "message": "Seems there is a way to check the taskqueue size[1](not documented in the home page though).\n```\nstats \u003d taskqueue.QueueStatistics.fetch(queue_name)\nif stats.tasks \u003c 60:\n (add new tasks)\n```\nThus we could keep the pull queue worker run once per second, while not accumulate the push queue infinitely. Do you think it is better than the cron job?\n\n[1] https://cloud.google.com/appengine/docs/standard/python/refdocs/modules/google/appengine/api/taskqueue/taskqueue",
+      "parentUuid": "936a0cae_e986ca10",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7980dec3_d3e2ab4e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 11
