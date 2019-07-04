@@ -628,11 +628,14 @@ def _is_allowed_service_account(service_account, pool_cfg):
 
 def _bot_update_tx(
     run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-    hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
-    performance_stats, now, result_summary_key, server_version, request):
+    hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel,
+    performance_stats, now, result_summary_key, server_version, request,
+    es_cfg):
   """Runs the transaction for bot_update_task().
 
-  Returns tuple(TaskRunResult, bool(completed), str(error)).
+  es_cfg is only required when need_cancel is True.
+
+  Returns tuple(TaskRunResult, TaskResultSummary, str(error)).
 
   Any error is returned as a string to be passed to logging.error() instead of
   logging inside the transaction for performance.
@@ -710,6 +713,14 @@ def _bot_update_tx(
       elif run_result.exit_code is not None:
         run_result.state = task_result.State.COMPLETED
         run_result.completed_ts = now
+
+  if need_cancel and run_result.state in task_result.State.STATES_RUNNING:
+    result_summary = result_summary_future.get_result()
+    cancelled, _ = _cancel_task_tx(
+        request, result_summary, True, bot_id, now, es_cfg)
+    if cancelled:
+      return result_summary, run_result, None
+    return None, None, 'failed to cancel task in bot %s' % bot_id
 
   run_result.signal_server_version(server_version)
   to_put = [run_result]
@@ -1348,12 +1359,23 @@ def bot_update_task(
   request_future = request_key.get_async()
   server_version = utils.get_app_version()
   request = request_future.get_result()
-  now = utils.utcnow()
 
+  need_cancel = False
+  es_cfg = None
+  # Kill this task if parent task is not running nor pending.
+  if request.parent_task_id:
+    parent_run_key = task_pack.unpack_run_result_key(request.parent_task_id)
+    parent = ndb.get_multi((parent_run_key,))[0]
+    need_cancel = parent.state not in task_result.State.STATES_RUNNING
+    if need_cancel:
+      es_cfg = external_scheduler.config_for_task(request)
+
+  now = utils.utcnow()
   run = lambda: _bot_update_tx(
       run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-      hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
-      performance_stats, now, result_summary_key, server_version, request)
+      hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel,
+      performance_stats, now, result_summary_key, server_version, request,
+      es_cfg)
   try:
     smry, run_result, error = datastore_utils.transaction(run)
   except datastore_utils.CommitError as e:
