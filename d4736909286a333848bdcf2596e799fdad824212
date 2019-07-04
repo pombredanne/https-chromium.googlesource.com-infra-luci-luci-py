@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "22fd631c_397eb0bc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-04T10:09:29Z",
+      "side": 1,
+      "message": "Do you think better to return result_summary and run_result in this case too?",
+      "parentUuid": "2a1c217b_207c281f",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2ab278c2_bdca673d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 13
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1a5baefe_324bdd93",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1369,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-04T10:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ab278c2_bdca673d",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ed93fbf_faeb52ec",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 13
@@ -50,6 +86,24 @@
       "revId": "d4736909286a333848bdcf2596e799fdad824212",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e920d0da_0c589f2d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1518,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-04T10:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ed93fbf_faeb52ec",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
