@@ -1499,9 +1499,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             outputs_ref=None,
             performance_stats=None))
 
-    # Child task is not KILLED.
+    # Child task is KILLED when parent task is cancelled.
     self.assertEqual(
-        State.COMPLETED,
+        State.KILLED,
         task_scheduler.bot_update_task(
             run_result_key=child_run_result.key,
             bot_id='localhost2',
