@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f27c69ee_9537bee9",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-04T05:56:24Z",
+      "side": 1,
+      "message": "Optional: If you want to shorten this test case a bit, you can remove this line and the pubsub_topic arguments below.",
+      "range": {
+        "startLine": 1454,
+        "startChar": 4,
+        "endLine": 1454,
+        "endChar": 17
+      },
+      "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58e63d13_e1edbbfe",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-04T05:56:24Z",
+      "side": 1,
+      "message": "While it currently works, it\u0027s a bug that it works. A bot running a task shouldn\u0027t be able to reap another task without being done with the first. https://crbug.com/786735 is the closest to fixing this.\n\nTo future-proof the test case, please create a new dimensions dict, e.g.:\n\n  bot2_dimensions \u003d self.bot_dimensions.copy()\n  bot2_dimensions[\u0027id\u0027] \u003d [bot2[\u0027id\u0027][0] + \u00272\u0027]\n  self._register_bot(0, bot2_dimensions)\n  , _, child_run_result \u003d task_scheduler.bot_reap_task(bot2_dimensions, \u0027abc\u0027)",
+      "range": {
+        "startLine": 1474,
+        "startChar": 8,
+        "endLine": 1474,
+        "endChar": 27
+      },
+      "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46f089d3_55eac0df",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1507,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-04T05:56:24Z",
+      "side": 1,
+      "message": "It will be localhost2 in this case.",
+      "range": {
+        "startLine": 1507,
+        "startChar": 20,
+        "endLine": 1507,
+        "endChar": 29
+      },
+      "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
