@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a1c217b_207c281f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-04T06:53:10Z",
+      "side": 1,
+      "message": "The only concern I have with this is that the stdout would be lost. Also, see my comment in the test.",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ab278c2_bdca673d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1369,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-04T06:53:10Z",
+      "side": 1,
+      "message": "I\u0027d prefer to skip this if need_cancel is false. This is tricky though, so it should be documented accordingly.\n\nI think noting in _bot_update_tx() that \"es_cfg is only required when need_cancel is True\" would be sufficient.",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ed93fbf_faeb52ec",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1518,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-04T06:53:10Z",
+      "side": 1,
+      "message": "I\u0027d like also to check for the accumulated stdout here to assert that it is \u0027hi\u0027 and that exit_code is still 0.\n\nAs a matter of fact, I\u0027d tweak the test to;\n\n- If the next bot_update_task() was to mark the task as completed, don\u0027t kill it.\n- Otherwise, kill it.\n\nwdyt? I know it\u0027s a bit more complex but this has the advantage of not killing tasks that were just happening to complete successfully.",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
