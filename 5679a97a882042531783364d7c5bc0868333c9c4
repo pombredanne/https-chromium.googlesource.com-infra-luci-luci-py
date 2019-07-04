@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1e788550_6e9ef2ae",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-04T06:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f27c69ee_9537bee9",
+      "range": {
+        "startLine": 1454,
+        "startChar": 4,
+        "endLine": 1454,
+        "endChar": 17
+      },
+      "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58e63d13_e1edbbfe",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a60d41e_0e35e58e",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-04T06:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58e63d13_e1edbbfe",
+      "range": {
+        "startLine": 1474,
+        "startChar": 8,
+        "endLine": 1474,
+        "endChar": 27
+      },
+      "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46f089d3_55eac0df",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 5
@@ -68,6 +116,30 @@
       "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7137a2a5_24cf7564",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1507,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-04T06:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46f089d3_55eac0df",
+      "range": {
+        "startLine": 1507,
+        "startChar": 20,
+        "endLine": 1507,
+        "endChar": 29
+      },
+      "revId": "5679a97a882042531783364d7c5bc0868333c9c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
