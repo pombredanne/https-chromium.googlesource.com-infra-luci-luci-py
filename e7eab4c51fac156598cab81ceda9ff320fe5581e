@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fe6329d_957092d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T03:18:13Z",
+      "side": 1,
+      "message": "\u003e \"beeing\" is a possible misspelling of \"being\" or \"been\".\n\nPlease Fix",
+      "parentUuid": "0ca6233f_45edbc3c",
+      "range": {
+        "startLine": 9,
+        "startChar": 31,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "e7eab4c51fac156598cab81ceda9ff320fe5581e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c50638ca_cc6c9c72",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T03:18:13Z",
+      "side": 1,
+      "message": "It\u0027s not a problem if canceling failed. A good example is:\n\n- The bot sends a task_update RPC.\n- The HTTP request runs successfully but fails to return, returning HTTP 500 instead.\n- The bot retries.\n\nIn this case, it is important that the retry be idempotent: retrying the exact same request should succeed with HTTP 200.",
+      "revId": "e7eab4c51fac156598cab81ceda9ff320fe5581e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
