@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "62deadf3_4fdcb90b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T01:52:27Z",
+      "side": 1,
+      "message": "I don\u0027t understand, you mean here or in the test?",
+      "parentUuid": "22fd631c_397eb0bc",
+      "revId": "d4736909286a333848bdcf2596e799fdad824212",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2ab278c2_bdca673d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 13

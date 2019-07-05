@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44dcf7f3_a772fb28",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T01:52:27Z",
+      "side": 1,
+      "message": "I think this code should be just before the put_multi below.",
+      "revId": "b0ad1c5130ee201edf6436e4084f21efe1c7099e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d2e543_a9fe85d0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T01:52:27Z",
+      "side": 1,
+      "message": "This line is unnecessary in the case of _bot_update_tx() because it\u0027s already working on the run_result. I\u0027d be preferable to not have a redundant db get inside the transaction.\n\nIt\u0027s a bit tricky though from a design perspective.",
+      "revId": "b0ad1c5130ee201edf6436e4084f21efe1c7099e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9034d384_55dce4ae",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T01:52:27Z",
+      "side": 1,
+      "message": "Note that killing doesn\u0027t set it to KILLED yet. The state switch only happens once the task is completed, which is when exit_code is set.",
+      "revId": "b0ad1c5130ee201edf6436e4084f21efe1c7099e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e37e6989_90a701a4",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-05T01:52:27Z",
+      "side": 1,
+      "message": "assert that the output was stored too.\n\nIn this case, exit_code is not set, so it\u0027s not yet \"completed for real\", but it\u0027s likely fine here. This state is returned because the code intentionally does this;\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?l\u003d1310",
+      "revId": "b0ad1c5130ee201edf6436e4084f21efe1c7099e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
