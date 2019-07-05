@@ -9,6 +9,7 @@ import logging
 import os
 import random
 import sys
+import time
 import unittest
 
 # Setups environment.
@@ -169,6 +170,10 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     # TODO(akeshet): Add.
     pass
 
+  def test_cron_batch_requests(self):
+    # This is tested in ExternalSchedulerApiTestBatchMode
+    pass
+
   def test_get_cancellations(self):
     c = external_scheduler.get_cancellations(self.es_cfg)
     self.assertEqual(len(c), 1)
@@ -223,6 +228,91 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_get_callbacks(self):
     tasks = external_scheduler.get_callbacks(self.es_cfg)
     self.assertEqual(tasks, ['task A', 'task B'])
+
+
+class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
+
+  def setUp(self):
+    super(ExternalSchedulerApiTestBatchMode, self).setUp()
+    base = {
+        'address': u'http://localhost:1',
+        'id': u'foo',
+        'dimensions': ['key1:value1', 'key2:value2'],
+        'all_dimensions': None,
+        'any_dimensions': None,
+        'enabled': True,
+        'allow_es_fallback': True,
+    }
+    self.cfg_foo = pools_config.ExternalSchedulerConfig(**base)
+    base['id'] = u'hoe'
+    self.cfg_hoe = pools_config.ExternalSchedulerConfig(**base)
+    self._now = 0
+    self.mock(time, 'time', self._time)
+    self.mock(external_scheduler, '_get_client', self._get_client)
+    self._enqueue_orig = self.mock(utils, 'enqueue_task', self._enqueue)
+
+    # Setup the backend to handle task queues.
+    self.app = webtest.TestApp(
+        handlers_backend.create_application(True),
+        extra_environ={
+          'REMOTE_ADDR': self.source_ip,
+          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+        })
+
+  def _enqueue(self, *args, **kwargs):
+    return self._enqueue_orig(*args, use_dedicated_module=False, **kwargs)
+
+  # Speed up the time of batch request test, or it may need 1 minute
+  # to finish.
+  def _time(self):
+    self._now = self._now + 30
+    return self._now
+
+  def _get_client(self, addr):
+    self.assertEqual(u'http://localhost:1', addr)
+    return self._client
+
+  def _setup_client(self):
+    self._client = FakeExternalScheduler(self)
+
+  def test_notify_request_with_tq_batch_mode(self):
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+
+    # Create requests with different scheduler IDs.
+    external_scheduler.notify_requests(
+        self.cfg_foo, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+        self.cfg_foo, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+        self.cfg_hoe, [(request, result_summary)], True, False, batch_mode=True)
+
+    self._setup_client()
+    # Call the cron job to process tasks in the pull queue.
+    external_scheduler.cron_batch_requests()
+    # There should have been no call in _get_client yet.
+    self.assertEqual(len(self._client.called_with_requests), 0)
+
+    # Execute the requests in the push queue. The fake scheduler will be
+    # called.
+    self.execute_tasks()
+
+    called_with = self._client.called_with_requests
+    # There should have 2 calls.
+    self.assertEqual(len(called_with), 2)
+    called_with.sort(key=lambda x: x.scheduler_id)
+    # Request foo should have 2 notifications.
+    self.assertEqual(len(called_with[0].notifications), 2)
+    self.assertEqual(called_with[0].scheduler_id, u'foo')
+    # Request hoe should have 1 notification.
+    self.assertEqual(len(called_with[1].notifications), 1)
+    self.assertEqual(called_with[1].scheduler_id, u'hoe')
+
+    # Tasks were deleted from the queue. There should be
+    # no request sent to the scheduler.
+    self._setup_client()
+    self.execute_tasks()
+    self.assertEqual(len(self._client.called_with_requests), 0)
 
 
 if __name__ == '__main__':
