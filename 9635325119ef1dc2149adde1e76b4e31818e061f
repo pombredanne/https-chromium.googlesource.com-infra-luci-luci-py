@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7c583b63_375aea51",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2019-07-08T21:17:13Z",
+      "side": 1,
+      "message": "My bad--I assumed this was standard but it\u0027s from https://pypi.org/project/future/. It doesn\u0027t look like there\u0027s a built-in elegant way to do this. I added a helper method. Lmk if that works for you.",
+      "parentUuid": "7bf5530d_9acb67c0",
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b73ade1_aba8ca47",
         "filename": "appengine/components/tools/gae.py",
         "patchSetId": 4
@@ -39,6 +57,30 @@
       "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ea2744c_9fa36cde",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2019-07-08T21:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b73ade1_aba8ca47",
+      "range": {
+        "startLine": 64,
+        "startChar": 10,
+        "endLine": 64,
+        "endChar": 11
+      },
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "94584bac_42b40a25",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2019-07-08T21:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3ae5407_0a7268d6",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 9
+      },
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38a3c91d_adf2bf3d",
         "filename": "appengine/components/tools/gae.py",
         "patchSetId": 4
@@ -85,6 +151,30 @@
       "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cb0fff1_d002abac",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2019-07-08T21:17:13Z",
+      "side": 1,
+      "message": "Thanks for catching - replied above as well - added a helper method to do this in a compatible way.",
+      "parentUuid": "38a3c91d_adf2bf3d",
+      "range": {
+        "startLine": 338,
+        "startChar": 4,
+        "endLine": 338,
+        "endChar": 51
+      },
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
