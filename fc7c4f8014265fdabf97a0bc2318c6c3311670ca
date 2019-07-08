@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "389a51c5_70fa00b7",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "Ack. Will do it in next CL.",
+      "parentUuid": "5267f6b0_4004c0ab",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2fcf46f_2532fee1",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 7
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "182f24e4_cd856b1f",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2fcf46f_2532fee1",
+      "range": {
+        "startLine": 308,
+        "startChar": 23,
+        "endLine": 308,
+        "endChar": 41
+      },
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b13b5cf_cfa3efa1",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 7
@@ -56,6 +98,24 @@
       "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd764573_9a3608d1",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "I think so. Once we make sure the pull queue is working as we expected, we could remove it. But before that, the flag could provide us an easy way to turn off the batch mode.",
+      "parentUuid": "7b13b5cf_cfa3efa1",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "16082e9f_0101fca7",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90a4b4fd_5d45ddcb",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc164a7_ca49d85a",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 7
@@ -90,6 +168,24 @@
       "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0df60661_f269917a",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "Yes. Remove it.",
+      "parentUuid": "bcc164a7_ca49d85a",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "8ee4c708_c8354df3",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50d22abb_469d4255",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5d542f2_04cb4aa9",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 7
@@ -124,6 +238,24 @@
       "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d801be2_5a2e30dd",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T22:46:04Z",
+      "side": 1,
+      "message": "I think a task was created by \n```\nresult_summary \u003d task_scheduler.schedule_request(request, None)\n```\nand we need this one to clean it. This is similar with \"test_notify_requests\".",
+      "parentUuid": "c5d542f2_04cb4aa9",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
