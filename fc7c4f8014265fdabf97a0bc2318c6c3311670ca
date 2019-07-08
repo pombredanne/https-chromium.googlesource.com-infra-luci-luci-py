@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5267f6b0_4004c0ab",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "I realized this function should have been named task_notify_request_now() to be consistent with the rest. Better to do in a separate CL.",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2fcf46f_2532fee1",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "Please rename the function to task_gen_batch_requests()",
+      "range": {
+        "startLine": 308,
+        "startChar": 23,
+        "endLine": 308,
+        "endChar": 41
+      },
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b13b5cf_cfa3efa1",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "Will the flag be removed in a follow up?",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90a4b4fd_5d45ddcb",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "Please assert the number of tasks run, e.g.:\n\n  self.assertEqual(2, self.execute_tasks())",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcc164a7_ca49d85a",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "This call should have no effect?",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50d22abb_469d4255",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "same",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5d542f2_04cb4aa9",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-08T21:23:24Z",
+      "side": 1,
+      "message": "same",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
