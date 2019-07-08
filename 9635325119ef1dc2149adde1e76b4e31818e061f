@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "2f56be6f_4fc85591",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2019-07-08T21:21:07Z",
+      "side": 1,
+      "message": "Is six available to gae.py? If so that might be more elegant.",
+      "parentUuid": "7c583b63_375aea51",
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b73ade1_aba8ca47",
         "filename": "appengine/components/tools/gae.py",
         "patchSetId": 4
