@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fd93e14_cc90bc3f",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-08T21:21:30Z",
+      "side": 1,
+      "message": "nit: _raw_input\n\n\"private\" functions in this file are named starting with \u0027_\u0027 (e.g. see _find_app_dir above).",
+      "range": {
+        "startLine": 513,
+        "startChar": 4,
+        "endLine": 513,
+        "endChar": 17
+      },
+      "revId": "d87dbfd097d8a33f4cd14a953bdc5ed3ee9d9557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
