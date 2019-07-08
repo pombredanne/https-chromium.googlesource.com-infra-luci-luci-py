@@ -22,6 +22,30 @@
       "revId": "e0d8fccc9eeb9513cec558e2b4a45d3e6ef62b9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ef00219_e0fd934b",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T20:12:53Z",
+      "side": 1,
+      "message": "I added one more test on it. Looks good?",
+      "parentUuid": "952f3c1e_3e0d58c0",
+      "range": {
+        "startLine": 182,
+        "startChar": 32,
+        "endLine": 182,
+        "endChar": 66
+      },
+      "revId": "e0d8fccc9eeb9513cec558e2b4a45d3e6ef62b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
