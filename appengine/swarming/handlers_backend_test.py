@@ -177,6 +177,8 @@ class BackendTest(test_env_handlers.AppTestBase):
         ('delete-tasks', '/internal/taskqueue/cleanup/tasks/delete', ''),
         ('es-notify-tasks',
           '/internal/taskqueue/important/external_scheduler/notify-tasks', ''),
+        ('es-notify-kickers',
+          '/internal/taskqueue/important/external_scheduler/notify-kickers', ''),
         ('pubsub', '/internal/taskqueue/important/pubsub/notify-task/',
           'abcabcabc'),
         ('rebuild-task-cache',
