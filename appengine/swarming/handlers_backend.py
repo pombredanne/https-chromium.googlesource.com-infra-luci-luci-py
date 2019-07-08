@@ -163,6 +163,13 @@ class CronExternalSchedulerGetCallbacksHandler(_CronHandlerBase):
     task_scheduler.cron_handle_get_callbacks()
 
 
+class CronExternalSchedulerBatchRequestsHandler(_CronHandlerBase):
+  """Combines notify-tasks by their scheduler address and ID."""
+
+  def run_cron(self):
+    external_scheduler.cron_batch_requests()
+
+
 class CronBotsStats(_CronHandlerBase):
   """Update bots monitoring statistics."""
 
@@ -408,6 +415,8 @@ def get_routes():
         CronExternalSchedulerCancellationsHandler),
     ('/internal/cron/important/external_scheduler/get_callbacks',
         CronExternalSchedulerGetCallbacksHandler),
+    ('/internal/cron/important/external_scheduler/batch_requests',
+        CronExternalSchedulerBatchRequestsHandler),
 
     ('/internal/cron/important/named_caches/update', CronNamedCachesUpdate),
 
