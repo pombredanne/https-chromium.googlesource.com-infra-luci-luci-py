@@ -5,6 +5,10 @@
 
 """Wrapper around GAE SDK tools to simplify working with multi-service apps."""
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
 __version__ = '1.2'
 
 import atexit
@@ -15,6 +19,8 @@ import signal
 import sys
 import tempfile
 import urllib2
+
+from builtins import input as builtin_input
 
 try:
   import readline
@@ -55,10 +61,10 @@ def _print_version_log(app, to_version):
   """
   from_versions = set(service['id'] for service in app.get_actives())
   if len(from_versions) > 1:
-    print >> sys.stderr, (
+    print((
         'Error: found multiple services with different active versions. Use '
         '"gae active" to get the curent list of active version. Please use the '
-        'Web UI to fix. Aborting.')
+        'Web UI to fix. Aborting.'), file=sys.stderr)
     return 1
   if from_versions:
     from_version = list(from_versions)[0]
@@ -79,13 +85,13 @@ def _print_version_log(app, to_version):
 def CMDappcfg_login(parser, args):
   """Sets up authentication for appcfg.py usage [DEPRECATED]."""
   app, _, _ = parser.parse_args(args)
-  print (
+  print((
       'Since appcfg.py doesn\'t support explicit login command, we\'ll run '
       'innocent "list_version" instead. It will trigger appcfg\'s login flow. '
       '\n'
       'It\'s fine if "list_version" call itself fails - at this point we have '
       'the necessary credentials cached and other subcommands should be able '
-      'to use them.\n')
+      'to use them.\n'))
   gae_sdk_utils.appcfg_login(app)
   return 0
 
@@ -118,11 +124,11 @@ def CMDapp_dir(parser, args):
   # command even before invoking CLI parser, or it will ask to pass --app_dir to
   # 'app-dir' subcommand, which is ridiculous.
   if not parser.app_dir:
-    print >> sys.stderr, 'Can\'t discover an application root directory.'
+    print('Can\'t discover an application root directory.', file=sys.stderr)
     return 1
   parser.add_tag_option()
   app, _, _ = parser.parse_args(args)
-  print app.app_dir
+  print(app.app_dir)
   return 0
 
 
@@ -167,7 +173,7 @@ def CMDcleanup(parser, args):
         if not line or line.startswith('#'):
           continue
         if line not in versions:
-          print >> sys.stderr, 'Unknown version: %s' % line
+          print('Unknown version: %s' % line, file=sys.stderr)
           return 1
         if line not in keep:
           keep.append(line)
@@ -238,7 +244,7 @@ def CMDshell(parser, args):
     parser.error('No such service: %s' % service)
 
   if not options.host and not options.local:
-    prefixes = filter(None, (version, service, app.app_id))
+    prefixes = list(filter(None, (version, service, app.app_id)))
     options.host = '%s.appspot.com' % '-dot-'.join(prefixes)
 
   # Ensure remote_api is initialized and GAE sys.path is set.
@@ -257,7 +263,7 @@ def CMDshell(parser, args):
       remote_api_stub.ConfigureRemoteApiForOAuth(
           options.host, '/_ah/remote_api')
     except urllib2.URLError:
-      print >> sys.stderr, 'Failed to access %s' % options.host
+      print('Failed to access %s' % options.host, file=sys.stderr)
       return 1
     remote_api_stub.MaybeInvokeAuthentication()
 
@@ -328,8 +334,8 @@ def CMDswitch(parser, args):
     for version in versions:
       print('  %s' % version)
 
-    version = (
-        raw_input('Switch to version [%s]: ' % versions[-1]) or versions[-1])
+    prompt = 'Switch to version [%s]: ' % versions[-1]
+    version = builtin_input(prompt) or versions[-1]
     if version not in versions:
       print('No such version.')
       return 1
@@ -401,7 +407,7 @@ def CMDupload(parser, args):
     return 0
   if 'tainted-' in version:
     print('')
-    print >> sys.stderr, 'Can\'t use --switch with a tainted version!'
+    print('Can\'t use --switch with a tainted version!', file=sys.stderr)
     return 1
   _print_version_log(app, version)
   print('Switching as default version')
@@ -526,11 +532,11 @@ def main(args):
   try:
     return dispatcher.execute(OptionParser(default_app_dir), args)
   except gae_sdk_utils.Error as e:
-    print >> sys.stderr, str(e)
+    print(str(e), file=sys.stderr)
     return 1
   except KeyboardInterrupt:
     # Don't dump stack traces on Ctrl+C, it's expected flow in some commands.
-    print >> sys.stderr, '\nInterrupted'
+    print('\nInterrupted', file=sys.stderr)
     return 1
 
 
