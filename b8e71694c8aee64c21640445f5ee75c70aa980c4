@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "6b6af73a_4428b566",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T03:18:47Z",
+      "side": 1,
+      "message": "Catch specific exceptions and sleep for an exponential backoff.",
+      "parentUuid": "6ae61adb_1fd7f6c3",
+      "revId": "b8e71694c8aee64c21640445f5ee75c70aa980c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73da5a29_1eca3e83",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 18

@@ -196,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "98e31dc5_5b312c33",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-08T03:18:47Z",
+      "side": 1,
+      "message": "Move this thread to https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1689835",
+      "parentUuid": "2fc52917_2632d2a4",
+      "revId": "3111d42ca01be362dd2ac5d61f6fd51c294c4a63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7980dec3_d3e2ab4e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 11
