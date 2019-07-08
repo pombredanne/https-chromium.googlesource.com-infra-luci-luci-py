@@ -169,6 +169,10 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     # TODO(akeshet): Add.
     pass
 
+  def test_gen_batch_requests(self):
+    # This is tested in ExternalSchedulerApiTestBatchMode
+    pass
+
   def test_get_cancellations(self):
     c = external_scheduler.get_cancellations(self.es_cfg)
     self.assertEqual(len(c), 1)
@@ -223,6 +227,111 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_get_callbacks(self):
     tasks = external_scheduler.get_callbacks(self.es_cfg)
     self.assertEqual(tasks, ['task A', 'task B'])
+
+
+class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
+
+  def setUp(self):
+    super(ExternalSchedulerApiTestBatchMode, self).setUp()
+    base = {
+        'address': u'http://localhost:1',
+        'id': u'foo',
+        'dimensions': ['key1:value1', 'key2:value2'],
+        'all_dimensions': None,
+        'any_dimensions': None,
+        'enabled': True,
+        'allow_es_fallback': True,
+    }
+    self.cfg_foo = pools_config.ExternalSchedulerConfig(**base)
+    base['id'] = u'hoe'
+    self.cfg_hoe = pools_config.ExternalSchedulerConfig(**base)
+
+    self.mock(external_scheduler, '_get_client', self._get_client)
+    self._enqueue_orig = self.mock(utils, 'enqueue_task', self._enqueue)
+
+    self._client = None
+
+    # Setup the backend to handle task queues.
+    self.app = webtest.TestApp(
+        handlers_backend.create_application(True),
+        extra_environ={
+          'REMOTE_ADDR': self.source_ip,
+          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+        })
+
+  def _enqueue(self, *args, **kwargs):
+    return self._enqueue_orig(*args, use_dedicated_module=False, **kwargs)
+
+  def _get_client(self, addr):
+    self.assertEqual(u'http://localhost:1', addr)
+    return self._client
+
+  def _setup_client(self):
+    self._client = FakeExternalScheduler(self)
+
+  def test_notify_request_with_tq_batch_mode(self):
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+
+    # Create requests with different scheduler IDs.
+    external_scheduler.notify_requests(
+        self.cfg_foo, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+        self.cfg_foo, [(request, result_summary)], True, False, batch_mode=True)
+    external_scheduler.notify_requests(
+        self.cfg_hoe, [(request, result_summary)], True, False, batch_mode=True)
+
+    self._setup_client()
+
+    # There should have been no call in _get_client yet.
+    self.assertEqual(len(self._client.called_with_requests), 0)
+
+    # Execute the kicker to call the pull queue worker.
+    self.execute_tasks()
+    # Execute the task in es-notify-tasks, to call the fake
+    # scheduler.
+    self.execute_tasks()
+
+    called_with = self._client.called_with_requests
+    # There should have 2 calls.
+    self.assertEqual(len(called_with), 2)
+    called_with.sort(key=lambda x: x.scheduler_id)
+    # Request foo should have 2 notifications.
+    self.assertEqual(len(called_with[0].notifications), 2)
+    self.assertEqual(called_with[0].scheduler_id, u'foo')
+    # Request hoe should have 1 notification.
+    self.assertEqual(len(called_with[1].notifications), 1)
+    self.assertEqual(called_with[1].scheduler_id, u'hoe')
+
+    # Tasks were deleted from the queue. There should be
+    # no request sent to the scheduler.
+    self._setup_client()
+    self.execute_tasks()
+    self.execute_tasks()
+    self.assertEqual(len(self._client.called_with_requests), 0)
+
+  def test_notify_request_with_tq_batch_mode_false(self):
+    request = _gen_request()
+    result_summary = task_scheduler.schedule_request(request, None)
+    self._setup_client()
+    # Since use_tq is false, the requests below should be sent out immediately.
+    external_scheduler.notify_requests(
+        self.cfg_foo, [(request, result_summary)], False, False,
+        batch_mode=True)
+    external_scheduler.notify_requests(
+        self.cfg_hoe, [(request, result_summary)], False, False,
+        batch_mode=True)
+    called_with = self._client.called_with_requests
+    self.assertEqual(len(called_with), 2)
+    called_with.sort(key=lambda x: x.scheduler_id)
+    # Should have 1 notification and its id is foo.
+    self.assertEqual(len(called_with[0].notifications), 1)
+    self.assertEqual(called_with[0].scheduler_id, u'foo')
+    # Should have 1 notification and its id is hoe.
+    self.assertEqual(len(called_with[1].notifications), 1)
+    self.assertEqual(called_with[1].scheduler_id, u'hoe')
+
+    self.execute_tasks()
 
 
 if __name__ == '__main__':
