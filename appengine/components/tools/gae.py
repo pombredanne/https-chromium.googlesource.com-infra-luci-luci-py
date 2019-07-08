@@ -5,6 +5,10 @@
 
 """Wrapper around GAE SDK tools to simplify working with multi-service apps."""
 
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
+
 __version__ = '1.2'
 
 import atexit
