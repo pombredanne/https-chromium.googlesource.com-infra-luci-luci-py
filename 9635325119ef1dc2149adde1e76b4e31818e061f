@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b73ade1_aba8ca47",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-08T18:42:30Z",
+      "side": 1,
+      "message": "this nesting is unnecessary now, can drop one level of ()",
+      "range": {
+        "startLine": 64,
+        "startChar": 10,
+        "endLine": 64,
+        "endChar": 11
+      },
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3ae5407_0a7268d6",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-08T18:42:30Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 9
+      },
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38a3c91d_adf2bf3d",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-08T18:42:30Z",
+      "side": 1,
+      "message": "does this work? I get this:\n\n\u003e\u003e\u003e from builtins import input as builtin_input\nTraceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nImportError: No module named builtins",
+      "range": {
+        "startLine": 338,
+        "startChar": 4,
+        "endLine": 338,
+        "endChar": 51
+      },
+      "revId": "9635325119ef1dc2149adde1e76b4e31818e061f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
