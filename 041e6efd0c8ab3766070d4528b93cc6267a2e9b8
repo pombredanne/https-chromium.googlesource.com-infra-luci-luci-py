@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c338e4c9_daa09f89",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T21:31:21Z",
+      "side": 1,
+      "message": "Let\u0027s file a bug to track this, otherwise this will never happen.",
+      "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97146471_89306633",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T21:31:21Z",
+      "side": 1,
+      "message": "Or more simply?\n\n  if \u0027.\u0027 in build_number:",
+      "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6298893c_f3d91539",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T21:31:21Z",
+      "side": 1,
+      "message": "Please sort it before returning",
+      "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
