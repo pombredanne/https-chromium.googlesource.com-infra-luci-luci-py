@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b69999f2_aa1427f8",
+        "filename": "appengine/swarming/ui2/modules/alias.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-07-09T16:56:43Z",
+      "side": 1,
+      "message": "The Windows-Server-NNNNN values do not yet exist, but are proposed in this doc: https://docs.google.com/document/d/1iF1tbc1oedCQ9J6aL7sHeuaayY3bs52fuvKxvLLZ0ig/edit?ts\u003d5d1544fa#heading\u003dh.ijd3nffwt5zw",
+      "range": {
+        "startLine": 149,
+        "startChar": 3,
+        "endLine": 149,
+        "endChar": 23
+      },
+      "revId": "1734f6d6fceb9644035b2eb5d0f57d7114650b23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
