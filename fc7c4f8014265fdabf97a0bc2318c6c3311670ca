@@ -224,6 +224,24 @@
     },
     {
       "key": {
+        "uuid": "a65991e3_71e36897",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T00:57:29Z",
+      "side": 1,
+      "message": "Not done, assert the number of task queue executed.",
+      "parentUuid": "8ee4c708_c8354df3",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5d542f2_04cb4aa9",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 7
@@ -253,6 +271,24 @@
       "side": 1,
       "message": "I think a task was created by \n```\nresult_summary \u003d task_scheduler.schedule_request(request, None)\n```\nand we need this one to clean it. This is similar with \"test_notify_requests\".",
       "parentUuid": "c5d542f2_04cb4aa9",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c14c304_53489bd0",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T00:57:29Z",
+      "side": 1,
+      "message": "By same, I meant to assert the number of task queues executed.",
+      "parentUuid": "9d801be2_5a2e30dd",
       "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
