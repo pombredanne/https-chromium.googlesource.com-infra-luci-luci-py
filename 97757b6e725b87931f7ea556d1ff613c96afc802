@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ca69c3e2_e878f02c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T19:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2945f84_fab3129e",
+      "range": {
+        "startLine": 225,
+        "startChar": 10,
+        "endLine": 225,
+        "endChar": 54
+      },
+      "revId": "97757b6e725b87931f7ea556d1ff613c96afc802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9132ae90_4ce0524b",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-09T18:49:53Z",
       "side": 1,
       "message": "This is an approximation and it may lag behind the real state. It\u0027s not intended to be used in online processing. So be aware that the queue may blow up or behave erratically when deployed. If it\u0027s indeed so, I think you should consider using named tasks, they are deduped (e.g. we can use the current timestamp with 1 sec precision to ensure there is at most 1 task per second enqueued). One caveat is that named tasks can\u0027t be used inside transactions (so we\u0027ll have to enqueue a nameless task that then enqueues named one). Another option is to use memcache somehow, but this doesn\u0027t work within transactions either.",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 64
+      },
+      "revId": "97757b6e725b87931f7ea556d1ff613c96afc802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fed6df3_3bf76f65",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T19:38:37Z",
+      "side": 1,
+      "message": "Hi, \n\nYes, I am aware of its lag. We do not care about the kicker queue\u0027s depth unless it grows to indefinite. We set the limit L to 600, so unless the lag is longer than 10 minute, it won\u0027t impact us. The actual queue size may exceed the limit. The worst case may be Q*lag+L, Q is RPS.\nGiven Q is 100, lag is 60(1 min lag), the kicker queue may reach to 6000 + 600 \u003d 6600. But I think this is still safe to us, as kicker is an empty task and it does not consume much storage.",
+      "parentUuid": "9132ae90_4ce0524b",
       "range": {
         "startLine": 227,
         "startChar": 4,
