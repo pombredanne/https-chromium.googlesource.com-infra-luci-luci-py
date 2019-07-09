@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3202195b_aa45b715",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "I understand it, but could I file it in a separate CL? If the pull queue brings any issues to the production, we can roll back to this CL without removing everything we deployed. I could add a TODO. Is that OK?",
+      "parentUuid": "916580b8_846b829d",
+      "range": {
+        "startLine": 163,
+        "startChar": 69,
+        "endLine": 163,
+        "endChar": 75
+      },
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df5c2a76_76d842f2",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 10
@@ -39,6 +63,24 @@
       "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91adae6c_a6f375a3",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df5c2a76_76d842f2",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "ba2c59d3_b39bfc8b",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "I was using the default emacs plugin of Google. But turns out I found this file does not follow the Google style and the plugin usually made a mess here. So I disabled it and manually pylint.",
+      "parentUuid": "82f42b6e_81c8ec61",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad48d56b_930ba2b3",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 10
@@ -73,6 +133,24 @@
       "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34a0b9b7_73654d2c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done. Thanks!",
+      "parentUuid": "ad48d56b_930ba2b3",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "d70132dd_6f9e6a46",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18fc46dd_acba1c09",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfd73994_b088e2f0",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 10
@@ -107,6 +203,24 @@
       "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d0fc87c_dfc52059",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfd73994_b088e2f0",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -127,6 +241,24 @@
     },
     {
       "key": {
+        "uuid": "5361a76c_9d03da1e",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e265623_8deb5b70",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78f1ba25_cb3635f4",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 10
@@ -141,6 +273,24 @@
       "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c819140_5ca6ae99",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78f1ba25_cb3635f4",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -161,6 +311,24 @@
     },
     {
       "key": {
+        "uuid": "d6cf6563_0180f18e",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "295424cc_2c6d4b8a",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a4adc9e_54454639",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 10
@@ -175,6 +343,24 @@
       "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ec240db_dcc1eca5",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T18:24:21Z",
+      "side": 1,
+      "message": "Agree with you on L330. We could remove it as we did not enqueue any tasks in this test.",
+      "parentUuid": "5a4adc9e_54454639",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
