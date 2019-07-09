@@ -1,0 +1,180 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "916580b8_846b829d",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "I\u0027d prefer no default argument. This code base generally do not use default arguments, because it makes later refactoring much harder.",
+      "range": {
+        "startLine": 163,
+        "startChar": 69,
+        "endLine": 163,
+        "endChar": 75
+      },
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df5c2a76_76d842f2",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "Please use the same comment style that the rest of the file.\n\n\"\"\"Single sentence\n\nParagraph\n\"\"\"",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f42b6e_81c8ec61",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "The wrapping is not at 80 cols. In vim I use gq which does it automatically but I don\u0027t know for other editors.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad48d56b_930ba2b3",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "logging.warning(\u0027Failed to enqueue external scheduler task, skipping\u0027)\n\nis shorter and clearer.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18fc46dd_acba1c09",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "Add empty line to stay consistent with the file\u0027s style.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd73994_b088e2f0",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "Remove lines 275 and 276, so that they are logically grouped as the test case setup. This part is out of scope for the testing.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e265623_8deb5b70",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "# There should have 2 calls to the external scheduler.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78f1ba25_cb3635f4",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "same",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "295424cc_2c6d4b8a",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "Why do you space out above but not here? I really like consistency, it makes reading easier.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a4adc9e_54454639",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T15:11:15Z",
+      "side": 1,
+      "message": "For the record, this is always enforced by the test suite, so it\u0027s not strictly necessary to add here. Same for line 312.",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
