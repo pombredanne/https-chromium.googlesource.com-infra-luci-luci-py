@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "02938e9d_2a61b94e",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-09T22:44:02Z",
+      "side": 1,
+      "message": "Ok, but I still think it is not a good design. It is wasteful and relies on APIs without any timing guarantees (for example, nothing forbids stats.tasks to get stuck at e.g. 100 for a long time, GAE doesn\u0027t give any promises about how up-to-date the value is).\n\nBut I don\u0027t want to block you, feel free to ignore this comment.",
+      "parentUuid": "9fed6df3_3bf76f65",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 64
+      },
+      "revId": "97757b6e725b87931f7ea556d1ff613c96afc802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c14253d1_da0f49f2",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 11
