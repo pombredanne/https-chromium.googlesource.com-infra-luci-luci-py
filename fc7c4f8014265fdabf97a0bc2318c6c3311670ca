@@ -242,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "b165a5aa_129f7454",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T01:15:57Z",
+      "side": 1,
+      "message": "Sorry for my misunderstanding. All added.",
+      "parentUuid": "a65991e3_71e36897",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5d542f2_04cb4aa9",
         "filename": "appengine/swarming/server/external_scheduler_test.py",
         "patchSetId": 7
@@ -289,6 +307,24 @@
       "side": 1,
       "message": "By same, I meant to assert the number of task queues executed.",
       "parentUuid": "9d801be2_5a2e30dd",
+      "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0522cb88_d8ba0600",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-09T01:15:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c14c304_53489bd0",
       "revId": "fc7c4f8014265fdabf97a0bc2318c6c3311670ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
