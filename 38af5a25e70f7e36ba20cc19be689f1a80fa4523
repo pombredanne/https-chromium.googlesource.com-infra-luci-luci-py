@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "17655dd5_73b29856",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T18:26:36Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "3202195b_aa45b715",
+      "range": {
+        "startLine": 163,
+        "startChar": 69,
+        "endLine": 163,
+        "endChar": 75
+      },
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df5c2a76_76d842f2",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 10
@@ -113,6 +137,24 @@
       "side": 1,
       "message": "I was using the default emacs plugin of Google. But turns out I found this file does not follow the Google style and the plugin usually made a mess here. So I disabled it and manually pylint.",
       "parentUuid": "82f42b6e_81c8ec61",
+      "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b05c346d_bf3ad484",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-09T18:26:36Z",
+      "side": 1,
+      "message": "Ah fair enough. No big deal.",
+      "parentUuid": "ba2c59d3_b39bfc8b",
       "revId": "38af5a25e70f7e36ba20cc19be689f1a80fa4523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
