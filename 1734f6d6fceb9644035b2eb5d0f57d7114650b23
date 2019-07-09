@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "218d1562_e7f412d6",
+        "filename": "appengine/swarming/ui2/modules/alias.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-07-09T16:59:41Z",
+      "side": 1,
+      "message": "How often are these?",
+      "range": {
+        "startLine": 137,
+        "startChar": 63,
+        "endLine": 138,
+        "endChar": 18
+      },
+      "revId": "1734f6d6fceb9644035b2eb5d0f57d7114650b23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b69999f2_aa1427f8",
         "filename": "appengine/swarming/ui2/modules/alias.js",
         "patchSetId": 2
