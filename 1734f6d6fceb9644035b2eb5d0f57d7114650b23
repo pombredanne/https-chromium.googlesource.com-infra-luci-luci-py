@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "07e7c204_a34a714b",
+        "filename": "appengine/swarming/ui2/modules/alias.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-07-09T17:07:00Z",
+      "side": 1,
+      "message": "6 months, it seems.",
+      "parentUuid": "218d1562_e7f412d6",
+      "range": {
+        "startLine": 137,
+        "startChar": 63,
+        "endLine": 138,
+        "endChar": 18
+      },
+      "revId": "1734f6d6fceb9644035b2eb5d0f57d7114650b23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b69999f2_aa1427f8",
         "filename": "appengine/swarming/ui2/modules/alias.js",
         "patchSetId": 2
