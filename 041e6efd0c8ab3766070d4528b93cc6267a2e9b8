@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d65c7497_e9dd457e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-07-10T21:06:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c338e4c9_daa09f89",
+      "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97146471_89306633",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 15
@@ -30,6 +48,24 @@
       "writtenOn": "2019-07-09T21:31:21Z",
       "side": 1,
       "message": "Or more simply?\n\n  if \u0027.\u0027 in build_number:",
+      "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77068274_2a44b949",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-07-10T21:06:37Z",
+      "side": 1,
+      "message": "Is this what you had in mind?",
+      "parentUuid": "97146471_89306633",
       "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00ea2f76_271969ae",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2019-07-10T21:06:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6298893c_f3d91539",
+      "revId": "041e6efd0c8ab3766070d4528b93cc6267a2e9b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
