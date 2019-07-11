@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "096be434_766724b4",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer something like:\n\n  Maximum delay between bot pings before the bot is considered dead while running a task.",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2cd34d_fbfd95a7",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "Remove, there\u0027s already \u0027request\u0027 above which contains this information.",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68c7995_7e9068f6",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "Inline the variable, it\u0027s fine.",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fd2aacc_21abebb9",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "Please state the maximum value, like:\n\n  \u0027%s must be between 60s and 1200s\u0027 % prop._name\n\ncheck for a minimum",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b44d0361_ec901605",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "seconds",
+      "range": {
+        "startLine": 1112,
+        "startChar": 22,
+        "endLine": 1112,
+        "endChar": 29
+      },
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf4f12dd_d49b0ff5",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1113,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 1113,
+        "startChar": 29,
+        "endLine": 1113,
+        "endChar": 36
+      },
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb760f75_7f565f66",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "bot_ping_tolerance_secs\n\nall values should be in seconds, no other unit",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7212327_e2729df2",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-11T23:28:54Z",
+      "side": 1,
+      "message": "Remove all",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
