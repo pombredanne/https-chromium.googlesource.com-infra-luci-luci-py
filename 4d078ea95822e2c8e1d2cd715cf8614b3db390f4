@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32c538a4_bda603a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "please wrap commit message at ~72 columns",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "964f8385_b1aa31a2",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "spelling: es-notifications",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deb01482_33bc436b",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "I think \"es-notify-kick\" would be a clearer name; also easier to read, and would make the other functions whose names derive from this easier to read too.\n\nPlease add a comment above about the purpose of this task queue, as it is not going to be obvious to most readers.",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b409905_22f1e3ec",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "Implementation details don\u0027t belong here, just behavior that the caller cares about.\n\n\"If true, the notifications will be sent in a batched along with others, to reduce traffic to external scheduler. Only valid when use_tq is true.\"",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14d044cf_bcd61b2a",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "Add a kicker tasks if there are fewer than 10 minutes worth.",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dffb89a_3c031f75",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "clearer name: batch_handle_notifications or similar",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3431f310_a300a93c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "Docstring is vague. Clearer:\n\n\"Batches notifications from pull queue, and forwards to push queue\"",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66dc60b4_94201782",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "No longer needed, the short one liner above is sufficient.",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34944aed_865aacfb",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "This might be a little too low. This basically means 100QPS of notifications at most can be batched, which is just on the borderline of what we might need.\n\nCan we increase this to 1000?",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7404d433_5bbc0849",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "is_callback was a bad design on my part, this reminds me that I should go deprecate it.\n\nIn the meantime, I don\u0027t think you need to specify this.",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddf01dea_edeb1792",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "the variable name delete_tasks is confusing. \n\nHow about tasks_per_scheduler\n\nAlso, I suggest using a collections.defaultdict instead of setdefault, it will be much more readable. This this will just become\n\ntasks_per_scheduler[(...)].append(task)",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2e1ad08_6745a539",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-11T01:28:09Z",
+      "side": 1,
+      "message": "this tuple gets used a few times. How about assigning it a short name like s_tuple ; will improve readability",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
