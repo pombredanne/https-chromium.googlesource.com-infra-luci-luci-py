@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f1ff701e_818f8172",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32c538a4_bda603a2",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "964f8385_b1aa31a2",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 12
@@ -33,6 +51,24 @@
       "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "428a7ff2_f701b389",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Installed spell check extension. Should not recur. Thanks for pointing that.",
+      "parentUuid": "964f8385_b1aa31a2",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "cbe8f153_becb0802",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deb01482_33bc436b",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b409905_22f1e3ec",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 12
@@ -67,6 +121,24 @@
       "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c2cb01_c96181c4",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b409905_22f1e3ec",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8cc6073e_9e816c02",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14d044cf_bcd61b2a",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dffb89a_3c031f75",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 12
@@ -101,6 +191,24 @@
       "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf72d5f2_be2d2fbe",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Follow the convention of this file pointed by Marc, name it to \"task_batch_handle_notifications\".",
+      "parentUuid": "5dffb89a_3c031f75",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "f55dba25_4e1e67be",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3431f310_a300a93c",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66dc60b4_94201782",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 12
@@ -135,6 +261,24 @@
       "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65bff28d_bec98324",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66dc60b4_94201782",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "1bffd562_40a2fc1a",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "34944aed_865aacfb",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7404d433_5bbc0849",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 12
@@ -169,6 +331,24 @@
       "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf7f1ad5_ac5594e5",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7404d433_5bbc0849",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "cc26c325_714c674a",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "ddf01dea_edeb1792",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2e1ad08_6745a539",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 12
@@ -203,6 +401,24 @@
       "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aac6ddf_145971b5",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-11T21:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2e1ad08_6745a539",
+      "revId": "4d078ea95822e2c8e1d2cd715cf8614b3db390f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
