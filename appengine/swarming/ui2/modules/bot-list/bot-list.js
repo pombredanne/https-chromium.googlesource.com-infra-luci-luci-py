@@ -750,14 +750,16 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
     // then the human must have scrolled.
     if (this._primaryKey && !this._humanScrolledKeys) {
       const keySelector = $$('.keys.selector', this);
-      const selectedKey = $$('.item[selected]', keySelector);
+      if(keySelector != null) {
+        const selectedKey = $$('.item[selected]', keySelector);
 
-      if (selectedKey) {
-        this._ignoreScrolls++;
-        keySelector.scrollTo({
-          // 160 was found by experimentation with what looks good
-          top: selectedKey.offsetTop - 160,
-        });
+        if (selectedKey) {
+          this._ignoreScrolls++;
+          keySelector.scrollTo({
+            // 160 was found by experimentation with what looks good
+            top: selectedKey.offsetTop - 160,
+          });
+        }
       }
     }
   }
