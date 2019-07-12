@@ -21,6 +21,7 @@ from proto.api import plugin_pb2
 from proto.api import plugin_prpc_pb2
 from proto.api import swarming_pb2
 
+from server import config
 from server import pools_config
 from server import task_queues
 
@@ -161,8 +162,7 @@ def assign_task(es_cfg, bot_dimensions):
   return resp.assignments[0].task_id, resp.assignments[0].slice_number
 
 
-# TODO(linxinan): Remove the default argument of batch_mode.
-def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode=False):
+def notify_requests(es_cfg, requests, use_tq, is_callback):
   """Calls external scheduler to notify it of a task state.
 
   Arguments:
@@ -177,9 +177,6 @@ def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode=False):
     - is_callback: If true, indicates that this notification was in response
                    to a external-scheduler-requested callback. This is for
                    diagnostic purposes.
-    - batch_mode: If true, the notifications will be sent in a batched mode
-                  along with others, to reduce traffic to external scheduler.
-                  Only valid when use_tq is true.
 
   Returns: Nothing.
   """
@@ -221,7 +218,9 @@ def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode=False):
     return
 
   request_json = json_format.MessageToJson(req)
-  if batch_mode:
+  # If enable_batch_es_notifications is true, the notifications will be sent in
+  # a batched mode along with others, to reduce traffic to external scheduler.
+  if config.settings().enable_batch_es_notifications:
     payload = {'es_host': es_cfg.address, 'request_json': request_json}
     req = taskqueue.Task(payload=json.dumps(payload), method='PULL')
     if not req.add(queue_name='es-notify-tasks-batch',
