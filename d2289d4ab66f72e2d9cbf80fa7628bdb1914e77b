@@ -147,6 +147,24 @@
       "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be043dbc_eea31c23",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-12T00:08:26Z",
+      "side": 1,
+      "message": "Sorry, didn\u0027t understand. Should I remove this comment or the field \u0027bot_ping_tolerance\u0027?",
+      "parentUuid": "b7212327_e2729df2",
+      "revId": "d2289d4ab66f72e2d9cbf80fa7628bdb1914e77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
