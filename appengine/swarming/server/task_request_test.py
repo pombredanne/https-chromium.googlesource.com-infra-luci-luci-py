@@ -97,6 +97,7 @@ def _gen_request_slices(**kwargs):
       task_request.TaskSlice(expiration_secs=30, properties=_gen_properties()),
     ],
     u'user': u'Jesus',
+    u'bot_ping_tolerance_sec': 120,
   }
   args.update(kwargs)
   # Note that ndb model constructor accepts dicts for structured properties.
@@ -536,6 +537,7 @@ class TaskRequestApiTest(TestCase):
         },
       ],
       'user': u'Jesus',
+      'bot_ping_tolerance_sec': 120,
     }
     actual = req.to_dict()
     actual.pop('created_ts')
@@ -641,6 +643,7 @@ class TaskRequestApiTest(TestCase):
         },
       ],
       'user': u'Jesus',
+      'bot_ping_tolerance_sec': 120,
     }
     actual = req.to_dict()
     # expiration_ts - created_ts == scheduling_expiration_secs.
@@ -1440,6 +1443,13 @@ class TaskRequestApiTest(TestCase):
       _gen_request(priority=task_request.MAXIMUM_PRIORITY+1)
     _gen_request(priority=task_request.MAXIMUM_PRIORITY).put()
 
+  def test_request_bad_bot_ping_tolerance(self):
+    with self.assertRaises(datastore_errors.BadValueError):
+      _gen_request(bot_ping_tolerance_sec=
+                   task_request.MAX_TOLERANCE_SECS+1)
+      _gen_request(bot_ping_tolerance_sec=
+                   task_request.MIN_TOLERANCE_SECS-1)
+
   def test_request_bad_execution_timeout(self):
     # When used locally, it is set to 1, which means it's impossible to test
     # below _MIN_TIMEOUT_SECS but above 0.
@@ -1600,6 +1610,20 @@ class TaskRequestApiTest(TestCase):
     task_request.validate_priority(0)
     task_request.validate_priority(1)
     task_request.validate_priority(task_request.MAXIMUM_PRIORITY)
+
+  def test_validate_ping_tolerance(self):
+    with self.assertRaises(datastore_errors.BadValueError):
+      task_request.validate_ping_tolerance(-1)
+    with self.assertRaises(datastore_errors.BadValueError):
+      task_request.validate_ping_tolerance(
+          task_request.MAX_TOLERANCE_SECS+1)
+    with self.assertRaises(datastore_errors.BadValueError):
+      task_request.validate_ping_tolerance(
+          task_request.MIN_TOLERANCE_SECS-1)
+    task_request.validate_ping_tolerance(
+        task_request.MIN_TOLERANCE_SECS)
+    task_request.validate_ping_tolerance(
+        task_request.MAX_TOLERANCE_SECS)
 
   def test_datetime_to_request_base_id(self):
     now = datetime.datetime(2012, 1, 2, 3, 4, 5, 123456)
