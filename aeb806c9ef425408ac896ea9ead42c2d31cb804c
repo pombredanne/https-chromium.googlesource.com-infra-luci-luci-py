@@ -2,6 +2,24 @@
   "comments": [
     {
       "key": {
+        "uuid": "a5b3d783_c6fa3c8b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-12T20:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43f19888_52c9fe5c",
+      "revId": "aeb806c9ef425408ac896ea9ead42c2d31cb804c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "107f1ee3_ef02dffb",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 3
@@ -13,6 +31,24 @@
       "writtenOn": "2019-07-11T23:28:54Z",
       "side": 1,
       "message": "In theory the default should match the value here, so probably better to start with a large value and tune it back down later.",
+      "revId": "aeb806c9ef425408ac896ea9ead42c2d31cb804c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29a15967_da824cdf",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-12T20:08:19Z",
+      "side": 1,
+      "message": "Sure. I have set the default value to 600 seconds/10 minutes in TaskRequest.",
+      "parentUuid": "107f1ee3_ef02dffb",
       "revId": "aeb806c9ef425408ac896ea9ead42c2d31cb804c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
