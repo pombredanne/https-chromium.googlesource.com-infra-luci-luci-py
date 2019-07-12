@@ -890,6 +890,11 @@ class TaskRunResult(_TaskResultCommon):
   # presentation layer.
   deduped_from = None
 
+  # Specifies the time after which the bot is considered dead. That is,
+  # if a bot has not sent an update after this time while running the task,
+  # it is considered dead.
+  dead_after_ts = ndb.DateTimeProperty(indexed=False)
+
   @property
   def created_ts(self):
     return self.request.created_ts
