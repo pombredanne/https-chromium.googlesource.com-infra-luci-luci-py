@@ -220,6 +220,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       'completed_ts': None,
       'cost_usd': 0.,
       'current_task_slice': 0,
+      'dead_after_ts': None,
       'duration': None,
       'exit_code': None,
       'failure': False,
