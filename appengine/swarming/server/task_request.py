@@ -143,6 +143,8 @@ _OLD_TASK_REQUEST_CUT_OFF = datetime.timedelta(days=18*31)
 # Defined here so it can be reduced in tests.
 _TASKS_DELETE_CHUNK_SIZE = 1000
 
+_MAX_TOLERANCE_SECS = 1200
+
 
 ### Properties validators must come before the models.
 
@@ -437,6 +439,11 @@ def _validate_service_account(prop, value):
       '%r must be an email, "bot" or "none" string, got %r' %
       (prop._name, value))
 
+def _validate_ping_tolerance(prop, value):
+  """Validates the range of input tolerance for bot to be declared dead."""
+  if value > _MAX_TOLERANCE_MINUTES:
+    raise datastore_errors.BadValueError('%s minutes is a long time to wait'
+      ' for bot to be declared dead.' % value)
 
 ### Models.
 
@@ -1101,6 +1108,12 @@ class TaskRequest(ndb.Model):
   # Data to send in 'userdata' field of PubSub messages.
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
+
+  # Threshold time in minutes to decide if a bot should be declared dead.
+  # Some processes, like for ChromOS are highly I/O bound, so they would
+  # require higher threshold specified by the user request.
+  bot_ping_tolerance = ndb.IntegerProperty(default=2,
+      validator=_validate_ping_tolerance)
 
   @property
   def num_task_slices(self):

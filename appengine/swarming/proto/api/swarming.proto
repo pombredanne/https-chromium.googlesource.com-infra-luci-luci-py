@@ -814,6 +814,12 @@ message TaskRequest {
   string parent_run_id = 11;
   // Send notification to this pubsub topic for updates of this task.
   PubSub pubsub_notification = 10;
+  //
+  // This is to track the time after which the bot is considered dead when it
+  // stops sending updates to the server while running the task.
+  google.protobuf.Duration bot_ping_tolerance = 12;
+
+
 }
 
 // PubSub is a Cloud Pub/Sub topic to send task updates to.
@@ -897,6 +903,10 @@ message TaskResult {
   google.protobuf.Timestamp end_time = 5;
   // Duration of the task. This excludes overheads.
   google.protobuf.Duration duration = 6;
+  //
+  // This is to track the time after which the bot is considered dead when it
+  // stops sending updates to the server while running the task.
+  google.protobuf.Duration bot_ping_tolerance = 21;
 
   // Execution information.
 
