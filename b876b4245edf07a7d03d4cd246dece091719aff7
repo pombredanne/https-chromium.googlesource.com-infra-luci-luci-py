@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5187bc29_a97b7228",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-13T00:07:59Z",
+      "side": 1,
+      "message": "Keep two lines between file level symbols to stay consistent with the style here.",
+      "revId": "b876b4245edf07a7d03d4cd246dece091719aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "294a5564_afe7a266",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-13T00:07:59Z",
+      "side": 1,
+      "message": "Please uses secs suffix to be consistent with the rest",
+      "revId": "b876b4245edf07a7d03d4cd246dece091719aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a45730_2fee4576",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-13T00:07:59Z",
+      "side": 1,
+      "message": "Please uses secs suffix to be consistent with the rest",
+      "revId": "b876b4245edf07a7d03d4cd246dece091719aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dcd8175_258e7a40",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-13T00:07:59Z",
+      "side": 1,
+      "message": "same",
+      "revId": "b876b4245edf07a7d03d4cd246dece091719aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb92e0a1_8a6950a6",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-07-13T00:07:59Z",
+      "side": 1,
+      "message": "As discussed, don\u0027t export this, this is an implementation detail we don\u0027t want to export.",
+      "range": {
+        "startLine": 683,
+        "startChar": 26,
+        "endLine": 683,
+        "endChar": 27
+      },
+      "revId": "b876b4245edf07a7d03d4cd246dece091719aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
