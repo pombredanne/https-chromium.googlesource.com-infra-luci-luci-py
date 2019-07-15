@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b6754ef_14d99a05",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-07-15T17:54:33Z",
+      "side": 0,
+      "message": "don\u0027t drop this argument, we still need some notifications to be sent without batching (in particular, the first notification that we send about any task)\n\nThe logic below should be batch_mode \u0026\u0026 config.settings().enable_batch_es_notifications",
+      "revId": "64f166498af8d2f451c1fcb31f2178434223aa2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
