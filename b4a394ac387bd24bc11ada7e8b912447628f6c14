@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1df99f5e_1b550251",
+        "filename": "appengine/components/components/auth/tokens.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-07-16T22:45:40Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be parameterizable?",
+      "range": {
+        "startLine": 396,
+        "startChar": 19,
+        "endLine": 396,
+        "endChar": 23
+      },
+      "revId": "b4a394ac387bd24bc11ada7e8b912447628f6c14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aa52aa8_3f745dc0",
+        "filename": "appengine/components/components/auth/tokens.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-07-16T22:45:40Z",
+      "side": 1,
+      "message": "wow, this must be long...",
+      "revId": "b4a394ac387bd24bc11ada7e8b912447628f6c14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
