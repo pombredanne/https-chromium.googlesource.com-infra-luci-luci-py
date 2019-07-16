@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d1a0974_30e6d775",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1671,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-16T02:56:44Z",
+      "side": 1,
+      "message": "space before \u0027between\u0027\nand better to include value too?",
+      "range": {
+        "startLine": 1671,
+        "startChar": 42,
+        "endLine": 1671,
+        "endChar": 49
+      },
+      "revId": "4a76cf4eeb9deff0f4b947596ce19d44e741a225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c423f4f_d51b1cd8",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-16T02:56:44Z",
+      "side": 1,
+      "message": "not used?",
+      "revId": "4a76cf4eeb9deff0f4b947596ce19d44e741a225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
