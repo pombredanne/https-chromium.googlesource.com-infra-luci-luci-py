@@ -69,6 +69,7 @@ def _gen_request_slice(**kwargs):
       task_request.TaskSlice(expiration_secs=60, properties=_gen_properties()),
     ],
     'user': 'Jesus',
+    'bot_ping_tolerance_secs': 120,
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)
@@ -195,6 +196,7 @@ class TaskResultApiTest(TestCase):
       'completed_ts': None,
       'cost_usd': 0.,
       'current_task_slice': 0,
+      'dead_after_ts': None,
       'duration': None,
       'exit_code': None,
       'failure': False,
