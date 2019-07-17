@@ -16,6 +16,24 @@
       "revId": "64f166498af8d2f451c1fcb31f2178434223aa2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7469cc97_bada4e84",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-07-17T16:40:36Z",
+      "side": 0,
+      "message": "Ack. Restored batch_mode.",
+      "parentUuid": "4b6754ef_14d99a05",
+      "revId": "64f166498af8d2f451c1fcb31f2178434223aa2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
