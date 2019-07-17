@@ -62,36 +62,14 @@ def get_metadata_async(service_id):
   """Returns service dynamic metadata.
 
   Raises:
-    ServiceNotFoundError if service |service_id| is not found.
-    DynamicMetadataError if metadata endpoint response is bad.
+    DynamicMetadataError if metadata is not available yet.
   """
   entity = yield storage.ServiceDynamicMetadata.get_by_id_async(service_id)
-  if entity:
-    msg = service_config_pb2.ServiceDynamicMetadata()
-    if entity.metadata:
-      msg.ParseFromString(entity.metadata)
-    raise ndb.Return(msg)
-
-  #TODO(myjang): delete the rest of the function once entities in production
-  services = yield get_services_async()
-  service = None
-  for s in services:
-    if s.id == service_id:
-      service = s
-  if service is None:
-    raise ServiceNotFoundError('Service "%s" not found', service_id)
-
-  if not service.metadata_url:
-    raise ndb.Return(service_config_pb2.ServiceDynamicMetadata())
-  try:
-    res = yield net.json_request_async(
-        service.metadata_url,
-        scopes=None if service.HasField('jwt_auth') else net.EMAIL_SCOPE,
-        use_jwt_auth=service.HasField('jwt_auth') or None,
-        audience=service.jwt_auth.audience or None)
-  except net.Error as ex:
-    raise DynamicMetadataError('Net error: %s' % ex.message)
-  msg = _dict_to_dynamic_metadata(res)
+  if not entity:
+    raise DynamicMetadataError('No dynamic metadata for "%s"' % service_id)
+  msg = service_config_pb2.ServiceDynamicMetadata()
+  if entity.metadata:
+    msg.ParseFromString(entity.metadata)
   raise ndb.Return(msg)
 
 
@@ -101,7 +79,10 @@ def _update_service_metadata_async(service):
   if service.metadata_url:
     try:
       res = yield net.json_request_async(
-          service.metadata_url, scopes=net.EMAIL_SCOPE)
+          service.metadata_url,
+          scopes=None if service.HasField('jwt_auth') else net.EMAIL_SCOPE,
+          use_jwt_auth=service.HasField('jwt_auth') or None,
+          audience=service.jwt_auth.audience or None)
     except net.Error as ex:
       raise DynamicMetadataError('Net error: %s' % ex.message)
     entity.metadata = _dict_to_dynamic_metadata(res).SerializeToString()
