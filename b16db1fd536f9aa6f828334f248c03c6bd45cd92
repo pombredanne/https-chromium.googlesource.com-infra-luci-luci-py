@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "8e056e48_0dcdd8ee",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-18T00:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f8d7c70_928a9ff0",
+      "revId": "b16db1fd536f9aa6f828334f248c03c6bd45cd92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9adbd2d0_9320cbc9",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 5
