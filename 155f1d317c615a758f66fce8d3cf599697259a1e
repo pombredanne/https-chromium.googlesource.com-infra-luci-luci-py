@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "323ed4c0_f327261e",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-18T01:38:57Z",
+      "side": 1,
+      "message": "are you sure this should be here? This statement means bot_ping_tolerance_secs will not be populated from swarming_rpcs.NewTaskRequest automatically and will need to be copied into TaskRequest somewhere else (which is not happening in this CL)",
+      "range": {
+        "startLine": 301,
+        "startChar": 6,
+        "endLine": 301,
+        "endChar": 34
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ec83f73_257e4454",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-18T01:38:57Z",
+      "side": 1,
+      "message": "please add indexed\u003dFalse. We won\u0027t be querying by this value, no need to maintain separate index for it.",
+      "range": {
+        "startLine": 1120,
+        "startChar": 2,
+        "endLine": 1121,
+        "endChar": 54
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3a4e10e_24a3ab74",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-18T01:38:57Z",
+      "side": 1,
+      "message": "should this method be modified as well? (since we touched *.proto)",
+      "range": {
+        "startLine": 1196,
+        "startChar": 6,
+        "endLine": 1196,
+        "endChar": 14
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b40b50f_f38e490c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-18T01:38:57Z",
+      "side": 1,
+      "message": "indexed\u003dFalse, unless you plan to query datastore filtering by this property",
+      "range": {
+        "startLine": 896,
+        "startChar": 38,
+        "endLine": 896,
+        "endChar": 40
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
