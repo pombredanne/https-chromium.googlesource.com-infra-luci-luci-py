@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "230b3c5d_b0389198",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-18T19:59:11Z",
+      "side": 1,
+      "message": "I see. I didn\u0027t know that part. What I want is to have bot_ping_tolerance_secs automatically set for TaskRequest with whatever value the user provides through NewTaskRequest. So, I will remove it from here.",
+      "parentUuid": "323ed4c0_f327261e",
+      "range": {
+        "startLine": 301,
+        "startChar": 6,
+        "endLine": 301,
+        "endChar": 34
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ec83f73_257e4454",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 31
@@ -45,6 +69,30 @@
       "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56de26dc_81086e75",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-18T19:59:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ec83f73_257e4454",
+      "range": {
+        "startLine": 1120,
+        "startChar": 2,
+        "endLine": 1121,
+        "endChar": 54
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "864c7be3_a9218412",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-18T19:59:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a4e10e_24a3ab74",
+      "range": {
+        "startLine": 1196,
+        "startChar": 6,
+        "endLine": 1196,
+        "endChar": 14
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b40b50f_f38e490c",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 31
@@ -91,6 +163,30 @@
       "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8f18804_d61a6c13",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-07-18T19:59:11Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "2b40b50f_f38e490c",
+      "range": {
+        "startLine": 896,
+        "startChar": 38,
+        "endLine": 896,
+        "endChar": 40
+      },
+      "revId": "155f1d317c615a758f66fce8d3cf599697259a1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
