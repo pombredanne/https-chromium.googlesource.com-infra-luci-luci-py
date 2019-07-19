@@ -1658,6 +1658,10 @@ def init_new_request(request, allow_high_priority, template_apply):
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
 
+  if request.bot_ping_tolerance_secs <= 0:
+    # set it to a default value of 600 seconds initially because of some heavy
+    # tasks like that from ChromeOS.
+    request.bot_ping_tolerance_secs = 600
 
 def validate_priority(priority):
   """Throws ValueError if priority is not a valid value."""
