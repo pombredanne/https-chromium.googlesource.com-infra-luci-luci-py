@@ -143,6 +143,13 @@ _OLD_TASK_REQUEST_CUT_OFF = datetime.timedelta(days=18*31)
 # Defined here so it can be reduced in tests.
 _TASKS_DELETE_CHUNK_SIZE = 1000
 
+# If no update is received from bot after max seconds lapsed from its last ping
+# to the server, it will be considered dead.
+MAX_TOLERANCE_SECS = 1200
+
+# Min time for bot ping tolerance.
+MIN_TOLERANCE_SECS = 60
+
 
 ### Properties validators must come before the models.
 
@@ -437,6 +444,10 @@ def _validate_service_account(prop, value):
       '%r must be an email, "bot" or "none" string, got %r' %
       (prop._name, value))
 
+
+def _validate_ping_tolerance(_prop, value):
+  """Validates the range of input tolerance for bot to be declared dead."""
+  validate_ping_tolerance(value)
 
 ### Models.
 
@@ -1102,6 +1113,13 @@ class TaskRequest(ndb.Model):
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
 
+  # Maximum delay between bot pings before the bot is considered dead
+  # while running a task. Some processes, like for ChromeOS are highly
+  # I/O bound, so they would require higher threshold specified by the
+  # user request.
+  bot_ping_tolerance_secs = ndb.IntegerProperty(
+      indexed=False, validator=_validate_ping_tolerance)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
@@ -1194,6 +1212,8 @@ class TaskRequest(ndb.Model):
     out.tags.extend(self.tags)
     if self.user:
       out.user = self.user
+    if self.bot_ping_tolerance_secs:
+      out.bot_ping_tolerance.seconds = self.bot_ping_tolerance_secs
 
     # Hierarchy and notifications.
     if self.key:
@@ -1638,6 +1658,10 @@ def init_new_request(request, allow_high_priority, template_apply):
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
 
+  if request.bot_ping_tolerance_secs <= 0:
+    # set it to a default value of 600 seconds initially because of some heavy
+    # tasks like that from ChromeOS.
+    request.bot_ping_tolerance_secs = 600
 
 def validate_priority(priority):
   """Throws ValueError if priority is not a valid value."""
@@ -1646,6 +1670,12 @@ def validate_priority(priority):
         'priority (%d) must be between 0 and %d (inclusive)' %
         (priority, MAXIMUM_PRIORITY))
 
+def validate_ping_tolerance(value):
+  """Throws BadValueError if bot_ping_tolerance_sec is invalid."""
+  if value > MAX_TOLERANCE_SECS or value < MIN_TOLERANCE_SECS:
+    raise datastore_errors.BadValueError(
+        'bot_ping_tolerance_secs (%d) must range between %d and %d' %
+        (value, MIN_TOLERANCE_SECS, MAX_TOLERANCE_SECS))
 
 def cron_delete_old_task_requests():
   """Deletes very old TaskRequest entities and their children entities.
