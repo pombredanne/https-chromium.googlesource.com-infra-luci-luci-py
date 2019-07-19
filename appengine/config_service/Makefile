@@ -18,6 +18,8 @@ If not, please use the deploy/deploy_dev targets.
 endef
 export FILEBUG
 
+SPIN = $(shell command -v spin 2> /dev/null)
+
 build: compile-proto
 
 compile-proto:
@@ -48,20 +50,23 @@ deploy_gae: build
 #
 # See go/luci-config-spin for Spinnaker pipeline status.
 deploy:
-	gcloud builds submit --no-source --substitutions=_PROJECT_DIR=luci/appengine/config_service --config cloudbuild.yaml --project chrome-infra-spinnaker
-	echo "Follow deployment at: go/luci-config-spin"
+ifeq ($(SPIN),)
+	$(error "please install spin go/chops-install-spin")
+endif
+	$(SPIN) pipeline execute --name "Deploy Luciconfig" --application luciconfig
+	@echo "Follow progress here: https://spinnaker-1.endpoints.chrome-infra-spinnaker.cloud.goog/#/applications/luciconfig/executions"
 
 # deploy_dev packs up the current folder and sends it off to Spinnaker for release to the Dev environment.
 #
 # See go/luci-config-spin for Spinnaker pipeline status.
 deploy_dev: build
-	$(eval GCBDIR := $(shell mktemp -d -p /tmp luci-config.XXXX))
-	# The protoc symlink points to nowhere.
-	# Is that expected?
-	rsync -aLK --exclude="tools/protoc" . $(GCBDIR)
-	cd $(GCBDIR) && gcloud builds submit --config cloudbuild_dev.yaml . --project chrome-infra-spinnaker
-	rm -fr $(GCBDIR)
+	$(eval GCB_DIR:= $(shell mktemp -d -p /tmp monorail_XXXXX))
+	rsync -aLK . $(GCB_DIR)  # Dereferences symlinks before snapshotting.
+	cd $(GCB_DIR) && tar cf ${_VERSION}.tar .
+	gsutil cp $(GCB_DIR)/${_VERSION}.tar gs://chrome-infra-builds/luci-config/dev
+	rm -rf $(GCB_DIR)
 	@echo "Follow deployment at: go/luci-config-spin"
+
 
 # external_deps fetches and builds external depencencies.
 # This is run but GCB in the build stage.
