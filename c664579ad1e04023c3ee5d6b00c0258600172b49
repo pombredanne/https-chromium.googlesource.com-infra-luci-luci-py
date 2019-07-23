@@ -46,6 +46,30 @@
       "revId": "c664579ad1e04023c3ee5d6b00c0258600172b49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a95dbf_d24bb121",
+        "filename": "appengine/third_party/scandir/scandir.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-23T07:12:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db32ac60_3ddc16cf",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "c664579ad1e04023c3ee5d6b00c0258600172b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
