@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "455e65cd_7da41435",
+        "filename": "appengine/third_party/scandir/scandir.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-23T06:41:15Z",
+      "side": 1,
+      "message": "Would it be hard to measure how fast this module works without the C extension on Windows on one of our bots? (I.e. copy this module there over SSH, and run scandir.walk(...) over builder cache directory. They advertise \u003e10x speed up only when using the C extension. They don\u0027t promise anything when using \"slow generic fallback\".",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "c664579ad1e04023c3ee5d6b00c0258600172b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
