@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9de2f2b9_1df1d5c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-07-25T23:36:49Z",
+      "side": 1,
+      "message": "Short one liner (\u003c 72 chars)\n\u003cblank line\u003e\nExtended description",
+      "revId": "7b9809cf41bb25149415abb9e37aaaf69067d9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
