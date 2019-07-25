@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50953e60_c521f5db",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-25T16:57:29Z",
+      "side": 1,
+      "message": "This should have had a test that prepares a temp directory with a bunch of files and them measures its size. Then such test verified that scandir.scandir(...) replacement worked (or didn\u0027t)...",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 23
+      },
+      "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec832cfb_f8073f03",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-07-25T16:57:29Z",
+      "side": 1,
+      "message": "this is not recursive, it lists only top-level of \u0027path\u0027",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
