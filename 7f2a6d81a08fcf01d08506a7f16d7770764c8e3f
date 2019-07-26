@@ -189,6 +189,30 @@
       "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1133bf15_a6539ffd",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-26T12:55:58Z",
+      "side": 1,
+      "message": "scandir.walk() does not return DirEntry and we want to get DirEntry of file when scanning a directory instead of file name from\nhttps://github.com/benhoyt/scandir/blob/master/scandir.py#L643",
+      "parentUuid": "eb0e8f84_edd8ff1a",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
