@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9b90b68d_cadd6fcc",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-26T00:05:43Z",
+      "side": 1,
+      "message": "I thought that there is test too, I will add tests when relanding.",
+      "parentUuid": "a8354b04_0c914092",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 23
+      },
+      "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec832cfb_f8073f03",
         "filename": "client/local_caching.py",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "There\u0027s a scandir.walk which may actually be what you want (should be a drop-in or very-close replacement for os.walk, I think)",
       "parentUuid": "ec832cfb_f8073f03",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55cbb67b_33169242",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-26T00:05:43Z",
+      "side": 1,
+      "message": "scandir.walk requires us to call lstat in windows for every file.\nI will call scandir.scandir recursively instead.",
+      "parentUuid": "63137c49_a48ff81c",
       "range": {
         "startLine": 116,
         "startChar": 17,
