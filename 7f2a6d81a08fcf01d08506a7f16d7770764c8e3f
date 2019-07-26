@@ -141,6 +141,30 @@
       "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb42fe8d_afef5e20",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-07-26T00:08:01Z",
+      "side": 1,
+      "message": "Yes, now that I looked at it closer, I see that you\u0027re correct; recursive scandir should be much more efficient.",
+      "parentUuid": "55cbb67b_33169242",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "7f2a6d81a08fcf01d08506a7f16d7770764c8e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
