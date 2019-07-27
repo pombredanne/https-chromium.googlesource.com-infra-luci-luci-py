@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e29bda93_2dbf0f75",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-07-27T03:22:01Z",
+      "side": 1,
+      "message": "python stacks are tricky; we probably won\u0027t blow out the stack, but since the filesystem depth is controlled by the user code, maybe this should use a stack+iterate style instead of direct recursion? e.g.\n\n  total \u003d 0\n  stack \u003d [path]\n  while stack:\n    for entry in scandir.scandir(stack.pop()):\n      if entry.is_file():\n        total +\u003d entry.stat().st_size\n      elif entry.is_dir():\n        stack.append(entry.path)\n\nor something like that?",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 25
+      },
+      "revId": "26e4a7bf7d0626e646d5a0a5b61672e8a4e49c94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
