@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "866e0f65_4f772e0d",
+        "filename": "client/local_caching.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-07-29T17:07:04Z",
+      "side": 1,
+      "message": "should we have an \u0027else\u0027 here to explicitly log that we\u0027re ignoring something unhandled (e.g. a block device or something)? That could help with debugging later, perhaps.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 12
+      },
+      "revId": "10351e9eaeddd3f06ee06b86f09f9f7e249adaf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
