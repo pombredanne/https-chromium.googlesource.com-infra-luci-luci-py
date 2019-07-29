@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bee15d78_b63ea13d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-29T20:51:25Z",
+      "side": 1,
+      "message": "\u003e \"Retrives\" is a possible misspelling of \"Retrieves\".\n\nPlease Fix",
+      "parentUuid": "d47921a3_39ef4d6b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "cf42d383b38f1cfdadfe3807da5c4af36e3a0127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b734ab1a_f8d3090a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-29T20:51:25Z",
+      "side": 1,
+      "message": "could you add test for this function?",
+      "revId": "cf42d383b38f1cfdadfe3807da5c4af36e3a0127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
