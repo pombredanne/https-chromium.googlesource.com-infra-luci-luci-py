@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bc5702b1_b1820bf2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1333433
+      },
+      "writtenOn": "2019-07-29T19:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9de2f2b9_1df1d5c8",
+      "revId": "7b9809cf41bb25149415abb9e37aaaf69067d9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92a11464_08a6fdf4",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "7b9809cf41bb25149415abb9e37aaaf69067d9f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66120121_d3324dc7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1333433
+      },
+      "writtenOn": "2019-07-29T19:42:25Z",
+      "side": 1,
+      "message": "The most relevant bug is b/137855417. In short, we want to fetch the Windows bots by only the client version because game devs test their games only on Windows client OS. It doesn\u0027t matter if the bots are running in server versions.",
+      "parentUuid": "92a11464_08a6fdf4",
+      "revId": "7b9809cf41bb25149415abb9e37aaaf69067d9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
