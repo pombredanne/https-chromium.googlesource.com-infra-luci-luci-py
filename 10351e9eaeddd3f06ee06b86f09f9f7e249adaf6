@@ -22,6 +22,30 @@
       "revId": "10351e9eaeddd3f06ee06b86f09f9f7e249adaf6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eedf9875_b12c0f2b",
+        "filename": "client/local_caching.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-07-30T05:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "866e0f65_4f772e0d",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 12
+      },
+      "revId": "10351e9eaeddd3f06ee06b86f09f9f7e249adaf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
