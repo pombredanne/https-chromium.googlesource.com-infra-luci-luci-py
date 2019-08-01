@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "309f35d5_38ab42de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-08-01T04:58:28Z",
+      "side": 1,
+      "message": "will you clearly mention that lstat says st_size \u003e 0, but we should not calculate that as a file size or so?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 63
+      },
+      "revId": "4eee76779d13e33e00b11380e9acd2a918fb7fb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
