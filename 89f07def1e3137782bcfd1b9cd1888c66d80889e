@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "babce6e9_07fb4a87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 35
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-08-01T21:40:37Z",
+      "side": 1,
+      "message": "Previous description was better. Format as:\n\n\u003cone-liner (up to 72 chars)\u003e\n\u003cblank line\u003e\n\u003cextra information\u003e",
+      "revId": "89f07def1e3137782bcfd1b9cd1888c66d80889e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
