@@ -93,6 +93,7 @@ from server import task_request
 # from 2 minutes to 10 minutes, as some task workload is so overwhelming on the
 # host that the bot process doesn't get CPU time for several minutes. This
 # should be decreased once the bot processes run at higher priority.
+# TODO(adoneria): Remove this constant after https://crbug.com/974350 is live.
 BOT_PING_TOLERANCE = datetime.timedelta(seconds=10*60)
 
 
