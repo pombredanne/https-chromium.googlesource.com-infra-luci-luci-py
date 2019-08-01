@@ -12,3 +12,4 @@ Local Modifications:
 - rm *.yml build.cmd MANIFEST.in _scandir.c setup.py tox.ini benchmark.py \
   *.h .git*
 - touch __init__.py
+- sed -i "s/        file_system_encoding =.*/        file_system_encoding = 'utf-8'/g" scandir.py
