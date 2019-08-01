@@ -462,7 +462,7 @@ elif sys.platform.startswith(('linux', 'darwin', 'sunos5')) or 'bsd' in sys.plat
         closedir.argtypes = [DIR_p]
         closedir.restype = ctypes.c_int
 
-        file_system_encoding = sys.getfilesystemencoding()
+        file_system_encoding = 'UTF-8'
 
         class PosixDirEntry(object):
             __slots__ = ('name', '_d_type', '_stat', '_lstat', '_scandir_path', '_path', '_inode')
@@ -685,7 +685,7 @@ if IS_PY3 or sys.platform != 'win32':
 else:
     # Fix for broken unicode handling on Windows on Python 2.x, see:
     # https://github.com/benhoyt/scandir/issues/54
-    file_system_encoding = sys.getfilesystemencoding()
+    file_system_encoding = 'UTF-8'
 
     def walk(top, topdown=True, onerror=None, followlinks=False):
         if isinstance(top, bytes):
