@@ -233,6 +233,10 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
     # the first ping.
     run_result.started_ts = now
     run_result.modified_ts = now
+    # Upon bot reap, set .dead_after_ts taking into consideration the
+    # user-provided buffer. This would update after every ping from bot
+    # whenever .modified_ts updates.
+    run_result.dead_after_ts = now + run_result.bot_ping_tolerance_time
     result_summary.set_from_run_result(run_result, request)
     ndb.put_multi([to_run, run_result, result_summary])
     if result_summary.state != orig_summary_state:
@@ -320,7 +324,7 @@ def _handle_dead_bot(run_result_key):
     if run_result.state != task_result.State.RUNNING:
       # It was updated already or not updating last. Likely DB index was stale.
       return None, run_result.bot_id
-    if run_result.modified_ts > now - task_result.BOT_PING_TOLERANCE:
+    if run_result.modified_ts > run_result.dead_after_ts:
       # The query index IS stale.
       return None, run_result.bot_id
 
@@ -328,6 +332,8 @@ def _handle_dead_bot(run_result_key):
     run_result.signal_server_version(server_version)
     old_modified = run_result.modified_ts
     run_result.modified_ts = now
+    # update .dead_after_ts also
+    run_result.dead_after_ts = now + run_result.bot_ping_tolerance_time
 
     result_summary = result_summary_key.get()
     orig_summary_state = result_summary.state
@@ -726,6 +732,7 @@ def _bot_update_tx(
 
   run_result.cost_usd = max(cost_usd, run_result.cost_usd or 0.)
   run_result.modified_ts = now
+  run_result.dead_after_ts = now + run_result.bot_ping_tolerance_time
 
   result_summary = result_summary_future.get_result()
   if (result_summary.try_number and
@@ -814,6 +821,7 @@ def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
     run_result.abandoned_ts = now
     run_result.completed_ts = now
     run_result.modified_ts = now
+    run_result.dead_after_ts = now + run_result.bot_ping_tolerance_time
     entities.append(run_result)
   result_summary.abandoned_ts = now
   result_summary.completed_ts = now
