@@ -462,7 +462,7 @@ elif sys.platform.startswith(('linux', 'darwin', 'sunos5')) or 'bsd' in sys.plat
         closedir.argtypes = [DIR_p]
         closedir.restype = ctypes.c_int
 
-        file_system_encoding = sys.getfilesystemencoding()
+        file_system_encoding = 'utf-8'
 
         class PosixDirEntry(object):
             __slots__ = ('name', '_d_type', '_stat', '_lstat', '_scandir_path', '_path', '_inode')
