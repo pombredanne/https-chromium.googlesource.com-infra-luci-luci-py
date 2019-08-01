@@ -1658,7 +1658,7 @@ def init_new_request(request, allow_high_priority, template_apply):
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
 
-  if request.bot_ping_tolerance_secs <= 0:
+  if request.bot_ping_tolerance_secs <= MIN_TOLERANCE_SECS:
     # set it to a default value of 600 seconds initially because of some heavy
     # tasks like that from ChromeOS.
     request.bot_ping_tolerance_secs = 600
