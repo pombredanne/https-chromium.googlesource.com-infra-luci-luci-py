@@ -233,6 +233,10 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
     # the first ping.
     run_result.started_ts = now
     run_result.modified_ts = now
+    # Upon bot reap, set .dead_after_ts taking into consideration the 
+    # user-provided buffer. This would update after every ping from bot
+    # whenever .modified_ts updates.
+    run_result.dead_after_ts = now + run_result.bot_ping_tolerance_time
     result_summary.set_from_run_result(run_result, request)
     ndb.put_multi([to_run, run_result, result_summary])
     if result_summary.state != orig_summary_state:
