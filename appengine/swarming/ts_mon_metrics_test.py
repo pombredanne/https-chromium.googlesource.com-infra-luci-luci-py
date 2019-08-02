@@ -51,6 +51,7 @@ def _gen_bot_info(key_id, last_seen_ts, **kwargs):
     'dimensions': {
         'os': ['Linux', 'Ubuntu'],
         'bot_id': [key_id],
+        'id':'id:'+key_id,
     },
     'state': {},
   }
@@ -85,6 +86,8 @@ class TestMetrics(test_case.TestCase):
         'task_start': '2016-04-07 12:13:14',
         'task_count': 2,
         'count': 42,
+        'shard_start':None,
+        'shard_end':None,
     }
     params = ts_mon_metrics._ShardParams(json.dumps(payload))
     self.assertEqual(json.loads(params.json()), payload)
@@ -230,8 +233,28 @@ class TestMetrics(test_case.TestCase):
     }
 
     ts_mon_metrics.set_global_metrics('jobs')
-    ts_mon_metrics.set_global_metrics('executors')
+    tasks=[]
+    @ndb.tasklet
+    def enqueue_func(module, queue, payload):
+      """
+      enqueue_func logs the payloads to an in memory list for later
+      examination in unit tests.
+      """
+      del module
+      del queue
+      tasks.append(payload)
+      raise ndb.Return(True)
 
+    ts_mon_metrics.set_global_metrics('executors', enqueue_func=enqueue_func)
+    # Now rather than wait for queue to be processed, we have to
+    # manually process. Copy the queue so that we can assert no
+    # further items were enqueued.
+    tasks_copy=tasks[:]
+    # Reset the queue while ensuring closure above references same list.
+    tasks[:]=[]
+    for task in tasks_copy:
+      ts_mon_metrics.set_global_metrics('executors', task)
+    self.assertEqual(len(tasks), 0, "Expected all tasks to be processed")
     jobs_fields = {
         'project_id': 'test_project',
         'subproject_id': 'test_subproject',

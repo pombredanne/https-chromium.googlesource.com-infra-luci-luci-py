@@ -453,6 +453,17 @@ class BotManagementTest(test_case.TestCase):
     # TODO(maruel): https://crbug.com/912154
     self.assertEqual(0, bot_management.cron_aggregate_dimensions())
 
+  def test_filter_dimension_range(self):
+    """
+    Tested in ts_mon_metrics_test.test_set_global_metrics.
+    This is mostly a sanity check on the correctness of the
+    generated query.
+    """
+    q = bot_management.BotInfo.query()
+    q = bot_management.filter_dimension_range(q,'a', 'z')
+    actual = q.fetch()
+    self.assertEqual([], actual)
+
   def test_filter_dimensions(self):
     pass # Tested in handlers_endpoints_test
 
