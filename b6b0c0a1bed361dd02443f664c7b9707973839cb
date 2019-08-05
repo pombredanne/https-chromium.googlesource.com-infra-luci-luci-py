@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e71e882_b0f13e5b",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-05T21:40:37Z",
+      "side": 1,
+      "message": "can we do this without having this map?\nbot id is not imutable and may be changed largely",
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f203bad0_3be72ada",
+        "filename": "appengine/swarming/ts_mon_metrics_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-05T21:40:37Z",
+      "side": 1,
+      "message": "What is the difference between task \u003d [] and task[:] \u003d []?",
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
