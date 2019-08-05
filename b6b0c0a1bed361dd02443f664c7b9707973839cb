@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "371861af_5cb8ef44",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1351147
+      },
+      "writtenOn": "2019-08-05T22:14:48Z",
+      "side": 1,
+      "message": "That\u0027s definitely the right question to ask. There\u0027s some more info here: \n\nhttps://docs.google.com/document/d/1tQab3rPw8aQm3K6YRjgb5ANHCoo4vi-4WW9VOTaZzp8/edit?usp\u003dsharing\n\nIn that doc I lay out a plan to mitigate and then fix the root cause of a metrics issue. This ugly mitigation has the advantage of not requiring schema changes and a new datastore index and for that reason I thought it was worth doing as a first step.\n\nHowever I\u0027m open to deleting this CL and skipping the first step of mitigation and going directly to adding a new indexed property that we can properly shard on (something like BotInfo.shard_id \u003d hash(id) ). This will change our datastore storage costs slightly, but BotInfo is comparatively small (not huge like BotEvent).",
+      "parentUuid": "4e71e882_b0f13e5b",
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f203bad0_3be72ada",
         "filename": "appengine/swarming/ts_mon_metrics_test.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-08-05T21:40:37Z",
       "side": 1,
       "message": "What is the difference between task \u003d [] and task[:] \u003d []?",
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d99331_5c86298b",
+        "filename": "appengine/swarming/ts_mon_metrics_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1351147
+      },
+      "writtenOn": "2019-08-05T22:14:48Z",
+      "side": 1,
+      "message": "There is a difference, but not one that matters for this code, I had a mistake in my mental model of how python closed over tasks.\n\nBut basically the difference is that with:\n\ntasks[:]\u003d[]\n\nid(tasks) is an invariant (all tasks refer to the same python object). I thought that was needed to ensure I could clear out the queue without just making a new reference to an empty queue. I was incorrect. tasks\u003d[] would have worked equally well.\n\nIn case it wasn\u0027t clear, the point of this test is to extend the existing unit test to ensure that any jobs that get sent to a queue get processed before the unit tests assertions run. There\u0027s some further code to ensure that after we\u0027ve processed items, the queue is empty.",
+      "parentUuid": "f203bad0_3be72ada",
       "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
