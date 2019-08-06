@@ -122,8 +122,12 @@ def _get_recursive_size(path):
         for entry in scandir.scandir(stack.pop()):
           if entry.is_symlink():
             continue
+          win_stat = entry.stat(follow_symlinks=False)
+          if ((getattr(win_stat, 'st_file_attributes', 0) &
+              scandir.FILE_ATTRIBUTE_REPARSE_POINT) != 0):
+            continue
           if entry.is_file():
-            total += entry.stat().st_size
+            total += win_stat.st_size
           elif entry.is_dir():
             stack.append(entry.path)
           else:
