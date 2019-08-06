@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a792bbba_b771bb61",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-06T22:11:40Z",
+      "side": 1,
+      "message": "I made _use_scandir for mock in scandir test on non-windows.",
+      "parentUuid": "5092c5a1_ab5bd42a",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 16
+      },
+      "revId": "806b096faead68f9e3f113f9294011f2e55e8ca6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b76e2fc0_5f82ed4a",
         "filename": "client/local_caching.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "806b096faead68f9e3f113f9294011f2e55e8ca6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f983b82f_6a80e386",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-06T22:11:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b76e2fc0_5f82ed4a",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 128,
+        "endChar": 13
+      },
+      "revId": "806b096faead68f9e3f113f9294011f2e55e8ca6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
