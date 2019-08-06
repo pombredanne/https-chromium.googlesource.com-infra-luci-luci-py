@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "850b5854_daab98e0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-06T05:02:51Z",
+      "side": 1,
+      "message": "end",
+      "range": {
+        "startLine": 504,
+        "startChar": 4,
+        "endLine": 504,
+        "endChar": 9
+      },
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e71e882_b0f13e5b",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 2
@@ -31,6 +54,24 @@
       "side": 1,
       "message": "That\u0027s definitely the right question to ask. There\u0027s some more info here: \n\nhttps://docs.google.com/document/d/1tQab3rPw8aQm3K6YRjgb5ANHCoo4vi-4WW9VOTaZzp8/edit?usp\u003dsharing\n\nIn that doc I lay out a plan to mitigate and then fix the root cause of a metrics issue. This ugly mitigation has the advantage of not requiring schema changes and a new datastore index and for that reason I thought it was worth doing as a first step.\n\nHowever I\u0027m open to deleting this CL and skipping the first step of mitigation and going directly to adding a new indexed property that we can properly shard on (something like BotInfo.shard_id \u003d hash(id) ). This will change our datastore storage costs slightly, but BotInfo is comparatively small (not huge like BotEvent).",
       "parentUuid": "4e71e882_b0f13e5b",
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d58f923_40d32db4",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-06T05:02:51Z",
+      "side": 1,
+      "message": "OK. I\u0027m fine having this if this won\u0027t be broken when we have too many bots in a shard.\n\nAnyway, I prefer to have this in separate file and could you write how to generate this?",
+      "parentUuid": "371861af_5cb8ef44",
       "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -69,6 +110,24 @@
       "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf4bd2a4_1a3f3346",
+        "filename": "appengine/swarming/ts_mon_metrics_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-06T05:02:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8d99331_5c86298b",
+      "revId": "b6b0c0a1bed361dd02443f664c7b9707973839cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
