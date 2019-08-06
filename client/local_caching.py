@@ -106,6 +106,10 @@ def trim_caches(caches, path, min_free_space, max_age_secs):
     total.extend(c.trim())
   return total
 
+def _use_scandir():
+  # Use scandir in windows for faster execution.
+  # Do not use in other OS due to crbug.com/989409
+  return sys.platform == 'win32'
 
 def _get_recursive_size(path):
   """Returns the total data size for the specified path.
@@ -114,16 +118,18 @@ def _get_recursive_size(path):
   """
   try:
     total = 0
-    if sys.platform == 'win32':
-      # Use scandir in windows for faster execution.
-      # Do not use in other OS due to crbug.com/989409
+    if _use_scandir():
       stack = [path]
       while stack:
         for entry in scandir.scandir(stack.pop()):
           if entry.is_symlink():
             continue
+          win_stat = entry.stat(follow_symlinks=False)
+          if ((getattr(win_stat, 'st_file_attributes', 0) &
+              scandir.FILE_ATTRIBUTE_REPARSE_POINT) != 0):
+            continue
           if entry.is_file():
-            total += entry.stat().st_size
+            total += win_stat.st_size
           elif entry.is_dir():
             stack.append(entry.path)
           else:
