@@ -493,6 +493,23 @@ def filter_availability(q, quarantined, in_maintenance, is_dead, is_busy):
 
   return q
 
+def filter_dimension_range(q, start, end):
+  """
+  Filters query for values in [start,end) range. Both start and end
+  may be None.
+
+  Arguments:
+  - q: A BotInfo query instance
+  - start: a dimension start value such as: "id:foo" or "gpu:none"
+  - start: a dimension end value such as: "id:foo" or "gpu:none"
+
+  """
+  dim = BotInfo.dimensions_flat
+  if start is not None:
+    q = q.filter(dim >= start)
+  if end is not None:
+    q = q.filter(dim < end)
+  return q
 
 def bot_event(
     event_type, bot_id, external_ip, authenticated_as, dimensions, state,

@@ -8,6 +8,7 @@ from collections import defaultdict
 import datetime
 import json
 import logging
+import copy
 
 from google.appengine.datastore.datastore_query import Cursor
 
@@ -16,6 +17,7 @@ import gae_ts_mon
 
 from server import bot_management
 from server import task_result
+from ts_mon_shard_info import shardMap
 
 # - android_devices is a side effect of the health of each Android devices
 #   connected to the bot.
@@ -315,10 +317,46 @@ def _set_jobs_metrics(payload):
         val, target_fields=target_fields, fields=dict(key))
 
 
-def _set_executors_metrics(payload):
+def enqueue_shards(shardParams, enqueue_func):
+  """Write a task for each range in shardMap. Mutates shardParams
+
+  Areguments:
+  - shardParams: _ShardParams instance
+  - enqueue_func: function(string,string, payload=json string) returning a
+    Future with a get_result method.
+
+  utils.enqueue_task_async is one such func
+  """
+  shardParams = shardParams.copy()
+  # kick off BotInfo jobs
+  rpcs = []
+  for val in shardMap:
+    shardParams.shard_start = val[0]
+    shardParams.shard_end = val[1]
+    fut = enqueue_func(
+        '/internal/taskqueue/monitoring/tsmon/executors',
+        'tsmon',
+        payload=shardParams.json())
+    rpcs.append(fut)
+    # await all
+  for rpc in rpcs:
+    rpc.get_result()
+  return
+
+
+def _set_executors_metrics(payload, enqueue_func):
   params = _ShardParams(payload)
-  query_iter = bot_management.BotInfo.query().iter(
-      produce_cursors=True, start_cursor=params.cursor)
+  # When this function is first triggered (likely by a cron)
+  # Just write the tasks to the queue with shard params.
+  if params.shard_start is None:
+    enqueue_shards(params, enqueue_func)
+    return
+
+  # if we do have a shard start, run the query for that shard.
+  q = bot_management.BotInfo.query()
+  q = bot_management.filter_dimension_range(
+      q, params.shard_start, params.shard_end)
+  query_iter = q.iter(produce_cursors=True, start_cursor=params.cursor)
 
   executors_count = 0
   while query_iter.has_next():
@@ -371,6 +409,8 @@ class _ShardParams(object):
   def __init__(self, payload):
     self.start_time = utils.utcnow()
     self.cursor = None
+    self.shard_start = None
+    self.shard_end = None
     self.task_start = self.start_time
     self.task_count = 0
     self.count = 0
@@ -384,10 +424,17 @@ class _ShardParams(object):
           params['task_start'], utils.DATETIME_FORMAT)
       self.task_count = params['task_count']
       self.count = params['count']
+      if 'shard_start' in params:
+        self.shard_start = params['shard_start']
+      if 'shard_end' in params:
+        self.shard_end = params['shard_end']
     except (ValueError, KeyError) as e:
       logging.error('_ShardParams: bad JSON: %s: %s', payload, e)
       # Stop the task chain and let the request fail.
       raise
+
+  def copy(self):
+    return copy.deepcopy(self)
 
   def json(self):
     return utils.encode_to_json({
@@ -395,6 +442,8 @@ class _ShardParams(object):
         'task_start': self.task_start,
         'task_count': self.task_count,
         'count': self.count,
+        'shard_start': self.shard_start,
+        'shard_end': self.shard_end,
     })
 
 
@@ -464,11 +513,12 @@ def on_bot_auth_success(auth_method, condition):
   })
 
 
-def set_global_metrics(kind, payload=None):
+def set_global_metrics(kind, payload=None,
+                       enqueue_func=utils.enqueue_task_async):
   if kind == 'jobs':
     _set_jobs_metrics(payload)
   elif kind == 'executors':
-    _set_executors_metrics(payload)
+    _set_executors_metrics(payload, enqueue_func=enqueue_func)
   else:
     logging.error('set_global_metrics(kind=%s): unknown kind.', kind)
 
