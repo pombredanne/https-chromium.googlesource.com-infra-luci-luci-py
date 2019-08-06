@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "851d5d44_4b119794",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-08-06T22:17:38Z",
+      "side": 1,
+      "message": "I didn\u0027t mean to include this comment EXACTLY :)",
+      "range": {
+        "startLine": 126,
+        "startChar": 33,
+        "endLine": 126,
+        "endChar": 40
+      },
+      "revId": "839631488b1ce82f86addfeb6052cf4200cb58f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d475128a_2bd512a5",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-08-06T22:17:38Z",
+      "side": 1,
+      "message": "you could name it _entry",
+      "parentUuid": "61c0d556_5abf1462",
+      "revId": "839631488b1ce82f86addfeb6052cf4200cb58f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
