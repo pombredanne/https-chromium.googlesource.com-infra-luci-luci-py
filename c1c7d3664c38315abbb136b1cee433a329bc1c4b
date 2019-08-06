@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33bc8c3b_0035e5e1",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-08-06T12:54:19Z",
+      "side": 1,
+      "message": "suggestion: ...takes either a date string or a date ...",
+      "range": {
+        "startLine": 256,
+        "startChar": 28,
+        "endLine": 257,
+        "endChar": 28
+      },
+      "revId": "c1c7d3664c38315abbb136b1cee433a329bc1c4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a46ccf7_31591407",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-08-06T12:54:19Z",
+      "side": 1,
+      "message": "nit: const",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 11
+      },
+      "revId": "c1c7d3664c38315abbb136b1cee433a329bc1c4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dafbeb71_661fc326",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-08-06T12:54:19Z",
+      "side": 1,
+      "message": "nit: const",
+      "range": {
+        "startLine": 260,
+        "startChar": 10,
+        "endLine": 260,
+        "endChar": 13
+      },
+      "revId": "c1c7d3664c38315abbb136b1cee433a329bc1c4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
