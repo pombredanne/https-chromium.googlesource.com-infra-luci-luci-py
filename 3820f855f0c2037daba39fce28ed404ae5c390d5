@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e720f93d_8ca2d6a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T22:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b1f4db6_09cbf616",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 4
+      },
+      "revId": "3820f855f0c2037daba39fce28ed404ae5c390d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ce624ef_93531f4b",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "3820f855f0c2037daba39fce28ed404ae5c390d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a069fe3_8e572872",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T22:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ce624ef_93531f4b",
+      "revId": "3820f855f0c2037daba39fce28ed404ae5c390d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
