@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "abcc8d92_9631e879",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T20:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67d40cb8_c28a26a5",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5f22bfc_06e41436",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 36
@@ -33,6 +51,24 @@
       "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8211003_afbdf832",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 36
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T20:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5f22bfc_06e41436",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "7819fa95_b500dca1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T20:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88d71bfe_aa0e5ec0",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8169612_8579ae7e",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 36
@@ -67,6 +121,24 @@
       "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d315b3dc_fa4c3c66",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T20:06:23Z",
+      "side": 1,
+      "message": "There is a test case in task_request_test.py (line 1615) which needs that public function. The default value is being set on line 1668. Since there is no property information for the function in line 1677, I am not sure how can I set the default value here.",
+      "parentUuid": "b8169612_8579ae7e",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
