@@ -157,6 +157,24 @@
       "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff00eda6_fc23f103",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-19T21:18:51Z",
+      "side": 1,
+      "message": "Got it! The test case that I was referring to was to test that public function which we got rid off, so that is not required anymore. test_request_bad_bot_ping_tolerance() is taking care of the rest.\n\nIs _prop.name \u003d 600 (line 455) the right way to set default value to the property?",
+      "parentUuid": "617ba494_d20d01fa",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
