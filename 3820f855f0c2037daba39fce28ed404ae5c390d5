@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b1f4db6_09cbf616",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-19T22:09:28Z",
+      "side": 1,
+      "message": "Bug",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 4
+      },
+      "revId": "3820f855f0c2037daba39fce28ed404ae5c390d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ce624ef_93531f4b",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-19T22:09:28Z",
+      "side": 1,
+      "message": "2 space indent?",
+      "revId": "3820f855f0c2037daba39fce28ed404ae5c390d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
