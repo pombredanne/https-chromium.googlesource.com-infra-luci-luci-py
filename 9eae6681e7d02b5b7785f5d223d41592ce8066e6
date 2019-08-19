@@ -139,6 +139,24 @@
       "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "617ba494_d20d01fa",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-19T20:08:20Z",
+      "side": 1,
+      "message": "The unit test doesn\u0027t count as a real \"consumer\". Simple use task_request._validate_ping_tolerance() in the unit test, or call it indirectly by creating a TaskRequest object.",
+      "parentUuid": "d315b3dc_fa4c3c66",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
