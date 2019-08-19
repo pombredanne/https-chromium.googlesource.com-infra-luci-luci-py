@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67d40cb8_c28a26a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-19T18:39:27Z",
+      "side": 1,
+      "message": "Replace with:\n\n[swarming] add bot_ping_tolerance\n\nThe value is not used yet, it will replace the default server-wide hardcoded\nvalue.\n\nRequires BigQuery table update; run setup_bigquery.sh on all instances.",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5f22bfc_06e41436",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 36
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-19T18:39:27Z",
+      "side": 1,
+      "message": "Probably worth adding a bit more background here, since for an unsuspecting reader it\u0027s not really clear what this means, even if it\u0027s clear to me. Something like:\n\n  // Maximum delay between bot pings before the bot is considered dead\n  // while running a task.\n  //\n  // When a task is running, the bot sends update to the server every\n  // few seconds. In some cases, like when the system is overloaded,\n  // the bot may be preempted and delayed in sending its updates.\n  // After the delay specified here, the server will claim the bot to\n  // be dead and will forcibly abort the task as BOT_DIED. This is to\n  // catch system wide issues like a BSOD.",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88d71bfe_aa0e5ec0",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-19T18:39:27Z",
+      "side": 1,
+      "message": "For consistency with the rest of the code, keep two empty lines between file level symbols (and comments). Here and below.",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8169612_8579ae7e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-19T18:39:27Z",
+      "side": 1,
+      "message": "I don\u0027t think this function needs to be public, so keeping the code in the private function at line 448 is fine.\n\nWhen the value is None or 0, it\u0027d be good to replace it with a default already.",
+      "revId": "9eae6681e7d02b5b7785f5d223d41592ce8066e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
