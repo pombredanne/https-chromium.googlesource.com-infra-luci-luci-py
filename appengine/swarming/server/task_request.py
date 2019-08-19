@@ -143,6 +143,13 @@ _OLD_TASK_REQUEST_CUT_OFF = datetime.timedelta(days=18*31)
 # Defined here so it can be reduced in tests.
 _TASKS_DELETE_CHUNK_SIZE = 1000
 
+# If no update is received from bot after max seconds lapsed from its last ping
+# to the server, it will be considered dead.
+MAX_TOLERANCE_SECS = 1200
+
+# Min time to keep the bot alive before it is declared dead.
+MIN_TOLERANCE_SECS = 60
+
 
 ### Properties validators must come before the models.
 
@@ -436,6 +443,16 @@ def _validate_service_account(prop, value):
   raise datastore_errors.BadValueError(
       '%r must be an email, "bot" or "none" string, got %r' %
       (prop._name, value))
+
+
+def _validate_ping_tolerance(prop, value):
+  """Validates the range of input tolerance for bot to be declared dead."""
+  if value > MAX_TOLERANCE_SECS or value < MIN_TOLERANCE_SECS:
+    raise datastore_errors.BadValueError(
+        '%s (%d) must range between %d and %d' %
+        (prop._name, value, MIN_TOLERANCE_SECS, MAX_TOLERANCE_SECS))
+  if value == 0 or value is None:
+    prop._name = 600
 
 
 ### Models.
@@ -1102,6 +1119,13 @@ class TaskRequest(ndb.Model):
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
 
+  # Maximum delay between bot pings before the bot is considered dead
+  # while running a task. Some processes, like for ChromeOS are highly
+  # I/O bound, so they would require higher threshold specified by the
+  # user request.
+  bot_ping_tolerance_secs = ndb.IntegerProperty(
+      indexed=False, validator=_validate_ping_tolerance)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
@@ -1194,6 +1218,8 @@ class TaskRequest(ndb.Model):
     out.tags.extend(self.tags)
     if self.user:
       out.user = self.user
+    if self.bot_ping_tolerance_secs:
+      out.bot_ping_tolerance.seconds = self.bot_ping_tolerance_secs
 
     # Hierarchy and notifications.
     if self.key:
@@ -1637,6 +1663,12 @@ def init_new_request(request, allow_high_priority, template_apply):
   all_tags = set(request.manual_tags).union(_get_automatic_tags(request))
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
+
+  if (request.bot_ping_tolerance_secs <= 0 or
+      request.bot_ping_tolerance_secs is None):
+    # set it to a default value of 600 seconds initially because of some heavy
+    # tasks like that from ChromeOS.
+    request.bot_ping_tolerance_secs = 600
 
 
 def validate_priority(priority):
