@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cf30871_a4b8b418",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T02:10:40Z",
+      "side": 1,
+      "message": "If not used anywhere except in tests, pre-pend with underscore.",
+      "revId": "ae077fed11faa9548fe348559cbefac6fd7a16d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "563acf38_d3c6c2b7",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T02:10:40Z",
+      "side": 1,
+      "message": "Instead do:\n\n  if not value:\n    return 600\n\n\nThe return value is used when it\u0027s not None.",
+      "revId": "ae077fed11faa9548fe348559cbefac6fd7a16d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e94d8840_16408ffb",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 1667,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T02:10:40Z",
+      "side": 1,
+      "message": "This can be done as:\n\n  if not request.bot_ping_tolerance_secs:\n\n\nbut only either set the default value here or in the validator function, but not both.",
+      "revId": "ae077fed11faa9548fe348559cbefac6fd7a16d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
