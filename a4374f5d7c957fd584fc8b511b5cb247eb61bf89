@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e8bd0cb3_eabb3c2d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-20T19:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e535f364_1133261e",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d1fae43_b91c2cd4",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 46
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "3a28005a_b89f723d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-20T19:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c02e3c2_4b693931",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93d00e87_cbf79438",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 46
@@ -68,6 +104,24 @@
       "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0457294_2e10f899",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-20T19:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93d00e87_cbf79438",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
