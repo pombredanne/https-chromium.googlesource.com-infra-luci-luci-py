@@ -445,6 +445,7 @@ def _validate_service_account(prop, value):
       (prop._name, value))
 
 
+<<<<<<< HEAD
 def _validate_ping_tolerance(prop, value):
   """Validates the range of input tolerance for bot to be declared dead."""
   if (value > _MAX_BOT_PING_TOLERANCE_SECS or
@@ -458,6 +459,11 @@ def _validate_ping_tolerance(prop, value):
   if not value:
     return 1200
 
+=======
+def _validate_ping_tolerance(_prop, value):
+  """Validates the range of input tolerance for bot to be declared dead."""
+  validate_ping_tolerance(value)
+>>>>>>> Use dead_after_ts attribute to check for dead bots instead of
 
 ### Models.
 
@@ -1668,6 +1674,10 @@ def init_new_request(request, allow_high_priority, template_apply):
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
 
+  if request.bot_ping_tolerance_secs <= MIN_TOLERANCE_SECS:
+    # set it to a default value of 600 seconds initially because of some heavy
+    # tasks like that from ChromeOS.
+    request.bot_ping_tolerance_secs = 600
 
 def validate_priority(priority):
   """Throws ValueError if priority is not a valid value."""
@@ -1676,6 +1686,12 @@ def validate_priority(priority):
         'priority (%d) must be between 0 and %d (inclusive)' %
         (priority, MAXIMUM_PRIORITY))
 
+def validate_ping_tolerance(value):
+  """Throws BadValueError if bot_ping_tolerance_sec is invalid."""
+  if value > MAX_TOLERANCE_SECS or value < MIN_TOLERANCE_SECS:
+    raise datastore_errors.BadValueError(
+        'bot_ping_tolerance_secs (%d) must range between %d and %d' %
+        (value, MIN_TOLERANCE_SECS, MAX_TOLERANCE_SECS))
 
 def cron_delete_old_task_requests():
   """Deletes very old TaskRequest entities and their children entities.
