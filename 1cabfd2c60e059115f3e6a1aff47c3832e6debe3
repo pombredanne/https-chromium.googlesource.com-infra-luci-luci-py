@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7351ce09_4f99d59d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 47
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-20T23:26:13Z",
+      "side": 1,
+      "message": "Added the default value to bot_ping_tolerance_secs and made related changes.",
+      "parentUuid": "96cff6c4_ed8fe624",
+      "revId": "1cabfd2c60e059115f3e6a1aff47c3832e6debe3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
