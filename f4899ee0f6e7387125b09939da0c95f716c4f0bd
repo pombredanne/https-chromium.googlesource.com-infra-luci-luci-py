@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44b25f38_157c1868",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "You need to create a new index, wait for it to build, then use it, then delete the previous one. It\u0027s 2 commits plus a special command to delete the old index.\n\nBut actually, I don\u0027t think a composite index will be needed. It\u0027s simple, you just set it to None when the task is completed, removing the need to filter on state. It\u0027s going to be significantly more performant!",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68328073_acab49d8",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "Thinking about it, it could be a computed property: it\u0027s always self.modified_ts + request.bot_ping_tolerance_secs",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee8d2b0e_731a1a1c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "I don\u0027t see this property to be valuable.",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1d701d6_600f6f45",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "Alignment, you may want to configure your text editor.",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08cec3a1_a42a32ae",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "Or you can just look for run_result.dead_after_ts \u003c now",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3547c45f_19dd6209",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "It should be set to None, since it\u0027s now terminated.",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1415470_388d5d24",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:39:35Z",
+      "side": 1,
+      "message": "Only if not running.",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
