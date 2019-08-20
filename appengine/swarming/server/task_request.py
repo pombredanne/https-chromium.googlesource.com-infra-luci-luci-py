@@ -143,6 +143,13 @@ _OLD_TASK_REQUEST_CUT_OFF = datetime.timedelta(days=18*31)
 # Defined here so it can be reduced in tests.
 _TASKS_DELETE_CHUNK_SIZE = 1000
 
+# If no update is received from bot after max seconds lapsed from its last ping
+# to the server, it will be considered dead.
+_MAX_TOLERANCE_SECS = 1200
+
+# Min time to keep the bot alive before it is declared dead.
+_MIN_TOLERANCE_SECS = 60
+
 
 ### Properties validators must come before the models.
 
@@ -436,6 +443,18 @@ def _validate_service_account(prop, value):
   raise datastore_errors.BadValueError(
       '%r must be an email, "bot" or "none" string, got %r' %
       (prop._name, value))
+
+
+def _validate_ping_tolerance(prop, value):
+  """Validates the range of input tolerance for bot to be declared dead."""
+  if value > _MAX_TOLERANCE_SECS or value < _MIN_TOLERANCE_SECS:
+    raise datastore_errors.BadValueError(
+        '%s (%d) must range between %d and %d' %
+        (prop._name, value, _MIN_TOLERANCE_SECS, _MAX_TOLERANCE_SECS))
+  # set the default value of 600 seconds because of some heavy
+  # tasks like that from ChromeOS.
+  if not value:
+    return 600
 
 
 ### Models.
@@ -1102,6 +1121,13 @@ class TaskRequest(ndb.Model):
   pubsub_userdata = ndb.StringProperty(
       indexed=False, validator=_get_validate_length(1024))
 
+  # Maximum delay between bot pings before the bot is considered dead
+  # while running a task. Some processes, like for ChromeOS are highly
+  # I/O bound, so they would require higher threshold specified by the
+  # user request.
+  bot_ping_tolerance_secs = ndb.IntegerProperty(
+      indexed=False, validator=_validate_ping_tolerance)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
@@ -1194,6 +1220,8 @@ class TaskRequest(ndb.Model):
     out.tags.extend(self.tags)
     if self.user:
       out.user = self.user
+    if self.bot_ping_tolerance_secs:
+      out.bot_ping_tolerance.seconds = self.bot_ping_tolerance_secs
 
     # Hierarchy and notifications.
     if self.key:
