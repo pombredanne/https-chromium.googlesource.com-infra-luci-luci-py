@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e535f364_1133261e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:30:28Z",
+      "side": 1,
+      "message": "name it _MAX_BOT_PING_TOLERANCE_SECS and _MIN_BOT_PING_TOLERANCE_SECS, otherwise it\u0027s hard to know what it means.",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d1fae43_b91c2cd4",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:30:28Z",
+      "side": 1,
+      "message": "You can just \"return value\" at the end to silence it, or:\n\n  return value or 600\n\nwhich will take care of the condition as a one-liner.",
+      "parentUuid": "a4fa8a6e_178be994",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c02e3c2_4b693931",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:30:28Z",
+      "side": 1,
+      "message": "# Keep a high default value for now, should be lowered later.",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d00e87_cbf79438",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T19:30:28Z",
+      "side": 1,
+      "message": "It needs to be indexed, since a query will be run on these.",
+      "revId": "a4374f5d7c957fd584fc8b511b5cb247eb61bf89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
