@@ -34,6 +34,23 @@
       "revId": "64f166498af8d2f451c1fcb31f2178434223aa2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96ea92b1_4892e2e2",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-20T16:28:09Z",
+      "side": 0,
+      "message": "Please keep two empty lines between file level symbols.",
+      "revId": "64f166498af8d2f451c1fcb31f2178434223aa2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
