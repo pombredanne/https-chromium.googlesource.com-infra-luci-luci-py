@@ -1218,6 +1218,8 @@ class TaskRequest(ndb.Model):
     out.tags.extend(self.tags)
     if self.user:
       out.user = self.user
+    if self.bot_ping_tolerance_secs:
+      out.bot_ping_tolerance.seconds = self.bot_ping_tolerance_secs
 
     # Hierarchy and notifications.
     if self.key:
@@ -1662,6 +1664,10 @@ def init_new_request(request, allow_high_priority, template_apply):
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
 
+  if request.bot_ping_tolerance_secs <= MIN_TOLERANCE_SECS:
+    # set it to a default value of 600 seconds initially because of some heavy
+    # tasks like that from ChromeOS.
+    request.bot_ping_tolerance_secs = 600
 
 def validate_priority(priority):
   """Throws ValueError if priority is not a valid value."""
@@ -1670,6 +1676,12 @@ def validate_priority(priority):
         'priority (%d) must be between 0 and %d (inclusive)' %
         (priority, MAXIMUM_PRIORITY))
 
+def validate_ping_tolerance(value):
+  """Throws BadValueError if bot_ping_tolerance_sec is invalid."""
+  if value > MAX_TOLERANCE_SECS or value < MIN_TOLERANCE_SECS:
+    raise datastore_errors.BadValueError(
+        'bot_ping_tolerance_secs (%d) must range between %d and %d' %
+        (value, MIN_TOLERANCE_SECS, MAX_TOLERANCE_SECS))
 
 def cron_delete_old_task_requests():
   """Deletes very old TaskRequest entities and their children entities.
