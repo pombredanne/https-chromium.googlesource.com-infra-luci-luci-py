@@ -16,6 +16,24 @@
       "revId": "664e62c4f45e223e9a691d0efb9cff81f0117509",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb2b8372_2fd84a9c",
+        "filename": "appengine/auth_service/replication.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-08-21T00:53:27Z",
+      "side": 1,
+      "message": "Ack. auth_service codebase doesn\u0027t use cron_* prefix for existing crons.",
+      "parentUuid": "10d4ad8d_d52ba47f",
+      "revId": "664e62c4f45e223e9a691d0efb9cff81f0117509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
