@@ -79,6 +79,7 @@ def _gen_request_slices(**kwargs):
         wait_for_capacity=False),
     ],
     u'user': u'Jesus',
+    u'bot_ping_tolerance_secs': 120,
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)
@@ -1125,7 +1126,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, result_summary.to_dict())
     expected = [
       self._gen_run_result(
-        id='1d69b9f088008911', modified_ts=reaped_ts, started_ts=reaped_ts),
+        id='1d69b9f088008911', modified_ts=reaped_ts, started_ts=reaped_ts,
+        dead_after_ts=reaped_ts + datetime.timedelta(seconds=120)),
     ]
     self.assertEqual(expected, [i.to_dict() for i in run_results])
 
@@ -1210,7 +1212,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             'namespace': u'c',
           },
           started_ts=reaped_ts,
-          state=State.COMPLETED),
+          state=State.COMPLETED,
+          dead_after_ts=done_ts + datetime.timedelta(seconds=120)),
     ]
     self.assertEqual(expected, [t.to_dict() for t in run_results])
 
@@ -1254,7 +1257,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
           failure=True,
           id='1d69b9f088008911',
           started_ts=self.now,
-          state=State.COMPLETED),
+          state=State.COMPLETED,
+          dead_after_ts=self.now + datetime.timedelta(seconds=120)),
     ]
     self.assertEqual(expected, [t.to_dict() for t in run_results])
 
@@ -1442,7 +1446,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         id='1d69b9f088008911',
         started_ts=self.now,
         state=State.TIMED_OUT,
-        try_number=1)
+        try_number=1,
+        dead_after_ts=self.now + datetime.timedelta(seconds=120))
     self.assertEqual(expected, run_result.key.get().to_dict())
 
   def test_bot_update_hard_timeout(self):
@@ -1597,7 +1602,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         completed_ts=self.now,
         id='1d69b9f088008911',
         internal_failure=True,
-        state=State.BOT_DIED)
+        state=State.BOT_DIED,
+        dead_after_ts=self.now + datetime.timedelta(seconds=120))
     self.assertEqual(expected, run_result.key.get().to_dict())
     self.assertEqual(1, self.execute_tasks())
     self.assertEqual(2, len(pub_sub_calls)) # RUNNING -> BOT_DIED

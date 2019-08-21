@@ -290,7 +290,10 @@ class TaskResultApiTest(TestCase):
     actual.started_ts = self.now
     # Trigger _pre_put_hook().
     actual.put()
-    expected = self._gen_result(modified_ts=self.now, started_ts=self.now)
+    expected = self._gen_result(modified_ts=self.now, started_ts=self.now,
+                                dead_after_ts=
+                                self.now + datetime.timedelta(
+                                    seconds=request.bot_ping_tolerance_secs))
     self.assertEqual(expected, actual.to_dict())
     self.assertEqual(50, actual.request.priority)
     self.assertEqual(True, actual.can_be_canceled)
@@ -314,7 +317,9 @@ class TaskResultApiTest(TestCase):
     actual.put()
     expected = self._gen_result(
         completed_ts=self.now, duration=1., modified_ts=self.now, failure=True,
-        started_ts=self.now, state=task_result.State.TIMED_OUT)
+        started_ts=self.now, state=task_result.State.TIMED_OUT,
+        dead_after_ts=self.now + datetime.timedelta(
+            seconds=request.bot_ping_tolerance_secs))
     self.assertEqual(expected, actual.to_dict())
 
   def test_integration(self):
@@ -469,12 +474,11 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result, request))
     ndb.transaction(lambda: ndb.put_multi((run_result, result_summary)))
-
-    self.mock_now(self.now + task_result.BOT_PING_TOLERANCE)
+    self.mock_now(self.now, request.bot_ping_tolerance_secs)
     self.assertEqual(
         [], list(task_result.yield_run_result_keys_with_dead_bot()))
 
-    self.mock_now(self.now + task_result.BOT_PING_TOLERANCE, 1)
+    self.mock_now(self.now, request.bot_ping_tolerance_secs + 1)
     self.assertEqual(
         [run_result.key],
         list(task_result.yield_run_result_keys_with_dead_bot()))
