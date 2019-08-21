@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "be3b46d5_1e4f4f20",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-21T00:21:36Z",
+      "side": 1,
+      "message": "Changed to ComputedProperty. Do we need to keep calculating its value in task_scheduler.py then? Or will that be handled by this property type?",
+      "parentUuid": "68328073_acab49d8",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee8d2b0e_731a1a1c",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 12
@@ -50,6 +68,24 @@
       "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ffa0b5e_ec096a43",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-21T00:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee8d2b0e_731a1a1c",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "d75e745f_bc029355",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-21T00:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1d701d6_600f6f45",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08cec3a1_a42a32ae",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 12
@@ -84,6 +138,24 @@
       "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05ac4253_2aa22e27",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-21T00:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08cec3a1_a42a32ae",
+      "revId": "f4899ee0f6e7387125b09939da0c95f716c4f0bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

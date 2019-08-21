@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ef19cb9_bc4b9c42",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-21T00:21:36Z",
+      "side": 1,
+      "message": "I removed this line in Patchset 50 of issue 1699029 and rebased the branch but this is still here!?",
+      "revId": "a927d9453360829beeed1e7077a36f8d36a224b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b31a71b_8685f17a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1679,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-21T00:21:36Z",
+      "side": 1,
+      "message": "This function was removed from the branch with changes for issue 1699029 before we did the whole rebase thing today but it is this still here? Do I need to do anything more?",
+      "revId": "a927d9453360829beeed1e7077a36f8d36a224b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
