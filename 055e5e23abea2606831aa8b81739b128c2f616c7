@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1cff5db_3e5c37e5",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-08-21T00:20:06Z",
+      "side": 1,
+      "message": "FYI: current number of authorized PubSub subscribers is 30. Number of GCS readers will be similar. So we have ~x3 room for growth before the approach will need to change.",
+      "range": {
+        "startLine": 29,
+        "startChar": 19,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "055e5e23abea2606831aa8b81739b128c2f616c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
