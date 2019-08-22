@@ -1316,14 +1316,14 @@ class TaskRequestApiTest(TestCase):
     # >1 value for pool.
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
-          properties=_gen_properties(dimensions={u'pool': [u'b', u'b']}))
-    _gen_request(
+              properties=_gen_properties(dimensions={u'pool': [u'b', u'b']}))
+      _gen_request(
         properties=_gen_properties(
             dimensions={u'id': [u'b'], u'pool': [u'b']})).put()
-    _gen_request(
+      _gen_request(
         properties=_gen_properties(
             dimensions={u'id': [u'b'], u'pool': [u'b'], u'a.': [u'c']})).put()
-    _gen_request(
+      _gen_request(
         properties=_gen_properties(
             dimensions={u'pool': [u'b'], u'a.': [u'b', u'c']})).put()
 
