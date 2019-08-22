@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e40e8955_19dd7d13",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-22T16:00:28Z",
+      "side": 1,
+      "message": "Revert these.",
+      "revId": "cc5118396eec96bd1dbf78b9f874467c1263bba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb591859_5c083a1b",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-22T16:00:28Z",
+      "side": 1,
+      "message": "After much thinking, let\u0027s not use a ComputedProperty. It\u0027s just too risky that its runtime behavior to be bad. Let\u0027s be explicit instead and set it manually; it\u0027s more tedious but it\u0027s much clearer.\n\nSo you can update the previous CL to note that the value is None when the task is done.\n\nOne way to catch errors is to add to _pre_put_hook():\n\n  if self.dead_after_ts:\n    if self.dead_after_ts \u003c\u003d self.modified_ts:\n      raise datastore_errors.BadValueError(...)\n    if self.state !\u003d RUNNING:\n      raise datastore_errors.BadValueError(...)\n  else:\n    if self.state \u003d\u003d RUNNING:\n      raise datastore_errors.BadValueError(...)\n\nThis way it reduces the risks.",
+      "revId": "cc5118396eec96bd1dbf78b9f874467c1263bba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70f7acc7_a62c3b48",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-22T16:00:28Z",
+      "side": 1,
+      "message": "Before doing the query, we need to keep the value updated. This means that something like the change in line 884 would be needed to be committed and deployed before this line is committed.",
+      "revId": "cc5118396eec96bd1dbf78b9f874467c1263bba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a69e90c5_2b7633bd",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-22T16:00:28Z",
+      "side": 1,
+      "message": "Uncomment here and everywhere that will be needed.",
+      "revId": "cc5118396eec96bd1dbf78b9f874467c1263bba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
