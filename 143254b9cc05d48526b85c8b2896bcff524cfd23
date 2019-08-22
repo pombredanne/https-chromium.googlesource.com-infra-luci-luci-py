@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7ebf33b_20c0ee50",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-22T16:00:05Z",
+      "side": 1,
+      "message": "Remove this, it\u0027s the default.",
+      "range": {
+        "startLine": 896,
+        "startChar": 39,
+        "endLine": 896,
+        "endChar": 51
+      },
+      "revId": "143254b9cc05d48526b85c8b2896bcff524cfd23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
