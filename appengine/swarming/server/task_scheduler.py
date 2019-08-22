@@ -328,6 +328,8 @@ def _handle_dead_bot(run_result_key):
     run_result.signal_server_version(server_version)
     old_modified = run_result.modified_ts
     run_result.modified_ts = now
+    # set .dead_after_ts to None since the task is terminated.
+    run_result.dead_after_ts = None
 
     result_summary = result_summary_key.get()
     orig_summary_state = result_summary.state
