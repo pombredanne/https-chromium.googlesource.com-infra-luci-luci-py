@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da0f6ca4_1f2a1ea4",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-23T20:12:16Z",
+      "side": 1,
+      "message": "I thought I had commented about this but I can\u0027t find it. Please make it clear that the value is only set while the task is running and shall be set to None once the task is done.",
+      "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e26b2b3_7201a725",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-23T20:12:16Z",
+      "side": 1,
+      "message": "you can merge as a \"elif\"",
+      "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76677879_2828b4a8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-23T20:12:16Z",
+      "side": 1,
+      "message": "\"This is updated after each ping from the bot.\"",
+      "range": {
+        "startLine": 237,
+        "startChar": 38,
+        "endLine": 238,
+        "endChar": 40
+      },
+      "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
