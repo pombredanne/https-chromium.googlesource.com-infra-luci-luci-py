@@ -174,9 +174,11 @@ def _update_gcs_acls():
   if not gs_path:
     return
   assert not gs_path.endswith('/'), gs_path
-  readers = _list_authorized_readers()
-  _set_gcs_acl(gs_path+'/latest.db', readers)
-  _set_gcs_acl(gs_path+'/latest.json', readers)
+  acl = _gcs_acls(_list_authorized_readers())
+  _set_gcs_metadata(
+      gs_path+'/latest.db', {'acl': acl, 'contentType': 'application/protobuf'})
+  _set_gcs_metadata(
+      gs_path+'/latest.json', {'acl': acl, 'contentType': 'application/json'})
 
 
 def _upload_file(path, data, content_type, readers):
@@ -213,12 +215,12 @@ def _upload_file(path, data, content_type, readers):
     raise Error(str(exc))
 
 
-def _set_gcs_acl(path, readers):
-  """Overwrites file ACLs in GCS.
+def _set_gcs_metadata(path, metadata):
+  """Overwrites file metadata (including ACLs) in GCS.
 
   Args:
     path: "<bucket>/<object>" string.
-    readers: list of emails that should have read access to the file.
+    metadata: the metadata dict.
 
   Raises:
     Error if Google Storage update fails.
@@ -229,7 +231,7 @@ def _set_gcs_acl(path, readers):
         url='https://www.googleapis.com/storage/v1/b/%s/o/%s' % (
             bucket, urllib.quote(name, safe='')),
         method='PUT',
-        payload=utils.encode_to_json({'acl': _gcs_acls(readers)}),
+        payload=utils.encode_to_json(metadata),
         headers={'Content-Type': 'application/json; charset=UTF-8'},
         scopes=['https://www.googleapis.com/auth/cloud-platform'],
         deadline=30)
