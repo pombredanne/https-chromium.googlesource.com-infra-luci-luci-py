@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e5c2456_4569acfd",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-23T18:53:01Z",
+      "side": 1,
+      "message": "I think it\u0027s a good thing to fix.",
+      "parentUuid": "4482ee3f_f4d544be",
+      "revId": "7224349affbe4c90eb12715e7e7ffbeb74508e78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
