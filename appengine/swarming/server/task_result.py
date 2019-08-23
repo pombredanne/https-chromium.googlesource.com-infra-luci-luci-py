@@ -1418,10 +1418,8 @@ def yield_run_result_keys_with_dead_bot():
   In practice it is returning a ndb.QueryIterator but this is equivalent.
   """
   # If a bot didn't ping recently, it is considered dead.
-  #TODO(adoneria): change this query to use .dead_after_ts
-  deadline = utils.utcnow() - BOT_PING_TOLERANCE
-  q = TaskRunResult.query(TaskRunResult.modified_ts < deadline)
-  return q.filter(TaskRunResult.state == State.RUNNING).iter(keys_only=True)
+  q = TaskRunResult.query(TaskRunResult.dead_after_ts < utils.utcnow())
+  return q.iter(keys_only=True)
 
 
 def get_run_results_query(start, end, sort, state, bot_id):
