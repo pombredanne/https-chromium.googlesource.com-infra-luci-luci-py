@@ -17,6 +17,24 @@
       "revId": "7224349affbe4c90eb12715e7e7ffbeb74508e78",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fded53d3_bf2f2529",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-08-23T19:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e5c2456_4569acfd",
+      "revId": "7224349affbe4c90eb12715e7e7ffbeb74508e78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
