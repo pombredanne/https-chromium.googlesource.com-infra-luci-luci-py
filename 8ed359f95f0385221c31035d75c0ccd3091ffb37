@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "118ae9c7_ac47223c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-23T20:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da0f6ca4_1f2a1ea4",
+      "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e26b2b3_7201a725",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 53
@@ -33,6 +51,24 @@
       "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbcd7220_fe8bd242",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-23T20:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e26b2b3_7201a725",
+      "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -56,6 +92,30 @@
       "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02d40a80_67b1f616",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-23T20:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76677879_2828b4a8",
+      "range": {
+        "startLine": 237,
+        "startChar": 38,
+        "endLine": 238,
+        "endChar": 40
+      },
+      "revId": "8ed359f95f0385221c31035d75c0ccd3091ffb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
