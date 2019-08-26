@@ -16,6 +16,24 @@
       "revId": "71a20655b23c7b49adf23738844bd32175a17616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b3e2a29_3cb2be3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-08-26T04:52:38Z",
+      "side": 1,
+      "message": "I think I am running the latest version. So you saw a different result from those commands?\n\n$ protoc --version\nlibprotoc 3.6.1",
+      "parentUuid": "ae7223e6_d1308d85",
+      "revId": "71a20655b23c7b49adf23738844bd32175a17616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
