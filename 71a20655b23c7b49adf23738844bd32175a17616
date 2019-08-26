@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae7223e6_d1308d85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-26T04:23:55Z",
+      "side": 1,
+      "message": "what is shown when you run `protoc --version`?\nmaybe we expect to use 3.6.1 but you are using different version.\n\nIn that case, could you fetch\nhttps://chromium.googlesource.com/infra/infra/, run ./bootstrap/install_cipd_packages.py and add ./cipd to the PATH before make?",
+      "revId": "71a20655b23c7b49adf23738844bd32175a17616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
