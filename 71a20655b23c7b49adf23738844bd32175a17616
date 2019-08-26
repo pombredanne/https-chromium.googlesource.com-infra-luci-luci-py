@@ -34,6 +34,24 @@
       "revId": "71a20655b23c7b49adf23738844bd32175a17616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfa1e183_cd615f14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-26T05:05:57Z",
+      "side": 1,
+      "message": "Ah, sorry. reproduced in my env too.\nMaybe different version of protoc was used in\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1699029",
+      "parentUuid": "8b3e2a29_3cb2be3f",
+      "revId": "71a20655b23c7b49adf23738844bd32175a17616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
