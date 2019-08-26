@@ -22,6 +22,30 @@
       "revId": "71a20655b23c7b49adf23738844bd32175a17616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caf1a1da_729e08a9",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2019-08-26T07:33:47Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "7a6735dd_862afa16",
+      "range": {
+        "startLine": 281,
+        "startChar": 64,
+        "endLine": 281,
+        "endChar": 74
+      },
+      "revId": "71a20655b23c7b49adf23738844bd32175a17616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
