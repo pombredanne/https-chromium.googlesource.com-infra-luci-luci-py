@@ -1,55 +1,84 @@
-# Authentication Service
+# Auth Service
 
-An AppEngine service used to import and manage ACL groups. It is to be used in
-conjunction with the [auth component](../components/components/auth) to embed
-replicated DB.
+Auth Service centrally manages and distributes data and configuration involved
+in authentication and authorization decisions performed by services in a LUCI
+deployment.
 
-The authentication server provides a central control panel to declare every ACL
-group and the whitelisted IPs. For example, which user has administrative
-access, which can request tasks, which IP addresses can host bots, etc.
+It is part of the control plane, and as such it is **not directly involved** in
+authorizing every request to LUCI. Auth Service merely tells other services
+how to do it, and they do it themselves.
 
-Each service have the authencation component embedded and will use the
-standalone version by default. Using a central authentication service permits
-not having to duplicate the ACLs, which is useful for larger scale
-installations. For one-off experimentation, this is not strictly necessary.
-
-[Documentation](doc/)
+If Auth Service becomes unavailable, everything remains operational, except
+the authentication and authorization configuration becomes essentially "frozen"
+until Auth Service comes back online and resumes updating it.
 
 
-## Setting up
+## Configuration distributed by Auth Service (aka AuthDB)
 
-*   Visit http://console.cloud.google.com and create a project. Replace
-    `<appid>` below with your project id.
-*   Visit Google Cloud Console,
-    *   IAM & Admin, click `Add Member` and add someone else so you can safely
-        be hit by a bus.
-    *   IAM & Admin, change the role for `App Engine default service account`
-        from `Editor` to `Owner`.
-    *   Pub/Sub, click `Enable API`.
-        *   Click `Create a topic`.
-        *   Name it "_auth-db-changed_", click `Create`.
-*   Upload the code with: `./tools/gae upl -x -A <appid>`
-    *   The very first upload may fail, try a second time.
-*   Visit https://\<appid\>.appspot.com/auth/bootstrap and click Proceed.
-*   Wait up to 5 minutes.
-*   Visit "_https://\<appid\>.appspot.com_" and make sure you can access the
-    service before connecting [Isolate](../isolate) and [Swarming](../swarming)
-    to this instance.
-*   If you plan to use a [config service](../config_service),
-    *   Make sure it is setup already.
-    *   [Follow instruction
-        here](../components/components/config/#linking-to-the-config-service).
+This section describes what exactly is meant by "data and configuration
+involved in authentication and authorization". See
+[AuthDB](../components/components/proto/replication.proto) proto for all
+details.
+
+### Groups graph
+
+...
+
+### IP whitelists
+
+...
+
+### OAuth client ID whitelist
+
+...
+
+### Security configuration for internal LUCI RPCs.
+
+...
 
 
-### Linking other services to auth_service
+## API surfaces
 
-*   Make sure your app is fully working.
-*   Visit https://\<authid\>.appspot.com where \<authid\> is the auth_service
-    instance to link with, e.g. chrome-infra-auth.
-*   Click on the Services tab.
-*   Type your \<appid\> in GAE application id and click Generate linking URL,
-    where \<appid\> is the service being linked to the auth_service.
-*   Click the link in the UI.
-*   Click the red Switch button, understanding that any previous ACL
-    configuration on this instance is lost.
+### Groups API
 
+This is a REST API to examine and modify groups graph. It is used primarily by
+Auth Service's own web frontend (i.e. it is used primarily by humans). It is
+documented [right there](https://chrome-infra-auth.appspot.com/auth/api).
+Alternatively, read [source code](../components/components/auth/ui/rest_api.py).
+
+This API is appropriate for modifying groups and for adhoc checks when debugging
+access errors. Both these activities can be done through web UI.
+
+Services that care about availability **must not** use this API for
+authorization checks. It has no performance or availability guarantees.
+
+Instead such services should use AuthDB replication protocol to obtain (and
+keep up-to-date) the snapshot of all groups, so they can use it locally without
+hitting Auth Service on every request.
+
+
+### AuthDB replication protocol
+
+...
+
+
+## Configuration files
+
+...
+
+
+
+## Hooking up a LUCI service to receive AuthDB updates
+
+
+
+
+## External dependencies
+
+Auth Service depends on following services:
+  * App Engine standard: the serving environment.
+  * Cloud Datastore: storing the state (including groups graph).
+  * Cloud PubSub: sending AuthDB update notifications to clients.
+  * Cloud Storage: saving AuthDB dumps to be consumed by clients.
+  * Cloud IAM: managing PubSub topic ACLs to allow clients to subscribe.
+  * LUCI Config: receiving own configuration files.
