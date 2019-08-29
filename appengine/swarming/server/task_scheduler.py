@@ -1200,6 +1200,11 @@ def schedule_request(request, secret_bytes):
       for item in items:
         item.children_task_ids.append(k)
         item.modified_ts = now
+        if item.state == task_result.State.RUNNING:
+          item.dead_after_ts = now + datetime.timedelta(
+              seconds=request.bot_ping_tolerance_secs)
+        else:
+          item.dead_after_ts = None
       ndb.put_multi(items)
 
     # Raising will abort to the caller. There's a risk that for tasks with
