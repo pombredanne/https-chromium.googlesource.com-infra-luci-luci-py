@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ace9c95_44f4f230",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-29T18:42:26Z",
+      "side": 1,
+      "message": "The better way is:\n\n  if sys.platform in (\u0027darwin\u0027, \u0027linux2\u0027) and not sudo_failed:\n\nit checks if a value is inside a tuple.",
+      "revId": "e867b2a9e21988b0dbeb1d2bab1089581821bdfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
