@@ -16,6 +16,24 @@
       "revId": "fd621db0627b0ce922b1fea9488966c2a3346e59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61e18bf6_08f663aa",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-08-29T23:14:27Z",
+      "side": 1,
+      "message": "I think the following test cases in task_scheduler_test.py handle it:\n1. test_task_parent_children\n2. test_task_parent_isolated\nBecause these failed when I had no condition added (refer to Patchset 1). Let me know if that is not the case. Thanks!",
+      "parentUuid": "3f587dee_c1bb4f47",
+      "revId": "fd621db0627b0ce922b1fea9488966c2a3346e59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
