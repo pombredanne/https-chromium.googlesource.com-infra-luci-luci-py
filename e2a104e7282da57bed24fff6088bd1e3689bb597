@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e273fd8_2cacea86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-08-29T22:27:54Z",
+      "side": 1,
+      "message": "Could you explain more what failed and why this fixes the issue?",
+      "revId": "e2a104e7282da57bed24fff6088bd1e3689bb597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
