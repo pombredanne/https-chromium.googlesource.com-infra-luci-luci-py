@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07856ef6_36eb713e",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-29T18:46:43Z",
+      "side": 1,
+      "message": "I was intention in having darwin first, so the items are sorted.",
+      "revId": "da6c4fd5369a6e756190ebaf027ae0dff5df91af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
