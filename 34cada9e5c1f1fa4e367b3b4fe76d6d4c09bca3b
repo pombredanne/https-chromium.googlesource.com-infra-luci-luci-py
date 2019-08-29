@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "803e123a_681f3f76",
+        "filename": "appengine/auth_service/README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-29T20:43:02Z",
+      "side": 0,
+      "message": "Can you update all the other README that link to it?\n\n~/src/luci-pygit grep \u0027linking-other-services-to-auth_service\u0027\nappengine/config_service/README.md:        here](../auth_service#linking-other-services-to-auth_service).\nappengine/isolate/README.md:        here](../auth_service#linking-other-services-to-auth_service).\nappengine/swarming/README.md:        here](../auth_service#linking-other-services-to-auth_service).",
+      "revId": "34cada9e5c1f1fa4e367b3b4fe76d6d4c09bca3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

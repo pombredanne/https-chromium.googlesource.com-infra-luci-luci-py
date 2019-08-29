@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72aa8314_7e439769",
+        "filename": "appengine/auth_service/README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-29T20:43:02Z",
+      "side": 1,
+      "message": "I think it\u0027s worth expanding that the email may be the form of a qualified email address, any user on a domain `*@example.com` or any valid email address `*`.",
+      "revId": "ef94bebab33237af7ceffc993b523cfec825227e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
