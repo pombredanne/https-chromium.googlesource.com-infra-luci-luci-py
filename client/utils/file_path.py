@@ -1128,7 +1128,8 @@ def make_tree_deleteable(root):
   sudo_failed = False
 
   def try_sudo(p):
-    if sys.platform == 'linux2' and not sudo_failed:
+    if(sys.platform == 'linux2' or sys.platform == 'darwin'
+       and not sudo_failed):
       # Try passwordless sudo, just in case. In practice, it is preferable
       # to use linux capabilities.
       with open(os.devnull, 'rb') as f:
