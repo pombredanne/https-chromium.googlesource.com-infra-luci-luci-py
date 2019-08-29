@@ -16,6 +16,24 @@
       "revId": "ef94bebab33237af7ceffc993b523cfec825227e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70017358_a05d816b",
+        "filename": "appengine/auth_service/README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-08-29T22:34:20Z",
+      "side": 1,
+      "message": "No, identity strings (which are result of authentication stage) can\u0027t have \u0027*\u0027. What you describe is \"glob-like pattern to match against identity string\". Added examples above.",
+      "parentUuid": "72aa8314_7e439769",
+      "revId": "ef94bebab33237af7ceffc993b523cfec825227e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
