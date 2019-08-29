@@ -1,55 +1,193 @@
-# Authentication Service
+# Auth Service
 
-An AppEngine service used to import and manage ACL groups. It is to be used in
-conjunction with the [auth component](../components/components/auth) to embed
-replicated DB.
+Auth Service manages and distributes data and configuration used for
+authorization decisions performed by services in a LUCI cluster. It is part
+of the control plane, and as such it is **not directly involved** in authorizing
+every request to LUCI. Auth Service merely tells other services how to do it,
+and they do it themselves.
 
-The authentication server provides a central control panel to declare every ACL
-group and the whitelisted IPs. For example, which user has administrative
-access, which can request tasks, which IP addresses can host bots, etc.
+There's one Auth Service per LUCI cluster. When a new LUCI service joins the
+cluster it is configured with the location of Auth Service, and Auth Service is
+configured with the identity of the new service. This is one time setup. During
+this initial bootstrap the new service receives the full snapshot of all
+authorization configuration, which it can cache locally and start using right
+away. Then the new service can either register a web hook to be called by Auth
+Service when configuration changes, or it can start polling Auth Service for
+updates itself.
 
-Each service have the authencation component embedded and will use the
-standalone version by default. Using a central authentication service permits
-not having to duplicate the ACLs, which is useful for larger scale
-installations. For one-off experimentation, this is not strictly necessary.
+Whenever authorization configuration changes (e.g. a group is updated), Auth
+Service prepares a new snapshot of all configuration, makes it available to
+all polling clients, and pushes it to all registered web hooks until they
+acknowledge it.
 
-[Documentation](doc/)
-
-
-## Setting up
-
-*   Visit http://console.cloud.google.com and create a project. Replace
-    `<appid>` below with your project id.
-*   Visit Google Cloud Console,
-    *   IAM & Admin, click `Add Member` and add someone else so you can safely
-        be hit by a bus.
-    *   IAM & Admin, change the role for `App Engine default service account`
-        from `Editor` to `Owner`.
-    *   Pub/Sub, click `Enable API`.
-        *   Click `Create a topic`.
-        *   Name it "_auth-db-changed_", click `Create`.
-*   Upload the code with: `./tools/gae upl -x -A <appid>`
-    *   The very first upload may fail, try a second time.
-*   Visit https://\<appid\>.appspot.com/auth/bootstrap and click Proceed.
-*   Wait up to 5 minutes.
-*   Visit "_https://\<appid\>.appspot.com_" and make sure you can access the
-    service before connecting [Isolate](../isolate) and [Swarming](../swarming)
-    to this instance.
-*   If you plan to use a [config service](../config_service),
-    *   Make sure it is setup already.
-    *   [Follow instruction
-        here](../components/components/config/#linking-to-the-config-service).
+If Auth Service goes down, everything remains operational, except the
+authorization configuration becomes essentially "frozen" until Auth Service
+comes back online and resumes distributing it.
 
 
-### Linking other services to auth_service
+## Configuration distributed by Auth Service (aka AuthDB)
 
-*   Make sure your app is fully working.
-*   Visit https://\<authid\>.appspot.com where \<authid\> is the auth_service
-    instance to link with, e.g. chrome-infra-auth.
-*   Click on the Services tab.
-*   Type your \<appid\> in GAE application id and click Generate linking URL,
-    where \<appid\> is the service being linked to the auth_service.
-*   Click the link in the UI.
-*   Click the red Switch button, understanding that any previous ACL
-    configuration on this instance is lost.
+This section describes what exactly is "data and configuration used for
+authorization decisions".
 
+See AuthDB message in
+[replication.proto](../components/components/auth/proto/replication.proto) for
+all details.
+
+### Groups graph
+
+Groups are how the lowest layer of ACLs is expressed in LUCI, e.g. a service
+may authorize some action to members of some group. More complex access control
+rules use groups as building blocks.
+
+Each group has a name (global to the LUCI cluster), a list of identity strings
+it includes directly, a list of nested groups, and a list of glob-like patterns
+to match against identity strings.
+
+An identity string encodes a principal that performs an action. It's the result
+of authentication stage. It looks like `<type>:<id>` and can represent:
+  * `user:<email>` - Google Accounts (end users and service accounts).
+  * `anonymous:anonymous` - callers that didn't provide any credentials.
+  * `project:<project>` - a LUCI service acting in a context of some LUCI
+    project when calling some other LUCI service. **Work in progress**.
+  * `bot:<hostname>` - used only by Swarming, individual bots pulling tasks.
+  * `bot:whitelisted-ip` - callers authenticated exclusively through an IP
+    whitelist. **Deprecated**.
+  * `service:<app-id>` - GAE application authenticated via
+    `X-Appengine-Inbound-Appid` header. **Deprecated**.
+
+
+### IP whitelists
+
+An IP whitelist as a named set of IPv4 and IPv6 addresses. They are primarily
+used in Swarming when authorizing RPCs from bots. IP whitelists are defined in
+`ip_whitelist.cfg` configuration file.
+
+
+### OAuth client ID whitelist
+
+This is a list of [OAuth client IDs] recognized by the LUCI cluster. It lists
+various OAuth clients (standalone binaries, web apps, AppScripts, etc) that
+are allowed to send end-user OAuth access tokens to LUCI. OAuth client ID
+whitelist is defined `oauth.cfg` configuration file.
+
+[OAuth client IDs]: https://www.oauth.com/oauth2-servers/client-registration/client-id-secret/
+
+### Security configuration for internal LUCI RPCs.
+
+Various bits of configuration (defined partially in `oauth.cfg` and in
+`security.cfg` config files) that are centrally distributed to services in
+a LUCI cluster. Used to establish mutual trust between them.
+
+
+## API surfaces
+
+### Groups API
+
+This is a REST API to examine and modify group graph. It is used primarily by
+Auth Service's own web frontend (i.e. it is mostly used by humans). It is
+documented [right there](https://chrome-infra-auth.appspot.com/auth/api).
+Alternatively, read the
+[source code](../components/components/auth/ui/rest_api.py). This API is
+appropriate for modifying groups and for adhoc checks when debugging
+access errors (and both these taks can be done through the web UI, so there's
+rarely a need to use this API directly).
+
+Services that care about availability **must not** use this API for
+authorization checks. It has no performance or availability guarantees. If you
+use this API, and your service goes down because Auth Service is down, it is
+**your fault**.
+
+Instead services should use AuthDB replication (normally through a LUCI client
+library) to obtain and keep up-to-date the snapshot of all groups, and use it
+locally without hitting Auth Service on every request. See next couple sections
+for more information.
+
+
+### AuthDB replication
+
+All authorization configuration internally is stored in a single Cloud Datastore
+entity group. This entity group has a revision number associated with it, which
+is incremented with every transactional change (e.g. when groups are updated).
+
+For every revision Auth Server creates a consistent snapshot of AuthDB at this
+particular revision, signs it, uploads it to a preconfigured Google Storage
+bucket, starts serving it over `/auth_service/api/v1/authdb/revisions/...`
+endpoint, sends a PubSub notification to a preconfigured PubSub topic, and
+finally uploads the snapshot (via POST HTTP request) to all registered web hooks
+until all of them acknowledge it.
+
+It is distributed in a such diverse way for backward compatibility with variety
+of AuthDB client implementations (in historical order):
+  * Web hooks are how Python GAE services consume AuthDB via [components.auth]
+    client library.
+  * PubSub and `/auth_service/api/v1/authdb/revisions/...` endpoint is how
+    Go GAE services consume AuthDB via [go.chromium.org/luci/server/auth]
+    client.
+  * `/auth_service/api/v1/authdb/revisions/...` is also polled by Gerrit groups
+    plugin.
+  * Google Storage dump is consumed by Go GKE services (that don't have
+    non-ephemeral storage to cache AuthDB in). This is also done via
+    [go.chromium.org/luci/server/auth] client configured by
+    [go.chromium.org/luci/server].
+
+[components.auth]: ../components/components/auth
+[go.chromium.org/luci/server]: https://godoc.org/go.chromium.org/luci/server
+[go.chromium.org/luci/server/auth]: https://godoc.org/go.chromium.org/luci/server/auth
+
+
+### Hooking up a LUCI service to receive AuthDB updates
+
+In all cases the goal is to let Auth Service know identity of a new service and
+let the new service know the location of Auth Service. How exactly this looks
+depends on where the new service is running and what client library it uses.
+
+Python GAE services should use [components.auth] library. Once the service is
+deployed, perform this one-time setup:
+  * If you are member of `administrators` group, open
+    `https://<auth-service>.appspot.com/auth/services` in a browser, put app ID
+    of the new service in `Add service` section and click `Generate linking
+    URL`.
+  * If you are not a member of `administrators` group, ask an administrator to
+    do it on your behalf and share the resulting link with you.
+  * If you are GAE admin of the new service, follow the link, it will ask for
+    confirmation. Confirm. Done.
+  * If you are not a GAE admin, ask the admin to visit the link.
+
+Go GAE services should use [go.chromium.org/luci/server/auth] and hooking them
+to an Auth Service looks different:
+  * Make sure Google Cloud Pub/Sub API is enabled in the cloud project that
+    contains the new service.
+  * Add GAE service account (`<appid>@appspot.gserviceaccount.com`) of the
+    new service to `auth-trusted-services` group (or ask an administrator to do
+    it for you).
+  * As a GAE admin, open `https://<appid>.appspot.com/admin/portal/auth_service`
+    and put `https://<auth-service>.appspot.com` into `Auth Service URL` field.
+  * Click `Save Settings`. Done.
+
+Go GKE service should use [go.chromium.org/luci/server]. There's no notion of
+"GAE admin" for them, and no dynamic settings. Instead the configuration is done
+through command line flags:
+  * Make sure Google Cloud Pub/Sub API is enabled in the cloud project that
+    contains the new service.
+  * Add the service account of the new service to `auth-trusted-services` group
+    (or ask an administrator to do it for you).
+  * Pass `-auth-service-host <auth-service>.appspot.com` flag when launching the
+    server.
+  * If it starts and starts responding to `/healthz` checks, you are done.
+
+
+## Initial setup
+
+...
+
+
+## External dependencies
+
+Auth Service depends on following services:
+  * App Engine standard: the serving environment.
+  * Cloud Datastore: storing the state (including groups graph).
+  * Cloud PubSub: sending AuthDB update notifications to authorized clients.
+  * Cloud Storage: saving AuthDB dumps to be consumed by authorized clients.
+  * Cloud IAM: managing PubSub ACLs to allow authorized clients to subscribe.
+  * LUCI Config: receiving own configuration files.
