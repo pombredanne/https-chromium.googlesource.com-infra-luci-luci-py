@@ -63,6 +63,24 @@
       "revId": "63bb2c94849fec1ce3bcd7b5f26b1c0356499e00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4eb02447_9304cd70",
+        "filename": "appengine/swarming/event_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T02:54:38Z",
+      "side": 1,
+      "message": "There was no point, removed.",
+      "parentUuid": "ad21aa01_f7474ac6",
+      "revId": "63bb2c94849fec1ce3bcd7b5f26b1c0356499e00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
