@@ -110,6 +110,8 @@ def _gen_run_result(**kwargs):
   run_result.modified_ts = utils.utcnow()
   run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
       seconds=request.bot_ping_tolerance_secs)
+  if not run_result.dead_after_ts:
+    logging.warning('Must update .dead_after_ts')
   ndb.transaction(
       lambda: result_summary.set_from_run_result(run_result, request))
   ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
@@ -293,6 +295,8 @@ class TaskResultApiTest(TestCase):
     actual.dead_after_ts = self.now + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
     # Trigger _pre_put_hook().
+    if not actual.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     actual.put()
     expected = self._gen_result(modified_ts=self.now, started_ts=self.now,
                                 dead_after_ts=self.now + datetime.timedelta(
@@ -354,6 +358,8 @@ class TaskResultApiTest(TestCase):
     run_result.modified_ts = run_result.started_ts
     run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
@@ -388,6 +394,8 @@ class TaskResultApiTest(TestCase):
         isolated_upload=task_result.OperationStats(
             duration=0.01,
             items_cold=large.pack([10]))).put()
+    if run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(lambda: ndb.put_multi(run_result.append_output('foo', 0)))
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result, request))
@@ -477,6 +485,8 @@ class TaskResultApiTest(TestCase):
     run_result.modified_ts = run_result.started_ts
     run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result, request))
     ndb.transaction(lambda: ndb.put_multi((run_result, result_summary)))
@@ -502,6 +512,8 @@ class TaskResultApiTest(TestCase):
     run_result.modified_ts = utils.utcnow()
     run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
 
     self.assertTrue(result_summary.need_update_from_run_result(run_result))
@@ -523,6 +535,8 @@ class TaskResultApiTest(TestCase):
     run_result.modified_ts = utils.utcnow()
     run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
 
     self.assertTrue(result_summary.need_update_from_run_result(run_result))
@@ -534,6 +548,8 @@ class TaskResultApiTest(TestCase):
     run_result.modified_ts = utils.utcnow()
     run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
@@ -558,12 +574,16 @@ class TaskResultApiTest(TestCase):
     run_result_2.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
     result_summary.modified_ts = utils.utcnow()
+    if not run_result_2.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result_2)))
 
     self.assertTrue(result_summary.need_update_from_run_result(run_result_1))
     run_result_1.modified_ts = utils.utcnow()
     run_result_1.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result_1.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result_1, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result_1)))
@@ -575,6 +595,8 @@ class TaskResultApiTest(TestCase):
     run_result_2.modified_ts = utils.utcnow()
     run_result_2.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result_2.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result_2, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result_2)))
@@ -706,6 +728,8 @@ class TaskResultApiTest(TestCase):
     run_result.state = task_result.State.TIMED_OUT
     run_result.bot_dimensions = {u'id': [u'bot1'], u'pool': [u'default']}
     run_result.dead_after_ts = None
+    if run_result.dead_after_ts:
+      logging.warning('.dead_after_ts should be None')
     run_result.put()
 
     props_h = '1cae9073cfc09142530e40b9e251b378cbd1b1309bb3cd2f51c36e1d488e1bfa'
