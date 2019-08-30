@@ -534,6 +534,8 @@ class TaskResultApiTest(TestCase):
     run_result.modified_ts = utils.utcnow()
     run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
         seconds=request.bot_ping_tolerance_secs)
+    if not run_result.dead_after_ts:
+      logging.warning('Must update .dead_after_ts')
     ndb.transaction(
         lambda: result_summary.set_from_run_result(run_result, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
