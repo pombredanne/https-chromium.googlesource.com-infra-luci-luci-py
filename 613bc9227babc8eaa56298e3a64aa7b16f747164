@@ -16,6 +16,24 @@
       "revId": "613bc9227babc8eaa56298e3a64aa7b16f747164",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05534190_5f1cb20b",
+        "filename": "appengine/auth_service/README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-08-30T00:19:42Z",
+      "side": 1,
+      "message": "\u0027*\u0027 is same as \u0027user:*\u0027, \u0027user:\u0027 prefix is added by default in UI. Added a note.",
+      "parentUuid": "9bc63bd4_51a71fac",
+      "revId": "613bc9227babc8eaa56298e3a64aa7b16f747164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
