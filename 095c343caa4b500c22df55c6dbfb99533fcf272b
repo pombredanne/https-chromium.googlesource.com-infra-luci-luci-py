@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a667f923_ef16f60c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T03:07:33Z",
+      "side": 1,
+      "message": "The more I think about it, the safer is to convert the exceptions here to a logging.warning().\n\nThis is cleaner. This does require updating the unit test until the exceptions are brought back but then there\u0027s no weird thing done in task_scheduler.",
+      "revId": "095c343caa4b500c22df55c6dbfb99533fcf272b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5393e4c6_9830a936",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T03:07:33Z",
+      "side": 1,
+      "message": "I\u0027d propose the following comment:\n\n  # When a task is running, the TaskRunResult and TaskResultSummary entities are\n  # updated by a single server version, since the bot locks on the specific server version.\n  #\n  # WARNING: This code runs in the children task, updating the parent\u0027s task entities.\n  # This task was triggered later, so it could be running a different server version.\n  # There has been cases where saving entities across different versions caused issues,\n  # and they are next to impossible to test. This is especially problematic with new\n  # fields coupled with _pre_put_hook().\n\nand not change the logic at all. Comment out the check instead as proposed in the other comment. This is safer long term.",
+      "revId": "095c343caa4b500c22df55c6dbfb99533fcf272b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
