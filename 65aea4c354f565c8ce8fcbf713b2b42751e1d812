@@ -34,6 +34,24 @@
       "revId": "65aea4c354f565c8ce8fcbf713b2b42751e1d812",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7ac151_ea927f3a",
+        "filename": "appengine/swarming/event_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T15:02:12Z",
+      "side": 1,
+      "message": "Added comment",
+      "parentUuid": "378098f1_5c34402b",
+      "revId": "65aea4c354f565c8ce8fcbf713b2b42751e1d812",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
