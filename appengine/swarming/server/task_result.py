@@ -953,6 +953,13 @@ class TaskRunResult(_TaskResultCommon):
     super(TaskRunResult, self)._pre_put_hook()
     if not self.started_ts:
       raise datastore_errors.BadValueError('Must update .started_ts')
+    # WARNING: The following checks can lead to some infra failures
+    # as in https://crbug.com/999288 in which:
+    # 1.Parent task running old server version didn't put .dead_after_ts
+    # 2.Child task running new server version has enforcement that
+    # .dead_after_ts is set.
+    # We will need to handle it manually until the server code becomes
+    # stable and parent and child tasks both start setting .dead_after_ts.
     if self.dead_after_ts:
       if self.dead_after_ts <= self.modified_ts:
         raise datastore_errors.BadValueError('.dead_after_ts must be set'

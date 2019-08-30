@@ -1200,6 +1200,22 @@ def schedule_request(request, secret_bytes):
       for item in items:
         item.children_task_ids.append(k)
         item.modified_ts = now
+        # TODO(adoneria): Remove the following code when the server code
+        # becomes stable, that is, there is no conflict between the old
+        # server code (without .dead_after_ts) and the new one.
+        #
+        # This fix is to solve https://crbug.com/999288 which happened because:
+        # 1.Parent task running old server version didn't put .dead_after_ts
+        # 2.Child task running new server version has enforcement that
+        # .dead_after_ts is set.
+        # TaskRunResult was updated with the new version of the server code,
+        # while still running with the older version. This steams from the fact
+        # that the bot locks on the server version when it runs a task.
+        if item.state == task_result.State.RUNNING:
+          item.dead_after_ts = now + datetime.timedelta(
+              seconds=request.bot_ping_tolerance_secs)
+        else:
+          item.dead_after_ts = None
       ndb.put_multi(items)
 
     # Raising will abort to the caller. There's a risk that for tasks with
