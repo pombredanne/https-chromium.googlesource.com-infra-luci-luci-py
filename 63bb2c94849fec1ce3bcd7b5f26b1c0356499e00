@@ -22,6 +22,30 @@
       "revId": "63bb2c94849fec1ce3bcd7b5f26b1c0356499e00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bb2b16a_21ed68d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T00:47:52Z",
+      "side": 1,
+      "message": "https://bugs.chromium.org/p/chromium/issues/list?q\u003devent_mon%20component%3AInfra%3EPlatform%3ESwarming%20\u0026can\u003d1 has a few bugs but nothing clear about removing the one from Swarming, we should file one. The last know user was dpranke@",
+      "parentUuid": "82e5eb9d_23225209",
+      "range": {
+        "startLine": 9,
+        "startChar": 37,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "63bb2c94849fec1ce3bcd7b5f26b1c0356499e00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
