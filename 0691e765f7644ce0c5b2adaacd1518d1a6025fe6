@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0f683ae_f70f63e5",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T17:20:48Z",
+      "side": 1,
+      "message": "Add link to the bug.",
+      "revId": "0691e765f7644ce0c5b2adaacd1518d1a6025fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04cda3fb_81bd6ca8",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T17:20:48Z",
+      "side": 1,
+      "message": "Humm in hindsight this is not super useful, especially when you do it right after setting the value, so I\u0027d recommend to not modify this file at all after all.",
+      "revId": "0691e765f7644ce0c5b2adaacd1518d1a6025fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c8da855_ae256b59",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-30T17:20:48Z",
+      "side": 1,
+      "message": "the bot",
+      "range": {
+        "startLine": 1202,
+        "startChar": 65,
+        "endLine": 1202,
+        "endChar": 71
+      },
+      "revId": "0691e765f7644ce0c5b2adaacd1518d1a6025fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
