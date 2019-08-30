@@ -2283,7 +2283,7 @@ class Dtrace(ApiBase):
       # that needs to be traced.
       # Yummy.
       child = subprocess.Popen(
-          child_cmd + tools.fix_python_cmd(cmd),
+          child_cmd + tools.find_executable(cmd),
           stdin=subprocess.PIPE,
           stdout=stdout,
           stderr=stderr,
@@ -2964,7 +2964,7 @@ class LogmanTrace(ApiBase):
         tracename,
       ]
       child = subprocess.Popen(
-          child_cmd + tools.fix_python_cmd(cmd),
+          child_cmd + tools.find_executable(cmd),
           cwd=cwd,
           stdin=subprocess.PIPE,
           stdout=stdout,
@@ -3294,7 +3294,7 @@ def trace(logfile, cmd, cwd, api, output):
   - api: a tracing api instance.
   - output: if True, returns output, otherwise prints it at the console.
   """
-  cmd = tools.fix_python_cmd(cmd)
+  cmd = tools.find_executable(cmd)
   api.clean_trace(logfile)
   with api.get_tracer(logfile) as tracer:
     return tracer.trace(cmd, cwd, 'default', output)
