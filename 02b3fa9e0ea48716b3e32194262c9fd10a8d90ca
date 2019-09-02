@@ -22,6 +22,30 @@
       "revId": "02b3fa9e0ea48716b3e32194262c9fd10a8d90ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c345f4_3d96cb6a",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-02T01:52:33Z",
+      "side": 1,
+      "message": "It\u0027s information for us. And it\u0027s fine to use a grep to find there. When using warning or error level, this makes \"hunting for bugs\" harder, as these then get in the way.",
+      "parentUuid": "21f527b0_13186edb",
+      "range": {
+        "startLine": 253,
+        "startChar": 12,
+        "endLine": 253,
+        "endChar": 16
+      },
+      "revId": "02b3fa9e0ea48716b3e32194262c9fd10a8d90ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
