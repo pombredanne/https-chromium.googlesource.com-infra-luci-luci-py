@@ -1272,6 +1272,16 @@ def bot_reap_task(bot_dimensions, bot_version):
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
       t = request.task_slice(slice_index)
       limit = to_run.created_ts + datetime.timedelta(seconds=t.expiration_secs)
+
+      # We use expiration_secs of following slices if there are. Because if we
+      # found bot that the task can run on before cron job cancels such slices,
+      # it is still preferred to run the task on there instead of cancelling
+      # current slice and trying to find bot for next slice.
+      for i in range(slice_index + 1, request.num_task_slices):
+        low_priority_slice = request.task_slice(i)
+        limit += datetime.timedelta(
+            seconds=low_priority_slice.expiration_secs)
+
       if limit < utils.utcnow():
         if expired >= 5:
           # Do not try to expire too many tasks in one poll request, as this
