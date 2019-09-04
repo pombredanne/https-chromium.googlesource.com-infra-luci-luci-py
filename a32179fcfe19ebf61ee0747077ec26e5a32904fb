@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37a24d8e_0382830b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-04T23:39:47Z",
+      "side": 1,
+      "message": "Isn\u0027t it?\n\n  for i in range(request.num_task_slices+1):",
+      "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
