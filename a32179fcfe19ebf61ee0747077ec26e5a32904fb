@@ -52,6 +52,24 @@
       "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee4c06d_b4bf8711",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-04T23:50:31Z",
+      "side": 1,
+      "message": "Here, I think we want to use least number of slice even if the current time is after the expiration time of next slice as long as the slice is reaped before cancelling cron job?",
+      "parentUuid": "df84c791_fb9ba4a4",
+      "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
