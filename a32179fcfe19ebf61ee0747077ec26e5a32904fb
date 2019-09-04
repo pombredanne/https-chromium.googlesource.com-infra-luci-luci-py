@@ -16,6 +16,24 @@
       "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "732e84f2_8fbd8e8e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-04T23:41:52Z",
+      "side": 1,
+      "message": "Do you mean this code is wrong?\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_request.py?l\u003d1156\u0026rcl\u003d9f4ccecdd7564371d941fe46ed8221227b886c4e",
+      "parentUuid": "37a24d8e_0382830b",
+      "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
