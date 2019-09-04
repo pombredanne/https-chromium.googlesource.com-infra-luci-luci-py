@@ -34,6 +34,24 @@
       "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df84c791_fb9ba4a4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-04T23:47:09Z",
+      "side": 1,
+      "message": "No this code is right, because num_task_slices returns len(self.task_slices)\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_request.py?rcl\u003d9f4ccecdd7564371d941fe46ed8221227b886c4e\u0026l\u003d1110\n\nrange(0) \u003d\u003d []\nrange(1) \u003d\u003d [0]\n\nOh, what I meant here is:\n\n  slice_index \u003d task_to_run.task_to_run_key_slice_index(to_run.key)\n  for i in range(slice_index+1):",
+      "parentUuid": "732e84f2_8fbd8e8e",
+      "revId": "a32179fcfe19ebf61ee0747077ec26e5a32904fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
