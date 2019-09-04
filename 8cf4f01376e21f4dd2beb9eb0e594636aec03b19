@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "120ff4cd_488a0014",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-04T07:18:36Z",
+      "side": 1,
+      "message": "This looks like a bug! (Unrelated to your change, but it has an impact)\nIt doesn\u0027t take in account the sum of the previous slice expiration_secs. :(\nIt mostly worked because in general we have 2 slices, one with one short expiration, the second with a large expiration.\n\nSee https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_request.py?l\u003d1150 for an example how the summary is done. It would look like:\n\n  expiration_secs \u003d sum(t.expiration_secs for xrange(slice_index+1))\n\nIf you could add a test that confirms that, it\u0027d be great. That said this can be fixed in a separate CL but that has implication in the code you just added.",
+      "range": {
+        "startLine": 1274,
+        "startChar": 63,
+        "endLine": 1274,
+        "endChar": 78
+      },
+      "revId": "8cf4f01376e21f4dd2beb9eb0e594636aec03b19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7889f2f_0379d66a",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-04T07:18:36Z",
+      "side": 1,
+      "message": "The test case name should be updated, and the comment on the next line too.",
+      "revId": "8cf4f01376e21f4dd2beb9eb0e594636aec03b19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
