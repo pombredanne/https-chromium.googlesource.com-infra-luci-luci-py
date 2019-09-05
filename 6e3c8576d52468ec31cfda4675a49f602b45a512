@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8af7b33c_f551f0f6",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T09:34:46Z",
+      "side": 1,
+      "message": "Actually, remove this one, and instead specify:\n\n  bucket_size: 20",
+      "revId": "6e3c8576d52468ec31cfda4675a49f602b45a512",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f882ecff_9d624aba",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1769,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T09:34:46Z",
+      "side": 1,
+      "message": "We can expect good data, so it\u0027s fine to remove lines 1769-1772.",
+      "revId": "6e3c8576d52468ec31cfda4675a49f602b45a512",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
