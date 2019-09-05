@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "bb526070_73aeba74",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "I meant not here, but in the test case below where you need it.",
+      "parentUuid": "68465cb4_83c6832c",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a661583_11d0ff55",
         "filename": "client/tests/find_executable_test.py",
         "patchSetId": 4
@@ -70,6 +88,40 @@
     },
     {
       "key": {
+        "uuid": "2546f06b_955a8e1c",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "That\u0027s a bit magic IMHO. I\u0027d prefer explicit mock in each test case. Otherwise it\u0027s really hard for reader to figure out, there\u0027s no comment about this one has to read all of setUp() to realize. Or better, make a separate class, one mocking \u0027linux2\u0027, the other \u0027win32\u0027.\n\nBecause right now I think this test fails if run on Windows.",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c38be2ce_3ab90730",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "I\u0027d prefer file_path.rmtree(self.playground)",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5273569c_b6c0d2d9",
         "filename": "client/tests/find_executable_test.py",
         "patchSetId": 4
@@ -87,6 +139,86 @@
     },
     {
       "key": {
+        "uuid": "2f14d325_dfc8544a",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "This is shorter and IMHO better:\n\n  full \u003d self._abs(*path_toks)\n  d \u003d os.path.dir(full)\n  if not os.path.isdir(d):\n    os.makedirs(d)\n\n  with open(full, \u0027w\u0027) as f:\n    f.write(\u0027hi\u0027)\n\n  return full",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce3fd4d5_a03b5fd5",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "Why the explicit list() ? So that it doesn\u0027t mutate the original command? If this is a concern maybe you could test this explicitly. I added a comment in tools.py about not mutating the inputs.",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 12
+      },
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c14f4f3_36ed0876",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "did you mean to mock sys.platform?",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2491e1e4_80749523",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "Is it really useful? I mean we don\u0027t ever use the function with False, so IMHO the option shouldn\u0027t be added. Less code, but more importantly less tests.",
+      "range": {
+        "startLine": 135,
+        "startChar": 47,
+        "endLine": 135,
+        "endChar": 67
+      },
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "97219393_3e9803b3",
         "filename": "client/tests/find_executable_test.py",
         "patchSetId": 4
@@ -98,6 +230,23 @@
       "writtenOn": "2019-09-05T20:25:35Z",
       "side": 1,
       "message": "I prefer two lines here.",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed23f7c9_59ce2055",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:48:07Z",
+      "side": 1,
+      "message": "We should really not mutate and instead create a new list. That was a bug.\n\nMost of the time we didn\u0027t get this because add_python_cmd() already makes a copy.",
       "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
