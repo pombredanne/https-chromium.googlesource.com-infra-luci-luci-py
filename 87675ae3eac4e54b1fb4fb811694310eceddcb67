@@ -16,6 +16,23 @@
       "revId": "87675ae3eac4e54b1fb4fb811694310eceddcb67",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e291631_2fba4525",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1593,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T09:37:01Z",
+      "side": 1,
+      "message": "summary_key \u003d task_pack.request_key_to_result_summary_key(to_run.request_key)\ntask_id \u003d task_pack.pack_result_summary_key(to_run.request_key)",
+      "revId": "87675ae3eac4e54b1fb4fb811694310eceddcb67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
