@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5fd02c38_1ccf776e",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-09-05T09:35:18Z",
+      "side": 1,
+      "message": "Is payload guaranteed to have \u0027task_id\u0027?  Or, code would raise?\nI suggest to use payload.get(\u0027task_id\u0027) like L243.",
+      "range": {
+        "startLine": 265,
+        "startChar": 37,
+        "endLine": 265,
+        "endChar": 56
+      },
+      "revId": "6e3c8576d52468ec31cfda4675a49f602b45a512",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8af7b33c_f551f0f6",
         "filename": "appengine/swarming/queue.yaml",
         "patchSetId": 5

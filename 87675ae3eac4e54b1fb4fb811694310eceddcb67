@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2f3ef26_eab25104",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-09-05T09:35:18Z",
+      "side": 1,
+      "message": "just to confirm but failure of en-queue might not be a big deal because the task just continue running, right?\n\nAh, but why not reenque this case?",
+      "revId": "87675ae3eac4e54b1fb4fb811694310eceddcb67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
