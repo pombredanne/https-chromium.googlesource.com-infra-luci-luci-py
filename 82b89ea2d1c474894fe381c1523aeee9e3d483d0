@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7471732a_29383928",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T05:14:02Z",
+      "side": 1,
+      "message": "Worth adding something like:\n\n  No functional change\n\nI find it useful when looking at logs to know if there should not have been any functional change by a commit.",
+      "revId": "82b89ea2d1c474894fe381c1523aeee9e3d483d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3618080b_75b12787",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T05:14:02Z",
+      "side": 1,
+      "message": "Can you do a variable to not call utcnow 3 times in a row?\n\n  now \u003d utils.utcnow()\n  if now \u003c\u003d slice_expiration and limit \u003c now:\n\nand below",
+      "revId": "82b89ea2d1c474894fe381c1523aeee9e3d483d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "594002f4_caca80de",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T05:14:02Z",
+      "side": 1,
+      "message": "Maybe worth also logging the slice_index.",
+      "revId": "82b89ea2d1c474894fe381c1523aeee9e3d483d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
