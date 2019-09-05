@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26609165_271ce64c",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T23:23:08Z",
+      "side": 1,
+      "message": "Please refer to MODIFICATIONS.diff explicitly since people read \"quickly\".",
+      "revId": "8a112ec7ae9aa0651969c38958f4ffafe558adfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa1182b1_a1d96238",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T23:23:08Z",
+      "side": 1,
+      "message": "Oops you removed a bit too much header, you still need to keep the file name, the --- and +++ lines",
+      "revId": "8a112ec7ae9aa0651969c38958f4ffafe558adfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed3f6c24_a8a8b165",
+        "filename": "client/third_party/google/oauth2/_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T23:23:08Z",
+      "side": 1,
+      "message": "else is not needed, since it\u0027s doing a continue above.",
+      "revId": "8a112ec7ae9aa0651969c38958f4ffafe558adfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41dc7d7b_afde6f53",
+        "filename": "client/third_party/google/oauth2/_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T23:23:08Z",
+      "side": 1,
+      "message": "I\u0027m not fan of late break, I\u0027d prefer above to be\n\nif response.status \u003d\u003d http_client.OK:\n  break",
+      "revId": "8a112ec7ae9aa0651969c38958f4ffafe558adfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
