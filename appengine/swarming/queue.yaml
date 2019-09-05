@@ -12,6 +12,11 @@ queue:
   bucket_size: 100
   rate: 500/s
 
+# /internal/taskqueue/important/tasks/expire-tasks
+- name: expire-tasks
+  max_concurrent_requests: 100
+  rate: 100/s
+
 # /internal/taskqueue/important/pubsub/notify-task/<task_id:[0-9a-f]+>
 - name: pubsub
   bucket_size: 100
@@ -44,7 +49,6 @@ queue:
 - name: delete-tasks
   max_concurrent_requests: 20
   rate: 1/s
-
 
 ## External Scheduler
 
