@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d2cd05b_ff300030",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1807,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T10:14:58Z",
+      "side": 1,
+      "message": "Remove this, since it can\u0027t be accessed.",
+      "revId": "cf4381534e741f9d974a448342e135470322ed58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
