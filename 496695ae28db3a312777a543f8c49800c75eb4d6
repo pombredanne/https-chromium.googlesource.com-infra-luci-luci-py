@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad9bba26_837dfc08",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "This breaks client/run_isolated.py and client/swarming.py since they don\u0027t use named argument for env.",
+      "revId": "496695ae28db3a312777a543f8c49800c75eb4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6c547e1_ad4561ab",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "The formatting is weird.",
+      "revId": "496695ae28db3a312777a543f8c49800c75eb4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88ee2749_aa0dc1ab",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "This will sadly be hard to reverse, and on Windows it\u0027s really assumed. :/ So I don\u0027t think it\u0027s worth keeping the TODO.",
+      "revId": "496695ae28db3a312777a543f8c49800c75eb4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faa332c7_93242f3e",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "please use candidate for consistency",
+      "range": {
+        "startLine": 301,
+        "startChar": 29,
+        "endLine": 301,
+        "endChar": 33
+      },
+      "revId": "496695ae28db3a312777a543f8c49800c75eb4d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

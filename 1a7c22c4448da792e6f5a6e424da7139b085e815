@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37fc508f_3f5552c4",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "Please call it tools_test.py. Surprised there wasn\u0027t one.",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68465cb4_83c6832c",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "Instead of keeping track manually, when you mock it you can do:\n\n  self._orig_platform \u003d self.mock(sys, \u0027platform\u0027, \u0027win32\u0027)\n\nso you can still check the original platform in the test cases.",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a661583_11d0ff55",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "tempfile.mkdtemp(prefix\u003d\u0027tools_test\u0027)\n\nabspath is not needed, but realpath is (on macOS).",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3e8bcd6_3dc38de1",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "This removes the need to keep track of self._orig_access:\n\n  self.mock(os, \u0027access\u0027, lambda path, _: path in self._executables)\n\nbut this requires after line 18:\n\n  # third_party/\n  from depot_tools import auto_stub",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5273569c_b6c0d2d9",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "Do you want to test once when a path is relative? :) That\u0027s a corner case but \"while at it\".",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97219393_3e9803b3",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-05T20:25:35Z",
+      "side": 1,
+      "message": "I prefer two lines here.",
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
