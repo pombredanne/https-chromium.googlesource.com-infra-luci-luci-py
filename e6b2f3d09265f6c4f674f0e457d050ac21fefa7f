@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bc634372_1b3b3575",
+        "filename": "client/third_party/google/oauth2/_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-05T23:02:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6655fad_2a89631d",
+      "revId": "e6b2f3d09265f6c4f674f0e457d050ac21fefa7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff63c91f_e40eb5a6",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2019-09-05T22:36:16Z",
       "side": 1,
       "message": "is lower() necessary?",
+      "range": {
+        "startLine": 114,
+        "startChar": 21,
+        "endLine": 114,
+        "endChar": 29
+      },
+      "revId": "e6b2f3d09265f6c4f674f0e457d050ac21fefa7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b7bb25f_ea4d0e89",
+        "filename": "client/third_party/google/oauth2/_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-05T23:02:03Z",
+      "side": 1,
+      "message": "No. Replaced with exact failure string which I see in logs.\n\u0027RefreshError: (\u0027internal_failure: None\u0027, u\u0027{\\n  \"error\": \"internal_failure\"\\n}\u0027)\u0027",
+      "parentUuid": "ff63c91f_e40eb5a6",
       "range": {
         "startLine": 114,
         "startChar": 21,
