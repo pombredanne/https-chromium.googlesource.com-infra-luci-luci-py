@@ -81,6 +81,30 @@
       "revId": "e6b2f3d09265f6c4f674f0e457d050ac21fefa7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401bae96_f3c64718",
+        "filename": "client/third_party/google/oauth2/_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-05T23:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b7bb25f_ea4d0e89",
+      "range": {
+        "startLine": 114,
+        "startChar": 21,
+        "endLine": 114,
+        "endChar": 29
+      },
+      "revId": "e6b2f3d09265f6c4f674f0e457d050ac21fefa7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
