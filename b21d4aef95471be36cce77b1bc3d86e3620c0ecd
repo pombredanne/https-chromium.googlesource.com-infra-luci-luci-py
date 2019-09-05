@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "79be0b27_5bc6155f",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-05T23:36:20Z",
+      "side": 1,
+      "message": "I meant to say change\nhttps://github.com/googleapis/google-auth-library-python\nitself to do retrying.",
+      "parentUuid": "53591882_632a0aec",
+      "revId": "b21d4aef95471be36cce77b1bc3d86e3620c0ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3beb2167_c2b3ab48",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 4
