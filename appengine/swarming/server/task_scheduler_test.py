@@ -690,8 +690,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock_now(self.now, 181)
 
     # Expire first task here.
-    self.assertEqual(([], ['1d69b9f088008910']),
-                     task_scheduler.cron_abort_expired_task_to_run())
+    task_scheduler.cron_abort_expired_task_to_run()
+    self.assertEqual(1, self.execute_tasks())
 
     # The first is explicitly expired, and the second TaskSlice cannot be
     # reaped by this bot.
@@ -1818,9 +1818,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         1, pubsub_topic='projects/abc/topics/def')
     abandoned_ts = self.mock_now(
         self.now, result_summary.request_key.get().expiration_secs+1)
-    self.assertEqual(
-        (['1d69b9f088008910'], []),
-        task_scheduler.cron_abort_expired_task_to_run())
+    task_scheduler.cron_abort_expired_task_to_run()
+    self.assertEqual(1, self.execute_tasks())
     self.assertEqual([], task_result.TaskRunResult.query().fetch())
     expected = self._gen_result_summary_pending(
         abandoned_ts=abandoned_ts,
@@ -1856,9 +1855,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # BOT_DIED is kept instead of EXPIRED.
     abandoned_ts = self.mock_now(
         self.now, run_result.request_key.get().expiration_secs+1)
-    self.assertEqual(
-        (['1d69b9f088008910'], []),
-        task_scheduler.cron_abort_expired_task_to_run())
+    task_scheduler.cron_abort_expired_task_to_run()
+    self.assertEqual(1, self.execute_tasks())
     self.assertEqual(1, len(task_result.TaskRunResult.query().fetch()))
     expected = self._gen_result_summary_reaped(
         abandoned_ts=abandoned_ts,
@@ -1905,9 +1903,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock_now(self.now, 601)
 
     # cron job 'expires' the task slices but not the whole task.
-    self.assertEqual(
-        ([], ['1d69b9f088008910']),
-        task_scheduler.cron_abort_expired_task_to_run())
+    task_scheduler.cron_abort_expired_task_to_run()
+    self.assertEqual(1, self.execute_tasks())
     result_summary = result_summary.key.get()
     self.assertEqual(State.PENDING, result_summary.state)
     # Skipped the second and third TaskSlice.
@@ -1936,9 +1933,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     # Expire the first slice.
     self.mock_now(self.now, 601)
-    self.assertEqual(
-        ([], ['1d69b9f088008910']),
-        task_scheduler.cron_abort_expired_task_to_run())
+    task_scheduler.cron_abort_expired_task_to_run()
+    self.assertEqual(1, self.execute_tasks())
     result_summary = result_summary.key.get()
     self.assertEqual(State.PENDING, result_summary.state)
     # Wait for the second TaskSlice even if there is no capacity.
