@@ -1279,6 +1279,17 @@ def bot_reap_task(bot_dimensions, bot_version):
         t = request.task_slice(i)
         limit += datetime.timedelta(seconds=t.expiration_secs)
 
+      slice_expiration = to_run.created_ts
+      slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
+      for i in range(slice_index + 1):
+        t = request.task_slice(i)
+        slice_expiration += datetime.timedelta(seconds=t.expiration_secs)
+
+      if utils.utcnow() <= slice_expiration and limit < utils.utcnow():
+        logging.info('Task slice is expired, but task is not expired; '
+                     'slice expiration: %s, task expiration: %s',
+                     slice_expiration, limit)
+
       if limit < utils.utcnow():
         if expired >= 5:
           # Do not try to expire too many tasks in one poll request, as this
