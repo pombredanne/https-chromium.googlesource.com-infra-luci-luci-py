@@ -99,14 +99,24 @@ def _token_endpoint_request(request, token_uri, body):
     headers = {
         'content-type': _URLENCODED_CONTENT_TYPE,
     }
+    retry = 0
+    # retry to fetch token for maximum of two times if any internal failure
+    # occurs.
+    while retry < 2:
+      response = request(
+          method='POST', url=token_uri, headers=headers, body=body)
 
-    response = request(
-        method='POST', url=token_uri, headers=headers, body=body)
+      response_body = response.data.decode('utf-8')
 
-    response_body = response.data.decode('utf-8')
-
-    if response.status != http_client.OK:
-        _handle_error_response(response_body)
+      if response.status != http_client.OK:
+        error_desc = json.loads(response_body).get('error_description') or ''
+        if error_desc == 'internal_failure' and retry < 2:
+          retry += 1
+          continue
+        else:
+          _handle_error_response(response_body)
+      else:
+        break
 
     response_data = json.loads(response_body)
 
