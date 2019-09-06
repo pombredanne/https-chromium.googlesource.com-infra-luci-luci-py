@@ -16,6 +16,23 @@
       "revId": "cf4381534e741f9d974a448342e135470322ed58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e83a5f6_e2ee2ef0",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-06T02:12:07Z",
+      "side": 1,
+      "message": "This assertion fails because `self.execute_tasks()` returns 2 because `pubsub` task is called internally when executing a task.\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?rcl\u003d9f4ccecdd7564371d941fe46ed8221227b886c4e\u0026l\u003d104\n\nWill consider another way to test this.",
+      "revId": "cf4381534e741f9d974a448342e135470322ed58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

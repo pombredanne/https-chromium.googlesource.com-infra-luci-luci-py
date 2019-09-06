@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0af24267_1abfddeb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-06T02:12:07Z",
+      "side": 1,
+      "message": "Next cron job will take care of it. the point here is not to block the process.",
+      "parentUuid": "a2f3ef26_eab25104",
+      "revId": "87675ae3eac4e54b1fb4fb811694310eceddcb67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e291631_2fba4525",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "87675ae3eac4e54b1fb4fb811694310eceddcb67",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c213110f_fe83076b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1593,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-06T02:12:07Z",
+      "side": 1,
+      "message": "\u003e summary_key \u003d task_pack.request_key_to_result_summary_key(to_run.request_key)\n\u003e task_id \u003d task_pack.pack_result_summary_key(to_run.request_key)\n\ndone",
+      "parentUuid": "3e291631_2fba4525",
+      "revId": "87675ae3eac4e54b1fb4fb811694310eceddcb67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
