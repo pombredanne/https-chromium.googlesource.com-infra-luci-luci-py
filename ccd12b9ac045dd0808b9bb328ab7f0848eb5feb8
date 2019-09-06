@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "016fb134_37ac115e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-06T02:28:22Z",
+      "side": 1,
+      "message": "update?",
+      "range": {
+        "startLine": 1579,
+        "startChar": 0,
+        "endLine": 1580,
+        "endChar": 53
+      },
+      "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c88e5a1_660c8bc6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1764,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-06T02:28:22Z",
+      "side": 1,
+      "message": "add docstring explaining what it does?",
+      "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82ab2718_8776249a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-06T02:28:22Z",
+      "side": 1,
+      "message": "if we don\u0027t take care other than task_id for reenqueued, better to append task_id only?",
+      "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
