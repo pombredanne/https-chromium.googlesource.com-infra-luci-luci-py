@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ae32cea_82c1dda8",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-06T02:13:20Z",
+      "side": 1,
+      "message": "Can you make it clear that it means that paths like \"./foo\" are supported, even on Windows?",
+      "revId": "7b970012935ccc028dcbafc05988fd435fd90e24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
