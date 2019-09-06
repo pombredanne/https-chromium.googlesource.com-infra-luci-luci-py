@@ -356,6 +356,30 @@
     },
     {
       "key": {
+        "uuid": "fb8647e0_f2c444d4",
+        "filename": "client/tests/find_executable_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-06T00:57:51Z",
+      "side": 1,
+      "message": "Thanks, that was just a silly oversight.",
+      "parentUuid": "12098712_ea35dcbf",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 12
+      },
+      "revId": "1a7c22c4448da792e6f5a6e424da7139b085e815",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c14f4f3_36ed0876",
         "filename": "client/tests/find_executable_test.py",
         "patchSetId": 4
