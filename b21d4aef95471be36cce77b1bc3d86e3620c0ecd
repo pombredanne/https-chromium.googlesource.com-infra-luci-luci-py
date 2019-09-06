@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "c3647ce0_171d9c09",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-06T00:13:12Z",
+      "side": 1,
+      "message": "Okay. I will add this code there too then.",
+      "parentUuid": "24dfbc54_42d88803",
+      "revId": "b21d4aef95471be36cce77b1bc3d86e3620c0ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3beb2167_c2b3ab48",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 4
