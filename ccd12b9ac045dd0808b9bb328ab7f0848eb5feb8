@@ -42,6 +42,23 @@
     },
     {
       "key": {
+        "uuid": "6682f12a_924dcc95",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-06T03:24:16Z",
+      "side": 1,
+      "message": "pass the task_id, it\u0027s more useful, the request_key.id() is fairly opaque.",
+      "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82ab2718_8776249a",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 11
@@ -53,6 +70,47 @@
       "writtenOn": "2019-09-06T02:28:22Z",
       "side": 1,
       "message": "if we don\u0027t take care other than task_id for reenqueued, better to append task_id only?",
+      "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f16dfb26_cd9d8040",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-06T03:24:16Z",
+      "side": 1,
+      "message": "Lines 1803-1805 can be removed.",
+      "parentUuid": "82ab2718_8776249a",
+      "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6c82cb4_f72e2cbc",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2618,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-06T03:24:16Z",
+      "side": 1,
+      "message": "style nit: add another empty line",
+      "range": {
+        "startLine": 2618,
+        "startChar": 0,
+        "endLine": 2618,
+        "endChar": 0
+      },
       "revId": "ccd12b9ac045dd0808b9bb328ab7f0848eb5feb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
