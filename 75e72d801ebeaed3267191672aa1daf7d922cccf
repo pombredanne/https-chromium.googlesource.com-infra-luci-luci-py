@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70691fe4_e8010c8b",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "This is what should be overridden instead, see its comment.\n\nPlease separate this change as a separate CL with a unit test.",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84d3e909_210da258",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "Since it\u0027s after an execution, it should be a run_result_key.",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8e3d42b_74e09511",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "Please use similar comment style to the rest of the file. Use affirmative voice starting with a verb, no need to state this is a function, e.g.\n\n  \"\"\"Enqueues task queue to cancel non-completed children tasks.\"\"\"",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28c63f41_5c25452d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "I\u0027d prefer to not query the database here since it\u0027s a hot path. This is potentially unbounded with 100 tasks. This can take a long time to run.\n\nThe other option is:\n- Have bot_update_task() enqueue a task queue that itself will do the work here.",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ac04722_3ce7cb0e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "Just so execution is always in a deterministic order:\n\n  for version in sorted(children_tasks_per_version):",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63cc8118_be86631c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "You can\u0027t silently drop it, make it hard fail with an exception. This way the server returns a HTTP 500, which means the bot will retry.",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4162701e_685aba26",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-09T15:38:04Z",
+      "side": 1,
+      "message": "I\u0027m starting to wonder if we shouldn\u0027t put all lines of 1472 to 1476 into a deferred task queue.\n\nThe main drawback is delays in notifications but that shouldn\u0027t be too much of a problem. I need to think a bit more about it.",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
