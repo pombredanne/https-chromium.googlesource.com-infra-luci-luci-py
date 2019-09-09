@@ -842,6 +842,35 @@ def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
   return True, was_running
 
 
+def _cancel_pending_children_tasks(result_summary_key):
+  """
+  This function cancels children tasks with pending state using TaksQueue.
+  """
+  result_summary = result_summary_key.get()
+  children_task_keys = map(
+      task_pack.unpack_result_summary_key, result_summary.children_task_ids)
+  children_tasks_per_version = {}
+  for task in ndb.get_multi(children_task_keys):
+    if task.state != task_result.State.PENDING:
+      continue
+    version = task.server_versions[0]
+    children_tasks_per_version.setdefault(version, []).append(task.task_id)
+
+  for version in children_tasks_per_version:
+    payload = {
+      'tasks': children_tasks_per_version[version],
+      'kill_running': True,
+    }
+    ok = utils.enqueue_task(
+      'internal/taskqueue/important/tasks/cancel',
+      'cancel-tasks',
+      payload=utils.encode_to_json(payload),
+      # cancel task on specific version of backend module.
+      target=version+'.backend')
+    if not ok:
+      logging.warning('Failed to enqueue task')
+
+
 def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
   """Gets a task to run from external scheduler.
 
@@ -1445,6 +1474,8 @@ def bot_update_task(
   if smry.state not in task_result.State.STATES_RUNNING:
     event_mon_metrics.send_task_event(smry)
     ts_mon_metrics.on_task_completed(smry)
+
+    _cancel_pending_children_tasks(result_summary_key)
 
   # Hack a bit to tell the bot what it needs to hear (see handler_bot.py). It's
   # kind of an ugly hack but the other option is to return the whole run_result.
