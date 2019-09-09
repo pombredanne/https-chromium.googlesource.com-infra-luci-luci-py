@@ -145,6 +145,24 @@
     },
     {
       "key": {
+        "uuid": "c2faf8ac_66fcb9b5",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-09T17:57:43Z",
+      "side": 1,
+      "message": "Created a pull request at the upstream repo:\nhttps://github.com/googleapis/google-auth-library-python/pull/368",
+      "parentUuid": "a04192fe_ab57b7bf",
+      "revId": "b21d4aef95471be36cce77b1bc3d86e3620c0ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3beb2167_c2b3ab48",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 4
