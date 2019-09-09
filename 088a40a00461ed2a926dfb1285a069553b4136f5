@@ -51,6 +51,24 @@
       "revId": "088a40a00461ed2a926dfb1285a069553b4136f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83168d90_5a6c094d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1579,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-09T10:18:12Z",
+      "side": 1,
+      "message": "Discussed with Takuto that currently there is no rich assertion APIs.",
+      "parentUuid": "1db73d38_237550a7",
+      "revId": "088a40a00461ed2a926dfb1285a069553b4136f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
