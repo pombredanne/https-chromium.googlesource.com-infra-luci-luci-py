@@ -69,6 +69,24 @@
       "revId": "088a40a00461ed2a926dfb1285a069553b4136f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2a6019_657d24b6",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1579,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-09T10:25:09Z",
+      "side": 1,
+      "message": "We seems to have mock library.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/third_party_local/mock/?g\u003d0\n\nDiscussed in offline, Junji-san will try to use this instead of self._enqueue_calls.",
+      "parentUuid": "83168d90_5a6c094d",
+      "revId": "088a40a00461ed2a926dfb1285a069553b4136f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
