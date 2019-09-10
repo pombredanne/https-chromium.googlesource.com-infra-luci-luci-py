@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09cbdb32_b421802d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T23:52:44Z",
+      "side": 1,
+      "message": "nit: make this one line",
+      "range": {
+        "startLine": 604,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 5
+      },
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10efe718_919f0052",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T23:52:44Z",
+      "side": 1,
+      "message": "if index for this query is invalid, can we detect that before production switch?",
+      "range": {
+        "startLine": 619,
+        "startChar": 9,
+        "endLine": 619,
+        "endChar": 34
+      },
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2e20a95_8c5909df",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T23:52:44Z",
+      "side": 1,
+      "message": "\u003e Unused variable \u0027to_run_1\u0027.\n\u003e To disable, add: # pylint: disable\u003dunused-variable\n\nPlease Fix",
+      "parentUuid": "e6c927fb_42dfef06",
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b80bd32_7073591c",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T23:52:44Z",
+      "side": 1,
+      "message": "\u003e Undefined variable \u0027to_run_2\u0027.\n\u003e This check could give false positives when there are wildcard imports\n\u003e (from module import *). It is recommended to avoid wildcard imports; see\n\u003e https://www.python.org/dev/peps/pep-0008/#imports.\n\u003e To disable, add: # pylint: disable\u003dundefined-variable\n\nPlease Fix",
+      "parentUuid": "acffec2c_e3c06788",
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
