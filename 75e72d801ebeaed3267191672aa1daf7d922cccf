@@ -226,6 +226,24 @@
       "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40a3c405_2955c825",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T08:49:29Z",
+      "side": 1,
+      "message": "But that is not directly related to this patch?",
+      "parentUuid": "4162701e_685aba26",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
