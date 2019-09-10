@@ -325,9 +325,10 @@ def _handle_dead_bot(run_result_key):
     if run_result.state != task_result.State.RUNNING:
       # It was updated already or not updating last. Likely DB index was stale.
       return None, run_result.bot_id
-    # TODO(adoneria): Modify this to use .dead_after_ts
-    if run_result.modified_ts > now - task_result.BOT_PING_TOLERANCE:
+
+    if run_result.dead_after_ts and run_result.dead_after_ts < now:
       # The query index IS stale.
+      print('dead_after_ts:%s, now:%s' % (run_result.dead_after_ts, now))
       return None, run_result.bot_id
 
     current_task_slice = run_result.current_task_slice
@@ -1638,15 +1639,18 @@ def cron_handle_bot_died():
     ignored = 0
     killed = []
     retried = 0
+    count = 0
     try:
       for run_result_key in task_result.yield_run_result_keys_with_dead_bot():
         result = _handle_dead_bot(run_result_key)
+        print('count %s, return %s' % (count, result))
         if result is True:
           retried += 1
         elif result is False:
           killed.append(task_pack.pack_run_result_key(run_result_key))
         else:
           ignored += 1
+        count += 1
     finally:
       if killed:
         logging.error(
