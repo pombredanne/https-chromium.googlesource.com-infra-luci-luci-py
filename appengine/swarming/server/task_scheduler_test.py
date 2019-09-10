@@ -1500,6 +1500,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         bot3_dimensions, 'abc')
     self.assertEqual(0, self.execute_tasks())
 
+    # Run a child task 3. This will be cancelled before running.
+    child_request3 = _gen_request_slices(
+        parent_task_id=parent_run_result.task_id)
+    child_result3_summary = task_scheduler.schedule_request(
+        child_request3, None)
+
     # Cancel parent task.
     ok, was_running = task_scheduler.cancel_task(
         parent_run_result.request_key.get(),
@@ -1563,6 +1569,20 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             performance_stats=None))
 
     self.assertEqual('hi', child_run_result2.key.get().get_output(0, 0))
+
+    self.assertEqual(4, self.execute_tasks())
+    self.assertEqual(self._enqueue_calls[1], (
+      ('/internal/taskqueue/important/tasks/cancel-children',
+       'cancel-children'),
+      {'payload': '{"task":"1d69b9f088008910"}'}))
+
+    # Child request 3 should be cancelled via task queue.
+    self.assertEqual(self._enqueue_calls[2], (
+      ('/internal/taskqueue/important/tasks/cancel', 'cancel-tasks'),
+      {'payload': utils.encode_to_json({
+        "kill_running":True,
+        "tasks":[child_result3_summary.task_id],
+      }), 'version': u'v1a'}))
 
   def test_task_priority(self):
     # Create N tasks of various priority not in order.
