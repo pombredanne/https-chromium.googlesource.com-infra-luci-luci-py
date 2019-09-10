@@ -80,6 +80,8 @@ class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
       return True
     if queue_name == 'pubsub':
       return True
+    if queue_name == 'cancel-children':
+      return True
     self.fail(url)
 
 
