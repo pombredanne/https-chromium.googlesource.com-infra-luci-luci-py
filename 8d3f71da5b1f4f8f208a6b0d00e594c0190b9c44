@@ -33,6 +33,24 @@
       "revId": "8d3f71da5b1f4f8f208a6b0d00e594c0190b9c44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2ec305d_8dd0171f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T12:13:16Z",
+      "side": 1,
+      "message": "We don\u0027t want to allow \u0027expiration_ts \u003d None and queue_number !\u003d None\u0027?",
+      "parentUuid": "396691dc_d3de0c8d",
+      "revId": "8d3f71da5b1f4f8f208a6b0d00e594c0190b9c44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
