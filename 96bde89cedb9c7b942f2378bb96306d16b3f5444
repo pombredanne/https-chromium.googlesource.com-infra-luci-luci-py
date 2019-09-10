@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "bd2eb424_c81965c9",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:40:38Z",
+      "side": 1,
+      "message": "ah, I misread the assertion.\nBetter to add assertion message?",
+      "parentUuid": "1c9c6f06_36b4b66b",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5166688b_cb1bf7cc",
         "filename": "appengine/components/components/utils_test.py",
         "patchSetId": 5
@@ -136,6 +154,24 @@
     },
     {
       "key": {
+        "uuid": "882ae8e4_d914fbd9",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:40:38Z",
+      "side": 1,
+      "message": "oh, that\u0027s bad.",
+      "parentUuid": "fbda83d0_aba81b2e",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c929f15_1e8c064e",
         "filename": "appengine/components/components/utils_test.py",
         "patchSetId": 5
@@ -168,6 +204,24 @@
       "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b07b7724_e5ccc491",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:40:38Z",
+      "side": 1,
+      "message": ":(",
+      "parentUuid": "d5f9a005_9577682f",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -218,6 +272,24 @@
       "side": 1,
       "message": "Yes, it\u0027s because there used to be applications that did not have a backend. I did a quick look and this is not the case anymore. Still worth not breaking for now, or removing the flag altogether.",
       "parentUuid": "1bd78789_4329d909",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f24159de_7be26729",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:40:38Z",
+      "side": 1,
+      "message": "I misunderstood the assertion in the function. I meant \n\"Expect an error if use_dedicated_module\u003dTrue and version is not None\"\n\nIf it receives the both params, the assertion should raise an error.",
+      "parentUuid": "92e7a741_d304a4ad",
       "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
