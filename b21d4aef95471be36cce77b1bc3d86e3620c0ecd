@@ -181,6 +181,24 @@
     },
     {
       "key": {
+        "uuid": "37e237ad_a73bb25e",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T00:27:40Z",
+      "side": 1,
+      "message": "README.swarming is necessary.\n\nIf you don\u0027t modify _client.py when you import, we don\u0027t need to have MODIFICATIONS.diff.",
+      "parentUuid": "67dd24de_b3f7afe2",
+      "revId": "b21d4aef95471be36cce77b1bc3d86e3620c0ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3beb2167_c2b3ab48",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 4
