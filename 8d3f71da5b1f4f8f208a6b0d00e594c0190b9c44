@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "233e3550_b1f1777b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T12:08:22Z",
+      "side": 1,
+      "message": "The commit description should describe what is change and why it is changed. Who requested it is immaterial so no need to include this next time.",
+      "revId": "8d3f71da5b1f4f8f208a6b0d00e594c0190b9c44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396691dc_d3de0c8d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T12:08:22Z",
+      "side": 1,
+      "message": "Technically what you wanted is:\n\n  if bool(self.expiration_ts) !\u003d bool(self.queue_number):\n\nor if you would want to allow 0;\n\n  if (self.expiration_ts is None) !\u003d (self.queue_number is None):",
+      "revId": "8d3f71da5b1f4f8f208a6b0d00e594c0190b9c44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
