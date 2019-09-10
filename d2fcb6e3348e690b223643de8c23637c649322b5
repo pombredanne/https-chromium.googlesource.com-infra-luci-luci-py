@@ -198,6 +198,24 @@
     },
     {
       "key": {
+        "uuid": "fa017765_27531985",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T23:58:24Z",
+      "side": 1,
+      "message": "Yes, when I need reverse order, I store the negative value in the DB instead.\n\nHere I used a XOR instead, but it has the same effect.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_request.py?l\u003d1420\n\nAnyhow, this is out of scope for this change.",
+      "parentUuid": "1a48708d_2edb9b46",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
