@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "31fb4438_1ea9795d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T23:31:38Z",
+      "side": 1,
+      "message": "How do you think make this expire from newer one and eventually all old entries have expiration_ts \u003d None ?",
+      "parentUuid": "23186c75_23c3aa18",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
