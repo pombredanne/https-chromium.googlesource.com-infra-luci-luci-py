@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "b0cb71dc_826d348d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T00:45:22Z",
+      "side": 1,
+      "message": "git tag\ngit log \u003cmost recent tag\u003e..origin/master",
+      "parentUuid": "ccca7fda_3f952b6a",
+      "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f938db2c_a4d944dd",
         "filename": "client/third_party/google/README.swarming",
         "patchSetId": 8
