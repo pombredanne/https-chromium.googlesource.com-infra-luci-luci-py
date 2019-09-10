@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "541f9f5a_db5d3549",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T00:35:06Z",
+      "side": 1,
+      "message": "Change the title to say at which version you are syncing to, plus how many commits on top of the last release version number it is.",
+      "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3a590a2_aa9a0509",
         "filename": "client/third_party/google/README.swarming",
         "patchSetId": 8
