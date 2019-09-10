@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1980532_793fed5c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T21:21:37Z",
+      "side": 1,
+      "message": "14 commits ahead of v1.6.3",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "7b9204453e5d4af75aca496ea44bab5e3a93fc0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d14faac9_c696c400",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T21:21:37Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "7b9204453e5d4af75aca496ea44bab5e3a93fc0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6f908f1_6cb21597",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T21:21:37Z",
+      "side": 1,
+      "message": "\"14 commits ahead of v1.6.3\"",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "7b9204453e5d4af75aca496ea44bab5e3a93fc0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b50d6055_d385c82d",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 20
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T21:21:37Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "7b9204453e5d4af75aca496ea44bab5e3a93fc0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
