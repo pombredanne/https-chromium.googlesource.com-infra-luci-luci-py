@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03f239ca_39363656",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T12:56:36Z",
+      "side": 1,
+      "message": "You should use _task_queue_module instead of hardcoding backend.",
+      "range": {
+        "startLine": 627,
+        "startChar": 24,
+        "endLine": 627,
+        "endChar": 31
+      },
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
