@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "23186c75_23c3aa18",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T22:55:27Z",
+      "side": 1,
+      "message": "No but I don\u0027t think it\u0027s a big deal.",
+      "parentUuid": "545b0ccb_f17df098",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
@@ -101,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "14a42258_03bf4429",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T22:55:27Z",
+      "side": 1,
+      "message": "They won\u0027t but it\u0027s fine, from the perspective that we will manually clear up any old request.",
+      "parentUuid": "e6c1f8cc_e84f4a97",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f44a7d0e_b4cc2e6f",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
@@ -112,6 +148,24 @@
       "writtenOn": "2019-09-10T22:16:16Z",
       "side": 1,
       "message": "check queue_number here?",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b39b29b6_e9e725d3",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T22:55:27Z",
+      "side": 1,
+      "message": "More precisely:\n\n  if task.queue_number !\u003d None:\n\nsince now it could potentially return old entities.",
+      "parentUuid": "f44a7d0e_b4cc2e6f",
       "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
