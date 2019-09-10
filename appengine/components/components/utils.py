@@ -600,6 +600,7 @@ def enqueue_task_async(
     name=None,
     countdown=None,
     use_dedicated_module=True,
+    version=None,
     transactional=False):
   """Adds a task to a task queue.
 
@@ -614,10 +615,18 @@ def enqueue_task_async(
 
   Logs an error and returns False if task queue is acting up.
   """
+  assert not use_dedicated_module or version is None
+
   try:
     headers = None
     if use_dedicated_module:
       headers = {'Host': get_task_queue_host()}
+    elif version is not None:
+      headers = {
+        'Host': '%s-dot-backend-dot-%s' % (
+          version, app_identity.get_default_version_hostname())
+      }
+
     # Note that just using 'target=module' here would redirect task request to
     # a default version of a module, not the curently executing one.
     task = taskqueue.Task(
