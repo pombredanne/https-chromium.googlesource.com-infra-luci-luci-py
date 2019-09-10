@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "824352a2_1d324bde",
+        "filename": "client/third_party/google/auth/_cloud_sdk.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 1,
+      "message": "This line gave following error when I was committing the code.\n\u0027client/third_party/google/auth/_cloud_sdk.py:39:\n\u0027764086051850-6qr4p6gpi6hn506pt8ejuq83di341hur.apps.googleusercontent.com\u0027)\n\n[ERROR] Matched one or more prohibited patterns\u0027\n\nI pushed it using --no-verify at the moment. Is this a concern?",
+      "revId": "923b707b18407ba97acdfce9c50fd07c89668957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

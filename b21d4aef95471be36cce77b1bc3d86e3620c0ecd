@@ -217,6 +217,24 @@
     },
     {
       "key": {
+        "uuid": "46cd3641_c56e8ed8",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e812d4b_500bdcf6",
+      "revId": "b21d4aef95471be36cce77b1bc3d86e3620c0ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3beb2167_c2b3ab48",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 4

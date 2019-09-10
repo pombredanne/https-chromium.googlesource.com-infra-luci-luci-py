@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "db3e32c0_2e62e709",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 1,
+      "message": "Done. And synced auth/ and oauth2/ instead of just one file.",
+      "parentUuid": "b0cb71dc_826d348d",
+      "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f938db2c_a4d944dd",
         "filename": "client/third_party/google/README.swarming",
         "patchSetId": 8
@@ -75,6 +93,30 @@
       "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf94de2_cc9e934d",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f938db2c_a4d944dd",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 50
+      },
+      "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -146,6 +188,30 @@
       "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5189f542_757538ef",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab5fbdda_b3a15f82",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

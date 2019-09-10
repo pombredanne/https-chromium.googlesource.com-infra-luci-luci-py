@@ -16,6 +16,41 @@
       "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f7d8227_3e932bb3",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 16
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "29bf75af_ffb9ac92",
+      "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1efb0ce_dfe2a983",
+        "filename": "client/third_party/google/auth/crypt.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 0,
+      "message": "This file is not present in the upstream repo anymore but I am doubtful of code breakage if this library is currently being used anywhere. We may need to modify the related code accordingly.",
+      "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

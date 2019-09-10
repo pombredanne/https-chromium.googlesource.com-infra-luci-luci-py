@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "032e1144_d951449e",
+        "filename": "client/third_party/google/auth/transport/requests.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T21:14:29Z",
+      "side": 1,
+      "message": "We may need to update requests library for our code!? Tricium flagged Sessions and adapters as no-members of module requests.",
+      "revId": "50a8a97f401b216752ec7d99647b3553c6761f9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
