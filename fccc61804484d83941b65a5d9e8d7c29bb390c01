@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4a653d2e_300a2efc",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:32:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffac6baa_e87671b9",
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1bb83e17_3af263b8",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 19
@@ -66,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "f7a6f958_86778501",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1459,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:32:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b732f6e8_673277fb",
+      "range": {
+        "startLine": 1459,
+        "startChar": 12,
+        "endLine": 1459,
+        "endChar": 30
+      },
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c65d35a0_d4977e9c",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 19
@@ -83,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "19099833_365d7065",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1855,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:32:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c65d35a0_d4977e9c",
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17322f62_568249a4",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 19
@@ -94,6 +154,24 @@
       "writtenOn": "2019-09-10T22:13:07Z",
       "side": 1,
       "message": "Checking self._enqueue_calls with the index is too specific that it can break easily\n(e.g. adding another queue call in-between for different logic)\nAnd it will be hard to understand the meaning of this afterwards.\n\nIs there any better ways?\nFor instance, iterating self._enqueue_calls to find the cancel-tasks or use mock as we discussed.\n\nPlease ignore this comment if it\u0027s too complicated.",
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1768c0b_c9ed7901",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:32:35Z",
+      "side": 1,
+      "message": "It seems not so easy, let me do that in follow up CL.",
+      "parentUuid": "17322f62_568249a4",
       "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
