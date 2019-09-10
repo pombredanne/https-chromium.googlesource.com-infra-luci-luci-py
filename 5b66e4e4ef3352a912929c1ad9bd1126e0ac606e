@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddb97ba5_2ee01ee0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T07:46:50Z",
+      "side": 1,
+      "message": "better to make patch title shorter, and have additional explanation in main description",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 19
+      },
+      "revId": "5b66e4e4ef3352a912929c1ad9bd1126e0ac606e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b41aece_bb9166eb",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T07:46:50Z",
+      "side": 1,
+      "message": "I think we use () rather than \\ in this case.",
+      "range": {
+        "startLine": 134,
+        "startChar": 70,
+        "endLine": 134,
+        "endChar": 71
+      },
+      "revId": "5b66e4e4ef3352a912929c1ad9bd1126e0ac606e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
