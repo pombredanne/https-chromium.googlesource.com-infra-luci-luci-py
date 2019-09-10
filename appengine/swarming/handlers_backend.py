@@ -256,6 +256,18 @@ class TaskCancelTaskOnBotHandler(webapp2.RequestHandler):
           exc_info=True)
 
 
+class TaskCancelChildrenHandler(webapp2.RequestHandler):
+  """Cancels children tasks with pending state of the given task."""
+
+  @decorators.require_taskqueue('cancel-children')
+  def post(self):
+    payload = json.loads(self.request.body)
+    task = payload['task']
+    logging.info('Cancelling children tasks of task %s', task)
+
+    task_scheduler.cancel_pending_children_tasks(task)
+
+
 class TaskExpireTasksHandler(webapp2.RequestHandler):
   """Expires a list of tasks, given a list of their ids."""
 
@@ -432,6 +444,8 @@ def get_routes():
     ('/internal/taskqueue/important/tasks/cancel', TaskCancelTasksHandler),
     ('/internal/taskqueue/important/tasks/cancel-task-on-bot',
         TaskCancelTaskOnBotHandler),
+    ('/internal/taskqueue/important/tasks/cancel-children',
+        TaskCancelChildrenHandler),
     ('/internal/taskqueue/important/tasks/expire',
         TaskExpireTasksHandler),
     ('/internal/taskqueue/cleanup/tasks/delete', TaskDeleteTasksHandler),
