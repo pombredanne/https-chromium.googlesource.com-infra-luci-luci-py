@@ -73,6 +73,8 @@ class PRPCTest(test_env_handlers.AppTestBase):
       return True
     if queue_name == 'pubsub':
       return True
+    if queue_name == 'cancel-children':
+      return True
     self.fail(url)
     return False
 
