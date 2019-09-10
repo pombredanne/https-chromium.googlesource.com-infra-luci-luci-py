@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "6e990111_98c43a7b",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T23:33:54Z",
+      "side": 1,
+      "message": "There\u0027s nothing wrong about ordering by expiration_ts, but ordering by -expiration_ts may not work without a composite index...\n\nIt would have been nice to order naturally by reverse chronological (like task requests are) but that would require a negative value in the DB, which can be done without more significant refactoring.",
+      "parentUuid": "31fb4438_1ea9795d",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
