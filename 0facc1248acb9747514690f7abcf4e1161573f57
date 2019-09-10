@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d08e83e6_9b49f3c7",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T14:11:14Z",
+      "side": 1,
+      "message": "We generally use single quotes in this code base.",
+      "revId": "0facc1248acb9747514690f7abcf4e1161573f57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
