@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffac6baa_e87671b9",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T14:34:27Z",
+      "side": 1,
+      "message": "Please keep sorted.",
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bb83e17_3af263b8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1459,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T14:34:27Z",
+      "side": 1,
+      "message": "Don\u0027t use this class, this is confusing. task_queues.py !\u003d AppEngine task queue. If you want a type, create one at the top of this file.",
+      "range": {
+        "startLine": 1459,
+        "startChar": 12,
+        "endLine": 1459,
+        "endChar": 30
+      },
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c65d35a0_d4977e9c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1855,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T14:34:27Z",
+      "side": 1,
+      "message": "same",
+      "revId": "fccc61804484d83941b65a5d9e8d7c29bb390c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
