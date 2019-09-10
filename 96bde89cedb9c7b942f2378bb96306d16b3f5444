@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "1c9c6f06_36b4b66b",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T13:22:09Z",
+      "side": 1,
+      "message": "Above assert catches use_dedicated_module \u003d True and version is not None, but yours doesn\u0027t?",
+      "parentUuid": "66f3b8c9_8c0b8eed",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5166688b_cb1bf7cc",
         "filename": "appengine/components/components/utils_test.py",
         "patchSetId": 5
@@ -100,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "fbda83d0_aba81b2e",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T13:22:09Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "47334ed4_49431a3a",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c929f15_1e8c064e",
         "filename": "appengine/components/components/utils_test.py",
         "patchSetId": 5
@@ -117,6 +153,24 @@
     },
     {
       "key": {
+        "uuid": "d5f9a005_9577682f",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T13:22:09Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "9c929f15_1e8c064e",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95f8494a_aca75132",
         "filename": "appengine/components/components/utils_test.py",
         "patchSetId": 5
@@ -128,6 +182,24 @@
       "writtenOn": "2019-09-10T13:08:50Z",
       "side": 1,
       "message": "Expect an error if use_dedicated_module\u003dFalse and version is None.",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bd78789_4329d909",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T13:22:09Z",
+      "side": 1,
+      "message": "I think enqueue_task_async will use task queue for frontend instance with default version in that case.",
+      "parentUuid": "95f8494a_aca75132",
       "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
