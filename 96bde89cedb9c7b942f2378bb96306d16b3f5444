@@ -203,6 +203,24 @@
       "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92e7a741_d304a4ad",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T13:32:55Z",
+      "side": 1,
+      "message": "Yes, it\u0027s because there used to be applications that did not have a backend. I did a quick look and this is not the case anymore. Still worth not breaking for now, or removing the flag altogether.",
+      "parentUuid": "1bd78789_4329d909",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
