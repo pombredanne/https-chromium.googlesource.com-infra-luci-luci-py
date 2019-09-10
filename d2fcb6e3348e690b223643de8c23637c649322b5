@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "11061fcb_5c5acabf",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:16:16Z",
+      "side": 1,
+      "message": "nit: we use TODO(...)",
+      "range": {
+        "startLine": 605,
+        "startChar": 4,
+        "endLine": 605,
+        "endChar": 16
+      },
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "545b0ccb_f17df098",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:16:16Z",
+      "side": 1,
+      "message": "does this get tasks order by expiration_ts?",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
@@ -13,6 +53,23 @@
       "writtenOn": "2019-09-10T15:28:32Z",
       "side": 1,
       "message": "You should also include a TaskToRun.expiration_ts \u003e limit where limit is a few days ago. It\u0027s necessary otherwise it\u0027ll churn through 18 months of entity, which will blow up the quota. It will also make the query much faster.",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f44a7d0e_b4cc2e6f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T22:16:16Z",
+      "side": 1,
+      "message": "check queue_number here?",
       "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
