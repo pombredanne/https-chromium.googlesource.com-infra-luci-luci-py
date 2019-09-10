@@ -163,6 +163,24 @@
     },
     {
       "key": {
+        "uuid": "67dd24de_b3f7afe2",
+        "filename": "client/third_party/google/oauth2/MODIFICATIONS.diff",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T00:19:20Z",
+      "side": 1,
+      "message": "It is approved and merged with master. Updated the copy of _client.py in swarming repo as well. In addition to my changes, few more changes are synced in this copy of the file.\n\nAlso, do we still need MODIFICATIONS.diff and README.swarming for this change?",
+      "parentUuid": "c2faf8ac_66fcb9b5",
+      "revId": "b21d4aef95471be36cce77b1bc3d86e3620c0ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3beb2167_c2b3ab48",
         "filename": "client/third_party/google/oauth2/_client.py",
         "patchSetId": 4
