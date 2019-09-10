@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e1cbcd73_ff34ea79",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T07:31:48Z",
+      "side": 1,
+      "message": "Made\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1792401",
+      "parentUuid": "70691fe4_e8010c8b",
+      "revId": "75e72d801ebeaed3267191672aa1daf7d922cccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84d3e909_210da258",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 9
