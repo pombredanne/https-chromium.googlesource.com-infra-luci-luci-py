@@ -823,31 +823,37 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, actual)
 
   def test_yield_expired_task_to_run(self):
-    self._gen_new_task_to_run_slices(
+    # task_to_run_1: still active
+    _, to_run_1 = self._gen_new_task_to_run_slices(
         1,
         created_ts=self.now,
-        task_slices=[
-          {
-            'expiration_secs': 60,
-            'properties': _gen_properties(),
-          },
-        ])
-    bot_dimensions = {u'id': [u'bot1'], u'pool': [u'default']}
-    self.assertEqual(
+        task_slices=[{'expiration_secs': 60, 'properties': _gen_properties()}])
+    # task_to_run_2: just reached to the expiraiton time
+    self._gen_new_task_to_run_slices(
         0,
-        len(_yield_next_available_task_to_dispatch(bot_dimensions)))
-    self.assertEqual(
-        0, len(list(task_to_run.yield_expired_task_to_run())))
+        created_ts=self.now-datetime.timedelta(seconds=61),
+        task_slices=[{'expiration_secs': 60, 'properties': _gen_properties()}])
+    # task_to_run_3: already passed the expiration time 1 day ago
+    _, to_run_3 = self._gen_new_task_to_run_slices(
+        0,
+        created_ts=self.now-datetime.timedelta(days=1),
+        task_slices=[{'expiration_secs': 60, 'properties': _gen_properties()}])
+    # task_to_run_4: already passed the expiration time long time ago
+    self._gen_new_task_to_run_slices(
+        0,
+        created_ts=self.now-datetime.timedelta(weeks=4),
+        task_slices=[{'expiration_secs': 60, 'properties': _gen_properties()}])
 
-    # All tasks are now expired. Note that even if they still have .queue_number
-    # set because the cron job wasn't run. They are still yielded by
-    # yield_next_available_task_to_dispatch() because then task_scheduler can
-    # expire them "inline" instead of waiting for a cron job.
-    self.mock_now(self.now, 61)
+    bot_dimensions = {u'id': [u'bot1'], u'pool': [u'default']}
+
     self.assertEqual(
         0, len(_yield_next_available_task_to_dispatch(bot_dimensions)))
-    self.assertEqual(
-        1, len(list(task_to_run.yield_expired_task_to_run())))
+
+    task_to_runs = task_to_run.yield_expired_task_to_run()
+    self.assertEqual(to_run_2, task_to_runs.next())
+    self.assertEqual(to_run_3, task_to_runs.next())
+    with self.assertRaises(StopIteration):
+      task_to_runs.next()
 
   def test_is_reapable(self):
     request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
