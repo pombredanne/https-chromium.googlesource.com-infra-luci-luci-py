@@ -602,6 +602,7 @@ def yield_next_available_task_to_dispatch(bot_dimensions):
 
 def yield_expired_task_to_run():
   """Yields all the expired TaskToRun still marked as available."""
+  # TODO[jwata@]: edit comment before submittion
   # The reason it is done this way as an iteration over all the pending entities
   # instead of using a composite index with 'queue_number' and 'expiration_ts'
   # is that TaskToRun entities are very hot and it is important to not require
@@ -612,6 +613,6 @@ def yield_expired_task_to_run():
   # overhead.
   opts = ndb.QueryOptions(batch_size=256)
   now = utils.utcnow()
-  for task in TaskToRun.query(TaskToRun.queue_number > 0, default_options=opts):
-    if task.expiration_ts < now:
-      yield task
+  for task in TaskToRun.query(
+      TaskToRun.expiration_ts < now, default_options=opts):
+    yield task

@@ -832,6 +832,15 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'properties': _gen_properties(),
           },
         ])
+    self._gen_new_task_to_run_slices(
+        0,
+        created_ts=self.now,
+        task_slices=[
+          {
+            'expiration_secs': 70,
+            'properties': _gen_properties(),
+          },
+        ])
     bot_dimensions = {u'id': [u'bot1'], u'pool': [u'default']}
     self.assertEqual(
         0,
@@ -839,15 +848,22 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(
         0, len(list(task_to_run.yield_expired_task_to_run())))
 
-    # All tasks are now expired. Note that even if they still have .queue_number
-    # set because the cron job wasn't run. They are still yielded by
-    # yield_next_available_task_to_dispatch() because then task_scheduler can
-    # expire them "inline" instead of waiting for a cron job.
+    # Only the first task is now expired. Note that even if they still have
+    # .expiration_ts set. They are still yielded by yield_expired_task_to_run
+    # because then task_scheduler can expire them "inline"
+    # instead of waiting for a cron job.
     self.mock_now(self.now, 61)
     self.assertEqual(
         0, len(_yield_next_available_task_to_dispatch(bot_dimensions)))
     self.assertEqual(
         1, len(list(task_to_run.yield_expired_task_to_run())))
+
+    # Now the both tasks are expired
+    self.mock_now(self.now, 71)
+    self.assertEqual(
+        0, len(_yield_next_available_task_to_dispatch(bot_dimensions)))
+    self.assertEqual(
+        2, len(list(task_to_run.yield_expired_task_to_run())))
 
   def test_is_reapable(self):
     request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
