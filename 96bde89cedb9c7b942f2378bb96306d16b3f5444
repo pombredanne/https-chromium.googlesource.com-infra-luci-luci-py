@@ -46,6 +46,91 @@
       "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66f3b8c9_8c0b8eed",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:08:50Z",
+      "side": 1,
+      "message": "The above assertion is duplicated with this `if-elif` condition.\nBetter to unify like this?\n\n```\nif use_dedicated_module:\n  ...\nelif version is not None:\n   ...\nelse:\n   # error\n```",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5166688b_cb1bf7cc",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:08:50Z",
+      "side": 1,
+      "message": "I like the stubs.",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47334ed4_49431a3a",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:08:50Z",
+      "side": 1,
+      "message": "Do you need to specify all params including \"None\"s rather than only url and headers?",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c929f15_1e8c064e",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:08:50Z",
+      "side": 1,
+      "message": "same with the above comment",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95f8494a_aca75132",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T13:08:50Z",
+      "side": 1,
+      "message": "Expect an error if use_dedicated_module\u003dFalse and version is None.",
+      "revId": "96bde89cedb9c7b942f2378bb96306d16b3f5444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
