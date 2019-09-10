@@ -180,6 +180,24 @@
     },
     {
       "key": {
+        "uuid": "1a48708d_2edb9b46",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T23:48:33Z",
+      "side": 1,
+      "message": "\u003e\u003e by -expiration_ts may not work without a composite index...\n\u003e \n\u003e Why do you think so? Isn\u0027t ordering done by a single index if you specify only one index.\n\u003e I mean the query uses only expiration_ts index here for both filtering and ordering.\n\ndatastore creates index only used for ascending order by default. ndb may do the same thing.\nhttps://cloud.google.com/appengine/docs/standard/python/config/indexref#syntax",
+      "parentUuid": "53360fc6_8aa4b327",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
