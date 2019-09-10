@@ -63,6 +63,30 @@
       "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab5fbdda_b3a15f82",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-10T00:36:10Z",
+      "side": 1,
+      "message": "Reverted changes in this too.",
+      "parentUuid": "84a118db_04768a16",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "b77329e4268551bceadfbeec31bea01803cc59f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
