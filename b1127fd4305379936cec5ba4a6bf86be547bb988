@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29bf75af_ffb9ac92",
+        "filename": "client/third_party/google/README.swarming",
+        "patchSetId": 16
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-10T20:01:23Z",
+      "side": 0,
+      "message": "You can remove the note about .pyc, it\u0027s irrelevant.\n\nYou should note that what you merged in is not exactly 1.6.3.",
+      "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
