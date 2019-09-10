@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e639566a_9b254d62",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T23:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca0d1dbc_173896ff",
+      "range": {
+        "startLine": 605,
+        "startChar": 4,
+        "endLine": 605,
+        "endChar": 16
+      },
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "545b0ccb_f17df098",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
@@ -120,6 +144,24 @@
     },
     {
       "key": {
+        "uuid": "c23dc94d_fe7dcadd",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T23:45:23Z",
+      "side": 1,
+      "message": "\u003e by -expiration_ts may not work without a composite index...\n\nWhy do you think so? Isn\u0027t ordering done by a single index if you specify only one index.\nI mean the query uses only expiration_ts index here for both filtering and ordering.",
+      "parentUuid": "6e990111_98c43a7b",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
@@ -173,6 +215,24 @@
     },
     {
       "key": {
+        "uuid": "212a4e12_0e65155a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T23:45:23Z",
+      "side": 1,
+      "message": "ok got it.",
+      "parentUuid": "14a42258_03bf4429",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f44a7d0e_b4cc2e6f",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
@@ -205,6 +265,24 @@
       "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d53b051_3ec4a5d5",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-10T23:45:23Z",
+      "side": 1,
+      "message": "I added logging.warning since it should happen for future.",
+      "parentUuid": "b39b29b6_e9e725d3",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
