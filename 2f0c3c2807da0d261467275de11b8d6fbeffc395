@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfcd4a63_91754a76",
+        "filename": "appengine/components/components/utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-10T07:31:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd48e582_104b2eaa",
+      "revId": "2f0c3c2807da0d261467275de11b8d6fbeffc395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
