@@ -16,6 +16,24 @@
       "revId": "ac0c74df8738cb2094c5dce1d796d21ba4f6f31d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "161f99ba_3dd23512",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T20:40:48Z",
+      "side": 1,
+      "message": "Yes, it\u0027s due to tasks with multi-days expiration.",
+      "parentUuid": "1cbed38a_352732de",
+      "revId": "ac0c74df8738cb2094c5dce1d796d21ba4f6f31d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
