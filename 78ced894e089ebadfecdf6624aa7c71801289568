@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4a7da7a3_93e03708",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T03:17:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93d3a781_8cbda1f0",
+      "range": {
+        "startLine": 606,
+        "startChar": 37,
+        "endLine": 606,
+        "endChar": 75
+      },
+      "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9cbda2c1_71d6e823",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 6
@@ -164,6 +188,30 @@
       "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f0a7be_81e02023",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T03:17:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70b7eaff_3d9e3d82",
+      "range": {
+        "startLine": 852,
+        "startChar": 19,
+        "endLine": 852,
+        "endChar": 71
+      },
+      "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
