@@ -143,7 +143,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def _enqueue(self, *args, **kwargs):
     self._enqueue_calls.append((args, kwargs))
-    return self._enqueue_orig(*args, use_dedicated_module=False, **kwargs)
+    # Only then add use_dedicated_module as default False.
+    kwargs.setdefault('use_dedicated_module', False)
+    return self._enqueue_orig(*args, **kwargs)
 
   def _getrandbits(self, bits):
     self.assertEqual(16, bits)
@@ -1588,18 +1590,25 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(self._enqueue_calls[1], (
       ('/internal/taskqueue/important/tasks/cancel-children-tasks',
        'cancel-children-tasks'),
-      {'payload': utils.encode_to_json({
-        'task': parent_result_summary.task_id,
-      })}))
+      {
+        'payload': utils.encode_to_json(
+            {'task': parent_result_summary.task_id}),
+        'use_dedicated_module': False,
+      }))
     # Child request 3 should be cancelled via task queue.
     self.assertEqual(self._enqueue_calls[3], (
         ('/internal/taskqueue/important/tasks/cancel',
          'cancel-tasks'),
-        {'payload': utils.encode_to_json({
-            'kill_running': True,
-            'tasks': [child_result2_summary.task_id,
-                      child_result3_summary.task_id]}),
-         'version': u'v1a'}))
+        {
+          'payload': utils.encode_to_json(
+              {
+                'kill_running': True,
+                'tasks': [child_result2_summary.task_id,
+                          child_result3_summary.task_id],
+              }),
+          'use_dedicated_module': False,
+          'version': u'v1a',
+        }))
 
   def test_task_priority(self):
     # Create N tasks of various priority not in order.
