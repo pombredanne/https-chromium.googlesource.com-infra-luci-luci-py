@@ -22,6 +22,30 @@
       "revId": "55fd66b4906cd723c815faa88501eb5183134c92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f520a5dc_93dbe858",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1286,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T20:40:02Z",
+      "side": 1,
+      "message": "I wanted to make the change minimal here, I will change the logic in a follow up and will update the comment too.",
+      "parentUuid": "7db3ffe9_5fb59ac9",
+      "range": {
+        "startLine": 1283,
+        "startChar": 0,
+        "endLine": 1286,
+        "endChar": 60
+      },
+      "revId": "55fd66b4906cd723c815faa88501eb5183134c92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
