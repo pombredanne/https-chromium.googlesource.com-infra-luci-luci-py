@@ -22,6 +22,30 @@
       "revId": "bfd4c152c748af55503a304660b68d97915fb554",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9ea24d5_548324b1",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T13:23:14Z",
+      "side": 1,
+      "message": "Ugh thanks, typo.",
+      "parentUuid": "1f2d5e0a_6f9f8d11",
+      "range": {
+        "startLine": 612,
+        "startChar": 43,
+        "endLine": 612,
+        "endChar": 45
+      },
+      "revId": "bfd4c152c748af55503a304660b68d97915fb554",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
