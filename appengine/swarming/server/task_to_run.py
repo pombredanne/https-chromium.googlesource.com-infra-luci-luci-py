@@ -607,15 +607,24 @@ def yield_expired_task_to_run():
   # since the entities are very small and to reduce RPC overhead.
   opts = ndb.QueryOptions(batch_size=256)
   now = utils.utcnow()
-  twodays_ago = now - datetime.timedelta(days=2)
+  # TODO(crbug/966660): Increase to task_request.MAX_EXPIRATION_SECS plus a few
+  # hours in a few days.
+  cut_off = now - datetime.timedelta(hours=34)
   q = TaskToRun.query(
-      ndb.AND(
-          TaskToRun.expiration_ts < now,
-          TaskToRun.expiration_ts > twodays_ago),
+      TaskToRun.expiration_ts < now,
+      TaskToRun.expiration_ts > cut_off,
       default_options=opts)
-  for task in q:
-    if not task.queue_number:
-      logging.warning(
-          'queue_number is None, but expiration_ts is %s.',
-          task.expiration_ts)
-    yield task
+  total = 0
+  skipped = 0
+  try:
+    for task in q:
+      if not task.queue_number:
+        skipped += 1
+        logging.info(
+            'queue_number is None, but expiration_ts is %s.',
+            task.expiration_ts)
+      else:
+        yield task
+        total += 1
+  finally:
+    logging.debug('Yielded %d tasks; skipped %d', total, skipped)
