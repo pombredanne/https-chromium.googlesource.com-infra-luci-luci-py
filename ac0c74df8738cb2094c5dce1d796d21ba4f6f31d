@@ -34,6 +34,24 @@
       "revId": "ac0c74df8738cb2094c5dce1d796d21ba4f6f31d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce885d5a_8e02b81a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-11T20:42:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "161f99ba_3dd23512",
+      "revId": "ac0c74df8738cb2094c5dce1d796d21ba4f6f31d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
