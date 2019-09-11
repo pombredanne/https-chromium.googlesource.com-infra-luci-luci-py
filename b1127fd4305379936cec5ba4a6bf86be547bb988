@@ -51,6 +51,24 @@
       "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "005e1535_db963f92",
+        "filename": "client/third_party/google/auth/crypt.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-11T17:43:07Z",
+      "side": 0,
+      "message": "Found that crypt.py is archived as part of swarming_bot.zip and is needed by swarming bot - https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/bot_archive.py?l\u003d125.",
+      "parentUuid": "d1efb0ce_dfe2a983",
+      "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
