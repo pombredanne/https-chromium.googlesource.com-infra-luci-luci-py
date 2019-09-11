@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93d3a781_8cbda1f0",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T02:25:27Z",
+      "side": 1,
+      "message": "Good catch. I forgot to change the comment.",
+      "parentUuid": "30ce2468_478a2ebb",
+      "range": {
+        "startLine": 606,
+        "startChar": 37,
+        "endLine": 606,
+        "endChar": 75
+      },
+      "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9cbda2c1_71d6e823",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 6
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "7c104dce_89fadc2f",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T02:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cbda2c1_71d6e823",
+      "range": {
+        "startLine": 852,
+        "startChar": 4,
+        "endLine": 852,
+        "endChar": 16
+      },
+      "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1182916_86fbe46d",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T02:25:27Z",
+      "side": 1,
+      "message": "Could you tell the meaning of list()?",
+      "parentUuid": "4db2b7fc_0c6b8162",
+      "range": {
+        "startLine": 852,
+        "startChar": 19,
+        "endLine": 852,
+        "endChar": 71
+      },
+      "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9da633c6_cfd7d559",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 6
@@ -85,6 +157,24 @@
       "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40c17b81_e1f0316c",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T02:25:27Z",
+      "side": 1,
+      "message": "The order isn\u0027t guaranteed. can be `[to_run_3, to_run2]`",
+      "parentUuid": "9da633c6_cfd7d559",
+      "revId": "78ced894e089ebadfecdf6624aa7c71801289568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
