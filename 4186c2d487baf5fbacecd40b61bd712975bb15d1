@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f1e09044_5a70f99a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-11T00:52:31Z",
+      "side": 1,
+      "message": "I had removed it previously but it wasn\u0027t visible then. Pushed it again.",
+      "parentUuid": "e5e215ef_c34b6dea",
+      "range": {
+        "startLine": 7,
+        "startChar": 49,
+        "endLine": 7,
+        "endChar": 75
+      },
+      "revId": "4186c2d487baf5fbacecd40b61bd712975bb15d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b18455c4_107bcb0d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2019-08-24T01:29:23Z",
       "side": 1,
       "message": "I\u0027d prefer:\n\n  if run_result.dead_after_ts and run_result.dead_after_ts \u003c now:",
+      "revId": "4186c2d487baf5fbacecd40b61bd712975bb15d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf854e41_957e8986",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-11T00:52:31Z",
+      "side": 1,
+      "message": "Actually this condition translates to:\n   run_result.dead_after_ts \u003e now \nif we replace \n   run_result.modified_ts \u003e now - task_result.BOT_PING_TOLERANCE.\n\nDid that.",
+      "parentUuid": "b18455c4_107bcb0d",
       "revId": "4186c2d487baf5fbacecd40b61bd712975bb15d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cc5c5ef_ab1b2e47",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-11T00:52:31Z",
+      "side": 1,
+      "message": "Here, task 1 and task 2 both are filtered by task_result.yield_run_result_keys_with_dead_bot() and processed inspite of having .dead_after_ts \u003d None for task 1. So, ideally task 1 should have been filtered out and only task 2 should be in the output list of the query. \nIf I put filter on state \u003d\u003d RUNNING (as before), it only outputs task 2.\n\nSame observation applied to the assert statement in the next line.\n\nIs the value for .dead_after_ts \u003d None not being written in DB immediately after it is set in task_scheduler._handle_dead_bot() or the query doesn\u0027t put any filter on fields with null values?",
+      "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
