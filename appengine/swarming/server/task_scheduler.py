@@ -1278,7 +1278,8 @@ def bot_reap_task(bot_dimensions, bot_version):
                       request.task_id)
         continue
 
-      limit = to_run.created_ts
+      # Hard limit to schedule this task.
+      limit = request.expiration_ts
       # We use expiration_secs of following slices if there are. Because if we
       # found bot that the task can run on before cron job cancels such slices,
       # it is still preferred to run the task on there instead of cancelling
@@ -1287,7 +1288,7 @@ def bot_reap_task(bot_dimensions, bot_version):
         t = request.task_slice(i)
         limit += datetime.timedelta(seconds=t.expiration_secs)
 
-      slice_expiration = to_run.created_ts
+      slice_expiration = request.created_ts
       slice_index = task_to_run.task_to_run_key_slice_index(to_run.key)
       for i in range(slice_index + 1):
         t = request.task_slice(i)
