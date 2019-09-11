@@ -1854,6 +1854,7 @@ def task_cancel_running_children_tasks(parent_task_id):
         '/internal/taskqueue/important/tasks/cancel',
         'cancel-tasks', payload=payload,
         # cancel task on specific version of backend module.
+        use_dedicated_module=False,
         version=version)
     if not ok:
       raise Error(
