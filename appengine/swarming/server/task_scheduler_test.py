@@ -1524,7 +1524,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         parent_run_result.result_summary_key, True, None)
     self.assertEqual(True, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(0, self.execute_tasks())
+    self.assertEqual(5, self.execute_tasks())
 
     self.assertEqual(
         State.KILLED,
@@ -1542,10 +1542,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             outputs_ref=None,
             performance_stats=None))
 
-    # Child task is not KILLED when parent task is cancelled and being
-    # completed.
+    # Child task is KILLED when parent task is cancelled.
     self.assertEqual(
-        State.COMPLETED,
+        State.KILLED,
         task_scheduler.bot_update_task(
             run_result_key=child_run_result.key,
             bot_id='localhost2',
@@ -1582,8 +1581,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     self.assertEqual('hi', child_run_result2.key.get().get_output(0, 0))
 
-    self.assertEqual(3, self.execute_tasks())
+    self.assertEqual(4, self.execute_tasks())
 
+    # TODO(tikuta): use mock library.
     # parent_task should push task to cancel-children-tasks.
     self.assertEqual(self._enqueue_calls[1], (
       ('/internal/taskqueue/important/tasks/cancel-children-tasks',
@@ -1591,13 +1591,14 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       {'payload': utils.encode_to_json({
         'task': parent_result_summary.task_id,
       })}))
-    # Child request 3 should be cancelled via task queue.
-    self.assertEqual(self._enqueue_calls[3], (
+    # Child tasks should be cancelled via task queue.
+    self.assertEqual(self._enqueue_calls[2], (
         ('/internal/taskqueue/important/tasks/cancel',
          'cancel-tasks'),
         {'payload': utils.encode_to_json({
             'kill_running': True,
-            'tasks': [child_result2_summary.task_id,
+            'tasks': [child_result_summary.task_id,
+                      child_result2_summary.task_id,
                       child_result3_summary.task_id]}),
          'version': u'v1a'}))
 
@@ -1669,7 +1670,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         result_summary.request_key.get(), result_summary.key, False, None)
     self.assertEqual(True, ok)
     self.assertEqual(False, was_running)
-    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, self.execute_tasks())
     self.assertEqual(1, len(pub_sub_calls)) # CANCELED
 
     result_summary = result_summary.key.get()
@@ -1694,7 +1695,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         result_summary.task_id, False, None)
     self.assertEqual(True, ok)
     self.assertEqual(False, was_running)
-    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, self.execute_tasks())
     self.assertEqual(1, len(pub_sub_calls)) # CANCELED
 
     result_summary = result_summary.key.get()
@@ -1719,7 +1720,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         None)
     self.assertEqual(False, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(0, self.execute_tasks())
+    self.assertEqual(1, self.execute_tasks())
     self.assertEqual(1, len(pub_sub_calls)) # No message.
 
     # Works if kill_running == True.
@@ -1728,7 +1729,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         None)
     self.assertEqual(True, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, self.execute_tasks())
     self.assertEqual(2, len(pub_sub_calls)) # CANCELED
 
     # At this point, the task is still running and the bot is unaware.
@@ -1742,7 +1743,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         None)
     self.assertEqual(True, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, self.execute_tasks())
     self.assertEqual(3, len(pub_sub_calls)) # CANCELED (again)
 
     # Bot pulls once, gets the signal about killing, which starts the graceful
@@ -1803,7 +1804,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'foo')
     self.assertEqual(False, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(0, self.execute_tasks())
+    self.assertEqual(1, self.execute_tasks())
     self.assertEqual(1, len(pub_sub_calls)) # No message.
 
     # Works if bot_id matches.
@@ -1812,7 +1813,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'localhost')
     self.assertEqual(True, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, self.execute_tasks())
     self.assertEqual(2, len(pub_sub_calls)) # CANCELED
 
   def test_cancel_task_completed(self):
@@ -1850,7 +1851,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(run_result.killing)
     self.assertEqual(State.COMPLETED, run_result.state)
     self.assertEqual(2, len(pub_sub_calls)) # No other message.
-    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, self.execute_tasks())
 
   def test_cron_abort_expired_task_to_run(self):
     pub_sub_calls = self.mock_pub_sub()
