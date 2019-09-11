@@ -69,6 +69,24 @@
       "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d64b65a_2b325c66",
+        "filename": "client/third_party/google/auth/crypt.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T18:42:23Z",
+      "side": 0,
+      "message": "So you need to update this bot_archive.py with the right list of files to map in.",
+      "parentUuid": "005e1535_db963f92",
+      "revId": "b1127fd4305379936cec5ba4a6bf86be547bb988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
