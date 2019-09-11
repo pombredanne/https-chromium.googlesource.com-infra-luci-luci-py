@@ -57,6 +57,24 @@
       "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bb85ef7_d260a327",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T18:47:15Z",
+      "side": 1,
+      "message": "The DB is consistent in the unit tests, unless explicitly made eventually consistent.",
+      "parentUuid": "3dfd8e78_9ca9a1a4",
+      "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
