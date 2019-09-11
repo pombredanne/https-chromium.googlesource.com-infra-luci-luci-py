@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0940b5c5_d5a91fc9",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-11T02:34:54Z",
+      "side": 1,
+      "message": "s/%/,/g ?",
+      "range": {
+        "startLine": 619,
+        "startChar": 59,
+        "endLine": 619,
+        "endChar": 60
+      },
+      "revId": "05d150d8c4f8007e87ce5b92fcd98312c0285349",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
