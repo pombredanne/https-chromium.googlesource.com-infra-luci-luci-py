@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27d8dfc1_c38d51cf",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T12:40:48Z",
+      "side": 1,
+      "message": "I think we can skip this under certain circumstances:\n- If kill_running is false\n- If _cancel_task_tx() returns was_running but the problem is that it\u0027s not idempotent for the moment, so let\u0027s skip this one for now.\n\nAt least let\u0027s skip when kill_running is not specified.",
+      "revId": "67b1ab92a8eea92f795aac1bfee6f25b71a1eb37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
