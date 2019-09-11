@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "9f0437ac_56f7329d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T01:46:55Z",
+      "side": 1,
+      "message": "The query itself works since I manually tested `ORDER BY expiration_ts DESC` on dev.\nBut it could fetch the whole index and reverse it.\n\nSo I just removed the ordering.",
+      "parentUuid": "10efe718_919f0052",
+      "range": {
+        "startLine": 619,
+        "startChar": 9,
+        "endLine": 619,
+        "endChar": 34
+      },
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2e20a95_8c5909df",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 3
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "801df3ce_dca53dc2",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T01:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2e20a95_8c5909df",
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b80bd32_7073591c",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 3
@@ -81,6 +123,24 @@
       "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a17a37e_28e86cc0",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T01:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b80bd32_7073591c",
+      "revId": "0cdc81bff05c2d7c507f1d5e385e7bd198a28e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

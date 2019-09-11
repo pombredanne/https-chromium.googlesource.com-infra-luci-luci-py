@@ -216,6 +216,24 @@
     },
     {
       "key": {
+        "uuid": "f2684274_902d4f6d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-11T01:46:55Z",
+      "side": 1,
+      "message": "\u003e datastore creates index only used for ascending order by default. ndb may do the same thing.\n\nOh, I should forget about other RDBs. Thanks for correcting me!\nIt would be better to change the index order to DESC. but will remove ordering for now.\n\nFor now, I just removed the ordering.",
+      "parentUuid": "fa017765_27531985",
+      "revId": "d2fcb6e3348e690b223643de8c23637c649322b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cddc3ca6_0ba9afdb",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
