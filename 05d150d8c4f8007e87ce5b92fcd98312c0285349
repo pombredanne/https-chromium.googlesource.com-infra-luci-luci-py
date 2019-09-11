@@ -46,6 +46,30 @@
       "revId": "05d150d8c4f8007e87ce5b92fcd98312c0285349",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61eee697_7c55733a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-11T04:03:40Z",
+      "side": 1,
+      "message": "I think writing like\nhttps://docs.python.org/2.7/howto/logging.html#logging-variable-data\nis bit simpler than this. It does not need to have additional paren.",
+      "parentUuid": "4bc4b59b_db0dfdcb",
+      "range": {
+        "startLine": 619,
+        "startChar": 59,
+        "endLine": 619,
+        "endChar": 60
+      },
+      "revId": "05d150d8c4f8007e87ce5b92fcd98312c0285349",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
