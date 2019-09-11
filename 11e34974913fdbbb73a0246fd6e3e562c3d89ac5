@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eec6930e_0b520411",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T12:36:24Z",
+      "side": 1,
+      "message": "no need for ndb.AND, inline them instead:\n\nq \u003d TaskToRun.query(\n    TaskToRun.expiration_ts \u003c now,\n    TaskToRun.expiration_ts \u003e twodays_ago,\n    default_options\u003dopts)\n\n\nHere\u0027s an example, https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_result.py?l\u003d1515\nOtherwise, use consecutive filter() calls.",
+      "revId": "11e34974913fdbbb73a0246fd6e3e562c3d89ac5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6aca020_c504d563",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-11T12:36:24Z",
+      "side": 1,
+      "message": "it\u0027s info() at most, I don\u0027t think it\u0027s worth a warning.",
+      "revId": "11e34974913fdbbb73a0246fd6e3e562c3d89ac5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
