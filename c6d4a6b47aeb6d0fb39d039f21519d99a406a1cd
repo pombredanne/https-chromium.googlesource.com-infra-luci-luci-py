@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "ad59e213_b40b73aa",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2336,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-12T18:38:29Z",
+      "side": 1,
+      "message": "Did it and it failed at this check:\nAssertionError: Tuples differ: ([], 0, 0) !\u003d ([], 0, 1)\n\nprints:\ndead_after_ts:None\nstate:80\nfrom the task_scheduler.cron_handle_bot_died() in line 2321\n\nFor this call, returns with (None, u\u0027localhost\u0027) because of check at line 331.",
+      "parentUuid": "e10d7905_ca8b1a81",
+      "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5cc5c5ef_ab1b2e47",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 11
@@ -131,6 +149,24 @@
       "side": 1,
       "message": "Sadly I think it\u0027s a bug but I can\u0027t find where yet.\nIt could be a bug in the test though but I don\u0027t think so:\n\nIn practice, it means it looped on two tasks, but that doesn\u0027t make sense, there\u0027s only one task running. This basically means that when the first loop died, its dead_after_ts wasn\u0027t reset to None.",
       "parentUuid": "7bb85ef7_d260a327",
+      "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2d69082_b0b241c7",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-12T18:38:29Z",
+      "side": 1,
+      "message": "Yup! I can\u0027t find the bug either. I printed if the .dead_after_ts is set to None for both tasks after being processed by _handle_dead_bots() and they are, but they are still not getting filtered by the query, so I had doubts around DB consistency and if it actually filters on \u0027None\u0027 values. \n\nState is getting set to BOT_DIED and the extra filter on that does the deed.",
+      "parentUuid": "4deeb405_90639613",
       "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
