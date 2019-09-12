@@ -16,6 +16,24 @@
       "revId": "97dadfd3796aa98bffaf92982536c9b3e55a2f5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72f30ff4_6a3e281d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-12T00:50:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce7cd032_020fdf31",
+      "revId": "97dadfd3796aa98bffaf92982536c9b3e55a2f5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
