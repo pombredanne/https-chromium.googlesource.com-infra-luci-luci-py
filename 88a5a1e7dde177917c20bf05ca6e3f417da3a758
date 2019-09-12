@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52479af7_74750552",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1583,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-12T00:16:31Z",
+      "side": 1,
+      "message": "That\u0027s inefficient, what you want to do is:\n\n  task_id \u003d task_pack.pack_run_result_key(result_key)\n\nNo need for a DB operation.",
+      "revId": "88a5a1e7dde177917c20bf05ca6e3f417da3a758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
