@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce7cd032_020fdf31",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-12T00:44:47Z",
+      "side": 1,
+      "message": "Oops it\u0027s actually a result_summary_key, see line 1575. That\u0027s probably why local_smoke_test.py times out.",
+      "revId": "97dadfd3796aa98bffaf92982536c9b3e55a2f5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
