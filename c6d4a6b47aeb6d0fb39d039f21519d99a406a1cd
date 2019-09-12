@@ -49,6 +49,23 @@
     },
     {
       "key": {
+        "uuid": "e10d7905_ca8b1a81",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2336,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-12T17:52:07Z",
+      "side": 1,
+      "message": "Can you add here right after this line but before the time mock:\n\n  self.assertEqual(([], 0, 0), task_scheduler.cron_handle_bot_died())\n\nand maybe an empty line before the time mock.",
+      "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5cc5c5ef_ab1b2e47",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 11
@@ -96,6 +113,24 @@
       "side": 1,
       "message": "The DB is consistent in the unit tests, unless explicitly made eventually consistent.",
       "parentUuid": "3dfd8e78_9ca9a1a4",
+      "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4deeb405_90639613",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-12T17:52:07Z",
+      "side": 1,
+      "message": "Sadly I think it\u0027s a bug but I can\u0027t find where yet.\nIt could be a bug in the test though but I don\u0027t think so:\n\nIn practice, it means it looped on two tasks, but that doesn\u0027t make sense, there\u0027s only one task running. This basically means that when the first loop died, its dead_after_ts wasn\u0027t reset to None.",
+      "parentUuid": "7bb85ef7_d260a327",
       "revId": "c6d4a6b47aeb6d0fb39d039f21519d99a406a1cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
