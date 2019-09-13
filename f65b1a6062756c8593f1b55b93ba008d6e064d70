@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d06c728d_9d810353",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-13T12:45:22Z",
+      "side": 1,
+      "message": "Please add a log warning here in a follow up, since in this case it\u0027s because the bot went \u0027missing\u0027. It\u0027s worth logging to have a trace if we need to diagnose this.",
+      "revId": "f65b1a6062756c8593f1b55b93ba008d6e064d70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f754cfd2_c0911be3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1484,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-13T12:45:22Z",
+      "side": 1,
+      "message": "In a follow up, please:\n- Rename this function, it\u0027s poorly named, but was named as such before \"KILLED\" was introduced.\n- Have it also handle killing state.\n\nThis function is called in the case of task_error. You can look at task_runner.py to see when this is called.",
+      "revId": "f65b1a6062756c8593f1b55b93ba008d6e064d70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
