@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16b7e835_97f5823e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-13T05:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad0be72d_b105555f",
+      "revId": "e9ccece681c9629581a94d55d52b28d32ba8bc4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "191914bd_90e629d0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-13T05:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c0f25b1_8794b073",
+      "revId": "e9ccece681c9629581a94d55d52b28d32ba8bc4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "791e9cb4_a24c6f4b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-13T05:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a19cf1e_86f4c500",
+      "revId": "e9ccece681c9629581a94d55d52b28d32ba8bc4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adea95b5_735036cb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-13T05:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "309c04bb_405d5add",
+      "revId": "e9ccece681c9629581a94d55d52b28d32ba8bc4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
