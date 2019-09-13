@@ -69,8 +69,11 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   result_summary_future = result_summary_key.get_async()
   to_run = to_run_future.get_result()
   if not to_run or not to_run.is_reapable:
-    result_summary_future.get_result()
-    return None, None
+    if to_run.expiration_ts is None:
+      result_summary_future.get_result()
+      return None, None
+    else:
+      logging.info("TODO")
 
   # In any case, dequeue the TaskToRun.
   to_run.queue_number = None
@@ -143,9 +146,13 @@ def _expire_task(to_run_key, request, inline):
   # Look if the TaskToRun is reapable once before doing the check inside the
   # transaction. This reduces the likelihood of failing this check inside the
   # transaction, which is an order of magnitude more costly.
-  if not to_run_key.get().is_reapable:
-    logging.info('Not reapable anymore')
-    return None, None
+  to_run = to_run_key.get()
+  if not to_run.is_reapable:
+    if to_run.expiration_ts is None:
+      logging.info('Not reapable anymore')
+      return None, None
+    else:
+      logging.info("TODO")
 
   result_summary_key = task_pack.request_key_to_result_summary_key(request.key)
   now = utils.utcnow()
@@ -220,8 +227,11 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
       logging.error('Missing TaskToRun?\n%s', result_summary.task_id)
       return None, None
     if not to_run.is_reapable:
-      logging.info('%s is not reapable', result_summary.task_id)
-      return None, None
+      if to_run.expiration_ts is None:
+        logging.info('%s is not reapable', result_summary.task_id)
+        return None, None
+      else:
+        logging.info("TODO")
     if result_summary.bot_id == bot_id:
       # This means two things, first it's a retry, second it's that the first
       # try failed and the retry is being reaped by the same bot. Deny that, as
