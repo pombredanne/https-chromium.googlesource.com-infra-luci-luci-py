@@ -17,6 +17,7 @@ import { html } from 'lit-html'
 import naturalSort from 'javascript-natural-sort/naturalSort'
 import { botPageLink, compareWithFixedOrder, humanDuration, sanitizeAndHumanizeTime,
          taskPageLink } from '../util'
+import { NON_COMPL_EXCEP_STATES, FILTER_STATES, ONGOING_STATES } from '../task'
 
 const BLACKLIST_DIMENSIONS = ['quarantined', 'error'];
 const EMPTY_VAL = '--';
@@ -68,9 +69,7 @@ export function appendPossibleColumns(possibleColumns, data) {
  */
 export function appendPrimaryMap(primaryMap, data) {
   if (!primaryMap['state']) {
-    primaryMap['state'] = ['PENDING', 'RUNNING', 'PENDING_RUNNING', 'COMPLETED',
-            'COMPLETED_SUCCESS', 'COMPLETED_FAILURE', 'EXPIRED', 'TIMED_OUT',
-            'BOT_DIED', 'CANCELED', 'DEDUPED', 'ALL', 'NO_RESOURCE'];
+    primaryMap['state'] = FILTER_STATES
   }
   if (Array.isArray(data)) {
     // we have a list of dimensions, which are {key: String, value: Array}
@@ -464,7 +463,7 @@ export function tagsOnly(filters) {
  */
 export function taskClass(task) {
   const state = column('state', task);
-   if (state === 'CANCELED' || state === 'TIMED_OUT' || state === 'EXPIRED' || state === 'NO_RESOURCE') {
+    if (state in NON_COMPL_EXCEP_STATES) {
       return 'exception';
     }
     if (state === 'BOT_DIED') {
@@ -473,7 +472,7 @@ export function taskClass(task) {
     if (state === 'COMPLETED (FAILURE)') {
       return 'failed_task';
     }
-    if (state === 'RUNNING' || state === 'PENDING') {
+    if (state in ONGOING_STATES) {
       return 'pending_task';
     }
     return '';
