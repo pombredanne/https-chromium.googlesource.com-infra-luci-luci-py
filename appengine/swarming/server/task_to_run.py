@@ -635,19 +635,19 @@ def yield_expired_task_to_run():
       TaskToRun.expiration_ts > cut_off,
       default_options=opts)
   total = 0
-  skipped = 0
+  valid = 0
+  invalid = 0
   try:
     for task in q:
       if not task.queue_number:
-        skipped += 1
+        invalid += 1
         logging.info(
             '%s/%s: queue_number is None, but expiration_ts is %s.',
             task.task_id, task.task_slice_index, task.expiration_ts)
-        # Flush it, otherwise we'll keep on looping on it.
-        task.expiration_ts = None
-        task.put()
       else:
-        yield task
-        total += 1
+        valid += 1
+      yield task
+      total += 1
   finally:
-    logging.debug('Yielded %d tasks; skipped %d', total, skipped)
+    logging.debug('Yielded %d tasks (valid=%d, invalid=%d)', total, valid,
+                  invalid)
