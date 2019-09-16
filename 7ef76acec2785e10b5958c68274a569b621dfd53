@@ -52,6 +52,24 @@
       "revId": "7ef76acec2785e10b5958c68274a569b621dfd53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af4b95b4_1a0b00b8",
+        "filename": "client/third_party/google/auth/impersonated_credentials.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-16T23:50:38Z",
+      "side": 1,
+      "message": "Thanks, sent https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1808139/ to silence Tricium.",
+      "parentUuid": "f2e1b01a_b9ea8738",
+      "revId": "7ef76acec2785e10b5958c68274a569b621dfd53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
