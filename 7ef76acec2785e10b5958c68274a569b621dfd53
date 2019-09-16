@@ -34,6 +34,24 @@
       "revId": "7ef76acec2785e10b5958c68274a569b621dfd53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2e1b01a_b9ea8738",
+        "filename": "client/third_party/google/auth/impersonated_credentials.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-16T23:29:22Z",
+      "side": 1,
+      "message": "Reverted all local modifications. (Tricium has flagged all of them again in the latest patchset.)",
+      "parentUuid": "0e8b02dc_3e89795c",
+      "revId": "7ef76acec2785e10b5958c68274a569b621dfd53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
