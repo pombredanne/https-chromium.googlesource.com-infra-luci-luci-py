@@ -16,6 +16,24 @@
       "revId": "7ef76acec2785e10b5958c68274a569b621dfd53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e8b02dc_3e89795c",
+        "filename": "client/third_party/google/auth/impersonated_credentials.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-16T21:21:53Z",
+      "side": 1,
+      "message": "Yup. Tricium flagged quite a lot of errors after the merge, so I made few changes to resolve those. I will revert all of them and update.",
+      "parentUuid": "84252b0c_dfc10e5a",
+      "revId": "7ef76acec2785e10b5958c68274a569b621dfd53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
