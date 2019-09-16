@@ -1,2 +1,9 @@
 # Skip Tricium for generated proto files.
 *_pb2.py -tricium
+/appengine/components/components/static/third_party -tricium
+/appengine/components/components/third_party -tricium
+/appengine/config_service/ui/common/third_party -tricium
+/appengine/swarming/swarming_bot/third_party -tricium
+/appengine/third_party -tricium
+/appengine/third_party/mapreduce/third_party -tricium
+/client/third_party -tricium
