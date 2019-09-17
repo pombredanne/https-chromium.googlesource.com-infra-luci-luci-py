@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bee052e1_9cef4013",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-17T08:56:50Z",
+      "side": 1,
+      "message": "handle DEDUPED too?",
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdbd27ae_f3059f33",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-17T08:56:50Z",
+      "side": 1,
+      "message": "can be Set?",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2ab6c1d_ceecbcd7",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-17T08:56:50Z",
+      "side": 1,
+      "message": "Can be Set?\nJust using EXCEPTIONAL_STATES seems fine.",
+      "range": {
+        "startLine": 6,
+        "startChar": 13,
+        "endLine": 6,
+        "endChar": 35
+      },
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
