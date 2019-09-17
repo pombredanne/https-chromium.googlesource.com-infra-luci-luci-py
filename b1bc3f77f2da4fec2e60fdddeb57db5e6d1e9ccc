@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e36b0345_c98d667b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-17T03:43:43Z",
+      "side": 1,
+      "message": "It depends on which is default, but better to separate the functions to `upload` and `upload_then_delete` instead of `leak_tmp_dir` flag?\n\n```\ndef upload(storage, out_dir):\n  ...\n  return outputs_ref, success, stats\n\ndef upload_then_delete(storage, out_dir):\n  outputs_ref, success, stats \u003d upload(storage, out_dir)\n  \n  # remove out dir\n\n  return outputs_ref, success, stats\n```",
+      "revId": "b1bc3f77f2da4fec2e60fdddeb57db5e6d1e9ccc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
