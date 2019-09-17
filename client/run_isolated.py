@@ -567,8 +567,36 @@ def copy_recursively(src, dst):
       logging.info("Couldn't collect output file %s: %s", src, e)
 
 
-def delete_and_upload(storage, out_dir, leak_temp_dir):
-  """Deletes the temporary run directory and uploads results back.
+def upload(storage, out_dir):
+  """Uploads |out_dir| to isolate server."""
+  with tools.Profiler('ArchiveOutput'):
+    try:
+      results, f_cold, f_hot = isolateserver.archive_files_to_storage(
+          storage, [out_dir], None)
+      outputs_ref = {
+          'isolated': results.values()[0],
+          'isolatedserver': storage.server_ref.url,
+          'namespace': storage.server_ref.namespace,
+      }
+      cold = sorted(i.size for i in f_cold)
+      hot = sorted(i.size for i in f_hot)
+      return outputs_ref, cold, hot
+    except isolateserver.Aborted:
+      # This happens when a signal SIGTERM was received while uploading data.
+      # There is 2 causes:
+      # - The task was too slow and was about to be killed anyway due to
+      #   exceeding the hard timeout.
+      # - The amount of data uploaded back is very large and took too much
+      #   time to archive.
+      sys.stderr.write('Received SIGTERM while uploading')
+      # Re-raise, so it will be treated as an internal failure.
+      raise
+
+
+def upload_then_delete(storage, out_dir, leak_temp_dir):
+  """
+  Uploads |out_dir| to isolate server, then deletes the temporary run directory
+  and uploads results back.
 
   Returns:
     tuple(outputs_ref, success, stats)
@@ -587,27 +615,7 @@ def delete_and_upload(storage, out_dir, leak_temp_dir):
   start = time.time()
 
   if fs.isdir(out_dir) and fs.listdir(out_dir):
-    with tools.Profiler('ArchiveOutput'):
-      try:
-        results, f_cold, f_hot = isolateserver.archive_files_to_storage(
-            storage, [out_dir], None)
-        outputs_ref = {
-          'isolated': results.values()[0],
-          'isolatedserver': storage.server_ref.url,
-          'namespace': storage.server_ref.namespace,
-        }
-        cold = sorted(i.size for i in f_cold)
-        hot = sorted(i.size for i in f_hot)
-      except isolateserver.Aborted:
-        # This happens when a signal SIGTERM was received while uploading data.
-        # There is 2 causes:
-        # - The task was too slow and was about to be killed anyway due to
-        #   exceeding the hard timeout.
-        # - The amount of data uploaded back is very large and took too much
-        #   time to archive.
-        sys.stderr.write('Received SIGTERM while uploading')
-        # Re-raise, so it will be treated as an internal failure.
-        raise
+    outputs_ref, cold, hot = upload(storage, out_dir)
 
   success = False
   try:
@@ -818,7 +826,7 @@ def map_and_run(data, constant_run_path):
       if out_dir:
         isolated_stats = result['stats'].setdefault('isolated', {})
         result['outputs_ref'], success, isolated_stats['upload'] = (
-            delete_and_upload(data.storage, out_dir, data.leak_temp_dir))
+            upload_then_delete(data.storage, out_dir, data.leak_temp_dir))
       if not success and result['exit_code'] == 0:
         result['exit_code'] = 1
     except Exception as e:
