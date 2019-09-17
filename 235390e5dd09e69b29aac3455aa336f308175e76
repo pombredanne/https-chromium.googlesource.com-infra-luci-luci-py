@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f574ed45_554be5bc",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-17T19:54:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e82f623_a14ce1fb",
+      "range": {
+        "startLine": 238,
+        "startChar": 18,
+        "endLine": 238,
+        "endChar": 28
+      },
+      "revId": "235390e5dd09e69b29aac3455aa336f308175e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
