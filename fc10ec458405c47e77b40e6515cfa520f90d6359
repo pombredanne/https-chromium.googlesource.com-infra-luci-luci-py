@@ -16,6 +16,24 @@
       "revId": "fc10ec458405c47e77b40e6515cfa520f90d6359",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25b7e5a4_02a102cf",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-17T05:47:00Z",
+      "side": 1,
+      "message": "I see, then let me do just renaming here.",
+      "parentUuid": "40570e45_93b407ce",
+      "revId": "fc10ec458405c47e77b40e6515cfa520f90d6359",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
