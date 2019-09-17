@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1e308ca_2d9810ce",
+        "filename": ".gitattributes",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2019-09-17T16:21:58Z",
+      "side": 1,
+      "message": "I believe that you must append /** to match everything under a directory. If you want to match everything under any third_party directory anywhere in the repo, you can also use:\n\n    **/third_party/** -tricium\n\nThe way that I test this is by trying:\n\n    git check-attr tricium \u003csample paths\u003e\n\n\"unset\" means that git-file-isolator will filter it out, otherwise it will be checked.",
+      "revId": "941d0003086df28070a78665cc635741e746740c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
