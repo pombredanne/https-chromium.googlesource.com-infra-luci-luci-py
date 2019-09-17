@@ -16,6 +16,24 @@
       "revId": "e1c2b9f7c36008931239239e87c138943ecb92bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b233d323_7c3b3253",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-17T04:52:04Z",
+      "side": 1,
+      "message": "No, it\u0027s not used. But I return it because I thought it\u0027s useful to return the updated run_result.\n\nBut can remove it for now.",
+      "parentUuid": "08acd6ec_79c297ca",
+      "revId": "e1c2b9f7c36008931239239e87c138943ecb92bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
