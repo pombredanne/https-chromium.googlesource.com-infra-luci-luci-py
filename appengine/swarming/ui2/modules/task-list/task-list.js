@@ -54,9 +54,8 @@ import { botListLink, onSmallScreen } from '../util'
 import { filterPossibleColumns, filterPossibleKeys,
          filterPossibleValues, makeFilter } from '../queryfilter'
 import { moreOrLess } from '../templates'
-
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
-
+import { COUNT_STATES } from '../task'
 
 const colHead = (col, ele) => html`
 <th>${getColHeader(col)}
@@ -379,19 +378,24 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
     this._possibleColumns = {};
     this._primaryMap = {};
 
+    // convert state to count filter
+    // e.g BOT_DIED -> { label: 'Bot Died', value: '...', filter: 'BOT_DIED' }
+    function _capitalize(string) {
+        return string.charAt(0) + string.slice(1).toLowerCase();
+    };
+    function _stateToLabel(state) {
+      return state.split('_').map((string) => {
+        if (string == 'COMPLETED') return '';
+        return _capitalize(string)
+      }).join(' ')
+    };
+    function _stateToCountFilter(s) {
+      return {label: _stateToLabel(s), value: '...', filter: s}
+    }
     this._queryCounts = [
-      {label: 'Total',        value: '...'},
-      {label: 'Success',      value: '...', filter: 'COMPLETED_SUCCESS'},
-      {label: 'Failure',      value: '...', filter: 'COMPLETED_FAILURE'},
-      {label: 'Pending',      value: '...', filter: 'PENDING'},
-      {label: 'Running',      value: '...', filter: 'RUNNING'},
-      {label: 'Timed Out',    value: '...', filter: 'TIMED_OUT'},
-      {label: 'Bot Died',     value: '...', filter: 'BOT_DIED'},
-      {label: 'Deduplicated', value: '...', filter: 'DEDUPED'},
-      {label: 'Expired',      value: '...', filter: 'EXPIRED'},
-      {label: 'No Resource',  value: '...', filter: 'NO_RESOURCE'},
-      {label: 'Canceled',     value: '...', filter: 'CANCELED'},
+      {label: 'Total', value: '...'}
     ];
+    this._queryCounts.push(...COUNT_STATES.map(_stateToCountFilter));
 
     this._message = 'You must sign in to see anything useful.';
     this._showColSelector = false;
@@ -571,10 +575,7 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
   }
 
   _fetchCounts(queryParams, extra) {
-    const states = ['COMPLETED_SUCCESS', 'COMPLETED_FAILURE', 'PENDING',
-                    'RUNNING', 'TIMED_OUT', 'BOT_DIED', 'DEDUPED', 'EXPIRED',
-                    'NO_RESOURCE', 'CANCELED'];
-
+    const states = COUNT_STATES;
     this.app.addBusyTasks(1 + states.length);
     const totalPromise = fetch(`/_ah/api/swarming/v1/tasks/count?${queryParams}`, extra)
       .then(jsonOrThrow)
