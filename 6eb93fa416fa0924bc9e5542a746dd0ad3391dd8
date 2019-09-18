@@ -22,6 +22,54 @@
       "revId": "6eb93fa416fa0924bc9e5542a746dd0ad3391dd8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55278893_18eb523d",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T03:30:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d5fd54_14fafdea",
+      "range": {
+        "startLine": 561,
+        "startChar": 46,
+        "endLine": 561,
+        "endChar": 72
+      },
+      "revId": "6eb93fa416fa0924bc9e5542a746dd0ad3391dd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86b736ad_f82e279a",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T03:30:34Z",
+      "side": 1,
+      "message": "Thanks, I didn\u0027t know the syntax.",
+      "parentUuid": "49d5fd54_14fafdea",
+      "range": {
+        "startLine": 561,
+        "startChar": 46,
+        "endLine": 561,
+        "endChar": 72
+      },
+      "revId": "6eb93fa416fa0924bc9e5542a746dd0ad3391dd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
