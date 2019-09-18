@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a53e240c_25eb8500",
+        "filename": "client/utils/threading_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-18T11:08:42Z",
+      "side": 1,
+      "message": "I\u0027m worried that on a machine with 8 cores or less or on non-SSD (we still have some) this would effectively lower the performance.\n\nI\u0027m more concerned about the performance characteristics on bots than on a overpowered Googler workstation.\n\nAlso, this dramatically increases the memory usage. I wonder how this could affect RPis.",
+      "revId": "3a52fcb47a50e5a3c26e5ffe7eab9fe827b7137b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
