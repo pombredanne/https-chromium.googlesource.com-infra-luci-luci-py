@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85fa3331_b48ec719",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-18T11:02:54Z",
+      "side": 1,
+      "message": "Other files have a formal license header, please add one here too in a follow up.",
+      "revId": "ba7c844c1a7714b021036f8a030d5018383b625d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
