@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2581892b_131a2d1a",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T02:37:53Z",
+      "side": 1,
+      "message": "I defined the count filters in the task.js explicitly since this logic is hard to understand.",
+      "parentUuid": "bee052e1_9cef4013",
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdbd27ae_f3059f33",
         "filename": "appengine/swarming/ui2/modules/task.js",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2019-09-17T08:56:50Z",
       "side": 1,
       "message": "can be Set?",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0639bf4_25d8e3ab",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T02:37:53Z",
+      "side": 1,
+      "message": "It can be. but it\u0027s annoying that you often need convert it to array like below.\n\n```\nconst states \u003d [...ONGOING_STATES];\n```",
+      "parentUuid": "bdbd27ae_f3059f33",
       "range": {
         "startLine": 1,
         "startChar": 13,
@@ -62,6 +104,30 @@
       "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "594169e3_6b1a7eb8",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T02:37:53Z",
+      "side": 1,
+      "message": "\u003e Can be Set?\nSame with the above comment\n\n\u003e Just using EXCEPTIONAL_STATES seems fine.\nAgreed. done.",
+      "parentUuid": "f2ab6c1d_ceecbcd7",
+      "range": {
+        "startLine": 6,
+        "startChar": 13,
+        "endLine": 6,
+        "endChar": 35
+      },
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
