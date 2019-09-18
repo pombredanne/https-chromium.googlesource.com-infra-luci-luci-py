@@ -69,6 +69,24 @@
       "revId": "856afb3477791584208bcbde5540177bce881188",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b4fd07e_ad282a6e",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T02:48:01Z",
+      "side": 1,
+      "message": "I see, I think I need to understand the background more.. But understand the logic itself.",
+      "parentUuid": "0edd9980_8aecf5cd",
+      "revId": "856afb3477791584208bcbde5540177bce881188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
