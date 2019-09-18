@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ef3d3d4_ab5c215f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-18T04:50:13Z",
+      "side": 1,
+      "message": "Also make sure this has updated files from `make release`",
+      "revId": "87208106499938fecb6713cadcdfcf312afaa059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b731a08_bee993ed",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
         "patchSetId": 8
