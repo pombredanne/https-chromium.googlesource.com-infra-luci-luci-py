@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "d09247d9_e8d1a9fa",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-18T02:44:06Z",
+      "side": 1,
+      "message": "I think using Set is fine, because you don\u0027t use this as array now.",
+      "parentUuid": "a0639bf4_25d8e3ab",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2ab6c1d_ceecbcd7",
         "filename": "appengine/swarming/ui2/modules/task.js",
         "patchSetId": 3

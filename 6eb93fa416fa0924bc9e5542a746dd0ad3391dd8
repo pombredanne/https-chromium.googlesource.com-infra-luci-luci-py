@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49d5fd54_14fafdea",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-18T02:44:06Z",
+      "side": 1,
+      "message": "c \u003d\u003e c.filter ?",
+      "range": {
+        "startLine": 561,
+        "startChar": 46,
+        "endLine": 561,
+        "endChar": 72
+      },
+      "revId": "6eb93fa416fa0924bc9e5542a746dd0ad3391dd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
