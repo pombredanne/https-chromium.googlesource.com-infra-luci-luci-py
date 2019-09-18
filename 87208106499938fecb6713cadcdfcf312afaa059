@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a7e74ebe_0a7ec788",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T04:54:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ef3d3d4_ab5c215f",
+      "revId": "87208106499938fecb6713cadcdfcf312afaa059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b731a08_bee993ed",
         "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
         "patchSetId": 8
@@ -39,6 +57,30 @@
       "revId": "87208106499938fecb6713cadcdfcf312afaa059",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35f78e7a_16eeeef4",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T04:54:35Z",
+      "side": 1,
+      "message": "much better, thanks.",
+      "parentUuid": "0b731a08_bee993ed",
+      "range": {
+        "startLine": 561,
+        "startChar": 46,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "87208106499938fecb6713cadcdfcf312afaa059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

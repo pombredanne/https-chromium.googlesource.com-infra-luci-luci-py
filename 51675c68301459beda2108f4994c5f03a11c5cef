@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "acef23a3_b79e5644",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T04:54:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d09247d9_e8d1a9fa",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "51675c68301459beda2108f4994c5f03a11c5cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2ab6c1d_ceecbcd7",
         "filename": "appengine/swarming/ui2/modules/task.js",
         "patchSetId": 3
