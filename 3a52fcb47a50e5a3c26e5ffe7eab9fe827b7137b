@@ -16,6 +16,24 @@
       "revId": "3a52fcb47a50e5a3c26e5ffe7eab9fe827b7137b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e9c7bcb_fa87aaf6",
+        "filename": "client/utils/threading_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-18T12:02:05Z",
+      "side": 1,
+      "message": "OK. I\u0027ll check performance w/ and w/o this patch on some bots tomorrow.",
+      "parentUuid": "a53e240c_25eb8500",
+      "revId": "3a52fcb47a50e5a3c26e5ffe7eab9fe827b7137b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
