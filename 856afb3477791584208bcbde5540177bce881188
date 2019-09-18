@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8610e6ed_fc0ece7c",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T01:53:36Z",
+      "side": 1,
+      "message": "Do we need \"!\u003d 0\" part?",
+      "revId": "856afb3477791584208bcbde5540177bce881188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9caa32d9_a2321421",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-18T01:53:36Z",
+      "side": 1,
+      "message": "If I understand correctly, is this sentence opposite? \n\n\"On windows, skip slow/unnecessary chmod call if it already has write permission.\"\n\nAnd I\u0027m just curious, why is it only for windows?",
+      "revId": "856afb3477791584208bcbde5540177bce881188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
