@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d86660b7_7c9da189",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-18T10:41:59Z",
+      "side": 1,
+      "message": "Thanks for the change, it\u0027s great, I like that you extracted common code.\n\nI have a note / question. In this code base you\u0027ll see that I intentionally split each source file with in order globals, DB models, private functions, public functions, crons, task queues.\n\nHere, and seemingly before with _gen_new_keys() that I missed, private functions were added in the public section. It\u0027s not strictly speaking a big deal, the idea of the Public API section is that all the functions meant to be called from other files are grouped together, to ease scanning. This is at the cost of lower locality, for example _set_fallbacks_to_exit_code_and_duration() would be far from schedule_request() but could have been closer to _bot_update_tx().\n\nIn python, especially for models, the referenced symbols (functions and constants) must had been defined already. In Go, the ordering could be different since Go doesn\u0027t require internal ordering, it\u0027s fine to use a symbol that is defined on the following lines, or even in a separate file. That\u0027s why in Go I usually prefer the order: public globals, public types, public functions, private globals, private types, private functions, type assertion.\n\nAnyhow, the key point here is consistency, but consistency is only useful up to the point where it\u0027s beneficial for readers. Since what I just wrote is not called out explicitly in the code I wanted to note this.",
+      "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
