@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0cab6e6c_f5384586",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-18T02:06:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8610e6ed_fc0ece7c",
+      "revId": "856afb3477791584208bcbde5540177bce881188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9caa32d9_a2321421",
         "filename": "client/isolateserver.py",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2019-09-18T01:53:36Z",
       "side": 1,
       "message": "If I understand correctly, is this sentence opposite? \n\n\"On windows, skip slow/unnecessary chmod call if it already has write permission.\"\n\nAnd I\u0027m just curious, why is it only for windows?",
+      "revId": "856afb3477791584208bcbde5540177bce881188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0edd9980_8aecf5cd",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-18T02:06:16Z",
+      "side": 1,
+      "message": "updated bit.\n\nI changed here because disk access, even for file metadata update, on windows is lot slower than on linux.",
+      "parentUuid": "9caa32d9_a2321421",
       "revId": "856afb3477791584208bcbde5540177bce881188",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
