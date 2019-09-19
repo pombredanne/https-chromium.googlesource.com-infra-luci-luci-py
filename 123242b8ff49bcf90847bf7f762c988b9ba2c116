@@ -22,6 +22,30 @@
       "revId": "123242b8ff49bcf90847bf7f762c988b9ba2c116",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31efeb9f_2c3e7579",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-19T13:14:18Z",
+      "side": 1,
+      "message": "Oh, I don\u0027t know that.\nMade\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1813838",
+      "parentUuid": "64d006ee_7a2da49b",
+      "range": {
+        "startLine": 395,
+        "startChar": 15,
+        "endLine": 395,
+        "endChar": 21
+      },
+      "revId": "123242b8ff49bcf90847bf7f762c988b9ba2c116",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
