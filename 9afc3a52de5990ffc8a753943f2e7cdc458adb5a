@@ -52,6 +52,24 @@
       "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5eeae35_ed622587",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-19T23:59:25Z",
+      "side": 1,
+      "message": "\u003e it will require access to currently private functions, which means more \"API\" to some extent.\n\nThis is true. Keeping all functions in a file could be simpler than separating files.\nI won\u0027t consider doing this now, anyway.\n\nThank you for your feedback.",
+      "parentUuid": "6a3a7b8c_02dec982",
+      "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
