@@ -16,6 +16,24 @@
       "revId": "ba7c844c1a7714b021036f8a030d5018383b625d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff5bf0bd_2764d4a9",
+        "filename": "appengine/swarming/ui2/modules/task.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-19T01:27:12Z",
+      "side": 1,
+      "message": "Thanks for checking it.\n\nI added license header.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1808993",
+      "parentUuid": "85fa3331_b48ec719",
+      "revId": "ba7c844c1a7714b021036f8a030d5018383b625d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
