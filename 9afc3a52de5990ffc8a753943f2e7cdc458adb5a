@@ -34,6 +34,24 @@
       "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a3a7b8c_02dec982",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-19T20:04:21Z",
+      "side": 1,
+      "message": "\u003e \u003e In python, especially for models, the referenced symbols (functions and constants) must had been defined already\n\u003e \n\u003e I\u0027m not sure the situation like this.\n\u003e It passed all tests in ./task_scheudler_test.py even after moving private functions to the bottom of the file.\n\u003e So at least in this file, we could change the order.\n\u003e \n\u003e \u003e For future refactoring\n\u003e Especially for a large file like this, is to separate the functions to each category. e.g. cron, task, bot\n\u003e Otherwise, private functions are placed far from public functions that use them.\n\u003e \n\u003e A structure would be like \n\u003e \n\u003e ```\n\u003e ./task_scheduler.py \n\u003e ./task_scheduler/cron.py\n\u003e ./task_scheduler/task.py\n\u003e ./task_scheduler/bot.py\n\u003e ```\n\nDid you mean task_scheduler/__init__.py or you wrote it like this intentionally?\nI have never seen having both a .py and a directory in python and never thought about this format.\n\n\u003e So it would remove the API prefixes like.\n\u003e ```\n\u003e from server.task_scheduler.cron import abort_expired_task_on_run\n\u003e ```\n\u003e \n\u003e Let me know your thoughts, ideal structure.\n\nThat\u0027s interesting. I\u0027ll let you and Ikuta-san decide what\u0027s best long term.\n\nThe challenge from my personal view is a good trade off between file length and number of files. When adding the cron job, it will require access to currently private functions, which means more \"API\" to some extent.",
+      "parentUuid": "32ee1dc4_c498bb32",
+      "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
