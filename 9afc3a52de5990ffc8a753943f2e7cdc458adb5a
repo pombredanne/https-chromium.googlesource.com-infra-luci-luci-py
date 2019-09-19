@@ -16,6 +16,24 @@
       "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32ee1dc4_c498bb32",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-19T02:52:14Z",
+      "side": 1,
+      "message": "Thanks for your comment.\nI placed the private method just below _gen_new_keys() without consideration.\nWill move it to the appropriate section.\n\n\u003e In python, especially for models, the referenced symbols (functions and constants) must had been defined already\n\nI\u0027m not sure the situation like this.\nIt passed all tests in ./task_scheudler_test.py even after moving private functions to the bottom of the file.\nSo at least in this file, we could change the order.\n\n\u003e For future refactoring\nEspecially for a large file like this, is to separate the functions to each category. e.g. cron, task, bot\nOtherwise, private functions are placed far from public functions that use them.\n\nA structure would be like \n\n```\n./task_scheduler.py \n./task_scheduler/cron.py\n./task_scheduler/task.py\n./task_scheduler/bot.py\n```\n\nSo it would remove the API prefixes like.\n```\nfrom server.task_scheduler.cron import abort_expired_task_on_run\n```\n\nLet me know your thoughts, ideal structure.",
+      "parentUuid": "d86660b7_7c9da189",
+      "revId": "9afc3a52de5990ffc8a753943f2e7cdc458adb5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
