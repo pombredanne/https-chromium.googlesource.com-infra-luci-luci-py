@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c60a9550_963e0084",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-19T08:53:32Z",
+      "side": 1,
+      "message": "prefix?",
+      "revId": "114d625858141f250e22bf525c573166609eb463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
