@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64d006ee_7a2da49b",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1185234
+      },
+      "writtenOn": "2019-09-19T12:11:25Z",
+      "side": 1,
+      "message": "https://engdoc.corp.google.com/eng/doc/devguide/js/styleguide.md?cl\u003dhead#features-functions-arrow-functions\n\n\"Always using parentheses even for single-parameter arrow functions can avoid situations where adding parameters, but forgetting to add parentheses, may result in parseable code which no longer works as intended.\"",
+      "range": {
+        "startLine": 395,
+        "startChar": 15,
+        "endLine": 395,
+        "endChar": 21
+      },
+      "revId": "123242b8ff49bcf90847bf7f762c988b9ba2c116",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
