@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fe0ee21_5b0ca06b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-20T07:37:40Z",
+      "side": 1,
+      "message": "this is not related to css change?",
+      "revId": "9eb9df93479e7961c6f6f27b7e1b7ecb1ccd66ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
