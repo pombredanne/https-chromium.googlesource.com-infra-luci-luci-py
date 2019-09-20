@@ -34,6 +34,24 @@
       "revId": "c77c099ff2e8ce8bc534c8c88bc6f9403cc8f713",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70fc026c_faeb7488",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1083,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-20T13:29:41Z",
+      "side": 1,
+      "message": "Looks like you had forgot to upload another patchset, and it got piled into https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1813840 by accident. No big deal, just carve it out as a separate CL.",
+      "parentUuid": "4b907f49_1936fa41",
+      "revId": "c77c099ff2e8ce8bc534c8c88bc6f9403cc8f713",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
