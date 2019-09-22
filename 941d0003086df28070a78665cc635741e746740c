@@ -16,6 +16,24 @@
       "revId": "941d0003086df28070a78665cc635741e746740c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d12ddc21_56b3b008",
+        "filename": ".gitattributes",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-22T18:28:39Z",
+      "side": 1,
+      "message": "Done, albeit it disables the check for READMEs but I guess it\u0027s not a big deal.",
+      "parentUuid": "f1e308ca_2d9810ce",
+      "revId": "941d0003086df28070a78665cc635741e746740c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
