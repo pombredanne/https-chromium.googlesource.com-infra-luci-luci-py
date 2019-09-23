@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b7551be_ec12d6c7",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-23T23:04:50Z",
+      "side": 1,
+      "message": "\u0027the command line\u0027 ?",
+      "range": {
+        "startLine": 487,
+        "startChar": 11,
+        "endLine": 487,
+        "endChar": 19
+      },
+      "revId": "fc5e00d65f102f3b94ee942704571d59661dc7b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
