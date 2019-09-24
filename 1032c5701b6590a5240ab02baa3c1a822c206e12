@@ -16,6 +16,24 @@
       "revId": "1032c5701b6590a5240ab02baa3c1a822c206e12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa18b314_72b51894",
+        "filename": "DEPS",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-24T07:56:10Z",
+      "side": 1,
+      "message": "Good catch, thanks.",
+      "parentUuid": "a73cd5c3_7201d815",
+      "revId": "1032c5701b6590a5240ab02baa3c1a822c206e12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
