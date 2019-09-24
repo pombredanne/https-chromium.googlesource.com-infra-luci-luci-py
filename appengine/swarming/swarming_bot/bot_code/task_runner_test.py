@@ -438,8 +438,8 @@ class TestTaskRunner(TestTaskRunnerBase):
     output = re.compile(
         # This is a beginning of run_isolate.py's output if binary is not
         # found.
-        r'^<The executable does not exist or a dependent library is '
-        r'missing>')
+        r'^<The executable does not exist, a dependent library is missing '
+        r'or the command line is too long>')
     out = self.expectTask(exit_code=1, output=output)
     self.assertGreater(10., out[u'cost_usd'])
 
