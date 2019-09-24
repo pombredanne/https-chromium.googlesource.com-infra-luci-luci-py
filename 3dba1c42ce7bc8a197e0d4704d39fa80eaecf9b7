@@ -22,6 +22,30 @@
       "revId": "3dba1c42ce7bc8a197e0d4704d39fa80eaecf9b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0633587_d8f8f7e8",
+        "filename": "DEPS",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-24T07:45:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1287ef2_e0a07a2d",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 51
+      },
+      "revId": "3dba1c42ce7bc8a197e0d4704d39fa80eaecf9b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
