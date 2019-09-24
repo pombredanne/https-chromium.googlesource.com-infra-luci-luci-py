@@ -16,6 +16,24 @@
       "revId": "9eb9df93479e7961c6f6f27b7e1b7ecb1ccd66ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfeb2b70_15d3e605",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-24T03:00:43Z",
+      "side": 1,
+      "message": "Sorry, removed from this CL.",
+      "parentUuid": "5fe0ee21_5b0ca06b",
+      "revId": "9eb9df93479e7961c6f6f27b7e1b7ecb1ccd66ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
