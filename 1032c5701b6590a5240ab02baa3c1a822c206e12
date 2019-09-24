@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a73cd5c3_7201d815",
+        "filename": "DEPS",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-24T07:49:07Z",
+      "side": 1,
+      "message": "also checkout only in mac/linux like\nhttps://cs.chromium.org/chromium/src/DEPS?l\u003d400\u0026rcl\u003d81f373145c94216a2005830d9ba0a909003ad4de\n\nWe don\u0027t have nodejs package for windows.\nhttps://chrome-infra-packages.appspot.com/p/infra/nodejs/nodejs",
+      "revId": "1032c5701b6590a5240ab02baa3c1a822c206e12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
