@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a95aa73b_f3aa9524",
+        "filename": "DEPS",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-24T14:00:09Z",
+      "side": 1,
+      "message": "This is relative to an infra checkout, not to a luci-py checkout. As such it should have been in infra.git then, *or* rooting it here.",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "9735c0ede6c63532c869d8ecd4a2a81be469c8aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
