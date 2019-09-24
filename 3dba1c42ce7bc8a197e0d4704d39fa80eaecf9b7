@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1287ef2_e0a07a2d",
+        "filename": "DEPS",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-24T07:40:01Z",
+      "side": 1,
+      "message": "use ${{platform}} like\nhttps://cs.chromium.org/chromium/src/DEPS?l\u003d584\u0026rcl\u003d7058303f8b5157f2164de63a26571d2e38d6a0f5",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 51
+      },
+      "revId": "3dba1c42ce7bc8a197e0d4704d39fa80eaecf9b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
