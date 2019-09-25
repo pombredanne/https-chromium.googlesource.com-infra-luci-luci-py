@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "17c19484_a18b154b",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:27:22Z",
+      "side": 1,
+      "message": "Err, that looks like a regression unrelated to this change.",
+      "parentUuid": "f0f32529_883847fc",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fc2912f_8fbe6175",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 14
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "How about \"filter(None, [get_python3_version()])\"?",
       "parentUuid": "6cc8f0d4_e7c93369",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98f266b2_fe04929f",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:27:22Z",
+      "side": 1,
+      "message": "Do you want:\n- to be able to get the list of bots that do not have python3 installed?\n- trigger tasks on bots that do not have python3 installed?\n\nBecause for the first, you can just do a full enumeration. Only the later requires a \u0027none\u0027 value. Note that there\u0027s a precedent with \u0027gpu\u0027 but I tried to not add these unless there was a compelling use case to keep the number of dimensions as low as possible.",
+      "parentUuid": "2f0bdc64_31aa5bb8",
       "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
