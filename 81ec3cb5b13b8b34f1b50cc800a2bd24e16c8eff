@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5e5781d_5bbd0779",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:09:47Z",
+      "side": 1,
+      "message": "?",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc2912f_8fbe6175",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:09:47Z",
+      "side": 1,
+      "message": "return None",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b7c949f_98a8d6cf",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:09:47Z",
+      "side": 1,
+      "message": "Only set it if it\u0027s present.",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
