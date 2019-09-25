@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1078e31_4d0d53e4",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "\u003c3",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c369369_f2733195",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "Side note: I think we can remove non-gcloud support now? Not in this CL.",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09fb5b59_ab21a78e",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "In you want to prepare for python3, use print() everywhere.",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed1fec05_530b2b13",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "you used double quote, that\u0027s insanity in python. :)",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9909caa_4d5df29b",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "Personally I\u0027d put this function in the get_active level to reduce deepness and would make _sort_key() more readable.",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aad06870_5273dc6c",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "I guess the TODO isn\u0027t really a todo anymore. Maybe\n\n  # There\u0027s a lot more data in there, add it as needed.",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcd5533b_98274017",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "Why not just check for service[\u0027traffic_split\u0027] value?",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89cd9ef6_e78ac6b7",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T23:42:43Z",
+      "side": 1,
+      "message": "else is unnecessary",
+      "revId": "07a28ffb1ee6bcf6cda0759906daef630449ca55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
