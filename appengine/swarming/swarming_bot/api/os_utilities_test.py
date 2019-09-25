@@ -116,6 +116,9 @@ class TestOsUtilities(auto_stub.TestCase):
     self.assertTrue(actual is None or actual)
 
   def test_get_dimensions(self):
+    self.mock(os_utilities, 'get_python3_version',
+              lambda: u'3.8.0b1+chromium.1')
+
     dimensions = os_utilities.get_dimensions()
     for key, values in dimensions.iteritems():
       self.assertIsInstance(key, unicode)
@@ -139,7 +142,9 @@ class TestOsUtilities(auto_stub.TestCase):
     actual.discard(u'windows_client_version')
 
     expected = {
-        u'cores', u'cpu', u'gce', u'gpu', u'id', u'os', u'pool', u'python'}
+        u'cores', u'cpu', u'gce', u'gpu', u'id', u'os', u'pool', u'python',
+        u'python3'
+    }
     if platforms.is_gce():
       expected.add(u'image')
       expected.add(u'zone')
@@ -262,6 +267,11 @@ class TestOsUtilities(auto_stub.TestCase):
 
     self.assertFalse(os_utilities.host_reboot(timeout=60))
     self.assertEqual(time.time(), 60)
+
+  def test_get_python3_version(self):
+    self.mock(subprocess, 'check_output',
+              lambda _, **kwargs: 'Python 3.8.0b1+chromium.1\n')
+    self.assertEqual(os_utilities.get_python3_version(), '3.8.0b1+chromium.1')
 
 
 if __name__ == '__main__':
