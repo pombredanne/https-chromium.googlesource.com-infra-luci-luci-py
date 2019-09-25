@@ -215,6 +215,23 @@
     },
     {
       "key": {
+        "uuid": "2d34c7e6_76b82ae8",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:38:39Z",
+      "side": 1,
+      "message": "It will be missing in some case, it\u0027s \"optional\", so you need to discard it above.",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f1bf9a2e_9f4c1c12",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
         "patchSetId": 14
