@@ -2,6 +2,9 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+console.log(process.env.CHROME_BIN);
+
 let webpackConfig = require('./webpack.config.js')
 // Webpack 3+ configs can be either objects or functions that produce the
 // config object. Karma currently doesn't handle the latter, so do it
