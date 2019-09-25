@@ -57,23 +57,20 @@ def _print_version_log(app, to_version):
   """Queries the server active version and prints the log between the active
   version and the new version.
   """
-  from_versions = set(service['id'] for service in app.get_actives())
-  if len(from_versions) > 1:
-    print('Error: found multiple services with different active versions. Use '
-        '"gae active" to get the curent list of active version. Please use the '
-        'Web UI to fix. Aborting.', file=sys.stderr)
-    return 1
-  if from_versions:
-    from_version = list(from_versions)[0]
-    start = int(from_version.split('-', 1)[0])
-    end = int(to_version.split('-', 1)[0])
-    if start < end:
-      pseudo_revision, mergebase = calculate_version.get_remote_pseudo_revision(
-          app.app_dir, 'origin/master')
-      logs, _ = log_since.get_logs(
-          app.app_dir, pseudo_revision, mergebase, start, end)
-      print('\nLogs between %s and %s:' % (from_version, to_version))
-      print('%s\n' % logs)
+  try:
+    from_version = app.oldest_active_version()
+  except ValueError:
+    return
+
+  start = int(from_version.split('-', 1)[0])
+  end = int(to_version.split('-', 1)[0])
+  if start < end:
+    pseudo_revision, mergebase = calculate_version.get_remote_pseudo_revision(
+        app.app_dir, 'origin/master')
+    logs, _ = log_since.get_logs(
+        app.app_dir, pseudo_revision, mergebase, start, end)
+    print('\nLogs between %s and %s:' % (from_version, to_version))
+    print('%s\n' % logs)
 
 
 ##
@@ -107,11 +104,24 @@ def CMDactive(parser, args):
     print('\n'.join(sorted(set(i['id'] for i in data))))
     return 0
   print('%s:' % app.app_id)
+
+  has_splits = False
+  services = set()
+  for service in (d['service'] for d in data):
+    if service in services:
+      has_splits = True
+      break
+    else:
+      services.add(service)
+
   for service in data:
-    print(
+    msg = (
         '  %s: %s by %s at %s' % (
           service['service'], service['id'], service['deployer'],
           service['creationTime']))
+    if has_splits:
+      msg += ' (traffic: %.1f%%)' % (service['traffic_split'] * 100)
+    print(msg)
   return 0
 
 
@@ -343,7 +353,9 @@ def CMDswitch(parser, args):
       not gae_sdk_utils.confirm('Switch default version?', app, version)):
     print('Aborted.')
     return 1
-  app.set_default_version(version)
+  else:
+    print()
+  app.set_default_version(version, roll_options=options.roll_update)
   return 0
 
 
@@ -408,7 +420,8 @@ def CMDupload(parser, args):
     return 1
   _print_version_log(app, version)
   print('Switching as default version')
-  app.set_default_version(version)
+  print()
+  app.set_default_version(version, roll_options=options.roll_update)
   return 0
 
 
@@ -451,6 +464,7 @@ class OptionParser(optparse.OptionParser):
         '-n', '--no-log', action='store_true',
         help='Do not print logs from the current server active version to the '
              'one being switched to')
+    gae_sdk_utils.RollOption.add_option(self)
 
   def add_force_option(self):
     self.add_option(
