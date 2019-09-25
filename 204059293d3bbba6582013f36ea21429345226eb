@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "258dfb32_4522d404",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-25T02:09:36Z",
+      "side": 1,
+      "message": "This assertion is still failing.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8901500365876188768/+/steps/presubmit/0/stdout",
+      "revId": "204059293d3bbba6582013f36ea21429345226eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
