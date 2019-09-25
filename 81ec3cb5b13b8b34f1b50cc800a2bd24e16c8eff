@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "9426ab40_fce07878",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-25T13:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fc2912f_8fbe6175",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b7c949f_98a8d6cf",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 14
@@ -179,6 +197,24 @@
     },
     {
       "key": {
+        "uuid": "4e048170_3a803bed",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-25T13:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98f266b2_fe04929f",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1bf9a2e_9f4c1c12",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
         "patchSetId": 14
@@ -190,6 +226,24 @@
       "writtenOn": "2019-09-25T13:25:20Z",
       "side": 1,
       "message": "Need tests for get_dimensions() as well",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3407bcd3_d94daed6",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-25T13:37:16Z",
+      "side": 1,
+      "message": "Current test_get_dimensions() is not sufficient?",
+      "parentUuid": "f1bf9a2e_9f4c1c12",
       "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
