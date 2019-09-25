@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b816edb_ddec415b",
+        "filename": "DEPS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T14:19:25Z",
+      "side": 0,
+      "message": "Ah, I just realized.\n\nuse_relative_paths \u003d True should be used. It\u0027d make a significant different, so that you could use \"appengine/swarming/ui2/nodejs\" here.\n\nSee https://cs.chromium.org/chromium/tools/depot_tools/gclient.py?q\u003duse_relative_paths\u0026l\u003d731\n\n(It\u0027s not well documented)",
+      "revId": "974507a1115594a98aff94ce73bc1bd8ea697737",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
