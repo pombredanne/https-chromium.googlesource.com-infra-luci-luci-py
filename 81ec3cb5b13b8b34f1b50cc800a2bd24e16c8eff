@@ -86,6 +86,41 @@
       "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f0bdc64_31aa5bb8",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-25T13:25:20Z",
+      "side": 1,
+      "message": "How about \"filter(None, [get_python3_version()])\"?",
+      "parentUuid": "6cc8f0d4_e7c93369",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1bf9a2e_9f4c1c12",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-25T13:25:20Z",
+      "side": 1,
+      "message": "Need tests for get_dimensions() as well",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
