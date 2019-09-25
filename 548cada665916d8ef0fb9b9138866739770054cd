@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2152fd2_66427b8b",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:54:20Z",
+      "side": 1,
+      "message": "For historical purposes, I would prefer this change to be in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1824519",
+      "revId": "548cada665916d8ef0fb9b9138866739770054cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
