@@ -16,6 +16,24 @@
       "revId": "37e9ec464d726476717aaec66c913f153a33b88a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff848bf5_a943e033",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-25T13:12:23Z",
+      "side": 1,
+      "message": "Karma automatically uses the puppeteer\u0027s Chrome as you can see in the config file.\n\nhttps://crrev.com/c/1824530/2/appengine/swarming/ui2/karma.conf.js#5",
+      "parentUuid": "31ea723e_7448da6b",
+      "revId": "37e9ec464d726476717aaec66c913f153a33b88a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
