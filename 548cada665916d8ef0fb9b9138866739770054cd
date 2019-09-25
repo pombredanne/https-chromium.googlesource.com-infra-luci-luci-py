@@ -34,6 +34,24 @@
       "revId": "548cada665916d8ef0fb9b9138866739770054cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6694a702_9e0a8dc9",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T14:19:56Z",
+      "side": 1,
+      "message": "Ok commented on this CL, but the PRESUBMIT.py change should still be there.",
+      "parentUuid": "f985f401_7923f792",
+      "revId": "548cada665916d8ef0fb9b9138866739770054cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
