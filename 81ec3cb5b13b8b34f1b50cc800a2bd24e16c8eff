@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "49db83dd_70864d7b",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T13:29:19Z",
+      "side": 1,
+      "message": "Ah yes it\u0027s likely the case.",
+      "parentUuid": "7285cd17_2571f052",
+      "revId": "81ec3cb5b13b8b34f1b50cc800a2bd24e16c8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fc2912f_8fbe6175",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
         "patchSetId": 14
