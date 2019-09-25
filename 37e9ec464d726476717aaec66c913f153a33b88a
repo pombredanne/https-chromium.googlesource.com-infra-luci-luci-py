@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31ea723e_7448da6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-25T10:26:44Z",
+      "side": 1,
+      "message": "I think it is better to add link to instrcution so that reviwer can verify what you are doing easily.\nhttps://github.com/karma-runner/karma-chrome-launcher#headless-chromium-with-puppeteer",
+      "revId": "37e9ec464d726476717aaec66c913f153a33b88a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
