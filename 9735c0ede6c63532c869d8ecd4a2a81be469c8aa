@@ -118,6 +118,30 @@
       "revId": "9735c0ede6c63532c869d8ecd4a2a81be469c8aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "924b4f2d_b6b8dbbc",
+        "filename": "DEPS",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T14:21:49Z",
+      "side": 1,
+      "message": "Err I thought I was commenting on https://chromium-review.googlesource.com/c/infra/infra/+/1824497. :)\n\nAnyhow, let\u0027s follow up on https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1824519",
+      "parentUuid": "333165f0_95e5eb8a",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "9735c0ede6c63532c869d8ecd4a2a81be469c8aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
