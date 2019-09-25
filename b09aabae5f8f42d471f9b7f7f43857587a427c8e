@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c235e8ef_7bdafc21",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-09-25T23:18:43Z",
+      "side": 1,
+      "message": "I\u0027m fixing this lovely mess :)",
+      "range": {
+        "startLine": 541,
+        "startChar": 214,
+        "endLine": 541,
+        "endChar": 237
+      },
+      "revId": "b09aabae5f8f42d471f9b7f7f43857587a427c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
