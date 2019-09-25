@@ -49,7 +49,7 @@ def CommonChecks(input_api, output_api):
             directory,
             whitelist=[r'.+_test\.py$'],
             blacklist=blacklist))
-  output.extend(input_api.RunTests(tests, parallel=True))
+  # output.extend(input_api.RunTests(tests, parallel=True))
   return output
 
 

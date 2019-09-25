@@ -28,16 +28,17 @@ def header(input_api):
 
 def CommonChecks(input_api, output_api):
   excluded = [
-    r'.+-build\.(js|html)$',
-    r'.+/build/.+(js|html)$',
-    r'.+/dist/.+(js|html|css)$',
-    r'/test',
-    r'.+_pb2\.py$',
-    r'.+_pb2_grpc\.py$',
-    r'.*third_party.*',
-    # These are a symlink to third_party, so it shouldn't be checked.
-    r'appengine/isolate/bqh\.py$',
-    r'appengine/swarming/bqh\.py$',
+      r'.+-build\.(js|html)$',
+      r'.+/build/.+(js|html)$',
+      r'.+/dist/.+(js|html|css)$',
+      r'/test',
+      r'.+_pb2\.py$',
+      r'.+_pb2_grpc\.py$',
+      r'.*third_party.*',
+      # r'appengine/swarming/ui2/node_modules/.*',
+      # These are a symlink to third_party, so it shouldn't be checked.
+      r'appengine/isolate/bqh\.py$',
+      r'appengine/swarming/bqh\.py$',
   ]
 
 

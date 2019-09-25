@@ -302,7 +302,7 @@ def get_cpuinfo():
   elif sys.platform == 'win32':
     info = platforms.win.get_cpuinfo()
   elif sys.platform == 'linux2':
-     info = platforms.linux.get_cpuinfo()
+    info = platforms.linux.get_cpuinfo()
   else:
     info = {}
   if platforms.is_gce():
@@ -702,6 +702,16 @@ def get_python_packages():
     return None
 
 
+def get_python3_version():
+  """Returns a python3 version available from PATH."""
+  try:
+    version = subprocess.check_output(['python3', '--version'],
+                                      stderr=subprocess.STDOUT)
+    return version.decode('utf-8').split()[1]
+  except (subprocess.CalledProcessError, OSError):
+    return 'Not found'
+
+
 class AuthenticatedHttpRequestFailure(Exception):
   pass
 
@@ -936,14 +946,15 @@ def get_state_all_devices_android(devices):
 def get_dimensions():
   """Returns the default dimensions."""
   dimensions = {
-    u'cores': [unicode(get_num_processors())],
-    u'cpu': get_cpu_dimensions(),
-    u'gpu': get_gpu()[0],
-    u'id': [get_hostname_short()],
-    u'os': get_os_values(),
-    # This value is frequently overridden by bots.cfg via luci-config.
-    u'pool': [u'default'],
-    u'python': [sys.version.decode('utf-8').split()[0]],
+      u'cores': [unicode(get_num_processors())],
+      u'cpu': get_cpu_dimensions(),
+      u'gpu': get_gpu()[0],
+      u'id': [get_hostname_short()],
+      u'os': get_os_values(),
+      # This value is frequently overridden by bots.cfg via luci-config.
+      u'pool': [u'default'],
+      u'python': [sys.version.decode('utf-8').split()[0]],
+      u'python3': [get_python3_version()],
   }
 
   # Conditional dimensions:
