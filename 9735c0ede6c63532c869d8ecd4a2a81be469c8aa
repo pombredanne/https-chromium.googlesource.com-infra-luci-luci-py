@@ -94,6 +94,30 @@
       "revId": "9735c0ede6c63532c869d8ecd4a2a81be469c8aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333165f0_95e5eb8a",
+        "filename": "DEPS",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T14:20:43Z",
+      "side": 1,
+      "message": "See my comment on the other CL. Using use_relative_paths in luci-py\u0027s DEPS will make things work much better IMHO.",
+      "parentUuid": "ae5b45ad_110888c0",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "9735c0ede6c63532c869d8ecd4a2a81be469c8aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
