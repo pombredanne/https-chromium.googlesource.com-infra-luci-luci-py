@@ -17,12 +17,8 @@ webpackConfig.resolve = {
     modules: ['./node_modules', './'],
 }
 
-// https://github.com/webpack-contrib/karma-webpack/issues/322#issuecomment-417862717
-webpackConfig.output = {
-    filename: '[name]'
-}
-
 module.exports = function(config) {
+  console.log();
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
