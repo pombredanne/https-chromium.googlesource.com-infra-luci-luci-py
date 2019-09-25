@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "921717d2_310dae23",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1692,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-25T20:02:44Z",
+      "side": 1,
+      "message": "I added:\n\n  assert run_result_key.get().dead_after_ts\n\nand it did trigger. You may want to verify how this got into this situation.\n\nA way to improve this is to change yield_run_result_keys_with_dead_bot() in task_result.py to query something like:\n\n  now \u003d utils.utcnow()\n  q \u003d TaskRunResult.query(\n    TaskRunResult.dead_after_ts \u003c now,\n    TaskRunResult.dead_after_ts \u003e now - datetime.timedelta(days\u003d366))\n\n\nIt did seem to kill off the assert.",
+      "revId": "204059293d3bbba6582013f36ea21429345226eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "258dfb32_4522d404",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 18
