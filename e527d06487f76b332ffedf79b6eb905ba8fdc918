@@ -251,6 +251,30 @@
     },
     {
       "key": {
+        "uuid": "8ab3cf5a_c55bb196",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T17:01:54Z",
+      "side": 1,
+      "message": "Ok I\u0027m just not (yet) used to this, but it\u0027s fine.",
+      "parentUuid": "6ae474cc_b1018c35",
+      "range": {
+        "startLine": 602,
+        "startChar": 45,
+        "endLine": 602,
+        "endChar": 55
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccf6c818_c09cbcd6",
         "filename": "appengine/components/tool_support/gae_sdk_utils.py",
         "patchSetId": 10
