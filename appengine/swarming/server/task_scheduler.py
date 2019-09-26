@@ -331,9 +331,13 @@ def _handle_dead_bot(run_result_key):
     if run_result.state != task_result.State.RUNNING:
       # It was updated already or not updating last. Likely DB index was stale.
       return None, run_result.bot_id
-    # TODO(adoneria): Modify this to use .dead_after_ts
-    if run_result.modified_ts > now - task_result.BOT_PING_TOLERANCE:
-      # The query index IS stale.
+
+    if run_result.dead_after_ts and run_result.dead_after_ts > now:
+      # This bot shouldn't be dead. DB index may be stale.
+      return None, run_result.bot_id
+
+    if not run_result.dead_after_ts:
+      # This shouldn't have been filtered in the query. DB index may be stale.
       return None, run_result.bot_id
 
     current_task_slice = run_result.current_task_slice
