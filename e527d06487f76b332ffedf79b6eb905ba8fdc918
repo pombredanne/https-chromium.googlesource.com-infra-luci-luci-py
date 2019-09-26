@@ -2,6 +2,138 @@
   "comments": [
     {
       "key": {
+        "uuid": "13cbf01b_fb11fd5a",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "That\u0027s kind of opaque for what boils down to approximatively\n\n  self.duration \u003d cls._parse_string(value)",
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eeaa874b_da2b484a",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "I\u0027d prefer consistent single quotes everywhere.",
+      "range": {
+        "startLine": 142,
+        "startChar": 12,
+        "endLine": 142,
+        "endChar": 13
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95462077_6c9fa517",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "can you extract this to a variable to help readability?\n\nAlso see line 134. :)",
+      "range": {
+        "startLine": 157,
+        "startChar": 17,
+        "endLine": 157,
+        "endChar": 67
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c56d7d57_fa9bc5eb",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "Optional redesign: While I understand why you did it this way, I think I would have preferred to separate the argument parsing (lines 84 to 120) and the runtime execution (lines 122 to 168) which could simply be a stand alone function, that this function here would call. Then this function can simply accept a duration for the split. This is less extensible, but I don\u0027t feel we need it to be generic.",
+      "range": {
+        "startLine": 549,
+        "startChar": 56,
+        "endLine": 549,
+        "endChar": 68
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "805c5ea2_a6ea3b9b",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "I\u0027d prefer to keep everything with single quotes for consistency.",
+      "range": {
+        "startLine": 554,
+        "startChar": 10,
+        "endLine": 554,
+        "endChar": 11
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7989461e_e6dd2564",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "Maybe at least make this a variable to make it a bit more readable? Or just create a \u0027url\u0027 variable.",
+      "range": {
+        "startLine": 555,
+        "startChar": 61,
+        "endLine": 555,
+        "endChar": 77
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98e96cdb_59ee67f5",
         "filename": "appengine/components/tool_support/gae_sdk_utils.py",
         "patchSetId": 10
@@ -18,6 +150,133 @@
         "startChar": 43,
         "endLine": 579,
         "endChar": 49
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8418fe13_a35ae6b9",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "That\u0027s a problem for the Swarming server, which explicitly uses cookies for traffic splitting. But that\u0027s a one-off in term of Chrome services.\n\nI think it\u0027s fine here, we just won\u0027t be able to use this for Swarming, but we weren\u0027t anyway so there\u0027s no change.",
+      "parentUuid": "98e96cdb_59ee67f5",
+      "range": {
+        "startLine": 579,
+        "startChar": 43,
+        "endLine": 579,
+        "endChar": 49
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe07a296_e2a79092",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "why a tuple? I confirm and this has no effect on %r",
+      "range": {
+        "startLine": 595,
+        "startChar": 25,
+        "endLine": 595,
+        "endChar": 27
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84d118d3_bbfbaaed",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "Why tuple?",
+      "range": {
+        "startLine": 602,
+        "startChar": 45,
+        "endLine": 602,
+        "endChar": 55
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccf6c818_c09cbcd6",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "optional nit: print(\u0027\\nMigration complete!\u0027)",
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cd659fd_50ff92bc",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "Adding this would make it more trivial to understand:\n\n  Returns active version(s) sorted by smaller version number first.\n\nI mean it\u0027s not *strictly speaking* true but close enough.",
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef61509d_eee83685",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T13:18:29Z",
+      "side": 1,
+      "message": "Small nit: I\u0027d prefer split(\u0027-\u0027, 1)\n\nAlso, spinnaker will fuck this up, I\u0027m fine to ignore for now.",
+      "range": {
+        "startLine": 831,
+        "startChar": 57,
+        "endLine": 831,
+        "endChar": 68
       },
       "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
