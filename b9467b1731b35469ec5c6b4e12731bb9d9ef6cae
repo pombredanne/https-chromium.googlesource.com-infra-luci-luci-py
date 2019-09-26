@@ -16,6 +16,24 @@
       "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af5ed5d1_fff71352",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-26T12:53:07Z",
+      "side": 1,
+      "message": "Since it\u0027s supposed to be fetched with CIPD, I\u0027m fine with this, it guarantees that the version used is deterministic.",
+      "parentUuid": "926f3ffb_38a22396",
+      "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
