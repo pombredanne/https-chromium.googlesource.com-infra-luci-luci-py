@@ -52,6 +52,24 @@
       "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a291a11_d1de7619",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-26T14:47:32Z",
+      "side": 1,
+      "message": "`head -1 $(which npm)` shows \"#!/usr/bin/env node\", so npm may not run with bundled nodejs?",
+      "parentUuid": "c188fac7_6ae467a9",
+      "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
