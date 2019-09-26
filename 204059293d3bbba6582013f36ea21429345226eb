@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d9458425_f010cbdc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1692,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-26T21:02:08Z",
+      "side": 1,
+      "message": "Done. But just wondering why this resolved our problem?",
+      "parentUuid": "921717d2_310dae23",
+      "revId": "204059293d3bbba6582013f36ea21429345226eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "258dfb32_4522d404",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 18
@@ -33,6 +51,24 @@
       "revId": "204059293d3bbba6582013f36ea21429345226eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aff46a5_a515ba78",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-26T21:02:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "258dfb32_4522d404",
+      "revId": "204059293d3bbba6582013f36ea21429345226eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
