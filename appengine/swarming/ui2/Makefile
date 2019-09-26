@@ -1,17 +1,21 @@
+NODE_BIN=./nodejs/bin
+NPM=$(NODE_BIN)/npm
+NPX=$(NODE_BIN)/npx
+
 .ONESHELL:
 
 default: package-lock.json
-	npx webpack --mode=development
+	$(NPX) webpack --mode=development
 
 release: package-lock.json
-	npx webpack --mode=production
+	$(NPX) webpack --mode=production
 
 serve: package-lock.json
-	npx webpack-dev-server --mode=development --watch-poll
+	$(NPX) webpack-dev-server --mode=development --watch-poll
 
 test: default
 	# Run the generated tests just once under Xvfb.
-	xvfb-run --auto-servernum --server-args "-screen 0 1280x1024x24" npx karma start
+	xvfb-run --auto-servernum --server-args "-screen 0 1280x1024x24" $(NPX) karma start
 
 browser_test:
 	# Good for debugging/developing tests.
@@ -19,7 +23,7 @@ browser_test:
 	# tests there, seeing the results. Unfortunately, due to how karma needs to
 	# concatenate the _test.js files and run them through webpack, it doesn't
 	# autodetect changes and needs to be re-run manually :(
-	xvfb-run --auto-servernum --server-args "-screen 0 1280x1024x24" npx karma start --no-single-run
+	xvfb-run --auto-servernum --server-args "-screen 0 1280x1024x24" $(NPX) karma start --no-single-run
 
 continuous_test:
 	# Good for debugging/developing tests.
@@ -32,11 +36,11 @@ continuous_test:
 
 .PHONY: docs
 docs: package-lock.json
-	npx jsdoc -c jsdoc.config.js -d docs
+	$(NPX) jsdoc -c jsdoc.config.js -d docs
 	xdg-open docs/index.html
 
 package-lock.json: package.json
-	npm install
+	$(NPM) install
 	# This should tell Makefile that the "built" package-lock.json file is older than
 	# the "source" package.json and thus does not require to be "rebuilt".
 	touch package-lock.json
