@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98e96cdb_59ee67f5",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-09-26T01:02:21Z",
+      "side": 1,
+      "message": "I did this because I realized that due to golo, many of our apps will have very lopsided traffic distribution by-IP.",
+      "range": {
+        "startLine": 579,
+        "startChar": 43,
+        "endLine": 579,
+        "endChar": 49
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
