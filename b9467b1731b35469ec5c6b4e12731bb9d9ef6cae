@@ -88,6 +88,24 @@
       "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "264839ed_d3e33fcd",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-09-26T23:46:57Z",
+      "side": 1,
+      "message": "I said about node used to run npm. I think this won\u0027t make sure npm run with nodejs come from CIPD?",
+      "parentUuid": "6bf67857_e393b50f",
+      "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
