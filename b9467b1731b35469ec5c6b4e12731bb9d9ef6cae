@@ -34,6 +34,24 @@
       "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c188fac7_6ae467a9",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-26T13:22:58Z",
+      "side": 1,
+      "message": "Note that the nodejs/bin is already added to PATH on the tryjob. This is just for local environment.",
+      "parentUuid": "af5ed5d1_fff71352",
+      "revId": "b9467b1731b35469ec5c6b4e12731bb9d9ef6cae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
