@@ -227,6 +227,30 @@
     },
     {
       "key": {
+        "uuid": "6ae474cc_b1018c35",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-09-26T16:46:12Z",
+      "side": 1,
+      "message": "it\u0027s a good habit in python:\n\n  var \u003d \"hi\"\n  \"%s\" % var \u003d\u003d \"hi\"\n  \"%s\" % (var,) \u003d\u003d \"hi\"\n   \n  var \u003d (\"hi\", \"there\")  # or any other non-string sequence\n  \"%s\" % var  # exception! too many format arguments!\n  \"%s\" % (var,)  \u003d\u003d \u0027(\"hi\", \"there\")\u0027  # hmm, that doesn\u0027t look right, but I can debug it.",
+      "parentUuid": "84d118d3_bbfbaaed",
+      "range": {
+        "startLine": 602,
+        "startChar": 45,
+        "endLine": 602,
+        "endChar": 55
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccf6c818_c09cbcd6",
         "filename": "appengine/components/tool_support/gae_sdk_utils.py",
         "patchSetId": 10
