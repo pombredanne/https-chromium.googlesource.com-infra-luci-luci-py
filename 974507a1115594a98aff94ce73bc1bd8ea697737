@@ -16,6 +16,24 @@
       "revId": "974507a1115594a98aff94ce73bc1bd8ea697737",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff05d8d1_1a25132f",
+        "filename": "DEPS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-09-26T00:18:54Z",
+      "side": 0,
+      "message": "Great, thanks!\nI changed to use relative paths.",
+      "parentUuid": "1b816edb_ddec415b",
+      "revId": "974507a1115594a98aff94ce73bc1bd8ea697737",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
