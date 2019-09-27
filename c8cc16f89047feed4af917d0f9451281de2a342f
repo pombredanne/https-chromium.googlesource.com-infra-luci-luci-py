@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0077e93a_ea10b072",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-27T19:43:52Z",
+      "side": 1,
+      "message": "Got it! And the extra filter on \u0027TaskRunResult.state \u003d\u003d State.RUNNING\u0027 was preventing those entities in the final resultset in the previous query.",
+      "parentUuid": "f4561da7_2bafc83e",
+      "revId": "c8cc16f89047feed4af917d0f9451281de2a342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73053ac6_2bf05660",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 19
@@ -39,6 +57,30 @@
       "revId": "c8cc16f89047feed4af917d0f9451281de2a342f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c30ba99_4e8f634f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1352545
+      },
+      "writtenOn": "2019-09-27T19:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73053ac6_2bf05660",
+      "range": {
+        "startLine": 339,
+        "startChar": 11,
+        "endLine": 339,
+        "endChar": 12
+      },
+      "revId": "c8cc16f89047feed4af917d0f9451281de2a342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
