@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4561da7_2bafc83e",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-27T14:12:19Z",
+      "side": 1,
+      "message": "So if you compare with the previous query; it was in theory getting entities with modified_ts \u003d\u003d None, but there\u0027s no such entity.",
+      "revId": "c8cc16f89047feed4af917d0f9451281de2a342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73053ac6_2bf05660",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-27T14:12:19Z",
+      "side": 1,
+      "message": "Move this before the other condition, so you don\u0027t need to check that run_result.dead_after_ts is set. As a matter of fact you can combine both.",
+      "range": {
+        "startLine": 339,
+        "startChar": 11,
+        "endLine": 339,
+        "endChar": 12
+      },
+      "revId": "c8cc16f89047feed4af917d0f9451281de2a342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
