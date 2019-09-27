@@ -350,6 +350,30 @@
     },
     {
       "key": {
+        "uuid": "deb8ddc6_54bb1396",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2019-09-27T00:29:06Z",
+      "side": 1,
+      "message": "I turns out that cookie splitting \u003d\u003d random for clients which ignore cookies. This means it\u0027s the best of both worlds, so I switched to that.",
+      "parentUuid": "39dce297_9096700c",
+      "range": {
+        "startLine": 579,
+        "startChar": 43,
+        "endLine": 579,
+        "endChar": 49
+      },
+      "revId": "e527d06487f76b332ffedf79b6eb905ba8fdc918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe07a296_e2a79092",
         "filename": "appengine/components/tool_support/gae_sdk_utils.py",
         "patchSetId": 10
