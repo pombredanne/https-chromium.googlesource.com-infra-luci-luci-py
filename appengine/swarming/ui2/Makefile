@@ -1,3 +1,5 @@
+export PATH := ./nodejs/bin:$(PATH)
+
 .ONESHELL:
 
 default: package-lock.json
@@ -11,7 +13,7 @@ serve: package-lock.json
 
 test: default
 	# Run the generated tests just once under Xvfb.
-	xvfb-run --auto-servernum --server-args "-screen 0 1280x1024x24" npx karma start
+	xvfb-run --auto-servernum --server-args "-screen 0 1280x1024x24" npm karma start
 
 browser_test:
 	# Good for debugging/developing tests.
@@ -40,3 +42,6 @@ package-lock.json: package.json
 	# This should tell Makefile that the "built" package-lock.json file is older than
 	# the "source" package.json and thus does not require to be "rebuilt".
 	touch package-lock.json
+
+install_deps:
+	npm install
