@@ -6,7 +6,10 @@ default: package-lock.json
 	npx webpack --mode=development
 
 release: package-lock.json
+	git status
 	npx webpack --mode=production
+	git status
+	git diff
 
 serve: package-lock.json
 	npx webpack-dev-server --mode=development --watch-poll
