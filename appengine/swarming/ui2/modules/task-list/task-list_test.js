@@ -512,7 +512,7 @@ describe('task-list', function() {
         expect(valueSelector).toBeTruthy();
         values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
         // spot check
-        expect(values.length).toBe(14);
+        expect(values.length).toBe(13);
         expect(values).toContain('RUNNING');
         expect(values).toContain('COMPLETED_FAILURE');
 
