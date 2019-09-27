@@ -59,6 +59,7 @@ import { COUNT_FILTERS } from '../task'
 
 const colHead = (col, ele) => html`
 <th>${getColHeader(col)}
+hoge
   <sort-toggle .key=${col} .currentKey=${ele._sort} .direction=${ele._dir}>
   </sort-toggle>
 </th>`;
