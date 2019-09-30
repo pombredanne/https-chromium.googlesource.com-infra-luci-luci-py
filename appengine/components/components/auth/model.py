@@ -602,6 +602,35 @@ class AuthReplicationState(ndb.Model, datastore_utils.SerializableModelMixin):
   # auto_now is not used.
   modified_ts = ndb.DateTimeProperty(auto_now_add=True, indexed=False)
 
+  # For services in Replica mode, contains IDs of AuthDBSnapshotShard entities
+  # that together (when concatenated) hold a deflated AuthDB proto message with
+  # all groups, IP whitelists, etc.
+  shard_ids = ndb.StringProperty(repeated=True, indexed=False)
+
+
+class AuthDBSnapshotShard(ndb.Model):
+  """Root entity with a blob that contains a portion of deflated AuthDB message.
+
+  Services in Replica mode cache "fully assembled" AuthDB in such entities, so
+  that processes can fetch it all via a few memcache calls instead of doing a
+  bunch of expensive transactional datastore queries.
+
+  Entity ID has form "<primary_url>,<auth_db_rev>,<hex_sha256(blob)[:16]>".
+  For example: "https://example.com,12352,abcdefabcdefabcd". See replication.py
+  for code that deals with this entity.
+
+  Immutable.
+  """
+  # Disable useless in-process per-request cache.
+  _use_cache = False
+
+  # A shard of zlib-deflated serialized AuthDB proto.
+  blob = ndb.BlobProperty()
+  # Root URL of Primary, i.e https://<host> (same as in the key).
+  primary_url = ndb.StringProperty(indexed=True)
+  # Revision of auth DB (same as in the key).
+  auth_db_rev = ndb.IntegerProperty(default=0, indexed=True)
+
 
 def replicate_auth_db():
   """Increments auth_db_rev, updates historical log, triggers replication.
