@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "771c0273_dfe2f035",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T00:19:55Z",
+      "side": 1,
+      "message": "else is not needed.\n\nPersonally I would have used:\n\n  if not run_result.dead_after_ts or run_result.dead_after_ts \u003e now:",
+      "revId": "453042036c421431128bf4506b12e6480271f635",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

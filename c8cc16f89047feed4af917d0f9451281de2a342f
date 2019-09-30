@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "a9d466a3_25748f34",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T00:19:55Z",
+      "side": 1,
+      "message": "If there would have been entities with modified_ts \u003d\u003d None, yes. But there was also no such entity.",
+      "parentUuid": "0077e93a_ea10b072",
+      "revId": "c8cc16f89047feed4af917d0f9451281de2a342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73053ac6_2bf05660",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 19

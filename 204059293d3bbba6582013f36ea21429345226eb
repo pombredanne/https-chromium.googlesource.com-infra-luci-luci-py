@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "c5ab0727_33b6bc4a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1692,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T00:19:55Z",
+      "side": 1,
+      "message": "Also to clarify, a missing property is different from one explicitly set to none.\n\nFor example you could have an entity stored to the DB. Then you add a new property to the model. In this case the property does not exist, and this is different from being explicitly set to None.",
+      "parentUuid": "6991a573_e00cb6f2",
+      "revId": "204059293d3bbba6582013f36ea21429345226eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "258dfb32_4522d404",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 18
