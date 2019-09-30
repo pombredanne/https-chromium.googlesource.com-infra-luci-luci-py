@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07d27e04_92b0e280",
+        "filename": "appengine/components/components/auth/model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:20:32Z",
+      "side": 1,
+      "message": "What\u0027s the reason you prefer to not use ndb\u0027s compressed\u003dTrue functionality? The comment in replication.py implies it\u0027s to be able to reduce the compression level, if so please comment this fact here since it\u0027s not obvious.",
+      "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1923f40d_1912b61e",
+        "filename": "appengine/components/components/auth/model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:20:32Z",
+      "side": 1,
+      "message": "Design question: You prefer this to having an entity group with separate keys for each of primary_url and auth_db_rev? Then there\u0027s no index for these two properties.\n\nWhen using this form you could use monotonically increasing numbers for the shards, so AuthReplicationState.shard_ids would become num_shards as a single integer, and the gets would become trivial since it\u0027d be a range(AuthReplicationState.num_shards).\n\nAnother value of this layout is that entities are going to be locally stored, which means that at least in theory reads are going to be faster.",
+      "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d95811_495b887f",
+        "filename": "appengine/components/components/auth/replication.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:20:32Z",
+      "side": 1,
+      "message": "That\u0027s why compressed\u003dTrue is not used? I\u0027d prefer this to be noted in the model property\u0027s comment.",
+      "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
