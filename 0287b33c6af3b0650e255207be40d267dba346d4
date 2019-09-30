@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b366d727_90683772",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "groups: list of AuthGroup entities to load. If unspecified, no group is loaded.",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e808ed64_74cc3261",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "This and following ones are weird, since it\u0027s really just injecting data directly into the instance. It\u0027d be nice to clarify that.",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7234d386_b929985f",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "I\u0027m going to start making this code python3 compatible so if you can start using items() right away it\u0027d be nice. :)",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "260d6046_5188cb77",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "\"is an AuthDB entity\" ?",
+      "range": {
+        "startLine": 1082,
+        "startChar": 21,
+        "endLine": 1082,
+        "endChar": 32
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "306c9081_18ee77db",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1083,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "If",
+      "range": {
+        "startLine": 1083,
+        "startChar": 28,
+        "endLine": 1083,
+        "endChar": 30
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc42266_0b441937",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "exactly?",
+      "range": {
+        "startLine": 1098,
+        "startChar": 9,
+        "endLine": 1098,
+        "endChar": 13
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c858399_313269aa",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "Technically this could be done outside of the transaction (?)\n\nIn particular I\u0027m concerned that memcache is implicitly disabled because of @ndb.transactional.",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63deea72_6dcb1ceb",
+        "filename": "appengine/components/components/auth/replication.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-09-30T12:41:09Z",
+      "side": 1,
+      "message": "This function is not called often, so I\u0027d prefer to not use an argument default value.",
+      "range": {
+        "startLine": 211,
+        "startChar": 56,
+        "endLine": 211,
+        "endChar": 62
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
