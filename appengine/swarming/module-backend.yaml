@@ -72,3 +72,4 @@ skip_files:
 - ui/node_modules/
 - ui/res/imp/bower_components/
 - ui2/node_modules/.+
+- ui2/nodejs/.+
