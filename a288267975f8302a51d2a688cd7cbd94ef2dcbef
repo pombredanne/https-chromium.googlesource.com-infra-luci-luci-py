@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22a5bb69_9b3bdcd6",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-01T15:08:16Z",
+      "side": 1,
+      "message": "You still need a \u003e\u003d filter. See\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1769464/18/appengine/swarming/server/task_scheduler.py#1692\nfor an explanation and\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1769464/21/appengine/swarming/server/task_result.py#1411\nfor an example.\n\nMaybe \u003e\u003d None works, I\u0027m not sure.\n\nAs such, I\u0027d be fine with only having last 7 days and not bothering with the test, the entities will be deleted in 18 months anyway. And the code path to flush inconsistent entities should not be needed anymore, since it\u0027s been a while. The only important point is to delete old server code.",
+      "revId": "a288267975f8302a51d2a688cd7cbd94ef2dcbef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
