@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47f32f9b_99101f51",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-01T12:03:26Z",
+      "side": 1,
+      "message": "Since it\u0027s not needed anymore, we should delete this from the source control.",
+      "revId": "76203cd6adc8fa12f9804130c7a04da4cd767700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33ca6fb3_c4cf26f7",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-01T12:03:26Z",
+      "side": 1,
+      "message": "(while at it) I this we can filter out things even a bit more, as only ui2/dist is really needed. For example ui2/modules is quite large! And pages/ is not needed either.",
+      "revId": "76203cd6adc8fa12f9804130c7a04da4cd767700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
