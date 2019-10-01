@@ -13,10 +13,10 @@ _INITIALIZED = False
 
 
 def setup_test_env(app_id='sample-app'):
-  """Sets up App Engine test environment."""
-  global _INITIALIZED
-  if _INITIALIZED:
-    raise Exception('Do not call test_env.setup_test_env() twice.')
+  # """Sets up App Engine test environment."""
+  # global _INITIALIZED
+  # if _INITIALIZED:
+  #   raise Exception('Do not call test_env.setup_test_env() twice.')
   _INITIALIZED = True
 
   # For depot_tools.

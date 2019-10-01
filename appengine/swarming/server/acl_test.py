@@ -7,8 +7,8 @@ import logging
 import sys
 import unittest
 
-import test_env
-test_env.setup_test_env()
+# import test_env
+# test_env.setup_test_env()
 
 # from components.auth import api
 from components import auth
@@ -234,4 +234,3 @@ if __name__ == '__main__':
   logging.basicConfig(
       level=logging.DEBUG if '-v' in sys.argv else logging.CRITICAL)
   unittest.main()
-

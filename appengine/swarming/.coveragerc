@@ -1,0 +1,8 @@
+[run]
+include = ./luci/appengine/swarming/*
+
+[report]
+exclude_lines =
+
+[expect_tests]
+expected_coverage_min = 100

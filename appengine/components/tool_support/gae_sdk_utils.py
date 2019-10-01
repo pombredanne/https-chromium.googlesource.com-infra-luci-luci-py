@@ -326,9 +326,9 @@ def setup_gae_sdk(sdk_path):
   SDK and any AppEngine included Python module can be imported. The change is
   global and permanent.
   """
-  global _GAE_SDK_PATH
-  if _GAE_SDK_PATH:
-    raise ValueError('setup_gae_sdk was already called.')
+  # global _GAE_SDK_PATH
+  # if _GAE_SDK_PATH:
+  #   raise ValueError('setup_gae_sdk was already called.')
   _GAE_SDK_PATH = sdk_path
 
   sys.path.insert(0, sdk_path)
@@ -370,7 +370,7 @@ class Application(object):
     self._gae_sdk = _GAE_SDK_PATH
     self._app_dir = os.path.abspath(app_dir)
     self._app_id = app_id
-    self._verbose = verbose
+    test._verbose = verbose
 
     # Module ID -> (path to YAML, deserialized content of service YAML).
     self._services = {}
