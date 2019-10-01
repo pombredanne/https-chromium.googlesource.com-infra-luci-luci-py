@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "baca10dc_9857c9bc",
+        "filename": "appengine/components/components/auth/model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:16:48Z",
+      "side": 1,
+      "message": "Done. We compress, and then split into shards (instead of splitting first, and the compressing). That way shards are guaranteed to be under the size limit. \u0027blob\u0027 by itself is not a valid zlib-compressed data.",
+      "parentUuid": "07d27e04_92b0e280",
+      "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1923f40d_1912b61e",
         "filename": "appengine/components/components/auth/model.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4a38a99e_3a4fa992",
+        "filename": "appengine/components/components/auth/model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:16:48Z",
+      "side": 1,
+      "message": "Changed to be a single entity group, but kept hashes because I want it to be resilient to a situation when \u0027push_auth_db\u0027 call is retried with same auth_db_rev, but different auth_db blob (it should not happen, but there\u0027s no protection against this). Using hashes is rock solid and not much more complicated than using range(...), considering we have very few shards (so storing their IDs is not an issue).",
+      "parentUuid": "1923f40d_1912b61e",
+      "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96d95811_495b887f",
         "filename": "appengine/components/components/auth/replication.py",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c297693b_8e555d92",
+        "filename": "appengine/components/components/auth/replication.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:16:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "96d95811_495b887f",
+      "revId": "02ab487267b0a4880c2837557aca091c9ce09134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
