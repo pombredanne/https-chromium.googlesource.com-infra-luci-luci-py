@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79e7d035_7eae1cc5",
+        "filename": "appengine/components/components/auth/api_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7bba7bb_ac68e3ce",
+      "revId": "656fa5e3d7019f85b29eebcba9665f1533bea3ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
