@@ -2,13 +2,13 @@ export PATH := ./nodejs/bin:$(PATH)
 
 .ONESHELL:
 
-default: package-lock.json
+default:
 	npx webpack --mode=development
 
-release: package-lock.json
+release:
 	npx webpack --mode=production
 
-serve: package-lock.json
+serve:
 	npx webpack-dev-server --mode=development --watch-poll
 
 test: default
