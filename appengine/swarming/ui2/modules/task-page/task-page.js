@@ -795,7 +795,7 @@ const retryOrDebugPrompt = (ele, sliceProps) => {
   <div>
     <div class=ib ?hidden=${!ele._isPromptDebug}>
       <span>Lease Duration</span>
-      <input id=lease_duration value=4h></input>
+      <input id=lease_duration value=30m></input>
     </div>
     <div class=ib>
       <checkbox-sk class=same-bot
