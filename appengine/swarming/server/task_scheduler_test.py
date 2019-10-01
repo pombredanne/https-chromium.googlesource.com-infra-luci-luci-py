@@ -571,12 +571,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     """
     calls = []
     # pylint: disable=unused-argument
-    def mock_notify(es_cfg, requests, use_tq, is_callback):
+    def mock_notify(es_cfg, requests, use_tq, is_callback, batch_mode):
       assert isinstance(es_cfg, pools_config.ExternalSchedulerConfig)
       for request, result in requests:
         assert isinstance(request, task_request.TaskRequest)
         assert isinstance(result, task_result._TaskResultCommon)
-      calls.append([es_cfg, requests, use_tq, is_callback])
+      calls.append([es_cfg, requests, use_tq, is_callback, batch_mode])
       return
 
     self.mock(external_scheduler, "notify_requests", mock_notify)
