@@ -123,3 +123,4 @@ skip_files:
 - ^[A-Z]+\.[a-z]+$
 - ui/img/.+
 - ui2/node_modules/.+
+- ui2/nodejs/.+
