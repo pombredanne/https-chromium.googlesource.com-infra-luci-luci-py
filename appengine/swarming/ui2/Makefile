@@ -2,13 +2,13 @@ export PATH := ./nodejs/bin:$(PATH)
 
 .ONESHELL:
 
-default:
+default: packages
 	npx webpack --mode=development
 
 release:
 	npx webpack --mode=production
 
-serve:
+serve: packages
 	npx webpack-dev-server --mode=development --watch-poll
 
 test: default
@@ -31,6 +31,10 @@ continuous_test:
 	while inotifywait -e modify ./modules/*; do
 		make test
 	done
+
+packages: package-lock.json
+	npm ci
+	touch packages
 
 .PHONY: docs
 docs: package-lock.json
