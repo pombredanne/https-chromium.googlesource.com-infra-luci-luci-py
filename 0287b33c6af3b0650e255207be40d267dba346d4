@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ae4db9f_b0f3c65c",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "no, it doesn\u0027t load anything and the comment above already mentions \"... (already loaded)\".",
+      "parentUuid": "b366d727_90683772",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e808ed64_74cc3261",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0b08315b_c827f7de",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "Most constructions just injecting data directly into the instance :-/",
+      "parentUuid": "e808ed64_74cc3261",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7234d386_b929985f",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f75b6aef_77167059",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7234d386_b929985f",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "ac59079f_3dc60098",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "Done (but AuthDB is not an entity)",
+      "parentUuid": "260d6046_5188cb77",
+      "range": {
+        "startLine": 1082,
+        "startChar": 21,
+        "endLine": 1082,
+        "endChar": 32
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "306c9081_18ee77db",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -96,6 +174,30 @@
       "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83cc90b6_a736f296",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1083,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "306c9081_18ee77db",
+      "range": {
+        "startLine": 1083,
+        "startChar": 28,
+        "endLine": 1083,
+        "endChar": 30
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "7c46c4f9_38bf7b38",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc42266_0b441937",
+      "range": {
+        "startLine": 1098,
+        "startChar": 9,
+        "endLine": 1098,
+        "endChar": 13
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c858399_313269aa",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -136,6 +262,24 @@
       "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a04225ac_f6cd9e48",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "This can\u0027t be done outside of the transaction because then AuthDB will contain inconsistent snapshot of the auth state (auth_db_rev may point to one number, but IP whitelists will contains something newer). \n\nThe whole point of this refactoring is to get rid of the transaction by \"snapshotting\" everything in advance and storing the snapshot in binary form. This is the simplest way of getting rid of the transaction. \n\nWe still need the transactional code path for Auth Service itself, where performance doesn\u0027t matter, but where it matters to have fully consistent view of AuthDB as soon as the change is made (so UI is strongly consistent). Going through the snapshotting code path will be too slow there (each API request will have to block until a snapshot is made).",
+      "parentUuid": "2c858399_313269aa",
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -159,6 +303,30 @@
       "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40e16ac1_3b9ffdc0",
+        "filename": "appengine/components/components/auth/replication.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-01T18:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63deea72_6dcb1ceb",
+      "range": {
+        "startLine": 211,
+        "startChar": 56,
+        "endLine": 211,
+        "endChar": 62
+      },
+      "revId": "0287b33c6af3b0650e255207be40d267dba346d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
