@@ -494,8 +494,8 @@ def _maybe_taskupdate_notify_via_tq(
       raise datastore_utils.CommitError('Failed to enqueue task')
 
   if es_cfg:
-    external_scheduler.notify_requests(
-        es_cfg, [(request, result_summary)], True, False)
+    external_scheduler.notify_requests(es_cfg, [(request, result_summary)],
+                                       True, False, False)
 
 
 def _pubsub_notify(task_id, topic, auth_token, userdata):
@@ -898,8 +898,8 @@ def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
     # We were unable to ensure the given request was at the desired slice. This
     # means the external scheduler must have stale state about this request, so
     # notify it of the newest state.
-    external_scheduler.notify_requests(
-        es_cfg, [(request, result_summary)], True, False)
+    external_scheduler.notify_requests(es_cfg, [(request, result_summary)],
+                                       True, False, True)
     raise external_scheduler.ExternalSchedulerException(
         'unable to ensure active slice for task %s' % task_id)
 
@@ -1195,8 +1195,8 @@ def schedule_request(request, secret_bytes):
   # that use an external scheduler, and which are not effectively live unless
   # the external scheduler is aware of them.
   if es_cfg:
-    external_scheduler.notify_requests(
-        es_cfg, [(request, result_summary)], False, False)
+    external_scheduler.notify_requests(es_cfg, [(request, result_summary)],
+                                       False, False, True)
 
   if dupe_summary:
     logging.debug(
@@ -1361,7 +1361,7 @@ def bot_reap_task(bot_dimensions, bot_version):
         # We reaped a task after falling back from external scheduler. Keep
         # it informed about the reaped task.
         external_scheduler.notify_requests(es_cfg, [(request, run_result)],
-                                           True, False)
+                                           True, False, True)
       return request, secret_bytes, run_result
     return None, None, None
   finally:
@@ -1764,7 +1764,7 @@ def cron_handle_get_callbacks():
         request = request_key.get()
         result = result_key.get()
         items.append((request, result))
-      external_scheduler.notify_requests(es_cfg, items, True, True)
+      external_scheduler.notify_requests(es_cfg, items, True, True, True)
 
 
 def cron_task_bot_distribution():
