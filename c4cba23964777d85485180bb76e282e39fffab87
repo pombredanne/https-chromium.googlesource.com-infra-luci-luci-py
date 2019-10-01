@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0dbe6b74_3ae8cc56",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-01T08:40:18Z",
+      "side": 1,
+      "message": "\u0027none\u0027 to keep consistency with get_gpu()",
+      "revId": "c4cba23964777d85485180bb76e282e39fffab87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
