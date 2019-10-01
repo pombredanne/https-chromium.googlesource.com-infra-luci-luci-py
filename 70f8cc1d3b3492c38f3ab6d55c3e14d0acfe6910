@@ -22,6 +22,30 @@
       "revId": "70f8cc1d3b3492c38f3ab6d55c3e14d0acfe6910",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6054fc3e_a97df960",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-01T12:49:04Z",
+      "side": 1,
+      "message": "Made crrev.com/c/1833392\nBut I think `make serve` and `make default` should not have side effect for package-lock.json.",
+      "parentUuid": "2ac91365_83bd3b75",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "70f8cc1d3b3492c38f3ab6d55c3e14d0acfe6910",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
