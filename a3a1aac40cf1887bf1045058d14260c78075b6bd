@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c012773_f0136e6d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-02T13:27:08Z",
+      "side": 1,
+      "message": "Ah! I had *completely* forgot about that, sorry. That\u0027s roughly when I introduced task slice fallback.\n\nThanks for the investigation!",
+      "revId": "a3a1aac40cf1887bf1045058d14260c78075b6bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
