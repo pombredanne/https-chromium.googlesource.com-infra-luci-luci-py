@@ -631,9 +631,12 @@ def yield_expired_task_to_run():
         if not task.queue_number:
           skipped += 1
 
-          # TODO(crbug.com/1010315): remove this check.
+          # TODO(crbug.com/1010315): remove these check.
           if task.try_number > 2:
             logging.warning("ignore task with try_number > 2")
+            continue
+          if task.try_number == 0:
+            logging.warning("ignore task with try_number == 0")
             continue
 
           logging.info('%s/%s: queue_number is None, but expiration_ts is %s.',
