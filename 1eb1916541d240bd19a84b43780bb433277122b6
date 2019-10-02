@@ -16,6 +16,24 @@
       "revId": "1eb1916541d240bd19a84b43780bb433277122b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dd1a670_0550a16c",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-02T04:22:24Z",
+      "side": 1,
+      "message": "I\u0027m not sure what happened for the tasks having try_number other than 1 or 2 and also not sure we can modify such tasks.\nBut want to avoid exception while expiring tasks.\n\nSo I\u0027ld like to skip processing such invalid tasks here.",
+      "parentUuid": "209fd817_3e8d72ad",
+      "revId": "1eb1916541d240bd19a84b43780bb433277122b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
