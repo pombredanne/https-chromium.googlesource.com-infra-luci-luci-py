@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28c6d28f_dfb39b88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-02T13:31:13Z",
+      "side": 1,
+      "message": "expiration_ts",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 50
+      },
+      "revId": "00a5e7e10801e1d3acf8c1599ecd7bb96ff79082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65bab75a_2f799ade",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-02T13:31:13Z",
+      "side": 1,
+      "message": "That\u0027s a good idea, the previous way was more of a quick hack. That said, we should eventually get rid of all of that, and maybe leave a comment in the code to remove this case in the future and hard fail instead? The rationale for hard-failure is that when the DB doesn\u0027t fit the expectations of the code and the design, it\u0027s better to make this visible than keep it as a silent failure. It reduces the risks when refactoring later.",
+      "revId": "00a5e7e10801e1d3acf8c1599ecd7bb96ff79082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58759c9c_74cc4d7f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-02T13:31:13Z",
+      "side": 1,
+      "message": "it\u0027s fine and encouraged by the style guide to do:\n\n  if not to_run.expiration_ts:",
+      "revId": "00a5e7e10801e1d3acf8c1599ecd7bb96ff79082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88334a97_8f187e7d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-02T13:31:13Z",
+      "side": 1,
+      "message": "Style nit: no need for else, since the previous line is a return.",
+      "revId": "00a5e7e10801e1d3acf8c1599ecd7bb96ff79082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "149d5ff0_848628a1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-02T13:31:13Z",
+      "side": 1,
+      "message": "Same comments here and below.",
+      "revId": "00a5e7e10801e1d3acf8c1599ecd7bb96ff79082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
