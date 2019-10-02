@@ -105,7 +105,11 @@ def CMDis_fine(_args):
   # pylint: disable=unused-variable
   from bot_code import bot_main
   from config import bot_config
-  # We're #goodenough.
+
+  resp = net.url_read(config['server'] + '/swarming/api/v1/bot/server_ping')
+  if resp is None:
+    logging.error('No response from server_ping')
+    return 1
   return 0
 
 
