@@ -635,6 +635,9 @@ def yield_expired_task_to_run():
           if task.try_number > 2:
             logging.warning("ignore task with try_number > 2")
             continue
+          if task.try_number == 0:
+            logging.warning("ignore task with try_number == 0")
+            continue
 
           logging.info('%s/%s: queue_number is None, but expiration_ts is %s.',
                        task.task_id, task.task_slice_index, task.expiration_ts)
