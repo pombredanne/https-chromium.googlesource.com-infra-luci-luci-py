@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91ab8ba3_6f2b4ea9",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-02T07:41:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68fd6271_42f1e984",
+      "revId": "757de14bf48d2e2a89a87cb6730ad819df8d1149",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bff0cfc_77fd148c",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-02T07:41:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98b5f128_092791b8",
+      "revId": "757de14bf48d2e2a89a87cb6730ad819df8d1149",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
