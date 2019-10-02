@@ -69,8 +69,12 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   result_summary_future = result_summary_key.get_async()
   to_run = to_run_future.get_result()
   if not to_run or not to_run.is_reapable:
-    result_summary_future.get_result()
-    return None, None
+    if to_run.expiration_ts is None:
+      result_summary_future.get_result()
+      return None, None
+    else:
+      logging.info('%s/%s: not reapable. but continuing expiration.',
+                   to_run.task_id, to_run.task_slice_index)
 
   # In any case, dequeue the TaskToRun.
   to_run.queue_number = None
@@ -143,9 +147,14 @@ def _expire_task(to_run_key, request, inline):
   # Look if the TaskToRun is reapable once before doing the check inside the
   # transaction. This reduces the likelihood of failing this check inside the
   # transaction, which is an order of magnitude more costly.
-  if not to_run_key.get().is_reapable:
-    logging.info('Not reapable anymore')
-    return None, None
+  to_run = to_run_key.get()
+  if not to_run.is_reapable:
+    if to_run.expiration_ts is None:
+      logging.info('Not reapable anymore')
+      return None, None
+    else:
+      logging.info('%s/%s: not reapable. but continuing expiration.',
+                   to_run.task_id, to_run.task_slice_index)
 
   result_summary_key = task_pack.request_key_to_result_summary_key(request.key)
   now = utils.utcnow()
