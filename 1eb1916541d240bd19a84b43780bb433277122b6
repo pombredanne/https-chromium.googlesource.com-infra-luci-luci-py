@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "209fd817_3e8d72ad",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-02T02:23:07Z",
+      "side": 1,
+      "message": "There can be expired tasks which have never been tried, can\u0027t there?\nIf I\u0027m correct, you should expire those tasks. Same for the try_number \u003e 2 ones.\n\nCan you explain why these workarounds are good for crbug.com/1010315?",
+      "revId": "1eb1916541d240bd19a84b43780bb433277122b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
