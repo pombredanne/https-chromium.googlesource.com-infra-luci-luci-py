@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13fd0f8c_1f07a34d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/common.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-03T12:27:03Z",
+      "side": 1,
+      "message": "Just FYI\n\nThis works because of https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/bot_archive.py?l\u003d345\n\nIf six hadn\u0027t been mapped in the bot code already, this would have broken in the field.",
+      "revId": "8cd732a12245ec7c9be542d721e56ff3cb05c497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
