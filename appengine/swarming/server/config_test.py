@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import logging
 import sys
 import unittest
@@ -10,8 +12,8 @@ import unittest
 import test_env
 test_env.setup_test_env()
 
-from components.config import validation
-from components import utils
+from config import validation
+import utils
 from test_support import test_case
 
 from proto.config import config_pb2

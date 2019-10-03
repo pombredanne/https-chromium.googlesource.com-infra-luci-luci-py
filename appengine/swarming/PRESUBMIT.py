@@ -14,7 +14,8 @@ def CommonChecks(input_api, output_api):
   def join(*args):
     return input_api.os_path.join(input_api.PresubmitLocalPath(), *args)
 
-  black_list = list(input_api.DEFAULT_BLACK_LIST) + [
+  b
+  ack_list = list(input_api.DEFAULT_BLACK_LIST) + [
       r'ui2/node_modules/.*',
       r'ui2/nodejs/.*',
       r'.*_pb2\.py$',

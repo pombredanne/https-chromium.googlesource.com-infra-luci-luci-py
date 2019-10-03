@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import json
 import sys
 import unittest
@@ -10,8 +12,8 @@ import unittest
 from test_support import test_env
 test_env.setup_test_env()
 
-from components import gce
-from components import net
+import gce
+import net
 from test_support import test_case
 
 

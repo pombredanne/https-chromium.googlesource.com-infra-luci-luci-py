@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import logging
 import re
 import sys
@@ -14,8 +16,8 @@ test_env.setup_test_env()
 import mock
 import yaml
 
-from components.config import test_config_pb2
-from components.config import validation
+from config import test_config_pb2
+from config import validation
 from test_support import test_case
 
 
