@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60f6ee9d_92357610",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-03T12:31:13Z",
+      "side": 1,
+      "message": "Our style is generally to start the comment directly on the line with \"\"\" ?",
+      "revId": "e91b05aab67144be4b0681423a69e54a2840243b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1af96048_14b1603b",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-03T12:31:13Z",
+      "side": 1,
+      "message": "That doesn\u0027t belongs here, that\u0027s a chrome-infra specific thing. That\u0027s the kind of thing that should be in bot_config.",
+      "revId": "e91b05aab67144be4b0681423a69e54a2840243b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
