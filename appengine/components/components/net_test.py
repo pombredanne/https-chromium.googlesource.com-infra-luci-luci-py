@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import collections
 import logging
 import sys
@@ -14,8 +16,8 @@ test_env.setup_test_env()
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 
-from components import auth
-from components import net
+import auth
+import net
 from test_support import test_case
 
 

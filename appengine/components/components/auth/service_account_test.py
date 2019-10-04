@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import collections
 import datetime
 import json
@@ -18,8 +20,8 @@ from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 
 from components import utils
-from components.auth import model
-from components.auth import service_account
+from auth import model
+from auth import service_account
 from test_support import test_case
 
 
