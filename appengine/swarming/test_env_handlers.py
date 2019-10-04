@@ -5,11 +5,13 @@
 
 """Base class for handlers_*_test.py"""
 
+from __future__ import absolute_import
+
 import base64
 import json
 import os
 
-import test_env
+from swarming import test_env
 test_env.setup_test_env()
 
 from protorpc.remote import protojson

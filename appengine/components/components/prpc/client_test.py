@@ -5,6 +5,8 @@
 
 # pylint: disable=unused-argument
 
+from __future__ import absolute_path
+
 import contextlib
 import sys
 import unittest
@@ -19,11 +21,11 @@ from google.protobuf import empty_pb2
 
 from test_support import test_case
 
-from components import net
-from components.prpc import client as prpc_client
-from components.prpc import codes
-from components.prpc.test import test_pb2
-from components.prpc.test import test_prpc_pb2
+import net
+from prpc import client as prpc_client
+from prpc import codes
+from prpc.test import test_pb2
+from prpc.test import test_prpc_pb2
 
 
 class PRPCClientTestCase(test_case.TestCase):

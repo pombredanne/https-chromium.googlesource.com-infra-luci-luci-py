@@ -6,6 +6,8 @@
 # Disable 'Unused variable', 'Unused argument' and 'Method could be a function'.
 # pylint: disable=W0612,W0613,R0201
 
+from __future__ import absolute_path
+
 import json
 import os
 import sys

@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import httplib
 import json
 import logging
@@ -16,9 +18,9 @@ import mock
 
 from google.appengine.ext import ndb
 
-from components import auth
-from components import gerrit
-from components import net
+import auth
+import gerrit
+import net
 from test_support import test_case
 
 
