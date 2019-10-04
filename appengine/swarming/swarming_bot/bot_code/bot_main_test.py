@@ -33,6 +33,7 @@ from utils import logging_utils
 from utils import net
 from utils import subprocess42
 from utils import zip_package
+from utils import tools
 
 
 # pylint: disable=no-self-argument
@@ -96,6 +97,7 @@ class TestBotMain(TestBotBase):
     super(TestBotMain, self).setUp()
     # __main__ does it for us.
     os.mkdir('logs')
+    # tools.clear_cache(bot_main.generate_version)
     self.mock(zip_package, 'generate_version', lambda: '123')
     self.mock(self.bot, 'post_error', self.fail)
     self.mock(os_utilities, 'host_reboot', self.fail)

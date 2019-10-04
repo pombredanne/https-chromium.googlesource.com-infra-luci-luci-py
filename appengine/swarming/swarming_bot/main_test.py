@@ -23,6 +23,7 @@ from depot_tools import fix_encoding
 # client/
 from utils import subprocess42
 from utils import file_path
+from utils import tools
 
 import swarmingserver_bot_fake
 from bot_code import bot_main
@@ -55,6 +56,8 @@ class SimpleMainTest(TestCase):
         stderr=subprocess42.PIPE))
     # get_config() doesn't work when called outside of a zip, so patch the
     # server_version manually with the default value in config/config.json.
+    self.mock(bot_main, 'generate_version', lambda: '123')
+    bot_main.generate_version()
     expected = bot_main.get_attributes(None)
     self.assertEqual([u'N/A'], expected[u'dimensions'][u'server_version'])
     expected[u'dimensions'][u'server_version'] = [u'1']
@@ -73,6 +76,7 @@ class SimpleMainTest(TestCase):
         actual[u'state'].pop(u'cost_usd_hour'),
         expected[u'state'].pop(u'cost_usd_hour'),
         places=5)
+    self.maxDiff = None
     self.assertEqual(expected, actual)
 
   def test_version(self):

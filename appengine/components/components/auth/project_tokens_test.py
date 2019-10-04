@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import collections
 import datetime
 import json
@@ -15,11 +17,11 @@ from test_support import test_case
 
 from google.appengine.ext import ndb
 
-from components import utils
-from components.auth import exceptions
-from components.auth import project_tokens
-from components.auth import service_account
-from components.auth import model
+import utils
+from auth import exceptions
+from auth import project_tokens
+from auth import service_account
+from auth import model
 
 
 class CreateTokenTest(test_case.TestCase):

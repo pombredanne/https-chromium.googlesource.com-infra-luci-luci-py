@@ -6,6 +6,8 @@
 # Disable 'Access to a protected member ...'. NDB uses '_' for other purposes.
 # pylint: disable=W0212
 
+from __future__ import absolute_import
+
 import datetime
 import sys
 import threading
@@ -19,7 +21,7 @@ import mock
 from google.appengine.api import app_identity
 from google.appengine.ext import ndb
 
-from components import utils
+import utils
 from test_support import test_case
 
 

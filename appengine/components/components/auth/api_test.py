@@ -6,6 +6,7 @@
 # Disable 'Access to a protected member', Unused argument', 'Unused variable'.
 # pylint: disable=W0212,W0612,W0613
 
+from __future__ import absolute_path
 
 import datetime
 import Queue
@@ -18,12 +19,12 @@ test_env.setup_test_env()
 
 from google.appengine.ext import ndb
 
-from components.auth import api
-from components.auth import config
-from components.auth import ipaddr
-from components.auth import model
-from components.auth import replication
-from components import utils
+import utils
+from auth import api
+from auth import config
+from auth import ipaddr
+from auth import model
+from auth import replication
 from test_support import test_case
 
 

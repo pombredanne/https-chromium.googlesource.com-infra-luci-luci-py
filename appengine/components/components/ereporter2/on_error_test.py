@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import datetime
 import logging
 import os
@@ -17,10 +19,10 @@ test_env.setup_test_env()
 import webapp2
 import webtest
 
-from components import auth
-from components.ereporter2 import formatter
-from components.ereporter2 import models
-from components.ereporter2 import on_error
+import auth
+from ereporter2 import formatter
+from ereporter2 import models
+from ereporter2 import on_error
 from test_support import test_case
 
 

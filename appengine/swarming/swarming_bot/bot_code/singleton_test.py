@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import logging
 import os
 import subprocess
@@ -10,7 +12,12 @@ import sys
 import threading
 import unittest
 
-import singleton
+if __name__ == '__main__':
+  import singleton
+  import_module = 'import singleton'
+else:
+  from bot_code import singleton
+  import_module = 'from bot_code import singleton'
 
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +25,7 @@ THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 CMD_ACQUIRE = [
   sys.executable, '-u', '-c',
-  'import singleton; print singleton.Singleton(%r).acquire()' % THIS_DIR,
+  '%s; print singleton.Singleton(%r).acquire()' % (import_module, THIS_DIR),
 ]
 
 

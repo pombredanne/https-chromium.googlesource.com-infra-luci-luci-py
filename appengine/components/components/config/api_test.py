@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import base64
 import logging
 import sys
@@ -15,12 +17,12 @@ import mock
 
 from google.appengine.ext import ndb
 
-from components import auth
-from components import config
-from components.config import api
-from components.config import remote
-from components.config import test_config_pb2
-from components.config.proto import project_config_pb2
+import auth
+import config
+from config import api
+from config import remote
+from config import test_config_pb2
+from config.proto import project_config_pb2
 from test_support import test_case
 
 
