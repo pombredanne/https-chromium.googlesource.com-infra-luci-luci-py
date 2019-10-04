@@ -702,25 +702,6 @@ def get_python_packages():
     return None
 
 
-def get_python3_version():
-  """
-  Returns a python3 version available from expected path.
-  This is used until swarming stops supporting python2.
-  """
-  try:
-    # python3 should be in the place written in go/swarming-bot-python3
-    if sys.platform == 'win32':
-      python3 = 'C:\\tools\\python3\\bin\\python3.exe'
-    else:
-      python3 = '/opt/python3/bin/python3'
-
-    version = subprocess.check_output([python3, '--version'],
-                                      stderr=subprocess.STDOUT)
-    return version.decode('utf-8').split()[1]
-  except (subprocess.CalledProcessError, OSError):
-    return u'none'
-
-
 class AuthenticatedHttpRequestFailure(Exception):
   pass
 
