@@ -42,6 +42,8 @@ def fmtdate(d):
 
 
 class BotApiTest(test_env_handlers.AppTestBase):
+  run_later = 1
+
   def setUp(self):
     super(BotApiTest, self).setUp()
     # By default requests in tests are coming from bot with fake IP.

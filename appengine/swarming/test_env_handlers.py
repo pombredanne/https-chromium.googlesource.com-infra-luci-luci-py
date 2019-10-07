@@ -5,12 +5,15 @@
 
 """Base class for handlers_*_test.py"""
 
+from __future__ import absolute_import
+
 import base64
 import json
 import os
 
-import test_env
-test_env.setup_test_env()
+# from swarming import test_env
+import swarming_test_env
+swarming_test_env.setup_test_env()
 
 from protorpc.remote import protojson
 import webtest
@@ -32,7 +35,7 @@ from server import service_accounts
 
 
 class AppTestBase(test_case.TestCase):
-  APP_DIR = test_env.APP_DIR
+  APP_DIR = swarming_test_env.APP_DIR
 
   def setUp(self):
     super(AppTestBase, self).setUp()
