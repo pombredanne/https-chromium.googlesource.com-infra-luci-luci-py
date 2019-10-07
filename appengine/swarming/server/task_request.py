@@ -1620,9 +1620,11 @@ def init_new_request(request, allow_high_priority, template_apply):
         run_result_key)
     request_key = task_pack.result_summary_key_to_request_key(
         result_summary_key)
+    parent_run_result = run_result_key.get()
     parent = request_key.get()
     # Terminate request can only be requested as a single TaskProperties.
-    if not parent or parent.task_slice(0).properties.is_terminate:
+    if not parent_run_result or not parent or parent.task_slice(
+        0).properties.is_terminate:
       raise ValueError('parent_task_id is not a valid task')
     # Drop the previous user.
     request.user = parent.user
