@@ -4,6 +4,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import base64
 import datetime
 import json
@@ -53,6 +55,8 @@ def message_to_dict(rpc_message):
 
 
 class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
+  run_later = 1
+
   def setUp(self):
     test_case.EndpointsTestCase.setUp(self)
     super(BaseTest, self).setUp()
@@ -2207,6 +2211,7 @@ class BotsApiTest(BaseTest):
 
 class BotApiTest(BaseTest):
   api_service_cls = handlers_endpoints.SwarmingBotService
+  run_later = 1
 
   def setUp(self):
     super(BotApiTest, self).setUp()

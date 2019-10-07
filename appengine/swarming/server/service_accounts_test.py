@@ -3,13 +3,15 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import datetime
 import logging
 import random
 import sys
 import unittest
 
-import test_env
+from server import test_env
 test_env.setup_test_env()
 
 from test_support import test_case
