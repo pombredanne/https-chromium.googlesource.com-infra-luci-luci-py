@@ -12,7 +12,7 @@ test_env_platforms.setup_test_env()
 
 from utils import tools
 
-import linux
+from api.platforms import linux
 
 
 EXYNOS_CPU_INFO = r"""
