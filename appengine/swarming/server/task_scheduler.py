@@ -1222,6 +1222,8 @@ def schedule_request(request, secret_bytes):
       items = ndb.get_multi(parent_task_keys)
       k = result_summary.task_id
       for item in items:
+        if not item:
+          raise ValueError('failed to get entry for parent task')
         # When a task is running, the TaskRunResult and TaskResultSummary
         # entities are updated by a single server version, since the bot locks
         # on the specific server version.
