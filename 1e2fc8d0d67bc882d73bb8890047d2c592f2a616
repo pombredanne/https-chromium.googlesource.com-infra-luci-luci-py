@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7f4924aa_6c2e36bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-07T23:10:44Z",
+      "side": 1,
+      "message": "Yes, ValueError is catched in\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/handlers_endpoints.py?l\u003d513\u0026rcl\u003d33d48139cf667730018a3b8396f1f066afb1e501",
+      "parentUuid": "02661e32_d204f6b1",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "1e2fc8d0d67bc882d73bb8890047d2c592f2a616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48a74645_a43e282d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 8
@@ -39,6 +63,24 @@
       "revId": "1e2fc8d0d67bc882d73bb8890047d2c592f2a616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ecfdf04_922d0154",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-07T23:10:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48a74645_a43e282d",
+      "revId": "1e2fc8d0d67bc882d73bb8890047d2c592f2a616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
