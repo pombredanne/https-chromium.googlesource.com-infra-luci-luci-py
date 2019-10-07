@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea15ca52_e062de56",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-07T13:32:57Z",
+      "side": 1,
+      "message": "I\u0027m really ambivalent because it will significantly affect task creation performance.\n\nTaskRequest entities are immutable, thus always cached in memcache. As such, the request_key.get() request is really fast (a few ms).\n\nTaskRunResult entities are written to the DB via a transaction as the task is running, which clears memcache, except once it\u0027s done, so this will most likely always hit the DB. This is because in the normal good path, the parent task is running.\n\nThe goal here is to convert a 500 into a 400 while not affecting performance.\n\nI\u0027m personally fine with: \"Default to good path, and backtrack in case of failure\" because failure happens about \"once every 100 millions times\".\n\nSo updating run_parent() in schedule_request() could be reasonable, even if this leaves dead entities. The problem is that it happens too late, the children task was already scheduled. So when these 500s happen, the task is still scheduled, which is wrong.\n\nAny idea on how this could have happened in the first place?",
+      "revId": "87da5514b8375300de76f8d622db25b4fc36eda7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
