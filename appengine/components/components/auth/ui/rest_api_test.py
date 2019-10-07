@@ -6,6 +6,8 @@
 # Disable 'Method could be a function.'
 # pylint: disable=R0201
 
+from __future__ import absolute_import
+
 import json
 import logging
 import sys
@@ -19,14 +21,14 @@ import webtest
 
 from google.appengine.ext import ndb
 
-from components import utils
-from components.auth import api
-from components.auth import handler
-from components.auth import model
-from components.auth import version
-from components.auth.ui import acl
-from components.auth.ui import rest_api
-from components.auth.ui import ui
+import utils
+from auth import api
+from auth import handler
+from auth import model
+from auth import version
+from auth.ui import acl
+from auth.ui import rest_api
+from auth.ui import ui
 from test_support import test_case
 
 

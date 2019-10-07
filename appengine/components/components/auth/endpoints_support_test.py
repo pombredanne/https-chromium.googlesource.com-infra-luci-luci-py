@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import logging
 import sys
 import unittest
@@ -15,15 +17,15 @@ from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
 
-from components import utils
-from components.auth import api
-from components.auth import b64
-from components.auth import check
-from components.auth import endpoints_support
-from components.auth import ipaddr
-from components.auth import model
-from components.auth import testing
-from components.auth.proto import delegation_pb2
+import utils
+from auth import api
+from auth import b64
+from auth import check
+from auth import endpoints_support
+from auth import ipaddr
+from auth import model
+from auth import testing
+from auth.proto import delegation_pb2
 from test_support import test_case
 
 

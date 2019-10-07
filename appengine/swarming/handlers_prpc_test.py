@@ -28,7 +28,6 @@ from server import task_queues
 import handlers_bot
 import handlers_prpc
 
-
 def _decode(raw, dst):
   # Skip escaping characters.
   assert raw[:5] == ')]}\'\n', raw[:5]
@@ -43,6 +42,8 @@ def _encode(d):
 
 
 class PRPCTest(test_env_handlers.AppTestBase):
+  run_later = 1
+
   """Tests the pRPC handlers."""
   def setUp(self):
     super(PRPCTest, self).setUp()

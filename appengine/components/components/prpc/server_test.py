@@ -5,6 +5,8 @@
 
 # pylint: disable=unused-argument
 
+from __future__ import absolute_path
+
 import httplib
 import json
 import sys
@@ -35,6 +37,7 @@ class TestServicer(object):
     self.given = None
     self.echoed = None
     self.give_callback = None
+
 
   def Give(self, request, context):
     if self.give_callback:

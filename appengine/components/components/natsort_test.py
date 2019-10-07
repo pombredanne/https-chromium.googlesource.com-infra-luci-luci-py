@@ -5,6 +5,8 @@
 
 """Unit tests for nasort.py."""
 
+from __future__ import absolute_import
+
 import doctest
 import os
 import sys
@@ -12,7 +14,7 @@ import sys
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT_DIR)
 
-from components import natsort
+import natsort
 
 
 if __name__ == '__main__':

@@ -23,14 +23,18 @@ from depot_tools import fix_encoding
 # client/
 from utils import subprocess42
 from utils import file_path
+from utils import tools
 
 import swarmingserver_bot_fake
 from bot_code import bot_main
+from api import os_utilities
 
 
 class TestCase(auto_stub.TestCase):
   def setUp(self):
     super(TestCase, self).setUp()
+    if hasattr(os_utilities.get_dimensions, '__cache__'):
+      tools.clear_cache(os_utilities.get_dimensions)
     self._tmpdir = tempfile.mkdtemp(prefix='swarming_main')
     self._zip_file = os.path.join(self._tmpdir, 'swarming_bot.zip')
     code, _ = swarmingserver_bot_fake.gen_zip(self.url)
@@ -55,13 +59,14 @@ class SimpleMainTest(TestCase):
         stderr=subprocess42.PIPE))
     # get_config() doesn't work when called outside of a zip, so patch the
     # server_version manually with the default value in config/config.json.
+    self.mock(bot_main, 'generate_version', lambda: '123')
     expected = bot_main.get_attributes(None)
     self.assertEqual([u'N/A'], expected[u'dimensions'][u'server_version'])
     expected[u'dimensions'][u'server_version'] = [u'1']
 
     NON_DETERMINISTIC = (
       u'cwd', u'disks', u'nb_files_in_temp', u'pid', u'running_time',
-      u'started_ts', u'uptime')
+      u'started_ts', u'uptime', u'cpu_name')
     for key in NON_DETERMINISTIC:
       del actual[u'state'][key]
       del expected[u'state'][key]
@@ -73,7 +78,9 @@ class SimpleMainTest(TestCase):
         actual[u'state'].pop(u'cost_usd_hour'),
         expected[u'state'].pop(u'cost_usd_hour'),
         places=5)
+    self.maxDiff = None
     self.assertEqual(expected, actual)
+  test_attributes.run_later = 1
 
   def test_version(self):
     version = subprocess42.check_output(

@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_path
+
 import sys
 import unittest
 
@@ -11,7 +13,7 @@ test_env.setup_test_env()
 
 from google.appengine.ext import ndb
 
-from components.datastore_utils import mapping
+from datastore_utils import mapping
 from test_support import test_case
 
 
