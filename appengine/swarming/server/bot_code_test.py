@@ -14,7 +14,7 @@ import time
 import unittest
 import zipfile
 
-import test_env
+from server import test_env
 test_env.setup_test_env()
 
 from google.appengine.ext import ndb
