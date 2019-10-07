@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "02661e32_d204f6b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-10-07T15:02:54Z",
+      "side": 1,
+      "message": "with recent patchsets, is this still the case?",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "1e2fc8d0d67bc882d73bb8890047d2c592f2a616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48a74645_a43e282d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 8
