@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12a58e2c_4c0f78a9",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-07T04:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70789d68_81598da2",
+      "revId": "f792b414991152621a6647fb7c8145225b6118ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
