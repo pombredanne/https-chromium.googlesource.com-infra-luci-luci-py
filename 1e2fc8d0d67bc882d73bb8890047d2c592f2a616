@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48a74645_a43e282d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-07T13:59:46Z",
+      "side": 1,
+      "message": "Can you add a comment:\n\n  # The client provided a parent task id that had a valid TaskRequest, it was\n  # verified in init_task_request(), but missing TaskRunResult. At this point\n  # the task was already scheduled, so the damage is done, but at least\n  # return an error to the client.\n\nYou could try to (as a best effort) zap the TaskToRun.queue_number in this case.",
+      "revId": "1e2fc8d0d67bc882d73bb8890047d2c592f2a616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
