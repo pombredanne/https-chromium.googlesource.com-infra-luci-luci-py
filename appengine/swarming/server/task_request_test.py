@@ -29,6 +29,7 @@ from server import config
 from server import pools_config
 from server import task_pack
 from server import task_request
+from server import task_result
 
 
 # pylint: disable=W0212
@@ -169,6 +170,18 @@ def _gen_task_template(cache=None, cipd_package=None, env=None):
     ),
     inclusions=(),
   )
+
+
+def _put_dummy_parent_run_result(parent_run_id):
+  run_result_key = task_pack.unpack_run_result_key(parent_run_id)
+  now = datetime.datetime.now()
+
+  task_run_result = task_result.TaskRunResult(
+      key=run_result_key,
+      modified_ts=now,
+      started_ts=now,
+      dead_after_ts=now + datetime.timedelta(seconds=1))
+  task_run_result.put()
 
 
 class Prop(object):
@@ -455,6 +468,8 @@ class TaskRequestApiTest(TestCase):
     parent.put()
     # The reference is to the TaskRunResult.
     parent_id = task_pack.pack_request_key(parent.key) + u'1'
+    _put_dummy_parent_run_result(parent_id)
+
     req = _gen_request(
         properties=_gen_properties(
             idempotent=True,
@@ -564,6 +579,7 @@ class TaskRequestApiTest(TestCase):
     parent.put()
     # The reference is to the TaskRunResult.
     parent_id = task_pack.pack_request_key(parent.key) + u'1'
+    _put_dummy_parent_run_result(parent_id)
     req = _gen_request(
         properties=_gen_properties(idempotent=True, has_secret_bytes=True),
         parent_task_id=parent_id)
@@ -664,6 +680,7 @@ class TaskRequestApiTest(TestCase):
     parent.put()
     # The reference is to the TaskRunResult.
     parent_id = task_pack.pack_request_key(parent.key) + '1'
+    _put_dummy_parent_run_result(parent_id)
     child = _gen_request(parent_task_id=parent_id)
     self.assertEqual(parent_id, child.parent_task_id)
 
@@ -870,6 +887,7 @@ class TaskRequestApiTest(TestCase):
     # The reference is to the TaskRunResult.
     parent_id = task_pack.pack_request_key(parent.key) + u'0'
     parent_run_id = task_pack.pack_request_key(parent.key) + u'1'
+    _put_dummy_parent_run_result(parent_run_id)
 
     request_props = _gen_properties(
         inputs_ref={
