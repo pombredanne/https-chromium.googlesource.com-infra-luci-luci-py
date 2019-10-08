@@ -11,4 +11,7 @@ deps = {
     'dep_type': 'cipd',
     'condition': 'checkout_linux or checkout_mac',
   },
+  'appengine/third_party/nose2':
+    'https://github.com/nose-devs/nose2.git@' +
+    'aaf48fb854b3aa5dde974271fe6e7ca398a0996a',
 }
