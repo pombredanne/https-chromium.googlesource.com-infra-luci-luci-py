@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e83c204f_f34e673b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-08T05:16:28Z",
+      "side": 1,
+      "message": "fix CQ?",
+      "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8942733d_0aa150bb",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-08T05:16:28Z",
+      "side": 1,
+      "message": "Could you write comment why we use run_later here and other places?",
+      "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d472adca_ab3fff31",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-08T05:16:28Z",
+      "side": 1,
+      "message": "use argparse?",
+      "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
