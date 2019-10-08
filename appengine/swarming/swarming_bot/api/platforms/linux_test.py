@@ -3,18 +3,24 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
+import os
 import logging
 import sys
 import unittest
 
+# Avoid loading api/platform/__init__.py
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, THIS_DIR)
+
 import test_env_platforms
 test_env_platforms.setup_test_env()
+import linux
 
 from utils import tools
 
-import linux
-
-
+#pylink: disable=line-too-long
 EXYNOS_CPU_INFO = r"""
 Processor : ARMv7 Processor rev 4 (v7l)
 processor : 0
