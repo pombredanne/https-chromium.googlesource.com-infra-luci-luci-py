@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9b6694b5_a64294bd",
+        "filename": "DEPS",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2019-10-08T14:45:28Z",
+      "side": 1,
+      "message": "Can we use a wheel via vpython instead?",
+      "parentUuid": "553c1548_4af485be",
+      "range": {
+        "startLine": 15,
+        "startChar": 13,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "8788f9f87aa05bc6ca24d1c700483663e8712779",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e104402_4143f614",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 24
