@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a276d03b_e84e6e24",
+        "filename": "appengine/swarming/nose2_plugin_nofollowlink.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-08T05:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e101682a_a8d49162",
+      "revId": "35035cd07e98c836ca46e2cb375621b243b210b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bcbca3a_412e72a0",
+        "filename": "appengine/swarming/nose2_plugin_py3filter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-08T05:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c50aed1_b7017c01",
+      "revId": "35035cd07e98c836ca46e2cb375621b243b210b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8005aebf_0aa5f6ff",
+        "filename": "appengine/swarming/nose2_plugin_py3filter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-08T05:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a94df3fd_4c4f7a2a",
+      "revId": "35035cd07e98c836ca46e2cb375621b243b210b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49cab52c_d635a986",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-08T05:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "798ccb0e_4fcebba3",
+      "revId": "35035cd07e98c836ca46e2cb375621b243b210b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
