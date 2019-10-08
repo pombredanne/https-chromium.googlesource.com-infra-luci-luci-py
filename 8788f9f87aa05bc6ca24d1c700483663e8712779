@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ea08edc2_12b81e97",
+        "filename": "DEPS",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-08T15:05:16Z",
+      "side": 1,
+      "message": "If we can use vpython, I think it is much better than now.\nWe don\u0027t need to change sys.path heavily in vpython.\n\nMy concern is whether we can use vpython (and vpython3) in bots and we can make every module available as wheels.",
+      "parentUuid": "9b6694b5_a64294bd",
+      "range": {
+        "startLine": 15,
+        "startChar": 13,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "8788f9f87aa05bc6ca24d1c700483663e8712779",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e104402_4143f614",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 24
