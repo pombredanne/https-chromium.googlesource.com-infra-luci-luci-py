@@ -75,6 +75,8 @@ class SimpleMainTest(TestCase):
         places=5)
     self.assertEqual(expected, actual)
 
+  test_attributes.run_later = 1
+
   def test_version(self):
     version = subprocess42.check_output(
         [sys.executable, self._zip_file, 'version'], stderr=subprocess42.PIPE)
