@@ -53,6 +53,8 @@ def message_to_dict(rpc_message):
 
 
 class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
+  run_later = 1
+
   def setUp(self):
     test_case.EndpointsTestCase.setUp(self)
     super(BaseTest, self).setUp()
@@ -2207,6 +2209,7 @@ class BotsApiTest(BaseTest):
 
 class BotApiTest(BaseTest):
   api_service_cls = handlers_endpoints.SwarmingBotService
+  run_later = 1
 
   def setUp(self):
     super(BotApiTest, self).setUp()
@@ -2281,7 +2284,7 @@ class BotApiTest(BaseTest):
     bot_management.bot_event(
         event_type='bot_connected', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'foo':0},
+        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'foo': 0},
         version='123456789', quarantined=False, maintenance_msg=None,
         task_id=None, task_name=None)
     # Delete the bot.
