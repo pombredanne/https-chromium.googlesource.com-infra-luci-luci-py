@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9f4e1569_c3b8816d",
+        "filename": "DEPS",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-08T15:46:58Z",
+      "side": 1,
+      "message": "That\u0027s a good idea. At least for stuff that is not in the bot or the server, which includes all the testing support code at the very least.\n\nJunji, the historical reason is that the code here was designed before vpython existed, and we never made the effort to switch over, but that\u0027s a good idea.",
+      "parentUuid": "ea08edc2_12b81e97",
+      "range": {
+        "startLine": 15,
+        "startChar": 13,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "8788f9f87aa05bc6ca24d1c700483663e8712779",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e104402_4143f614",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 24
