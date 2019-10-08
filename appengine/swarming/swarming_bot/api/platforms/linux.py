@@ -17,8 +17,8 @@ import subprocess
 
 from utils import tools
 
-import common
-import gpu
+from api.platforms import common
+from api.platforms import gpu
 
 
 ## Private stuff.
