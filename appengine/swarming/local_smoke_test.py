@@ -355,6 +355,7 @@ class Test(unittest.TestCase):
   namespace = None
   bot = None
   leak = False
+  skip_on_ci = 1
 
   def setUp(self):
     super(Test, self).setUp()
