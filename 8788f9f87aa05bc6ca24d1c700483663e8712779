@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "553c1548_4af485be",
+        "filename": "DEPS",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-08T12:36:33Z",
+      "side": 1,
+      "message": "Never depend on github. You need to have a copy on chromium.googlesource.com. (You can file a ticket for that)\n\nBut personally, I\u0027d just copy the sources as-is like the other third parties, it\u0027s faster.",
+      "range": {
+        "startLine": 15,
+        "startChar": 13,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "8788f9f87aa05bc6ca24d1c700483663e8712779",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e104402_4143f614",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-08T12:36:33Z",
+      "side": 1,
+      "message": "Please fix.",
+      "range": {
+        "startLine": 18,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 7
+      },
+      "revId": "8788f9f87aa05bc6ca24d1c700483663e8712779",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "588c8d26_29c742bb",
+        "filename": "appengine/swarming/test_all.sh",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-08T12:36:33Z",
+      "side": 1,
+      "message": "The vast majority of tests work on Windows. If you want to increase (and not decrease) test coverage on Windows, I\u0027d recommend to not run tests through bash.",
+      "revId": "8788f9f87aa05bc6ca24d1c700483663e8712779",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
