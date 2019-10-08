@@ -7,14 +7,12 @@ import logging
 import sys
 import unittest
 
-import test_env_platforms
+from api.platforms import test_env_platforms, linux
 test_env_platforms.setup_test_env()
 
 from utils import tools
 
-import linux
-
-
+#pylink: disable=line-too-long
 EXYNOS_CPU_INFO = r"""
 Processor : ARMv7 Processor rev 4 (v7l)
 processor : 0
