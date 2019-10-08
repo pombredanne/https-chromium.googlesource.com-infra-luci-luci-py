@@ -10,19 +10,27 @@ import sys
 import threading
 import unittest
 
-import singleton
-
-
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+SWARMING_BOT_DIR = os.path.dirname(THIS_DIR)
 
+if __name__ == '__main__':
+  sys.path.insert(0, SWARMING_BOT_DIR)
 
-CMD_ACQUIRE = [
-  sys.executable, '-u', '-c',
-  'import singleton; print singleton.Singleton(%r).acquire()' % THIS_DIR,
-]
+from bot_code import singleton
+
+PYCODE = """
+import sys
+sys.path.insert(0, '%s')
+from bot_code import singleton
+
+print(singleton.Singleton(%r).acquire())
+""" % (SWARMING_BOT_DIR, THIS_DIR)
+
+CMD_ACQUIRE = [sys.executable, '-u', '-c', PYCODE]
 
 
 class Test(unittest.TestCase):
+
   def test_singleton_with(self):
     with singleton.singleton(THIS_DIR) as s:
       self.assertEqual(True, s)
