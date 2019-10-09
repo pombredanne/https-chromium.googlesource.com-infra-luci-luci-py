@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a7df7589_0723d2dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-09T10:01:16Z",
+      "side": 1,
+      "message": "Sorry I forgot to add deleted file while picking changes from another CL.",
+      "parentUuid": "e69b9da9_90318360",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "f542dbd6df50a5be367520df020c7a5f6cb99875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0f5bbcb_bbbaa528",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -68,6 +92,54 @@
       "revId": "f542dbd6df50a5be367520df020c7a5f6cb99875",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbf167c4_731bbe41",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-09T10:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0f5bbcb_bbbaa528",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "f542dbd6df50a5be367520df020c7a5f6cb99875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b77fd031_baaa6e7c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-09T10:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d9cee2a_9c795768",
+      "range": {
+        "startLine": 9,
+        "startChar": 74,
+        "endLine": 9,
+        "endChar": 77
+      },
+      "revId": "f542dbd6df50a5be367520df020c7a5f6cb99875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
