@@ -42,6 +42,7 @@ def CommonChecks(input_api, output_api):
     # uploading a server instance.
     r'^remote_smoke_test\.py$'
   ]
+
   tests = []
   for directory in test_directories:
     tests.extend(
@@ -49,7 +50,8 @@ def CommonChecks(input_api, output_api):
             input_api, output_api,
             directory,
             whitelist=[r'.+_test\.py$'],
-            blacklist=blacklist))
+            blacklist=blacklist,
+            env=env))
   output.extend(input_api.RunTests(tests, parallel=True))
   return output
 
