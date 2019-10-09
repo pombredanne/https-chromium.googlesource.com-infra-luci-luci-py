@@ -860,8 +860,9 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
 
     expired_task_to_runs = list(task_to_run.yield_expired_task_to_run())
 
-    # only to_run_2, to_run_3 and to_run_4 should be yielded
-    expected = [to_run_2, to_run_3, to_run_4]
+    # Only to_run_2 and to_run_3 should be yielded. to_run_4 is too old and is
+    # ignored.
+    expected = [to_run_2, to_run_3]
     sort_key = lambda x: x.expiration_ts
     self.assertEqual(
         sorted(expected, key=sort_key),
