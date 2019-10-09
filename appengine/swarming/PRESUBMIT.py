@@ -42,6 +42,7 @@ def CommonChecks(input_api, output_api):
     # uploading a server instance.
     r'^remote_smoke_test\.py$'
   ]
+
   tests = []
   for directory in test_directories:
     tests.extend(
