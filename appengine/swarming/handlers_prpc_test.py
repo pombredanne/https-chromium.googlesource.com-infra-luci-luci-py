@@ -43,6 +43,10 @@ def _encode(d):
 
 
 class PRPCTest(test_env_handlers.AppTestBase):
+  # This tests fails due to when runs after other tests
+  # Need to run later or fix cache or mock issue
+  run_later = 1
+
   """Tests the pRPC handlers."""
   def setUp(self):
     super(PRPCTest, self).setUp()
@@ -197,7 +201,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
     common_info = swarming_pb2.BotInfo(
         supplemental=struct_pb2.Struct(
             fields={
-              'bot_group_cfg_version':struct_pb2.Value(string_value='default'),
+              'bot_group_cfg_version': struct_pb2.Value(string_value='default'),
               'running_time': struct_pb2.Value(number_value=1234.0),
               'sleep_streak': struct_pb2.Value(number_value=0),
               'started_ts': struct_pb2.Value(number_value=1410990411.11),
