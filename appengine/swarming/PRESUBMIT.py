@@ -42,6 +42,13 @@ def CommonChecks(input_api, output_api):
     # uploading a server instance.
     r'^remote_smoke_test\.py$'
   ]
+
+  # # adding python path to env
+  # swarming_root = input_api.PresubmitLocalPath()
+  # swarming_bot_path = input_api.os_path.join(swarming_root, 'swarming_bot')
+  # env = EnvAddingPythonPath(input_api, [swarming_bot_path])
+  env = input_api.environ.copy()
+
   tests = []
   for directory in test_directories:
     tests.extend(
@@ -49,9 +56,22 @@ def CommonChecks(input_api, output_api):
             input_api, output_api,
             directory,
             whitelist=[r'.+_test\.py$'],
-            blacklist=blacklist))
+            blacklist=blacklist,
+            env=env))
   output.extend(input_api.RunTests(tests, parallel=True))
   return output
+
+
+def EnvAddingPythonPath(input_api, extra_python_paths):
+  # Copy the system path to the environment so pylint can find the right
+  # imports.
+  input_api.logging.debug(
+      '  with extra PYTHONPATH: %r' % extra_python_paths)
+  env = input_api.environ.copy()
+  import sys
+  env['PYTHONPATH'] = input_api.os_path.pathsep.join(
+      extra_python_paths + sys.path).encode('utf8')
+  return env
 
 
 # pylint: disable=unused-argument
