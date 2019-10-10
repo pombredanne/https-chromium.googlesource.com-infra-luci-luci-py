@@ -46,6 +46,30 @@
       "revId": "5959285dc678b05a435a24acdb5d55731aafbbf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8cdcf4aa_69054998",
+        "filename": "appengine/auth_service/test_replica_app/app.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T23:06:25Z",
+      "side": 1,
+      "message": "Oh...",
+      "parentUuid": "e0daa0c6_41f47597",
+      "range": {
+        "startLine": 17,
+        "startChar": 12,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "5959285dc678b05a435a24acdb5d55731aafbbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
