@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "59b8c7aa_26dcab89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T23:00:47Z",
+      "side": 1,
+      "message": "Ah! It was to import net, but I agree it\u0027s kind of confusing. Updated.",
+      "parentUuid": "f9a6d3eb_3edff615",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f96eb808_e1552349",
         "filename": "client/utils/tools.py",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ae442169_93c88538",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T23:00:47Z",
+      "side": 1,
+      "message": "It\u0027s used in the following CL https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1853004/10 in client/libs/logdog/tests/bootstrap_test.py and the two other tests aside. I didn\u0027t want to modify the same code twice.",
+      "parentUuid": "f96eb808_e1552349",
+      "range": {
+        "startLine": 429,
+        "startChar": 28,
+        "endLine": 429,
+        "endChar": 37
+      },
+      "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a58e73db_4a0a7776",
         "filename": "client/utils/tools.py",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "273d1af8_2c732491",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T23:00:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a58e73db_4a0a7776",
+      "range": {
+        "startLine": 437,
+        "startChar": 5,
+        "endLine": 437,
+        "endChar": 8
+      },
+      "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
