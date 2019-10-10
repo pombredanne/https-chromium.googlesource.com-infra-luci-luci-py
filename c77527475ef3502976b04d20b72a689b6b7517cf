@@ -22,6 +22,30 @@
       "revId": "c77527475ef3502976b04d20b72a689b6b7517cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7880c1e_e93df5bc",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:46:29Z",
+      "side": 1,
+      "message": "I don\u0027t fully understand naming.\nIf I understand correctly, the presubmit is on the same CQ.\n\nDoes this comment make sense?\n\n```\nlocal_smoke_test runs on other tryjobs\n```",
+      "parentUuid": "fd8ff8d6_0fe9b573",
+      "range": {
+        "startLine": 41,
+        "startChar": 31,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "c77527475ef3502976b04d20b72a689b6b7517cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
