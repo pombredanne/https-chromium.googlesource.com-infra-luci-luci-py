@@ -9,7 +9,10 @@ import os
 import re
 import time
 import types
-import urlparse
+
+# third_party/
+from six.moves import urllib
+
 from utils import net
 
 # gRPC may not be installed on the worker machine. This is fine, as long as
@@ -103,7 +106,7 @@ class Proxy(object):
                    proxy, stub_class.__name__)
     # NB: everything in url is unicode; convert to strings where
     # needed.
-    url = urlparse.urlparse(proxy)
+    url = urllib.parse.urlparse(proxy)
     if self._verbose:
       logging.info('Parsed URL for proxy is %r', url)
     if url.scheme == 'http':
