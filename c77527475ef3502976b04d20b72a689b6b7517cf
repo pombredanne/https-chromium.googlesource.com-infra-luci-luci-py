@@ -46,6 +46,30 @@
       "revId": "c77527475ef3502976b04d20b72a689b6b7517cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9603700d_a3192d40",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T06:53:24Z",
+      "side": 1,
+      "message": "Yes it does.",
+      "parentUuid": "d7880c1e_e93df5bc",
+      "range": {
+        "startLine": 41,
+        "startChar": 31,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "c77527475ef3502976b04d20b72a689b6b7517cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
