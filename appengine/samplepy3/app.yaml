@@ -1,0 +1,25 @@
+application: samplepy3
+module: default
+version: 1
+runtime: python37
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: main_frontend.endpoints_app
+  secure: always
+
+builtins:
+- remote_api: on
+
+inbound_services:
+- mail
+- warmup
+
+  #includes:
+  #- components/auth
+  #- components/config
+  #- components/ereporter2
+  #- components/static_third_party.yaml
+  #- gae_ts_mon

@@ -7,7 +7,7 @@
 import json
 import logging
 import urllib
-import urlparse
+import sys
 
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
@@ -17,6 +17,12 @@ from components import auth
 from components import utils
 from components.auth import delegation
 from components.auth import tokens
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urlparse.parse import urlparse
 
 
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
@@ -59,9 +65,8 @@ def is_transient_error(response, url):
   # result is not JSON. This assumes that we only use JSON encoding.
   if response.status_code == 404:
     content_type = response.headers.get('Content-Type', '')
-    return (
-        urlparse.urlparse(url).path.startswith('/_ah/api/') and
-        not content_type.startswith('application/json'))
+    return (urlparse(url).path.startswith('/_ah/api/') and
+            not content_type.startswith('application/json'))
   return False
 
 

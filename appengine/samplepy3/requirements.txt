@@ -1,0 +1,7 @@
+Flask==1.0.2
+pyyaml==5.1.2
+six==1.12.0
+protobuf==3.10.0
+# Requires python3-dev to be properly installed.
+#google-cloud-ndb==0.1.0
+#pycrypto==2.6.1
