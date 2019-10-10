@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9a6d3eb_3edff615",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:28:00Z",
+      "side": 1,
+      "message": "tools?",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f96eb808_e1552349",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:28:00Z",
+      "side": 1,
+      "message": "who sets this?",
+      "range": {
+        "startLine": 429,
+        "startChar": 28,
+        "endLine": 429,
+        "endChar": 37
+      },
+      "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a58e73db_4a0a7776",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:28:00Z",
+      "side": 1,
+      "message": "more indent?",
+      "range": {
+        "startLine": 437,
+        "startChar": 5,
+        "endLine": 437,
+        "endChar": 8
+      },
+      "revId": "61f586713ef227c126869ccbd5f5e5a260705e45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
