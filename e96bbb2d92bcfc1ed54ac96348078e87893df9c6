@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a6c493b_1a1590f7",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T09:35:44Z",
+      "side": 1,
+      "message": "Isn\u0027t sort import supported pylint and git cl format?\nI would like to systematically check and fix syntax.",
+      "parentUuid": "2420e371_b05bf47c",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "e96bbb2d92bcfc1ed54ac96348078e87893df9c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6bc2046c_3778c5be",
         "filename": "appengine/swarming/test_all.py",
         "patchSetId": 5
