@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47273e72_d3c7e533",
+        "filename": "client/isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:48:54Z",
+      "side": 1,
+      "message": "curious: when do we need to change this?",
+      "revId": "92e611d4accd945ce94e72149af9329b336efe97",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2db27a5_107c9d21",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:48:54Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "92e611d4accd945ce94e72149af9329b336efe97",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
