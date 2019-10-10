@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2249d62a_e444e6d1",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T14:07:48Z",
+      "side": 1,
+      "message": "\u003e Redefining argument with the local name \u0027output\u0027.\n\u003e To disable, add: # pylint: disable\u003dredefined-argument-from-local\n\nPlease Fix",
+      "parentUuid": "8a01497a_27c29eee",
+      "revId": "2fdb6c7b5e6aed0f83ac708909bace6c50e6ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
