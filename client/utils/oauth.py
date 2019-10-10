@@ -20,12 +20,7 @@ import sys
 import threading
 import time
 import urllib
-# pylint: disable=ungrouped-imports
-# pylint: disable=no-name-in-module
-if sys.version_info.major == 2:
-  import urlparse # Python 2
-else:
-  from urllib import parse as urlparse # Python 3
+
 import webbrowser
 
 from utils import tools
@@ -43,6 +38,12 @@ import requests
 
 from libs import luci_context
 from six.moves import BaseHTTPServer
+
+if sys.version_info.major == 2:
+  import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib import parse as urlparse
 
 
 # Path to a file with cached OAuth2 credentials used by default. Can be
@@ -511,8 +512,8 @@ def _parse_private_key(pem):
     der = rsa.pem.load_pem(pem, 'PRIVATE KEY')
     keyinfo, _ = decoder.decode(der)
     if keyinfo[1][0] != univ.ObjectIdentifier('1.2.840.113549.1.1.1'):
-        raise BadServiceAccountCredentials(
-            'Not a DER-encoded OpenSSL private RSA key')
+      raise BadServiceAccountCredentials(
+          'Not a DER-encoded OpenSSL private RSA key')
     private_key_der = keyinfo[2].asOctets()
   except IndexError:
     raise BadServiceAccountCredentials(

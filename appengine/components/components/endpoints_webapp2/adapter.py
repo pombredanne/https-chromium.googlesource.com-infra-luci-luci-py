@@ -9,7 +9,7 @@ import json
 import logging
 import os
 import posixpath
-import urlparse
+import sys
 
 from endpoints import protojson
 from google.appengine.api import memcache
@@ -25,6 +25,12 @@ from components import utils
 
 import discovery
 import partial
+
+if sys.version_info.major == 2:
+  import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib import parse as urlparse
 
 
 PROTOCOL = protojson.EndpointsProtoJson()
