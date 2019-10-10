@@ -9,12 +9,18 @@ import collections
 import datetime
 import posixpath
 import re
+import sys
 import urllib
-import urlparse
 
 from google.appengine.ext import ndb
 
 from components import gerrit
+
+if sys.version_info.major == 2:
+  import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib import parse as urlparse
 
 
 class TreeishResolutionError(Exception):
@@ -115,7 +121,7 @@ class Location(LocationTuple):
       TreeishResolutionError: failed to find a valid treeish in the url
         present in treeishes.
     """
-    parsed = urlparse.urlparse(url)
+    parsed = urlparse(url)
     path_match = RGX_URL_PATH.match(parsed.path)
     if not path_match:
       raise ValueError('Invalid Gitiles repo url: %s' % url)

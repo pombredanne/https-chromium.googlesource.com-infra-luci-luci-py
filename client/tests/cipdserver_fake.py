@@ -3,9 +3,15 @@
 # that can be found in the LICENSE file.
 
 import logging
-import urlparse
+import sys
 
 import httpserver
+
+if sys.version_info.major == 2:
+  from urlparse import parse_qs, urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib.parse import parse_qs, urlparse
 
 
 class FakeCipdServerHandler(httpserver.Handler):
@@ -26,7 +32,7 @@ class FakeCipdServerHandler(httpserver.Handler):
         'instance_id': 'a' * 40,
       })
     elif self.path.startswith('/_ah/api/repo/v1/client?'):
-      qs = urlparse.parse_qs(urlparse.urlparse(self.path).query)
+      qs = parse_qs(urlparse(self.path).query)
       pkg_name = qs.get('package_name', [])
       if not pkg_name:
         self.send_json({

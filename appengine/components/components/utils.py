@@ -21,7 +21,6 @@ import os
 import re
 import sys
 import threading
-import urlparse
 
 from email import utils as email_utils
 
@@ -36,6 +35,13 @@ from google.appengine.runtime import apiproxy_errors
 
 from protorpc import messages
 from protorpc.remote import protojson
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse, urlunparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib.parse import urlparse, urlunparse
+
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -752,12 +758,12 @@ def to_units(number):
 def validate_root_service_url(url):
   """Raises ValueError if the URL doesn't look like https://<host>."""
   schemes = ('https', 'http') if is_local_dev_server() else ('https',)
-  parsed = urlparse.urlparse(url)
+  parsed = urlparse(url)
   if parsed.scheme not in schemes:
     raise ValueError('unsupported protocol %r' % str(parsed.scheme))
   if not parsed.netloc:
     raise ValueError('missing hostname')
-  stripped = urlparse.urlunparse((parsed[0], parsed[1], '', '', '', ''))
+  stripped = urlunparse((parsed[0], parsed[1], '', '', '', ''))
   if stripped != url:
     raise ValueError('expecting root host URL, e.g. %r)' % str(stripped))
 

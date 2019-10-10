@@ -30,13 +30,20 @@ import collections
 import fnmatch
 import functools
 import re
-import urlparse
+import sys
 
 # Pylint doesn't like relative wildcard imports.
 # pylint: disable=W0401,W0403
 
 from . import common
 from . import validation_context
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib.parse import urlparse
+
 
 __all__ = [
   'Context',
@@ -103,7 +110,7 @@ def is_valid_ref_name(ref):
 
 def is_valid_secure_url(url):
   """Returns True if the URL is valid and secure, except for localhost."""
-  parsed = urlparse.urlparse(url)
+  parsed = urlparse(url)
   if not parsed.netloc:
     return False
   if parsed.hostname in ('localhost', '127.0.0.1', '::1'):

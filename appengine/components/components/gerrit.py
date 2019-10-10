@@ -7,14 +7,20 @@
 import collections
 import json
 import logging
+import sys
 import urllib
-import urlparse
 
 from google.appengine.ext import ndb
 
 from components import auth
 from components import net
 from components import utils
+
+if sys.version_info.major == 2:
+  import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib import parse as urlparse
 
 
 AUTH_SCOPE = 'https://www.googleapis.com/auth/gerritcodereview'

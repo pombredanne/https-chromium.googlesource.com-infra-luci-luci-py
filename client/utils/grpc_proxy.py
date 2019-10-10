@@ -7,9 +7,10 @@
 import logging
 import os
 import re
+import sys
 import time
 import types
-import urlparse
+
 from utils import net
 
 # gRPC may not be installed on the worker machine. This is fine, as long as
@@ -22,6 +23,12 @@ try:
   from google.auth.transport import requests as google_auth_transport_requests
 except ImportError as err:
   grpc = None
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib.parse import urlparse
 
 
 # If gRPC was successfully imported, try to import certifi as well.  This is not
@@ -103,7 +110,7 @@ class Proxy(object):
                    proxy, stub_class.__name__)
     # NB: everything in url is unicode; convert to strings where
     # needed.
-    url = urlparse.urlparse(proxy)
+    url = urlparse(proxy)
     if self._verbose:
       logging.info('Parsed URL for proxy is %r', url)
     if url.scheme == 'http':

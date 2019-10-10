@@ -6,7 +6,7 @@ import base64
 import json
 import logging
 import posixpath
-import urlparse
+import sys
 
 from google.appengine.ext import ndb
 
@@ -20,6 +20,12 @@ from components.config.proto import service_config_pb2
 
 import common
 import services
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse
+else:
+  # pylint: disable=no-name-in-module
+  from urllib.parse import urlparse
 
 
 def validate_config_set(config_set, ctx=None):
@@ -43,7 +49,7 @@ def validate_url(url, ctx):
   if not url:
     ctx.error('not specified')
     return
-  parsed = urlparse.urlparse(url)
+  parsed = urlparse(url)
   if not parsed.netloc:
     ctx.error('hostname not specified')
   if parsed.scheme != 'https':
@@ -396,7 +402,7 @@ def validate_config(*args, **kwargs):
 
 
 def is_url_relative(url):
-  parsed = urlparse.urlparse(url)
+  parsed = urlparse(url)
   return bool(not parsed.scheme and not parsed.netloc and parsed.path)
 
 

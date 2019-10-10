@@ -17,12 +17,12 @@ import sys
 import threading
 import time
 import urllib
-# pylint: disable=ungrouped-imports
-# pylint: disable=no-name-in-module
+
 if sys.version_info.major == 2:
   import urlparse
   urlencode = urllib.urlencode
 else:
+  # pylint: disable=no-name-in-module
   from urllib import parse as urlparse
   urlencode = urlparse.urlencode
 

@@ -18,7 +18,6 @@ import subprocess
 import sys
 import threading
 import urllib
-import urlparse
 
 # Mutates sys.path.
 import test_env
@@ -27,6 +26,12 @@ import test_env
 from depot_tools import auto_stub
 
 from utils import on_error
+
+if sys.version_info.major == 2:
+  from urlparse import parse_qs
+else:
+  # pylint: disable=no-name-in-module
+  from urllib.parse import parse_qs
 
 
 PEM = os.path.join(test_env.TESTS_DIR, 'self_signed.pem')
@@ -97,7 +102,7 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
       return cgi.parse_multipart(self.rfile, pdict)
     if ctype == 'application/x-www-form-urlencoded':
       length = int(self.headers['Content-Length'])
-      return urlparse.parse_qs(self.rfile.read(length), keep_blank_values=1)
+      return parse_qs(self.rfile.read(length), keep_blank_values=1)
     if ctype in ('application/json', 'application/json; charset=utf-8'):
       length = int(self.headers['Content-Length'])
       return json.loads(self.rfile.read(length))
