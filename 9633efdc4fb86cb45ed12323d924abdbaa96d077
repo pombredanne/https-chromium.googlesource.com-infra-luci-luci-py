@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "f1ce6952_05d3e738",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "\u003e running in production\n\ntest.py won\u0027t be running on production. \n\n\u003e I\u0027m afraid that forgetting path modification\n\nThat\u0027s why we should use vpython :)\nAt very least, testing environment already has vpython.\n\n\u003e And using sys.version seems sufficient for current test.py?\n\nIt is ok not to use six for this use case.\nBut in general, the point of using third private/public packages is to avoid reinventing the wheel.",
+      "parentUuid": "502b0261_b0dfad9d",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3e929a_dfab0582",
         "filename": ".vpython",
         "patchSetId": 3
@@ -90,6 +114,24 @@
     },
     {
       "key": {
+        "uuid": "e2337ef4_f450135a",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "required by nose2",
+      "parentUuid": "0f3e929a_dfab0582",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a791112d_eb5083d9",
         "filename": ".vpython",
         "patchSetId": 3
@@ -101,6 +143,24 @@
       "writtenOn": "2019-10-10T05:46:31Z",
       "side": 1,
       "message": "who use this?",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "979ca92c_f55719f9",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "required by nose2",
+      "parentUuid": "a791112d_eb5083d9",
       "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

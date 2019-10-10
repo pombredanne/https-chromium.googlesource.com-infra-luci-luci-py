@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8acf1bbe_bd64515f",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52a148e3_d2a498aa",
+      "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e62cf30_fa06b474",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "092777fb_6e613fab",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2212,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e62cf30_fa06b474",
+      "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a76a4c79_8a41f536",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 4
@@ -50,6 +86,24 @@
       "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4eb4c79_d8d50b81",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a76a4c79_8a41f536",
+      "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "0660c92f_41d897c2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/singleton_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b266d0d_982c6d68",
+      "range": {
+        "startLine": 16,
+        "startChar": 24,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "460cd3af_64e7fba8",
         "filename": "appengine/swarming/swarming_bot/test.py",
         "patchSetId": 4
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "b1829b4c_6dbe3716",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "460cd3af_64e7fba8",
+      "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0add633e_980c06b7",
         "filename": "appengine/swarming/test_all.py",
         "patchSetId": 4
@@ -104,6 +200,30 @@
       "writtenOn": "2019-10-10T05:46:31Z",
       "side": 1,
       "message": "why need this?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "961256bfe37de4a34c5e79d3fd2ceea62a800372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1255b003_c1a2ff8d",
+        "filename": "appengine/swarming/test_all.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T06:31:17Z",
+      "side": 1,
+      "message": "This is needed to activate nose2 plugin I made.\nI added a comment.",
+      "parentUuid": "0add633e_980c06b7",
       "range": {
         "startLine": 35,
         "startChar": 0,
