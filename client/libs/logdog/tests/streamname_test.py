@@ -13,6 +13,9 @@ ROOT_DIR = os.path.dirname(os.path.abspath(os.path.join(
     os.pardir, os.pardir, os.pardir)))
 sys.path.insert(0, ROOT_DIR)
 
+from utils import tools
+tools.force_local_third_party()
+
 from libs.logdog import streamname
 
 
