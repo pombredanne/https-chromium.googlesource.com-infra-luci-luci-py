@@ -187,7 +187,7 @@ class TokenEncodeDecodeTest(test_case.TestCase):
     # Works if not modified.
     decode(tok)
     # Try simple modifications.
-    for i in xrange(len(tok)):
+    for i in range(len(tok)):
       # Truncation.
       with self.assertRaises(tokens.InvalidTokenError):
         decode(tok[:i])
