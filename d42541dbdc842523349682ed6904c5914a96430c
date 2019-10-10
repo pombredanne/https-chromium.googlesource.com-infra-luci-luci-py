@@ -16,6 +16,24 @@
       "revId": "d42541dbdc842523349682ed6904c5914a96430c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7916e814_b896d516",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 0,
+      "message": "sure, will do.",
+      "parentUuid": "b963bd87_ca5b2e8d",
+      "revId": "d42541dbdc842523349682ed6904c5914a96430c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dce95c5a_6044d784",
+        "filename": "DEPS",
+        "patchSetId": 32
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "unnecessary change",
+      "revId": "0d71eeca6cdec9612c7895056d685c01c904b0d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a3ae1f4_8836f6d1",
+        "filename": "appengine/swarming/.vpython3",
+        "patchSetId": 32
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "use 3.8",
+      "revId": "0d71eeca6cdec9612c7895056d685c01c904b0d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53a00ba2_397957d4",
+        "filename": "appengine/swarming/swarming_bot/config/singleton_test.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "remove this",
+      "revId": "0d71eeca6cdec9612c7895056d685c01c904b0d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

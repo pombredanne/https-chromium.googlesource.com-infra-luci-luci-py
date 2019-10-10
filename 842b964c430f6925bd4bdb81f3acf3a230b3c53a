@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "228b7c09_2062b647",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc989db7_ec636da9",
+      "revId": "842b964c430f6925bd4bdb81f3acf3a230b3c53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

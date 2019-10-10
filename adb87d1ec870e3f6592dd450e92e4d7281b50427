@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "23118765_e4b66622",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "yeah, after submitting this CL.",
+      "parentUuid": "e83c204f_f34e673b",
+      "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8942733d_0aa150bb",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 12
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "bcf597f6_3fd32fe4",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8942733d_0aa150bb",
+      "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d472adca_ab3fff31",
         "filename": "appengine/swarming/test.py",
         "patchSetId": 12
@@ -50,6 +86,24 @@
       "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "983d6a74_659d1c4e",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T00:33:13Z",
+      "side": 1,
+      "message": "nose2 handles all sys.argv later in the process. and this hack is just overriding default logging level.",
+      "parentUuid": "d472adca_ab3fff31",
+      "revId": "adb87d1ec870e3f6592dd450e92e4d7281b50427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
