@@ -3,16 +3,24 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import logging
 import sys
 import unittest
 
-import test_env_platforms
-test_env_platforms.setup_test_env()
+# TODO(jwata) this workaround is needed for presubmit
+# remove after migrating tests
+if __name__ == 'api.platforms.linux_test':
+  from api.platforms import test_env_platforms
+  test_env_platforms.setup_test_env()
+  from api.platforms import linux
+else:
+  import test_env_platforms
+  test_env_platforms.setup_test_env()
+  import linux
 
 from utils import tools
-
-import linux
 
 
 EXYNOS_CPU_INFO = r"""
