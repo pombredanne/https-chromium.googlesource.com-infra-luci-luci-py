@@ -1,0 +1,9 @@
+flask==1.1.1
+uwsgi==2.0.18
+protobuf==3.10.0
+pyyaml==5.1.2
+six==1.12.0
+
+# Requires python3-dev to be properly installed.
+#google-cloud-ndb==0.1.0
+#pycrypto==2.6.1
