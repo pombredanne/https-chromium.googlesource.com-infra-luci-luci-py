@@ -436,8 +436,14 @@ def force_local_third_party():
   if _THIRD_PARTY_FIXED:
     return
   _THIRD_PARTY_FIXED = True
-  src = os.path.abspath(zip_package.get_main_script_path())
-  root = os.path.dirname(src)
+  src = zip_package.get_main_script_path()
+  if src:
+    root = os.path.dirname(os.path.abspath(src))
+  else:
+    # The only case where src is not set is when importing at the python
+    # interractive prompt. Make this case work since it's helpful during the
+    # python3 transition, as it makes the edit-debug loop much faster.
+    root = os.getcwd()
   sys.path.insert(0, os.path.join(
       root, 'third_party', 'httplib2', 'python%d' % sys.version_info.major))
   sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
