@@ -49,6 +49,64 @@
     },
     {
       "key": {
+        "uuid": "502b0261_b0dfad9d",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T05:46:31Z",
+      "side": 1,
+      "message": "I still think better to not have six here.\nI\u0027m afraid that forgeting path modification for code running in production and it failed to import six.\n\nAnd using sys.version seems sufficient for current test.py?",
+      "parentUuid": "4a96757f_908a2a1b",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f3e929a_dfab0582",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T05:46:31Z",
+      "side": 1,
+      "message": "who use this?",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a791112d_eb5083d9",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T05:46:31Z",
+      "side": 1,
+      "message": "who use this?",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fca5298b_dc4388a2",
         "filename": ".vpython3",
         "patchSetId": 3
