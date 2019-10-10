@@ -22,6 +22,30 @@
       "revId": "5959285dc678b05a435a24acdb5d55731aafbbf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0daa0c6_41f47597",
+        "filename": "appengine/auth_service/test_replica_app/app.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T23:04:19Z",
+      "side": 1,
+      "message": "That\u0027s different, that\u0027s the one provided in appengine and the versions available is limited (there\u0027s only one). This is python2.7 specific.",
+      "parentUuid": "454acd58_0ee51d15",
+      "range": {
+        "startLine": 17,
+        "startChar": 12,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "5959285dc678b05a435a24acdb5d55731aafbbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
