@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cedc938c_c5cef1e8",
+        "filename": "appengine/samplepy3/main.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:40:31Z",
+      "side": 1,
+      "message": "I prefer to say Standard",
+      "range": {
+        "startLine": 6,
+        "startChar": 36,
+        "endLine": 6,
+        "endChar": 43
+      },
+      "revId": "0b07c3b5f1aa668f862390e4fc5a908ad7494251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c60783d_b0818f11",
+        "filename": "appengine/samplepy3/main.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:40:31Z",
+      "side": 1,
+      "message": "no need to import this?",
+      "revId": "0b07c3b5f1aa668f862390e4fc5a908ad7494251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96644cdd_14aa604d",
+        "filename": "appengine/samplepy3/main.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T22:40:31Z",
+      "side": 1,
+      "message": "why commented out?",
+      "revId": "0b07c3b5f1aa668f862390e4fc5a908ad7494251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
