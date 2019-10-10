@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "864f8bbe_86ee041c",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T06:51:39Z",
+      "side": 1,
+      "message": "Currently, I\u0027m not sure whether we can use vpython in every bots.\nSo every production code needs to modify sys.path to see six module in third_party directory.\n\nBut if we have six in vpython, we may forget to update sys.path update for bot code.",
+      "parentUuid": "f1ce6952_05d3e738",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3e929a_dfab0582",
         "filename": ".vpython",
         "patchSetId": 3
@@ -132,6 +156,24 @@
     },
     {
       "key": {
+        "uuid": "6996ef1c_89e4f3b1",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T06:51:39Z",
+      "side": 1,
+      "message": "Could you write comment saying that?",
+      "parentUuid": "e2337ef4_f450135a",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a791112d_eb5083d9",
         "filename": ".vpython",
         "patchSetId": 3
@@ -161,6 +203,24 @@
       "side": 1,
       "message": "required by nose2",
       "parentUuid": "a791112d_eb5083d9",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ab5ebff_a44fa4f6",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T06:51:39Z",
+      "side": 1,
+      "message": "and here too",
+      "parentUuid": "979ca92c_f55719f9",
       "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
