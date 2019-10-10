@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4a96757f_908a2a1b",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T05:36:40Z",
+      "side": 1,
+      "message": "six is used in swarming/test.py",
+      "parentUuid": "e7f00d9b_fccca8b7",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fca5298b_dc4388a2",
         "filename": ".vpython3",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2019-10-10T04:59:44Z",
       "side": 1,
       "message": "ditto",
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bba5676_8ee1bf5e",
+        "filename": ".vpython3",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-10T05:36:40Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "fca5298b_dc4388a2",
       "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
