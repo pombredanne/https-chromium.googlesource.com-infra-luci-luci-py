@@ -21,7 +21,6 @@ import os
 import re
 import sys
 import threading
-import urlparse
 
 from email import utils as email_utils
 
@@ -36,6 +35,11 @@ from google.appengine.runtime import apiproxy_errors
 
 from protorpc import messages
 from protorpc.remote import protojson
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse, urlunparse
+else:
+  from urllib.parse import urlparse, urlunparse
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -56,7 +60,7 @@ _task_queue_module = 'backend'
 
 
 def should_disable_ui_routes():
-    return os.environ.get('LUCI_DISABLE_UI_ROUTES', '0') == '1'
+  return os.environ.get('LUCI_DISABLE_UI_ROUTES', '0') == '1'
 
 
 def is_local_dev_server():
@@ -749,12 +753,12 @@ def to_units(number):
 def validate_root_service_url(url):
   """Raises ValueError if the URL doesn't look like https://<host>."""
   schemes = ('https', 'http') if is_local_dev_server() else ('https',)
-  parsed = urlparse.urlparse(url)
+  parsed = urlparse(url)
   if parsed.scheme not in schemes:
     raise ValueError('unsupported protocol %r' % str(parsed.scheme))
   if not parsed.netloc:
     raise ValueError('missing hostname')
-  stripped = urlparse.urlunparse((parsed[0], parsed[1], '', '', '', ''))
+  stripped = urlunparse((parsed[0], parsed[1], '', '', '', ''))
   if stripped != url:
     raise ValueError('expecting root host URL, e.g. %r)' % str(stripped))
 
@@ -779,6 +783,9 @@ def fix_protobuf_package():
   Prefer our own proto package on the server. Note that this functions is not
   used on the Swarming bot nor any other client.
   """
+  if sys.version_info.major != 2:
+    # Unnecessary on python3.
+    return
   # google.__path__[0] will be google_appengine/google.
   import google
   if len(google.__path__) > 1:
@@ -796,6 +803,9 @@ def fix_protobuf_package():
 
 def import_jinja2():
   """Remove any existing jinja2 package and add ours."""
+  if sys.version_info.major != 2:
+    # Unnecessary on python3.
+    return
   for i in sys.path[:]:
     if os.path.basename(i) == 'jinja2':
       sys.path.remove(i)
@@ -822,9 +832,7 @@ def async_apply(iterable, async_fn, unordered=False, concurrent_jobs=50):
 
 def _async_apply_ordered(iterable, async_fn, concurrent_jobs):
   results = _async_apply_unordered(
-      enumerate(iterable),
-      lambda (i, item): async_fn(item),
-      concurrent_jobs)
+      enumerate(iterable), lambda i, item: async_fn(item), concurrent_jobs)
   for (_, item), result in sorted(results, key=lambda i: i[0][0]):
     yield item, result
 

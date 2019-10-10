@@ -7,7 +7,7 @@
 import json
 import logging
 import urllib
-import urlparse
+import sys
 
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
@@ -17,6 +17,11 @@ from components import auth
 from components import utils
 from components.auth import delegation
 from components.auth import tokens
+
+if sys.version_info.major == 2:
+  from urlparse import urlparse
+else:
+  from urlparse.parse import urlparse
 
 
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
