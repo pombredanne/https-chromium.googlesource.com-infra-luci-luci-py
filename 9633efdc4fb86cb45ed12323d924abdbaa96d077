@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "f6993c39_f9e73c3f",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-10T09:19:59Z",
+      "side": 1,
+      "message": "Even in that case, I think it is better to call setup env before importing nose2 to remove six from this file.",
+      "parentUuid": "28f8b93e_828be919",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3e929a_dfab0582",
         "filename": ".vpython",
         "patchSetId": 3
