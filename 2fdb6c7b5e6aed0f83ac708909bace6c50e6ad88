@@ -17,6 +17,24 @@
       "revId": "2fdb6c7b5e6aed0f83ac708909bace6c50e6ad88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2a23ace_d0733166",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T14:08:40Z",
+      "side": 1,
+      "message": "Done in patchset 3",
+      "parentUuid": "2249d62a_e444e6d1",
+      "revId": "2fdb6c7b5e6aed0f83ac708909bace6c50e6ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
