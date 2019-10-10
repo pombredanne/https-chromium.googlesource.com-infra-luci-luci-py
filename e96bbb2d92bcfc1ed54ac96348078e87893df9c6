@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "4a88610e_f2111c52",
+        "filename": ".vpython",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T15:26:15Z",
+      "side": 1,
+      "message": "Could you sort them by name while at it? It has to be done manually sadly.",
+      "revId": "e96bbb2d92bcfc1ed54ac96348078e87893df9c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b42d348_0c90d90f",
+        "filename": ".vpython3",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T15:26:15Z",
+      "side": 1,
+      "message": "same",
+      "revId": "e96bbb2d92bcfc1ed54ac96348078e87893df9c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3932fd82_c2b8a968",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T15:26:15Z",
+      "side": 1,
+      "message": "This doesn\u0027t belong in the CL description. Put in the CL description:\n- What is being done\n- Why it\u0027s being done\n\nYou can give relationship to a series of changes when application, but this CL is abandoned, so there\u0027s no point in putting it in the commit description.",
+      "revId": "e96bbb2d92bcfc1ed54ac96348078e87893df9c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "806b1f7e_f8edd957",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-10T15:26:15Z",
+      "side": 1,
+      "message": "This is the only non-testing change in the CL, I\u0027d prefer to have it as a separate CL. The rationale if that if there were any problem, it\u0027d be easy to revert.\n\nThen the rest becomes a test-only CL, thus the CL becomes really low risk. I like test-only CLs. :)",
+      "revId": "e96bbb2d92bcfc1ed54ac96348078e87893df9c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2420e371_b05bf47c",
         "filename": "appengine/swarming/swarming_bot/test.py",
         "patchSetId": 5
