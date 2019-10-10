@@ -17,14 +17,13 @@ import ssl
 import subprocess
 import sys
 import threading
-import urllib
-import urlparse
 
 # Mutates sys.path.
 import test_env
 
 # third_party/
 from depot_tools import auto_stub
+from six.moves import urllib
 
 from utils import on_error
 
@@ -69,14 +68,14 @@ class HttpsServer(BaseHTTPServer.HTTPServer):
     while True:
       # Ensures it is up.
       try:
-        urllib.urlopen(self.url + '/_warmup').read()
+        urllib.request.urlopen(self.url + '/_warmup').read()
       except IOError:
         continue
       return
 
   def stop(self):
     self.keep_running = False
-    urllib.urlopen(self.url + '/_quit').read()
+    urllib.request.urlopen(self.url + '/_quit').read()
     self._thread.join()
     self._thread = None
 
@@ -97,7 +96,7 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
       return cgi.parse_multipart(self.rfile, pdict)
     if ctype == 'application/x-www-form-urlencoded':
       length = int(self.headers['Content-Length'])
-      return urlparse.parse_qs(self.rfile.read(length), keep_blank_values=1)
+      return urllib.parse.parse_qs(self.rfile.read(length), keep_blank_values=1)
     if ctype in ('application/json', 'application/json; charset=utf-8'):
       length = int(self.headers['Content-Length'])
       return json.loads(self.rfile.read(length))
@@ -126,8 +125,8 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
 def start_server():
   """Starts an HTTPS web server and returns the port bound."""
   # A premade passwordless self-signed certificate. It works because older
-  # urllib doesn't verify the certificate validity. Disable SSL certificate
-  # verification for more recent version.
+  # urllib on python 2.7 doesn't verify the certificate validity. Disable SSL
+  # certificate verification for more recent version.
   create_unverified_https_context = getattr(
       ssl, '_create_unverified_context', None)
   # pylint: disable=using-constant-test

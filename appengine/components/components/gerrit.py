@@ -7,8 +7,8 @@
 import collections
 import json
 import logging
-import urllib
-import urlparse
+
+from six.moves import urllib
 
 from google.appengine.ext import ndb
 
@@ -159,7 +159,7 @@ def fetch_async(hostname, path, **kwargs):
   assert not path.startswith('/'), path
   assert 'scopes' not in kwargs, kwargs['scopes']
   try:
-    url = urlparse.urljoin('https://' + hostname, 'a/' + path)
+    url = urllib.parse.urljoin('https://' + hostname, 'a/' + path)
     result = yield net.request_async(url, scopes=[AUTH_SCOPE], **kwargs)
     raise ndb.Return(result)
   except net.NotFoundError:

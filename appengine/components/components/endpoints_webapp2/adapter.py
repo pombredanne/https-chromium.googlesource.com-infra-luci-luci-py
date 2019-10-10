@@ -9,7 +9,6 @@ import json
 import logging
 import os
 import posixpath
-import urlparse
 
 from endpoints import protojson
 from google.appengine.api import memcache
