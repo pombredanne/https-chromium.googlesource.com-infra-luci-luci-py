@@ -12,8 +12,11 @@ import webob
 import webapp2
 
 from google.appengine.api import app_identity
+from google.appengine.api import modules
 from google.appengine.ext import ndb
 from google.appengine import runtime
+
+from six.moves import urllib
 
 from components import auth
 from components import ereporter2
@@ -201,15 +204,21 @@ class BotCodeHandler(_BotAuthenticatingHandler):
     server = self.request.host_url
     self.check_bot_code_access(
         bot_id=self.request.get('bot_id'), generate_token=False)
+
+    if urllib.parse.urlparse(
+        server).hostname == app_identity.get_default_version_hostname():
+      # Let default access to redirect to specific version so that we can use
+      # cache for response safely.
+      self.redirect(utils.get_versioned_hosturl() + '/bot_code')
+      return
+
     if version:
       expected, _ = bot_code.get_bot_version(server)
       if version != expected:
         # This can happen when the server is rapidly updated.
         logging.error('Requested Swarming bot %s, have %s', version, expected)
-        self.abort(404)
-      self.response.headers['Cache-Control'] = 'public, max-age=3600'
-    else:
-      self.response.headers['Cache-Control'] = 'no-cache, no-store'
+
+    self.response.headers['Cache-Control'] = 'public, max-age=3600'
     self.response.headers['Content-Type'] = 'application/octet-stream'
     self.response.headers['Content-Disposition'] = (
         'attachment; filename="swarming_bot.zip"')
