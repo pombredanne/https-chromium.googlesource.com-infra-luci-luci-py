@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "908bb8bb_e3d30f6b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-11T13:19:29Z",
+      "side": 1,
+      "message": "I realize there\u0027s a challenge with this, because if a bot contacts 4500-1234abcd-dot-chromium-swarm.appspot.com/bot_code, the swarming_bot.zip generated will *lock* into this hostname. See host_versio parameter at https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/bot_archive.py?l\u003d448.",
+      "revId": "0fa8f3b74c29baf979f8a294014572d34f3c7125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

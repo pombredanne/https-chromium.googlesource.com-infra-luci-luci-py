@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37a878e0_04b53175",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-11T13:19:29Z",
+      "side": 0,
+      "message": "I think we should instead redirect to the current version. This would then enable always having a cache hit (through a redirect, but that\u0027s relatively cheap).",
+      "revId": "78ce3aa55a2e5f77dc05517ef3ec377b3f36dc6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e3a814a_638c371e",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-11T13:19:29Z",
+      "side": 0,
+      "message": "I\u0027d prefer to keep the else and redirect to the versioned path.",
+      "revId": "78ce3aa55a2e5f77dc05517ef3ec377b3f36dc6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
