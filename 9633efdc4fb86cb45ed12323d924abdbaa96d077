@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "396610d0_8be5602c",
+        "filename": ".vpython",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-11T10:28:19Z",
+      "side": 1,
+      "message": "The problem is that even if six is in path, vpython fails to start because it can\u0027t resolve the dependencies at initializing an environment.\n\n```\n❯ PYTHONPATH\u003d/usr/local/google/home/jwata/chrome_infra/infra/luci/client/third_party vpython test.py\n[E2019-10-11T19:11:10.702295+09:00 47008 0 venv.go:951] Command (cwd\u003d): [/usr/local/google/home/jwata/.vpython-root/82ab95/bin/python -B -E -s -m pip install --isolated --compile --no-index --find-links /tmp/vpython_bootstrap936681296/packages --requirement /tmp/vpython_bootstrap936681296/requirements.txt --no-binary\u003d:none: --only-binary\u003d:all: --use-wheel]\nProcess output:\nCollecting coverage\u003d\u003d4.3.4 (from -r /tmp/vpython_bootstrap936681296/requirements.txt (line 1))\nCollecting funcsigs\u003d\u003d1.0.2 (from -r /tmp/vpython_bootstrap936681296/requirements.txt (line 2))\nCollecting mock\u003d\u003d2.0.0 (from -r /tmp/vpython_bootstrap936681296/requirements.txt (line 3))\nCollecting nose2\u003d\u003d0.9.1 (from -r /tmp/vpython_bootstrap936681296/requirements.txt (line 4))\nCollecting pbr\u003d\u003d3.0.0 (from -r /tmp/vpython_bootstrap936681296/requirements.txt (line 5))\nCollecting pycrypto\u003d\u003d2.6.1 (from -r /tmp/vpython_bootstrap936681296/requirements.txt (line 6))\nCollecting six\u003e\u003d1.9 (from mock\u003d\u003d2.0.0-\u003e-r /tmp/vpython_bootstrap936681296/requirements.txt (line 3))\n  Could not find a version that satisfies the requirement six\u003e\u003d1.9 (from mock\u003d\u003d2.0.0-\u003e-r /tmp/vpython_bootstrap936681296/requirements.txt (line 3)) (from versions: )\nNo matching distribution found for six\u003e\u003d1.9 (from mock\u003d\u003d2.0.0-\u003e-r /tmp/vpython_bootstrap936681296/requirements.txt (line 3))\n```",
+      "parentUuid": "f6993c39_f9e73c3f",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "9633efdc4fb86cb45ed12323d924abdbaa96d077",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3e929a_dfab0582",
         "filename": ".vpython",
         "patchSetId": 3
