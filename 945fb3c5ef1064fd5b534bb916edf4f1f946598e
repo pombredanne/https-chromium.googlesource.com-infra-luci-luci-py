@@ -88,6 +88,23 @@
     },
     {
       "key": {
+        "uuid": "e1baab53_33ceb1ed",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-11T13:26:11Z",
+      "side": 1,
+      "message": "The main thing that this enables is being able to run the unit test directly as an executable. I personally find it valuable but it\u0027s really up to you and Ikuta-san.",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de7deb23_1427074a",
         "filename": "appengine/swarming/test.py",
         "patchSetId": 10
