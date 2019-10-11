@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8c00062_1ba6e58a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-11T12:20:23Z",
+      "side": 1,
+      "message": "PRESUBMIT.py in CQ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 50,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "668de5cf_a2a64e23",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-11T12:20:23Z",
+      "side": 1,
+      "message": "I think PRESUBMIT.py itself can run on Windows and Mac too.",
+      "range": {
+        "startLine": 13,
+        "startChar": 53,
+        "endLine": 13,
+        "endChar": 64
+      },
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ce8a1e_4f0fc036",
+        "filename": "appengine/components/test_support/nose2_plugins/py3filter.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-11T12:20:23Z",
+      "side": 1,
+      "message": "return _has_py3_shebang(...) ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b806475e_61c2933f",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-11T12:20:23Z",
+      "side": 1,
+      "message": "why comment out?",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de7deb23_1427074a",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-11T12:20:23Z",
+      "side": 1,
+      "message": "this does not find test in swarming_bot ?",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
