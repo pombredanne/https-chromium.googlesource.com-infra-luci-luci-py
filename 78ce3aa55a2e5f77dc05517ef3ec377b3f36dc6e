@@ -86,6 +86,24 @@
       "revId": "78ce3aa55a2e5f77dc05517ef3ec377b3f36dc6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5d1497_9cb2a546",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-11T14:04:07Z",
+      "side": 0,
+      "message": "I see, changed to do redirect here too.",
+      "parentUuid": "85da75c5_8d0d3a50",
+      "revId": "78ce3aa55a2e5f77dc05517ef3ec377b3f36dc6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
