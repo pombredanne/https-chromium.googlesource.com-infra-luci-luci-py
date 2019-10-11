@@ -17,6 +17,7 @@ import zipfile
 # Setups environment.
 import test_env_handlers
 
+from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
 
@@ -1211,6 +1212,15 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.set_as_anonymous()
     tok = bot_code.generate_bootstrap_token()
     self.app.get('/bot_code?tok=%s' % tok, status=200)
+
+  def test_bot_code_redirect(self):
+    self.mock(app_identity, 'get_default_version_hostname', lambda: 'localhost')
+    self.mock(utils, 'get_versioned_hosturl',
+              lambda: 'https://version1-dot-myapp.appspot.com')
+    response = self.app.get('/bot_code')
+    self.assertEqual(response.status_int, 302)  # Found
+    self.assertEqual(response.location,
+                     'https://version1-dot-myapp.appspot.com/bot_code')
 
   def test_oauth_token_bad_scopes(self):
     self.set_as_bot()
