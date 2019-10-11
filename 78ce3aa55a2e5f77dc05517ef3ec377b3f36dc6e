@@ -69,6 +69,23 @@
       "revId": "78ce3aa55a2e5f77dc05517ef3ec377b3f36dc6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85da75c5_8d0d3a50",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-11T13:57:48Z",
+      "side": 0,
+      "message": "I wonder if we should change this to a redirect. My concern is to cause a request to jump around versions, especially when a new bot_groups_cfg is pushed, but it\u0027s probably better than returning a 404, which will cause naive curl bootstrap to fail. The reason I care is that all of the sudden, this code path may be triggered a lot more now than there\u0027s a redirect with the version-less path. This happens in two cases:\n- Default version switch, where for a period of time a request may randomly hit one or the other\n- Canarying with trivial curl, which doesn\u0027t uses GOOGAPPUID cookie, as per https://cloud.google.com/appengine/docs/standard/python/splitting-traffic.\n- bot_groups_cfg update; https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/bot_groups_config.py for more details.",
+      "revId": "78ce3aa55a2e5f77dc05517ef3ec377b3f36dc6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
