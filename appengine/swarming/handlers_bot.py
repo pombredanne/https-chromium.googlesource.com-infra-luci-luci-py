@@ -201,15 +201,19 @@ class BotCodeHandler(_BotAuthenticatingHandler):
     server = self.request.host_url
     self.check_bot_code_access(
         bot_id=self.request.get('bot_id'), generate_token=False)
-    if version:
-      expected, _ = bot_code.get_bot_version(server)
-      if version != expected:
+
+    expected, _ = bot_code.get_bot_version(server)
+    if version != expected:
+      if version:
         # This can happen when the server is rapidly updated.
         logging.error('Requested Swarming bot %s, have %s', version, expected)
-        self.abort(404)
-      self.response.headers['Cache-Control'] = 'public, max-age=3600'
-    else:
-      self.response.headers['Cache-Control'] = 'no-cache, no-store'
+
+      # Let default access to redirect to url with version so that we can use
+      # cache for response safely.
+      self.redirect(server + '/swarming/api/v1/bot/bot_code/' + expected)
+      return
+
+    self.response.headers['Cache-Control'] = 'public, max-age=3600'
     self.response.headers['Content-Type'] = 'application/octet-stream'
     self.response.headers['Content-Disposition'] = (
         'attachment; filename="swarming_bot.zip"')
