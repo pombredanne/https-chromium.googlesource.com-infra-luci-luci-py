@@ -207,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "7ee4478a_06a87d81",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-15T14:48:13Z",
+      "side": 1,
+      "message": "I see. Good point.\nMy initial plan was to keep all tests as is. but struggled with the compatibility in all execution patterns... \nWill re-consider about how to deal with imports. this workaround is just for import error while test file discovery. There might be other workarounds.",
+      "parentUuid": "03e49055_b2a7a8c2",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de7deb23_1427074a",
         "filename": "appengine/swarming/test.py",
         "patchSetId": 10
