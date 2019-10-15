@@ -189,6 +189,24 @@
     },
     {
       "key": {
+        "uuid": "03e49055_b2a7a8c2",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-15T14:12:41Z",
+      "side": 1,
+      "message": "OK then make sure to remove the +x bit and shebang on all the unit tests when the switch is done. I understand that you are currently using the shebang to determine if a test should be run with python3, so I don\u0027t know what\u0027s you preference there. It\u0027s just that ultimately, in the end, the shebang should only be kept for the files that are executable. It\u0027s fine to be temporarily inconsistent.",
+      "parentUuid": "82986dcf_ec47ca85",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de7deb23_1427074a",
         "filename": "appengine/swarming/test.py",
         "patchSetId": 10
