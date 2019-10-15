@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8af70710_ac8b8b66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-15T01:17:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8c00062_1ba6e58a",
+      "range": {
+        "startLine": 10,
+        "startChar": 50,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "668de5cf_a2a64e23",
         "filename": "/COMMIT_MSG",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74bd7b4d_21199101",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-15T01:17:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "668de5cf_a2a64e23",
+      "range": {
+        "startLine": 13,
+        "startChar": 53,
+        "endLine": 13,
+        "endChar": 64
+      },
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "0bcc2296_446c5fd5",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-15T01:17:04Z",
+      "side": 1,
+      "message": "Thanks. I think I was tired...",
+      "parentUuid": "b806475e_61c2933f",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1baab53_33ceb1ed",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 10
@@ -105,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "82986dcf_ec47ca85",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-15T01:17:04Z",
+      "side": 1,
+      "message": "Will discuss with Ikuta-san about weather we keep the else clause or not.\nI think it\u0027s not that inconvenient to run an individual test via nose2. it will be like\n\n```\n./test.py api.platforms.linux_test\n```",
+      "parentUuid": "e1baab53_33ceb1ed",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de7deb23_1427074a",
         "filename": "appengine/swarming/test.py",
         "patchSetId": 10
@@ -116,6 +200,24 @@
       "writtenOn": "2019-10-11T12:20:23Z",
       "side": 1,
       "message": "this does not find test in swarming_bot ?",
+      "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33adf380_b8066cf6",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-15T01:17:04Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like following none package subdirectory.\nI prepared another test.py for swarming_bot since it requires running a different setup function.",
+      "parentUuid": "de7deb23_1427074a",
       "revId": "945fb3c5ef1064fd5b534bb916edf4f1f946598e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
