@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c6a55a3_1d425fed",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-16T00:51:47Z",
+      "side": 1,
+      "message": "nit: I prefer to use elif here",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 4
+      },
+      "revId": "41605a4915434d6233efa485ad75c5a8fb8dd72d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
