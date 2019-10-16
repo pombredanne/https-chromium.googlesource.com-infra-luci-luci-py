@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "03d35865_482e706c",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T12:32:38Z",
+      "side": 1,
+      "message": "FTR, I really think this functionality should be removed. I had added this in ~2014 to help accelerate deployment but nobody should do curl ../bootstrap anymore.",
+      "parentUuid": "332a170d_793865ac",
+      "revId": "2cb70d129ecd4a3310d3b19d69f1195953613ad8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e9d319c_b2d0a58d",
         "filename": "appengine/swarming/handlers_frontend_test.py",
         "patchSetId": 3
