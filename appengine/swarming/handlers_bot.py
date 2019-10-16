@@ -199,17 +199,30 @@ class BotCodeHandler(_BotAuthenticatingHandler):
   @auth.public  # auth inside check_bot_code_access()
   def get(self, version=None):
     server = self.request.host_url
-    self.check_bot_code_access(
-        bot_id=self.request.get('bot_id'), generate_token=False)
-    if version:
-      expected, _ = bot_code.get_bot_version(server)
-      if version != expected:
-        # This can happen when the server is rapidly updated.
-        logging.error('Requested Swarming bot %s, have %s', version, expected)
-        self.abort(404)
-      self.response.headers['Cache-Control'] = 'public, max-age=3600'
-    else:
-      self.response.headers['Cache-Control'] = 'no-cache, no-store'
+    expected, _ = bot_code.get_bot_version(server)
+    if not version:
+      self.check_bot_code_access(
+          bot_id=self.request.get('bot_id'), generate_token=False)
+
+      # Let default access to redirect to url with version so that we can use
+      # cache for response safely.
+      redirect_url = str(server + '/swarming/api/v1/bot/bot_code/' + expected)
+      self.redirect(redirect_url)
+      return
+
+    if version != expected:
+      # The client is requesting an unexpected hash. Redirects to /bot_code,
+      # which will ensure authentication, then will redirect to the currently
+      # expected version.
+      self.redirect(
+          str(server + '/bot_code?bot_id=' +
+              self.request.headers.get('X-Luci-Swarming-Bot-ID')))
+      return
+
+    # We don't need to do authentication in this path, because bot already
+    # knows version of bot_code, and the content may be in edge cache.
+    self.response.headers['Cache-Control'] = 'public, max-age=3600'
+
     self.response.headers['Content-Type'] = 'application/octet-stream'
     self.response.headers['Content-Disposition'] = (
         'attachment; filename="swarming_bot.zip"')

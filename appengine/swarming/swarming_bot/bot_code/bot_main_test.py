@@ -952,9 +952,12 @@ class TestBotMain(TestBotBase):
     def url_retrieve(f, url, headers=None, timeout=None):
       self.assertEqual(
           'https://localhost:1/swarming/api/v1/bot/bot_code'
-          '/123?bot_id=localhost', url)
+          '/123', url)
       self.assertEqual(new_zip, f)
-      self.assertEqual({'Cookie': 'GOOGAPPUID=42'}, headers)
+      self.assertEqual({
+          'Cookie': 'GOOGAPPUID=42',
+          'X-Luci-Swarming-Bot-ID': 'localhost'
+      }, headers)
       self.assertEqual(remote_client.NET_CONNECTION_TIMEOUT_SEC, timeout)
       # Create a valid zip that runs properly.
       with zipfile.ZipFile(f, 'w') as z:
