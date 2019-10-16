@@ -231,12 +231,13 @@ class RemoteClientNative(object):
         timeout=NET_CONNECTION_TIMEOUT_SEC,
         follow_redirects=False)
 
-  def _url_retrieve(self, filepath, url_path):
+  def _url_retrieve(self, filepath, url_path, headers):
     """Fetches the file from the given URL path on the server."""
+    headers.update(self.get_headers(include_auth=True))
     return net.url_retrieve(
         filepath,
         self._server + url_path,
-        headers=self.get_headers(include_auth=True),
+        headers=headers,
         timeout=NET_CONNECTION_TIMEOUT_SEC)
 
   def post_bot_event(self, event_type, message, attributes):
@@ -337,9 +338,9 @@ class RemoteClientNative(object):
 
     Throws BotCodeError on error.
     """
-    url_path = '/swarming/api/v1/bot/bot_code/%s?bot_id=%s' % (
-        bot_version, urllib.parse.quote_plus(bot_id))
-    if not self._url_retrieve(new_zip_path, url_path):
+    url_path = '/swarming/api/v1/bot/bot_code/%s' % bot_version
+    if not self._url_retrieve(new_zip_path, url_path,
+                              {'X-Luci-Swarming-Bot-ID': bot_id}):
       raise BotCodeError(new_zip_path, self._server + url_path, bot_version)
 
   def ping(self):
