@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2097fdb_fc61440d",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T23:00:06Z",
+      "side": 1,
+      "message": "What about checking for the query argument, and fall back to the HTTP header if missing? Here\u0027s a potential comment to explain:\n\n  # Historically, the bot_id query argument was used for the bot to pass its ID to the server.\n  # More recent bot code uses the X-Luci-Swarming-Bot-ID HTTP header instead so\n  # it doesn\u0027t bust the GAE transparent public cache.\n  # Support both mechanism until 2099-99-99 (or a better date :).\n\nIt\u0027s because very old bot could talk to recent server version, and the reverse can be true for some transient time, especially if a rollback happens.\n\nThat said, using HTTP header is incompatible with prpc, but I think it\u0027s fine to have the bot code download handlers to not be proto based, for cacheability.",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcb7350d_5f98eee3",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T23:00:06Z",
+      "side": 1,
+      "message": "The above comments implies it could be a good idea to keep the query argument for a moment. Note that older bot code will be missing the HTTP header and instead send a bot_id query argument.\n\nIn particular, you need to keep in mind the LKGBC, swarming_bot.zip vs swarming_bot.1.zip and swarming_bot.2.zip. The LKGBC version can be stale by up to one week.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/bot_code/bot_main.py?l\u003d1358\nSadly, the doc is stale;\nhttps://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Bot.md#lkgbc\n\nAnd that\u0027s not counting bots that are offline for a while and then brought back to life. It happens, but that\u0027s more rare.",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51a5236b_4d7f66cd",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T23:00:06Z",
+      "side": 1,
+      "message": "Later on, this could be removed and replaced with the value in the HTTP header or the bot session.",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57818700_a3acb1bd",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T23:00:06Z",
+      "side": 1,
+      "message": "Same.",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3852e61_e5a57cd1",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T23:00:06Z",
+      "side": 1,
+      "message": "Same.",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e71db730_da57ca53",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T23:00:06Z",
+      "side": 1,
+      "message": "What about specifying it all the time, like the GOOGAPPUID? It cannot be done in the constructor because the bot id is not yet known, but it could be added as soon as it is known. Later once https://crbug.com/786735 is done we could use it the same way.",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
