@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9508b363_a8437773",
+        "filename": "appengine/swarming/test_seq.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-16T02:51:06Z",
+      "side": 1,
+      "message": "why this script runs these test only?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "70bde3cd591a7fa489adf625115ecc5f205ad579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "423f0164_c784b2ec",
+        "filename": "appengine/swarming/unittest.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-16T02:51:06Z",
+      "side": 1,
+      "message": "nit: I prefer an empty line above.",
+      "revId": "70bde3cd591a7fa489adf625115ecc5f205ad579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
