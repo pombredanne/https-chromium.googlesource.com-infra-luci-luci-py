@@ -3,16 +3,17 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import absolute_import
+
 import logging
 import sys
 import unittest
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
+import linux
 
 from utils import tools
-
-import linux
 
 
 EXYNOS_CPU_INFO = r"""
@@ -99,7 +100,8 @@ VCEI exceptions         : not available
 
 class TestCPUInfo(unittest.TestCase):
   def get_cpuinfo(self, text):
-    tools.clear_cache(linux.get_cpuinfo)
+    if hasattr(linux.get_cpuinfo, '__cache__'):
+      tools.clear_cache(linux.get_cpuinfo)
     linux._read_cpuinfo = lambda: text
     return linux.get_cpuinfo()
 
@@ -165,7 +167,8 @@ NO_K8S_CGROUP = """
 
 class TestDocker(unittest.TestCase):
   def get_inside_docker(self, text):
-    tools.clear_cache(linux.get_inside_docker)
+    if hasattr(linux.get_inside_docker, '__cache__'):
+      tools.clear_cache(linux.get_inside_docker)
     linux._read_cgroup = lambda: text
     return linux.get_inside_docker()
 
