@@ -52,6 +52,24 @@
       "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87ff963e_6352152b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T17:34:59Z",
+      "side": 1,
+      "message": "This is exactly what I recommend.\n- /bot_code authenticates and redirects.\n- /swarming/api/v1/bot/bot_code/\u003cversion:[0-9a-f]{40,64}\u003e caches and is unauthenticated. If the hash is wrong, redirects to /bot_code to redo the auth.",
+      "parentUuid": "3c66100f_d782bd19",
+      "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
