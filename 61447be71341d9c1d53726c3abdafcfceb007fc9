@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a15ef566_78b5c5c5",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T13:31:40Z",
+      "side": 1,
+      "message": "I still prefer the redirect to cached version.\n\nif not version:\n  self.check_bot_code_access(...)\n  self.redirect(...)\n  return",
+      "revId": "61447be71341d9c1d53726c3abdafcfceb007fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
