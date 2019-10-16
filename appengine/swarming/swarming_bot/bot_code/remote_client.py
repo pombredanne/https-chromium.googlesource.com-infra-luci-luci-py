@@ -337,8 +337,7 @@ class RemoteClientNative(object):
 
     Throws BotCodeError on error.
     """
-    url_path = '/swarming/api/v1/bot/bot_code/%s?bot_id=%s' % (
-        bot_version, urllib.parse.quote_plus(bot_id))
+    url_path = '/swarming/api/v1/bot/bot_code/%s' % bot_version
     if not self._url_retrieve(new_zip_path, url_path):
       raise BotCodeError(new_zip_path, self._server + url_path, bot_version)
 
