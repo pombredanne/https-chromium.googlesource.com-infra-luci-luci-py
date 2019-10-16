@@ -1240,7 +1240,7 @@ def _update_bot(botobj, version):
 
   # Download as a new file.
   try:
-    botobj.remote.get_bot_code(new_zip, version, botobj.id)
+    botobj.remote.get_bot_code(new_zip, version)
   except remote_client.BotCodeError as e:
     botobj.post_error(str(e))
   else:
