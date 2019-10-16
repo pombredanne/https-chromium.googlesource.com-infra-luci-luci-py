@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1aa6d64_a7349e1f",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T14:31:56Z",
+      "side": 1,
+      "message": "I\u0027d prefer:\n\nif not version:\n  # bot_id query parameter is required.\n  \u003ccheck for bot code access, redirect\u003e\n  return\n\nif version !\u003d expected:\n  \u003credirect to /bot_code, which will do a proper authentication check\u003e\n  return\n\n\u003cgood path\u003e\n\n\nIt\u0027s both more readable and safer.",
+      "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
