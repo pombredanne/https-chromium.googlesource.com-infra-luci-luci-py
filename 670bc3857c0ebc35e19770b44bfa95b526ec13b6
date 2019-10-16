@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b6a6b2f_005c1ab3",
+        "filename": "appengine/components/test_support/nose2_plugins/py3filter.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T12:43:28Z",
+      "side": 1,
+      "message": "Optional: You could have inlined the return:\n\n  # Only run tests with a python3 shebang.\n  return _has_py3_shebang(event.path)",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879375d1_8a2d1c88",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T12:43:28Z",
+      "side": 1,
+      "message": "The fact that this check is required is unexpected, but I forget how this could happen.",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8ec846a_f78a121f",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T12:43:28Z",
+      "side": 1,
+      "message": "FYI, we generally use the form:\n\n  # TODO(jwata): Fix foo bar.\n\ni.e. with a semi-colon.",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cab807b8_aa84227f",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T12:43:28Z",
+      "side": 1,
+      "message": "Personally I\u0027d do a \"else:\" since there\u0027s no such thing as python 4 and we can\u0027t suppose anything about how it\u0027s going to behave.",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9908396_07dfee4e",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T12:43:28Z",
+      "side": 1,
+      "message": "[] is unnecessary.",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
