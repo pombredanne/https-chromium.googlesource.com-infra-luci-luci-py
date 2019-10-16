@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5ca10b8c_8e2d8e4d",
+        "filename": "appengine/swarming/test_seq.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T03:09:07Z",
+      "side": 1,
+      "message": "These tests need to run as executable because they doesn\u0027t pass when running in parallel or run via test runner.\ntest_seq.py will run as a step in luci_py recipe.",
+      "parentUuid": "9508b363_a8437773",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "70bde3cd591a7fa489adf625115ecc5f205ad579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "423f0164_c784b2ec",
         "filename": "appengine/swarming/unittest.cfg",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "70bde3cd591a7fa489adf625115ecc5f205ad579",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d603bb0e_9cd80650",
+        "filename": "appengine/swarming/unittest.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T03:09:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "423f0164_c784b2ec",
+      "revId": "70bde3cd591a7fa489adf625115ecc5f205ad579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
