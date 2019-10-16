@@ -16,6 +16,24 @@
       "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74bd9c95_ac1ecc67",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T16:00:42Z",
+      "side": 1,
+      "message": "I think you\u0027ve already discussed with maruel, but let me ask for my understanding.\n\nIf I understand correctly, \n1) When the specified version \u003d\u003d expected, it skips authentication  \n2) When version isn\u0027t specified, it gets redirected with version after authentication\n3) When the specified version is wrong, it also gets redirected with the correct version after authentication\n\nMy concern is \nCurrently it authenticates all requests. But in 1) it skips auth. Why not authenticating all requests?",
+      "parentUuid": "c1aa6d64_a7349e1f",
+      "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
