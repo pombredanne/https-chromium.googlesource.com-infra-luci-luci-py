@@ -34,6 +34,24 @@
       "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c66100f_d782bd19",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T16:16:06Z",
+      "side": 1,
+      "message": "Ah, the point is to get rid of bot_id from query to share the same url.\nYou could have another handler, though.\nOne for redirect and one for download.",
+      "parentUuid": "74bd9c95_ac1ecc67",
+      "revId": "8cdb8118139d1fabe7504f4e61a958146d760b7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
