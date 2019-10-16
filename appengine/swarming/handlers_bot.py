@@ -199,16 +199,19 @@ class BotCodeHandler(_BotAuthenticatingHandler):
   @auth.public  # auth inside check_bot_code_access()
   def get(self, version=None):
     server = self.request.host_url
-    self.check_bot_code_access(
-        bot_id=self.request.get('bot_id'), generate_token=False)
     if version:
       expected, _ = bot_code.get_bot_version(server)
       if version != expected:
         # This can happen when the server is rapidly updated.
         logging.error('Requested Swarming bot %s, have %s', version, expected)
         self.abort(404)
+
+      # We don't need to do authentication in this path, because bot alreay know
+      # hash of bot_code.
       self.response.headers['Cache-Control'] = 'public, max-age=3600'
     else:
+      self.check_bot_code_access(
+          bot_id=self.request.get('bot_id'), generate_token=False)
       self.response.headers['Cache-Control'] = 'no-cache, no-store'
     self.response.headers['Content-Type'] = 'application/octet-stream'
     self.response.headers['Content-Disposition'] = (
