@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fd479ca3_afca771d",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-16T06:16:23Z",
+      "side": 1,
+      "message": "I think bootstrap is not the code expected to use vpython currently.",
+      "parentUuid": "a0f6cdfc_afa23060",
+      "revId": "2cb70d129ecd4a3310d3b19d69f1195953613ad8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e9d319c_b2d0a58d",
         "filename": "appengine/swarming/handlers_frontend_test.py",
         "patchSetId": 3
