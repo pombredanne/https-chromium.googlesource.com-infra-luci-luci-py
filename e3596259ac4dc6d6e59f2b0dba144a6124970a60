@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3001a2f2_f4de4df5",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T22:12:04Z",
+      "side": 1,
+      "message": "# The client is requesting an unexpected hash. Redirects to /bot_code, which will ensure authentication, then will redirect to the currently expected version.",
+      "revId": "e3596259ac4dc6d6e59f2b0dba144a6124970a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "954ffb83_4d44114b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-16T22:12:04Z",
+      "side": 1,
+      "message": "There\u0027s one issue though, redirect needs to be handled explicitly; since /bot_code required bot_id to be set for authentication.",
+      "revId": "e3596259ac4dc6d6e59f2b0dba144a6124970a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
