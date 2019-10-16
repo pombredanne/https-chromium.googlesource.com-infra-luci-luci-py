@@ -252,7 +252,7 @@ class RemoteClientGrpc(object):
     req.result.status.message = message
     self._proxy_tasks.call_unary('UpdateTaskResult', req)
 
-  def get_bot_code(self, new_zip_fn, bot_version, _bot_id):
+  def get_bot_code(self, new_zip_fn, bot_version):
     with open(new_zip_fn, 'wb') as zf:
       req = bytestream_pb2.ReadRequest()
       req.resource_name = bot_version
@@ -471,6 +471,5 @@ def _worker_to_bot_group_cfg(worker):
   return dims
 
 def _time_to_duration(time_f, duration):
-    duration.seconds = int(time_f)
-    duration.nanos = int(1e9 * (
-        time_f - int(time_f)))
+  duration.seconds = int(time_f)
+  duration.nanos = int(1e9 * (time_f - int(time_f)))
