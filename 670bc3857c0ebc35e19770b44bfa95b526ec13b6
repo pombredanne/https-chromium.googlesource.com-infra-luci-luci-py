@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dcbcc54b_a94d7ead",
+        "filename": "appengine/components/test_support/nose2_plugins/py3filter.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T16:23:50Z",
+      "side": 1,
+      "message": "Ah, I had this for logging. will fix it.",
+      "parentUuid": "9b6a6b2f_005c1ab3",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "879375d1_8a2d1c88",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 19
@@ -30,6 +48,24 @@
       "writtenOn": "2019-10-16T12:43:28Z",
       "side": 1,
       "message": "The fact that this check is required is unexpected, but I forget how this could happen.",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ce1929f_d2c8be36",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T16:23:50Z",
+      "side": 1,
+      "message": "I also didn\u0027t look into it, but it seems related mocking.\nIt\u0027s very annoying to adding this check everywhere. I will move inside clear_cache with logging.",
+      "parentUuid": "879375d1_8a2d1c88",
       "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "afb035a5_66d8d122",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T16:23:50Z",
+      "side": 1,
+      "message": "will update it.",
+      "parentUuid": "e8ec846a_f78a121f",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cab807b8_aa84227f",
         "filename": "appengine/swarming/test.py",
         "patchSetId": 19
@@ -64,6 +118,24 @@
       "writtenOn": "2019-10-16T12:43:28Z",
       "side": 1,
       "message": "Personally I\u0027d do a \"else:\" since there\u0027s no such thing as python 4 and we can\u0027t suppose anything about how it\u0027s going to behave.",
+      "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7ac30dc_59af041f",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-16T16:23:50Z",
+      "side": 1,
+      "message": "will update it",
+      "parentUuid": "cab807b8_aa84227f",
       "revId": "670bc3857c0ebc35e19770b44bfa95b526ec13b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
