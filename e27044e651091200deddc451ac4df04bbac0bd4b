@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f073075_93f6e86b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-17T12:53:05Z",
+      "side": 1,
+      "message": "I think you can make it a class member of _BotAuthenticatingHandler, since I suspect it could be used later on for more thorough authentication along a bot session token?",
+      "revId": "e27044e651091200deddc451ac4df04bbac0bd4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7952369a_61201129",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-17T12:53:05Z",
+      "side": 1,
+      "message": "I meant this for you to replace the date with something you are confortable with.",
+      "range": {
+        "startLine": 208,
+        "startChar": 37,
+        "endLine": 208,
+        "endChar": 69
+      },
+      "revId": "e27044e651091200deddc451ac4df04bbac0bd4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
