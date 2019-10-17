@@ -22,6 +22,30 @@
       "revId": "a83f3d8d79330d906748ae7bb9638ca818782d10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "900218ab_fff44cb2",
+        "filename": "appengine/components/components/config/api_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1107806
+      },
+      "writtenOn": "2019-10-17T02:43:12Z",
+      "side": 1,
+      "message": "resolved.\nThe function is called in L157, and arguments etc are recorded there.  We can use the recorded value here.",
+      "parentUuid": "52636851_3d337a4e",
+      "range": {
+        "startLine": 160,
+        "startChar": 23,
+        "endLine": 160,
+        "endChar": 67
+      },
+      "revId": "a83f3d8d79330d906748ae7bb9638ca818782d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
