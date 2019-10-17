@@ -21,6 +21,8 @@ PLUGINS_DIR = os.path.join(APPENGINE_DIR, 'components', 'test_support',
 
 
 def main():
+  plugins = []
+
   # TODO(jwata): delete this adhoc path insertion
   # after fixing swarming_test_env.setup_test_env
   if six.PY2:
@@ -28,6 +30,7 @@ def main():
     swarming_test_env.setup_test_env()
   else:
     sys.path.insert(0, CLIENT_THIRDPARTY_DIR)
+    plugins.append('py3filter')
 
   sys.path.insert(0, SWARMING_BOT_DIR)
   import test_env_bot
@@ -39,7 +42,7 @@ def main():
   # add nose2 plugin dir to path
   sys.path.insert(0, PLUGINS_DIR)
 
-  discover()
+  discover(plugins=plugins)
 
 
 def _has_arg(argv, arg):
