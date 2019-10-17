@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52636851_3d337a4e",
+        "filename": "appengine/components/components/config/api_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-10-17T02:26:03Z",
+      "side": 1,
+      "message": "just to confirm, but can we get a pointer/reference with this?",
+      "range": {
+        "startLine": 160,
+        "startChar": 23,
+        "endLine": 160,
+        "endChar": 67
+      },
+      "revId": "a83f3d8d79330d906748ae7bb9638ca818782d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
