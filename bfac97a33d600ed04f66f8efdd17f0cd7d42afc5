@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ce11c94_5469d5be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-17T07:00:28Z",
+      "side": 1,
+      "message": "fix presbumit?",
+      "revId": "bfac97a33d600ed04f66f8efdd17f0cd7d42afc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd399c39_79c2c9b9",
+        "filename": "appengine/isolate/test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-17T07:00:28Z",
+      "side": 1,
+      "message": "no need to have [] ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "bfac97a33d600ed04f66f8efdd17f0cd7d42afc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
