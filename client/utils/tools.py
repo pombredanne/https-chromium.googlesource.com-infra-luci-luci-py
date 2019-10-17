@@ -215,6 +215,9 @@ def cached(func):
 
 def clear_cache(func):
   """Clears all accumulated cached results of the given decorated function."""
+  if not hasattr(func, '__cache__'):
+    logging.debug('function %s does not have __cache__' % func)
+    return
   func.__cache__.clear()
 
 
