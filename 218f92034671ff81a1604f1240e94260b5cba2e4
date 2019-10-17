@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbffd1aa_25fe0f49",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-17T15:00:26Z",
+      "side": 1,
+      "message": "optional nit: I like \"constants\" to be ALL_CAPS. In this case since it\u0027s \"private\" I would have named it _HTTP_HEADER_BOT_ID or something like that. I don\u0027t see a point to name it to the value of the string, at this point it\u0027s simpler to just copy paste the string, it\u0027s easy to grep anyway.",
+      "revId": "218f92034671ff81a1604f1240e94260b5cba2e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3431424c_5cd11381",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-17T15:00:26Z",
+      "side": 1,
+      "message": "optional: I was wondering if it\u0027d be a good idea to file a bug to track this and not forget.\n\nThe reason is that switching the authentication with HTTP header is separate from the /bot_code improvement in issue 1013451.",
+      "revId": "218f92034671ff81a1604f1240e94260b5cba2e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
