@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d65ea024_0267360b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-17T14:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2097fdb_fc61440d",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcb7350d_5f98eee3",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 11
@@ -33,6 +51,24 @@
       "revId": "51ab861681a8140abd58e85571220be1dbea4579",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faac2eeb_89c1b28a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-17T14:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcb7350d_5f98eee3",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -101,6 +137,24 @@
       "revId": "51ab861681a8140abd58e85571220be1dbea4579",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9ea5271_82d85809",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-17T14:17:19Z",
+      "side": 1,
+      "message": "Done in crrev.com/c/1866130",
+      "parentUuid": "e71db730_da57ca53",
+      "revId": "51ab861681a8140abd58e85571220be1dbea4579",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
