@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85d25a1b_bc3a40f7",
+        "filename": "appengine/components/components/config/api_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-17T12:38:23Z",
+      "side": 1,
+      "message": "Historical note: One of the reason I wrote auto_stub.py is that I find use of mock.Mock() hardly readable. And unreadable tests are useless long term. Frankly, I find the following more readable:\n\n  def get_project_config(project):\n    self.assertEqual(project, \u0027chromium\u0027)\n  self.mock(api, \u0027get_project_config_async\u0027, get_project_config)\n\nauto_stub.py is 76 lines, comments included.\nhttps://cs.chromium.org/chromium/tools/depot_tools/testing_support/auto_stub.py",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 50
+      },
+      "revId": "ade660ff7f10e3fb10862acf8c6aa5b6d1d1d799",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
