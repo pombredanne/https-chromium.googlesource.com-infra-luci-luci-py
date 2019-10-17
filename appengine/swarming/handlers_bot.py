@@ -199,17 +199,32 @@ class BotCodeHandler(_BotAuthenticatingHandler):
   @auth.public  # auth inside check_bot_code_access()
   def get(self, version=None):
     server = self.request.host_url
-    self.check_bot_code_access(
-        bot_id=self.request.get('bot_id'), generate_token=False)
-    if version:
-      expected, _ = bot_code.get_bot_version(server)
-      if version != expected:
-        # This can happen when the server is rapidly updated.
-        logging.error('Requested Swarming bot %s, have %s', version, expected)
-        self.abort(404)
-      self.response.headers['Cache-Control'] = 'public, max-age=3600'
-    else:
-      self.response.headers['Cache-Control'] = 'no-cache, no-store'
+    expected, _ = bot_code.get_bot_version(server)
+    x_luci_swarming_bot_id = 'X-Luci-Swarming-Bot-ID'
+    if not version:
+      bot_id = self.request.get('bot_id') or self.headers.get(
+          x_luci_swarming_bot_id)
+      self.check_bot_code_access(bot_id=bot_id, generate_token=False)
+
+      # Let default access to redirect to url with version so that we can use
+      # cache for response safely.
+      redirect_url = str(server + '/swarming/api/v1/bot/bot_code/' + expected)
+      self.redirect(redirect_url)
+      return
+
+    if version != expected:
+      # The client is requesting an unexpected hash. Redirects to /bot_code,
+      # which will ensure authentication, then will redirect to the currently
+      # expected version.
+      bot_id = self.request.get('bot_id') or self.headers.get(
+          x_luci_swarming_bot_id)
+      self.redirect(str(server + '/bot_code?bot_id=' + bot_id))
+      return
+
+    # We don't need to do authentication in this path, because bot already
+    # knows version of bot_code, and the content may be in edge cache.
+    self.response.headers['Cache-Control'] = 'public, max-age=3600'
+
     self.response.headers['Content-Type'] = 'application/octet-stream'
     self.response.headers['Content-Disposition'] = (
         'attachment; filename="swarming_bot.zip"')
@@ -774,6 +789,7 @@ class BotOAuthTokenHandler(_BotApiHandler):
       self.abort_with_error(400, error=msg)
 
     account_id = request['account_id']
+    # TODO(tikuta): take from X-Luci-Swarming-Bot-ID header.
     bot_id = request['id']
     scopes = request['scopes']
     task_id = request.get('task_id')
@@ -878,6 +894,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
     if msg:
       self.abort_with_error(400, error=msg)
 
+    # TODO(tikuta): take from X-Luci-Swarming-Bot-ID header.
     bot_id = request['id']
     task_id = request['task_id']
 
@@ -1036,6 +1053,7 @@ class BotTaskErrorHandler(_BotApiHandler):
   @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config
   def post(self, task_id=None):
     request = self.parse_body()
+    # TODO(tikuta): take from X-Luci-Swarming-Bot-ID header.
     bot_id = request.get('id')
     task_id = request.get('task_id', '')
     message = request.get('message', 'unknown')
