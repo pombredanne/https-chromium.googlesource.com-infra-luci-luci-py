@@ -22,6 +22,30 @@
       "revId": "ade660ff7f10e3fb10862acf8c6aa5b6d1d1d799",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e7f0bd0_dc4cb8cd",
+        "filename": "appengine/components/components/config/api_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-17T21:53:59Z",
+      "side": 1,
+      "message": "I found few tests use mock.Mock in appengine/components like here.\nThe line 149 uses both auto_stub and mock.Mock. Is this not intended use of auto_stub?",
+      "parentUuid": "85d25a1b_bc3a40f7",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 50
+      },
+      "revId": "ade660ff7f10e3fb10862acf8c6aa5b6d1d1d799",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
