@@ -436,7 +436,7 @@ def fail_without_command(remote, bot_id, task_id, params, cost_usd_hour,
   params['io_timeout'] = False
   params['hard_timeout'] = False
   # Ignore server reply to stop.
-  remote.post_task_update(task_id, bot_id, params, (stdout, 0), 1)
+  remote.post_task_update(task_id, params, (stdout, 0), 1)
   return {
     u'exit_code': exit_code,
     u'hard_timeout': False,
