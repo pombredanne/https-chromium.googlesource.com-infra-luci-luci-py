@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d207cc2_afa62ae1",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-10-18T05:52:28Z",
+      "side": 1,
+      "message": "please add \u0027\u003d\u0027",
+      "range": {
+        "startLine": 229,
+        "startChar": 32,
+        "endLine": 229,
+        "endChar": 33
+      },
+      "revId": "1d131c9db89866c82bce2ef75be62075aec733ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
