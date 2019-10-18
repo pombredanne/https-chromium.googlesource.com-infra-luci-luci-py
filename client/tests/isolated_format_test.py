@@ -29,6 +29,7 @@ ALGO = hashlib.sha1
 
 class SymlinkTest(unittest.TestCase):
   def setUp(self):
+    test_env.setup()
     super(SymlinkTest, self).setUp()
     self.old_cwd = unicode(os.getcwd())
     self.cwd = tempfile.mkdtemp(prefix=u'isolate_')

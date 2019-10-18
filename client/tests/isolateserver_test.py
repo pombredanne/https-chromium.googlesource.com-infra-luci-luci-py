@@ -1233,6 +1233,7 @@ def get_storage(server_ref):
 
 class TestArchive(TestCase):
   def setUp(self):
+    test_env.setup()
     super(TestArchive, self).setUp()
     self.mock(logging_utils, 'prepare_logging', lambda *_: None)
     self.mock(logging_utils, 'set_console_level', lambda *_: None)
