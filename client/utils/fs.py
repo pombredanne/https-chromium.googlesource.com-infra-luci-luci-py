@@ -15,6 +15,7 @@ from utils import tools
 tools.force_local_third_party()
 
 # third_party/
+import six
 from six.moves import builtins
 
 if sys.platform == 'win32':
@@ -157,14 +158,14 @@ if sys.platform == 'win32':
     not enforced.
     """
     assert os.path.isabs(path), path
-    assert isinstance(path, unicode), path
+    assert isinstance(path, six.text_type), path
     prefix = u'\\\\?\\'
     return path if path.startswith(prefix) else prefix + path
 
 
   def trim(path):
     """Removes '\\\\?\\' when receiving a path."""
-    assert isinstance(path, unicode), path
+    assert isinstance(path, six.text_type), path
     prefix = u'\\\\?\\'
     if path.startswith(prefix):
       path = path[len(prefix):]
@@ -360,7 +361,7 @@ else:
     UnicodeEncodeError because the default encoding is 'ascii'.
     """
     assert os.path.isabs(path), path
-    assert isinstance(path, unicode), path
+    assert isinstance(path, six.text_type), path
     return path.encode('utf-8')
 
 
