@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c6245385_765c1cfc",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T01:58:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbffd1aa_25fe0f49",
+      "revId": "218f92034671ff81a1604f1240e94260b5cba2e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3431424c_5cd11381",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 19
@@ -30,6 +48,24 @@
       "writtenOn": "2019-10-17T15:00:26Z",
       "side": 1,
       "message": "optional: I was wondering if it\u0027d be a good idea to file a bug to track this and not forget.\n\nThe reason is that switching the authentication with HTTP header is separate from the /bot_code improvement in issue 1013451.",
+      "revId": "218f92034671ff81a1604f1240e94260b5cba2e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c677575f_92bf2992",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T01:58:29Z",
+      "side": 1,
+      "message": "Filed crbug.com/1015701",
+      "parentUuid": "3431424c_5cd11381",
       "revId": "218f92034671ff81a1604f1240e94260b5cba2e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
