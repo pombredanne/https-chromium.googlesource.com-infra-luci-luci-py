@@ -37,6 +37,23 @@
     },
     {
       "key": {
+        "uuid": "5444fffe_4ed0c245",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T06:09:11Z",
+      "side": 1,
+      "message": "I\u0027m confirming with maruel. crbug.com/1015365#c4",
+      "revId": "f8769118c3f1f4bff40d83eea893a3a260d2677f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "20a5157a_a445ba5d",
         "filename": "appengine/swarming/server/bot_management_test.py",
         "patchSetId": 1
@@ -57,6 +74,30 @@
       "revId": "f8769118c3f1f4bff40d83eea893a3a260d2677f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e5842fe_21790225",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T06:09:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20a5157a_a445ba5d",
+      "range": {
+        "startLine": 167,
+        "startChar": 14,
+        "endLine": 167,
+        "endChar": 16
+      },
+      "revId": "f8769118c3f1f4bff40d83eea893a3a260d2677f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
