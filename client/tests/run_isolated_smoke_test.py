@@ -245,6 +245,7 @@ def tree_modes(root):
 
 class RunIsolatedTest(unittest.TestCase):
   def setUp(self):
+    test_env.setup()
     super(RunIsolatedTest, self).setUp()
     self.tempdir = run_isolated.make_temp_dir(
         u'run_isolated_smoke_test', test_env.CLIENT_DIR)
