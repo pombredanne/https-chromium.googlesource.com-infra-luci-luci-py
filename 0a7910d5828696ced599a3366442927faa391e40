@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80faf7f3_f09e9eca",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T06:32:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f617982_2d1acad0",
+      "range": {
+        "startLine": 543,
+        "startChar": 24,
+        "endLine": 543,
+        "endChar": 28
+      },
+      "revId": "0a7910d5828696ced599a3366442927faa391e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd743a75_1678d517",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-10-18T06:12:16Z",
       "side": 1,
       "message": "Better to sort in dimensions_to_flat?",
+      "range": {
+        "startLine": 546,
+        "startChar": 7,
+        "endLine": 546,
+        "endChar": 13
+      },
+      "revId": "0a7910d5828696ced599a3366442927faa391e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65da2005_e8304e10",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T06:32:39Z",
+      "side": 1,
+      "message": "It\u0027s already sorted in the method. Just to be sure both has the same order.",
+      "parentUuid": "bd743a75_1678d517",
       "range": {
         "startLine": 546,
         "startChar": 7,
@@ -68,6 +116,30 @@
       "revId": "0a7910d5828696ced599a3366442927faa391e40",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7261051c_c6e512ee",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T06:32:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4903b77a_9ef27843",
+      "range": {
+        "startLine": 573,
+        "startChar": 5,
+        "endLine": 573,
+        "endChar": 33
+      },
+      "revId": "0a7910d5828696ced599a3366442927faa391e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
