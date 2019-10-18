@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88af5fcb_09e0e3b0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-10-18T04:12:11Z",
+      "side": 0,
+      "message": "how often does this happen per day? \nie what\u0027s the estimated additional # of events in BQ and how much storage cost \u0026\u0026 query cost does it translate to?",
+      "range": {
+        "startLine": 561,
+        "startChar": 17,
+        "endLine": 561,
+        "endChar": 39
+      },
+      "revId": "96ed96c486e28687272bb58569ac4417d8cc50ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
