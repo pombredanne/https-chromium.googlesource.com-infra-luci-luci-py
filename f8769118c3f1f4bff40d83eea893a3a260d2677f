@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d2c6feb_668e4a5f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T02:28:37Z",
+      "side": 1,
+      "message": "This event is already mapped to swarming_pb2.INSTRUCT_IDLE.\nDo I need to change it to swarming_pb2.IDLE?",
+      "revId": "f8769118c3f1f4bff40d83eea893a3a260d2677f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
