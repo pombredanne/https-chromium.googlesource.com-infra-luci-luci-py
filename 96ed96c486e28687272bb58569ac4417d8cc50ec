@@ -70,6 +70,30 @@
       "revId": "96ed96c486e28687272bb58569ac4417d8cc50ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e068d87_bb6cd8a9",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T04:31:45Z",
+      "side": 0,
+      "message": "Yes, I was discussing with tikuta to do that, too.\nThanks for the comment.",
+      "parentUuid": "8a084f9d_a5667736",
+      "range": {
+        "startLine": 561,
+        "startChar": 17,
+        "endLine": 561,
+        "endChar": 39
+      },
+      "revId": "96ed96c486e28687272bb58569ac4417d8cc50ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
