@@ -16,6 +16,24 @@
       "revId": "d66c949d702f23fdd24fd8f70942a41c29d209bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "647035a1_c723fd0e",
+        "filename": "client/tests/test_env.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-18T14:21:20Z",
+      "side": 1,
+      "message": "Because the current default file encoding could be something other than UTF-8. For example on Windows it could be latin-1 or Japan code page.\n\nThe idea was to make it mostly work even if you have \"allô\" or \"もしもし\" in the path.\n\nThe end goal was to eventually enable testing on non-English platforms https://crbug.com/567838 but sadly I never made real progress on this. :(\n\nIn practice it can probably be removed now.",
+      "parentUuid": "e3096045_623ad00f",
+      "revId": "d66c949d702f23fdd24fd8f70942a41c29d209bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
