@@ -29,6 +29,7 @@ ALGO = hashlib.sha1
 
 class SymlinkTest(unittest.TestCase):
   def setUp(self):
+    test_env.setup()
     super(SymlinkTest, self).setUp()
     self.old_cwd = unicode(os.getcwd())
     self.cwd = tempfile.mkdtemp(prefix=u'isolate_')
@@ -141,6 +142,9 @@ class SymlinkTest(unittest.TestCase):
 
 
 class TestIsolated(auto_stub.TestCase):
+  def setUp(self):
+    super(TestIsolated, self).setUp()
+
   def test_load_isolated_empty(self):
     m = isolated_format.load_isolated('{}', isolateserver_fake.ALGO)
     self.assertEqual({}, m)

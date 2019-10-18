@@ -24,6 +24,8 @@ _LOG_HEADER_PID = r'^\d+ \d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\.\d\d\d'
 
 
 class Test(unittest.TestCase):
+  no_run = 1
+
   def setUp(self):
     super(Test, self).setUp()
     self.tmp = tempfile.mkdtemp(prefix='logging_utils')
