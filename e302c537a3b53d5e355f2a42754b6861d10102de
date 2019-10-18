@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04ed3bcd_3734788c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T07:28:59Z",
+      "side": 1,
+      "message": "fix cq?",
+      "revId": "e302c537a3b53d5e355f2a42754b6861d10102de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90c39e62_2d22cf2d",
+        "filename": "appengine/auth_service/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T07:28:59Z",
+      "side": 1,
+      "message": "Could you merge this with other test script and changed to use symlink or pass test directory?",
+      "revId": "e302c537a3b53d5e355f2a42754b6861d10102de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55397f76_f2c3100f",
+        "filename": "appengine/components/components/auth/delegation_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T07:28:59Z",
+      "side": 1,
+      "message": "I prefer to have this in each Test class",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 12
+      },
+      "revId": "e302c537a3b53d5e355f2a42754b6861d10102de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03fb73e7_b8b269b1",
+        "filename": "client/tests/test_env.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T07:28:59Z",
+      "side": 1,
+      "message": "use py3 style 0o070",
+      "range": {
+        "startLine": 88,
+        "startChar": 11,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "e302c537a3b53d5e355f2a42754b6861d10102de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
