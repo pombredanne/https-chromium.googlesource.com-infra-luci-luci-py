@@ -540,8 +540,12 @@ def bot_event(
   bot_info.external_ip = external_ip
   bot_info.authenticated_as = authenticated_as
   bot_info.maintenance_msg = maintenance_msg
+  has_dimensions_changed = None
   if dimensions:
-    bot_info.dimensions_flat = task_queues.dimensions_to_flat(dimensions)
+    dimensions_flat = task_queues.dimensions_to_flat(dimensions)
+    if sorted(bot_info.dimensions_flat) != sorted(dimensions_flat):
+      dimenssions_updated = True
+      bot_info.dimensions_flat = dimensions_flat
   if state:
     bot_info.state = state
   if quarantined is not None:
@@ -564,8 +568,11 @@ def bot_event(
       # GET is to keep first_seen_ts. It's not necessary to use a transaction
       # here since no BotEvent is being added, only last_seen_ts is really
       # updated.
-      bot_info.put()
-      return
+      # crbug.com/1015365: It's useful to send BotEvent only when dimensions
+      # updates.
+      if not dimenssions_updated:
+        bot_info.put()
+        return
 
     event = BotEvent(
         parent=get_root_key(bot_id),
