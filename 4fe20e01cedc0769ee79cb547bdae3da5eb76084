@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a603a8e_ba93244e",
+        "filename": "appengine/swarming/test_seq.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T08:57:10Z",
+      "side": 1,
+      "message": "nit: I prefer to use new variable for this e.g. abs_test_files",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "4fe20e01cedc0769ee79cb547bdae3da5eb76084",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
