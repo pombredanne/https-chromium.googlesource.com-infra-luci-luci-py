@@ -46,6 +46,30 @@
       "revId": "96ed96c486e28687272bb58569ac4417d8cc50ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f954a4b6_b06a4121",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T04:30:57Z",
+      "side": 0,
+      "message": "Discussed offline, we will detect update of dimensions around L544 instead of storing all of request_sleep events.",
+      "parentUuid": "8a084f9d_a5667736",
+      "range": {
+        "startLine": 561,
+        "startChar": 17,
+        "endLine": 561,
+        "endChar": 39
+      },
+      "revId": "96ed96c486e28687272bb58569ac4417d8cc50ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
