@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9738fb39_044d3918",
+        "filename": "appengine/config_service/test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T10:22:50Z",
+      "side": 1,
+      "message": "Better to rename this to parallel_test_runner.py ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "62929f35338fa126c14d02c6ed8728d39daac1fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "664bbb27_d99302c5",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T10:22:50Z",
+      "side": 1,
+      "message": "better to call this in test runner?",
+      "revId": "62929f35338fa126c14d02c6ed8728d39daac1fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16f5ce9c_8d957b50",
+        "filename": "client/tests/test_env.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T10:22:50Z",
+      "side": 1,
+      "message": "0o070?",
+      "range": {
+        "startLine": 88,
+        "startChar": 11,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "62929f35338fa126c14d02c6ed8728d39daac1fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
