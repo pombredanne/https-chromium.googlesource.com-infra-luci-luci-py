@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66e7eb7c_13cdaba3",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-18T14:05:31Z",
+      "side": 1,
+      "message": "nit: Small typo",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 21
+      },
+      "revId": "d17bdd469979330d73ace42b47dbcfc8644c0668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88700154_4ee43905",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-18T14:05:31Z",
+      "side": 1,
+      "message": "style nit: prefer () to \\.",
+      "range": {
+        "startLine": 565,
+        "startChar": 58,
+        "endLine": 565,
+        "endChar": 59
+      },
+      "revId": "d17bdd469979330d73ace42b47dbcfc8644c0668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
