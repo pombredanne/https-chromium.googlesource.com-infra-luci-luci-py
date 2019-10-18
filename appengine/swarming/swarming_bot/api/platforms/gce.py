@@ -12,6 +12,8 @@ import socket
 import threading
 import time
 
+from builtins import bytes
+
 from api import oauth
 from utils import tools
 
@@ -62,7 +64,7 @@ def _raw_metadata_request(path):
     try:
       resp = urllib.request.urlopen(
           urllib.request.Request(url, headers=headers), timeout=10)
-      return resp.read()
+      return bytes(resp.read(), 'utf-8')
     except IOError as e:
       logging.warning(
           'Failed to grab GCE metadata from %s on attempt #%d: %s',
@@ -218,7 +220,7 @@ def signed_metadata_token(audience):
     # so if metadata server returns something crazy, we'll know on the server
     # side.
     try:
-      payload = json.loads(_padded_b64_decode(jwt.split('.')[1]))
+      payload = json.loads(_padded_b64_decode(jwt.split(b'.')[1]))
       exp = int(time.time()) + (payload['exp'] - payload['iat'])
     except (IndexError, KeyError, TypeError, ValueError) as exc:
       logging.error('Metadata server returned invalid JWT (%s):\n%s', exc, jwt)

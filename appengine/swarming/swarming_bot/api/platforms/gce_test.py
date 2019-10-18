@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#!/usr/bin/env vpython3
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -9,6 +9,8 @@ import logging
 import sys
 import time
 import unittest
+
+from builtins import bytes
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -41,10 +43,14 @@ class TestSignedMetadataToken(auto_stub.TestCase):
 
   def test_works(self):
     # JWTs are '<header>.<payload>.<signature>'. We care only about payload.
-    jwt = 'unimportant.%s.unimportant' % base64.urlsafe_b64encode(json.dumps({
-      'iat': self.now - 600,
-      'exp': self.now + 3000,  # 1h after 'iat'
-    }))
+    byte_json = bytes(
+        json.dumps({
+            'iat': self.now - 600,
+            'exp': self.now + 3000,  # 1h after 'iat'
+        }),
+        'utf-8')
+    jwt = b'unimportant.' + base64.urlsafe_b64encode(
+        byte_json) + b'.unimportant'
 
     metadata_calls = []
     def mocked_raw_metadata_request(path):
