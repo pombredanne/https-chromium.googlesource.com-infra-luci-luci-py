@@ -40,7 +40,7 @@ _extracted_files_lock = threading.Lock()
 
 # Patch zipimport.zipimporter hook to accept unicode strings
 def zipimporter_unicode(archivepath):
-  if sys.version_info.major == 2 and isinstance(archivepath, unicode):
+  if sys.version_info.major == 2 and isinstance(archivepath, six.text_type):
     archivepath = archivepath.encode(sys.getfilesystemencoding())
   return zipimport.zipimporter(archivepath)
 
