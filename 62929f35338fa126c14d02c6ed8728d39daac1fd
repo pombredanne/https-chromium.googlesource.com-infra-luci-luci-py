@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "82f9a94c_9875419c",
+        "filename": "appengine/config_service/test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T14:42:51Z",
+      "side": 1,
+      "message": "Either is fine to me. will rename it and test_runner_seq.py",
+      "parentUuid": "9738fb39_044d3918",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "62929f35338fa126c14d02c6ed8728d39daac1fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "664bbb27_d99302c5",
         "filename": "client/tests/isolateserver_test.py",
         "patchSetId": 7
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "fef82f7c_512316fa",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T14:42:51Z",
+      "side": 1,
+      "message": "Some tests didn\u0027t work with that. Let me try it again.",
+      "parentUuid": "664bbb27_d99302c5",
+      "revId": "62929f35338fa126c14d02c6ed8728d39daac1fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "16f5ce9c_8d957b50",
         "filename": "client/tests/test_env.py",
         "patchSetId": 7
@@ -53,6 +95,30 @@
       "writtenOn": "2019-10-18T10:22:50Z",
       "side": 1,
       "message": "0o070?",
+      "range": {
+        "startLine": 88,
+        "startChar": 11,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "62929f35338fa126c14d02c6ed8728d39daac1fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd33358c_136b2dae",
+        "filename": "client/tests/test_env.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-18T14:42:51Z",
+      "side": 1,
+      "message": "I thought you were fixing this in your CL.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1868479/2/client/tests/test_env.py",
+      "parentUuid": "16f5ce9c_8d957b50",
       "range": {
         "startLine": 88,
         "startChar": 11,
