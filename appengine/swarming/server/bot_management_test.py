@@ -164,7 +164,7 @@ class BotManagementTest(test_case.TestCase):
           external_ip=u'8.8.4.4', authenticated_as=u'bot:id1.domain',
           dimensions=dimensions, state={u'ram': 65}, version=_VERSION,
           quarantined=False, maintenance_msg=None, task_id=None, task_name=None)
-      if name in (u'request_sleep', u'task_update'):
+      if name in (u'task_update'):
         # TODO(maruel): Store request_sleep IFF the state changed.
         self.assertIsNone(event_key, name)
         continue
@@ -287,8 +287,12 @@ class BotManagementTest(test_case.TestCase):
     bot_info = bot_management.get_info_key('id1').get()
     self.assertEqual(expected, bot_info.to_dict())
 
-    # No BotEvent is registered for 'poll'.
-    self.assertEqual([], bot_management.get_events_query('id1', True).fetch())
+    expected = [
+      _gen_bot_event(event_type=u'request_sleep', quarantined=True),
+    ]
+    self.assertEqual(
+        expected,
+        [i.to_dict() for i in bot_management.get_events_query('id1', True)])
 
   def test_bot_event_busy(self):
     _bot_event(event_type='bot_connected')
@@ -482,13 +486,14 @@ class BotManagementTest(test_case.TestCase):
     _bot_event(event_type='request_task', task_id='12311', task_name='yo')
     end = self.mock_now(self.now, 40)
 
-    # request_sleep is not streamed.
-    self.assertEqual((2, 0), bot_management.task_bq_events(start, end))
+    self.assertEqual((3, 0), bot_management.task_bq_events(start, end))
     self.assertEqual(1, len(payloads))
     actual_rows = payloads[0]
-    self.assertEqual(2, len(actual_rows))
+    self.assertEqual(3, len(actual_rows))
     expected = [
-      'id1:2010-01-02T03:04:15.000006Z', 'id1:2010-01-02T03:04:35.000006Z',
+      'id1:2010-01-02T03:04:15.000006Z',
+      'id1:2010-01-02T03:04:25.000006Z',
+      'id1:2010-01-02T03:04:35.000006Z',
     ]
     self.assertEqual(expected, [r[0] for r in actual_rows])
 

@@ -558,7 +558,7 @@ def bot_event(
     task_queues.cleanup_after_bot(info_key.parent())
 
   try:
-    if event_type in ('request_sleep', 'task_update'):
+    if event_type == 'task_update':
       # Handle this specifically. It's not much of an even worth saving a
       # BotEvent for but it's worth updating BotInfo. The only reason BotInfo is
       # GET is to keep first_seen_ts. It's not necessary to use a transaction
