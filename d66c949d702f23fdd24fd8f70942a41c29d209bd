@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3096045_623ad00f",
+        "filename": "client/tests/test_env.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-18T10:09:20Z",
+      "side": 1,
+      "message": "maruel, why do we need to decode __file__ here?",
+      "revId": "d66c949d702f23fdd24fd8f70942a41c29d209bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
