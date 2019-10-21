@@ -25,6 +25,10 @@ import config
 
 
 class ConfigTest(test_case.TestCase):
+  # This tests fail when running in parallel
+  # Need to run in test_seq.py as executable
+  no_run = 1
+
   def setUp(self):
     super(ConfigTest, self).setUp()
     self.mock_now(datetime.datetime(2014, 1, 2, 3, 4, 5))
