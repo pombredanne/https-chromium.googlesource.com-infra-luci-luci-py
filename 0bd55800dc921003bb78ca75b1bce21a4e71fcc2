@@ -34,6 +34,24 @@
       "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "215b928e_d9290b9b",
+        "filename": "client/PRESUBMIT.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-21T04:07:48Z",
+      "side": 0,
+      "message": "Is this related to this CL? If not, could you remove this in separate CL?",
+      "parentUuid": "ae4053a6_dfae70cf",
+      "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
