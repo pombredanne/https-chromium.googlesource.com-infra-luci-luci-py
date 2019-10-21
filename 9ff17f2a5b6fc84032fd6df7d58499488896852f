@@ -52,6 +52,24 @@
       "revId": "9ff17f2a5b6fc84032fd6df7d58499488896852f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51f30590_78268d8d",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-21T05:21:39Z",
+      "side": 1,
+      "message": "I see, but let me use info for logging.",
+      "parentUuid": "542aedd6_09985187",
+      "revId": "9ff17f2a5b6fc84032fd6df7d58499488896852f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
