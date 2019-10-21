@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9195f1e8_47215c63",
+        "filename": "client/PRESUBMIT.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-21T03:08:31Z",
+      "side": 0,
+      "message": "why do you remove only this?",
+      "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
