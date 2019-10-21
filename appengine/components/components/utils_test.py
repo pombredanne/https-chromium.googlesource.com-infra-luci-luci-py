@@ -38,6 +38,10 @@ class Rambling(ndb.Model):
 
 
 class UtilsTest(test_case.TestCase):
+  # This test fails when running with other tests
+  # Need to run in test_seq.py
+  no_run = 1
+
   def test_json(self):
     r = Rambling(
         a=2,
