@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9a4dce9_cd6e8618",
+        "filename": "client/libs/luci_context/luci_context_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-21T04:54:40Z",
+      "side": 0,
+      "message": "There are many places where decoding filename like here.\nIt\u0027s better to create a CL only for that.\n\nhttps://cs.chromium.org/search/?q\u003df:infra/luci+__file__.decode%5C(sys.getfilesystemencoding\u0026sq\u003dpackage:chromium\u0026type\u003dcs",
+      "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
