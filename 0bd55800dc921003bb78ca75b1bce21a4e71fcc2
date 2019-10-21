@@ -16,6 +16,24 @@
       "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e14567d_bf63c0fc",
+        "filename": "client/libs/luci_context/luci_context_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-21T05:08:55Z",
+      "side": 0,
+      "message": "OK, will do that separately.",
+      "parentUuid": "d9a4dce9_cd6e8618",
+      "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
