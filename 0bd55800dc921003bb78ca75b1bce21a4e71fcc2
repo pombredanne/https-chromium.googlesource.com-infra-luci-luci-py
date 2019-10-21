@@ -16,6 +16,24 @@
       "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae4053a6_dfae70cf",
+        "filename": "client/PRESUBMIT.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-21T03:21:27Z",
+      "side": 0,
+      "message": "This file doesn\u0027t exist any more.",
+      "parentUuid": "9195f1e8_47215c63",
+      "revId": "0bd55800dc921003bb78ca75b1bce21a4e71fcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
