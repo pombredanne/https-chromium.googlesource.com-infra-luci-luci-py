@@ -19,7 +19,6 @@ def main():
   # or run via test runner
   test_files = [
       'components/auth/delegation_test.py',
-      'components/auth/project_tokens_test.py',
       'components/endpoints_webapp2/discovery_test.py',
   ]
   abs_test_files = [os.path.join(ROOT_DIR, t) for t in test_files]
