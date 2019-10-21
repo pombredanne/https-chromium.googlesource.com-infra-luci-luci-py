@@ -34,6 +34,24 @@
       "revId": "9ff17f2a5b6fc84032fd6df7d58499488896852f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "542aedd6_09985187",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-21T05:19:05Z",
+      "side": 1,
+      "message": "ok, then how about leaving logs? like \"logging.warning(\u0027ignoring query parameters bot_id: ..., hoge: ..., huga: ...\u0027)\"",
+      "parentUuid": "02d00525_2e2f09aa",
+      "revId": "9ff17f2a5b6fc84032fd6df7d58499488896852f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
