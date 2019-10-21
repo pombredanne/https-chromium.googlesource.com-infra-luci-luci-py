@@ -23,11 +23,6 @@ from components.auth import model
 
 
 class CreateTokenTest(test_case.TestCase):
-  # This test fails with
-  # 'TokenCreationError: Token server URL is not configured'
-  # Needs to run in test_seq.py as an executable
-  no_run = 1
-
   Response = collections.namedtuple('Response', ['status_code', 'content'])
 
   def test_success(self):

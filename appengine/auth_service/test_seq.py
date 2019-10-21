@@ -18,8 +18,7 @@ def main():
   # because they don't pass when running in parallel
   # or run via test runner
   test_files = [
-      'components/auth/delegation_test.py',
-      'components/endpoints_webapp2/discovery_test.py',
+      'config_test.py',
   ]
   abs_test_files = [os.path.join(ROOT_DIR, t) for t in test_files]
 
