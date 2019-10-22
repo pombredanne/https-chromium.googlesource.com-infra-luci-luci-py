@@ -16,6 +16,24 @@
       "revId": "6b6dad7aef994b96d3bb5b6f13fae8168938560f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fa9c0dd_f42fa52e",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-10-22T17:23:08Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1874009",
+      "parentUuid": "633cbf5a_3b500371",
+      "revId": "6b6dad7aef994b96d3bb5b6f13fae8168938560f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
