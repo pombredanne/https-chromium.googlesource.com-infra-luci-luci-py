@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "633cbf5a_3b500371",
+        "filename": "appengine/components/tools/protoc-gen-prpc-python",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-22T14:10:30Z",
+      "side": 1,
+      "message": "nit: I would have preferred this to be a proper docstring.",
+      "revId": "6b6dad7aef994b96d3bb5b6f13fae8168938560f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
