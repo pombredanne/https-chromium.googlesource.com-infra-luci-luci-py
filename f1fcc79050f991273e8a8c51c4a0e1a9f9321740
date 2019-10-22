@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02ff1578_68a992a4",
+        "filename": "client/utils/large.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-22T18:27:20Z",
+      "side": 1,
+      "message": "If six is only used for this, I\u0027d personally do:\n\n if sys.version_info.major \u003d\u003d 2:\n\nsince it\u0027s functionally equivalent.",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 14
+      },
+      "revId": "f1fcc79050f991273e8a8c51c4a0e1a9f9321740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
