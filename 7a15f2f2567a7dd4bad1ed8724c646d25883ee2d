@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6b5ac16c_f159c75a",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-23T18:48:18Z",
+      "side": 1,
+      "message": "Ok this is subtle enough I feel a comment would be worth it.",
+      "parentUuid": "87b06e55_d8a598bf",
+      "range": {
+        "startLine": 471,
+        "startChar": 50,
+        "endLine": 471,
+        "endChar": 63
+      },
+      "revId": "7a15f2f2567a7dd4bad1ed8724c646d25883ee2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "344748af_edc0ee2b",
         "filename": "client/utils/oauth.py",
         "patchSetId": 3
