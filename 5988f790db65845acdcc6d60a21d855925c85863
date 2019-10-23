@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8df122e_83d0f461",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-10-23T22:47:48Z",
+      "side": 1,
+      "message": "I think this callside should use batch_mode\u003dTrue.\n\nThis is the bath taken for most state updates about a task, other than initial enqueueing of the task. This can be very chatty (for instance, if many tasks are simultaneously cancelled).",
+      "revId": "5988f790db65845acdcc6d60a21d855925c85863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "484ac915_5e9163f8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-10-23T22:47:48Z",
+      "side": 1,
+      "message": "possibly here we want batch_mode\u003dFalse; we got here because qscheduler has stale state about the task, so it makes sense to give it an update as fast as possible about the actual state of the task.",
+      "revId": "5988f790db65845acdcc6d60a21d855925c85863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7809f6cd_0385ac4d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-10-23T22:47:48Z",
+      "side": 1,
+      "message": "this call should not use batch mode; this is the first notification that qs receives that the task has been enqueued, and we want that notification to be synchronous\n\n(in fact, it anyway can\u0027t use batch mode becasue use_tq\u003dFalse here)",
+      "revId": "5988f790db65845acdcc6d60a21d855925c85863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "548bef0c_befb15f7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1002377
+      },
+      "writtenOn": "2019-10-23T22:47:48Z",
+      "side": 1,
+      "message": "don\u0027t use batch mode here either, for similar reasons to earlier",
+      "revId": "5988f790db65845acdcc6d60a21d855925c85863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
