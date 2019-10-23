@@ -4,7 +4,6 @@
 # that can be found in the LICENSE file.
 
 import contextlib
-import httplib
 import json
 import socket
 import time
@@ -15,6 +14,8 @@ import test_env
 # third_party/
 from depot_tools import auto_stub
 import requests
+import six
+from six.moves import http_client
 
 from libs import luci_context
 from utils import authenticators
@@ -333,8 +334,12 @@ class LocalAuthHttpServiceTest(auto_stub.TestCase):
     sock.close()
     with local_auth_server(token_gen, 'acc_1', rpc_port=port):
       service = self.mocked_http_service(perform_request=handle_request)
-      with self.assertRaises(httplib.ResponseNotReady):
-        self.assertRaises(service.request(request_url, data={}).read())
+      if six.PY2:
+        with self.assertRaises(http_client.ResponseNotReady):
+          self.assertRaises(service.request(request_url, data={}).read())
+      else:
+        with self.assertRaises(ConnectionRefusedError):
+          self.assertRaises(service.request(request_url, data={}).read())
 
   def test_expired_token(self):
     service_url = 'http://example.com'
