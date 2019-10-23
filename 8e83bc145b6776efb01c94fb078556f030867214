@@ -22,6 +22,30 @@
       "revId": "8e83bc145b6776efb01c94fb078556f030867214",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a1cc62_6ab6f17a",
+        "filename": "client/tests/isolated_format_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-23T15:30:52Z",
+      "side": 0,
+      "message": "python2.7 seems to treat literal larger than sys.maxint as long automatically.",
+      "parentUuid": "9d5d5740_ebfb5f74",
+      "range": {
+        "startLine": 238,
+        "startChar": 16,
+        "endLine": 238,
+        "endChar": 27
+      },
+      "revId": "8e83bc145b6776efb01c94fb078556f030867214",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
