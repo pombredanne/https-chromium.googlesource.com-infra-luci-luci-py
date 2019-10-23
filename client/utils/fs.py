@@ -362,14 +362,14 @@ else:
     """
     assert os.path.isabs(path), path
     assert isinstance(path, six.text_type), path
-    return path.encode('utf-8')
+    return path
 
 
   def trim(path):
     """Path mangling is not needed on POSIX."""
     assert os.path.isabs(path), path
     assert isinstance(path, str), path
-    return path.decode('utf-8')
+    return path
 
 
   def islink(path):
