@@ -47,6 +47,7 @@ def _tf(data, data_raw=False, workdir=None):
   _LOGGER.debug('Writing LUCI_CONTEXT file %r', tf.name)
   try:
     if not data_raw:
+      logging.info('json ', data)
       json.dump(data, tf)
     else:
       # for testing, allows malformed json
