@@ -361,6 +361,8 @@ else:
     UnicodeEncodeError because the default encoding is 'ascii'.
     """
     assert os.path.isabs(path), path
+    if not six.PY2:
+      return path
     assert isinstance(path, six.text_type), path
     return path.encode('utf-8')
 
@@ -368,7 +370,9 @@ else:
   def trim(path):
     """Path mangling is not needed on POSIX."""
     assert os.path.isabs(path), path
-    assert isinstance(path, str), path
+    if not six.PY2:
+      return path
+    assert isinstance(path, six.binary_type), path
     return path.decode('utf-8')
 
 
