@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "1dadff7b_bb1f07ad",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-24T04:15:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b5ac16c_f159c75a",
+      "range": {
+        "startLine": 471,
+        "startChar": 50,
+        "endLine": 471,
+        "endChar": 63
+      },
+      "revId": "7a15f2f2567a7dd4bad1ed8724c646d25883ee2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "344748af_edc0ee2b",
         "filename": "client/utils/oauth.py",
         "patchSetId": 3
