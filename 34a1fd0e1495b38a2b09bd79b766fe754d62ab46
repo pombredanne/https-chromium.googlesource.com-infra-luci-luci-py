@@ -16,6 +16,24 @@
       "revId": "34a1fd0e1495b38a2b09bd79b766fe754d62ab46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37311958_63e31ba5",
+        "filename": ".vpython3",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-24T07:23:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9e4bb0e_84dbbd01",
+      "revId": "34a1fd0e1495b38a2b09bd79b766fe754d62ab46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
