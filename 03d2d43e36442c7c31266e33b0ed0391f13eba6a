@@ -16,6 +16,24 @@
       "revId": "03d2d43e36442c7c31266e33b0ed0391f13eba6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a7e54f_dc53153c",
+        "filename": "appengine/components/components/auth/service_account_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-24T13:06:46Z",
+      "side": 1,
+      "message": "made crrev.com/c/1878212",
+      "parentUuid": "abd92ab4_ac406b28",
+      "revId": "03d2d43e36442c7c31266e33b0ed0391f13eba6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
