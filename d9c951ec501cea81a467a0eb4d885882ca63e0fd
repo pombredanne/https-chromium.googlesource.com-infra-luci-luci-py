@@ -16,6 +16,24 @@
       "revId": "d9c951ec501cea81a467a0eb4d885882ca63e0fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e778444_85ff4a29",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-24T08:44:49Z",
+      "side": 1,
+      "message": "Renamed to encodable, but let me use this function instead here.\nIf you think it is better to use function in utils.py, I\u0027ll do that.",
+      "parentUuid": "db3d6532_45efc719",
+      "revId": "d9c951ec501cea81a467a0eb4d885882ca63e0fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
