@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcf3e52b_aaa1d2e8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-24T15:01:37Z",
+      "side": 1,
+      "message": "This is not valid python.",
+      "revId": "81fc859d47d28f8359469c24b54aa8297d25b61c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a652d89d_cd6bd619",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-24T15:01:37Z",
+      "side": 1,
+      "message": "I\u0027d recommend to put it in a finally.",
+      "revId": "81fc859d47d28f8359469c24b54aa8297d25b61c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "365b795e_25c5a50c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-24T15:01:37Z",
+      "side": 1,
+      "message": "same",
+      "revId": "81fc859d47d28f8359469c24b54aa8297d25b61c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
