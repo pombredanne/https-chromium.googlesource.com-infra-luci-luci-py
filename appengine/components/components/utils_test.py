@@ -394,10 +394,6 @@ class FingerprintTest(test_case.TestCase):
 
 
 class AsyncApplyTest(test_case.TestCase):
-  # This test fails when running with other tests
-  # Need to run in test_seq.py
-  no_run = 1
-
   def test_ordered(self):
     items = range(3)
 
@@ -458,7 +454,7 @@ class AsyncApplyTest(test_case.TestCase):
     @ndb.tasklet
     def fn_async(x):
       log.append('%d started' % x)
-      yield ndb.sleep(float(x) / 1000)
+      yield ndb.sleep(float(x) / 500)
       log.append('%d finishing' % x)
       raise ndb.Return(x)
 
@@ -466,7 +462,6 @@ class AsyncApplyTest(test_case.TestCase):
     actual = utils.async_apply(
         items, fn_async, concurrent_jobs=2, unordered=True)
     self.assertFalse(isinstance(actual, list))
-    self.assertEqual(expected, list(actual))
     self.assertEqual(log, [
         '10 started',
         '5 started',
@@ -475,6 +470,7 @@ class AsyncApplyTest(test_case.TestCase):
         '0 finishing',
         '10 finishing',
     ])
+    self.assertEqual(expected, list(actual))
 
 
 class TaskQueueTest(test_case.TestCase):
