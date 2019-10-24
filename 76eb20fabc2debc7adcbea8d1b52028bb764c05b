@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae1f2b6f_47bfc376",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-24T14:36:16Z",
+      "side": 1,
+      "message": "The main reason for this was to ensure the path was absolute, even on linux. This made enforcing the MAX_PATH workaround easier.",
+      "revId": "76eb20fabc2debc7adcbea8d1b52028bb764c05b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
