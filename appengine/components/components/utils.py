@@ -841,6 +841,7 @@ def _async_apply_unordered(iterable, async_fn, concurrent_jobs):
 
   def launch():
     running_futs = sum(1 for f in futs if not f.done())
+    print('running_futs: %d' % running_futs)
     while running_futs < concurrent_jobs:
       try:
         item = next(iterator)
