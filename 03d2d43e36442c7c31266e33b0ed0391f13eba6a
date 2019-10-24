@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abd92ab4_ac406b28",
+        "filename": "appengine/components/components/auth/service_account_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-24T12:24:33Z",
+      "side": 1,
+      "message": "There\u0027s a method called mock_now() that takes care of the mock. It\u0027s used a bit in this file so you can see these for examples.",
+      "revId": "03d2d43e36442c7c31266e33b0ed0391f13eba6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
