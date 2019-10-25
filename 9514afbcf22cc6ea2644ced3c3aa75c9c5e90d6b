@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68ba1ba1_2d34d7a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-25T08:45:47Z",
+      "side": 1,
+      "message": "I doubt that the quota issue is mitigated by batch size. quota calculation should be done by t# of entities. (not by # of queries)\nhttps://cloud.google.com/datastore/pricing\nIt would reduce the latency, though.",
+      "revId": "9514afbcf22cc6ea2644ced3c3aa75c9c5e90d6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
