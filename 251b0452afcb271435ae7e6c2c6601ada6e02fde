@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "37a01dd0_42b0e527",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-25T15:55:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00e91234_7f60ce4a",
+      "revId": "251b0452afcb271435ae7e6c2c6601ada6e02fde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b9f6556_9af4ed2d",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 5
