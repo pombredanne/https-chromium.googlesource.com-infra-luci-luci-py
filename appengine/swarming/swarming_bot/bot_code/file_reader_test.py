@@ -33,7 +33,7 @@ class TestFileReaderThread(auto_stub.TestCase):
     super(TestFileReaderThread, self).tearDown()
 
   def test_works(self):
-    with open(self.path, 'wb') as f:
+    with open(self.path, 'w') as f:
       json.dump({'A': 'a'}, f)
 
     r = file_reader.FileReaderThread(self.path, 0.1)
@@ -45,7 +45,10 @@ class TestFileReaderThread(auto_stub.TestCase):
       attempt = 0
       while True:
         try:
-          file_path.atomic_replace(self.path, json.dumps({'B': 'b'}))
+          file_path.atomic_replace(self.path,
+                                   json.dumps({
+                                       'B': 'b'
+                                   }).encode('utf-8'))
           break
         except OSError:
           attempt += 1
