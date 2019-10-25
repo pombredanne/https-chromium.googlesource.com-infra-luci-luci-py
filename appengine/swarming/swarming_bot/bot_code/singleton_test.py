@@ -54,10 +54,10 @@ class Test(unittest.TestCase):
     logging.info('using command:\n%s', ' '.join(CMD_ACQUIRE))
     with singleton.singleton(THIS_DIR):
       pass
-    self.assertEqual('True\n', subprocess.check_output(CMD_ACQUIRE))
+    self.assertEqual(b'True\n', subprocess.check_output(CMD_ACQUIRE))
     with singleton.singleton(THIS_DIR):
-      self.assertEqual('False\n', subprocess.check_output(CMD_ACQUIRE))
-    self.assertEqual('True\n', subprocess.check_output(CMD_ACQUIRE))
+      self.assertEqual(b'False\n', subprocess.check_output(CMD_ACQUIRE))
+    self.assertEqual(b'True\n', subprocess.check_output(CMD_ACQUIRE))
 
 
 if __name__ == '__main__':
