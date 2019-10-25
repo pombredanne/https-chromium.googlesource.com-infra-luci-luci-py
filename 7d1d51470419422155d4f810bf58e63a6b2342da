@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb7c60d9_d99fb365",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T07:08:32Z",
+      "side": 1,
+      "message": "can you write\n```\nfrom ...components.test_support import parallel_test_runner\n```\ninstead?",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1607c1db_7f87b622",
+        "filename": "appengine/swarming/swarming_bot/test_seq.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T07:08:32Z",
+      "side": 1,
+      "message": "same",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4747e9_47ee712b",
+        "filename": "client/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T07:08:32Z",
+      "side": 1,
+      "message": "same",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0f7a6d8_0db47035",
+        "filename": "client/test_seq.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T07:08:32Z",
+      "side": 1,
+      "message": "same",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
