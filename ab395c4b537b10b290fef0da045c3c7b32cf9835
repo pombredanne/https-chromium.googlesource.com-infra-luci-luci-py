@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "575966e6_8f1ee511",
+        "filename": "appengine/isolate/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:34:38Z",
+      "side": 1,
+      "message": "Oops forgot to update it to proto3.",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a4e379d_f4b6378f",
         "filename": "appengine/isolate/proto/config.proto",
         "patchSetId": 1
@@ -13,6 +30,23 @@
       "writtenOn": "2019-10-25T01:14:00Z",
       "side": 1,
       "message": "This is basically copy/paste, matching what we do for CIPD. Sample:\nhttps://chrome-internal.googlesource.com/infradata/config/+/refs/heads/master/configs/chrome-infra-packages/monitoring.cfg",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad371ffa_47832a13",
+        "filename": "appengine/isolate/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:34:38Z",
+      "side": 1,
+      "message": "As the end goal is to remove ip whitelist support for isolate server, I wonder how useful it is to add it. I\u0027d probably fine for now.",
       "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
