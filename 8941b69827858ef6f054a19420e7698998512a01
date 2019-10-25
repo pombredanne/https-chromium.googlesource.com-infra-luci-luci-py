@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f01c2e7_d61d682f",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T09:34:40Z",
+      "side": 1,
+      "message": "Could you use parameterized test?\nhttps://nose2.readthedocs.io/en/latest/params.html",
+      "revId": "8941b69827858ef6f054a19420e7698998512a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
