@@ -6,6 +6,7 @@
 import logging
 import os
 import sys
+import unittest
 
 import six
 from nose2 import discover
@@ -21,6 +22,9 @@ def run_tests(python3=False):
   # override default log level
   if not _has_arg(sys.argv, '--log-level'):
     logging.basicConfig(level=logging.CRITICAL)
+
+  if '-v' in sys.argv:
+    unittest.TestCase.maxDiff = None
 
   plugins = []
   if python3:
