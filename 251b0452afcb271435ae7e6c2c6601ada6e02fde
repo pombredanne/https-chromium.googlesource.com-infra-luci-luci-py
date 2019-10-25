@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00e91234_7f60ce4a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:01:50Z",
+      "side": 1,
+      "message": "The comment is a bit on the terse side, I\u0027d commend something like:\n\n  # Zap out the task on the BotInfo summary, in these case, the bot is\n  # not running a task. That said, in the case of task_XXX, the BotEvent\n  # shall have the task id, since even if the bot is now done with the\n  # task the event still refers to it.\n\nor of your preference (I went a bit verbose).",
+      "revId": "251b0452afcb271435ae7e6c2c6601ada6e02fde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b9f6556_9af4ed2d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:01:50Z",
+      "side": 1,
+      "message": "I think I hadn\u0027t done this because I was scared of having a post_error() happening in the middle of a task, but it\u0027s probably fine.",
+      "range": {
+        "startLine": 591,
+        "startChar": 16,
+        "endLine": 591,
+        "endChar": 23
+      },
+      "revId": "251b0452afcb271435ae7e6c2c6601ada6e02fde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30cf130c_35eae0fc",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:01:50Z",
+      "side": 1,
+      "message": "It\u0027s not guaranteed to be installed. I\u0027m confirming on my non-corp machine that it\u0027s not currently installed.",
+      "revId": "251b0452afcb271435ae7e6c2c6601ada6e02fde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
