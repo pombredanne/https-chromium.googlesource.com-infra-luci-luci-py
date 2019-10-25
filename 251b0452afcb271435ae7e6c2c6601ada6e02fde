@@ -56,6 +56,24 @@
       "revId": "251b0452afcb271435ae7e6c2c6601ada6e02fde",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b7a82f0_85c2f3a2",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:03:13Z",
+      "side": 1,
+      "message": "Sorry I hadn\u0027t seen https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1880757. Ignore my comment.",
+      "parentUuid": "30cf130c_35eae0fc",
+      "revId": "251b0452afcb271435ae7e6c2c6601ada6e02fde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
