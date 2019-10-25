@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "bca8f61b_6a628512",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T09:36:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ddff0dd_19a81ed4",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1607c1db_7f87b622",
         "filename": "appengine/swarming/swarming_bot/test_seq.py",
         "patchSetId": 6
@@ -51,6 +69,24 @@
       "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38ad4efd_de66c3df",
+        "filename": "appengine/swarming/swarming_bot/test_seq.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T09:36:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1607c1db_7f87b622",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "9de2f3c0_2e49a06d",
+        "filename": "client/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T09:36:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb4747e9_47ee712b",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0f7a6d8_0db47035",
         "filename": "client/test_seq.py",
         "patchSetId": 6
@@ -85,6 +139,24 @@
       "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c621d52_b2f3864a",
+        "filename": "client/test_seq.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T09:36:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a0f7a6d8_0db47035",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
