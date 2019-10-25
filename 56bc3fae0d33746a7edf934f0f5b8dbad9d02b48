@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfc34daa_d1934364",
+        "filename": "client/isolate_format.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:29:45Z",
+      "side": 1,
+      "message": "I think this alignment change is an error, but it\u0027s not really important.",
+      "revId": "56bc3fae0d33746a7edf934f0f5b8dbad9d02b48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
