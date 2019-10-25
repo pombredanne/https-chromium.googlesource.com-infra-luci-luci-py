@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37c44908_c34ca0d5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/file_reader_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-25T15:04:46Z",
+      "side": 1,
+      "message": "Minor nit: put the json encoded data into a variable before the loop.\nIt\u0027d be slightly more readable and conceptually more correct. But it\u0027s really minor.",
+      "revId": "833037659bed2cc9f3b9ff30bdffae2bf7ba72dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
