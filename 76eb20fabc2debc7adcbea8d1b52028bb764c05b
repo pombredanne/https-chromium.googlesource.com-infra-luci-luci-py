@@ -16,6 +16,24 @@
       "revId": "76eb20fabc2debc7adcbea8d1b52028bb764c05b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6eab5b3_35c86791",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T07:28:49Z",
+      "side": 1,
+      "message": "Made crrev.com/c/1880420",
+      "parentUuid": "ae1f2b6f_47bfc376",
+      "revId": "76eb20fabc2debc7adcbea8d1b52028bb764c05b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
