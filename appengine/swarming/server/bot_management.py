@@ -552,6 +552,11 @@ def bot_event(
     bot_info.quarantined = quarantined
   if task_id is not None:
     bot_info.task_id = task_id
+  # reset task
+  if event_type in (
+      'task_completed', 'task_error', 'task_killed', 'request_sleep'):
+    bot_info.task_id = ''
+    bot_info.task_name = None
   if task_name:
     bot_info.task_name = task_name
   if version is not None:
@@ -583,13 +588,9 @@ def bot_event(
         quarantined=bot_info.quarantined,
         maintenance_msg=bot_info.maintenance_msg,
         state=bot_info.state,
-        task_id=bot_info.task_id,
+        task_id=task_id or bot_info.task_id,
         version=bot_info.version,
         **kwargs)
-
-    if event_type in ('task_completed', 'task_error', 'task_killed'):
-      # Special case to keep the task_id in the event but not in the summary.
-      bot_info.task_id = ''
 
     datastore_utils.store_new_version(event, BotRoot, [bot_info])
     return event.key
