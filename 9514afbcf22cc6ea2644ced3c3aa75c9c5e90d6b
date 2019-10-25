@@ -34,6 +34,24 @@
       "revId": "9514afbcf22cc6ea2644ced3c3aa75c9c5e90d6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c526f2cc_65deb3a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-25T09:13:54Z",
+      "side": 1,
+      "message": "Discussed offline and agreed that the root cause would be massive # of key-only query operations. and reducing it would mitigate.",
+      "parentUuid": "1c59ff14_3b3966b2",
+      "revId": "9514afbcf22cc6ea2644ced3c3aa75c9c5e90d6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
