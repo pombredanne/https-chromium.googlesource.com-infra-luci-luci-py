@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7ddff0dd_19a81ed4",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-25T09:34:12Z",
+      "side": 1,
+      "message": "appengine and appengine/components aren\u0027t package. need to add appengine/components to sys.path at least.",
+      "parentUuid": "cb7c60d9_d99fb365",
+      "revId": "7d1d51470419422155d4f810bf58e63a6b2342da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1607c1db_7f87b622",
         "filename": "appengine/swarming/swarming_bot/test_seq.py",
         "patchSetId": 6
