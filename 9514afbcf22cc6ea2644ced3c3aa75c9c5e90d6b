@@ -16,6 +16,24 @@
       "revId": "9514afbcf22cc6ea2644ced3c3aa75c9c5e90d6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c59ff14_3b3966b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-25T08:54:19Z",
+      "side": 1,
+      "message": "In my understanding (or hypothesis), ndb library uses key only query by default for datastore access and one batch key only query is counted as one read operation.\nMost of actual entities are got from memcache using key taken from key only query currently.\nSo I expect reducing the number of batch requests actually reduces the number of read operations.",
+      "parentUuid": "68ba1ba1_2d34d7a0",
+      "revId": "9514afbcf22cc6ea2644ced3c3aa75c9c5e90d6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
