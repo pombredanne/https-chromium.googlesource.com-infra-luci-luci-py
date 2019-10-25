@@ -50,6 +50,24 @@
       "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0cd5d8a_311fc719",
+        "filename": "appengine/isolate/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-10-25T21:33:30Z",
+      "side": 1,
+      "message": "It\u0027s kind of a different use of IP whitelists. We want to monitor the sizes of files requested per-IP, but we can\u0027t monitor every IP because requests from arbitrary user IPs can be considered PII. Basically \"if chrome-infra-auth knows the IP is in Golo/ATL97 then monitor the request\".\n\nCan\u0027t do it by OAuth2 because then we have to remember to add each new account (and if we don\u0027t, then Golo requests from that account are unmonitored). We also want anonymous requests from the Golo monitored.",
+      "parentUuid": "ad371ffa_47832a13",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
