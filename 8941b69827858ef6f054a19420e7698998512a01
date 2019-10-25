@@ -16,6 +16,24 @@
       "revId": "8941b69827858ef6f054a19420e7698998512a01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9167ef4f_d8de1c98",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-25T09:52:10Z",
+      "side": 1,
+      "message": "Will try \u0027parameterized\u0027 to make it work without nose2.\nhttps://github.com/wolever/parameterized",
+      "parentUuid": "0f01c2e7_d61d682f",
+      "revId": "8941b69827858ef6f054a19420e7698998512a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
