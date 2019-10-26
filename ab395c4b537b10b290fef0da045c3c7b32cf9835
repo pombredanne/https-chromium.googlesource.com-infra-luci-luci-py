@@ -68,6 +68,24 @@
       "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bf348ad_92fdc982",
+        "filename": "appengine/isolate/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-26T00:01:51Z",
+      "side": 1,
+      "message": "Sorry for being dense; why not use a CIA group? For example https://chrome-infra-auth.appspot.com/auth/groups/isolateserver-full-access would catch all the bots.",
+      "parentUuid": "d0cd5d8a_311fc719",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
