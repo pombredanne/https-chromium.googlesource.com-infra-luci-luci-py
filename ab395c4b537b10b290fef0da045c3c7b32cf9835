@@ -86,6 +86,24 @@
       "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d691151_3d66f2be",
+        "filename": "appengine/isolate/proto/config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-10-26T00:09:15Z",
+      "side": 1,
+      "message": "We want to differentiate between where the bots are located (right now we only care about Golo, we don\u0027t want GCE bots for example). Sample reporting from CIPD server: http://shortn/_4poWW5F9GP.",
+      "parentUuid": "3bf348ad_92fdc982",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
