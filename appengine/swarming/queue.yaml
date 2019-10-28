@@ -104,6 +104,9 @@ queue:
 - name: monitoring-bq-bots-events
   rate: 10/s
 
+- name: bot-monitoring-task
+  rate: 500/s
+
 
 ## General
 

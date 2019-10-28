@@ -406,77 +406,74 @@ class InternalLaunchMapReduceJobWorkerHandler(webapp2.RequestHandler):
 def get_routes():
   """Returns internal urls that should only be accessible via the backend."""
   routes = [
-    # Cron jobs.
-    ('/internal/cron/important/scheduler/abort_bot_missing',
-      CronBotDiedHandler),
-    ('/internal/cron/important/scheduler/abort_expired',
-        CronAbortExpiredShardToRunHandler),
-    ('/internal/cron/cleanup/task_queues', CronTidyTaskQueues),
-    ('/internal/cron/monitoring/bots/update_bot_info',
-      CronUpdateBotInfoComposite),
-    ('/internal/cron/cleanup/bots/delete_old', CronDeleteOldBots),
-    ('/internal/cron/cleanup/bots/delete_old_bot_events',
-      CronDeleteOldBotEvents),
-    ('/internal/cron/cleanup/tasks/delete_old', CronDeleteOldTasks),
+      # Cron jobs.
+      ('/internal/cron/important/scheduler/abort_bot_missing',
+       CronBotDiedHandler),
+      ('/internal/cron/important/scheduler/abort_expired',
+       CronAbortExpiredShardToRunHandler),
+      ('/internal/cron/cleanup/task_queues', CronTidyTaskQueues),
+      ('/internal/cron/monitoring/bots/update_bot_info',
+       CronUpdateBotInfoComposite),
+      ('/internal/cron/cleanup/bots/delete_old', CronDeleteOldBots),
+      ('/internal/cron/cleanup/bots/delete_old_bot_events',
+       CronDeleteOldBotEvents),
+      ('/internal/cron/cleanup/tasks/delete_old', CronDeleteOldTasks),
 
-    # Not yet used.
-    ('/internal/cron/monitoring/bots/stats', CronBotsStats),
+      # Not yet used.
+      ('/internal/cron/monitoring/bots/stats', CronBotsStats),
 
-    # Not yet used.
-    ('/internal/cron/monitoring/tasks/stats', CronTasksStats),
+      # Not yet used.
+      ('/internal/cron/monitoring/tasks/stats', CronTasksStats),
+      ('/internal/cron/monitoring/bq', CronSendToBQ),
+      ('/internal/cron/monitoring/count_task_bot_distribution',
+       CronCountTaskBotDistributionHandler),
+      ('/internal/cron/monitoring/bots/aggregate_dimensions',
+       CronBotsDimensionAggregationHandler),
+      ('/internal/cron/monitoring/tasks/aggregate_tags',
+       CronTasksTagsAggregationHandler),
+      ('/internal/cron/important/bot_groups_config',
+       CronBotGroupsConfigHandler),
+      ('/internal/cron/important/external_scheduler/cancellations',
+       CronExternalSchedulerCancellationsHandler),
+      ('/internal/cron/important/external_scheduler/get_callbacks',
+       CronExternalSchedulerGetCallbacksHandler),
+      ('/internal/cron/important/named_caches/update', CronNamedCachesUpdate),
 
-    ('/internal/cron/monitoring/bq', CronSendToBQ),
-    ('/internal/cron/monitoring/count_task_bot_distribution',
-        CronCountTaskBotDistributionHandler),
-    ('/internal/cron/monitoring/bots/aggregate_dimensions',
-        CronBotsDimensionAggregationHandler),
-    ('/internal/cron/monitoring/tasks/aggregate_tags',
-        CronTasksTagsAggregationHandler),
-    ('/internal/cron/important/bot_groups_config', CronBotGroupsConfigHandler),
-    ('/internal/cron/important/external_scheduler/cancellations',
-        CronExternalSchedulerCancellationsHandler),
-    ('/internal/cron/important/external_scheduler/get_callbacks',
-        CronExternalSchedulerGetCallbacksHandler),
+      # Task queues.
+      ('/internal/taskqueue/important/tasks/cancel', TaskCancelTasksHandler),
+      ('/internal/taskqueue/important/tasks/cancel-task-on-bot',
+       TaskCancelTaskOnBotHandler),
+      ('/internal/taskqueue/important/tasks/cancel-children-tasks',
+       TaskCancelChildrenTasksHandler),
+      ('/internal/taskqueue/important/tasks/expire', TaskExpireTasksHandler),
+      ('/internal/taskqueue/cleanup/tasks/delete', TaskDeleteTasksHandler),
+      ('/internal/taskqueue/important/task_queues/rebuild-cache',
+       TaskDimensionsHandler),
+      (r'/internal/taskqueue/important/pubsub/notify-task/<task_id:[0-9a-f]+>',
+       TaskSendPubSubMessage),
+      ('/internal/taskqueue/important/external_scheduler/notify-tasks',
+       TaskESNotifyTasksHandler),
+      ('/internal/taskqueue/important/external_scheduler/notify-kick',
+       TaskESNotifyKickHandler),
+      (r'/internal/taskqueue/important/named_cache/update-pool',
+       TaskNamedCachesPool),
+      (r'/internal/taskqueue/monitoring/bq/bots/events/'
+       r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>', TaskMonitoringBotsEventsBQ),
+      (r'/internal/taskqueue/monitoring/bq/tasks/requests/'
+       r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>', TaskMonitoringTasksRequestsBQ),
+      (r'/internal/taskqueue/monitoring/bq/tasks/results/run/'
+       r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+       TaskMonitoringTasksResultsRunBQ),
+      (r'/internal/taskqueue/monitoring/bq/tasks/results/summary/'
+       r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
+       TaskMonitoringTasksResultsSummaryBQ),
+      (r'/internal/taskqueue/monitoring/tsmon/<kind:[0-9A-Za-z_]+>',
+       TaskMonitoringTSMon),
+      ('/internal/taskqueue/bots/monitoring', TaskFoot),
 
-    ('/internal/cron/important/named_caches/update', CronNamedCachesUpdate),
-
-    # Task queues.
-    ('/internal/taskqueue/important/tasks/cancel', TaskCancelTasksHandler),
-    ('/internal/taskqueue/important/tasks/cancel-task-on-bot',
-        TaskCancelTaskOnBotHandler),
-    ('/internal/taskqueue/important/tasks/cancel-children-tasks',
-        TaskCancelChildrenTasksHandler),
-    ('/internal/taskqueue/important/tasks/expire',
-        TaskExpireTasksHandler),
-    ('/internal/taskqueue/cleanup/tasks/delete', TaskDeleteTasksHandler),
-    ('/internal/taskqueue/important/task_queues/rebuild-cache',
-        TaskDimensionsHandler),
-    (r'/internal/taskqueue/important/pubsub/notify-task/<task_id:[0-9a-f]+>',
-        TaskSendPubSubMessage),
-    ('/internal/taskqueue/important/external_scheduler/notify-tasks',
-        TaskESNotifyTasksHandler),
-    ('/internal/taskqueue/important/external_scheduler/notify-kick',
-         TaskESNotifyKickHandler),
-    (r'/internal/taskqueue/important/named_cache/update-pool',
-        TaskNamedCachesPool),
-    (r'/internal/taskqueue/monitoring/bq/bots/events/'
-        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
-        TaskMonitoringBotsEventsBQ),
-    (r'/internal/taskqueue/monitoring/bq/tasks/requests/'
-        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
-        TaskMonitoringTasksRequestsBQ),
-    (r'/internal/taskqueue/monitoring/bq/tasks/results/run/'
-        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
-        TaskMonitoringTasksResultsRunBQ),
-    (r'/internal/taskqueue/monitoring/bq/tasks/results/summary/'
-        r'<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>',
-        TaskMonitoringTasksResultsSummaryBQ),
-    (r'/internal/taskqueue/monitoring/tsmon/<kind:[0-9A-Za-z_]+>',
-        TaskMonitoringTSMon),
-
-    # Mapreduce related urls.
-    (r'/internal/taskqueue/mapreduce/launch/<job_id:[^\/]+>',
-      InternalLaunchMapReduceJobWorkerHandler),
+      # Mapreduce related urls.
+      (r'/internal/taskqueue/mapreduce/launch/<job_id:[^\/]+>',
+       InternalLaunchMapReduceJobWorkerHandler),
   ]
   return [webapp2.Route(*a) for a in routes]
 

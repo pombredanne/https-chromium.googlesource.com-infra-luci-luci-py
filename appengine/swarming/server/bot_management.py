@@ -71,6 +71,7 @@ from components import utils
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bq_state
 from server import config
+from server import pools_config
 from server import task_pack
 from server import task_queues
 
@@ -860,3 +861,24 @@ def task_bq_events(start, end):
     total += len(entities)
     failed += bq_state.send_to_bq('bot_events', [_convert(e) for e in entities])
   return total, failed
+
+
+def cron_bot_monitoring():
+  """Generates monitoring events.
+
+  It is sharded, once per pool.
+  """
+  # Decide which timestamp to handle, and pass this.
+  start = 0
+  end = 0
+  for pool in pools_config.known():
+    if not utils.enqueue_task(
+        '/internal/taskqueue/update_bot_monitoring',
+        'bot-monitoring-task',
+        params={
+            'pool': pool,
+            'start': start,
+            'end': end
+        },
+    ):
+      logging.error('Failed to enqueue task for pool %s', pool)
