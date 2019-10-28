@@ -1,0 +1,34 @@
+// Copyright 2019 The LUCI Authors. All rights reserved.
+// Use of this source code is governed under the Apache License, Version 2.0
+// that can be found in the LICENSE file.
+
+// Statistics specific protos.
+//
+// The messages are meant to be usable both as BigQuery table and as API.
+
+syntax = "proto3";
+
+package swarming.v1;
+
+import "google/protobuf/timestamp.proto";
+
+
+// StatsBotsSnapshot contains bot specific statistics.
+//
+// This message is used to populate the BigQuery table bot_stats.
+message StatsBotsSnapshot {
+  // Start of this snapshot.
+  google.protobuf.Timestamp start_time = 1;
+
+  repeated StatsBotPool pools = 2;
+}
+
+// StatsBotPool is the statistics for a pool. It may further be subdivided.
+message StatsBotPool {
+  // The pool name.
+  string name = 1;
+
+  int32 healthy = 2;
+  int32 unhealthy = 3;
+  int32 dead = 4;
+}
