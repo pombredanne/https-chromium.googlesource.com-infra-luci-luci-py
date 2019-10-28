@@ -16,6 +16,24 @@
       "revId": "833037659bed2cc9f3b9ff30bdffae2bf7ba72dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c84758bf_86a752e8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/file_reader_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-28T05:10:15Z",
+      "side": 1,
+      "message": "made crrev.com/c/1881073",
+      "parentUuid": "37c44908_c34ca0d5",
+      "revId": "833037659bed2cc9f3b9ff30bdffae2bf7ba72dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
