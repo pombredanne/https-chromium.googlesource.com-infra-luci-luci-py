@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "71396a99_351847da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-10-28T20:54:05Z",
+      "side": 1,
+      "message": "\u003eAnd how will you use this proto change?\n\nIf a request comes from an IP configured for monitoring, report the size of files requested from GCS using tsmon.\n\nSimilar to CIPD server changes:\nhttps://chromium.googlesource.com/infra/luci/luci-go/+/440644f34e7fd332d0b7cf4c7ddf178a8367611d",
+      "parentUuid": "d28ebfdd_82d91bd8",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575966e6_8f1ee511",
         "filename": "appengine/isolate/proto/config.proto",
         "patchSetId": 1
