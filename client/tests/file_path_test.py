@@ -187,7 +187,7 @@ class FilePathTest(auto_stub.TestCase):
     fs.mkdir(subdir)
     filepath = os.path.join(
         subdir, u'\u0627\u0644\u0635\u064A\u0646\u064A\u0629')
-    with fs.open(filepath, 'wb') as f:
+    with open(filepath.encode('utf-8'), 'wb') as f:
       f.write(b'hi')
     # In particular, it fails when the input argument is a str.
     file_path.rmtree(str(subdir))
