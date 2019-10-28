@@ -79,17 +79,39 @@ class BackendTest(test_env_handlers.AppTestBase):
     self.mock_now(now)
 
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['beta'], 'id': ['id1']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            'foo': ['beta'],
+            'id': ['id1']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['alpha'], 'id': ['id2']}, state={'ram': 65},
-        version='123456789', quarantined=True, maintenance_msg=None,
-        task_id='987', task_name=None)
+        event_type='bot_connected',
+        bot_id='id2',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            'foo': ['alpha'],
+            'id': ['id2']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=True,
+        maintenance_msg=None,
+        task_id='987',
+        task_name=None)
 
     self.app.get('/internal/cron/monitoring/bots/aggregate_dimensions',
         headers={'X-AppEngine-Cron': 'true'}, status=200)

@@ -60,7 +60,7 @@ def _bot_event(
       external_ip=external_ip,
       authenticated_as=authenticated_as,
       dimensions=dimensions,
-      state=state or {'ram': 65},
+      state_json=utils.encode_to_json(state or {'ram': 65}),
       version=version,
       quarantined=quarantined,
       maintenance_msg=maintenance_msg,
@@ -71,34 +71,51 @@ def _bot_event(
 
 def _gen_bot_info(**kwargs):
   out = {
-    'authenticated_as': u'bot:id1.domain',
-    'composite': [
-      bot_management.BotInfo.NOT_IN_MAINTENANCE,
-      bot_management.BotInfo.ALIVE,
-      bot_management.BotInfo.HEALTHY,
-      bot_management.BotInfo.IDLE,
-    ],
-    'dimensions': {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
-    },
-    'external_ip': u'8.8.4.4',
-    'first_seen_ts': utils.utcnow(),
-    'id': 'id1',
-    'is_dead': False,
-    'last_seen_ts': utils.utcnow(),
-    'lease_id': None,
-    'lease_expiration_ts': None,
-    'leased_indefinitely': None,
-    'machine_lease': None,
-    'machine_type': None,
-    'quarantined': False,
-    'maintenance_msg': None,
-    'state': {u'ram': 65},
-    'task_id': None,
-    'task_name': None,
-    'version': _VERSION,
+      'authenticated_as':
+          u'bot:id1.domain',
+      'composite': [
+          bot_management.BotInfo.NOT_IN_MAINTENANCE,
+          bot_management.BotInfo.ALIVE,
+          bot_management.BotInfo.HEALTHY,
+          bot_management.BotInfo.IDLE,
+      ],
+      'dimensions': {
+          u'id': [u'id1'],
+          u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+          u'pool': [u'default'],
+      },
+      'external_ip':
+          u'8.8.4.4',
+      'first_seen_ts':
+          utils.utcnow(),
+      'id':
+          'id1',
+      'is_dead':
+          False,
+      'last_seen_ts':
+          utils.utcnow(),
+      'lease_id':
+          None,
+      'lease_expiration_ts':
+          None,
+      'leased_indefinitely':
+          None,
+      'machine_lease':
+          None,
+      'machine_type':
+          None,
+      'quarantined':
+          False,
+      'maintenance_msg':
+          None,
+      'state_json':
+          u'{"ram":65}',
+      'task_id':
+          None,
+      'task_name':
+          None,
+      'version':
+          _VERSION,
   }
   out.update(kwargs)
   return out
@@ -106,26 +123,26 @@ def _gen_bot_info(**kwargs):
 
 def _gen_bot_event(**kwargs):
   out = {
-    'authenticated_as': u'bot:id1.domain',
-    'dimensions': {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
-    },
-    'external_ip': u'8.8.4.4',
-    'lease_id': None,
-    'lease_expiration_ts': None,
-    'leased_indefinitely': None,
-    'machine_lease': None,
-    'machine_type': None,
-    'message': None,
-    'quarantined': False,
-    'maintenance_msg': None,
-    'state': {u'ram': 65},
-    'task_id': None,
-    'ts': utils.utcnow(),
-    'version': _VERSION,
-    }
+      'authenticated_as': u'bot:id1.domain',
+      'dimensions': {
+          u'id': [u'id1'],
+          u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+          u'pool': [u'default'],
+      },
+      'external_ip': u'8.8.4.4',
+      'lease_id': None,
+      'lease_expiration_ts': None,
+      'leased_indefinitely': None,
+      'machine_lease': None,
+      'machine_type': None,
+      'message': None,
+      'quarantined': False,
+      'maintenance_msg': None,
+      'state_json': u'{"ram":65}',
+      'task_id': None,
+      'ts': utils.utcnow(),
+      'version': _VERSION,
+  }
   out.update(kwargs)
   return out
 
@@ -254,10 +271,19 @@ class BotManagementTest(test_case.TestCase):
       u'pool': [u'default'],
     }
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:id1.domain',
-        dimensions=d, state={'ram': 65}, version=_VERSION, quarantined=False,
-        maintenance_msg=None, task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:id1.domain',
+        dimensions=d,
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version=_VERSION,
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
 
     expected = _gen_bot_info()
     self.assertEqual(
