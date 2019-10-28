@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cb3c2d15_52fcd7b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-28T08:05:33Z",
+      "side": 1,
+      "message": "Could you elaborate more context of this issue?\nWhy do we need to monitor access from whitelisted client?\n\nAnd how will you use this proto change?",
+      "revId": "ab395c4b537b10b290fef0da045c3c7b32cf9835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575966e6_8f1ee511",
         "filename": "appengine/isolate/proto/config.proto",
         "patchSetId": 1
