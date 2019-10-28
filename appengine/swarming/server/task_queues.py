@@ -620,7 +620,8 @@ def _tidy_stale_BotTaskDimensions(now):
   raise ndb.Return(btd)
 
 
-def _assert_task_props(properties, expiration_ts):
+@ndb.tasklet
+def _assert_task_props_async(properties, expiration_ts):
   """Asserts a TaskDimensions for a specific TaskProperties.
 
   Implementation of assert_task().
@@ -628,7 +629,7 @@ def _assert_task_props(properties, expiration_ts):
   # TODO(maruel): Make it a tasklet.
   dimensions_hash = hash_dimensions(properties.dimensions)
   task_dims_key = _get_task_dims_key(dimensions_hash, properties.dimensions)
-  obj = task_dims_key.get()
+  obj = yield task_dims_key.get_async()
   if obj:
     # Reduce the check to be 5~10 minutes earlier to help reduce an attack of
     # task queues when there's a strong on-going load of tasks happening. This
@@ -641,7 +642,7 @@ def _assert_task_props(properties, expiration_ts):
         # Cache hit. It is important to reconfirm the dimensions because a hash
         # can be conflicting.
         logging.debug('assert_task(%d): hit', dimensions_hash)
-        return
+        raise ndb.Return(0)
       else:
         logging.info(
             'assert_task(%d): set.valid_until_ts(%s) < expected(%s); '
@@ -670,19 +671,16 @@ def _assert_task_props(properties, expiration_ts):
   # there's only one bot that can run it, so it won't take long. This permits
   # tasks like 'terminate' tasks to execute faster.
   if properties.dimensions.get(u'id'):
-    rebuild_task_cache(payload)
-    return
+    yield _rebuild_task_cache_async(payload)
+    raise ndb.Return(1)
 
   # We can't use the request ID since the request was not stored yet, so embed
   # all the necessary information.
-  if not utils.enqueue_task(
+  yield utils.enqueue_task_async(
       '/internal/taskqueue/important/task_queues/rebuild-cache',
       'rebuild-task-cache',
-      payload=payload):
-    logging.error('Failed to enqueue TaskDimensions update %x', dimensions_hash)
-    # Technically we'd want to raise a endpoints.InternalServerErrorException.
-    # Raising anything that is not TypeError or ValueError is fine.
-    raise Error('Failed to trigger task queue; please try again')
+      payload=payload)
+  raise ndb.Return(1)
 
 
 ### Public APIs.
@@ -817,12 +815,14 @@ def assert_task(request):
   practice.
   """
   assert not request.key, request.key
-  # TODO(maruel): Parallelize the following.
   exp_ts = request.created_ts
+  futures = []
   for i in range(request.num_task_slices):
     t = request.task_slice(i)
     exp_ts += datetime.timedelta(seconds=t.expiration_secs)
-    _assert_task_props(t.properties, exp_ts)
+    futures.append(_assert_task_props_async(t.properties, exp_ts))
+  for f in futures:
+    f.get_result()
 
 
 def get_queues(bot_root_key):
