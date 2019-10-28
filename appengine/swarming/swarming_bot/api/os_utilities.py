@@ -24,13 +24,14 @@ import os
 import pipes
 import platform
 import re
+import resource
 import signal
 import socket
 import subprocess
 import sys
 import tempfile
 import time
-
+import uuid
 
 from utils import tools
 tools.force_local_third_party()
@@ -334,6 +335,7 @@ def get_ip():
       time.sleep(0.05)
     finally:
       s.close()
+  return None
 
 
 @tools.cached
@@ -362,6 +364,53 @@ def get_hostname():
 def get_hostname_short():
   """Returns the base host name."""
   return get_hostname().split(u'.', 1)[0]
+
+
+@tools.cached
+def get_mac():
+  """Returns the MAC address of the primary network as a str, if any."""
+  # ws2_32.dll
+  # WSAAddressToStringW
+  # AF_INET
+  # GetAdaptersAddresses
+
+  # getifaddrs
+  # SIOCGSIZIFCONF
+  try:
+    import netifaces
+    for interface in netifaces.interfaces():
+      print interface[netifaces.AF_LINK]['addr']
+  except ImportError:
+    pass
+
+  try:
+    mac = open('/sys/class/net/' + interface + '/address').readline()
+  except:
+    mac = "00:00:00:00:00:00"
+  return mac[0:17]
+  import fcntl, socket, struct
+  ifname = 'en0'
+  s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  # SIOCGIFADDR
+  info = fcntl.ioctl(s.fileno(), 0x8927, struct.pack('256s', ifname[:15]))
+  return u':'.join('%02x' % ord(char) for char in info[18:24])
+
+  # Leverage stdlib uuid's internal code but zap the 'return random data upon
+  # failure'. We could be concerned that 'this is racy', but uuid.py doesn't use
+  # locking anyway, and since the returned value is None when not found and None
+  # is the market to say it's uninitialized, it should work. The only potential
+  # failure mode is if it had failed previously.
+  old = uuid._random_getnode
+  uuid._random_getnode = lambda: None
+  try:
+    mac = uuid.getnode()
+  finally:
+    uuid._random_getnode = old
+  if not mac:
+    return None
+  s = hex(mac)[2:]
+  s = s.zfill(12 - len(s))
+  return u':'.join(s[2 * i:2 * (i + 1)] for i in xrange(6))
 
 
 @tools.cached
@@ -1052,32 +1101,34 @@ def get_state():
   except OSError:
     nb_files_in_temp = 'N/A'
   state = {
-    u'audio': get_audio(),
-    u'cpu_name': get_cpuinfo().get(u'name'),
-    u'cost_usd_hour': get_cost_hour(),
-    u'cwd': file_path.get_native_path_case(os.getcwd().decode('utf-8')),
-    u'disks': get_disks_info(),
-    # Only including a subset of the environment variable, as state is not
-    # designed to sustain large load at the moment.
-    u'env': {
-      u'PATH': os.environ[u'PATH'].decode('utf-8'),
-    },
-    u'gpu': get_gpu()[1],
-    u'hostname': get_hostname(),
-    u'ip': get_ip(),
-    u'nb_files_in_temp': nb_files_in_temp,
-    u'pid': os.getpid(),
-    u'python': {
-      u'executable': sys.executable.decode('utf-8'),
-      u'packages': get_python_packages(),
-      u'version': sys.version.decode('utf-8'),
-    },
-    u'ram': get_physical_ram(),
-    u'running_time': int(round(time.time() - _STARTED_TS)),
-    u'ssd': list(get_ssd()),
-    u'started_ts': int(round(_STARTED_TS)),
-    u'uptime': int(round(get_uptime())),
-    u'user': getpass.getuser().decode('utf-8'),
+      u'audio': get_audio(),
+      u'cpu_name': get_cpuinfo().get(u'name'),
+      u'cost_usd_hour': get_cost_hour(),
+      u'cwd': file_path.get_native_path_case(os.getcwd().decode('utf-8')),
+      u'disks': get_disks_info(),
+      # Only including a subset of the environment variable, as state is not
+      # designed to sustain large load at the moment.
+      u'env': {
+          u'PATH': os.environ[u'PATH'].decode('utf-8'),
+      },
+      u'gpu': get_gpu()[1],
+      u'hostname': get_hostname(),
+      u'ip': get_ip(),
+      u'mac': get_mac(),
+      u'nb_files_in_temp': nb_files_in_temp,
+      u'pid': os.getpid(),
+      u'python': {
+          u'executable': sys.executable.decode('utf-8'),
+          u'packages': get_python_packages(),
+          u'version': sys.version.decode('utf-8'),
+      },
+      u'ram': get_physical_ram(),
+      u'running_time': int(round(time.time() - _STARTED_TS)),
+      u'ssd': list(get_ssd()),
+      u'started_ts': int(round(_STARTED_TS)),
+      u'ulimit': list(resource.getrlimit(resource.RLIMIT_NOFILE)),
+      u'uptime': int(round(get_uptime())),
+      u'user': getpass.getuser().decode('utf-8'),
   }
   if get_reboot_required():
     state[u'reboot_required'] = True
