@@ -874,63 +874,91 @@ class BotApiTest(test_env_handlers.AppTestBase):
     # TODO(maruel): Replace with client api to query last BotEvent.
     actual = [
         e.to_dict() for e in bot_management.get_events_query('bot1', True)]
-    expected = [
-      {
-        'authenticated_as': u'bot:whitelisted-ip',
+    expected = [{
+        'authenticated_as':
+            u'bot:whitelisted-ip',
         'dimensions': {
-          u'id': [u'bot1'],
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
+            u'id': [u'bot1'],
+            u'os': [u'Amiga'],
+            u'pool': [u'default'],
         },
-        'event_type': unicode(e),
-        'external_ip': u'192.168.2.2',
-        'lease_id': None,
-        'lease_expiration_ts': None,
-        'leased_indefinitely': None,
-        'machine_type': None,
-        'machine_lease': None,
-        'message': u'for the best',
-        'quarantined': False,
-        'maintenance_msg': None,
-        'state': {
-          u'bot_group_cfg_version': u'default',
-          u'running_time': 1234.0,
-          u'sleep_streak': 0,
-          u'started_ts': 1410990411.111,
-        },
-        'task_id': u'',
-        'ts': self.now,
-        'version': self.bot_version,
-      } for e in reversed(handlers_bot.BotEventHandler.ALLOWED_EVENTS)
-      if e != 'bot_error'
-    ]
-    expected.append(
-      {
-        'authenticated_as': u'bot:whitelisted-ip',
+        'event_type':
+            unicode(e),
+        'external_ip':
+            u'192.168.2.2',
+        'lease_id':
+            None,
+        'lease_expiration_ts':
+            None,
+        'leased_indefinitely':
+            None,
+        'machine_type':
+            None,
+        'machine_lease':
+            None,
+        'message':
+            u'for the best',
+        'quarantined':
+            False,
+        'maintenance_msg':
+            None,
+        'state_json':
+            utils.encode_to_json({
+                u'bot_group_cfg_version': u'default',
+                u'running_time': 1234.0,
+                u'sleep_streak': 0,
+                u'started_ts': 1410990411.111,
+            }),
+        'task_id':
+            u'',
+        'ts':
+            self.now,
+        'version':
+            self.bot_version,
+    }
+                for e in reversed(handlers_bot.BotEventHandler.ALLOWED_EVENTS)
+                if e != 'bot_error']
+    expected.append({
+        'authenticated_as':
+            u'bot:whitelisted-ip',
         'dimensions': {
-          u'id': [u'bot1'],
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
+            u'id': [u'bot1'],
+            u'os': [u'Amiga'],
+            u'pool': [u'default'],
         },
-        'event_type': u'bot_connected',
-        'external_ip': u'192.168.2.2',
-        'lease_id': None,
-        'lease_expiration_ts': None,
-        'leased_indefinitely': None,
-        'machine_type': None,
-        'machine_lease': None,
-        'message': None,
-        'quarantined': False,
-        'maintenance_msg': None,
-        'state': {
-          u'running_time': 1234.0,
-          u'sleep_streak': 0,
-          u'started_ts': 1410990411.111,
-        },
-        'task_id': u'',
-        'ts': self.now,
-        'version': u'123',
-      })
+        'event_type':
+            u'bot_connected',
+        'external_ip':
+            u'192.168.2.2',
+        'lease_id':
+            None,
+        'lease_expiration_ts':
+            None,
+        'leased_indefinitely':
+            None,
+        'machine_type':
+            None,
+        'machine_lease':
+            None,
+        'message':
+            None,
+        'quarantined':
+            False,
+        'maintenance_msg':
+            None,
+        'state_json':
+            utils.encode_to_json({
+                u'running_time': 1234.0,
+                u'sleep_streak': 0,
+                u'started_ts': 1410990411.111,
+            }),
+        'task_id':
+            u'',
+        'ts':
+            self.now,
+        'version':
+            u'123',
+    })
 
     self.assertEqual(expected, actual)
 

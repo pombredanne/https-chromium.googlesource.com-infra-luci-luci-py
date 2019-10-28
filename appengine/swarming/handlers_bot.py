@@ -460,13 +460,18 @@ class BotHandshakeHandler(_BotBaseHandler):
   def post(self):
     res = self._process()
     bot_management.bot_event(
-        event_type='bot_connected', bot_id=res.bot_id,
+        event_type='bot_connected',
+        bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=res.dimensions, state=res.state,
-        version=res.version, quarantined=bool(res.quarantined_msg),
+        dimensions=res.dimensions,
+        state_json=utils.encode_to_json(res.state),
+        version=res.version,
+        quarantined=bool(res.quarantined_msg),
         maintenance_msg=res.maintenance_msg,
-        task_id='', task_name=None, message=res.quarantined_msg)
+        task_id='',
+        task_name=None,
+        message=res.quarantined_msg)
 
     data = {
       'bot_version': bot_code.get_bot_version(self.request.host_url)[0],
@@ -523,13 +528,18 @@ class BotPollHandler(_BotBaseHandler):
 
     def bot_event(event_type, task_id=None, task_name=None):
       bot_management.bot_event(
-          event_type=event_type, bot_id=res.bot_id,
+          event_type=event_type,
+          bot_id=res.bot_id,
           external_ip=self.request.remote_addr,
           authenticated_as=auth.get_peer_identity().to_bytes(),
-          dimensions=res.dimensions, state=res.state,
-          version=res.version, quarantined=quarantined,
-          maintenance_msg=res.maintenance_msg, task_id=task_id,
-          task_name=task_name, message=res.quarantined_msg)
+          dimensions=res.dimensions,
+          state_json=utils.encode_to_json(res.state),
+          version=res.version,
+          quarantined=quarantined,
+          maintenance_msg=res.maintenance_msg,
+          task_id=task_id,
+          task_name=task_name,
+          message=res.quarantined_msg)
 
     # Bot version is host-specific because the host URL is embedded in
     # swarming_bot.zip
@@ -727,13 +737,18 @@ class BotEventHandler(_BotBaseHandler):
     # Record the event in a BotEvent entity so it can be listed on the bot's
     # page.
     bot_management.bot_event(
-        event_type=event, bot_id=res.bot_id,
+        event_type=event,
+        bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=res.dimensions, state=res.state,
-        version=res.version, quarantined=bool(res.quarantined_msg),
-        maintenance_msg=res.maintenance_msg, task_id=None,
-        task_name=None, message=message)
+        dimensions=res.dimensions,
+        state_json=utils.encode_to_json(res.state),
+        version=res.version,
+        quarantined=bool(res.quarantined_msg),
+        maintenance_msg=res.maintenance_msg,
+        task_id=None,
+        task_name=None,
+        message=message)
 
     if event == 'bot_error':
       # Also logs this to ereporter2, so it will be listed in the server's
@@ -1025,11 +1040,16 @@ class BotTaskUpdateHandler(_BotApiHandler):
             task_result.State.BOT_DIED, task_result.State.RUNNING), state
         action = 'task_update'
       bot_management.bot_event(
-          event_type=action, bot_id=bot_id,
+          event_type=action,
+          bot_id=bot_id,
           external_ip=self.request.remote_addr,
           authenticated_as=auth.get_peer_identity().to_bytes(),
-          dimensions=None, state=None,
-          version=None, quarantined=None, maintenance_msg=None, task_id=task_id,
+          dimensions=None,
+          state_json=None,
+          version=None,
+          quarantined=None,
+          maintenance_msg=None,
+          task_id=task_id,
           task_name=None)
     except ValueError as e:
       ereporter2.log_request(
@@ -1081,12 +1101,18 @@ class BotTaskErrorHandler(_BotApiHandler):
     bot_auth.validate_bot_id_and_fetch_config(bot_id)
 
     bot_management.bot_event(
-        event_type='task_error', bot_id=bot_id,
+        event_type='task_error',
+        bot_id=bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=None, state=None,
-        version=None, quarantined=None, maintenance_msg=None, task_id=task_id,
-        task_name=None, message=message)
+        dimensions=None,
+        state_json=None,
+        version=None,
+        quarantined=None,
+        maintenance_msg=None,
+        task_id=task_id,
+        task_name=None,
+        message=message)
     line = (
         'Bot: https://%s/restricted/bot/%s\n'
         'Task failed: https://%s/user/task/%s\n'

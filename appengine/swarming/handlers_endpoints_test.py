@@ -1856,30 +1856,74 @@ class BotsApiTest(BaseTest):
     # Add four bot events, corresponding to one dead bot, one quarantined bot,
     # one bot in maintenance, and one good bot
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id3',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id3'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id3',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id3'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     self.mock_now(self.now)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id2'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=True, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id2',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id2'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=True,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id4',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id4'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id4',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id4'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg='very busy',
+        task_id=None,
+        task_name=None)
     bot1 = {
       u'authenticated_as': u'bot:whitelisted-ip',
       u'bot_id': u'id1',
@@ -2086,30 +2130,74 @@ class BotsApiTest(BaseTest):
     then = datetime.datetime(2009, 1, 2, 3, 4, 5)
     self.mock_now(then)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id3',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id3'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=True, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id3',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id3'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=True,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     self.mock_now(self.now)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id='987', task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id='987',
+        task_name=None)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id2'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=True, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id2',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id2'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=True,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id4',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id4'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id4',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id4'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg='very busy',
+        task_id=None,
+        task_name=None)
     expected = {
       u'count': u'4',
       u'quarantined': u'2',
@@ -2219,11 +2307,22 @@ class BotApiTest(BaseTest):
     """Asserts that get shows the tasks a specific bot has executed."""
     self.set_as_privileged_user()
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg='very busy',
+        task_id=None,
+        task_name=None)
 
     expected = {
       u'authenticated_as': u'bot:whitelisted-ip',
@@ -2249,11 +2348,22 @@ class BotApiTest(BaseTest):
     """Asserts that get shows a bot that is in maintenance."""
     self.set_as_privileged_user()
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'ram': 65
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg='very busy',
+        task_id=None,
+        task_name=None)
 
     expected = {
       u'authenticated_as': u'bot:whitelisted-ip',
@@ -2282,11 +2392,22 @@ class BotApiTest(BaseTest):
 
   def test_get_deleted_bot(self):
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'foo': 0},
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json({
+            'foo': 0
+        }),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
     # Delete the bot.
     self.set_as_admin()
     response = self.call_api('delete', body={'bot_id': 'id1'})
@@ -2322,11 +2443,20 @@ class BotApiTest(BaseTest):
       'str': u'uni',
     }
     bot_management.bot_event(
-        event_type='bot_connected', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={u'id': [u'id1'], u'pool': [u'default']}, state=state,
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'default']
+        },
+        state_json=utils.encode_to_json(state),
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
 
     # delete the bot
     response = self.call_api('delete', body={'bot_id': 'id1'})
