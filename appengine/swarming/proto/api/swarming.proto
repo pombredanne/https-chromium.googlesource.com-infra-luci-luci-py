@@ -24,9 +24,175 @@ import "google/protobuf/timestamp.proto";
 service BotAPI {
   // Events returns events relating to one bot.
   rpc Events(BotEventsRequest) returns (BotEventsResponse) {};
+  // TODO(maruel): Finish implementation. https://crbug.com/913953
+  //rpc List() returns () {};
+}
 
+service ServerAPI {
+  // TODO(maruel): Finish implementation. https://crbug.com/913953
+  //rpc Details(Empty) (ServerDetails) {};
+}
+
+message ServerDetails {
+  string server_version = 1;
+  string bot_version = 2;
+  string machine_provider_template = 3;
+  string display_server_url_template = 4;
+  string luci_config = 5;
+  string default_isolate_server = 6;
+  string default_isolate_namespace = 7;
+}
+
+service QueueAPI {
   // TODO(maruel): Finish implementation. https://crbug.com/913953
 }
+
+service TaskAPI {
+  /*
+  // TODO(maruel): Finish implementation. https://crbug.com/913953
+	rpc New() returns () {};
+	rpc	Requests() returns () {};
+	rpc	Results() returns () {};
+  // Count from this query.
+	rpc	Count() returns () {};
+  // Known tags.
+	rpc	Tags() returns () {};
+  // TODO(maruel): Stream.
+	rpc	Output() returns () {};
+  // Cancel, Kill, Preempt.
+	rpc	Cancel() returns () {};
+  */
+}
+
+// The API the bot calls into.
+//
+// TODO(maruel): Aling with worker API.
+service WorkerAPI {
+  // Retrieves the newest bot code or supplemental data.
+  rpc BotCode(BotCodeRequest) returns (BotCodeResponse) {};
+  // New bot session handshake.
+  rpc Handshake(HandshakeRequest) returns (HandshakeResponse) {};
+  // Poll.
+  rpc Poll(PollRequest) returns (PollResponse) {};
+  // Report an event, overhead, etc.
+  rpc Event(EventRequest) returns (EventResponse) {};
+  // Request an OAuth2 token.
+  rpc OAuthToken(OAuthTokenRequest) returns (OAuthTokenResponse) {};
+  // Report back about t a task.
+  rpc TaskUpdate(TaskUpdateRequest) returns (TaskUpdateResponse) {};
+}
+
+// Request for WorkerAPI.BotCode.
+message BotCodeRequest {
+  string version = 1;
+  string platform = 2;
+}
+
+// Response for WorkerAPI.BotCode.
+message BotCodeResponse {
+  bytes payload = 1;
+}
+
+// Request for WorkerAPI.Handshake.
+message HandshakeRequest {
+  // The most important part is the bot_id and the bot_version.
+  Bot bot = 1;
+  /*
+	// Expected server version.
+  string server_version = 2;
+  string bot_group_cfg_version = 3;
+  string bot_group_cfg = 4;
+  */
+}
+
+// Response for WorkerAPI.Handshake.
+message HandshakeResponse {
+  // Updated bot infomation.
+  Bot bot = 1;
+}
+
+// Request for WorkerAPI.Poll.
+message PollRequest {
+  string session_id = 1;
+  BotInfo state = 2;
+}
+
+// Action the server tells the bot to do.
+enum Action {
+  ACTION_UNSPECIFIED = 0;
+	// Request the bot to stay idle.
+	SLEEP = 1;
+	// Request the bot to run a task.
+	START_TASK = 2;
+	// Request the bot to self-update.
+	BOT_UPDATE = 3;
+	// Request the bot to terminate.
+	BOT_TERMINATE = 4;
+	// Request to be to restart. This is generally to pick up new server side
+  // configuration.
+	BOT_RESTART = 5;
+}
+
+// Response for WorkerAPI.Poll.
+message PollResponse {
+  Action action = 1;
+}
+
+// Request for WorkerAPI.Event.
+message EventRequest {
+  string session_id = 1;
+	string event_type = 2;
+	string message = 3;
+}
+
+// Response for WorkerAPI.Event.
+message EventResponse {
+}
+
+// Request for WorkerAPI.OAuthToken.
+message OAuthTokenRequest {
+  string session_id = 1;
+  // 'system' or 'task'
+  string account_id = 2;
+  // List of requested OAuth scopes.
+  repeated string scopes = 3;
+  // Task ID for the task account. Could be implied but used for confirmation.
+  string task_id = 4;
+}
+
+// Response for WorkerAPI.OAuthToken.
+message OAuthTokenResponse {
+  string service_account = 1;
+  string access_token = 2;
+  google.protobuf.Timestamp expiry_time = 3;
+}
+
+// Request for WorkerAPI.TaskUpdate.
+message TaskUpdateRequest {
+  string session_id = 1;
+  // Task ID for this update. Could be implied but used for confirmation.
+  string task_id = 2;
+
+  string bot_overhead = 3;
+  string cipd_pins = 4;
+  string cipd_stats = 5;
+  string cost_usd = 6;
+  google.protobuf.Duration duration = 7;
+  int32 exit_code = 8;
+  bool hard_timeout = 9;
+  bool io_timeout = 10;
+  string isolated_stats = 11;
+  bytes output = 12;
+  int32 output_chunk_start = 13;
+  CASTree outputs_ref = 14;
+}
+
+// Response for WorkerAPI.TaskUpdate.
+message TaskUpdateResponse {
+	bool must_stop = 1;
+	bool ok = 2;
+}
+
 
 // Request for BotAPI.Events.
 message BotEventsRequest {

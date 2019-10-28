@@ -17,7 +17,11 @@ from google.appengine import runtime
 
 from components import auth
 from components import ereporter2
+from components import prpc
 from components import utils
+from components.prpc.codes import StatusCode
+from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
+from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import acl
 from server import bot_auth
 from server import bot_code
@@ -102,6 +106,22 @@ def has_missing_keys(minimum_keys, actual_keys, name):
   if missing:
     msg_missing = (' missing: %s' % sorted(missing)) if missing else ''
     return 'Unexpected %s%s; did you make a typo?' % (name, msg_missing)
+
+
+## pRPC handler
+
+
+class BotAPIService(object):
+  """Service implements the pRPC service in swarming.proto for the bot API."""
+
+  DESCRIPTION = swarming_prpc_pb2.BotAPIServiceDescription
+
+  # TODO(maruel): Add implementation. https://crbug.com/913953
+
+  def Events(self, request, context):
+    logging.debug('%s', request)
+    pass
+
 
 
 ## Generic handlers (no auth)
@@ -1110,7 +1130,8 @@ class BotTaskErrorHandler(_BotApiHandler):
 
 
 def get_routes():
-  routes = [
+  # The old bot RPC is 'slightly' adhoc and is on the way out.
+  old_routes = [
       # Generic handlers (no auth)
       ('/swarming/api/v1/bot/server_ping', ServerPingHandler),
 
@@ -1142,4 +1163,7 @@ def get_routes():
 
       # Bot Security API RPC handler
   ]
-  return [webapp2.Route(*i) for i in routes]
+  # New pRPC handlers.
+  s = prpc.Server()
+  s.add_service(BotAPIService())
+  return [webapp2.Route(*i) for i in old_routes] + s.get_routes()
