@@ -24,7 +24,7 @@ from remote_client_errors import MintOAuthTokenError
 from remote_client_errors import PollError
 from remote_client_errors import BotCodeError
 from utils import net
-from utils import grpc_proxy
+from utils import gcp_grpc
 
 try:
   from proto_bot import bots_pb2_grpc
@@ -54,10 +54,10 @@ class RemoteClientGrpc(object):
     else:
       if not bots_pb2_grpc:
         raise ImportError('can\'t import stubs - is gRPC installed?')
-      self._proxy_bots = grpc_proxy.Proxy(server, bots_pb2_grpc.BotsStub)
-      self._proxy_tasks = grpc_proxy.Proxy(server, tasks_pb2_grpc.TasksStub)
-      self._proxy_bs = grpc_proxy.Proxy(server,
-                                        bytestream_pb2_grpc.ByteStreamStub)
+      self._proxy_bots = gcp_grpc.Client(server, bots_pb2_grpc.BotsStub)
+      self._proxy_tasks = gcp_grpc.Client(server, tasks_pb2_grpc.TasksStub)
+      self._proxy_bs = gcp_grpc.Client(server,
+                                       bytestream_pb2_grpc.ByteStreamStub)
     self._server = server
     self._log_is_asleep = False
     self._session = None
@@ -146,11 +146,11 @@ class RemoteClientGrpc(object):
       # interrupt either the long poll or the retry process, so we need to wait
       # a while to exit cleanly.
       self._session = self._proxy_bots.call_unary('UpdateBotSession', req)
-    except grpc_proxy.grpc.RpcError as e:
+    except gcp_grpc.grpc.RpcError as e:
       # It's fine for the deadline to expire; this simply means that no tasks
       # were received while long-polling. Any other exception cannot be
       # recovered here.
-      if e.code() is not grpc_proxy.grpc.StatusCode.DEADLINE_EXCEEDED:
+      if e.code() is not gcp_grpc.grpc.StatusCode.DEADLINE_EXCEEDED:
         raise PollError(str(e))
     except Exception as e:
       raise PollError(str(e))
@@ -222,7 +222,7 @@ class RemoteClientGrpc(object):
     req.msg = message
     try:
       self._proxy_bots.call_unary('PostBotEventTemp', req)
-    except grpc_proxy.grpc.RpcError as e:
+    except gcp_grpc.grpc.RpcError as e:
       logging.error('gRPC error posting bot event: %s', e)
 
   def post_task_update(self,
@@ -271,7 +271,7 @@ class RemoteClientGrpc(object):
       try:
         for resp in self._proxy_bs.call_no_retries('Read', req):
           zf.write(resp.data)
-      except grpc_proxy.grpc.RpcError as e:
+      except gcp_grpc.grpc.RpcError as e:
         logging.error('gRPC error fetching %s: %s', req.resource_name, e)
         raise BotCodeError(new_zip_fn, req.resource_name, bot_version)
 
@@ -398,7 +398,7 @@ class RemoteClientGrpc(object):
         logging.info('Writing to ByteStream:\n%s', req)
         yield req
       res = self._proxy_bs.call_unary('Write', stream())
-    except grpc_proxy.grpc.RpcError as r:
+    except gcp_grpc.grpc.RpcError as r:
       logging.error('gRPC error during stdout update: %s' % r)
       raise r
 

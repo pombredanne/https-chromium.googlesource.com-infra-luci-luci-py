@@ -75,6 +75,7 @@ class HashAlgoNameTest(net_utils.TestCase):
       self.assertIs(expected, server_ref.hash_algo, namespace)
 
 
+# pip install grpcio pyasn1-modules opentype
 @unittest.skipIf(
     not isolate_storage.grpc, 'gRPC could not be loaded; skipping tests')
 class IsolateStorageGPRCTest(auto_stub.TestCase):
@@ -84,9 +85,8 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
         isolate_storage.bytestream_pb2, 'ByteStreamStub', ByteStreamStubMock)
 
   def get_server(self):
-    s = isolate_storage.ServerRef(
-        'https://luci.appspot.com', 'default-gzip')
-    return isolate_storage.IsolateServerGrpc(s, 'https://luci.com/client/bob')
+    s = isolate_storage.ServerRef('foobar', 'sha256-GCP')
+    return isolate_storage.IsolateServerGrpc(s)
 
   def testFetchHappySimple(self):
     """Fetch: if we get a few chunks with the right offset, everything works"""

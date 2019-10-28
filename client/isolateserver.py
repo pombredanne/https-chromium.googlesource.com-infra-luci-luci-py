@@ -1681,16 +1681,19 @@ def add_archive_options(parser):
 def add_isolate_server_options(parser):
   """Adds --isolate-server and --namespace options to parser."""
   parser.add_option(
-      '-I', '--isolate-server',
-      metavar='URL', default=os.environ.get('ISOLATE_SERVER', ''),
-      help='URL of the Isolate Server to use. Defaults to the environment '
-           'variable ISOLATE_SERVER if set. No need to specify https://, this '
-           'is assumed.')
+      '-I',
+      '--isolate-server',
+      metavar='URL',
+      default=os.environ.get('ISOLATE_SERVER', ''),
+      help='URL of the Isolate Server to use unless namespace is sha256-GCP. '
+      'In that case, it\'s the name of a GCP project. Defaults to the '
+      'environment variable ISOLATE_SERVER if set. For real isolate '
+      'server, no need to specify https://, this is assumed.')
   parser.add_option(
-      '--grpc-proxy', help='gRPC proxy by which to communicate to Isolate')
-  parser.add_option(
-      '--namespace', default='default-gzip',
-      help='The namespace to use on the Isolate Server, default: %default')
+      '--namespace',
+      default='default-gzip',
+      help='The namespace to use on the Isolate Server. When using sha256-GCP, '
+      '-I is the name of a GCP project. default: %default')
 
 
 def process_isolate_server_options(
@@ -1704,13 +1707,11 @@ def process_isolate_server_options(
       parser.error('--isolate-server is required.')
     return
 
-  if options.grpc_proxy:
-    isolate_storage.set_grpc_proxy(options.grpc_proxy)
-  else:
-    try:
+  try:
+    if options.namespace != 'sha256-GCP':
       options.isolate_server = net.fix_url(options.isolate_server)
-    except ValueError as e:
-      parser.error('--isolate-server %s' % e)
+  except ValueError as e:
+    parser.error('--isolate-server %s' % e)
   if set_exception_handler:
     on_error.report_on_exception_exit(options.isolate_server)
   try:

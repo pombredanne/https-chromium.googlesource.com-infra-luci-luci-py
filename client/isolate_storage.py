@@ -23,15 +23,15 @@ from utils import net
 import isolated_format
 
 try:
-  import grpc # for error codes
-  from utils import grpc_proxy
+  import grpc
   from proto import bytestream_pb2
   # If not present, grpc crashes later.
   import pyasn1_modules
 except ImportError as err:
   grpc = None
-  grpc_proxy = None
   bytestream_pb2 = None
+
+from utils import gcp_grpc
 
 
 # Chunk size to use when reading from network stream.
@@ -41,11 +41,6 @@ NET_IO_FILE_CHUNK = 16 * 1024
 # Read timeout in seconds for downloads from isolate storage. If there's no
 # response from the server within this timeout whole download will be aborted.
 DOWNLOAD_READ_TIMEOUT = 60
-
-
-# Stores the gRPC proxy address. Must be set if the storage API class is
-# IsolateServerGrpc (call 'set_grpc_proxy').
-_grpc_proxy = None
 
 
 class ServerRef(object):
@@ -61,9 +56,11 @@ class ServerRef(object):
         compression scheme used, e.g. namespace names that end with '-gzip'
         store compressed data.
     """
-    assert file_path.is_url(url) or not url, url
-    self._url = url.rstrip('/')
+    self._url = url
     self._namespace = namespace
+    if self.namespace != 'sha256-GCP':
+      assert file_path.is_url(url) or not url, url
+      self._url = self._url.rstrip('/')
     self._hash_algo = hashlib.sha1
     self._hash_algo_name = 'sha-1'
     if self.namespace.startswith('sha256-'):
@@ -158,15 +155,6 @@ class StorageApi(object):
     """ServerRef instance."""
     raise NotImplementedError()
 
-  @property
-  def internal_compression(self):
-    """True if this class doesn't require external compression.
-
-    If true, callers should not compress items, even if the namespace indicates
-    otherwise. Compression will be performed by the StorageApi class.
-    """
-    return False
-
   def fetch(self, digest, size, offset):
     """Fetches an object and yields its content.
 
@@ -244,8 +232,8 @@ def guard_memory_use(server, content, size):
   """Guards a server against using excessive memory while uploading.
 
   The server needs to contain a _memory_use int and a _lock mutex
-  (both IsolateServer and IsolateServerGrpc qualify); this function
-  then uses those values to track memory usage in a thread-safe way.
+  (both IsolateServer and RBECAS qualify); this function then uses those values
+  to track memory usage in a thread-safe way.
 
   If a request would cause the memory usage to exceed a safe maximum,
   this function sleeps in 0.1s increments until memory usage falls
@@ -558,29 +546,25 @@ class _IsolateServerGrpcPushState(object):
     pass
 
 
-class IsolateServerGrpc(StorageApi):
-  """StorageApi implementation that downloads and uploads to a gRPC service.
+class RBECAS(StorageApi):
+  """StorageApi implementation that downloads and uploads to a RBE CAS GCP
+  service.
 
   Limitations: does not pass on namespace to the server (uses it only for hash
   algo and compression), and only allows zero offsets while fetching.
   """
 
-  def __init__(self, server_ref, proxy):
-    super(IsolateServerGrpc, self).__init__()
-    logging.info(
-        'Using gRPC for Isolate with server %s, proxy %s',
-        server_ref.url, proxy)
+  def __init__(self, server_ref):
+    super(RBECAS, self).__init__()
+    logging.info('RBECAS(%s)', server_ref.url)
     self._server_ref = server_ref
     self._lock = threading.Lock()
     self._memory_use = 0
     self._num_pushes = 0
     self._already_exists = 0
-    self._proxy = grpc_proxy.Proxy(proxy, bytestream_pb2.ByteStreamStub)
-
-  @property
-  def internal_compression(self):
-    # gRPC natively compresses all messages before transmission.
-    return True
+    self._client = gcp_grpc.Client(
+        'https://remotebuildexecution.googleapis.com',
+        ('https://www.googleapis.com/auth/cloud-source-tools',))
 
   @property
   def server_ref(self):
@@ -593,10 +577,10 @@ class IsolateServerGrpc(StorageApi):
     request = bytestream_pb2.ReadRequest()
     if not size:
       size = -1
-    request.resource_name = '%s/blobs/%s/%d' % (
-        self._proxy.prefix, digest, size)
+    request.resource_name = '%s/blobs/%s/%d' % (self._client.prefix, digest,
+                                                size)
     try:
-      for response in self._proxy.get_stream('Read', request):
+      for response in self._client.get_stream('Read', request):
         yield response.data
     except grpc.RpcError as g:
       logging.error('gRPC error during fetch: re-throwing as IOError (%s)' % g)
@@ -628,7 +612,7 @@ class IsolateServerGrpc(StorageApi):
         request = bytestream_pb2.WriteRequest()
         u = uuid.uuid4()
         request.resource_name = '%s/uploads/%s/blobs/%s/%d' % (
-            self._proxy.prefix, u, item.digest, item.size)
+            self._client.prefix, u, item.digest, item.size)
         request.write_offset = 0
         for chunk in chunker():
           # Make sure we send at least one chunk for zero-length blobs
@@ -645,7 +629,7 @@ class IsolateServerGrpc(StorageApi):
 
       response = None
       try:
-        response = self._proxy.call_no_retries('Write', slicer())
+        response = self._client.call_no_retries('Write', slicer())
       except grpc.RpcError as r:
         if r.code() == grpc.StatusCode.ALREADY_EXISTS:
           # This is legit - we didn't check before we pushed so no problem if
@@ -689,13 +673,6 @@ class IsolateServerGrpc(StorageApi):
     return missing_items
 
 
-def set_grpc_proxy(proxy):
-  """Sets the StorageApi to use the specified proxy."""
-  global _grpc_proxy
-  assert _grpc_proxy is None
-  _grpc_proxy = proxy
-
-
 def get_storage_api(server_ref):
   """Returns an object that implements low-level StorageApi interface.
 
@@ -710,6 +687,8 @@ def get_storage_api(server_ref):
     Instance of StorageApi subclass.
   """
   assert isinstance(server_ref, ServerRef), repr(server_ref)
-  if _grpc_proxy is not None:
-    return IsolateServerGrpc(server_ref.url, _grpc_proxy)
+  if server_ref.namespace == 'sha256-GCP':
+    if not grpc:
+      raise ValueError('gRPC python package is not installed')
+    return RBECAS(server_ref.url)
   return IsolateServer(server_ref)
