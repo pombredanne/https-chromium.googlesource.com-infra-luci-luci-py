@@ -7,6 +7,7 @@
 import atexit
 import collections
 import hashlib
+import io
 import os
 import pkgutil
 import re
@@ -16,10 +17,6 @@ import threading
 import zipfile
 import zipimport
 
-if sys.version_info.major == 2:
-  import StringIO
-else:
-  import io as StringIO
 
 # Glob patterns for files to exclude from a package by default.
 EXCLUDE_LIST = (
@@ -176,7 +173,7 @@ class ZipPackage(object):
 
   def zip_into_buffer(self, compress=True):
     """Zips added files into in-memory zip file and returns it as str."""
-    stream = StringIO.StringIO()
+    stream = io.BytesIO()
     try:
       self._zip_into_stream(stream, compress)
       return stream.getvalue()
