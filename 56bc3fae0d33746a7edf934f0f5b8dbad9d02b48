@@ -16,6 +16,24 @@
       "revId": "56bc3fae0d33746a7edf934f0f5b8dbad9d02b48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "989bca0a_797ca043",
+        "filename": "client/isolate_format.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-28T07:58:55Z",
+      "side": 1,
+      "message": "made crrev.com/c/1880776",
+      "parentUuid": "bfc34daa_d1934364",
+      "revId": "56bc3fae0d33746a7edf934f0f5b8dbad9d02b48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
