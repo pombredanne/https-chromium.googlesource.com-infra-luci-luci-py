@@ -27,7 +27,7 @@ if sys.platform == 'win32':
   is_gce = lambda: gce.is_gce() # to reuse gce.is_gce mock, if any
 
 
-if sys.platform == 'linux2':
+if sys.platform.startswith('linux'):
   try:
     import android
   except OSError:
