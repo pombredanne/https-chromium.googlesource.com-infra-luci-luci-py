@@ -3,8 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-import cStringIO
 import hashlib
+import io
 import json
 import logging
 import optparse
@@ -218,7 +218,7 @@ class IsolateTest(IsolateBase):
   def test_variable_arg_fail(self):
     parser = optparse.OptionParser()
     isolate.add_isolate_options(parser)
-    self.mock(sys, 'stderr', cStringIO.StringIO())
+    self.mock(sys, 'stderr', io.StringIO())
     with self.assertRaises(SystemExit):
       parser.parse_args(['--config-variable', 'Foo'])
 
@@ -1388,7 +1388,7 @@ class IsolateCommand(IsolateBase):
     with open(join('foo'), 'wb') as f:
       f.write('fooo')
 
-    self.mock(sys, 'stdout', cStringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
     cmd = [
         '-i', isolate_file,
         '-s', isolated_file,
@@ -1475,7 +1475,7 @@ class IsolateCommand(IsolateBase):
         'version': 1,
       }, f)
 
-    self.mock(sys, 'stdout', cStringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
     cmd = [
       '--isolate-server', 'http://localhost:1',
       '--dump-json', 'json_output.json',
@@ -1511,7 +1511,7 @@ class IsolateCommand(IsolateBase):
     with open(isolate_file, 'wb') as f:
       f.write('# Foo\n{\n}')
 
-    self.mock(sys, 'stdout', cStringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
     cmd = ['-i', isolate_file, '-s', isolated_file]
     isolate.CMDcheck(optparse.OptionParser(), cmd)
 
@@ -1531,7 +1531,7 @@ class IsolateCommand(IsolateBase):
           '  ],'
           '}')
 
-    self.mock(sys, 'stdout', cStringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
     cmd = [
         '-i', isolate_file,
         '-s', isolated_file,
@@ -1618,7 +1618,7 @@ class IsolateCommand(IsolateBase):
     with open(os.path.join(self.cwd, 'foo'), 'wb') as f:
       f.write('yeah')
 
-    self.mock(sys, 'stdout', cStringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
     self.assertEqual(0, isolate.CMDcheck(optparse.OptionParser(), cmd))
 
     # Now add a new config variable.
