@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "03a0a673_276f25ba",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T09:03:51Z",
+      "side": 1,
+      "message": "request_uuid is id that client generates for a single request.\n\nThis will be used for the case when client does retry after they see some failure response from swarming server.",
+      "parentUuid": "aaf3bb42_5849b305",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
