@@ -824,6 +824,12 @@ message TaskRequest {
   // be dead and will forcibly abort the task as BOT_DIED. This is to
   // catch system wide issues like a BSOD.
   google.protobuf.Duration bot_ping_tolerance = 12;
+
+  // This is used to make new task request idempotent in best effort.
+  // If new request has request_uuid field, it checks memcache before scheduling
+  // actual task to check there is already the task triggered by same request
+  // previously.
+  string request_uuid = 13;
 }
 
 // PubSub is a Cloud Pub/Sub topic to send task updates to.
