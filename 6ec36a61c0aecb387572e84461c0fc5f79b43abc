@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8840d21e_03754adb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T02:33:27Z",
+      "side": 1,
+      "message": "I encountered This error often when running tests using nose2. I diagnosed that the function has been already mocked by other tests.",
+      "parentUuid": "41728043_7abf8330",
+      "revId": "6ec36a61c0aecb387572e84461c0fc5f79b43abc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44ec0bf5_aeb6a107",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth_test.py",
         "patchSetId": 16
