@@ -143,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "45437578_caa716cc",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T09:22:41Z",
+      "side": 1,
+      "message": "If we want to avoid such task duplication, we need to do db access in schedule_request as a transaction with check of request_uuid. But that may increase latency of task create request badly.\n\nI hope we don\u0027t need to guarantee such level of idempotency now.",
+      "parentUuid": "438e5c9b_3b19a0a5",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
