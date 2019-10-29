@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "72dae6a1_e422ab1c",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T02:39:46Z",
+      "side": 1,
+      "message": "Thanks, will change this.",
+      "parentUuid": "97df4bd0_f16bcba9",
+      "revId": "6ec36a61c0aecb387572e84461c0fc5f79b43abc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "41728043_7abf8330",
         "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
         "patchSetId": 16
@@ -77,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "9dcf7741_9cab7921",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T02:39:46Z",
+      "side": 1,
+      "message": "I haven\u0027t looked at this deeply. will check after I receive a Mac. (I only have linux, now)",
+      "parentUuid": "44ec0bf5_aeb6a107",
+      "range": {
+        "startLine": 203,
+        "startChar": 65,
+        "endLine": 203,
+        "endChar": 76
+      },
+      "revId": "6ec36a61c0aecb387572e84461c0fc5f79b43abc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c4bbb8e_41cea0a0",
         "filename": "client/tests/subprocess42_test.py",
         "patchSetId": 16
@@ -88,6 +130,24 @@
       "writtenOn": "2019-10-28T14:47:47Z",
       "side": 1,
       "message": "That\u0027s really weird, since the output is unbuffered.",
+      "revId": "6ec36a61c0aecb387572e84461c0fc5f79b43abc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "175e6cf4_f833817c",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T02:39:46Z",
+      "side": 1,
+      "message": "Probably, this is also related with mock or cache issue.",
+      "parentUuid": "6c4bbb8e_41cea0a0",
       "revId": "6ec36a61c0aecb387572e84461c0fc5f79b43abc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
