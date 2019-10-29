@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "438e5c9b_3b19a0a5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T09:04:24Z",
+      "side": 1,
+      "message": "Let\u0027t say the server received two same requests from a bot at the very same time.\nAnd after one created a request record but before creating a cache (around line 528), the second one could create a duplicated request because it doesn\u0027t find any caches.\nThat\u0027s the risk of the current implementation.\n\nIn typical relational DB like MySQL PostgreSQL, you can use unique constraint to avoid duplication. But I\u0027m not sure how to do it in NoSQL like Datastore.",
+      "parentUuid": "0cca1fa7_43ee61ca",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
