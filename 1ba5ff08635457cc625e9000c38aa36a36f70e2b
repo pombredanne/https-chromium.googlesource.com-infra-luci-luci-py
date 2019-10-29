@@ -161,6 +161,41 @@
     },
     {
       "key": {
+        "uuid": "055234c9_5d3a1d4d",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-29T13:02:19Z",
+      "side": 1,
+      "message": "It is possible:\n\nFirst, create a new root entity type TaskRequest:\n\nclass TaskRequest(ndb.Model):\n  \"\"\"Entity id is the request_uuid.\"\"\"\n  task_id \u003d ndb.StringProperty(indexed\u003dFalse)\n\nSecond, use TaskRequest.get_or_insert() to detect if the entity existed before.\n\nThat\u0027s still one more transaction in the hot path, so it\u0027s slow, but it\u0027s upgrading from \"best effort\" to \"consistent\".\nSee https://cloud.google.com/appengine/docs/standard/python/ndb/modelclass#Model_get_or_insert\n\nThat said, this function *does* use memcache under the hood, so ironically it\u0027d be faster in the retry path. :)",
+      "parentUuid": "45437578_caa716cc",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ccf05c_4bf611f4",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-29T13:02:19Z",
+      "side": 1,
+      "message": "Please validate that the UUID is in the form of a UUID.",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
@@ -172,6 +207,40 @@
       "writtenOn": "2019-10-29T08:28:16Z",
       "side": 1,
       "message": "Log something useful? like the request xxx has already been created... etc",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad58a8ba_be1fae33",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-29T13:02:19Z",
+      "side": 1,
+      "message": "When a retry is detected, you need to assert that it is exactly the same request. If not, you need to deny the request with a 400.",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aa30d4c_a85bf6e4",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-29T13:02:19Z",
+      "side": 1,
+      "message": "In cloud endpoints, you added it to NewTaskRequest but not to TaskRequest. I\u0027d recommend the same here. Since NewTaskRequest doesn\u0027t yet exist in the proto form, then you should simply remove this form. :)\n\nOn the other hand, if you see value in permitting the user to retrieve this back or to put this in BQ it\u0027s fine with me, but I think it\u0027s not worth it for now.",
       "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
