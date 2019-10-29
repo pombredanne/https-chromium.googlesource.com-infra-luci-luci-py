@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1436488_1c20425b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T22:24:31Z",
+      "side": 1,
+      "message": "reorder thist too?",
+      "range": {
+        "startLine": 541,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 40
+      },
+      "revId": "9995dfd28fc3773167daf13512f59f64c532a96e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7450d006_2cabf899",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T22:24:31Z",
+      "side": 1,
+      "message": "_enqueue_task_async_orig ?",
+      "range": {
+        "startLine": 95,
+        "startChar": 9,
+        "endLine": 95,
+        "endChar": 22
+      },
+      "revId": "9995dfd28fc3773167daf13512f59f64c532a96e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
