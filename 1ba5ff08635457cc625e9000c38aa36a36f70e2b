@@ -53,6 +53,42 @@
     },
     {
       "key": {
+        "uuid": "be148157_9e84bef0",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T08:39:47Z",
+      "side": 1,
+      "message": "We need to change client side too for this. And making this field mandatry sounds good idea if it is done eventually.",
+      "parentUuid": "f72d6f0d_ff5676d2",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cca1fa7_43ee61ca",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T08:39:47Z",
+      "side": 1,
+      "message": "\u003e Is there a way to enforce \"unique constraint\" to Datastore?\n\nI don\u0027t think so, we need to handle such constraint in application layer if necessary.\n\n\u003e Using memcache for \"lock\" may end up with unexpected cache inconsistent issues.\n\nWhat do you mean \"lock\"?",
+      "parentUuid": "d7fcc035_723b5ef6",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
