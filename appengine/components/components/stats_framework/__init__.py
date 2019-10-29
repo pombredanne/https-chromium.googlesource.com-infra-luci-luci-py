@@ -358,6 +358,8 @@ class StatisticsFramework(object):
     minute_bit = (1 << moment.minute)
     minute_bit_is_set = bool(hour.minutes_bitmap & minute_bit)
     if not minute_bit_is_set:
+      # TODO(maruel): Figure out a way for accumulate to require all the
+      # Minutes entities.
       hour.values.accumulate(minute_values)
       hour.minutes_bitmap |= minute_bit
       futures.append(hour.put_async(use_memcache=False))
@@ -371,6 +373,9 @@ class StatisticsFramework(object):
       hour_bit = (1 << moment.hour)
       hour_bit_is_set = bool(day.hours_bitmap & hour_bit)
       if not hour_bit_is_set:
+        # TODO(maruel): Figure out a way for accumulate to require all the
+        # Minutes entities. Sadly, this means 1440 Minutes entities to load at
+        # once, which is too high. As such, this would require sampling.
         day.values.accumulate(hour.values)
         day.hours_bitmap |= hour_bit
         futures.append(day.put_async(use_memcache=False))

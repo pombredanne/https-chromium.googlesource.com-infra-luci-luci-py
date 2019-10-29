@@ -2,8 +2,19 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""Json serializable properties."""
+"""Json serializable properties.
 
+- Sharding Entity group utility function to improve performance.
+- Query management functions.
+"""
+
+import array
+import hashlib
+import json
+import string
+import struct
+
+from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
 from google.appengine.api import datastore_errors
 
@@ -448,3 +459,85 @@ register_converter(
     include_subclasses=True,
     rich_to_simple=lambda prop, value: value.to_bytes(),
     simple_to_rich=lambda prop, value: prop._value_type.from_bytes(value))
+
+
+### XXX
+
+
+class GradientEncodedSortedVectorProperty(ndb.BlobProperty):
+  """Encodes a list of float as a compact gradient encoded vector.
+
+  The values are always sorted. It makes it compressible.
+
+  If as_32bits=True, the 64 bits float values are downcast to 32 bits floats for
+  the gradient encoding.
+  """
+
+  # Use of super on an old style class - pylint: disable=E1002
+  def __init__(self, as_32bits=True, **kargs):
+    self._as_32bits = as_32bits
+    super(GradientEncodedSortedVectorProperty, self).__init__(
+        indexed=False, **kargs)
+
+  def _validate(self, value):
+    if not isinstance(value, list):
+      raise TypeError('Property %s must be a list' % self._name)
+    if not all(isinstance(i, float) for i in value):
+      raise TypeError('Property %s must be a list of loat' % self._name)
+    return sorted(value)
+
+  def _to_base_type(self, value):
+    if self._as_32bits:
+      return _to_float_gradient_sorted_vector_as_blob(value)
+    else:
+      return _to_gradient_sorted_vector_as_blob(value)
+
+  def _from_base_type(self, value):
+    return _from_blob_gradient_encoded_vector_to_list(value, self._as_32bits)
+
+
+### Private stuff.
+
+
+def _to_gradient_sorted_vector_as_blob(items):
+  """Returns a gradient encoded vector."""
+  out = []
+  last = 0.
+  for i in items:
+    out.append(i - last)
+    last = i
+  # To be able to pack into float, it would have to normalize the errors. In
+  # practice the additional precision is highly compressible.
+  return array.array('d', out).tostring()
+
+
+def _to_32bits(double):
+  """Cuts a 64 bits double precision down to a 32 bits float."""
+  return struct.unpack('f', struct.pack('f', double))[0]
+
+
+def _to_float_gradient_sorted_vector_as_blob(items):
+  """Returns a gradient encoded vector.
+
+  The values are quantized down to 32 bits float for increased space saving.
+  """
+  out = []
+  last = 0.
+  for i in items:
+    diff = i - last
+    as_32bits = _to_32bits(diff)
+    out.append(as_32bits)
+    # Accumulate the error in last.
+    last = i + as_32bits - diff
+  return array.array('f', out).tostring()
+
+
+def _from_blob_gradient_encoded_vector_to_list(blob, as_32bits=False):
+  """Decodes a blob of gradient into a list of python float."""
+  a = array.array('f' if as_32bits else 'd').fromstring(blob)
+  total = 0.
+  out = []
+  for i in a.tolist():
+    total += i
+    out.append(total)
+  return out
