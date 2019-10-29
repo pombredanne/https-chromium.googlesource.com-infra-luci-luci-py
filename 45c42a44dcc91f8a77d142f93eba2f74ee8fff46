@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13b19878_573b3fbf",
+        "filename": "client/tests/isolate_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-29T13:37:29Z",
+      "side": 1,
+      "message": "The failure here is unexpected, not sure why.",
+      "revId": "45c42a44dcc91f8a77d142f93eba2f74ee8fff46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
