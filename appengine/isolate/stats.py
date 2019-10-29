@@ -29,8 +29,30 @@ from proto import isolated_pb2
 ### Models
 
 
+class SnapshotRequests(ndb.Model):
+  """Requests handling statistics per module."""
+  # Total number of requests to calculate QPS.
+  requests = ndb.IntegerProperty(default=0, indexed=False)
+  # Number of non-200 requests.
+  failures = ndb.IntegerProperty(default=0, indexed=False)
+
+  # TODO(maruel): Add api_mcycles, mcycles, latency and pending_time? This would
+  # duplicate the AppEngine dashboard.
+
+  def accumulate(self, rhs):
+    return stats_framework.accumulate(self, rhs)
+
+  def requests_as_text(self):
+    return '%s (%s failed)' % (utils.to_units(self.requests),
+                               utils.to_units(self.failures))
+
+
 class _Snapshot(ndb.Model):
-  """A snapshot of statistics, to be embedded in another entity."""
+  """A snapshot of statistics, to be embedded in another entity.
+
+  It contain details about frontend requests, plus general statistics for both
+  the frontend and backend.
+  """
   # Number of individual uploads and total amount of bytes. Same for downloads.
   uploads = ndb.IntegerProperty(default=0, indexed=False)
   uploads_bytes = ndb.IntegerProperty(default=0, indexed=False)
@@ -41,10 +63,16 @@ class _Snapshot(ndb.Model):
   contains_requests = ndb.IntegerProperty(default=0, indexed=False)
   contains_lookups = ndb.IntegerProperty(default=0, indexed=False)
 
-  # Total number of requests to calculate QPS
-  requests = ndb.IntegerProperty(default=0, indexed=False)
-  # Number of non-200 requests.
-  failures = ndb.IntegerProperty(default=0, indexed=False)
+  # Requests stats per module.
+  frontend = ndb.LocalStructuredProperty(SnapshotRequests)
+  backend = ndb.LocalStructuredProperty(SnapshotRequests)
+
+  def __init__(self, **kwargs):
+    # Warning: this works because Snapshot is itself embedded in a
+    # ndb.LocalStructuredProperty.
+    kwargs.setdefault('frontend', SnapshotRequests())
+    kwargs.setdefault('backend', SnapshotRequests())
+    super(Snapshot, self).__init__(**kwargs)
 
   def accumulate(self, rhs):
     return stats_framework.accumulate(self, rhs, [])
@@ -110,9 +138,16 @@ def _extract_snapshot_from_logs(start_time, end_time):
   total_lines = 0
   parse_errors = 0
   for entry in stats_logs.yield_entries(start_time, end_time):
-    values.requests += 1
+    # TODO(maruel): Filed bug to expose it formally. Fix this once fixed in the
+    # SDK.
+    # pylint: disable=W0212
+    module = entry.request._pb.module_id()
+    assert module in ('default', 'backend')
+    v = values.backend if module == 'backend' else values.frontend
+    v.requests += 1
     if entry.request.status >= 400:
-      values.failures += 1
+      v.failures += 1
+
     for l in entry.entries:
       if _parse_line(l, values):
         total_lines += 1

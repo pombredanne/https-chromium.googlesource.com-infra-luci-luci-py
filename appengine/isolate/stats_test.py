@@ -52,6 +52,12 @@ class Dupe(webapp2.RequestHandler):
     self.response.write('Yay')
 
 
+class Noop(stats.webapp2.RequestHandler):
+
+  def get(self):
+    self.response.write('Yay')
+
+
 def to_str(now, delta):
   """Converts a datetime to unicode."""
   now = now + datetime.timedelta(seconds=delta)
@@ -66,6 +72,11 @@ class StatsTest(test_case.TestCase):
         ('/return', Return),
         ('/lookup', Lookup),
         ('/dupe', Dupe),
+        ('/noop', Noop),
+        ('/generate_stats', stats.InternalStatsUpdateHandler),
+        ('/results/days', stats_gviz.StatsGvizDaysHandler),
+        ('/results/hours', stats_gviz.StatsGvizHoursHandler),
+        ('/results/minutes', stats_gviz.StatsGvizMinutesHandler),
     ]
     self.app = webtest.TestApp(
         webapp2.WSGIApplication(fake_routes, debug=True),
