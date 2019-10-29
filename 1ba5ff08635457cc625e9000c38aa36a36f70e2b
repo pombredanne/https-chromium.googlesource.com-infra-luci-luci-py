@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "f72d6f0d_ff5676d2",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T08:35:41Z",
+      "side": 1,
+      "message": "Shouldn\u0027t all requests have request_uuid? How are you going to generate request_uuid?",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
