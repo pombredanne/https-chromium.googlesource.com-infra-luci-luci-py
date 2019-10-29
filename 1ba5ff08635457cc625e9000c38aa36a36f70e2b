@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "aaf3bb42_5849b305",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-29T08:51:23Z",
+      "side": 1,
+      "message": "Please correct me if I\u0027m wrong. If the IDs are about requests, you can generate them on server sides. Or is it about requester IDs?",
+      "parentUuid": "be148157_9e84bef0",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbd906bd_6f5aa2db",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
