@@ -5,10 +5,10 @@
 
 from __future__ import print_function
 import datetime
+import io
 import json
 import logging
 import os
-import StringIO
 import sys
 import tempfile
 import threading
@@ -189,8 +189,8 @@ class Common(object):
   def setUp(self):
     self._tempdir = None
     self.mock(auth, 'ensure_logged_in', lambda _: None)
-    self.mock(sys, 'stdout', StringIO.StringIO())
-    self.mock(sys, 'stderr', StringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
+    self.mock(sys, 'stderr', io.StringIO())
     self.mock(logging_utils, 'prepare_logging', lambda *args: None)
     self.mock(logging_utils, 'set_console_level', lambda *args: None)
 
@@ -213,8 +213,8 @@ class Common(object):
     self.assertMultiLineEqual(err, sys.stderr.getvalue())
 
     # Flush their content by mocking them again.
-    self.mock(sys, 'stdout', StringIO.StringIO())
-    self.mock(sys, 'stderr', StringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
+    self.mock(sys, 'stderr', io.StringIO())
 
   def main_safe(self, args):
     """Bypasses swarming.main()'s exception handling.
@@ -1794,9 +1794,9 @@ class TestMain(NetTestCase):
     self._check_output('Fake output\n', '')
 
   def test_post(self):
-    out = StringIO.StringIO()
-    err = StringIO.StringIO()
-    self.mock(sys, 'stdin', StringIO.StringIO('{"a":"b"}'))
+    out = io.StringIO()
+    err = io.StringIO()
+    self.mock(sys, 'stdin', io.StringIO('{"a":"b"}'))
     self.mock(sys, 'stdout', out)
     self.mock(sys, 'stderr', err)
     self.expected_requests(
@@ -1814,9 +1814,9 @@ class TestMain(NetTestCase):
     self.assertEqual('', err.getvalue())
 
   def test_post_fail(self):
-    out = StringIO.StringIO()
-    err = StringIO.StringIO()
-    self.mock(sys, 'stdin', StringIO.StringIO('{"a":"b"}'))
+    out = io.StringIO()
+    err = io.StringIO()
+    self.mock(sys, 'stdin', io.StringIO('{"a":"b"}'))
     self.mock(sys, 'stdout', out)
     self.mock(sys, 'stderr', err)
     ret = self.main_safe(['post', '-S', 'http://localhost:1', 'tasks/new'])

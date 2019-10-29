@@ -3,11 +3,11 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-import StringIO
 import base64
 import contextlib
 import functools
 import hashlib
+import io
 import json
 import logging
 import os
@@ -962,7 +962,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
       store = isolateserver.get_storage(
           isolate_storage.ServerRef(server.url, 'default-store'))
 
-      self.mock(sys, 'stdout', StringIO.StringIO())
+      self.mock(sys, 'stdout', io.StringIO())
       data = run_isolated.TaskData(
           command=[],
           relative_cwd=None,
@@ -1330,7 +1330,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
       store = isolateserver.get_storage(
           isolate_storage.ServerRef(server.url, 'default-store'))
 
-      self.mock(sys, 'stdout', StringIO.StringIO())
+      self.mock(sys, 'stdout', io.StringIO())
       data = run_isolated.TaskData(
           command=command,
           relative_cwd=None,

@@ -9,7 +9,6 @@ import json
 import logging
 import io
 import os
-import StringIO
 import sys
 import tarfile
 import tempfile
@@ -53,8 +52,8 @@ class TestCase(net_utils.TestCase):
   def setUp(self):
     super(TestCase, self).setUp()
     self.mock(auth, 'ensure_logged_in', lambda _: None)
-    self.mock(sys, 'stdout', StringIO.StringIO())
-    self.mock(sys, 'stderr', StringIO.StringIO())
+    self.mock(sys, 'stdout', io.StringIO())
+    self.mock(sys, 'stderr', io.StringIO())
     self.old_cwd = os.getcwd()
 
   def tearDown(self):
@@ -83,8 +82,8 @@ class TestCase(net_utils.TestCase):
       self.assertEqual(expected_out, sys.stdout.getvalue())
     finally:
       # Prevent double-fail.
-      self.mock(sys, 'stdout', StringIO.StringIO())
-      self.mock(sys, 'stderr', StringIO.StringIO())
+      self.mock(sys, 'stdout', io.StringIO())
+      self.mock(sys, 'stderr', io.StringIO())
 
 
 class TestZipCompression(TestCase):
