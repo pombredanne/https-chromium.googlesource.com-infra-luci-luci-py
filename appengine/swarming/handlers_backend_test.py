@@ -223,9 +223,12 @@ class BackendTest(test_env_handlers.AppTestBase):
 
   def test_taskqueue_important_task_queues_rebuild_cache_fail(self):
     self.set_as_admin()
-    def rebuild_task_cache(_body):
-      return False
-    self.mock(task_queues, 'rebuild_task_cache', rebuild_task_cache)
+
+    @ndb.tasklet
+    def rebuild_task_cache_async(_body):
+      raise ndb.Return(False)
+
+    self.mock(task_queues, 'rebuild_task_cache_async', rebuild_task_cache_async)
     self.app.post(
         '/internal/taskqueue/important/task_queues/rebuild-cache',
         headers={'X-AppEngine-QueueName': 'rebuild-task-cache'}, status=429)

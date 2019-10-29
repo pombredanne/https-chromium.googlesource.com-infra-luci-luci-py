@@ -68,7 +68,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
   def _enqueue_task(self, url, queue_name, **kwargs):
     if queue_name == 'rebuild-task-cache':
       # Call directly into it.
-      self.assertEqual(True, task_queues.rebuild_task_cache(kwargs['payload']))
+      f = task_queues.rebuild_task_cache_async(kwargs['payload'])
+      self.assertEqual(True, f.get_result())
       return True
     if queue_name in ('cancel-children-tasks', 'pubsub'):
       return True

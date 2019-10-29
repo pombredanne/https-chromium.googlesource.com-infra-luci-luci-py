@@ -225,7 +225,7 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     # See more complex test below.
     pass
 
-  def test_rebuild_task_cache(self):
+  def test_rebuild_task_cache_async(self):
     # Assert that expiration works.
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(now)
@@ -265,7 +265,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
             }))
     task_queues.assert_task(request_1)
     self.assertEqual(1, len(payloads))
-    self.assertEqual(True, task_queues.rebuild_task_cache(payloads[-1]))
+    f = task_queues.rebuild_task_cache_async(payloads[-1])
+    self.assertEqual(True, f.get_result())
     self.assertEqual(3, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(1, task_queues.TaskDimensions.query().count())
     self.assertEqual(60, request_1.expiration_secs)
@@ -282,7 +283,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
             }))
     task_queues.assert_task(request_2)
     self.assertEqual(2, len(payloads))
-    self.assertEqual(True, task_queues.rebuild_task_cache(payloads[-1]))
+    f = task_queues.rebuild_task_cache_async(payloads[-1])
+    self.assertEqual(True, f.get_result())
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(2, task_queues.TaskDimensions.query().count())
     self.assertEqual(
@@ -296,7 +298,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     offset = (task_queues._EXTEND_VALIDITY + datetime.timedelta(
       seconds=request_1.expiration_secs)).total_seconds() + 1
     self.mock_now(now, offset)
-    self.assertEqual(True, task_queues.rebuild_task_cache(payloads[0]))
+    f = task_queues.rebuild_task_cache_async(payloads[0])
+    self.assertEqual(True, f.get_result())
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(2, task_queues.TaskDimensions.query().count())
     self.assertEqual(
@@ -307,7 +310,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
 
     # Re-running still do not delete TaskDimensions because they are kept until
     # _KEEP_DEAD.
-    self.assertEqual(True, task_queues.rebuild_task_cache(payloads[1]))
+    f = task_queues.rebuild_task_cache_async(payloads[1])
+    self.assertEqual(True, f.get_result())
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(2, task_queues.TaskDimensions.query().count())
     self.assertEqual([], task_queues.get_queues(bot_root_key))
@@ -320,12 +324,13 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
       ).total_seconds() + 1
     self.mock_now(now, offset)
     self.assertEqual([], task_queues.get_queues(bot_root_key))
-    self.assertEqual(True, task_queues.rebuild_task_cache(payloads[0]))
+    f = task_queues.rebuild_task_cache_async(payloads[0])
+    self.assertEqual(True, f.get_result())
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(1, task_queues.TaskDimensions.query().count())
     self.assertEqual([], task_queues.get_queues(bot_root_key))
 
-  def test_rebuild_task_cache_fail(self):
+  def test_rebuild_task_cache_async_fail(self):
     # pylint: disable=unused-argument
     def _enqueue_task(url, name, payload):
       # Enqueueing the task failed.
@@ -477,7 +482,7 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
 
   def test_assert_bot_then_task_with_id(self):
     # Assert a task that includes an 'id' dimension. No task queue is triggered
-    # in this case, rebuild_task_cache() is called inlined.
+    # in this case, rebuild_task_cache_async() is called inlined.
     self.assertEqual(0, _assert_bot())
     request = _gen_request(
         properties=_gen_properties(dimensions={u'id': [u'bot1']}))
