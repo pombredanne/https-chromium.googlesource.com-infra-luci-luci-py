@@ -16,6 +16,24 @@
       "revId": "747e351121278e0d274d573d57e1805a3df1bfa1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6d4a567_c53496e8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-29T08:59:45Z",
+      "side": 1,
+      "message": "I just use default\nhttps://github.com/GoogleCloudPlatform/datastore-ndb-python/blob/cf4cab3f1f69cd04e1a9229871be466b53729f3f/ndb/context.py#L840",
+      "parentUuid": "fba4d1eb_39457631",
+      "revId": "747e351121278e0d274d573d57e1805a3df1bfa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
