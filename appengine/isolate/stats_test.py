@@ -21,6 +21,7 @@ from test_support import stats_framework_logs_mock
 from test_support import test_case
 
 from proto import isolated_pb2
+import handlers_backend
 import stats
 
 
@@ -52,6 +53,12 @@ class Dupe(webapp2.RequestHandler):
     self.response.write('Yay')
 
 
+class Noop(webapp2.RequestHandler):
+
+  def get(self):
+    self.response.write('Yay')
+
+
 def to_str(now, delta):
   """Converts a datetime to unicode."""
   now = now + datetime.timedelta(seconds=delta)
@@ -66,6 +73,8 @@ class StatsTest(test_case.TestCase):
         ('/return', Return),
         ('/lookup', Lookup),
         ('/dupe', Dupe),
+        ('/noop', Noop),
+        ('/generate_stats', handlers_backend.CronStatsUpdateHandler),
     ]
     self.app = webtest.TestApp(
         webapp2.WSGIApplication(fake_routes, debug=True),
@@ -96,17 +105,23 @@ class StatsTest(test_case.TestCase):
     actual = stats_framework.get_stats(
         stats.STATS_HANDLER, 'minutes', self.now, 1, True)
     expected = [
-      {
-        'contains_lookups': 0,
-        'contains_requests': 0,
-        'downloads': 0,
-        'downloads_bytes': 0,
-        'failures': 0,
-        'key': '2010-01-02T03:04',
-        'requests': 1,
-        'uploads': 0,
-        'uploads_bytes': 0,
-      },
+        {
+            'backend': {
+                'failures': 0,
+                'requests': 0
+            },
+            'contains_lookups': 0,
+            'contains_requests': 0,
+            'downloads': 0,
+            'downloads_bytes': 0,
+            'frontend': {
+                'failures': 0,
+                'requests': 1
+            },
+            'key': '2010-01-02T03:04',
+            'uploads': 0,
+            'uploads_bytes': 0,
+        },
     ]
     expected[0].update(added_data)
     self.assertEqual(expected, actual)
@@ -145,14 +160,14 @@ class StatsTest(test_case.TestCase):
         key=stats.STATS_HANDLER.minute_key(self.now),
         created=self.now,
         values_compressed=stats._Snapshot(
-          uploads=1,
-          uploads_bytes=2,
-          downloads=3,
-          downloads_bytes=4,
-          contains_requests=5,
-          contains_lookups=6,
-          requests=7,
-          failures=8,
+            uploads=1,
+            uploads_bytes=2,
+            downloads=3,
+            downloads_bytes=4,
+            contains_requests=5,
+            contains_lookups=6,
+            frontend=stats.SnapshotRequests(requests=7, failures=8),
+            backend=stats.SnapshotRequests(requests=9, failures=10),
         ))
     p = isolated_pb2.StatsSnapshot()
     stats.snapshot_to_proto(s, p)
