@@ -18,6 +18,15 @@ from components import utils
 ## Private code.
 
 
+class _RequestLogPb(object):
+
+  def __init__(self):
+    self.module = 'default'
+
+  def module_id(self):
+    return self.module
+
+
 class _RequestLog(object):
   """Simple mock of logservice.RequestLog."""
   def __init__(self):
@@ -26,6 +35,7 @@ class _RequestLog(object):
     self.end_time = None
     self.app_logs = []
     self.finished = True
+    self._pb = _RequestLogPb()
 
 
 ## Public code.
