@@ -507,9 +507,15 @@ class SwarmingTasksService(remote.Service):
       return swarming_rpcs.TaskRequestMetadata(
           request=message_conversion.task_request_to_rpc(request_obj))
 
+    if request.request_uuid:
+      request_metadata = memcache.get(
+          request.request_uuid, namespace='task_new')
+      if request_metadata is not None:
+        return request_metadata
+
     try:
-      result_summary = task_scheduler.schedule_request(
-          request_obj, secret_bytes)
+      result_summary = task_scheduler.schedule_request(request_obj,
+                                                       secret_bytes)
     except (datastore_errors.BadValueError, TypeError, ValueError) as e:
       raise endpoints.BadRequestException(e.message)
 
@@ -519,10 +525,19 @@ class SwarmingTasksService(remote.Service):
       returned_result = message_conversion.task_result_to_rpc(
           result_summary, False)
 
-    return swarming_rpcs.TaskRequestMetadata(
+    request_metadata = swarming_rpcs.TaskRequestMetadata(
         request=message_conversion.task_request_to_rpc(request_obj),
         task_id=task_pack.pack_result_summary_key(result_summary.key),
         task_result=returned_result)
+
+    if request.request_uuid:
+      memcache.add(
+          request.request_uuid,
+          request_metadata,
+          time=60 * 10,
+          namespace='task_new')
+
+    return request_metadata
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
