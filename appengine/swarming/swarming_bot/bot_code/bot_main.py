@@ -22,11 +22,13 @@ Sections are:
 from __future__ import print_function
 
 import argparse
+import collections
 import contextlib
 import fnmatch
 import json
 import logging
 import os
+import psutil
 import shutil
 import sys
 import tempfile
@@ -263,7 +265,15 @@ def _call_hook(chained, botobj, name, *args, **kwargs):
       # Injected version has higher priority.
       hook = getattr(_EXTRA_BOT_CONFIG, name, None)
       if hook:
-        return hook(botobj, *args, **kwargs)
+        try:
+          return hook(botobj, *args, **kwargs)
+
+        except OSError:
+          process_count = collections.Counter(
+              [proc.name() for proc in psutil.process_iter()]
+          )
+          logging.info('Processes running: %s' % process_count)
+
       hook = getattr(_get_bot_config(), name, None)
       if hook:
         return hook(botobj, *args, **kwargs)
