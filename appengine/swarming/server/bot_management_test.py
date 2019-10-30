@@ -399,14 +399,9 @@ class BotManagementTest(test_case.TestCase):
         ndb.Key(bot_management.BotRoot, 'foo', bot_management.BotInfo, 'info'),
         bot_management.get_info_key('foo'))
 
-  def test_get_root_key(self):
-    self.assertEqual(
-        ndb.Key(bot_management.BotRoot, 'foo'),
-        bot_management.get_root_key('foo'))
-
   def test_get_settings_key(self):
-    expected = ndb.Key(
-        bot_management.BotRoot, 'foo', bot_management.BotSettings, 'settings')
+    expected = ndb.Key(bot_management.BotRoot, 'foo',
+                       bot_management.BotSettingsRoot, 1)
     self.assertEqual(expected, bot_management.get_settings_key('foo'))
 
   def test_has_capacity(self):
@@ -568,6 +563,32 @@ class BotManagementTest(test_case.TestCase):
       'id1:2010-01-02T03:04:15.000006Z', 'id1:2010-01-02T03:04:35.000006Z',
     ]
     self.assertEqual(expected, [r[0] for r in actual_rows])
+
+  def test_update_settings(self):
+    with self.assertRaises(ValueError):
+      bot_management.update_settings('id1', quarantined=True)
+    self.assertEqual(None, bot_management.get_settings_key('id1').get())
+
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
+    self.mock_now(now)
+    bot_management.bot_event(
+        event_type='bot_connected',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        dimensions={
+            'id': ['id1'],
+            'foo': ['bar']
+        },
+        state={'ram': 65},
+        version=hashlib.sha1().hexdigest(),
+        quarantined=False,
+        task_id=None,
+        task_name=None)
+
+    bot_management.update_settings('id1', quarantined=True)
+    expected = {}
+    self.assertEqual(expected,
+                     bot_management.get_settings_key('id1').get().to_dict())
 
 
 if __name__ == '__main__':

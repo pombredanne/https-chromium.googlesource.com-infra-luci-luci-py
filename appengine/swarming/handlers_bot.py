@@ -1079,6 +1079,9 @@ class BotTaskErrorHandler(_BotApiHandler):
     # Make sure bot self-reported ID matches the authentication token. Raises
     # auth.AuthorizationError if not.
     bot_auth.validate_bot_id_and_fetch_config(bot_id)
+    if bot_id:
+      # Automatically quarantine the bot.
+      bot_management.update_settings(bot_id, True)
 
     bot_management.bot_event(
         event_type='task_error', bot_id=bot_id,

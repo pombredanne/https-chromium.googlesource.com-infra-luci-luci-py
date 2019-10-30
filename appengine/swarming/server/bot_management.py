@@ -9,21 +9,45 @@
     |id=<bot_id>|
     +-----------+
         |
-        +------+--------------+
-        |      |              |
-        |      v              v
-        |  +-----------+  +-------+
-        |  |BotSettings|  |BotInfo|
-        |  |id=settings|  |id=info|
-        |  +-----------+  +-------+
+        +------+
+        |      |
+        |      v
+        |  +-------+
+        |  |BotInfo|
+        |  |id=info|
+        |  +-------+
         |
-        +------+-----------+----- ... ----+
+        +------+
+        |      |
+        |      v
+        |  +------------+
+        |  |BotEventRoot|
+        |  |id=1        |
+        |  +------------+
+        |      |
+        +      +-----------+----- ... ----+
         |      |           |              |
         |      v           v              v
         |  +--------+  +--------+     +--------+
         |  |BotEvent|  |BotEvent| ... |BotEvent|
         |  |id=fffff|  |if=ffffe| ... |id=00000|
         |  +--------+  +--------+     +--------+
+        |
+        +------+
+        |      |
+        |      v
+        |  +---------------+
+        |  |BotSettingsRoot|
+        |  |id=1           |
+        |  +---------------+
+        |      |
+        |      +-------------+--+--- ... ----+
+        |      |             |               |
+        |      v             v               v
+        |  +-----------+ +-----------+     +-----------+
+        |  |BotSettings| |BotSettings| ... |BotSettings|
+        |  |id=ffffffff| |id=fffffffe| ... |id=00000000|
+        |  +-----------+ +-----------+     +-----------+
         |
         +------+
         |      |
@@ -46,15 +70,17 @@
     |id=current          |
     +--------------------+
 
-- BotEvent is a monotonically inserted entity that is added for each event
-  happening for the bot.
 - BotInfo is a 'dump-only' entity used for UI, it permits quickly show the
-  state of every bots in an single query. It is basically a cache of the last
-  BotEvent and additionally updated on poll. It doesn't need to be updated in a
-  transaction.
-- BotSettings contains bot-specific settings. It must be updated in a
-  transaction and contains admin-provided settings, contrary to the other
-  entities which are generated from data provided by the bot itself.
+  state of every bots in an single query. It is basically a cache of the most
+  recent BotEvent and additionally updated on poll. It doesn't need to be
+  updated in a transaction since it can be recreated easily.
+- BotEvent is a monotonically inserted entity that is added for each event
+  happening for the bot, e.g. bot connected, bot rebooted, bot ran a task, etc.
+- BotSettings is a monotonically inserted entity that contains bot-specific
+  settings. It contains admin-provided settings, contrary to the other entities
+  which are generated from data provided by the bot itself. Low insertion rate.
+- Both BotRoot, BotSettingsRoot and BotEventRoot are trivial entities that are
+  used to version their child entities.
 """
 
 import datetime
@@ -81,10 +107,15 @@ _OLD_BOT_EVENTS_CUT_OFF = datetime.timedelta(days=366)
 
 ### Models.
 
-# There is one BotRoot entity per bot id. Multiple bots could run on a single
-# host, for example with multiple phones connected to a host. In this case, the
-# id is specific to each device acting as a bot.
-BotRoot = datastore_utils.get_versioned_root_model('BotRoot')
+
+class BotRoot(ndb.Model):
+  """BotRoot is the root of all the entities relating to a single bot.
+
+  There is one BotRoot entity per bot id. Multiple Swarming bots can run on a
+  single host, for example with multiple phones connected to a host. In this
+  case, the id is specific to each device acting as a bot. This entity is not
+  meant to be saved in the DB.
+  """
 
 
 class _BotCommon(ndb.Model):
@@ -221,7 +252,8 @@ class BotInfo(_BotCommon):
   Parent is BotRoot. Key id is 'info'.
 
   This entity is a cache of the last BotEvent and is additionally updated on
-  poll, which does not create a BotEvent.
+  poll, which does not create a BotEvent. It is not necessarily updated in a
+  transaction.
   """
   # One of:
   NOT_IN_MAINTENANCE = 1<<9 # 512
@@ -287,6 +319,10 @@ class BotInfo(_BotCommon):
     if not self.task_id:
       self.task_name = None
     self.composite = self._calc_composite()
+
+
+class BotEventRoot(datastore_utils.Root):
+  pass
 
 
 class BotEvent(_BotCommon):
@@ -390,16 +426,27 @@ class BotEvent(_BotCommon):
       out.event_msg = self.message
 
 
-class BotSettings(ndb.Model):
+class BotSettingsRoot(datastore_utils.Root):
+  """Root of BotSettings instances. Also a copy of the most recent settings.
+
+  It's used to version BotSettings and as a coherent cache of the currently
+  enforce settings to improve performance.
+  """
+
+
+class BotSettings(ndb.Model, _BotSettingsCommon):
   """Contains all settings that are set by the administrator on the server.
 
-  Parent is BotRoot. Key id is 'settings'.
+  Parent is BotSettingsRoot. Key id is monotonically decreasing with
+  datastore_utils.store_new_version().
 
-  This entity must always be updated in a transaction.
+  This entity is created when its admin controlled settings change.
   """
+  ts = ndb.DateTimeProperty(auto_now=True, indexed=False)
+
   # If set to True, no task is handed out to this bot due to the bot being in a
   # broken situation.
-  quarantined = ndb.BooleanProperty()
+  quarantined = ndb.BooleanProperty(indexed=False)
 
 
 class DimensionValues(ndb.Model):
@@ -434,9 +481,21 @@ def get_root_key(bot_id):
   return ndb.Key(BotRoot, bot_id)
 
 
+def _get_settings_root_key(bot_id):
+  """Returns the BotSettingsRoot ndb.Key for a known bot.
+
+  BotSettingsRoot contains the same data than the most recent BotSettings
+  entity.
+  """
+  return ndb.Key(BotSettingsRoot, 1, parent=_get_root_key(bot_id))
+
+
+### Public APIs.
+
+
 def get_info_key(bot_id):
   """Returns the BotInfo ndb.Key for a known bot."""
-  return ndb.Key(BotInfo, 'info', parent=get_root_key(bot_id))
+  return ndb.Key(BotInfo, 'info', parent=_get_root_key(bot_id))
 
 
 def get_events_query(bot_id, order):
@@ -592,7 +651,7 @@ def bot_event(
       return
 
     event = BotEvent(
-        parent=get_root_key(bot_id),
+        parent=_get_root_key(bot_id),
         event_type=event_type,
         external_ip=external_ip,
         authenticated_as=authenticated_as,
@@ -623,6 +682,25 @@ def bot_event(
       # it's probably broken.
       if m.cas(key, data, time=3600, namespace='BotEvents'):
         break
+
+
+def update_settings(bot_id, **kwargs):
+  """Update BotSettings for the bot."""
+  info_key = get_info_key(bot_id)
+  settings_root_key = _get_settings_root_key(bot_id)
+
+  # Ensures the bot is known first.
+  if not info_key.get():
+    raise ValueError('Unknown bot')
+
+  def run():
+    settings = settings_key.get() or BotSettings(key=settings_key)
+    settings.populate(**kwargs)
+    settings.put()
+
+  return datastore_utils.store_new_version(bot_settings, BotSettingsRoot,
+                                           [bot_settings_root])
+  return datastore_utils.transaction(run)
 
 
 def has_capacity(dimensions):
