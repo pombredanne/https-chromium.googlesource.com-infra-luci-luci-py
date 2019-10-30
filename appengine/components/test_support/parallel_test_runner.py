@@ -7,6 +7,8 @@ import argparse
 import logging
 import os
 import sys
+import threading
+import traceback
 import unittest
 
 import six
@@ -18,9 +20,18 @@ PLUGINS_DIR = os.path.join(THIS_DIR, 'nose2_plugins')
 CLIENT_THIRD_PARTY_DIR = os.path.join(LUCI_DIR, 'client', 'third_party')
 
 
+def show_all_stacktraces():
+  """This is used to show where the threads are stucked."""
+  frames = sys._current_frames()
+  for th in threading.enumerate():
+    traceback.print_stack(frames[th.ident], limit=None)
+  os._exit(1)
+
+
 def run_tests(python3=False):
   """Discover unittests and run them using nose2"""
   hook_args(sys.argv)
+  args, sys.argv = get_timeout(sys.argv)
 
   plugins = []
   if python3:
@@ -33,7 +44,17 @@ def run_tests(python3=False):
 
   # add nose2 plugin dir to path
   sys.path.insert(0, PLUGINS_DIR)
+
+  timer = threading.Timer(args.timeout, show_all_stacktraces)
+  timer.start()
   discover(plugins=plugins)
+  timer.cancel()
+
+
+def get_timeout(argv):
+  parser = argparse.ArgumentParser(add_help=False)
+  parser.add_argument('--timeout', type=int, default=600)
+  return parser.parse_known_args(argv)
 
 
 def hook_args(argv):
