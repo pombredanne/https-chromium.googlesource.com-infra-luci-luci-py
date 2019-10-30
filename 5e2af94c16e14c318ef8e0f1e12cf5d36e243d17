@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62f44e0a_ac78c5ea",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T20:14:16Z",
+      "side": 1,
+      "message": "Why are you changing hidpi? Only xcode_version was a problem AFAIK.",
+      "revId": "5e2af94c16e14c318ef8e0f1e12cf5d36e243d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
