@@ -507,9 +507,31 @@ class SwarmingTasksService(remote.Service):
       return swarming_rpcs.TaskRequestMetadata(
           request=message_conversion.task_request_to_rpc(request_obj))
 
+    if request.request_uuid and not re.match(
+        r'^[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-'
+        '[\da-fA-F]{12}$', request.request_uuid):
+      raise endpoints.BadRequestException(
+          'invalid uuid is given to request_uuid: %s' % request.request_uuid)
+
+    task_request = message_conversion.task_request_to_rpc(request_obj)
+
+    if request.request_uuid:
+      # This check is for idempotency when creating new tasks.
+      request_metadata = memcache.get(
+          request.request_uuid, namespace='task_new')
+      if request_metadata is not None:
+        if request_metadata.request != task_request:
+          raise endpoints.BadRequestException(
+              'request with uuid %s does not have the same request sent '
+              'previously' % request.request_uuid)
+
+        logging.info('request with uuid=%s is already created',
+                     request.request_uuid)
+        return request_metadata
+
     try:
-      result_summary = task_scheduler.schedule_request(
-          request_obj, secret_bytes)
+      result_summary = task_scheduler.schedule_request(request_obj,
+                                                       secret_bytes)
     except (datastore_errors.BadValueError, TypeError, ValueError) as e:
       raise endpoints.BadRequestException(e.message)
 
@@ -519,10 +541,19 @@ class SwarmingTasksService(remote.Service):
       returned_result = message_conversion.task_result_to_rpc(
           result_summary, False)
 
-    return swarming_rpcs.TaskRequestMetadata(
-        request=message_conversion.task_request_to_rpc(request_obj),
+    request_metadata = swarming_rpcs.TaskRequestMetadata(
+        request=task_request,
         task_id=task_pack.pack_result_summary_key(result_summary.key),
         task_result=returned_result)
+
+    if request.request_uuid:
+      memcache.add(
+          request.request_uuid,
+          request_metadata,
+          time=60 * 10,
+          namespace='task_new')
+
+    return request_metadata
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
