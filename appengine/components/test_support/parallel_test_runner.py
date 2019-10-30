@@ -7,6 +7,8 @@ import argparse
 import logging
 import os
 import sys
+import threading
+import traceback
 import unittest
 
 import six
@@ -16,6 +18,14 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 LUCI_DIR = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
 PLUGINS_DIR = os.path.join(THIS_DIR, 'nose2_plugins')
 CLIENT_THIRD_PARTY_DIR = os.path.join(LUCI_DIR, 'client', 'third_party')
+
+
+def show_all_stacktraces():
+  """This is used to show where the threads are stucked."""
+  frames = sys._current_frames()
+  for th in threading.enumerate():
+    traceback.print_stack(frames[th.ident], limit=None)
+  os._exit(1)
 
 
 def run_tests(python3=False):
@@ -33,7 +43,16 @@ def run_tests(python3=False):
 
   # add nose2 plugin dir to path
   sys.path.insert(0, PLUGINS_DIR)
+
+  if sys.platform == 'Darwin':
+    # TODO(crbug.com/1019105): remove this.
+    timer = threading.Timer(30, show_all_stacktraces)
+    timer.start()
+
   discover(plugins=plugins)
+
+  if sys.platform == 'Darwin':
+    timer.cancel()
 
 
 def hook_args(argv):
