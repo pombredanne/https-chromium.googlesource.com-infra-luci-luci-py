@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec49ffc6_647bebca",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T13:26:52Z",
+      "side": 1,
+      "message": "I recommend not returning user data here.",
+      "range": {
+        "startLine": 515,
+        "startChar": 48,
+        "endLine": 515,
+        "endChar": 76
+      },
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae0c03bf_2724348c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T13:26:52Z",
+      "side": 1,
+      "message": "Optional nit: While it may not look like, I tried to keep as little logic in this file and push the logic into the files in server/*.py as much as possible. That\u0027s adding a fair amount of logic.\n\nThat said, I\u0027m fine with committing this here for now and eventually look at refactoring later. It\u0027s not a big deal and getting this in ASAP is more important.",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee65fde3_8fa0867f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T13:26:52Z",
+      "side": 1,
+      "message": "I\u0027d prefer something like \"the same request_uuid value was reused for different task requests\"",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b07f55b9_d05d4c78",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T13:26:52Z",
+      "side": 1,
+      "message": "\u0027Reusing task %s with uuid %s\u0027, task_id_orig, request.request_uuid)",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a234720_15e571b9",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T13:26:52Z",
+      "side": 1,
+      "message": "There\u0027s a problem at doing it here, as discussed before, run_parent() may have failed while https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?l\u003d1190 succeeded.\n\nThis calls to move all the changes into schedule_request.py instead of here.\n\nThat said, this can be committed here, then moved in a follow up. This is also relatively safe.",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e3ea27_afbc82cd",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T13:26:52Z",
+      "side": 1,
+      "message": "I\u0027d say longer, like 60*60. There\u0027s not much cost in keeping more.",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
