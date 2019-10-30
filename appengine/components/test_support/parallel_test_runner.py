@@ -22,7 +22,7 @@ def run_tests(python3=False):
   """Discover unittests and run them using nose2"""
   hook_args(sys.argv)
 
-  plugins = []
+  plugins = ['timer']
   if python3:
     plugins.append('py3filter')
 
