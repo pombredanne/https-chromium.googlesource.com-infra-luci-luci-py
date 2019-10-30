@@ -22,9 +22,13 @@ def run_tests(python3=False):
   """Discover unittests and run them using nose2"""
   hook_args(sys.argv)
 
-  plugins = []
+  plugins = ['timer']
   if python3:
     plugins.append('py3filter')
+
+  if sys.platform == 'darwin':
+    # TODO(crbug.com/1019105): remove this.
+    plugins.append('timer')
 
   # fix_encoding
   sys.path.insert(0, CLIENT_THIRD_PARTY_DIR)
