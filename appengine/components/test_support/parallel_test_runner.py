@@ -3,10 +3,14 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from __future__ import print_function
+
 import argparse
 import logging
 import os
 import sys
+import threading
+import traceback
 import unittest
 
 import six
@@ -16,6 +20,21 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 LUCI_DIR = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
 PLUGINS_DIR = os.path.join(THIS_DIR, 'nose2_plugins')
 CLIENT_THIRD_PARTY_DIR = os.path.join(LUCI_DIR, 'client', 'third_party')
+
+
+def show_all_stacktraces():
+  """This is used to show where the threads are stucked."""
+  frames = sys._current_frames()
+  for th in threading.enumerate():
+    print('Thread:%s' % th.name, file=sys.stderr)
+    if th.ident is None:
+      print('not started, skipped', file=sys.stderr)
+      continue
+    traceback.print_stack(frames[th.ident], limit=None)
+
+  sys.stderr.flush()
+  # os._exit is necessary to exit whole process.
+  os._exit(1)
 
 
 def run_tests(python3=False):
@@ -33,7 +52,16 @@ def run_tests(python3=False):
 
   # add nose2 plugin dir to path
   sys.path.insert(0, PLUGINS_DIR)
+
+  if sys.platform == 'darwin':
+    # TODO(crbug.com/1019105): remove this.
+    timer = threading.Timer(30, show_all_stacktraces)
+    timer.start()
+
   discover(plugins=plugins)
+
+  if sys.platform == 'darwin':
+    timer.cancel()
 
 
 def hook_args(argv):
