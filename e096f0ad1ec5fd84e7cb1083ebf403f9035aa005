@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "195d9ea0_a0528a26",
+        "filename": "appengine/components/test_support/nose2_plugins/timer.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T12:35:52Z",
+      "side": 1,
+      "message": "Per style, you should import modules, not directly symbols.",
+      "revId": "e096f0ad1ec5fd84e7cb1083ebf403f9035aa005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e29f926e_f70dc704",
+        "filename": "appengine/components/test_support/nose2_plugins/timer.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T12:35:52Z",
+      "side": 1,
+      "message": "\"\"\"Prints to stderr the stack of every threads.\"\"\"\n\nThe initial summary should be what the function does. The why can be done after the initial summary in a separate sentence.",
+      "revId": "e096f0ad1ec5fd84e7cb1083ebf403f9035aa005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc29961_05ba2b02",
+        "filename": "appengine/components/test_support/nose2_plugins/timer.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T12:35:52Z",
+      "side": 1,
+      "message": "Then the function is misnamed, since it doesn\u0027t only show the stack, it also quits. Either rename the function or split it in two functions.",
+      "revId": "e096f0ad1ec5fd84e7cb1083ebf403f9035aa005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dafdb572_8fb5bd30",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T12:35:52Z",
+      "side": 1,
+      "message": "Do we need to remove this? I mean it\u0027s not bad to keep for ever.",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "e096f0ad1ec5fd84e7cb1083ebf403f9035aa005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
