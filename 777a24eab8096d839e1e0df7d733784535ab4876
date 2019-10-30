@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb44369f_029558c0",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-10-30T08:53:54Z",
+      "side": 1,
+      "message": "maybe printing th.name might be helpful for you to understand the dump?\ne.g.\nimport os\nimport sys\nimport threading\nimport traceback\nimport time\n\ndef show_all_stacktrace():\n  frames \u003d sys._current_frames()\n  for th in threading.enumerate():\n    print(\u0027Thread:%s\u0027 % th.name)\n    traceback.print_stack(frames[th.ident], limit\u003dNone)\n  os._exit(1)\n\ntimer \u003d threading.Timer(1, show_all_stacktrace)\ntimer.start()\ntime.sleep(5)\n\nand, you can get:\n\nThread:MainThread\n  File \"foo.py\", line 16, in \u003cmodule\u003e\n    time.sleep(5)\nThread:Thread-1\n  File \"/usr/lib/python2.7/threading.py\", line 774, in __bootstrap\n    self.__bootstrap_inner()\n  File \"/usr/lib/python2.7/threading.py\", line 801, in __bootstrap_inner\n    self.run()\n  File \"/usr/lib/python2.7/threading.py\", line 1073, in run\n    self.function(*self.args, **self.kwargs)\n  File \"foo.py\", line 11, in show_all_stacktrace\n    traceback.print_stack(frames[th.ident], limit\u003dNone)",
+      "range": {
+        "startLine": 26,
+        "startChar": 33,
+        "endLine": 26,
+        "endChar": 34
+      },
+      "revId": "777a24eab8096d839e1e0df7d733784535ab4876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252f8133_25e2064c",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-10-30T08:53:54Z",
+      "side": 1,
+      "message": "Are you sure all threads should be started?\nOr, th.ident can be None?\nhttps://docs.python.org/2/library/threading.html#threading.Thread.ident",
+      "range": {
+        "startLine": 27,
+        "startChar": 33,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "777a24eab8096d839e1e0df7d733784535ab4876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "754ec22e_f176798a",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2019-10-30T08:53:54Z",
+      "side": 1,
+      "message": "Just curious why you use os._exit(1) instead of sys.exit(1)?",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 13
+      },
+      "revId": "777a24eab8096d839e1e0df7d733784535ab4876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
