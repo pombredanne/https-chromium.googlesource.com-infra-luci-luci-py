@@ -179,6 +179,42 @@
     },
     {
       "key": {
+        "uuid": "23a48c05_154a149b",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-30T05:47:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "03a0a673_276f25ba",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6533613f_0b918027",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-30T05:47:16Z",
+      "side": 1,
+      "message": "I understand this is a design choice. should leave the comment after finishing the implementation.\n\n\u003e get_or_insert\n\nget_or_insert sounds good to me. but not sure how much cost it will be adding.\nBut assuming that there are not many duplicated task new requests, it won\u0027t be able to take advantage from it.\n\n---\nAnother idea (complicated, though)\npessimistic lock using memcache, but no extra DB read.\n\n\nlock \u003d memcache.get(uuid, namespace\u003d\u0027task_new_lock\u0027)\nwhile lock:\n  cache \u003d memcache.get(uuid, namespace\u003d\u0027task_new\u0027)\n  if cache:\n    # validate and return the cache\n  # wait\n\n# add lock\nmemcache.add(uuid, namespace\u003d\u0027task_new_lock\u0027)\n\n# if the process can get lock, it will proceed task creation\ntask_summary \u003d task_scheduler.schedule_request(...)\nrequest_metadata \u003d ...\n\n# save task_summary to memcache and remove lock\nmemcache.add(uuid, request_metadata, namespace\u003d\u0027task_new\u0027) \nmemcache.delete(uuid, namespace\u003d\u0027task_new_lock\u0027)\n\n\nyou could fail the request if the lock exists instead of waiting for the complete.",
+      "parentUuid": "055234c9_5d3a1d4d",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25ccf05c_4bf611f4",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
