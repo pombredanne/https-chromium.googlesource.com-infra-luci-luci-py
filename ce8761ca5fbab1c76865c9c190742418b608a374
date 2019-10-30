@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89ac05da_afc5e55d",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-30T14:15:28Z",
+      "side": 1,
+      "message": "Then I recommend a separate with mock.patch() block.",
+      "revId": "ce8761ca5fbab1c76865c9c190742418b608a374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
