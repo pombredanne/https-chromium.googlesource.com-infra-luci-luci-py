@@ -193,6 +193,8 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
   result_summary_key = task_pack.request_key_to_result_summary_key(request.key)
   bot_id = bot_dimensions[u'id'][0]
 
+  # Mark it as unavailable right away instead of after the transtaction.
+  task_to_run.set_lookup_cache(to_run_key, task_to_run.REAPING)
   now = utils.utcnow()
   # Log before the task id in case the function fails in a bad state where the
   # DB TX ran but the reply never comes to the bot. This is the worst case as
@@ -281,10 +283,16 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
     # and the index becomes stale, it means the DB is *already* not in good
     # shape, so it is preferable to not put more stress on it, and skipping a
     # few tasks for 15s may even actively help the DB to stabilize.
+    task_to_run.set_lookup_cache(to_run_key, task_to_run.REAPING_FAILED)
     logging.info('CommitError; reaping failed')
     # The bot will reap the next available task in case of failure, no big deal.
     run_result = None
     secret_bytes = None
+    return None
+  if run_result:
+    task_to_run.set_lookup_cache(to_run_key, task_to_run.REAPED)
+  else:
+    task_to_run.set_lookup_cache(to_run_key, task_to_run.REAPING_FAILED)
   return run_result, secret_bytes
 
 

@@ -50,6 +50,10 @@ from server import task_request
 ### Models.
 
 
+# States in memcache negative cache.
+FREE, REAPING, REAPING_FAILED, REAPED = range(4)
+
+
 class TaskToRun(ndb.Model):
   """Defines a TaskRequest ready to be scheduled on a bot.
 
@@ -243,7 +247,9 @@ def _memcache_to_run_key(to_run_key):
 @ndb.tasklet
 def _lookup_cache_is_taken_async(to_run_key):
   """Queries the quick lookup cache to reduce DB operations."""
+  assert not ndb.in_transaction()
   key = _memcache_to_run_key(to_run_key)
+  # FREE==0 so bool(FREE) == bool(None).
   neg = yield ndb.get_context().memcache_get(key, namespace='task_to_run')
   raise ndb.Return(bool(neg))
 
@@ -518,7 +524,7 @@ def match_dimensions(request_dimensions, bot_dimensions):
   return True
 
 
-def set_lookup_cache(to_run_key, is_available_to_schedule):
+def set_lookup_cache(to_run_key, new_state):
   """Updates the quick lookup cache to mark an item as available or not.
 
   This cache is a blacklist of items that are about to be reaped or are already
@@ -544,14 +550,25 @@ def set_lookup_cache(to_run_key, is_available_to_schedule):
   # server with unneeded keys.
   cache_lifetime = 15
 
-  key = _memcache_to_run_key(to_run_key)
-  if is_available_to_schedule:
-    # The item is now available, so remove it from memcache.
-    memcache.delete(key, namespace='task_to_run')
-    return True
+  assert new_state in (FREE, REAPING, REAPING_FAILED, REAPED), new_state
 
-  # add() returns True if the entry was added, False otherwise. That's perfect.
-  return memcache.add(key, True, time=cache_lifetime, namespace='task_to_run')
+  # Set the expiration time for items in the negative cache as 2 minutes. This
+  # copes with significant index inconsistency but do not clog the memcache
+  # server with unneeded keys.
+  key = _memcache_to_run_key(to_run_key)
+  if new_state == FREE:
+    # The item is now available, so remove it from memcache. It's equivalent to
+    # FREE.
+    memcache.delete(key, namespace='task_to_run')
+  elif new_state == REAPING_FAILED:
+    # Only delete it if it was not overriden. At worst, another bot will try to
+    # get it.
+    # TODO(maruel): Use a CAS instead.
+    if memcache.get(key, namespace='task_to_run') == REAPING:
+      memcache.delete(key, namespace='task_to_run')
+  else:
+    cache_lifetime = 10 if new_state == REAPING else 120
+    memcache.set(key, new_state, time=cache_lifetime, namespace='task_to_run')
 
 
 def yield_next_available_task_to_dispatch(bot_dimensions):
