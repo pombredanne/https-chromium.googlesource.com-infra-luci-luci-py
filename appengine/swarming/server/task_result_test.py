@@ -711,7 +711,8 @@ class TaskResultApiTest(TestCase):
     run_result.dead_after_ts = None
     run_result.put()
 
-    props_h = '1cae9073cfc09142530e40b9e251b378cbd1b1309bb3cd2f51c36e1d488e1bfa'
+    # This value must be updated every time the schema changes.
+    props_h = '0d89bb94adedf0db5d52cc4266af8de744cd94a88406469ecff989ca28441297'
     expected = swarming_pb2.TaskResult(
         request=swarming_pb2.TaskRequest(
             task_slices=[

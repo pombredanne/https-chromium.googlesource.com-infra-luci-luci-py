@@ -772,6 +772,10 @@ class TaskProperties(ndb.Model):
   # Task process containment. Highly OS specific.
   containment = ndb.LocalStructuredProperty(Containment)
 
+  # If set, the task will be retried as if it had been failed with an
+  # internal_failure.
+  retry_on_exit_code = ndb.IntegerProperty(indexed=False)
+
   @property
   def pool(self):
     """Returns the pool that this TaskProperties has in dimensions, or None if

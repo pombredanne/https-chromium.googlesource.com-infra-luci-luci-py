@@ -469,47 +469,54 @@ class TaskRequestApiTest(TestCase):
     # Needed for properties_hash() call.
     sb.put()
     expected_properties = {
-      'caches': [],
-      'cipd_input': {
-        'client_package': {
-          'package_name': u'infra/tools/cipd/${platform}',
-          'path': None,
-          'version': u'git_revision:deadbeef',
+        'caches': [],
+        'cipd_input': {
+            'client_package': {
+                'package_name': u'infra/tools/cipd/${platform}',
+                'path': None,
+                'version': u'git_revision:deadbeef',
+            },
+            'packages': [{
+                'package_name': u'rm',
+                'path': u'bin',
+                'version': u'git_revision:deadbeef',
+            }],
+            'server':
+                u'https://chrome-infra-packages.appspot.com'
         },
-        'packages': [{
-          'package_name': u'rm',
-          'path': u'bin',
-          'version': u'git_revision:deadbeef',
-        }],
-        'server': u'https://chrome-infra-packages.appspot.com'
-      },
-      'command': [u'command1', u'arg1'],
-      'containment': {
-        u'lower_priority': False,
-        u'containment_type': None,
-        u'limit_processes': None,
-        u'limit_total_committed_memory': None,
-      },
-      'relative_cwd': u'deeep',
-      'dimensions': {
-        u'OS': [u'Windows-3.1.1'],
-        u'hostname': [u'localhost'],
-        u'pool': [u'default'],
-      },
-      'env': {u'foo': u'bar', u'joe': u'2'},
-      'env_prefixes': {u'PATH': [u'local/path']},
-      'extra_args': [],
-      'execution_timeout_secs': 30,
-      'grace_period_secs': 30,
-      'has_secret_bytes': True,
-      'idempotent': True,
-      'inputs_ref': {
-        'isolated': None,
-        'isolatedserver': u'https://isolateserver.appspot.com',
-        'namespace': u'default-gzip',
-      },
-      'io_timeout_secs': None,
-      'outputs': [],
+        'command': [u'command1', u'arg1'],
+        'containment': {
+            'lower_priority': False,
+            'containment_type': None,
+            'limit_processes': None,
+            'limit_total_committed_memory': None,
+        },
+        'relative_cwd': u'deeep',
+        'dimensions': {
+            u'OS': [u'Windows-3.1.1'],
+            u'hostname': [u'localhost'],
+            u'pool': [u'default'],
+        },
+        'env': {
+            u'foo': u'bar',
+            u'joe': u'2'
+        },
+        'env_prefixes': {
+            u'PATH': [u'local/path']
+        },
+        'extra_args': [],
+        'execution_timeout_secs': 30,
+        'grace_period_secs': 30,
+        'has_secret_bytes': True,
+        'idempotent': True,
+        'inputs_ref': {
+            'isolated': None,
+            'isolatedserver': u'https://isolateserver.appspot.com',
+            'namespace': u'default-gzip',
+        },
+        'io_timeout_secs': None,
+        'outputs': [],
+        'retry_on_exit_code': None,
     }
     expected_request = {
       'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
@@ -546,8 +553,9 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual(30, req.expiration_secs)
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
+    # This value must be updated every time the schema changes.
     self.assertEqual(
-        'b179dd0164f0ddfe7a1a23542370cb8dbbf7abcc83197baf9dfbeed353c4f8f0',
+        '9657ff42dfd10ff251c78e16edb681878dfa656ca20e1500684d228e925e406c',
         req.task_slice(0).properties_hash(req).encode('hex'))
 
   def test_init_new_request_isolated(self):
@@ -575,47 +583,54 @@ class TaskRequestApiTest(TestCase):
     # Needed for properties_hash() call.
     sb.put()
     expected_properties = {
-      'caches': [],
-      'cipd_input': {
-        'client_package': {
-          'package_name': u'infra/tools/cipd/${platform}',
-          'path': None,
-          'version': u'git_revision:deadbeef',
+        'caches': [],
+        'cipd_input': {
+            'client_package': {
+                'package_name': u'infra/tools/cipd/${platform}',
+                'path': None,
+                'version': u'git_revision:deadbeef',
+            },
+            'packages': [{
+                'package_name': u'rm',
+                'path': u'bin',
+                'version': u'git_revision:deadbeef',
+            }],
+            'server':
+                u'https://chrome-infra-packages.appspot.com'
         },
-        'packages': [{
-          'package_name': u'rm',
-          'path': u'bin',
-          'version': u'git_revision:deadbeef',
-        }],
-        'server': u'https://chrome-infra-packages.appspot.com'
-      },
-      'command': [u'command1', u'arg1'],
-      'containment': {
-        u'lower_priority': False,
-        u'containment_type': None,
-        u'limit_processes': None,
-        u'limit_total_committed_memory': None,
-      },
-      'relative_cwd': None,
-      'dimensions': {
-        u'OS': [u'Windows-3.1.1'],
-        u'hostname': [u'localhost'],
-        u'pool': [u'default'],
-      },
-      'env': {u'foo': u'bar', u'joe': u'2'},
-      'env_prefixes': {u'PATH': [u'local/path']},
-      'extra_args': [],
-      'execution_timeout_secs': 30,
-      'grace_period_secs': 30,
-      'idempotent': True,
-      'inputs_ref': {
-        'isolated': None,
-        'isolatedserver': u'https://isolateserver.appspot.com',
-        'namespace': u'default-gzip',
-      },
-      'io_timeout_secs': None,
-      'outputs': [],
-      'has_secret_bytes': True,
+        'command': [u'command1', u'arg1'],
+        'containment': {
+            'lower_priority': False,
+            'containment_type': None,
+            'limit_processes': None,
+            'limit_total_committed_memory': None,
+        },
+        'relative_cwd': None,
+        'dimensions': {
+            u'OS': [u'Windows-3.1.1'],
+            u'hostname': [u'localhost'],
+            u'pool': [u'default'],
+        },
+        'env': {
+            u'foo': u'bar',
+            u'joe': u'2'
+        },
+        'env_prefixes': {
+            u'PATH': [u'local/path']
+        },
+        'extra_args': [],
+        'execution_timeout_secs': 30,
+        'grace_period_secs': 30,
+        'idempotent': True,
+        'inputs_ref': {
+            'isolated': None,
+            'isolatedserver': u'https://isolateserver.appspot.com',
+            'namespace': u'default-gzip',
+        },
+        'io_timeout_secs': None,
+        'outputs': [],
+        'has_secret_bytes': True,
+        'retry_on_exit_code': None,
     }
     expected_request = {
       'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
@@ -653,8 +668,9 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual(30, req.expiration_secs)
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
+    # This value must be updated every time the schema changes.
     self.assertEqual(
-        'ba17d7977b38635c8495f52bba0cfb2fb6677d45a6eba11eaba39de94b63d5df',
+        'caebdee52ad2c693a2810c0b2e98f282e4ab61ef2a00d96c583928449d8b1f79',
         req.task_slice(0).properties_hash(req).encode('hex'))
 
   def test_init_new_request_parent(self):
@@ -680,8 +696,9 @@ class TaskRequestApiTest(TestCase):
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     # Ensure the algorithm is deterministic.
+    # This value must be updated every time the schema changes.
     self.assertEqual(
-        '64c02afb2e2ce06a482dab74cd557eb7c3ec092d27714752afa2858ef790dcf0',
+        '701404da491f70a877b809e6b521b0af2655f9beea08e97cb1536378f090cf8a',
         request.task_slice(0).properties_hash(request).encode('hex'))
 
   def test_init_new_request_bot_service_account(self):
@@ -962,8 +979,8 @@ class TaskRequestApiTest(TestCase):
         idempotent=True,
         outputs=[u'foo'],
     )
-    # To be updated every time the schema changes.
-    props_h = 'b0855043d05450f3b31a63985a5a4de44a5da09828c1a7247832027a4960ee10'
+    # This value must be updated every time the schema changes.
+    props_h = '838a103b16806be5f9c5a76af8b0ea0ec98371b8273702f78cd811fe2935f847'
     expected = swarming_pb2.TaskRequest(
         # Scheduling.
         task_slices=[

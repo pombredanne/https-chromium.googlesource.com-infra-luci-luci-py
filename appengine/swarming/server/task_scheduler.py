@@ -706,6 +706,24 @@ def _bot_update_tx(
       run_result.duration = duration
       run_result.exit_code = exit_code
 
+    # Retry only if:
+    # - retry_on_exit_code is set and non-zero
+    # - the process exit code is retry_on_exit_code
+    # - not canceling the task
+    # - first try
+    if not need_cancel and run_result.try_number == 1:
+      task_slice = request.task_slice(run_result.current_task_slice)
+      if (task_slice.properties.retry_on_exit_code and
+          run_result.exit_code == task_slice.properties.retry_on_exit_code):
+        # TODO(crbug/902807): Replace with DUT_FAILURE.
+        run_result.state = task_result.State.BOT_DIED
+        # Do not set internal_failure to True, since in this case, it's not an
+        # internal Swarming failure.
+        run_result.abandoned_ts = now
+        # TODO(crbug/902807): Do the actual fallback. It could be worth
+        # refactoring _expire_task_tx() and bot_terminate_task() to reduce code
+        # duplication and make this function more readable.
+
   if outputs_ref:
     run_result.outputs_ref = outputs_ref
 
@@ -784,7 +802,7 @@ def _set_fallbacks_to_exit_code_and_duration(run_result, now):
 
 
 def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
-                    run_result=None):
+                    run_result):
   """Runs the transaction for cancel_task().
 
   Arguments:
@@ -1634,8 +1652,8 @@ def cancel_task(request, result_key, kill_running, bot_id):
     """1 DB GET, 1 memcache write, 2x DB PUTs, 1x task queue."""
     # Need to get the current try number to know which TaskToRun to fetch.
     result_summary = result_key.get()
-    return _cancel_task_tx(
-        request, result_summary, kill_running, bot_id, now, es_cfg)
+    return _cancel_task_tx(request, result_summary, kill_running, bot_id, now,
+                           es_cfg, None)
 
   return datastore_utils.transaction(run)
 
