@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4cd1aacc_dca29a50",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T09:23:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb44369f_029558c0",
+      "range": {
+        "startLine": 26,
+        "startChar": 33,
+        "endLine": 26,
+        "endChar": 34
+      },
+      "revId": "777a24eab8096d839e1e0df7d733784535ab4876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "252f8133_25e2064c",
         "filename": "appengine/components/test_support/parallel_test_runner.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "12475474_4513f8f7",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T09:23:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "252f8133_25e2064c",
+      "range": {
+        "startLine": 27,
+        "startChar": 33,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "777a24eab8096d839e1e0df7d733784535ab4876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "754ec22e_f176798a",
         "filename": "appengine/components/test_support/parallel_test_runner.py",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2019-10-30T08:53:54Z",
       "side": 1,
       "message": "Just curious why you use os._exit(1) instead of sys.exit(1)?",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 13
+      },
+      "revId": "777a24eab8096d839e1e0df7d733784535ab4876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acfbdac8_d4470933",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T09:23:10Z",
+      "side": 1,
+      "message": "sys.exit only exits this thread.",
+      "parentUuid": "754ec22e_f176798a",
       "range": {
         "startLine": 28,
         "startChar": 2,
