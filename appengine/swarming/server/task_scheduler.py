@@ -706,6 +706,22 @@ def _bot_update_tx(
       run_result.duration = duration
       run_result.exit_code = exit_code
 
+    if (run_result.exit_code == request.properties.retry_exit_code and
+        request.properties.retry_exit_code):
+      # Retry it. It fits:
+      # - first try
+      # Create a second TaskToRun with the same TaskSlice.
+      to_run = task_to_run.new_task_to_run(request, 2, current_task_slice)
+      to_put = (run_result, result_summary, to_run)
+      run_result.state = task_result.State.BOT_DIED
+      run_result.internal_failure = True
+      run_result.abandoned_ts = now
+      # Do not sync data from run_result to result_summary, since the task is
+      # being retried.
+      result_summary.reset_to_pending()
+      result_summary.modified_ts = now
+      task_is_retried = True
+
   if outputs_ref:
     run_result.outputs_ref = outputs_ref
 

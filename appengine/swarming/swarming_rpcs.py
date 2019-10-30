@@ -121,6 +121,14 @@ class TaskState(messages.Enum):
   # bot forcefully killed the task process as described in the graceful
   # termination dance in the documentation.
   KILLED = taskstate_pb2.KILLED
+  # Potentially transient state, causing an implicit retry.
+  # This can happen when the task returns a magic process exit code. DUT means
+  # 'Device Under Test'. This is meant to cope with flaky hardware, not with
+  # software flakiness.
+  DUT_FAILURE = 0x90
+  # Potentially transient state, causing an implicit retry.
+  # This can happen when an external scheduler preempts a task.
+  PREEMPTED = 0xA0
   # The task was never set to PENDING and was immediately refused, as the server
   # determined that there is no bot capacity to run this task. This happens
   # because no bot exposes a superset of the requested task dimensions.
@@ -402,8 +410,14 @@ class TaskProperties(messages.Message):
   outputs = messages.StringField(12, repeated=True)
   # Secret bytes to provide to the task. Cannot be retrieved back.
   secret_bytes = messages.BytesField(13)
+
   # Containment of the task processes.
   containment = messages.MessageField(Containment, 16)
+
+  # Retries the task automatically on failure.
+  #
+  # Do not abuse this value! This is mainly for use with known flaky hardware.
+  retry_on_exit_code = messages.IntegerField(16)
 
 
 class TaskSlice(messages.Message):
