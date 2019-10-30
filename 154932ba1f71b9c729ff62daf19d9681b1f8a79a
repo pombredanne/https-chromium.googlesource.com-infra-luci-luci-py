@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "81785ac3_19d53925",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec49ffc6_647bebca",
+      "range": {
+        "startLine": 515,
+        "startChar": 48,
+        "endLine": 515,
+        "endChar": 76
+      },
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0c03bf_2724348c",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 5
@@ -36,6 +60,24 @@
       "writtenOn": "2019-10-30T13:26:52Z",
       "side": 1,
       "message": "Optional nit: While it may not look like, I tried to keep as little logic in this file and push the logic into the files in server/*.py as much as possible. That\u0027s adding a fair amount of logic.\n\nThat said, I\u0027m fine with committing this here for now and eventually look at refactoring later. It\u0027s not a big deal and getting this in ASAP is more important.",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46a4e4e1_74676481",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "left TODO.",
+      "parentUuid": "ae0c03bf_2724348c",
       "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "e0e3d7a6_2264ea56",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee65fde3_8fa0867f",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b07f55b9_d05d4c78",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 5
@@ -73,6 +133,24 @@
       "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "124bbc5a_57ce96ae",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b07f55b9_d05d4c78",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "b4a68b61_ae6591f5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "Agree. left TODO.",
+      "parentUuid": "4a234720_15e571b9",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17e3ea27_afbc82cd",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 5
@@ -107,6 +203,24 @@
       "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "203f1f06_8d38b7c5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17e3ea27_afbc82cd",
+      "revId": "154932ba1f71b9c729ff62daf19d9681b1f8a79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

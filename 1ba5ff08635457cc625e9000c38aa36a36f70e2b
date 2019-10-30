@@ -269,6 +269,24 @@
     },
     {
       "key": {
+        "uuid": "c106c508_4ac21121",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T14:01:32Z",
+      "side": 1,
+      "message": "Let me leave TODO. After moving the logic to task_scheduler.py, it will be done bit easier.",
+      "parentUuid": "c441e0fd_061eaef0",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25ccf05c_4bf611f4",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
