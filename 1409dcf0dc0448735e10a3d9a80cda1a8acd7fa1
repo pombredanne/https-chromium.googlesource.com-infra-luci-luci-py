@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2758359d_0482bfa7",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-30T16:46:19Z",
+      "side": 1,
+      "message": "You can configure it in unittest.cfg.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/test_support/unittest.cfg?q\u003dunittest.cfg\u0026sq\u003dpackage:chromium\u0026dr\n\nNote that there are multiple files.\nhttps://cs.chromium.org/search/?q\u003df:luci+f:unittest.cfg\u0026sq\u003dpackage:chromium\u0026type\u003dcs",
+      "revId": "1409dcf0dc0448735e10a3d9a80cda1a8acd7fa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
