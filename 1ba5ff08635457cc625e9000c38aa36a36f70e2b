@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6f43b2b8_3f92f2fe",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T07:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f14d6b3_77ea98bb",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7fcc035_723b5ef6",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
@@ -215,6 +233,24 @@
     },
     {
       "key": {
+        "uuid": "171a4184_dac45b98",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T07:32:00Z",
+      "side": 1,
+      "message": "Hmm, I want to try best effort implementation first until we found that is not enough.\nIt is bit simpler and hopefully faster.",
+      "parentUuid": "6533613f_0b918027",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25ccf05c_4bf611f4",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
@@ -229,6 +265,24 @@
       "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4546b79_b9011378",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T07:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25ccf05c_4bf611f4",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -249,6 +303,24 @@
     },
     {
       "key": {
+        "uuid": "52851358_c73231ed",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T07:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbd906bd_6f5aa2db",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad58a8ba_be1fae33",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 3
@@ -266,6 +338,24 @@
     },
     {
       "key": {
+        "uuid": "1dfd40c2_28d0d81f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T07:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad58a8ba_be1fae33",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aa30d4c_a85bf6e4",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 3
@@ -280,6 +370,24 @@
       "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b78509e_182f6788",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T07:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aa30d4c_a85bf6e4",
+      "revId": "1ba5ff08635457cc625e9000c38aa36a36f70e2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
