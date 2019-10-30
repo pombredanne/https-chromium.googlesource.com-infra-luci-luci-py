@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39a2bb25_8a875bb5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T23:12:39Z",
+      "side": 1,
+      "message": "This is not defined when sys.platform \u003d\u003d \u0027cygwin\u0027?",
+      "range": {
+        "startLine": 176,
+        "startChar": 9,
+        "endLine": 176,
+        "endChar": 17
+      },
+      "revId": "51ab3f4514db517c675fecbf3e298ac10cfe95e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
