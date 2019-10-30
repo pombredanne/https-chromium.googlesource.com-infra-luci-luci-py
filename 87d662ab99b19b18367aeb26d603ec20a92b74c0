@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79298ff1_59266494",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-30T23:21:19Z",
+      "side": 1,
+      "message": "We don\u0027t guarantee this module is available to every bots.",
+      "revId": "87d662ab99b19b18367aeb26d603ec20a92b74c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
