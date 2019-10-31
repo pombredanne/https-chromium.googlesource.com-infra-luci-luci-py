@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ed8527e6_d25bd0df",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T06:27:28Z",
+      "side": 1,
+      "message": "\u003e ALLOWED_EVENTS \u003d (\u0027bot_error\u0027, \u0027bot_log\u0027, \u0027bot_rebooting\u0027, \u0027bot_shutdown\u0027)\n\nI guess that we don\u0027t want to update dimensions at these events.",
+      "parentUuid": "c7a84ef5_87fa5214",
+      "revId": "809440a298c2ea7e217f02dc9f7f04e3cf931bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "548398e9_9c89db37",
         "filename": "appengine/swarming/test_env_handlers.py",
         "patchSetId": 3
