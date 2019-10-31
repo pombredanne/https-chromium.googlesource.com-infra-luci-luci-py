@@ -118,6 +118,30 @@
       "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec329497_9307d1c4",
+        "filename": "appengine/isolate/metrics_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-10-31T01:14:51Z",
+      "side": 1,
+      "message": "Oh, I only checked isolate and swarming, sorry.",
+      "parentUuid": "269dc935_b3232557",
+      "range": {
+        "startLine": 22,
+        "startChar": 18,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
