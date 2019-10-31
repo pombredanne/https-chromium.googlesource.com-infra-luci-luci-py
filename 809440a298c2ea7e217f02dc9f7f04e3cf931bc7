@@ -75,6 +75,30 @@
       "revId": "809440a298c2ea7e217f02dc9f7f04e3cf931bc7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e40f89b_f1755666",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T06:54:33Z",
+      "side": 1,
+      "message": "deleted this code",
+      "parentUuid": "548398e9_9c89db37",
+      "range": {
+        "startLine": 252,
+        "startChar": 4,
+        "endLine": 252,
+        "endChar": 12
+      },
+      "revId": "809440a298c2ea7e217f02dc9f7f04e3cf931bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
