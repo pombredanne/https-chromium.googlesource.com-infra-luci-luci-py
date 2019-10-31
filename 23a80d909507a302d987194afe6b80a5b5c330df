@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aca250ed_e23e8ae7",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T17:31:05Z",
+      "side": 1,
+      "message": "OK, I changed.",
+      "parentUuid": "65fde061_0b090f21",
+      "range": {
+        "startLine": 315,
+        "startChar": 36,
+        "endLine": 315,
+        "endChar": 43
+      },
+      "revId": "23a80d909507a302d987194afe6b80a5b5c330df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c27b4109_89cc9f6e",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2019-10-31T12:49:24Z",
       "side": 1,
       "message": "For a follow up:\nWhat we could do is to return the future instead of calling get_return() here, and have the call sites used a try/finally to call the future on it. This would greatly parallelize the operation.\n\nAnother separate thing:\nWe never did and I forget why would be to use @ndb.toplevel on all the handlers, so there\u0027s no ndb.Future that is forgotten. It\u0027s explained in https://cloud.google.com/appengine/docs/standard/python/ndb/async.",
+      "revId": "23a80d909507a302d987194afe6b80a5b5c330df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37e366df_72ef3e55",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T17:31:05Z",
+      "side": 1,
+      "message": "Thanks for the follow up. I updated the comment.",
+      "parentUuid": "c27b4109_89cc9f6e",
       "revId": "23a80d909507a302d987194afe6b80a5b5c330df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
