@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7a84ef5_87fa5214",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T06:10:14Z",
+      "side": 1,
+      "message": "no need to call assert_bot_async from here?",
+      "revId": "809440a298c2ea7e217f02dc9f7f04e3cf931bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "548398e9_9c89db37",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T06:10:14Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 252,
+        "startChar": 4,
+        "endLine": 252,
+        "endChar": 12
+      },
+      "revId": "809440a298c2ea7e217f02dc9f7f04e3cf931bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
