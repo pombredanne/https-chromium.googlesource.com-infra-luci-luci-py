@@ -22,6 +22,30 @@
       "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e655f34_b4c9b3f0",
+        "filename": "appengine/isolate/metrics_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2019-10-31T00:16:54Z",
+      "side": 1,
+      "message": "unittest.mock doesn\u0027t exist for 2.7. test_case and test_case.TestCase.mock are consistent with everything else in this directory.",
+      "parentUuid": "80cefa4e_5ef274db",
+      "range": {
+        "startLine": 22,
+        "startChar": 18,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
