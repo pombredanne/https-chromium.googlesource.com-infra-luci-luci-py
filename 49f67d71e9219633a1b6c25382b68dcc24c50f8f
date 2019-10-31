@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "140fadd8_553ee865",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T09:46:00Z",
+      "side": 1,
+      "message": "I think deadline is not 5 sec in default.\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/functions#context_options",
+      "parentUuid": "e2bd761b_15db399c",
+      "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a21e46f5_dbb91876",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-10-31T07:39:35Z",
       "side": 1,
       "message": "Is it a bad idea to check iter_cnt and stop at \"max_iter_cnt\" to avoid timeout?",
+      "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c880cea_ccc7de5e",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T09:46:00Z",
+      "side": 1,
+      "message": "This is precalculation used for bot to match pending task, so I think we cannot stop this process until finish.",
+      "parentUuid": "a21e46f5_dbb91876",
       "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
