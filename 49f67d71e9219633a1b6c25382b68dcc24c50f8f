@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3b2c8d0e_b95f8bf8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T10:04:12Z",
+      "side": 1,
+      "message": "I may found a wrong one, but this.\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/queryclass",
+      "parentUuid": "140fadd8_553ee865",
+      "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a21e46f5_dbb91876",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 2
@@ -69,6 +87,24 @@
       "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1b93543_594cd265",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T10:04:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c880cea_ccc7de5e",
+      "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
