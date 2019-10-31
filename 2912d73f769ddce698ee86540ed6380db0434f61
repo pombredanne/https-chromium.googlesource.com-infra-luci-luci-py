@@ -46,6 +46,30 @@
       "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6277de45_4abcdf22",
+        "filename": "appengine/isolate/metrics_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T00:21:05Z",
+      "side": 1,
+      "message": "There is mock library in python2 back ported from python3\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/.vpython#22\n\nAnd I want to use mock library to follow standardized way.",
+      "parentUuid": "2e655f34_b4c9b3f0",
+      "range": {
+        "startLine": 22,
+        "startChar": 18,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
