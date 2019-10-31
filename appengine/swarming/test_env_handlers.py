@@ -248,6 +248,11 @@ class AppTestBase(test_case.TestCase):
     # A bit hackish but fine for unit testing purpose.
     if response.get('bot_config'):
       params['bot_config'] = response['bot_config']
+
+    response = self.app.post_json(
+        '/swarming/api/v1/bot/poll',
+        params=params).json
+
     return params
 
   def bot_poll(self, bot='bot1', params=None):
