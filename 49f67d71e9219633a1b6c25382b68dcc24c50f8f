@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2bd761b_15db399c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T07:39:35Z",
+      "side": 1,
+      "message": "Note that you increased the batch size, so deadline may need to be bigger than default 5 sec.",
+      "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a21e46f5_dbb91876",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T07:39:35Z",
+      "side": 1,
+      "message": "Is it a bad idea to check iter_cnt and stop at \"max_iter_cnt\" to avoid timeout?",
+      "revId": "49f67d71e9219633a1b6c25382b68dcc24c50f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
