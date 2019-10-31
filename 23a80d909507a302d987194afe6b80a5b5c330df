@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65fde061_0b090f21",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-31T12:49:24Z",
+      "side": 1,
+      "message": "Please don\u0027t use a default argument, update all call sites instead. It makes long term maintenance easier; it\u0027s much easier to refactor a function that does not have default arguments than one that has, because finding all the call sites in python can sometimes be tedious.",
+      "range": {
+        "startLine": 315,
+        "startChar": 36,
+        "endLine": 315,
+        "endChar": 43
+      },
+      "revId": "23a80d909507a302d987194afe6b80a5b5c330df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c27b4109_89cc9f6e",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-10-31T12:49:24Z",
+      "side": 1,
+      "message": "For a follow up:\nWhat we could do is to return the future instead of calling get_return() here, and have the call sites used a try/finally to call the future on it. This would greatly parallelize the operation.\n\nAnother separate thing:\nWe never did and I forget why would be to use @ndb.toplevel on all the handlers, so there\u0027s no ndb.Future that is forgotten. It\u0027s explained in https://cloud.google.com/appengine/docs/standard/python/ndb/async.",
+      "revId": "23a80d909507a302d987194afe6b80a5b5c330df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
