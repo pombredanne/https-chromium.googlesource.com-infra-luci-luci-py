@@ -16,6 +16,24 @@
       "revId": "5e2af94c16e14c318ef8e0f1e12cf5d36e243d17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ca87791_7bc1fa7e",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-10-31T07:02:45Z",
+      "side": 1,
+      "message": "It was also failing because hidpi was missing.\nShould hidpi be there?",
+      "parentUuid": "62f44e0a_ac78c5ea",
+      "revId": "5e2af94c16e14c318ef8e0f1e12cf5d36e243d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
