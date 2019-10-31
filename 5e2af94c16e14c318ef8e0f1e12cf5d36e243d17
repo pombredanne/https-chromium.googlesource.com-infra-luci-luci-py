@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "07f7669a_53cb8fd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T07:07:21Z",
+      "side": 1,
+      "message": "could you change to use sys.platform too instead of platform.system()?",
+      "revId": "5e2af94c16e14c318ef8e0f1e12cf5d36e243d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "62f44e0a_ac78c5ea",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
         "patchSetId": 3
