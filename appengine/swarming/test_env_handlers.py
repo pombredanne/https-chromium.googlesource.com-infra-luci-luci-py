@@ -248,6 +248,7 @@ class AppTestBase(test_case.TestCase):
     # A bit hackish but fine for unit testing purpose.
     if response.get('bot_config'):
       params['bot_config'] = response['bot_config']
+
     return params
 
   def bot_poll(self, bot='bot1', params=None):

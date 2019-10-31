@@ -428,9 +428,6 @@ class _BotBaseHandler(_BotApiHandler):
       result.quarantined_msg = 'Quarantined by admin'
       return result
 
-    # TODO(maruel): Parallelise.
-    bot_root_key = bot_management.get_root_key(bot_id)
-    task_queues.assert_bot_async(bot_root_key, dimensions).get_result()
     return result
 
 
@@ -573,6 +570,12 @@ class BotPollHandler(_BotBaseHandler):
       # Tell the bot it's considered quarantined.
       self._cmd_sleep(sleep_streak, True)
       return
+
+    # Build dimensions hash if not exist
+    bot_root_key = bot_management.get_root_key(res.bot_id)
+    dimensions_hashs = task_queues.get_queues(bot_root_key)
+    if not dimensions_hashs:
+      task_queues.assert_bot_async(bot_root_key, res.dimensions).get_result()
 
     # The bot is in good shape. Try to grab a task.
     try:
