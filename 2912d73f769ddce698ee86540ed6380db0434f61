@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80cefa4e_5ef274db",
+        "filename": "appengine/isolate/metrics_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-10-31T00:06:46Z",
+      "side": 1,
+      "message": "could you use unittest here and mock module for function mocking?\nhttps://docs.python.org/3/library/unittest.mock-examples.html#patch-decorators",
+      "range": {
+        "startLine": 22,
+        "startChar": 18,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "2912d73f769ddce698ee86540ed6380db0434f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
