@@ -46,6 +46,28 @@ import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate'
  *    Instead, dummy data will be used. Ideal for local testing.
  */
 
+const serverLogsURL = (ele, request, result) => {
+  let url, filter;
+  url = `https://console.cloud.google.com/logs/viewer`
+  url += `?project=${ele._project_id}`
+  url += `&resource=gae_app`
+  url += `&interval=CUSTOM`
+  url += `&dateRangeStart=${request.created_ts}`
+  let dateRangeEnd =
+    result.completed_ts || result.abandoned_ts || result.modified_ts;
+  if (dateRangeEnd) url += `&dateRangeEnd=${dateRangeEnd}`;
+  filter = `resource.type="gae_app"\n`
+  let resouces = ["/internal/", "/swarming/api/v1/bot/"]
+  filter += resouces.map((r) => {
+    return `protoPayload.resource>="${r}"`
+  }).join(" OR ")
+  filter += '\n'
+  filter += `${ele._taskId.slice(0, -1)}`
+  url += `&advancedFilter=${filter}`
+  let encoded = encodeURI(url);
+  return encoded;
+}
+
 const idAndButtons = (ele) => {
   if (!ele._taskId || ele._notFound) {
     return html`
@@ -527,6 +549,12 @@ const taskTimingSection = (ele, request, result) => {
           ${result.human_duration}
         </td>
       </tr>
+      <tr>
+        <td>Server Logs</td>
+        <td>
+          <a href=${serverLogsURL(ele, request, result)} target="_blank">View logs on Cloud Console</a>
+        </td>
+      </tr>
     </tbody>
   </table>
   <div class=right>
@@ -909,6 +937,8 @@ window.customElements.define('task-page', class extends SwarmingAppBoilerplate {
     this._showRawOutput = false;
     this._wideLogs = false;
     this._urlParamsLoaded = false;
+    const idx = location.hostname.indexOf('.appspot.com');
+    this._project_id = location.hostname.substring(0, idx);
 
     this._stateChanged = stateReflector(
       /*getState*/() => {
