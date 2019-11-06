@@ -16,6 +16,69 @@
       "revId": "a97819d281870f846e38a5d30e717d3b176c0e17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e8a9379_05f7c775",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-06T22:25:12Z",
+      "side": 1,
+      "message": "why not equal?",
+      "range": {
+        "startLine": 62,
+        "startChar": 33,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "a97819d281870f846e38a5d30e717d3b176c0e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28f52e9b_060560b9",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-06T22:25:12Z",
+      "side": 1,
+      "message": "leave comment why strip last character?",
+      "revId": "a97819d281870f846e38a5d30e717d3b176c0e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5077a25_dcaf3d6a",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-06T22:25:12Z",
+      "side": 1,
+      "message": "I prefer to just return this.",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 31
+      },
+      "revId": "a97819d281870f846e38a5d30e717d3b176c0e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
