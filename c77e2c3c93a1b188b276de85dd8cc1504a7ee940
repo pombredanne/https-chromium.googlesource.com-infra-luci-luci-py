@@ -39,6 +39,30 @@
       "revId": "c77e2c3c93a1b188b276de85dd8cc1504a7ee940",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcfe3a54_4a5e80cd",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-06T18:18:43Z",
+      "side": 1,
+      "message": "We already have?\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/c77e2c3c93a1b188b276de85dd8cc1504a7ee940/PRESUBMIT.py#44",
+      "parentUuid": "6e729448_52fc0cb3",
+      "range": {
+        "startLine": 78,
+        "startChar": 50,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "c77e2c3c93a1b188b276de85dd8cc1504a7ee940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
