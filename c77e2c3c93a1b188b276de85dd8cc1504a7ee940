@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98252989_5ea57298",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-06T18:16:49Z",
+      "side": 1,
+      "message": "nit: 1 empty line",
+      "revId": "c77e2c3c93a1b188b276de85dd8cc1504a7ee940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e729448_52fc0cb3",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-06T18:16:49Z",
+      "side": 1,
+      "message": "please add presubmit check then.",
+      "range": {
+        "startLine": 78,
+        "startChar": 50,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "c77e2c3c93a1b188b276de85dd8cc1504a7ee940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
