@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7accda66_acacebb5",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-07T18:20:39Z",
+      "side": 1,
+      "message": "nit: const",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 7
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64eec65d_39c35870",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-07T18:20:39Z",
+      "side": 1,
+      "message": "leave comment for this subtraction?",
+      "range": {
+        "startLine": 55,
+        "startChar": 50,
+        "endLine": 55,
+        "endChar": 57
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621bc205_10ea1e90",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-07T18:20:39Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 7
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7666bd4d_db9e2e5c",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-07T18:20:39Z",
+      "side": 1,
+      "message": "I\u0027d like this to be included in filter instead of here.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
