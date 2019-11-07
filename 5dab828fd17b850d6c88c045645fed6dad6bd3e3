@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "36528338_847de148",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-07T19:16:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d30504d0_6cc40c13",
+      "range": {
+        "startLine": 55,
+        "startChar": 50,
+        "endLine": 55,
+        "endChar": 57
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "621bc205_10ea1e90",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 12
@@ -187,6 +211,30 @@
       "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "792652ce_2142ec30",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-07T19:16:19Z",
+      "side": 1,
+      "message": "OK. But I though, I will want to modify timestamp on filter in text area instead of using time picker.",
+      "parentUuid": "289daded_5a75a9ae",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
