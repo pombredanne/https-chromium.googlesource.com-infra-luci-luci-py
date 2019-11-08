@@ -214,6 +214,30 @@ class CronSendToBQ(_CronHandlerBase):
 ## Task queues.
 
 
+# TODO(jwata): delete unused class
+class TaskRunTaskHandler(webapp2.RequestHandler):
+  """Run a task"""
+
+  @decorators.require_taskqueue('task-run')
+  def post(self):
+    payload = json.loads(self.request.body)
+    logging.info('Creating task id: %s', payload['id'])
+    kill_running = payload['kill_running']
+
+
+class TaskAppendChildTaskHandler(webapp2.RequestHandler):
+  """Append child task id to entities."""
+
+  @decorators.require_taskqueue('append-child-task')
+  def post(self, task_id):
+    payload = json.loads(self.request.body)
+    child_task_id = payload['child_task_id']
+    logging.info(('Appending child task.'
+                 'parent_task_id:%s, child_task_id:%s'),
+                 task_id, child_task_id)
+    task_scheduler.task_append_child(task_id, child_task_id)
+
+
 class TaskCancelTasksHandler(webapp2.RequestHandler):
   """Cancels tasks given a list of their ids."""
 
@@ -442,6 +466,8 @@ def get_routes():
     ('/internal/cron/important/named_caches/update', CronNamedCachesUpdate),
 
     # Task queues.
+    ('/internal/taskqueue/important/tasks/<task_id:[0-9a-f]+>/append-child',
+        TaskAppendChildTaskHandler),
     ('/internal/taskqueue/important/tasks/cancel', TaskCancelTasksHandler),
     ('/internal/taskqueue/important/tasks/cancel-task-on-bot',
         TaskCancelTaskOnBotHandler),
