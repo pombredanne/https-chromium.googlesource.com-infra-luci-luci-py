@@ -235,6 +235,30 @@
       "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c3a718c_b64c50b7",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-08T06:57:04Z",
+      "side": 1,
+      "message": "Let\u0027s see and change if it\u0027s inconvenient.",
+      "parentUuid": "792652ce_2142ec30",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "5dab828fd17b850d6c88c045645fed6dad6bd3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
