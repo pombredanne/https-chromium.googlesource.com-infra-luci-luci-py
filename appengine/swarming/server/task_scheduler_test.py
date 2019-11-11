@@ -126,7 +126,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
           'REMOTE_ADDR': self.source_ip,
           'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
-    self._enqueue_calls = []
     self._enqueue_orig = self.mock(utils, 'enqueue_task', self._enqueue)
     self._enqueue_async_orig = self.mock(utils, 'enqueue_task_async',
                                          self._enqueue_async)
@@ -144,14 +143,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self._known_pools = None
 
   def _enqueue(self, *args, **kwargs):
-    self._enqueue_calls.append((args, kwargs))
     # Only then add use_dedicated_module as default False.
     kwargs = kwargs.copy()
     kwargs.setdefault('use_dedicated_module', False)
     return self._enqueue_orig(*args, **kwargs)
 
   def _enqueue_async(self, *args, **kwargs):
-    self._enqueue_calls.append((args, kwargs))
     # Only then add use_dedicated_module as default False.
     kwargs = kwargs.copy()
     kwargs.setdefault('use_dedicated_module', False)
@@ -1044,7 +1041,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_task_parent_children(self):
     # Parent task creates a child task.
     parent_id = self._task_ran_successfully(1, 0)
-    result_summary = self._quick_schedule(0, parent_task_id=parent_id)
+    result_summary = self._quick_schedule(1, parent_task_id=parent_id)
     self.assertEqual([], result_summary.children_task_ids)
     self.assertEqual(parent_id, result_summary.request_key.get().parent_task_id)
 
@@ -1058,10 +1055,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_task_invalid_parent(self):
     parent_id = self._task_ran_successfully(1, 0)
     self.assertTrue(parent_id.endswith('1'))
+    invalid_parent_id = parent_id[:-1] + '2'
     # Try to create a children task with invalid parent_task_id.
-    with self.assertRaises(ValueError):
-      result_summary = self._quick_schedule(
-          0, parent_task_id=parent_id[:-1] + '2')
+    # task should be scheduled without error
+    result_summary = self._quick_schedule(
+        1, parent_task_id=invalid_parent_id)
 
   def test_task_parent_isolated(self):
     run_result = self._quick_reap(
@@ -1101,7 +1099,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, self.execute_tasks())
 
     parent_id = run_result.task_id
-    result_summary = self._quick_schedule(0, parent_task_id=parent_id)
+    result_summary = self._quick_schedule(1, parent_task_id=parent_id)
     self.assertEqual([], result_summary.children_task_ids)
     self.assertEqual(parent_id, result_summary.request_key.get().parent_task_id)
 
@@ -1519,7 +1517,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     child_request = _gen_request_slices(
         parent_task_id=parent_run_result.task_id)
     child_result_summary = task_scheduler.schedule_request(child_request, None)
-    self.assertEqual(0, self.execute_tasks())
+    self.assertEqual(1, self.execute_tasks())
 
     bot2_dimensions = self.bot_dimensions.copy()
     bot2_dimensions['id'] = [bot2_dimensions['id'][0] + '2']
@@ -1533,7 +1531,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         parent_task_id=parent_run_result.task_id)
     child_result2_summary = task_scheduler.schedule_request(
         child_request2, None)
-    self.assertEqual(0, self.execute_tasks())
+    self.assertEqual(1, self.execute_tasks())
 
     bot3_dimensions = self.bot_dimensions.copy()
     bot3_dimensions['id'] = [bot3_dimensions['id'][0] + '3']
@@ -1548,13 +1546,41 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     child_result3_summary = task_scheduler.schedule_request(
         child_request3, None)
 
+    # Parent task should have child task ids, but the id of task 3
+    # doesn't belong to the parent since it's appended when running
+    appended_child_task_ids = [
+        child_result_summary.task_id,
+        child_result2_summary.task_id,
+    ]
+    parents = [parent_run_result, parent_result_summary]
+    for p in parents:
+      p = p.key.get()
+      self.assertEqual(p.children_task_ids, appended_child_task_ids)
+
     # Cancel parent task.
     ok, was_running = task_scheduler.cancel_task(
         parent_run_result.request_key.get(),
         parent_run_result.result_summary_key, True, None)
     self.assertEqual(True, ok)
     self.assertEqual(True, was_running)
-    self.assertEqual(5, self.execute_tasks())
+
+    # parent_task should push task to cancel-children-tasks.
+    self.assertTrue(self.execute_task(
+        '/internal/taskqueue/important/tasks/cancel-children-tasks',
+        'cancel-children-tasks',
+        utils.encode_to_json({
+          'task': parent_result_summary.task_id,
+        })
+    ))
+    # and child tasks should be cancelled via task queue.
+    self.assertTrue(self.execute_task(
+        '/internal/taskqueue/important/tasks/cancel',
+        'cancel-tasks',
+        utils.encode_to_json({
+          'kill_running': True,
+          'tasks': appended_child_task_ids,
+        })
+    ))
 
     self.assertEqual(
         State.KILLED,
@@ -1608,38 +1634,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             cost_usd=0.1,
             outputs_ref=None,
             performance_stats=None))
-
     self.assertEqual('hi', child_run_result2.key.get().get_output(0, 0))
 
-    self.assertEqual(4, self.execute_tasks())
-
-    # TODO(tikuta): use mock library.
-    # parent_task should push task to cancel-children-tasks.
-    self.assertEqual(self._enqueue_calls[1], (
-      ('/internal/taskqueue/important/tasks/cancel-children-tasks',
-       'cancel-children-tasks'),
-      {'payload': utils.encode_to_json({
-        'task': parent_result_summary.task_id,
-      })}))
-    # Child tasks should be cancelled via task queue.
-    self.assertEqual(
-        self._enqueue_calls[3],
-        (('/internal/taskqueue/important/tasks/cancel', 'cancel-tasks'), {
-            'payload':
-                utils.encode_to_json({
-                    'kill_running':
-                        True,
-                    'tasks': [
-                        child_result_summary.task_id,
-                        child_result2_summary.task_id,
-                        child_result3_summary.task_id
-                    ],
-                }),
-            'use_dedicated_module':
-                False,
-            'version':
-                u'v1a',
-        }))
+    # flush tasks
+    self.execute_tasks()
 
   def test_task_priority(self):
     # Create N tasks of various priority not in order.
@@ -2533,10 +2531,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     task_scheduler.cron_handle_external_cancellations()
 
-    self.execute_tasks()
-
     self.assertEqual(len(calls), 2)
-    self.assertEqual(len(self._enqueue_calls), 4)
+    self.assertEqual(2, self.execute_tasks())
 
   def test_cron_handle_external_cancellations_none(self):
     es_address = 'externalscheduler_address'
@@ -2562,7 +2558,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     task_scheduler.cron_handle_external_cancellations()
 
     self.assertEqual(len(calls), 2)
-    self.assertEqual(len(self._enqueue_calls), 0)
+    self.assertEqual(0, self.execute_tasks())
 
   def test_cron_handle_get_callbacks(self):
     """Test that cron_handle_get_callbacks behaves as expected."""
@@ -2809,6 +2805,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_task_cancel_running_children_tasks(self):
     # Tested indirectly via test_bot_update_child_with_cancelled_parent.
+    pass
+
+  def test_task_append_child(self):
+    # TODO(jwata): add tests
     pass
 
 
