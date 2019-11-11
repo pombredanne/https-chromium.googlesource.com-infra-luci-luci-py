@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4edfeb03_c28ea15d",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-11T19:31:29Z",
+      "side": 1,
+      "message": "better to use parent_task_id?",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 24
+      },
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72f8c831_bb936dde",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-11T19:31:29Z",
+      "side": 1,
+      "message": "a space before here?",
+      "range": {
+        "startLine": 225,
+        "startChar": 18,
+        "endLine": 225,
+        "endChar": 19
+      },
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "467dc9b9_a4f003ec",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-11T19:31:29Z",
+      "side": 1,
+      "message": "2 empty lines between class?",
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
