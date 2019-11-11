@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "960f8ae0_ce280229",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-11T21:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4edfeb03_c28ea15d",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 24
+      },
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72f8c831_bb936dde",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ea8cf256_718a61e8",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-11T21:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72f8c831_bb936dde",
+      "range": {
+        "startLine": 225,
+        "startChar": 18,
+        "endLine": 225,
+        "endChar": 19
+      },
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "467dc9b9_a4f003ec",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 5
@@ -62,6 +110,24 @@
       "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcc6381c_f402dcda",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-11T21:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "467dc9b9_a4f003ec",
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
