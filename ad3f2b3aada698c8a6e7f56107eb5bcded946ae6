@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "897356ac_4cc4f9cc",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-11T22:10:53Z",
+      "side": 1,
+      "message": "Reverted the name because it required the router to use the name \"parent_task_id\", which isn\u0027t natural.",
+      "parentUuid": "960f8ae0_ce280229",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 24
+      },
+      "revId": "ad3f2b3aada698c8a6e7f56107eb5bcded946ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72f8c831_bb936dde",
         "filename": "appengine/swarming/handlers_backend.py",
         "patchSetId": 5
