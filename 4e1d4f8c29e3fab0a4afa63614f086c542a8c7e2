@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "68718595_b143e77f",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-11T20:42:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "180ad4d8_a6394960",
+      "revId": "4e1d4f8c29e3fab0a4afa63614f086c542a8c7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e82d00e7_0f9f3994",
         "filename": "appengine/components/test_support/test_case.py",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2019-11-11T19:21:36Z",
       "side": 1,
       "message": "better to return False?",
+      "revId": "4e1d4f8c29e3fab0a4afa63614f086c542a8c7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5340092c_b4784aee",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-11T20:42:02Z",
+      "side": 1,
+      "message": "I didn\u0027t do that because False would have different meanings (task not enqueued, task failed etc).\nI think I should stop returning True/False.",
+      "parentUuid": "e82d00e7_0f9f3994",
       "revId": "4e1d4f8c29e3fab0a4afa63614f086c542a8c7e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
