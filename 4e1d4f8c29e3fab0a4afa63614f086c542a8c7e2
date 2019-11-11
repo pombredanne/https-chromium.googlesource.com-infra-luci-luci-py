@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "180ad4d8_a6394960",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-11T19:21:36Z",
+      "side": 1,
+      "message": "one empty line between class method here and belows?",
+      "revId": "4e1d4f8c29e3fab0a4afa63614f086c542a8c7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e82d00e7_0f9f3994",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-11T19:21:36Z",
+      "side": 1,
+      "message": "better to return False?",
+      "revId": "4e1d4f8c29e3fab0a4afa63614f086c542a8c7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
