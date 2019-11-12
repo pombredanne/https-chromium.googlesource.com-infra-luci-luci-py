@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e41b6349_64e3d6e4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-12T20:17:27Z",
+      "side": 1,
+      "message": "This is an internal function. Would it make sense to test public functions directly?",
+      "parentUuid": "bafee856_58dfc691",
+      "revId": "92662592a1ae4205f57bb8be2f57663e2f7ebfcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d60576d_5fc4c537",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "92662592a1ae4205f57bb8be2f57663e2f7ebfcf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b468876a_9119da59",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-12T20:17:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d60576d_5fc4c537",
+      "revId": "92662592a1ae4205f57bb8be2f57663e2f7ebfcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
