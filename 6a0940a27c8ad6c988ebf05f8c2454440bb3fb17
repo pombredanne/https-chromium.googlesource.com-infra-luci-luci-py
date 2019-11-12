@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba784793_23b8d8ec",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-12T09:53:21Z",
+      "side": 1,
+      "message": "nit: this square bracket can be removed.",
+      "range": {
+        "startLine": 303,
+        "startChar": 6,
+        "endLine": 303,
+        "endChar": 7
+      },
+      "revId": "6a0940a27c8ad6c988ebf05f8c2454440bb3fb17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac0d8fa_c2bd46fe",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-12T09:53:21Z",
+      "side": 1,
+      "message": "I think we use \u0027,\u0027 instead of \u0027%\u0027 for logging.",
+      "range": {
+        "startLine": 305,
+        "startChar": 40,
+        "endLine": 305,
+        "endChar": 42
+      },
+      "revId": "6a0940a27c8ad6c988ebf05f8c2454440bb3fb17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
