@@ -127,3 +127,18 @@ message LUCIExe {
   string cache_dir = 1;
 }
 ```
+
+## `resultsdb`
+
+This section describes data passed from resultsdb-related services.
+
+```
+message ResultsDB {
+  message TestResults {
+    int port = 1;
+    string auth_token = 2;
+  }
+
+  TestResults test_results = 1;
+}
+```
