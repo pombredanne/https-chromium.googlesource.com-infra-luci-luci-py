@@ -52,6 +52,24 @@
       "revId": "9d5a05c0327388485f992e30fd52316a7f197479",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c0c9462_9b9c4a48",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-13T03:18:57Z",
+      "side": 1,
+      "message": "It\u0027s in the next CL\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1913919/3/appengine/components/test_support/test_case.py",
+      "parentUuid": "1d8e3012_6c533ff9",
+      "revId": "9d5a05c0327388485f992e30fd52316a7f197479",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
