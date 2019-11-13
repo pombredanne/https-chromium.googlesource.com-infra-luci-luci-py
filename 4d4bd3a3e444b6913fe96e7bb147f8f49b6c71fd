@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ece6fe3_7cb66f10",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-11-13T01:45:34Z",
+      "side": 1,
+      "message": "resultdb",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 13
+      },
+      "revId": "4d4bd3a3e444b6913fe96e7bb147f8f49b6c71fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0ea6b49_89b0cf99",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-11-13T01:45:34Z",
+      "side": 1,
+      "message": "resultdb",
+      "range": {
+        "startLine": 133,
+        "startChar": 40,
+        "endLine": 133,
+        "endChar": 49
+      },
+      "revId": "4d4bd3a3e444b6913fe96e7bb147f8f49b6c71fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07c81b11_0eb7fc46",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-11-13T01:45:34Z",
+      "side": 1,
+      "message": "ResultDB",
+      "range": {
+        "startLine": 136,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 17
+      },
+      "revId": "4d4bd3a3e444b6913fe96e7bb147f8f49b6c71fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5fe5be8_96fb59d2",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-11-13T01:45:34Z",
+      "side": 1,
+      "message": "please add comments. see examples above.\n\ngeneral principle: maintain consistency",
+      "revId": "4d4bd3a3e444b6913fe96e7bb147f8f49b6c71fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3afac67a_3d1243d9",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-11-13T01:45:34Z",
+      "side": 1,
+      "message": "nit: int64\n\nprotobuf does not have type \"int\" https://developers.google.com/protocol-buffers/docs/proto3#scalar",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 138,
+        "endChar": 7
+      },
+      "revId": "4d4bd3a3e444b6913fe96e7bb147f8f49b6c71fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
