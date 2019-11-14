@@ -12,6 +12,7 @@ import webob
 import webapp2
 
 from google.appengine.api import app_identity
+from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
 from google.appengine import runtime
 
@@ -604,6 +605,8 @@ class BotPollHandler(_BotBaseHandler):
       except:
         logging.exception('Dang, exception after reaping')
         raise
+    except datastore_errors.Timeout:
+      self.abort(429, 'Deadline exceeded while accessing datastore')
     except runtime.DeadlineExceededError:
       # If the timeout happened before a task was assigned there is no problems.
       # If the timeout occurred after a task was assigned, that task will
