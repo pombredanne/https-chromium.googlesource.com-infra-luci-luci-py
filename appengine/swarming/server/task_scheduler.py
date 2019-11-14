@@ -1921,4 +1921,4 @@ def task_append_child(parent_task_id, child_task_id):
       item.modified_ts = now
     ndb.put_multi(items)
 
-  datastore_utils.transaction(update_parents, retries=3)
+  datastore_utils.transaction(update_parents, retries=10)
