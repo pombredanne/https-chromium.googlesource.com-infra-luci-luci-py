@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe852ecf_95226618",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-14T01:35:43Z",
+      "side": 1,
+      "message": "The test failed here.\n\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8896855071021837776/+/steps/swarming_bot/0/steps/run_tests_python2/0/stdout#L11355_0",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
