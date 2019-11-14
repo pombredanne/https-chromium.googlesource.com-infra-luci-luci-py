@@ -33,42 +33,58 @@ except ImportError:
 
 ## Private stuff.
 
-
-iokit = ctypes.CDLL(
-    '/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit')
-# https://developer.apple.com/documentation/iokit/1514274-ioconnectcallstructmethod
-iokit.IOConnectCallStructMethod.argtypes = [
-    ctypes.c_uint, ctypes.c_uint, ctypes.c_void_p, ctypes.c_ulonglong,
-    ctypes.c_void_p, ctypes.POINTER(ctypes.c_ulonglong),
-]
-iokit.IOConnectCallStructMethod.restype = ctypes.c_int
-
-# https://developer.apple.com/documentation/iokit/1514515-ioserviceopen
-iokit.IOServiceOpen.argtypes = [
-    ctypes.c_uint, ctypes.c_uint, ctypes.c_uint, ctypes.POINTER(ctypes.c_uint),
-]
-iokit.IOServiceOpen.restype = ctypes.c_int
-
-# https://developer.apple.com/documentation/iokit/1514687-ioservicematching
-iokit.IOServiceMatching.restype = ctypes.c_void_p
-
-# https://developer.apple.com/documentation/iokit/1514494-ioservicegetmatchingservices
-iokit.IOServiceGetMatchingServices.argtypes = [
-    ctypes.c_uint, ctypes.c_void_p, ctypes.POINTER(ctypes.c_uint),
-]
-iokit.IOServiceGetMatchingServices.restype = ctypes.c_int
-
-# https://developer.apple.com/documentation/iokit/1514741-ioiteratornext
-iokit.IOIteratorNext.argtypes = [ctypes.c_uint]
-iokit.IOIteratorNext.restype = ctypes.c_uint
-
-# https://developer.apple.com/documentation/iokit/1514627-ioobjectrelease
-iokit.IOObjectRelease.argtypes = [ctypes.c_uint]
-iokit.IOObjectRelease.restype = ctypes.c_int
+iokit = None
+libkern = None
 
 
-libkern = ctypes.CDLL('/usr/lib/system/libsystem_kernel.dylib')
-libkern.mach_task_self.restype = ctypes.c_uint
+def _initIokit():
+  global iokit
+  iokit = ctypes.CDLL(
+      '/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit')
+  # https://developer.apple.com/documentation/iokit/1514274-ioconnectcallstructmethod
+  iokit.IOConnectCallStructMethod.argtypes = [
+      ctypes.c_uint,
+      ctypes.c_uint,
+      ctypes.c_void_p,
+      ctypes.c_ulonglong,
+      ctypes.c_void_p,
+      ctypes.POINTER(ctypes.c_ulonglong),
+  ]
+  iokit.IOConnectCallStructMethod.restype = ctypes.c_int
+
+  # https://developer.apple.com/documentation/iokit/1514515-ioserviceopen
+  iokit.IOServiceOpen.argtypes = [
+      ctypes.c_uint,
+      ctypes.c_uint,
+      ctypes.c_uint,
+      ctypes.POINTER(ctypes.c_uint),
+  ]
+  iokit.IOServiceOpen.restype = ctypes.c_int
+
+  # https://developer.apple.com/documentation/iokit/1514687-ioservicematching
+  iokit.IOServiceMatching.restype = ctypes.c_void_p
+
+  # https://developer.apple.com/documentation/iokit/1514494-ioservicegetmatchingservices
+  iokit.IOServiceGetMatchingServices.argtypes = [
+      ctypes.c_uint,
+      ctypes.c_void_p,
+      ctypes.POINTER(ctypes.c_uint),
+  ]
+  iokit.IOServiceGetMatchingServices.restype = ctypes.c_int
+
+  # https://developer.apple.com/documentation/iokit/1514741-ioiteratornext
+  iokit.IOIteratorNext.argtypes = [ctypes.c_uint]
+  iokit.IOIteratorNext.restype = ctypes.c_uint
+
+  # https://developer.apple.com/documentation/iokit/1514627-ioobjectrelease
+  iokit.IOObjectRelease.argtypes = [ctypes.c_uint]
+  iokit.IOObjectRelease.restype = ctypes.c_int
+
+
+def _initLibkern():
+  global libkern
+  libkern = ctypes.CDLL('/usr/lib/system/libsystem_kernel.dylib')
+  libkern.mach_task_self.restype = ctypes.c_uint
 
 
 class _SMC_KeyDataVersion(ctypes.Structure):
@@ -228,6 +244,10 @@ def _SMC_open():
 
   It leaves the device handle open for the duration of the process.
   """
+  if not iokit:
+    _initIokit()
+  if not libkern:
+    _initLibkern()
   # There should be only one.
   itr = ctypes.c_uint()
   result = iokit.IOServiceGetMatchingServices(
@@ -249,6 +269,8 @@ def _SMC_open():
 
 def _SMC_call(conn, index, indata, outdata):
   """Executes a call to the SMC subsystem."""
+  if not iokit:
+    _initIokit()
   return iokit.IOConnectCallStructMethod(
       conn,
       ctypes.c_uint(index),
@@ -360,6 +382,22 @@ def _get_xcode_version(xcode_app):
       return None
     out = out.decode('utf-8').splitlines()
     return out[0].split()[-1], out[1].split()[-1]
+
+
+@tools.cached
+def _get_physical_disks_info():
+  """Return the disk info for all the physical disks"""
+  try:
+    out = subprocess.check_output(['diskutil', 'list', '-plist', 'physical'])
+    pl = plistlib.readPlistFromString(out)
+    disk_info = {}
+    for disk in pl['WholeDisks']:
+      out = subprocess.check_output(['diskutil', 'info', '-plist', disk])
+      disk_info[disk.decode('utf-8')] = plistlib.readPlistFromString(out)
+    return disk_info
+  except (OSError, subprocess.CalledProcessError) as e:
+    logging.error('Failed to read disk info: %s', e)
+    return {}
 
 
 ## Public API.
@@ -688,19 +726,21 @@ def is_beta():
 @tools.cached
 def get_ssd():
   """Returns a list of SSD disks."""
-  try:
-    out = subprocess.check_output(['diskutil', 'list', '-plist', 'physical'])
-    pl = plistlib.readPlistFromString(out)
-    ssd = []
-    for disk in pl['WholeDisks']:
-      out = subprocess.check_output(['diskutil', 'info', '-plist', disk])
-      pl = plistlib.readPlistFromString(out)
-      if pl['SolidState']:
-        ssd.append(disk.decode('utf-8'))
-    return tuple(sorted(ssd))
-  except (OSError, subprocess.CalledProcessError) as e:
-    logging.error('Failed to read disk info: %s', e)
-    return ()
+  ssd = []
+  for disk, disk_info in _get_physical_disks_info().items():
+    if disk_info['SolidState']:
+      ssd.append(disk)
+  return tuple(sorted(ssd))
+
+
+@tools.cached
+def get_disks_model():
+  """Returns a list of disk models"""
+  models = []
+  for _, disk_info in _get_physical_disks_info().items():
+    if disk_info['MediaName']:
+      models.append(disk_info['MediaName'].decode('utf-8'))
+  return tuple(sorted(models))
 
 
 ## Mutating code.
