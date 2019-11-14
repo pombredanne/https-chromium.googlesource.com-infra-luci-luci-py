@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3116681b_d68e3e38",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-14T21:23:06Z",
+      "side": 1,
+      "message": "We should look if there are occurring. I don\u0027t recall seeing it so it should be fine, but that\u0027s a good example of why it needs to be significantly less than 60s; if this fails, this means a task is successfully reaped but the bot doesn\u0027t get it. That\u0027s why I prefer lower timeout and leaving a *lot* of time after to ensure it\u0027s successfully returned to the bot.",
+      "revId": "05e885ddcc87174a4f3b891dfa3a3f701d485899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "229d6b65_b409b818",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-14T21:23:06Z",
+      "side": 1,
+      "message": "Can you trapping it but only to handle lines 581-589?\nThe following lines failing is Super Scary.",
+      "revId": "05e885ddcc87174a4f3b891dfa3a3f701d485899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb07c056_19a80ce7",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-14T21:23:06Z",
+      "side": 1,
+      "message": "That\u0027s an old comment!! :)",
+      "revId": "05e885ddcc87174a4f3b891dfa3a3f701d485899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c80658af_2d8b33cf",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-14T21:23:06Z",
+      "side": 1,
+      "message": "Looking at bot_event() in handlers_bot.py made me realize that keeping a 30 seconds here is probably more reasonable. With the Timeout handling, it\u0027ll be fine.",
+      "range": {
+        "startLine": 349,
+        "startChar": 35,
+        "endLine": 349,
+        "endChar": 37
+      },
+      "revId": "05e885ddcc87174a4f3b891dfa3a3f701d485899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
