@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e2f7990e_d423726c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-14T21:24:39Z",
+      "side": 1,
+      "message": "I re-ran the build and it looks like the mock is not working as expected: https://logs.chromium.org/logs/infra/led/hypan_google.com/bfbe0a158e82b2be01d3ad3f8f430af871f980f66745046edf908f4e22f2ef30/+/steps/swarming_bot/0/steps/run_tests_python2/0/stdout\n\nThe output is showing the value from the test machine, instead of the mocked one.\n\nHowever, all tests pass in my local macbook.\nDo you know why it is so?",
+      "parentUuid": "fe852ecf_95226618",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13116ac5_398b1daa",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2019-11-14T01:40:46Z",
       "side": 1,
       "message": "Can we import this only when sys.platform \u003d\u003d \"darwin\" instead?",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "524168a4_b3cd917d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-14T21:24:39Z",
+      "side": 1,
+      "message": "I checked with Junji earlier and he prefers using @unittest.skipUnless since it will show the skipped tests in the output.",
+      "parentUuid": "13116ac5_398b1daa",
       "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
