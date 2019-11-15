@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "074762dc_023ec3ba",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T02:37:56Z",
+      "side": 1,
+      "message": "It\u0027s a cache problem that I have encountered many times...\n\n\nYou may reproduce the error by run all tests like \n\n```\n./test.py -v -A \u0027!no_run\u0027\n```\n\nTo avoid the issue, clearing cache before or after each test may help using `tools.clear_cache(get_ssd)`\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/tools.py?q\u003dtools.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d216",
+      "parentUuid": "e2f7990e_d423726c",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13116ac5_398b1daa",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 5
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I checked with Junji earlier and he prefers using @unittest.skipUnless since it will show the skipped tests in the output.",
       "parentUuid": "13116ac5_398b1daa",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14803e2b_f7dfb239",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T02:37:56Z",
+      "side": 1,
+      "message": "I think Takuto is proposing not to import osx which is also nice to have here.",
+      "parentUuid": "524168a4_b3cd917d",
       "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
