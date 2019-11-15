@@ -333,6 +333,7 @@ class BotEvent(_BotCommon):
     'bot_shutdown': swarming_pb2.BOT_SHUTDOWN,
     # Historical misnaming.
     'bot_terminate': swarming_pb2.INSTRUCT_TERMINATE_BOT,
+    'bot_missing': swarming_pb2.MISSING,
     'request_restart': swarming_pb2.INSTRUCT_RESTART_BOT,
     # Shall only be sorted when there is a significant difference in the bot
     # state versus the previous event.
@@ -362,7 +363,7 @@ class BotEvent(_BotCommon):
       'bot_rebooting',
       'bot_shutdown',
       'bot_terminate',
-      # TODO(crbug/916578): Add 'bot_missing'.
+      'bot_missing',
 
       # Bot polling result:
       'request_restart',
@@ -584,8 +585,10 @@ def bot_event(
   #    The bot has already finished the previous task.
   #    But it could have forgotten to remove the task from the BotInfo.
   #    So ensure the task is removed.
+  # 3) When the bot is missing
+  #    It can't proceed assigned task anymore.
   if event_type in ('task_completed', 'task_error', 'task_killed',
-                    'request_sleep'):
+                    'request_sleep', 'bot_missing'):
     bot_info.task_id = ''
     bot_info.task_name = None
   if task_name:
@@ -693,25 +696,42 @@ def has_capacity(dimensions):
 
 def cron_update_bot_info():
   """Refreshes BotInfo.composite for dead bots."""
-  # TODO(crbug/916578): Ensure a BotEvent is registered so it can be queried in
-  # the Big Query swarming.bot_events table.
-
   @ndb.tasklet
   def run(bot_key):
     bot = yield bot_key.get_async()
     if bot and bot.should_be_dead and (bot.is_alive or not bot.is_dead):
       # bot composite get updated in _pre_put_hook
       yield bot.put_async()
-      logging.info('DEAD: %s', bot.id)
-      raise ndb.Return(1)
-    raise ndb.Return(0)
+      logging.info('Changing Bot status to DEAD: %s', bot.id)
+      raise ndb.Return((1, bot_key))
+    raise ndb.Return((0, bot_key))
 
   def tx_result(future, stats):
     try:
-      stats['dead'] += future.get_result()
+      updated, bot_key = future.get_result()
+      if updated:
+        stats['dead'] += 1
+        send_bot_event(bot_key)
     except datastore_utils.CommitError:
       logging.warning('Failed to commit a Tx')
       stats['failed'] += 1
+
+  def send_bot_event(bot_key):
+    bot = bot_key.get()
+    logging.info('Sending bot_missing event: %s', bot.id)
+    bot_event(
+        event_type='bot_missing',
+        bot_id=bot.id,
+        message='missing bot',
+        external_ip=None,
+        authenticated_as=None,
+        dimensions=None,
+        state=None,
+        version=None,
+        quarantined=None,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None)
 
   # The assumption here is that a cron job can churn through all the entities
   # fast enough. The number of dead bot is expected to be <10k. In practice the
