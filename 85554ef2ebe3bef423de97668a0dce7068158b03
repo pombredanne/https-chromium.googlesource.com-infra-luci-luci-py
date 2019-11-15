@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a4b68c0_df8c0466",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-15T10:25:33Z",
+      "side": 1,
+      "message": "bot status ?",
+      "range": {
+        "startLine": 565,
+        "startChar": 58,
+        "endLine": 565,
+        "endChar": 61
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b47a173c_2398bb66",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-15T10:25:33Z",
+      "side": 1,
+      "message": "\u0027We assume it ...\u0027?",
+      "range": {
+        "startLine": 595,
+        "startChar": 7,
+        "endLine": 595,
+        "endChar": 10
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "400a2460_0083aa88",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-15T10:25:33Z",
+      "side": 1,
+      "message": "why not return True/False ?",
+      "range": {
+        "startLine": 712,
+        "startChar": 0,
+        "endLine": 713,
+        "endChar": 34
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
