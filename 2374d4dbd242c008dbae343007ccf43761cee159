@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d148351f_bb22ccd1",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T08:15:25Z",
+      "side": 1,
+      "message": "Currently, it triggers queries for 40 days. But this will change it to 40 hours.\nShould you probably trigger more queries? or change the cron schedule to more granularly.",
+      "revId": "2374d4dbd242c008dbae343007ccf43761cee159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
