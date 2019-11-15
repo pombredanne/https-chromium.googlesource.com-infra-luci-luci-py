@@ -314,7 +314,7 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
         # The cron job ran for too long. There's a lot of backlog. Not a big
         # deal, it will be triggered again soon.
         break
-      if days == 40:
+      if days == 10:
         # Limit the number of parallel queries at a time, we don't want to blow
         # up quota.
         break
