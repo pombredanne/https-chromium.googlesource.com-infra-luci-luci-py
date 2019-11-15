@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bb938c1b_1d959806",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T07:06:45Z",
+      "side": 1,
+      "message": "Me too",
+      "parentUuid": "5198a2e6_1f10d9cb",
+      "range": {
+        "startLine": 261,
+        "startChar": 6,
+        "endLine": 261,
+        "endChar": 19
+      },
+      "revId": "43f7108c8cbccd74d1cb281b43cf6f68565a58d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0176b14a_b7eb10e9",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2019-11-15T06:53:23Z",
       "side": 1,
       "message": "why not staticmethod?",
+      "revId": "43f7108c8cbccd74d1cb281b43cf6f68565a58d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4d20dee_973a44e7",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T07:06:45Z",
+      "side": 1,
+      "message": "Oh, python has classmethod and staticmethod.\nI changed both yield_dead_bots and _deadline to staticmethod.",
+      "parentUuid": "0176b14a_b7eb10e9",
       "revId": "43f7108c8cbccd74d1cb281b43cf6f68565a58d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
