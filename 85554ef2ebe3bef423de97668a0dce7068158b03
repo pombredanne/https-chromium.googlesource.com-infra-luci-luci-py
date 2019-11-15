@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e4563f87_9fd6cdd9",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-15T15:53:50Z",
+      "side": 1,
+      "message": "I recommend adding this first as a separate CL. The problem is line 383 below. This means that old code won\u0027t be able to load a BotEvent entity with the new value.\n\nI wanted to have it check at storage, not a reading, but ndb does both. An alternative would be to move the choices from line 383 into a new _pre_put_hook() function that would check at storage, but will be fine when reading.\n\nStill, the risk is that it is still a race condition: a new version generates the bot_missing, while concurrently an old version reaps it and tries to send it to BQ. This would lead to an exception.\n\nSo the check at reading as \"some\" value, albeit it makes this kind of release more annoying.\n\nWhen doing this kind of change, I recommend to use the occasion to delete old versions too, since they will blow up if ever used.",
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a4b68c0_df8c0466",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 5
