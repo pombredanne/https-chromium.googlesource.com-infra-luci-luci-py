@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c7e06da_1424cb2e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-15T16:09:48Z",
+      "side": 1,
+      "message": "One way to ensure it\u0027s only called at the right time is to\n\n  assert self.composite, \u0027Please store first\u0027\n\nsince this array should never be empty.",
+      "revId": "e2b1ce57f2304780793462f4b31bdf39657b77d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37dafe2_7cde798e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-15T16:09:48Z",
+      "side": 1,
+      "message": "I recommend this to be a classmethod so below you can do cls.query(...) instead of hardcoding the class name.",
+      "revId": "e2b1ce57f2304780793462f4b31bdf39657b77d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
