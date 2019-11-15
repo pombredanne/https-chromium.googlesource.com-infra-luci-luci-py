@@ -250,19 +250,28 @@ class BotInfo(_BotCommon):
 
   def _calc_composite(self):
     """Returns the value for BotInfo.composite, which permits quick searches."""
-    timeout = config.settings().bot_death_timeout_secs
-    is_dead = (utils.utcnow() - self.last_seen_ts).total_seconds() >= timeout
     return [
       self.IN_MAINTENANCE if self.maintenance_msg else self.NOT_IN_MAINTENANCE,
-      self.DEAD if is_dead else self.ALIVE,
+      self.DEAD if self.shouldbe_dead else self.ALIVE,
       self.QUARANTINED if self.quarantined else self.HEALTHY,
       self.BUSY if self.task_id else self.IDLE
     ]
 
   @property
+  def shouldbe_dead(self):
+    # check if it's timeout regardless of the DB state.
+    timeout = config.settings().bot_death_timeout_secs
+    return (utils.utcnow() - self.last_seen_ts).total_seconds() >= timeout
+
+  @property
   def is_dead(self):
     # Only valid after it's stored.
     return self.DEAD in self.composite
+
+  @property
+  def is_alive(self):
+    # Only valid after it's stored.
+    return self.ALIVE in self.composite
 
   def to_dict(self, exclude=None):
     out = super(BotInfo, self).to_dict(exclude=exclude)
@@ -314,6 +323,7 @@ class BotEvent(_BotCommon):
     'bot_shutdown': swarming_pb2.BOT_SHUTDOWN,
     # Historical misnaming.
     'bot_terminate': swarming_pb2.INSTRUCT_TERMINATE_BOT,
+    'bot_missing': swarming_pb2.MISSING,
     'request_restart': swarming_pb2.INSTRUCT_RESTART_BOT,
     # Shall only be sorted when there is a significant difference in the bot
     # state versus the previous event.
@@ -343,7 +353,7 @@ class BotEvent(_BotCommon):
       'bot_rebooting',
       'bot_shutdown',
       'bot_terminate',
-      # TODO(crbug/916578): Add 'bot_missing'.
+      'bot_missing',
 
       # Bot polling result:
       'request_restart',
@@ -565,8 +575,10 @@ def bot_event(
   #    The bot has already finished the previous task.
   #    But it could have forgotten to remove the task from the BotInfo.
   #    So ensure the task is removed.
+  # 3) When the bot is missing
+  #    It can't proceed assigned task anymore.
   if event_type in ('task_completed', 'task_error', 'task_killed',
-                    'request_sleep'):
+                    'request_sleep', 'bot_missing'):
     bot_info.task_id = ''
     bot_info.task_name = None
   if task_name:
@@ -674,22 +686,27 @@ def has_capacity(dimensions):
 
 def cron_update_bot_info():
   """Refreshes BotInfo.composite for dead bots."""
-  # TODO(crbug/916578): Ensure a BotEvent is registered so it can be queried in
-  # the Big Query swarming.bot_events table.
   dt = datetime.timedelta(seconds=config.settings().bot_death_timeout_secs)
   cutoff = utils.utcnow() - dt
 
   @ndb.tasklet
   def run(bot_key):
     bot = yield bot_key.get_async()
-    if (bot and bot.last_seen_ts <= cutoff and
-        (BotInfo.ALIVE in bot.composite or BotInfo.DEAD not in bot.composite)):
-      # Updating it recomputes composite.
-      # TODO(maruel): BotEvent.
+    if bot and bot.shouldbe_dead and (bot.is_alive or not bot.is_dead):
+      # bot composite get updated in _pre_put_hook
       yield bot.put_async()
-      logging.info('DEAD: %s', bot.id)
-      raise ndb.Return(1)
-    raise ndb.Return(0)
+      logging.info('Changing Bot status to DEAD: %s', bot.id)
+      raise ndb.Return((1, bot_key))
+    raise ndb.Return((0, bot_key))
+
+  def post_tx_hook(bot_key):
+    bot = bot_key.get()
+    logging.info('Sending bot_missing event: %s', bot.id)
+    bot_event(
+        event_type='bot_missing', bot_id=bot.id, message='missing bot',
+        external_ip=None, authenticated_as=None, dimensions=None,
+        state=None, version=None, quarantined=None,
+        maintenance_msg=None, task_id=None, task_name=None)
 
   # The assumption here is that a cron job can churn through all the entities
   # fast enough. The number of dead bot is expected to be <10k. In practice the
@@ -701,7 +718,7 @@ def cron_update_bot_info():
     futures = []
     for b in BotInfo.query(BotInfo.last_seen_ts <= cutoff):
       seen += 1
-      if BotInfo.ALIVE in b.composite or BotInfo.DEAD not in b.composite:
+      if b.is_alive or not b.is_dead:
         # Make sure the variable is not aliased.
         k = b.key
         # Unregister the bot from task queues since it can't reap anything.
@@ -715,13 +732,19 @@ def cron_update_bot_info():
           for i in range(len(futures) - 1, -1, -1):
             if futures[i].done():
               try:
-                dead += futures.pop(i).get_result()
+                ok, bot_key = futures.pop(i).get_result()
+                if ok:
+                  dead += 1
+                  post_tx_hook(bot_key)
               except datastore_utils.CommitError:
                 logging.warning('Failed to commit a Tx')
                 failed += 1
     for f in futures:
       try:
-        dead += f.get_result()
+        ok, bot_key = f.get_result()
+        if ok:
+          dead += 1
+          post_tx_hook(bot_key)
       except datastore_utils.CommitError:
         logging.warning('Failed to commit a Tx')
         failed += 1
