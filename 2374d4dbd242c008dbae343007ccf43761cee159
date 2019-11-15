@@ -16,6 +16,24 @@
       "revId": "2374d4dbd242c008dbae343007ccf43761cee159",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f7d4ddb_2e3d3227",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-15T09:06:16Z",
+      "side": 1,
+      "message": "I think we don\u0027t need to trigger more queries here, and ideally we can set less granular cron job if query_expired can enumerate all files in given duration before timeout.",
+      "parentUuid": "d148351f_bb22ccd1",
+      "revId": "2374d4dbd242c008dbae343007ccf43761cee159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
