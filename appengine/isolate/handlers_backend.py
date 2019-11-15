@@ -308,19 +308,19 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
     oldest = datetime.datetime(*entity.expiration_ts.date().timetuple()[:3])
     current = oldest
     triggered = 0
-    days = 0
+    hours = 0
     while current < now:
       if time.time() >= time_to_stop:
         # The cron job ran for too long. There's a lot of backlog. Not a big
         # deal, it will be triggered again soon.
         break
-      if days == 40:
+      if hours == 40:
         # Limit the number of parallel queries at a time, we don't want to blow
         # up quota.
         break
 
-      days += 1
-      end = current + datetime.timedelta(days=1)
+      hours += 1
+      end = current + datetime.timedelta(hours=1)
       if end > now:
         end = now
       data = {'start': current, 'end': end}
@@ -331,9 +331,8 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
       else:
         logging.warning('Failed to trigger task for %s', data)
       current = end
-    logging.info(
-        'Triggered %d tasks for %d day(s) starting %s up to %s',
-        triggered, days, oldest, now)
+    logging.info('Triggered %d tasks for %d hour(s) starting %s up to %s',
+                 triggered, hours, oldest, now)
 
 
 class CronCleanupOrphanHandler(webapp2.RequestHandler):
