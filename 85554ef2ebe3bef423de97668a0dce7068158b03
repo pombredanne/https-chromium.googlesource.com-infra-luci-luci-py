@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a2ceac20_c8ec336a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T22:08:23Z",
+      "side": 1,
+      "message": "Thank you for your comment.\n\nI created a CL adding the event type.\nhttps://crrev.com/c/1916993\n\nWill deploy it and remove old versions before landing this CL.\n\n\u003e move the choices from line 383 into a new _pre_put_hook()\n\nWill also consider this next week.",
+      "parentUuid": "e4563f87_9fd6cdd9",
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a4b68c0_df8c0466",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2019-11-15T10:25:33Z",
       "side": 1,
       "message": "bot status ?",
+      "range": {
+        "startLine": 565,
+        "startChar": 58,
+        "endLine": 565,
+        "endChar": 61
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22d86ad5_fa1be5c6",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T22:08:23Z",
+      "side": 1,
+      "message": "It\u0027s composite, actually. I was trying not to use \u0027bot status\u0027 since it can be confused with \u0027bot state\u0027.",
+      "parentUuid": "9a4b68c0_df8c0466",
       "range": {
         "startLine": 565,
         "startChar": 58,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "7a7e5fbd_88c57fb6",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T22:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b47a173c_2398bb66",
+      "range": {
+        "startLine": 595,
+        "startChar": 7,
+        "endLine": 595,
+        "endChar": 10
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "400a2460_0083aa88",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 5
@@ -76,6 +142,30 @@
       "writtenOn": "2019-11-15T10:25:33Z",
       "side": 1,
       "message": "why not return True/False ?",
+      "range": {
+        "startLine": 712,
+        "startChar": 0,
+        "endLine": 713,
+        "endChar": 34
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2e9638_5510f9e4",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T22:08:23Z",
+      "side": 1,
+      "message": "bot_key will be used to send bot_event. I\u0027m not sure why it was 0/1.",
+      "parentUuid": "400a2460_0083aa88",
       "range": {
         "startLine": 712,
         "startChar": 0,
