@@ -250,19 +250,28 @@ class BotInfo(_BotCommon):
 
   def _calc_composite(self):
     """Returns the value for BotInfo.composite, which permits quick searches."""
-    timeout = config.settings().bot_death_timeout_secs
-    is_dead = (utils.utcnow() - self.last_seen_ts).total_seconds() >= timeout
     return [
       self.IN_MAINTENANCE if self.maintenance_msg else self.NOT_IN_MAINTENANCE,
-      self.DEAD if is_dead else self.ALIVE,
+      self.DEAD if self.shouldbe_dead else self.ALIVE,
       self.QUARANTINED if self.quarantined else self.HEALTHY,
       self.BUSY if self.task_id else self.IDLE
     ]
 
   @property
+  def shouldbe_dead(self):
+    # check if it's timeout regardless of the DB state.
+    timeout = config.settings().bot_death_timeout_secs
+    return (utils.utcnow() - self.last_seen_ts).total_seconds() >= timeout
+
+  @property
   def is_dead(self):
     # Only valid after it's stored.
     return self.DEAD in self.composite
+
+  @property
+  def is_alive(self):
+    # Only valid after it's stored.
+    return self.ALIVE in self.composite
 
   def to_dict(self, exclude=None):
     out = super(BotInfo, self).to_dict(exclude=exclude)
@@ -682,10 +691,8 @@ def cron_update_bot_info():
   @ndb.tasklet
   def run(bot_key):
     bot = yield bot_key.get_async()
-    if (bot and bot.last_seen_ts <= cutoff and
-        (BotInfo.ALIVE in bot.composite or BotInfo.DEAD not in bot.composite)):
-      # Updating it recomputes composite.
-      # TODO(maruel): BotEvent.
+    if bot and bot.shouldbe_dead and (bot.is_alive or not bot.is_dead):
+      # bot composite get updated in _pre_put_hook
       yield bot.put_async()
       logging.info('DEAD: %s', bot.id)
       raise ndb.Return(1)
@@ -701,7 +708,7 @@ def cron_update_bot_info():
     futures = []
     for b in BotInfo.query(BotInfo.last_seen_ts <= cutoff):
       seen += 1
-      if BotInfo.ALIVE in b.composite or BotInfo.DEAD not in b.composite:
+      if b.is_alive or not b.is_dead:
         # Make sure the variable is not aliased.
         k = b.key
         # Unregister the bot from task queues since it can't reap anything.
