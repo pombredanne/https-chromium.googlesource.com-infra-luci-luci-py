@@ -34,6 +34,24 @@
       "revId": "2374d4dbd242c008dbae343007ccf43761cee159",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bddbb0b_fcec814a",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-15T09:09:08Z",
+      "side": 1,
+      "message": "Discussed offline and agreed that\nCurrently each triggered task fails with timeout because the specified time scope is too large. So try with smaller time scope and see how it works.\n\nThe main issue is that the oldest timestamp doesn\u0027t increase because of the failures.\nIncreasing the number of \"hours\" wouldn\u0027t help solving the issue. so keep the same number for now.",
+      "parentUuid": "d148351f_bb22ccd1",
+      "revId": "2374d4dbd242c008dbae343007ccf43761cee159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
