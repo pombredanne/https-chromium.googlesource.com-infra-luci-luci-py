@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c114b32_2ccbe980",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-16T00:09:13Z",
+      "side": 1,
+      "message": "Small nit: this list was in order, I\u0027d prefer you to add it after line 362.",
+      "revId": "495168d3110a64a1a6aa603246db50624cf22c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
