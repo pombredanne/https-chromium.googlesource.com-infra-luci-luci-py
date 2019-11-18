@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2229c32_5547cf93",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-18T18:48:00Z",
+      "side": 1,
+      "message": "this must be updated",
+      "range": {
+        "startLine": 527,
+        "startChar": 2,
+        "endLine": 528,
+        "endChar": 15
+      },
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4921f2a_d6d47122",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-18T18:48:00Z",
+      "side": 1,
+      "message": "s/but/not",
+      "range": {
+        "startLine": 564,
+        "startChar": 47,
+        "endLine": 564,
+        "endChar": 50
+      },
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a40a87a_5546dc5b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-18T18:48:00Z",
+      "side": 1,
+      "message": "process",
+      "range": {
+        "startLine": 596,
+        "startChar": 26,
+        "endLine": 596,
+        "endChar": 33
+      },
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd063c30_caaaef44",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-18T18:48:00Z",
+      "side": 1,
+      "message": "is it possible to know the last time bot connected, better yet (last connection time + how much server told bot to sleep)?",
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
