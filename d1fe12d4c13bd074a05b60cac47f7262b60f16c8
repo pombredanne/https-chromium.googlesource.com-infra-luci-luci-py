@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d631597e_29d32edb",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-18T21:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2229c32_5547cf93",
+      "range": {
+        "startLine": 527,
+        "startChar": 2,
+        "endLine": 528,
+        "endChar": 15
+      },
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4921f2a_d6d47122",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1e47d8f_08c026c7",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-18T21:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4921f2a_d6d47122",
+      "range": {
+        "startLine": 564,
+        "startChar": 47,
+        "endLine": 564,
+        "endChar": 50
+      },
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "57fb6cff_9b06090f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-18T21:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a40a87a_5546dc5b",
+      "range": {
+        "startLine": 596,
+        "startChar": 26,
+        "endLine": 596,
+        "endChar": 33
+      },
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd063c30_caaaef44",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 8
@@ -82,6 +154,24 @@
       "writtenOn": "2019-11-18T18:48:00Z",
       "side": 1,
       "message": "is it possible to know the last time bot connected, better yet (last connection time + how much server told bot to sleep)?",
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "890b7ea7_837bf8d0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-18T21:49:20Z",
+      "side": 1,
+      "message": "\u003e last connection time\n\nI think `BotInfo` entities keep `last_seen_at`, but they\u0027re not in BQ.\nIf you need it in BQ, it needs to be sent explicitly.\n\n\u003e how much server told bot to sleep\n\nBot dead handling is currently done with the deadline specified in config, and servers don\u0027t store sleep duration. It would need to be stored in BotInfo and sent to BQ.\n\nmaruel, please correct me if I\u0027m wrong.",
+      "parentUuid": "cd063c30_caaaef44",
       "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
