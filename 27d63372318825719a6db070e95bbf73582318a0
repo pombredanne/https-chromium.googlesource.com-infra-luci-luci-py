@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00a5fe56_1b2b72d8",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-18T08:23:10Z",
+      "side": 1,
+      "message": "maruel, tandrii\nI would like you to confirm if the bot_event arguments are enough.\nPlease let me know if any other information I should send here.",
+      "revId": "27d63372318825719a6db070e95bbf73582318a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
