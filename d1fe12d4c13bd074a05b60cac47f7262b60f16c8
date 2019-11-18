@@ -175,6 +175,24 @@
       "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dd97316_e4136794",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-18T22:02:45Z",
+      "side": 1,
+      "message": "context: I am trying to compute is how long the machine was idle.\n\nbefore your CL:\n  time T0: \"machine X finished task\" or \"machine X session started\"\n\nafter your CL:\n  time T0: \"machine X finished task\" or \"machine X session started\"\n  time T1: \"machine X is missing\"\n\nideally:\n  time T0: \"machine X finished task\" or \"machine X session started\" \n  time T1: \"machine X is missing\" since time T05\n\n\nBefore: my code just assumes machine w/o any events for 24 hours as missing. Huge error in both ways: machine can actually be dead but may also be genuine idle.\nAfter: error shrinks to \u003cwhatever is cronjob frequency\u003e\nIdeal: error is ~heartbeat rate\n\n\nSo, \"after\" is really good enough for now.",
+      "parentUuid": "890b7ea7_837bf8d0",
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
