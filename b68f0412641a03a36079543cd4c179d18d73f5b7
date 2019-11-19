@@ -69,6 +69,30 @@
       "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35a70bc3_f6f43732",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-19T01:00:31Z",
+      "side": 1,
+      "message": "I see. Then how about to use 429?\nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429\n\n409 sounds like retry won\u0027t success, but we expect retry will success in this case.",
+      "parentUuid": "803316f5_8ad519ba",
+      "range": {
+        "startLine": 238,
+        "startChar": 31,
+        "endLine": 238,
+        "endChar": 34
+      },
+      "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
