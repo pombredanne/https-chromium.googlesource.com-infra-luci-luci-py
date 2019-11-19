@@ -45,6 +45,30 @@
       "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "803316f5_8ad519ba",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-19T00:53:01Z",
+      "side": 1,
+      "message": "1. default alerting we have fires on 5xx, but ignores 4xx.\n\n2. The fact that this is an HTTP request is strictly speaking impl. detail of appengine task queues.\n\n4xx effectively says:\n * to monitoring: please, ignore.\n * task queue: please, retry.",
+      "parentUuid": "384cf8de_0e25136b",
+      "range": {
+        "startLine": 238,
+        "startChar": 31,
+        "endLine": 238,
+        "endChar": 34
+      },
+      "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
