@@ -305,7 +305,6 @@ class BotManagementTest(test_case.TestCase):
       expected = _gen_bot_info(
           composite=composite+[bot_management.BotInfo.IDLE],
           id=bot_id,
-          task_id='',
           task_name=None)
     else:
       # bot_info.task_id and bot_info.task_name should be kept
@@ -341,7 +340,6 @@ class BotManagementTest(test_case.TestCase):
           bot_management.BotInfo.QUARANTINED,
           bot_management.BotInfo.IDLE,
         ],
-        task_id='',
         quarantined=True)
 
     bot_info = bot_management.get_info_key('id1').get()
@@ -349,7 +347,7 @@ class BotManagementTest(test_case.TestCase):
 
     # BotEvent is registered for poll when BotInfo creates
     expected_event = _gen_bot_event(
-        event_type=u'request_sleep', quarantined=True, task_id='')
+        event_type=u'request_sleep', quarantined=True)
     bot_events = bot_management.get_events_query('id1', True)
     self.assertEqual([expected_event], [e.to_dict() for e in bot_events])
 
