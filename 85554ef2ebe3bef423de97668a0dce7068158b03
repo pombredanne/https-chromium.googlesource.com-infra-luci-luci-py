@@ -199,6 +199,30 @@
       "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2677f868_3c15ecaf",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-19T02:17:34Z",
+      "side": 1,
+      "message": "Hm, I don\u0027t prefer to use None to *imply* something (not success in this code). \nI\u0027m ok in this specific case, though.",
+      "parentUuid": "8e9889ca_f7be298c",
+      "range": {
+        "startLine": 712,
+        "startChar": 0,
+        "endLine": 713,
+        "endChar": 34
+      },
+      "revId": "85554ef2ebe3bef423de97668a0dce7068158b03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
