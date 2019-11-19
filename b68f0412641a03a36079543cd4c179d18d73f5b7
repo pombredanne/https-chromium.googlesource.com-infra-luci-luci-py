@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9fcc783_e16224d5",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-19T00:45:47Z",
+      "side": 1,
+      "message": "why not 400?\nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "range": {
+        "startLine": 226,
+        "startChar": 31,
+        "endLine": 226,
+        "endChar": 34
+      },
+      "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "384cf8de_0e25136b",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-19T00:45:47Z",
+      "side": 1,
+      "message": "I prefer to use 503 rather than 409 here.\nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503",
+      "range": {
+        "startLine": 238,
+        "startChar": 31,
+        "endLine": 238,
+        "endChar": 34
+      },
+      "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
