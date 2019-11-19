@@ -193,6 +193,24 @@
       "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b650b686_56905a1f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-19T02:36:04Z",
+      "side": 1,
+      "message": "Thanks for letting me know the use case.\nIt seems last_seen_at is enough for now. Will add it to the event.",
+      "parentUuid": "5dd97316_e4136794",
+      "revId": "d1fe12d4c13bd074a05b60cac47f7262b60f16c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
