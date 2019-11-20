@@ -22,6 +22,30 @@
       "revId": "4af66f2587d4c92dfedd7ede46846520547a535b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dfe84d8_e0001a52",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-20T02:13:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f2fd7db_f99ecfbc",
+      "range": {
+        "startLine": 551,
+        "startChar": 40,
+        "endLine": 551,
+        "endChar": 41
+      },
+      "revId": "4af66f2587d4c92dfedd7ede46846520547a535b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
