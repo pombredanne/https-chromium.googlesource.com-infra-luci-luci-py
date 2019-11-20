@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a59e9d6b_c78117ad",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-20T00:50:23Z",
+      "side": 1,
+      "message": "This is not used in BotEvent yet?",
+      "revId": "808b62d2486d466fadf47d6e354889000d779d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
