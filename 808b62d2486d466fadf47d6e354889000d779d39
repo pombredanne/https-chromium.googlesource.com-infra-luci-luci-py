@@ -16,6 +16,24 @@
       "revId": "808b62d2486d466fadf47d6e354889000d779d39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2036f1c9_2b78a081",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-20T02:59:50Z",
+      "side": 1,
+      "message": "bot missing will be implemented in the next CL.\n\nhttps://crrev.com/c/1916984",
+      "parentUuid": "a59e9d6b_c78117ad",
+      "revId": "808b62d2486d466fadf47d6e354889000d779d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
