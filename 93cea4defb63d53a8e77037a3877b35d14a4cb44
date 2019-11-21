@@ -16,6 +16,74 @@
       "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5687b10_68471c52",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-21T15:12:18Z",
+      "side": 1,
+      "message": "s/sent from/created by/",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "196e5b4a_9f0de8f0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-21T15:12:18Z",
+      "side": 1,
+      "message": "s/called from/created by/",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c1facdb_ebace5f1",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-21T15:12:18Z",
+      "side": 1,
+      "message": "If you that, it\u0027s not indexed anymore in the DB. AFAIK this is never queried so it\u0027s probably fine to not index.",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "768d4942_e4a62cc0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-21T15:12:18Z",
+      "side": 1,
+      "message": "The main drawback here is that you\u0027ll get duplicate events on retry, which will be rare but confusing. In theory it\u0027s possible to refactor bot_event() to work inside a transaction but it\u0027s true it\u0027s a bit of work, the main issue ironically is not the tx inside, but the fact it\u0027s synchronous.",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
