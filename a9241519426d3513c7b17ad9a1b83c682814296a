@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44c9311f_8cc7bde2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-21T23:53:43Z",
+      "side": 1,
+      "message": "I prefer to have link having related context.\ne.g. \u0027This is followup for crrev.com/c/1916996\u0027",
+      "revId": "a9241519426d3513c7b17ad9a1b83c682814296a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
