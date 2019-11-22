@@ -34,6 +34,24 @@
       "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20075d58_5cefe74f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-22T09:33:37Z",
+      "side": 1,
+      "message": "If I see L722, I tend to find function above. So I prefer to define function before calling.\nAnd I think most of functions in our codebase are defined above the line it is called.",
+      "parentUuid": "97bbcb20_9b4f92a1",
+      "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
