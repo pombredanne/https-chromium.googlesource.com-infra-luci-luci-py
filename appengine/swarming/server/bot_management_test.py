@@ -15,6 +15,7 @@ import test_env
 test_env.setup_test_env()
 
 from google.protobuf import struct_pb2
+from google.protobuf import timestamp_pb2
 
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -306,7 +307,6 @@ class BotManagementTest(test_case.TestCase):
       expected = _gen_bot_info(
           composite=composite+[bot_management.BotInfo.IDLE],
           id=bot_id,
-          task_id='',
           task_name=None)
     else:
       # bot_info.task_id and bot_info.task_name should be kept
@@ -342,7 +342,6 @@ class BotManagementTest(test_case.TestCase):
           bot_management.BotInfo.QUARANTINED,
           bot_management.BotInfo.IDLE,
         ],
-        task_id='',
         quarantined=True)
 
     bot_info = bot_management.get_info_key('id1').get()
@@ -350,7 +349,7 @@ class BotManagementTest(test_case.TestCase):
 
     # BotEvent is registered for poll when BotInfo creates
     expected_event = _gen_bot_event(
-        event_type=u'request_sleep', quarantined=True, task_id='')
+        event_type=u'request_sleep', quarantined=True)
     bot_events = bot_management.get_events_query('id1', True)
     self.assertEqual([expected_event], [e.to_dict() for e in bot_events])
 
@@ -500,6 +499,20 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(1, bot_management.cron_update_bot_info())
     # The cron job ran, so it's now correct.
     check([bot1_dead], [bot2_alive])
+
+    # the last event should be bot_missing
+    events = list(bot_management.get_events_query('id1', order=True))
+    event = events[0]
+    bq_event = swarming_pb2.BotEvent()
+    event.to_proto(bq_event)
+
+    self.assertEqual(event.event_type, 'bot_missing')
+    self.assertEqual(event.last_seen_ts, bot1_dead['last_seen_ts'])
+    self.assertEqual(bq_event.event, swarming_pb2.BOT_MISSING)
+    self.assertEqual(bq_event.bot.status, swarming_pb2.MISSING)
+    last_seen_ts = timestamp_pb2.Timestamp()
+    last_seen_ts.FromDatetime(bot1_dead['last_seen_ts'])
+    self.assertEqual(bq_event.bot.info.last_seen_ts, last_seen_ts)
 
   def test_cron_delete_old_bot_events(self):
     # Create an old BotEvent right at the cron job cut off, and another one one
