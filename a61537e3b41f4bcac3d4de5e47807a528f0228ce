@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ed89388_4bc4469e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-22T07:55:38Z",
+      "side": 1,
+      "message": "define function before calling line?",
+      "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
