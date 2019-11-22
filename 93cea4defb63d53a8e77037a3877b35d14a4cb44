@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a9b6f457_63e024f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T04:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f1c9d6e_524ee937",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5687b10_68471c52",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 12
