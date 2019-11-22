@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3469ac20_32f4f287",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-22T08:47:10Z",
+      "side": 1,
+      "message": "why do you need to update this test?",
+      "revId": "0be88d11b9d4a430a3ed716860914df15c0dbf3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b524e3de_12e52244",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-22T08:47:10Z",
+      "side": 1,
+      "message": "is streamed now?",
+      "range": {
+        "startLine": 563,
+        "startChar": 20,
+        "endLine": 563,
+        "endChar": 35
+      },
+      "revId": "0be88d11b9d4a430a3ed716860914df15c0dbf3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
