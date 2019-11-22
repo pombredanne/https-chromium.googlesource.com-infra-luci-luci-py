@@ -189,6 +189,30 @@
       "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc28f67d_4f4329c3",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T02:10:24Z",
+      "side": 1,
+      "message": "Ah, that\u0027s the trick.\nI found it, and created a CL.\nhttps://crrev.com/c/1927993",
+      "parentUuid": "ba3fa56f_8df9bb16",
+      "range": {
+        "startLine": 238,
+        "startChar": 31,
+        "endLine": 238,
+        "endChar": 34
+      },
+      "revId": "b68f0412641a03a36079543cd4c179d18d73f5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
