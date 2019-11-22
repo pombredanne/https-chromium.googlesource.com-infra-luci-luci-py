@@ -52,6 +52,24 @@
       "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5b7543_2094fb06",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-11-22T20:23:18Z",
+      "side": 1,
+      "message": "FWIW, I think most of Foundation code I review in Python/Go code is structured like\n  highest level functions first, impl. details second.\nbut:\n * it\u0027s not enforced by any tooling.\n * I don\u0027t remember reading anything about this in our code style guide.\n\nI *personally* prefer highest level first precisely because I find it natural, but it\u0027s just my preference.\nDoing what nearby existing code does is more important for consistency reasons.",
+      "parentUuid": "20075d58_5cefe74f",
+      "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
