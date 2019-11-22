@@ -123,6 +123,30 @@
       "revId": "0be88d11b9d4a430a3ed716860914df15c0dbf3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c77286f_a933f624",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T08:59:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09a2c85a_893908bb",
+      "range": {
+        "startLine": 563,
+        "startChar": 20,
+        "endLine": 563,
+        "endChar": 35
+      },
+      "revId": "0be88d11b9d4a430a3ed716860914df15c0dbf3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
