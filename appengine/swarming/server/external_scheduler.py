@@ -162,8 +162,7 @@ def assign_task(es_cfg, bot_dimensions):
   return resp.assignments[0].task_id, resp.assignments[0].slice_number
 
 
-# TODO(linxinan): Remove the default argument of batch_mode.
-def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode=False):
+def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode):
   """Calls external scheduler to notify it of a task state.
 
   Arguments:
