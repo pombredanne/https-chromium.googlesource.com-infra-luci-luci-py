@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8c7eb1be_e91ddd4d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T03:36:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5687b10_68471c52",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "196e5b4a_9f0de8f0",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 12
@@ -50,6 +68,24 @@
       "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6582012b_60ccaf3d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T03:36:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "196e5b4a_9f0de8f0",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "55de93f5_3d22ac93",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T03:36:05Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "4c1facdb_ebace5f1",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "768d4942_e4a62cc0",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 12
@@ -81,6 +135,24 @@
       "writtenOn": "2019-11-21T15:12:18Z",
       "side": 1,
       "message": "The main drawback here is that you\u0027ll get duplicate events on retry, which will be rare but confusing. In theory it\u0027s possible to refactor bot_event() to work inside a transaction but it\u0027s true it\u0027s a bit of work, the main issue ironically is not the tx inside, but the fact it\u0027s synchronous.",
+      "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3457430_6d280d00",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-22T03:36:05Z",
+      "side": 1,
+      "message": "\u003e refactor bot_event() to work inside a transaction\n\nI thought this, too. But choose this workaround.\n\n\u003e you\u0027ll get duplicate events on retry\n\nI refactored the codes to call send_bot_event() *only after* tx success.\nSee lint 775, 777. If my understanding is correct, retries are done internally in a future.\nAnd the future returns bot_key only when it succeeded.",
+      "parentUuid": "768d4942_e4a62cc0",
       "revId": "93cea4defb63d53a8e77037a3877b35d14a4cb44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
