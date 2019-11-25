@@ -70,6 +70,24 @@
       "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc8ea406_9973c781",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-25T01:20:33Z",
+      "side": 1,
+      "message": "I think it depends how important the function is.\nI would agree to place a base function to top if it\u0027s more important.\n\nIn this case, I just extracted a chore task to a sub function for readability. So prefer to put it after the caller since it\u0027s *less important*. It\u0027s personal preference, though.",
+      "parentUuid": "5a5b7543_2094fb06",
+      "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
