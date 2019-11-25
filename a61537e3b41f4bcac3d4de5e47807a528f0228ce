@@ -88,6 +88,24 @@
       "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a02d9c19_06bc1553",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-25T15:37:50Z",
+      "side": 1,
+      "message": "Two explanation of the current state:\n\n1. You\u0027ll see that the Swarming code base doesn\u0027t use a lot of local functions. I personally find them error prone. As soon as it becomes more a few lines I move them out as a private function. I personally find it easier to rationalize about it as now the context becomes explicit (as arguments). This removes the risk of variable aliasing.\n\n2. The reason public functions are at the end in the Swarming code base is that in python sometimes the public function would refer at private code below in a way that required it to be already defined. Two examples are function decorators and ndb.Model which requires the private function to already be defined. So for consistency I decided to put private functions at the top. In Go I do the reverse because file-local order is not significant in Go, unlike python.",
+      "parentUuid": "fc8ea406_9973c781",
+      "revId": "a61537e3b41f4bcac3d4de5e47807a528f0228ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
