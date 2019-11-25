@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77c374c4_cff15977",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-25T18:03:51Z",
+      "side": 1,
+      "message": "More context: a 429 means that the server did handle the request properly. A 500 just means \"I broke\" where a 429 means an orderly failure. It\u0027s subtle but important distinction from a monitoring point of view; we may tolerate a fairly large rate of 429, but in the end we should almost never get 500 under normal circumstances. Monitoring should be adapted accordingly. I historically didn\u0027t do a good job at fixing this.",
+      "revId": "6cf49bb7c33643d479a7d8fb3be48339916e48e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
