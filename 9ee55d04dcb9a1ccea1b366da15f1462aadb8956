@@ -16,6 +16,24 @@
       "revId": "9ee55d04dcb9a1ccea1b366da15f1462aadb8956",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b9b9936_9a5fec6d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-26T18:18:33Z",
+      "side": 1,
+      "message": "Thanks you for your comment. I understand that. \nI did this because Takuto and I had different preferences, and I didn\u0027t have a rational reason.",
+      "parentUuid": "a9bc5bac_358908a3",
+      "revId": "9ee55d04dcb9a1ccea1b366da15f1462aadb8956",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
