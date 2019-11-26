@@ -103,10 +103,11 @@ RUN_TEST_CASES_LOG = 'run_test_cases.log'
 # - ir stands for isolated_run
 # - io stands for isolated_out
 # - it stands for isolated_tmp
+# - ic stands for isolated_client
 ISOLATED_RUN_DIR = u'ir'
 ISOLATED_OUT_DIR = u'io'
 ISOLATED_TMP_DIR = u'it'
-
+ISOLATED_CLIENT_DIR = u'ic'
 
 # Keep synced with task_request.py
 CACHE_NAME_RE = re.compile(r'^[a-z0-9_]{1,4096}$')
@@ -198,6 +199,8 @@ TaskData = collections.namedtuple(
         'switch_to_account',
         # Context manager dir => CipdInfo, see install_client_and_packages.
         'install_packages_fn',
+        # Installing isolated client function from CIPD.
+        'install_isolated_fn',
         # Create tree with symlinks instead of hardlinks.
         'use_symlinks',
         # Environment variables to set.
@@ -503,9 +506,14 @@ def run_command(
   return exit_code, had_hard_timeout
 
 
-def fetch_and_map(isolated_hash, storage, cache, outdir, use_symlinks):
+def fetch_and_map(isolated_hash, storage, cache, outdir, isolated_client,
+                  use_symlinks):
   """Fetches an isolated tree, create the tree and returns (bundle, stats)."""
   start = time.time()
+  if os.path.exists(isolated_client):
+    # TODO(crbug.com/932396): use isolated_client here.
+    pass
+
   bundle = isolateserver.fetch_isolated(
       isolated_hash=isolated_hash,
       storage=storage,
@@ -698,10 +706,16 @@ def map_and_run(data, constant_run_path):
   out_dir = make_temp_dir(
       ISOLATED_OUT_DIR, data.root_dir) if data.storage else None
   tmp_dir = make_temp_dir(ISOLATED_TMP_DIR, data.root_dir)
+  isolated_client_dir = make_temp_dir(ISOLATED_CLIENT_DIR, data.root_dir)
   cwd = run_dir
   if data.relative_cwd:
     cwd = os.path.normpath(os.path.join(cwd, data.relative_cwd))
   command = data.command
+
+  # Install isolated client before installing packages.
+  with data.install_isolated_fn(isolated_client_dir):
+    pass
+
   try:
     with data.install_packages_fn(run_dir) as cipd_info:
       if cipd_info:
@@ -715,6 +729,7 @@ def map_and_run(data, constant_run_path):
             storage=data.storage,
             cache=data.isolate_cache,
             outdir=run_dir,
+            isolated_client=os.path.join(isolated_client_dir, 'isolated'),
             use_symlinks=data.use_symlinks)
         isolated_stats['download'].update(stats)
         change_tree_read_only(run_dir, bundle.read_only)
@@ -798,7 +813,7 @@ def map_and_run(data, constant_run_path):
         # process locks *.exe file). Examine out_dir only after that call
         # completes (since child processes may write to out_dir too and we need
         # to wait for them to finish).
-        for directory in (run_dir, tmp_dir):
+        for directory in (run_dir, tmp_dir, isolated_client_dir):
           if not fs.isdir(directory):
             continue
           try:
@@ -1338,11 +1353,17 @@ def main(args):
   cipd.validate_cipd_options(parser, options)
 
   install_packages_fn = noop_install_packages
+  install_isolated_fn = noop_install_packages
   if options.cipd_enabled:
     install_packages_fn = lambda run_dir: install_client_and_packages(
         run_dir, cipd.parse_package_args(options.cipd_packages),
         options.cipd_server, options.cipd_client_package,
         options.cipd_client_version, cache_dir=options.cipd_cache)
+    install_isolated_fn = lambda run_dir: install_client_and_packages(
+      run_dir, (('', 'infra/tools/luci/isolated/${platform}',
+                 'git_revision:f815be8c7bf743c5b5c4db0393888350746010a4'),),
+      options.cipd_server, options.cipd_client_package,
+      options.cipd_client_version, cache_dir=options.cipd_cache)
 
   @contextlib.contextmanager
   def install_named_caches(run_dir):
@@ -1412,6 +1433,7 @@ def main(args):
       bot_file=options.bot_file,
       switch_to_account=options.switch_to_account,
       install_packages_fn=install_packages_fn,
+      install_isolated_fn=install_isolated_fn,
       use_symlinks=bool(options.use_symlinks),
       env=options.env,
       env_prefix=options.env_prefix,
