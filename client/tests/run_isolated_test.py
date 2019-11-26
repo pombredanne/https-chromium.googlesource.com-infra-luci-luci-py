@@ -154,10 +154,10 @@ class RunIsolatedTestBase(auto_stub.TestCase):
 
   def fake_make_temp_dir(self, prefix, _root_dir):
     """Predictably returns directory for run_tha_test (one per test case)."""
-    self.assertIn(
-        prefix,
-        (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
-          run_isolated.ISOLATED_TMP_DIR, 'cipd_site_root'))
+    self.assertIn(prefix,
+                  (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
+                   run_isolated.ISOLATED_TMP_DIR,
+                   run_isolated.ISOLATED_CLIENT_DIR, 'cipd_site_root'))
     temp_dir = os.path.join(self.tempdir, prefix)
     self.assertFalse(fs.isdir(temp_dir))
     fs.makedirs(temp_dir)
@@ -349,6 +349,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         bot_file=None,
         switch_to_account=False,
         install_packages_fn=run_isolated.noop_install_packages,
+        install_isolated_fn=run_isolated.noop_install_packages,
         use_symlinks=False,
         env={},
         env_prefix={},
@@ -979,6 +980,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           bot_file=None,
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
+          install_isolated_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
           env={},
           env_prefix={},
@@ -1339,10 +1341,10 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           storage=store,
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           outputs=[
-            'foo1',
-            # They must be in OS native path.
-            os.path.join('foodir', 'foo2_sl'),
-            os.path.join('bardir', ''),
+              'foo1',
+              # They must be in OS native path.
+              os.path.join('foodir', 'foo2_sl'),
+              os.path.join('bardir', ''),
           ],
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
@@ -1352,6 +1354,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           bot_file=None,
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
+          install_isolated_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
           env={},
           env_prefix={},

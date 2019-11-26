@@ -103,10 +103,11 @@ RUN_TEST_CASES_LOG = 'run_test_cases.log'
 # - ir stands for isolated_run
 # - io stands for isolated_out
 # - it stands for isolated_tmp
+# - ic stands for isolated_client
 ISOLATED_RUN_DIR = u'ir'
 ISOLATED_OUT_DIR = u'io'
 ISOLATED_TMP_DIR = u'it'
-
+ISOLATED_CLIENT_DIR = u'ic'
 
 # Keep synced with task_request.py
 CACHE_NAME_RE = re.compile(r'^[a-z0-9_]{1,4096}$')
@@ -155,60 +156,62 @@ MAX_AGE_SECS = 21*24*60*60
 TaskData = collections.namedtuple(
     'TaskData',
     [
-      # List of strings; the command line to use, independent of what was
-      # specified in the isolated file.
-      'command',
-      # Relative directory to start command into.
-      'relative_cwd',
-      # List of strings; the arguments to add to the command specified in the
-      # isolated file.
-      'extra_args',
-      # Hash of the .isolated file that must be retrieved to recreate the tree
-      # of files to run the target executable. The command specified in the
-      # .isolated is executed.  Mutually exclusive with command argument.
-      'isolated_hash',
-      # isolateserver.Storage instance to retrieve remote objects. This object
-      # has a reference to an isolateserver.StorageApi, which does the actual
-      # I/O.
-      'storage',
-      # isolateserver.LocalCache instance to keep from retrieving the same
-      # objects constantly by caching the objects retrieved. Can be on-disk or
-      # in-memory.
-      'isolate_cache',
-      # List of paths relative to root_dir to put into the output isolated
-      # bundle upon task completion (see link_outputs_to_outdir).
-      'outputs',
-      # Function (run_dir) => context manager that installs named caches into
-      # |run_dir|.
-      'install_named_caches',
-      # If True, the temporary directory will be deliberately leaked for later
-      # examination.
-      'leak_temp_dir',
-      # Path to the directory to use to create the temporary directory. If not
-      # specified, a random temporary directory is created.
-      'root_dir',
-      # Kills the process if it lasts more than this amount of seconds.
-      'hard_timeout',
-      # Number of seconds to wait between SIGTERM and SIGKILL.
-      'grace_period',
-      # Path to a file with bot state, used in place of ${SWARMING_BOT_FILE}
-      # task command line argument.
-      'bot_file',
-      # Logical account to switch LUCI_CONTEXT into.
-      'switch_to_account',
-      # Context manager dir => CipdInfo, see install_client_and_packages.
-      'install_packages_fn',
-      # Create tree with symlinks instead of hardlinks.
-      'use_symlinks',
-      # Environment variables to set.
-      'env',
-      # Environment variables to mutate with relative directories.
-      # Example: {"ENV_KEY": ['relative', 'paths', 'to', 'prepend']}
-      'env_prefix',
-      # Lowers the task process priority.
-      'lower_priority',
-      # subprocess42.Containment instance. Can be None.
-      'containment',
+        # List of strings; the command line to use, independent of what was
+        # specified in the isolated file.
+        'command',
+        # Relative directory to start command into.
+        'relative_cwd',
+        # List of strings; the arguments to add to the command specified in the
+        # isolated file.
+        'extra_args',
+        # Hash of the .isolated file that must be retrieved to recreate the tree
+        # of files to run the target executable. The command specified in the
+        # .isolated is executed.  Mutually exclusive with command argument.
+        'isolated_hash',
+        # isolateserver.Storage instance to retrieve remote objects. This object
+        # has a reference to an isolateserver.StorageApi, which does the actual
+        # I/O.
+        'storage',
+        # isolateserver.LocalCache instance to keep from retrieving the same
+        # objects constantly by caching the objects retrieved. Can be on-disk or
+        # in-memory.
+        'isolate_cache',
+        # List of paths relative to root_dir to put into the output isolated
+        # bundle upon task completion (see link_outputs_to_outdir).
+        'outputs',
+        # Function (run_dir) => context manager that installs named caches into
+        # |run_dir|.
+        'install_named_caches',
+        # If True, the temporary directory will be deliberately leaked for later
+        # examination.
+        'leak_temp_dir',
+        # Path to the directory to use to create the temporary directory. If not
+        # specified, a random temporary directory is created.
+        'root_dir',
+        # Kills the process if it lasts more than this amount of seconds.
+        'hard_timeout',
+        # Number of seconds to wait between SIGTERM and SIGKILL.
+        'grace_period',
+        # Path to a file with bot state, used in place of ${SWARMING_BOT_FILE}
+        # task command line argument.
+        'bot_file',
+        # Logical account to switch LUCI_CONTEXT into.
+        'switch_to_account',
+        # Context manager dir => CipdInfo, see install_client_and_packages.
+        'install_packages_fn',
+        # Installing isolated client function from CIPD.
+        'install_isolated_fn',
+        # Create tree with symlinks instead of hardlinks.
+        'use_symlinks',
+        # Environment variables to set.
+        'env',
+        # Environment variables to mutate with relative directories.
+        # Example: {"ENV_KEY": ['relative', 'paths', 'to', 'prepend']}
+        'env_prefix',
+        # Lowers the task process priority.
+        'lower_priority',
+        # subprocess42.Containment instance. Can be None.
+        'containment',
     ])
 
 
@@ -503,9 +506,13 @@ def run_command(
   return exit_code, had_hard_timeout
 
 
-def fetch_and_map(isolated_hash, storage, cache, outdir, use_symlinks):
+def fetch_and_map(isolated_hash, storage, cache, outdir, isolated_client,
+                  use_symlinks):
   """Fetches an isolated tree, create the tree and returns (bundle, stats)."""
   start = time.time()
+  if os.path.exists(isolated_client):
+    pass
+
   bundle = isolateserver.fetch_isolated(
       isolated_hash=isolated_hash,
       storage=storage,
@@ -698,6 +705,7 @@ def map_and_run(data, constant_run_path):
   out_dir = make_temp_dir(
       ISOLATED_OUT_DIR, data.root_dir) if data.storage else None
   tmp_dir = make_temp_dir(ISOLATED_TMP_DIR, data.root_dir)
+  isolated_client_dir = make_temp_dir(ISOLATED_CLIENT_DIR, data.root_dir)
   cwd = run_dir
   if data.relative_cwd:
     cwd = os.path.normpath(os.path.join(cwd, data.relative_cwd))
@@ -710,12 +718,14 @@ def map_and_run(data, constant_run_path):
 
       if data.isolated_hash:
         isolated_stats = result['stats'].setdefault('isolated', {})
-        bundle, stats = fetch_and_map(
-            isolated_hash=data.isolated_hash,
-            storage=data.storage,
-            cache=data.isolate_cache,
-            outdir=run_dir,
-            use_symlinks=data.use_symlinks)
+        with data.install_isolated_fn(isolated_client_dir):
+          bundle, stats = fetch_and_map(
+              isolated_hash=data.isolated_hash,
+              storage=data.storage,
+              cache=data.isolate_cache,
+              outdir=run_dir,
+              isolated_client=os.path.join(isolated_client_dir, 'isolated'),
+              use_symlinks=data.use_symlinks)
         isolated_stats['download'].update(stats)
         change_tree_read_only(run_dir, bundle.read_only)
         # Inject the command
@@ -1345,11 +1355,17 @@ def main(args):
   cipd.validate_cipd_options(parser, options)
 
   install_packages_fn = noop_install_packages
+  install_isolated_fn = noop_install_packages
   if options.cipd_enabled:
     install_packages_fn = lambda run_dir: install_client_and_packages(
         run_dir, cipd.parse_package_args(options.cipd_packages),
         options.cipd_server, options.cipd_client_package,
         options.cipd_client_version, cache_dir=options.cipd_cache)
+    install_isolated_fn = lambda run_dir: install_client_and_packages(
+      run_dir, (('isolated', 'infra/tools/luci/isolated/${platform}',
+                 'git_revision:f815be8c7bf743c5b5c4db0393888350746010a4'),),
+      options.cipd_server, options.cipd_client_package,
+      options.cipd_client_version, cache_dir=options.cipd_cache)
 
   @contextlib.contextmanager
   def install_named_caches(run_dir):
@@ -1419,6 +1435,7 @@ def main(args):
       bot_file=options.bot_file,
       switch_to_account=options.switch_to_account,
       install_packages_fn=install_packages_fn,
+      install_isolated_fn=install_isolated_fn,
       use_symlinks=bool(options.use_symlinks),
       env=options.env,
       env_prefix=options.env_prefix,
