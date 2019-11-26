@@ -16,6 +16,24 @@
       "revId": "6cf49bb7c33643d479a7d8fb3be48339916e48e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "263e0a59_e24c6127",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-26T01:36:17Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s why we\u0027re fixing unhandled 5xx for monitoring purpose.\nhttps://crbug.com/1027407\n\nI believe all *expected* errors should be handled properly, and don\u0027t end up with 5xx responses.\nSo when a 5xx error happens, we can monitor *unexpected* issues easily.",
+      "parentUuid": "77c374c4_cff15977",
+      "revId": "6cf49bb7c33643d479a7d8fb3be48339916e48e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
