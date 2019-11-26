@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9bc5bac_358908a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-26T15:57:14Z",
+      "side": 1,
+      "message": "Keep in mind the important thing is to make it readable for you and Takuto. Please don\u0027t optimize the code for me.\n\nThe comment I gave was to explain why the code is formatted the way it is right now, but you are free to style it in your preferred ways.",
+      "revId": "9ee55d04dcb9a1ccea1b366da15f1462aadb8956",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
