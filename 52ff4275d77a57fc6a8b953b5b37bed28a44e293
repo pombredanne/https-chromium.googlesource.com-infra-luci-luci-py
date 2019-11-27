@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a645fab7_3a61660b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-27T00:55:31Z",
+      "side": 1,
+      "message": "Sorry for the inconvenience...\nI will create a CL to move the \"hasattr\" into tools.clear_cache.",
+      "revId": "52ff4275d77a57fc6a8b953b5b37bed28a44e293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
