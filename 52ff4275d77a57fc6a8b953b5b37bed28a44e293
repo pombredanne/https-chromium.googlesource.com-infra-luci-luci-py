@@ -16,6 +16,24 @@
       "revId": "52ff4275d77a57fc6a8b953b5b37bed28a44e293",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f342620f_1246e769",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-27T00:57:25Z",
+      "side": 1,
+      "message": "SG. Thanks a lot!",
+      "parentUuid": "a645fab7_3a61660b",
+      "revId": "52ff4275d77a57fc6a8b953b5b37bed28a44e293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
