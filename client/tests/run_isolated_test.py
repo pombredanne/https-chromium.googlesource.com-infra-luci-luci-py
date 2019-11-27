@@ -154,10 +154,10 @@ class RunIsolatedTestBase(auto_stub.TestCase):
 
   def fake_make_temp_dir(self, prefix, _root_dir):
     """Predictably returns directory for run_tha_test (one per test case)."""
-    self.assertIn(
-        prefix,
-        (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
-          run_isolated.ISOLATED_TMP_DIR, 'cipd_site_root'))
+    self.assertIn(prefix,
+                  (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
+                   run_isolated.ISOLATED_TMP_DIR,
+                   run_isolated.ISOLATED_CLIENT_DIR, 'cipd_site_root'))
     temp_dir = os.path.join(self.tempdir, prefix)
     self.assertFalse(fs.isdir(temp_dir))
     fs.makedirs(temp_dir)
@@ -349,6 +349,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         bot_file=None,
         switch_to_account=False,
         install_packages_fn=run_isolated.noop_install_packages,
+        install_isolated_fn=run_isolated.noop_install_packages,
         use_symlinks=False,
         env={},
         env_prefix={},
@@ -363,12 +364,13 @@ class RunIsolatedTest(RunIsolatedTestBase):
     isolated_hash = isolateserver_fake.hash_content(isolated)
     files = {isolated_hash: isolated}
     make_tree_call = self._run_tha_test(isolated_hash, files)
-    self.assertEqual(
-        [
-          'make_tree_writeable', 'make_tree_deleteable', 'make_tree_deleteable',
-          'make_tree_deleteable',
-        ],
-        make_tree_call)
+    self.assertEqual([
+        'make_tree_writeable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+    ], make_tree_call)
     self.assertEqual(
         [
           (
@@ -393,12 +395,13 @@ class RunIsolatedTest(RunIsolatedTestBase):
     isolated_hash = isolateserver_fake.hash_content(isolated)
     files = {isolated_hash: isolated}
     make_tree_call = self._run_tha_test(isolated_hash, files)
-    self.assertEqual(
-        [
-          'make_tree_writeable', 'make_tree_deleteable', 'make_tree_deleteable',
-          'make_tree_deleteable',
-        ],
-        make_tree_call)
+    self.assertEqual([
+        'make_tree_writeable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+    ], make_tree_call)
     self.assertEqual(
         [
           (
@@ -423,12 +426,13 @@ class RunIsolatedTest(RunIsolatedTestBase):
     isolated_hash = isolateserver_fake.hash_content(isolated)
     files = {isolated_hash: isolated}
     make_tree_call = self._run_tha_test(isolated_hash, files)
-    self.assertEqual(
-        [
-          'make_tree_files_read_only', 'make_tree_deleteable',
-          'make_tree_deleteable', 'make_tree_deleteable',
-        ],
-        make_tree_call)
+    self.assertEqual([
+        'make_tree_files_read_only',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+    ], make_tree_call)
     self.assertEqual(
         [
           (
@@ -453,12 +457,13 @@ class RunIsolatedTest(RunIsolatedTestBase):
     isolated_hash = isolateserver_fake.hash_content(isolated)
     files = {isolated_hash: isolated}
     make_tree_call = self._run_tha_test(isolated_hash, files)
-    self.assertEqual(
-        [
-          'make_tree_read_only', 'make_tree_deleteable', 'make_tree_deleteable',
-          'make_tree_deleteable',
-        ],
-        make_tree_call)
+    self.assertEqual([
+        'make_tree_read_only',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+        'make_tree_deleteable',
+    ], make_tree_call)
     self.assertEqual(
         [
           (
@@ -634,21 +639,35 @@ class RunIsolatedTest(RunIsolatedTestBase):
     }
 
     suffix = '.exe' if sys.platform == 'win32' else ''
+    cnt = [0]
+
     def fake_ensure(args, **kwargs):
       if (args[0].endswith(os.path.join('bin', 'cipd' + suffix)) and
           args[1] == 'ensure'
           and '-json-output' in args):
+        cnt[0] += 1
         idx = args.index('-json-output')
         with open(args[idx+1], 'w') as json_out:
-          json.dump({
-            'result': {
-              subdir: [
-                {'package': pkg, 'instance_id': ver}
-                for pkg, ver in packages
-              ]
-              for subdir, packages in pins.items()
-            }
-          }, json_out)
+          if cnt[0] == 1:
+            json.dump({
+                'result': {
+                    '': [{
+                        'package': 'isolate',
+                        'instance_id': 'id'
+                    },],
+                },
+            }, json_out)
+
+          else:
+            json.dump({
+                'result': {
+                    subdir: [{
+                        'package': pkg,
+                        'instance_id': ver
+                    } for pkg, ver in packages
+                            ] for subdir, packages in pins.items()
+                }
+            }, json_out)
         return 0
       if args[0].endswith(os.sep + 'echo' + suffix):
         return 0
@@ -676,7 +695,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     ret = run_isolated.main(cmd)
     self.assertEqual(0, ret)
 
-    self.assertEqual(2, len(self.popen_calls))
+    self.assertEqual(3, len(self.popen_calls))
 
     # Test cipd-ensure command for installing packages.
     cipd_ensure_cmd, _ = self.popen_calls[0]
@@ -704,7 +723,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertTrue(fs.isfile(client_binary_file))
 
     # Test echo call.
-    echo_cmd, _ = self.popen_calls[1]
+    echo_cmd, _ = self.popen_calls[2]
     self.assertTrue(echo_cmd[0].endswith(
         os.path.sep + 'bin' + os.path.sep + 'echo' + cipd.EXECUTABLE_SUFFIX),
         echo_cmd[0])
@@ -729,6 +748,24 @@ class RunIsolatedTest(RunIsolatedTestBase):
     ]
 
     self.capture_popen_env = True
+
+    def fake_wait(args, **kwargs):  # pylint: disable=unused-argument
+      if os.path.basename(args[0]) != 'cipd':
+        return None
+
+      result_json = args[args.index('-json-output') + 1]
+      with open(result_json, 'w') as json_out:
+        json.dump({
+            'result': {
+                '': [{
+                    'package': 'pack',
+                    'instance_id': 'id',
+                }]
+            }
+        }, json_out)
+      return 0
+
+    self.popen_fakes.append(fake_wait)
     ret = run_isolated.main(cmd)
     self.assertEqual(0, ret)
 
@@ -740,26 +777,27 @@ class RunIsolatedTest(RunIsolatedTestBase):
     client_binary_link = six.text_type(
         os.path.join(cipd_cache, 'bin', 'cipd' + cipd.EXECUTABLE_SUFFIX))
     self.assertTrue(fs.isfile(client_binary_link))
-
+    self.maxDiff = None
     # 'cipd ensure' was NOT called (only 'echo hello world' was).
-    env = self.popen_calls[0][1].pop('env')
+    env = self.popen_calls[1][1].pop('env')
     exec_path = self.ir_dir(u'a', 'bin', 'echo')
     if sys.platform == 'win32':
       exec_path += '.exe'
     self.assertEqual(
         [
-          (
-            [exec_path, 'hello', 'world'],
-            {
-              'cwd': self.ir_dir('a'),
-              'detached': True,
-              'close_fds': True,
-              'lower_priority': False,
-              'containment': subprocess42.Containment(),
-            },
-          ),
+            (
+                [exec_path, 'hello', 'world'],
+                {
+                    'cwd': self.ir_dir('a'),
+                    'detached': True,
+                    'close_fds': True,
+                    'lower_priority': False,
+                    'containment': subprocess42.Containment(),
+                },
+            ),
         ],
-        self.popen_calls)
+        # Ignore first cipd call
+        self.popen_calls[1:])
 
     # Directory with cipd client is in front of PATH.
     path = env['PATH'].split(os.pathsep)
@@ -979,6 +1017,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           bot_file=None,
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
+          install_isolated_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
           env={},
           env_prefix={},
@@ -1339,10 +1378,10 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           storage=store,
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           outputs=[
-            'foo1',
-            # They must be in OS native path.
-            os.path.join('foodir', 'foo2_sl'),
-            os.path.join('bardir', ''),
+              'foo1',
+              # They must be in OS native path.
+              os.path.join('foodir', 'foo2_sl'),
+              os.path.join('bardir', ''),
           ],
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
@@ -1352,6 +1391,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           bot_file=None,
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
+          install_isolated_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
           env={},
           env_prefix={},
