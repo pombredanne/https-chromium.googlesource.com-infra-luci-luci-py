@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44d3e341_7eafe396",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-27T14:39:56Z",
+      "side": 1,
+      "message": "Keep in mind that the 3 directories above are created in \u0027w\u0027 directory that is deleted after each task. This means that \u0027ic\u0027 would have the same fate, but in practice you do want to keep the client cached locally since it almost never change between tasks.\n\nIf you do start adding more inter-task directories, don\u0027t forget to add them to https://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/bot_code/bot_main.py?l\u003d86",
+      "revId": "1b5ba1e1f64de5ad19f7f61282ab2dc6ddc0d096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c80ca48e_b5f19fb2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-27T14:39:56Z",
+      "side": 1,
+      "message": "FTR, I wasn\u0027t a fan of data.install_packages_fn() and had a local branch to get rid of it. Sadly I waited years to finish it and my local branch was beyond repair so I just deleted it. I note this because I\u0027m not sure it\u0027s the best pattern:\n\n- This flow enforces full serialization. In practice it should be fine to install named caches, CIPD packages and isolated files concurrently.\n- These calls shouldn\u0027t a variable. It should just be a function.\n\nThat said, since the end goal is to get rid of the whole thing, this is fine for now and you can ignore my comment. I just wanted to note this because the Go code should try to be more efficient here.",
+      "revId": "1b5ba1e1f64de5ad19f7f61282ab2dc6ddc0d096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5a2e090_cca3b21e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-27T14:39:56Z",
+      "side": 1,
+      "message": "Normally I\u0027m not fan of global variables but here I\u0027d prefer this to be one, since it *will* be updated a few times before we can get rid of run_isolated.py.",
+      "revId": "1b5ba1e1f64de5ad19f7f61282ab2dc6ddc0d096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
