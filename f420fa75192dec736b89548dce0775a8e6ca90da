@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "77ecf173_e0641f40",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-27T00:37:37Z",
+      "side": 1,
+      "message": "Added tools.clear_cache to the test file.\n\nI thought using the following should disable the cache feature. But somehow it does not work:\n```\nfrom utils import tools\ntools.cached \u003d lambda func: func\n```",
+      "parentUuid": "074762dc_023ec3ba",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13116ac5_398b1daa",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 5
@@ -123,6 +141,24 @@
       "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c01dbf00_6e2e90f6",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-11-27T00:37:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba892f6f_4655f01f",
+      "revId": "f420fa75192dec736b89548dce0775a8e6ca90da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
