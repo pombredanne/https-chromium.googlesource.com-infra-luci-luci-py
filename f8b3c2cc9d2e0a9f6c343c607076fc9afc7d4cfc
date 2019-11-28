@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cee4e18_5b518c9d",
+        "filename": "appengine/swarming/swarming_bot/main_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-28T16:13:33Z",
+      "side": 1,
+      "message": "Errr, that is *so* weird. Why a drive would come up and go while a task is running? I think it\u0027s hides an infrastructure issue.",
+      "revId": "f8b3c2cc9d2e0a9f6c343c607076fc9afc7d4cfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
