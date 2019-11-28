@@ -16,6 +16,24 @@
       "revId": "ccb9f13a55b9ba83b6b5be6cab2beb6aaf95274e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2eeab62_82c1cfc1",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-28T10:01:13Z",
+      "side": 1,
+      "message": "I thought relative import wasn\u0027t recommended in python3.\n\nI tried, but got the error below. I added __init__.py files, but it didn\u0027t work.\n\n```\nValueError: Attempted relative import in non-package\n```",
+      "parentUuid": "6374b9c7_a598fd3c",
+      "revId": "ccb9f13a55b9ba83b6b5be6cab2beb6aaf95274e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
