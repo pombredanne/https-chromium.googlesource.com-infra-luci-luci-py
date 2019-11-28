@@ -55,7 +55,7 @@ def _run_test(test_file, python3=False):
   cmd = [vpython, test_file, '-v']
 
   print('Running test script: %r' % cmd)
-  return subprocess.call(cmd), False
+  return subprocess.call(cmd, shell=True), False
 
 
 def _has_py3_shebang(path):
