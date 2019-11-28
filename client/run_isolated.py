@@ -508,9 +508,60 @@ def run_command(
   return exit_code, had_hard_timeout
 
 
-def fetch_and_map(isolated_hash, storage, cache, outdir, use_symlinks):
+def fetch_and_map(isolated_hash, storage, cache, outdir, use_symlinks,
+                  isolated_client):
   """Fetches an isolated tree, create the tree and returns (bundle, stats)."""
   start = time.time()
+
+  if fs.isfile(isolated_client) and os.path.basename(
+      cace.cashe_dir).startswith('go_'):
+    # use isolated client path
+    server_ref = storage.server_ref
+    policies = cache.policies
+    result_json_handle, result_json_path = tempfile.mkstemp(
+        prefix=u'fetch-and-map-result-', suffix=u'.json')
+    os.close(result_json_handle)
+    try:
+      subprocess42.check_call([
+          isolated_client,
+          'download',
+          '-isolate-server',
+          server_ref.url,
+          '-namespace',
+          server_ref.namespace,
+          '-isolated',
+          isolated_hash,
+          '-cache-dir',  # TODO, cache.cache_dir
+          '-cache-max-items',
+          policies.max_items,
+          '-cache-max-size',
+          policies.max_cache_size,
+          '-cache-min-free-space',
+          policies.min_free_space,
+          '-output-dir',
+          outdir,
+          '-fetch-and-map-result-json',
+          result_json_path,
+      ])
+      with open(result_json_path) as json_file:
+        result_json = json.load(json_file)
+      isolated = result_json['isolated']
+
+      bundle = isolateserver.IsolatedBundle(filter_cb=None)
+      # Only following properties are used in caller.
+      bundle.command = isolated['command']
+      bundle.read_only = isolated['read_only']
+      bundle.relative_cwd = isolated['relative_cwd']
+
+      return bundle, {
+          'duration': time.time(),
+          'items_cold': result_json['items_cold'],
+          'items_hot': result_json['items_hot'],
+      }
+    finally:
+      fs.remove(result_json_path)
+
+  # TODO(crbug.com/932396): remove this path.
   bundle = isolateserver.fetch_isolated(
       isolated_hash=isolated_hash,
       storage=storage,
@@ -721,7 +772,9 @@ def map_and_run(data, constant_run_path):
             storage=data.storage,
             cache=data.isolate_cache,
             outdir=run_dir,
-            use_symlinks=data.use_symlinks)
+            use_symlinks=data.use_symlinks,
+            isolated_client=os.path.join(isolated_client_dir,
+                                         'isolated' + cipd.EXECUTABLE_SUFFIX))
         isolated_stats['download'].update(stats)
         change_tree_read_only(run_dir, bundle.read_only)
         # Inject the command
