@@ -18,11 +18,10 @@ PLUGINS_DIR = os.path.join(THIS_DIR, 'nose2_plugins')
 CLIENT_THIRD_PARTY_DIR = os.path.join(LUCI_DIR, 'client', 'third_party')
 
 
-def run_tests(python3=False):
+def run_tests(python3=False, plugins=[]):
   """Discover unittests and run them using nose2"""
   hook_args(sys.argv)
 
-  plugins = []
   if python3:
     plugins.append('py3filter')
 
