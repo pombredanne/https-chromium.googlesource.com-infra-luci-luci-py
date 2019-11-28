@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26654303_628de7ef",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-28T08:07:38Z",
+      "side": 1,
+      "message": "I think it is better to move this to parallel_tset_runner.py",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 38
+      },
+      "revId": "fa191e4a93e19d5d5a2a41c9dbf63a22e9cae6bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc3479ce_23d56204",
+        "filename": "client/test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-28T08:07:38Z",
+      "side": 1,
+      "message": "same",
+      "revId": "fa191e4a93e19d5d5a2a41c9dbf63a22e9cae6bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
