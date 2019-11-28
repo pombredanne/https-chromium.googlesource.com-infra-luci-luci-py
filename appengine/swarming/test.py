@@ -8,10 +8,13 @@ import sys
 
 import six
 
-from test_support import parallel_test_runner
-
 SWARMING_DIR = os.path.dirname(os.path.abspath(__file__))
+APPENGINE_DIR = os.path.dirname(SWARMING_DIR)
 SWARMING_BOT_DIR = os.path.join(SWARMING_DIR, 'swarming_bot')
+COMPONENTS_DIR = os.path.join(APPENGINE_DIR, 'components')
+
+sys.path.insert(0, COMPONENTS_DIR)
+from test_support import parallel_test_runner
 
 
 def main():
