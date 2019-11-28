@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "891c3467_a09aff6b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-28T15:39:10Z",
+      "side": 1,
+      "message": "Please add a comment here too:\n\n# If \u0027isolated\u0027 / \u0027isolated.exe\u0027 is present in this directory, it\n# will be used instead of the python implementation.\n\n---\n\nBut personally, I\u0027d prefer to not use presence detection, but instead use a command line flag. So task runner could specify it or not.\nSo you could specify it as the task request in the manifest, it doesn\u0027t need to be in the TaskProperties, it could just a server side toggle as a temporary hack that you return as a bool on pool.\n\nAs a matter of fact, instead of returning a bool, let\u0027s return the package name and version! This way every single task has a clear \"Which CIPD package to use as the isolated client\" which I think what we\u0027ll want on the long term for task_runner too.\n\nI don\u0027t have a strong stance; it\u0027s just that \"happens to be there\" is not really hermetic and reproducible and makes debugging behavior later harder.",
+      "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
