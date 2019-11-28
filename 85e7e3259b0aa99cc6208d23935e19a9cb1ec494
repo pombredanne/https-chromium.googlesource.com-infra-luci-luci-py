@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a24aceef_ef91b8dd",
+        "filename": "client/cipd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-28T09:39:21Z",
+      "side": 1,
+      "message": "add the bug URL. crbug.com/1028781",
+      "revId": "85e7e3259b0aa99cc6208d23935e19a9cb1ec494",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5007484_d8523ecc",
+        "filename": "client/cipd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-28T09:39:21Z",
+      "side": 1,
+      "message": "\u003e Undefined variable \u0027WindowsError\u0027.\n\u003e This check could give false positives when there are wildcard imports\n\u003e (from module import *). It is recommended to avoid wildcard imports; see\n\u003e https://www.python.org/dev/peps/pep-0008/#imports.\n\u003e To disable, add: # pylint: disable\u003dundefined-variable\n\nPlease Fix",
+      "parentUuid": "23e59f76_d90091f2",
+      "revId": "85e7e3259b0aa99cc6208d23935e19a9cb1ec494",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
