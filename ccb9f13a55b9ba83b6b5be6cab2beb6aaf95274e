@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6374b9c7_a598fd3c",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-28T08:36:05Z",
+      "side": 1,
+      "message": "can you use reltive import instead of modifying path?\nhttps://www.python.org/dev/peps/pep-0328/#guido-s-decision",
+      "revId": "ccb9f13a55b9ba83b6b5be6cab2beb6aaf95274e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
