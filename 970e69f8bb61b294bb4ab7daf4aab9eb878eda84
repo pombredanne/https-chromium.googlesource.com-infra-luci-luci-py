@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5984404f_73f514ef",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-29T16:29:04Z",
+      "side": 1,
+      "message": "I\u0027m ambivalent about handling it explicitly vs throwing, but since it\u0027s somewhat temporary I guess it\u0027s good enough for now.",
+      "range": {
+        "startLine": 526,
+        "startChar": 17,
+        "endLine": 526,
+        "endChar": 27
+      },
+      "revId": "970e69f8bb61b294bb4ab7daf4aab9eb878eda84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
