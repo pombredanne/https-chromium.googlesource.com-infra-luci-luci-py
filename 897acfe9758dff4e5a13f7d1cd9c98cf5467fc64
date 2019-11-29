@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b27bdf47_a54ccd18",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T07:06:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44da0ceb_15f765b4",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a882fa8b_583729fa",
         "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
         "patchSetId": 11
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "489944e5_b0e1b99c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T07:06:11Z",
+      "side": 1,
+      "message": "parameterized didn\u0027t work with nose2 (python3)",
+      "parentUuid": "a882fa8b_583729fa",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03417e19_1bf2b4a1",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
         "patchSetId": 11
@@ -53,6 +95,24 @@
       "writtenOn": "2019-11-29T06:44:40Z",
       "side": 1,
       "message": "I\u0027d like to use mock package as far as possible.",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c59f2a7b_63f55a81",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T07:06:11Z",
+      "side": 1,
+      "message": "I heard that auto_stub.mock is fast.\nShall we do that in a different CL if we decide?",
+      "parentUuid": "03417e19_1bf2b4a1",
       "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
