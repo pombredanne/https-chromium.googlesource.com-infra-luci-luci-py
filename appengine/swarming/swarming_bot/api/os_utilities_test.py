@@ -36,9 +36,16 @@ import os_utilities
     sys.platform == 'win32',
     'TODO(crbug.com/1017545): it fails to mock functions')
 class TestOsUtilities(auto_stub.TestCase):
-  # These tests fail for cache related issue
-  # Need to run in test_seq.py
-  no_run = 1
+  def setUp(self):
+    super(TestOsUtilities, self).setUp()
+    tools.clear_cache(os_utilities.get_hostname)
+    tools.clear_cache(os_utilities.platforms.is_gce)
+
+  def tearDown(self):
+    super(TestOsUtilities, self).tearDown()
+    tools.clear_cache(os_utilities.get_hostname)
+    tools.clear_cache(os_utilities.get_hostname)
+    tools.clear_cache(os_utilities.platforms.is_gce)
 
   def test_get_os_name(self):
     expected = (u'Debian', u'Linux', u'Mac', u'Raspbian', u'Ubuntu', u'Windows')
