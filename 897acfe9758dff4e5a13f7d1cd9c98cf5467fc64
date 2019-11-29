@@ -152,6 +152,24 @@
       "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbf16461_9bc58612",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-29T16:22:06Z",
+      "side": 1,
+      "message": "I think I noted this before.\n\nI liked auto_stub because IMHO it creates simpler to read tests.\nAlso, auto_stub.py is impressively short.\nhttps://cs.chromium.org/chromium/tools/depot_tools/testing_support/auto_stub.py\n\nCompare with mock.py\nhttps://github.com/python/cpython/blob/v3.8.0/Lib/unittest/mock.py\nand its doc\nhttps://docs.python.org/3/library/unittest.mock.html\n\nI generally err on the side of simplicity. Simplicity is hard, but it\u0027s useful.\n\nThat said, please do as you prefer.",
+      "parentUuid": "87c75e6a_b9884485",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
