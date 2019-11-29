@@ -34,6 +34,24 @@
       "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8932341_32919ffb",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-11-29T01:28:59Z",
+      "side": 1,
+      "message": "Yes at this place, so rolling a new version could be done by either luci-config or hardcoding it on the server. I think hardcoding on the server is my preference.\n\nSo yes it\u0027d mean a flag with the package name and version. Preferably also the cipd server URL, right now we\u0027re hardcoding the current one at many places.",
+      "parentUuid": "2d183b8a_2aca4af0",
+      "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
