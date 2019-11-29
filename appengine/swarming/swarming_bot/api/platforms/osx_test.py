@@ -59,7 +59,9 @@ class TestOsx(unittest.TestCase):
   def get_ssd(self):
     self.clear_get_physical_disks_info_cache()
     tools.clear_cache(osx.get_ssd)
-    return osx.get_ssd()
+    result = osx.get_ssd()
+    tools.clear_cache(osx.get_ssd)
+    return result
 
   def get_disks_model(self):
     self.clear_get_physical_disks_info_cache()
