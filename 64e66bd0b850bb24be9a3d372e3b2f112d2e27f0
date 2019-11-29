@@ -16,6 +16,24 @@
       "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d183b8a_2aca4af0",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-29T00:53:28Z",
+      "side": 1,
+      "message": "\u003e As a matter of fact, instead of returning a bool, let\u0027s return the package name and version!\n\nDo you mean to have flag to specify package name and version? Or suggesting changing type of return value ofsome function?\n\nAlso where are use supposed to specify that in manifest?\nHardcode that in\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/handlers_bot.py?l\u003d637\u0026rcl\u003d538441bc1d0f0e0a379bde520386d8cfcb825e6c",
+      "parentUuid": "891c3467_a09aff6b",
+      "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
