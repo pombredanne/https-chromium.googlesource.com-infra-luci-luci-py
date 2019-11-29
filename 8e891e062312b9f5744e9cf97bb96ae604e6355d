@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d546ae7_e3010412",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T03:49:12Z",
+      "side": 1,
+      "message": "How do you think moving tools.clear_cache to setup and teardown?\nIt wouldn\u0027t work if it\u0027s called more than once in a test, though.",
+      "revId": "8e891e062312b9f5744e9cf97bb96ae604e6355d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
