@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "1e64e08b_a98e6b35",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T02:21:15Z",
+      "side": 1,
+      "message": "time.time() - start ?\nOr you could include it in the result json, though.",
+      "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a380fcd_93520f46",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T02:21:15Z",
+      "side": 1,
+      "message": "nit: I prefer extract some of the codes as a private function for better readability.\n\ndef fetch_and_map(...):\n   if ...:\n     result_json \u003d _fetch_with_go_client(...)\n     \n     # make bundle from result_json\n     \n     return bundle, {...}\n   \n   # old path\n\n   return bundle, {...}",
+      "revId": "64e66bd0b850bb24be9a3d372e3b2f112d2e27f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "891c3467_a09aff6b",
         "filename": "client/run_isolated.py",
         "patchSetId": 8
