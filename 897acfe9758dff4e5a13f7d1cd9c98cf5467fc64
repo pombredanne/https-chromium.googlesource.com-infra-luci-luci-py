@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44da0ceb_15f765b4",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-29T06:44:40Z",
+      "side": 1,
+      "message": "extract this as a function?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a882fa8b_583729fa",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-29T06:44:40Z",
+      "side": 1,
+      "message": "why not use parameterized?",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03417e19_1bf2b4a1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-29T06:44:40Z",
+      "side": 1,
+      "message": "I\u0027d like to use mock package as far as possible.",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
