@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5d5ae7c_99c4564f",
+        "filename": "appengine/swarming/swarming_bot/main_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-11-29T01:57:08Z",
+      "side": 1,
+      "message": "The assertion error shows a diff like\n```\n -             u\u0027ssd\u0027: [u\u0027disk0\u0027, u\u0027disk2\u0027],\n +             u\u0027ssd\u0027: [u\u0027disk0\u0027],\n```\n\nos_test.py might be related. So tools.clear_cache(bot_main, \u0027get_ssd\u0027) may work.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/api/platforms/osx_test.py?type\u003dcs\u0026q\u003ddisk2\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d70",
+      "revId": "7813d36e125c61b153c79e5a3b4966ef6bdabefa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
