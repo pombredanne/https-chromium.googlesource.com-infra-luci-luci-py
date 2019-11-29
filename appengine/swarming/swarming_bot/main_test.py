@@ -23,6 +23,7 @@ from depot_tools import fix_encoding
 # client/
 from utils import subprocess42
 from utils import file_path
+from utils import tools
 
 import swarmingserver_bot_fake
 from bot_code import bot_main
@@ -53,6 +54,7 @@ class SimpleMainTest(TestCase):
       sys.platform == 'win32',
       'TODO(crbug.com/1017545): fix assertions')
   def test_attributes(self):
+    tools.clear_cache(bot_main, 'get_ssd')
     actual = json.loads(subprocess42.check_output(
         [sys.executable, self._zip_file, 'attributes'],
         stderr=subprocess42.PIPE))
@@ -63,7 +65,7 @@ class SimpleMainTest(TestCase):
     expected[u'dimensions'][u'server_version'] = [u'1']
 
     NON_DETERMINISTIC = (u'cwd', u'disks', u'nb_files_in_temp', u'pid',
-                         u'running_time', u'ssd', u'started_ts', u'uptime')
+                         u'running_time', u'started_ts', u'uptime')
     for key in NON_DETERMINISTIC:
       del actual[u'state'][key]
       del expected[u'state'][key]
