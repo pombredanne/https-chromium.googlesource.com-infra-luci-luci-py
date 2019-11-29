@@ -350,6 +350,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         switch_to_account=False,
         install_packages_fn=run_isolated.noop_install_packages,
         use_symlinks=False,
+        use_go_isolated=False,
         env={},
         env_prefix={},
         lower_priority=lower_priority,
@@ -1020,6 +1021,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
+          use_go_isolated=False,
           env={},
           env_prefix={},
           lower_priority=False,
@@ -1379,10 +1381,10 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           storage=store,
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           outputs=[
-            'foo1',
-            # They must be in OS native path.
-            os.path.join('foodir', 'foo2_sl'),
-            os.path.join('bardir', ''),
+              'foo1',
+              # They must be in OS native path.
+              os.path.join('foodir', 'foo2_sl'),
+              os.path.join('bardir', ''),
           ],
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
@@ -1393,6 +1395,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
           use_symlinks=False,
+          use_go_isolated=False,
           env={},
           env_prefix={},
           lower_priority=False,
