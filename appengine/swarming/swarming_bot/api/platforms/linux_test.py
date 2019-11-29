@@ -10,6 +10,7 @@ import unittest
 import test_env_platforms
 test_env_platforms.setup_test_env()
 
+from depot_tools import auto_stub
 from utils import tools
 
 import linux
@@ -97,10 +98,17 @@ VCEI exceptions         : not available
 """
 
 
-class TestCPUInfo(unittest.TestCase):
+class TestCPUInfo(auto_stub.TestCase):
+  def setUp(self):
+    super(TestCPUInfo, self).setUp()
+    tools.clear_cache_all()
+
+  def tearDown(self):
+    super(TestCPUInfo, self).tearDown()
+    tools.clear_cache_all()
+
   def get_cpuinfo(self, text):
-    tools.clear_cache(linux.get_cpuinfo)
-    linux._read_cpuinfo = lambda: text
+    self.mock(linux, '_read_cpuinfo', lambda: text)
     return linux.get_cpuinfo()
 
   def test_get_cpuinfo_exynos(self):
@@ -163,10 +171,17 @@ NO_K8S_CGROUP = """
 """
 
 
-class TestDocker(unittest.TestCase):
+class TestDocker(auto_stub.TestCase):
+  def setUp(self):
+    super(TestDocker, self).setUp()
+    tools.clear_cache_all()
+
+  def tearDown(self):
+    super(TestDocker, self).tearDown()
+    tools.clear_cache_all()
+
   def get_inside_docker(self, text):
-    tools.clear_cache(linux.get_inside_docker)
-    linux._read_cgroup = lambda: text
+    self.mock(linux, '_read_cgroup', lambda: text)
     return linux.get_inside_docker()
 
   def test_get_inside_docker_k8s(self):
