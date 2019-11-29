@@ -16,6 +16,24 @@
       "revId": "f8b3c2cc9d2e0a9f6c343c607076fc9afc7d4cfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "893dd233_247a5692",
+        "filename": "appengine/swarming/swarming_bot/main_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-29T01:05:44Z",
+      "side": 1,
+      "message": "I created revert and check current status.",
+      "parentUuid": "4cee4e18_5b518c9d",
+      "revId": "f8b3c2cc9d2e0a9f6c343c607076fc9afc7d4cfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
