@@ -22,6 +22,30 @@
       "revId": "b240aa58caa3818737616e2d333e6549d6d50ad0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa35aa1c_c41c6b30",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-11-29T00:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d09cd6e_853693b2",
+      "range": {
+        "startLine": 440,
+        "startChar": 19,
+        "endLine": 440,
+        "endChar": 29
+      },
+      "revId": "b240aa58caa3818737616e2d333e6549d6d50ad0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
