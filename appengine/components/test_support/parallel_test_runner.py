@@ -35,7 +35,7 @@ def run_tests(python3=False, plugins=None):
 
   # add nose2 plugin dir to path
   sys.path.insert(0, PLUGINS_DIR)
-  discover(plugins=plugins)
+  discover(plugins=plugins, exit=False)
 
 
 def hook_args(argv):
