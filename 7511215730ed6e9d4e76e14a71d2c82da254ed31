@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44602524_d1782fbc",
+        "filename": "appengine/swarming/swarming_bot/test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T12:51:57Z",
+      "side": 1,
+      "message": "modifying sys.path here seems bit strange.\nwhy not do in globally or just before import?",
+      "revId": "7511215730ed6e9d4e76e14a71d2c82da254ed31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
