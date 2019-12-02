@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a00a8715_bc9df7fd",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T03:48:04Z",
+      "side": 1,
+      "message": "can we clear cache only in tearDown?",
+      "revId": "d9807316fa5a5d295161a4c64b57f224e62d4233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "317c166f_211b908b",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T03:48:04Z",
+      "side": 1,
+      "message": "map(clear_cache, _CACHED_FUNCS)?",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 21
+      },
+      "revId": "d9807316fa5a5d295161a4c64b57f224e62d4233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
