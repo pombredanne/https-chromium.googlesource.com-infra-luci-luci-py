@@ -16,6 +16,24 @@
       "revId": "57fdcf0482027857750e62ec759088a25eaf65e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c28bdcbe_f3090baa",
+        "filename": "client/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T13:35:59Z",
+      "side": 1,
+      "message": "I placed here to avoid modifying sys.path at file loading.\nAnother candidate would be after if __name__ \u003d\u003d \u0027__main__.",
+      "parentUuid": "88d1de48_6f2e8581",
+      "revId": "57fdcf0482027857750e62ec759088a25eaf65e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
