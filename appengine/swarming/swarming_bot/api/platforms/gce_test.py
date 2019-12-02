@@ -23,6 +23,10 @@ import gce
 
 
 class TestGCE(auto_stub.TestCase):
+  def setUp(self):
+    super(TestGCE, self).setUp()
+    tools.clear_cache_all()
+
   def tearDown(self):
     super(TestGCE, self).tearDown()
     tools.clear_cache_all()
@@ -32,9 +36,6 @@ class TestGCE(auto_stub.TestCase):
       ('europe-west1-b',
        ['europe', 'europe-west', 'europe-west1', 'europe-west1-b']),
   )
-  @unittest.skipIf(sys.platform == 'darwin',
-                   'TODO(crbug.com/1017545): '
-                   "'function' object has no attribute '__cache__'")
   def test_get_zones(self, zone, expected):
     self.mock(gce, 'get_zone', lambda: zone)
     self.assertEqual(expected, gce.get_zones())

@@ -99,6 +99,10 @@ VCEI exceptions         : not available
 
 
 class TestCPUInfo(auto_stub.TestCase):
+  def setUp(self):
+    super(TestCPUInfo, self).setUp()
+    tools.clear_cache_all()
+
   def tearDown(self):
     super(TestCPUInfo, self).tearDown()
     tools.clear_cache_all()
@@ -168,6 +172,10 @@ NO_K8S_CGROUP = """
 
 
 class TestDocker(auto_stub.TestCase):
+  def setUp(self):
+    super(TestDocker, self).setUp()
+    tools.clear_cache_all()
+
   def tearDown(self):
     super(TestDocker, self).tearDown()
     tools.clear_cache_all()

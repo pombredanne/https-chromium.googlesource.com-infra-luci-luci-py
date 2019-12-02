@@ -20,8 +20,10 @@ if sys.platform == 'darwin':
 @unittest.skipUnless(sys.platform == 'darwin',
                      'Tests only run under darwin platform')
 class TestOsx(unittest.TestCase):
+  def setUp(self):
+    tools.clear_cache_all()
+
   def tearDown(self):
-    super(TestOsx, self).tearDown()
     tools.clear_cache_all()
 
   def mock_physical_disks_list(self, disks_data):
