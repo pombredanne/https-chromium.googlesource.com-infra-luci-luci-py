@@ -170,6 +170,24 @@
       "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2511986e_e1574d70",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T01:44:49Z",
+      "side": 1,
+      "message": "tikuta\nI think auto_stub.mock with lambda function is enough at most of the cases.\n\nAnd we could pass mock.Mock() if we really need more features. (e.g. assert_called_* )\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/config/remote_test.py?q\u003df:luci+%22import+mock%22\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d179\n(Or implement equivalent features.)",
+      "parentUuid": "bbf16461_9bc58612",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
