@@ -16,6 +16,24 @@
       "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "797c69e9_742f998b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T12:37:45Z",
+      "side": 1,
+      "message": "\u003e Can I ask why only for downloading?\n\nThis is for gradual migration to go isolate client and to get benefit of client switch earlier.\n\n\u003e Would it solve if uploading is done via the Go client?\n\nYes. But I\u0027d like to do that later or next year.",
+      "parentUuid": "553a3f1e_5ab5f453",
+      "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
