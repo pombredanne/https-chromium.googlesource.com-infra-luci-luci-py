@@ -188,6 +188,24 @@
       "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a98fed51_e1af2594",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T01:53:34Z",
+      "side": 1,
+      "message": "I personally prefer consistency and using more standard way. But not strong opinion here.",
+      "parentUuid": "2511986e_e1574d70",
+      "revId": "897acfe9758dff4e5a13f7d1cd9c98cf5467fc64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
