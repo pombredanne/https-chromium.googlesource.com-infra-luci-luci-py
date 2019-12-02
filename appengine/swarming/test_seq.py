@@ -19,8 +19,6 @@ def main():
   # or run via test runner
   test_files = [
       'handlers_backend_test.py',
-      'handlers_endpoints_test.py',
-      'handlers_prpc_test.py',
       'server/bot_groups_config_test.py',
       'local_smoke_test.py',
   ]
