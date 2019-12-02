@@ -52,6 +52,24 @@
       "revId": "57fdcf0482027857750e62ec759088a25eaf65e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb5beafc_f2b183fd",
+        "filename": "client/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T14:21:47Z",
+      "side": 1,
+      "message": "There are two places needs the path,  line 39 and line 59.",
+      "parentUuid": "e42ed211_3ccd6bca",
+      "revId": "57fdcf0482027857750e62ec759088a25eaf65e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
