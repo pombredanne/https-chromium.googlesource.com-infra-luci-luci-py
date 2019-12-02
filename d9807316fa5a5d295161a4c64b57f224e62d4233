@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "384b36fa_8dcaf750",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T04:23:52Z",
+      "side": 1,
+      "message": "I put it just in case. But let\u0027s try.",
+      "parentUuid": "a00a8715_bc9df7fd",
+      "revId": "d9807316fa5a5d295161a4c64b57f224e62d4233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "317c166f_211b908b",
         "filename": "client/utils/tools.py",
         "patchSetId": 6
@@ -39,6 +57,30 @@
       "revId": "d9807316fa5a5d295161a4c64b57f224e62d4233",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "281b5d66_cfec044b",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T04:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "317c166f_211b908b",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 21
+      },
+      "revId": "d9807316fa5a5d295161a4c64b57f224e62d4233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
