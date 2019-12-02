@@ -34,6 +34,24 @@
       "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8b31e77_e0562e9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T15:00:14Z",
+      "side": 1,
+      "message": "I just worry that you put unreasonable efforts on keeping compatibility.\nI\u0027m ok if it\u0027s not that problem.",
+      "parentUuid": "797c69e9_742f998b",
+      "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
