@@ -36,6 +36,7 @@ import os_utilities
     sys.platform == 'win32',
     'TODO(crbug.com/1017545): it fails to mock functions')
 class TestOsUtilities(auto_stub.TestCase):
+
   def setUp(self):
     super(TestOsUtilities, self).setUp()
     tools.clear_cache_all()
