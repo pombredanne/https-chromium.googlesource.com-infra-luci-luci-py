@@ -38,19 +38,11 @@ import os_utilities
 class TestOsUtilities(auto_stub.TestCase):
   def setUp(self):
     super(TestOsUtilities, self).setUp()
-    self._clear_caches()
+    tools.clear_cache_all()
 
   def tearDown(self):
     super(TestOsUtilities, self).tearDown()
-    self._clear_caches()
-
-  @staticmethod
-  def _clear_caches():
-    tools.clear_cache(os_utilities.get_hostname)
-    tools.clear_cache(os_utilities.get_cpu_dimensions)
-    tools.clear_cache(os_utilities.get_cpu_bitness)
-    tools.clear_cache(os_utilities.get_cpu_type)
-    tools.clear_cache(platforms.is_gce)
+    tools.clear_cache_all()
 
   def test_get_os_name(self):
     expected = (u'Debian', u'Linux', u'Mac', u'Raspbian', u'Ubuntu', u'Windows')
