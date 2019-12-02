@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e769052_1a6d0492",
+        "filename": "appengine/swarming/swarming_bot/bot_code/singleton_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T05:04:27Z",
+      "side": 1,
+      "message": "period?",
+      "range": {
+        "startLine": 30,
+        "startChar": 51,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "f46ae9032427858aa0996b465cf02a32f84c1d85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "041d9eb0_4b2ac871",
+        "filename": "appengine/swarming/swarming_bot/bot_code/singleton_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T05:04:27Z",
+      "side": 1,
+      "message": "nit: running this script as?",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "f46ae9032427858aa0996b465cf02a32f84c1d85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
