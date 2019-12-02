@@ -34,6 +34,24 @@
       "revId": "57fdcf0482027857750e62ec759088a25eaf65e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e42ed211_3ccd6bca",
+        "filename": "client/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-02T14:08:33Z",
+      "side": 1,
+      "message": "why not place just before import?",
+      "parentUuid": "c28bdcbe_f3090baa",
+      "revId": "57fdcf0482027857750e62ec759088a25eaf65e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
