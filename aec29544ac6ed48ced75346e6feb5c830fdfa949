@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "553a3f1e_5ab5f453",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T12:32:03Z",
+      "side": 1,
+      "message": "Can I ask why only for downloading?\nWould it solve if uploading is done via the Go client?",
+      "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
