@@ -52,6 +52,24 @@
       "revId": "ccb9f13a55b9ba83b6b5be6cab2beb6aaf95274e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afb6d197_8dee51e0",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-02T05:26:29Z",
+      "side": 1,
+      "message": "Ok, but it\u0027s going to be bigger scope.\nWill abandon this CL and reland later.",
+      "parentUuid": "9fddb753_ca1e88c5",
+      "revId": "ccb9f13a55b9ba83b6b5be6cab2beb6aaf95274e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
