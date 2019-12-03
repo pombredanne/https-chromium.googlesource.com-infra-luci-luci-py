@@ -355,6 +355,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.mock(random, 'getrandbits', lambda _: 0x88)
     # A bot polls, gets a task, updates it, completes it.
     params = self.do_handshake()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
 
     # Enqueue a task.
     self.set_as_user()
@@ -430,6 +431,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
   def test_poll_task_with_bot_service_account(self):
     params = self.do_handshake()
+    self.post_json('/swarming/api/v1/bot/poll', params)
 
     self.set_as_user()
     _, task_id = self.client_create_task_raw(service_account='bot')
@@ -494,6 +496,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
   def test_poll_task_with_caches(self):
     params = self.do_handshake()
+    self.post_json('/swarming/api/v1/bot/poll', params)
 
     self.set_as_user()
     _, task_id = self.client_create_task_raw({
@@ -621,6 +624,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.mock(random, 'getrandbits', lambda _: 0x88)
     # A bot polls, gets a task, updates it, completes it.
     params = self.do_handshake()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
     # Enqueue a task.
     self.set_as_user()
     _, task_id = self.client_create_task_isolated()
@@ -883,11 +887,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     expected = [
       {
         'authenticated_as': u'bot:whitelisted-ip',
-        'dimensions': {
-          u'id': [u'bot1'],
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
-        },
+        'dimensions': {},
         'event_type': unicode(e),
         'external_ip': u'192.168.2.2',
         'last_seen_ts': None,
@@ -914,11 +914,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     expected.append(
       {
         'authenticated_as': u'bot:whitelisted-ip',
-        'dimensions': {
-          u'id': [u'bot1'],
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
-        },
+        'dimensions': {},
         'event_type': u'bot_connected',
         'external_ip': u'192.168.2.2',
         'last_seen_ts': None,
@@ -946,6 +942,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     # Runs a task up to completion.
     self.mock(random, 'getrandbits', lambda _: 0x88)
     params = self.do_handshake()
+    self.post_json('/swarming/api/v1/bot/poll', params)
     self.set_as_user()
     self.client_create_task_raw(
         properties=dict(command=['python', 'runtest.py']))
@@ -1081,6 +1078,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
   def test_task_failure(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
     params = self.do_handshake()
+    self.post_json('/swarming/api/v1/bot/poll', params)
 
     self.set_as_user()
     self.client_create_task_raw()
@@ -1122,6 +1120,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         ereporter2, 'log_request',
         lambda *args, **kwargs: errors.append((args, kwargs)))
     params = self.do_handshake()
+    self.post_json('/swarming/api/v1/bot/poll', params)
 
     self.set_as_user()
     self.client_create_task_raw()
@@ -1166,6 +1165,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     # Task was canceled while running, resulting in KILLED.
     self.mock(random, 'getrandbits', lambda _: 0x88)
     params = self.do_handshake()
+    self.post_json('/swarming/api/v1/bot/poll', params)
 
     self.set_as_user()
     self.client_create_task_raw()
