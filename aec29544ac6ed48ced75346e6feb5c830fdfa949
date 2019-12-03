@@ -52,6 +52,24 @@
       "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05d809dd_0a8988ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-03T01:47:01Z",
+      "side": 1,
+      "message": "I\u0027ll pay cost for that in the future.\nBut graduality is good for me too.",
+      "parentUuid": "d8b31e77_e0562e9d",
+      "revId": "aec29544ac6ed48ced75346e6feb5c830fdfa949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
