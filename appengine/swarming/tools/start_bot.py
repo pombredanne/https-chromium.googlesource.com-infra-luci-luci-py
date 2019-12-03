@@ -27,6 +27,11 @@ from six.moves import urllib
 
 from utils import file_path
 from utils import subprocess42
+
+sys.path.insert(0, os.path.dirname(THIS_DIR))
+from swarming_bot.bot_code import bot_main
+
+sys.path.pop(0)
 sys.path.pop(0)
 sys.path.pop(0)
 
@@ -65,12 +70,16 @@ class LocalBot(object):
       # effect.
       # These values are from ./swarming_bot/bot_code/bot_main.py.
       _safe_rm(os.path.join(self._botdir, 'c'))
+      # TODO(crbug.com/932396): remove this line.
       _safe_rm(os.path.join(self._botdir, 'isolated_cache'))
+      _safe_rm(os.path.join(self._botdir, bot_main.GO_ISOLATED_CACHE_DIR))
       self.start()
     else:
       logging.info('wipe_cache(): wiping cache without telling the bot')
       _safe_rm(os.path.join(self._botdir, 'c'))
+      # TODO(crbug.com/932396): remove this line.
       _safe_rm(os.path.join(self._botdir, 'isolated_cache'))
+      _safe_rm(os.path.join(self._botdir, bot_main.GO_ISOLATED_CACHE_DIR))
 
   @property
   def bot_id(self):
