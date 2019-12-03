@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "315081ca_dbcd4a90",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-03T04:04:19Z",
+      "side": 1,
+      "message": "Maybe unrelated to this CL, but no need to use member variable in bot_info like L632?",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 629,
+        "endChar": 42
+      },
+      "revId": "5098cdcb058570d4bca2b4d40a51c410fe8512c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
