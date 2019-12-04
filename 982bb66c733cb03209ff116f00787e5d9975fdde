@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da137ee6_00b979c5",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-04T14:45:56Z",
+      "side": 1,
+      "message": "at first polling, as the initial handshake is done without the injected bot_config.py.",
+      "range": {
+        "startLine": 466,
+        "startChar": 60,
+        "endLine": 466,
+        "endChar": 64
+      },
+      "revId": "982bb66c733cb03209ff116f00787e5d9975fdde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dc2e0a7_8080a618",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-04T14:45:56Z",
+      "side": 1,
+      "message": "# Do not pass dimensions because they are likely not valid at handshake.",
+      "revId": "982bb66c733cb03209ff116f00787e5d9975fdde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
