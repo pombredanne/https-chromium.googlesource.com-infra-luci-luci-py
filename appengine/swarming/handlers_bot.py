@@ -434,6 +434,9 @@ class _BotBaseHandler(_BotApiHandler):
       # Use @ndb.toplevel on the handler not to forget calling ndb.Future
       bot_root_key = bot_management.get_root_key(bot_id)
       task_queues.assert_bot_async(bot_root_key, dimensions).get_result()
+    else:
+      trimed_dims = {k: v for k, v in dimensions.items() if k in ('id', 'pool')}
+      result.dimensions = trimed_dims
 
     return result
 
