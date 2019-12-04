@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36b27068_b8c6f867",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-04T14:52:21Z",
+      "side": 1,
+      "message": "You could do it here right away, with a try finally.\n\nThe challenge is that any exception raised by get_result() must be ignored (!) e.g.:\n\nf \u003d task_queues.assert_bot_async(bot_root_key, res.dimensions)\n\u003clines 583-623\u003e\nfinally:\n  try:\n    f.get_result()\n  except:\n    logging.exception(\u0027Silencing bot assert\u0027)\n\nPersonally I\u0027d prefer a non-naked except clause, but this means trapping all possible exceptions, a non exhaustive list would be:\n\n     datastore_errors.InternalError,\n     datastore_errors.Timeout,\n     datastore_errors.TransactionFailedError,\n     datastore_utils.CommitError,\n     apiproxy_errors.CancelledError,\n     datastore_errors.BadRequestError,\n     RuntimeError",
+      "revId": "4922af476a56c44dcbf6a5175a747308389a3f3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
