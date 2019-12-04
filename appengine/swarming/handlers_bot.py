@@ -313,7 +313,7 @@ class _BotBaseHandler(_BotApiHandler):
   EXPECTED_KEYS = {u'dimensions', u'state', u'version'}
   REQUIRED_STATE_KEYS = {u'running_time', u'sleep_streak'}
 
-  def _process(self, assert_bot):
+  def _process(self):
     """Fetches bot info and settings, does authorization and quarantine checks.
 
     Returns:
@@ -429,12 +429,6 @@ class _BotBaseHandler(_BotApiHandler):
       result.quarantined_msg = 'Quarantined by admin'
       return result
 
-    if assert_bot:
-      # TODO(jwata): Parallelise assert_bot by removing get_result(),
-      # Use @ndb.toplevel on the handler not to forget calling ndb.Future
-      bot_root_key = bot_management.get_root_key(bot_id)
-      task_queues.assert_bot_async(bot_root_key, dimensions).get_result()
-
     return result
 
 
@@ -461,7 +455,14 @@ class BotHandshakeHandler(_BotBaseHandler):
   """
   @auth.public  # auth happens in self._process()
   def post(self):
-    res = self._process(assert_bot=False)
+    res = self._process()
+
+    # TODO(jwata): add comments
+    res.dimensions = {
+        k: v for k, v in res.dimensions.items()
+        if k in ('id', 'pool')
+    }
+
     bot_management.bot_event(
         event_type='bot_connected', bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
@@ -517,7 +518,8 @@ class BotPollHandler(_BotBaseHandler):
       self._cmd_sleep(1000, True)
       return
 
-    res = self._process(assert_bot=True)
+    res = self._process()
+
     sleep_streak = res.state.get('sleep_streak', 0)
     quarantined = bool(res.quarantined_msg)
 
@@ -576,6 +578,11 @@ class BotPollHandler(_BotBaseHandler):
       # Tell the bot it's considered quarantined.
       self._cmd_sleep(sleep_streak, True)
       return
+
+    # TODO(jwata): Parallelise assert_bot by removing get_result(),
+    # Use @ndb.toplevel on the handler not to forget calling ndb.Future
+    bot_root_key = bot_management.get_root_key(res.bot_id)
+    task_queues.assert_bot_async(bot_root_key, res.dimensions).get_result()
 
     # The bot is in good shape. Try to grab a task.
     try:
@@ -725,7 +732,7 @@ class BotEventHandler(_BotBaseHandler):
 
   @auth.public  # auth happens in self._process()
   def post(self):
-    res = self._process(assert_bot=False)
+    res = self._process()
     event = res.request.get('event')
     if event not in self.ALLOWED_EVENTS:
       logging.error('Unexpected event type')
@@ -737,7 +744,7 @@ class BotEventHandler(_BotBaseHandler):
         event_type=event, bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=res.dimensions, state=res.state,
+        dimensions=None, state=res.state,
         version=res.version, quarantined=bool(res.quarantined_msg),
         maintenance_msg=res.maintenance_msg, task_id=None,
         task_name=None, message=message)
