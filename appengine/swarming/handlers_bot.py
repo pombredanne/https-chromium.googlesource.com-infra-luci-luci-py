@@ -313,7 +313,7 @@ class _BotBaseHandler(_BotApiHandler):
   EXPECTED_KEYS = {u'dimensions', u'state', u'version'}
   REQUIRED_STATE_KEYS = {u'running_time', u'sleep_streak'}
 
-  def _process(self, assert_bot):
+  def _process(self, register_dimensions):
     """Fetches bot info and settings, does authorization and quarantine checks.
 
     Returns:
@@ -429,11 +429,14 @@ class _BotBaseHandler(_BotApiHandler):
       result.quarantined_msg = 'Quarantined by admin'
       return result
 
-    if assert_bot:
+    if register_dimensions:
       # TODO(jwata): Parallelise assert_bot by removing get_result(),
       # Use @ndb.toplevel on the handler not to forget calling ndb.Future
       bot_root_key = bot_management.get_root_key(bot_id)
       task_queues.assert_bot_async(bot_root_key, dimensions).get_result()
+    else:
+      trimed_dims = {k: v for k, v in dimensions.items() if k in ('id', 'pool')}
+      result.dimensions = trimed_dims
 
     return result
 
@@ -461,7 +464,7 @@ class BotHandshakeHandler(_BotBaseHandler):
   """
   @auth.public  # auth happens in self._process()
   def post(self):
-    res = self._process(assert_bot=False)
+    res = self._process(register_dimensions=False)
     bot_management.bot_event(
         event_type='bot_connected', bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
@@ -517,7 +520,7 @@ class BotPollHandler(_BotBaseHandler):
       self._cmd_sleep(1000, True)
       return
 
-    res = self._process(assert_bot=True)
+    res = self._process(register_dimensions=True)
     sleep_streak = res.state.get('sleep_streak', 0)
     quarantined = bool(res.quarantined_msg)
 
@@ -725,7 +728,7 @@ class BotEventHandler(_BotBaseHandler):
 
   @auth.public  # auth happens in self._process()
   def post(self):
-    res = self._process(assert_bot=False)
+    res = self._process(register_dimensions=False)
     event = res.request.get('event')
     if event not in self.ALLOWED_EVENTS:
       logging.error('Unexpected event type')
