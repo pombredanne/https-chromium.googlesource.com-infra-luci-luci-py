@@ -456,6 +456,15 @@ class BotHandshakeHandler(_BotBaseHandler):
   @auth.public  # auth happens in self._process()
   def post(self):
     res = self._process()
+
+    # Do not register dimensions because they may change at next polling.
+    # Keep id and pool since some codes refer them.
+    # crbug.com/801679
+    res.dimensions = {
+        k: v for k, v in res.dimensions.items()
+        if k in ('id', 'pool')
+    }
+
     bot_management.bot_event(
         event_type='bot_connected', bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
@@ -742,6 +751,7 @@ class BotEventHandler(_BotBaseHandler):
     message = res.request.get('message')
     # Record the event in a BotEvent entity so it can be listed on the bot's
     # page.
+    # It doesn't pass dimensions because it shouldn't update them.
     bot_management.bot_event(
         event_type=event, bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
