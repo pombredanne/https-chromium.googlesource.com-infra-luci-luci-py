@@ -16,6 +16,24 @@
       "revId": "18c4ce4e8bf4eaa2b1e1b9537fb8a2fe23c8d288",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4886647_bcd18931",
+        "filename": "OWNERS",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-05T02:08:36Z",
+      "side": 1,
+      "message": "OK. sorted crrev.com/c/1947892",
+      "parentUuid": "69f617d8_eb3f527a",
+      "revId": "18c4ce4e8bf4eaa2b1e1b9537fb8a2fe23c8d288",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
