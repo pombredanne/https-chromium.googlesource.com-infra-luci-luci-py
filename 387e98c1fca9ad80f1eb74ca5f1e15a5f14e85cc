@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4b4f909_4722e8cc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-05T00:33:00Z",
+      "side": 1,
+      "message": "I prefer to show this log only when len(capacity) \u003c\u003d index in L94",
+      "revId": "387e98c1fca9ad80f1eb74ca5f1e15a5f14e85cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
