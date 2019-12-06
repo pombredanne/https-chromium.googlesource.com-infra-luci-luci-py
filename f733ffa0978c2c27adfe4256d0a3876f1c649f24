@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6137d740_aa824bec",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2019-12-06T06:43:01Z",
+      "side": 1,
+      "message": "nit: I prefer to have a space after \u0027:\u0027.",
+      "range": {
+        "startLine": 95,
+        "startChar": 39,
+        "endLine": 95,
+        "endChar": 40
+      },
+      "revId": "f733ffa0978c2c27adfe4256d0a3876f1c649f24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
