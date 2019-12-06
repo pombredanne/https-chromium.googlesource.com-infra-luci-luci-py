@@ -92,6 +92,9 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   for index in range(rest):
     # Use the lookup created just before the transaction. There's a small race
     # condition in here but we're willing to accept it.
+    if len(capacity) < index:
+      logging.debug('crbug.com/1030504: index=%s, capacity=%s',
+                    index, capacity)
     if capacity[index]:
       # Enqueue a new TasktoRun for this next TaskSlice, it has capacity!
       new_to_run = task_to_run.new_task_to_run(request, 1, index+offset)
