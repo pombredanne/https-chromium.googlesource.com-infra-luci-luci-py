@@ -293,7 +293,6 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.mock(isolateserver, 'get_storage', get_storage)
 
     cmd = [
-        '--use-symlinks',
         '--no-log',
         '--isolated', isolated_hash,
         '--cache', os.path.join(self.tempdir, 'isolated_cache'),
