@@ -129,11 +129,14 @@ def report_memory(app):
       raise
     finally:
       if not deadline:
-        after = _get_memory_usage()
-        if before and after and after >= before + min_delta:
-          logging.debug(
-              'Memory usage: %.1f -> %.1f MB; delta: %.1f MB',
-              before, after, after-before)
+        try:
+          after = _get_memory_usage()
+          if before and after and after >= before + min_delta:
+            logging.debug(
+                'Memory usage: %.1f -> %.1f MB; delta: %.1f MB',
+                before, after, after-before)
+        except runtime.DeadlineExceededError:
+          logging.warning("Couldn't get memory usage in time")
   app.router.dispatch = dispatch_and_report
 
 
