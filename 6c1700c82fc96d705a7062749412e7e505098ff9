@@ -22,6 +22,30 @@
       "revId": "6c1700c82fc96d705a7062749412e7e505098ff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8084c842_309fa6f5",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-11T01:17:53Z",
+      "side": 1,
+      "message": "updated the comment to 1027431 and added the bug ID to the log message.",
+      "parentUuid": "ed7917fa_c47ce3e0",
+      "range": {
+        "startLine": 592,
+        "startChar": 23,
+        "endLine": 592,
+        "endChar": 30
+      },
+      "revId": "6c1700c82fc96d705a7062749412e7e505098ff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
