@@ -16,6 +16,24 @@
       "revId": "813331258d2a271040fba14f8b65cdb042b4f64e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5073a79f_f6522144",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-11T01:28:11Z",
+      "side": 1,
+      "message": "Yeah, I was also considering that.\nBut noticed that report_memory is the only place where _get_memory_usage is called.\n\nFixed to catch the error in _get_memory_usage since no strong opinion.",
+      "parentUuid": "dbbaa561_36f84ede",
+      "revId": "813331258d2a271040fba14f8b65cdb042b4f64e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
