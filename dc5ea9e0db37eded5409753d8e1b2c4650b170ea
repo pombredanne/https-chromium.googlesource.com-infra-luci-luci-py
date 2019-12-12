@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24e06d92_77f9a5d0",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2019-12-12T08:58:46Z",
+      "side": 1,
+      "message": "This comment is just to give you other considerable points in naming this field. Please feel free to disagree.\n\n-------------------------------------------------\nit seems that other metrics define a field \"status\". I am not sure if they refer to the same one, but. L278 copies an alias under \"State\" into a var, called \"status\".\n\nAlso, I\u0027d consider to name this with \"end_state\" or \"last_state\". The definition of this metric is \"the number of completed jobs.\". What if the state is \"PENDING\", but the job has been completed? I interpreted it as following.\n: A completed job has state of \"PENDING\".\n\nWe don\u0027t name FIELDS[\"result\"] with FIELDS[\"end_results\"] because there can be only one result in the life of a job. However, in the life of a Swarming job, the state of the job changes from \"PENDING\", \"RUNNING\", etc. Some may argue that FIELDS[\"metric:state\"] is the end state of the job at the time of completion. Thus, it\u0027s unnecessary to add \"end\" or \"last\" to the name of the field. Well, I acknowledge that it also has a good point. Please make you own decision.",
+      "range": {
+        "startLine": 69,
+        "startChar": 32,
+        "endLine": 69,
+        "endChar": 37
+      },
+      "revId": "dc5ea9e0db37eded5409753d8e1b2c4650b170ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
