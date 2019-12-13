@@ -95,7 +95,7 @@ PASSLIST = (
     'README.md',
     'c',
     'cipd_cache',
-    'isolated_cache_python',
+    'isolated_cache',
     'isolated_cache_go',
     'logs',
     'swarming.lck',
@@ -689,7 +689,7 @@ def _run_isolated_flags(botobj):
       partition['wiggle'])
   args = [
       '--cache',
-      os.path.join(botobj.base_dir, 'isolated_cache_python'),
+      os.path.join(botobj.base_dir, 'isolated_cache'),
       '--go-cache-dir',
       os.path.join(botobj.base_dir, 'isolated_cache_go'),
       '--min-free-space',
