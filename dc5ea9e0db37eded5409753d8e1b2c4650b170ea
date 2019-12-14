@@ -22,6 +22,30 @@
       "revId": "dc5ea9e0db37eded5409753d8e1b2c4650b170ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2207eafa_0cf66b82",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-14T03:52:06Z",
+      "side": 1,
+      "message": "Thanks for your comment.\n\n\u003e state vs status\n\nThe task state is called \"state\" in swarming code, but I see your point that it\u0027s called \"status\" in metrics. I agree to keep consistency.\n\n\u003e end_state, last_state\n\nI was considering the same thing. I will add a prefix if it makes more sense to other people.\n\nIn conclusion, it\u0027s \u0027end_status\u0027 now.",
+      "parentUuid": "24e06d92_77f9a5d0",
+      "range": {
+        "startLine": 69,
+        "startChar": 32,
+        "endLine": 69,
+        "endChar": 37
+      },
+      "revId": "dc5ea9e0db37eded5409753d8e1b2c4650b170ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
