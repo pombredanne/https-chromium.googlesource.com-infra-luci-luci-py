@@ -16,6 +16,24 @@
       "revId": "1bac9b656bdcda3cee11f1e976e0cc010e1df2de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "161a44c2_9a77e373",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T12:02:14Z",
+      "side": 1,
+      "message": "Good point. I\u0027m not sure how long does it take.\nWould it be longer than 10 mins (limit of task queue)?",
+      "parentUuid": "1fb3ad2f_b38c6ec6",
+      "revId": "1bac9b656bdcda3cee11f1e976e0cc010e1df2de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
