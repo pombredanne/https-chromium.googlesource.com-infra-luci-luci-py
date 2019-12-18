@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "ccefcbbe_1c430673",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-18T18:40:48Z",
+      "side": 1,
+      "message": "Ok I feel that\u0027s an error in task_cancel_running_children_tasks(); it should use the run id instead of the summary id.",
+      "parentUuid": "3a96e404_f1e100d8",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7dddd400_87429ff5",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 9
