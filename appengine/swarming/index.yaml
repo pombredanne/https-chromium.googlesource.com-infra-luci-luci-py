@@ -31,6 +31,10 @@ indexes:
   properties:
   - name: ts
 
+- kind: TaskRequest
+  properties:
+  - name: parent_task_id
+
 - kind: TaskResultSummary
   properties:
   - name: failure
