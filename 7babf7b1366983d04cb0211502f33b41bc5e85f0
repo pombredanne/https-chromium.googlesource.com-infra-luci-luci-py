@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98b06405_b221c746",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1686,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-18T13:47:57Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary, see the other comments.",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fdd6187_ae7007fb",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-18T13:47:57Z",
+      "side": 1,
+      "message": "It\u0027s generally done at all site in this file, e.g. line 466.",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97a222a2_fafb90ee",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-18T13:47:57Z",
+      "side": 1,
+      "message": "This should yield the TaskRunResult, not the summary.\n\nIt\u0027d be much more efficient.",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dddd400_87429ff5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1868,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-12-18T13:47:57Z",
+      "side": 1,
+      "message": "Here, you can look at the currently active TaskRunResult, or really, jus take the last one.",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
