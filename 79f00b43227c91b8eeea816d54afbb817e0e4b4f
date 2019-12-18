@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6182d74_997d0ffd",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-12-18T07:52:45Z",
+      "side": 1,
+      "message": "i\u0027m not an expert in GAE / datastore, but I think all such indexes are auto-created, unless you opt out via noindex flag on a field (in ndb) or attribute (luci/gae in Golang).\n\nGiven https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_request.py?q\u003dclass+TaskRequest\u0026dr\u003dCSs\u0026l\u003d1107\nI think this index already exists.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "79f00b43227c91b8eeea816d54afbb817e0e4b4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
