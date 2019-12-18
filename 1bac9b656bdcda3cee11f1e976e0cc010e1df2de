@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fb3ad2f_b38c6ec6",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-12-18T08:53:50Z",
+      "side": 1,
+      "message": "this might work for 100 child tasks, but are you sure it won\u0027t constantly timeout if there are 1000+ ones?\n\nI suspect we\u0027ll need to save cursor and continue iterating in follow up via task queue.\nBut I\u0027m fine with a # TODO in this CL and follow up in later CL.",
+      "revId": "1bac9b656bdcda3cee11f1e976e0cc010e1df2de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
