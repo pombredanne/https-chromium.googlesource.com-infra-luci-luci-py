@@ -1683,6 +1683,13 @@ def validate_priority(priority):
         (priority, MAXIMUM_PRIORITY))
 
 
+def yield_request_keys_by_parent_task_id(parent_task_id):
+  """Returns an iterator of child TaskRequest keys."""
+  return TaskRequest.query(
+      TaskRequest.parent_task_id == parent_task_id
+  ).iter(keys_only=True)
+
+
 def cron_delete_old_task_requests():
   """Deletes very old TaskRequest entities and their children entities.
 

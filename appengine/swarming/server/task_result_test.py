@@ -464,6 +464,25 @@ class TaskResultApiTest(TestCase):
         run_result.task_id)
     self.assertEqual(complete_ts, run_result.ended_ts)
 
+  def test_yield_result_summary_by_parent_task_id(self):
+    # prepare parent task
+    parent_run_result = _gen_run_result()
+    parent_run_result_id = task_pack.pack_run_result_key(parent_run_result.key)
+
+    # create child task result summaries
+    self.mock_now(self.now, 1)
+    child_summary_1 = _gen_summary_result(
+        parent_task_id=parent_run_result_id)
+    self.mock_now(self.now, 2)
+    child_summary_2 = _gen_summary_result(
+        parent_task_id=parent_run_result_id)
+
+    # should find the children by parent_task_id
+    result_summary_iter = task_result.yield_result_summary_by_parent_task_id(
+        parent_run_result_id)
+    expected = [child_summary_1, child_summary_2]
+    self.assertEqual(sorted(expected), sorted(s for s in result_summary_iter))
+
   def test_yield_run_result_keys_with_dead_bot(self):
     request = _gen_request()
     result_summary = task_result.new_result_summary(request)
