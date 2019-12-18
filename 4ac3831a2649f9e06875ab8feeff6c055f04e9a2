@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5727a76_2cfd2347",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1888,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T16:07:03Z",
+      "side": 1,
+      "message": "\u003e Too many arguments for logging format string.\n\u003e To disable, add: # pylint: disable\u003dlogging-too-many-args\n\nDone",
+      "parentUuid": "1592e1d5_d4f7a545",
+      "revId": "4ac3831a2649f9e06875ab8feeff6c055f04e9a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
