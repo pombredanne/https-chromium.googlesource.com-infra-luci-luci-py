@@ -46,6 +46,30 @@
       "revId": "79f00b43227c91b8eeea816d54afbb817e0e4b4f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27215a75_2cf51ee5",
+        "filename": "appengine/swarming/index.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T16:09:48Z",
+      "side": 1,
+      "message": "Ah I see. I also noticed that a query by the field works without deploying this CL.\nWill abondone it.",
+      "parentUuid": "53f575b5_7d924c2c",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "79f00b43227c91b8eeea816d54afbb817e0e4b4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
