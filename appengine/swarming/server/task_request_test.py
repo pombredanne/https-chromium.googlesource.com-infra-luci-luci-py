@@ -103,6 +103,7 @@ def _gen_request_slices(**kwargs):
   # Note that ndb model constructor accepts dicts for structured properties.
   req = task_request.TaskRequest(**args)
   task_request.init_new_request(req, True, template_apply)
+  req.key = task_request.new_request_key()
   return req
 
 
@@ -1739,11 +1740,9 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual(expected, [r[0] for r in actual_rows])
 
   def test_yield_request_keys_by_parent_task_id(self):
-    parent_request = _gen_request()
-    parent_request.key = task_request.new_request_key()
-    parent_request.put()
+    parent_request_key = _gen_request().put()
     parent_summary_key = task_pack.request_key_to_result_summary_key(
-        parent_request.key)
+        parent_request_key)
     parent_summary_id = task_pack.pack_result_summary_key(parent_summary_key)
     parent_run_key = task_pack.result_summary_key_to_run_result_key(
         parent_summary_key, 1)
