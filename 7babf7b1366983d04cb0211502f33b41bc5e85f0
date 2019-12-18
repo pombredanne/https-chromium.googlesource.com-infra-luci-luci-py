@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "5e62979f_dbde2498",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T22:29:38Z",
+      "side": 1,
+      "message": "I think this comment explains the current implementation.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?q\u003d/internal/taskqueue/important/tasks/cancel-children-tasks\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d1590\n\nIt was intentionally changed to TaskResultSummary in this CL.\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/193f6fb9182e1e04e7264483f6b4112c6dfb1f3b%5E%21/appengine/swarming/server/task_scheduler.py",
+      "parentUuid": "ccefcbbe_1c430673",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7dddd400_87429ff5",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 9

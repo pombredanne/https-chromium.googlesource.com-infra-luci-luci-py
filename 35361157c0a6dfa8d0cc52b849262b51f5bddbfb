@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93d3d710_02c26ab1",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1413,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T22:29:38Z",
+      "side": 1,
+      "message": "Great thanks.",
+      "parentUuid": "9bb63411_08807990",
+      "range": {
+        "startLine": 1413,
+        "startChar": 2,
+        "endLine": 1413,
+        "endChar": 18
+      },
+      "revId": "35361157c0a6dfa8d0cc52b849262b51f5bddbfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21020d97_55d506ab",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 10
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "71b7027f_16dcb63d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1871,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T22:29:38Z",
+      "side": 1,
+      "message": "The current implementation is tricky. It fetches all tasks and group by server_version (Line 1875-1880).\nI double that this logic works as is. I will check how it works on prod.",
+      "parentUuid": "21020d97_55d506ab",
+      "revId": "35361157c0a6dfa8d0cc52b849262b51f5bddbfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df5802a3_5af01023",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 10
@@ -53,6 +95,30 @@
       "writtenOn": "2019-12-18T18:40:48Z",
       "side": 1,
       "message": "I prefer q for query than it for iterator, but that\u0027s just my opinion.",
+      "range": {
+        "startLine": 1873,
+        "startChar": 2,
+        "endLine": 1873,
+        "endChar": 4
+      },
+      "revId": "35361157c0a6dfa8d0cc52b849262b51f5bddbfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efa124ae_68a0728f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1873,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T22:29:38Z",
+      "side": 1,
+      "message": "Thanks. that\u0027s the word I was looking for yesterday :)",
+      "parentUuid": "df5802a3_5af01023",
       "range": {
         "startLine": 1873,
         "startChar": 2,
