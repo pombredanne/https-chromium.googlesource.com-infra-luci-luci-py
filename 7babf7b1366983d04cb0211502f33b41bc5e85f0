@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c0a7f0b8_a6106321",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1686,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T16:02:16Z",
+      "side": 1,
+      "message": "same here.\nThis hack is needed to cover the both try numbers.",
+      "parentUuid": "98b06405_b221c746",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fdd6187_ae7007fb",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2d04157_0f3aea4c",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T16:02:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fdd6187_ae7007fb",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3a96e404_f1e100d8",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T16:02:16Z",
+      "side": 1,
+      "message": "I also initially thought this should be TaskRunResult.task_id.\nBut TaskResultSummary.task_id is given to task_cancel_running_children_tasks in the current implementation as I commented.",
+      "parentUuid": "97a222a2_fafb90ee",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7dddd400_87429ff5",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 9
@@ -64,6 +118,24 @@
       "writtenOn": "2019-12-18T13:47:57Z",
       "side": 1,
       "message": "Here, you can look at the currently active TaskRunResult, or really, jus take the last one.",
+      "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b76b3df_8ba9c973",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1868,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2019-12-18T16:02:16Z",
+      "side": 1,
+      "message": "There are currently two places to enqueue this task, and they give TaskResultSummary.task_id.\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?q\u003d/internal/taskqueue/important/tasks/cancel-children-tasks\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d1467\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?q\u003d/internal/taskqueue/important/tasks/cancel-children-tasks\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d1599\n\nAnd it will be converted to TaskResultSummary.task_id anyway even if it\u0027s TaskRunResult.\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?q\u003d/internal/taskqueue/important/tasks/cancel-children-tasks\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d1467cancel_task_with_id",
+      "parentUuid": "7dddd400_87429ff5",
       "revId": "7babf7b1366983d04cb0211502f33b41bc5e85f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
