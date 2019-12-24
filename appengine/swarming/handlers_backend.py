@@ -11,6 +11,7 @@ import logging
 import webapp2
 from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
+from google.appengine import runtime
 
 from google.protobuf import json_format
 
@@ -265,7 +266,10 @@ class TaskCancelChildrenTasksHandler(webapp2.RequestHandler):
     task = payload['task']
     logging.info('Cancelling children tasks of task %s', task)
 
-    task_scheduler.task_cancel_running_children_tasks(task)
+    try:
+      task_scheduler.task_cancel_running_children_tasks(task)
+    except runtime.DeadlineExceededError:
+      self.abort(429, 'Deadline exceeded. Retry later.')
 
 
 class TaskExpireTasksHandler(webapp2.RequestHandler):
