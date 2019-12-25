@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a31c36c_b0ae7fba",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-12-25T04:08:16Z",
+      "side": 1,
+      "message": "nit: single word.",
+      "range": {
+        "startLine": 605,
+        "startChar": 27,
+        "endLine": 605,
+        "endChar": 28
+      },
+      "revId": "194bc936fe721b0cc2aed66e534c445b7928e5e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
