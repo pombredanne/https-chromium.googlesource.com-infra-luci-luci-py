@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fedff5e1_e4a79b1a",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-12-26T05:54:39Z",
+      "side": 1,
+      "message": "btw, this is wrong. Used?",
+      "range": {
+        "startLine": 94,
+        "startChar": 34,
+        "endLine": 94,
+        "endChar": 43
+      },
+      "revId": "0eea475cbe4f0929496ae5590ac0b54883b9ddbf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
