@@ -18,6 +18,7 @@ from google.appengine import runtime
 from google.appengine.runtime import apiproxy_errors
 
 from components import auth
+from components import decorators
 from components import ereporter2
 from components import utils
 from server import acl
@@ -454,6 +455,8 @@ class BotHandshakeHandler(_BotBaseHandler):
       }
     }
   """
+
+  @decorators.silence(runtime.DeadlineExceededError)
   @auth.public  # auth happens in self._process()
   def post(self):
     res = self._process()
