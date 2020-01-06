@@ -16,6 +16,24 @@
       "revId": "d3e12914a5acfef130473651a27cd7645ade832d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bea20376_0611cfbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-06T01:24:48Z",
+      "side": 1,
+      "message": "I saw it when I made this CL. But it seems that it stopped happening.\nhttp://screen/Vge4D1P0YO4",
+      "parentUuid": "34488cb2_f6739a82",
+      "revId": "d3e12914a5acfef130473651a27cd7645ade832d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
