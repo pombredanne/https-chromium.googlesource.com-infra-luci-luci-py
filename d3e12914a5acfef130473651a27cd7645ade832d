@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34488cb2_f6739a82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-06T00:55:08Z",
+      "side": 1,
+      "message": "do we still see DeadlineExceededError at handshake?",
+      "revId": "d3e12914a5acfef130473651a27cd7645ade832d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
