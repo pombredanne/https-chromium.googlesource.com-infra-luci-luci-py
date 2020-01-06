@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebc1809a_654688da",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-06T04:36:07Z",
+      "side": 0,
+      "message": "better to keep log?",
+      "revId": "2768b1b9a672496b9705210ee0d13dc711cf0f3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
