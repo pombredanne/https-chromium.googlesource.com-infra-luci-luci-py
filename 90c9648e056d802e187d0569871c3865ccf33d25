@@ -16,6 +16,24 @@
       "revId": "90c9648e056d802e187d0569871c3865ccf33d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c148270_421aed67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-06T03:01:01Z",
+      "side": 1,
+      "message": "I think urlfetch.Error (urlfetch.PayloadTooLargeError) is cached for retry, and it ended up raising net.Error.\n \nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/components/net.py;l\u003d213?q\u003df:components%2Fnet.py\u0026ss\u003dchromium%2Finfra%2Finfra\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "db6db7e2_bed98448",
+      "revId": "90c9648e056d802e187d0569871c3865ccf33d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
