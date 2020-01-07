@@ -88,6 +88,24 @@
       "revId": "90c9648e056d802e187d0569871c3865ccf33d25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc89910_a6523aac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-07T05:18:50Z",
+      "side": 1,
+      "message": "\u003e We can just delete the queues from task queues manually.\n\u003e Is it ok to do that see if it happens again for now?\n\nYes.",
+      "parentUuid": "85ffc347_f7f45ab6",
+      "revId": "90c9648e056d802e187d0569871c3865ccf33d25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
