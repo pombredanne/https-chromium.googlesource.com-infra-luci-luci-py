@@ -780,7 +780,6 @@ def map_and_run(data, constant_run_path):
 
       if data.isolated_hash:
         isolated_stats = result['stats'].setdefault('isolated', {})
-        python_fallback = False
         if data.use_go_isolated:
           try:
             bundle, stats = _fetch_and_map_with_go(
@@ -792,13 +791,10 @@ def map_and_run(data, constant_run_path):
                 isolated_client=os.path.join(
                     isolated_client_dir, 'isolated' + cipd.EXECUTABLE_SUFFIX))
           except subprocess.CalledProcessError as e:
-            logging.error(
-                'failed to run go client, fallback to python client: %s', e)
+            logging.error('failed to run go client: %s', e)
             file_path.rmtree(run_dir)
-            os.mkdir(run_dir, 0o700)
-            python_fallback = True
-
-        if not data.use_go_isolated or python_fallback:
+            raise
+        else:
           bundle, stats = fetch_and_map(
               isolated_hash=data.isolated_hash,
               storage=data.storage,
