@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "75f63883_462ab5bc",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-08T23:11:36Z",
+      "side": 1,
+      "message": "please document in the doc string that it raises AuthorizationError",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 25
+      },
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5df42cdb_689fe3e8",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-08T23:11:36Z",
+      "side": 1,
+      "message": "nit: skip second bot_groups_config.get_bot_group_config if hostname \u003d\u003d bot_id",
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c6020d_a2ae035c",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-08T23:11:36Z",
+      "side": 1,
+      "message": "This should be moved back to validate_bot_id_and_fetch_config since it should apply to both code paths (when using `bot_id` and when using `hostname`).",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 69
+      },
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "035ade71_8b163cee",
         "filename": "appengine/swarming/server/bot_auth_test.py",
         "patchSetId": 7
