@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29a386e5_118f1d2b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-08T05:53:40Z",
+      "side": 1,
+      "message": "Why do you make this abort conditional?",
+      "range": {
+        "startLine": 544,
+        "startChar": 50,
+        "endLine": 544,
+        "endChar": 70
+      },
+      "revId": "23f5a9e12104dca19264495aae57d5e2911ed8e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
