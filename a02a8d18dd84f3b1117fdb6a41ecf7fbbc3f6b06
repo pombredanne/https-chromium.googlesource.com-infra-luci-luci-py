@@ -16,6 +16,24 @@
       "revId": "a02a8d18dd84f3b1117fdb6a41ecf7fbbc3f6b06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36ff3d22_2c913cad",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-08T05:59:37Z",
+      "side": 1,
+      "message": "In UnicodeDecodeError case, showing dirpath/dirname directly is dangerous.\n```\n$ python\nPython 2.7.17rc1 (default, Oct 10 2019, 10:26:01) \n[GCC 8.3.0] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e \"%s %s\" % (u\u0027\\xaa\u0027, \u0027\\xaa\u0027)\nTraceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nUnicodeDecodeError: \u0027ascii\u0027 codec can\u0027t decode byte 0xaa in position 0: ordinal not in range(128)\n\u003e\u003e\u003e \n```",
+      "parentUuid": "f35122ca_300e6398",
+      "revId": "a02a8d18dd84f3b1117fdb6a41ecf7fbbc3f6b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
