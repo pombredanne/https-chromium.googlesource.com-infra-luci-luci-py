@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f35122ca_300e6398",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-08T05:55:29Z",
+      "side": 1,
+      "message": "nit: show also the dirpath, dirname? just for readability.",
+      "revId": "a02a8d18dd84f3b1117fdb6a41ecf7fbbc3f6b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
