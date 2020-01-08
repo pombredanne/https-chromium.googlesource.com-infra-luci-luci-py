@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "035ade71_8b163cee",
+        "filename": "appengine/swarming/server/bot_auth_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-08T13:15:09Z",
+      "side": 1,
+      "message": "add another bot \u0027bot_host--container1\u0027 in different pool and test that is treated correctly?",
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
