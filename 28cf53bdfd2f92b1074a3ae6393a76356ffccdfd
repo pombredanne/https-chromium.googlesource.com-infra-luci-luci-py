@@ -16,6 +16,24 @@
       "revId": "28cf53bdfd2f92b1074a3ae6393a76356ffccdfd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4f9af2a_b2181c2a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-08T09:45:10Z",
+      "side": 1,
+      "message": "made crrev.com/c/1990927",
+      "parentUuid": "d63db3da_c289a30c",
+      "revId": "28cf53bdfd2f92b1074a3ae6393a76356ffccdfd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
