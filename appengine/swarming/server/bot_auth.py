@@ -44,12 +44,7 @@ def validate_bot_id_and_fetch_config(bot_id):
   On success returns the configuration for this bot (BotGroupConfig tuple), as
   defined in bots.cfg.
   """
-  bot_id = _extract_primary_hostname(bot_id)
-  cfg = bot_groups_config.get_bot_group_config(bot_id)
-  if not cfg:
-    logging.error(
-        'bot_auth: unknown bot_id, not in the config\nbot_id: "%s"', bot_id)
-    raise auth.AuthorizationError('Unknown bot ID, not in config')
+  auth_bot_id, cfg = _get_bot_group_config(bot_id)
 
   # This should not really happen for validated configs.
   if not cfg.auth:
@@ -69,7 +64,7 @@ def validate_bot_id_and_fetch_config(bot_id):
   # skipped. Logs from such methods are always emitted at 'error' level. Other
   # logs are buffered and emitted only if all methods fail.
   for bot_auth in cfg.auth:
-    err, details = _check_bot_auth(bot_auth, bot_id, peer_ident, ip)
+    err, details = _check_bot_auth(bot_auth, auth_bot_id, peer_ident, ip)
     if not err:
       logging.debug('Using auth method: %s', bot_auth)
       return cfg
@@ -94,6 +89,33 @@ def validate_bot_id_and_fetch_config(bot_id):
     raise auth.AuthorizationError(auth_errs[0])
   raise auth.AuthorizationError(
       'All auth methods failed: %s' % '; '.join(auth_errs))
+
+
+def _get_bot_group_config(bot_id):
+  # In many cases, host_name == bot_id. But dockeriezed bots contain
+  # magic word '--' to represent host name. e.g. bot_id=foo--bar > host_name=foo
+  # Those bots should be authenticated using the hostname.
+  host_name = _extract_primary_hostname(bot_id)
+
+  # At first, try to get bot group config with given bot_id
+  cfg = bot_groups_config.get_bot_group_config(bot_id)
+  if cfg:
+    # Found a cfg
+    return host_name, cfg
+
+  # TODO: add logs
+
+  # For docker container which has magic '--' separater,
+  # try to get bot group config with the host name
+  cfg = bot_groups_config.get_bot_group_config(host_name)
+
+  if not cfg:
+    logging.error(
+        'bot_auth: unknown bot_id, not in the config'
+        '\nbot_id: "%s" host_name: %s', bot_id, host_name)
+    raise auth.AuthorizationError('Unknown bot ID, not in config')
+
+  return host_name, cfg
 
 
 def _check_bot_auth(bot_auth, bot_id, peer_ident, ip):
