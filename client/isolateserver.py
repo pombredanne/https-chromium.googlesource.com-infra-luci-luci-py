@@ -1751,7 +1751,7 @@ def add_cache_options(parser):
 
 
 def process_cache_options(options, trim, **kwargs):
-  if options.cache:
+  if options.cache and not getattr(options, 'use_go_isolated', False):
     policies = local_caching.CachePolicies(
         options.max_cache_size,
         options.min_free_space,

@@ -360,6 +360,9 @@ class RunIsolatedTest(RunIsolatedTestBase):
         install_packages_fn=run_isolated.noop_install_packages,
         use_go_isolated=False,
         go_cache_dir=None,
+        go_cache_max_items=0,
+        go_cache_max_cache_size=0,
+        go_cache_min_free_space=0,
         env={},
         env_prefix={},
         lower_priority=lower_priority,
@@ -1042,8 +1045,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
 
     self.popen_fakes.append(fake_wait)
     bundle, stats = run_isolated._fetch_and_map_with_go(
-        'fake_isolated_hash', storage, isolate_cache, 'fake_outdir',
-        'fake_cache_dir', 'fake/path/to/isolated')
+        'fake_isolated_hash', storage, 'fake_outdir', 'fake_cache_dir', 0, 0, 0,
+        'fake/path/to/isolated')
     self.assertTrue(bundle)
     self.assertTrue(stats)
 
@@ -1099,6 +1102,9 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           install_packages_fn=run_isolated.noop_install_packages,
           use_go_isolated=False,
           go_cache_dir=None,
+          go_cache_max_items=0,
+          go_cache_max_cache_size=0,
+          go_cache_min_free_space=0,
           env={},
           env_prefix={},
           lower_priority=False,
@@ -1473,6 +1479,9 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           install_packages_fn=run_isolated.noop_install_packages,
           use_go_isolated=False,
           go_cache_dir=None,
+          go_cache_max_items=0,
+          go_cache_max_cache_size=0,
+          go_cache_min_free_space=0,
           env={},
           env_prefix={},
           lower_priority=False,
