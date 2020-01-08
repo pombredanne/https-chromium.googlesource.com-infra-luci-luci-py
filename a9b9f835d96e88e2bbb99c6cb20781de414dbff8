@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a1a7047_fe07c76c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-08T07:31:53Z",
+      "side": 1,
+      "message": "What change will be applied?",
+      "revId": "a9b9f835d96e88e2bbb99c6cb20781de414dbff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
