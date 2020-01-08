@@ -210,6 +210,12 @@ TaskData = collections.namedtuple(
         'use_go_isolated',
         # Cache directory for go isolated client.
         'go_cache_dir',
+
+        # Parameters passed to isolated client.
+        'go_cache_max_cache_size',
+        'go_cache_min_free_space',
+        'go_cache_max_items',
+
         # Environment variables to set.
         'env',
         # Environment variables to mutate with relative directories.
@@ -513,15 +519,15 @@ def run_command(
   return exit_code, had_hard_timeout
 
 
-def _fetch_and_map_with_go(isolated_hash, storage, cache, outdir, go_cache_dir,
-                           isolated_client):
+def _fetch_and_map_with_go(isolated_hash, storage, outdir, go_cache_dir,
+                           go_cache_max_cache_size, go_cache_min_free_space,
+                           go_cache_max_items, isolated_client):
   """
   Fetches an isolated tree using go client, create the tree and returns
   (bundle, stats).
   """
   start = time.time()
   server_ref = storage.server_ref
-  policies = cache.policies
   result_json_handle, result_json_path = tempfile.mkstemp(
       prefix=u'fetch-and-map-result-', suffix=u'.json')
   os.close(result_json_handle)
@@ -540,11 +546,11 @@ def _fetch_and_map_with_go(isolated_hash, storage, cache, outdir, go_cache_dir,
         '-cache-dir',
         go_cache_dir,
         '-cache-max-items',
-        str(policies.max_items),
+        str(go_cache_max_items),
         '-cache-max-size',
-        str(policies.max_cache_size),
+        str(go_cache_max_cache_size),
         '-cache-min-free-space',
-        str(policies.min_free_space),
+        str(go_cache_min_free_space),
 
         # flags for output
         '-output-dir',
@@ -786,9 +792,11 @@ def map_and_run(data, constant_run_path):
             bundle, stats = _fetch_and_map_with_go(
                 isolated_hash=data.isolated_hash,
                 storage=data.storage,
-                cache=data.isolate_cache,
                 outdir=run_dir,
                 go_cache_dir=data.go_cache_dir,
+                go_cache_max_cache_size=data.go_cache_max_cache_size,
+                go_cache_max_items=data.go_cache_max_items,
+                go_cache_min_free_space=data.go_cache_min_free_space,
                 isolated_client=os.path.join(
                     isolated_client_dir, 'isolated' + cipd.EXECUTABLE_SUFFIX))
           except subprocess.CalledProcessError as e:
@@ -1507,6 +1515,9 @@ def main(args):
       install_packages_fn=install_packages_fn,
       use_go_isolated=bool(options.use_go_isolated),
       go_cache_dir=options.cache,
+      go_cache_max_cache_size=options.max_cache_size,
+      go_cache_min_free_space=options.min_free_space,
+      go_cache_max_items=options.max_items,
       env=options.env,
       env_prefix=options.env_prefix,
       lower_priority=bool(options.lower_priority),
