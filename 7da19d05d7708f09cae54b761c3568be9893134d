@@ -164,6 +164,30 @@
       "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f1204c3_abbb54c8",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T04:16:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16fe73a5_b1a60f03",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 72
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
