@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efb07ae_096883ed",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-09T16:39:37Z",
+      "side": 1,
+      "message": "FYI, you can use: result_summary.task_id\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_result.py;l\u003d1048",
+      "range": {
+        "startLine": 976,
+        "startChar": 48,
+        "endLine": 976,
+        "endChar": 62
+      },
+      "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
