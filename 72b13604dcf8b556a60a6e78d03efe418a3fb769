@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb66f93d_bcabd14b",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-09T04:04:37Z",
+      "side": 1,
+      "message": "This should be in a separate CL.",
+      "revId": "72b13604dcf8b556a60a6e78d03efe418a3fb769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
