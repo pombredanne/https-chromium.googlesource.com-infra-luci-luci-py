@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4646bcd_08a4bdc2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-09T16:24:21Z",
+      "side": 1,
+      "message": "(optional) I think it\u0027s better to construct a temporary CachePolicies and pass it instead, instead of using the previous cache.policies. Then the modifications are smaller and it\u0027s easier to understand IMHO.",
+      "range": {
+        "startLine": 521,
+        "startChar": 59,
+        "endLine": 521,
+        "endChar": 71
+      },
+      "revId": "5145a7faf58916671c60f417701d38d8a9393afe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
