@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c77b145_c36e12db",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-09T02:37:08Z",
+      "side": 1,
+      "message": "nit: end sentences with \u0027.\u0027",
+      "range": {
+        "startLine": 105,
+        "startChar": 57,
+        "endLine": 106,
+        "endChar": 43
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf6483a_37fc10d9",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-09T02:37:08Z",
+      "side": 1,
+      "message": "nit: \n\nRaises:\n  auth.AuthorizationError: if the bot_id doesn\u0027t match any groups in the bots.cfg.\n\n(it is syntactically similar to Args and Returns sections)",
+      "range": {
+        "startLine": 108,
+        "startChar": 2,
+        "endLine": 109,
+        "endChar": 58
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf3b9b28_71046cd9",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-09T02:37:08Z",
+      "side": 1,
+      "message": "nit: please use `bot_id: \"%s\"` (and `hostname: \"%s\"`) for consistency with how the context is supplied in other logging statements in this file. Consider also prefixing logs with \"bot_auth: \". Consistency to the formatting makes it easier to filter logs.",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 72
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
