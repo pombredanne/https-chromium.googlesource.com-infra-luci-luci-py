@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a8f83c22_9f2dfd84",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T01:39:00Z",
+      "side": 1,
+      "message": "Oops, I forgot to push. Done.",
+      "parentUuid": "75f63883_462ab5bc",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 25
+      },
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5df42cdb_689fe3e8",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 7
@@ -39,6 +63,24 @@
       "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9339f6_5fcdbcf3",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T01:39:00Z",
+      "side": 1,
+      "message": "added \"if hostname !\u003d bot_id:\" condition for the 2nd try so that it will reach AuthorizationError(\u0027Unknown bot ID, not in config\u0027) in the end.",
+      "parentUuid": "5df42cdb_689fe3e8",
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "c79a38e4_11fbd96b",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T01:39:00Z",
+      "side": 1,
+      "message": "Good catch. Done.",
+      "parentUuid": "c0c6020d_a2ae035c",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 69
+      },
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "035ade71_8b163cee",
         "filename": "appengine/swarming/server/bot_auth_test.py",
         "patchSetId": 7
@@ -79,6 +145,24 @@
       "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5623eb2b_ea5cab28",
+        "filename": "appengine/swarming/server/bot_auth_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T01:39:00Z",
+      "side": 1,
+      "message": "Agree. Done.",
+      "parentUuid": "035ade71_8b163cee",
+      "revId": "368f183380bca952967ca5261e2ca64917e57aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
