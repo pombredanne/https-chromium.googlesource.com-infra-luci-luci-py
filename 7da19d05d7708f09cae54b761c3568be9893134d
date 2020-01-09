@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "334a91ae_8eff2d28",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T04:01:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c77b145_c36e12db",
+      "range": {
+        "startLine": 105,
+        "startChar": 57,
+        "endLine": 106,
+        "endChar": 43
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edf6483a_37fc10d9",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1c425b0e_fded2c0e",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T04:01:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edf6483a_37fc10d9",
+      "range": {
+        "startLine": 108,
+        "startChar": 2,
+        "endLine": 109,
+        "endChar": 58
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf3b9b28_71046cd9",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 8
@@ -68,6 +116,30 @@
       "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1c5bf13_d8b159f3",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-09T04:01:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf3b9b28_71046cd9",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 72
+      },
+      "revId": "7da19d05d7708f09cae54b761c3568be9893134d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
