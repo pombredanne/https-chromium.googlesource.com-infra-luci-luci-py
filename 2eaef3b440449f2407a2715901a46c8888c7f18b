@@ -46,6 +46,30 @@
       "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8dd750d1_0bde2b00",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-10T15:03:09Z",
+      "side": 1,
+      "message": "Actually I was wrong from the perspective that you want the task state, not the task id. Sorry for the confusion.",
+      "parentUuid": "29510eb7_a850b34e",
+      "range": {
+        "startLine": 976,
+        "startChar": 48,
+        "endLine": 976,
+        "endChar": 62
+      },
+      "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
