@@ -82,13 +82,17 @@ class Provider(object):
         yield dirpath[len(project_path):]
 
   @ndb.tasklet
-  def get_project_configs_async(self, path):
+  def get_project_configs_async(self, path, **kwargs):
     """Reads a config file in all projects.
 
     Returns:
       {config_set -> (revision, content)} map, where revision is always None.
     """
     assert path
+    if kwargs:
+      logging.warning(
+          'config: parameters %r are ignored in the filesystem mode',
+          kwargs.keys())
     config_sets = ['projects/%s' % pid for pid in self.get_project_ids()]
     result = {}
     for config_set in config_sets:
@@ -98,13 +102,17 @@ class Provider(object):
     raise ndb.Return(result)
 
   @ndb.tasklet
-  def get_ref_configs_async(self, path):
+  def get_ref_configs_async(self, path, **kwargs):
     """Reads a config file in all refs of all projects.
 
     Returns:
       {config_set -> (revision, content)} map, where revision is always None.
     """
     assert path
+    if kwargs:
+      logging.warning(
+          'config: parameters %r are ignored in the filesystem mode',
+          kwargs.keys())
     result = {}
     for pid in self.get_project_ids():
       for ref in self.get_project_refs(pid):

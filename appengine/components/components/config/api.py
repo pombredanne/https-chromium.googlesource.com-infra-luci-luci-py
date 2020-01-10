@@ -148,7 +148,7 @@ def get_projects():
 
 
 @ndb.tasklet
-def get_project_configs_async(path, dest_type=None):
+def get_project_configs_async(path, dest_type=None, use_memcache=True):
   """Returns configs at |path| in all projects.
 
   Args:
@@ -158,6 +158,7 @@ def get_project_configs_async(path, dest_type=None):
       |dest_type|. Only protobuf messages are supported. If a config could not
       be converted, the exception will be logged, but not raised.
       If |dest_type| is not specified, returned config is bytes.
+    use_memcache (bool): whether to use memcache (if supported).
 
   Returns:
     {project_id -> (revision, config, exception)} map.
@@ -168,7 +169,8 @@ def get_project_configs_async(path, dest_type=None):
   common._validate_dest_type(dest_type)
 
   provider = yield _get_config_provider_async()
-  configs = yield provider.get_project_configs_async(path)
+  configs = yield provider.get_project_configs_async(
+      path, use_memcache=use_memcache)
   result = {}
   for config_set, (revision, content) in configs.items():
     assert config_set and config_set.startswith('projects/'), config_set
@@ -186,9 +188,10 @@ def get_project_configs_async(path, dest_type=None):
   raise ndb.Return(result)
 
 
-def get_project_configs(path, dest_type=None):
+def get_project_configs(path, dest_type=None, use_memcache=True):
   """Blocking version of get_project_configs_async."""
-  return get_project_configs_async(path, dest_type).get_result()
+  return get_project_configs_async(
+      path, dest_type=dest_type, use_memcache=use_memcache).get_result()
 
 
 @ndb.tasklet

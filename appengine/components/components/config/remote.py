@@ -76,18 +76,20 @@ class Provider(object):
       raise
 
   @ndb.tasklet
-  def get_config_by_hash_async(self, content_hash):
+  def get_config_by_hash_async(self, content_hash, use_memcache=True):
     """Returns a config blob by its hash. Optionally memcaches results."""
     assert content_hash
-    cache_key = '%sconfig_by_hash/%s' % (MEMCACHE_PREFIX, content_hash)
-    ctx = ndb.get_context()
-    content = yield ctx.memcache_get(cache_key)
-    if content is not None:
-      raise ndb.Return(content)
+
+    if use_memcache:
+      cache_key = '%sconfig_by_hash/%s' % (MEMCACHE_PREFIX, content_hash)
+      ctx = ndb.get_context()
+      content = yield ctx.memcache_get(cache_key)
+      if content is not None:
+        raise ndb.Return(content)
 
     res = yield self._api_call_async('config/%s' % content_hash)
     content = base64.b64decode(res.get('content')) if res else None
-    if content is not None:
+    if content is not None and use_memcache:
       yield ctx.memcache_set(cache_key, content)
     raise ndb.Return(content)
 
@@ -152,7 +154,7 @@ class Provider(object):
     raise ndb.Return(revision, config)
 
   @ndb.tasklet
-  def _get_configs_multi(self, url_path):
+  def _get_configs_multi(self, url_path, use_memcache=True):
     """Returns a map config_set -> (revision, content)."""
     assert url_path
 
@@ -161,11 +163,11 @@ class Provider(object):
     res = yield self._api_call_async(
         url_path, params={'hashes_only': True}, allow_not_found=False)
 
-    # Load config contents. Most of them will come from memcache.
+    # Load config contents.
     for cfg in res['configs']:
       cfg['project_id'] = cfg['config_set'].split('/', 1)[1]
       cfg['get_content_future'] = self.get_config_by_hash_async(
-          cfg['content_hash'])
+          cfg['content_hash'], use_memcache=use_memcache)
 
     for cfg in res['configs']:
       cfg['content'] = yield cfg['get_content_future']
@@ -180,21 +182,23 @@ class Provider(object):
       if cfg['content']
     })
 
-  def get_project_configs_async(self, path):
+  def get_project_configs_async(self, path, use_memcache=True):
     """Reads a config file in all projects.
 
     Returns:
       {"config_set -> (revision, content)} map.
     """
-    return self._get_configs_multi(format_url('configs/projects/%s', path))
+    return self._get_configs_multi(
+        format_url('configs/projects/%s', path), use_memcache=use_memcache)
 
-  def get_ref_configs_async(self, path):
+  def get_ref_configs_async(self, path, use_memcache=True):
     """Reads a config file in all refs of all projects.
 
     Returns:
       {"config_set -> (revision, content)} map.
     """
-    return self._get_configs_multi(format_url('configs/refs/%s', path))
+    return self._get_configs_multi(
+        format_url('configs/refs/%s', path), use_memcache=use_memcache)
 
   @ndb.tasklet
   def get_projects_async(self):
