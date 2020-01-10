@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e37375c1_3a61036b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-10T15:01:55Z",
+      "side": 1,
+      "message": "FYI, there\u0027s a method;\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_result.py;l\u003d658?q\u003dtask_result.py\n\nso\n\n  result_summary.to_string(), result_summary.task_id)\n\nI agree the name of the method is crappy though. Feel free to change it. :)",
+      "range": {
+        "startLine": 978,
+        "startChar": 38,
+        "endLine": 978,
+        "endChar": 52
+      },
+      "revId": "94c160d5942bf1c21f798187fcb5421214bc7874",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
