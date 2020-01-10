@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "b29b1cb6_6ea3e099",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-10T04:22:46Z",
+      "side": 1,
+      "message": "this now should actually be\n\nif hostname \u003d\u003d bot_id and cfg:\n  return hostname, cfg  # using the default group\n\n(or something similar)\n\nOtherwise the default group will never be picked up for most bots.",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 24
+      },
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bc5ab81_171b4ddb",
         "filename": "appengine/swarming/server/bot_auth_test.py",
         "patchSetId": 3
@@ -35,6 +58,29 @@
         "startChar": 33,
         "endLine": 88,
         "endChar": 39
+      },
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcbd0380_dcd4768d",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-10T04:22:46Z",
+      "side": 1,
+      "message": "nit: finish sentences with dots (be consistent with other comments in a file).",
+      "range": {
+        "startLine": 77,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 37
       },
       "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
