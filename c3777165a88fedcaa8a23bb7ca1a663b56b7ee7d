@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4247ef02_b6e05f99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-10T03:32:26Z",
+      "side": 1,
+      "message": "cq failed?",
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bc5ab81_171b4ddb",
+        "filename": "appengine/swarming/server/bot_auth_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-10T03:32:26Z",
+      "side": 1,
+      "message": "using range in pool is bit confusing?",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
