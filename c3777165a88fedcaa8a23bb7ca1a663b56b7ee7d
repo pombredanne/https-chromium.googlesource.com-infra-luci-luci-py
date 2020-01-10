@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "44ce389f_06a013a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-10T08:32:55Z",
+      "side": 1,
+      "message": "It was wip. now the tests should pass.",
+      "parentUuid": "4247ef02_b6e05f99",
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b29b1cb6_6ea3e099",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d79cef_f5ce645a",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-10T08:32:55Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "b29b1cb6_6ea3e099",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 24
+      },
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "5d984bc8_18691d89",
+        "filename": "appengine/swarming/server/bot_auth_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-10T08:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bc5ab81_171b4ddb",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcbd0380_dcd4768d",
         "filename": "appengine/swarming/server/bot_groups_config.py",
         "patchSetId": 3
@@ -85,6 +151,30 @@
       "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e8f1afa_bb10ac11",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-10T08:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcbd0380_dcd4768d",
+      "range": {
+        "startLine": 77,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 37
+      },
+      "revId": "c3777165a88fedcaa8a23bb7ca1a663b56b7ee7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
