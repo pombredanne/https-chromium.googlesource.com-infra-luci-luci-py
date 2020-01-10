@@ -22,6 +22,30 @@
       "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29510eb7_a850b34e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-10T08:50:41Z",
+      "side": 1,
+      "message": "Done in https://crrev.com/c/1994809",
+      "parentUuid": "8efb07ae_096883ed",
+      "range": {
+        "startLine": 976,
+        "startChar": 48,
+        "endLine": 976,
+        "endChar": 62
+      },
+      "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
