@@ -74,6 +74,25 @@ TEST_CONFIG = bots_pb2.BotsCfg(
         bots_pb2.BotAuth(ip_whitelist='ip_whitelist'),
       ],
       dimensions=['pool:with_fallback_to_ip_wl']),
+    bots_pb2.BotGroup(
+      bot_id=['bot_host--container1'],
+      auth=[bots_pb2.BotAuth(require_luci_machine_token=True)],
+      dimensions=['pool:container1']),
+    bots_pb2.BotGroup(
+      bot_id=['bot_host--container2'],
+      auth=[bots_pb2.BotAuth(require_luci_machine_token=True)],
+      dimensions=['pool:container2']),
+    bots_pb2.BotGroup(
+      bot_id=['bot_host--container{3..4}'],
+      auth=[bots_pb2.BotAuth(require_luci_machine_token=True)],
+      dimensions=['pool:container{3..4}']),
+    bots_pb2.BotGroup(
+      bot_id=['bot_host'],
+      auth=[bots_pb2.BotAuth(require_luci_machine_token=True)],
+      dimensions=['pool:bot_host']),
+    bots_pb2.BotGroup(
+      auth=[bots_pb2.BotAuth(require_luci_machine_token=True)],
+      dimensions=['pool:unassigned']),
   ],
 )
 
@@ -264,6 +283,18 @@ class BotAuthTest(test_case.TestCase):
       bot_auth.validate_bot_id_and_fetch_config('bot_with_token--vm123')
     self.assert_error_log('bot ID doesn\'t match the machine token used')
     self.assert_error_log('bot_id: "bot_with_token"')
+
+  def test_containerized_bot_id(self):
+    # Caller is using machine token that matches hostname
+    self.mock_caller('bot:bot_host.domain', '1.2.3.5')
+    cfg = bot_auth.validate_bot_id_and_fetch_config('bot_host--container1')
+    self.assertEquals({u'pool': [u'container1']}, cfg.dimensions)
+    cfg = bot_auth.validate_bot_id_and_fetch_config('bot_host--container2')
+    self.assertEquals({u'pool': [u'container2']}, cfg.dimensions)
+    cfg = bot_auth.validate_bot_id_and_fetch_config('bot_host--container3')
+    self.assertEquals({u'pool': [u'container{3..4}']}, cfg.dimensions)
+    cfg = bot_auth.validate_bot_id_and_fetch_config('bot_host--container99')
+    self.assertEquals({u'pool': [u'bot_host']}, cfg.dimensions)
 
   def test_first_method_is_used(self):
     self.mock_caller('bot:bot_with_fallback_to_ip_wl.domain', '2.2.2.2')

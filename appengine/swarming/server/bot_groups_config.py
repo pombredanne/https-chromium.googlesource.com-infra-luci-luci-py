@@ -73,6 +73,9 @@ BotGroupConfig = collections.namedtuple('BotGroupConfig', [
 
   # An email, "bot" or "". See 'system_service_account' in bots.proto.
   'system_service_account',
+
+  # True if it's default group config
+  'is_default',
 ])
 
 
@@ -576,7 +579,8 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
     dimensions={k: sorted(v) for k, v in dimensions.items()},
     bot_config_script=msg.bot_config_script or '',
     bot_config_script_content=msg.bot_config_script_content or '',
-    system_service_account=msg.system_service_account or '')
+    system_service_account=msg.system_service_account or '',
+    is_default=not msg.bot_id and not msg.bot_id_prefix)
 
 
 def _expand_bot_id_expr(expr):
@@ -766,7 +770,7 @@ def _do_fetch_bot_groups(known_cfg=None):
       known_prefixes.add(bot_id_prefix)
 
     # Default group?
-    if not entry.bot_id and not entry.bot_id_prefix:
+    if group_cfg.is_default:
       if default_group is not None:
         logging.error('Default bot group is specified twice')
       else:
