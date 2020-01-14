@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d75294f_1be461db",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-14T05:50:25Z",
+      "side": 1,
+      "message": "nit: use use_go_isolated variable to be explicit.\n\nif options.cipd_enabled\n  use_go_isolated \u003d True\nelse:\n  use_go_isolated \u003d False",
+      "revId": "d87356d981f782c0f8cafd139e0b80a6c8661166",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
