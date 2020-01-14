@@ -70,6 +70,30 @@
       "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b58abf39_1b839b26",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-14T01:29:22Z",
+      "side": 1,
+      "message": "No problem. It\u0027s still worth logging task_summary_id, too.",
+      "parentUuid": "8dd750d1_0bde2b00",
+      "range": {
+        "startLine": 976,
+        "startChar": 48,
+        "endLine": 976,
+        "endChar": 62
+      },
+      "revId": "2eaef3b440449f2407a2715901a46c8888c7f18b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
