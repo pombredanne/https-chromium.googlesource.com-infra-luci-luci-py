@@ -6,6 +6,7 @@
 
 from collections import defaultdict
 import datetime
+import imp
 import json
 import logging
 
@@ -15,7 +16,13 @@ from components import utils
 import gae_ts_mon
 
 from server import bot_management
-from server import task_result
+# 'from server import task_result' fails when being loaded from
+# task_result itself.
+try:
+  task_result_info = imp.find_module('task_result')
+  task_result = imp.load_module('task_result', *task_result_info)
+except ImportError:
+  from server import task_result
 
 # - android_devices is a side effect of the health of each Android devices
 #   connected to the bot.
