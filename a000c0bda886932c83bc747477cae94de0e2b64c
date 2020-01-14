@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c55aa876_b4acda75",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-14T10:26:02Z",
+      "side": 1,
+      "message": "check self.state not in STATES_RUNNING ?",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7aee97_a71577f2",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-14T10:26:02Z",
+      "side": 1,
+      "message": "call super?",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98d5db9b_5ae318fc",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-14T10:26:02Z",
+      "side": 1,
+      "message": "I prefer to import ts_mon_metrics here instead of using imp pakcage.",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
