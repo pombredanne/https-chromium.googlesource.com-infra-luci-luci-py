@@ -22,6 +22,30 @@
       "revId": "94c160d5942bf1c21f798187fcb5421214bc7874",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfbf16bb_d44b9fa4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-14T01:36:05Z",
+      "side": 1,
+      "message": "Fixed to use \u0027to_string\u0027. \nwill change if I come up with a better name or way.",
+      "parentUuid": "e37375c1_3a61036b",
+      "range": {
+        "startLine": 978,
+        "startChar": 38,
+        "endLine": 978,
+        "endChar": 52
+      },
+      "revId": "94c160d5942bf1c21f798187fcb5421214bc7874",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
