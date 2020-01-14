@@ -57,11 +57,12 @@ def add_cipd_options(parser):
       '--cipd-enabled',
       help='Enable CIPD client bootstrap. Implied by --cipd-package.',
       action='store_true',
-      default=False)
+      default=True)
   group.add_option(
       '--cipd-server',
       help='URL of the CIPD server. '
-           'Only relevant with --cipd-enabled or --cipd-package.')
+      'Only relevant with --cipd-enabled or --cipd-package.',
+      default='https://chrome-infra-packages.appspot.com/')
   group.add_option(
       '--cipd-client-package',
       help='Package name of CIPD client with optional parameters described in '

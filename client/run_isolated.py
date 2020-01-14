@@ -1138,7 +1138,8 @@ def create_option_parser():
   parser.add_option(
       '--use-go-isolated',
       action='store_true',
-      help='Use go isolated instead of python implementation')
+      help='Use go isolated instead of python implementation',
+      default=True)
   parser.add_option(
       '--json',
       help='dump output metadata to json file. When used, run_isolated returns '
