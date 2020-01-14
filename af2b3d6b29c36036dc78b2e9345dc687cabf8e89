@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a00300e2_0acb84f8",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2020-01-14T09:08:38Z",
+      "side": 1,
+      "message": "can I ask you why you need to keep this?",
+      "range": {
+        "startLine": 334,
+        "startChar": 7,
+        "endLine": 334,
+        "endChar": 31
+      },
+      "revId": "af2b3d6b29c36036dc78b2e9345dc687cabf8e89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
