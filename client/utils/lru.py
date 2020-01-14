@@ -6,7 +6,9 @@
 
 import collections
 import json
+import logging
 import time
+import traceback
 
 
 class LRUDict(object):
@@ -113,6 +115,8 @@ class LRUDict(object):
     if not self._dirty:
       return False
 
+    logging.error('crbug.com/932396: unexpected dict save\n'
+                  '%s', ''.join(traceback.format_stack()))
     with open(state_file, 'w') as f:
       contents = {
           'version': 2,
