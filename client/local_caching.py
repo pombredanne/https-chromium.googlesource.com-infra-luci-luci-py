@@ -830,8 +830,6 @@ class NamedCache(Cache):
       try:
         self._lru = lru.LRUDict.load(self.state_file)
       except ValueError:
-        logging.exception(
-            'NamedCache: failed to load named cache state file; obliterating')
         file_path.rmtree(self.cache_dir)
       with self._lock:
         self._try_upgrade()
