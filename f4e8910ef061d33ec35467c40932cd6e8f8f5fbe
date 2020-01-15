@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "270d03ec_293914f1",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-15T17:24:36Z",
+      "side": 1,
+      "message": "I recommend against. This function can be called multiple times (!) in the case of a transaction.",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a47f8662_9fdf683a",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-15T17:24:36Z",
+      "side": 1,
+      "message": "That\u0027s a lot of work to do inside a transaction.",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
