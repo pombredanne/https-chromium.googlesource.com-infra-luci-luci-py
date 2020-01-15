@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f5e4cf16_307c56cc",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T01:52:26Z",
+      "side": 1,
+      "message": "Hmm, Yes that will cancel overhead at running.\nI was just wondering if we want to use the self._prev_state for other state transition actions, assuming it has always previous state.\nI added the condition and a comment for future case.",
+      "parentUuid": "c55aa876_b4acda75",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb7aee97_a71577f2",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ae84feb8_eef803db",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T01:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb7aee97_a71577f2",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98d5db9b_5ae318fc",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 6
@@ -50,6 +86,24 @@
       "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2d294c5_486bf2fb",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T01:52:26Z",
+      "side": 1,
+      "message": "Oh that works.\nI still don\u0027t fully understand python importing...",
+      "parentUuid": "98d5db9b_5ae318fc",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
