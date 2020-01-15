@@ -16,6 +16,24 @@
       "revId": "55a4e0cab1572a1aad66943165440a9e150bd585",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41d27c06_b185ca69",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-15T01:35:38Z",
+      "side": 1,
+      "message": "\u003e Is the clean option is supported in go isolated? In other word, will the go isolated cache get cleaned when you specify \u0027use_go_isolated\u0027 *and* \u0027clean\u0027 options?\n\nisolated does not support clean, this CL lets isolated cache directory be trimmed only when it is used by both python/go implementation.\nI think it will be enough as long as there are no evil tasks trying to fill isolated cache directory with unrelated files.",
+      "parentUuid": "f34099e5_09e7af9d",
+      "revId": "55a4e0cab1572a1aad66943165440a9e150bd585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
