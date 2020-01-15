@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "4d4f5616_eed7ede7",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-15T01:56:46Z",
+      "side": 1,
+      "message": "not updated?",
+      "parentUuid": "ae84feb8_eef803db",
+      "revId": "a000c0bda886932c83bc747477cae94de0e2b64c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98d5db9b_5ae318fc",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 6
