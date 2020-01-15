@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f34099e5_09e7af9d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T01:18:56Z",
+      "side": 1,
+      "message": "I may have misunderstanding, but just to make sure.\nIs the clean option is supported in go isolated? In other word, will the go isolated cache get cleaned when you specify \u0027use_go_isolated\u0027 *and* \u0027clean\u0027 options?",
+      "revId": "55a4e0cab1572a1aad66943165440a9e150bd585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
