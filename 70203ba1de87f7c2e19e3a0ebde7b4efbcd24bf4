@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1bc2976f_f455aec8",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T05:04:28Z",
+      "side": 1,
+      "message": "I added a comment.\n\"use_cache\u003dFalse\" ignores *process* cache. (not memcache)\nhttp://shortn/_bXwzGfb3PQ",
+      "parentUuid": "eca22912_2386d4bb",
+      "range": {
+        "startLine": 1067,
+        "startChar": 24,
+        "endLine": 1067,
+        "endChar": 39
+      },
+      "revId": "70203ba1de87f7c2e19e3a0ebde7b4efbcd24bf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "026beab1_e71379f3",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 7
@@ -39,6 +63,24 @@
       "revId": "70203ba1de87f7c2e19e3a0ebde7b4efbcd24bf4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17aa23be_122f021a",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T05:04:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "026beab1_e71379f3",
+      "revId": "70203ba1de87f7c2e19e3a0ebde7b4efbcd24bf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
