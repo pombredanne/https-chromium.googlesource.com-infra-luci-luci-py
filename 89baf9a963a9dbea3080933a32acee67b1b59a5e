@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f9af10d4_906caeb8",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1016,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-15T05:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef8d332_d8a0c808",
+      "range": {
+        "startLine": 1016,
+        "startChar": 19,
+        "endLine": 1016,
+        "endChar": 22
+      },
+      "revId": "89baf9a963a9dbea3080933a32acee67b1b59a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f49fcbb_3e6f40d8",
         "filename": "appengine/swarming/server/task_result_test.py",
         "patchSetId": 10
