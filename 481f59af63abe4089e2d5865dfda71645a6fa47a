@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65dbf5d5_ccec0faf",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-16T03:47:03Z",
+      "side": 1,
+      "message": "https://cloud.google.com/appengine/docs/standard/python/ndb/creating-entity-models#using_model_hooks\nsays \"Post hooks do not check whether the RPC was successful; the hook runs regardless of failure.\", so need to check this?",
+      "revId": "481f59af63abe4089e2d5865dfda71645a6fa47a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
