@@ -34,6 +34,24 @@
       "revId": "481f59af63abe4089e2d5865dfda71645a6fa47a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ec3a39a_dffed6f3",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-16T04:44:38Z",
+      "side": 1,
+      "message": "Ah, I see.\nI missed\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/futureclass\n\nand it is useful if description has reference to docs.",
+      "parentUuid": "c3ce3ab9_21c756ec",
+      "revId": "481f59af63abe4089e2d5865dfda71645a6fa47a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
