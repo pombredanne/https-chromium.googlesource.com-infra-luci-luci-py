@@ -176,13 +176,16 @@ class Server(object):
           self.response.headers['Content-Type'] = encoding.Encoding.media_type(
               context._response_encoding)
           self.response.out.write(content)
-        elif context._details is not None:
-          # webapp2 will automatically encode strings as utf-8.
-          # http://webapp2.readthedocs.io/en/latest/guide/response.html
-          #
-          # TODO(nodir,mknyszek): Come up with an actual test for this.
-          self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
-          self.response.out.write(context._details)
+        else:
+          if context._details is not None:
+            # webapp2 will automatically encode strings as utf-8.
+            # http://webapp2.readthedocs.io/en/latest/guide/response.html
+            #
+            # TODO(nodir,mknyszek): Come up with an actual test for this.
+            self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
+            self.response.out.write(context._details)
+          elif context._details_header is not None:
+            self.response.headers['X-Prpc-Status-Details-Bin'] = context._details_header
         return self.response
 
       def _handle(self, context, service, method):
@@ -249,9 +252,19 @@ class Server(object):
           response = server._run_interceptors(
               request, context, call_details, handler, 0)
         except Exception:
-          logging.exception('Service implementation threw an exception')
-          context.set_code(StatusCode.INTERNAL)
-          context.set_details('Service implementation threw an exception')
+          if context.get_status() is None:
+            logging.exception('Service implementation threw an exception')
+            context.set_code(StatusCode.INTERNAL)
+            context.set_details('Service implementation threw an exception')
+          else:
+            try:
+              encoder = encoding.get_encoder(parsed_headers.accept)
+              bin_headers = encoder(context.status().error_details)
+              context.set_bin_headers(bin_headers)
+            except Exception:
+              logging.exception('Failed to encode error details')
+              context.set_code(StatusCode.INTERNAL)
+              context.set_details('Error serializing error details')
           return None
 
         if response is None:

@@ -5,6 +5,7 @@
 import time
 
 from components.prpc import codes
+from google.rpc import status_pb2
 
 
 class ServicerContext(object):
@@ -23,6 +24,7 @@ class ServicerContext(object):
     self._peer = None
     self._request_encoding = None
     self._response_encoding = None
+    self._status = status_pb2.Status
 
   def invocation_metadata(self):
     """Accesses the metadata from the sent by the client.
@@ -67,6 +69,27 @@ class ServicerContext(object):
     Idempotent and has no effect if the RPC has already terminated.
     """
     self._active = False
+
+  @property
+  def status(self):
+    """Returns the gRPC Status objects."""
+    return self._status
+
+  def abort_with_status(status):
+    """Raises an exception to terminate the RPC with a non-OK status.
+
+    The status passed as argument will superceded any existing status code.
+
+    Args:
+      status: A status.Status object. The status code in it must not be the StatusCode.OK
+
+    Raises:
+      Exception is always raised to signal aborting the RPC to the gRPC runtime.
+    """
+    self._status = status
+    self.set_code(status.code)
+    self.set_details(status.details)
+    raise Exception
 
   @property
   def code(self):
