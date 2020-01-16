@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "11288a03_d3d240f9",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-16T01:11:03Z",
+      "side": 1,
+      "message": "I think ts_mon_metrics.on_task_completed will be called only after the put() succeeded as a failure is checked by calling future.check_success() inside the function.",
+      "parentUuid": "270d03ec_293914f1",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a47f8662_9fdf683a",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 12
@@ -30,6 +48,24 @@
       "writtenOn": "2020-01-15T17:24:36Z",
       "side": 1,
       "message": "That\u0027s a lot of work to do inside a transaction.",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cf55ca3_6a60a708",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-16T01:11:03Z",
+      "side": 1,
+      "message": "I thought _post_put_hook() is called *after* transaction.\n\nIt\u0027s not written explicitly, but is implied in the doc.\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/creating-entity-models#using_model_hooks\n\n\u003e All post- hooks have a Future argument at the end of the call signature. This Future object holds the result of the action. You can call get_result() on this Future to retrieve the result; you can be sure that get_result() won\u0027t block, since the Future is complete by the time the hook is called.",
+      "parentUuid": "a47f8662_9fdf683a",
       "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
