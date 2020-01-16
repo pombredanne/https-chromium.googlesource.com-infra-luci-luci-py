@@ -16,6 +16,24 @@
       "revId": "481f59af63abe4089e2d5865dfda71645a6fa47a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3ce3ab9_21c756ec",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-16T04:42:10Z",
+      "side": 1,
+      "message": "That\u0027s why I call future.check_success().\n\n\u003e Check to see if the operation succeeded. Waits if necessary. Raises an exception if there was a problem; returns None if there was no problem.\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/futureclass",
+      "parentUuid": "65dbf5d5_ccec0faf",
+      "revId": "481f59af63abe4089e2d5865dfda71645a6fa47a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
