@@ -185,11 +185,12 @@ class CachePolicies(object):
     self.max_age_secs = max_age_secs
 
   def __str__(self):
-    return (
-        'CachePolicies(max_cache_size=%s; max_items=%s; min_free_space=%s; '
-        'max_age_secs=%s)') % (
-            self.max_cache_size, self.max_items, self.min_free_space,
-            self.max_age_secs)
+    return ('CachePolicies(max_cache_size=%s (%s GiB); max_items=%s; '
+            'min_free_space=%s (%s GiB); max_age_secs=%s)') % (
+                self.max_cache_size, float(self.max_cache_size) / 1024 / 1024 /
+                1024, self.max_items, self.min_free_space,
+                float(self.min_free_space) / 1024 / 1024 / 1024,
+                self.max_age_secs)
 
 
 class CacheMiss(Exception):
@@ -742,10 +743,12 @@ class DiskContentAddressedCache(ContentAddressedCache):
       digest, (size, _ts) = self._lru.get_oldest()
       if not allow_protected and digest == self._protected:
         total_size = sum(self._lru.values())+size
-        msg = (
-            'Not enough space to fetch the whole isolated tree.\n'
-            '  %s\n  cache=%dbytes, %d items; %sb free_space') % (
-              self.policies, total_size, len(self._lru)+1, self._free_disk)
+        msg = ('Not enough space to fetch the whole isolated tree.\n'
+               ' %s\n  cache=%d bytes (%s GiB), %d items; '
+               '%s bytes (%s GiB) free_space') % (
+                   self.policies, total_size,
+                   float(total_size) / 1024 / 1024 / 1024, len(self._lru) + 1,
+                   self._free_disk, float(self._free_disk) / 1024 / 1024 / 1024)
         raise NoMoreSpace(msg)
     except KeyError:
       # That means an internal error.
