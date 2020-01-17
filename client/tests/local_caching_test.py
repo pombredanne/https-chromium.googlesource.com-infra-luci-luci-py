@@ -59,8 +59,9 @@ class TestCase(auto_stub.TestCase):
     self.tempdir = tempfile.mkdtemp(prefix=u'local_caching')
     self._algo = hashlib.sha1
     # Time mocking.
-    self._now = 1000
-    self.mock(lru.LRUDict, 'time_fn', lambda _: self._now)
+    self._now = 1000.0
+    self._orig_time_fn = lru.LRUDict.time_fn
+    self.mock(time, 'time', lambda: self._now)
 
     # Free disk space mocking.
     self._free_disk = 1000
