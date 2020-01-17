@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "666218fb_cd45eae8",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-17T16:37:37Z",
+      "side": 1,
+      "message": "This is incorrect too, since the item is not yet poped (this is done in line 753)",
+      "range": {
+        "startLine": 748,
+        "startChar": 55,
+        "endLine": 748,
+        "endChar": 57
+      },
+      "revId": "e858a40373f1a06a3ad80c6c3ceba8d560388bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
