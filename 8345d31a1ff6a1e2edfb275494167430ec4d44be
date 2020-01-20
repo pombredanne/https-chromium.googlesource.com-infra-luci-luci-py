@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3e8d0b5_89f860a4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-20T04:30:54Z",
+      "side": 1,
+      "message": "nit: I prefer `raise_exception`",
+      "range": {
+        "startLine": 904,
+        "startChar": 10,
+        "endLine": 904,
+        "endChar": 21
+      },
+      "revId": "8345d31a1ff6a1e2edfb275494167430ec4d44be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
