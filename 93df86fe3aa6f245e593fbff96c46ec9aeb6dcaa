@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7671e8de_eb7f7c4a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-20T01:44:42Z",
+      "side": 1,
+      "message": "nit: use pow?",
+      "revId": "93df86fe3aa6f245e593fbff96c46ec9aeb6dcaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04010889_f3087e72",
+        "filename": "client/local_caching.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-20T01:44:42Z",
+      "side": 1,
+      "message": "nit: you could have a tiny private func to avoid repetition. e.g. _bytes_to_gib",
+      "revId": "93df86fe3aa6f245e593fbff96c46ec9aeb6dcaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae43dd81_584ca9f3",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-20T01:44:42Z",
+      "side": 1,
+      "message": "This is still not easy to read? \nYou can omit the figures below the 2nd decimal place (or whatever the point you want), as the original numbers are still displayed in bytes.",
+      "revId": "93df86fe3aa6f245e593fbff96c46ec9aeb6dcaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
