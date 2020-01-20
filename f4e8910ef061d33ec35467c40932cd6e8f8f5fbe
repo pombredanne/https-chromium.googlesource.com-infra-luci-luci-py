@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "10c1b86a_7f947e13",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-20T16:36:33Z",
+      "side": 1,
+      "message": "It\u0027s probably true. For some reason I misread as _pre_put_hook(), sorry.",
+      "parentUuid": "11288a03_d3d240f9",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47f8662_9fdf683a",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 12
@@ -69,6 +87,24 @@
       "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e23dacd9_57cd001b",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-20T16:36:33Z",
+      "side": 1,
+      "message": "Yes I was confused.",
+      "parentUuid": "5cf55ca3_6a60a708",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
