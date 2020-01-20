@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "79c97038_b141b0a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-20T04:23:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e130521b_10d6bf1a",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "34e69661e565b7bb37db4893643b27e1469f3ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0d5006d_03448b14",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "34e69661e565b7bb37db4893643b27e1469f3ae0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3fd0781_177fe66d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-20T04:23:10Z",
+      "side": 1,
+      "message": "I found a mock function _mock_es_notify() for this use case.\nI\u0027m still wondering if using both mock library and self.mock is good idea.\nWe could use mock library in a new test case. But better to keep consistencies in the existing test case.\n(No multiple ways for the same goal)",
+      "parentUuid": "c0d5006d_03448b14",
+      "revId": "34e69661e565b7bb37db4893643b27e1469f3ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
