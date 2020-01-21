@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "973aea6b_adad4957",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-21T02:26:54Z",
+      "side": 1,
+      "message": "Noted that _pre_put_hook runs in transaction. It\u0027s not written clearly in the document.",
+      "parentUuid": "10c1b86a_7f947e13",
+      "revId": "f4e8910ef061d33ec35467c40932cd6e8f8f5fbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47f8662_9fdf683a",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 12
