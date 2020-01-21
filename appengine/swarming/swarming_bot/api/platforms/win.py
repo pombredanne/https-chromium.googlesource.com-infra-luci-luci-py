@@ -345,7 +345,6 @@ def get_visual_studio_versions():
     k.Close()
 
 
-@tools.cached
 def get_cpuinfo():
   # Ironically, the data returned by WMI is mostly worthless.
   # Another option is IsProcessorFeaturePresent().

@@ -556,7 +556,6 @@ def get_gpu():
   return sorted(dimensions), sorted(state)
 
 
-@tools.cached
 def get_cpuinfo():
   """Returns CPU information."""
   values = common._safe_parse(

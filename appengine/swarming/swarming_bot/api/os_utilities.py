@@ -293,7 +293,6 @@ def get_cpu_dimensions():
   return out
 
 
-@tools.cached
 def get_cpuinfo():
   """Returns the flags of the processor."""
   if sys.platform == 'darwin':
