@@ -16,10 +16,6 @@ test_env_platforms.setup_test_env()
 
 from depot_tools import auto_stub
 
-# Disable caching before importing win.
-from utils import tools
-tools.cached = lambda func: func
-
 import win
 
 
