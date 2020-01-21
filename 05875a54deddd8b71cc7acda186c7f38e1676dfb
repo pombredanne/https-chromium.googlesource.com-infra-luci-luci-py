@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d33d0205_cbcb9be5",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1585,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-21T07:11:41Z",
+      "side": 0,
+      "message": "I\u0027m not sure why the deadlock happens. But another loop can be added before this loop only for _to_task_result_proto_async(). And the 2nd loop is only for retrieving the results.",
+      "revId": "05875a54deddd8b71cc7acda186c7f38e1676dfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
