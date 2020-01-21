@@ -25,10 +25,6 @@ from api import platforms
 from depot_tools import auto_stub
 from utils import file_path
 
-# Disable caching before importing os_utilities.
-from utils import tools
-tools.cached = lambda func: func
-
 import os_utilities
 
 
@@ -38,7 +34,6 @@ import os_utilities
 class TestOsUtilities(auto_stub.TestCase):
   def tearDown(self):
     super(TestOsUtilities, self).tearDown()
-    tools.clear_cache_all()
 
   def test_get_os_name(self):
     expected = (u'Debian', u'Linux', u'Mac', u'Raspbian', u'Ubuntu', u'Windows')
