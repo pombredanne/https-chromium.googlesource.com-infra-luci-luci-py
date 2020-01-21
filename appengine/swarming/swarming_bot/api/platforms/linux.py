@@ -179,7 +179,6 @@ def get_audio():
   ]
 
 
-@tools.cached
 def get_cpuinfo():
   values = common._safe_parse(_read_cpuinfo())
   cpu_info = {}

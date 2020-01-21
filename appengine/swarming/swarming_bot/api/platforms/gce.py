@@ -276,7 +276,6 @@ def get_machine_type():
   return unicode(metadata['instance']['machineType'].rsplit('/', 1)[-1])
 
 
-@tools.cached
 def get_cpuinfo():
   """Returns the GCE CPU information as reported by GCE instance metadata."""
   metadata = get_metadata()
