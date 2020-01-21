@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d1b732e7_d4ab0cac",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-21T14:18:50Z",
+      "side": 1,
+      "message": "Yes, except that this one tries to return all children, not just the ones for the current try_number.\n\nThis reminds me that task_scheduler.task_cancel_running_children_tasks() should only look at the current active try_number, there\u0027s no point in querying all try_numbers since there can only be exactly one active at a time by design.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py?q\u003dyield_result_summary_by_parent_task_id\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "d0cc796b_4a6bcd96",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d3cc4c7_4a85d359",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2020-01-21T01:45:02Z",
       "side": 1,
       "message": "I\u0027m not familiar with keys only query. But couldn\u0027t all keys fit in one DB call?",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af36388a_0f4dbfc3",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-21T14:18:50Z",
+      "side": 1,
+      "message": "This would increases risks of timeout in the long tail, i.e. P99.",
+      "parentUuid": "9d3cc4c7_4a85d359",
       "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
