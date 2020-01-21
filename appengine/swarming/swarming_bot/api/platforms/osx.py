@@ -222,7 +222,6 @@ _sensor_names = {
 _sensor_found_cache = None
 
 
-@tools.cached
 def _SMC_open():
   """Opens the default SMC driver and returns the first device.
 
@@ -318,7 +317,6 @@ def _get_system_profiler(data_type):
   return plistlib.readPlistFromString(sp)[0].get('_items', [])
 
 
-@tools.cached
 def _get_libc():
   ctypes.cdll.LoadLibrary('/usr/lib/libc.dylib')
   return ctypes.CDLL('/usr/lib/libc.dylib')
@@ -339,7 +337,6 @@ class _timeval(ctypes.Structure):
   _fields_ = [('tv_sec', ctypes.c_long), ('tv_usec', ctypes.c_int)]
 
 
-@tools.cached
 def _get_xcode_version(xcode_app):
   """Returns the version of Xcode installed at the given path.
 
@@ -362,7 +359,6 @@ def _get_xcode_version(xcode_app):
     return out[0].split()[-1], out[1].split()[-1]
 
 
-@tools.cached
 def _get_physical_disks_info():
   """Return the disk info for all the physical disks"""
   try:
@@ -449,7 +445,6 @@ def get_ios_version(udid):
     pass
 
 
-@tools.cached
 def get_ios_device_type(udid):
   """Returns the type of the specified iOS device.
 
@@ -468,7 +463,6 @@ def get_ios_device_type(udid):
     pass
 
 
-@tools.cached
 def get_hardware_model_string():
   """Returns the Mac model string.
 
@@ -482,7 +476,6 @@ def get_hardware_model_string():
     return None
 
 
-@tools.cached
 def get_os_version_number():
   """Returns the normalized OS version number as a string.
 
@@ -493,7 +486,6 @@ def get_os_version_number():
   return unicode(platform.mac_ver()[0])
 
 
-@tools.cached
 def get_audio():
   """Returns the audio cards that are "connected"."""
   return [
@@ -556,7 +548,6 @@ def get_gpu():
   return sorted(dimensions), sorted(state)
 
 
-@tools.cached
 def get_cpuinfo():
   """Returns CPU information."""
   values = common._safe_parse(
@@ -602,7 +593,6 @@ def get_temperatures():
   return out
 
 
-@tools.cached
 def get_monitor_hidpi():
   """Returns True if the monitor is hidpi.
 
@@ -635,7 +625,6 @@ def get_xcode_versions():
       unicode(xcode['version']) for xcode in get_xcode_state().values())
 
 
-@tools.cached
 def get_physical_ram():
   """Returns the amount of installed RAM in Mb, rounded to the nearest number.
   """
@@ -701,7 +690,6 @@ def is_beta():
   return bool(SUAdminInstallController.isSeedBuild())
 
 
-@tools.cached
 def get_ssd():
   """Returns a list of SSD disks."""
   ssd = []
@@ -711,7 +699,6 @@ def get_ssd():
   return tuple(sorted(ssd))
 
 
-@tools.cached
 def get_disks_model():
   """Returns a list of disk models"""
   models = []
