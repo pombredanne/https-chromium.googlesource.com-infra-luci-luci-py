@@ -17,15 +17,12 @@ test_env_platforms.setup_test_env()
 
 from depot_tools import auto_stub
 
-from utils import tools
-
 import gce
 
 
 class TestGCE(auto_stub.TestCase):
   def tearDown(self):
     super(TestGCE, self).tearDown()
-    tools.clear_cache_all()
 
   @params(
       ('us-central2-a', ['us', 'us-central', 'us-central2', 'us-central2-a']),

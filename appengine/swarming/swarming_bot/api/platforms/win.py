@@ -43,7 +43,6 @@ _WIN32_SERVER_NAMES = {
 }
 
 
-@tools.cached
 def _get_mount_points():
   """Returns the list of 'fixed' drives in format 'X:\\'."""
   ctypes.windll.kernel32.GetDriveTypeW.argtypes = (ctypes.c_wchar_p,)
@@ -70,7 +69,6 @@ def _get_disk_info(mount_point):
   }
 
 
-@tools.cached
 def _get_win32com():
   """Returns an uninitialized WMI client."""
   try:
@@ -85,7 +83,6 @@ def _get_win32com():
     return None, None
 
 
-@tools.cached
 def _get_wmi_wbem():
   """Returns a WMI client connected to localhost ready to do queries."""
   client, _ = _get_win32com()
@@ -95,7 +92,6 @@ def _get_wmi_wbem():
   return wmi_service.ConnectServer('.', 'root\\cimv2')
 
 
-@tools.cached
 def _get_wmi_wbem_for_storage():
   """
   Returns a WMI client connected to localhost ready to do queries for storage.
@@ -114,7 +110,6 @@ def _get_wmi_wbem_for_storage():
 _CMD_RE = r'\[version (\d+\.\d+)\.(\d+(?:\.\d+|))\]'
 
 
-@tools.cached
 def _get_os_numbers():
   """Returns the normalized OS version and build numbers as strings.
 
@@ -201,7 +196,6 @@ def to_cygwin_path(path):
   return '/cygdrive/%s/%s' % (path[0].lower(), path[3:].replace('\\', '/'))
 
 
-@tools.cached
 def get_os_version_number():
   """Returns the normalized OS version number as a string.
 
@@ -212,7 +206,6 @@ def get_os_version_number():
   return _get_os_numbers()[0]
 
 
-@tools.cached
 def get_client_versions():
   """Gets the client versions (or client equivalent for server).
 
@@ -226,7 +219,6 @@ def get_client_versions():
   return []
 
 
-@tools.cached
 def get_os_version_names():
   """Returns the marketing/user-friendly names of the OS.
 
@@ -300,7 +292,6 @@ def get_disks_info():
   return {p: _get_disk_info(p) for p in _get_mount_points()}
 
 
-@tools.cached
 def get_audio():
   """Returns audio device as listed by WMI."""
   wbem = _get_wmi_wbem()
@@ -314,7 +305,6 @@ def get_audio():
   ]
 
 
-@tools.cached
 def get_visual_studio_versions():
   """Retrieves all installed Visual Studio versions.
 
@@ -345,7 +335,6 @@ def get_visual_studio_versions():
     k.Close()
 
 
-@tools.cached
 def get_cpuinfo():
   # Ironically, the data returned by WMI is mostly worthless.
   # Another option is IsProcessorFeaturePresent().
@@ -415,7 +404,6 @@ def get_gpu():
   return sorted(dimensions), sorted(state)
 
 
-@tools.cached
 def get_integrity_level():
   """Returns the integrity level of the current process as a string.
 
@@ -534,7 +522,6 @@ def get_integrity_level():
     ctypes.windll.kernel32.CloseHandle(token)
 
 
-@tools.cached
 def get_physical_ram():
   """Returns the amount of installed RAM in Mb, rounded to the nearest number.
   """
@@ -592,7 +579,6 @@ def get_reboot_required():
       k.Close()
 
 
-@tools.cached
 def get_ssd():
   """Returns a list of SSD disks."""
   wbem = _get_wmi_wbem_for_storage()
@@ -654,7 +640,6 @@ def list_top_windows():
   return out
 
 
-@tools.cached
 def get_computer_system_info():
   """Return a named tuple, which lists the following params from the WMI class
   Win32_ComputerSystemProduct:
