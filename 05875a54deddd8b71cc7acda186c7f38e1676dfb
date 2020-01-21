@@ -16,6 +16,24 @@
       "revId": "05875a54deddd8b71cc7acda186c7f38e1676dfb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebc32ea5_e51e1f14",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1585,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-21T14:13:40Z",
+      "side": 0,
+      "message": "I think it\u0027s because fetch_page() returns 500 items, thus creating 500 ndb.Future. That\u0027s too much. :(\n\nI can redo it but limit the number of futures to ~50.",
+      "parentUuid": "d33d0205_cbcb9be5",
+      "revId": "05875a54deddd8b71cc7acda186c7f38e1676dfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
