@@ -353,7 +353,6 @@ def _get_server_version_safe():
   return get_config().get(u'server_version', u'N/A')
 
 
-@tools.cached
 def _get_botid_safe():
   """Paranoid version of get_hostname_short()."""
   try:
@@ -551,7 +550,6 @@ def setup_bot(skip_reboot):
     botobj.host_reboot('Starting new swarming bot: %s' % THIS_FILE)
 
 
-@tools.cached
 def generate_version():
   """Returns the bot's code version."""
   try:
@@ -626,7 +624,6 @@ def get_bot(config):
   return botobj
 
 
-@tools.cached
 def get_config():
   """Returns the data from config.json."""
   global _ERROR_HANDLER_WAS_REGISTERED

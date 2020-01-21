@@ -53,7 +53,6 @@ class cpu_set_t(ctypes.Structure):
     return cpus
 
 
-@tools.cached
 def get_num_processors():
   # Multiprocessing cpu_count() returns number of processors on the system,
   # not the number of processors process can actually use. These numbers
@@ -86,7 +85,6 @@ def _lspci():
   return [shlex.split(l) for l in lines]
 
 
-@tools.cached
 def _get_nvidia_version():
   try:
     with open('/sys/module/nvidia/version', 'rb') as f:
@@ -96,7 +94,6 @@ def _get_nvidia_version():
     return None
 
 
-@tools.cached
 def _get_intel_version():
   """Retrieves the Mesa DRI driver version, which is usable as the Intel GPU
   driver version.
@@ -134,7 +131,6 @@ def _read_dmi_file(filename):
 ## Public API.
 
 
-@tools.cached
 def get_os_version_number():
   """Returns the normalized OS version number as a string.
 
@@ -167,7 +163,6 @@ def get_temperatures():
   return temps
 
 
-@tools.cached
 def get_audio():
   """Returns information about the audio."""
   pci_devices = _lspci()
@@ -179,7 +174,6 @@ def get_audio():
   ]
 
 
-@tools.cached
 def get_cpuinfo():
   values = common._safe_parse(_read_cpuinfo())
   cpu_info = {}
@@ -302,7 +296,6 @@ def get_reboot_required():
   return os.path.exists('/var/run/reboot-required')
 
 
-@tools.cached
 def get_ssd():
   """Returns a list of SSD disks."""
   try:
@@ -319,7 +312,6 @@ def get_ssd():
     return ()
 
 
-@tools.cached
 def get_kvm():
   """Check whether KVM is available."""
   # We only check the file existence, not whether we can access it. This avoids
@@ -328,7 +320,6 @@ def get_kvm():
   return os.path.exists('/dev/kvm')
 
 
-@tools.cached
 def get_inside_docker():
   """Returns a strings representing if running inside docker, and which type.
 
@@ -345,7 +336,6 @@ def get_inside_docker():
   return u'stock'
 
 
-@tools.cached
 def get_device_tree_compatible():
   """Returns the devicetree/compatible data, if available.
 
@@ -519,7 +509,6 @@ def generate_autostart_desktop(command, name):
     }
 
 
-@tools.cached
 def get_computer_system_info():
   """Return a named tuple, which lists the following params:
 
