@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0cc796b_4a6bcd96",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-21T01:45:02Z",
+      "side": 1,
+      "message": "This might be a bit different use case. But could we reuse task_request.yield_request_keys_by_parent_task_id(task_summary_id)?\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d1686?q\u003dyield_request_keys_by_parent_task_id\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d3cc4c7_4a85d359",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-21T01:45:02Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with keys only query. But couldn\u0027t all keys fit in one DB call?",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
