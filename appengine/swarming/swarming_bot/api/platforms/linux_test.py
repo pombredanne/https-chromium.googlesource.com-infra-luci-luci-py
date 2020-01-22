@@ -11,7 +11,6 @@ import test_env_platforms
 test_env_platforms.setup_test_env()
 
 from depot_tools import auto_stub
-from utils import tools
 
 import linux
 
@@ -99,10 +98,6 @@ VCEI exceptions         : not available
 
 
 class TestCPUInfo(auto_stub.TestCase):
-  def tearDown(self):
-    super(TestCPUInfo, self).tearDown()
-    tools.clear_cache_all()
-
   def get_cpuinfo(self, text):
     self.mock(linux, '_read_cpuinfo', lambda: text)
     return linux.get_cpuinfo()
@@ -168,10 +163,6 @@ NO_K8S_CGROUP = """
 
 
 class TestDocker(auto_stub.TestCase):
-  def tearDown(self):
-    super(TestDocker, self).tearDown()
-    tools.clear_cache_all()
-
   def get_inside_docker(self, text):
     self.mock(linux, '_read_cgroup', lambda: text)
     return linux.get_inside_docker()

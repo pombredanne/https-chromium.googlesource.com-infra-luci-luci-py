@@ -173,7 +173,6 @@ def get_os_values():
   return out
 
 
-@tools.cached
 def get_os_name():
   """Returns standardized OS name.
 
@@ -205,7 +204,6 @@ def get_os_name():
   return sys.platform.decode('utf-8')
 
 
-@tools.cached
 def get_cpu_type():
   """Returns the type of processor: armv6l, armv7l, arm64 or x86."""
   machine = platform.machine().lower()
@@ -218,7 +216,6 @@ def get_cpu_type():
   return machine.decode('utf-8')
 
 
-@tools.cached
 def get_cpu_bitness():
   """Returns the number of bits in the CPU architecture as a str: 32 or 64.
 
@@ -255,7 +252,6 @@ def _parse_intel_model(name):
       return m.group(1)
 
 
-@tools.cached
 def get_cpu_dimensions():
   """Returns the values that should be used as 'cpu' dimensions."""
   cpu_type = get_cpu_type()
@@ -289,7 +285,6 @@ def get_cpu_dimensions():
   return out
 
 
-@tools.cached
 def get_cpuinfo():
   """Returns the flags of the processor."""
   if sys.platform == 'darwin':
@@ -332,7 +327,6 @@ def get_ip():
       s.close()
 
 
-@tools.cached
 def get_hostname():
   """Returns the machine's hostname."""
   if platforms.is_gce() and not os.path.isfile('/.dockerenv'):
@@ -354,13 +348,11 @@ def get_hostname():
   return hostname.decode('utf-8')
 
 
-@tools.cached
 def get_hostname_short():
   """Returns the base host name."""
   return get_hostname().split(u'.', 1)[0]
 
 
-@tools.cached
 def get_num_processors():
   """Returns the number of processors.
 
@@ -384,7 +376,6 @@ def get_num_processors():
       return 5
 
 
-@tools.cached
 def get_physical_ram():
   """Returns the amount of installed RAM in Mb, rounded to the nearest number.
   """
@@ -414,7 +405,6 @@ def get_disks_info():
     return platforms.posix.get_disks_info()
 
 
-@tools.cached
 def get_disk_size(path):
   """Returns the partition size that is referenced by this path in Mb."""
   # Find the disk for the path.
@@ -434,7 +424,6 @@ def get_disk_size(path):
   return 0.
 
 
-@tools.cached
 def get_audio():
   """Returns the active audio card(s)."""
   # There's a risk that an audio card may "appear", which may be especially true
@@ -474,7 +463,6 @@ def get_gpu():
   return dimensions, state
 
 
-@tools.cached
 def get_monitor_hidpi():
   """Returns True if there is an hidpi monitor detected."""
   if sys.platform == 'darwin':
@@ -482,7 +470,6 @@ def get_monitor_hidpi():
   return None
 
 
-@tools.cached
 def get_cost_hour():
   """Returns the cost in $USD/h as a floating point value if applicable."""
   # Machine.
@@ -522,7 +509,6 @@ def get_cost_hour():
   return machine_cost + os_cost + disk_gb_cost
 
 
-@tools.cached
 def get_machine_type():
   """Returns a GCE-equivalent machine type.
 
@@ -567,7 +553,6 @@ def get_machine_type():
   return machine_type
 
 
-@tools.cached
 def get_locale():
   """Returns the OS's UI active locale."""
   locales = locale.getdefaultlocale()
@@ -683,7 +668,6 @@ def get_named_caches_info():
     return {}
 
 
-@tools.cached
 def get_python_packages():
   """Returns the list of third party python packages."""
   try:
@@ -879,7 +863,6 @@ def get_oauth2_client(service_account_json_file, scopes=None):
   return _get_oauth2_client(service_account_json_file, tuple(sorted(scopes)))
 
 
-@tools.cached
 def _get_oauth2_client(service_account_json_file, scopes):
   with open(service_account_json_file) as f:
     service_account_json = json.load(f)

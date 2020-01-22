@@ -11,7 +11,6 @@ import unittest
 import test_env_platforms
 test_env_platforms.setup_test_env()
 
-from utils import tools
 
 if sys.platform == 'darwin':
   import osx
@@ -20,10 +19,6 @@ if sys.platform == 'darwin':
 @unittest.skipUnless(sys.platform == 'darwin',
                      'Tests only run under darwin platform')
 class TestOsx(unittest.TestCase):
-  def tearDown(self):
-    super(TestOsx, self).tearDown()
-    tools.clear_cache_all()
-
   def mock_physical_disks_list(self, disks_data):
     content = []
     content.append("""
