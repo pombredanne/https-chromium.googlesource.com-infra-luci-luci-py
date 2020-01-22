@@ -105,6 +105,24 @@
       "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "871532f7_1ced5468",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-01-22T16:53:25Z",
+      "side": 1,
+      "message": "Key-only queries are always significantly faster than full entity fetches.",
+      "parentUuid": "661f3cf4_6ea0f86c",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
