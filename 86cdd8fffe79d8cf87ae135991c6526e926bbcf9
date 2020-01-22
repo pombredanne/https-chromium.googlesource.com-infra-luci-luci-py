@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "95302aa3_86c32f7e",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-22T01:09:13Z",
+      "side": 1,
+      "message": "I filed a bug. crbug.com/1044400",
+      "parentUuid": "d1b732e7_d4ab0cac",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d3cc4c7_4a85d359",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 3
@@ -69,6 +87,24 @@
       "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "661f3cf4_6ea0f86c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-22T01:09:13Z",
+      "side": 1,
+      "message": "Ack.\n\nI was just guessing about the internal of Datastore that an index is stored in the same instance.So no need to explore multiple instances, as opposed to fetching entire entities. But I\u0027m not sure.",
+      "parentUuid": "af36388a_0f4dbfc3",
+      "revId": "86cdd8fffe79d8cf87ae135991c6526e926bbcf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
