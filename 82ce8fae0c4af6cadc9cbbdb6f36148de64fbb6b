@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8e9cfac_c9511c8a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-24T03:03:31Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be able to reproduce the issue on dev? e.g. adding builder, bots etc.",
+      "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
