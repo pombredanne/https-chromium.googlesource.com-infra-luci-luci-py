@@ -16,6 +16,24 @@
       "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb961d41_f6650733",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-24T03:13:43Z",
+      "side": 1,
+      "message": "Maybe possible considering that this happens around 10% of tasks.\nhttps://screenshot.googleplex.com/ybrUB7BKGJF\n\nBut I\u0027d like to reproduce/fix this failure by running `isolated download` on the bot as tasks instead of preparing new builder now, crbug.com/1045281",
+      "parentUuid": "d8e9cfac_c9511c8a",
+      "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
