@@ -34,6 +34,24 @@
       "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a67c181_c0b09d51",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-24T03:38:57Z",
+      "side": 1,
+      "message": "If it could catch other errors happened on windows before than the specific error, please consider add those builder/bot to make the dev (or staging) more reliable.",
+      "parentUuid": "bb961d41_f6650733",
+      "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
