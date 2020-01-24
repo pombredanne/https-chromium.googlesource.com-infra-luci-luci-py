@@ -52,6 +52,24 @@
       "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "789cf3e4_257f3549",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-24T03:51:25Z",
+      "side": 1,
+      "message": "filed crbug.com/1045284",
+      "parentUuid": "4a67c181_c0b09d51",
+      "revId": "82ce8fae0c4af6cadc9cbbdb6f36148de64fbb6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
