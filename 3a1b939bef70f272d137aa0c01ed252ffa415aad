@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d08de47_19ebc525",
+        "filename": "appengine/config_service/ui/index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-01-27T18:56:54Z",
+      "side": 1,
+      "message": "del\n\nit actually flashes briefly when loading the page :)",
+      "range": {
+        "startLine": 20,
+        "startChar": 69,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "3a1b939bef70f272d137aa0c01ed252ffa415aad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
