@@ -22,6 +22,30 @@
       "revId": "3a1b939bef70f272d137aa0c01ed252ffa415aad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc2b9a07_188971d1",
+        "filename": "appengine/config_service/ui/index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-01-28T01:39:22Z",
+      "side": 1,
+      "message": "Good Catch! The IDE must be auto completing a closed tag. Removed in the latest patchset.",
+      "parentUuid": "3d08de47_19ebc525",
+      "range": {
+        "startLine": 20,
+        "startChar": 69,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "3a1b939bef70f272d137aa0c01ed252ffa415aad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
