@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d482b4a_554bb104",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-31T09:02:14Z",
+      "side": 1,
+      "message": "nit: would be nice to add a test to check multiple tasks have different UUIDs.\nBut I know the client is being deprecated. So it\u0027s acceptable to confirm it manually.",
+      "revId": "b36480f90ef67d401115e74b96dc7f04882ba460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f138758_f921daa7",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-01-31T09:02:14Z",
+      "side": 1,
+      "message": "It\u0027s really hard to see the diffs 😭\nI believe you just added REQUEST_UUID.",
+      "revId": "b36480f90ef67d401115e74b96dc7f04882ba460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
