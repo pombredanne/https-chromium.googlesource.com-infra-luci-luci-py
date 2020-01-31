@@ -14,6 +14,7 @@ import tempfile
 import threading
 import time
 import traceback
+import uuid
 
 import six
 
@@ -45,6 +46,8 @@ OUTPUT = 'Ran stuff\n'
 SHARD_OUTPUT_1 = 'Shard 1 of 3.'
 SHARD_OUTPUT_2 = 'Shard 2 of 3.'
 SHARD_OUTPUT_3 = 'Shard 3 of 3.'
+
+REQUEST_UUID = '7905e667-d415-48f1-9df7-f914541d6331'
 
 
 def gen_yielded_data(index, **kwargs):
@@ -122,19 +125,24 @@ def gen_properties(**kwargs):
 
 def gen_request_data(properties=None, **kwargs):
   out = {
-    'name': 'unit_tests',
-    'parent_task_id': '',
-    'pool_task_template': 'AUTO',
-    'priority': 101,
-    'task_slices': [
-      {
-        'expiration_secs': 3600,
-        'properties': gen_properties(**(properties or {})),
-        'wait_for_capacity': False,
-      },
-    ],
-    'tags': ['tag:a', 'tag:b'],
-    'user': 'joe@localhost',
+      'name':
+          'unit_tests',
+      'parent_task_id':
+          '',
+      'pool_task_template':
+          'AUTO',
+      'priority':
+          101,
+      'request_uuid':
+          REQUEST_UUID,
+      'task_slices': [{
+          'expiration_secs': 3600,
+          'properties': gen_properties(**(properties or {})),
+          'wait_for_capacity': False,
+      },],
+      'tags': ['tag:a', 'tag:b'],
+      'user':
+          'joe@localhost',
   }
   out.update(kwargs)
   return out
@@ -193,6 +201,7 @@ class Common(object):
     self.mock(sys, 'stderr', StringIO.StringIO())
     self.mock(logging_utils, 'prepare_logging', lambda *args: None)
     self.mock(logging_utils, 'set_console_level', lambda *args: None)
+    self.mock(uuid, 'uuid4', lambda: REQUEST_UUID)
 
   def tearDown(self):
     if self._tempdir:
@@ -994,26 +1003,37 @@ class TestMain(NetTestCase):
   def test_trigger_raw_cmd(self):
     # Minimalist use.
     request = {
-      'name': u'None/pool=default',
-      'parent_task_id': '',
-      'pool_task_template': 'AUTO',
-      'priority': 200,
-      'task_slices': [
-        {
-          'expiration_secs': 21600,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[{'key': 'pool', 'value': 'default'}],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-      ],
-      'tags': [],
-      'user': None,
+        'name':
+            u'None/pool=default',
+        'parent_task_id':
+            '',
+        'pool_task_template':
+            'AUTO',
+        'priority':
+            200,
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [{
+            'expiration_secs':
+                21600,
+            'properties':
+                gen_properties(
+                    command=['python', '-c', 'print(\'hi\')'],
+                    dimensions=[{
+                        'key': 'pool',
+                        'value': 'default'
+                    }],
+                    execution_timeout_secs=3600,
+                    extra_args=None,
+                    inputs_ref=None,
+                    io_timeout_secs=1200,
+                    relative_cwd='deeep'),
+            'wait_for_capacity':
+                False,
+        },],
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
     self.expected_requests(
@@ -1049,68 +1069,129 @@ class TestMain(NetTestCase):
 
   def test_trigger_raw_cmd_with_optional(self):
     request = {
-      'name': u'None/caches=c1_foo=bar_foo1=bar1_pool=default',
-      'parent_task_id': '',
-      'pool_task_template': 'AUTO',
-      'priority': 200,
-      'task_slices': [
-       {
-          'expiration_secs': 60,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'caches', 'value': 'c1'},
-                  {'key': 'caches', 'value': 'c2'},
-                  {'key': 'foo', 'value': 'baz'},
-                  {'key': 'foo1', 'value': 'baz1'},
-                  {'key': 'opt', 'value': 'tional'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-        {
-          'expiration_secs': 120,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'caches', 'value': 'c1'},
-                  {'key': 'caches', 'value': 'c2'},
-                  {'key': 'foo', 'value': 'bar'},
-                  {'key': 'foo1', 'value': 'baz1'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-        {
-          'expiration_secs': 21420,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'caches', 'value': 'c1'},
-                  {'key': 'foo', 'value': 'bar'},
-                  {'key': 'foo1', 'value': 'bar1'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
+        'name':
+            u'None/caches=c1_foo=bar_foo1=bar1_pool=default',
+        'parent_task_id':
+            '',
+        'pool_task_template':
+            'AUTO',
+        'priority':
+            200,
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [
+            {
+                'expiration_secs':
+                    60,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'caches',
+                                'value': 'c1'
+                            },
+                            {
+                                'key': 'caches',
+                                'value': 'c2'
+                            },
+                            {
+                                'key': 'foo',
+                                'value': 'baz'
+                            },
+                            {
+                                'key': 'foo1',
+                                'value': 'baz1'
+                            },
+                            {
+                                'key': 'opt',
+                                'value': 'tional'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
+            {
+                'expiration_secs':
+                    120,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'caches',
+                                'value': 'c1'
+                            },
+                            {
+                                'key': 'caches',
+                                'value': 'c2'
+                            },
+                            {
+                                'key': 'foo',
+                                'value': 'bar'
+                            },
+                            {
+                                'key': 'foo1',
+                                'value': 'baz1'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
+            {
+                'expiration_secs':
+                    21420,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'caches',
+                                'value': 'c1'
+                            },
+                            {
+                                'key': 'foo',
+                                'value': 'bar'
+                            },
+                            {
+                                'key': 'foo1',
+                                'value': 'bar1'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
         ],
-      'tags': [],
-      'user': None,
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
     self.expected_requests(
@@ -1153,62 +1234,105 @@ class TestMain(NetTestCase):
 
   def test_trigger_raw_cmd_with_optional_unsorted(self):
     request = {
-      'name': u'None/foo1=bar1_os=Mac-10.12.6_pool=default',
-      'parent_task_id': '',
-      'pool_task_template': 'AUTO',
-      'priority': 200,
-      'task_slices': [
-       {
-          'expiration_secs': 60,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'foo1', 'value': 'baz1'},
-                  {'key': 'os', 'value': 'Mac-10.13'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-        {
-          'expiration_secs': 60,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'foo1', 'value': 'baz1'},
-                  {'key': 'os', 'value': 'Mac-10.12.6'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-        {
-          'expiration_secs': 21480,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'foo1', 'value': 'bar1'},
-                  {'key': 'os', 'value': 'Mac-10.12.6'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
+        'name':
+            u'None/foo1=bar1_os=Mac-10.12.6_pool=default',
+        'parent_task_id':
+            '',
+        'pool_task_template':
+            'AUTO',
+        'priority':
+            200,
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [
+            {
+                'expiration_secs':
+                    60,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'foo1',
+                                'value': 'baz1'
+                            },
+                            {
+                                'key': 'os',
+                                'value': 'Mac-10.13'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
+            {
+                'expiration_secs':
+                    60,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'foo1',
+                                'value': 'baz1'
+                            },
+                            {
+                                'key': 'os',
+                                'value': 'Mac-10.12.6'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
+            {
+                'expiration_secs':
+                    21480,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'foo1',
+                                'value': 'bar1'
+                            },
+                            {
+                                'key': 'os',
+                                'value': 'Mac-10.12.6'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
         ],
-      'tags': [],
-      'user': None,
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
     self.expected_requests(
@@ -1248,47 +1372,81 @@ class TestMain(NetTestCase):
 
   def test_trigger_raw_cmd_with_optional_sameexp(self):
     request = {
-      'name': u'None/foo=bar_foo1=bar1_pool=default',
-      'parent_task_id': '',
-      'pool_task_template': 'AUTO',
-      'priority': 200,
-      'task_slices': [
-       {
-          'expiration_secs': 60,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'foo', 'value': 'baz'},
-                  {'key': 'foo1', 'value': 'bar1'},
-                  {'key': 'foo2', 'value': 'baz2'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-        {
-          'expiration_secs': 21540, # 21600 - 60
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[
-                  {'key': 'foo', 'value': 'bar'},
-                  {'key': 'foo1', 'value': 'bar1'},
-                  {'key': 'pool', 'value': 'default'},
-              ],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
+        'name':
+            u'None/foo=bar_foo1=bar1_pool=default',
+        'parent_task_id':
+            '',
+        'pool_task_template':
+            'AUTO',
+        'priority':
+            200,
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [
+            {
+                'expiration_secs':
+                    60,
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'foo',
+                                'value': 'baz'
+                            },
+                            {
+                                'key': 'foo1',
+                                'value': 'bar1'
+                            },
+                            {
+                                'key': 'foo2',
+                                'value': 'baz2'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
+            {
+                'expiration_secs':
+                    21540,  # 21600 - 60
+                'properties':
+                    gen_properties(
+                        command=['python', '-c', 'print(\'hi\')'],
+                        dimensions=[
+                            {
+                                'key': 'foo',
+                                'value': 'bar'
+                            },
+                            {
+                                'key': 'foo1',
+                                'value': 'bar1'
+                            },
+                            {
+                                'key': 'pool',
+                                'value': 'default'
+                            },
+                        ],
+                        execution_timeout_secs=3600,
+                        extra_args=None,
+                        inputs_ref=None,
+                        io_timeout_secs=1200,
+                        relative_cwd='deeep'),
+                'wait_for_capacity':
+                    False,
+            },
         ],
-      'tags': [],
-      'user': None,
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
     self.expected_requests(
@@ -1329,29 +1487,43 @@ class TestMain(NetTestCase):
   def test_trigger_raw_cmd_isolated(self):
     # Minimalist use.
     request = {
-      'name': u'None/pool=default/' + FILE_HASH,
-      'parent_task_id': '',
-      'pool_task_template': 'AUTO',
-      'priority': 200,
-      'task_slices': [
-        {
-          'expiration_secs': 21600,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[{'key': 'pool', 'value': 'default'}],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref={
-                'isolated': u'1111111111111111111111111111111111111111',
-                'isolatedserver': 'https://localhost:2',
-                'namespace': 'default-gzip',
-              },
-              io_timeout_secs=1200),
-          'wait_for_capacity': False,
-        },
-      ],
-      'tags': [],
-      'user': None,
+        'name':
+            u'None/pool=default/' + FILE_HASH,
+        'parent_task_id':
+            '',
+        'pool_task_template':
+            'AUTO',
+        'priority':
+            200,
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [{
+            'expiration_secs':
+                21600,
+            'properties':
+                gen_properties(
+                    command=['python', '-c', 'print(\'hi\')'],
+                    dimensions=[{
+                        'key': 'pool',
+                        'value': 'default'
+                    }],
+                    execution_timeout_secs=3600,
+                    extra_args=None,
+                    inputs_ref={
+                        'isolated':
+                            u'1111111111111111111111111111111111111111',
+                        'isolatedserver':
+                            'https://localhost:2',
+                        'namespace':
+                            'default-gzip',
+                    },
+                    io_timeout_secs=1200),
+            'wait_for_capacity':
+                False,
+        },],
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
     self.expected_requests(
@@ -1389,26 +1561,38 @@ class TestMain(NetTestCase):
   def test_trigger_raw_cmd_with_service_account(self):
     # Minimalist use.
     request = {
-      'name': u'None/pool=default',
-      'parent_task_id': '',
-      'pool_task_template': 'AUTO',
-      'priority': 200,
-      'task_slices': [
-        {
-          'expiration_secs': 21600,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[{'key': 'pool', 'value': 'default'}],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200),
-          'wait_for_capacity': False,
-        },
-      ],
-      'service_account': 'bot',
-      'tags': [],
-      'user': None,
+        'name':
+            u'None/pool=default',
+        'parent_task_id':
+            '',
+        'pool_task_template':
+            'AUTO',
+        'priority':
+            200,
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [{
+            'expiration_secs':
+                21600,
+            'properties':
+                gen_properties(
+                    command=['python', '-c', 'print(\'hi\')'],
+                    dimensions=[{
+                        'key': 'pool',
+                        'value': 'default'
+                    }],
+                    execution_timeout_secs=3600,
+                    extra_args=None,
+                    inputs_ref=None,
+                    io_timeout_secs=1200),
+            'wait_for_capacity':
+                False,
+        },],
+        'service_account':
+            'bot',
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
     self.expected_requests(
@@ -1570,41 +1754,49 @@ class TestMain(NetTestCase):
         '  https://localhost:1/user/task/12300\n',
         '')
     expected = [
-      (
-        u'foo.json',
-        {
-          'base_task_name': 'unit_tests',
-          'tasks': {
-            'unit_tests': {
-              'shard_index': 0,
-              'task_id': '12300',
-              'view_url': 'https://localhost:1/user/task/12300',
-            }
-          },
-          'request': {
-            'name': 'unit_tests',
-            'parent_task_id': '',
-            'pool_task_template': 'AUTO',
-            'priority': 101,
-            'task_slices': [
-              {
-                'expiration_secs': 3600,
-                'properties': gen_properties(
-                    idempotent=True,
-                    inputs_ref={
-                      'isolated': isolated_hash,
-                      'isolatedserver': 'https://localhost:2',
-                      'namespace': 'default-gzip',
-                    }),
-                'wait_for_capacity': False,
-              },
-            ],
-            'tags': ['tag:a', 'tag:b'],
-            'user': 'joe@localhost',
-          },
-        },
-        True,
-      ),
+        (
+            u'foo.json',
+            {
+                'base_task_name': 'unit_tests',
+                'tasks': {
+                    'unit_tests': {
+                        'shard_index': 0,
+                        'task_id': '12300',
+                        'view_url': 'https://localhost:1/user/task/12300',
+                    }
+                },
+                'request': {
+                    'name':
+                        'unit_tests',
+                    'parent_task_id':
+                        '',
+                    'pool_task_template':
+                        'AUTO',
+                    'priority':
+                        101,
+                    'request_uuid':
+                        REQUEST_UUID,
+                    'task_slices': [{
+                        'expiration_secs':
+                            3600,
+                        'properties':
+                            gen_properties(
+                                idempotent=True,
+                                inputs_ref={
+                                    'isolated': isolated_hash,
+                                    'isolatedserver': 'https://localhost:2',
+                                    'namespace': 'default-gzip',
+                                }),
+                        'wait_for_capacity':
+                            False,
+                    },],
+                    'tags': ['tag:a', 'tag:b'],
+                    'user':
+                        'joe@localhost',
+                },
+            },
+            True,
+        ),
     ]
     self.assertEqual(expected, write_json_calls)
 
@@ -1933,26 +2125,37 @@ class TestMain(NetTestCase):
 
   def test_run(self):
     request = {
-      'name': u'None/pool=default',
-      'parent_task_id': '',
-      'priority': 200,
-      'pool_task_template': 'AUTO',
-      'task_slices': [
-        {
-          'expiration_secs': 21600,
-          'properties': gen_properties(
-              command=['python', '-c', 'print(\'hi\')'],
-              dimensions=[{'key': 'pool', 'value': 'default'}],
-              execution_timeout_secs=3600,
-              extra_args=None,
-              inputs_ref=None,
-              io_timeout_secs=1200,
-              relative_cwd='deeep'),
-          'wait_for_capacity': False,
-        },
-      ],
-      'tags': [],
-      'user': None,
+        'name':
+            u'None/pool=default',
+        'parent_task_id':
+            '',
+        'priority':
+            200,
+        'pool_task_template':
+            'AUTO',
+        'request_uuid':
+            REQUEST_UUID,
+        'task_slices': [{
+            'expiration_secs':
+                21600,
+            'properties':
+                gen_properties(
+                    command=['python', '-c', 'print(\'hi\')'],
+                    dimensions=[{
+                        'key': 'pool',
+                        'value': 'default'
+                    }],
+                    execution_timeout_secs=3600,
+                    extra_args=None,
+                    inputs_ref=None,
+                    io_timeout_secs=1200,
+                    relative_cwd='deeep'),
+            'wait_for_capacity':
+                False,
+        },],
+        'tags': [],
+        'user':
+            None,
     }
     result = gen_request_response(request)
 
