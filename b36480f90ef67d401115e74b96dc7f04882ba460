@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d6689553_b9dfaab6",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-31T09:15:55Z",
+      "side": 1,
+      "message": "I think that is too much.\nLet\u0027s assume uuid.uuid4() doesn\u0027t generate the same UUID.",
+      "parentUuid": "7d482b4a_554bb104",
+      "revId": "b36480f90ef67d401115e74b96dc7f04882ba460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f138758_f921daa7",
         "filename": "client/tests/swarming_test.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2020-01-31T09:02:14Z",
       "side": 1,
       "message": "It\u0027s really hard to see the diffs 😭\nI believe you just added REQUEST_UUID.",
+      "revId": "b36480f90ef67d401115e74b96dc7f04882ba460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3167912c_ff5eb1a2",
+        "filename": "client/tests/swarming_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-01-31T09:15:55Z",
+      "side": 1,
+      "message": "extracted to crrev.com/c/2032749",
+      "parentUuid": "2f138758_f921daa7",
       "revId": "b36480f90ef67d401115e74b96dc7f04882ba460",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
