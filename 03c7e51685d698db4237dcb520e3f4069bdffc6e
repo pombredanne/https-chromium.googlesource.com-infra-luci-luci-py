@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "735d0cd8_27162641",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-03T15:03:32Z",
+      "side": 1,
+      "message": "Sample log output\n```\nWARNING:root:crbug.com/1030504: invalid capacity length or slice index. index\u003d0, capacity\u003d[]\nTaskResultSummary: task_id\u003d1d69b9f088008910, current_task_slice\u003d0, num_task_slices\u003d2\nTaskToRun: task_id\u003d1d69b9f088008911, task_slice_index\u003d1, try_number\u003d1\n```",
+      "revId": "03c7e51685d698db4237dcb520e3f4069bdffc6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
