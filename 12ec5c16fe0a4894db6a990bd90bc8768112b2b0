@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "568b9547_c43aa1aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-03T07:24:10Z",
+      "side": 1,
+      "message": "Better to mention a bit more about why not to the latest version.",
+      "revId": "12ec5c16fe0a4894db6a990bd90bc8768112b2b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
