@@ -116,6 +116,15 @@ _tasks_expired = gae_ts_mon.CounterMetric(
     ])
 
 
+# Swarming-specific metric. Metric fields:
+# - project_id: e.g. 'chromium-swarm'
+_tasks_expiration_delay = gae_ts_mon.NonCumulativeDistributionMetric(
+    'swarming/tasks/expiration_delay',
+    'Delay of task expiration, in seconds.', [
+        gae_ts_mon.StringField('project_id'),
+    ])
+
+
 _task_bots_runnable = gae_ts_mon.CumulativeDistributionMetric(
     'swarming/tasks/bots_runnable',
     'Number of bots available to run tasks.', [
@@ -440,11 +449,12 @@ def on_task_requested(summary, deduped):
   _jobs_requested.increment(fields=fields)
 
 
-def on_task_completed(summary):
+def on_task_completed(summary, request):
   """When a task is stopped from being processed."""
   fields = _extract_job_fields(summary.tags)
   if summary.state == task_result.State.EXPIRED:
     _tasks_expired.increment(fields=fields)
+    _set_task_expiration_delay(summary, request)
     return
 
   if summary.internal_failure:

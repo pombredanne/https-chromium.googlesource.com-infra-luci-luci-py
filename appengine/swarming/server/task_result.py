@@ -1094,7 +1094,8 @@ class TaskResultSummary(_TaskResultCommon):
         'Task completed. prev_state:"%s", current_state:"%s".\n'
         'Sending metric...', prev_state, State.to_string(self.state))
     import ts_mon_metrics
-    ts_mon_metrics.on_task_completed(self)
+    request = self.request_key.get()
+    ts_mon_metrics.on_task_completed(self, request)
 
   def reset_to_pending(self):
     """Resets this entity to pending state."""

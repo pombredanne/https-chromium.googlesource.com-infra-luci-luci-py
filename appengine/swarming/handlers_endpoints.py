@@ -130,6 +130,7 @@ def _get_request_and_result(task_id, viewing, trust_memcache):
 
   request = request_future.get_result()
 
+  import pdb; pdb.set_trace()
   if not result:
     raise endpoints.NotFoundException('%s not found.' % task_id)
   return request, result
