@@ -116,6 +116,25 @@ _tasks_expired = gae_ts_mon.CounterMetric(
     ])
 
 
+# Swarming-specific metric. Metric fields:
+# - project_id: e.g. 'chromium-swarm'
+_tasks_expiration_delay = gae_ts_mon.NonCumulativeDistributionMetric(
+    'swarming/tasks/expiration_delay',
+    'Delay of task expiration, in seconds.', [
+        gae_ts_mon.StringField('project_id'),
+    ])
+
+
+# Swarming-specific metric. Metric fields:
+# - project_id: e.g. 'chromium-swarm'
+_tasks_slice_expiration_delay = gae_ts_mon.NonCumulativeDistributionMetric(
+    'swarming/tasks/slice_expiration_delay',
+    'Delay of task slice expiration, in seconds.', [
+        gae_ts_mon.StringField('project_id'),
+        gae_ts_mon.StringField('slice_index'),
+    ])
+
+
 _task_bots_runnable = gae_ts_mon.CumulativeDistributionMetric(
     'swarming/tasks/bots_runnable',
     'Number of bots available to run tasks.', [
@@ -459,6 +478,20 @@ def on_task_completed(summary):
   _jobs_completed.increment(fields=completed_fields)
   if summary.duration is not None:
     _jobs_durations.add(summary.duration, fields=fields)
+
+
+def on_task_expired(summary, task_to_run):
+  """When a task slice is expired."""
+  fields = _extract_job_fields(summary.tags)
+
+  # slice expiration delay
+  _tasks_slice_expiration_delay.add(
+      task_to_run.expiration_delay,
+      fields=dict(fields, slice_index=task_to_run.current_task_slice))
+
+  # task expiration delay
+  if summary.expiration_delay:
+    _tasks_expiration_delay.add(summary.expiration_delay, fields=fields)
 
 
 def on_bot_auth_success(auth_method, condition):
