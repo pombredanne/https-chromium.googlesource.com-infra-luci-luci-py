@@ -67,6 +67,8 @@ _jobs_completed = gae_ts_mon.CounterMetric(
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('result'),
         gae_ts_mon.StringField('status'),
+        gae_ts_mon.IntegerField('slice_index'),
+        gae_ts_mon.IntegerField('num_slices'),
     ])
 
 
@@ -483,6 +485,12 @@ def on_task_completed(summary):
 
   completed_fields = fields.copy()
   completed_fields['status'] = task_result.State.to_string(summary.state)
+  completed_fields['slice_index'] = summary.current_task_slice
+  request = summary.request_key.get()
+  if request:
+    completed_fields['num_slices'] = summary.request.num_task_slices
+  else:
+    completed_fields['num_slices'] = 0
   _jobs_completed.increment(fields=completed_fields)
   if summary.duration is not None:
     _jobs_durations.add(summary.duration, fields=fields)

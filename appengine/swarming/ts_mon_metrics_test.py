@@ -122,6 +122,8 @@ class TestMetrics(test_case.TestCase):
         'subproject_id': 'test_subproject',
         'pool': 'test_pool',
         'spec_name': 'test_master:test_builder',
+        'slice_index': 0,
+        'num_slices': 1,
     }
     summary = _gen_task_result_summary(self.now, 1, tags=tags)
     summary.exit_code = 0 # sets failure = False.
