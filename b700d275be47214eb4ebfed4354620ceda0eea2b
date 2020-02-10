@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23d391ff_d4f7a584",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-10T05:11:19Z",
+      "side": 1,
+      "message": "Could you add comment about why this is mutable?",
+      "range": {
+        "startLine": 87,
+        "startChar": 1,
+        "endLine": 87,
+        "endChar": 40
+      },
+      "revId": "b700d275be47214eb4ebfed4354620ceda0eea2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "841b217f_e4b764b1",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-10T05:11:19Z",
+      "side": 1,
+      "message": "slice_index is not extracted and not so important?",
+      "revId": "b700d275be47214eb4ebfed4354620ceda0eea2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
