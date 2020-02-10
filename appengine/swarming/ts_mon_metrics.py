@@ -483,6 +483,7 @@ def on_task_completed(summary):
 
   completed_fields = fields.copy()
   completed_fields['status'] = task_result.State.to_string(summary.state)
+  completed_fields['slice_index'] = summary.current_task_slice
   _jobs_completed.increment(fields=completed_fields)
   if summary.duration is not None:
     _jobs_durations.add(summary.duration, fields=fields)
