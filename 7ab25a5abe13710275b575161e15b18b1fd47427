@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "19474939_ca21b248",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-10T08:52:31Z",
+      "side": 1,
+      "message": "My bad! The caller was deleted by mistake.\nNow it\u0027s returned.",
+      "parentUuid": "3b6f4ec9_c93eeb29",
+      "revId": "7ab25a5abe13710275b575161e15b18b1fd47427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab519971_b1503eb0",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "7ab25a5abe13710275b575161e15b18b1fd47427",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78f53dd2_11b4ff4d",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-10T08:52:31Z",
+      "side": 1,
+      "message": "It becomes None when a fallback slice was taken, and the task itself is still active.",
+      "parentUuid": "ab519971_b1503eb0",
+      "revId": "7ab25a5abe13710275b575161e15b18b1fd47427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

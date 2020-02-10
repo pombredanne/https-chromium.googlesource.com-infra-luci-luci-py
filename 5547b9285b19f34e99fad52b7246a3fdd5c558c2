@@ -52,6 +52,24 @@
       "revId": "5547b9285b19f34e99fad52b7246a3fdd5c558c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca74708_4dcf7a03",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-10T08:52:31Z",
+      "side": 1,
+      "message": "Added simple tests.",
+      "parentUuid": "8d8c5b1c_59fcb7ea",
+      "revId": "5547b9285b19f34e99fad52b7246a3fdd5c558c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
