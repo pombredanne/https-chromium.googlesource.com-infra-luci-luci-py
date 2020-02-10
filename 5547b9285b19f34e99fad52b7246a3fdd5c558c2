@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d696f3c_43e1bf8d",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-10T06:37:42Z",
+      "side": 1,
+      "message": "add test for this?",
+      "revId": "5547b9285b19f34e99fad52b7246a3fdd5c558c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
