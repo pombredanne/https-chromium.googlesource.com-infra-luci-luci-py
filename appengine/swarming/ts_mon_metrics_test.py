@@ -19,12 +19,15 @@ from test_support import test_case
 import ts_mon_metrics
 from server import bot_management
 from server import task_queues
+from server import task_pack
 from server import task_result
+from server import task_request
 from server import task_to_run
 
 
 def _gen_task_result_summary(now, key_id, properties=None, **kwargs):
   """Creates a TaskRequest."""
+  request_key = ndb.Key('TaskRequest', key_id)
   props = {
     'command': [u'command1'],
     'dimensions': {u'pool': u'default'},
@@ -39,7 +42,7 @@ def _gen_task_result_summary(now, key_id, properties=None, **kwargs):
     'name': 'Request name',
     'tags': [u'tag:1'],
     'user': 'Jesus',
-    'key': ndb.Key('TaskResultSummary', key_id),
+    'key': task_pack.request_key_to_result_summary_key(request_key)
   }
   args.update(kwargs)
   return task_result.TaskResultSummary(**args)
@@ -122,6 +125,8 @@ class TestMetrics(test_case.TestCase):
         'subproject_id': 'test_subproject',
         'pool': 'test_pool',
         'spec_name': 'test_master:test_builder',
+        'slice_index': 0,
+        'num_slices': 0,
     }
     summary = _gen_task_result_summary(self.now, 1, tags=tags)
     summary.exit_code = 0 # sets failure = False.
