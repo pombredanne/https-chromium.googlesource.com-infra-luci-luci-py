@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9bffb976_6177323b",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-10T05:23:01Z",
+      "side": 1,
+      "message": "Ok, this was changed from immutable to mutable previously without updating the comments.",
+      "parentUuid": "23d391ff_d4f7a584",
+      "range": {
+        "startLine": 87,
+        "startChar": 1,
+        "endLine": 87,
+        "endChar": 40
+      },
+      "revId": "b700d275be47214eb4ebfed4354620ceda0eea2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "841b217f_e4b764b1",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 5
@@ -36,6 +60,24 @@
       "writtenOn": "2020-02-10T05:11:19Z",
       "side": 1,
       "message": "slice_index is not extracted and not so important?",
+      "revId": "b700d275be47214eb4ebfed4354620ceda0eea2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85c4247a_493abdaa",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-10T05:23:01Z",
+      "side": 1,
+      "message": "Maybe not. Just added it to see the differences between slices.",
+      "parentUuid": "841b217f_e4b764b1",
       "revId": "b700d275be47214eb4ebfed4354620ceda0eea2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
