@@ -16,6 +16,24 @@
       "revId": "5547b9285b19f34e99fad52b7246a3fdd5c558c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2969519_d9b2c198",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-10T07:01:09Z",
+      "side": 1,
+      "message": "Ok, I added/updated tests to ensure that \u0027expiration_delay\u0027 is set on TaskResultSummary, TaskToRun.\nThis \u0027on_task_expired\u0027 just sends the value to Monarch.",
+      "parentUuid": "0d696f3c_43e1bf8d",
+      "revId": "5547b9285b19f34e99fad52b7246a3fdd5c558c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
