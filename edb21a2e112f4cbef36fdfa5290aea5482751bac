@@ -34,6 +34,24 @@
       "revId": "edb21a2e112f4cbef36fdfa5290aea5482751bac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bc0319d_b5f8a468",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-12T02:12:50Z",
+      "side": 1,
+      "message": "\u003e \u003e did you analyze with BQ?\n\u003e \n\u003e Yes, I\u0027m doing it. I just want to add metrics in parallel.\n\u003e \n\nI\u0027d like to approve after we confirmed that the metrics is stable enough.",
+      "parentUuid": "adb8345b_056ae302",
+      "revId": "edb21a2e112f4cbef36fdfa5290aea5482751bac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
