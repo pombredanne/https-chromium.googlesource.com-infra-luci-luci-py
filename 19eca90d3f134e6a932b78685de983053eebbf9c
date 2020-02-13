@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "529c5225_681c7106",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "I think we should discourage from using @default explicitly, but not entirely forbid it (I think there\u0027s no way to \"centrally\" forbid it across all LUCI services). Added a clarifications.",
+      "parentUuid": "b662cd3c_36197d86",
+      "range": {
+        "startLine": 28,
+        "startChar": 32,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdd7a413_66fe0055",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b0a7d94_b84d500d",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "I want to somehow convey that the realm pointer \"lives\" alongside the resource. So e.g. if we have 1000 realm-aware resources, each one can have its own realm association. Removed datastore reference from this doc, it is user facing, they don\u0027t care. Reformulated in realms.proto.",
+      "parentUuid": "cdd7a413_66fe0055",
+      "range": {
+        "startLine": 29,
+        "startChar": 30,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "51d13714_d021051f",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18b300d0_35613cf4",
+      "range": {
+        "startLine": 31,
+        "startChar": 26,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "308db184_4510a091",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "945980b6_fd5b9f7c",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "I want to introduce a notion of \"extending\" before mentioning the default realm, because the default realm is included in all other realms. \n\nClarified that this is all just set operations.",
+      "parentUuid": "308db184_4510a091",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 35
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d35d2698_6efdd33f",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "The other way is to \"extend\" other realms without explicitly defining any new bindings.",
+      "parentUuid": "ddff082b_3d21471d",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 23
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5dcbcec_e0016729",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 2
@@ -137,6 +257,30 @@
       "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e673c7f_4b9584d2",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5dcbcec_e0016729",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 65
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "e7b1ecc4_333cdf6e",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01153450_30a55e8d",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 54
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3931d4a_1c11d307",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcaff0bb_a7cea8fa",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "The intent is to place all role and permission definitions in a single file. I\u0027m not certain I want it to be proto. The vision I have right now is to put them in *.py file (auth_service is in py after all), using some mini-DSL to declare them, and use this DSL to ALSO generate documentation ala https://chrome-infra-auth.appspot.com/auth/api (this page is generated from source code).",
+      "parentUuid": "d3931d4a_1c11d307",
+      "range": {
+        "startLine": 84,
+        "startChar": 41,
+        "endLine": 84,
+        "endChar": 45
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "7527184c_813fd71b",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6eec24b_40ef2421",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd4a33f2_3543ed0f",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 2
@@ -220,6 +436,30 @@
       "writtenOn": "2020-02-13T00:44:11Z",
       "side": 1,
       "message": "should these be prefixed `luci.\u003cservice\u003e.\u003csubject\u003e.\u003cverb\u003e` to allow for project services at some point down the line?\n\nWhere would different service deployments be distinguished here (thinking about swarming), or is the premise that by the time swarming adopts it we\u0027ll have un-broken its deployment model (so there would be just one production swarming and it knows about luci projects).",
+      "range": {
+        "startLine": 124,
+        "startChar": 5,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97d0e0b4_e9df2996",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "What are \"project services\"?\n\n\u003e Where would different service deployments be distinguished here\n\nThey won\u0027t, see https://docs.google.com/document/d/1Mk4nAB-vxvkx7qz8gT8Pr9e1k6K0TJIuIEwdvXE8lSo/edit#heading\u003dh.oord042xeodg",
+      "parentUuid": "fd4a33f2_3543ed0f",
       "range": {
         "startLine": 124,
         "startChar": 5,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "194004f1_32c3d70a",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "\u003e Could we just require that ALL fields are known? So service implementations, from day 1, would reject Realms messages containing unknown field data?\n\nIs this technically possible with protos? Seems fragile... E.g. unserializing and then serializing proto again will lose all unrecognized fields (unless done very carefully, no one does that).",
+      "parentUuid": "d5fb0142_20616507",
+      "range": {
+        "startLine": 28,
+        "startChar": 42,
+        "endLine": 28,
+        "endChar": 57
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4a046c6_892a6798",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -275,6 +539,30 @@
       "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9904f2d_9883eabd",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "The intended purpose of this field is at least log (or in long term even ping the auth service) if the service refers to some permission that doesn\u0027t actually exist yet/any more.\n\nluci-py/luci-go auth library will expose constructors for permissions, e.g. realm.Permission(\"buildbucket.build.create\") that will populate the internal registry of all permissions known to a process. The auth library then will compare this set to `permissions` set in the Realms message and tell right away that some permissions are undefined.\n\nI\u0027m also thinking about possibility of marking permissions as deprecated or \"private\" or something. That\u0027s the reason `Permission` is a full message (with just one field for now). I\u0027m taking these notions from Cloud IAM where permission/role lifecycle is a very complicated process. I don\u0027t want to complicate it in LUCI, but I want to be prepared in case we must.",
+      "parentUuid": "e4a046c6_892a6798",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 60
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "7b49a59e_7adc444d",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "Replied above already. I anticipate adding more metadata fields here, like \"deprecated\" or something.",
+      "parentUuid": "217c84b2_737b22cb",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 18
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63c44fbc_fb06001f",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -321,6 +633,30 @@
       "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c71dff5_9f9506ae",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:19:58Z",
+      "side": 1,
+      "message": "Reformulated.",
+      "parentUuid": "63c44fbc_fb06001f",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 88,
+        "endChar": 59
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
