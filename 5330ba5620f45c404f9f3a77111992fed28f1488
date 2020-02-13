@@ -92,6 +92,24 @@
       "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7272571f_41409652",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T22:56:36Z",
+      "side": 1,
+      "message": "I tend towards structured data as well; however it presents the problem of \"how do you print it?\" and then once you figure out how to print it, humans will be used to seeing it in that format and expect tools to accept that. Either you train all the humans to format the structure by hand (e.g. \"a.b.c\") or you change the tools to accept the stringy format. At which point, arguably, you should just keep it as an unparsed stringy thing the whole way through, since you cannot have conversion errors, and you don\u0027t need extra formatting steps.\n\n(even worse would be if different bits of software print this structure differently :O)\n\nSo, I think it\u0027s a careful tradeoff to make. In this case the string format is sufficiently constrained (always has exactly two \".\") and is only intended to be used for direct lookups in e.g. maps (very rarely, if ever, needs to be parsed). So in this case I think the string is fine.",
+      "parentUuid": "2fe158e2_8456fd8f",
+      "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
