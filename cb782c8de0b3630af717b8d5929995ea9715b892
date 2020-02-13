@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e2a5336_b14ef248",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2020-02-13T23:41:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "94425d56_4639cc49",
+      "revId": "cb782c8de0b3630af717b8d5929995ea9715b892",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79cc78f1_49735b4b",
         "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "cb782c8de0b3630af717b8d5929995ea9715b892",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e728ece_ee9f8bcf",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1185199
+      },
+      "writtenOn": "2020-02-13T23:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79cc78f1_49735b4b",
+      "revId": "cb782c8de0b3630af717b8d5929995ea9715b892",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
