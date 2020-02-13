@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e492eaf9_7884ce94",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-13T23:10:35Z",
+      "side": 1,
+      "message": "could you add\n\u0027\u0027\u0027\n# pylint: disable\u003dC0301\n\u0027\u0027\u0027\nbefore this line?",
+      "revId": "eff5091add5ba8d6fffff0e28d412a926864f930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
