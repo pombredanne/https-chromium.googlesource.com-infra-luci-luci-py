@@ -75,6 +75,23 @@
       "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2fe158e2_8456fd8f",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-02-13T22:21:44Z",
+      "side": 1,
+      "message": "How do you feel about modeling permission as a message like\n\n```\nmessage permission {\n  string action \u003d 1;\n  string resource \u003d 2;\n}\n```\n\nto avoid the assumption that the third element of splitted string will be the verb?\n\nIs modeling it as string for the simplicity of writing the cfg file or there\u0027s other concern?",
+      "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
