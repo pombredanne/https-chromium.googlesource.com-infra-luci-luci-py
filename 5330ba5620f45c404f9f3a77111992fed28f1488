@@ -57,6 +57,24 @@
       "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb0a7113_4821c720",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T21:56:52Z",
+      "side": 1,
+      "message": "However if a custom role is never extended and never used in a binding, then it would be deadweight, right?",
+      "parentUuid": "e4bcbc03_771dac76",
+      "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
