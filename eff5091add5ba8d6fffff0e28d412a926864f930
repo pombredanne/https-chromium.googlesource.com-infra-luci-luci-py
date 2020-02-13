@@ -16,6 +16,24 @@
       "revId": "eff5091add5ba8d6fffff0e28d412a926864f930",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2285e20_9199fca1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gpu.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-13T23:12:27Z",
+      "side": 1,
+      "message": "sorry, but do like\nhttps://cs.chromium.org/chromium/src/tools/perf/page_sets/loading_desktop.py?l\u003d14\u0026rcl\u003dbf5d1ae98810dfa677de87c7ce64743f9750732c\n?",
+      "parentUuid": "e492eaf9_7884ce94",
+      "revId": "eff5091add5ba8d6fffff0e28d412a926864f930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
