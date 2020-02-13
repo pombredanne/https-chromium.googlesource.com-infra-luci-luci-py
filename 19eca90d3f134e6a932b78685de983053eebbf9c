@@ -472,6 +472,30 @@
     },
     {
       "key": {
+        "uuid": "5c9f3f71_6bc2f2e5",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T01:36:28Z",
+      "side": 1,
+      "message": "\u003e What are \"project services\"?\n\u003e \n\nI\u0027m thinking like \"cros.qscheduler.state.reset\" or something like that; Not a \"LUCI\" service, but a service which is closely tied to LUCI services.",
+      "parentUuid": "97d0e0b4_e9df2996",
+      "range": {
+        "startLine": 124,
+        "startChar": 5,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5fb0142_20616507",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -507,6 +531,30 @@
       "side": 1,
       "message": "\u003e Could we just require that ALL fields are known? So service implementations, from day 1, would reject Realms messages containing unknown field data?\n\nIs this technically possible with protos? Seems fragile... E.g. unserializing and then serializing proto again will lose all unrecognized fields (unless done very carefully, no one does that).",
       "parentUuid": "d5fb0142_20616507",
+      "range": {
+        "startLine": 28,
+        "startChar": 42,
+        "endLine": 28,
+        "endChar": 57
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac729169_6894c85c",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T01:36:28Z",
+      "side": 1,
+      "message": "Yes I believe so (I know it\u0027s possible in python and go).\n\nIn go there\u0027s public APIs SetDeterministic and DiscardUnknown (https://godoc.org/github.com/golang/protobuf/proto) which would let you do a re-serialization check, but it would also be simple to write a function that walks the decoded proto looking for non-empty \"XXX_unrecognized\" fields (this would be a single ~20-30 line function).\n\nPython has an explicit UnknownFields() accessor to access this opaque data (https://googleapis.dev/python/protobuf/latest/google/protobuf/message.html#google.protobuf.message.Message.UnknownFields). This would be a ~10 line function.\n\nI\u0027m OK with keeping an explicit version number, if you prefer, but I worry about people forgetting to update it when it should be updated.",
+      "parentUuid": "194004f1_32c3d70a",
       "range": {
         "startLine": 28,
         "startChar": 42,
@@ -566,6 +614,30 @@
     },
     {
       "key": {
+        "uuid": "4833abba_f21676ef",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T01:36:28Z",
+      "side": 1,
+      "message": "\u003e The intended purpose of this field is at least log (or in long term even ping the auth service) if the service refers to some permission that doesn\u0027t actually exist yet/any more.\n\u003e \n\u003e luci-py/luci-go auth library will expose constructors for permissions, e.g. realm.Permission(\"buildbucket.build.create\") that will populate the internal registry of all permissions known to a process. The auth library then will compare this set to `permissions` set in the Realms message and tell right away that some permissions are undefined.\n\u003e \n\nACK, I\u0027d document that here on this field so that folks have at least a vague understanding of what they should do with this field (so they don\u0027t use it for something weird because they don\u0027t know what they should use it for)\n\n\u003e I\u0027m also thinking about possibility of marking permissions as deprecated or \"private\" or something. That\u0027s the reason `Permission` is a full message (with just one field for now). I\u0027m taking these notions from Cloud IAM where permission/role lifecycle is a very complicated process. I don\u0027t want to complicate it in LUCI, but I want to be prepared in case we must.\n\nI would just put this in the Permission message doc; it sounds like good rationale.",
+      "parentUuid": "c9904f2d_9883eabd",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 60
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "217c84b2_737b22cb",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -613,6 +685,30 @@
     },
     {
       "key": {
+        "uuid": "0df8e4fe_0c7e241c",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T01:36:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b49a59e_7adc444d",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 18
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63c44fbc_fb06001f",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -648,6 +744,30 @@
       "side": 1,
       "message": "Reformulated.",
       "parentUuid": "63c44fbc_fb06001f",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 88,
+        "endChar": 59
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95e3d490_a8c4258d",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-13T01:36:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3c71dff5_9f9506ae",
       "range": {
         "startLine": 87,
         "startChar": 53,
