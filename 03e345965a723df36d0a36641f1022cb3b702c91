@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "701d164f_10cb46c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-02-13T01:54:32Z",
+      "side": 1,
+      "message": "you mean 60s?",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 36
+      },
+      "revId": "03e345965a723df36d0a36641f1022cb3b702c91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b00fa7b_2439c41e",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-02-13T01:54:32Z",
+      "side": 1,
+      "message": "if this is internal to config_service, can this be made private func?",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "03e345965a723df36d0a36641f1022cb3b702c91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea1d7243_2e2c6c80",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-02-13T01:54:32Z",
+      "side": 1,
+      "message": "i think this is too high -- luci-config also has only 60s to respond. Perhaps, 55s with 5 minutes for python overhead?",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 91,
+        "endChar": 17
+      },
+      "revId": "03e345965a723df36d0a36641f1022cb3b702c91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
