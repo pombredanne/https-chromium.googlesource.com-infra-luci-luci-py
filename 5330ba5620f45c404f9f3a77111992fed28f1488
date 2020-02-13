@@ -39,6 +39,24 @@
       "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4bcbc03_771dac76",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T21:55:20Z",
+      "side": 1,
+      "message": "A custom role that just groups a bunch of predefined roles together is a valid and useful custom role. (Ability to do that is why \u0027role\u0027 field in Binding is not repeated).",
+      "parentUuid": "4a7d9716_2149115e",
+      "revId": "5330ba5620f45c404f9f3a77111992fed28f1488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
