@@ -496,6 +496,30 @@
     },
     {
       "key": {
+        "uuid": "8cdb9b5d_8f54013c",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:50:47Z",
+      "side": 1,
+      "message": "I\u0027m not sure we should allow such services... It can be a mess. All permissions/roles are currently supposed to be declared centrally in the *LUCI* auth service, so LUCI will learn about all random service. We can think about this problem when it happens (e.g. by moving roles and permission definitions into auth service config). I don\u0027t think we are making any blocking decisions yet.",
+      "parentUuid": "5c9f3f71_6bc2f2e5",
+      "range": {
+        "startLine": 124,
+        "startChar": 5,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5fb0142_20616507",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -567,6 +591,30 @@
     },
     {
       "key": {
+        "uuid": "dbbe6458_cc816e4f",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:50:47Z",
+      "side": 1,
+      "message": "\u003e I\u0027m OK with keeping an explicit version number, if you prefer, but I worry about people forgetting to update it when it should be updated.\n\nThe version number will be mentioned in exactly 3 places: auth_service, luci-py auth lib, luci-go auth lib. All under our direct control. We can also expose the max supported version number of a service via tsmon metric, thus giving us visibility into what services must be updated before we can roll out a breaking auth_service change.",
+      "parentUuid": "ac729169_6894c85c",
+      "range": {
+        "startLine": 28,
+        "startChar": 42,
+        "endLine": 28,
+        "endChar": 57
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4a046c6_892a6798",
         "filename": "appengine/components/components/auth/proto/realms.proto",
         "patchSetId": 2
@@ -626,6 +674,30 @@
       "side": 1,
       "message": "\u003e The intended purpose of this field is at least log (or in long term even ping the auth service) if the service refers to some permission that doesn\u0027t actually exist yet/any more.\n\u003e \n\u003e luci-py/luci-go auth library will expose constructors for permissions, e.g. realm.Permission(\"buildbucket.build.create\") that will populate the internal registry of all permissions known to a process. The auth library then will compare this set to `permissions` set in the Realms message and tell right away that some permissions are undefined.\n\u003e \n\nACK, I\u0027d document that here on this field so that folks have at least a vague understanding of what they should do with this field (so they don\u0027t use it for something weird because they don\u0027t know what they should use it for)\n\n\u003e I\u0027m also thinking about possibility of marking permissions as deprecated or \"private\" or something. That\u0027s the reason `Permission` is a full message (with just one field for now). I\u0027m taking these notions from Cloud IAM where permission/role lifecycle is a very complicated process. I don\u0027t want to complicate it in LUCI, but I want to be prepared in case we must.\n\nI would just put this in the Permission message doc; it sounds like good rationale.",
       "parentUuid": "c9904f2d_9883eabd",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 60
+      },
+      "revId": "19eca90d3f134e6a932b78685de983053eebbf9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33bee3e7_ea6acdea",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-13T01:50:47Z",
+      "side": 1,
+      "message": "Done.\n\nBtw, \"folks\" are basically me when implementing luci-py/luci-go auth library change. For end services, this will be transparent.",
+      "parentUuid": "4833abba_f21676ef",
       "range": {
         "startLine": 34,
         "startChar": 0,
