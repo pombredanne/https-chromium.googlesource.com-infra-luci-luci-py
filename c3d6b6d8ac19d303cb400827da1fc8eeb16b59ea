@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc4c00c2_ee51a823",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-14T22:21:15Z",
+      "side": 1,
+      "message": "my earlier point was that IF a resource belongs to a project by some other means, and it also belongs to realm, these two projects must be the same. \nexample: logdog stream in project X cannot belong to a realm in project Y. This is a guidance for service owners.",
+      "range": {
+        "startLine": 112,
+        "startChar": 27,
+        "endLine": 113,
+        "endChar": 14
+      },
+      "revId": "c3d6b6d8ac19d303cb400827da1fc8eeb16b59ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
