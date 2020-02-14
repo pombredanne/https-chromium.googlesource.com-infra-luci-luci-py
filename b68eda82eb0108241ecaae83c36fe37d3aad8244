@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "6a00205a_ae1ec386",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-14T18:54:44Z",
+      "side": 1,
+      "message": "\u003e proposal:\n\u003e 1) no implicit extensions at proto level\n\u003e 2) resource does not specify realm \u003d\u003e use @default\n\u003e 3) realm does not exist \u003d\u003e equivalent to empty. This applies to @default too.\n\nActually, I agree with part of this proposal: \n\n1. Resource has a realm, but the realm does not exist \u003d\u003e use @root.\n2. Resource does not have realm at all \u003d\u003e use @legacy or @realmless or something.\n3. @root is subset of all other realms (including @legacy).\n\nThe problem it solves is what to do with legacy (realm-less) logdog prefixes in a project? Currently they are all readable by e.g. \"project-logdog-readers\" group and this behavior must be preserved. Adding this group to @root would be wrong (it would grant read access to all prefixes). Thus new @legacy (or @realmless or something) realm. And @root realm is still necessary as a replacement for \"administrators\" group. \n\nWdyt?",
+      "parentUuid": "dbc44f69_78801b2e",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c18b7dc_50bb610f",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 5
