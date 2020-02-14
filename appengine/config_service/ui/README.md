@@ -9,8 +9,7 @@ This is a UI for the configuration service.
 
 * Install [Google App Engine SDK](https://cloud.google.com/appengine/downloads).
 
-*	Run `polymer install` in the ui directory to make sure you have all the dependencies installed.
-
+*	Run `polymer install` in the ui directory to make sure you have all the dependencies installed. It is expected to pull all the dependency packages under *node_modules* directory from npm. If no *node_modules* directory gets generated after running the command, run `npm install` instead.
 
 ## Running locally
 
@@ -28,12 +27,13 @@ This is a UI for the configuration service.
 
 ## Running Tests
 
-*	Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). 
-	Run `wct`, `wct -p` or `polymer test` inside ui folder to run your application's test suites locally. 
+*	Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester).
+	Run `wct`, `wct -p` or `polymer test` inside ui folder to run your application's test suites locally.
 	These commands will run tests for all browsers installed on your computer.
 
-## Third Party Files
+## Deploy
 
-In order to use proper authentication, the google-signin-aware element was needed. However, this element has not been updated to 
-Polymer 2.0, so edits were made to the current version to ensure compatibility.
-The modified google-signin-aware element can be found in the ui/common/third_party/google-signin folder.
+* Finish all steps mentioned in [Setting up](#setting-up) section.
+* Run `polymer build` in the *ui* directory to build the ui app.
+* Check if *node_modules* directory and *build* directory is present under *ui* directory and the build artifacts is under the *default* directory in *build* directory.
+* Use the `gae.py` script to deploy.
