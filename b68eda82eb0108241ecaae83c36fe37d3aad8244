@@ -217,6 +217,30 @@
     },
     {
       "key": {
+        "uuid": "86faffcd_5c28caa6",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-14T20:03:56Z",
+      "side": 1,
+      "message": "\u003e 1. Resource has a realm, but the realm does not exist \u003d\u003e use @root.\n\u003e 2. Resource does not have realm at all \u003d\u003e use @legacy or @realmless or something.\n\u003e 3. @root is subset of all other realms (including @legacy).\n\nLGTM. +1 to @legacy\n\nBut do we still need arbitrary extensions? I hope not: rule (3) seems sufficient.\n\n----------------------------------------------\n\u003e Is it really OK to have the dead wight of inaccessible builds in the datastore? Maybe if we want builds to be gone if the bucket is deleted, we need to actually delete them (e.g. soft delete first, delete for real later) when the bucket is deleted.\n\ni find [a side effect of irreversible unintentional/accidental deletion of an entire history of all builders in the bucket] much worse than keeping them in the datastore. We paid $829 for datastore storage in bb last 30 days. Besides, it is code that one would have to write, i.e. extra complexity.\n\n\u003e soft delete\n\ni think \"inaccessible builds\" is essentially soft delete.\n\n\u003e Unless you meant \"nobody except admins\", in which case @default/@administrators is still needed.\n\nyes, i meant except admins. By admins I meant LUCI team, but customer-controlled @admins or @root is better.\n\n\u003e Reliance on global \"administrators\" group was a big mistake. \n\nNot sure I understand the issue in *this* context. In general, sure. In practice and in the context of build permissions, buckets are deleted rarely and I *never* received a request \"hey nodir, i deleted the bucket and I don\u0027t have permissions to the build history know. What do I do?\". And even if I had, I\u0027d say \"well, restore your bucket, but allow only yourself to see it\".",
+      "parentUuid": "3866ef91_42f86ec4",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c18b7dc_50bb610f",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 5
@@ -323,6 +347,30 @@
       "side": 1,
       "message": "I don\u0027t want to block deployment of realms on the full migration to lucicfg. This feature will literally cost maybe 500 lines of python code (including tests) and will save me personally a lot of headache when writing realms.cfg for existing project based on numerous existing manually written cr-buildbucket.cfg files. Once lucicfg is used everywhere, we can safely delete these 500 lines of code (since lucicfg won\u0027t use this feature).",
       "parentUuid": "f129169e_19c48b71",
+      "range": {
+        "startLine": 125,
+        "startChar": 18,
+        "endLine": 125,
+        "endChar": 25
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55baf19c_01741233",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-14T20:03:56Z",
+      "side": 1,
+      "message": "i was hoping to use this as yet another reason to use lucicfg. Can you at least nudge people to use lucicfg (it is muuuch easier with lucicfg) in your realms PSA?",
+      "parentUuid": "0be106b2_6bc4b6bc",
       "range": {
         "startLine": 125,
         "startChar": 18,
