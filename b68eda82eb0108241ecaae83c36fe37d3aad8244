@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "fb6e191f_423e67a8",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-14T17:31:41Z",
+      "side": 1,
+      "message": "FWIU (3) stems from (2) and (2) stems from (1), so I will focus on (1).\n\nI don\u0027t understand \"such resources becomes totally inaccessible and thus \"unfixable\". This can be fixed by rolling back the CL that deleted the realm? If this was a problem, we\u0027d see it in buildbucket long ago because that\u0027s exactly how buildbucket works: [delete the bucket \u003d\u003e all builds are inaccessible] because [no bucket \u003d\u003e no acls \u003d\u003e nobody has access except admins]. Besides, this change in semantics is sort of breaking/unexpected for buildbucket customers.\n\nI do understand the need for @default realm, but I think it is important to distinguish two cases:\n1) a resource does NOT have an explicitly specified realm \u003d\u003e use @default\n2) a resource does have an explicitly specified realm, but it does not exist \u003d\u003e nobody has permissions\n\nproposal:\n1) no implicit extensions at proto level\n2) resource does not specify realm \u003d\u003e use @default\n3) realm does not exist \u003d\u003e equivalent to empty. This applies to @default too.",
+      "parentUuid": "9c210bdc_ef2fab95",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c18b7dc_50bb610f",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 5
@@ -164,6 +188,30 @@
       "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f129169e_19c48b71",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-14T17:31:41Z",
+      "side": 1,
+      "message": "writing text protos isn\u0027t going to be fun to begin with. We do have a solution for verbosity/unFunness: starlark. Can we not solve the same problem at multiple levels?",
+      "parentUuid": "64fe9319_85b9ecc8",
+      "range": {
+        "startLine": 125,
+        "startChar": 18,
+        "endLine": 125,
+        "endChar": 25
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
