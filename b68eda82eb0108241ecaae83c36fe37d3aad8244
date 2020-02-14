@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "dbc44f69_78801b2e",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-14T18:42:02Z",
+      "side": 1,
+      "message": "\u003e exactly how buildbucket works: [delete the bucket \u003d\u003e all builds are inaccessible]\n\nWas this a deliberate design choice or an accident of the implementation? Is it really OK to have the dead wight of inaccessible builds in the datastore? Maybe if we want builds to be gone if the bucket is deleted, we need to actually delete them (e.g. soft delete first, delete for real later) when the bucket is deleted.\n\n\u003e Besides, this change in semantics is sort of breaking/unexpected for buildbucket customers.\n\nBuildbucket can (and probably should) check the presense of the bucket before checking its realm (a realm is strictly speaking part of the bucket resource: no bucket - no realm). Then the existing logic will be preserved if it is so critical. \n\n\u003e [no bucket \u003d\u003e no acls \u003d\u003e nobody has access except admins]\n\nReliance on global \"administrators\" group was a big mistake. @default realm is an attempt to fix it by \"sharding\" administrator role across projects. It works very similar to the global \"administrators\" group. Admins can access anything \u003d\u003d @default is subset of all realms.\n\nWill the situation be clearer if I rename @default to @root and document that it is primarily for owner-level permissions and that it is ok to keep it empty if project owners are ok with unreachable resources?",
+      "parentUuid": "2eaa6b17_4e64ee30",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c18b7dc_50bb610f",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 5
@@ -236,6 +260,30 @@
       "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be106b2_6bc4b6bc",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-14T18:42:02Z",
+      "side": 1,
+      "message": "I don\u0027t want to block deployment of realms on the full migration to lucicfg. This feature will literally cost maybe 500 lines of python code (including tests) and will save me personally a lot of headache when writing realms.cfg for existing project based on numerous existing manually written cr-buildbucket.cfg files. Once lucicfg is used everywhere, we can safely delete these 500 lines of code (since lucicfg won\u0027t use this feature).",
+      "parentUuid": "f129169e_19c48b71",
+      "range": {
+        "startLine": 125,
+        "startChar": 18,
+        "endLine": 125,
+        "endChar": 25
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
