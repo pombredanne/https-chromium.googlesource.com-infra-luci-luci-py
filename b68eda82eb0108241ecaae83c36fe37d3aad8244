@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9c210bdc_ef2fab95",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-14T04:36:11Z",
+      "side": 1,
+      "message": "\u003e Why we need it at all and why we must include it everywhere, implicitly:\n\u003e 1. Resource may point to deleted realms. We need a way to specify what ACLs to use in this case, since otherwise such resources becomes totally inaccessible and thus \"unfixable\". It is the primary reason why @default realm is needed at all.\n\u003e 2. Now imagine we do NOT inherit from @default realm. There may be realm with very limiting ACL (smaller than @default). If such realm is deleted, suddenly all its resources now have @default ACL, which is wider. This is dangerous. Thus @default realm should be subset of all other realms.\n\u003e 3. To absolutely guarantee this, we must implement/enforce this rule in LUCI Auth. We can\u0027t trust user-supplied realms.cfg to implement it correctly. Thus @default realm is included *implicitly* everywhere.\n\u003e \n\nAh ha! This now makes sense for @default, though I don\u0027t think it follows that other inclusions need to happen at the proto level (as opposed to in lucicfg). I think it would be good to include this thought train here too, as a means of 1) explaining WHY default must be auto-inherited everywhere and also 2) helping folks better understand what sorts of ACLs they should put in default.\n\n\u003e (Btw I think you use \"normalized\" and \"denormalized\" wrong. In DB world, \"normalized\" is fully relational, i.e. crapton of interlinked tables, and \"denormalized\" is fully flat, i.e. one giant table with a lot of repetition).\n\nYep, I did. derp.",
+      "parentUuid": "506fdafd_01b469a9",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "b68eda82eb0108241ecaae83c36fe37d3aad8244",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c18b7dc_50bb610f",
         "filename": "appengine/auth_service/proto/realms_config.proto",
         "patchSetId": 5
