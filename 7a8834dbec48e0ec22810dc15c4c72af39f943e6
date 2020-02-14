@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "164322a2_08925b1f",
+        "filename": "appengine/config_service/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2020-02-14T01:02:50Z",
+      "side": 1,
+      "message": "Could the makefile be updated to just do all this?",
+      "revId": "7a8834dbec48e0ec22810dc15c4c72af39f943e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83f1ba64_5c9f7d24",
+        "filename": "appengine/config_service/ui/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2020-02-14T01:02:50Z",
+      "side": 1,
+      "message": "doesn\u0027t get",
+      "range": {
+        "startLine": 12,
+        "startChar": 221,
+        "endLine": 12,
+        "endChar": 225
+      },
+      "revId": "7a8834dbec48e0ec22810dc15c4c72af39f943e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40346c18_c3b00544",
+        "filename": "appengine/config_service/ui/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2020-02-14T01:02:50Z",
+      "side": 1,
+      "message": "Can you move this step up? You need to do it even if you don\u0027t want to run locally (i.e. deploy to luci-config-dev without starting a local instance first).",
+      "revId": "7a8834dbec48e0ec22810dc15c4c72af39f943e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
