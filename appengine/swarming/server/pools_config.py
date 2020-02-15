@@ -67,6 +67,7 @@ IsolateServer = collections.namedtuple('IsolateServer', [
 
 CipdServer = collections.namedtuple('CipdServer', [
   'server',
+  'package_name',
   'client_version',
 ])
 
@@ -568,7 +569,10 @@ def _fetch_pools_config():
   if cfg.HasField('default_external_services'):
     ext = cfg.default_external_services
     default_isolate = IsolateServer(ext.isolate.server, ext.isolate.namespace)
-    default_cipd = CipdServer(ext.cipd.server, ext.cipd.client_version)
+    default_cipd = CipdServer(
+        ext.cipd.server,
+        ext.cipd.client_package.package_name,
+        ext.cipd.client_package.version)
 
   pools = {}
   for msg in cfg.pool:
