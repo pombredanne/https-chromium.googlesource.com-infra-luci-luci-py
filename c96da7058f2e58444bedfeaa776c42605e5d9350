@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c570c_2021f605",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-02-15T01:24:23Z",
+      "side": 1,
+      "message": "If y\u0027all find this docstring redundant, I\u0027m happy to nix it.",
+      "range": {
+        "startLine": 149,
+        "startChar": 2,
+        "endLine": 152,
+        "endChar": 65
+      },
+      "revId": "c96da7058f2e58444bedfeaa776c42605e5d9350",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
