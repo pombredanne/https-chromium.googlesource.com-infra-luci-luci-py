@@ -161,6 +161,17 @@ message TrustedDelegation {
 }
 
 
+message CipdPackage {
+  // The relative to the task root to unpack the CIPD package. A blank value
+  // is permitted and means 'the root directory of the task'.
+  string path = 1;
+  // The CIPD package name template to use (required).
+  string pkg = 2;
+  // The version of the CIPD package to use (required).
+  string version = 3;
+}
+
+
 // A TaskTemplate describes a set of properties (caches, CIPD packages and
 // envvars) which apply to tasks created within a swarming pool.
 //
@@ -198,15 +209,6 @@ message TaskTemplate {
   // package paths.
   repeated CacheEntry cache = 3;
 
-  message CipdPackage {
-    // The relative to the task root to unpack the CIPD package. A blank value
-    // is permitted and means 'the root directory of the task'.
-    string path = 1;
-    // The CIPD package name template to use (required).
-    string pkg = 2;
-    // The version of the CIPD package to use (required).
-    string version = 3;
-  }
   // CipdPackages are keyed by (path, name), and `version` is overridden
   // wholesale.
   //
@@ -431,10 +433,10 @@ message ExternalServices {
     // e.g. "https://chrome-infra-packages.appspot.com"
     string server = 1;
 
-    // (required) The version of the cipd client to use. This is the
+    // (required) The version of the cipd client to use. This is likely the
     // 'infra/tools/cipd/${platform}' package, but because it's part of the
     // bootstrap needs special logic to handle its installation.
-    string client_version = 2;
+    CipdPackage client_package = 2;
   }
   CIPD cipd = 2;
 }
