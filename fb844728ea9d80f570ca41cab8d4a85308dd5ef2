@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbe9312a_73c63e91",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-17T08:36:51Z",
+      "side": 1,
+      "message": "why not use logging.exception?",
+      "range": {
+        "startLine": 397,
+        "startChar": 12,
+        "endLine": 397,
+        "endChar": 17
+      },
+      "revId": "fb844728ea9d80f570ca41cab8d4a85308dd5ef2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
