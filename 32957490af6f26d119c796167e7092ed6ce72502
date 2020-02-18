@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a52e459e_4aba5558",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-18T07:13:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "102c91d5_31f80a08",
+      "range": {
+        "startLine": 56,
+        "startChar": 26,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "32957490af6f26d119c796167e7092ed6ce72502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51bec044_48551f7d",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6ab845b0_f001053c",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-18T07:13:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51bec044_48551f7d",
+      "range": {
+        "startLine": 81,
+        "startChar": 26,
+        "endLine": 81,
+        "endChar": 27
+      },
+      "revId": "32957490af6f26d119c796167e7092ed6ce72502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1e95e2b_3ff84ea8",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "32957490af6f26d119c796167e7092ed6ce72502",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b791e45_45d20d9c",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-18T07:13:16Z",
+      "side": 1,
+      "message": "Thanks, Good Catch. Fixed.",
+      "parentUuid": "c1e95e2b_3ff84ea8",
+      "range": {
+        "startLine": 91,
+        "startChar": 23,
+        "endLine": 91,
+        "endChar": 47
+      },
+      "revId": "32957490af6f26d119c796167e7092ed6ce72502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
