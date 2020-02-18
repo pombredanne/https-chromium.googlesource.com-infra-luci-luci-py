@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1965dc3f_843a4eba",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-18T18:31:34Z",
+      "side": 1,
+      "message": "I also entertain the idea of doing one more level of dedupping\n\nmessage Realms {\n  ...\n  repeated PermissionSet permission_sets \u003d ...;\n}\n\nmessage PermissionSet {\n  repeated uint32 permissions \u003d 1;\n}\n\nmessage Binding {\n  uint32 permission_set \u003d 1;\n  ...\n}\n\nThese PermissionSets will essentially be expansions of roles or combination of roles (except with no semantic meaning attached to them, it\u0027s just a device to reduce repetition in Realms proto). \n\nBut I\u0027m less sure this optimization will save a lot of memory, so I\u0027m not doing it for now.",
+      "range": {
+        "startLine": 170,
+        "startChar": 2,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "afa873e1e5253a71347b356e177f582b37eaf93f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
