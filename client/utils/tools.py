@@ -185,7 +185,7 @@ def report_cache_stats_at_exit(func, cache):
 _CACHED_FUNCS = set()
 
 def clear_cache_all():
-  map(clear_cache, _CACHED_FUNCS)
+  [clear_cache(f) for f in _CACHED_FUNCS]
 
 
 def cached(func):
