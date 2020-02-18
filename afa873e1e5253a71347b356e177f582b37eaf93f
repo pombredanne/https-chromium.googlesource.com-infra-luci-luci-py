@@ -22,6 +22,30 @@
       "revId": "afa873e1e5253a71347b356e177f582b37eaf93f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd27c982_5232c13b",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-18T18:46:30Z",
+      "side": 1,
+      "message": "you mean memory only during marshaling/unmarshaling (right?), which happens rarely.\nHow we keep these structures in memory after unmarshaling can be (and perhaps should be?) orthogonal to anything in this file, so I agree that this isn\u0027t very important.",
+      "parentUuid": "1965dc3f_843a4eba",
+      "range": {
+        "startLine": 170,
+        "startChar": 2,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "afa873e1e5253a71347b356e177f582b37eaf93f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
