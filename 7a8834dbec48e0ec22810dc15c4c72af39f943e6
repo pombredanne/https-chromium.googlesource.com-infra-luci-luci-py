@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "77cda3a5_cf140156",
+        "filename": "appengine/config_service/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-02-18T22:29:55Z",
+      "side": 1,
+      "message": "This is excellent suggestion. I\u0027ve updated the make file as well as the doc to simplify this process.",
+      "parentUuid": "164322a2_08925b1f",
+      "revId": "7a8834dbec48e0ec22810dc15c4c72af39f943e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83f1ba64_5c9f7d24",
         "filename": "appengine/config_service/ui/README.md",
         "patchSetId": 3
@@ -80,6 +98,24 @@
       "revId": "7a8834dbec48e0ec22810dc15c4c72af39f943e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a440c926_f6be14c5",
+        "filename": "appengine/config_service/ui/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-02-18T22:29:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40346c18_c3b00544",
+      "revId": "7a8834dbec48e0ec22810dc15c4c72af39f943e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
