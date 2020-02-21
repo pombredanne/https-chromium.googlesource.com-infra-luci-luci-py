@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "69e36e81_2f74f215",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-02-21T02:35:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80f06718_21c60ad9",
+      "revId": "2a6397c810f205afc501268a817e94984416ade5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e56a072a_3b694b97",
         "filename": "appengine/swarming/proto/config/pools.proto",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "2a6397c810f205afc501268a817e94984416ade5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bcf7d03_7b5099a9",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-02-21T02:35:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56a072a_3b694b97",
+      "revId": "2a6397c810f205afc501268a817e94984416ade5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
