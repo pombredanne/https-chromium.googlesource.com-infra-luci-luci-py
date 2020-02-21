@@ -16,6 +16,24 @@
       "revId": "e6a90f2bd3a7396183ee82c42476d8125fb76616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a78297a6_473f6bac",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-02-21T20:27:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfc9c313_b5f65514",
+      "revId": "e6a90f2bd3a7396183ee82c42476d8125fb76616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
