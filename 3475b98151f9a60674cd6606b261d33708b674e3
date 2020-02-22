@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff541460_ff31ae63",
+        "filename": "appengine/components/components/net_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-02-22T00:10:57Z",
+      "side": 1,
+      "message": "\"Presubmit made me do it.\"",
+      "revId": "3475b98151f9a60674cd6606b261d33708b674e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0a7592a_6a8a3b35",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-02-22T00:10:57Z",
+      "side": 1,
+      "message": "This makes me uncomfortable. But switching to UnaryUnaryMultiCallable.with_call would\nmake this very different from what we wanted here.  Thoughts?",
+      "revId": "3475b98151f9a60674cd6606b261d33708b674e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
