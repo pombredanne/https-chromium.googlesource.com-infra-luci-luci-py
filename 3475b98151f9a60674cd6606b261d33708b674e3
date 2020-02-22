@@ -33,6 +33,24 @@
       "revId": "3475b98151f9a60674cd6606b261d33708b674e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8f295eb_f2f3368b",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-22T00:30:33Z",
+      "side": 1,
+      "message": "this is unfortunate, but given that we are not going to invest in python, i think this is acceptable. the alternative is to have Foo(), FooAsync(), FooWithCall(), FooWithCallAsync().",
+      "parentUuid": "c0a7592a_6a8a3b35",
+      "revId": "3475b98151f9a60674cd6606b261d33708b674e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
