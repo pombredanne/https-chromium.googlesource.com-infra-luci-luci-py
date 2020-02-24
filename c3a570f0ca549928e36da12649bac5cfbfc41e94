@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3512ce3c_f958ee38",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-24T22:13:12Z",
+      "side": 1,
+      "message": "unnecessary",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "c3a570f0ca549928e36da12649bac5cfbfc41e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88d2c839_b2a7707e",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-24T22:13:12Z",
+      "side": 1,
+      "message": "this is true for all strings:\n\n  \u003e\u003e\u003e isinstance(\u0027sdsdf\u0027, bytes)\n  True\n\nso i am not sure it can be used here?",
+      "range": {
+        "startLine": 90,
+        "startChar": 6,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "c3a570f0ca549928e36da12649bac5cfbfc41e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
