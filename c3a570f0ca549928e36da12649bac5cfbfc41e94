@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4067adaf_c5c4abcf",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-02-24T23:09:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3512ce3c_f958ee38",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "c3a570f0ca549928e36da12649bac5cfbfc41e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88d2c839_b2a7707e",
         "filename": "appengine/components/components/prpc/client.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "c3a570f0ca549928e36da12649bac5cfbfc41e94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9429cbdb_109915b3",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-02-24T23:09:06Z",
+      "side": 1,
+      "message": "Good point. I didn\u0027t realize. I have changed the approach.",
+      "parentUuid": "88d2c839_b2a7707e",
+      "range": {
+        "startLine": 90,
+        "startChar": 6,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "c3a570f0ca549928e36da12649bac5cfbfc41e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
