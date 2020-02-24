@@ -8,7 +8,9 @@ Supports components.auth-based authentication, including delegation tokens.
 Retries requests on transient errors.
 """
 
+import base64
 import collections
+import six
 
 from google.appengine.ext import ndb
 from google.protobuf import symbol_database
@@ -18,6 +20,11 @@ from components.prpc import codes
 from components.prpc import encoding
 
 _BINARY_MEDIA_TYPE = encoding.Encoding.media_type(encoding.Encoding.BINARY)
+
+_BASE64_ENCODING_ERROR = TypeError
+if six.PY3:
+  import binascii
+  _BASE64_ENCODING_ERROR = binascii.Error
 
 
 # A low-level pRPC request to be sent using components.net module.
@@ -75,6 +82,32 @@ def new_request(
   return ret._replace(**kwargs)
 
 
+def encode_bin_metadata(mutable_metadata_dict):
+  """Encodes any `bytes` values as base64 and suffixes key with `-Bin`."""
+  if not mutable_metadata_dict:
+    return
+  for k, v in mutable_metadata_dict.iteritems():
+    if isinstance(v, bytes) and not k.endswith('-Bin'):
+      mutable_metadata_dict[k + '-Bin'] = str(base64.b64encode(v))
+      del mutable_metadata_dict[k]
+
+
+def decode_bin_metadata(mutable_metadata_dict):
+  """Decodes any values of `-Bin` suffixed keys as base64, in-place."""
+  if not mutable_metadata_dict:
+    return
+  for k in mutable_metadata_dict:
+    if not k.endswith('-Bin'):
+      continue
+    try:
+      mutable_metadata_dict[k[:-len('-Bin')]] = base64.b64decode(
+          mutable_metadata_dict[k])
+      del mutable_metadata_dict[k]
+    except _BASE64_ENCODING_ERROR:
+      logging.warning('Metadata key %s not base64 encoded, val: %s', k,
+                      mutable_metadata_dict[k])
+
+
 class Error(Exception):
   """A base class for pRPC client-side errors."""
 
@@ -120,6 +153,7 @@ def rpc_async(req, response_metadata=None):
   timeout = req.timeout or 10
 
   headers = (req.metadata or {}).copy()
+  encode_bin_metadata(headers)
   headers['Content-Type'] = _BINARY_MEDIA_TYPE
   headers['Accept'] = _BINARY_MEDIA_TYPE
   headers['X-Prpc-Timeout'] = '%dS' % timeout
@@ -159,6 +193,7 @@ def rpc_async(req, response_metadata=None):
   # Parse the response and return it.
   res = req.response_message
   res.ParseFromString(res_bytes)
+  decode_bin_metadata(response_metadata)
   raise ndb.Return(res)
 
 
