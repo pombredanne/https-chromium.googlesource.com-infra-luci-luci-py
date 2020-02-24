@@ -9,6 +9,7 @@ Retries requests on transient errors.
 """
 
 import collections
+import six
 
 from google.appengine.ext import ndb
 from google.protobuf import symbol_database
@@ -18,6 +19,11 @@ from components.prpc import codes
 from components.prpc import encoding
 
 _BINARY_MEDIA_TYPE = encoding.Encoding.media_type(encoding.Encoding.BINARY)
+
+_BASE64_ENCODING_ERROR = TypeError
+if six.PY3:
+  import binascii
+  _BASE64_ENCODING_ERROR = binascii.Error
 
 
 # A low-level pRPC request to be sent using components.net module.
@@ -120,6 +126,7 @@ def rpc_async(req, response_metadata=None):
   timeout = req.timeout or 10
 
   headers = (req.metadata or {}).copy()
+  encoding.encode_bin_metadata(headers)
   headers['Content-Type'] = _BINARY_MEDIA_TYPE
   headers['Accept'] = _BINARY_MEDIA_TYPE
   headers['X-Prpc-Timeout'] = '%dS' % timeout
@@ -159,6 +166,7 @@ def rpc_async(req, response_metadata=None):
   # Parse the response and return it.
   res = req.response_message
   res.ParseFromString(res_bytes)
+  encoding.decode_bin_metadata(response_metadata)
   raise ndb.Return(res)
 
 
