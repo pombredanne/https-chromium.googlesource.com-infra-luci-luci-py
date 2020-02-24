@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dce21572_20103d1f",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-24T23:26:27Z",
+      "side": 1,
+      "message": "permission str?\nrealms_pb2.Permission?\n\n(I assume the first)",
+      "range": {
+        "startLine": 32,
+        "startChar": 46,
+        "endLine": 32,
+        "endChar": 57
+      },
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b14cc84e_5ee9abc4",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-24T23:26:27Z",
+      "side": 1,
+      "message": "note that \u0027includes\u0027 is a list containing PermRef and/or RoleRef instances (i.e. no string permission names)",
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
