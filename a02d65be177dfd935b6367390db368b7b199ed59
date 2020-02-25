@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ed96506f_7803d3a5",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-25T21:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dce21572_20103d1f",
+      "range": {
+        "startLine": 32,
+        "startChar": 46,
+        "endLine": 32,
+        "endChar": 57
+      },
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b14cc84e_5ee9abc4",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 2
@@ -62,6 +86,24 @@
       "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef5f2ebf_3d173575",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-25T21:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b14cc84e_5ee9abc4",
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +199,30 @@
       "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "356fad6c_d635de0f",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-25T21:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a659f8ed_a8452703",
+      "range": {
+        "startLine": 119,
+        "startChar": 48,
+        "endLine": 119,
+        "endChar": 54
+      },
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
