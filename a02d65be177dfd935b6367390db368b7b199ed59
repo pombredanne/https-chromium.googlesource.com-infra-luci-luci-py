@@ -85,6 +85,30 @@
       "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a11403c7_a2ceb191",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-25T00:51:37Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment. What is \"the same\" that was used in L109 and L111?\n\nYou mean why `(...,)` here but not in other places? Because inc here can indeed conceivably be a tuple, e.g. if we added another sort of XXXRef and forget to update this if/else block. \u0027name\u0027 must not ever be a tuple.",
+      "parentUuid": "6d692fec_8e6967d3",
+      "range": {
+        "startLine": 119,
+        "startChar": 48,
+        "endLine": 119,
+        "endChar": 54
+      },
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
