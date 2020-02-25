@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80e968c0_a1add490",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-25T08:51:53Z",
+      "side": 1,
+      "message": "Could you explain the reason why you changed event_type in some tests?",
+      "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "591ab93a_fcd16c39",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-25T08:51:53Z",
+      "side": 1,
+      "message": "append period?",
+      "range": {
+        "startLine": 586,
+        "startChar": 50,
+        "endLine": 586,
+        "endChar": 56
+      },
+      "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b8ff57a_eed1f7c1",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-25T08:51:53Z",
+      "side": 1,
+      "message": "better to merge the explanation? I feel these 2 explanation bit confusing.",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 56
+      },
+      "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
