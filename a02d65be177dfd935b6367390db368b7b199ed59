@@ -109,6 +109,30 @@
       "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "052aafde_d6711cb5",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-25T01:00:24Z",
+      "side": 1,
+      "message": "I think what tandrii was referencing is that my personal preference is to ALWAYS do single-value formatters as `(single,)`. There\u0027s no downside (aside from 3 extra bytes). The upside is that if `single` turns out to be a tuple by accident, you can see the value of it instead of just getting an exception.\n\nSee also: python sucks (but especially python 2)",
+      "parentUuid": "a11403c7_a2ceb191",
+      "range": {
+        "startLine": 119,
+        "startChar": 48,
+        "endLine": 119,
+        "endChar": 54
+      },
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
