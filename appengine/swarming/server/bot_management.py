@@ -578,8 +578,20 @@ def bot_event(
   if dimensions:
     dimensions_flat = task_queues.dimensions_to_flat(dimensions)
     if bot_info.dimensions_flat != dimensions_flat:
-      dimensions_updated = True
+      # crbug.com/801679:
+      # Do not register dimensions at handshake because they may change
+      # at first polling, as the initial handshake is done without the injected
+      # bot_config.py. Keep id and pool since some codes refer them.
+      # crbug.com/1054154:
+      # Keep dimensions if they are the same with before
+      if event_type == 'bot_connected':
+        trimmed_dims = {
+            k: v for k, v in dimensions.items()
+            if k in ('id', 'pool')
+        }
+        dimensions_flat = task_queues.dimensions_to_flat(trimmed_dims)
       bot_info.dimensions_flat = dimensions_flat
+      dimensions_updated = True
   if state:
     bot_info.state = state
   if quarantined is not None:
