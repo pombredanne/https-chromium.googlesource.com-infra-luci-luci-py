@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c499a8be_35482e13",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-02-25T00:37:07Z",
+      "side": 1,
+      "message": "shame we don\u0027t use attrs lib, but OTH it may cause suffering performance.",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dce21572_20103d1f",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 2
@@ -36,6 +59,29 @@
       "writtenOn": "2020-02-24T23:26:27Z",
       "side": 1,
       "message": "note that \u0027includes\u0027 is a list containing PermRef and/or RoleRef instances (i.e. no string permission names)",
+      "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d692fec_8e6967d3",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-02-25T00:37:07Z",
+      "side": 1,
+      "message": "nit: I realize that inc is tuple, but ideally the same was used in L109 and L111 (hat tip to Robbie)",
+      "range": {
+        "startLine": 119,
+        "startChar": 48,
+        "endLine": 119,
+        "endChar": 54
+      },
       "revId": "a02d65be177dfd935b6367390db368b7b199ed59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
