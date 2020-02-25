@@ -578,8 +578,23 @@ def bot_event(
   if dimensions:
     dimensions_flat = task_queues.dimensions_to_flat(dimensions)
     if bot_info.dimensions_flat != dimensions_flat:
-      dimensions_updated = True
+      # The dimensions given at handshake may change at first polling since
+      # the initial handshake is done without the injected bot_config.py.
+      # When initializing a BotInfo, register only 'id' and 'pool' which are
+      # refered as specifal dimensions. This avoids flapping dimensions reported
+      # in crbug.com/801679.
+      # When the given dimensions are the same with the stored ones,
+      # just keep them instead of deleting them unnecessarily. This fixes
+      # crbug.com/1054154 caused by temporarily disappearing bot dimensions.
+      if event_type == 'bot_connected':
+        logging.debug('bot_event: Trimming dimensions: %s', dimensions)
+        dimensions_flat = [
+            d for d in dimensions_flat
+            if d.startswith('id:') or d.startswith('pool:')]
+        logging.debug('bot_event: Updating dimensions. from: %s, to: %s',
+                      bot_info.dimensions_flat, dimensions_flat)
       bot_info.dimensions_flat = dimensions_flat
+      dimensions_updated = True
   if state:
     bot_info.state = state
   if quarantined is not None:
