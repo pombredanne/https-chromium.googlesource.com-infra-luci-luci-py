@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7573cf4_ecdcc787",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-25T01:12:40Z",
+      "side": 1,
+      "message": "Better to add a test for this case?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "158bd71044ef8321d6c92e6a1855e8fabfa00506",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
