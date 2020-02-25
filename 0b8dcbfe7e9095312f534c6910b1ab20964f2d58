@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "44b82676_28a7f44f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-25T09:24:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80e968c0_a1add490",
+      "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "591ab93a_fcd16c39",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 4
@@ -62,6 +80,54 @@
       "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f264dee8_817a0489",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-25T09:24:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "591ab93a_fcd16c39",
+      "range": {
+        "startLine": 586,
+        "startChar": 50,
+        "endLine": 586,
+        "endChar": 56
+      },
+      "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19e6ac55_447d2bea",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-25T09:24:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b8ff57a_eed1f7c1",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 56
+      },
+      "revId": "0b8dcbfe7e9095312f534c6910b1ab20964f2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
