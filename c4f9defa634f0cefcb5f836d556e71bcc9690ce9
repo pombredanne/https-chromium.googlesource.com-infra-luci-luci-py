@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c27ea7f_0aa3cd15",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-26T00:09:55Z",
+      "side": 0,
+      "message": "removal of this return is intentional?",
+      "range": {
+        "startLine": 1290,
+        "startChar": 4,
+        "endLine": 1290,
+        "endChar": 10
+      },
+      "revId": "c4f9defa634f0cefcb5f836d556e71bcc9690ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
