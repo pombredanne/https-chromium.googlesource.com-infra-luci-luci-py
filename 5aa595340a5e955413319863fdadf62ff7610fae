@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40bc1e02_07171fe8",
+        "filename": "appengine/components/components/prpc/encoding.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-02-26T01:46:50Z",
+      "side": 1,
+      "message": "why TypeError though? the type is fine. Consider ValueError.",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "5aa595340a5e955413319863fdadf62ff7610fae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
