@@ -22,6 +22,30 @@
       "revId": "40a46c34ae57a199b9f94467d3cf1a96b5cbe2cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b27c4928_9fcd6473",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-02-26T00:47:01Z",
+      "side": 1,
+      "message": "sure, done.",
+      "parentUuid": "1c9dfb2b_1eb44812",
+      "range": {
+        "startLine": 660,
+        "startChar": 16,
+        "endLine": 660,
+        "endChar": 24
+      },
+      "revId": "40a46c34ae57a199b9f94467d3cf1a96b5cbe2cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
