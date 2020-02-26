@@ -46,6 +46,30 @@
       "revId": "158bd71044ef8321d6c92e6a1855e8fabfa00506",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68e8d2a8_8a906084",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-02-26T00:35:09Z",
+      "side": 1,
+      "message": "Good call!\n\nAdded a test that fails without the fix (see patchset 5) and passes with the fix (see patchset 6).\n\nPTAL",
+      "parentUuid": "93c3e59d_916b5c4a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "158bd71044ef8321d6c92e6a1855e8fabfa00506",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
