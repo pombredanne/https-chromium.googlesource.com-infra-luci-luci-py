@@ -70,6 +70,30 @@
       "revId": "158bd71044ef8321d6c92e6a1855e8fabfa00506",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f7d2f68_e8ae19ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-26T00:41:33Z",
+      "side": 1,
+      "message": "Thank you for validating the fix with test in an obvious way!",
+      "parentUuid": "68e8d2a8_8a906084",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "158bd71044ef8321d6c92e6a1855e8fabfa00506",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
