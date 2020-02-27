@@ -16,6 +16,24 @@
       "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dad8e802_dd34b966",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-27T02:05:15Z",
+      "side": 1,
+      "message": "I can accept the first_seen delay since I confirmed that it looks like only for display purpose. But the issue I faced with was that there are /event API calls between handshake and first poll. And the event API need to update BotInfo.\n\nI probably could skip updating BotInfo at event API until it\u0027s created at first poll.\nBut I thought it\u0027s also not good.\n\n\u003e it makes it worse, because then all task queues may get stripped.\n\nI don\u0027t understand this. This should be better since the dimensions are kept if they are the same with the stored one, otherwise the same with before.\nBut this solution didn\u0027t work for crbug.com/1054154, since the bot had a custom dimension.\n\nI\u0027m considering to keep dimensions if they are a subset of the stored dimensions, which should cover many cases (I\u0027m not sure)",
+      "parentUuid": "ec7edf15_a501a00a",
+      "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
