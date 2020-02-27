@@ -564,7 +564,7 @@ describe('task-page', function() {
           expect(cell(1, 1)).toHaveClass('pending_task');
           expect(cell(2, 0)).toMatchTextContent('Fleet Capacity');
           expect(rows[5]).toHaveAttribute('hidden', 'deduped message hidden');
-          expect(cell(14, 0).rowSpan).toEqual(5); // 4 dimensions + 1 for header
+          expect(cell(14, 0).rowSpan).toEqual(6); // 5 dimensions + 1 for header
 
           done();
         });

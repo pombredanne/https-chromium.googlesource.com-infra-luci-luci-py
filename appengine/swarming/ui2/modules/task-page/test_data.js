@@ -736,6 +736,9 @@ export const taskRequests = [
             {
               "value": "Chrome",
               "key": "pool"
+            },
+            {
+              "key": "novalue"
             }
           ],
           "idempotent": true,
