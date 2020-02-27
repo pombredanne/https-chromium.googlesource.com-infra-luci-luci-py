@@ -81,6 +81,30 @@
       "revId": "86f2a5fbe149ed998d877fc75f08a924260babea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9723917_d4fca5c8",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-27T12:09:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "078d009e_59d694c2",
+      "range": {
+        "startLine": 742,
+        "startChar": 13,
+        "endLine": 742,
+        "endChar": 14
+      },
+      "revId": "86f2a5fbe149ed998d877fc75f08a924260babea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
