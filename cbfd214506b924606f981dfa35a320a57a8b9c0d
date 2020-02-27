@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec7edf15_a501a00a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-02-27T01:47:47Z",
+      "side": 1,
+      "message": "IMHO, the simpler is still better to not store BotInfo in bot_connected. I don\u0027t think this solve the problem, in fact it makes it worse, because then all task queues may get stripped.\nYes first_seen will be a bit delayed, but it\u0027s fine IMO.",
+      "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
