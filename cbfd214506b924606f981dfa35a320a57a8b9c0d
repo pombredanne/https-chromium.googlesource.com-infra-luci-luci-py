@@ -34,6 +34,24 @@
       "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e0774e9_a48af499",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-02-27T02:18:46Z",
+      "side": 1,
+      "message": "That\u0027s too bad about event. You are right, I hadn\u0027t had thought about that.\n\nI guess the right long term fix are https://crbug.com/786735 and https://crbug.com/786734.",
+      "parentUuid": "dad8e802_dd34b966",
+      "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
