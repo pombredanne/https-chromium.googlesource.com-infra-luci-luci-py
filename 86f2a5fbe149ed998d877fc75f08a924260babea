@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca1bc4ab_1c1278f9",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-27T11:53:30Z",
+      "side": 1,
+      "message": "And this caused test failure without your fix?",
+      "revId": "86f2a5fbe149ed998d877fc75f08a924260babea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9ef518d_a1f45bdb",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-02-27T11:53:30Z",
+      "side": 1,
+      "message": "revert this too?",
+      "range": {
+        "startLine": 742,
+        "startChar": 13,
+        "endLine": 742,
+        "endChar": 14
+      },
+      "revId": "86f2a5fbe149ed998d877fc75f08a924260babea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
