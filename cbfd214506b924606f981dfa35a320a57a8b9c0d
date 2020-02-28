@@ -52,6 +52,24 @@
       "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae4e6401_9e429180",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-02-28T04:29:50Z",
+      "side": 1,
+      "message": "\u003e I guess the right long term fix are https://crbug.com/786735 and https://crbug.com/786734.\n\nAssuming that restart creates a new session, the session won\u0027t fix the windows perf builder.\nIIUC,they expect the dimensions to be kept even during restart for perf_device_trigger.py to be able to find eligible bots.\n\nMaybe, It\u0027s an opposite request...   \n\nWill look closely look at their script and consider a workaround.",
+      "parentUuid": "4e0774e9_a48af499",
+      "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
