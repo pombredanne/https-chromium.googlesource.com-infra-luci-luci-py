@@ -336,6 +336,11 @@ class _BotBaseHandler(_BotApiHandler):
           and isinstance(dimension_id[0], unicode)):
         bot_id = dimensions['id'][0]
 
+    for key, values in dimensions.items():
+      if len(values) == 0:
+        self.abort(400, "Dimension with key %s does not have any value" % key)
+        return
+
     if bot_id:
       logging.debug('Fetching bot settings for bot id: %s', bot_id)
       bot_settings = bot_management.get_settings_key(bot_id).get()

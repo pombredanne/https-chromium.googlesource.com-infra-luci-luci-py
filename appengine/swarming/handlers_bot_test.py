@@ -146,6 +146,26 @@ class BotApiTest(test_env_handlers.AppTestBase):
     ]
     self.assertEqual(expected, errors)
 
+  def test_handshake_invalid_dimensions(self):
+    params = {
+        'dimensions': {
+            'id': ['id1'],
+            'pool': ['default'],
+            # empty value is invalid.
+            'key': [],
+        },
+    }
+
+    response = self.app.post_json(
+        '/swarming/api/v1/bot/handshake', params=params, status=400)
+    expected = (
+        '400 Bad Request\n\n'
+        'The server could not comply with the request since it is either'
+        ' malformed or otherwise incorrect.\n\n'
+        ' Dimension with key key does not have any value  ')
+
+    self.assertEqual(expected, response.body)
+
   def test_handshake_duplicate_dimension_value(self):
     # Test a specific failure mode where '<key>:<value>' is duplicate.
     # This throws a BadValueError while trying to save a
