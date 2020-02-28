@@ -144,7 +144,7 @@ def _get_bot_group_config(bot_id):
   logging.error(
       'bot_auth: unknown bot_id, not in the config\n'
       'bot_id: "%s" hostname: "%s"', bot_id, hostname)
-  raise auth.AuthorizationError('Unknown bot ID, not in config')
+  raise auth.AuthorizationError('Unknown bot ID, "%s" not in config.' % bot_id)
 
 
 def _check_bot_auth(bot_auth, bot_id, peer_ident, ip):
