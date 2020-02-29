@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53e6de63_de18d34f",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-29T02:41:05Z",
+      "side": 1,
+      "message": "I don\u0027t like how python uses `u\"something\"` instead. It leaks into user-visible output. I also think protobuf lib rejects non-utf8 strings (not sure...).",
+      "parentUuid": "3d9667be_b3d40a57",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 41
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c96a770f_4e44139d",
         "filename": "appengine/auth_service/realms/validation.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08f8ee7c_6b0e1f0f",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-29T02:41:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c96a770f_4e44139d",
+      "range": {
+        "startLine": 118,
+        "startChar": 28,
+        "endLine": 118,
+        "endChar": 29
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -114,6 +162,54 @@
       "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "740c277b_3525ac1e",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-29T02:41:05Z",
+      "side": 1,
+      "message": "As Andrii noted, the code already finds \"a\" cycle. I was trying to write smallest amount of code possible and mistakenly assumed it finds the shortest cycle (shorter the code, shorter the cycle, naturally).",
+      "parentUuid": "bc4f9add_255954f0",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 23
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "175ef462_b9587e60",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-02-29T02:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8b14c51_fc232181",
+      "range": {
+        "startLine": 207,
+        "startChar": 9,
+        "endLine": 207,
+        "endChar": 18
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
