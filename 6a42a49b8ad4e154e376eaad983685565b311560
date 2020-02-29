@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "3d9667be_b3d40a57",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-29T02:04:02Z",
+      "side": 1,
+      "message": "%r and lose the quotes; this will escape the string correctly in case it\u0027s really messed up.",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 41
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c96a770f_4e44139d",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-29T02:04:02Z",
+      "side": 1,
+      "message": "same for all of these, imo, but up to you",
+      "range": {
+        "startLine": 118,
+        "startChar": 28,
+        "endLine": 118,
+        "endChar": 29
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb219d6e_7697bbc0",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-29T02:04:02Z",
+      "side": 1,
+      "message": "good thought",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 64
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8b14c51_fc232181",
         "filename": "appengine/auth_service/realms/validation.py",
         "patchSetId": 4
@@ -18,6 +87,29 @@
         "startChar": 9,
         "endLine": 207,
         "endChar": 18
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc4f9add_255954f0",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-02-29T02:04:02Z",
+      "side": 1,
+      "message": "this is nice, but finding \"a\" cycle instead of the shortest cycle would be less code and probably sufficient?\n\njust saying....",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 23
       },
       "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
