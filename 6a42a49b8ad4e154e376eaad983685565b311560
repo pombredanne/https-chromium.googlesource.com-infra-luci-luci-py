@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8b14c51_fc232181",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-02-29T01:48:00Z",
+      "side": 1,
+      "message": "nit: delete.\n\n\u003e\u003e\u003e find_shortest_cycle(graph\u003d{\u0027A\u0027: \u0027BC\u0027, \u0027B\u0027: \u0027E\u0027, \u0027C\u0027: \u0027A\u0027, \u0027E\u0027: \u0027A\u0027}, start\u003d\u0027A\u0027)\n[\u0027A\u0027, \u0027B\u0027, \u0027E\u0027, \u0027A\u0027]\n\nyou need BFS for shortest, but since this is truly FYI \u0026\u0026 this is deterministic, not shortest is also fine.\nIn practice, if I end up with graph above, I\u0027ll need to remove *both* cycles to be valid, the order in which I remove the cycles doesn\u0027t matter.",
+      "range": {
+        "startLine": 207,
+        "startChar": 9,
+        "endLine": 207,
+        "endChar": 18
+      },
+      "revId": "6a42a49b8ad4e154e376eaad983685565b311560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
