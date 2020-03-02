@@ -38,6 +38,8 @@ from utils import fs
 from utils import file_path
 from utils import large
 from utils import subprocess42
+import tools
+print(tools)
 from tools import start_bot
 from tools import start_servers
 
