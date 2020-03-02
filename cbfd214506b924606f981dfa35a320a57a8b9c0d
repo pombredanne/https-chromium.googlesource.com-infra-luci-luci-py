@@ -88,6 +88,24 @@
       "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03a8bcba_97529e2c",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-02T04:37:08Z",
+      "side": 1,
+      "message": "\u003e Right now assert_bot_async() is not called in the /handshake RPC so that\u0027s cool, but rebuild_task_cache_async() can still run in-between and get the incorrect BotInfo.\n\nNote that I moved assert_bot_async to run it only in the /poll path.\nhttps://source.chromium.org/chromium/_/chromium/infra/luci/luci-py/+/6305a694ed3293efe6f87960d7e1918b799ac21e:appengine/swarming/handlers_bot.py;l\u003d594;drc\u003dcbfd214506b924606f981dfa35a320a57a8b9c0d?originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\nSo I don\u0027t think the event API updates something related dimension caches.\n\n\u003e rebuild_task_cache_async() can still run in-between and get the incorrect BotInfo\n\nPlease correct me if I\u0027m wrong. I thought task_queues.py doesn\u0027t update BotInfo.\n\nI think the perf folk\u0027s issue is...\n1) A Bot finishes a task (and restarts for some reason).\n2) The Bot does handshake with dimensions id and pool. \n(BotInfo.dimensions_flat has only id and pool during this period.)\n3) The bot does poll with proper dimensions.\n(BotInfo.dimensions_flat now has all dimensions.)\n\nThe script can\u0027t find eligible bots between 2) and 3).",
+      "parentUuid": "c7757b25_8b5cbecc",
+      "revId": "cbfd214506b924606f981dfa35a320a57a8b9c0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
