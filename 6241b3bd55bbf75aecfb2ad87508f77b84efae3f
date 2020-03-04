@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a66a75e_607073dd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2020-03-04T23:41:38Z",
+      "side": 1,
+      "message": "nit but I suggest to use either of dims or dimensions instead of having spelling inconsistency.",
+      "range": {
+        "startLine": 475,
+        "startChar": 38,
+        "endLine": 475,
+        "endChar": 42
+      },
+      "revId": "6241b3bd55bbf75aecfb2ad87508f77b84efae3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
