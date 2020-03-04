@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65c22772_2e0cd23d",
+        "filename": "appengine/components/tools/log_since.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-04T00:35:53Z",
+      "side": 1,
+      "message": "Please consider move it to \"gae_sdk_utils.py\".\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/tool_support/gae_sdk_utils.py;l\u003d307?q\u003df:gae_sdk_utils\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\n```\napp \u003d gae_sdk_utils.process_sdk_options(...)\napp.get_latest_active_version()\n```",
+      "revId": "a81583de588098fefe81ffa4423b07e592244d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8968f380_94243dd7",
+        "filename": "appengine/components/tools/log_since.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-04T00:35:53Z",
+      "side": 1,
+      "message": "Can we assume that there is only 1 active version?\nI remember that \u0027backend\u0027 app can have multiple active versions for background jobs.",
+      "revId": "a81583de588098fefe81ffa4423b07e592244d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05b7522d_73c97328",
+        "filename": "appengine/components/tools/log_since.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-04T00:35:53Z",
+      "side": 1,
+      "message": "How about list up versions and let user to choose?\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/tools/gae.py;l\u003d321?q\u003df:gae.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "revId": "a81583de588098fefe81ffa4423b07e592244d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
