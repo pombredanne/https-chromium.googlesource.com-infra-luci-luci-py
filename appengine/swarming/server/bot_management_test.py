@@ -48,7 +48,8 @@ def _bot_event(
   """Calls bot_management.bot_event with default arguments."""
   if not bot_id:
     bot_id = u'id1'
-  if not dimensions:
+  if (not dimensions and
+      not kwargs.get('event_type') == 'bot_connected'):
     dimensions = {
       u'id': [bot_id],
       u'os': [u'Ubuntu', u'Ubuntu-16.04'],
@@ -106,16 +107,13 @@ def _gen_bot_info(**kwargs):
 
 
 def _gen_bot_event(**kwargs):
-  dimensions = {
-    u'id': [u'id1'],
-    u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-    u'pool': [u'default'],
-  }
-  if kwargs['event_type'] == 'bot_connected':
-    del dimensions[u'os']
   out = {
     'authenticated_as': u'bot:id1.domain',
-    'dimensions': dimensions,
+    'dimensions': {
+      u'id': [u'id1'],
+      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+      u'pool': [u'default'],
+    },
     'external_ip': u'8.8.4.4',
     'last_seen_ts': None,
     'lease_id': None,
@@ -330,7 +328,7 @@ class BotManagementTest(test_case.TestCase):
 
   def test_get_events_query(self):
     _bot_event(event_type='bot_connected')
-    expected = [_gen_bot_event(event_type=u'bot_connected')]
+    expected = [_gen_bot_event(event_type=u'bot_connected', dimensions={})]
     self.assertEqual(
         expected,
         [i.to_dict() for i in bot_management.get_events_query('id1', True)])
@@ -385,7 +383,7 @@ class BotManagementTest(test_case.TestCase):
 
     expected = [
       _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
-      _gen_bot_event(event_type=u'bot_connected'),
+      _gen_bot_event(event_type=u'bot_connected', dimensions={}),
     ]
     self.assertEqual(
         expected,
@@ -396,32 +394,22 @@ class BotManagementTest(test_case.TestCase):
         memcache.get('id1:2010-01-02T03:04', namespace='BotEvents'))
 
   def test_bot_event_update_dimensions(self):
-    # 'bot_connected' event registers only id and pool at first handshake.
+    # 'bot_connected' event does not registers dimensions.
     _bot_event(event_type='bot_connected')
     bot_info = bot_management.get_info_key('id1').get()
-    self.assertEqual(bot_info.dimensions_flat, [u'id:id1', u'pool:default'])
+    self.assertEqual(bot_info.dimensions_flat, [])
 
     # 'request_sleep' stores given dimensions at first polling.
-    _bot_event(event_type='request_sleep')
+    _bot_event(
+        event_type='request_sleep',
+        dimensions={'id': ['id1'], 'os': ['Android'], 'pool': ['default']})
     self.assertEqual(
-        bot_info.dimensions_flat,
-        [u'id:id1', u'os:Ubuntu', u'os:Ubuntu-16.04', u'pool:default'])
+        bot_info.dimensions_flat, [u'id:id1', u'os:Android', u'pool:default'])
 
-    # 'bot_connected' keeps dimensions if the given dimensions are the same with
-    # the stored ones.
+    # 'bot_connected' doesn't update dimensions since bot_config isn't injected.
     _bot_event(event_type='bot_connected')
     self.assertEqual(
-        bot_info.dimensions_flat,
-        [u'id:id1', u'os:Ubuntu', u'os:Ubuntu-16.04', u'pool:default'])
-
-    # 'bot_connected' resets dimensions only with id and pool
-    # if they have changed. e.g. OS update
-    _bot_event(event_type='bot_connected', dimensions={
-        u'id': [u'id1'],
-        u'pool': [u'default'],
-        u'os': ['Ubuntu', 'Ubuntu-16.05']
-    })
-    self.assertEqual(bot_info.dimensions_flat, [u'id:id1', u'pool:default'])
+        bot_info.dimensions_flat, [u'id:id1', u'os:Android', u'pool:default'])
 
   def test_get_info_key(self):
     self.assertEqual(
