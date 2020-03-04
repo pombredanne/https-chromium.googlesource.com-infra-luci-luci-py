@@ -2676,10 +2676,6 @@ class BotApiTest(BaseTest):
         },
         {
           u'authenticated_as': u'bot:whitelisted-ip',
-          u'dimensions': [
-            {u'key': u'id', u'value': [u'bot1']},
-            {u'key': u'pool', u'value': [u'default']},
-          ],
           u'event_type': u'bot_connected',
           u'external_ip': unicode(self.source_ip),
           u'quarantined': False,

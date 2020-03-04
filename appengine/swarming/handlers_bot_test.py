@@ -888,10 +888,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     expected = [
       {
         'authenticated_as': u'bot:whitelisted-ip',
-        'dimensions': {
-            u'id': [u'bot1'],
-            u'pool': [u'default']
-        },
+        'dimensions': {},
         'event_type': unicode(e),
         'external_ip': u'192.168.2.2',
         'last_seen_ts': None,
@@ -918,10 +915,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     expected.append(
       {
         'authenticated_as': u'bot:whitelisted-ip',
-        'dimensions': {
-            u'id': [u'bot1'],
-            u'pool': [u'default']
-        },
+        'dimensions': {},
         'event_type': u'bot_connected',
         'external_ip': u'192.168.2.2',
         'last_seen_ts': None,
