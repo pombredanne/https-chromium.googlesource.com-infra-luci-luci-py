@@ -319,6 +319,51 @@ def _validate_dimensions_flat(obj):
         '%s.dimensions_flat must be sorted' % obj.__class__.__name__)
 
 
+def _generate_normalized_dimension_flats(dimension_flat):
+  """
+  Return every normalized subset of dimensions come from multiple
+  dimension values with the same key.
+
+  e.g.
+  ["os:Ubuntu-14.04", "os:Ubuntu-16.04", "cpu:x86_64", "cores:8"]
+  =>
+  [
+    ["os:Ubuntu-14.04","cpu:x86_64", "cores:8"],
+    ["os:Ubuntu-16.04","cpu:x86_64", "cores:8"],
+  ]
+  """
+  dimension_flats = []
+
+  def gen(dimensions, dimension_iter):
+    if not dimension_iter:
+      dimension_flats.append(dimensions[:])
+      DIMENSION_LIMIT = 8
+      if len(dimension_flats) > DIMENSION_LIMIT:
+        raise ValueError("%s generates more than %d dimension subsets" %
+                         (dimension_flat, DIMENSION_LIMIT))
+      return
+
+    dimension, rest = dimension_iter[0], dimension_iter[1:]
+    key = dimension.split(':')[0]
+
+    back = None
+    if dimensions and dimensions[-1].startswith(key + ':'):
+      gen(dimensions, rest)
+      back = dimensions[-1]
+      dimensions.pop()
+
+    dimensions.append(dimension)
+    gen(dimensions, rest)
+    dimensions.pop()
+
+    if back:
+      dimensions.append(back)
+
+  gen([], dimension_flat)
+
+  return dimension_flats
+
+
 def _get_task_queries_for_bot(bot_dimensions):
   """Returns all the ndb.Query for TaskDimensions relevant for this bot.
 

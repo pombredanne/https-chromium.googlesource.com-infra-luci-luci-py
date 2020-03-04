@@ -548,6 +548,23 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     # Assert it doesn't return 0.
     self.assertEqual(3649838548, task_queues.hash_dimensions({}))
 
+  def test_generate_normalized_dimension_flats(self):
+    self.assertEqual(
+        task_queues._generate_normalized_dimension_flats(
+            ["os:Ubuntu-14.04", "os:Ubuntu-16.04", "cpu:x86_64", "cores:8"]), [
+                ["os:Ubuntu-14.04", "cpu:x86_64", "cores:8"],
+                ["os:Ubuntu-16.04", "cpu:x86_64", "cores:8"],
+            ])
+
+    self.assertEqual(
+        task_queues._generate_normalized_dimension_flats(
+            ["os:Ubuntu-14.04", "os:Ubuntu-16.04", "cpu:x86_64", "cpu:arm"]), [
+                ["os:Ubuntu-14.04", "cpu:x86_64"],
+                ["os:Ubuntu-14.04", "cpu:arm"],
+                ["os:Ubuntu-16.04", "cpu:x86_64"],
+                ["os:Ubuntu-16.04", "cpu:arm"],
+            ])
+
   def test_cron_tidy_stale(self):
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(now)
