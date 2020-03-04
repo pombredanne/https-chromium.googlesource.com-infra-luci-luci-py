@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "030ba047_bd65e9f8",
+        "filename": "appengine/components/tools/log_since.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-04T06:17:07Z",
+      "side": 1,
+      "message": "gae_sdk_utils.py requires app-id flag, but we don\u0027t need to use that here.\nhttps://source.chromium.org/chromium/_/chromium/infra/luci/luci-py/+/268d16bacc4a48623189ca3014dbc9a950434e44:appengine/components/tool_support/gae_sdk_utils.py;l\u003d794;drc\u003d9963ccd99c7ce07372ed3b598128adc61d2e44da?originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\nI bit prefer to have this simple function here.",
+      "parentUuid": "65c22772_2e0cd23d",
+      "revId": "a81583de588098fefe81ffa4423b07e592244d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8968f380_94243dd7",
         "filename": "appengine/components/tools/log_since.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c4b059bd_59e81bbd",
+        "filename": "appengine/components/tools/log_since.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-04T06:17:07Z",
+      "side": 1,
+      "message": "--service\u003ddefault and TRAFFIC_SPLIT\u003d1 filter takes at most 1 service.\n\nIf 0 service is found, I\u0027d like to fail here.",
+      "parentUuid": "8968f380_94243dd7",
+      "revId": "a81583de588098fefe81ffa4423b07e592244d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05b7522d_73c97328",
         "filename": "appengine/components/tools/log_since.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2020-03-04T00:35:53Z",
       "side": 1,
       "message": "How about list up versions and let user to choose?\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/tools/gae.py;l\u003d321?q\u003df:gae.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "revId": "a81583de588098fefe81ffa4423b07e592244d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d5d25bd_9b9d0e4e",
+        "filename": "appengine/components/tools/log_since.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-04T06:17:07Z",
+      "side": 1,
+      "message": "I rather want to fail if we don\u0027t have only one service receiving all traffic.",
+      "parentUuid": "05b7522d_73c97328",
       "revId": "a81583de588098fefe81ffa4423b07e592244d47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
