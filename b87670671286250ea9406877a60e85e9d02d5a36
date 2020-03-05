@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c23b8fb_9ff7be24",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-05T03:12:57Z",
+      "side": 1,
+      "message": "I tried to use Task Queues initially, but they introduce a ton of complication related to concurrency and contention on AuthDB transactions. Then I recalled we have 10 min to execute refetch_config, I decided it should be a *plenty* of time to do everything inline avoiding all extra complexity.\n\nJobQueue appeared later as a mechanism to space out AuthDB transactions.",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 14
+      },
+      "revId": "b87670671286250ea9406877a60e85e9d02d5a36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
