@@ -870,10 +870,19 @@ class TaskProperties(ndb.Model):
       # already check those. Terminate task can only use 'id'.
       return
 
+    # Validate dimensions.
     if u'pool' not in self.dimensions_data:
       # Only terminate task may not use 'pool'. Others must specify one.
       raise datastore_errors.BadValueError(
           u'\'pool\' must be used as dimensions')
+
+    or_dimensions_num = 1
+    for values in self.dimensions.values():
+      or_dimensions_num *= len(values)
+      if or_dimensions_num <= 8:
+        raise datastore_errors.BadValueError(
+            'possible dimension subset for \'or\' dimensions '
+            'should not be more than 8, but %d' % or_dimensions_num)
 
     if not self.execution_timeout_secs:
       # Unlike I/O timeout, hard timeout is required.
