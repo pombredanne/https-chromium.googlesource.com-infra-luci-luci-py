@@ -174,7 +174,6 @@ def _validate_url(prop, value):
 def _validate_dimensions(_prop, value):
   """Validates TaskProperties.dimensions."""
   maxkeys = 32
-  maxvalues = 16
   if not value:
     raise datastore_errors.BadValueError(u'dimensions must be specified')
   if len(value) > maxkeys:
@@ -182,7 +181,16 @@ def _validate_dimensions(_prop, value):
         u'dimensions can have up to %d keys' % maxkeys)
 
   normalized = {}
+  or_dimensions_num = 1
+  max_or_dimensions_num = 8
   for k, values in value.items():
+    or_dimensions_num *= len(values)
+    if or_dimensions_num > max_or_dimensions_num:
+      raise datastore_errors.BadValueError(
+          'possible dimension subset for \'or\' dimensions '
+          'should not be more than %d, but %d' % (max_or_dimensions_num,
+                                                  or_dimensions_num))
+
     # Validate the key.
     if not config.validate_dimension_key(k):
       raise datastore_errors.BadValueError(
@@ -200,10 +208,6 @@ def _validate_dimensions(_prop, value):
           u'dimensions must be a dict of strings or list of string, not %r' %
           value)
 
-    if len(values) > maxvalues:
-      raise datastore_errors.BadValueError(
-          u'dimension key %r has too many values; maximum is %d' %
-          (k, maxvalues))
     if len(values) != len(set(values)):
       raise datastore_errors.BadValueError(
           u'dimension key %r has repeated values' % k)
