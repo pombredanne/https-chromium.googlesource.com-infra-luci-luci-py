@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82374488_c08f7f9d",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-03-06T17:16:11Z",
+      "side": 1,
+      "message": "nit: inconsistent with existing code: L867",
+      "range": {
+        "startLine": 485,
+        "startChar": 37,
+        "endLine": 485,
+        "endChar": 54
+      },
+      "revId": "6d108aec9960e4a77e384b8ef050405e5542ff68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6e40dd1_df3841a3",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-03-06T17:16:11Z",
+      "side": 1,
+      "message": "parallelizing them would be more efficnet\n\n  futs \u003d [\n    _refresh_all_BotTaskDimensions_async(now, valid_until_ts, subset, task_dimensions_hash)\n    for subset in _generate_subset_dimensions_for_or(task_dimensions)\n  ]\n  yield futs\n\nsame below. in fact all of them could be put in one large list and yield them all at the same time",
+      "range": {
+        "startLine": 1090,
+        "startChar": 6,
+        "endLine": 1090,
+        "endChar": 11
+      },
+      "revId": "6d108aec9960e4a77e384b8ef050405e5542ff68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c17d60a9_a6fc41ad",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-03-06T17:16:11Z",
+      "side": 1,
+      "message": "i think a test with two dimensions having two values would be useful too",
+      "revId": "6d108aec9960e4a77e384b8ef050405e5542ff68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
