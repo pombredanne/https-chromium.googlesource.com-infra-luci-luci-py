@@ -144,6 +144,29 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(True, a.is_valid({'a': ['b', 'c']}))
     self.assertEqual(False, a.is_valid({'x': ['c']}))
 
+  def test_TaskDimensionsSet(self):
+    cls = task_queues.TaskDimensionsSet
+    dimension_set = cls(
+        dimensions_flat=['os:Ubuntu-14.04', 'os:Ubuntu-16.04', 'gpu:v1'])
+    self.assertTrue(
+        dimension_set.match_bot({
+            'os': ['Linux', 'Ubuntu-14.04'],
+            'gpu': ['v1'],
+        }))
+
+    self.assertTrue(
+        dimension_set.match_bot({
+            'os': ['Linux', 'Ubuntu-16.04'],
+            'gpu': ['v1'],
+            'cpu': ['x86'],
+        }))
+
+    self.assertFalse(
+        dimension_set.match_bot({
+            'os': ['Linux', 'Ubuntu-18.04'],
+            'gpu': ['v1'],
+        }))
+
   def test_TaskDimensions(self):
     cls = task_queues.TaskDimensions
     setcls = task_queues.TaskDimensionsSet
@@ -541,6 +564,14 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assert_count(1, task_queues.BotTaskDimensions)
     self.assert_count(1, task_queues.TaskDimensions)
     self.assertEqual([], task_queues.get_queues(bot_root_key))
+
+  def test_generate_subset_dimensions_for_or(self):
+    self.assertEqual(
+        list(
+            task_queues._generate_subset_dimensions_for_or({
+                'gpu': ['v1', 'v2'],
+                'os': ['Ubuntu-14.04'],
+            })), [['gpu:v1', 'os:Ubuntu-14.04'], ['gpu:v2', 'os:Ubuntu-14.04']])
 
   def test_hash_dimensions(self):
     with self.assertRaises(AttributeError):

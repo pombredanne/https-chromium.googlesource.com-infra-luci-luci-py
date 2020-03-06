@@ -191,11 +191,17 @@ class TaskDimensionsSet(ndb.Model):
   def match_bot(self, bot_dimensions):
     """Returns True if this bot can run this request dimensions set."""
     # Always called via TaskDimensions.match_bot().
+    # This supports 'or' dimensions e.g.
+    # ["os:Ubuntu-14.04", "os:Ubuntu-16.06", "gpu:v1"]
+
+    used_dimension_keys = set()
+    all_dimension_keys = set()
     for d in self.dimensions_flat:
       key, value = d.split(':', 1)
-      if value not in bot_dimensions.get(key, []):
-        return False
-    return True
+      all_dimension_keys.add(key)
+      if value in bot_dimensions.get(key, []):
+        used_dimension_keys.add(key)
+    return len(used_dimension_keys) == len(all_dimension_keys)
 
   def _pre_put_hook(self):
     super(TaskDimensionsSet, self)._pre_put_hook()
@@ -469,6 +475,25 @@ def _get_task_dimensions_key(dimensions_hash, dimensions):
   return ndb.Key(
       TaskDimensionsRoot, u'pool:%s' % dimensions[u'pool'][0],
       TaskDimensions, dimensions_hash)
+
+
+def _generate_subset_dimensions_for_or(dimensions):
+  dimensions = dimensions.items()
+  dimensions.sort()
+
+  def gen(current_dimensions_flat, dimensions_iter):
+    if not dimensions_iter:
+      yield current_dimensions_flat[:]
+      return
+
+    key, values = dimensions_iter[0]
+    for value in values:
+      current_dimensions_flat.append(key + ':' + value)
+      for generated in gen(current_dimensions_flat, dimensions_iter[1:]):
+        yield generated
+      current_dimensions_flat.pop()
+
+  return gen([], dimensions)
 
 
 @ndb.tasklet
@@ -1066,14 +1091,18 @@ def rebuild_task_cache_async(payload):
   dims = '\n'.join('  ' + d for d in task_dimensions_flat)
   now = utils.utcnow()
   try:
-    yield _refresh_all_BotTaskDimensions_async(
-        now, valid_until_ts, task_dimensions_flat, task_dimensions_hash)
+    for subset_dimensions_flat in _generate_subset_dimensions_for_or(
+        task_dimensions):
+      yield _refresh_all_BotTaskDimensions_async(
+          now, valid_until_ts, subset_dimensions_flat, task_dimensions_hash)
     # Done updating, now store the entity. Must use a transaction as there could
     # be other dimensions set in the entity.
     task_dimensions_key = _get_task_dimensions_key(task_dimensions_hash,
                                                    task_dimensions)
-    yield _refresh_TaskDimensions_async(
-        now, valid_until_ts, task_dimensions_flat, task_dimensions_key)
+    for subset_dimensions_flat in _generate_subset_dimensions_for_or(
+        task_dimensions):
+      yield _refresh_TaskDimensions_async(
+          now, valid_until_ts, subset_dimensions_flat, task_dimensions_key)
   finally:
     # Any of the calls above could throw. Log how far long we processed.
     duration = (utils.utcnow()-now).total_seconds()
