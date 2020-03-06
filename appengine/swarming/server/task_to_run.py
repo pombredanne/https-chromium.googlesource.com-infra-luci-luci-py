@@ -308,7 +308,8 @@ def _validate_task_async(bot_dimensions, stats, now, to_run):
   # There's a probability of 2**-31 of conflicts, which is low enough for our
   # purpose.
   if not match_dimensions(props.dimensions, bot_dimensions):
-    logging.debug('_validate_task_async(%s): dimensions mismatch', packed)
+    logging.debug('_validate_task_async(%s): dimensions mismatch %s %s', packed,
+                  props.dimensions, bot_dimensions)
     stats.real_mismatch += 1
     raise ndb.Return((None, None))
 
@@ -518,7 +519,7 @@ def match_dimensions(request_dimensions, bot_dimensions):
   if frozenset(request_dimensions).difference(bot_dimensions):
     return False
   for key, values in request_dimensions.items():
-    if not all(v in bot_dimensions.get(key, []) for v in values):
+    if not any(v in bot_dimensions.get(key, []) for v in values):
       return False
   return True
 
