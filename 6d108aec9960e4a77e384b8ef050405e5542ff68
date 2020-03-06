@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a4350549_f939e74a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-06T21:03:31Z",
+      "side": 1,
+      "message": "IIUC, this is supposed to take something like:\n\n{\n  \u0027os\u0027: [\u0027Ubuntu-14.04\u0027, \u0027Ubuntu-16.04\u0027],\n  \u0027gpu\u0027: [\u0027Intel-HD630\u0027, \u0027Intel-UHD630\u0027],\n}\n\nand yield:\n\n[\n  {\n    \u0027os\u0027: \u0027Ubuntu-14.04\u0027,\n    \u0027gpu\u0027, \u0027Intel-HD630\u0027,\n  },\n  {\n    \u0027os\u0027: \u0027Ubuntu-14.04\u0027,\n    \u0027gpu\u0027: \u0027Intel-UHD630\u0027,\n  },\n  {\n    \u0027os\u0027: \u0027Ubuntu-16.04\u0027,\n    \u0027gpu\u0027: \u0027Intel-HD630\u0027,\n  },\n  {\n    \u0027os\u0027: \u0027Ubuntu-16.04\u0027,\n    \u0027gpu\u0027: \u0027Intel-UHD630\u0027,\n  },\n]\n\nIf so, I think using itertools.product() will be simpler, and avoid recursion. Example:\n\ndimensions \u003d dimensions.items()\nkeys \u003d [d[0] for d in dimensions]\nvalues \u003d [d[1] for d in dimensions]\nfor subset in itertools.product(*values):\n  yield {keys[i]: subset[i] for i in xrange(len(keys))}",
+      "range": {
+        "startLine": 474,
+        "startChar": 4,
+        "endLine": 474,
+        "endChar": 38
+      },
+      "revId": "6d108aec9960e4a77e384b8ef050405e5542ff68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82374488_c08f7f9d",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 4
