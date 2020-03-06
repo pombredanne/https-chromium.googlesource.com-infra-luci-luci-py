@@ -338,12 +338,16 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                         u'pool': [u'default'],
                         u'os': [u'Windows-3.1.1', u'Windows-3.2.1'],
                     }),
-                wait_for_capacity=False,
+                wait_for_capacity=True,
             )
         ])
 
-    # TODO(crbug.com/1057886): support 'or' dimension.
-    self.assertIsNone(run_result)
+    self.assertEqual('localhost', run_result.bot_id)
+    self.assertEqual(1, run_result.try_number)
+    to_run_key = task_to_run.request_to_task_to_run_key(
+        run_result.request_key.get(), 1, 0)
+    self.assertIsNone(to_run_key.get().queue_number)
+    self.assertIsNone(to_run_key.get().expiration_ts)
 
   def test_schedule_request(self):
     # It is tested indirectly in the other functions.

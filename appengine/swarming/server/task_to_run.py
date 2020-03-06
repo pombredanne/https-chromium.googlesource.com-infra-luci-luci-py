@@ -518,7 +518,7 @@ def match_dimensions(request_dimensions, bot_dimensions):
   if frozenset(request_dimensions).difference(bot_dimensions):
     return False
   for key, values in request_dimensions.items():
-    if not all(v in bot_dimensions.get(key, []) for v in values):
+    if not any(v in bot_dimensions.get(key, []) for v in values):
       return False
   return True
 

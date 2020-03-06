@@ -542,6 +542,14 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assert_count(1, task_queues.TaskDimensions)
     self.assertEqual([], task_queues.get_queues(bot_root_key))
 
+  def test_generate_subset_dimensions_for_or(self):
+    self.assertEqual(
+        list(
+            task_queues._generate_subset_dimensions_for_or({
+                'gpu': ['v1', 'v2'],
+                'os': ['Ubuntu-14.04'],
+            })), [['gpu:v1', 'os:Ubuntu-14.04'], ['gpu:v2', 'os:Ubuntu-14.04']])
+
   def test_hash_dimensions(self):
     with self.assertRaises(AttributeError):
       task_queues.hash_dimensions('this is not json')
