@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "16ba87f1_f7ddf161",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-07T02:21:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d71fa09e_6a20eed9",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa005e65_f191d45d",
         "filename": "appengine/auth_service/realms/config.py",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "460a42e5_c251aa61",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-07T02:21:04Z",
+      "side": 1,
+      "message": "This will surface in ereporter2. We have a ton of other places like that. I\u0027ll consider adding a metric if it would seem to be helpful.",
+      "parentUuid": "fa005e65_f191d45d",
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5a9ed6a_25b05b18",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-07T02:21:04Z",
+      "side": 1,
+      "message": "Fine, changed. JobQueue.add was nice since it made a closure itself. Now I\u0027ll need to type `functools.partial` more often.",
+      "parentUuid": "cc6a389b_ea940819",
+      "range": {
+        "startLine": 111,
+        "startChar": 31,
+        "endLine": 111,
+        "endChar": 35
+      },
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
