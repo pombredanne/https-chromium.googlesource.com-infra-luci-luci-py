@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d71fa09e_6a20eed9",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-07T00:51:43Z",
+      "side": 1,
+      "message": "maybe a comment above these two\n\n   # [config_body | db_rev] are mutually exclusive, and one MUST be non-None.",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa005e65_f191d45d",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-07T00:51:43Z",
+      "side": 1,
+      "message": "TODO: metric?",
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc6a389b_ea940819",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-07T00:51:43Z",
+      "side": 1,
+      "message": "I find it a little weird to passing the JobQueue down the stack instead of passing jobs (closures) up the stack. I assume this drastically simplifies something in a later CL?\n\n(and then executeJobQueue(list, sleepTime) would be simpler than a JobQueue class)",
+      "range": {
+        "startLine": 111,
+        "startChar": 31,
+        "endLine": 111,
+        "endChar": 35
+      },
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1050f76e_30adda07",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-07T00:51:43Z",
+      "side": 1,
+      "message": "add delete 🙃",
+      "range": {
+        "startLine": 184,
+        "startChar": 11,
+        "endLine": 184,
+        "endChar": 21
+      },
+      "revId": "94d55ece2c0323f37d5d2918a5a92e6e762fdbf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
