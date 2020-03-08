@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15a1783e_898d5c4c",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-08T16:23:39Z",
+      "side": 1,
+      "message": "I\u0027d personally go even farther and not save BotInfo in handshake, as I had previously recommended. That solves a lot of issues.\n\nThe only problem is to emit the \u0027bot_connected\u0027 event on the very first poll. I\u0027d recommend to synthetise it on the first poll so it\u0027d have the right dimensions stored in it.",
+      "revId": "1eaf1a2f9ffc7164cec712088b8f9f5d786d37bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
