@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "893d15c6_d74b568a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-09T08:15:46Z",
+      "side": 1,
+      "message": "this path was not taken always?",
+      "revId": "3764fa2670619bdf3545f3c8d57530ddfeef1ca4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
