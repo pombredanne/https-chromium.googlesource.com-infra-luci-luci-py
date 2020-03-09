@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6885c8ce_4b5676b2",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-09T17:25:00Z",
+      "side": 1,
+      "message": "What is problematic is after a restart: the bot existed, thus there\u0027s a BotInfo, but this code path is called before the injected bot_config is alive, thus it has invalid dimensions.",
+      "range": {
+        "startLine": 563,
+        "startChar": 43,
+        "endLine": 564,
+        "endChar": 10
+      },
+      "revId": "c38327779810b052fdf4d7ff9bff9a31d1386de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
