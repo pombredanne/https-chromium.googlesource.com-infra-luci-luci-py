@@ -557,68 +557,60 @@ def bot_event(
   if not bot_id:
     return
 
-  # Retrieve the previous BotInfo and update it.
-  info_key = get_info_key(bot_id)
-  bot_info = info_key.get()
-  if not bot_info:
-    bot_info = BotInfo(key=info_key)
+  skip_update_botinfo = True
   now = utils.utcnow()
-  # bot_missing event is created by a server, not a bot.
-  # So it shouldn't update last_seen_ts, external_ip, authenticated_as,
-  # maintenance_msg.
-  # If the last_seen_ts gets updated, it would change the bot composite
-  # to alive. And if it clears maintenance_msg, it would change the composite
-  # to NOT_IN_MAINTENANCE and lose the message.
-  if event_type != 'bot_missing':
-    bot_info.last_seen_ts = now
-    bot_info.external_ip = external_ip
-    bot_info.authenticated_as = authenticated_as
-    bot_info.maintenance_msg = maintenance_msg
-  dimensions_updated = False
-  if dimensions:
-    dimensions_flat = task_queues.dimensions_to_flat(dimensions)
-    if bot_info.dimensions_flat != dimensions_flat:
-      # The dimensions given at handshake may change at first polling since
-      # the initial handshake is done without the injected bot_config.py.
-      # When the given dimensions are the same with the stored ones,
-      # just keep them instead of deleting them unnecessarily. This fixes
-      # crbug.com/1054154 caused by temporarily disappearing bot dimensions.
-      # Otherwise, initializing a BotInfo only with 'id' and 'pool' which are
-      # referred as specifal dimensions. This avoids flapping dimensions
-      # reported in crbug.com/801679.
-      if event_type == 'bot_connected':
-        logging.debug('bot_event: Trimming dimensions: %s', dimensions)
-        dimensions_flat = [
-            d for d in dimensions_flat
-            if d.startswith('id:') or d.startswith('pool:')]
-      logging.debug('bot_event: Updating dimensions. from: %s, to: %s',
-                    bot_info.dimensions_flat, dimensions_flat)
-      bot_info.dimensions_flat = dimensions_flat
-      dimensions_updated = True
-  if state:
-    bot_info.state = state
-  if quarantined is not None:
-    bot_info.quarantined = quarantined
-  if task_id is not None:
-    bot_info.task_id = task_id
-  # Remove the task from the BotInfo summary in the following cases
-  # 1) When the task finishes (event_type=task_XXX)
-  #    In these cases, the BotEvent shall have the task
-  #    since the event still refers to it
-  # 2) When the bot is pooling (event_type=request_sleep)
-  #    The bot has already finished the previous task.
-  #    But it could have forgotten to remove the task from the BotInfo.
-  #    So ensure the task is removed.
-  # 3) When the bot is missing
-  #    We assume it can't process assigned task anymore.
-  if event_type in ('task_completed', 'task_error', 'task_killed',
-                    'request_sleep', 'bot_missing'):
-    bot_info.task_id = None
-    bot_info.task_name = None
-  if task_name:
-    bot_info.task_name = task_name
-  if version is not None:
-    bot_info.version = version
+
+  if skip_update_botinfo:
+    bot_info = None
+  else:
+    # Retrieve the previous BotInfo and update it.
+    info_key = get_info_key(bot_id)
+    bot_info = info_key.get()
+    if not bot_info:
+      bot_info = BotInfo(key=info_key)
+    # bot_missing event is created by a server, not a bot.
+    # So it shouldn't update last_seen_ts, external_ip, authenticated_as,
+    # maintenance_msg.
+    # If the last_seen_ts gets updated, it would change the bot composite
+    # to alive. And if it clears maintenance_msg, it would change the composite
+    # to NOT_IN_MAINTENANCE and lose the message.
+    if event_type != 'bot_missing':
+      bot_info.last_seen_ts = now
+      bot_info.external_ip = external_ip
+      bot_info.authenticated_as = authenticated_as
+      bot_info.maintenance_msg = maintenance_msg
+    dimensions_updated = False
+    if dimensions:
+      dimensions_flat = task_queues.dimensions_to_flat(dimensions)
+      if bot_info.dimensions_flat != dimensions_flat:
+        logging.debug('bot_event: Updating dimensions. from: %s, to: %s',
+                      bot_info.dimensions_flat, dimensions_flat)
+        bot_info.dimensions_flat = dimensions_flat
+        dimensions_updated = True
+    if state:
+      bot_info.state = state
+    if quarantined is not None:
+      bot_info.quarantined = quarantined
+    if task_id is not None:
+      bot_info.task_id = task_id
+    # Remove the task from the BotInfo summary in the following cases
+    # 1) When the task finishes (event_type=task_XXX)
+    #    In these cases, the BotEvent shall have the task
+    #    since the event still refers to it
+    # 2) When the bot is pooling (event_type=request_sleep)
+    #    The bot has already finished the previous task.
+    #    But it could have forgotten to remove the task from the BotInfo.
+    #    So ensure the task is removed.
+    # 3) When the bot is missing
+    #    We assume it can't process assigned task anymore.
+    if event_type in ('task_completed', 'task_error', 'task_killed',
+                      'request_sleep', 'bot_missing'):
+      bot_info.task_id = None
+      bot_info.task_name = None
+    if task_name:
+      bot_info.task_name = task_name
+    if version is not None:
+      bot_info.version = version
 
   if quarantined:
     # Make sure it is not in the queue since it can't reap anything.
@@ -634,7 +626,7 @@ def bot_event(
     # crbug.com/952984: It needs to save BotEvent when quarantined.
     skip_save_event = (not dimensions_updated and not quarantined and
                        event_type in ('request_sleep', 'task_update'))
-    if skip_save_event:
+    if skip_save_event and bot_info:
       bot_info.put()
       return
 
@@ -643,15 +635,18 @@ def bot_event(
         event_type=event_type,
         external_ip=external_ip,
         authenticated_as=authenticated_as,
-        dimensions_flat=bot_info.dimensions_flat,
-        quarantined=bot_info.quarantined,
-        maintenance_msg=bot_info.maintenance_msg,
-        state=bot_info.state,
-        task_id=task_id or bot_info.task_id,
-        version=bot_info.version,
         **kwargs)
+    extra = []
+    if bot_info:
+      event.dimensions_flat = bot_info.dimensions_flat
+      event.quarantined = bot_info.quarantined
+      event.maintenance_msg = bot_info.maintenance_msg
+      event.state = bot_info.state
+      event.task_id = task_id or bot_info.task_id
+      event.version = bot_info.version
+      extra.append(bot_info)
 
-    datastore_utils.store_new_version(event, BotRoot, [bot_info])
+    datastore_utils.store_new_version(event, BotRoot, extra)
     return event.key
   finally:
     # Store the event in memcache to accelerate monitoring.
