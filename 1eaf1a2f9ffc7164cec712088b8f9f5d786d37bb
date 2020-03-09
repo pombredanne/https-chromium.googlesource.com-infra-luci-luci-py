@@ -16,6 +16,24 @@
       "revId": "1eaf1a2f9ffc7164cec712088b8f9f5d786d37bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a69b275c_d5578c22",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-09T02:02:55Z",
+      "side": 1,
+      "message": "Ok, Let me retry no BotInfo registration at handshake.\n\n\u003e The only problem is to emit the \u0027bot_connected\u0027 event on the very first poll. I\u0027d recommend to synthetise it on the first poll so it\u0027d have the right dimensions stored in it.\n\nThere are also events sent after handshake before the first polling.\nFor those cases, I\u0027m thinking to store only BotEvent entities at /handshake, /events API calls by introducing \u0027skip_save_bot_info\u0027 flag in this function.\n\n\u0027bot_connected\u0027 event can wait until the first poll as you suggested. but would it be better to keep the real timestamps?",
+      "parentUuid": "15a1783e_898d5c4c",
+      "revId": "1eaf1a2f9ffc7164cec712088b8f9f5d786d37bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
