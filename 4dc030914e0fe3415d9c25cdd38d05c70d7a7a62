@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1658a5e3_3e47de30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:33:34Z",
+      "side": 1,
+      "message": "bindings?\n\nCan we make sure we specifically have metrics on the time it takes to calculate this? I expect it could shoot up quite rapidly as people start using the system (especially if Chrome OS decides to use it), and it would be good to do optimization pre-outage, if possible.",
+      "range": {
+        "startLine": 21,
+        "startChar": 40,
+        "endLine": 21,
+        "endChar": 59
+      },
+      "revId": "4dc030914e0fe3415d9c25cdd38d05c70d7a7a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78eeaf58_4f825cb9",
+        "filename": "appengine/auth_service/realms/rules.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:33:34Z",
+      "side": 1,
+      "message": "note; you could use frozensets as dict keys too, to avoid the sort here",
+      "range": {
+        "startLine": 73,
+        "startChar": 26,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "4dc030914e0fe3415d9c25cdd38d05c70d7a7a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0192c00a_e0ea84a9",
+        "filename": "appengine/auth_service/realms/rules.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:33:34Z",
+      "side": 1,
+      "message": "why the scare quotes?",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "4dc030914e0fe3415d9c25cdd38d05c70d7a7a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7895bb41_fed13712",
+        "filename": "appengine/auth_service/realms/rules.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:33:34Z",
+      "side": 1,
+      "message": "internal method? only seems to be used by \u0027role\u0027 below? Also at least one use of it directly converts the tuple to a set... maybe return the generator directly? Alternately, I would consider `frozenset` instead of tuple for self._roles storage, which might make merging the result of self.role a bit more efficient:\n\n  perms \u003d self.permissions(custom_role.permissions).union(\n    self.role(parent) for parent in custom_role.extends\n  )\n\nThat said, this is python. So.... who knows.",
+      "range": {
+        "startLine": 122,
+        "startChar": 6,
+        "endLine": 122,
+        "endChar": 17
+      },
+      "revId": "4dc030914e0fe3415d9c25cdd38d05c70d7a7a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c1ea38_75fd6428",
+        "filename": "appengine/auth_service/realms/rules.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:33:34Z",
+      "side": 1,
+      "message": "I think this is also \u0027bindings\u0027?",
+      "range": {
+        "startLine": 174,
+        "startChar": 6,
+        "endLine": 174,
+        "endChar": 25
+      },
+      "revId": "4dc030914e0fe3415d9c25cdd38d05c70d7a7a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ef8669b_a21aa86b",
+        "filename": "appengine/components/components/auth/proto/realms.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:33:34Z",
+      "side": 1,
+      "message": "probably needs regen of .go file?",
+      "range": {
+        "startLine": 154,
+        "startChar": 27,
+        "endLine": 154,
+        "endChar": 42
+      },
+      "revId": "4dc030914e0fe3415d9c25cdd38d05c70d7a7a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
