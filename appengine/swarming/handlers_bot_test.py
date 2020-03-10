@@ -888,7 +888,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
     expected = [
       {
         'authenticated_as': u'bot:whitelisted-ip',
-        'dimensions': {},
+        'dimensions': {
+            u'id': [u'bot1'],
+            u'pool': [u'default']
+        },
         'event_type': unicode(e),
         'external_ip': u'192.168.2.2',
         'last_seen_ts': None,
@@ -906,7 +909,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
           u'sleep_streak': 0,
           u'started_ts': 1410990411.111,
         },
-        'task_id': None,
+        'task_id': u'',
         'ts': self.now,
         'version': self.bot_version,
       } for e in reversed(handlers_bot.BotEventHandler.ALLOWED_EVENTS)
@@ -915,7 +918,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
     expected.append(
       {
         'authenticated_as': u'bot:whitelisted-ip',
-        'dimensions': {},
+        'dimensions': {
+            u'id': [u'bot1'],
+            u'pool': [u'default']
+        },
         'event_type': u'bot_connected',
         'external_ip': u'192.168.2.2',
         'last_seen_ts': None,

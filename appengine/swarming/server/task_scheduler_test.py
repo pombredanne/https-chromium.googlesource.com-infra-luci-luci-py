@@ -124,7 +124,8 @@ def _bot_update_task(run_result_key, **kwargs):
       io_timeout=kwargs.get('io_timeout', False),
       cost_usd=kwargs.get('cost_usd', 0.1),
       outputs_ref=kwargs.get('outputs_ref'),
-      performance_stats=kwargs.get('performance_stats'))
+      performance_stats=kwargs.get('performance_stats'),
+      canceled=kwargs.get('canceled'))
 
 
 class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
@@ -1260,7 +1261,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         State.RUNNING,
         _bot_update_task(
             run_result.key,
-            output='hi',
+            output='hi ',
             output_chunk_start=0))
     self.assertEqual(
         State.COMPLETED,
@@ -1280,7 +1281,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         State.RUNNING,
         _bot_update_task(
             run_result_key=run_result.key,
-            output='hi',
+            output='hi ',
             output_chunk_start=0))
     self.assertEqual(
         State.RUNNING,
@@ -1610,6 +1611,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     actual = task_to_run._lookup_cache_is_taken_async(to_run_key).get_result()
     self.assertEqual(True, actual)
 
+  # TODO(jwata) add test here
   def test_cancel_task_running(self):
     # Cancel a running task.
     pub_sub_calls = self.mock_pub_sub()
@@ -1716,6 +1718,51 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(run_result.killing)
     self.assertEqual(State.COMPLETED, run_result.state)
     self.assertEqual(2, len(pub_sub_calls)) # No other message.
+    self.assertEqual(1, self.execute_tasks())
+
+  def test_cancel_task_running_setup(self):
+    # Cancel a assigned task before running
+    pub_sub_calls = self.mock_pub_sub()
+    run_result = self._quick_reap(1, 0, pubsub_topic='projects/abc/topics/def')
+    self.assertEqual(1, len(pub_sub_calls)) # RUNNING
+
+    # Request cancel
+    ok, was_running = task_scheduler.cancel_task(
+        run_result.request_key.get(), run_result.result_summary_key, True,
+        None)
+    self.assertEqual(True, ok)
+    self.assertEqual(True, was_running)
+    self.assertEqual(2, self.execute_tasks())
+    self.assertEqual(2, len(pub_sub_calls)) # CANCELED
+
+    # At this point, the task status is still running and the bot is unaware.
+    run_result = run_result.key.get()
+    self.assertEqual(State.RUNNING, run_result.state)
+    self.assertEqual(True, run_result.killing)
+
+    # Bot pulls once, gets the signal about killing, which starts the graceful
+    # termination dance.
+    self.assertEqual(State.KILLED, _bot_update_task(run_result.key))
+
+    # At this point, the status is still running, until the bot cancels
+    # the task.
+    run_result = run_result.key.get()
+    self.assertEqual(State.RUNNING, run_result.state)
+    self.assertEqual(True, run_result.killing)
+
+    # Close the task.
+    self.assertEqual(
+        State.CANCELED,
+        _bot_update_task(
+            run_result.key,
+            exit_code=0,
+            duration=0.1,
+            canceled=True))
+
+    run_result = run_result.key.get()
+    self.assertEqual(False, run_result.killing)
+    self.assertEqual(State.CANCELED, run_result.state)
+    self.assertEqual(3, len(pub_sub_calls)) # CANCELED
     self.assertEqual(1, self.execute_tasks())
 
   def test_cron_abort_expired_task_to_run(self):

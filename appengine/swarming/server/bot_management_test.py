@@ -48,7 +48,7 @@ def _bot_event(
   """Calls bot_management.bot_event with default arguments."""
   if not bot_id:
     bot_id = u'id1'
-  if not dimensions and kwargs.get('event_type') != 'bot_connected':
+  if not dimensions:
     dimensions = {
       u'id': [bot_id],
       u'os': [u'Ubuntu', u'Ubuntu-16.04'],
@@ -68,11 +68,6 @@ def _bot_event(
       task_id=task_id,
       task_name=task_name,
       **kwargs)
-
-
-def _ensure_bot_info(bot_id=u'id1', **kwargs):
-  _bot_event(bot_id=bot_id, event_type='request_sleep', **kwargs)
-  return bot_management.get_info_key(bot_id).get()
 
 
 def _gen_bot_info(**kwargs):
@@ -111,13 +106,16 @@ def _gen_bot_info(**kwargs):
 
 
 def _gen_bot_event(**kwargs):
+  dimensions = {
+    u'id': [u'id1'],
+    u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+    u'pool': [u'default'],
+  }
+  if kwargs['event_type'] == 'bot_connected':
+    del dimensions[u'os']
   out = {
     'authenticated_as': u'bot:id1.domain',
-    'dimensions': {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
-    },
+    'dimensions': dimensions,
     'external_ip': u'8.8.4.4',
     'last_seen_ts': None,
     'lease_id': None,
@@ -276,23 +274,19 @@ class BotManagementTest(test_case.TestCase):
         memcache.get('id1:2010-01-02T03:04', namespace='BotEvents'))
 
   @parameterized.expand([
-      (u'task_completed', True, False),
-      (u'task_error', True, False),
-      (u'task_killed', True, False),
-      (u'request_sleep', True, True),
-      (u'task_update', False, True),
+      (u'task_completed', True),
+      (u'task_error', True),
+      (u'task_killed', True),
+      (u'request_sleep', True),
+      (u'task_update', False),
   ])
-  def test_bot_event_reset_task(self, event, reset_task, skip_store_event):
-    bot_id = u'id1'
-    task_id = u'12311'
-    task_name = u'yo'
+  def test_bot_event_reset_task(self, event, reset_task):
+    bot_id = 'id1'
     d = {
         u'id': [u'id1'],
         u'os': [u'Ubuntu', u'Ubuntu-16.04'],
         u'pool': [u'default'],
     }
-    bot_info = _ensure_bot_info(
-        bot_id=bot_id, dimensions=d, task_id=task_id, task_name=task_name)
     bot_management.bot_event(
         event_type=event,
         bot_id=bot_id,
@@ -303,8 +297,8 @@ class BotManagementTest(test_case.TestCase):
         version=_VERSION,
         quarantined=False,
         maintenance_msg=None,
-        task_id=task_id,
-        task_name=task_name)
+        task_id='12311',
+        task_name='yo')
 
     # check bot_info
     composite = [
@@ -323,20 +317,20 @@ class BotManagementTest(test_case.TestCase):
       expected = _gen_bot_info(
           composite=composite+[bot_management.BotInfo.BUSY],
           id=bot_id,
-          task_id=task_id,
-          task_name=task_name)
-
-    self.assertEqual(expected, bot_info.key.get().to_dict())
+          task_id=u'12311',
+          task_name=u'yo')
+    self.assertEqual(expected,
+                     bot_management.get_info_key(bot_id).get().to_dict())
 
     # bot_event should have task_id
-    if not skip_store_event:
-      expected_event = _gen_bot_event(event_type=event, task_id=task_id)
-      last_event = bot_management.get_events_query(bot_id, True).get()
-      self.assertEqual(expected_event, last_event.to_dict())
+    expected_events = [_gen_bot_event(event_type=event, task_id=u'12311')]
+    self.assertEqual(
+        expected_events,
+        [i.to_dict() for i in bot_management.get_events_query(bot_id, True)])
 
   def test_get_events_query(self):
     _bot_event(event_type='bot_connected')
-    expected = [_gen_bot_event(event_type=u'bot_connected', dimensions={})]
+    expected = [_gen_bot_event(event_type=u'bot_connected')]
     self.assertEqual(
         expected,
         [i.to_dict() for i in bot_management.get_events_query('id1', True)])
@@ -391,7 +385,7 @@ class BotManagementTest(test_case.TestCase):
 
     expected = [
       _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
-      _gen_bot_event(event_type=u'bot_connected', dimensions={}),
+      _gen_bot_event(event_type=u'bot_connected'),
     ]
     self.assertEqual(
         expected,
@@ -402,30 +396,32 @@ class BotManagementTest(test_case.TestCase):
         memcache.get('id1:2010-01-02T03:04', namespace='BotEvents'))
 
   def test_bot_event_update_dimensions(self):
-    bot_id = 'id1'
-    bot_info_key = bot_management.get_info_key(bot_id)
+    # 'bot_connected' event registers only id and pool at first handshake.
+    _bot_event(event_type='bot_connected')
+    bot_info = bot_management.get_info_key('id1').get()
+    self.assertEqual(bot_info.dimensions_flat, [u'id:id1', u'pool:default'])
 
-    # 'bot_connected' event does not create BotInfo.
-    _bot_event(bot_id=bot_id, event_type='bot_connected')
-    self.assertIsNone(bot_info_key.get())
-
-    # 'bot_hook_log' event also does not create BotInfo.
-    _bot_event(bot_id=bot_id, event_type='bot_hook_log')
-    self.assertIsNone(bot_info_key.get())
-
-    # 'request_sleep' initializes BotInfo with given dimensions at first poll.
-    _bot_event(
-        event_type='request_sleep',
-        dimensions={'id': ['id1'], 'os': ['Android'], 'pool': ['default']})
+    # 'request_sleep' stores given dimensions at first polling.
+    _bot_event(event_type='request_sleep')
     self.assertEqual(
-        bot_info_key.get().dimensions_flat,
-        [u'id:id1', u'os:Android', u'pool:default'])
+        bot_info.dimensions_flat,
+        [u'id:id1', u'os:Ubuntu', u'os:Ubuntu-16.04', u'pool:default'])
 
-    # 'bot_connected' doesn't update dimensions since bot_config isn't injected.
+    # 'bot_connected' keeps dimensions if the given dimensions are the same with
+    # the stored ones.
     _bot_event(event_type='bot_connected')
     self.assertEqual(
-        bot_info_key.get().dimensions_flat,
-        [u'id:id1', u'os:Android', u'pool:default'])
+        bot_info.dimensions_flat,
+        [u'id:id1', u'os:Ubuntu', u'os:Ubuntu-16.04', u'pool:default'])
+
+    # 'bot_connected' resets dimensions only with id and pool
+    # if they have changed. e.g. OS update
+    _bot_event(event_type='bot_connected', dimensions={
+        u'id': [u'id1'],
+        u'pool': [u'default'],
+        u'os': ['Ubuntu', 'Ubuntu-16.05']
+    })
+    self.assertEqual(bot_info.dimensions_flat, [u'id:id1', u'pool:default'])
 
   def test_get_info_key(self):
     self.assertEqual(
@@ -562,9 +558,9 @@ class BotManagementTest(test_case.TestCase):
 
   def test_cron_delete_old_bot(self):
     # Create a Bot with no BotEvent and another bot with one.
-    event_key = _bot_event(bot_id=u'id1', event_type='request_sleep')
+    event_key = _bot_event(bot_id=u'id1', event_type='bot_connected')
     # Delete the BotEvent entity.
-    _bot_event(bot_id=u'id2', event_type='request_sleep').delete()
+    _bot_event(bot_id=u'id2', event_type='bot_connected').delete()
     # BotRoot + BotInfo.
     self.assertEqual(2, bot_management.cron_delete_old_bot())
     actual = bot_management.BotEvent.query().fetch(keys_only=True)
