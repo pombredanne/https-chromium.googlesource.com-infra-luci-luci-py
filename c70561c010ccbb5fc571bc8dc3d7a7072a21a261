@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "501b2568_d896df36",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1500,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-03-10T23:44:53Z",
+      "side": 1,
+      "message": "Might be a little hacky to change behavior based on tags. If you have an alternative fix, LMK and I can look into it.",
+      "revId": "c70561c010ccbb5fc571bc8dc3d7a7072a21a261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a90465b_b56188d3",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-03-10T23:44:53Z",
+      "side": 1,
+      "message": "This test fails without the task_request.py fix (see patchset 6) but passes with the fix (see patchset 7)",
+      "range": {
+        "startLine": 826,
+        "startChar": 6,
+        "endLine": 826,
+        "endChar": 42
+      },
+      "revId": "c70561c010ccbb5fc571bc8dc3d7a7072a21a261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
