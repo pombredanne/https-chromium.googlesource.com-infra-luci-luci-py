@@ -16,6 +16,24 @@
       "revId": "3764fa2670619bdf3545f3c8d57530ddfeef1ca4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20877370_e7c2e560",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-10T01:27:15Z",
+      "side": 1,
+      "message": "Sorry, it was wip. Will create another CL.",
+      "parentUuid": "893d15c6_d74b568a",
+      "revId": "3764fa2670619bdf3545f3c8d57530ddfeef1ca4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
