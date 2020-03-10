@@ -1476,13 +1476,14 @@ def validate_request_key(request_key):
             root_entity_shard_id))
 
 
-def _select_task_template(pool, template_apply):
+def _select_task_template(pool, template_apply, orig_tags):
   """Selects the task template to apply from the given pool config.
 
   Args:
     pool (str) - The name of the pool to select a task template from.
     template_apply (swarming_rpcs.PoolTaskTemplate) - The PoolTaskTemplate
       enum controlling application of the deployment.
+    orig_tags (list[String]) - Tags currently attached to the task.
 
   Returns:
     (TaskTemplate, extra_tags) if there's a template to apply or else
@@ -1495,20 +1496,27 @@ def _select_task_template(pool, template_apply):
 
   assert isinstance(template_apply, TemplateApplyEnum)
 
+  template_tag_prefix = 'swarming.pool.template'
+  if any(tag.startswith(template_tag_prefix) for tag in orig_tags):
+    # If we're running a task that already has the template tag, we're likely
+    # retrying a task. In that case, don't re-apply the template. CIPD packages
+    # and/or env vars will likely conflict otherwise.
+    return None, ()
+
   pool_cfg = pools_config.get_pool_config(pool)
   if not pool_cfg:
-    return None, ('swarming.pool.template:no_config',)
+    return None, ('%s:no_config' % template_tag_prefix,)
 
-  tags = ('swarming.pool.version:%s' % (pool_cfg.rev,),)
+  extra_tags = ('swarming.pool.version:%s' % (pool_cfg.rev,),)
 
   if template_apply == TEMPLATE_SKIP:
-    tags += ('swarming.pool.template:skip',)
-    return None, tags
+    extra_tags += ('%s:skip' % template_tag_prefix,)
+    return None, extra_tags
 
   deployment = pool_cfg.task_template_deployment
   if not deployment:
-    tags += ('swarming.pool.template:none',)
-    return None, tags
+    extra_tags += ('%s:none' % template_tag_prefix,)
+    return None, extra_tags
 
   canary = deployment.canary and (
     (template_apply == TEMPLATE_CANARY_PREFER)
@@ -1517,8 +1525,9 @@ def _select_task_template(pool, template_apply):
   )
   to_apply = deployment.canary if canary else deployment.prod
 
-  tags += ('swarming.pool.template:%s' % ('canary' if canary else 'prod'),)
-  return to_apply, tags
+  extra_tags += (
+      '%s:%s' % (template_tag_prefix, 'canary' if canary else 'prod'),)
+  return to_apply, extra_tags
 
 
 def _apply_task_template(task_template, props):
@@ -1654,8 +1663,9 @@ def init_new_request(request, allow_high_priority, template_apply):
   request.service_account = request.service_account or u'none'
   request.service_account_token = None
 
-  task_template, extra_tags = _select_task_template(
-      request.pool, template_apply)
+  all_tags = set(request.manual_tags).union(_get_automatic_tags(request))
+  task_template, extra_tags = _select_task_template(request.pool,
+                                                    template_apply, all_tags)
 
   if request.task_slices:
     exp = 0
@@ -1670,7 +1680,6 @@ def init_new_request(request, allow_high_priority, template_apply):
     request.expiration_ts = request.created_ts + datetime.timedelta(seconds=exp)
 
   # This is useful to categorize the task.
-  all_tags = set(request.manual_tags).union(_get_automatic_tags(request))
   all_tags.update(extra_tags)
   request.tags = sorted(all_tags)
 
