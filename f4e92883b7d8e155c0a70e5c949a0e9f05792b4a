@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d473cb7_645becc6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-10T18:03:23Z",
+      "side": 1,
+      "message": "Please add a short comment to explain what is the side effect of this line.",
+      "revId": "f4e92883b7d8e155c0a70e5c949a0e9f05792b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
