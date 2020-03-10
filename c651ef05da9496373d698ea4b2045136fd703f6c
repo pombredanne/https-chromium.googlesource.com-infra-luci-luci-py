@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "233e2a49_f74cce9d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-10T19:21:20Z",
+      "side": 1,
+      "message": "Please add a comment here to note that when:\n- A bot is handshaking with event bot_connected\n- The bot had connected before\n\nThen the event dimensions will be set to the ones from the last time the bot polled previously. This is because in handshake we can\u0027t yet trust the dimensions since the injected bot_config is not live yet. This will mess up the BQ table a bit for bots with changing dimensions, like if they are in good standing or not (e.g. dut_state in ChromeOS).\n\nThis is why I was thinking about deferring bot_connected registration to the first poll. Or the bot could explicitly call a new endpoint, e.g.\n- /handshake\n- /on_connected\n- /poll",
+      "revId": "c651ef05da9496373d698ea4b2045136fd703f6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
