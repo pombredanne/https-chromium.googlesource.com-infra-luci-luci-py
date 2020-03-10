@@ -46,6 +46,29 @@
       "revId": "c38327779810b052fdf4d7ff9bff9a31d1386de5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d227795_c6ff20aa",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-10T04:37:30Z",
+      "side": 1,
+      "message": "why not skip storing only in bot_connected?",
+      "range": {
+        "startLine": 565,
+        "startChar": 31,
+        "endLine": 565,
+        "endChar": 64
+      },
+      "revId": "c38327779810b052fdf4d7ff9bff9a31d1386de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
