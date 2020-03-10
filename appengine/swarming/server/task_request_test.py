@@ -823,6 +823,24 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual(as_dict['task_slices'][0]['properties']['env']['hi'],
                      'prod')
 
+  def test_init_new_request_retry_template(self):
+    # Request a normal task that uses templates.
+    self._set_pool_config_with_templates(
+        _gen_task_template(env={'hi': 'prod'}),
+        canary=None,
+        canary_chance=0,  # always prefer prod serverside
+    )
+    initial_task_request = _gen_request()
+    initial_task_as_dict = initial_task_request.to_dict()
+    self.assertIn(u'swarming.pool.template:prod', initial_task_as_dict['tags'])
+
+    # Request another task in the same pool, this time with the template's
+    # settings already applied.
+    retry_props = _gen_properties(env={u'hi': u'prod'})
+    retry_task_request = _gen_request(properties=retry_props, tags=initial_task_as_dict['tags'])
+    retry_task_as_dict = retry_task_request.to_dict()
+    self.assertIn(u'swarming.pool.template:prod', retry_task_as_dict['tags'])
+
   def test_duped(self):
     # Two TestRequest with the same properties.
     request_1 = _gen_request(properties=_gen_properties(idempotent=True))
