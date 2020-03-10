@@ -69,6 +69,30 @@
       "revId": "c38327779810b052fdf4d7ff9bff9a31d1386de5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfe0ca78_832eeb44",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-10T04:52:37Z",
+      "side": 1,
+      "message": "We want to skip storing BotInfo at other events. like bot_hook_log and other bot_*.\nThe events at polling has prefix \u0027request_\u0027.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/bot_management.py?q\u003df:bot_management\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d352",
+      "parentUuid": "6d227795_c6ff20aa",
+      "range": {
+        "startLine": 565,
+        "startChar": 31,
+        "endLine": 565,
+        "endChar": 64
+      },
+      "revId": "c38327779810b052fdf4d7ff9bff9a31d1386de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
