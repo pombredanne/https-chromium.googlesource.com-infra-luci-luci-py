@@ -22,6 +22,30 @@
       "revId": "3fb99ed17604397b261383ad8ded6cc75ac90f3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eaba5d4_e5b8618a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-10T05:32:07Z",
+      "side": 1,
+      "message": "The bot gets \u0027request_sleep\u0027 at the very beginning because no dimensions nor BotInfo are registered. \nI also included other events at polling to create BotInfo as soon as possible, to avoid unexpected issues.\nThough, we may(or should) skip at \u0027request_udpate\u0027, \u0027request_restart\u0027 since they are asking the bot to update bot code or bot_config.py. But I\u0027m not sure if it\u0027s worth doing so.",
+      "parentUuid": "5378d38f_fb26b48d",
+      "range": {
+        "startLine": 565,
+        "startChar": 54,
+        "endLine": 565,
+        "endChar": 62
+      },
+      "revId": "3fb99ed17604397b261383ad8ded6cc75ac90f3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
