@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5378d38f_fb26b48d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-10T05:19:06Z",
+      "side": 1,
+      "message": "why not only request_task?",
+      "range": {
+        "startLine": 565,
+        "startChar": 54,
+        "endLine": 565,
+        "endChar": 62
+      },
+      "revId": "3fb99ed17604397b261383ad8ded6cc75ac90f3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
