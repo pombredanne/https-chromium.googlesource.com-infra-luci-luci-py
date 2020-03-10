@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26dc2f47_6f73c928",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-10T22:45:15Z",
+      "side": 1,
+      "message": "better to do like _gen_properties in L50?",
+      "revId": "6d768227c204e2ddd57144cd1a11621bb7e3eaa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
