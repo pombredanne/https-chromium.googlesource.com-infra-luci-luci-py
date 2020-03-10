@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b09311bd_e1d9e720",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:44:31Z",
+      "side": 1,
+      "message": "maybe log here? otherwise we\u0027ll see the previous log, but no change will happen (and I\u0027m not sure if \u0027rev\u0027 is guaranteed to match in a race, if there are lots of permissions changes happening at the same time as a race here?)",
+      "range": {
+        "startLine": 149,
+        "startChar": 39,
+        "endLine": 149,
+        "endChar": 46
+      },
+      "revId": "4c21950979f1cdddb4bc8f1a644310a1b61f84b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aada7da6_a4f8384e",
+        "filename": "appengine/components/components/auth/model.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-10T19:44:31Z",
+      "side": 1,
+      "message": "wow fancy",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 31
+      },
+      "revId": "4c21950979f1cdddb4bc8f1a644310a1b61f84b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
