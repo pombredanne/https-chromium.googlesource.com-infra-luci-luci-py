@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95b2b591_b2176a00",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-11T23:39:00Z",
+      "side": 1,
+      "message": "this is the main logical change in this CL",
+      "range": {
+        "startLine": 1174,
+        "startChar": 0,
+        "endLine": 1196,
+        "endChar": 10
+      },
+      "revId": "85fae478a76a17449bbabbc95cd61e453bd90967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
