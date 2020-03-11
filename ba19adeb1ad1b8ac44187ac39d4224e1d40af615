@@ -16,6 +16,24 @@
       "revId": "ba19adeb1ad1b8ac44187ac39d4224e1d40af615",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "152d1fbc_b0ae298d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-03-11T22:44:09Z",
+      "side": 1,
+      "message": "Indeed, good find.\n\nFunny how both bugs were opened by me... Guess I don\u0027t have a very good memory ;)",
+      "parentUuid": "5ce5c933_1f1f0ea9",
+      "revId": "ba19adeb1ad1b8ac44187ac39d4224e1d40af615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
