@@ -16,6 +16,24 @@
       "revId": "6d768227c204e2ddd57144cd1a11621bb7e3eaa6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d253a650_65eb07d8",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-11T00:48:24Z",
+      "side": 1,
+      "message": "\u003e _gen_properties in L50?\n\n\nI like this. Thanks.\nI left the run_result_key since it makes callers slightly shorter.",
+      "parentUuid": "26dc2f47_6f73c928",
+      "revId": "6d768227c204e2ddd57144cd1a11621bb7e3eaa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
