@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b06ceb8_a2651de2",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T10:25:07Z",
+      "side": 1,
+      "message": "made crrev.com/c/2097764",
+      "parentUuid": "02953a35_c2fd5426",
+      "range": {
+        "startLine": 475,
+        "startChar": 37,
+        "endLine": 475,
+        "endChar": 47
+      },
+      "revId": "f23519e3152cc2d7def3c5f783a09ff3ec8f6f5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
