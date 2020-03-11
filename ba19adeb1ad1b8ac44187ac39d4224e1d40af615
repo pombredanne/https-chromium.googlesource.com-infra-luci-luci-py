@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ce5c933_1f1f0ea9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T22:22:41Z",
+      "side": 1,
+      "message": "This fixes following bug too?\ncrbug.com/1017740\ncrbug.com/960835",
+      "revId": "ba19adeb1ad1b8ac44187ac39d4224e1d40af615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
