@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f8bd2bb_7fc290c1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T07:24:59Z",
+      "side": 1,
+      "message": "I declared here because other constants are also declared here.\nAlso I prefer to not define variable in global scope unnecessarily.",
+      "parentUuid": "bdb6f908_2aafab7a",
+      "revId": "92ede220cacda17b994ddb0a7d3a90b3bab44803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e435ed21_7fc08157",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2020-03-11T07:19:09Z",
       "side": 1,
       "message": "I don\u0027t want to think about this case, but how about the \u0027|\u0027 is included in multiple values with the same key?\n\n[(\u0027os\u0027, \u0027A|B\u0027),(\u0027os\u0027, \u0027C|D\u0027)]\n\nYou should prohibit it.",
+      "revId": "92ede220cacda17b994ddb0a7d3a90b3bab44803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e886169_f8c082ed",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T07:24:59Z",
+      "side": 1,
+      "message": "I think we\u0027ll match one of the below in this case.\n[\u0027os:A\u0027, \u0027os:C\u0027]\n[\u0027os:A\u0027, \u0027os:D\u0027]\n[\u0027os:B\u0027, \u0027os:C\u0027]\n[\u0027os:B\u0027, \u0027os:D\u0027]",
+      "parentUuid": "e435ed21_7fc08157",
       "revId": "92ede220cacda17b994ddb0a7d3a90b3bab44803",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
