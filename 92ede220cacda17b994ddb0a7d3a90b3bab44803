@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e248d471_f61f7691",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-11T07:36:06Z",
+      "side": 1,
+      "message": "Ack.\n\nPlease consider define it globally if it needs to be referred from out side.",
+      "parentUuid": "9f8bd2bb_7fc290c1",
+      "revId": "92ede220cacda17b994ddb0a7d3a90b3bab44803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e435ed21_7fc08157",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 9
@@ -69,6 +87,24 @@
       "revId": "92ede220cacda17b994ddb0a7d3a90b3bab44803",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d47cd652_a8d73c50",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-11T07:36:06Z",
+      "side": 1,
+      "message": "well, I know it works. But I think it shouldn\u0027t be supported...\nBut Let\u0027s not to discuss now since currently only(?) \u0027caches\u0027 dimensions have multiple values.",
+      "parentUuid": "7e886169_f8c082ed",
+      "revId": "92ede220cacda17b994ddb0a7d3a90b3bab44803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
