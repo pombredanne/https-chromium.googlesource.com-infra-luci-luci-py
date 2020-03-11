@@ -70,6 +70,24 @@
       "revId": "2ea6d35557a095452309c1234073a2104752123f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2ec997f_e2113187",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T10:21:39Z",
+      "side": 1,
+      "message": "let me add test for has_capacity instead of wait_for_capacity",
+      "parentUuid": "40a9ff18_fcc20a96",
+      "revId": "2ea6d35557a095452309c1234073a2104752123f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
