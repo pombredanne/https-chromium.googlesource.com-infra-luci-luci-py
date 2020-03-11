@@ -16,6 +16,24 @@
       "revId": "c651ef05da9496373d698ea4b2045136fd703f6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a98166e5_4cd8e794",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-11T01:03:58Z",
+      "side": 1,
+      "message": "\u003e Then the event dimensions will be set to the ones from the last time the bot polled previously.\n\u003e his will mess up the BQ table a bit for bots with changing dimensions, like if they are in good standing or not (e.g. dut_state in ChromeOS).\n\nAh, I see. Now I understand your point.\nSo the dimensions in \u0027bot_connected\u0027 event aren\u0027t really true.\n\nHow about always passing dimensions to bot_event() from callers with \u0027register_dimensions\u0027 flag?\nIf the flag is True, the given dimensions will not applied to BotInfo.dimensions_flat. (/poll)\nOtherwise, they are just applied to the event. (/handshake, /event etc)\nSo this is more explicit.",
+      "parentUuid": "233e2a49_f74cce9d",
+      "revId": "c651ef05da9496373d698ea4b2045136fd703f6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
