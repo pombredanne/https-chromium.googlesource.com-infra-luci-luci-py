@@ -34,6 +34,24 @@
       "revId": "2ea6d35557a095452309c1234073a2104752123f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16ff17ae_7ce4c20f",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-11T07:43:42Z",
+      "side": 1,
+      "message": "OK\nPlease also consider adding some more test cases.\n\ncase1: multiple keys have \u0027OR\u0027 dimensions\n{\n  os: [A|B],\n  gpu: [C|D|E|F],\n}\ncase2: invalid forms e.g \u0027A|\u0027, \u0027A||B\u0027 etc\ncase3: wait_for_capacity\u003dTrue\ncase4: no resource\netc",
+      "parentUuid": "f0b8d121_ec6be54c",
+      "revId": "2ea6d35557a095452309c1234073a2104752123f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
