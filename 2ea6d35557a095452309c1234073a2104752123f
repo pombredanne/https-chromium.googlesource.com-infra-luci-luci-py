@@ -52,6 +52,24 @@
       "revId": "2ea6d35557a095452309c1234073a2104752123f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40a9ff18_fcc20a96",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T08:50:13Z",
+      "side": 1,
+      "message": "\u003e OK\n\u003e Please also consider adding some more test cases.\n\u003e \n\u003e case1: multiple keys have \u0027OR\u0027 dimensions\n\u003e {\n\u003e   os: [A|B],\n\u003e   gpu: [C|D|E|F],\n\u003e }\n\nadded\n\n\u003e case2: invalid forms e.g \u0027A|\u0027, \u0027A||B\u0027 etc\n\nlet me reject that in validation crrev.com/c/2097759\n\n\u003e case3: wait_for_capacity\u003dTrue\n\nadded, but I think the test with this property is not so meaningful for \u0027or\u0027 dimensions?\n\n\u003e case4: no resource\n\nI think the test with this property is not so meaningful for \u0027or\u0027 dimensions?\n\n\u003e etc",
+      "parentUuid": "16ff17ae_7ce4c20f",
+      "revId": "2ea6d35557a095452309c1234073a2104752123f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
