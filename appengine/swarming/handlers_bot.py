@@ -463,10 +463,11 @@ class BotHandshakeHandler(_BotBaseHandler):
         event_type='bot_connected', bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=None, state=res.state,
+        dimensions=res.dimensions, state=res.state,
         version=res.version, quarantined=bool(res.quarantined_msg),
         maintenance_msg=res.maintenance_msg,
-        task_id='', task_name=None, message=res.quarantined_msg)
+        task_id='', task_name=None, message=res.quarantined_msg,
+        register_dimensions=False)
 
     data = {
       'bot_version': bot_code.get_bot_version(self.request.host_url)[0],
@@ -531,7 +532,8 @@ class BotPollHandler(_BotBaseHandler):
             dimensions=res.dimensions, state=res.state,
             version=res.version, quarantined=quarantined,
             maintenance_msg=res.maintenance_msg, task_id=task_id,
-            task_name=task_name, message=res.quarantined_msg)
+            task_name=task_name, message=res.quarantined_msg,
+            register_dimensions=True)
       except runtime.DeadlineExceededError as e:
         # Ignore runtime.DeadlineExceededError at the following events
         # and return 429 for the bot to retry later
@@ -770,10 +772,10 @@ class BotEventHandler(_BotBaseHandler):
         event_type=event, bot_id=res.bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=None, state=res.state,
+        dimensions=res.dimensions, state=res.state,
         version=res.version, quarantined=bool(res.quarantined_msg),
         maintenance_msg=res.maintenance_msg, task_id=None,
-        task_name=None, message=message)
+        task_name=None, message=message, register_dimensions=False)
 
     if event == 'bot_error':
       # Also logs this to ereporter2, so it will be listed in the server's
@@ -1071,7 +1073,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
           authenticated_as=auth.get_peer_identity().to_bytes(),
           dimensions=None, state=None,
           version=None, quarantined=None, maintenance_msg=None, task_id=task_id,
-          task_name=None)
+          task_name=None, register_dimensions=False)
     except ValueError as e:
       ereporter2.log_request(
           request=self.request,
@@ -1125,9 +1127,9 @@ class BotTaskErrorHandler(_BotApiHandler):
         event_type='task_error', bot_id=bot_id,
         external_ip=self.request.remote_addr,
         authenticated_as=auth.get_peer_identity().to_bytes(),
-        dimensions=None, state=None,
+        dimensions=request.dimensions, state=None,
         version=None, quarantined=None, maintenance_msg=None, task_id=task_id,
-        task_name=None, message=message)
+        task_name=None, message=message, register_dimensions=False)
     line = (
         'Bot: https://%s/restricted/bot/%s\n'
         'Task failed: https://%s/user/task/%s\n'

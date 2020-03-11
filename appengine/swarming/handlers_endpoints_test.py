@@ -2045,26 +2045,26 @@ class BotsApiTest(BaseTest):
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id3'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     self.mock_now(self.now)
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id2',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id2'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=True, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id4',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id4'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     bot1 = {
       u'authenticated_as': u'bot:whitelisted-ip',
       u'bot_id': u'id1',
@@ -2275,26 +2275,26 @@ class BotsApiTest(BaseTest):
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id3'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=True, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     self.mock_now(self.now)
     bot_management.bot_event(
         event_type='request_task', bot_id='id1',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg=None,
-        task_id='987', task_name=None)
+        task_id='987', task_name=None, register_dimensions=True)
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id2',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id2'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=True, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id4',
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id4'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     expected = {
       u'count': u'4',
       u'quarantined': u'2',
@@ -2408,7 +2408,7 @@ class BotApiTest(BaseTest):
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
 
     expected = {
       u'authenticated_as': u'bot:whitelisted-ip',
@@ -2438,7 +2438,7 @@ class BotApiTest(BaseTest):
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg='very busy',
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
 
     expected = {
       u'authenticated_as': u'bot:whitelisted-ip',
@@ -2471,7 +2471,7 @@ class BotApiTest(BaseTest):
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id1'], u'pool': [u'default']}, state={'foo': 0},
         version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
     # Delete the bot.
     self.set_as_admin()
     response = self.call_api('delete', body={'bot_id': 'id1'})
@@ -2511,7 +2511,7 @@ class BotApiTest(BaseTest):
         external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
         dimensions={u'id': [u'id1'], u'pool': [u'default']}, state=state,
         version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None)
+        task_id=None, task_name=None, register_dimensions=True)
 
     # delete the bot
     response = self.call_api('delete', body={'bot_id': 'id1'})

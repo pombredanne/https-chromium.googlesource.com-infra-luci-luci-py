@@ -232,7 +232,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
               status=swarming_pb2.BUSY,
               current_task_id='5cfcee8008811',
               info=common_info,
-              dimensions=dimensions),
+              dimensions=None),
           event=swarming_pb2.TASK_COMPLETED,
       ),
       swarming_pb2.BotEvent(
