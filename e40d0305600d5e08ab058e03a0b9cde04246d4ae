@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06748216_ef56442c",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T06:19:12Z",
+      "side": 1,
+      "message": "if we don\u0027t pass this, no need to have this as argument?",
+      "revId": "e40d0305600d5e08ab058e03a0b9cde04246d4ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9a171ef_74ded474",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T06:19:12Z",
+      "side": 1,
+      "message": "could you use register_dimensions\u003d for clarity?",
+      "range": {
+        "startLine": 42,
+        "startChar": 39,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "e40d0305600d5e08ab058e03a0b9cde04246d4ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dd4f8a1_71e893dd",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T06:19:12Z",
+      "side": 1,
+      "message": "could you use register_dimensions\u003d for clarity?",
+      "range": {
+        "startLine": 126,
+        "startChar": 45,
+        "endLine": 126,
+        "endChar": 50
+      },
+      "revId": "e40d0305600d5e08ab058e03a0b9cde04246d4ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
