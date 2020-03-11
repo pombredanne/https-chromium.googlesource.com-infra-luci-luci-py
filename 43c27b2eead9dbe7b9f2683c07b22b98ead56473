@@ -51,6 +51,24 @@
       "revId": "43c27b2eead9dbe7b9f2683c07b22b98ead56473",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "026e63a0_adf38d2f",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T09:23:41Z",
+      "side": 1,
+      "message": "I see, let me check how the data is stored in db.\nBut it still seems empty values are allowed here.",
+      "parentUuid": "6096b4d8_2898e2dd",
+      "revId": "43c27b2eead9dbe7b9f2683c07b22b98ead56473",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
