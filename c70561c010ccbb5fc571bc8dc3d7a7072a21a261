@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2339df57_18173082",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1500,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-03-11T00:31:47Z",
+      "side": 1,
+      "message": "Robbie just suggested adding the \u0027TEMPLATE_SKIP\u0027 flag for retry tasks, which def sounds like a better fix :)\n\nMoving this back to WAI while I implement that instead",
+      "parentUuid": "501b2568_d896df36",
+      "revId": "c70561c010ccbb5fc571bc8dc3d7a7072a21a261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a90465b_b56188d3",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 7
