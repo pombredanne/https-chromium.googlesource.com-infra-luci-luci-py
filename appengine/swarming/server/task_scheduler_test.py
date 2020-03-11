@@ -111,6 +111,25 @@ def _run_result_to_to_run_key(run_result):
       run_result.current_task_slice)
 
 
+def _bot_update_task(run_result_key, **kwargs):
+  args = {
+      'run_result_key': run_result_key,
+      'bot_id': 'localhost',
+      'cipd_pins': None,
+      'output': 'hi',
+      'output_chunk_start': 0,
+      'exit_code': None,
+      'duration': None,
+      'hard_timeout': False,
+      'io_timeout': False,
+      'cost_usd': 0.1,
+      'outputs_ref': None,
+      'performance_stats': None,
+  }
+  args.update(kwargs)
+  return task_scheduler.bot_update_task(**args)
+
+
 class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def setUp(self):
     super(TaskSchedulerApiTest, self).setUp()
@@ -874,19 +893,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # It's important to complete the task with success.
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=0, duration=0.1))
     # An idempotent task has properties_hash set after it succeeded.
     self.assertTrue(run_result.result_summary_key.get().properties_hash)
     self.assertEqual(1, self.execute_tasks())
@@ -1071,19 +1078,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # It's important to terminate the task with success.
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=0, duration=0.1))
     self.assertEqual(1, self.execute_tasks())
 
     parent_id = run_result.task_id
@@ -1099,19 +1094,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock_now(self.now, 10.5)
     self.assertEqual(
         State.TIMED_OUT,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
-            exit_code=None,
-            duration=None,
-            hard_timeout=True,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, hard_timeout=True))
     self.assertEqual(1, self.execute_tasks())
     run_result = run_result.key.get()
     self.assertEqual(-1, run_result.exit_code)
@@ -1174,34 +1157,20 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
           items_hot='bb'))
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
+        _bot_update_task(
+            run_result.key,
             exit_code=0,
             duration=3.,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
             outputs_ref=outputs_ref,
             performance_stats=performance_stats))
     # Simulate an unexpected retry, e.g. the response of the previous RPC never
     # got the client even if it succeedded.
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
+        _bot_update_task(
+            run_result.key,
             exit_code=0,
             duration=3.,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
             outputs_ref=outputs_ref,
             performance_stats=performance_stats))
     result_summary, run_results = _get_results(result_summary.request_key)
@@ -1245,19 +1214,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     run_result = self._quick_reap(1, 0)
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
-            exit_code=1,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=1, duration=0.1))
     result_summary, run_results = _get_results(run_result.request_key)
 
     expected = self._gen_result_summary_reaped(
@@ -1304,34 +1261,18 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     run_result = self._quick_reap(1, 0)
     self.assertEqual(
         State.RUNNING,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
+        _bot_update_task(
+            run_result.key,
             output='hi',
-            output_chunk_start=0,
-            exit_code=None,
-            duration=None,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            output_chunk_start=0))
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
+        _bot_update_task(
+            run_result.key,
             output='hey',
             output_chunk_start=2,
             exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            duration=0.1))
     self.assertEqual('hihey', run_result.key.get().get_output(0, 0))
     self.assertEqual(1, self.execute_tasks())
 
@@ -1340,34 +1281,16 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     run_result = self._quick_reap(1, 0)
     self.assertEqual(
         State.RUNNING,
-        task_scheduler.bot_update_task(
+        _bot_update_task(
             run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
             output='hi',
-            output_chunk_start=0,
-            exit_code=None,
-            duration=None,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            output_chunk_start=0))
     self.assertEqual(
         State.RUNNING,
-        task_scheduler.bot_update_task(
+        _bot_update_task(
             run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
             output='hey',
-            output_chunk_start=1,
-            exit_code=None,
-            duration=None,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            output_chunk_start=1))
     self.assertEqual('hhey', run_result.key.get().get_output(0, 0))
 
   def test_bot_update_exception(self):
@@ -1378,19 +1301,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock(ndb, 'put_multi', r)
     self.assertEqual(
         None,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='hi',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=0, duration=0.1))
 
   def test_bot_update_pubsub_error(self):
     pub_sub_calls = self.mock_pub_sub()
@@ -1400,37 +1311,13 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.publish_successful = False
     self.assertEqual(
         None,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=0, duration=0.1))
 
     # Bot retries bot_update, now PubSub works and notification is sent.
     self.publish_successful = True
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=0, duration=0.1))
     self.assertEqual(2, len(pub_sub_calls)) # notification is sent
     self.assertEqual(1, self.execute_tasks())
 
@@ -1438,19 +1325,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     run_result = self._quick_reap(1, 0)
     self.assertEqual(
         State.TIMED_OUT,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='hi',
-            output_chunk_start=0,
+        _bot_update_task(
+            run_result.key,
             exit_code=0,
             duration=0.1,
             hard_timeout=hard,
-            io_timeout=io,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            io_timeout=io))
     expected = self._gen_result_summary_reaped(
         completed_ts=self.now,
         costs_usd=[0.1],
@@ -1559,36 +1439,16 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     self.assertEqual(
         State.KILLED,
-        task_scheduler.bot_update_task(
-            run_result_key=parent_run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='hi',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(parent_run_result.key, exit_code=0, duration=0.1))
 
     # Child task is KILLED when parent task is cancelled.
     self.assertEqual(
         State.KILLED,
-        task_scheduler.bot_update_task(
-            run_result_key=child_run_result.key,
+        _bot_update_task(
+            child_run_result.key,
             bot_id='localhost2',
-            cipd_pins=None,
-            output='hi',
-            output_chunk_start=0,
             exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            duration=0.1))
 
     self.assertEqual('hi', child_run_result.key.get().get_output(0, 0))
 
@@ -1596,19 +1456,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # completed.
     self.assertEqual(
         State.KILLED,
-        task_scheduler.bot_update_task(
-            run_result_key=child_run_result2.key,
-            bot_id='localhost3',
-            cipd_pins=None,
-            output='hi',
-            output_chunk_start=0,
-            exit_code=None,
-            duration=None,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(child_run_result2.key, bot_id='localhost3'))
     self.assertEqual('hi', child_run_result2.key.get().get_output(0, 0))
 
     # flush tasks
@@ -1805,21 +1653,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     # Bot pulls once, gets the signal about killing, which starts the graceful
     # termination dance.
-    self.assertEqual(
-        State.KILLED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='hey',
-            output_chunk_start=0,
-            exit_code=None,
-            duration=None,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=None,
-            outputs_ref=None,
-            performance_stats=None))
+    self.assertEqual(State.KILLED, _bot_update_task(run_result.key))
 
     # At this point, it is still running, until the bot completes the task.
     run_result = run_result.key.get()
@@ -1829,19 +1663,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Close the task.
     self.assertEqual(
         State.KILLED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='you',
-            output_chunk_start=3,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(
+            run_result.key, output_chunk_start=3, exit_code=0, duration=0.1))
 
     run_result = run_result.key.get()
     self.assertEqual(False, run_result.killing)
@@ -1882,19 +1705,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # The task completes successfully.
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
-            bot_id='localhost',
-            cipd_pins=None,
-            output='hey',
-            output_chunk_start=0,
-            exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+        _bot_update_task(run_result.key, exit_code=0, duration=0.1))
     self.assertEqual(2, len(pub_sub_calls)) # COMPLETED
 
     # Cancel request is denied.
@@ -2120,19 +1931,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(True, is_in_negative_cache(2)) # Was just reaped.
     self.assertEqual(
         State.COMPLETED,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
+        _bot_update_task(
+            run_result.key,
             bot_id='localhost-second',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
             exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            duration=0.1))
     expected = self._gen_result_summary_reaped(
         bot_dimensions=bot_dimensions_second,
         bot_id=u'localhost-second',
@@ -2209,19 +2012,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(2, run_result.try_number)
     self.assertEqual(
         task_result.State.COMPLETED,
-        task_scheduler.bot_update_task(
+        _bot_update_task(
             run_result_key=run_result.key,
             bot_id='localhost-second',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
             exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            duration=0.1))
     expected = self._gen_result_summary_reaped(
         bot_dimensions=bot_dimensions_second,
         bot_id=u'localhost-second',
@@ -2297,19 +2092,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # went to sleep). The update is denied.
     self.assertEqual(
         None,
-        task_scheduler.bot_update_task(
-            run_result_key=run_result.key,
+        _bot_update_task(
+            run_result.key,
             bot_id='localhost-second',
-            cipd_pins=None,
-            output='Foo1',
-            output_chunk_start=0,
             exit_code=0,
-            duration=0.1,
-            hard_timeout=False,
-            io_timeout=False,
-            cost_usd=0.1,
-            outputs_ref=None,
-            performance_stats=None))
+            duration=0.1))
     # Confirm it is denied.
     run_result = run_result.key.get()
     self.assertEqual(State.BOT_DIED, run_result.state)
