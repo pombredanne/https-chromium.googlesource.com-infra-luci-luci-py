@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0fb9a40_ca15d97e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-11T08:29:30Z",
+      "side": 1,
+      "message": "fix crrev.com/c/2097760",
+      "parentUuid": "6122ed74_6dca4aea",
+      "range": {
+        "startLine": 237,
+        "startChar": 43,
+        "endLine": 237,
+        "endChar": 51
+      },
+      "revId": "288b9f1dee27c2b57bb1003e9e6d2e3da1acfa17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
