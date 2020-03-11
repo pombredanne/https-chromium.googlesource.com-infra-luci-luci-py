@@ -44,6 +44,7 @@ def _bot_event(
     maintenance_msg=None,
     task_id=None,
     task_name=None,
+    register_dimensions=None,
     **kwargs):
   """Calls bot_management.bot_event with default arguments."""
   if not bot_id:
@@ -56,6 +57,9 @@ def _bot_event(
     }
   if not authenticated_as:
     authenticated_as = u'bot:%s.domain' % bot_id
+  if (register_dimensions is None and
+      kwargs.get('event_type').startswith('request_')):
+    register_dimensions = True
   return bot_management.bot_event(
       bot_id=bot_id,
       external_ip=external_ip,
@@ -67,6 +71,7 @@ def _bot_event(
       maintenance_msg=maintenance_msg,
       task_id=task_id,
       task_name=task_name,
+      register_dimensions=register_dimensions,
       **kwargs)
 
 
