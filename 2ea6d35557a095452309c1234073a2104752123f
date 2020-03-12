@@ -88,6 +88,24 @@
       "revId": "2ea6d35557a095452309c1234073a2104752123f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e13a3a48_ed42235f",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-12T02:05:40Z",
+      "side": 1,
+      "message": "\u003e\u003e case1: multiple keys have \u0027OR\u0027 dimensions\n\u003e added\n\nOK\n\n\u003e\u003e case2: invalid forms e.g \u0027A|\u0027, \u0027A||B\u0027 etc\n\u003e let me reject that in validation crrev.com/c/2097759\n\nAck\n\n\u003e let me add test for has_capacity instead of wait_for_capacity\n\n\u003e\u003e case3: wait_for_capacity\u003dTrue\n\u003e added, but I think the test with this property is not so meaningful for \u0027or\u0027 dimensions?\n\nYou\u0027re right.\n\n\u003e\u003e case4: no resource\n\u003e I think the test with this property is not so meaningful for \u0027or\u0027 dimensions?\n\nThis is relevant because all combinations of bots needs to be found at scheduling.\nBut I realized that tests for \u0027has_capcity\u0027 cover \u0027NO_RESOURCE\u0027 scenarios.\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler.py?q\u003df:task_scheduler.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d1198.\n\nAdding tests for \u0027has_capacity\u0027 looks sufficient for case3, case4.\nSo all comments were resolved.",
+      "parentUuid": "c2ec997f_e2113187",
+      "revId": "2ea6d35557a095452309c1234073a2104752123f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
