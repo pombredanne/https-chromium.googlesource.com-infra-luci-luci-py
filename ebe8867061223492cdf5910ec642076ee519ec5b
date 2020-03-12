@@ -22,6 +22,30 @@
       "revId": "ebe8867061223492cdf5910ec642076ee519ec5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84ae4c3b_9824a708",
+        "filename": "appengine/components/components/auth/replication.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-12T22:26:53Z",
+      "side": 0,
+      "message": "state.primary_id !\u003d revision.primary_id indicates the app is switching from one instance of auth_service to another (in practice it never happens). But also the only caller of push_auth_db also verifies state.primary_id \u003d\u003d revision.primary_id, so this check is always True. I kept it because I want it to be identical to the check in the transaction below. There state.primary_id may be different already (if there\u0027s a race when switching primaries), and we must do the check.",
+      "parentUuid": "a5513673_a396b220",
+      "range": {
+        "startLine": 429,
+        "startChar": 6,
+        "endLine": 429,
+        "endChar": 11
+      },
+      "revId": "ebe8867061223492cdf5910ec642076ee519ec5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
