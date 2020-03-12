@@ -15,6 +15,7 @@ import optparse
 import os
 import re
 import signal
+import six
 import stat
 import sys
 import tarfile
@@ -817,7 +818,11 @@ class Storage(object):
         if self._aborted:
           raise Aborted()
         stream = zip_compress(item.content(), item.compression_level)
-        data = ''.join(stream)
+        if six.PY3:
+          # In Python3, zlib.compress returns a byte object instead of str.
+          data = b''.join(stream)
+        else:
+          data = ''.join(stream)
       except Exception as exc:
         logging.error('Failed to zip \'%s\': %s', item, exc)
         channel.send_exception()
@@ -1229,7 +1234,14 @@ def get_storage(server_ref):
   Returns:
     Instance of Storage.
   """
-  assert isinstance(server_ref, isolate_storage.ServerRef), repr(server_ref)
+  if six.PY3:
+    # Python3 has more restriction to check the type of an instance, the class
+    # name has to be identical.
+    import swarming
+    assert isinstance(server_ref, (swarming.client.isolate_storage.ServerRef,
+                                   isolate_storage.ServerRef)), repr(server_ref)
+  else:
+    assert isinstance(server_ref, isolate_storage.ServerRef), repr(server_ref)
   return Storage(isolate_storage.get_storage_api(server_ref))
 
 

@@ -419,7 +419,10 @@ class MemoryContentAddressedCache(ContentAddressedCache):
 
   def write(self, digest, content):
     # Assemble whole stream before taking the lock.
-    data = ''.join(content)
+    if six.PY3:
+      data = b''.join(content)
+    else:
+      data = ''.join(content)
     with self._lock:
       self._lru.add(digest, data)
       self._added.append(len(data))
