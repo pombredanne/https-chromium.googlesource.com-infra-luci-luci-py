@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1b9b5db_b634449c",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-12T06:16:35Z",
+      "side": 1,
+      "message": "when deleting an entity, `new` here is sort of like a tombstone (it contains the copy of the deleted entity)",
+      "range": {
+        "startLine": 604,
+        "startChar": 5,
+        "endLine": 604,
+        "endChar": 8
+      },
+      "revId": "eb8341cd53da58f70a8d46db5948c2af1f120d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
