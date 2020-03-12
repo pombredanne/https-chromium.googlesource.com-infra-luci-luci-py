@@ -11,6 +11,7 @@ import hashlib
 import logging
 import os
 import re
+import six
 import sys
 import threading
 import time
@@ -251,7 +252,7 @@ def guard_memory_use(server, content, size):
   this function sleeps in 0.1s increments until memory usage falls
   below the maximum.
   """
-  if isinstance(content, (basestring, list)):
+  if isinstance(content, (six.string_types, list)):
     # Memory is already used, too late.
     with server._lock:
       server._memory_use += size
@@ -299,7 +300,14 @@ class IsolateServer(StorageApi):
 
   def __init__(self, server_ref):
     super(IsolateServer, self).__init__()
-    assert isinstance(server_ref, ServerRef), repr(server_ref)
+    if six.PY3:
+      # Python3 has more restriction to check the type of an instance, the class
+      # name has to be identical.
+      import swarming
+      assert isinstance(server_ref, (swarming.client.isolate_storage.ServerRef,
+                                     ServerRef)), repr(server_ref)
+    else:
+      assert isinstance(server_ref, ServerRef), repr(server_ref)
     self._server_ref = server_ref
     algo_name = server_ref.hash_algo_name
     self._namespace_dict = {
@@ -498,8 +506,10 @@ class IsolateServer(StorageApi):
       net.HttpResponse compatible object, with 'read' and 'get_header' calls.
     """
     assert isinstance(offset, int)
+    # json.dumps in Python3 doesn't support bytes.
+    digest = digest if six.PY3 else digest.encode('utf-8')
     data = {
-        'digest': digest.encode('utf-8'),
+        'digest': digest,
         'namespace': self._namespace_dict,
         'offset': offset,
     }
@@ -533,6 +543,8 @@ class IsolateServer(StorageApi):
     if not push_state.finalize_url:
       url = '%s/%s' % (self.server_ref.url, push_state.upload_url)
       content = base64.b64encode(content)
+      if six.PY3:
+        content = content.decode('utf-8')
       data = {
           'upload_ticket': push_state.preupload_status['upload_ticket'],
           'content': content,
@@ -709,7 +721,14 @@ def get_storage_api(server_ref):
   Returns:
     Instance of StorageApi subclass.
   """
-  assert isinstance(server_ref, ServerRef), repr(server_ref)
+  if six.PY3:
+    # Python3 has more restriction to check the type of an instance, the class
+    # name has to be identical.
+    import swarming
+    assert isinstance(server_ref, (swarming.client.isolate_storage.ServerRef,
+                                   ServerRef)), repr(server_ref)
+  else:
+    assert isinstance(server_ref, ServerRef), repr(server_ref)
   if _grpc_proxy is not None:
     return IsolateServerGrpc(server_ref.url, _grpc_proxy)
   return IsolateServer(server_ref)
