@@ -22,6 +22,53 @@
       "revId": "eb8341cd53da58f70a8d46db5948c2af1f120d82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41b5771e_d70d8481",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-12T23:27:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1b9b5db_b634449c",
+      "range": {
+        "startLine": 604,
+        "startChar": 5,
+        "endLine": 604,
+        "endChar": 8
+      },
+      "revId": "eb8341cd53da58f70a8d46db5948c2af1f120d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "443bf539_d913e33f",
+        "filename": "appengine/components/components/auth/realms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-12T23:27:41Z",
+      "side": 1,
+      "message": "makes me wish we could use python 3.8 expression assignments :/",
+      "range": {
+        "startLine": 53,
+        "startChar": 15,
+        "endLine": 53,
+        "endChar": 25
+      },
+      "revId": "eb8341cd53da58f70a8d46db5948c2af1f120d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
