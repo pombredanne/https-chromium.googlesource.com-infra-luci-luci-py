@@ -359,7 +359,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
           u'foo': [u'bar|A|B|C'],
       },),
   ])
-  @unittest.expectedFailure
   def test_bot_reap_task_or_dimensions(self, or_dimensions):
     run_result = self._quick_reap(
         1,
@@ -372,7 +371,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             )
         ])
 
-    # TODO(crbug.com/1057886): support 'or' dimension.
     self.assertEqual('localhost', run_result.bot_id)
     self.assertEqual(1, run_result.try_number)
     to_run_key = task_to_run.request_to_task_to_run_key(

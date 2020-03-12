@@ -417,45 +417,52 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, map(flatten, q.fetch()))
 
   def test_match_dimensions(self):
-    data_true = (
-        ({}, {}),
-        ({}, {
-            'a': 'b'
-        }),
-        ({
-            'a': ['b']
-        }, {
-            'a': ['b']
-        }),
-        ({
-            'os': ['amiga']
-        }, {
-            'os': ['amiga', 'amiga-3.1']
-        }),
-        ({
-            'os': ['amiga'],
-            'foo': ['bar']
-        }, {
-            'os': ['amiga', 'amiga-3.1'],
-            'a': 'b',
-            'foo': 'bar'
-        }),
-        ({
-            'os': ['amiga', 'amiga-3.1'],
-            'foo': ['bar']
-        }, {
-            'os': ['amiga', 'amiga-3.1'],
-            'a': 'b',
-            'foo': 'bar'
-        }),
-    )
+    data_true = (({}, {}), ({}, {
+        'a': 'b'
+    }), ({
+        'a': ['b']
+    }, {
+        'a': ['b']
+    }), ({
+        'os': ['amiga']
+    }, {
+        'os': ['amiga', 'amiga-3.1']
+    }), ({
+        'os': ['amiga'],
+        'foo': ['bar']
+    }, {
+        'os': ['amiga', 'amiga-3.1'],
+        'a': 'b',
+        'foo': 'bar'
+    }), ({
+        'os': ['amiga', 'amiga-3.1'],
+        'foo': ['bar']
+    }, {
+        'os': ['amiga', 'amiga-3.1'],
+        'a': 'b',
+        'foo': 'bar'
+    }), ({
+        'os': ['Ubuntu-14.04', 'Ubuntu-16.04']
+    }, {
+        'os': ['Ubuntu-14.04']
+    }))
 
     for request_dimensions, bot_dimensions in data_true:
       self.assertEqual(
           True, task_to_run.match_dimensions(request_dimensions,
                                              bot_dimensions))
 
-    data_false = (({'os': ['amiga']}, {'os': ['Win', 'Win-3.1']}),)
+    data_false = (({
+        'os': ['amiga']
+    }, {
+        'os': ['Win', 'Win-3.1']
+    }), ({
+        'os': ['Ubuntu-14.04', 'Ubuntu-16.04'],
+        'cpu': ['arm']
+    }, {
+        'os': ['Ubuntu-14.04'],
+        'cpu': ['x86']
+    }))
     for request_dimensions, bot_dimensions in data_false:
       self.assertEqual(
           False, task_to_run.match_dimensions(request_dimensions,

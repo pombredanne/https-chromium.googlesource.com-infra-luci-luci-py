@@ -471,6 +471,25 @@ def _get_task_dimensions_key(dimensions_hash, dimensions):
       TaskDimensions, dimensions_hash)
 
 
+def _generate_subset_dimensions_for_or(dimensions):
+  dimensions = dimensions.items()
+  dimensions.sort()
+
+  def gen(current_dimensions_flat, dimensions_iter):
+    if not dimensions_iter:
+      yield current_dimensions_flat[:]
+      return
+
+    key, values = dimensions_iter[0]
+    for value in values:
+      current_dimensions_flat.append(key + ':' + value)
+      for generated in gen(current_dimensions_flat, dimensions_iter[1:]):
+        yield generated
+      current_dimensions_flat.pop()
+
+  return gen([], dimensions)
+
+
 @ndb.tasklet
 def _ensure_TaskDimensions_async(task_dimensions_key, now, valid_until_ts,
                                  task_dimensions_flat):
@@ -1066,14 +1085,18 @@ def rebuild_task_cache_async(payload):
   dims = '\n'.join('  ' + d for d in task_dimensions_flat)
   now = utils.utcnow()
   try:
-    yield _refresh_all_BotTaskDimensions_async(
-        now, valid_until_ts, task_dimensions_flat, task_dimensions_hash)
+    for subset_dimensions_flat in _generate_subset_dimensions_for_or(
+        task_dimensions):
+      yield _refresh_all_BotTaskDimensions_async(
+          now, valid_until_ts, subset_dimensions_flat, task_dimensions_hash)
     # Done updating, now store the entity. Must use a transaction as there could
     # be other dimensions set in the entity.
     task_dimensions_key = _get_task_dimensions_key(task_dimensions_hash,
                                                    task_dimensions)
-    yield _refresh_TaskDimensions_async(
-        now, valid_until_ts, task_dimensions_flat, task_dimensions_key)
+    for subset_dimensions_flat in _generate_subset_dimensions_for_or(
+        task_dimensions):
+      yield _refresh_TaskDimensions_async(
+          now, valid_until_ts, subset_dimensions_flat, task_dimensions_key)
   finally:
     # Any of the calls above could throw. Log how far long we processed.
     duration = (utils.utcnow()-now).total_seconds()
