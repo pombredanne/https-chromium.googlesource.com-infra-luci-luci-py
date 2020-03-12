@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b1f0903_9265b38e",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-12T17:55:43Z",
+      "side": 1,
+      "message": "dimensions",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 16
+      },
+      "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76aafca0_643d413d",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-12T17:55:43Z",
+      "side": 1,
+      "message": "This change still carries the drawback than \u0027bot_connected\u0027 rows in BigQuery still don\u0027t have the right dimensions. :/\n\nMaybe we should have a \u0027bot_connecting\u0027 and \u0027bot_connected\u0027 ? Here we\u0027d replace with \u0027bot_connecting\u0027, then with some magic in first poll it\u0027d register a \u0027bot_connected\u0027. wdyt?\n\nTo be clear, my concern here is to make efficiency analysis better for devices (android, chromeos, etc), where the device\u0027s dimensions will not be set correctly here (sadly) because the injected script is not yet there.",
+      "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
