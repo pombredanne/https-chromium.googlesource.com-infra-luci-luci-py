@@ -1,0 +1,243 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e7cba5d_005102e8",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "this is not standard library, so import after standard library?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94e8c4ab_f2e80e90",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "if this is not python3 specific, I prefer to only have this code path.",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0898bce_1938597f",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.ensure_str?",
+      "range": {
+        "startLine": 510,
+        "startChar": 13,
+        "endLine": 510,
+        "endChar": 58
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33fd350f_7132621b",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.ensure_str?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0955c06d_af355fd6",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "if this is not python3 specific, I prefer to only have this code path.",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c03768ed_df8bbb15",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "this is not standard library, so import after standard library?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0893732e_c11161f0",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.b(\u0027\u0027)?",
+      "range": {
+        "startLine": 823,
+        "startChar": 17,
+        "endLine": 823,
+        "endChar": 20
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "673af19b_a2c74c37",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.b(\u0027\u0027)?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4245d5f5_ef33b6c7",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "this is not standard library, so import after standard library?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29b2a768_c5af1c66",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.ensure_text or six.ensure_str?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04ea8bf5_022a4bbb",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.ensure_str?",
+      "range": {
+        "startLine": 796,
+        "startChar": 0,
+        "endLine": 801,
+        "endChar": 31
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08c0d940_f55389a9",
+        "filename": "client/utils/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "can we use six.ensure_binary?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f89d4a9_321f7c76",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-12T08:16:15Z",
+      "side": 1,
+      "message": "why doy you need to change here?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
