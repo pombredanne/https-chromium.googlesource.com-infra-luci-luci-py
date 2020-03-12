@@ -345,6 +345,46 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(to_run_key.get().queue_number)
     self.assertIsNone(to_run_key.get().expiration_ts)
 
+  @unittest.expectedFailure
+  def test_bot_reap_task_or_dimensions(self):
+    run_result = self._quick_reap(
+        1,
+        0,
+        task_slices=[
+            task_request.TaskSlice(
+                expiration_secs=60,
+                properties=_gen_properties(dimensions={
+                    u'pool': [u'default'],
+                    u'os': [u'Windows-3.1.1|Windows-3.2.1'],
+                }),
+                wait_for_capacity=False,
+            )
+        ])
+
+    # TODO(crbug.com/1057886): support 'or' dimension.
+    self.assertIsNotNone(run_result)
+
+  @unittest.expectedFailure
+  def test_bot_reap_task_or_dimensions_more(self):
+    run_result = self._quick_reap(
+        1,
+        0,
+        task_slices=[
+            task_request.TaskSlice(
+                expiration_secs=60,
+                properties=_gen_properties(
+                    dimensions={
+                        u'pool': [u'default'],
+                        u'os': [u'Windows-3.1.1|Windows-3.2.1'],
+                        u'foo': [u'bar|A|B|C'],
+                    }),
+                wait_for_capacity=False,
+            )
+        ])
+
+    # TODO(crbug.com/1057886): support 'or' dimension.
+    self.assertIsNotNone(run_result)
+
   def test_schedule_request(self):
     # It is tested indirectly in the other functions.
     # Essentially check _quick_schedule() and _register_bot() works.
