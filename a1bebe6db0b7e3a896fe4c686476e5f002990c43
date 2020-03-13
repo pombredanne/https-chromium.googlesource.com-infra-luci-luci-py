@@ -81,6 +81,24 @@
       "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4693fe13_1c29f77d",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-13T16:23:56Z",
+      "side": 1,
+      "message": "Observations:\n- BotEvent is an immutable entity.\n- As such, it\u0027s safe to cache BotEvent in memcache.\n- Which means that a BotEvent GET by key is super fast.\n- Right now during /poll, the result is stored (\"request_sleep\", \"request_task\", \"request_update\") instead of \"bot_poll\".\n\n\nProposal:\n- In /handshake, set a memcache key \"\u003cbotid\u003e\" set to True in namespace \"bot_just_connected\"\n- In /poll, if memcache value is set to True:\n  - Trigger a \"bot_connected\" bot event.\n- If set to False:\n  - No-op (as current)\n- If unset (to take in account memcache flush):\n  - Slow code path to query last BotEvent if it\u0027s a \"bot_connecting\", do the \"bot_connected\" event if necessary and set to False.\n\nThe thing is that the slow code path would be very rare, and not that costly. It\u0027s really just a memcache lookup in practice, which is reasonably fast.",
+      "parentUuid": "6458b50f_a975d564",
+      "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
