@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "32ddd678_96b0f1e0",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e7cba5d_005102e8",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94e8c4ab_f2e80e90",
         "filename": "client/isolate_storage.py",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2020-03-12T08:16:15Z",
       "side": 1,
       "message": "if this is not python3 specific, I prefer to only have this code path.",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78034f71_d3f1d745",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "I updated the code to unify the logic for both Python2 and Python3.\n\nThe logic to check type(server_ref).__name__ \u003d\u003d \u0027ServerRef\u0027 is specific to our internal use case, it is not needed for Chromium or other open source new cases. I added it here to make it easier to update swarming client code to our internal repo.\n\nLet me know if you have concerns to add the specific logic to our internal use case.",
+      "parentUuid": "94e8c4ab_f2e80e90",
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "54dac0d8_aee3dde6",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0898bce_1938597f",
+      "range": {
+        "startLine": 510,
+        "startChar": 13,
+        "endLine": 510,
+        "endChar": 58
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33fd350f_7132621b",
         "filename": "client/isolate_storage.py",
         "patchSetId": 5
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "dcd7ef1e_a6e8aff3",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33fd350f_7132621b",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0955c06d_af355fd6",
         "filename": "client/isolate_storage.py",
         "patchSetId": 5
@@ -87,6 +165,24 @@
       "writtenOn": "2020-03-12T08:16:15Z",
       "side": 1,
       "message": "if this is not python3 specific, I prefer to only have this code path.",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba0fe936_2ad015c1",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "See my comments above.",
+      "parentUuid": "0955c06d_af355fd6",
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "623267fe_1b00cfbf",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c03768ed_df8bbb15",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0893732e_c11161f0",
         "filename": "client/isolateserver.py",
         "patchSetId": 5
@@ -121,6 +235,30 @@
       "writtenOn": "2020-03-12T08:16:15Z",
       "side": 1,
       "message": "can we use six.b(\u0027\u0027)?",
+      "range": {
+        "startLine": 823,
+        "startChar": 17,
+        "endLine": 823,
+        "endChar": 20
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0d5b078_eeb22293",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "I tried six.b(\u0027\u0027), it doesn\u0027t work for this case. It requires \u0027b\u0027 prefix to join a bytes list.",
+      "parentUuid": "0893732e_c11161f0",
       "range": {
         "startLine": 823,
         "startChar": 17,
@@ -150,6 +288,24 @@
     },
     {
       "key": {
+        "uuid": "61e55985_768a23b8",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Tried six.b(\"\"), it won\u0027t work for this case. It requires \u0027b\u0027 prefix to join a bytes list.",
+      "parentUuid": "673af19b_a2c74c37",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4245d5f5_ef33b6c7",
         "filename": "client/swarming.py",
         "patchSetId": 5
@@ -167,6 +323,24 @@
     },
     {
       "key": {
+        "uuid": "64c27e9c_49133630",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Removed it, since six is imported below.",
+      "parentUuid": "4245d5f5_ef33b6c7",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29b2a768_c5af1c66",
         "filename": "client/swarming.py",
         "patchSetId": 5
@@ -178,6 +352,24 @@
       "writtenOn": "2020-03-12T08:16:15Z",
       "side": 1,
       "message": "can we use six.ensure_text or six.ensure_str?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de740006_802be232",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "I tried six.ensure_str, and remove if condition, however it doesn\u0027t work.\n\nThe type of value could be any types, e.g. int, not only str or bytes. six.ensure_str can not handle the input with int type:(",
+      "parentUuid": "29b2a768_c5af1c66",
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -207,6 +399,30 @@
     },
     {
       "key": {
+        "uuid": "f20b3a60_c1393d08",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04ea8bf5_022a4bbb",
+      "range": {
+        "startLine": 796,
+        "startChar": 0,
+        "endLine": 801,
+        "endChar": 31
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08c0d940_f55389a9",
         "filename": "client/utils/net.py",
         "patchSetId": 5
@@ -224,6 +440,24 @@
     },
     {
       "key": {
+        "uuid": "a1e76807_f6a76252",
+        "filename": "client/utils/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "I have to keep the condition here, otherwise it will break tests.\n\nThe tests don\u0027t expect bytes for body when body is None or content_type is not JSON_CONTENT_TYPE.\n\nSee https://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8885969484486414736/+/steps/presubmit/0/stdout",
+      "parentUuid": "08c0d940_f55389a9",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f89d4a9_321f7c76",
         "filename": "client/utils/oauth.py",
         "patchSetId": 5
@@ -235,6 +469,24 @@
       "writtenOn": "2020-03-12T08:16:15Z",
       "side": 1,
       "message": "why doy you need to change here?",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ff723fd_e25b75c0",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-13T06:28:19Z",
+      "side": 1,
+      "message": "This code is specific for our internal use case.\nThe PYTHONPATH is a little bit messed up in our environment, there are 2 copies of oauth2client, one is in swarming/client/third_party folder, one is in our own third_party folder. However it tries to import oauth2client library from our own third_party folder.\n\nThere are 2 copies of multistore_file in oauth2client library in our own third_party folder, one is in the root folder of oauth2client, one is in contrib folder, which causes failed to import multistore_file from contrib folder, but works fine from the root folder.\n\nI added this code here, because I would like to make it easier to update swarming client library in future. Otherwise we have to make those specific changes manually for each update. Let me know if you have concern to add our specific logic here.",
+      "parentUuid": "5f89d4a9_321f7c76",
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
