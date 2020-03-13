@@ -1,5 +1,7 @@
 *.pyc
 .coverage
+/client/run_isolated.log
+/client/named_caches/
 /appengine/swarming/swarming_bot.zip
 /appengine/swarming/swarming_bot.?.zip
 /appengine/swarming/ui2/nodejs
