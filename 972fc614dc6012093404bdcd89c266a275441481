@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca73da94_a654975b",
+        "filename": ".gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T05:49:19Z",
+      "side": 1,
+      "message": "maybe better to modify your local .git/infor/exclude for this?",
+      "revId": "972fc614dc6012093404bdcd89c266a275441481",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
