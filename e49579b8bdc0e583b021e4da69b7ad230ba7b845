@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e012de09_e2404db4",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:45:34Z",
+      "side": 1,
+      "message": "I guess we need to avoid showing this in log.",
+      "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
