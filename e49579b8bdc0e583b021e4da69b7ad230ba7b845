@@ -16,6 +16,24 @@
       "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927a141a_0eca0ee4",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-13T15:14:59Z",
+      "side": 1,
+      "message": "Thanks Takuto, you are right.\n\nYes please make a copy of the properties, delete the secret and log this instead. You can still keep secret as a bool if present, as what you only needed to know if it\u0027s its used or not. But frankly, this is all already in swarming.task_requests, so I don\u0027t see the point much to log more here.",
+      "parentUuid": "e012de09_e2404db4",
+      "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
