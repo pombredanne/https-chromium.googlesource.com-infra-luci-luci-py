@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "d247955e_93ff99ad",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "78034f71_d3f1d745",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0898bce_1938597f",
         "filename": "client/isolate_storage.py",
         "patchSetId": 5
@@ -189,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "f56d348a_ffa0d954",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba0fe936_2ad015c1",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c03768ed_df8bbb15",
         "filename": "client/isolateserver.py",
         "patchSetId": 5
@@ -271,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "7474ac0b_86376b6a",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "How didn\u0027t work that if you use six.b(\u0027\u0027) here?\n\ntikuta@tikuta:~$ python2\nPython 2.7.17 (default, Oct 19 2019, 23:36:22) \n[GCC 9.2.1 20190909] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import six\n\u003e\u003e\u003e six.b(\u0027 \u0027).join([\u0027a\u0027, \u0027b\u0027])\n\u0027a b\u0027\n\u003e\u003e\u003e \ntikuta@tikuta:~$ python3\nPython 3.7.5 (default, Oct 27 2019, 15:43:29) \n[GCC 9.2.1 20190909] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import six\n\u003e\u003e\u003e six.b(\u0027 \u0027).join([b\u0027a\u0027, b\u0027b\u0027])\nb\u0027a b\u0027\n\u003e\u003e\u003e \ntikuta@tikuta:~$",
+      "parentUuid": "d0d5b078_eeb22293",
+      "range": {
+        "startLine": 823,
+        "startChar": 17,
+        "endLine": 823,
+        "endChar": 20
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "673af19b_a2c74c37",
         "filename": "client/local_caching.py",
         "patchSetId": 5
@@ -341,6 +401,24 @@
     },
     {
       "key": {
+        "uuid": "a64590c7_ff0a09c1",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "64c27e9c_49133630",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29b2a768_c5af1c66",
         "filename": "client/swarming.py",
         "patchSetId": 5
@@ -370,6 +448,24 @@
       "side": 1,
       "message": "I tried six.ensure_str, and remove if condition, however it doesn\u0027t work.\n\nThe type of value could be any types, e.g. int, not only str or bytes. six.ensure_str can not handle the input with int type:(",
       "parentUuid": "29b2a768_c5af1c66",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f149bb1_0ae45f83",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "then detect int and return that separately?\nI bit prefer to avoid to use six.PY3",
+      "parentUuid": "de740006_802be232",
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -458,6 +554,24 @@
     },
     {
       "key": {
+        "uuid": "3112fae5_c0103c83",
+        "filename": "client/utils/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "Then could you update expectation?\nI think it is more natural to have bytes type there.",
+      "parentUuid": "a1e76807_f6a76252",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f89d4a9_321f7c76",
         "filename": "client/utils/oauth.py",
         "patchSetId": 5
@@ -490,6 +604,24 @@
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ca649b_142c6abc",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ff723fd_e25b75c0",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

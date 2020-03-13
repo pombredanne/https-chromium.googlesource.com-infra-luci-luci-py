@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6e29013_082f4e87",
+        "filename": "client/swarming.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-13T07:22:09Z",
+      "side": 1,
+      "message": "I prefer to return here",
+      "range": {
+        "startLine": 177,
+        "startChar": 5,
+        "endLine": 177,
+        "endChar": 12
+      },
+      "revId": "8a0b66720fbd27412eec84948c151af1b0381936",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
