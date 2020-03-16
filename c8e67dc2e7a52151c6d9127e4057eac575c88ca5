@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "40ce764d_964207f4",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-16T05:50:15Z",
+      "side": 1,
+      "message": "Updated it. I used six.b() in a wrong way:(\n\nThanks for the comment!",
+      "parentUuid": "7474ac0b_86376b6a",
+      "range": {
+        "startLine": 823,
+        "startChar": 17,
+        "endLine": 823,
+        "endChar": 20
+      },
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "673af19b_a2c74c37",
         "filename": "client/local_caching.py",
         "patchSetId": 5
@@ -363,6 +387,24 @@
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed3e032b_d15bfcf4",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-16T05:50:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61e55985_768a23b8",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -472,6 +514,24 @@
     },
     {
       "key": {
+        "uuid": "eaa46894_e4da1158",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-16T05:50:15Z",
+      "side": 1,
+      "message": "Just removed six.PY3 condition, it works well.",
+      "parentUuid": "6f149bb1_0ae45f83",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "04ea8bf5_022a4bbb",
         "filename": "client/swarming.py",
         "patchSetId": 5
@@ -566,6 +626,24 @@
       "side": 1,
       "message": "Then could you update expectation?\nI think it is more natural to have bytes type there.",
       "parentUuid": "a1e76807_f6a76252",
+      "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aba4a644_cd05927e",
+        "filename": "client/utils/net.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-16T05:50:15Z",
+      "side": 1,
+      "message": "Updated the code and the tests accordingly.",
+      "parentUuid": "3112fae5_c0103c83",
       "revId": "c8e67dc2e7a52151c6d9127e4057eac575c88ca5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
