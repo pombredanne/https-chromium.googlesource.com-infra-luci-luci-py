@@ -22,6 +22,30 @@
       "revId": "81793e8ad41bce69a65c16be4a99b7be68a28472",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14925e8a_dfee5359",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-16T08:23:27Z",
+      "side": 1,
+      "message": "It\u0027s the same path.\nI just removed the symlink, and made a file instead.\nBut Gerrit doesn\u0027t show the new file :\\\n\nSee the diff here.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2104733/5/appengine/auth_service/test.py#b1",
+      "parentUuid": "0ecc7779_1a900501",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "81793e8ad41bce69a65c16be4a99b7be68a28472",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
