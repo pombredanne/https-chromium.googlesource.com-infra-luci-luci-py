@@ -28,6 +28,11 @@ def run_tests(python3=False, plugins=None):
   if python3:
     plugins.append('py3filter')
 
+  # setup env
+  if six.PY2:
+    import test_env
+    test_env.setup_test_env()
+
   # fix_encoding
   sys.path.insert(0, CLIENT_THIRD_PARTY_DIR)
   from depot_tools import fix_encoding
