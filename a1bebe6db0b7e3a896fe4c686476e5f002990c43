@@ -135,6 +135,24 @@
       "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ec7d77d_b6d12443",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-16T23:57:38Z",
+      "side": 1,
+      "message": "\u003e Having the bot control this could leave an attacking bot the ability to leaving inconsistent messages.\n\nI see. this is true.\nLet me consider based on your proposal.\n\nFiled a bug crbug.com/1062119 for this issue.",
+      "parentUuid": "8cd614fb_ca7150e8",
+      "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
