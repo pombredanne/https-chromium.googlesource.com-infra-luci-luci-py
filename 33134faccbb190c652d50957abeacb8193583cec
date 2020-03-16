@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83dbf979_a71e3211",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-16T22:38:19Z",
+      "side": 1,
+      "message": "link to relevant bug?",
+      "revId": "33134faccbb190c652d50957abeacb8193583cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c499c69f_3eeec0b3",
+        "filename": "client/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-16T22:38:19Z",
+      "side": 1,
+      "message": "could you set total_shards\u003d1 instead of this check?",
+      "range": {
+        "startLine": 290,
+        "startChar": 9,
+        "endLine": 290,
+        "endChar": 34
+      },
+      "revId": "33134faccbb190c652d50957abeacb8193583cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d4c646_22f680b2",
+        "filename": "client/utils/net.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-16T22:38:19Z",
+      "side": 1,
+      "message": "sort?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 23
+      },
+      "revId": "33134faccbb190c652d50957abeacb8193583cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "728a5de9_adce9dc5",
+        "filename": "client/utils/oauth.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-16T22:38:19Z",
+      "side": 1,
+      "message": "could you add comment for this?",
+      "revId": "33134faccbb190c652d50957abeacb8193583cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
