@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ecc7779_1a900501",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2020-03-16T08:12:32Z",
+      "side": 1,
+      "message": "Can I ask you where is this?",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "81793e8ad41bce69a65c16be4a99b7be68a28472",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
