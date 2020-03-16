@@ -5,6 +5,7 @@
 """Internal bot API handlers."""
 
 import base64
+import copy
 import json
 import logging
 
@@ -714,6 +715,11 @@ class BotPollHandler(_BotBaseHandler):
         'task_id': task_pack.pack_run_result_key(run_result.key),
       },
     }
+    # crbug.com/962804
+    # Log run_manifest to see which options are/aren't used with what values.
+    _out = copy.deepcopy(out)
+    del _out['manifest']['secret_bytes']
+    logging.debug('crbug.com/962804:run_manifest: %s', _out)
     self.send_response(utils.to_json_encodable(out))
 
   def _cmd_sleep(self, sleep_streak, quarantined):
