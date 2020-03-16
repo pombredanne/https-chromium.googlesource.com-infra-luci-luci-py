@@ -117,6 +117,24 @@
       "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cd614fb_ca7150e8",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-03-16T13:45:36Z",
+      "side": 1,
+      "message": "\u003e What\u0027s the advantage of the serverside solution with memcache over the client side solution with a flag like \u0027bot_connected\u003dTrue\u0027?\n\nTrust and internal consistency. Having the bot control this could leave an attacking bot the ability to leaving inconsistent messages.",
+      "parentUuid": "b67a5f26_afed2129",
+      "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
