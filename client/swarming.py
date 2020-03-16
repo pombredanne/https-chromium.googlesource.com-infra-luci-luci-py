@@ -172,6 +172,9 @@ def namedtuple_to_dict(value):
     return [namedtuple_to_dict(v) for v in value]
   if isinstance(value, dict):
     return {k: namedtuple_to_dict(v) for k, v in value.items()}
+  # json.dumps in Python3 doesn't support bytes.
+  if isinstance(value, bytes):
+    return six.ensure_str(value)
   return value
 
 
@@ -284,7 +287,7 @@ def trigger_task_shards(swarming, task_request, shards):
             shard_index = int(env_var['value'])
           if env_var['key'] == 'GTEST_TOTAL_SHARDS':
             total_shards = int(env_var['value'])
-      if total_shards > 1:
+      if total_shards != None and total_shards > 1:
         req['name'] += ':%s:%s' % (shard_index, total_shards)
 
     return req, shard_index
@@ -642,7 +645,8 @@ def yield_results(
         enqueue_retrieve_results(shard_index, task_id)
 
       # Wait for all of them to finish.
-      shards_remaining = range(len(task_ids))
+      # Convert to list, since range in Python3 doesn't have remove.
+      shards_remaining = list(range(len(task_ids)))
       active_task_count = len(task_ids)
       while active_task_count:
         shard_index, result = None, None
@@ -785,10 +789,12 @@ def collect(
       total_duration += metadata.get('duration', 0)
 
       if decorate:
-        s = decorate_shard_output(
-            swarming, index, metadata,
-            "console" in task_output_stdout).encode(
-                'utf-8', 'replace')
+        # s is bytes in Python3, print could not print
+        # s with nice format, so decode s to str.
+        s = six.ensure_str(
+            decorate_shard_output(swarming, index, metadata,
+                                  "console" in task_output_stdout).encode(
+                                      'utf-8', 'replace'))
         print(s)
         if len(seen_shards) < len(task_ids):
           print('')
