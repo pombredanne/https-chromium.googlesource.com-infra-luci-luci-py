@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7ceabce_3b55a5a1",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-16T20:01:47Z",
+      "side": 1,
+      "message": "👍",
+      "range": {
+        "startLine": 49,
+        "startChar": 65,
+        "endLine": 49,
+        "endChar": 74
+      },
+      "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3bcd6b61_66289eed",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-16T20:01:47Z",
+      "side": 1,
+      "message": "tbh, i don\u0027t follow this 😞\nare you saying that the only decoding happens is of the whole LUCI-Config response, and the data(body) of an individual project isn\u0027t decoded?",
+      "range": {
+        "startLine": 231,
+        "startChar": 48,
+        "endLine": 231,
+        "endChar": 71
+      },
+      "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30906e65_668e1637",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-16T20:01:47Z",
+      "side": 1,
+      "message": "LGTM!\n\nI disagree about cheesiness. There is substantial cost for timeseries + alerting set up, in this case, logging + ereporter2 is IMO the most cost effective. Then, once we see slow expansion, we can instrument it with extra monitoring \u0026\u0026 work on improving the speed.",
+      "range": {
+        "startLine": 288,
+        "startChar": 3,
+        "endLine": 291,
+        "endChar": 15
+      },
+      "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bd7a626_ed521a82",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-16T20:01:47Z",
+      "side": 1,
+      "message": "nit: ?",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 371,
+        "endChar": 3
+      },
+      "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
