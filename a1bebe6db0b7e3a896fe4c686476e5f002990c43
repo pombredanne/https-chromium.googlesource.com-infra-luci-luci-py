@@ -99,6 +99,24 @@
       "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b67a5f26_afed2129",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-16T01:53:27Z",
+      "side": 1,
+      "message": "I see.\n\nWhat\u0027s the advantage of the serverside solution with memcache over the client side solution with a flag like \u0027bot_connected\u003dTrue\u0027?\n\n\u003e If unset (to take in account memcache flush):\n  - Slow code path to query last BotEvent if it\u0027s a \"bot_connecting\", do the \"bot_connected\" event if necessary and set to False.\n\nThere can be \u0027bot_hook_log\u0027 events between /handshake and the first /poll requests...\nSo I concern that it will become complicated to do this.\n(Checking events within past xx minutes would work, but not preferable.)",
+      "parentUuid": "4693fe13_1c29f77d",
+      "revId": "a1bebe6db0b7e3a896fe4c686476e5f002990c43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
