@@ -12,6 +12,9 @@ import unittest
 import six
 from nose2 import discover
 
+import test_env
+test_env.setup_test_env()
+
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 LUCI_DIR = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
 PLUGINS_DIR = os.path.join(THIS_DIR, 'nose2_plugins')
