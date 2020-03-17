@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9d4b0ec8_0dcb9284",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-17T01:04:29Z",
+      "side": 1,
+      "message": "Scrolling through 600 lines to find use is meh.\nAnd now that I\u0027ve expressed my meh -- do what you please.",
+      "parentUuid": "cb46fa97_87a225b5",
+      "range": {
+        "startLine": 600,
+        "startChar": 40,
+        "endLine": 600,
+        "endChar": 71
+      },
+      "revId": "0a96fb1f0daf0a6a1855fe6488d0aa50230feed7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8bc97a3_ece4d28a",
         "filename": "appengine/components/components/auth/change_log.py",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "\u003e worth logging this use case?\nI don\u0027t think so, this condition is discoverable by looking at change_rev_old and change_rev_new in CHANGE_PROJECT_REALMS_CHANGED (they\u0027ll be equal). Also it\u0027s not big deal either way.\n\n\u003e I\u0027d just move to L638 with this comment.\nthen (not config_changed and not reevaluated) will look unexplained",
       "parentUuid": "c8bc97a3_ece4d28a",
+      "range": {
+        "startLine": 621,
+        "startChar": 36,
+        "endLine": 622,
+        "endChar": 13
+      },
+      "revId": "0a96fb1f0daf0a6a1855fe6488d0aa50230feed7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdca60b8_ce306afb",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-17T01:04:29Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "f61ffa5b_bd7cac3a",
       "range": {
         "startLine": 621,
         "startChar": 36,
