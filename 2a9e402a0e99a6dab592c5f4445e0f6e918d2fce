@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "fa964270_fd7dd4e6",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-17T01:01:39Z",
+      "side": 1,
+      "message": "get_project_configs_async(...) takes proto message class as an optional second argument. When it does, if the config can\u0027t be deserialized, the error is returned as exc in (..., ..., exc) tuple. It\u0027s the only codepath that returns exceptions by value in get_project_configs_async.\n\nSince we don\u0027t ask get_project_configs_async to do deserialization (by not passing the proto message class), \u0027exc\u0027 is always None, thus this assert. I didn\u0027t want to add some bogus \"error handling\" for impossible errors.",
+      "parentUuid": "3bcd6b61_66289eed",
+      "range": {
+        "startLine": 231,
+        "startChar": 48,
+        "endLine": 231,
+        "endChar": 71
+      },
+      "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30906e65_668e1637",
         "filename": "appengine/auth_service/realms/config.py",
         "patchSetId": 4
@@ -91,6 +115,30 @@
       "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7455afe4_3fc18405",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-03-17T01:01:39Z",
+      "side": 1,
+      "message": "it is a section separator...\n\nI\u0027ll remove it if you don\u0027t like it :(",
+      "parentUuid": "8bd7a626_ed521a82",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 371,
+        "endChar": 3
+      },
+      "revId": "2a9e402a0e99a6dab592c5f4445e0f6e918d2fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
