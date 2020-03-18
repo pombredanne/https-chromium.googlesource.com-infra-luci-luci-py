@@ -70,6 +70,24 @@
       "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f74533d_aa8b185f",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-18T02:46:46Z",
+      "side": 1,
+      "message": "\u003e But frankly, this is all already in swarming.task_requests, so I don\u0027t see the point much to log more here.\n\nWith this maruel\u0027s comment, do you think this is still necessary?",
+      "parentUuid": "8ea98807_bab36a29",
+      "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
