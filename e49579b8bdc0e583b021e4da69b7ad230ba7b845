@@ -88,6 +88,24 @@
       "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5860cbb3_d3eb1df7",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-18T04:35:10Z",
+      "side": 1,
+      "message": "I see, they come almost from TaskProperties.\nLet me check them in BigQuery.",
+      "parentUuid": "0f74533d_aa8b185f",
+      "revId": "e49579b8bdc0e583b021e4da69b7ad230ba7b845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
