@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c80f1db_12635e04",
+        "filename": "client/utils/zip_package.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-18T00:47:20Z",
+      "side": 1,
+      "message": "could you not import six here?",
+      "revId": "d5889ce95b17f2ece7d3f26a83aa6f0bf39e7ef6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
