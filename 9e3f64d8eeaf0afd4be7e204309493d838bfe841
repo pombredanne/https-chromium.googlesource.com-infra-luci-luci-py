@@ -16,6 +16,24 @@
       "revId": "9e3f64d8eeaf0afd4be7e204309493d838bfe841",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50eaccd4_4c6ccb4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-19T15:09:54Z",
+      "side": 1,
+      "message": "Issue 1062746 looks like different from other unexpected pending time, and it\u0027s specific to AdminRepair task which target to specific bots by IDs. So I want to keep tracking it separately.",
+      "parentUuid": "7fbc1e7c_d1a1ab1d",
+      "revId": "9e3f64d8eeaf0afd4be7e204309493d838bfe841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
