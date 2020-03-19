@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fbc1e7c_d1a1ab1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-19T08:03:47Z",
+      "side": 1,
+      "message": "By the way, how did you confirm the fix in crbug.com/1057346#c8\n\nMaybe better to duplicate all suspected issues to crbug.com/1057346 and keep tracking there?",
+      "revId": "9e3f64d8eeaf0afd4be7e204309493d838bfe841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
