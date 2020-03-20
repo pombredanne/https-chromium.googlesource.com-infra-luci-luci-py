@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5770f11c_530fa62b",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2020-03-20T22:35:07Z",
+      "side": 1,
+      "message": "I think what I\u0027m doing is using no_cors_app to call options on itself and pretending to be another site by setting headers\u0027 origin. Please LMK if there\u0027s a better way to do this.",
+      "revId": "e0f70b0481da6244178704f97e21f6904f702253",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
