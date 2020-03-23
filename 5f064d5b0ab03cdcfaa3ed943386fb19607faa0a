@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "178463d0_d7dc6499",
+        "filename": "client/utils/zip_package.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-23T04:33:11Z",
+      "side": 1,
+      "message": "use sys.version_info here?",
+      "range": {
+        "startLine": 303,
+        "startChar": 7,
+        "endLine": 303,
+        "endChar": 14
+      },
+      "revId": "5f064d5b0ab03cdcfaa3ed943386fb19607faa0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
