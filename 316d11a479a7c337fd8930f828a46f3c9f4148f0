@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c348292e_9337ac96",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-23T05:12:26Z",
+      "side": 0,
+      "message": "This assertion was wrong.\nThere is only one BotTaskDimensions for the tasks with the same dimensions.",
+      "revId": "316d11a479a7c337fd8930f828a46f3c9f4148f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

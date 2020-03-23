@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0573f026_a9d86091",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-23T05:12:26Z",
+      "side": 1,
+      "message": "This test failed as expected without the fix in task_queues.py\n\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8885064663893812192/+/steps/swarming/0/steps/run_tests_python2/0/stdout#L8528_0",
+      "revId": "b523d136bcb9b61802e9ad489407ec4f37351b28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
