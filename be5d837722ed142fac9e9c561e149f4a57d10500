@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51b7da64_e1cf0bd3",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-23T02:40:24Z",
+      "side": 1,
+      "message": "can be `seconds\u003d1`?",
+      "range": {
+        "startLine": 519,
+        "startChar": 48,
+        "endLine": 519,
+        "endChar": 53
+      },
+      "revId": "be5d837722ed142fac9e9c561e149f4a57d10500",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
