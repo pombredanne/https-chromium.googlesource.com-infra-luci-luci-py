@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8825bb2_a4e9584a",
+        "filename": "appengine/auth_service/handlers_frontend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-23T20:59:51Z",
+      "side": 1,
+      "message": "😱",
+      "range": {
+        "startLine": 33,
+        "startChar": 20,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "7bdf114f86299dc1c3e04027eda2944736b35b40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cae318ec_a4c8c874",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-03-23T20:59:51Z",
+      "side": 1,
+      "message": "you could\n\n   assert exc is None, \"impossible: exception while fetching raw bytes: %r\" % (exc,)\n\ninstead of the comment (so when it does happen we\u0027ll have a nicer error in the logs)",
+      "revId": "7bdf114f86299dc1c3e04027eda2944736b35b40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
