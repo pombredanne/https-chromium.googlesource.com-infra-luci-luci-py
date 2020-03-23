@@ -22,6 +22,30 @@
       "revId": "af2b35e7606227c691211e4c8195d8abc891e0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd092d0_5af0b0be",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-23T02:00:04Z",
+      "side": 1,
+      "message": "updated to add 1 second to self.now",
+      "parentUuid": "16a47414_1cef94a7",
+      "range": {
+        "startLine": 519,
+        "startChar": 18,
+        "endLine": 519,
+        "endChar": 55
+      },
+      "revId": "af2b35e7606227c691211e4c8195d8abc891e0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
