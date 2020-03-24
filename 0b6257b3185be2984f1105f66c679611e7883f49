@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "a73210ed_cf0b0859",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-24T08:47:26Z",
+      "side": 1,
+      "message": "Sorry, but I changed my mind.\n\nMy concern is that whether we have sufficiently narrowed permission for log.\nhttps://pantheon.corp.google.com/iam-admin/iam?project\u003disolateserver\nAnd I think http://shortn/_g9nTkYhDhz currently has bit too many people.\n\nAlso we rather want to knonw which service accounts are using python client. So I\u0027d like to let user contact us by themselfs if we lost compatibility to python client after announncement instead of logging and contact to user from ourselfs.",
+      "parentUuid": "65589ca2_832501bd",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9383b95_057cbb4f",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 7
@@ -162,6 +186,41 @@
       "side": 1,
       "message": "i mean i need this function in order to do the mocking. or am i miss understanding what you meant by \"inline\"?",
       "parentUuid": "f8b946a6_190bd9ce",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c12f190_f23169c6",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-24T08:47:26Z",
+      "side": 1,
+      "message": "I think you can check the behavior by using mock.assert_any_call(...) and with @patch(\u0027logging.info\u0027)?\nhttps://docs.python.org/dev/library/unittest.mock.html#unittest.mock.patch\nhttps://docs.python.org/dev/library/unittest.mock.html#unittest.mock.Mock.assert_any_call\nand",
+      "parentUuid": "eea7333f_6fdbf6e5",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dc6cbfb_0e62d4ca",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-24T08:47:26Z",
+      "side": 1,
+      "message": "2 empty lines are sufficient.",
       "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
