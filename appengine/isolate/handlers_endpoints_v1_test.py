@@ -112,16 +112,14 @@ def get_file_info_factory(content=None):
 ### Isolate Service Test
 
 
-class IsolateServiceTest(test_case.EndpointsTestCase):
-  """Test the IsolateService's API methods."""
-
-  api_service_cls = handlers_endpoints_v1.IsolateService
+class IsolateServiceTestBase(test_case.EndpointsTestCase):
+  """Base class for testing IsolateService."""
   store_prefix = 'https://storage.googleapis.com/sample-app/'
 
   APP_DIR = test_env.APP_DIR
 
   def setUp(self):
-    super(IsolateServiceTest, self).setUp()
+    super(IsolateServiceTestBase, self).setUp()
     self.testbed.init_blobstore_stub()
     self.testbed.init_urlfetch_stub()
     admin = auth.Identity(auth.IDENTITY_USER, 'admin@example.com')
@@ -141,6 +139,12 @@ class IsolateServiceTest(test_case.EndpointsTestCase):
     make_private_key()
     # Remove the check for dev server in should_push_to_gs().
     self.mock(utils, 'is_local_dev_server', lambda: False)
+
+
+class IsolateServiceTest(IsolateServiceTestBase):
+  """Test the IsolateService's API methods."""
+
+  api_service_cls = handlers_endpoints_v1.IsolateService
 
   def store_request(self, namespace, content):
     """Generate a Storage/FinalizeRequest via preupload status."""
@@ -597,6 +601,35 @@ class IsolateServiceTest(test_case.EndpointsTestCase):
         'https://storage.googleapis.com/sample-app/%s/%s?GoogleAccessId=&'
         'Expires=') % (namespace, digest)
     self.assertTrue(resp.json['url'].startswith(prefix))
+
+
+
+class IsolateServiceLogIfPythonClientTest(IsolateServiceTestBase):
+  """Test the IsolateService's handlers can log for python clients."""
+  _agent_method_identity = None
+
+  @staticmethod
+  def mocked_cls():
+    cls = handlers_endpoints_v1.IsolateService
+    cls.get_user_agent = lambda _: 'python-requests/1.0'
+
+    @staticmethod
+    def _log(a, m, i):
+      IsolateServiceLogIfPythonClientTest._agent_method_identity = (a, m, i)
+
+    cls._log_agent_method_identity = _log
+    return cls
+
+  api_service_cls = mocked_cls.__func__()
+
+  def test_log_agent_method_identity(self):
+    """Assert that proper identity info is being logged."""
+    namespace = 'default'
+    collection = generate_collection(namespace, ['foobar'])
+    self.call_api('preupload', message_to_dict(collection), 200)
+    self.assertEqual(
+        IsolateServiceLogIfPythonClientTest._agent_method_identity,
+        ('python-requests/1.0', 'preupload', 'user:admin@example.com'))
 
 
 if __name__ == '__main__':
