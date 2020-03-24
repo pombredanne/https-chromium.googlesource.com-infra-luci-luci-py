@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "606aae5d_276a66e8",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-24T06:34:05Z",
+      "side": 1,
+      "message": "\u003e So how do you think only loging that identity is come from user if is_user \u003d\u003d True\n\nSGTM\n\n\u003e and check whether there are still many access from user account after migrating known python client usage?\n\nI think we are already in this stage?\n\nFYI the policy for PII in prod remote debug log: https://g3doc.corp.google.com/monitoring/logging/g3doc/remote_debug_logging/user_data.md#pii. It doesn\u0027t forbid PII at least. Do we know that only people with the proper ACL can access these logs?",
+      "parentUuid": "f997bbc3_91d8f7b9",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9383b95_057cbb4f",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 7
@@ -39,6 +63,24 @@
       "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fdcdc0d_f86d9e1f",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-24T06:34:05Z",
+      "side": 1,
+      "message": "mostly for mocking",
+      "parentUuid": "d9383b95_057cbb4f",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
