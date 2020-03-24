@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "2c8ec80c_d26d8a2b",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-24T10:04:47Z",
+      "side": 1,
+      "message": "\u003e  Yes, I think this is still necessary. I guess currently most of access are come from python client run in swarming bot code, but after we migrated that to go client, this will help to identify python client usage from some service account.\n\nSorry i still don\u0027t get it. If this is necessary, then we should log something at least? Do you prefer logging the service account?\n\n\u003e Currently read access is allowed to everyone (\u0027*\u0027), so it may accidentally log non-internal user.\n\nAre external users supposed  to use isolateserver at  all? If not, we shouldn\u0027t worry about breaking their usage. What about log when is_user\u003d\u003dTrue \u0026\u0026 endsqwith(\u0027@google.com\u0027)?",
+      "parentUuid": "ffecf291_984b787c",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9383b95_057cbb4f",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 7
