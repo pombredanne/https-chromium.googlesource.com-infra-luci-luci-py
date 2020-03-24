@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e44dc182_86a0ac36",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-24T06:41:21Z",
+      "side": 1,
+      "message": "\u003e \u003e and check whether there are still many access from user account after migrating known python client usage?\n\u003e \n\u003e I think we are already in this stage?\n\nAh, I see.\n\n\u003e \n\u003e FYI the policy for PII in prod remote debug log: https://g3doc.corp.google.com/monitoring/logging/g3doc/remote_debug_logging/user_data.md#pii. It doesn\u0027t forbid PII at least. Do we know that only people with the proper ACL can access these logs?\n\nI currently think swarming projects allow broader access more than necessary, so still want to defer or avoid user id logging.",
+      "parentUuid": "606aae5d_276a66e8",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9383b95_057cbb4f",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 7
@@ -81,6 +105,24 @@
       "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8b946a6_190bd9ce",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-24T06:41:21Z",
+      "side": 1,
+      "message": "You can use mock\nhttps://pypi.org/project/mock/",
+      "parentUuid": "1fdcdc0d_f86d9e1f",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
