@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "1964779f_187616a4",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-24T08:58:56Z",
+      "side": 1,
+      "message": "Then do you think this CL is still necessary? Sounds like we should just remove the client and. wait for users to contact us (maybe send out PSA in luci-announce first)?\n\nIMO if all the python client users are internal Googlers, it should be fine. PII applies more to the external (actual) users? WDYT?",
+      "parentUuid": "a73210ed_cf0b0859",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9383b95_057cbb4f",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 7
@@ -204,6 +228,24 @@
       "side": 1,
       "message": "I think you can check the behavior by using mock.assert_any_call(...) and with @patch(\u0027logging.info\u0027)?\nhttps://docs.python.org/dev/library/unittest.mock.html#unittest.mock.patch\nhttps://docs.python.org/dev/library/unittest.mock.html#unittest.mock.Mock.assert_any_call\nand",
       "parentUuid": "eea7333f_6fdbf6e5",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb38f565_51bbb159",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-24T08:58:56Z",
+      "side": 1,
+      "message": "Thanks for the materials, but I\u0027d prefer to test what rather than how... go/tott/571 Anyway, i feel like this pattern of having a _impl for mocking a bit more common in this codebase?",
+      "parentUuid": "7c12f190_f23169c6",
       "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
