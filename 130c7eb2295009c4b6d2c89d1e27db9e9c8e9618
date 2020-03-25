@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c416864_f1d980b9",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-03-25T21:25:39Z",
+      "side": 1,
+      "message": "Can you explain to me why this is needed?",
+      "range": {
+        "startLine": 150,
+        "startChar": 36,
+        "endLine": 150,
+        "endChar": 62
+      },
+      "revId": "130c7eb2295009c4b6d2c89d1e27db9e9c8e9618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
