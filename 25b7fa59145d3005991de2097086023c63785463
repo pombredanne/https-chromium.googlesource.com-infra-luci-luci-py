@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "953d3cde_8616c50d",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T05:16:28Z",
+      "side": 1,
+      "message": "also could you log without name when is_user but not endswith .gserviceaccount.com case too?",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 53
+      },
+      "revId": "25b7fa59145d3005991de2097086023c63785463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c777daf2_c0a94719",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T05:16:28Z",
+      "side": 1,
+      "message": "I prefer 2 empty lines here.",
+      "revId": "25b7fa59145d3005991de2097086023c63785463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

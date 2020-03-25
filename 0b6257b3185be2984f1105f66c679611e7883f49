@@ -432,6 +432,24 @@
     },
     {
       "key": {
+        "uuid": "fa5332be_b78bc246",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T05:16:28Z",
+      "side": 1,
+      "message": "\u003e 1. the mock and unittest.mock are two different modules?\n\nWe currently need to use https://pypi.org/project/mock/ which are backport of mock in python3.\n\nBut `import mock` works both in python2 and python3 if we use vpython.\nhttps://cs.chromium.org/search/?q\u003d%5Eimport%5C+mock$+file:%5Einfra/luci/appengine/+package:%5Echromium$\u0026type\u003dcs\n\n\u003e 2. they are only available in py3? what\u0027s the env to run this test? do i need to manually `pip install mock`?\n\nbackported mock in python2 is available as vpython module written in\nhttps://cs.chromium.org/chromium/infra/luci/.vpython?l\u003d22\u0026rcl\u003dce889b27715ca372ad454c8dc6f9c86fb2979755\nas long as we use vpython.\nYou don\u0027t need to use pip.\n\n\u003e 3. the very point you made to change to logging.warn would have already broke the test.\n\nI want to take care how the logging api is called. And it seems more explicit check than having this function for mocking in our own way?\n\n\u003e 4. is this bit worth so much discussion? i believe the main point of testing here is to verify if the decorator works as expected?\n\nHmm, maybe I\u0027m stubborn or too conservative here.\n\nI\u0027m doubting having this kind of function for our own way of mock follows the right (or standardrized) way and it is better than using mock library.",
+      "parentUuid": "7e7215f2_bbe5e9f7",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0dc6cbfb_0e62d4ca",
         "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
         "patchSetId": 7
