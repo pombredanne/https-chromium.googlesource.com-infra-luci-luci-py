@@ -265,6 +265,30 @@
     },
     {
       "key": {
+        "uuid": "b6369b13_9dc06129",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T04:40:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ada9bb05_e10fce26",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9383b95_057cbb4f",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 7
@@ -384,6 +408,24 @@
       "side": 1,
       "message": "\u003e Thanks for the materials, but I\u0027d prefer to test what rather than how... go/tott/571\n\nI think using mock can test what too?\n\n\u003e Anyway, i feel like this pattern of having a _impl for mocking a bit more common in this codebase?\n\nI think that is due to lack of standardization due to difficulty of using non-standard library or non-existence of mock in the past.\nBut we can now use mock, this is actually not standard, but I think this is kind of standard and want to use that than following existing practice here.",
       "parentUuid": "bb38f565_51bbb159",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e7215f2_bbe5e9f7",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T04:40:50Z",
+      "side": 1,
+      "message": "1. the mock and unittest.mock are two different modules?\n2. they are only available in py3? what\u0027s the env to run this test? do i need to manually `pip install mock`?\n3. the very point you made to change to logging.warn would have already broke the test.\n4. is this bit worth so much discussion? i believe the main point of testing here is to verify if the decorator works as expected?",
+      "parentUuid": "c05faa96_ba6a999c",
       "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
