@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee5da614_d2da73ea",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T04:05:31Z",
+      "side": 1,
+      "message": "Could you also show log when identity.is_user \u003d\u003d False to find all of client in\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/auth/model.py?l\u003d137-142\u0026rcl\u003dce889b27715ca372ad454c8dc6f9c86fb2979755\n?",
+      "range": {
+        "startLine": 59,
+        "startChar": 29,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "883fa68f8a9be96e7ccd4f21c08a66ef0851cb5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "855267ea_867f3ae1",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T04:05:31Z",
+      "side": 1,
+      "message": "better to use warn (or something other than info)?\n\nisolateserver shows many logs and searching large time range is very slow.\nSo better to use severity as indexed filed we can change here.\nhttps://cloud.google.com/logging/docs/view/advanced-queries#indexed-fields",
+      "range": {
+        "startLine": 593,
+        "startChar": 12,
+        "endLine": 593,
+        "endChar": 16
+      },
+      "revId": "883fa68f8a9be96e7ccd4f21c08a66ef0851cb5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

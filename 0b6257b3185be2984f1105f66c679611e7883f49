@@ -372,6 +372,24 @@
     },
     {
       "key": {
+        "uuid": "c05faa96_ba6a999c",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T04:05:31Z",
+      "side": 1,
+      "message": "\u003e Thanks for the materials, but I\u0027d prefer to test what rather than how... go/tott/571\n\nI think using mock can test what too?\n\n\u003e Anyway, i feel like this pattern of having a _impl for mocking a bit more common in this codebase?\n\nI think that is due to lack of standardization due to difficulty of using non-standard library or non-existence of mock in the past.\nBut we can now use mock, this is actually not standard, but I think this is kind of standard and want to use that than following existing practice here.",
+      "parentUuid": "bb38f565_51bbb159",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0dc6cbfb_0e62d4ca",
         "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
         "patchSetId": 7
