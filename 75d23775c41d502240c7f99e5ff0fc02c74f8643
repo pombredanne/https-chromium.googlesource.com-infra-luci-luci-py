@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6fe61d5_f4670df8",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T06:53:52Z",
+      "side": 1,
+      "message": "Could you add test?\n\nSeems not correct.\n$ python3\nPython 3.7.5 (default, Oct 27 2019, 15:43:29) \n[GCC 9.2.1 20190909] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import six\n\u003e\u003e\u003e obj \u003d b\u0027\u0027\n\u003e\u003e\u003e if isinstance(obj, six.binary_type):\n...   obj.encode(\u0027utf-8\u0027)\n... \nTraceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 2, in \u003cmodule\u003e\nAttributeError: \u0027bytes\u0027 object has no attribute \u0027encode\u0027\n\u003e\u003e\u003e",
+      "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
