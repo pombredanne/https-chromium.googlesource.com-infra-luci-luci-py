@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1754c137_6537447e",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T08:22:44Z",
+      "side": 1,
+      "message": "Can we use mock.patch.object for handlers_endpoints_v1.IsolateService.get_user_agent instead?\nhttps://docs.python.org/3/library/unittest.mock.html#unittest.mock.patch.object",
+      "revId": "0cf0d23e4ff7c034e0228cedc91eac2562f4bafb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b1ab3b2_b47dee32",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T08:22:44Z",
+      "side": 1,
+      "message": "better to use explicit literal?",
+      "range": {
+        "startLine": 651,
+        "startChar": 36,
+        "endLine": 651,
+        "endChar": 44
+      },
+      "revId": "0cf0d23e4ff7c034e0228cedc91eac2562f4bafb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
