@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b07f61d5_87600450",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T07:30:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "953d3cde_8616c50d",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 53
+      },
+      "revId": "25b7fa59145d3005991de2097086023c63785463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c777daf2_c0a94719",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 9
@@ -39,6 +63,24 @@
       "revId": "25b7fa59145d3005991de2097086023c63785463",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b42d420_11557e23",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T07:30:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c777daf2_c0a94719",
+      "revId": "25b7fa59145d3005991de2097086023c63785463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

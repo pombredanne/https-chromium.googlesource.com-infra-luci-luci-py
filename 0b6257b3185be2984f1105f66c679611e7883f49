@@ -486,6 +486,24 @@
     },
     {
       "key": {
+        "uuid": "a46ebfb2_64c61910",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T07:30:33Z",
+      "side": 1,
+      "message": "I changed to mock, but still prefer the previous approach, because now we are coupled with both logging.warn and the content format. Bug since this is unlikely to be changed very often, i. guess that\u0027s fine.",
+      "parentUuid": "eb0285fc_7895a8d0",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0dc6cbfb_0e62d4ca",
         "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
         "patchSetId": 7
