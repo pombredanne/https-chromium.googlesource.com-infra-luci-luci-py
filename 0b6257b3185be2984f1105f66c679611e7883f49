@@ -468,6 +468,24 @@
     },
     {
       "key": {
+        "uuid": "eb0285fc_7895a8d0",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-25T06:59:48Z",
+      "side": 1,
+      "message": "\u003e Ok, then it sounds like we should use the https://pypi.org/project/mock/, since unittest.mock is only available for PY3? I\u0027m asking because this is a GAE app, and i thought it only supports PY2 (although this is just test, so maybe it doesn\u0027t matter.) \n\u003e \n\nCorrect for the test of this change.\n\n\u003e Again, is it the best way for me to manually install it? Or is there a command i should run which imports all the necessary modules..?\n\nYou don\u0027t need to install by yourself.\nif you run the test like\n$ vpython appengine/isolate/handlers_endpoints_v1_test.py\nvpython automatically takes the mock library from CIPD.\n\nref: go/vpython-and-you",
+      "parentUuid": "8b08d6ca_84fe87e0",
+      "revId": "0b6257b3185be2984f1105f66c679611e7883f49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0dc6cbfb_0e62d4ca",
         "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
         "patchSetId": 7
