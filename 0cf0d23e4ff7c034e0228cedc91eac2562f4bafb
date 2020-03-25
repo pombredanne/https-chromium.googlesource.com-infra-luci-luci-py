@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e6bb82e_18c0a102",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T08:30:07Z",
+      "side": 1,
+      "message": "I used MagicMock, feel like that\u0027s a bit simpler",
+      "parentUuid": "1754c137_6537447e",
+      "revId": "0cf0d23e4ff7c034e0228cedc91eac2562f4bafb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b1ab3b2_b47dee32",
         "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
         "patchSetId": 14
@@ -39,6 +57,30 @@
       "revId": "0cf0d23e4ff7c034e0228cedc91eac2562f4bafb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6b0c797_60eeae30",
+        "filename": "appengine/isolate/handlers_endpoints_v1_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-25T08:30:07Z",
+      "side": 1,
+      "message": "Done.\n\nAgain, i\u0027m not a fan of matching logging messages. It reminds me of checking errors by its message, whereas the reliable way would be to look at the error code.",
+      "parentUuid": "0b1ab3b2_b47dee32",
+      "range": {
+        "startLine": 651,
+        "startChar": 36,
+        "endLine": 651,
+        "endChar": 44
+      },
+      "revId": "0cf0d23e4ff7c034e0228cedc91eac2562f4bafb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
