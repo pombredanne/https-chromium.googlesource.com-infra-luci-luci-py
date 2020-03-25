@@ -6,6 +6,7 @@
 
 import binascii
 import datetime
+import functools
 import hashlib
 import logging
 import os
@@ -39,6 +40,35 @@ import stats
 # The minimum size, in bytes, an entry must be before it gets stored in Google
 # Cloud Storage, otherwise it is stored as a blob property.
 MIN_SIZE_FOR_GS = 501
+
+
+### Utility
+
+
+def _log_identity_if_is_python_client(func):
+  """Logs the identity if it's using the python isolate client.
+
+  This decorator must come after the auth ones, so that when it is invoked, the
+  identity is updated.
+  """
+
+  @functools.wraps(func)
+  def wrapped(service, *args, **kwargs):
+    agent = service.get_user_agent()
+    method = func.__name__
+    identity = auth.get_current_identity()
+    if 'python' in agent:
+      if not identity.is_user or identity.name.endswith('.gserviceaccount.com'):
+        logging.warn(
+            'Python isolate client: user_agent=%s method=%s identity=%s' %
+            (agent, method, identity.to_bytes()))
+      else:
+        logging.warn(
+            'Python isolate client: user_agent=%s method=%s (identity hidden)' %
+            (agent, method))
+    return func(service, *args, **kwargs)
+
+  return wrapped
 
 
 ### Request Types
@@ -189,6 +219,7 @@ class IsolateService(remote.Service):
 
   @auth.endpoints_method(DigestCollection, UrlCollection, http_method='POST')
   @auth.require(acl.isolate_writable)
+  @_log_identity_if_is_python_client
   def preupload(self, request):
     """Checks for entry's existence and generates upload URLs.
 
@@ -213,6 +244,8 @@ class IsolateService(remote.Service):
         ...
         ])
     """
+    # import pdb
+    # pdb.set_trace()
     response = UrlCollection(items=[])
 
     # check for namespace error
@@ -261,18 +294,21 @@ class IsolateService(remote.Service):
 
   @auth.endpoints_method(StorageRequest, PushPing)
   @auth.require(acl.isolate_writable)
+  @_log_identity_if_is_python_client
   def store_inline(self, request):
     """Stores relatively small entities in the datastore."""
     return self.storage_helper(request, False)
 
   @auth.endpoints_method(FinalizeRequest, PushPing)
   @auth.require(acl.isolate_writable)
+  @_log_identity_if_is_python_client
   def finalize_gs_upload(self, request):
     """Informs client that large entities have been uploaded to GCS."""
     return self.storage_helper(request, True)
 
   @auth.endpoints_method(RetrieveRequest, RetrievedContent)
   @auth.require(acl.isolate_readable)
+  @_log_identity_if_is_python_client
   def retrieve(self, request):
     """Retrieves content from a storage location."""
     content = None
@@ -555,6 +591,9 @@ class IsolateService(remote.Service):
       payload = ''.join(
           binascii.unhexlify(digest.digest) for digest in collection.items)
       return utils.enqueue_task(url, 'tag', payload=payload)
+
+  def get_user_agent(self):
+    return self.request_state.headers.get('User-Agent', '')
 
 
 def get_routes():
