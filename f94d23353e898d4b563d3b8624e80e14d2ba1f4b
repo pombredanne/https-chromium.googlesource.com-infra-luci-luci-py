@@ -93,6 +93,30 @@
       "revId": "f94d23353e898d4b563d3b8624e80e14d2ba1f4b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4fa43cb_311b715a",
+        "filename": "appengine/isolate/doc/client/Isolated-User-Guide.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T01:26:25Z",
+      "side": 1,
+      "message": "Sorry I meant isolated instead of isolate\nhttps://cs.chromium.org/chromium/infra/go/src/go.chromium.org/luci/client/cmd/isolated/",
+      "parentUuid": "1b804e61_c349fe70",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "f94d23353e898d4b563d3b8624e80e14d2ba1f4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
