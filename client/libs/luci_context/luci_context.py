@@ -66,8 +66,8 @@ def _to_utf8(obj):
     return {_to_utf8(key): _to_utf8(value) for key, value in obj.items()}
   if isinstance(obj, list):
     return [_to_utf8(item) for item in obj]
-  if isinstance(obj, six.text_type):
-    return obj.encode('utf-8')
+  if isinstance(obj, six.binary_type):
+    return obj.decode('utf-8')
   return obj
 
 
