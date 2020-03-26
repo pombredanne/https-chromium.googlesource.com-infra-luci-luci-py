@@ -548,13 +548,26 @@ class IsolateServer(StorageApi):
 
     # upload to GS
     url = push_state.upload_url
-    response = net.url_read(
+    response = net.url_open(
         content_type='application/octet-stream',
         data=content,
         method='PUT',
         headers={'Cache-Control': 'public, max-age=31536000'},
         url=url)
-    return response is not None
+    if not response:
+      return False
+    try:
+      response.read()
+    except TimeoutError:
+      return False
+
+    if 'x-goog-hash' in response.headers:
+      # Integrity check of uploaded file.
+      # https://cloud.google.com/storage/docs/xml-api/reference-headers#xgooghash
+      md5_x_goog_hash = 'md5=' + base64.b64encode(hashlib.md5(content).digest())
+      return md5_x_goog_hash in response.headers.get('x-goog-hash', '')
+
+    return True
 
 
 class _IsolateServerGrpcPushState(object):
