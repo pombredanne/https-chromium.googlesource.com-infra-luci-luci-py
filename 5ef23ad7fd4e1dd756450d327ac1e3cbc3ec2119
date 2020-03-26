@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5c41ff5c_7f217fec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T02:03:07Z",
+      "side": 1,
+      "message": "update here or separate CL for isolated?",
+      "range": {
+        "startLine": 7,
+        "startChar": 35,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "5ef23ad7fd4e1dd756450d327ac1e3cbc3ec2119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "563dff50_5091f9a8",
         "filename": "appengine/isolate/doc/client/Isolated-User-Guide.md",
         "patchSetId": 3
