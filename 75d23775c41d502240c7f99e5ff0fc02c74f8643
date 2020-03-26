@@ -34,6 +34,24 @@
       "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "066162ec_6ff3686e",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T04:15:18Z",
+      "side": 1,
+      "message": "OK, but I still want you to write test for this change.\nTest written in\nhttps://cs.chromium.org/chromium/infra/luci/client/libs/luci_context/luci_context_test.py\nruns both in python2 and python3.",
+      "parentUuid": "3f627267_56ffee01",
+      "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
