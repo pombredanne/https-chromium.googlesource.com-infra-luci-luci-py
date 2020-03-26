@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "563dff50_5091f9a8",
+        "filename": "appengine/isolate/doc/client/Isolated-User-Guide.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T02:02:31Z",
+      "side": 1,
+      "message": "isolated generates .isolated file, but not read .isolated file.",
+      "range": {
+        "startLine": 21,
+        "startChar": 35,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "5ef23ad7fd4e1dd756450d327ac1e3cbc3ec2119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69ebc1f3_a1839de3",
+        "filename": "appengine/isolate/doc/client/Isolated-User-Guide.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T02:02:31Z",
+      "side": 1,
+      "message": "cache-dir",
+      "range": {
+        "startLine": 50,
+        "startChar": 42,
+        "endLine": 50,
+        "endChar": 47
+      },
+      "revId": "5ef23ad7fd4e1dd756450d327ac1e3cbc3ec2119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5b13098_b2bcce3e",
+        "filename": "appengine/isolate/doc/client/Isolated-User-Guide.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T02:02:31Z",
+      "side": 1,
+      "message": "-cache-dir",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 40
+      },
+      "revId": "5ef23ad7fd4e1dd756450d327ac1e3cbc3ec2119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

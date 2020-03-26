@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9496f63_3f868397",
+        "filename": "appengine/isolate/doc/client/Isolated-User-Guide.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-26T02:02:31Z",
+      "side": 0,
+      "message": "--file seems not supported yet in isolated.\nCould you add this too?",
+      "range": {
+        "startLine": 42,
+        "startChar": 53,
+        "endLine": 42,
+        "endChar": 67
+      },
+      "revId": "e9732d4f9a9b147ad1520fe4eba3309a74b8b284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
