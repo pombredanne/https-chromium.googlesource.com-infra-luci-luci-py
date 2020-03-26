@@ -16,6 +16,24 @@
       "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f627267_56ffee01",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-26T04:07:59Z",
+      "side": 1,
+      "message": "I updated the if condition to only encode obj when it is running in Python2.\n\nThe problem is it will convert str to bytes in Python3, since six.text_type is str in Python3, which causes failed to find the luci context with given key, the key is str, not bytes.\n\nMy solution is conservative, I know you would like to avoid six.PY2 or six.PY3 in condition check, let me know if you have better idea to solve it, I am open to other ideas.",
+      "parentUuid": "b6fe61d5_f4670df8",
+      "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
