@@ -5,26 +5,29 @@ Archive and run your isolated test.
 
 ## Introduction
 
-`isolateserver.py` is the client side code relating to isolated executable.
-`isolate.py` is a frontend to `isolateserver.py` which understands `.isolate`
-files. Use `isolateserver.py` directly for low-level archival and retrieval.
+`isolateserver.py` is the client side code relating to isolated executable. Use
+`isolateserver.py` directly for low-level archival and retrieval.
+
+The new `isolate` binary is compiled from Go source code. It integrates the
+existing functionality from `isolate.py`, but you can still use
+`isolateserver.py` as a standalone CLI.
 
 
 ## Overview
 
   - "`isolateserver.py help`" gives you all the help you need so only a quick
     overview is given here.
-  - "`isolate.py archive`" is a shortcut to compile a `.isolate` into a
-    `.isolated` file *and* archive the tree to an Isolate Server; e.g.
-    "`isolate.py check`" plus "`isolateserver.py archive`".
+  - "`isolate archive`" is a shortcut to compile a `.isolate` into a
+    `.isolated` file *and* archive the tree to an Isolate Server. If you already
+    have a `.isolated` file, use "`isolateserver.py archive`" directly.
 
 
 ### Archiving
 
 If you want to upload a test to the isolate server, you want the first command:
 
-  - Archive an .isolate tree: "`isolate.py archive --isolated <.isolated> -o
-    https://host`"
+  - Archive an .isolate tree: "`isolate archive -isolate <.isolate> -isolated
+    <.isolated> -I https://host`"
   - Archive a single file: "`isolateserver.py archive <file> --isolate-server
     https://host`"
 
