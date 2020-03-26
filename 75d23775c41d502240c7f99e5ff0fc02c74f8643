@@ -52,6 +52,24 @@
       "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "775c3ed0_af58001e",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-26T05:39:06Z",
+      "side": 1,
+      "message": "Added unit tests for _to_utf8 API.",
+      "parentUuid": "066162ec_6ff3686e",
+      "revId": "75d23775c41d502240c7f99e5ff0fc02c74f8643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
