@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcf7cc23_7a36d780",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-27T09:04:44Z",
+      "side": 1,
+      "message": "Isn\u0027t the hash expected to be always in the headers? \nIs it ok to silently accept no x-goog-hash header response?",
+      "revId": "260f8cba32db9009d7483cc9182fadbe827d5db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
