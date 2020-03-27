@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89fe9696_4311e99d",
+        "filename": "appengine/isolate/main_frontend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-03-27T10:57:19Z",
+      "side": 1,
+      "message": "gae_ts_mon.initialize() is not only to instrument a given WSGI application, but also to initialize internal storage ad setup a ProdXMon client with an auth deligation.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/third_party/gae_ts_mon/config.py;l\u003d132\n\nPlease use gae_ts_mon.instrument_wsg_application(), instead.\n: https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/third_party/gae_ts_mon/config.py;l\u003d158-161",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 23
+      },
+      "revId": "88b05c975cdb7eaa191e47c10e0c502a73173fd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
