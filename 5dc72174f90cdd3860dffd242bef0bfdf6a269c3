@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d88025a6_8b795af2",
+        "filename": "client/libs/luci_context/luci_context_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-27T01:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d7ae9f3_de9161d7",
+      "revId": "5dc72174f90cdd3860dffd242bef0bfdf6a269c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "421f6910_a7661c16",
         "filename": "client/libs/luci_context/luci_context_test.py",
         "patchSetId": 5
@@ -39,6 +57,30 @@
       "revId": "5dc72174f90cdd3860dffd242bef0bfdf6a269c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a5ce4d8_65e4ba9f",
+        "filename": "client/libs/luci_context/luci_context_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1116794
+      },
+      "writtenOn": "2020-03-27T01:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "421f6910_a7661c16",
+      "range": {
+        "startLine": 136,
+        "startChar": 10,
+        "endLine": 136,
+        "endChar": 17
+      },
+      "revId": "5dc72174f90cdd3860dffd242bef0bfdf6a269c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
