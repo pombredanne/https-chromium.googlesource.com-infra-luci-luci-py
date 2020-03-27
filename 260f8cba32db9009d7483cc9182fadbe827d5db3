@@ -16,6 +16,24 @@
       "revId": "260f8cba32db9009d7483cc9182fadbe827d5db3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11573cd2_16c547e2",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-27T12:33:11Z",
+      "side": 1,
+      "message": "This is to skip fixing mock response in test.\nBut will change here.",
+      "parentUuid": "bcf7cc23_7a36d780",
+      "revId": "260f8cba32db9009d7483cc9182fadbe827d5db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
