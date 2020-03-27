@@ -22,6 +22,30 @@
       "revId": "75a89304f7f3b446ab93aaab12b9faafc13c1e1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b9fe56f_9c8b5931",
+        "filename": "appengine/isolate/main_frontend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-03-27T11:55:08Z",
+      "side": 1,
+      "message": "ah, nvm. I re-read the code of gae_ts_mon.initialize(), found that gae_ts_mon.instrument_wsgi_applicat() is invoked whether is_enabled_fn() returns true or not. The flag is handled in a different layer.\n\nPlease discard my previous message.",
+      "parentUuid": "20f1f6b5_a19ce4f3",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 0
+      },
+      "revId": "75a89304f7f3b446ab93aaab12b9faafc13c1e1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
