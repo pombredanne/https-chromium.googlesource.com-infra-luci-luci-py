@@ -1639,6 +1639,10 @@ def task_bq_summary(start, end):
     entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
     rows = [_convert(e) for e in entities]
     seen.update(e.task_id for e in entities)
+    for e in entities:
+      if not e.end_time:
+        logging.warning('crbug.com/1064833: task %s does not have end_time',
+                        e.task_id)
     total += len(rows)
     failed += bq_state.send_to_bq('task_results_summary', rows)
 
@@ -1653,6 +1657,10 @@ def task_bq_summary(start, end):
       entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
       rows = [_convert(e) for e in entities if e.task_id not in seen]
       seen.update(e.task_id for e in entities)
+      for e in entities:
+        if not e.end_time:
+          logging.warning('crbug.com/1064833: task %s does not have end_time',
+                          e.task_id)
       total += len(rows)
       failed += bq_state.send_to_bq('task_results_summary', rows)
 
