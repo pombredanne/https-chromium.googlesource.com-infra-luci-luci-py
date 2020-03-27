@@ -57,7 +57,8 @@ def create_application():
       # luci-config service URL.
       config.ConfigApi,
   ])
-  gae_ts_mon.instrument_wsgi_application(endpoints_api)
+  if is_enabled_callback():
+    gae_ts_mon.instrument_wsgi_application(endpoints_api)
 
   prpc_api = webapp2.WSGIApplication(handlers_prpc.get_routes())
   return frontend, endpoints_api, prpc_api
