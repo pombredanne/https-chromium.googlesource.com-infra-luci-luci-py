@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20f1f6b5_a19ce4f3",
+        "filename": "appengine/isolate/main_frontend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-03-27T11:51:58Z",
+      "side": 1,
+      "message": "I\u0027m sorry for a late review. This should have been wrapped by is_enabled_callback().\n\n```\n# this check function could be renamed to \"is_ts_mon_enabled\" or similiar\nif is_enabled_callback():\n  gae_ts_mon.instrument_wsgi_application(endpoints_api)\n```",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 0
+      },
+      "revId": "75a89304f7f3b446ab93aaab12b9faafc13c1e1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
