@@ -607,8 +607,8 @@ class BotPollHandler(_BotBaseHandler):
       # after reaping task.
       # See discussion:
       # https://crrev.com/c/1948022/2#message-15c7ac534cdc49794fcb66cd209e5d2272ea22a5
-      logging.warning('crbug.com/1027431: '
-                      'Ignoring Deadline exceeded error: %s', e)
+      logging.exception('crbug.com/1027431: '
+                        'Ignoring Deadline exceeded error')
       self.abort(429, 'Deadline exceeded while asserting bot')
     except datastore_errors.InternalError as e:
       self.abort(429, 'Datastore internal error. %s' % e)
