@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8fdaefe3_5a228556",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-30T00:16:53Z",
+      "side": 1,
+      "message": "I wasn\u0027t confident, but found that \u0027jobs/pending_durations\u0027 metric use NonCumulativeDistributionMetric.\nWe can change it if it\u0027s a wrong metric class.",
+      "parentUuid": "a58a8dfc_e2b86d58",
+      "range": {
+        "startLine": 121,
+        "startChar": 37,
+        "endLine": 121,
+        "endChar": 68
+      },
+      "revId": "553c88b96ad7d4a88ae858e95414f7e4776e1d0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b54f60cc_fa8f43d1",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2020-03-30T00:00:46Z",
       "side": 1,
       "message": "I think this should have also been cumulative...",
+      "range": {
+        "startLine": 130,
+        "startChar": 43,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "553c88b96ad7d4a88ae858e95414f7e4776e1d0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7af1614_c9d8d230",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-30T00:16:53Z",
+      "side": 1,
+      "message": "We can change it.",
+      "parentUuid": "b54f60cc_fa8f43d1",
       "range": {
         "startLine": 130,
         "startChar": 43,
