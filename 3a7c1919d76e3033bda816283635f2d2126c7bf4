@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0dc1bf3_b29fc54d",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1645,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-30T00:43:23Z",
+      "side": 1,
+      "message": "It\u0027s better to do that in _covert().",
+      "revId": "3a7c1919d76e3033bda816283635f2d2126c7bf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
