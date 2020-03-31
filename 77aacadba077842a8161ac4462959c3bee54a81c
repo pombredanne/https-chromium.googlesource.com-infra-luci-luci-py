@@ -16,6 +16,24 @@
       "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f2b28b7_a8c774bb",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-31T08:12:58Z",
+      "side": 1,
+      "message": "I mentioned this because previously i did a strip(). Later i found that to be guarded by validate_dimension_value() already, so i don\u0027t have to do it here.",
+      "parentUuid": "f20945ca_a4bf02cc",
+      "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
