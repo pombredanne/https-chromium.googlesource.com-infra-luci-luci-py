@@ -990,7 +990,10 @@ def get_queues(bot_root_key):
       obj.key.integer_id() for obj in
       BotTaskDimensions.query(ancestor=bot_root_key)
       if obj.valid_until_ts >= now)
-  memcache.set(bot_id, dimensions_hashes, namespace='task_queues')
+  # crbug.com/1065306:
+  # Cache expires in 1 hour.
+  # It should be shortened further according to load on Datastore.
+  memcache.set(bot_id,dimensions_hashes, time=60*60, namespace='task_queues')
   logging.info(
       'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
       bot_id, (utils.utcnow()-now).total_seconds(),
