@@ -150,6 +150,8 @@ _MAX_BOT_PING_TOLERANCE_SECS = 1200
 # Min time to keep the bot alive before it is declared dead.
 _MIN_BOT_PING_TOLERANCE_SECS = 60
 
+# Or dimension separtor
+_OR_DIM_SEP = '|'
 
 ### Properties validators must come before the models.
 
@@ -169,6 +171,18 @@ def _validate_url(prop, value):
   if value and not validation.is_valid_secure_url(value):
     raise datastore_errors.BadValueError(
         '%s must be valid HTTPS URL, not %s' % (prop._name, value))
+
+
+def _normalize_or_dimension_value(value):
+  """Applies OR dimension normalization to value.
+
+  The normalization process sorts the operands of OR by lexicographical order,
+  so that the dimension_hash for semantically equivalent dimension values will
+  be the same.
+
+  Precondition: config.validate_dimension_value(value) == True
+  """
+  return _OR_DIM_SEP.join(sorted(value.split(_OR_DIM_SEP)))
 
 
 def _validate_dimensions(_prop, value):
@@ -203,7 +217,7 @@ def _validate_dimensions(_prop, value):
           value)
 
     for value in values:
-      or_dimensions_num *= len(value.split('|'))
+      or_dimensions_num *= len(value.split(_OR_DIM_SEP))
       if or_dimensions_num > max_or_dimensions_num:
         raise datastore_errors.BadValueError(
             'possible dimension subset for \'or\' dimensions '
@@ -217,11 +231,15 @@ def _validate_dimensions(_prop, value):
     if len(values) != len(set(values)):
       raise datastore_errors.BadValueError(
           u'dimension key %r has repeated values' % k)
+
+    new_values = []
     for value in values:
-      for v in value.split('|'):
+      for v in value.split(_OR_DIM_SEP):
         if not config.validate_dimension_value(v):
           raise datastore_errors.BadValueError(
               u'dimension key %r has invalid value %r' % (k, value))
+      new_values.append(_normalize_or_dimension_value(value))
+    values = new_values
 
     # Key specific checks.
     if k == u'id' and len(values) != 1:
@@ -229,7 +247,7 @@ def _validate_dimensions(_prop, value):
           u'\'id\' cannot be specified more than once in dimensions')
     # Do not allow a task to be triggered in multiple pools, as this could
     # cross a security boundary.
-    if k == u'pool' and (len(values) != 1 or '|' in values[0]):
+    if k == u'pool' and (len(values) != 1 or _OR_DIM_SEP in values[0]):
       raise datastore_errors.BadValueError(
           u'\'pool\' cannot be specified more than once in dimensions %s' %
           values)
