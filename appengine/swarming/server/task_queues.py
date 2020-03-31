@@ -964,35 +964,40 @@ def get_queues(bot_root_key):
 
   Arguments:
     bot_root_key: ndb.Key to bot_management.BotRoot
+
+  Returns:
+    dimension_hashes: list of dimension_hash for the bot
   """
   bot_id = bot_root_key.string_id()
-  data = memcache.get(bot_id, namespace='task_queues')
-  if data is not None:
+  dim_hashes = memcache.get(bot_id, namespace='task_queues')
+  if dim_hashes is not None:
     # Note: This may return stale queues. We may want to change the format to
     # include the expiration.
     logging.debug(
         'get_queues(%s): can run from %d queues (memcache)\n%s',
-        bot_id, len(data), data)
+        bot_id, len(dim_hashes), dim_hashes)
     # Refresh all the keys.
     memcache.set_multi(
-        {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
-    return data
+        {str(d): True for d in dim_hashes},
+        time=61, namespace='task_queues_tasks')
+    return dim_hashes
 
   # Retrieve all the dimensions_hash that this bot could run that have
   # actually been triggered in the past. Since this is under a root entity, this
   # should be fast.
   now = utils.utcnow()
-  data = sorted(
+  dim_hashes = sorted(
       obj.key.integer_id() for obj in
       BotTaskDimensions.query(ancestor=bot_root_key)
       if obj.valid_until_ts >= now)
-  memcache.set(bot_id, data, namespace='task_queues')
+  memcache.set(bot_id, dim_hashes, namespace='task_queues')
   logging.info(
       'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
-      bot_id, (utils.utcnow()-now).total_seconds(), len(data), data)
+      bot_id, (utils.utcnow()-now).total_seconds(), len(dim_hashes), dim_hashes)
   memcache.set_multi(
-      {str(d): True for d in data}, time=61, namespace='task_queues_tasks')
-  return data
+      {str(d): True for d in dim_hashes},
+      time=61, namespace='task_queues_tasks')
+  return dim_hashes
 
 
 def probably_has_capacity(dimensions):
