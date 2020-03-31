@@ -16,6 +16,24 @@
       "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c999778f_30cbad10",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-31T04:33:59Z",
+      "side": 1,
+      "message": "I think it is strange that the function is called even if the command is not invoked with reboot?",
+      "parentUuid": "c20ae1a6_76a8006b",
+      "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
