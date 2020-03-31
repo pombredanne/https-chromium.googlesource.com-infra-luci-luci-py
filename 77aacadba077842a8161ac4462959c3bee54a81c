@@ -70,6 +70,24 @@
       "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ba6f4c_018b8f49",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-31T08:27:46Z",
+      "side": 1,
+      "message": "Then maybe better to inline this function to enforce that?\nAlso we can reuse the result of value.split(_OR_DIM_SEP) from L237.",
+      "parentUuid": "15af676c_021bccbd",
+      "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
