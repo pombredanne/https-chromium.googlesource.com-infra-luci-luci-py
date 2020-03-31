@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c20ae1a6_76a8006b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-31T04:31:12Z",
+      "side": 1,
+      "message": "It\u0027s the same. But might be slightly better to use the reboot command.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_bot/__main__.py?q\u003df:swarming_bot/__main__.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d120",
+      "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
