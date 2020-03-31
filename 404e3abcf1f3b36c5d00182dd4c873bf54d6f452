@@ -34,6 +34,24 @@
       "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "466d131d_7c73f975",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-31T04:40:55Z",
+      "side": 1,
+      "message": "I meant to invoke the reboot command, not call the function to unify the code.\nBut it\u0027s nit.",
+      "parentUuid": "c999778f_30cbad10",
+      "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
