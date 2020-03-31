@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2280be1b_93f5e87c",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-31T10:14:42Z",
+      "side": 1,
+      "message": "nit: \ngoog_hash \u003d response.headers.get(\u0027x-goog-hash\u0027, None)\nassert goog_hash, response.headers\n...\n\nwdyt?",
+      "range": {
+        "startLine": 566,
+        "startChar": 4,
+        "endLine": 566,
+        "endChar": 46
+      },
+      "revId": "88498ec487b8c7792e7d9acbe6b51e0b5148568a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
