@@ -88,6 +88,24 @@
       "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4327db95_abd27130",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-03-31T08:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15af676c_021bccbd",
+      "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
