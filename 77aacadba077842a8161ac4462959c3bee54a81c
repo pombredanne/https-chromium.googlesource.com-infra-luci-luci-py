@@ -34,6 +34,24 @@
       "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaeab6e3_16acb812",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-31T08:17:57Z",
+      "side": 1,
+      "message": "I see, but I still think that is orthogonal because order of validate_dimension_value and _normalize_or_dimension_value doesn\u0027t affect result of _validate_dimensions?",
+      "parentUuid": "5f2b28b7_a8c774bb",
+      "revId": "77aacadba077842a8161ac4462959c3bee54a81c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
