@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8c6b205_b67d7307",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-31T07:23:25Z",
+      "side": 1,
+      "message": "better to use min of valid_until_ts - now too?",
+      "range": {
+        "startLine": 996,
+        "startChar": 45,
+        "endLine": 996,
+        "endChar": 50
+      },
+      "revId": "c0ecb0672e1576a351cd8f40e00c0eee3e77610e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
