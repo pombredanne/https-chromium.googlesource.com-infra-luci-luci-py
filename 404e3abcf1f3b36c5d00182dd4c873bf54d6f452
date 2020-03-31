@@ -70,6 +70,24 @@
       "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fa0dea4_dfa32ebe",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-31T04:50:17Z",
+      "side": 1,
+      "message": "Maybe, you\u0027re right.\nI checked the usage of \u0027swarming_zip reboot\u0027 command. But couldn\u0027t find any.\nI think it\u0027s ok as long as oos_utilities.host_reboot is used.",
+      "parentUuid": "5de9eae7_10f4ac65",
+      "revId": "404e3abcf1f3b36c5d00182dd4c873bf54d6f452",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
