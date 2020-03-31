@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ba1e7fa_0ea1bd44",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-03-31T08:40:40Z",
+      "side": 1,
+      "message": "`value.split(_OR_DIM_SEP)` and remove L230?",
+      "range": {
+        "startLine": 225,
+        "startChar": 18,
+        "endLine": 225,
+        "endChar": 20
+      },
+      "revId": "a98462ad2481191d359c73d8ec175d197b900e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
