@@ -22,6 +22,30 @@
       "revId": "c0ecb0672e1576a351cd8f40e00c0eee3e77610e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cba9b71_2fe77377",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-03-31T07:29:58Z",
+      "side": 1,
+      "message": "I was about to do the same.\nBut realized that the validity of existing BotTaskDimensions isn\u0027t that important since they will be checked anyway.\nWhat it should avoid here is to miss new BotTaskDimensions in Datastore.",
+      "parentUuid": "c8c6b205_b67d7307",
+      "range": {
+        "startLine": 996,
+        "startChar": 45,
+        "endLine": 996,
+        "endChar": 50
+      },
+      "revId": "c0ecb0672e1576a351cd8f40e00c0eee3e77610e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
