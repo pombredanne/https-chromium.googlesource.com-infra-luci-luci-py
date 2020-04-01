@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2f7f812_3d34ae26",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T00:04:52Z",
+      "side": 1,
+      "message": "+1",
+      "revId": "4ff2f5ef2ac2332124bd1f635efc0c5f8ea4e922",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
