@@ -16,6 +16,24 @@
       "revId": "dd27d314820fbb7cfcab7c84d44e29b45a7a5e05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b15bbb84_0f0e02e8",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-01T08:33:53Z",
+      "side": 1,
+      "message": "I think until all of TaskRunResult with retry are removed from datastore, we cannot remove the parameter completely for backward compatibility?\ne.g. https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_pack.py;l\u003d171;drc\u003dbbf39bb4d6cce278073d258dac8168821cf20a05?originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "69336f6d_e8c6f1ef",
+      "revId": "dd27d314820fbb7cfcab7c84d44e29b45a7a5e05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
