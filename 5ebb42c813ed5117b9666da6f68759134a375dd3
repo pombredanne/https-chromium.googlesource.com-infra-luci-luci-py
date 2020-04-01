@@ -34,6 +34,24 @@
       "revId": "5ebb42c813ed5117b9666da6f68759134a375dd3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bdc5972_688ffc68",
+        "filename": "client/update_isolated.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T08:43:57Z",
+      "side": 1,
+      "message": "I think it\u0027s more like JSON, Yaml, easy to parse and modify.\n\n\u003e version.py.\n\nIs this python convention?",
+      "parentUuid": "c8beecda_9db889b7",
+      "revId": "5ebb42c813ed5117b9666da6f68759134a375dd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
