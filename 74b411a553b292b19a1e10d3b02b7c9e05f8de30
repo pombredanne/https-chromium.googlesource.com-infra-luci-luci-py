@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "70a59306_fbd796e5",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-01T05:37:28Z",
+      "side": 1,
+      "message": "i think the easiest way is to sort at L1049. For example {\u0027foo\u0027: [\u0027a|z\u0027, \u0027b\u0027]} should produce\n\n(\u0027foo:a\u0027, \u0027foo:b\u0027),\n(\u0027foo:b\u0027, \u0027foo:z\u0027),\n\nI added this as a test case. In practice, since we limit the max number of flats to 8 when using OR, i don\u0027t think it will cause any performance difference.",
+      "parentUuid": "aa43067f_be78e814",
+      "range": {
+        "startLine": 1045,
+        "startChar": 18,
+        "endLine": 1045,
+        "endChar": 22
+      },
+      "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2beb35e_f85a0e7e",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e32311ef_e48446d0",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-01T05:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2beb35e_f85a0e7e",
+      "range": {
+        "startLine": 1048,
+        "startChar": 10,
+        "endLine": 1048,
+        "endChar": 12
+      },
+      "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "395b9cdd_04a0aef1",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-01T05:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fc56728_080f151d",
+      "range": {
+        "startLine": 1052,
+        "startChar": 10,
+        "endLine": 1052,
+        "endChar": 12
+      },
+      "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d64158b1_79cb161e",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
@@ -85,6 +157,24 @@
       "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79b477c2_3e31989c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-01T05:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d64158b1_79cb161e",
+      "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
