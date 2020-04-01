@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddd4d249_b2970774",
+        "filename": "client/update_isolated.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T08:17:11Z",
+      "side": 1,
+      "message": "It\u0027s out of the scope of this CL.\nBut I think we should have a version file? It would be safer to read/modify than using regex.",
+      "revId": "5ebb42c813ed5117b9666da6f68759134a375dd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
