@@ -34,6 +34,24 @@
       "revId": "dd27d314820fbb7cfcab7c84d44e29b45a7a5e05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42f57c16_ae888403",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T08:47:31Z",
+      "side": 1,
+      "message": "I meant the function could always return \"ndb.Key(\u0027TaskRunResult\u0027, 1, parent\u003dresult_summary_key)\". Not changing the entity key.",
+      "parentUuid": "b15bbb84_0f0e02e8",
+      "revId": "dd27d314820fbb7cfcab7c84d44e29b45a7a5e05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
