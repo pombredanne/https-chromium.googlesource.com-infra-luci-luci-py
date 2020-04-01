@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a7a83e7_30e31858",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-01T05:40:15Z",
+      "side": 1,
+      "message": "I prefer to have one empty line after return",
+      "revId": "c2327b0f5db86c28990e7dd95d9f2f575e4f9cbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba1912aa_7072b4e7",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-01T05:40:15Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c2327b0f5db86c28990e7dd95d9f2f575e4f9cbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

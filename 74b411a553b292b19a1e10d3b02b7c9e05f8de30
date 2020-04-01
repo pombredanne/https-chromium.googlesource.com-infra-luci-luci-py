@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c437fcfb_9c12f396",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-01T05:40:15Z",
+      "side": 1,
+      "message": "Ah, I missed such case.",
+      "parentUuid": "70a59306_fbd796e5",
+      "range": {
+        "startLine": 1045,
+        "startChar": 18,
+        "endLine": 1045,
+        "endChar": 22
+      },
+      "revId": "74b411a553b292b19a1e10d3b02b7c9e05f8de30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2beb35e_f85a0e7e",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
