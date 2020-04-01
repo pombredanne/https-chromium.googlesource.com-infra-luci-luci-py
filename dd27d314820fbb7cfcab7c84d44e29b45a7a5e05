@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69336f6d_e8c6f1ef",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T08:21:35Z",
+      "side": 1,
+      "message": "You can completely deprecate the parameter from this function. \nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_pack.py;l\u003d42?q\u003dresult_summary_key_to_run_result_key\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "revId": "dd27d314820fbb7cfcab7c84d44e29b45a7a5e05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
