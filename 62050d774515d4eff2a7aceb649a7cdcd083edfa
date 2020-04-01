@@ -22,6 +22,30 @@
       "revId": "62050d774515d4eff2a7aceb649a7cdcd083edfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47beb621_155f11a8",
+        "filename": "appengine/isolate/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-01T03:23:22Z",
+      "side": 1,
+      "message": "I think this is just for buffering of small objects\nhttps://cs.chromium.org/chromium/infra/luci/appengine/isolate/handlers_backend.py?l\u003d33-43\u0026rcl\u003dc03f03ca600a1b2eb6958db91effcc5d0aef52e4\nand used in\nhttps://cs.chromium.org/chromium/infra/luci/appengine/isolate/handlers_backend.py?l\u003d604\u0026rcl\u003dc03f03ca600a1b2eb6958db91effcc5d0aef52e4",
+      "parentUuid": "8c7a3076_fcdecf14",
+      "range": {
+        "startLine": 561,
+        "startChar": 10,
+        "endLine": 561,
+        "endChar": 38
+      },
+      "revId": "62050d774515d4eff2a7aceb649a7cdcd083edfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
