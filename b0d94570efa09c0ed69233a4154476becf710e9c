@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c23a5e12_71804c11",
+        "filename": "appengine/swarming/server/constants.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T08:31:32Z",
+      "side": 1,
+      "message": "+1",
+      "revId": "b0d94570efa09c0ed69233a4154476becf710e9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ee6754c_0501bdd6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-01T08:31:32Z",
+      "side": 1,
+      "message": "Is there any code that will use list of dimensions rather than list of dimensions_flat?\nIf so, it would be good to return list of dimensions.",
+      "revId": "b0d94570efa09c0ed69233a4154476becf710e9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
