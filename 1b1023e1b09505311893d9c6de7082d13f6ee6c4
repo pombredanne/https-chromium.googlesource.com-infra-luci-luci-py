@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "129c39b5_675d42ca",
+        "filename": "client/update_isolated.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-01T06:38:12Z",
+      "side": 1,
+      "message": "$(dirname $(dirname \"$0\")) to make this path independent?",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 11
+      },
+      "revId": "1b1023e1b09505311893d9c6de7082d13f6ee6c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
