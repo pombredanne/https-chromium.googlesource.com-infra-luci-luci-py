@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9c9cfb07_b7d7e25a",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T07:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2625ef3a_329d8e1a",
+      "range": {
+        "startLine": 395,
+        "startChar": 4,
+        "endLine": 395,
+        "endChar": 16
+      },
+      "revId": "506eb47f9d71ca9b112ef95a603180b3dfe231d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3abf68_849a9dd4",
         "filename": "appengine/swarming/server/task_queues_test.py",
         "patchSetId": 9
@@ -39,6 +63,24 @@
       "revId": "506eb47f9d71ca9b112ef95a603180b3dfe231d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1cd3358_c1a1157a",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T07:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3abf68_849a9dd4",
+      "revId": "506eb47f9d71ca9b112ef95a603180b3dfe231d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
