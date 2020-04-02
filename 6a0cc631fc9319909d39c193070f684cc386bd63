@@ -46,6 +46,30 @@
       "revId": "6a0cc631fc9319909d39c193070f684cc386bd63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "210258f3_01c86faa",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-02T06:44:34Z",
+      "side": 1,
+      "message": "Hmm, why not write like\n```\nfor ... in expanded_task_dimensions_flats:\n  yield _refresh_all_BotTaskDimensions_async(...) \n```?",
+      "parentUuid": "9f895d24_68b342ef",
+      "range": {
+        "startLine": 1121,
+        "startChar": 25,
+        "endLine": 1121,
+        "endChar": 26
+      },
+      "revId": "6a0cc631fc9319909d39c193070f684cc386bd63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
