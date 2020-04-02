@@ -34,6 +34,92 @@
       "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebdf9fc3_ddf18acd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-02T06:35:03Z",
+      "side": 1,
+      "message": "if we use ( and ), then it is a generator, so we potentially do less work",
+      "range": {
+        "startLine": 485,
+        "startChar": 12,
+        "endLine": 485,
+        "endChar": 13
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "452e28da_64b6dcf9",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-02T06:35:03Z",
+      "side": 1,
+      "message": "isn\u0027t using list comprehension more compact?",
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0afaa4dc_c5734923",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-02T06:35:03Z",
+      "side": 1,
+      "message": "consider also moving cur_dimensions_flat out of the gen func. \nsame object is passed in each call",
+      "range": {
+        "startLine": 1061,
+        "startChar": 27,
+        "endLine": 1061,
+        "endChar": 46
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96aa0880_ea1a07dd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-02T06:35:03Z",
+      "side": 1,
+      "message": "same here\n\nsee also http://google.github.io/styleguide/pyguide.html#271-definition",
+      "range": {
+        "startLine": 1121,
+        "startChar": 10,
+        "endLine": 1121,
+        "endChar": 20
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
