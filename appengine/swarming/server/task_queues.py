@@ -820,6 +820,46 @@ def _refresh_TaskDimensions_async(now, valid_until_ts, task_dimensions_flats,
     logging.info('_refresh_TaskDimensions_async: Did %s', action)
 
 
+def _expand_dimensions_to_dimensions_flat(dimensions, allow_cutoff=False):
+  """Expands |dimensions| to a series of dimensions_flat.
+
+  If OR is not used, then this should yield exactly one element. Otherwise, it
+  expands the OR expression into a series of basic dimension values.
+  """
+  dimensions_kv = list(dimensions.items())
+  cur_dimensions_flat = []
+  result = []
+
+  cutoff = config.DIMENSION_KEY_LENGTH + 1 + config.DIMENSION_VALUE_LENGTH
+
+  def gen(ki, vi):
+    if ki == len(dimensions_kv):
+      # Remove duplicate dimensions. While invalid, we want to make sure they
+      # can be stored without throwing an exception.
+      result.append(sorted(set(cur_dimensions_flat)))
+      return
+
+    key, values = dimensions_kv[ki]
+    if vi == len(values):
+      gen(ki + 1, 0)
+      return
+
+    for v in values[vi].split(OR_DIM_SEP):
+      flat = u'%s:%s' % (key, v)
+      if len(flat) > cutoff:
+        assert allow_cutoff, flat
+        # An ellipsis is codepoint U+2026 which is encoded with 3 bytes in
+        # UTF-8. We're still well below the 1500 bytes limit. Datastore uses
+        # UTF-8.
+        flat = flat[:cutoff] + u'…'
+      cur_dimensions_flat.append(flat)
+      gen(ki, vi + 1)
+      cur_dimensions_flat.pop()
+
+  gen(0, 0)
+  return result
+
+
 ### Public APIs.
 
 
@@ -855,20 +895,11 @@ def dimensions_to_flat(dimensions):
 
   Silently remove duplicate dimensions, for the same reason as for long ones.
   """
-  cutoff = config.DIMENSION_KEY_LENGTH + 1 + config.DIMENSION_VALUE_LENGTH
-  out = []
-  for k, values in dimensions.items():
-    for v in values:
-      flat = u'%s:%s' % (k, v)
-      if len(flat) > cutoff:
-        # An ellipsis is codepoint U+2026 which is encoded with 3 bytes in
-        # UTF-8. We're still well below the 1500 bytes limit. Datastore uses
-        # UTF-8.
-        flat = flat[:cutoff] + u'…'
-      out.append(flat)
-  # Remove duplicate dimensions. While invalid, we want to make sure they can be
-  # stored without throwing an exception.
-  return sorted(set(out))
+  expanded = _expand_dimensions_to_dimensions_flat(
+      dimensions, allow_cutoff=True)
+  # Do not allow OR dimension
+  assert len(expanded) == 1
+  return expanded[0]
 
 
 def hash_dimensions(dimensions):
@@ -1045,35 +1076,6 @@ def set_has_capacity(dimensions, seconds):
   dimensions_hash = str(hash_dimensions(dimensions))
   memcache.set(
       dimensions_hash, True, time=seconds, namespace='task_queues_tasks')
-
-
-def _expand_dimensions_to_dimensions_flat(dimensions):
-  """Expands |dimensions| to a series of dimensions_flat.
-
-  If OR is not used, then this should yield exactly one element. Otherwise, it
-  expands the OR expression into a series of basic dimension values.
-  """
-  dimensions_kv = list(dimensions.items())
-  cur_dimensions_flat = []
-  result = []
-
-  def gen(ki, vi):
-    if ki == len(dimensions_kv):
-      result.append(sorted(cur_dimensions_flat))
-      return
-
-    key, values = dimensions_kv[ki]
-    if vi == len(values):
-      gen(ki + 1, 0)
-      return
-
-    for or_operand in values[vi].split(OR_DIM_SEP):
-      cur_dimensions_flat.append(u'%s:%s' % (key, or_operand))
-      gen(ki, vi + 1)
-      cur_dimensions_flat.pop()
-
-  gen(0, 0)
-  return result
 
 
 @ndb.tasklet
