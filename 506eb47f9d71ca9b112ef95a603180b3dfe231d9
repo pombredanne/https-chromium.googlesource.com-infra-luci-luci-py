@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2625ef3a_329d8e1a",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-02T07:07:47Z",
+      "side": 1,
+      "message": "use bot1_root_key and delete L415?",
+      "range": {
+        "startLine": 395,
+        "startChar": 4,
+        "endLine": 395,
+        "endChar": 16
+      },
+      "revId": "506eb47f9d71ca9b112ef95a603180b3dfe231d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a3abf68_849a9dd4",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-02T07:07:47Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "506eb47f9d71ca9b112ef95a603180b3dfe231d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
