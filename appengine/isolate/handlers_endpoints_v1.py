@@ -385,6 +385,7 @@ class IsolateService(remote.Service):
     is_isolated = bool(int(embedded['i']))
     namespace = embedded['n']
     size = int(embedded['s'])
+    md5_hash = embedded.get('m')
     key = entry_key_or_error(namespace, digest)
 
     if uploaded_to_gs:
@@ -395,6 +396,13 @@ class IsolateService(remote.Service):
         raise endpoints.BadRequestException(
             'File should be in Google Storage.\nFile: \'%s\' Size: %d.' % (
                 key.id(), size))
+      if md5_hash and file_info.md5 != md5_hash:
+        logging.debug('%s md5 hash in GCS: %s; in request: %s', digest,
+                      file_info.md5, md5_hash)
+        raise endpoints.BadRequestException(
+            'File hash mismatch\nHash in GCS: %s, in request: %s' %
+            (file_info.md5, md5_hash))
+
       content = None
       compressed_size = file_info.size
     else:
