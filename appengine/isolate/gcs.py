@@ -53,7 +53,7 @@ CHUNK_SIZE = 512 * 1024
 
 
 # Return value for get_file_info call.
-FileInfo = collections.namedtuple('FileInfo', ['size'])
+FileInfo = collections.namedtuple('FileInfo', ['size', 'md5'])
 
 
 def list_files(bucket, subdir=None, batch_size=100):
@@ -158,7 +158,7 @@ def get_file_info(bucket, filename):
   try:
     stat = cloudstorage.stat(
         '/%s/%s' % (bucket, filename), retry_params=_make_retry_params())
-    return FileInfo(size=stat.st_size)
+    return FileInfo(size=stat.st_size, md5=stat.etag)
   except cloudstorage.errors.NotFoundError:
     return None
 
