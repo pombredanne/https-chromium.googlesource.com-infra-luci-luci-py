@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "efb9a9df_51dda527",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-02T06:59:34Z",
+      "side": 1,
+      "message": "ah, assert_request makes side effect. \nthe name assert* suggested that it is a pure func.",
+      "parentUuid": "29fa551c_0ef4c860",
+      "range": {
+        "startLine": 485,
+        "startChar": 12,
+        "endLine": 485,
+        "endChar": 13
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "452e28da_64b6dcf9",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 5
