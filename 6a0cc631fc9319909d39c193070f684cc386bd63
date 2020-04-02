@@ -22,6 +22,30 @@
       "revId": "6a0cc631fc9319909d39c193070f684cc386bd63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f895d24_68b342ef",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T06:32:10Z",
+      "side": 1,
+      "message": "Good catch. It\u0027s actually intended. Without this paren, `git cl format` forces the entire lambda to be a single line, which then exceeded 80 characters. Alternatively, we can `def` a closure, which way do you prefer?",
+      "parentUuid": "45f7dd5e_7bf6b914",
+      "range": {
+        "startLine": 1121,
+        "startChar": 25,
+        "endLine": 1121,
+        "endChar": 26
+      },
+      "revId": "6a0cc631fc9319909d39c193070f684cc386bd63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
