@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "29fa551c_0ef4c860",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T06:48:04Z",
+      "side": 1,
+      "message": "This list is actually made intentionally, see the above comment. `any` will short-circuit whenever it encounters True, yet I think obj must assert_request for *all* dimensions_flats.",
+      "parentUuid": "ebdf9fc3_ddf18acd",
+      "range": {
+        "startLine": 485,
+        "startChar": 12,
+        "endLine": 485,
+        "endChar": 13
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "452e28da_64b6dcf9",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 5
@@ -74,6 +98,24 @@
       "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a934428_12e9ac9b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T06:48:04Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "452e28da_64b6dcf9",
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -100,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "16418009_f5ead4e7",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T06:48:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0afaa4dc_c5734923",
+      "range": {
+        "startLine": 1061,
+        "startChar": 27,
+        "endLine": 1061,
+        "endChar": 46
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96aa0880_ea1a07dd",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 5
@@ -120,6 +186,30 @@
       "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cea21a3_ce31734c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-02T06:48:04Z",
+      "side": 1,
+      "message": "I see. I never found ndb\u0027s document explaining what happens for `yield list(...)`. I guess so long as yield\u0027s operand is an iterable, ndb will yield in parallel?",
+      "parentUuid": "96aa0880_ea1a07dd",
+      "range": {
+        "startLine": 1121,
+        "startChar": 10,
+        "endLine": 1121,
+        "endChar": 20
+      },
+      "revId": "b68d6a0f4968cd437bb9724d1492889fbb515795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
