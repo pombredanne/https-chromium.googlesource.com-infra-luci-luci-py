@@ -348,6 +348,75 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     with self.assertRaises(task_queues.Error):
       task_queues.assert_task_async(request).get_result()
 
+  def test_or_dimensions(self):
+    self.mock_now(datetime.datetime(2020, 1, 2, 3, 4, 5))
+    self.assertEqual(
+        0,
+        _assert_bot(
+            bot_id=u'bot1',
+            dimensions={
+                u'os': [u'v1', u'v2'],
+                u'gpu': [u'nv'],
+            }))
+    self.assertEqual(
+        0,
+        _assert_bot(
+            bot_id=u'bot2', dimensions={
+                u'os': [u'v2'],
+                u'gpu': [u'amd'],
+            }))
+
+    payloads = []
+
+    @ndb.tasklet
+    def _enqueue_task_async(url, name, payload):
+      self.assertEqual(
+          '/internal/taskqueue/important/task_queues/rebuild-cache', url)
+      self.assertEqual('rebuild-task-cache', name)
+      payloads.append(payload)
+      raise ndb.Return(True)
+
+    self.mock(utils, 'enqueue_task_async', _enqueue_task_async)
+    request1 = _gen_request(
+        properties=_gen_properties(dimensions={
+            u'pool': [u'default'],
+            u'os': [u'v1|v2'],
+            u'gpu': [u'nv|amd'],
+        }))
+    task_queues.assert_task_async(request1).get_result()
+    self.assertEqual(1, len(payloads))
+    f = task_queues.rebuild_task_cache_async(payloads[-1])
+    self.assertEqual(True, f.get_result())
+    payloads.pop()
+
+    self.assert_count(2, task_queues.BotDimensions)
+    self.assert_count(2, task_queues.BotTaskDimensions)
+    self.assert_count(1, task_queues.TaskDimensions)
+    bot_root_key = bot_management.get_root_key('bot1')
+    self.assertEqual(1, len(task_queues.get_queues(bot_root_key)))
+    bot_root_key = bot_management.get_root_key('bot2')
+    self.assertEqual(1, len(task_queues.get_queues(bot_root_key)))
+    self.assertEqual(4, len(task_queues.TaskDimensions.query().get().sets))
+
+    request2 = _gen_request(
+        properties=_gen_properties(dimensions={
+            u'pool': [u'default'],
+            u'os': [u'v1'],
+            u'gpu': [u'nv|amd'],
+        }))
+    task_queues.assert_task_async(request2).get_result()
+    self.assertEqual(1, len(payloads))
+    f = task_queues.rebuild_task_cache_async(payloads[-1])
+    self.assertEqual(True, f.get_result())
+    payloads.pop()
+
+    self.assert_count(3, task_queues.BotTaskDimensions)
+    self.assert_count(2, task_queues.TaskDimensions)
+    bot_root_key = bot_management.get_root_key('bot1')
+    self.assertEqual(2, len(task_queues.get_queues(bot_root_key)))
+    bot_root_key = bot_management.get_root_key('bot2')
+    self.assertEqual(1, len(task_queues.get_queues(bot_root_key)))
+
   def test_dimensions_to_flat(self):
     actual = task_queues.dimensions_to_flat(
         {u'a': [u'c', u'bee'], u'cee': [u'zee']})
