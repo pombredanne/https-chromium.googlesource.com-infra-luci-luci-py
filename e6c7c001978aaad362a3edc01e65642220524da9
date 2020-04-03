@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7612cfbc_ccb23cc0",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-03T08:18:41Z",
+      "side": 1,
+      "message": "why not in L1568 as well 😄",
+      "range": {
+        "startLine": 1575,
+        "startChar": 11,
+        "endLine": 1575,
+        "endChar": 20
+      },
+      "revId": "e6c7c001978aaad362a3edc01e65642220524da9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
