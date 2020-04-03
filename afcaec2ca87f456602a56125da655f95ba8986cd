@@ -94,6 +94,30 @@
       "revId": "afcaec2ca87f456602a56125da655f95ba8986cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09830c2e_840fa030",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-03T03:19:34Z",
+      "side": 1,
+      "message": "Rebased, PTAL",
+      "parentUuid": "86ebd710_bb42025e",
+      "range": {
+        "startLine": 725,
+        "startChar": 27,
+        "endLine": 725,
+        "endChar": 64
+      },
+      "revId": "afcaec2ca87f456602a56125da655f95ba8986cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
