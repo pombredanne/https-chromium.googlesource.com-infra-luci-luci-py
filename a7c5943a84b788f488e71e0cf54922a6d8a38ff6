@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90bb3bb5_115b001a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-03T09:01:20Z",
+      "side": 1,
+      "message": "Reverted because they were just for debugging",
+      "parentUuid": "1cea68b6_706c6402",
+      "revId": "a7c5943a84b788f488e71e0cf54922a6d8a38ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3790ec4_1ceb7eae",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 4
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "6bda7893_bd3a8f2e",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-03T09:01:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3790ec4_1ceb7eae",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 426,
+        "endChar": 41
+      },
+      "revId": "a7c5943a84b788f488e71e0cf54922a6d8a38ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "438b1a3d_efe58a18",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 4
@@ -56,6 +98,24 @@
       "revId": "a7c5943a84b788f488e71e0cf54922a6d8a38ff6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37fafc0_6a7649b9",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-03T09:01:20Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "438b1a3d_efe58a18",
+      "revId": "a7c5943a84b788f488e71e0cf54922a6d8a38ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
