@@ -70,6 +70,30 @@
       "revId": "afcaec2ca87f456602a56125da655f95ba8986cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86ebd710_bb42025e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-03T03:02:57Z",
+      "side": 1,
+      "message": "https://crrev.com/c/2134330",
+      "parentUuid": "5066dc4c_3d6964e8",
+      "range": {
+        "startLine": 725,
+        "startChar": 27,
+        "endLine": 725,
+        "endChar": 64
+      },
+      "revId": "afcaec2ca87f456602a56125da655f95ba8986cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
