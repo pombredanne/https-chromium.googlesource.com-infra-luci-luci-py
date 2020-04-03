@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fc28568_76cb5bdb",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-03T20:31:15Z",
+      "side": 1,
+      "message": "memcache.add and memcache.set have different semantics. Is this change intentional?",
+      "range": {
+        "startLine": 582,
+        "startChar": 16,
+        "endLine": 582,
+        "endChar": 19
+      },
+      "revId": "d12250777b7b41148b17a9a78e8d24e59367fe04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
