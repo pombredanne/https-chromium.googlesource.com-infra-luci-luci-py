@@ -46,6 +46,30 @@
       "revId": "d12250777b7b41148b17a9a78e8d24e59367fe04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a482677_8f506355",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-03T21:29:08Z",
+      "side": 1,
+      "message": "Unintentional. Missed before CQ+2ed. Reverting until I have time to fix this.",
+      "parentUuid": "22b2a455_10706a41",
+      "range": {
+        "startLine": 582,
+        "startChar": 16,
+        "endLine": 582,
+        "endChar": 19
+      },
+      "revId": "d12250777b7b41148b17a9a78e8d24e59367fe04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
