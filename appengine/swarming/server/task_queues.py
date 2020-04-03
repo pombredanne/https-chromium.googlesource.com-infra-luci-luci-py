@@ -345,6 +345,7 @@ def _delete_stale_BotTaskDimensions_async(bot_dimensions, bot_root_key,
   """Deletes any BotTaskDimensions that do not match the current dimensions."""
   qit = BotTaskDimensions.query(ancestor=bot_root_key).iter(batch_size=256)
   iter_cnt = 0
+  deleted_cnt = 0
   try:
     while (yield qit.has_next_async()):
       iter_cnt += 1
@@ -355,10 +356,11 @@ def _delete_stale_BotTaskDimensions_async(bot_dimensions, bot_root_key,
         # This hack so that even if the task queue throws a deadline exceeded
         # exception, we still get the number of cleaned items.
         cleaned[0] += 1
+        deleted_cnt += 1
   finally:
     logging.info(
         'crbug.com/1016778: call from _delete_stale_BotTaskDimensions_async: '
-        '%d', iter_cnt)
+        'iterations: %d, deleted: %d', iter_cnt, deleted_cnt)
 
 
 @ndb.tasklet
@@ -376,6 +378,7 @@ def _update_BotTaskDimensions_slice_async(bot_dimensions, bot_root_key, now,
   """
   qit = q.iter(batch_size=256, deadline=60)
   iter_cnt = 0
+  updated_cnt = 0
   try:
     while (yield qit.has_next_async()):
       iter_cnt += 1
@@ -394,10 +397,11 @@ def _update_BotTaskDimensions_slice_async(bot_dimensions, bot_root_key, now,
             dimensions_flat=s.dimensions_flat)
         yield obj.put_async()
         matches.append(dimensions_hash)
+        updated_cnt += 1
   finally:
     logging.info(
         'crbug.com/1016778: call from _update_BotTaskDimensions_slice_async: '
-        '%d', iter_cnt)
+        'iterations: %d, updated: %d', iter_cnt, updated_cnt)
 
 
 @ndb.tasklet
