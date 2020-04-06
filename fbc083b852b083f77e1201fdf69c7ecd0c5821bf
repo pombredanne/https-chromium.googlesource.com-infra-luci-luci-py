@@ -22,6 +22,30 @@
       "revId": "fbc083b852b083f77e1201fdf69c7ecd0c5821bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "007b5dc4_3d678f2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-06T05:03:01Z",
+      "side": 1,
+      "message": "Added, but the scope of this CL is almost not covered in the doc.",
+      "parentUuid": "8623db8d_c5232c59",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "fbc083b852b083f77e1201fdf69c7ecd0c5821bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
