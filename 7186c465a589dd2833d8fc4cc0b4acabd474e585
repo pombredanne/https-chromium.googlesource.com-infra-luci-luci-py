@@ -22,6 +22,30 @@
       "revId": "7186c465a589dd2833d8fc4cc0b4acabd474e585",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e15c96b_ec824014",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-06T21:50:49Z",
+      "side": 1,
+      "message": "no. removed default_ prefix.",
+      "parentUuid": "6da258b0_26c4bc94",
+      "range": {
+        "startLine": 177,
+        "startChar": 9,
+        "endLine": 177,
+        "endChar": 17
+      },
+      "revId": "7186c465a589dd2833d8fc4cc0b4acabd474e585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
