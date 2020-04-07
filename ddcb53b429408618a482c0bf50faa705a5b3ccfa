@@ -34,6 +34,24 @@
       "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0009ccc0_9a77ce3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-07T07:40:04Z",
+      "side": 1,
+      "message": "I think behavior of or dimension task and quarantine bot is orthogonal and don\u0027t feel worth adding test for combination of those behaviors?\n\nBetter to explain how the tasks are scheduled if kbr doesn\u0027t have confidence?",
+      "parentUuid": "2b5af6cd_2dbf5b32",
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
