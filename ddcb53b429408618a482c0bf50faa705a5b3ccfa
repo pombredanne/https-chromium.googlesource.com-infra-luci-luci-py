@@ -52,6 +52,24 @@
       "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0434bb56_f420a003",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-07T07:41:36Z",
+      "side": 1,
+      "message": "It does seems a bit duplicative to me. I think maybe it\u0027s because i haven\u0027t figure out a place that wraps the entire swarming\u0027s scheduling logic, hence had to poll bots manually in the test. \n\nOne thing I hope I could have done:\n\nThe bot handlers are executed asynchronously on their own threads. After adding a task, instead of us manually triggering a poll, the main test thread just waits on a future representing the task completion result. We use thread primitives (e.g. CondVars) to create precise sync points, so that the tests run deterministically.\n\nThis would be a more realistic representation of how a distributed service actually runs. It would allow us to set up more interesting scenarios.\n\nAnyway, i think what i said is way beyond the scope of this CL. How about we leave this to kbr@ and let him decide whether this test is still necessary, since we already have https://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_scheduler_test.py?l\u003d433\u0026rcl\u003d7e00c462fef9d624122f0f8405d9cc13ca6677d8?",
+      "parentUuid": "aa876f14_4e9ae32b",
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
