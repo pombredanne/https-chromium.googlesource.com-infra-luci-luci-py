@@ -16,6 +16,24 @@
       "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b5af6cd_2dbf5b32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-07T07:21:31Z",
+      "side": 1,
+      "message": "I thought the same. But this is bit different from existing tests because there is a bot quarantine step.",
+      "parentUuid": "aa876f14_4e9ae32b",
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
