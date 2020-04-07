@@ -114,6 +114,30 @@
     },
     {
       "key": {
+        "uuid": "68f05f73_ec962662",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-07T23:01:39Z",
+      "side": 1,
+      "message": "IIUC, by \"busy\", you mean that until the bots have finished processing the previous tasks, they wouldn\u0027t be able to handle the new order task? I think that\u0027s beyond what this test framework can achieve, because it sounds like that we need to overflow the incoming request queue at the webapp2\u0027s layer to achieve this (swarming uses webapp2 to implement HTTP/RPCs)? Otherwise since request handlers run independently, i don\u0027t see how one slow handler would block another one from running (I don\u0027t think these handlers access any lock-guarded, shared instance within the process).\n\nThat\u0027s also why i used `quarantine`, since it\u0027s the easiest way to make a bot not process a request. But like everybody has pointed out in this CL, quarantine isn\u0027t the same thing as busy..",
+      "parentUuid": "dffce576_b0de08a0",
+      "range": {
+        "startLine": 484,
+        "startChar": 18,
+        "endLine": 484,
+        "endChar": 29
+      },
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4de098fa_5791e16c",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 1
@@ -125,6 +149,30 @@
       "writtenOn": "2020-04-07T17:38:45Z",
       "side": 1,
       "message": "Does this test any more code paths than the call to task_scheduler.bot_reap_task in https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler_test.py;drc\u003d7e00c462fef9d624122f0f8405d9cc13ca6677d8;l\u003d433?originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2Fchromium%2Finfra%2Fluci%2Fappengine%2Fswarming%2Fserver%2Ftask_scheduler_test.py ?\n\nIf not, then I agree it\u0027s OK to not add this test. My main concern is to have testing of the scenario where the bots go from the state where they\u0027re busy, to the state where one (of either configuration) becomes available. If the other test covers this already, that\u0027s fine.",
+      "range": {
+        "startLine": 493,
+        "startChar": 15,
+        "endLine": 493,
+        "endChar": 23
+      },
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcc23b49_09364dbe",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-07T23:01:39Z",
+      "side": 1,
+      "message": "Ack. No it doesn\u0027t really test more code path. We simply use the quarantine mechanism to make the bots deny a request.",
+      "parentUuid": "4de098fa_5791e16c",
       "range": {
         "startLine": 493,
         "startChar": 15,
