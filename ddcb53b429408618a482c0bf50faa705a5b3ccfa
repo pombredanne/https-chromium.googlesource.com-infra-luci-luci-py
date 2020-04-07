@@ -70,6 +70,24 @@
       "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbcb28d6_2c3ada13",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-07T08:21:47Z",
+      "side": 1,
+      "message": "ok, let\u0027s wait kbr\u0027s input",
+      "parentUuid": "0434bb56_f420a003",
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
