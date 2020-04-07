@@ -2,7 +2,9 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import json
 import logging
+import zlib
 
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -554,8 +556,11 @@ def get_config_multi(scope, path, hashes_only):
   """
   assert scope in ('projects', 'refs'), scope
   cache_key = (
-    'v2/%s%s:%s' % (scope, ',hashes_only' if hashes_only else '', path))
-  configs = memcache.get(cache_key)
+      'v3/%s%s:%s' % (scope, ',hashes_only' if hashes_only else '', path))
+  configs = _memcache_get_compressed_json(cache_key)
+  # json.loads converts strings to unicode.
+  to_str_or_none = lambda v: None if v is None else str(v)
+
   if configs is None:
     config_sets = list(get_config_sets_from_scope(scope))
     cfg_map = storage.get_latest_configs_async(
@@ -577,7 +582,7 @@ def get_config_multi(scope, path, hashes_only):
             'Blob %s referenced from %s:%s:%s was not found',
             content_hash, cs, rev, path)
     try:
-      memcache.add(cache_key, configs, time=60)
+      _memcache_add_compressed_json(cache_key, configs, time=60)
     except ValueError:
       logging.exception('%s:%s configs are too big for memcache', scope, path)
 
@@ -588,13 +593,14 @@ def get_config_multi(scope, path, hashes_only):
       continue
     if not hashes_only and config.get('content') is None:
       continue
-    res.configs.append(res.ConfigEntry(
-        config_set=config['config_set'],
-        revision=config['revision'],
-        content_hash=config['content_hash'],
-        content=config.get('content'),
-        url=config.get('url'),
-    ))
+    res.configs.append(
+        res.ConfigEntry(
+            config_set=str(config['config_set']),
+            revision=str(config['revision']),
+            content_hash=str(config['content_hash']),
+            content=to_str_or_none(config.get('content')),
+            url=to_str_or_none(config.get('url')),
+        ))
   return res
 
 
@@ -611,3 +617,14 @@ def can_read_config_sets(config_sets):
 
 def can_read_config_set(config_set):
   return can_read_config_sets([config_set]).get(config_set)
+
+
+def _memcache_get_compressed_json(key):
+  buf = memcache.get(key)
+  if buf is None:
+    return buf
+  return json.loads(zlib.decompress(buf))
+
+
+def _memcache_add_compressed_json(key, value, time, level=5):
+  memcache.add(key, zlib.compress(json.dumps(value), level), time=time)
