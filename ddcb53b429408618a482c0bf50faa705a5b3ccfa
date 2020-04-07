@@ -88,6 +88,52 @@
       "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dffce576_b0de08a0",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2020-04-07T17:38:45Z",
+      "side": 1,
+      "message": "Is there any way to more closely mimic the situation where the bots are busy, and then finish a task? Going from the quarantined to the non-quarantined state is not a common operation.",
+      "range": {
+        "startLine": 484,
+        "startChar": 18,
+        "endLine": 484,
+        "endChar": 29
+      },
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4de098fa_5791e16c",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2020-04-07T17:38:45Z",
+      "side": 1,
+      "message": "Does this test any more code paths than the call to task_scheduler.bot_reap_task in https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler_test.py;drc\u003d7e00c462fef9d624122f0f8405d9cc13ca6677d8;l\u003d433?originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2Fchromium%2Finfra%2Fluci%2Fappengine%2Fswarming%2Fserver%2Ftask_scheduler_test.py ?\n\nIf not, then I agree it\u0027s OK to not add this test. My main concern is to have testing of the scenario where the bots go from the state where they\u0027re busy, to the state where one (of either configuration) becomes available. If the other test covers this already, that\u0027s fine.",
+      "range": {
+        "startLine": 493,
+        "startChar": 15,
+        "endLine": 493,
+        "endChar": 23
+      },
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
