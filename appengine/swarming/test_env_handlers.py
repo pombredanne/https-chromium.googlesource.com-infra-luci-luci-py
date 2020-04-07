@@ -230,23 +230,25 @@ class AppTestBase(test_case.TestCase):
 
   # Bot
 
-  def do_handshake(self, bot='bot1', do_first_poll=False):
+  def do_handshake(self, bot='bot1', bot_dims=None, do_first_poll=False):
     """Performs bot handshake, returns data to be sent to bot handlers.
 
     Also populates self.bot_version.
     """
-    params = {
-      'dimensions': {
+    dimensions = {
         'id': [bot],
         'os': ['Amiga'],
         'pool': ['default'],
-      },
-      'state': {
-        'running_time': 1234.0,
-        'sleep_streak': 0,
-        'started_ts': 1410990411.111,
-      },
-      'version': '123',
+    }
+    dimensions.update(bot_dims or {})
+    params = {
+        'dimensions': dimensions,
+        'state': {
+            'running_time': 1234.0,
+            'sleep_streak': 0,
+            'started_ts': 1410990411.111,
+        },
+        'version': '123',
     }
     response = self.app.post_json(
         '/swarming/api/v1/bot/handshake',

@@ -14,6 +14,8 @@ import sys
 import unittest
 import zipfile
 
+from parameterized import parameterized
+
 # Setups environment.
 import test_env_handlers
 
@@ -430,6 +432,75 @@ class BotApiTest(test_env_handlers.AppTestBase):
         modified_ts=fmtdate(self.now),
         started_ts=fmtdate(self.now))
     self.assertEqual(expected, response)
+
+  @parameterized.expand([(0,), (1,)])
+  def test_poll_or_tasks_quarantined_first(self, test_idx):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    # Register two bots
+    bots_ids = [u'bot1', u'bot2']
+    bot1_params = self.do_handshake(
+        bot=bots_ids[0],
+        bot_dims={
+            u'os': [u'v1'],
+            u'gpu': [u'nv'],
+        },
+        do_first_poll=False)
+    bot2_params = self.do_handshake(
+        bot=bots_ids[1],
+        bot_dims={
+            u'os': [u'v2'],
+            u'gpu': [u'amd'],
+        },
+        do_first_poll=False)
+    bots_params = [bot1_params, bot2_params]
+
+    # Enqueue a task. Both bots should be able to handle it
+    self.set_as_user()
+    _, task_id = self.client_create_task_raw(
+        properties={
+            u'dimensions': [
+                {
+                    u'key': u'pool',
+                    u'value': u'default',
+                },
+                {
+                    u'key': u'os',
+                    u'value': u'v1|v2',
+                },
+                {
+                    u'key': u'gpu',
+                    u'value': u'nv|amd',
+                },
+            ]
+        })
+    self.assertEqual('0', task_id[-1])
+    # Convert TaskResultSummary reference to TaskRunResult.
+    task_id = task_id[:-1] + '1'
+
+    # In the beginning, quarantine the bots so that neither of them can handle
+    # the task.
+    self.set_as_bot()
+    for p in bots_params:
+      p['state']['quarantined'] = True
+
+    for bid, bp in zip(bots_ids, bots_params):
+      res = self.bot_poll(bid, bp)
+      self.assertEqual(u'sleep', res[u'cmd'])
+      self.assertTrue(res[u'quarantined'])
+
+    # Unleash one bot!
+    del bots_params[test_idx]['state']['quarantined']
+    res = self.bot_poll(bots_ids[test_idx], bots_params[test_idx])
+
+    self.assertEqual(u'run', res[u'cmd'])
+    res_manifest = res[u'manifest']
+    self.assertEqual(bots_ids[test_idx], res_manifest[u'bot_id'])
+    self.assertEqual(task_id, res_manifest[u'task_id'])
+
+    self.set_as_user()
+    res = self.client_get_results(task_id)
+    res_dims = {d[u'key']: d[u'value'] for d in res[u'bot_dimensions']}
+    self.assertEqual(bots_params[test_idx][u'dimensions'], res_dims)
 
   def test_poll_task_with_bot_service_account(self):
     params = self.do_handshake(do_first_poll=True)
