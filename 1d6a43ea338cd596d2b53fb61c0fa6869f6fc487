@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9ce7cc4_46dd6b7c",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-04-07T03:38:19Z",
+      "side": 1,
+      "message": "🤮",
+      "range": {
+        "startLine": 630,
+        "startChar": 20,
+        "endLine": 630,
+        "endChar": 33
+      },
+      "revId": "1d6a43ea338cd596d2b53fb61c0fa6869f6fc487",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
