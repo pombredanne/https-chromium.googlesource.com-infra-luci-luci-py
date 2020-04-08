@@ -34,6 +34,24 @@
       "revId": "6f03bd9abdd1972d3aea65a1cee9b11b441b6d96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0cd96c3_b4adc59d",
+        "filename": "appengine/swarming/ui2/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-08T05:08:40Z",
+      "side": 1,
+      "message": "I don\u0027t have much interest to do that now.",
+      "parentUuid": "46b16be0_b50dfe98",
+      "revId": "6f03bd9abdd1972d3aea65a1cee9b11b441b6d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
