@@ -16,6 +16,24 @@
       "revId": "6f03bd9abdd1972d3aea65a1cee9b11b441b6d96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46b16be0_b50dfe98",
+        "filename": "appengine/swarming/ui2/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-08T05:07:04Z",
+      "side": 1,
+      "message": "To be clear, send \"npm update\" pull request to that repository, which is maintained by a Googler, and update our side.",
+      "parentUuid": "3a5cfc8a_f8e70113",
+      "revId": "6f03bd9abdd1972d3aea65a1cee9b11b441b6d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
