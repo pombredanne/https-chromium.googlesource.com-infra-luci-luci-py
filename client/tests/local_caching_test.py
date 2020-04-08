@@ -356,6 +356,34 @@ class DiskContentAddressedCacheTest(TestCase, ContentAddressedCacheTestMixin):
     cache.cleanup()
     self.assertEqual([cache.STATE_FILE], fs.listdir(cache.cache_dir))
 
+  def test_cleanup_disk_evict_corrupted_files(self):
+    self._free_disk = 1003
+    cache = self.get_cache(_get_policies(min_free_space=1000))
+
+    # add a corrupted item
+    h = self._algo('a').hexdigest()
+    cache.write(h, 'b')
+    self.mock(cache, '_get_mtime', lambda _: self._now)
+
+    self.assertEqual(
+        [(h, (1, self._now))], [i for i in cache._lru._items.items()])
+    self.assertEqual(
+        sorted([h, cache.STATE_FILE]), sorted(fs.listdir(cache.cache_dir)))
+
+    # if the mtime is same with the timestamp in state.json,
+    # the varification won't run.
+    cache.cleanup()
+    self.assertEqual(
+        sorted([h, cache.STATE_FILE]), sorted(fs.listdir(cache.cache_dir)))
+
+    # if the mtime is after the timestamp in the state.json
+    # the varification will run and removd the corrupted file.
+    self._now += 1
+    cache.cleanup()
+    self.assertEqual(
+        sorted([cache.STATE_FILE]), sorted(fs.listdir(cache.cache_dir)))
+
+
   def test_policies_active_trimming(self):
     # Start with a larger cache, add many object.
     # Reload the cache with smaller policies, the cache should be trimmed on
