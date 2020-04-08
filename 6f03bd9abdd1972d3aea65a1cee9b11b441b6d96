@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a5cfc8a_f8e70113",
+        "filename": "appengine/swarming/ui2/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-08T05:05:54Z",
+      "side": 1,
+      "message": "FYI: You also may want to update github.com/google/pulito which is the base configuration of this project.",
+      "revId": "6f03bd9abdd1972d3aea65a1cee9b11b441b6d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
