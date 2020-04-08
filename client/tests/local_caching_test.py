@@ -333,8 +333,8 @@ class DiskContentAddressedCacheTest(TestCase, ContentAddressedCacheTestMixin):
     self.assertEqual((h, [2, 1000]), items.get_oldest())
 
   def test_cleanup_disk(self):
-    # Inject an item without a state.json, one is lost. Both will be deleted on
-    # cleanup.
+    # Inject an item without a state.json, one is lost, one is corrupted.
+    # All files will be deleted on cleanup.
     self._free_disk = 1003
     cache = self.get_cache(_get_policies(min_free_space=1000))
     h_foo = self._algo('foo').hexdigest()
@@ -343,16 +343,22 @@ class DiskContentAddressedCacheTest(TestCase, ContentAddressedCacheTestMixin):
     self.assertEqual([], cache.trim())
     self.assertEqual([h_foo], [i[0] for i in cache._lru._items.items()])
 
+    # an item without an entry in state.json
     h_a = self._algo('a').hexdigest()
     local_caching.file_write(os.path.join(cache.cache_dir, h_a), 'a')
 
     # file_path.remove() explicitly handle the +R bit on Windows.
     file_path.remove(os.path.join(cache.cache_dir, h_foo))
 
+    # a corrupted item
+    h_b = self._algo('b').hexdigest()
+    cache.write(h_b, 'c')
+    cache.touch(h_b, 1)
+
     # Still hasn't realized that the file is missing.
-    self.assertEqual([h_foo], [i[0] for i in cache._lru._items.items()])
+    self.assertEqual([h_foo, h_b], [i[0] for i in cache._lru._items.items()])
     self.assertEqual(
-        sorted([h_a, cache.STATE_FILE]), sorted(fs.listdir(cache.cache_dir)))
+        sorted([h_a, h_b, cache.STATE_FILE]), sorted(fs.listdir(cache.cache_dir)))
     cache.cleanup()
     self.assertEqual([cache.STATE_FILE], fs.listdir(cache.cache_dir))
 
