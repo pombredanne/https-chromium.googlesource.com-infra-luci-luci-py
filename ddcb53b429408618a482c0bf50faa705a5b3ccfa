@@ -138,6 +138,30 @@
     },
     {
       "key": {
+        "uuid": "dd33d798_c8e761aa",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2020-04-08T00:23:38Z",
+      "side": 1,
+      "message": "Yes, by \"busy\" I meant that the bot\u0027s currently processing a task.\n\nI don\u0027t know anything about how Swarming dispatches tasks to bots internally, so if the existing test implicitly covers this case, let\u0027s abandon this CL.",
+      "parentUuid": "68f05f73_ec962662",
+      "range": {
+        "startLine": 484,
+        "startChar": 18,
+        "endLine": 484,
+        "endChar": 29
+      },
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4de098fa_5791e16c",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 1
@@ -173,6 +197,30 @@
       "side": 1,
       "message": "Ack. No it doesn\u0027t really test more code path. We simply use the quarantine mechanism to make the bots deny a request.",
       "parentUuid": "4de098fa_5791e16c",
+      "range": {
+        "startLine": 493,
+        "startChar": 15,
+        "endLine": 493,
+        "endChar": 23
+      },
+      "revId": "ddcb53b429408618a482c0bf50faa705a5b3ccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23fc24b3_3111adf5",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2020-04-08T00:23:38Z",
+      "side": 1,
+      "message": "OK, then per above, fine by me to abandon this CL - sorry for wasting your effort.",
+      "parentUuid": "fcc23b49_09364dbe",
       "range": {
         "startLine": 493,
         "startChar": 15,
