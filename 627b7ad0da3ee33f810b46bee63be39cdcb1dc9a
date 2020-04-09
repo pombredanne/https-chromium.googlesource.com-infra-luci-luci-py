@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27415313_c8319c45",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T04:04:16Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 396,
+        "startChar": 36,
+        "endLine": 396,
+        "endChar": 42
+      },
+      "revId": "627b7ad0da3ee33f810b46bee63be39cdcb1dc9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
