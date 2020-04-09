@@ -34,6 +34,24 @@
       "revId": "16c7b752f03b41d2fcedb74b22c166241365addb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9631b7de_2f6eef38",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T01:52:31Z",
+      "side": 1,
+      "message": "sounds good.\nSadly we don\u0027t know which X is sufficient. So I propose starting from X\u003d100 (50 mins) which would work for\nhttps://chromium-swarm.appspot.com/task?id\u003d4b6d63545e98e010",
+      "parentUuid": "beecdb42_39a05108",
+      "revId": "16c7b752f03b41d2fcedb74b22c166241365addb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
