@@ -16,6 +16,24 @@
       "revId": "6e3d620809357f4aaac8a7594276dd9f191a620f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9345d711_736ebb67",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-09T03:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7983141_191f8f07",
+      "revId": "6e3d620809357f4aaac8a7594276dd9f191a620f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
