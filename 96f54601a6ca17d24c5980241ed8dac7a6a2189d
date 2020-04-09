@@ -56,6 +56,30 @@
       "revId": "96f54601a6ca17d24c5980241ed8dac7a6a2189d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe3a8bae_668b92ef",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T02:04:36Z",
+      "side": 1,
+      "message": "yeah, I think we need to raise here.",
+      "parentUuid": "fdcbadd1_c08a2b00",
+      "range": {
+        "startLine": 574,
+        "startChar": 8,
+        "endLine": 574,
+        "endChar": 13
+      },
+      "revId": "96f54601a6ca17d24c5980241ed8dac7a6a2189d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
