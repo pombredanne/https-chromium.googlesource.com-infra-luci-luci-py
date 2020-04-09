@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df4b73fc_a264b611",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-09T04:05:57Z",
+      "side": 1,
+      "message": "why are you allowing \\ ?",
+      "range": {
+        "startLine": 1774,
+        "startChar": 43,
+        "endLine": 1774,
+        "endChar": 45
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7fa2817_3d54301a",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-09T04:05:57Z",
+      "side": 1,
+      "message": "a-z0-9 (to be same as above)",
+      "range": {
+        "startLine": 1774,
+        "startChar": 32,
+        "endLine": 1774,
+        "endChar": 38
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
