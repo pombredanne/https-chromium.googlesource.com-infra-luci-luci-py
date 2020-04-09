@@ -555,6 +555,7 @@ def _fetch_and_map_with_go(isolated_hash, storage, outdir, go_cache_dir,
         result_json_path,
     ])
 
+    num_timeouts = 0
     while True:
       # This is to prevent I/O timeout error during isolated setup.
       try:
@@ -563,8 +564,13 @@ def _fetch_and_map_with_go(isolated_hash, storage, outdir, go_cache_dir,
           raise ValueError("retcode of isolated command is not 0: %s" % retcode)
         break
       except subprocess42.TimeoutExpired:
-        print('still running isolated')
-        continue
+        print('timed out running isolated (retry=%d)' % num_timeouts)
+        num_timeouts += 1
+        if num_timeouts < 100:
+          continue
+        print('terminating pid=%d' % proc.pid)
+        proc.terminate()
+        break
 
     with open(result_json_path) as json_file:
       result_json = json.load(json_file)
