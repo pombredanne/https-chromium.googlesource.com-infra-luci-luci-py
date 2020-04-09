@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "008848fe_8ca16371",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T04:44:55Z",
+      "side": 1,
+      "message": "Oh... I guess the question is why \u0027\\\u0027 and not \u0027/\u0027? This is a typo in the original *.proto copy pasted everywhere, I\u0027ll fix it :-/",
+      "parentUuid": "aae049d6_53d49ea9",
+      "range": {
+        "startLine": 1774,
+        "startChar": 43,
+        "endLine": 1774,
+        "endChar": 45
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "470d40c0_b746b3cd",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
