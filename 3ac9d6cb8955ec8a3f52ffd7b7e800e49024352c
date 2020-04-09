@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28fcb0c4_c91673c1",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-09T02:35:29Z",
+      "side": 1,
+      "message": "I thought showing the passed seconds would be a bit more clear? (i don\u0027t see the log line  including the timestamps)",
+      "parentUuid": "50555c1c_b35523f7",
+      "revId": "3ac9d6cb8955ec8a3f52ffd7b7e800e49024352c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eee0db2e_79acf0b2",
         "filename": "client/run_isolated.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "3ac9d6cb8955ec8a3f52ffd7b7e800e49024352c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38f9158b_5a524ccf",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-09T02:35:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eee0db2e_79acf0b2",
+      "revId": "3ac9d6cb8955ec8a3f52ffd7b7e800e49024352c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
