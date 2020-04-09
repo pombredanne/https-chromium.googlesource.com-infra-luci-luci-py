@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "31e5bb4f_7cfa5d86",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T02:35:26Z",
+      "side": 1,
+      "message": "I\u0027m ok with either. but can I ask why?",
+      "parentUuid": "e383c0ac_3f5129ff",
+      "range": {
+        "startLine": 374,
+        "startChar": 8,
+        "endLine": 374,
+        "endChar": 10
+      },
+      "revId": "e1c0bb05696b17345762341684eb4345e2c72456",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29d60c6f_a3911e4d",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 7
@@ -36,6 +60,24 @@
       "writtenOn": "2020-04-09T02:32:36Z",
       "side": 1,
       "message": "why not use mock?",
+      "revId": "e1c0bb05696b17345762341684eb4345e2c72456",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf9ca7df_4e8570d5",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T02:35:26Z",
+      "side": 1,
+      "message": "lru has time_fn for test purpose(?). And I followed the convention.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/client/utils/lru.py;l\u003d29?q\u003df:lru.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "29d60c6f_a3911e4d",
       "revId": "e1c0bb05696b17345762341684eb4345e2c72456",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
