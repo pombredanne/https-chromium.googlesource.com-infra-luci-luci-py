@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d6f609c_57d087f3",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T06:36:59Z",
+      "side": 1,
+      "message": "Isn\u0027t this necessary in isolateserver.py?",
+      "revId": "e656f5b7f0c115123d8d1d0199478519a37a2e56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
