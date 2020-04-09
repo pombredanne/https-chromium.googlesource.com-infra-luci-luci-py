@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "1dae3904_2d36aa62",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T02:27:17Z",
+      "side": 1,
+      "message": "Ah, I see. I didn\u0027t assume it checks elements... (naming is difficult)\nIt\u0027s called assertItemsEqual in Python2.\nhttps://docs.python.org/2/library/unittest.html#unittest.TestCase.assertItemsEqual\n\nThank you for your suggestion.",
+      "parentUuid": "634a4367_9255db43",
+      "range": {
+        "startLine": 370,
+        "startChar": 9,
+        "endLine": 370,
+        "endChar": 20
+      },
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b908695b_850861a0",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 5
