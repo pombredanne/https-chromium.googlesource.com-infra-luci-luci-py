@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdf962f1_8165fd0e",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T01:56:54Z",
+      "side": 1,
+      "message": "warning?",
+      "range": {
+        "startLine": 558,
+        "startChar": 16,
+        "endLine": 558,
+        "endChar": 20
+      },
+      "revId": "8991298aa3e3ccba06ed8abd1a9421e4aca51ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85f4e5f6_737f536b",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T01:56:54Z",
+      "side": 1,
+      "message": "error?",
+      "range": {
+        "startLine": 566,
+        "startChar": 16,
+        "endLine": 566,
+        "endChar": 20
+      },
+      "revId": "8991298aa3e3ccba06ed8abd1a9421e4aca51ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
