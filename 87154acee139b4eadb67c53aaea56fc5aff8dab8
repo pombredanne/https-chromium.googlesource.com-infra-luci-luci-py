@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f2ba162c_31b58d3a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "It will verify only the files that have modified during the task. see lines 554, 555.",
+      "parentUuid": "f62988a7_4a149018",
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dac911dd_ddd31549",
         "filename": "client/local_caching.py",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2020-04-08T09:56:29Z",
       "side": 1,
       "message": "update timestamp in state too?",
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd0a665e_879ef7c9",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "ok, will update if the file is valid.",
+      "parentUuid": "dac911dd_ddd31549",
       "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "bb91da94_0920e098",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "530c18bd_049e584a",
+      "range": {
+        "startLine": 806,
+        "startChar": 26,
+        "endLine": 806,
+        "endChar": 35
+      },
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd6aa870_377e525e",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 5
@@ -79,6 +139,30 @@
       "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fe19d7e_f9e04fe0",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "fd6aa870_377e525e",
+      "range": {
+        "startLine": 369,
+        "startChar": 31,
+        "endLine": 369,
+        "endChar": 43
+      },
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "3f45bfe0_71c1a644",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "Not really. This assertion also checks the items.",
+      "parentUuid": "1ce3b461_4f231bdb",
+      "range": {
+        "startLine": 370,
+        "startChar": 9,
+        "endLine": 370,
+        "endChar": 20
+      },
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b908695b_850861a0",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 5
@@ -116,6 +224,24 @@
       "writtenOn": "2020-04-08T09:56:29Z",
       "side": 1,
       "message": "ditto",
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1758006_97d78d4d",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "b908695b_850861a0",
       "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -165,6 +291,54 @@
       "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75cb29d2_53024cbf",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "fa54dd58_feab37f1",
+      "range": {
+        "startLine": 384,
+        "startChar": 36,
+        "endLine": 384,
+        "endChar": 42
+      },
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef205b43_74ea4678",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-09T01:50:45Z",
+      "side": 1,
+      "message": "removed sorted",
+      "parentUuid": "de08633e_d042b5ff",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 14
+      },
+      "revId": "87154acee139b4eadb67c53aaea56fc5aff8dab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
