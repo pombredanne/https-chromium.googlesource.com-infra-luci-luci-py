@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "7a4f2f95_264308c2",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-09T04:52:57Z",
+      "side": 1,
+      "message": "Oh, / is fine, \\ isn\u0027t. You have a typo 😊\n\nBut yeah, I didn\u0027t notice this on proto review, sorry, still it\u0027s not too late to fix it.",
+      "parentUuid": "aae049d6_53d49ea9",
+      "range": {
+        "startLine": 1774,
+        "startChar": 43,
+        "endLine": 1774,
+        "endChar": 45
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "470d40c0_b746b3cd",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -164,6 +188,30 @@
       "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b861c18a_4bef856c",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1955,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-09T04:52:57Z",
+      "side": 1,
+      "message": "I mean instead of coercion to str first, do regexp validation first, and only then coerce to string before returning.\n\nie as a caller of auth.root_realm(u\u0027test\\u2020\u0027), I\u0027d expect ValueError with \u0027Invalid project name...\"  rather than UnicodeEncodeError",
+      "parentUuid": "28215d87_3522a6e7",
+      "range": {
+        "startLine": 1955,
+        "startChar": 2,
+        "endLine": 1955,
+        "endChar": 48
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
