@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "738704b2_37ba7163",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-09T02:36:17Z",
+      "side": 1,
+      "message": "IMO, you are missing out. The only disadvantage is not being in stdlib. The main pros for me are:\n * even naive autocompletion engines handles it better\n * no accidental unintended iteration over tuple elements\n * less stupid boilerplate.\n * can be passed across processes (via multiprocessing) without crazy bugs\n\nAnd in terms of black magic behind-the-scenes: yeah, guilty as charged, but so does namedtuple.",
+      "parentUuid": "9f443d20_8284d37d",
+      "range": {
+        "startLine": 1770,
+        "startChar": 17,
+        "endLine": 1770,
+        "endChar": 39
+      },
+      "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e60ae752_b833daf9",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
