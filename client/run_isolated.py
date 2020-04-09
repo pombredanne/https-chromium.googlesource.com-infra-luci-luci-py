@@ -563,7 +563,8 @@ def _fetch_and_map_with_go(isolated_hash, storage, outdir, go_cache_dir,
           raise ValueError("retcode of isolated command is not 0: %s" % retcode)
         break
       except subprocess42.TimeoutExpired:
-        print('still running isolated')
+        print('timed out running isolated, terminating pid=%d' % proc.pid)
+        proc.terminate()
         continue
 
     with open(result_json_path) as json_file:
