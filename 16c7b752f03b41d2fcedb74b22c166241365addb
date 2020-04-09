@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "deddc9ef_892a9dc5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T01:47:49Z",
+      "side": 1,
+      "message": "actually, we need to have yet another timeout instead of here.\nhaving only 30 seconds before sending SIGTERM is short for some tasks.",
+      "revId": "16c7b752f03b41d2fcedb74b22c166241365addb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
