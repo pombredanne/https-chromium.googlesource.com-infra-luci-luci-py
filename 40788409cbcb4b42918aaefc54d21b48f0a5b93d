@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9f443d20_8284d37d",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T02:18:22Z",
+      "side": 1,
+      "message": "I don\u0027t know. I\u0027ve never used it and don\u0027t really want to start using.",
+      "parentUuid": "0afd45d7_d355c8a9",
+      "range": {
+        "startLine": 1770,
+        "startChar": 17,
+        "endLine": 1770,
+        "endChar": 39
+      },
+      "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e60ae752_b833daf9",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "76c48b41_862ae9f7",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T02:18:22Z",
+      "side": 1,
+      "message": "this is just a very simple computation, verb kind of implies more actions",
+      "parentUuid": "c1238376_9229ec03",
+      "range": {
+        "startLine": 1797,
+        "startChar": 4,
+        "endLine": 1797,
+        "endChar": 14
+      },
+      "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8083c130_7a5434b8",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -91,6 +139,30 @@
       "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42d33543_dd2d27f1",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1803,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T02:18:22Z",
+      "side": 1,
+      "message": "This is copied from *.proto doc. I think I forgot to copy a part that says that @root is inherited by all other realms and thus all permissions in @root apply to all other realms. Updated.",
+      "parentUuid": "8083c130_7a5434b8",
+      "range": {
+        "startLine": 1803,
+        "startChar": 16,
+        "endLine": 1803,
+        "endChar": 36
+      },
+      "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "5be74ca4_a8731f40",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1826,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T02:18:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "476e3f03_c062bf71",
+      "range": {
+        "startLine": 1826,
+        "startChar": 4,
+        "endLine": 1826,
+        "endChar": 16
+      },
+      "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6947002_47ffcdd6",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -137,6 +233,30 @@
       "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aa4888e_57926336",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T02:18:22Z",
+      "side": 1,
+      "message": "Yes. Clarified.",
+      "parentUuid": "b6947002_47ffcdd6",
+      "range": {
+        "startLine": 1861,
+        "startChar": 30,
+        "endLine": 1861,
+        "endChar": 76
+      },
+      "revId": "40788409cbcb4b42918aaefc54d21b48f0a5b93d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
