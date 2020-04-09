@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7983141_191f8f07",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T02:58:12Z",
+      "side": 1,
+      "message": "sorry could you include command line here too?",
+      "revId": "6e3d620809357f4aaac8a7594276dd9f191a620f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
