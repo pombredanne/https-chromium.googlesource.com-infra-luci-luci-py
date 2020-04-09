@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "588c60bc_7cb90224",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T02:03:37Z",
+      "side": 1,
+      "message": "use for loop here?",
+      "revId": "96f54601a6ca17d24c5980241ed8dac7a6a2189d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2dbf476_f025396c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T02:03:37Z",
+      "side": 1,
+      "message": "use proc.wait() after terminate and kill too like\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/subprocess42.py?l\u003d22\u0026rcl\u003dd2b3bc2b653aef732961539e51c1b9d183bc45e7",
+      "revId": "96f54601a6ca17d24c5980241ed8dac7a6a2189d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fdcbadd1_c08a2b00",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
