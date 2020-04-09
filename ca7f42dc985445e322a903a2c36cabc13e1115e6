@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "a96b1b31_920153d7",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T04:38:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7fa2817_3d54301a",
+      "range": {
+        "startLine": 1774,
+        "startChar": 32,
+        "endLine": 1774,
+        "endChar": 38
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aae049d6_53d49ea9",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T04:38:36Z",
+      "side": 1,
+      "message": "Because we allow realm names like \"some/random/ass/board/orchestrator\". \u0027/\u0027 have no special meaning on this level, but they may have meaning when realm configs are generated. You should have asked this when reviewing *.proto. This regexp is from *.proto.",
+      "parentUuid": "df4b73fc_a264b611",
+      "range": {
+        "startLine": 1774,
+        "startChar": 43,
+        "endLine": 1774,
+        "endChar": 45
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "470d40c0_b746b3cd",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28215d87_3522a6e7",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1955,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-09T04:38:36Z",
+      "side": 1,
+      "message": "Because I want the function to return str even if it got unicode as input.",
+      "parentUuid": "470d40c0_b746b3cd",
+      "range": {
+        "startLine": 1955,
+        "startChar": 2,
+        "endLine": 1955,
+        "endChar": 48
+      },
+      "revId": "ca7f42dc985445e322a903a2c36cabc13e1115e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
