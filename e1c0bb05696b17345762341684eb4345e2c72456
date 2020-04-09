@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "bf0d5a65_02756cee",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T02:49:37Z",
+      "side": 1,
+      "message": "I feel that is bit simpler.\nSome language also has lint for this case.\nhttps://eslint.org/docs/rules/no-else-return#allowelseif-false\n\nOr do you have different feelings?",
+      "parentUuid": "31e5bb4f_7cfa5d86",
+      "range": {
+        "startLine": 374,
+        "startChar": 8,
+        "endLine": 374,
+        "endChar": 10
+      },
+      "revId": "e1c0bb05696b17345762341684eb4345e2c72456",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29d60c6f_a3911e4d",
         "filename": "client/tests/local_caching_test.py",
         "patchSetId": 7
@@ -78,6 +102,24 @@
       "side": 1,
       "message": "lru has time_fn for test purpose(?). And I followed the convention.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/client/utils/lru.py;l\u003d29?q\u003df:lru.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
       "parentUuid": "29d60c6f_a3911e4d",
+      "revId": "e1c0bb05696b17345762341684eb4345e2c72456",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a37cd4d3_eab58b48",
+        "filename": "client/tests/local_caching_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-09T02:49:37Z",
+      "side": 1,
+      "message": "If we don\u0027t use mock, mtime_b can be used in diffferent tests?",
+      "parentUuid": "bf9ca7df_4e8570d5",
       "revId": "e1c0bb05696b17345762341684eb4345e2c72456",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
