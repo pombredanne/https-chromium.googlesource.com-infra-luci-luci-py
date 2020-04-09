@@ -1669,8 +1669,8 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
                     u'items_hot': [],
                 },
                 u'upload': {
-                    u'items_cold': [len(isolated_out_json)],
-                    u'items_hot': [15],
+                    u'items_cold': [],
+                    u'items_hot': [15, len(isolated_out_json)],
                 },
             },
         },
