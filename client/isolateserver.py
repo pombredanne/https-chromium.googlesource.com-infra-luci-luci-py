@@ -595,7 +595,7 @@ class Storage(object):
       signal.signal(s, h)
     return False
 
-  def upload_items(self, items):
+  def upload_items(self, items, verify_push=False):
     """Uploads a generator of Item to the isolate server.
 
     It figures out what items are missing from the server and uploads only them.
@@ -629,6 +629,7 @@ class Storage(object):
     Arguments:
       items: list of isolate_storage.Item instances that represents data to
              upload.
+      verify_push: verify files are uploaded correctly by fetching from server.
 
     Returns:
       List of items that were uploaded. All other items are already there.
@@ -719,7 +720,7 @@ class Storage(object):
             missing_item, push_state = missing.get(True, timeout=5)
             if missing_item is None:
               break
-            self._async_push(channel, missing_item, push_state)
+            self._async_push(channel, missing_item, push_state, verify_push)
             pending_upload += 1
           except Queue.Empty:
             pass
@@ -775,7 +776,7 @@ class Storage(object):
       _print_upload_stats(seen.values(), uploaded)
     return uploaded
 
-  def _async_push(self, channel, item, push_state):
+  def _async_push(self, channel, item, push_state, verify_push=False):
     """Starts asynchronous push to the server in a parallel thread.
 
     Can be used only after |item| was checked for presence on a server with a
@@ -787,6 +788,7 @@ class Storage(object):
       push_state: push state returned by storage_api.contains(). It contains
           storage specific information describing how to upload the item (for
           example in case of cloud storage, it is signed upload URLs).
+      verify_push: verify files are uploaded correctly by fetching from server.
 
     Returns:
       None, but |channel| later receives back |item| when upload ends.
@@ -801,6 +803,12 @@ class Storage(object):
       if self._aborted:
         raise Aborted()
       self._storage_api.push(item, push_state, content)
+      if verify_push:
+        self._fetch(
+            item.digest,
+            item.size,
+            # this consumes all elements from given generator.
+            lambda gen: collections.deque(gen, maxlen=0))
       return item
 
     # If zipping is not required, just start a push task. Don't pass 'content'
@@ -830,7 +838,7 @@ class Storage(object):
           channel, priority, _push, [data])
     self.cpu_thread_pool.add_task(priority, zip_and_push)
 
-  def push(self, item, push_state):
+  def push(self, item, push_state, verify_push=False):
     """Synchronously pushes a single item to the server.
 
     If you need to push many items at once, consider using 'upload_items' or
@@ -841,16 +849,32 @@ class Storage(object):
       push_state: push state returned by storage_api.contains(). It contains
           storage specific information describing how to upload the item (for
           example in case of cloud storage, it is signed upload URLs).
+      verify_push: verify files are uploaded correctly by fetching from server.
 
     Returns:
       Pushed item (same object as |item|).
     """
     channel = threading_utils.TaskChannel()
     with threading_utils.DeadlockDetector(DEADLOCK_TIMEOUT):
-      self._async_push(channel, item, push_state)
+      self._async_push(channel, item, push_state, verify_push)
       pushed = channel.next()
       assert pushed is item
     return item
+
+  def _fetch(self, digest, size, sink):
+    try:
+      # Prepare reading pipeline.
+      stream = self._storage_api.fetch(digest, size, 0)
+      if self.server_ref.is_with_compression:
+        stream = zip_decompress(stream, isolated_format.DISK_FILE_CHUNK)
+      # Run |stream| through verifier that will assert its size.
+      verifier = FetchStreamVerifier(stream, self.server_ref.hash_algo, digest,
+                                     size)
+      # Verified stream goes to |sink|.
+      sink(verifier.run())
+    except Exception as err:
+      logging.error('Failed to fetch %s: %s', digest, err)
+      raise
 
   def async_fetch(self, channel, priority, digest, size, sink):
     """Starts asynchronous fetch from the server in a parallel thread.
@@ -863,19 +887,7 @@ class Storage(object):
       sink: function that will be called as sink(generator).
     """
     def fetch():
-      try:
-        # Prepare reading pipeline.
-        stream = self._storage_api.fetch(digest, size, 0)
-        if self.server_ref.is_with_compression:
-          stream = zip_decompress(stream, isolated_format.DISK_FILE_CHUNK)
-        # Run |stream| through verifier that will assert its size.
-        verifier = FetchStreamVerifier(
-            stream, self.server_ref.hash_algo, digest, size)
-        # Verified stream goes to |sink|.
-        sink(verifier.run())
-      except Exception as err:
-        logging.error('Failed to fetch %s: %s', digest, err)
-        raise
+      self._fetch(digest, size, sink)
       return digest
 
     # Don't bother with zip_thread_pool for decompression. Decompression is
