@@ -734,7 +734,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
     return os.path.join(self.cache_dir, digest)
 
   def _remove_lru_file(self, allow_protected):
-    """Removes the lastest recently used file and returns its size.
+    """Removes the latest recently used file and returns its size.
 
     Updates self._free_disk.
     """
