@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdcbadd1_c08a2b00",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-09T02:02:29Z",
+      "side": 1,
+      "message": "Maybe i shouldn\u0027t break here? This way it goes another round of loop --\u003e retcode !\u003d 0 --\u003e raise ValueError, which is the expected way of how it work? Or re-raise?",
+      "range": {
+        "startLine": 574,
+        "startChar": 8,
+        "endLine": 574,
+        "endChar": 13
+      },
+      "revId": "96f54601a6ca17d24c5980241ed8dac7a6a2189d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
