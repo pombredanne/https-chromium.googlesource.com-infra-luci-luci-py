@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4af1d32a_47a321ce",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-10T19:42:21Z",
+      "side": 1,
+      "message": "Yes, this can happen when rolling out a new permission and chrome-infra-auth is not updated yet. It is safe not to fail, since denying access by default is fine.",
+      "parentUuid": "0e81adda_f6d2fc00",
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae5882cc_fe85ab02",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fd26bc2_0d59af95",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-10T19:42:21Z",
+      "side": 1,
+      "message": "We create O(|realms| * |bindings|) sets instead of O(|realms| * |bindings| * |permissions|).\n\nFor example, for realm with bindings:\n\nbinding {\n  permissions: 0\n  permissions: 1\n  principals: group:a\n}\n\nbinding {\n  permissions: 1\n  permissions: 2\n  principals: group:b\n}\n\nWe\u0027ll create 2 PrincipalSets and per_permission_sets will look like: \n{\n   0: [SetA],\n   1: [SetA, SetB],\n   2: [SetB],\n}\n\nIn an implementation that doesn\u0027t try to reuse memory we\u0027d end up with:\n{\n   0: Set0 which is a *copy* of SetA,\n   1: Set1 which is a union of SetA and SetB,\n   2: Set2 which is a *copy* of SetB,\n}",
+      "parentUuid": "ae5882cc_fe85ab02",
+      "range": {
+        "startLine": 415,
+        "startChar": 42,
+        "endLine": 415,
+        "endChar": 52
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "4d65be25_959fac28",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-10T19:42:21Z",
+      "side": 1,
+      "message": "Yes. Also in practice there\u0027s no guarantees whatsoever (other than the weak ones specified in the *.proto). The following two binding lists are both possible and should be accepted (and they are equivalent):\n\nbindings {\n  permissions: 0\n  principals: group:a\n}\nbindings {\n  permissions: 1\n  principals: group:a\n}\n\nvs\n\n\nbindings {\n  permissions: 0\n  permissions: 1\n  principals: group:a\n}\n\nThere\u0027s a lot of freedom in how to partition set(\u003cprincipal, permission\u003e) into a list of bindings, with different tradeoffs between memory/computational efficiency. Auth Service uses one particular algorithm now, but it may change in the future and client still should accept whatever it produces.",
+      "parentUuid": "d89bfbfb_50ff892a",
+      "range": {
+        "startLine": 428,
+        "startChar": 30,
+        "endLine": 428,
+        "endChar": 55
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37b3b855_baf33b6b",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 2
@@ -76,6 +142,30 @@
       "writtenOn": "2020-04-10T04:27:23Z",
       "side": 1,
       "message": "this is to avoid weird unprintable unicode chars, like when someone does copy-pasta from Gerrit?",
+      "range": {
+        "startLine": 2172,
+        "startChar": 26,
+        "endLine": 2172,
+        "endChar": 45
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21cbe6a4_cba8c170",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2172,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-10T19:42:21Z",
+      "side": 1,
+      "message": "`identity` is a namedtuple which is printed as such, to_bytes() converts it to e.g. \"user:abc@example.com\" string.",
+      "parentUuid": "37b3b855_baf33b6b",
       "range": {
         "startLine": 2172,
         "startChar": 26,
