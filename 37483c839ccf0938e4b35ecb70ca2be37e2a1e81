@@ -16,6 +16,75 @@
       "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae5882cc_fe85ab02",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-10T04:27:23Z",
+      "side": 1,
+      "message": "i\u0027m confused: L427 always creates a new PrincipalSet object. Where is de-duplication?",
+      "range": {
+        "startLine": 415,
+        "startChar": 42,
+        "endLine": 415,
+        "endChar": 52
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d89bfbfb_50ff892a",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-10T04:27:23Z",
+      "side": 1,
+      "message": "this is because bindings aren\u0027t necessarily disjoint wrt perm_idx, even though in practice they will be. Right?",
+      "range": {
+        "startLine": 428,
+        "startChar": 30,
+        "endLine": 428,
+        "endChar": 55
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37b3b855_baf33b6b",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2172,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-10T04:27:23Z",
+      "side": 1,
+      "message": "this is to avoid weird unprintable unicode chars, like when someone does copy-pasta from Gerrit?",
+      "range": {
+        "startLine": 2172,
+        "startChar": 26,
+        "endLine": 2172,
+        "endChar": 45
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
