@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "793ed90c_8d8d6b5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-10T06:47:15Z",
+      "side": 1,
+      "message": "fix CQ?",
+      "revId": "4e059fa43de3b13355a4ffe02d0fef1fe263650c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f856cc6_78ad62e9",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-10T06:47:15Z",
+      "side": 1,
+      "message": "this is not necessary?\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/threading_utils.py?l\u003d748\u0026rcl\u003d0a090525210dc130a7dc9e40ec967eb197b8f9d7",
+      "range": {
+        "startLine": 673,
+        "startChar": 35,
+        "endLine": 673,
+        "endChar": 49
+      },
+      "revId": "4e059fa43de3b13355a4ffe02d0fef1fe263650c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c633e192_8f10f960",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-10T06:47:15Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 712,
+        "startChar": 35,
+        "endLine": 712,
+        "endChar": 49
+      },
+      "revId": "4e059fa43de3b13355a4ffe02d0fef1fe263650c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11732504_1c79e205",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-10T06:47:15Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 754,
+        "startChar": 35,
+        "endLine": 754,
+        "endChar": 49
+      },
+      "revId": "4e059fa43de3b13355a4ffe02d0fef1fe263650c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "210e0055_795114be",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1543,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-10T06:47:15Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 1543,
+        "startChar": 33,
+        "endLine": 1543,
+        "endChar": 47
+      },
+      "revId": "4e059fa43de3b13355a4ffe02d0fef1fe263650c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
