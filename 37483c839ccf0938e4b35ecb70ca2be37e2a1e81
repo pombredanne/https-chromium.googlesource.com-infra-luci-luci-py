@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e81adda_f6d2fc00",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-10T04:01:52Z",
+      "side": 1,
+      "message": "nit: can you add an example when it may happen to explain why warning is appropriate as opposed to say going offline.\n\nMy guess: testing new permission on -dev w/o having the permission distributed via realms db.\nAlso, if permission isn\u0027t known, then nobody access to it, so at least it won\u0027t leak anything. Right?",
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
