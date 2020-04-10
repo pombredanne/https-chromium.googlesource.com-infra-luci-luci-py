@@ -23,7 +23,9 @@ from components.auth import api
 from components.auth import config
 from components.auth import ipaddr
 from components.auth import model
+from components.auth import realms
 from components.auth import replication
+from components.auth.proto import replication_pb2
 from components import utils
 from test_support import test_case
 
@@ -1162,6 +1164,119 @@ class RealmStringsTest(test_case.TestCase):
       api.root_realm('')
     with self.assertRaises(ValueError):
       api.legacy_realm('')
+
+
+PERM0 = api.Permission('luci.dev.testing0')
+PERM1 = api.Permission('luci.dev.testing1')
+PERM2 = api.Permission('luci.dev.testing2')
+ALL_PERMS = [PERM0, PERM1, PERM2]
+
+ID1 = model.Identity.from_bytes('user:1@example.com')
+ID2 = model.Identity.from_bytes('user:2@example.com')
+
+
+class PermissionCheckTest(test_case.TestCase):
+  @staticmethod
+  def auth_db(realms_map, groups=None):
+    return api.AuthDB.from_proto(
+        replication_state=model.AuthReplicationState(),
+        auth_db=replication_pb2.AuthDB(
+            groups=[
+                {
+                    'name': name,
+                    'members': [m.to_bytes() for m in members],
+                    'created_by': 'user:zzz@example.com',
+                    'modified_by': 'user:zzz@example.com',
+                } for name, members in (groups or {}).items()
+            ],
+            realms={
+                'api_version': realms.API_VERSION,
+                'permissions': [
+                    {'name': p.name} for p in ALL_PERMS
+                ],
+                'realms': [
+                    {
+                        'name': name,
+                        'bindings': [
+                            {
+                                'permissions': [
+                                    ALL_PERMS.index(p)
+                                    for p in perms
+                                ],
+                                'principals': [
+                                    p if isinstance(p, str) else p.to_bytes()
+                                    for p in principals
+                                ],
+                            } for perms, principals in sorted(bindings.items())
+                        ],
+                    } for name, bindings in sorted(realms_map.items())
+                ],
+            },
+        ),
+        additional_client_ids=[])
+
+  def setUp(self):
+    super(PermissionCheckTest, self).setUp()
+    self.warnings = []
+    self.errors = []
+    self.mock(
+        api.logging, 'warning',
+        lambda msg, *args: self.warnings.append(msg % args))
+    self.mock(
+        api.logging, 'error',
+        lambda msg, *args: self.warnings.append(msg % args))
+
+  def assert_log_warning(self, msg):
+    self.assertNotEqual(self.warnings, [])
+    self.assertTrue(
+        any(msg in m for m in self.warnings),
+        '%r not in %r' % (msg, self.warnings))
+
+  def assert_log_error(self, msg):
+    self.assertNotEqual(self.errors, [])
+    self.assertTrue(
+        any(msg in m for m in self.errors),
+        '%r not in %r' % (msg, self.errors))
+
+  def assert_check(self, db, perm, realms, ident, outcome):
+    self.assertEqual(
+        outcome, db.check_permission(perm, realms, ident),
+        'check_permission(%r, %r, %r) is %s, but should be %s' %
+        (perm, realms, ident.to_bytes(), not outcome, outcome))
+
+  def test_empty_authdb(self):
+    db = self.auth_db({})
+    self.assertFalse(db.check_permission(PERM0, ['test/realm'], ID1))
+
+  def test_direct_inclusion_in_binding(self):
+    db = self.auth_db({
+        'proj/@root': {},
+        'proj/realm': {
+            (PERM0, PERM1): [ID1],
+            (PERM0, PERM2): [ID2],
+        },
+    })
+    self.assert_check(db, PERM0, ['proj/realm'], ID1, True)
+    self.assert_check(db, PERM1, ['proj/realm'], ID1, True)
+    self.assert_check(db, PERM2, ['proj/realm'], ID1, False)
+    self.assert_check(db, PERM0, ['proj/realm'], ID2, True)
+    self.assert_check(db, PERM1, ['proj/realm'], ID2, False)
+    self.assert_check(db, PERM2, ['proj/realm'], ID2, True)
+
+  def test_inclusion_through_group(self):
+    db = self.auth_db({
+        'proj/@root': {},
+        'proj/realm': {
+            (PERM0, PERM1): ['group:g1'],
+            (PERM0, PERM2): ['group:g2'],
+        },
+    }, groups={'g1': [ID1], 'g2': [ID2]})
+    self.assert_check(db, PERM0, ['proj/realm'], ID1, True)
+    self.assert_check(db, PERM1, ['proj/realm'], ID1, True)
+    self.assert_check(db, PERM2, ['proj/realm'], ID1, False)
+    self.assert_check(db, PERM0, ['proj/realm'], ID2, True)
+    self.assert_check(db, PERM1, ['proj/realm'], ID2, False)
+    self.assert_check(db, PERM2, ['proj/realm'], ID2, True)
 
 
 if __name__ == '__main__':
