@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "4d93ca86_18d363ab",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-11T05:25:52Z",
+      "side": 1,
+      "message": "oh, yeah, makes sense. Example is perfect. I was somehow expecting more advanced de-duplication.",
+      "parentUuid": "9fd26bc2_0d59af95",
+      "range": {
+        "startLine": 415,
+        "startChar": 42,
+        "endLine": 415,
+        "endChar": 52
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d89bfbfb_50ff892a",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 2
@@ -166,6 +190,30 @@
       "side": 1,
       "message": "`identity` is a namedtuple which is printed as such, to_bytes() converts it to e.g. \"user:abc@example.com\" string.",
       "parentUuid": "37b3b855_baf33b6b",
+      "range": {
+        "startLine": 2172,
+        "startChar": 26,
+        "endLine": 2172,
+        "endChar": 45
+      },
+      "revId": "37483c839ccf0938e4b35ecb70ca2be37e2a1e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3880b0c8_cd338843",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2172,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-04-11T05:25:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21cbe6a4_cba8c170",
       "range": {
         "startLine": 2172,
         "startChar": 26,
