@@ -1026,7 +1026,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def _task_deduped(self, num_task, new_ts, deduped_from, task_id, now=None):
     """Runs a task that was deduped."""
     # TODO(maruel): Test with SecretBytes.
-    self._register_bot(None, self.bot_dimensions)
+    self._register_bot(0, self.bot_dimensions)
     result_summary = self._quick_schedule(
         num_task,
         task_slices=[
