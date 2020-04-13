@@ -94,6 +94,30 @@
       "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef0a4ff7_8cb6363f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-13T05:59:37Z",
+      "side": 0,
+      "message": "Talked via chat and explained that BotTaskDimensions creation can fail from both side bot-\u003etask, task-\u003ebot. e.g. due to the delay of DS secondly index.",
+      "parentUuid": "2c8ca84a_05ce444f",
+      "range": {
+        "startLine": 952,
+        "startChar": 5,
+        "endLine": 952,
+        "endChar": 74
+      },
+      "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
