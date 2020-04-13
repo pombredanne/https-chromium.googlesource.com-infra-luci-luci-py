@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3592d439_708644cf",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-13T05:20:49Z",
+      "side": 1,
+      "message": "add comment",
+      "revId": "358b2ae5d15fb039dd0c381f39e5270e787e0465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57044762_181e5e98",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-13T05:20:49Z",
+      "side": 1,
+      "message": "distribute expiration to avoid DS access",
+      "revId": "358b2ae5d15fb039dd0c381f39e5270e787e0465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
