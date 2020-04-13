@@ -46,6 +46,30 @@
       "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13fb91bf_02c90460",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-13T04:33:31Z",
+      "side": 0,
+      "message": "That sounds like we should have some place other than here where we need to update BotDimensions for |bot_root_key| ?",
+      "parentUuid": "cc5fba36_f3f3a14f",
+      "range": {
+        "startLine": 952,
+        "startChar": 5,
+        "endLine": 952,
+        "endChar": 74
+      },
+      "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
