@@ -22,6 +22,30 @@
       "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc5fba36_f3f3a14f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-13T04:16:37Z",
+      "side": 0,
+      "message": "Some of BotTaskDimensions can be missing even when the BotDimensions entity exists.\nFor example, crbug.com/1026915#c5\nThe poll requests didn\u0027t run _rebuild_bot_cache_async due to the existence of BotDimensions.\n\nSo the idea of this CL is to expire BotDimensions to refresh BotTaskDimensions from bot side.",
+      "parentUuid": "df1a3525_7275d67e",
+      "range": {
+        "startLine": 952,
+        "startChar": 5,
+        "endLine": 952,
+        "endChar": 74
+      },
+      "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
