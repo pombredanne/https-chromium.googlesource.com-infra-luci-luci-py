@@ -70,6 +70,30 @@
       "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c8ca84a_05ce444f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-13T04:45:27Z",
+      "side": 0,
+      "message": "I\u0027m not sure if I understand your question.\nThe BotDimensions entity doesn\u0027t get updated unless the bot dimensions change.\nWhen the BotDimensions exists, BotTaskDimensions should be created for new tasks.\nBut I guess it sometimes fails.",
+      "parentUuid": "13fb91bf_02c90460",
+      "range": {
+        "startLine": 952,
+        "startChar": 5,
+        "endLine": 952,
+        "endChar": 74
+      },
+      "revId": "cea47bbbc2d73b58a500f3250f346f5c310a191c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
