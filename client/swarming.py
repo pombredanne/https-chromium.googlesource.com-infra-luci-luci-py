@@ -49,6 +49,16 @@ from utils import subprocess42
 from utils import threading_utils
 
 
+class UserAgentRequestsLibEngine(net.RequestsLibEngine):
+
+  def perform_request(self, request):
+    request.headers['User-Agent'] = 'py/%s' % __version__
+    return super(UserAgentRequestsLibEngine, self).perform_request(request)
+
+
+net.set_engine_class(UserAgentRequestsLibEngine)
+
+
 class Failure(Exception):
   """Generic failure."""
   pass
