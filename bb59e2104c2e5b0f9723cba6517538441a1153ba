@@ -34,6 +34,24 @@
       "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5dc9eaf_db594e01",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-14T07:40:55Z",
+      "side": 1,
+      "message": "Do you think the patch4 is too hacky..?",
+      "parentUuid": "aaabcf61_7216ac4c",
+      "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
