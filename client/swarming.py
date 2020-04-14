@@ -49,6 +49,21 @@ from utils import subprocess42
 from utils import threading_utils
 
 
+def add_user_agent_header(func):
+
+  def wrapped(*args, **kwargs):
+    headers = kwargs.get('headers', {})
+    headers['user-agent'] = 'py/%s' % __version__
+    kwargs['headers'] = headers
+    return func(*args, **kwargs)
+
+  return wrapped
+
+
+net.url_read = add_user_agent_header(net.url_read)
+net.url_read_json = add_user_agent_header(net.url_read_json)
+
+
 class Failure(Exception):
   """Generic failure."""
   pass
