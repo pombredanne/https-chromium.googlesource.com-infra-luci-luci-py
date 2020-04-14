@@ -48,6 +48,8 @@ SHARD_OUTPUT_3 = 'Shard 3 of 3.'
 
 REQUEST_UUID = '7905e667-d415-48f1-9df7-f914541d6331'
 
+swarming._no_user_agent_for_test = True
+
 
 def gen_yielded_data(index, **kwargs):
   """Returns an entry as it would be yielded by yield_results()."""

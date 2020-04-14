@@ -48,6 +48,30 @@ from utils import on_error
 from utils import subprocess42
 from utils import threading_utils
 
+_no_user_agent_for_test = False
+
+
+def add_user_agent_header(func):
+
+  def wrapped(*args, **kwargs):
+    if not _no_user_agent_for_test:
+      headers = kwargs.get('headers', {})
+      headers['User-Agent'] = 'py/%s' % __version__
+      kwargs['headers'] = headers
+    return func(*args, **kwargs)
+
+  return wrapped
+
+
+@add_user_agent_header
+def url_read(*args, **kwargs):
+  return net.url_read(*args, **kwargs)
+
+
+@add_user_agent_header
+def url_read_json(*args, **kwargs):
+  return net.url_read_json(*args, **kwargs)
+
 
 class Failure(Exception):
   """Generic failure."""
@@ -215,7 +239,7 @@ def swarming_trigger(swarming, raw_request):
   """
   logging.info('Triggering: %s', raw_request['name'])
 
-  result = net.url_read_json(
+  result = url_read_json(
       swarming + '/_ah/api/swarming/v1/tasks/new', data=raw_request)
   if not result:
     on_error.report('Failed to trigger task %s' % raw_request['name'])
@@ -560,13 +584,13 @@ def retrieve_results(
         if should_stop.is_set():
           return None
 
-    # Disable internal retries in net.url_read_json, since we are doing retries
+    # Disable internal retries in url_read_json, since we are doing retries
     # ourselves.
     # TODO(maruel): We'd need to know if it's a 404 and not retry at all.
     # TODO(maruel): Sadly, we currently have to poll here. Use hanging HTTP
     # request on GAE v2.
     # Retry on 500s only if no timeout is specified.
-    result = net.url_read_json(result_url, retry_50x=bool(timeout == -1))
+    result = url_read_json(result_url, retry_50x=bool(timeout == -1))
     if not result:
       if timeout == -1:
         return None
@@ -590,7 +614,7 @@ def retrieve_results(
     # retried in this case.
     if result['state'] not in TaskState.STATES_RUNNING or timeout == -1:
       if fetch_stdout:
-        out = net.url_read_json(output_url)
+        out = url_read_json(output_url)
         result['output'] = out.get('output', '') if out else ''
       # Record the result, try to fetch attached output files (if any).
       if output_collector:
@@ -839,7 +863,7 @@ def endpoints_api_discovery_apis(host):
   """
   # Uses the real Cloud Endpoints. This needs to be fixed once the Cloud
   # Endpoints version is turned down.
-  data = net.url_read_json(host + '/_ah/api/discovery/v1/apis')
+  data = url_read_json(host + '/_ah/api/discovery/v1/apis')
   if data is None:
     raise APIError('Failed to discover APIs on %s' % host)
   out = {}
@@ -849,7 +873,7 @@ def endpoints_api_discovery_apis(host):
     # URL is of the following form:
     # url = host + (
     #   '/_ah/api/discovery/v1/apis/%s/%s/rest' % (api['id'], api['version'])
-    api_data = net.url_read_json(api['discoveryRestUrl'])
+    api_data = url_read_json(api['discoveryRestUrl'])
     if api_data is None:
       raise APIError('Failed to discover %s on %s' % (api['id'], host))
     out[api['id']] = api_data
@@ -863,7 +887,7 @@ def get_yielder(base_url, limit):
   url = base_url
   if limit:
     url += '%slimit=%d' % ('&' if '?' in url else '?', min(CHUNK_SIZE, limit))
-  data = net.url_read_json(url)
+  data = url_read_json(url)
   if data is None:
     # TODO(maruel): Do basic diagnostic.
     raise Failure('Failed to access %s' % url)
@@ -884,7 +908,7 @@ def get_yielder(base_url, limit):
       url = base_url + '%scursor=%s' % (merge_char, urllib.parse.quote(cursor))
       if limit:
         url += '&limit=%d' % min(CHUNK_SIZE, limit - total)
-      new = net.url_read_json(url)
+      new = url_read_json(url)
       if new is None:
         raise Failure('Failed to access %s' % url)
       cursor = new.get('cursor')
@@ -1344,7 +1368,7 @@ def CMDbot_delete(parser, args):
   result = 0
   for bot in bots:
     url = '%s/_ah/api/swarming/v1/bot/%s/delete' % (options.swarming, bot)
-    if net.url_read_json(url, data={}, method='POST') is None:
+    if url_read_json(url, data={}, method='POST') is None:
       print('Deleting %s failed. Probably already gone' % bot)
       result = 1
   return result
@@ -1439,7 +1463,7 @@ def CMDcancel(parser, args):
   data = {'kill_running': options.kill_running}
   for task_id in args:
     url = '%s/_ah/api/swarming/v1/task/%s/cancel' % (options.swarming, task_id)
-    resp = net.url_read_json(url, data=data, method='POST')
+    resp = url_read_json(url, data=data, method='POST')
     if resp is None:
       print('Deleting %s failed. Probably already gone' % task_id)
       return 1
@@ -1524,7 +1548,7 @@ def CMDpost(parser, args):
   url = options.swarming + '/_ah/api/swarming/v1/' + args[0]
   data = sys.stdin.read()
   try:
-    resp = net.url_read(url, data=data, method='POST')
+    resp = url_read(url, data=data, method='POST')
   except net.TimeoutError:
     sys.stderr.write('Timeout!\n')
     return 1
@@ -1747,7 +1771,7 @@ def CMDreproduce(parser, args):
       extra_args = args[1:]
 
   url = options.swarming + '/_ah/api/swarming/v1/task/%s/request' % args[0]
-  request = net.url_read_json(url)
+  request = url_read_json(url)
   if not request:
     print('Failed to retrieve request data for the task', file=sys.stderr)
     return 1
@@ -1864,7 +1888,7 @@ def CMDterminate(parser, args):
   if len(args) != 1:
     parser.error('Please provide the bot id')
   url = options.swarming + '/_ah/api/swarming/v1/bot/%s/terminate' % args[0]
-  request = net.url_read_json(url, data={})
+  request = url_read_json(url, data={})
   if not request:
     print('Failed to ask for termination', file=sys.stderr)
     return 1
