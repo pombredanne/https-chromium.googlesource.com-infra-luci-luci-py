@@ -52,6 +52,24 @@
       "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4724731_da64a4f7",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-14T07:48:25Z",
+      "side": 1,
+      "message": "requests is used around from\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/net.py?l\u003d790\u0026rcl\u003d88c13ad6d291dcd189fd92bccc5f0df24ab4ea06\nYou can check that if you introduce exception there.\n\nAnd looking around there, it seems that using\nhttps://cs.chromium.org/chromium/infra/luci/client/utils/net.py?l\u003d173\u0026rcl\u003d88c13ad6d291dcd189fd92bccc5f0df24ab4ea06\nis supposed way to modify request?",
+      "parentUuid": "f5dc9eaf_db594e01",
+      "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
