@@ -22,6 +22,30 @@
       "revId": "2ed2c99ca2969e2e8dac97973a829ee6638d6548",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5640ad8_969021f4",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2010,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-14T22:14:16Z",
+      "side": 1,
+      "message": "Yes, it is .-/ where . and - and escaped with \u0027\\\u0027. Added a test too.",
+      "parentUuid": "02c29433_5f988288",
+      "range": {
+        "startLine": 2010,
+        "startChar": 39,
+        "endLine": 2010,
+        "endChar": 44
+      },
+      "revId": "2ed2c99ca2969e2e8dac97973a829ee6638d6548",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
