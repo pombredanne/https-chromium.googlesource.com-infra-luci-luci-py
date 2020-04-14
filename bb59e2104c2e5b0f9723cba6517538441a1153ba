@@ -16,6 +16,24 @@
       "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaabcf61_7216ac4c",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-14T07:30:49Z",
+      "side": 1,
+      "message": "For the first suggestion, no i don\u0027t think it\u0027s even used? https://cs.chromium.org/chromium/infra/luci/client/utils/net.py?l\u003d504-522\u0026rcl\u003d88c13ad6d291dcd189fd92bccc5f0df24ab4ea06.\n\nFor 2, then i\u0027d prefer to create a wrapper, and each handler would call that wrapper (same as the current solution, except that we don;\u0027t modify the `net` module",
+      "parentUuid": "ead00968_929d2cbe",
+      "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
