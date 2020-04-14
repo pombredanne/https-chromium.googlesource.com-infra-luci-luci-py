@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac2dcef7_f6886417",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-14T08:17:18Z",
+      "side": 1,
+      "message": "update?",
+      "revId": "ad0ed43daec71ac6078f1e80c3f09d94968d8465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cad19578_c8ce9f13",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-14T08:17:18Z",
+      "side": 1,
+      "message": "one empty line above?",
+      "revId": "ad0ed43daec71ac6078f1e80c3f09d94968d8465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4eb6c150_91a02055",
+        "filename": "client/swarming.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-14T08:17:18Z",
+      "side": 1,
+      "message": "better to set this if __name__ \u003d\u003d \u0027__main__\u0027 ?",
+      "revId": "ad0ed43daec71ac6078f1e80c3f09d94968d8465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
