@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e67d856_790b8582",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-14T10:36:48Z",
+      "side": 1,
+      "message": "better to say that this has meaning due to eventual datastore consistency?",
+      "range": {
+        "startLine": 959,
+        "startChar": 27,
+        "endLine": 960,
+        "endChar": 51
+      },
+      "revId": "781c1b857d696eafb3cc0eb823d1416e526a9332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
