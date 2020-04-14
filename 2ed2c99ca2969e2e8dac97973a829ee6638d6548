@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02c29433_5f988288",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2010,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-04-14T21:14:44Z",
+      "side": 1,
+      "message": "IIUC this is \"dot, dash or backslash\", the dash doesn\u0027t denote a range of characters, right?\n(trying to make sure \":\" is not permitted)",
+      "range": {
+        "startLine": 2010,
+        "startChar": 39,
+        "endLine": 2010,
+        "endChar": 44
+      },
+      "revId": "2ed2c99ca2969e2e8dac97973a829ee6638d6548",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
