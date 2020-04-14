@@ -1023,10 +1023,14 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, self.execute_tasks())
     return unicode(run_result.task_id)
 
-  def _task_deduped(self, num_task, new_ts, deduped_from, task_id, now=None):
+  def _task_deduped(self, num_task, new_ts, deduped_from, task_id, now=None,
+                    bot_dimensions_cached=False):
     """Runs a task that was deduped."""
     # TODO(maruel): Test with SecretBytes.
-    self._register_bot(None, self.bot_dimensions)
+    if bot_dimensions_cached:
+        self._register_bot(None, self.bot_dimensions)
+    else:
+        self._register_bot(0, self.bot_dimensions)
     result_summary = self._quick_schedule(
         num_task,
         task_slices=[
@@ -1135,8 +1139,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Third task is deduped against second task. That ensures ordering works
     # correctly.
     third_ts = self.mock_now(self.now, 20)
-    self._task_deduped(
-        0, third_ts, task_id, '1d69ba3ea8008b10', now=second_ts)
+    self._task_deduped(0, third_ts, task_id, '1d69ba3ea8008b10', now=second_ts,
+                       bot_dimensions_cached=True)
 
   def test_task_idempotent_second_slice(self):
     # A task will dedupe against a second slice, and skip the first slice.
