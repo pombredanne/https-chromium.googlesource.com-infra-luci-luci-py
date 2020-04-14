@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ead00968_929d2cbe",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-14T07:21:15Z",
+      "side": 1,
+      "message": "I think it is better to overwrite\nhttps://cs.chromium.org/chromium/infra/luci/client/third_party/requests/utils.py?l\u003d793\u0026rcl\u003d88c13ad6d291dcd189fd92bccc5f0df24ab4ea06\nor specify user agent from every call site?",
+      "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
