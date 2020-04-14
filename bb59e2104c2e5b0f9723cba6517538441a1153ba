@@ -70,6 +70,24 @@
       "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a93903de_37329ad5",
+        "filename": "client/swarming.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-14T08:08:30Z",
+      "side": 1,
+      "message": "Like this?",
+      "parentUuid": "c4724731_da64a4f7",
+      "revId": "bb59e2104c2e5b0f9723cba6517538441a1153ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
