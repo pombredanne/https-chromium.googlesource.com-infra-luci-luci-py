@@ -172,7 +172,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
   def _gen_new_task_to_run(self, nb_task, **kwargs):
     """Returns TaskRequest, TaskToRun saved in the DB."""
     request = self.mkreq(nb_task, _gen_request(**kwargs))
-    to_run = task_to_run.new_task_to_run(request, 1, 0)
+    to_run = task_to_run.new_task_to_run(request, 0)
     to_run.put()
     return request, to_run
 
