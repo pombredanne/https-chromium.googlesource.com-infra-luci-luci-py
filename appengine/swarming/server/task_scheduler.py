@@ -88,7 +88,7 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
     # condition in here but we're willing to accept it.
     if len(capacity) > index and capacity[index]:
       # Enqueue a new TasktoRun for this next TaskSlice, it has capacity!
-      new_to_run = task_to_run.new_task_to_run(request, 1, index+offset)
+      new_to_run = task_to_run.new_task_to_run(request, index + offset)
       result_summary.current_task_slice = index+offset
       to_put.append(new_to_run)
       break
@@ -957,8 +957,7 @@ def _ensure_active_slice(request, try_number, task_slice_index):
       # Deactivate old TaskToRun, create new one.
       to_run.queue_number = None
       to_run.expiration_ts = None
-      new_to_run = task_to_run.new_task_to_run(request, try_number,
-                                               task_slice_index)
+      new_to_run = task_to_run.new_task_to_run(request, task_slice_index)
       ndb.put_multi([to_run, new_to_run])
       logging.debug('_ensure_active_slice: added new TaskToRun')
       return new_to_run, False
@@ -1167,7 +1166,7 @@ def schedule_request(request, secret_bytes):
     index = 0
     while index < request.num_task_slices:
       # This needs to be extremely fast.
-      to_run = task_to_run.new_task_to_run(request, 1, index)
+      to_run = task_to_run.new_task_to_run(request, index)
       #  Make sure there's capacity if desired.
       t = request.task_slice(index)
       if (t.wait_for_capacity or
