@@ -79,12 +79,14 @@ def compile_proto(proto_file, output_path, proto_path):
   cmd.append('--proto_path=%s' % proto_path)
   cmd.append('--python_out=%s' % output_path)
   cmd.append('--prpc-python_out=%s' % output_path)
+  root = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
+  # To import google api protobuf.
+  cmd.append('-I=%s' % os.path.join(root, 'client', 'third_party'))
   cmd.append(proto_file)
   logging.debug('Running %s', cmd)
   env = os.environ.copy()
   env['PATH'] = os.pathsep.join([THIS_DIR, env.get('PATH', '')])
   # Reuse embedded google protobuf.
-  root = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
   env['PYTHONPATH'] = os.path.join(root, 'client', 'third_party')
   subprocess.check_call(cmd, env=env)
   return proto_file.replace('.proto', '_pb2.py').replace(proto_path,

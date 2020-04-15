@@ -1,0 +1,84 @@
+// Copyright 2019 The LUCI Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package luci.resultdb.rpc.v1;
+
+import "google/api/field_behavior.proto";
+import "go.chromium.org/luci/resultdb/proto/type/common.proto";
+
+option go_package = "go.chromium.org/luci/resultdb/proto/rpc/v1;rpcpb";
+
+// Represents a function TestResult -> bool.
+// Empty message matches all test results.
+//
+// Most clients would want to set expected_results to
+// VARIANTS_WITH_UNEXPECTED_RESULTS.
+message TestResultPredicate {
+  // A test result must have a test id matching this regular expression
+  // entirely, i.e. the expression is implicitly wrapped with ^ and $.
+  string test_id_regexp = 1;
+
+  // A test result must have a variant satisfying this predicate.
+  VariantPredicate variant = 2;
+
+  // Filters test results based on TestResult.expected field.
+  enum Expectancy {
+    // All test results satisfiy this.
+    // WARNING: using this significantly increases response size and latency.
+    ALL = 0;
+
+    // A test result must belong to a test variant that has one or more
+    // unexpected results. It can be used to fetch both unexpected and flakily
+    // expected results.
+    //
+    // Note that the predicate is defined at the test variant level.
+    // For example, if a test variant expects a PASS and has results
+    // [FAIL, FAIL, PASS], then all results satisfy the predicate because
+    // the variant satisfies the predicate.
+    VARIANTS_WITH_UNEXPECTED_RESULTS = 1;
+
+    // Note: if you need unexpected results, VARIANTS_WITH_UNEXPECTED_RESULTS
+    // generally does the job, but if you need *ONLY* unexpected results, feel
+    // free to file a feature request.
+  }
+
+  // A test result must match this predicate based on TestResult.expected field.
+  // Most clients would want to override this field because the default
+  // typically causes a large response size.
+  Expectancy expectancy = 3;
+}
+
+// Represents a function TestExoneration -> bool.
+// Empty message matches all test exonerations.
+message TestExonerationPredicate {
+  // A test exoneration must have a test id matching this regular expression
+  // entirely, i.e. the expression is implicitly wrapped with ^ and $.
+  string test_id_regexp = 1;
+
+  // A test exoneration must have a variant satisfying this predicate.
+  VariantPredicate variant = 2;
+}
+
+// Represents a function Variant -> bool.
+message VariantPredicate {
+  oneof predicate {
+    // A variant must be equal this definition exactly.
+    luci.resultdb.type.Variant equals = 1;
+
+    // A variant's key-value pairs must contain those in this one.
+    luci.resultdb.type.Variant contains = 2;
+  }
+}
