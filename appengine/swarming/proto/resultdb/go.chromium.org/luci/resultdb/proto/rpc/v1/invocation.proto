@@ -1,0 +1,153 @@
+// Copyright 2019 The LUCI Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package luci.resultdb.rpc.v1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+import "go.chromium.org/luci/resultdb/proto/rpc/v1/predicate.proto";
+import "go.chromium.org/luci/resultdb/proto/type/common.proto";
+
+option go_package = "go.chromium.org/luci/resultdb/proto/rpc/v1;rpcpb";
+
+// A conceptual container of results. Immutable once finalized.
+// It represents all results of some computation; examples: swarming task,
+// buildbucket build, CQ attempt.
+// Composable: can include other invocations, see inclusion.proto.
+//
+// Next id: 12.
+message Invocation {
+  // Can be used to refer to this invocation, e.g. in ResultDB.GetInvocation
+  // RPC.
+  // Format: invocations/{INVOCATION_ID}
+  // See also https://aip.dev/122.
+  string name = 1 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
+
+  enum State {
+    // The default value. This value is used if the state is omitted.
+    STATE_UNSPECIFIED = 0;
+
+    // The invocation was created and accepts new results.
+    ACTIVE = 1;
+
+    // The invocation is in the process of transitioning into FINALIZED state.
+    // This will happen automatically soon after all of its directly or
+    // indirectly included invocations become inactive.
+    FINALIZING = 2;
+
+    // The invocation is immutable and no longer accepts new results nor
+    // inclusions directly or indirectly.
+    FINALIZED = 3;
+  }
+
+  // Current state of the invocation.
+  State state = 2 [ (google.api.field_behavior) = OUTPUT_ONLY ];
+
+  // True if the invocation is inactive and does NOT contain all the results
+  // that the associated computation was expected to compute.
+  //  * The computation was interrupted prematurely.
+  //  * Such invocation should be discarded.
+  //  * Often the associated computation is retried.
+  //
+  // False could mean 2 things:
+  // * the invocation is still ACTIVE;
+  // * the invocation is inactive and contains all the results that the
+  //   associated computation was expected to compute.
+  //
+  // Use this field with state above.
+  bool interrupted = 3 [ (google.api.field_behavior) = OUTPUT_ONLY ];
+
+  // When the invocation was created.
+  google.protobuf.Timestamp create_time = 4 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
+
+  // Invocation-level string key-value pairs.
+  // A key can be repeated.
+  repeated luci.resultdb.type.StringPair tags = 5;
+
+  // == Finalization ===========================================================
+
+  // When the invocation was finalized, i.e. transitioned to FINALIZED state.
+  // If this field is set, implies that the invocation is finalized.
+  google.protobuf.Timestamp finalize_time = 6
+      [ (google.api.field_behavior) = OUTPUT_ONLY ];
+
+  // Timestamp when the invocation will be forcefully finalized.
+  // Can be extended with UpdateInvocation until finalized.
+  google.protobuf.Timestamp deadline = 7;
+
+  // Names of invocations included into this one. Overall results of this
+  // invocation is a UNION of results directly included into this invocation
+  // and results from the included invocations, recursively.
+  // For example, a Buildbucket build invocation may include invocations of its
+  // child swarming tasks and represent overall result of the build,
+  // encapsulating the internal structure of the build.
+  //
+  // The graph is directed.
+  // There can be at most one edge between a given pair of invocations.
+  // The shape of the graph does not matter. What matters is only the set of
+  // reachable invocations. Thus cycles are allowed and are noop.
+  //
+  // QueryTestResults returns test results from the transitive closure of
+  // invocations.
+  //
+  // Use Recorder.Include RPC to modify this field.
+  repeated string included_invocations = 8
+      [ (google.api.field_behavior) = OUTPUT_ONLY ];
+
+  // bigquery_exports indicates what BigQuery table(s) that results in this
+  // invocation should export to.
+  repeated BigQueryExport bigquery_exports = 9;
+
+  // LUCI identity (e.g. "user:<email>") who created the invocation.
+  // Typically, a LUCI service account (e.g.
+  // "user:cr-buildbucket@appspot.gserviceaccount.com"), but can also be a user
+  // (e.g. "user:johndoe@example.com").
+  string created_by = 10;
+
+  // Full name of the resource that produced results in this invocation.
+  // See also https://aip.dev/122#full-resource-names
+  // Typical examples:
+  // - Swarming task: "//chromium-swarm.appspot.com/tasks/deadbeef"
+  // - Buildbucket build: "//cr-buildbucket.appspot.com/builds/1234567890".
+  string producer_resource = 11;
+}
+
+// BigQueryExport indicates that results in this invocation should be exported
+// to BigQuery after finalization.
+message BigQueryExport {
+  // Name of the BigQuery project.
+  string project = 1 [ (google.api.field_behavior) = REQUIRED ];
+
+  // Name of the BigQuery Dataset.
+  string dataset = 2 [ (google.api.field_behavior) = REQUIRED ];
+
+  // Name of the BigQuery Table.
+  string table = 3 [ (google.api.field_behavior) = REQUIRED ];
+
+  // TestResultExport indicates that test results should be exported.
+  message TestResults {
+    // Use predicate to query test results that should be exported to
+    // BigQuery table.
+    TestResultPredicate predicate = 1;
+  }
+  TestResults test_results = 4;
+}
