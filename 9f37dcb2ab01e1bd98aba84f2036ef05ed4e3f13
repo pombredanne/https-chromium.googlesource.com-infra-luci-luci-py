@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f87efd45_9442550c",
+        "filename": "appengine/swarming/proto/resultdb/gen.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-15T16:28:29Z",
+      "side": 1,
+      "message": "this looks very ad-hoc. Is there a better way?\n\nAt the very least, this is inconsistent with Swarming:TokenServer interaction that does not import protos, but simply makes JSON requests:\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/service_accounts.py;l\u003d384;drc\u003d8761768ee83029ccefb8f59517afab54a0219edf\nRequests in go/resultdb-swarming are even simpler than TokenServer RPCs, so simple JSON is ought to work just fine?\n\n+Vadim in case he has better ideas",
+      "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
