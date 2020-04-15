@@ -7,6 +7,7 @@
 The imports are done late so if an ImportError occurs, it is localized to this
 command only.
 """
+__version__ = '1.0.0'
 
 import code
 import json
@@ -22,6 +23,8 @@ import zipfile
 # are preferred over the ones on the system.
 # pylint: disable=ungrouped-imports
 from utils import zip_package
+
+from utils import net
 
 # This file can *only* be run as a zip.
 THIS_FILE = os.path.abspath(zip_package.get_main_script_path())
@@ -241,6 +244,8 @@ def main():
   # Always create the logs dir first thing, before printing anything out.
   if not os.path.isdir('logs'):
     os.mkdir('logs')
+
+  net.set_user_agent('bot_main/' + __version__)
 
   # This is necessary so os.path.join() works with unicode path. No kidding.
   # This must be done here as each of the command take wildly different code
