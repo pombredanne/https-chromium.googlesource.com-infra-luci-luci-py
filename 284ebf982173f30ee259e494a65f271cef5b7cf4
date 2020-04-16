@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4b0cb7cb_70450943",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-16T05:50:57Z",
+      "side": 1,
+      "message": "why? how do we know which users are using python-client if it\u0027s removed?",
+      "parentUuid": "2cd79c25_d0412278",
+      "revId": "284ebf982173f30ee259e494a65f271cef5b7cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec85648c_7abd3f2b",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 1
@@ -65,6 +83,54 @@
     },
     {
       "key": {
+        "uuid": "bde5ff68_b76c277f",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-16T05:50:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec85648c_7abd3f2b",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "284ebf982173f30ee259e494a65f271cef5b7cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f50f6c3_89cdab4f",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-16T05:50:57Z",
+      "side": 1,
+      "message": "same as the above question. I\u0027ll mark this resolved and let\u0027s discuss in the first one?",
+      "parentUuid": "f46164bb_00759b72",
+      "range": {
+        "startLine": 60,
+        "startChar": 20,
+        "endLine": 60,
+        "endChar": 45
+      },
+      "revId": "284ebf982173f30ee259e494a65f271cef5b7cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07c199e9_83321b9a",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 1
@@ -85,6 +151,30 @@
       "revId": "284ebf982173f30ee259e494a65f271cef5b7cf4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2883dc1e_750fa435",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-16T05:50:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07c199e9_83321b9a",
+      "range": {
+        "startLine": 63,
+        "startChar": 14,
+        "endLine": 63,
+        "endChar": 18
+      },
+      "revId": "284ebf982173f30ee259e494a65f271cef5b7cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
