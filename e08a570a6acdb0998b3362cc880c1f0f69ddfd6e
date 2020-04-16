@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd6fbac0_fb9fd614",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T06:10:31Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "e08a570a6acdb0998b3362cc880c1f0f69ddfd6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a93dfb1e_d385bbb3",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T06:10:31Z",
+      "side": 1,
+      "message": "better to say \u0027access from\u0027?\nSome user may not access using Isolate-client.",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "e08a570a6acdb0998b3362cc880c1f0f69ddfd6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b66adb79_3b0f07cb",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T06:10:31Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 61,
+        "startChar": 20,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "e08a570a6acdb0998b3362cc880c1f0f69ddfd6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
