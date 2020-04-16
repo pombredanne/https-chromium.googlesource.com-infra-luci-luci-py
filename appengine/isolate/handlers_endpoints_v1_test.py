@@ -612,14 +612,16 @@ class IsolateServiceTest(IsolateServiceTestBase):
     self.assertTrue(resp.json['url'].startswith(prefix))
 
 
+_TEST_USER_AGENT = 'python-requests/1.0'
 
-class IsolateServiceLogIfPythonClientTest(IsolateServiceTestBase):
-  """Test the IsolateService's handlers can log for python clients."""
+
+class IsolateServiceLogUserAgentAndIdentityTest(IsolateServiceTestBase):
+  """Test the IsolateService's handlers can log clients' info."""
 
   @staticmethod
   def mocked_cls():
     cls = handlers_endpoints_v1.IsolateService
-    cls.get_user_agent = mock.MagicMock(return_value='python-requests/1.0')
+    cls.get_user_agent = mock.MagicMock(return_value=_TEST_USER_AGENT)
     return cls
 
   api_service_cls = mocked_cls.__func__()
@@ -631,7 +633,7 @@ class IsolateServiceLogIfPythonClientTest(IsolateServiceTestBase):
                           'admin@appspot.gserviceaccount.com')
     auth_testing.mock_get_current_identity(self, admin)
     self._send_request()
-    logwarn.assert_called_once_with(mock.ANY,
+    logwarn.assert_called_once_with(mock.ANY, _TEST_USER_AGENT,
                                     'user:admin@appspot.gserviceaccount.com')
 
   @mock.patch('logging.warn')
@@ -640,7 +642,8 @@ class IsolateServiceLogIfPythonClientTest(IsolateServiceTestBase):
     admin = auth.Identity(auth.IDENTITY_SERVICE, 'adminapp')
     auth_testing.mock_get_current_identity(self, admin)
     self._send_request()
-    logwarn.assert_called_once_with(mock.ANY, 'service:adminapp')
+    logwarn.assert_called_once_with(mock.ANY, _TEST_USER_AGENT,
+                                    'service:adminapp')
 
   @mock.patch('logging.warn')
   def test_log_hide_normal_users(self, logwarn):
@@ -648,7 +651,7 @@ class IsolateServiceLogIfPythonClientTest(IsolateServiceTestBase):
     admin = auth.Identity(auth.IDENTITY_USER, 'admin@example.com')
     auth_testing.mock_get_current_identity(self, admin)
     self._send_request()
-    logwarn.assert_called_once_with('Python isolate client from user')
+    logwarn.assert_called_once_with(mock.ANY, _TEST_USER_AGENT)
 
   def _send_request(self):
     namespace = 'default'
