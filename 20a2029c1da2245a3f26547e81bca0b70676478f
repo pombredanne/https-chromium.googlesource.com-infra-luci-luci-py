@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f7e82892_b158271d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1814,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T03:30:22Z",
+      "side": 1,
+      "message": "I\u0027ll check if this can be changed while there are old task to run entries with try_number\u003d2.",
+      "parentUuid": "bb075de9_60213749",
+      "range": {
+        "startLine": 1814,
+        "startChar": 31,
+        "endLine": 1814,
+        "endChar": 56
+      },
+      "revId": "20a2029c1da2245a3f26547e81bca0b70676478f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5302d32_66b96350",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-16T00:28:18Z",
       "side": 1,
       "message": "And this?",
+      "range": {
+        "startLine": 458,
+        "startChar": 4,
+        "endLine": 458,
+        "endChar": 30
+      },
+      "revId": "20a2029c1da2245a3f26547e81bca0b70676478f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "febfab1f_0b1f659e",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T03:30:22Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "c5302d32_66b96350",
       "range": {
         "startLine": 458,
         "startChar": 4,
