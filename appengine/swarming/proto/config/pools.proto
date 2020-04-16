@@ -8,7 +8,8 @@ package swarming.config;
 
 option go_package = "go.chromium.org/luci/swarming/proto/config;configpb";
 
-import "config.proto";
+import "proto/config/config.proto";
+import "components/auth/proto/realms.proto";
 
 // Schema for pools.cfg service config file in luci-config.
 //
@@ -109,6 +110,9 @@ message Pool {
   // For a given task or bot, the first entry in this list that matches based on
   // dimension eligibility will be used.
   repeated ExternalSchedulerConfig external_schedulers = 9;
+
+  // TODO(jwata): add comment
+  components.auth.realms.Realms realms = 10;
 }
 
 
