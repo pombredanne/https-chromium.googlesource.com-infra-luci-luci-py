@@ -45,8 +45,8 @@ MIN_SIZE_FOR_GS = 501
 ### Utility
 
 
-def _log_identity_if_is_python_client(func):
-  """Logs the identity if it's using the python isolate client.
+def _log_user_agent_and_identity(func):
+  """Logs the user agent and identity of the isolate client.
 
   This decorator must come after the auth ones, so that when it is invoked, the
   identity is updated.
@@ -55,12 +55,12 @@ def _log_identity_if_is_python_client(func):
   @functools.wraps(func)
   def wrapped(service, *args, **kwargs):
     agent = service.get_user_agent()
-    if 'python' in agent:
-      identity = auth.get_current_identity()
-      if not identity.is_user or identity.name.endswith('.gserviceaccount.com'):
-        logging.warn('Python isolate client: identity=%s', identity.to_bytes())
-      else:
-        logging.warn('Python isolate client from user')
+    identity = auth.get_current_identity()
+    if not identity.is_user or identity.name.endswith('.gserviceaccount.com'):
+      logging.info('Isolate-client: agent=%s identity=%s', agent,
+                   identity.to_bytes())
+    else:
+      logging.info('Isolate-client from user: agent=%s', agent)
     return func(service, *args, **kwargs)
 
   return wrapped
@@ -214,7 +214,7 @@ class IsolateService(remote.Service):
 
   @auth.endpoints_method(DigestCollection, UrlCollection, http_method='POST')
   @auth.require(acl.isolate_writable)
-  @_log_identity_if_is_python_client
+  @_log_user_agent_and_identity
   def preupload(self, request):
     """Checks for entry's existence and generates upload URLs.
 
@@ -287,21 +287,21 @@ class IsolateService(remote.Service):
 
   @auth.endpoints_method(StorageRequest, PushPing)
   @auth.require(acl.isolate_writable)
-  @_log_identity_if_is_python_client
+  @_log_user_agent_and_identity
   def store_inline(self, request):
     """Stores relatively small entities in the datastore."""
     return self.storage_helper(request, False)
 
   @auth.endpoints_method(FinalizeRequest, PushPing)
   @auth.require(acl.isolate_writable)
-  @_log_identity_if_is_python_client
+  @_log_user_agent_and_identity
   def finalize_gs_upload(self, request):
     """Informs client that large entities have been uploaded to GCS."""
     return self.storage_helper(request, True)
 
   @auth.endpoints_method(RetrieveRequest, RetrievedContent)
   @auth.require(acl.isolate_readable)
-  @_log_identity_if_is_python_client
+  @_log_user_agent_and_identity
   def retrieve(self, request):
     """Retrieves content from a storage location."""
     content = None

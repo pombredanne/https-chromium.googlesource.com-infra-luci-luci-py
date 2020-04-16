@@ -612,43 +612,45 @@ class IsolateServiceTest(IsolateServiceTestBase):
     self.assertTrue(resp.json['url'].startswith(prefix))
 
 
+_TEST_USER_AGENT = 'python-requests/1.0'
 
-class IsolateServiceLogIfPythonClientTest(IsolateServiceTestBase):
-  """Test the IsolateService's handlers can log for python clients."""
+
+class IsolateServiceLogUserAgentAndIdentityTest(IsolateServiceTestBase):
+  """Test the IsolateService's handlers can log clients' info."""
 
   @staticmethod
   def mocked_cls():
     cls = handlers_endpoints_v1.IsolateService
-    cls.get_user_agent = mock.MagicMock(return_value='python-requests/1.0')
+    cls.get_user_agent = mock.MagicMock(return_value=_TEST_USER_AGENT)
     return cls
 
   api_service_cls = mocked_cls.__func__()
 
-  @mock.patch('logging.warn')
-  def test_log_serviceaccount(self, logwarn):
+  @mock.patch('logging.info')
+  def test_log_serviceaccount(self, logfunc):
     """Assert that service account identity is being logged."""
     admin = auth.Identity(auth.IDENTITY_USER,
                           'admin@appspot.gserviceaccount.com')
     auth_testing.mock_get_current_identity(self, admin)
     self._send_request()
-    logwarn.assert_called_once_with(mock.ANY,
-                                    'user:admin@appspot.gserviceaccount.com')
+    logfunc.assert_any_call(mock.ANY, _TEST_USER_AGENT,
+                            'user:admin@appspot.gserviceaccount.com')
 
-  @mock.patch('logging.warn')
-  def test_log_non_user_id(self, logwarn):
+  @mock.patch('logging.info')
+  def test_log_non_user_id(self, logfunc):
     """Assert that non-user identity is being logged."""
     admin = auth.Identity(auth.IDENTITY_SERVICE, 'adminapp')
     auth_testing.mock_get_current_identity(self, admin)
     self._send_request()
-    logwarn.assert_called_once_with(mock.ANY, 'service:adminapp')
+    logfunc.assert_any_call(mock.ANY, _TEST_USER_AGENT, 'service:adminapp')
 
-  @mock.patch('logging.warn')
-  def test_log_hide_normal_users(self, logwarn):
+  @mock.patch('logging.info')
+  def test_log_hide_normal_users(self, logfunc):
     """Assert that the usage is still logged without the user identity."""
     admin = auth.Identity(auth.IDENTITY_USER, 'admin@example.com')
     auth_testing.mock_get_current_identity(self, admin)
     self._send_request()
-    logwarn.assert_called_once_with('Python isolate client from user')
+    logfunc.assert_any_call(mock.ANY, _TEST_USER_AGENT)
 
   def _send_request(self):
     namespace = 'default'
