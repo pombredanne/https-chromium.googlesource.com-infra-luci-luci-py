@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d2851d63_9a3da729",
+        "filename": "appengine/isolate/handlers_endpoints_v1.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T05:58:30Z",
+      "side": 1,
+      "message": "user agent is already included in log entry.\nhttps://screenshot.googleplex.com/mFRMFTi3aWK\n\nI think redundant data does not do good thing for us here.",
+      "parentUuid": "4b0cb7cb_70450943",
+      "revId": "284ebf982173f30ee259e494a65f271cef5b7cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec85648c_7abd3f2b",
         "filename": "appengine/isolate/handlers_endpoints_v1.py",
         "patchSetId": 1
