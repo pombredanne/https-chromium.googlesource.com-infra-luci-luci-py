@@ -18,6 +18,8 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
+import "components/auth/proto/realms.proto";
+
 
 // APIs.
 
