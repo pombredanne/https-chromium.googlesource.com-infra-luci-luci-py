@@ -16,6 +16,24 @@
       "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d76971d1_08ac4650",
+        "filename": "appengine/swarming/proto/resultdb/gen.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-16T05:39:38Z",
+      "side": 1,
+      "message": "Yeah, json seems better now for this simple request.",
+      "parentUuid": "f87efd45_9442550c",
+      "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
