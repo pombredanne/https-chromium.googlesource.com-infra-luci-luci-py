@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b87909b_0b249cf9",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-17T04:30:42Z",
+      "side": 1,
+      "message": "I\u0027m just curious. Is it ok to order message fields as you like?",
+      "revId": "1c164fa4dda5d42a29156820cb1bf7b8ccc0ec51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
