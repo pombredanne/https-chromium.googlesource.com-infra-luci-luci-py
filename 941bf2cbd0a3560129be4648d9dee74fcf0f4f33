@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58109324_a3c6f30c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-17T04:38:18Z",
+      "side": 1,
+      "message": "I missed that resultdb_update_token is designed to be added to TaskRequest.\nI think TaskRequest is immutable at this moment.\nSo I\u0027m wondering if the filed should be added to TaskResultSummary.\nWDYT?",
+      "revId": "941bf2cbd0a3560129be4648d9dee74fcf0f4f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
