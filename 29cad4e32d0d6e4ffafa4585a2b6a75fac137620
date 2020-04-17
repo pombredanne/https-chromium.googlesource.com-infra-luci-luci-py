@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57d08b1f_fbd63762",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-04-17T09:56:15Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with the code, but just to confirm that, if this push fails and retries, the next _storage_api.push is idempotent?",
+      "range": {
+        "startLine": 831,
+        "startChar": 10,
+        "endLine": 832,
+        "endChar": 37
+      },
+      "revId": "29cad4e32d0d6e4ffafa4585a2b6a75fac137620",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
