@@ -1009,6 +1009,13 @@ class TaskResultSummary(_TaskResultCommon):
   # Delay from TaskRequest.expiratoin_ts to the actual expired time.
   expiration_delay = ndb.FloatProperty(indexed=False)
 
+  # e.g. "invocations/task:chromium-swarm.appspot.com:deadbeef0"
+  # None if the integration was not enabled for this task.
+  #
+  # If the task was deduplicated, this equals invocation name of the original
+  # task.
+  resultdb_invocation = ndb.StringProperty()
+
   # Previous state, will be set in _pre_put_hook and compared in _post_pre_hook
   # with post state. It can be used for state transition actions. e.g. logging,
   # sending metrics
