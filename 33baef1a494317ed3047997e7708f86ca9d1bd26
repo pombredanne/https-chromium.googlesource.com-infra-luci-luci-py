@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "164f6fdb_4fc5f849",
+        "filename": "appengine/swarming/handlers_frontend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-17T07:33:28Z",
+      "side": 1,
+      "message": "Is this just supporting the producer_resource uri format because it\u0027s not supported yet?",
+      "revId": "33baef1a494317ed3047997e7708f86ca9d1bd26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
