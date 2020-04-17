@@ -34,6 +34,24 @@
       "revId": "1c164fa4dda5d42a29156820cb1bf7b8ccc0ec51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "490da9fb_200db9f8",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-17T05:58:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "06c7ac8b_bbf2ba95",
+      "revId": "1c164fa4dda5d42a29156820cb1bf7b8ccc0ec51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
