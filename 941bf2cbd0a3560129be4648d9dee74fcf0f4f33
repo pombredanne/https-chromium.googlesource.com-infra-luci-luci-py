@@ -34,6 +34,24 @@
       "revId": "941bf2cbd0a3560129be4648d9dee74fcf0f4f33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e08fa74c_c72b507f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-17T06:03:10Z",
+      "side": 1,
+      "message": "Ah, it\u0027s generated during the initialization process like service_account_token. And it won\u0027t be changed.\nSGTM.",
+      "parentUuid": "07425e62_34028fb7",
+      "revId": "941bf2cbd0a3560129be4648d9dee74fcf0f4f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
