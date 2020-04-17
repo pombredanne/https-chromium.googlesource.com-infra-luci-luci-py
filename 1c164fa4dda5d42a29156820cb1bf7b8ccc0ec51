@@ -16,6 +16,24 @@
       "revId": "1c164fa4dda5d42a29156820cb1bf7b8ccc0ec51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c7ac8b_bbf2ba95",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-17T04:55:55Z",
+      "side": 1,
+      "message": "I think so. We sometimes want to add new filed near to related fileds so that we don\u0027t need to look around entire message definition.",
+      "parentUuid": "3b87909b_0b249cf9",
+      "revId": "1c164fa4dda5d42a29156820cb1bf7b8ccc0ec51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
