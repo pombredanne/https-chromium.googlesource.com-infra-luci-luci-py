@@ -22,6 +22,30 @@
       "revId": "29cad4e32d0d6e4ffafa4585a2b6a75fac137620",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab086e83_8e0390f8",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-17T10:03:47Z",
+      "side": 1,
+      "message": "I\u0027ll verify that with test.\nBut I think isolate server and signed url has idempotency for push.",
+      "parentUuid": "57d08b1f_fbd63762",
+      "range": {
+        "startLine": 831,
+        "startChar": 10,
+        "endLine": 832,
+        "endChar": 37
+      },
+      "revId": "29cad4e32d0d6e4ffafa4585a2b6a75fac137620",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
