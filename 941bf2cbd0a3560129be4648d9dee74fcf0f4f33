@@ -16,6 +16,24 @@
       "revId": "941bf2cbd0a3560129be4648d9dee74fcf0f4f33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07425e62_34028fb7",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-17T04:45:42Z",
+      "side": 1,
+      "message": "I choose to use TaskRequest because service_account_token is also stored in TaskRequest.\nhttps://source.chromium.org/search?q\u003dservice_account_token\u0026ss\u003dchromium%2Finfra%2Finfra:luci%2Fappengine%2Fswarming%2F\n\nI think some properties are set after receiving request, and resultdb_update_token is also finalized at the time creating the task.",
+      "parentUuid": "58109324_a3c6f30c",
+      "revId": "941bf2cbd0a3560129be4648d9dee74fcf0f4f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
