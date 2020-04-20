@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33752f77_dd5e9d6a",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-20T09:05:50Z",
+      "side": 1,
+      "message": "Just to confirm. Is it ok not to add default to self.server.contents?",
+      "revId": "cd6fa444cb99679d805bca5f0b546a03aa8b1a84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
