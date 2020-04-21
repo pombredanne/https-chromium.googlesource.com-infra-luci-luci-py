@@ -16,6 +16,24 @@
       "revId": "ff6244d5f23c841beddc80b797ae1b6aadc29676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abc07c60_6bf2f4fe",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-21T06:26:40Z",
+      "side": 1,
+      "message": "Seems so in our tests.\nBut ideally, this convnersion should not be here.",
+      "parentUuid": "59b4857e_3ff7dab4",
+      "revId": "ff6244d5f23c841beddc80b797ae1b6aadc29676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
