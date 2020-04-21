@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6fe40f93_5f6f0382",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-21T03:49:03Z",
+      "side": 1,
+      "message": "Do you mean \"now - to_run.expiration_ts \u003c 0\"?",
+      "parentUuid": "cbb8ad1a_9da10d61",
+      "range": {
+        "startLine": 75,
+        "startChar": 36,
+        "endLine": 75,
+        "endChar": 62
+      },
+      "revId": "1a63689346ab6e9e29e0d5a90e638d21d18acf6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ade2d15_e7e37ee0",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 4
