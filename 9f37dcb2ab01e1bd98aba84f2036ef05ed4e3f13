@@ -88,6 +88,24 @@
       "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40540f7f_89fbcbb9",
+        "filename": "appengine/swarming/proto/resultdb/gen.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-21T22:03:11Z",
+      "side": 1,
+      "message": "we don\u0027t have to copy that logic because this code does not have to be as generic. In this case, if we need exception handling, we\u0027d need it regardless of whether we use prpc library or not.\n\nsee also https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/service_accounts.py;l\u003d418;drc\u003d8761768ee83029ccefb8f59517afab54a0219edf",
+      "parentUuid": "433c7c88_faff47ff",
+      "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
