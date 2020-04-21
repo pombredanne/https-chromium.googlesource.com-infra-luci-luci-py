@@ -74,6 +74,10 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   # record expiration delay
   to_run.expiration_delay = max(0, (now - to_run.expiration_ts).total_seconds())
 
+  if to_run.expiration_delay == 0:
+      logging.warning('_expire_task_tx: slice_expiration_delay <= 0. '
+                      'now=%s, expiration_ts=%s', now, to_run.expiration_ts)
+
   # In any case, dequeue the TaskToRun.
   to_run.queue_number = None
   to_run.expiration_ts = None
@@ -123,6 +127,9 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
     result_summary.completed_ts = now
     result_summary.expiration_delay = max(
         0, (now - request.expiration_ts).total_seconds())
+    if result_summary.expiration_delay == 0:
+        logging.warning('_expire_task_tx: expiration_delay <= 0. '
+                        'now=%s, expiration_ts=%s', now, request.expiration_ts)
   result_summary.modified_ts = now
 
   futures = ndb.put_multi_async(to_put)
