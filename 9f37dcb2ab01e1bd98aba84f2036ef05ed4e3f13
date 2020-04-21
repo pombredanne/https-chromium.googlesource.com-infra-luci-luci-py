@@ -70,6 +70,24 @@
       "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "433c7c88_faff47ff",
+        "filename": "appengine/swarming/proto/resultdb/gen.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-21T21:46:51Z",
+      "side": 1,
+      "message": "One more thing is prpc aware exception.\nhttps://cs.chromium.org/chromium/src/third_party/chromite/lib/luci/prpc/client.py?l\u003d142\u0026rcl\u003d150d04851644c632929cf05d99a4c40434086153\n\nDo you think it is better to have copy of subset of those logic?",
+      "parentUuid": "e41f1a3f_543a9791",
+      "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
