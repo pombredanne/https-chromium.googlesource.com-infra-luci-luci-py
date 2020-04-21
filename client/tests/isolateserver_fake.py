@@ -87,6 +87,10 @@ class FakeIsolateServerHandler(httpserver.Handler):
           'primary_url': self.server.url})
     elif self.path == '/auth/api/v1/accounts/self':
       self.send_json({'identity': 'user:joe', 'xsrf_token': 'foo'})
+    elif self.path.startswith('/FAKE_GCS/'):
+      namespace, h = self.path[len('/FAKE_GCS/'):].split('/', 1)
+      content = self.server.contents.get(namespace, {}).get(h)
+      self.send_octet_stream(content)
     else:
       raise NotImplementedError(self.path)
 
@@ -133,6 +137,15 @@ class FakeIsolateServerHandler(httpserver.Handler):
       if data is None:
         logging.error(
             'Failed to retrieve %s / %s', namespace, request['digest'])
+        self.send_json({'content': data})
+        return
+
+      if self._should_push_to_gs(None, len(data)):
+        self.send_json({
+            'url': self._generate_signed_url(request['digest'], namespace)
+        })
+        return
+
       self.send_json({'content': data})
     elif self.path.startswith('/_ah/api/isolateservice/v1/server_details'):
       self.send_json({'server_version': 'such a good version'})
