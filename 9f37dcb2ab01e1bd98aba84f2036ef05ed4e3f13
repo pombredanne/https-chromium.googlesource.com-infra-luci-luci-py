@@ -52,6 +52,24 @@
       "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e41f1a3f_543a9791",
+        "filename": "appengine/swarming/proto/resultdb/gen.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-21T14:50:22Z",
+      "side": 1,
+      "message": "could you elaborate what exactly made you change your opinion? what\u0027s the problem retrieving/passing the update token? it is just a HTTP header \"Update-Token\". net module supports sending it (https://source.chromium.org/chromium/_/chromium/infra/luci/luci-py/+/7c3dab77e180261c57072bf376f8bba98c8557c0:appengine/components/components/net.py;l\u003d236;drc\u003d250c92d77b92e71d208b7b633d9997e96c0583b5;bpv\u003d0;bpt\u003d0) and receiving it (https://source.chromium.org/chromium/_/chromium/infra/luci/luci-py/+/7c3dab77e180261c57072bf376f8bba98c8557c0:appengine/components/components/net.py;l\u003d236;drc\u003d250c92d77b92e71d208b7b633d9997e96c0583b5;bpv\u003d0;bpt\u003d0)\n\nexcept it looks like we forgot to forward \"response_headers\" in net.json_request_async",
+      "parentUuid": "9bb90000_48d22778",
+      "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
