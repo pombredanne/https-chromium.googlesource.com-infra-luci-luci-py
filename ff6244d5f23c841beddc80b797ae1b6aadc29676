@@ -34,6 +34,24 @@
       "revId": "ff6244d5f23c841beddc80b797ae1b6aadc29676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "262c3c28_ebfb4e36",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-21T06:34:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "abc07c60_6bf2f4fe",
+      "revId": "ff6244d5f23c841beddc80b797ae1b6aadc29676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
