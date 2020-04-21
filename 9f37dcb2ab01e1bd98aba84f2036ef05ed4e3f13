@@ -34,6 +34,24 @@
       "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb90000_48d22778",
+        "filename": "appengine/swarming/proto/resultdb/gen.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-21T10:36:36Z",
+      "side": 1,
+      "message": "After some investigation, I\u0027d like to rely on\nhttps://cs.chromium.org/chromium/infra/luci/appengine/components/components/prpc/client.py?l\u003d100\u0026rcl\u003d9c9445f56c7a160ee1cbcee0c3d93e895a5560e4\nto call prpc API especially for update-token in metadata.\n\nAnother idea is definiting subset of resultdb messages in python and use that.\nHow do you think?",
+      "parentUuid": "d76971d1_08ac4650",
+      "revId": "9f37dcb2ab01e1bd98aba84f2036ef05ed4e3f13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
