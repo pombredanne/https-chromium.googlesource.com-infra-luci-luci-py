@@ -71,8 +71,8 @@ def check_id_sorted(iterable, list_name, ctx):
     if not item.id:
       continue
     if prev is not None and item.id < prev:
-      ctx.warning(
-          '%s are not sorted by id. First offending id: %s', list_name, item.id)
+      ctx.warning('%s are not sorted by id. First offending id: %s', list_name,
+                  item.id)
       return
     prev = item.id
 
@@ -112,8 +112,8 @@ def validate_config_set_location(loc, ctx, allow_relative_url=False):
         ctx.error('ref/commit is not specified')
 
 
-@validation.self_rule(
-    common.PROJECT_REGISTRY_FILENAME, service_config_pb2.ProjectsCfg)
+@validation.self_rule(common.PROJECT_REGISTRY_FILENAME,
+                      service_config_pb2.ProjectsCfg)
 def validate_project_registry(cfg, ctx):
   project_ids = set()
   for i, project in enumerate(cfg.projects):
@@ -122,7 +122,6 @@ def validate_project_registry(cfg, ctx):
       with ctx.prefix('config_location: '):
         validate_config_set_location(project.config_location, ctx)
   check_id_sorted(cfg.projects, 'Projects', ctx)
-
 
 
 def validate_identity(identity, ctx):
@@ -164,8 +163,8 @@ def validate_access_list(access_list, ctx):
       validate_identity_predicate(ac, ctx)
 
 
-@validation.self_rule(
-    common.SERVICES_REGISTRY_FILENAME, service_config_pb2.ServicesCfg)
+@validation.self_rule(common.SERVICES_REGISTRY_FILENAME,
+                      service_config_pb2.ServicesCfg)
 def validate_services_cfg(cfg, ctx):
   service_ids = set()
   for i, service in enumerate(cfg.services):
@@ -192,8 +191,8 @@ def validate_service_dynamic_metadata_blob(metadata, ctx):
     return
 
   if metadata.get('version') != '1.0':
-    ctx.error(
-        'Expected format version 1.0, but found "%s"', metadata.get('version'))
+    ctx.error('Expected format version 1.0, but found "%s"',
+              metadata.get('version'))
 
   validation_meta = metadata.get('validation')
   if validation_meta is None:
@@ -258,16 +257,16 @@ def validate_schemas(cfg, ctx):
         validate_url(schema.url, ctx)
 
 
-@validation.project_config_rule(
-    common.PROJECT_METADATA_FILENAME, project_config_pb2.ProjectCfg)
+@validation.project_config_rule(common.PROJECT_METADATA_FILENAME,
+                                project_config_pb2.ProjectCfg)
 def validate_project_metadata(cfg, ctx):
   if not cfg.name:
     ctx.error('name is not specified')
   validate_access_list(cfg.access, ctx)
 
 
-@validation.project_config_rule(
-    common.REFS_FILENAME, project_config_pb2.RefsCfg)
+@validation.project_config_rule(common.REFS_FILENAME,
+                                project_config_pb2.RefsCfg)
 def validate_refs_cfg(cfg, ctx):
   refs = set()
   for i, ref in enumerate(cfg.refs):
@@ -322,20 +321,19 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
   res = None
 
   def report_error(text):
-    text = (
-        'Error during external validation: %s\n'
-        'url: %s\n'
-        'config_set: %s\n'
-        'path: %s\n'
-        'response: %r') % (text, url, config_set, path, res)
+    text = ('Error during external validation: %s\n'
+            'url: %s\n'
+            'config_set: %s\n'
+            'path: %s\n'
+            'response: %r') % (text, url, config_set, path, res)
     logging.error(text)
     ctx.critical('%s', text)
 
   try:
     req = {
-      'config_set': config_set,
-      'path': path,
-      'content': base64.b64encode(content),
+        'config_set': config_set,
+        'path': path,
+        'content': base64.b64encode(content),
     }
     res = yield services.call_service_async(
         service, url, method='POST', payload=req)
@@ -354,8 +352,8 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
       if severity in (logging.DEBUG, logging.INFO, logging.WARNING,
                       logging.ERROR, logging.CRITICAL):
         severity = logging.getLevelName(severity)
-      if (severity not in
-          service_config_pb2.ValidationResponseMessage.Severity.keys()):
+      if (severity not in service_config_pb2.ValidationResponseMessage.Severity
+          .keys()):
         report_error(
             'invalid response: unexpected message severity: %r' % severity)
         continue

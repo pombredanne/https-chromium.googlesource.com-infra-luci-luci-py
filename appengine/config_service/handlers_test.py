@@ -17,8 +17,8 @@ import main
 import storage
 
 
-
 class HandlersTest(test_case.TestCase):
+
   def setUp(self):
     super(HandlersTest, self).setUp()
     self.app = webtest.TestApp(main.create_html_app())
@@ -28,15 +28,15 @@ class HandlersTest(test_case.TestCase):
     storage.get_self_config_async.return_value = future(
         service_config_pb2.SchemasCfg(
             schemas=[
-              service_config_pb2.SchemasCfg.Schema(
-                  name='projects/refs.cfg',
-                  url='http://somehost/refs.proto',
-              )],
-        ))
+                service_config_pb2.SchemasCfg.Schema(
+                    name='projects/refs.cfg',
+                    url='http://somehost/refs.proto',
+                )
+            ],))
 
     response = self.app.get('/schemas/projects/refs.cfg', status=302)
-    self.assertEqual(
-        'http://somehost/refs.proto', response.headers.get('Location'))
+    self.assertEqual('http://somehost/refs.proto',
+                     response.headers.get('Location'))
 
     self.app.get('/schemas/non-existent', status=404)
 

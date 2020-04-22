@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Implements authentication based on signed GCE VM metadata tokens.
 
 See https://cloud.google.com/compute/docs/instances/verifying-instance-identity.
@@ -32,13 +31,11 @@ from components import utils
 
 from google.appengine.api import app_identity
 
-
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'gce_vm_authentication',
-  'optional_gce_vm_authentication',
+    'gce_vm_authentication',
+    'optional_gce_vm_authentication',
 ]
-
 
 # HTTP header that carries the GCE VM token.
 GCE_VM_TOKEN_HEADER = 'X-Luci-Gce-Vm-Token'
@@ -104,9 +101,8 @@ def gce_vm_authentication(request):
   allowed = _allowed_audience_re()
   aud = str(payload.get('aud', ''))
   if not allowed.match(aud):
-    raise BadTokenError(
-        'Bad audience in GCE VM token: got %r, expecting %r' %
-        (aud, allowed.pattern))
+    raise BadTokenError('Bad audience in GCE VM token: got %r, expecting %r' %
+                        (aud, allowed.pattern))
 
   # The token should have 'google.compute_engine' field, which happens only if
   # it was generated with format=full.
@@ -124,8 +120,7 @@ def gce_vm_authentication(request):
   if not isinstance(project_id, basestring):
     raise BadTokenError('Wrong type for project_id: %r' % (project_id,))
   details = api.new_auth_details(
-      gce_instance=str(instance_name),
-      gce_project=str(project_id))
+      gce_instance=str(instance_name), gce_project=str(project_id))
 
   # Convert '<realm>:<project>' to '<project>.<realm>' for bot:... string.
   domain = details.gce_project
@@ -135,8 +130,8 @@ def gce_vm_authentication(request):
 
   # The token is valid. Construct and validate bot identity.
   try:
-    ident = model.Identity(
-        model.IDENTITY_BOT, '%s@gce.%s' % (details.gce_instance, domain))
+    ident = model.Identity(model.IDENTITY_BOT,
+                           '%s@gce.%s' % (details.gce_instance, domain))
   except ValueError as exc:
     raise BadTokenError(str(exc))
   return ident, details
@@ -163,4 +158,5 @@ def _allowed_audience_re():
 
 # Extracted into a separate function for simpler testing.
 def _audience_re(hostname):
-  return re.compile(r'^https\://([a-z0-9\-_]+-dot-)?'+re.escape(hostname)+'$')
+  return re.compile(r'^https\://([a-z0-9\-_]+-dot-)?' + re.escape(hostname) +
+                    '$')

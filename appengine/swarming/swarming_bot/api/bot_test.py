@@ -16,16 +16,14 @@ import bot
 
 
 def make_bot(remote=None):
-  return bot.Bot(
-      remote,
-      {'dimensions': {'id': ['bot1'], 'pool': ['private']}},
-      'https://localhost:1',
-      '1234-1a2b3c4-tainted-joe',
-      'base_dir',
-      None)
+  return bot.Bot(remote, {'dimensions': {
+      'id': ['bot1'],
+      'pool': ['private']
+  }}, 'https://localhost:1', '1234-1a2b3c4-tainted-joe', 'base_dir', None)
 
 
 class TestBot(unittest.TestCase):
+
   def test_get_pseudo_rand(self):
     # This test assumes little endian.
     # The following confirms the equivalent code in Bot.get_pseudo_rand():
@@ -38,11 +36,9 @@ class TestBot(unittest.TestCase):
   def test_post_error(self):
     # Not looking at the actual stack since the file name is call dependent and
     # the line number will change as the code is modified.
-    prefix = (
-        'US has failed us\n'
-        'Calling stack:\n'
-        '  0  ')
+    prefix = ('US has failed us\n' 'Calling stack:\n' '  0  ')
     calls = []
+
     class FakeRemote(object):
       # pylint: disable=no-self-argument
       def post_bot_event(self2, event_type, message, attributes):

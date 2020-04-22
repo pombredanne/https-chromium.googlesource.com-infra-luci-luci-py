@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Classes and functions related to threading."""
 
 import functools
@@ -19,7 +18,6 @@ tools.force_local_third_party()
 # third_party/
 import six
 from six.moves import queue as Queue
-
 
 # Priorities for tasks in AutoRetryThreadPool, particular values are important.
 PRIORITY_HIGH = 1 << 8
@@ -87,9 +85,8 @@ class ThreadPool(object):
               named '<prefix>-<thread index>'.
     """
     prefix = prefix or 'tp-0x%0x' % id(self)
-    logging.debug(
-        'New ThreadPool(%d, %d, %d): %s', initial_threads, max_threads,
-        queue_size, prefix)
+    logging.debug('New ThreadPool(%d, %d, %d): %s', initial_threads,
+                  max_threads, queue_size, prefix)
     assert initial_threads <= max_threads
     assert max_threads <= 1024
 
@@ -130,7 +127,7 @@ class ThreadPool(object):
       if len(self._workers) >= self._max_threads or self._is_closed:
         return False
       worker = threading.Thread(
-        name='%s-%d' % (self._prefix, len(self._workers)), target=self._run)
+          name='%s-%d' % (self._prefix, len(self._workers)), target=self._run)
       self._workers.append(worker)
       self._starting += 1
     logging.debug('Starting worker thread %s', worker.name)
@@ -161,11 +158,10 @@ class ThreadPool(object):
       if self._is_closed:
         raise ThreadPoolClosed('Can not add a task to a closed ThreadPool')
       start_new_worker = (
-        # Pending task count plus new task > number of available workers.
-        self.tasks.qsize() + 1 > self._ready + self._starting and
-        # Enough slots.
-        len(self._workers) < self._max_threads
-      )
+          # Pending task count plus new task > number of available workers.
+          self.tasks.qsize() + 1 > self._ready + self._starting and
+          # Enough slots.
+          len(self._workers) < self._max_threads)
       self._pending_count += 1
     with self._num_of_added_tasks_lock:
       self._num_of_added_tasks += 1
@@ -301,9 +297,8 @@ class ThreadPool(object):
       # 'join' without timeout blocks signal handlers, spin with timeout.
       while t.is_alive():
         t.join(30)
-    logging.debug(
-      'Thread pool \'%s\' closed: spawned %d threads total',
-      self._prefix, len(self._workers))
+    logging.debug('Thread pool \'%s\' closed: spawned %d threads total',
+                  self._prefix, len(self._workers))
 
   def abort(self):
     """Empties the queue.
@@ -337,7 +332,7 @@ class ThreadPool(object):
 class AutoRetryThreadPool(ThreadPool):
   """Automatically retries enqueued operations on exception."""
   # See also PRIORITY_* module-level constants.
-  INTERNAL_PRIORITY_BITS = (1<<8) - 1
+  INTERNAL_PRIORITY_BITS = (1 << 8) - 1
 
   def __init__(self, exceptions, retries, *args, **kwargs):
     """
@@ -358,13 +353,7 @@ class AutoRetryThreadPool(ThreadPool):
     """
     assert (priority & self.INTERNAL_PRIORITY_BITS) == 0
     return super(AutoRetryThreadPool, self).add_task(
-        priority,
-        self._task_executer,
-        priority,
-        None,
-        func,
-        *args,
-        **kwargs)
+        priority, self._task_executer, priority, None, func, *args, **kwargs)
 
   def add_task_with_channel(self, channel, priority, func, *args, **kwargs):
     """Tasks added must not use the lower priority bits since they are reserved
@@ -372,13 +361,7 @@ class AutoRetryThreadPool(ThreadPool):
     """
     assert (priority & self.INTERNAL_PRIORITY_BITS) == 0
     return super(AutoRetryThreadPool, self).add_task(
-        priority,
-        self._task_executer,
-        priority,
-        channel,
-        func,
-        *args,
-        **kwargs)
+        priority, self._task_executer, priority, channel, func, *args, **kwargs)
 
   def _task_executer(self, priority, channel, func, *args, **kwargs):
     """Wraps the function and automatically retry on exceptions."""
@@ -394,16 +377,11 @@ class AutoRetryThreadPool(ThreadPool):
       if actual_retries < self._retries:
         priority += 1
         logging.debug(
-            'Swallowed exception \'%s\'. Retrying at lower priority %X',
-            e, priority)
-        super(AutoRetryThreadPool, self).add_task(
-            priority,
-            self._task_executer,
-            priority,
-            channel,
-            func,
-            *args,
-            **kwargs)
+            'Swallowed exception \'%s\'. Retrying at lower priority %X', e,
+            priority)
+        super(AutoRetryThreadPool,
+              self).add_task(priority, self._task_executer, priority, channel,
+                             func, *args, **kwargs)
         return
       if channel is None:
         raise
@@ -426,17 +404,14 @@ class IOAutoRetryThreadPool(AutoRetryThreadPool):
   RETRIES = 5
 
   def __init__(self):
-    super(IOAutoRetryThreadPool, self).__init__(
-        [IOError],
-        self.RETRIES,
-        self.INITIAL_WORKERS,
-        self.MAX_WORKERS,
-        0,
-        'io')
+    super(IOAutoRetryThreadPool,
+          self).__init__([IOError], self.RETRIES, self.INITIAL_WORKERS,
+                         self.MAX_WORKERS, 0, 'io')
 
 
 class Progress(object):
   """Prints progress and accepts updates thread-safely."""
+
   def __init__(self, columns):
     """Creates a Progress bar that will updates asynchronously from the worker
     threads.
@@ -523,8 +498,8 @@ class Progress(object):
 
   def _gen_line(self, name):
     """Generates the line to be printed."""
-    next_line = ('[%s] %6.2fs %s') % (
-        self._render_columns(), time.time() - self.start, name)
+    next_line = ('[%s] %6.2fs %s') % (self._render_columns(),
+                                      time.time() - self.start, name)
     # Fill it with whitespace only if self.use_cr_only is set.
     prefix = ''
     if self.use_cr_only and self._last_printed_line:
@@ -544,6 +519,7 @@ class Progress(object):
 
 class QueueWithProgress(Queue.PriorityQueue):
   """Implements progress support in join()."""
+
   def __init__(self, progress, *args, **kwargs):
     Queue.PriorityQueue.__init__(self, *args, **kwargs)
     self.progress = progress
@@ -756,10 +732,8 @@ class TaskChannel(object):
     # 'pull' itself. Transform Timeout into generic RuntimeError with
     # explanation.
     if isinstance(exc_info[1], TaskChannel.Timeout):
-      exc_info = (
-          RuntimeError,
-          RuntimeError('Task raised Timeout exception'),
-          exc_info[2])
+      exc_info = (RuntimeError, RuntimeError('Task raised Timeout exception'),
+                  exc_info[2])
     self._queue.put((self._ITEM_EXCEPTION, exc_info))
 
   def __iter__(self):
@@ -804,12 +778,14 @@ class TaskChannel(object):
 
   def wrap_task(self, task):
     """Decorator that makes a function push results into this channel."""
+
     @functools.wraps(task)
     def wrapped(*args, **kwargs):
       try:
         self.send_result(task(*args, **kwargs))
       except Exception:
         self.send_exception()
+
     return wrapped
 
 

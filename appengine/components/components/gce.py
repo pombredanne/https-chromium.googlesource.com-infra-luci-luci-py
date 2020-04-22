@@ -1,13 +1,11 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Wrapper around GCE REST API."""
 
 import re
 
 from components import net
-
 
 AUTH_SCOPES = [
     'https://www.googleapis.com/auth/compute',
@@ -16,35 +14,92 @@ AUTH_SCOPES = [
 # custom-<# CPUs>-<memory MB>
 CUSTOM_MACHINE_TYPE_RE = r'^custom-([0-9]+)-([0-9]+)$'
 
-
 DISK_TYPES = {
-    'local-ssd': {'ssd': True},
-    'pd-ssd': {'ssd': True},
-    'pd-standard': {'ssd': False},
+    'local-ssd': {
+        'ssd': True
+    },
+    'pd-ssd': {
+        'ssd': True
+    },
+    'pd-standard': {
+        'ssd': False
+    },
 }
-
 
 MACHINE_TYPES = {
-    'f1-micro':       {'cpus': 1,  'memory': 0.6},
-    'g1-small':       {'cpus': 1,  'memory': 1.7},
-    'n1-standard-1':  {'cpus': 1,  'memory': 3.75},
-    'n1-standard-2':  {'cpus': 2,  'memory': 7.5},
-    'n1-standard-4':  {'cpus': 4,  'memory': 15},
-    'n1-standard-8':  {'cpus': 8,  'memory': 30},
-    'n1-standard-16': {'cpus': 16, 'memory': 60},
-    'n1-standard-32': {'cpus': 32, 'memory': 120},
-    'n1-highcpu-2':   {'cpus': 2,  'memory': 1.8},
-    'n1-highcpu-4':   {'cpus': 4,  'memory': 3.6},
-    'n1-highcpu-8':   {'cpus': 8,  'memory': 7.2},
-    'n1-highcpu-16':  {'cpus': 16, 'memory': 12.4},
-    'n1-highcpu-32':  {'cpus': 32, 'memory': 28.8},
-    'n1-highmem-2':   {'cpus': 2,  'memory': 13},
-    'n1-highmem-4':   {'cpus': 4,  'memory': 26},
-    'n1-highmem-8':   {'cpus': 8,  'memory': 52},
-    'n1-highmem-16':  {'cpus': 16, 'memory': 104},
-    'n1-highmem-32':  {'cpus': 32, 'memory': 208},
+    'f1-micro': {
+        'cpus': 1,
+        'memory': 0.6
+    },
+    'g1-small': {
+        'cpus': 1,
+        'memory': 1.7
+    },
+    'n1-standard-1': {
+        'cpus': 1,
+        'memory': 3.75
+    },
+    'n1-standard-2': {
+        'cpus': 2,
+        'memory': 7.5
+    },
+    'n1-standard-4': {
+        'cpus': 4,
+        'memory': 15
+    },
+    'n1-standard-8': {
+        'cpus': 8,
+        'memory': 30
+    },
+    'n1-standard-16': {
+        'cpus': 16,
+        'memory': 60
+    },
+    'n1-standard-32': {
+        'cpus': 32,
+        'memory': 120
+    },
+    'n1-highcpu-2': {
+        'cpus': 2,
+        'memory': 1.8
+    },
+    'n1-highcpu-4': {
+        'cpus': 4,
+        'memory': 3.6
+    },
+    'n1-highcpu-8': {
+        'cpus': 8,
+        'memory': 7.2
+    },
+    'n1-highcpu-16': {
+        'cpus': 16,
+        'memory': 12.4
+    },
+    'n1-highcpu-32': {
+        'cpus': 32,
+        'memory': 28.8
+    },
+    'n1-highmem-2': {
+        'cpus': 2,
+        'memory': 13
+    },
+    'n1-highmem-4': {
+        'cpus': 4,
+        'memory': 26
+    },
+    'n1-highmem-8': {
+        'cpus': 8,
+        'memory': 52
+    },
+    'n1-highmem-16': {
+        'cpus': 16,
+        'memory': 104
+    },
+    'n1-highmem-32': {
+        'cpus': 32,
+        'memory': 208
+    },
 }
-
 
 # TODO(vadimsh): Add a method to fetch list of available zones and use the
 # result together with yield_instances_in_zones to emulate yield_instances. Once
@@ -69,15 +124,14 @@ class Project(object):
   def project_id(self):
     return self._project_id
 
-  def call_api(
-      self,
-      endpoint,
-      method='GET',
-      payload=None,
-      params=None,
-      deadline=None,
-      version='v1',
-      service='compute'):
+  def call_api(self,
+               endpoint,
+               method='GET',
+               payload=None,
+               params=None,
+               deadline=None,
+               version='v1',
+               service='compute'):
     """Sends JSON request (with retries) to GCE API endpoint.
 
     Args:
@@ -255,9 +309,9 @@ class Project(object):
         endpoint='/zones/%s/instances/%s/setMetadata' % (zone, instance),
         method='POST',
         payload={
-          'kind': 'compute#metadata',
-          'fingerprint': fingerprint,
-          'items': items,
+            'kind': 'compute#metadata',
+            'fingerprint': fingerprint,
+            'items': items,
         })
     return ZoneOperation(self, zone, op_info)
 
@@ -283,10 +337,10 @@ class Project(object):
         params={'networkInterface': network_interface},
         method='POST',
         payload={
-          'kind': 'compute#accessConfig',
-          'type': 'ONE_TO_ONE_NAT',
-          'name': 'External NAT',
-          'natIP': external_ip,
+            'kind': 'compute#accessConfig',
+            'type': 'ONE_TO_ONE_NAT',
+            'name': 'External NAT',
+            'natIP': external_ip,
         })
     return ZoneOperation(self, zone, op_info)
 
@@ -309,10 +363,18 @@ class Project(object):
       if not page_token:
         break
 
-  def create_instance_template(
-      self, name, disk_size_gb, image, machine_type,
-      auto_assign_external_ip=False, disk_type=None, metadata=None,
-      network_url='', min_cpu_platform=None, service_accounts=None, tags=None):
+  def create_instance_template(self,
+                               name,
+                               disk_size_gb,
+                               image,
+                               machine_type,
+                               auto_assign_external_ip=False,
+                               disk_type=None,
+                               metadata=None,
+                               network_url='',
+                               min_cpu_platform=None,
+                               service_accounts=None,
+                               tags=None):
     """
     Args:
       name: Name of the instance template.
@@ -344,22 +406,23 @@ class Project(object):
     payload = {
         'name': name,
         'properties': {
-            'disks': [
-              {
-                  'autoDelete': True,
-                  'boot': True,
-                  'initializeParams': {
-                      'diskSizeGb': disk_size_gb,
-                      'sourceImage': image,
-                  },
-              },
-            ],
-            'machineType': machine_type,
+            'disks': [{
+                'autoDelete': True,
+                'boot': True,
+                'initializeParams': {
+                    'diskSizeGb': disk_size_gb,
+                    'sourceImage': image,
+                },
+            },],
+            'machineType':
+                machine_type,
             'metadata': {
                 'items': metadata,
             },
-            'networkInterfaces': network_interfaces,
-            'serviceAccounts': service_accounts,
+            'networkInterfaces':
+                network_interfaces,
+            'serviceAccounts':
+                service_accounts,
             'tags': {
                 'items': tags,
             },
@@ -369,8 +432,7 @@ class Project(object):
     # Empty 'diskType' field is rejected, need to omit it entirely.
     if disk_type:
       payload['properties']['disks'][0]['initializeParams']['diskType'] = (
-          disk_type
-      )
+          disk_type)
     # Empty 'minCpuPlatform' field is rejected, need to omit it entirely.
     if min_cpu_platform:
       payload['properties']['minCpuPlatform'] = min_cpu_platform
@@ -381,8 +443,12 @@ class Project(object):
         payload=payload,
     )
 
-  def create_instance_group_manager(
-      self, name, instance_template, size, zone, base_name=None):
+  def create_instance_group_manager(self,
+                                    name,
+                                    instance_template,
+                                    size,
+                                    zone,
+                                    base_name=None):
     """Creates an instance group manager from the given template.
 
     Args:
@@ -427,8 +493,11 @@ class Project(object):
         payload={'instances': instance_urls},
     )
 
-  def get_instances_in_instance_group(
-      self, name, zone, max_results=None, page_token=None):
+  def get_instances_in_instance_group(self,
+                                      name,
+                                      zone,
+                                      max_results=None,
+                                      page_token=None):
     """Returns the instances in the specified GCE instance group.
 
     Args:
@@ -541,8 +610,11 @@ class Project(object):
     )
     return response.get('error', {}).get('errors', [])
 
-  def get_snapshots(
-      self, name=None, labels=None, max_results=None, page_token=None):
+  def get_snapshots(self,
+                    name=None,
+                    labels=None,
+                    max_results=None,
+                    page_token=None):
     """Returns the snapshots matching the specified name and labels.
 
     Args:
@@ -600,10 +672,12 @@ class Project(object):
         '/zones/%s/instances/%s/attachDisk' % (zone, instance),
         method='POST',
         payload={
-            'autoDelete': True,
-            'deviceName': disk,
-            'source': 'projects/%s/zones/%s/disks/%s' % (
-                self.project_id, zone, disk),
+            'autoDelete':
+                True,
+            'deviceName':
+                disk,
+            'source':
+                'projects/%s/zones/%s/disks/%s' % (self.project_id, zone, disk),
         },
     )
 
@@ -692,9 +766,8 @@ def get_image_url(project_id, image):
   """Returns full image URL given image name."""
   assert is_valid_project_id(project_id), project_id
   assert is_valid_image(image), image
-  return (
-      'https://www.googleapis.com/compute/v1/projects/%s/global/images/%s' % (
-          project_id, image))
+  return ('https://www.googleapis.com/compute/v1/projects/%s/global/images/%s' %
+          (project_id, image))
 
 
 def get_network_interfaces(project_id, network_url, auto_assign_external_ip):
@@ -724,9 +797,8 @@ def get_network_url(project_id, network):
   """Returns full network URL given network name."""
   assert is_valid_project_id(project_id), project_id
   assert is_valid_network(network), network
-  return (
-      'https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s' % (
-          project_id, network))
+  return ('https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s'
+          % (project_id, network))
 
 
 def get_zone_url(project_id, zone):
@@ -739,7 +811,7 @@ def get_zone_url(project_id, zone):
 
 def extract_zone(zone_url):
   """Given zone URL (as in instance['zone']) returns zone name."""
-  zone = zone_url[zone_url.rfind('/')+1:]
+  zone = zone_url[zone_url.rfind('/') + 1:]
   assert is_valid_zone(zone), zone
   return zone
 
@@ -759,7 +831,7 @@ def extract_instance_name(url):
 
 def extract_region(region_url):
   """Given region URL (as in address['region']) returns region name."""
-  region = region_url[region_url.rfind('/')+1:]
+  region = region_url[region_url.rfind('/') + 1:]
   assert is_valid_region(region), region
   return region
 

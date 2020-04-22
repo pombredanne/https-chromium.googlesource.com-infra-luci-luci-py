@@ -47,11 +47,11 @@ class BackendTest(test_env_handlers.AppTestBase):
     self.app = webtest.TestApp(
         handlers_backend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
-    self._enqueue_task_orig = self.mock(
-        utils, 'enqueue_task', self._enqueue_task)
+    self._enqueue_task_orig = self.mock(utils, 'enqueue_task',
+                                        self._enqueue_task)
     self._enqueue_task_async_orig = self.mock(utils, 'enqueue_task_async',
                                               self._enqueue_task_async)
 
@@ -79,8 +79,7 @@ class BackendTest(test_env_handlers.AppTestBase):
       response = self.app.get(cron_job_url, status=403)
       self.assertEqual(
           '403 Forbidden\n\nAccess was denied to this resource.\n\n '
-          'Only internal cron jobs can do this  ',
-          response.body)
+          'Only internal cron jobs can do this  ', response.body)
     # The actual number doesn't matter, just make sure they are unqueued.
     self.execute_tasks()
 
@@ -90,20 +89,42 @@ class BackendTest(test_env_handlers.AppTestBase):
     self.mock_now(now)
 
     bot_management.bot_event(
-        event_type='request_sleep', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['beta'], 'id': ['id1']}, state={'ram': 65},
-        version='123456789', quarantined=False, maintenance_msg=None,
-        task_id=None, task_name=None, register_dimensions=True)
+        event_type='request_sleep',
+        bot_id='id1',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            'foo': ['beta'],
+            'id': ['id1']
+        },
+        state={'ram': 65},
+        version='123456789',
+        quarantined=False,
+        maintenance_msg=None,
+        task_id=None,
+        task_name=None,
+        register_dimensions=True)
     bot_management.bot_event(
-        event_type='request_sleep', bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
-        dimensions={'foo': ['alpha'], 'id': ['id2']}, state={'ram': 65},
-        version='123456789', quarantined=True, maintenance_msg=None,
-        task_id='987', task_name=None, register_dimensions=True)
+        event_type='request_sleep',
+        bot_id='id2',
+        external_ip='8.8.4.4',
+        authenticated_as='bot:whitelisted-ip',
+        dimensions={
+            'foo': ['alpha'],
+            'id': ['id2']
+        },
+        state={'ram': 65},
+        version='123456789',
+        quarantined=True,
+        maintenance_msg=None,
+        task_id='987',
+        task_name=None,
+        register_dimensions=True)
 
-    self.app.get('/internal/cron/monitoring/bots/aggregate_dimensions',
-        headers={'X-AppEngine-Cron': 'true'}, status=200)
+    self.app.get(
+        '/internal/cron/monitoring/bots/aggregate_dimensions',
+        headers={'X-AppEngine-Cron': 'true'},
+        status=200)
     actual = bot_management.DimensionAggregation.KEY.get()
     expected = bot_management.DimensionAggregation(
         key=bot_management.DimensionAggregation.KEY,
@@ -125,8 +146,10 @@ class BackendTest(test_env_handlers.AppTestBase):
     self.client_create_task_raw(tags=['alpha:epsilon', 'zeta:theta'])
     self.assertEqual(0, self.execute_tasks())
 
-    self.app.get('/internal/cron/monitoring/tasks/aggregate_tags',
-        headers={'X-AppEngine-Cron': 'true'}, status=200)
+    self.app.get(
+        '/internal/cron/monitoring/tasks/aggregate_tags',
+        headers={'X-AppEngine-Cron': 'true'},
+        status=200)
     actual = task_result.TagAggregation.KEY.get()
     expected = task_result.TagAggregation(
         key=task_result.TagAggregation.KEY,
@@ -158,17 +181,23 @@ class BackendTest(test_env_handlers.AppTestBase):
     self.client_create_task_raw(tags=['alpha:epsilon', 'zeta:theta'])
     self.assertEqual(0, self.execute_tasks())
 
-    self.app.get('/internal/cron/monitoring/count_task_bot_distribution',
-        headers={'X-AppEngine-Cron': 'true'}, status=200)
+    self.app.get(
+        '/internal/cron/monitoring/count_task_bot_distribution',
+        headers={'X-AppEngine-Cron': 'true'},
+        status=200)
 
   def test_cron_throws(self):
+
     def throw():
       raise datastore_errors.InternalError('Yeah it happens')
+
     self.mock(handlers_backend.task_scheduler, 'cron_handle_bot_died', throw)
 
     self.set_as_admin()
-    resp = self.app.get('/internal/cron/important/scheduler/abort_bot_missing',
-        headers={'X-AppEngine-Cron': 'true'}, status=429)
+    resp = self.app.get(
+        '/internal/cron/important/scheduler/abort_bot_missing',
+        headers={'X-AppEngine-Cron': 'true'},
+        status=429)
     expected = (
         '429 Too Many Requests\n\n'
         'The client has sent too many requests in a given amount of time\n\n'
@@ -181,8 +210,7 @@ class BackendTest(test_env_handlers.AppTestBase):
         self._GetRoutes('/internal/taskqueue/'), key=lambda x: x.template)
     # This help to keep queue.yaml and handlers_backend.py up to date.
     # Format: (<queue-name>, <base-url>, <argument>).
-    expected_task_queues = sorted(
-      [
+    expected_task_queues = sorted([
         ('cancel-task-on-bot',
          '/internal/taskqueue/important/tasks/cancel-task-on-bot'),
         ('cancel-tasks', '/internal/taskqueue/important/tasks/cancel'),
@@ -212,8 +240,8 @@ class BackendTest(test_env_handlers.AppTestBase):
          '/internal/taskqueue/monitoring/bq/tasks/results/summary/'
          '2020-01-01T01:01'),
         ('mapreduce-jobs', '/internal/taskqueue/mapreduce/launch/jobid'),
-      ],
-      key=lambda x: x[1])
+    ],
+                                  key=lambda x: x[1])
     self.assertEqual(len(expected_task_queues), len(task_queue_routes))
 
     for i, route in enumerate(task_queue_routes):
@@ -240,15 +268,18 @@ class BackendTest(test_env_handlers.AppTestBase):
     self.mock(task_queues, 'rebuild_task_cache_async', rebuild_task_cache_async)
     self.app.post(
         '/internal/taskqueue/important/task_queues/rebuild-cache',
-        headers={'X-AppEngine-QueueName': 'rebuild-task-cache'}, status=429)
+        headers={'X-AppEngine-QueueName': 'rebuild-task-cache'},
+        status=429)
 
   def test_taskqueue_monitoring_bq_bots_events(self):
     self.set_as_admin()
     now = datetime.datetime(2020, 1, 2, 3, 4, 0)
+
     def task_bq_events(start, end):
       self.assertEqual(start, now)
       self.assertEqual(end, now + datetime.timedelta(seconds=60))
       return 0, 0
+
     self.mock(bot_management, 'task_bq_events', task_bq_events)
     self.app.post(
         '/internal/taskqueue/monitoring/bq/bots/events/2020-01-02T03:04',
@@ -257,10 +288,12 @@ class BackendTest(test_env_handlers.AppTestBase):
   def test_taskqueue_monitoring_bq_tasks_requests(self):
     self.set_as_admin()
     now = datetime.datetime(2020, 1, 2, 3, 4, 0)
+
     def task_bq(start, end):
       self.assertEqual(start, now)
       self.assertEqual(end, now + datetime.timedelta(seconds=60))
       return 0, 0
+
     self.mock(task_request, 'task_bq', task_bq)
     self.app.post(
         '/internal/taskqueue/monitoring/bq/tasks/requests/2020-01-02T03:04',
@@ -269,10 +302,12 @@ class BackendTest(test_env_handlers.AppTestBase):
   def test_taskqueue_monitoring_bq_tasks_results_run(self):
     self.set_as_admin()
     now = datetime.datetime(2020, 1, 2, 3, 4, 0)
+
     def task_bq_run(start, end):
       self.assertEqual(start, now)
       self.assertEqual(end, now + datetime.timedelta(seconds=60))
       return 0, 0
+
     self.mock(task_result, 'task_bq_run', task_bq_run)
     self.app.post(
         '/internal/taskqueue/monitoring/bq/tasks/results/run/2020-01-02T03:04',
@@ -281,16 +316,18 @@ class BackendTest(test_env_handlers.AppTestBase):
   def test_taskqueue_monitoring_bq_tasks_results_summary(self):
     self.set_as_admin()
     now = datetime.datetime(2020, 1, 2, 3, 4, 0)
+
     def task_bq_summary(start, end):
       self.assertEqual(start, now)
       self.assertEqual(end, now + datetime.timedelta(seconds=60))
       return 0, 0
+
     self.mock(task_result, 'task_bq_summary', task_bq_summary)
     self.app.post(
         '/internal/taskqueue/monitoring/bq/tasks/results/summary/'
-          '2020-01-02T03:04',
+        '2020-01-02T03:04',
         headers={
-          'X-AppEngine-QueueName': 'monitoring-bq-tasks-results-summary',
+            'X-AppEngine-QueueName': 'monitoring-bq-tasks-results-summary',
         })
 
 

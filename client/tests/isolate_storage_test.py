@@ -25,6 +25,7 @@ class ByteStreamStubMock(object):
   entire stub. As for the functions, they implement default happy path
   behaviour where possible, and are not implemented otherwise.
   """
+
   def __init__(self, _channel):
     self._push_requests = []
     self._contains_requests = []
@@ -53,43 +54,46 @@ class ByteStreamStubMock(object):
     self._push_requests = []
     return pr
 
+
 def raiseError(code):
   raise isolate_storage.grpc.RpcError(
       'cannot turn this into a real code yet: %s' % code)
 
 
 class HashAlgoNameTest(net_utils.TestCase):
+
   def test_get_hash_algo(self):
     pairs = [
-      ('default', hashlib.sha1),
-      ('default-gzip', hashlib.sha1),
-      ('sha1-flat', hashlib.sha1),
-      ('sha1-deflate', hashlib.sha1),
-      ('sha256-flat', hashlib.sha256),
-      ('sha256-deflate', hashlib.sha256),
-      ('sha512-flat', hashlib.sha512),
-      ('sha512-deflate', hashlib.sha512),
+        ('default', hashlib.sha1),
+        ('default-gzip', hashlib.sha1),
+        ('sha1-flat', hashlib.sha1),
+        ('sha1-deflate', hashlib.sha1),
+        ('sha256-flat', hashlib.sha256),
+        ('sha256-deflate', hashlib.sha256),
+        ('sha512-flat', hashlib.sha512),
+        ('sha512-deflate', hashlib.sha512),
     ]
     for namespace, expected in pairs:
       server_ref = isolate_storage.ServerRef('http://localhost:0', namespace)
       self.assertIs(expected, server_ref.hash_algo, namespace)
 
 
-@unittest.skipIf(
-    not isolate_storage.grpc, 'gRPC could not be loaded; skipping tests')
+@unittest.skipIf(not isolate_storage.grpc,
+                 'gRPC could not be loaded; skipping tests')
 class IsolateStorageGPRCTest(auto_stub.TestCase):
+
   def setUp(self):
     super(IsolateStorageGPRCTest, self).setUp()
-    self.mock(
-        isolate_storage.bytestream_pb2, 'ByteStreamStub', ByteStreamStubMock)
+    self.mock(isolate_storage.bytestream_pb2, 'ByteStreamStub',
+              ByteStreamStubMock)
 
   def get_server(self):
-    s = isolate_storage.ServerRef(
-        'https://luci.appspot.com', 'default-gzip')
+    s = isolate_storage.ServerRef('https://luci.appspot.com', 'default-gzip')
     return isolate_storage.IsolateServerGrpc(s, 'https://luci.com/client/bob')
 
   def testFetchHappySimple(self):
     """Fetch: if we get a few chunks with the right offset, everything works"""
+
     def Read(self, request, timeout=None):
       del timeout
       self.request = request
@@ -97,6 +101,7 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
       for i in range(0, 3):
         response.data = str(i)
         yield response
+
     self.mock(ByteStreamStubMock, 'Read', Read)
 
     s = self.get_server()
@@ -110,12 +115,14 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
   def testFetchHappyZeroLengthBlob(self):
     """Fetch: if we get a zero-length blob, everything works"""
+
     def Read(self, request, timeout=None):
       del timeout
       self.request = request
       response = isolate_storage.bytestream_pb2.ReadResponse()
       response.data = ''
       yield response
+
     self.mock(ByteStreamStubMock, 'Read', Read)
 
     s = self.get_server()
@@ -125,10 +132,12 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
   def testFetchThrowsOnFailure(self):
     """Fetch: if something goes wrong in Isolate, we throw an exception"""
+
     def Read(self, request, timeout=None):
       del timeout
       self.request = request
       raiseError(isolate_storage.grpc.StatusCode.INTERNAL)
+
     self.mock(ByteStreamStubMock, 'Read', Read)
 
     s = self.get_server()
@@ -138,9 +147,11 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
   def testFetchThrowsCorrectExceptionOnGrpcFailure(self):
     """Fetch: if something goes wrong in gRPC, we throw an IOError"""
+
     def Read(_self, _request, timeout=None):
       del timeout
       raise isolate_storage.grpc.RpcError('proxy died during initial fetch :(')
+
     self.mock(ByteStreamStubMock, 'Read', Read)
 
     s = self.get_server()
@@ -150,6 +161,7 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
   def testFetchThrowsCorrectExceptionOnStreamingGrpcFailure(self):
     """Fetch: if something goes wrong in gRPC, we throw an IOError"""
+
     def Read(self, request, timeout=None):
       del timeout
       self.request = request
@@ -160,6 +172,7 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
               'proxy died during fetch stream :(')
         response.data = str(i)
         yield response
+
     self.mock(ByteStreamStubMock, 'Read', Read)
 
     s = self.get_server()
@@ -256,9 +269,11 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
   def testPushThrowsOnFailure(self):
     """Push: if something goes wrong in Isolate, we throw an exception"""
+
     def Write(self, request, timeout=None):
       del request, timeout, self
       raiseError(isolate_storage.grpc.StatusCode.INTERNAL_ERROR)
+
     self.mock(ByteStreamStubMock, 'Write', Write)
 
     s = self.get_server()
@@ -268,9 +283,11 @@ class IsolateStorageGPRCTest(auto_stub.TestCase):
 
   def testPushThrowsCorrectExceptionOnGrpcFailure(self):
     """Push: if something goes wrong in Isolate, we throw an exception"""
+
     def Write(_self, _request, timeout=None):
       del timeout
       raiseError(isolate_storage.grpc.StatusCode.INTERNAL_ERROR)
+
     self.mock(ByteStreamStubMock, 'Write', Write)
 
     s = self.get_server()

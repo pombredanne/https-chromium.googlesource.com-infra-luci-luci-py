@@ -34,14 +34,19 @@ class MembershipTest(test_case.EndpointsTestCase):
     api.reset_local_state()
     self.mock(api, 'is_admin', lambda *_: True)
     model.AuthGroup(key=model.group_key('testgroup'), members=[]).put()
+
     def is_group_member_mock(group, identity):
       group = model.group_key(group).get()
       return group is not None and identity in group.members
+
     self.mock(api, 'is_group_member', is_group_member_mock)
 
   def add_group(self, group, identities):
-    model.AuthGroup(key=model.group_key(group), members=[
-        model.Identity.from_bytes(identity) for identity in identities]).put()
+    model.AuthGroup(
+        key=model.group_key(group),
+        members=[
+            model.Identity.from_bytes(identity) for identity in identities
+        ]).put()
 
   def test_is_member_ok(self):
     """Assert that is_member correctly indicates membership in normal cases."""
@@ -49,15 +54,13 @@ class MembershipTest(test_case.EndpointsTestCase):
 
     # baphomet is not a member
     request = endpoints_api.MembershipRequest.combined_message_class(
-        group='testgroup',
-        identity='user:baphomet@aol.com')
+        group='testgroup', identity='user:baphomet@aol.com')
     response = self.call_api('membership', msg_dict(request), 200)
     self.assertEqual({u'is_member': False}, response.json)
 
     # mithras is a member
     request = endpoints_api.MembershipRequest.combined_message_class(
-        group='testgroup',
-        identity='user:mithras@hotmail.com')
+        group='testgroup', identity='user:mithras@hotmail.com')
     response = self.call_api('membership', msg_dict(request), 200)
     self.assertEqual({u'is_member': True}, response.json)
 
@@ -80,7 +83,8 @@ class MembershipTest(test_case.EndpointsTestCase):
         endpoints_api.MembershipRequest.combined_message_class(
             group='testgroup'),
         endpoints_api.MembershipRequest.combined_message_class(
-            identity='loki@ragna.rok')]
+            identity='loki@ragna.rok')
+    ]
     for request in requests:
       with self.assertRaises(ValidationError):
         _ = self.call_api('membership', msg_dict(request), 200)

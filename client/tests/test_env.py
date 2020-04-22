@@ -17,8 +17,10 @@ CLIENT_DIR = os.path.dirname(TESTS_DIR)
 sys.path.insert(0, CLIENT_DIR)
 
 # Fix import path.
-sys.path.insert(0, os.path.join(
-    CLIENT_DIR, 'third_party', 'httplib2', 'python%d' % sys.version_info.major))
+sys.path.insert(
+    0,
+    os.path.join(CLIENT_DIR, 'third_party', 'httplib2',
+                 'python%d' % sys.version_info.major))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party', 'pyasn1'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party', 'rsa'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
@@ -27,7 +29,6 @@ sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
 from depot_tools import fix_encoding
 
 from utils import fs
-
 
 _UMASK = None
 
@@ -39,6 +40,7 @@ class EnvVars(object):
   value.  Exiting the context causes all the variables named with the key to be
   restored to their value before entering the context.
   """
+
   def __init__(self, var_map):
     self.var_map = var_map
     self._backup = None

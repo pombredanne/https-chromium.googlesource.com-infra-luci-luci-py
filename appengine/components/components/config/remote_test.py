@@ -24,6 +24,7 @@ import test_config_pb2
 
 
 class RemoteTestCase(test_case.TestCase):
+
   def setUp(self):
     super(RemoteTestCase, self).setUp()
     self.mock(net, 'json_request_async', mock.Mock())
@@ -41,53 +42,53 @@ class RemoteTestCase(test_case.TestCase):
     if url == URL_PREFIX + 'config_sets/services%2Ffoo/config/bar.cfg':
       assert kwargs['params']['hash_only']
       raise ndb.Return({
-        'content_hash': 'deadbeef',
-        'revision': 'aaaabbbb',
+          'content_hash': 'deadbeef',
+          'revision': 'aaaabbbb',
       })
     if url == URL_PREFIX + 'config_sets/services%2Ffoo/config/baz.cfg':
       assert kwargs['params']['hash_only']
       raise ndb.Return({
-        'content_hash': 'badcoffee',
-        'revision': 'aaaabbbb',
+          'content_hash': 'badcoffee',
+          'revision': 'aaaabbbb',
       })
 
     if url == URL_PREFIX + 'config/deadbeef':
       raise ndb.Return({
-        'content':  base64.b64encode('a config'),
+          'content': base64.b64encode('a config'),
       })
     if url == URL_PREFIX + 'config/badcoffee':
       raise ndb.Return({
-        'content':  base64.b64encode('param: "qux"'),
+          'content': base64.b64encode('param: "qux"'),
       })
 
     if url == URL_PREFIX + 'projects':
       raise ndb.Return({
-        'projects': [
-          {
-           'id': 'chromium',
-           'repo_type': 'GITILES',
-           'repo_url': 'https://chromium.googlesource.com/chromium/src',
-           'name': 'Chromium browser'
-          },
-          {
-           'id': 'infra',
-           'repo_type': 'GITILES',
-           'repo_url': 'https://chromium.googlesource.com/infra/infra',
-          },
-        ]
+          'projects': [
+              {
+                  'id': 'chromium',
+                  'repo_type': 'GITILES',
+                  'repo_url': 'https://chromium.googlesource.com/chromium/src',
+                  'name': 'Chromium browser'
+              },
+              {
+                  'id': 'infra',
+                  'repo_type': 'GITILES',
+                  'repo_url': 'https://chromium.googlesource.com/infra/infra',
+              },
+          ]
       })
     self.fail('Unexpected url: %s' % url)
 
   def test_get_async(self):
-    revision, content = self.provider.get_async(
-        'services/foo', 'bar.cfg').get_result()
+    revision, content = self.provider.get_async('services/foo',
+                                                'bar.cfg').get_result()
     self.assertEqual(revision, 'aaaabbbb')
     self.assertEqual(content, 'a config')
 
     # Memcache coverage
     net.json_request_async.reset_mock()
-    revision, content = self.provider.get_async(
-        'services/foo', 'bar.cfg').get_result()
+    revision, content = self.provider.get_async('services/foo',
+                                                'bar.cfg').get_result()
     self.assertEqual(revision, 'aaaabbbb')
     self.assertEqual(content, 'a config')
     self.assertFalse(net.json_request_async.called)
@@ -101,7 +102,10 @@ class RemoteTestCase(test_case.TestCase):
     net.json_request_async.assert_any_call(
         'https://luci-config.appspot.com/_ah/api/config/v1/'
         'config_sets/services%2Ffoo/config/bar.cfg',
-        params={'hash_only': True, 'revision': 'aaaabbbb'},
+        params={
+            'hash_only': True,
+            'revision': 'aaaabbbb'
+        },
         scopes=net.EMAIL_SCOPE)
 
     # Memcache coverage
@@ -135,17 +139,17 @@ class RemoteTestCase(test_case.TestCase):
   def test_get_projects(self):
     projects = self.provider.get_projects_async().get_result()
     self.assertEqual(projects, [
-      {
-       'id': 'chromium',
-       'repo_type': 'GITILES',
-       'repo_url': 'https://chromium.googlesource.com/chromium/src',
-       'name': 'Chromium browser'
-      },
-      {
-       'id': 'infra',
-       'repo_type': 'GITILES',
-       'repo_url': 'https://chromium.googlesource.com/infra/infra',
-      },
+        {
+            'id': 'chromium',
+            'repo_type': 'GITILES',
+            'repo_url': 'https://chromium.googlesource.com/chromium/src',
+            'name': 'Chromium browser'
+        },
+        {
+            'id': 'infra',
+            'repo_type': 'GITILES',
+            'repo_url': 'https://chromium.googlesource.com/infra/infra',
+        },
     ])
 
   def test_get_project_configs_async_receives_404(self):
@@ -158,14 +162,12 @@ class RemoteTestCase(test_case.TestCase):
     self.mock(net, 'json_request_async', mock.Mock())
     net.json_request_async.return_value = ndb.Future()
     net.json_request_async.return_value.set_result({
-      'configs': [
-        {
-          'config_set': 'projects/chromium',
-          'content_hash': 'deadbeef',
-          'path': 'cfg',
-          'revision': 'aaaaaaaa',
-        }
-      ]
+        'configs': [{
+            'config_set': 'projects/chromium',
+            'content_hash': 'deadbeef',
+            'path': 'cfg',
+            'revision': 'aaaaaaaa',
+        }]
     })
     self.mock(self.provider, 'get_config_by_hash_async', mock.Mock())
     self.provider.get_config_by_hash_async.return_value = ndb.Future()
@@ -179,12 +181,10 @@ class RemoteTestCase(test_case.TestCase):
     self.mock(net, 'json_request_async', mock.Mock())
     net.json_request_async.return_value = ndb.Future()
     net.json_request_async.return_value.set_result({
-      'mappings': [
-        {
-          'config_set': 'services/abc',
-          'location': 'http://example.com',
-        },
-      ],
+        'mappings': [{
+            'config_set': 'services/abc',
+            'location': 'http://example.com',
+        },],
     })
     r = self.provider.get_config_set_location_async('services/abc').get_result()
     self.assertEqual(r, 'http://example.com')
@@ -197,7 +197,9 @@ class RemoteTestCase(test_case.TestCase):
     self.provider.get_async(
         'services/foo', 'bar.cfg', store_last_good=True).get_result()
     self.provider.get_async(
-        'services/foo', 'baz.cfg', dest_type=test_config_pb2.Config,
+        'services/foo',
+        'baz.cfg',
+        dest_type=test_config_pb2.Config,
         store_last_good=True).get_result()
 
     # Will be removed.
@@ -216,7 +218,9 @@ class RemoteTestCase(test_case.TestCase):
     self.assertEqual(config, 'a config')
 
     revision, config = self.provider.get_async(
-        'services/foo', 'baz.cfg', dest_type=test_config_pb2.Config,
+        'services/foo',
+        'baz.cfg',
+        dest_type=test_config_pb2.Config,
         store_last_good=True).get_result()
     self.assertEqual(revision, 'aaaabbbb')
     self.assertEqual(config.param, 'qux')

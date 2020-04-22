@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Json serializable properties."""
 
 from google.appengine.ext import ndb
@@ -9,30 +8,26 @@ from google.appengine.api import datastore_errors
 
 from components import utils
 
-
 __all__ = [
-  'BytesSerializable',
-  'BytesSerializableProperty',
-  'JsonSerializable',
-  'JsonSerializableProperty',
-  'READABLE',
-  'SerializableModelMixin',
-  'WRITABLE',
-  'register_converter',
+    'BytesSerializable',
+    'BytesSerializableProperty',
+    'JsonSerializable',
+    'JsonSerializableProperty',
+    'READABLE',
+    'SerializableModelMixin',
+    'WRITABLE',
+    'register_converter',
 ]
 
 # Access to a protected member _XX of a client class - pylint: disable=W0212
 # Method could be a function - pylint: disable=R0201
-
 
 # Use field when converting entity to a serializable dict.
 READABLE = 1 << 0
 # Use field when converting entity from a serializable dict.
 WRITABLE = 1 << 1
 
-
 ### Private stuff.
-
 
 _rich_to_simple_converters = []
 _simple_to_rich_converters = []
@@ -40,14 +35,14 @@ _simple_to_rich_converters = []
 # Properties with values that look exactly the same in to_dict() and
 # in to_serializable_dict() representations.
 _SIMPLE_PROPERTIES = (
-  ndb.BlobProperty,
-  ndb.BooleanProperty,
-  ndb.FloatProperty,
-  ndb.IntegerProperty,
-  ndb.JsonProperty,
-  ndb.PickleProperty,
-  ndb.StringProperty,
-  ndb.TextProperty,
+    ndb.BlobProperty,
+    ndb.BooleanProperty,
+    ndb.FloatProperty,
+    ndb.IntegerProperty,
+    ndb.JsonProperty,
+    ndb.PickleProperty,
+    ndb.StringProperty,
+    ndb.TextProperty,
 )
 
 
@@ -148,8 +143,8 @@ class _ModelDictConverter(object):
       # repeated property in populate(...) or entity constructor.
       if not isinstance(value, (list, tuple)):
         raise ValueError(
-            'Expecting a list or tuple for \'%s\', got \'%s\' instead' % (
-                prop._name, type(value).__name__))
+            'Expecting a list or tuple for \'%s\', got \'%s\' instead' %
+            (prop._name, type(value).__name__))
       converter = self.get_property_converter(prop)
       return [converter(prop, x) for x in value]
 
@@ -239,8 +234,8 @@ class SerializableModelMixin(object):
     conv = _ModelDictConverter(
         property_converters=_rich_to_simple_converters,
         field_mode_predicate=lambda mode: bool(mode & READABLE))
-    serializable_dict = conv.convert_dict(
-        self.__class__, self.to_dict(exclude=exclude))
+    serializable_dict = conv.convert_dict(self.__class__,
+                                          self.to_dict(exclude=exclude))
     if with_id_as:
       assert isinstance(with_id_as, basestring)
       serializable_dict[with_id_as] = self.key.string_id()
@@ -398,8 +393,8 @@ class JsonSerializableProperty(ndb.JsonProperty):
     return self._value_type.from_jsonish(value)
 
 
-def register_converter(
-    property_cls, include_subclasses, rich_to_simple, simple_to_rich):
+def register_converter(property_cls, include_subclasses, rich_to_simple,
+                       simple_to_rich):
   """Register a pair of functions that can convert some ndb.Property subclass.
 
   Used by ndb.Model, utils.SerializableModelMixin to convert entities to
@@ -414,17 +409,15 @@ def register_converter(
         type: simple_to_rich(property_instance, simple_value) -> property_value.
   """
   assert issubclass(property_cls, ndb.Property)
-  _rich_to_simple_converters.append(
-      (property_cls, include_subclasses, rich_to_simple))
-  _simple_to_rich_converters.append(
-      (property_cls, include_subclasses, simple_to_rich))
+  _rich_to_simple_converters.append((property_cls, include_subclasses,
+                                     rich_to_simple))
+  _simple_to_rich_converters.append((property_cls, include_subclasses,
+                                     simple_to_rich))
 
 
 ### Function calls.
 
-
 _register_simple_converters()
-
 
 # TODO(vadimsh): Add ndb.DateProperty if needed.
 register_converter(
@@ -433,14 +426,12 @@ register_converter(
     rich_to_simple=lambda _prop, x: utils.datetime_to_timestamp(x),
     simple_to_rich=lambda _prop, x: utils.timestamp_to_datetime(x))
 
-
 # Handles all property classes inherited from JsonSerializableProperty.
 register_converter(
     property_cls=JsonSerializableProperty,
     include_subclasses=True,
     rich_to_simple=lambda prop, value: value.to_jsonish(),
     simple_to_rich=lambda prop, value: prop._value_type.from_jsonish(value))
-
 
 # Handles all property classes inherited from BytesSerializableProperty.
 register_converter(

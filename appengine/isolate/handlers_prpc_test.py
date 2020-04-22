@@ -47,8 +47,8 @@ class PRPCTest(test_case.TestCase):
         extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
     )
     self._headers = {
-      'Content-Type': encoding.Encoding.JSON[1],
-      'Accept': encoding.Encoding.JSON[1],
+        'Content-Type': encoding.Encoding.JSON[1],
+        'Accept': encoding.Encoding.JSON[1],
     }
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
 
@@ -83,8 +83,8 @@ class PRPCTest(test_case.TestCase):
       msg.latest_time.FromDatetime(time)
     msg.resolution = resolution
     msg.page_size = page_size
-    raw_resp = self.app.post(
-        '/prpc/isolated.v1.Isolated/Stats', _encode(msg), self._headers)
+    raw_resp = self.app.post('/prpc/isolated.v1.Isolated/Stats', _encode(msg),
+                             self._headers)
     resp = isolated_pb2.StatsResponse()
     _decode(raw_resp.body, resp)
     self.assertEqual(expected, unicode(resp))
@@ -93,7 +93,9 @@ class PRPCTest(test_case.TestCase):
     msg = isolated_pb2.StatsRequest()
     msg.page_size = 1
     raw_resp = self.app.post(
-        '/prpc/isolated.v1.Isolated/Stats', _encode(msg), self._headers,
+        '/prpc/isolated.v1.Isolated/Stats',
+        _encode(msg),
+        self._headers,
         expect_errors=True)
     self.assertEqual(raw_resp.body, 'Invalid resolution')
 
@@ -101,121 +103,120 @@ class PRPCTest(test_case.TestCase):
     msg = isolated_pb2.StatsRequest()
     msg.resolution = isolated_pb2.MINUTE
     raw_resp = self.app.post(
-        '/prpc/isolated.v1.Isolated/Stats', _encode(msg), self._headers,
+        '/prpc/isolated.v1.Isolated/Stats',
+        _encode(msg),
+        self._headers,
         expect_errors=True)
-    self.assertEqual(
-        raw_resp.body, 'Invalid page_size; must be between 1 and 1000')
+    self.assertEqual(raw_resp.body,
+                     'Invalid page_size; must be between 1 and 1000')
 
   def test_stats_day(self):
     # Limit the number of entities created.
-    expected = (
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262390400\n'
-      u'  }\n'
-      u'  requests: 100\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262304000\n'
-      u'  }\n'
-      u'  requests: 101\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262217600\n'
-      u'  }\n'
-      u'  requests: 102\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262131200\n'
-      u'  }\n'
-      u'  requests: 103\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262044800\n'
-      u'  }\n'
-      u'  requests: 104\n'
-      u'}\n')
+    expected = (u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262390400\n'
+                u'  }\n'
+                u'  requests: 100\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262304000\n'
+                u'  }\n'
+                u'  requests: 101\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262217600\n'
+                u'  }\n'
+                u'  requests: 102\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262131200\n'
+                u'  }\n'
+                u'  requests: 103\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262044800\n'
+                u'  }\n'
+                u'  requests: 104\n'
+                u'}\n')
     self._assert_stats(isolated_pb2.DAY, 5, None, expected)
 
   def test_stats_hour(self):
     # There are fewer entries than the requested limit.
-    expected = (
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262401200\n'
-      u'  }\n'
-      u'  requests: 10\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {'
-      u'\n'
-      u'    seconds: 1262397600\n'
-      u'  }\n'
-      u'  requests: 11\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262394000\n'
-      u'  }\n'
-      u'  requests: 12\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262390400\n'
-      u'  }\n'
-      u'  requests: 13\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262386800\n'
-      u'  }\n'
-      u'  requests: 14\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262383200\n'
-      u'  }\n'
-      u'  requests: 15\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262379600\n'
-      u'  }\n'
-      u'  requests: 16\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262376000\n'
-      u'  }\n'
-      u'  requests: 17\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262372400\n'
-      u'  }\n'
-      u'  requests: 18\n'
-      u'}\n'
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262368800\n'
-      u'  }\n'
-      u'  requests: 19\n'
-      u'}\n')
+    expected = (u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262401200\n'
+                u'  }\n'
+                u'  requests: 10\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {'
+                u'\n'
+                u'    seconds: 1262397600\n'
+                u'  }\n'
+                u'  requests: 11\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262394000\n'
+                u'  }\n'
+                u'  requests: 12\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262390400\n'
+                u'  }\n'
+                u'  requests: 13\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262386800\n'
+                u'  }\n'
+                u'  requests: 14\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262383200\n'
+                u'  }\n'
+                u'  requests: 15\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262379600\n'
+                u'  }\n'
+                u'  requests: 16\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262376000\n'
+                u'  }\n'
+                u'  requests: 17\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262372400\n'
+                u'  }\n'
+                u'  requests: 18\n'
+                u'}\n'
+                u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262368800\n'
+                u'  }\n'
+                u'  requests: 19\n'
+                u'}\n')
     self._assert_stats(isolated_pb2.HOUR, 20, None, expected)
 
   def test_stats_minute(self):
     # Intentionally take one from the middle.
-    expected = (
-      u'measurements {\n'
-      u'  start_time {\n'
-      u'    seconds: 1262401140\n'
-      u'  }\n'
-      u'  requests: 6\n'
-      u'}\n')
+    expected = (u'measurements {\n'
+                u'  start_time {\n'
+                u'    seconds: 1262401140\n'
+                u'  }\n'
+                u'  requests: 6\n'
+                u'}\n')
     now = self.now - datetime.timedelta(minutes=5)
     self._assert_stats(isolated_pb2.MINUTE, 1, now, expected)
 

@@ -19,7 +19,6 @@ import os
 import storage
 import services
 
-
 OPENSEARCH_XML = '''<?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>luci-config</ShortName>
@@ -32,6 +31,7 @@ OPENSEARCH_XML = '''<?xml version="1.0" encoding="UTF-8"?>
 
 class CronGitilesImport(webapp2.RequestHandler):
   """Imports configs from Gitiles."""
+
   @decorators.require_cronjob
   def get(self):
     gitiles_import.cron_run_import()
@@ -39,6 +39,7 @@ class CronGitilesImport(webapp2.RequestHandler):
 
 class CronServicesMetadataRequest(webapp2.RequestHandler):
   """Updates stored service metadata."""
+
   @decorators.require_cronjob
   def get(self):
     services.cron_request_metadata()
@@ -50,9 +51,8 @@ class MainPageHandler(webapp2.RequestHandler):
   def get(self):
     # TODO(nodir): put the client_id to a config file so that it's not hardcoded
     template_values = {
-      'client_id':
-          ('247108661754-svmo17vmk1j5hlt388gb45qblgvg2h98.apps.'
-           'googleusercontent.com'),
+        'client_id': ('247108661754-svmo17vmk1j5hlt388gb45qblgvg2h98.apps.'
+                      'googleusercontent.com'),
     }
     path = os.path.join(os.path.dirname(__file__), 'ui/index.html')
     self.response.out.write(template.render(path, template_values))
@@ -97,21 +97,19 @@ class TaskGitilesImportConfigSet(webapp2.RequestHandler):
 
 def get_frontend_routes():  # pragma: no cover
   return [
-    webapp2.Route(r'/', MainPageHandler),
-    webapp2.Route(r'/opensearch.xml', OpensearchHandler),
-    webapp2.Route(r'/schemas/<name:.+>', SchemasHandler),
-    webapp2.Route(r'/_ah/bounce', notifications.BounceHandler),
+      webapp2.Route(r'/', MainPageHandler),
+      webapp2.Route(r'/opensearch.xml', OpensearchHandler),
+      webapp2.Route(r'/schemas/<name:.+>', SchemasHandler),
+      webapp2.Route(r'/_ah/bounce', notifications.BounceHandler),
   ]
 
 
 def get_backend_routes():  # pragma: no cover
   return [
-      webapp2.Route(
-          r'/internal/cron/luci-config/gitiles_import',
-          CronGitilesImport),
-      webapp2.Route(
-          r'/internal/cron/luci-config/update_services_metadata',
-          CronServicesMetadataRequest),
+      webapp2.Route(r'/internal/cron/luci-config/gitiles_import',
+                    CronGitilesImport),
+      webapp2.Route(r'/internal/cron/luci-config/update_services_metadata',
+                    CronServicesMetadataRequest),
       webapp2.Route(
           r'/internal/task/luci-config/gitiles_import/<config_set:.+>',
           TaskGitilesImportConfigSet),

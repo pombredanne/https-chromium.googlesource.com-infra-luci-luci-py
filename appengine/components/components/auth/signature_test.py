@@ -15,7 +15,6 @@ test_env.setup_test_env()
 from components.auth import signature
 from test_support import test_case
 
-
 # Skip check_signature tests if PyCrypto is not available.
 try:
   import Crypto
@@ -23,9 +22,7 @@ try:
 except ImportError:
   has_pycrypto = False
 
-
 FetchResult = collections.namedtuple('FetchResult', ['status_code', 'content'])
-
 
 FAKE_SERVICE_ACCOUNT_CERTS = """
 {
@@ -34,29 +31,32 @@ FAKE_SERVICE_ACCOUNT_CERTS = """
 }
 """
 
+
 class SignatureTest(test_case.TestCase):
+
   def test_get_service_account_certificates(self):
+
     def do_fetch(url, **_kwargs):
       self.assertEqual(
-        url,
-        'https://www.googleapis.com/robot/v1/metadata/x509/'
-        '123%40appspot.gserviceaccount.com')
+          url, 'https://www.googleapis.com/robot/v1/metadata/x509/'
+          '123%40appspot.gserviceaccount.com')
       return FetchResult(200, FAKE_SERVICE_ACCOUNT_CERTS)
+
     self.mock(signature.urlfetch, 'fetch', do_fetch)
 
     certs = signature.get_service_account_certificates(
         '123@appspot.gserviceaccount.com')
-    self.assertEqual(
-        '123@appspot.gserviceaccount.com', certs.service_account_name)
+    self.assertEqual('123@appspot.gserviceaccount.com',
+                     certs.service_account_name)
     self.assertEqual(certs.to_jsonish()['certificates'], [
-      {
-        'key_name': u'cba74246d54580c5ee7a6a778c997a7cb1abc918',
-        'x509_certificate_pem': u'def',
-      },
-      {
-        'key_name': u'faffca3b64d5bb61da829ace9aed119dceb2f63c',
-        'x509_certificate_pem': u'abc',
-      },
+        {
+            'key_name': u'cba74246d54580c5ee7a6a778c997a7cb1abc918',
+            'x509_certificate_pem': u'def',
+        },
+        {
+            'key_name': u'faffca3b64d5bb61da829ace9aed119dceb2f63c',
+            'x509_certificate_pem': u'abc',
+        },
     ])
 
   def test_caching(self):
@@ -78,6 +78,7 @@ class SignatureTest(test_case.TestCase):
     self.assertFalse(fetch() is certs)
 
   if has_pycrypto:
+
     def test_check_signature_correct(self):
       blob = '123456789'
       key_name, sig = signature.sign_blob(blob)

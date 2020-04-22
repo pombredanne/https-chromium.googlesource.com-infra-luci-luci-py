@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Set of functions to work with GAE SDK tools."""
 
 from __future__ import print_function
@@ -20,14 +19,11 @@ import time
 
 from six.moves import urllib
 
-
 # 'setup_gae_sdk' loads the 'yaml' module and modifies this variable.
 yaml = None
 
-
 # Directory with this file.
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
-
 
 # Path to a current SDK, set in setup_gae_sdk.
 _GAE_SDK_PATH = None
@@ -348,7 +344,7 @@ class Application(object):
       raise ValueError('Default service is missing')
     if not self.app_id:
       raise ValueError('application ID is neither specified in default '
-          'service nor provided explicitly')
+                       'service nor provided explicitly')
 
     self._cached_get_actives = None
 
@@ -395,9 +391,7 @@ class Application(object):
     """
     logging.debug('Running %s', cmd)
     proc = subprocess.Popen(
-        cmd,
-        cwd=cwd or self._app_dir,
-        stdout=subprocess.PIPE)
+        cmd, cwd=cwd or self._app_dir, stdout=subprocess.PIPE)
     output, _ = proc.communicate()
     if proc.returncode:
       sys.stderr.write('\n' + output + '\n')
@@ -409,8 +403,8 @@ class Application(object):
     gcloud = find_gcloud()
     if not is_gcloud_auth_set():
       raise LoginRequiredError('Login first using \'gcloud auth login\'')
-    raw = self.run_cmd(
-        [gcloud] + args + ['--project', self.app_id, '--format', 'json'])
+    raw = self.run_cmd([gcloud] + args +
+                       ['--project', self.app_id, '--format', 'json'])
     try:
       return json.loads(raw)
     except ValueError:
@@ -509,9 +503,8 @@ class Application(object):
     else:
       # Otherwise delete service-by-service.
       for m in sorted(services):
-        self.run_gcloud([
-          'app', 'versions', 'delete', version, '--service', m, '--quiet'
-        ])
+        self.run_gcloud(
+            ['app', 'versions', 'delete', version, '--service', m, '--quiet'])
 
   def update(self, version, services=None):
     """Deploys a new version of the given services.
@@ -572,21 +565,22 @@ class Application(object):
 
       # Deploy all other stuff too. 'app deploy' is a polyglot.
       possible_extra = [
-        os.path.join(self.default_service_dir, 'index.yaml'),
-        os.path.join(self.default_service_dir, 'queue.yaml'),
-        os.path.join(self.default_service_dir, 'cron.yaml'),
-        os.path.join(self.default_service_dir, 'dispatch.yaml'),
+          os.path.join(self.default_service_dir, 'index.yaml'),
+          os.path.join(self.default_service_dir, 'queue.yaml'),
+          os.path.join(self.default_service_dir, 'cron.yaml'),
+          os.path.join(self.default_service_dir, 'dispatch.yaml'),
       ]
       for extra in possible_extra:
         if extra and os.path.isfile(extra):
           yamls.append(extra)
 
-      self.run_gcloud(
-          ['app', 'deploy'] + yamls +
-          [
-            '--version', version, '--quiet',
-            '--no-promote', '--no-stop-previous-version',
-          ])
+      self.run_gcloud(['app', 'deploy'] + yamls + [
+          '--version',
+          version,
+          '--quiet',
+          '--no-promote',
+          '--no-stop-previous-version',
+      ])
 
     finally:
       for h in hacked:
@@ -604,11 +598,12 @@ class Application(object):
       Instance of subprocess.Popen.
     """
     cmd = [
-      sys.executable,
-      os.path.join(self._gae_sdk, 'dev_appserver.py'),
-      '--application', self.app_id,
-      '--skip_sdk_update_check=yes',
-      '--require_indexes=yes',
+        sys.executable,
+        os.path.join(self._gae_sdk, 'dev_appserver.py'),
+        '--application',
+        self.app_id,
+        '--skip_sdk_update_check=yes',
+        '--require_indexes=yes',
     ] + self.service_yamls
     if self.dispatch_yaml:
       cmd += [self.dispatch_yaml]
@@ -646,8 +641,8 @@ class Application(object):
     # Keep only versions that are deployed to all requested services.
     services = services or self.services
     actual_versions = [
-      version for version, services_with_it in versions.items()
-      if set(services_with_it).issuperset(services)
+        version for version, services_with_it in versions.items()
+        if set(services_with_it).issuperset(services)
     ]
 
     # Sort by version number (best effort, nonconforming version names will
@@ -659,6 +654,7 @@ class Application(object):
       except ValueError:
         pass
       return tuple(parts)
+
     return sorted(actual_versions, key=extract_version_num)
 
   def get_actives(self, services=None):
@@ -718,8 +714,8 @@ def setup_env(app_dir, app_id, version, service_id, remote_api=False):
   if app_id:
     os.environ['APPLICATION_ID'] = app_id
   if version:
-    os.environ['CURRENT_VERSION_ID'] = '%s.%d' % (
-        version, int(time.time()) << 28)
+    os.environ['CURRENT_VERSION_ID'] = '%s.%d' % (version,
+                                                  int(time.time()) << 28)
   if service_id:
     os.environ['CURRENT_MODULE_ID'] = service_id
 
@@ -765,11 +761,13 @@ def add_sdk_options(parser, default_app_dir):
     default_app_dir: default value for --app-dir option.
   """
   parser.add_option(
-      '-s', '--sdk-path',
+      '-s',
+      '--sdk-path',
       help='Path to GAE SDK (usually <gcloud_root>/platform/google_appengine). '
-           'If not set, will try to find by itself.')
+      'If not set, will try to find by itself.')
   parser.add_option(
-      '-p', '--app-dir',
+      '-p',
+      '--app-dir',
       default=default_app_dir,
       help='Path to application directory with app.yaml.')
   parser.add_option('-A', '--app-id', help='Defaults to name in app.yaml.')
@@ -835,8 +833,11 @@ def is_gcloud_auth_set():
     # This returns an email address of currently active account or empty string
     # if no account is active.
     output = subprocess.check_output([
-      find_gcloud(), 'auth', 'list',
-      '--filter=status:ACTIVE', '--format=value(account)',
+        find_gcloud(),
+        'auth',
+        'list',
+        '--filter=status:ACTIVE',
+        '--format=value(account)',
     ])
     return bool(output.strip())
   except subprocess.CalledProcessError as exc:

@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Notifies interested parties about rejection of a config set revision."""
 
 import logging
@@ -46,17 +45,13 @@ def get_recipients(commit):
       mail.CheckEmailValid(r.email, 'to')
     except mail.InvalidEmailError as ex:
       raise FailedToNotify(
-          ('Failed to notify %s, invalid email %s: %s' %
-           (r.name, r.email, ex)))
+          ('Failed to notify %s, invalid email %s: %s' % (r.name, r.email, ex)))
 
-  names={
-    commit.committer.email: commit.committer.name,
-    commit.author.email: commit.author.name,
+  names = {
+      commit.committer.email: commit.committer.name,
+      commit.author.email: commit.author.name,
   }
-  return [
-    '%s <%s>' % (name or email, email)
-    for email, name in names.items()
-  ]
+  return ['%s <%s>' % (name or email, email) for email, name in names.items()]
 
 
 def notify_gitiles_rejection(config_set, location, validation_result):
@@ -85,19 +80,22 @@ def notify_gitiles_rejection(config_set, location, validation_result):
 
   try:
     template_params = {
-      'author': commit.author.name or commit.author.email,
-      'messages': [
-        {
-          'severity': logging.getLevelName(msg.severity),
-          'text': msg.text
-        }
-        for msg in validation_result.messages
-      ],
-      'rev_link': location,
-      'rev_hash': rev,
-      'rev_repo': location.project,
-      'cur_rev_hash': None,
-      'cur_rev_link': None,
+        'author':
+            commit.author.name or commit.author.email,
+        'messages': [{
+            'severity': logging.getLevelName(msg.severity),
+            'text': msg.text
+        } for msg in validation_result.messages],
+        'rev_link':
+            location,
+        'rev_hash':
+            rev,
+        'rev_repo':
+            location.project,
+        'cur_rev_hash':
+            None,
+        'cur_rev_link':
+            None,
     }
 
     cs = storage.ConfigSet.get_by_id(config_set)
@@ -111,8 +109,8 @@ def notify_gitiles_rejection(config_set, location, validation_result):
             '%s.appspot.com <noreply@%s.appspotmail.com>' % (app_id, app_id)),
         subject='Config revision %s is rejected' % rev,
         to=get_recipients(commit),
-        html=template.render(
-            'templates/validation_notification.html', template_params))
+        html=template.render('templates/validation_notification.html',
+                             template_params))
     cc = get_cc_recipients()
     if cc:
       msg.cc = cc
@@ -142,6 +140,7 @@ class BounceHandler(mail_handlers.BounceNotificationHandler):
   """Logs bounce notifications."""
 
   def receive(self, bounce_message):
+
     def to_text(msg):
       return 'Subject: %s\nTo: %s\n%s\n%s' % (
           msg['subject'],
@@ -150,11 +149,9 @@ class BounceHandler(mail_handlers.BounceNotificationHandler):
           msg['text'],
       )
 
-    logging.error(
-        'Bounce notification\n%s', to_text(bounce_message.notification))
-    logging.info(
-        'Original message\n%s', to_text(bounce_message.original)
-    )
+    logging.error('Bounce notification\n%s',
+                  to_text(bounce_message.notification))
+    logging.info('Original message\n%s', to_text(bounce_message.original))
 
 
 def _send(email_message):

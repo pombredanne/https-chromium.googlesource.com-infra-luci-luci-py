@@ -21,14 +21,17 @@ import gcs
 
 
 class GCSTest(test_case.TestCase):
+
   def setUp(self):
     super(GCSTest, self).setUp()
 
     self.expected_update_calls = 0
 
     self.requests = []
+
     def _net_request(**kwargs):
       self.requests.append(kwargs)
+
     self.mock(net, 'request', _net_request)
 
     self.mock(gcs, '_multipart_payload_boundary', lambda: 'BOUNDARY')
@@ -40,9 +43,11 @@ class GCSTest(test_case.TestCase):
       super(GCSTest, self).tearDown()
 
   def mock_update_gcs_acls(self):
+
     def _update_gcs_acls():
       self.assertGreater(self.expected_update_calls, 0)
       self.expected_update_calls -= 1
+
     self.mock(gcs, '_update_gcs_acls', _update_gcs_acls)
 
   def expect_update_gcs_acls(self):
@@ -114,49 +119,65 @@ class GCSTest(test_case.TestCase):
     # Should upload two files and set ACLs to match authorized readers.
     self.assertEqual(2, len(self.requests))
     self.assertEqual({
-        'deadline': 30,
-        'headers': {'Content-Type': 'multipart/related; boundary=BOUNDARY'},
-        'method': 'POST',
-        'params': {'uploadType': 'multipart'},
-        'payload': '\r\n'.join([
-            '--BOUNDARY',
-            'Content-Type: application/json; charset=UTF-8',
-            '',
-            '{"acl":[{"entity":"user-a@example.com","role":"READER"},'
-                + '{"entity":"user-b@example.com","role":"READER"}],'
-                + '"name":"dir/latest.db"}',
-            '--BOUNDARY',
-            'Content-Type: application/protobuf',
-            '',
-            'signed blob',
-            '--BOUNDARY--',
-            '',
-        ]),
+        'deadline':
+            30,
+        'headers': {
+            'Content-Type': 'multipart/related; boundary=BOUNDARY'
+        },
+        'method':
+            'POST',
+        'params': {
+            'uploadType': 'multipart'
+        },
+        'payload':
+            '\r\n'.join([
+                '--BOUNDARY',
+                'Content-Type: application/json; charset=UTF-8',
+                '',
+                '{"acl":[{"entity":"user-a@example.com","role":"READER"},' +
+                '{"entity":"user-b@example.com","role":"READER"}],' +
+                '"name":"dir/latest.db"}',
+                '--BOUNDARY',
+                'Content-Type: application/protobuf',
+                '',
+                'signed blob',
+                '--BOUNDARY--',
+                '',
+            ]),
         'scopes': ['https://www.googleapis.com/auth/cloud-platform'],
-        'url': u'https://www.googleapis.com/upload/storage/v1/b/bucket/o',
+        'url':
+            u'https://www.googleapis.com/upload/storage/v1/b/bucket/o',
     }, self.requests[0])
 
     self.assertEqual({
-        'deadline': 30,
-        'headers': {'Content-Type': 'multipart/related; boundary=BOUNDARY'},
-        'method': 'POST',
-        'params': {'uploadType': 'multipart'},
-        'payload': '\r\n'.join([
-            '--BOUNDARY',
-            'Content-Type: application/json; charset=UTF-8',
-            '',
-            '{"acl":[{"entity":"user-a@example.com","role":"READER"},'
-                + '{"entity":"user-b@example.com","role":"READER"}],'
-                + '"name":"dir/latest.json"}',
-            '--BOUNDARY',
-            'Content-Type: application/json',
-            '',
-            'revision json',
-            '--BOUNDARY--',
-            '',
-        ]),
+        'deadline':
+            30,
+        'headers': {
+            'Content-Type': 'multipart/related; boundary=BOUNDARY'
+        },
+        'method':
+            'POST',
+        'params': {
+            'uploadType': 'multipart'
+        },
+        'payload':
+            '\r\n'.join([
+                '--BOUNDARY',
+                'Content-Type: application/json; charset=UTF-8',
+                '',
+                '{"acl":[{"entity":"user-a@example.com","role":"READER"},' +
+                '{"entity":"user-b@example.com","role":"READER"}],' +
+                '"name":"dir/latest.json"}',
+                '--BOUNDARY',
+                'Content-Type: application/json',
+                '',
+                'revision json',
+                '--BOUNDARY--',
+                '',
+            ]),
         'scopes': ['https://www.googleapis.com/auth/cloud-platform'],
-        'url': u'https://www.googleapis.com/upload/storage/v1/b/bucket/o',
+        'url':
+            u'https://www.googleapis.com/upload/storage/v1/b/bucket/o',
     }, self.requests[1])
 
   def test_update_gcs_acls(self):
@@ -167,24 +188,36 @@ class GCSTest(test_case.TestCase):
 
     self.assertEqual(2, len(self.requests))
     self.assertEqual({
-        'deadline': 30,
-        'headers': {'Content-Type': 'application/json; charset=UTF-8'},
-        'method': 'PUT',
-        'payload': '{"acl":[{"entity":"user-a@example.com","role":"READER"}],'
-            + '"contentType":"application/protobuf"}',
+        'deadline':
+            30,
+        'headers': {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        'method':
+            'PUT',
+        'payload':
+            '{"acl":[{"entity":"user-a@example.com","role":"READER"}],' +
+            '"contentType":"application/protobuf"}',
         'scopes': ['https://www.googleapis.com/auth/cloud-platform'],
-        'url': u'https://www.googleapis.com/storage/v1/b/bucket/'
-            + 'o/dir%2Flatest.db',
+        'url':
+            u'https://www.googleapis.com/storage/v1/b/bucket/' +
+            'o/dir%2Flatest.db',
     }, self.requests[0])
     self.assertEqual({
-        'deadline': 30,
-        'headers': {'Content-Type': 'application/json; charset=UTF-8'},
-        'method': 'PUT',
-        'payload': '{"acl":[{"entity":"user-a@example.com","role":"READER"}],'
-            + '"contentType":"application/json"}',
+        'deadline':
+            30,
+        'headers': {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        'method':
+            'PUT',
+        'payload':
+            '{"acl":[{"entity":"user-a@example.com","role":"READER"}],' +
+            '"contentType":"application/json"}',
         'scopes': ['https://www.googleapis.com/auth/cloud-platform'],
-        'url': u'https://www.googleapis.com/storage/v1/b/bucket/'
-            + 'o/dir%2Flatest.json',
+        'url':
+            u'https://www.googleapis.com/storage/v1/b/bucket/' +
+            'o/dir%2Flatest.json',
     }, self.requests[1])
 
 

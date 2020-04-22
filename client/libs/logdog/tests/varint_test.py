@@ -9,9 +9,11 @@ import sys
 import unittest
 import StringIO
 
-ROOT_DIR = os.path.dirname(os.path.abspath(os.path.join(
-    __file__.decode(sys.getfilesystemencoding()),
-    os.pardir, os.pardir, os.pardir)))
+ROOT_DIR = os.path.dirname(
+    os.path.abspath(
+        os.path.join(
+            __file__.decode(sys.getfilesystemencoding()), os.pardir, os.pardir,
+            os.pardir)))
 sys.path.insert(0, ROOT_DIR)
 
 from libs.logdog import varint
@@ -32,11 +34,12 @@ class VarintTestCase(unittest.TestCase):
       count = varint.write_uvarint(sio, base)
       act = sio.getvalue()
 
-      self.assertEqual(act, exp,
+      self.assertEqual(
+          act, exp,
           "Encoding for %d (%r) doesn't match expected (%r)" % (base, act, exp))
-      self.assertEqual(count, len(act),
-          "Length of %d (%d) doesn't match encoded length (%d)" % (
-              base, len(act), count))
+      self.assertEqual(
+          count, len(act), "Length of %d (%d) doesn't match encoded length (%d)"
+          % (base, len(act), count))
 
   def testVarintEncodeDecode(self):
     seed = (b'\x00', b'\x01', b'\x55', b'\x7F', b'\x80', b'\x81', b'\xff')
@@ -51,12 +54,13 @@ class VarintTestCase(unittest.TestCase):
         sio.seek(0)
         act, count = varint.read_uvarint(sio)
 
-        self.assertEqual(act, exp,
-            "Decoded %r (%d) doesn't match expected (%d)" % (
-                sio.getvalue().encode('hex'), act, exp))
-        self.assertEqual(count, len(sio.getvalue()),
-            "Decoded length (%d) doesn't match expected (%d)" % (
-                count, len(sio.getvalue())))
+        self.assertEqual(
+            act, exp, "Decoded %r (%d) doesn't match expected (%d)" %
+            (sio.getvalue().encode('hex'), act, exp))
+        self.assertEqual(
+            count, len(sio.getvalue()),
+            "Decoded length (%d) doesn't match expected (%d)" %
+            (count, len(sio.getvalue())))
 
         if perm == 0:
           break

@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Prints a short log from HEAD (or [end]) to a pseudo revision number."""
 
 from __future__ import print_function
@@ -40,8 +39,7 @@ def get_logs(root, pseudo_revision, mergebase, start, end):
     maxlen = max(maxlen, len(parts[1]))
     lines.append(parts)
   out = '\n'.join(
-    '%s %-*s %s' % (parts[0], maxlen, parts[1], parts[2])
-    for parts in lines)
+      '%s %-*s %s' % (parts[0], maxlen, parts[1], parts[2]) for parts in lines)
   return out, refspec
 
 
@@ -65,7 +63,9 @@ def main():
       version=__version__,
       description=sys.modules[__name__].__doc__)
   parser.add_option(
-      '-f', '--force', action='store_true',
+      '-f',
+      '--force',
+      action='store_true',
       help='Run even if not pristine checkout, e.g. HEAD != origin/master')
   parser.add_option(
       '-F', '--files', action='store_true', help='List all modified files')
@@ -91,16 +91,14 @@ def main():
     parser.error('Too many arguments.')
 
   if start >= pseudo_revision:
-    parser.error(
-        '%d >= %d, you specified \'start\' that was not committed yet?'
-        % (start, pseudo_revision))
+    parser.error('%d >= %d, you specified \'start\' that was not committed yet?'
+                 % (start, pseudo_revision))
   if end is not None:
     if start >= end:
       parser.error('%d >= %d, did you reverse start and end?' % (start, end))
     if end > pseudo_revision:
-      parser.error(
-          '%d >= %d, you specified \'end\' that was not committed yet?'
-          % (end, pseudo_revision))
+      parser.error('%d >= %d, you specified \'end\' that was not committed yet?'
+                   % (end, pseudo_revision))
   nb_commits = (end or pseudo_revision) - start
 
   if not is_pristine:

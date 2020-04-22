@@ -36,11 +36,14 @@ from server import task_scheduler
 def _gen_properties(**kwargs):
   """Creates a TaskProperties."""
   args = {
-    'command': [u'command1'],
-    'dimensions': {u'os': [u'Windows-3.1.1'], u'pool': [u'default']},
-    'env': {},
-    'execution_timeout_secs': 24*60*60,
-    'io_timeout_secs': None,
+      'command': [u'command1'],
+      'dimensions': {
+          u'os': [u'Windows-3.1.1'],
+          u'pool': [u'default']
+      },
+      'env': {},
+      'execution_timeout_secs': 24 * 60 * 60,
+      'io_timeout_secs': None,
   }
   args.update(kwargs)
   args['dimensions_data'] = args.pop('dimensions')
@@ -51,19 +54,23 @@ def _gen_request(**kwargs):
   """Returns an initialized task_request.TaskRequest."""
   now = utils.utcnow()
   args = {
-    # Don't be confused, this is not part of the API. This code is constructing
-    # a DB entity, not a swarming_rpcs.NewTaskRequest.
-    u'created_ts': now,
-    u'manual_tags': [u'tag:1'],
-    u'name': u'yay',
-    u'priority': 50,
-    u'task_slices': [
-      task_request.TaskSlice(
-        expiration_secs=60,
-        properties=_gen_properties(),
-        wait_for_capacity=False),
-    ],
-    u'user': u'Jesus',
+      # Don't be confused, this is not part of the API. This code is constructing
+      # a DB entity, not a swarming_rpcs.NewTaskRequest.
+      u'created_ts':
+          now,
+      u'manual_tags': [u'tag:1'],
+      u'name':
+          u'yay',
+      u'priority':
+          50,
+      u'task_slices': [
+          task_request.TaskSlice(
+              expiration_secs=60,
+              properties=_gen_properties(),
+              wait_for_capacity=False),
+      ],
+      u'user':
+          u'Jesus',
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)
@@ -72,11 +79,12 @@ def _gen_request(**kwargs):
 
 
 class FakeExternalScheduler(object):
+
   def __init__(self, test):
     self._test = test
     self.called_with_requests = []
 
-  def AssignTasks(self, req, credentials): # pylint: disable=unused-argument
+  def AssignTasks(self, req, credentials):  # pylint: disable=unused-argument
     self._test.assertIsInstance(req, plugin_pb2.AssignTasksRequest)
     self.called_with_requests.append(req)
     resp = plugin_pb2.AssignTasksResponse()
@@ -101,7 +109,7 @@ class FakeExternalScheduler(object):
     self.called_with_requests.append(req)
     return plugin_pb2.NotifyTasksResponse()
 
-  def GetCallbacks(self, req, credentials): # pylint: disable=unused-argument
+  def GetCallbacks(self, req, credentials):  # pylint: disable=unused-argument
     self._test.assertIsInstance(req, plugin_pb2.GetCallbacksRequest)
     self.called_with_requests.append(req)
     resp = plugin_pb2.GetCallbacksResponse()
@@ -135,8 +143,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     self.app = webtest.TestApp(
         handlers_backend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
     self._enqueue_orig = self.mock(utils, 'enqueue_task', self._enqueue)
     self._enqueue_async_orig = self.mock(utils, 'enqueue_task_async',
@@ -195,8 +203,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_notify_requests(self):
     request = _gen_request()
     result_summary = task_scheduler.schedule_request(request, None)
-    external_scheduler.notify_requests(
-        self.es_cfg, [(request, result_summary)], False, False)
+    external_scheduler.notify_requests(self.es_cfg, [(request, result_summary)],
+                                       False, False)
 
     self.assertEqual(len(self._client.called_with_requests), 1)
     called_with = self._client.called_with_requests[0]
@@ -213,8 +221,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_notify_request_with_tq(self):
     request = _gen_request()
     result_summary = task_scheduler.schedule_request(request, None)
-    external_scheduler.notify_requests(
-      self.es_cfg, [(request, result_summary)], True, False)
+    external_scheduler.notify_requests(self.es_cfg, [(request, result_summary)],
+                                       True, False)
 
     # There should have been no call to _get_client yet.
     self.assertEqual(self._client, None)
@@ -270,8 +278,8 @@ class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
     self.app = webtest.TestApp(
         handlers_backend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
 
     self.cfg = config.settings()
@@ -340,14 +348,12 @@ class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
     self._setup_client()
     # Since use_tq is false, the requests below should be sent out immediately.
     external_scheduler.notify_requests(
-        self.cfg_foo,
-        [(request, result_summary)],
+        self.cfg_foo, [(request, result_summary)],
         False,
         False,
         batch_mode=True)
     external_scheduler.notify_requests(
-        self.cfg_hoe,
-        [(request, result_summary)],
+        self.cfg_hoe, [(request, result_summary)],
         False,
         False,
         batch_mode=True)

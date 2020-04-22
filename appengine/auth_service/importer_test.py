@@ -71,8 +71,7 @@ def fetch_groups():
 
 def put_config(config_proto):
   importer.GroupImporterConfig(
-      key=importer.config_key(),
-      config_proto=config_proto).put()
+      key=importer.config_key(), config_proto=config_proto).put()
 
 
 def put_and_load_config_err(config_proto):
@@ -85,53 +84,59 @@ def put_and_load_config_err(config_proto):
 
 
 class ImporterTest(test_case.TestCase):
+
   def setUp(self):
     super(ImporterTest, self).setUp()
     auth_testing.mock_is_admin(self, True)
     auth_testing.mock_get_current_identity(self)
 
   def mock_urlfetch(self, urls):
+
     @ndb.tasklet
     def mock_get_access_token_async(*_args):
       raise ndb.Return(('token', 0))
+
     self.mock(auth, 'get_access_token_async', mock_get_access_token_async)
 
     @ndb.tasklet
     def mock_fetch(**kwargs):
       self.assertIn(kwargs['url'], urls)
       self.assertEqual({'Authorization': 'Bearer token'}, kwargs['headers'])
+
       class ReturnValue(object):
         status_code = 200
         content = urls[kwargs['url']]
+
       raise ndb.Return(ReturnValue())
+
     self.mock(ndb.get_context(), 'urlfetch', mock_fetch)
 
   def test_extract_tar_archive(self):
     expected = {
-      '0': '0',
-      'a/1': '1',
-      'a/2': '2',
-      'b/1': '3',
-      'b/c/d': '4',
+        '0': '0',
+        'a/1': '1',
+        'a/2': '2',
+        'b/1': '3',
+        'b/c/d': '4',
     }
     out = {
-      name: fileobj.read()
-      for name, fileobj in importer.extract_tar_archive(build_tar_gz(expected))
+        name: fileobj.read() for name, fileobj in importer.extract_tar_archive(
+            build_tar_gz(expected))
     }
     self.assertEqual(expected, out)
 
   def test_load_group_file_ok(self):
     body = '\n'.join(['', 'b', 'a', 'a', ''])
     expected = [
-      auth.Identity.from_bytes('user:a@example.com'),
-      auth.Identity.from_bytes('user:b@example.com'),
+        auth.Identity.from_bytes('user:a@example.com'),
+        auth.Identity.from_bytes('user:b@example.com'),
     ]
     self.assertEqual(expected, importer.load_group_file(body, 'example.com'))
 
   def test_load_group_file_gtempaccount(self):
-    self.assertEqual(
-        [auth.Identity.from_bytes('user:blah@domain.org')],
-        importer.load_group_file(r'blah%domain.org@gtempaccount.com', None))
+    self.assertEqual([auth.Identity.from_bytes('user:blah@domain.org')],
+                     importer.load_group_file(
+                         r'blah%domain.org@gtempaccount.com', None))
 
   def test_load_group_file_bad_id(self):
     body = 'bad id'
@@ -140,79 +145,77 @@ class ImporterTest(test_case.TestCase):
 
   def test_prepare_import(self):
     existing_groups = [
-      group('normal-group', [], ['ldap/cleared']),
-      group('not-ldap/some', []),
-      group('ldap/updated', ['a']),
-      group('ldap/unchanged', ['a']),
-      group('ldap/deleted', ['a']),
-      group('ldap/cleared', ['a']),
+        group('normal-group', [], ['ldap/cleared']),
+        group('not-ldap/some', []),
+        group('ldap/updated', ['a']),
+        group('ldap/unchanged', ['a']),
+        group('ldap/deleted', ['a']),
+        group('ldap/cleared', ['a']),
     ]
     imported_groups = {
-      'ldap/new': [ident('a')],
-      'ldap/updated': [ident('a'), ident('b')],
-      'ldap/unchanged': [ident('a')],
+        'ldap/new': [ident('a')],
+        'ldap/updated': [ident('a'), ident('b')],
+        'ldap/unchanged': [ident('a')],
     }
     to_put, to_delete = importer.prepare_import(
-        'ldap',
-        existing_groups,
-        imported_groups,
+        'ldap', existing_groups, imported_groups,
         datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
         model.get_service_self_identity())
 
     expected_to_put = {
-      'ldap/cleared': {
-        'auth_db_rev': None,
-        'auth_db_prev_rev': None,
-        'created_by': ident('admin'),
-        'created_ts': datetime.datetime(1999, 1, 2, 3, 4, 5, 6),
-        'description': '',
-        'globs': [],
-        'members': [],
-        'modified_by': model.get_service_self_identity(),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
-      'ldap/new': {
-        'auth_db_rev': None,
-        'auth_db_prev_rev': None,
-        'created_by': model.get_service_self_identity(),
-        'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'description': '',
-        'globs': [],
-        'members': [ident('a')],
-        'modified_by': model.get_service_self_identity(),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
-      'ldap/updated': {
-        'auth_db_rev': None,
-        'auth_db_prev_rev': None,
-        'created_by': ident('admin'),
-        'created_ts': datetime.datetime(1999, 1, 2, 3, 4, 5, 6),
-        'description': '',
-        'globs': [],
-        'members': [ident('a'), ident('b')],
-        'modified_by': model.get_service_self_identity(),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
+        'ldap/cleared': {
+            'auth_db_rev': None,
+            'auth_db_prev_rev': None,
+            'created_by': ident('admin'),
+            'created_ts': datetime.datetime(1999, 1, 2, 3, 4, 5, 6),
+            'description': '',
+            'globs': [],
+            'members': [],
+            'modified_by': model.get_service_self_identity(),
+            'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners': u'administrators',
+        },
+        'ldap/new': {
+            'auth_db_rev': None,
+            'auth_db_prev_rev': None,
+            'created_by': model.get_service_self_identity(),
+            'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'description': '',
+            'globs': [],
+            'members': [ident('a')],
+            'modified_by': model.get_service_self_identity(),
+            'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners': u'administrators',
+        },
+        'ldap/updated': {
+            'auth_db_rev': None,
+            'auth_db_prev_rev': None,
+            'created_by': ident('admin'),
+            'created_ts': datetime.datetime(1999, 1, 2, 3, 4, 5, 6),
+            'description': '',
+            'globs': [],
+            'members': [ident('a'), ident('b')],
+            'modified_by': model.get_service_self_identity(),
+            'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners': u'administrators',
+        },
     }
     self.assertEqual(expected_to_put, {x.key.id(): x.to_dict() for x in to_put})
-    self.assertEqual(
-        [model.group_key('ldap/deleted')], [x.key for x in to_delete])
+    self.assertEqual([model.group_key('ldap/deleted')],
+                     [x.key for x in to_delete])
 
   def test_load_tarball(self):
     bundle = build_tar_gz({
-      'at_root': 'a\nb',
-      'ldap/ bad name': 'a\nb',
-      'ldap/group-a': 'a\nb',
-      'ldap/group-b': 'a\nb',
-      'ldap/group-c': 'a\nb',
-      'ldap/deeper/group-a': 'a\nb',
-      'not-ldap/group-a': 'a\nb',
+        'at_root': 'a\nb',
+        'ldap/ bad name': 'a\nb',
+        'ldap/group-a': 'a\nb',
+        'ldap/group-b': 'a\nb',
+        'ldap/group-c': 'a\nb',
+        'ldap/deeper/group-a': 'a\nb',
+        'not-ldap/group-a': 'a\nb',
     })
     result = importer.load_tarball(
         content=bundle,
@@ -221,30 +224,30 @@ class ImporterTest(test_case.TestCase):
         domain='example.com')
 
     expected = {
-      'ldap': {
-        'ldap/group-a': [
-          auth.Identity.from_bytes('user:a@example.com'),
-          auth.Identity.from_bytes('user:b@example.com')
-        ],
-        'ldap/group-b': [
-          auth.Identity.from_bytes('user:a@example.com'),
-          auth.Identity.from_bytes('user:b@example.com')
-        ],
-      }
+        'ldap': {
+            'ldap/group-a': [
+                auth.Identity.from_bytes('user:a@example.com'),
+                auth.Identity.from_bytes('user:b@example.com')
+            ],
+            'ldap/group-b': [
+                auth.Identity.from_bytes('user:a@example.com'),
+                auth.Identity.from_bytes('user:b@example.com')
+            ],
+        }
     }
     self.assertEqual(expected, result)
 
   def test_load_tarball_bad_group(self):
     bundle = build_tar_gz({
-      'at_root': 'a\nb',
-      'ldap/group-a': 'a\n!!!!!',
+        'at_root': 'a\nb',
+        'ldap/group-a': 'a\n!!!!!',
     })
     with self.assertRaises(importer.BundleBadFormatError):
       importer.load_tarball(
-        content=bundle,
-        systems=['ldap'],
-        groups=['ldap/group-a', 'ldap/group-b'],
-        domain='example.com')
+          content=bundle,
+          systems=['ldap'],
+          groups=['ldap/group-a', 'ldap/group-b'],
+          domain='example.com')
 
   def test_import_external_groups(self):
     self.mock_now(datetime.datetime(2010, 1, 2, 3, 4, 5, 6))
@@ -276,11 +279,11 @@ class ImporterTest(test_case.TestCase):
     """)
 
     self.mock_urlfetch({
-      'https://fake_tarball': build_tar_gz({
-        'ldap/new': 'a\nb',
-      }),
-      'https://fake_external_1': 'abc@test.com\ndef@test.com\nabc@test.com',
-      'https://fake_external_2': '123\n456',
+        'https://fake_tarball': build_tar_gz({
+            'ldap/new': 'a\nb',
+        }),
+        'https://fake_external_1': 'abc@test.com\ndef@test.com\nabc@test.com',
+        'https://fake_external_2': '123\n456',
     })
 
     # Should be deleted during import, since not in a imported bundle.
@@ -297,45 +300,46 @@ class ImporterTest(test_case.TestCase):
 
     # Verify final state.
     expected_groups = {
-      'ldap/new': {
-        'auth_db_rev': 1,
-        'auth_db_prev_rev': None,
-        'created_by': model.get_service_self_identity(),
-        'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'description': u'',
-        'globs': [],
-        'members': [ident('a'), ident('b')],
-        'modified_by': model.get_service_self_identity(),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
-      'external/external_1': {
-        'auth_db_rev': 1,
-        'auth_db_prev_rev': None,
-        'created_by': ident('admin'),
-        'created_ts': datetime.datetime(1999, 1, 2, 3, 4, 5, 6),
-        'description': u'',
-        'globs': [],
-        'members': [ident('abc@test.com'), ident('def@test.com')],
-        'modified_by': model.get_service_self_identity(),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
-      'external/external_2': {
-        'auth_db_rev': 1,
-        'auth_db_prev_rev': None,
-        'created_by': model.get_service_self_identity(),
-        'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'description': u'',
-        'globs': [],
-        'members': [ident('123'), ident('456')],
-        'modified_by': model.get_service_self_identity(),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
+        'ldap/new': {
+            'auth_db_rev': 1,
+            'auth_db_prev_rev': None,
+            'created_by': model.get_service_self_identity(),
+            'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'description': u'',
+            'globs': [],
+            'members': [ident('a'), ident('b')],
+            'modified_by': model.get_service_self_identity(),
+            'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners': u'administrators',
+        },
+        'external/external_1': {
+            'auth_db_rev': 1,
+            'auth_db_prev_rev': None,
+            'created_by': ident('admin'),
+            'created_ts': datetime.datetime(1999, 1, 2, 3, 4, 5, 6),
+            'description': u'',
+            'globs': [],
+            'members': [ident('abc@test.com'),
+                        ident('def@test.com')],
+            'modified_by': model.get_service_self_identity(),
+            'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners': u'administrators',
+        },
+        'external/external_2': {
+            'auth_db_rev': 1,
+            'auth_db_prev_rev': None,
+            'created_by': model.get_service_self_identity(),
+            'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'description': u'',
+            'globs': [],
+            'members': [ident('123'), ident('456')],
+            'modified_by': model.get_service_self_identity(),
+            'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners': u'administrators',
+        },
     }
     self.assertEqual(expected_groups, fetch_groups())
 
@@ -387,28 +391,34 @@ class ImporterTest(test_case.TestCase):
     """)
 
     cfg = importer.load_config()
-    self.assertEqual(config_pb2.GroupImporterConfig(
-      tarball=[config_pb2.GroupImporterConfig.TarballEntry(
-        url='http://example.com/tarball',
-        oauth_scopes=['scope1', 'scope2'],
-        domain='zzz1.example.com',
-        systems=['s1'],
-        groups=['s1/g1', 's1/g2'],
-      )],
-      tarball_upload=[config_pb2.GroupImporterConfig.TarballUploadEntry(
-        name='tarball upload',
-        authorized_uploader=['abc@example.com', 'def@example.com'],
-        domain='zzz2.example.com',
-        systems=['s2'],
-        groups=['s2/g1', 's2/g2'],
-      )],
-      plainlist=[config_pb2.GroupImporterConfig.PlainlistEntry(
-        url='http://example.com/plainlist',
-        oauth_scopes=['scope1', 'scope2'],
-        domain='zzz3.example.com',
-        group='g3',
-      )]
-    ), cfg)
+    self.assertEqual(
+        config_pb2.GroupImporterConfig(
+            tarball=[
+                config_pb2.GroupImporterConfig.TarballEntry(
+                    url='http://example.com/tarball',
+                    oauth_scopes=['scope1', 'scope2'],
+                    domain='zzz1.example.com',
+                    systems=['s1'],
+                    groups=['s1/g1', 's1/g2'],
+                )
+            ],
+            tarball_upload=[
+                config_pb2.GroupImporterConfig.TarballUploadEntry(
+                    name='tarball upload',
+                    authorized_uploader=['abc@example.com', 'def@example.com'],
+                    domain='zzz2.example.com',
+                    systems=['s2'],
+                    groups=['s2/g1', 's2/g2'],
+                )
+            ],
+            plainlist=[
+                config_pb2.GroupImporterConfig.PlainlistEntry(
+                    url='http://example.com/plainlist',
+                    oauth_scopes=['scope1', 'scope2'],
+                    domain='zzz3.example.com',
+                    group='g3',
+                )
+            ]), cfg)
 
   def test_load_config_no_urls(self):
     self.assertEqual(
@@ -446,7 +456,7 @@ class ImporterTest(test_case.TestCase):
   def test_load_config_bad_authorized_uploader(self):
     self.assertEqual(
         'Bad config structure: authorized_uploader is required in '
-            'tarball_upload entry "ball"',
+        'tarball_upload entry "ball"',
         put_and_load_config_err("""
         tarball_upload {
           name: "ball"
@@ -456,7 +466,7 @@ class ImporterTest(test_case.TestCase):
 
     self.assertEqual(
         'Bad config structure: invalid email "not an email" in '
-            'tarball_upload entry "ball"',
+        'tarball_upload entry "ball"',
         put_and_load_config_err("""
         tarball_upload {
           name: "ball"
@@ -468,7 +478,7 @@ class ImporterTest(test_case.TestCase):
   def test_load_config_bad_systems(self):
     self.assertEqual(
         'Bad config structure: "tarball" entry with URL '
-            '"http://example.com/tarball" needs "systems" field',
+        '"http://example.com/tarball" needs "systems" field',
         put_and_load_config_err("""
         tarball {
           url: "http://example.com/tarball"
@@ -477,7 +487,7 @@ class ImporterTest(test_case.TestCase):
 
     self.assertEqual(
         'Bad config structure: "tarball_upload" entry with name "ball" '
-            'needs "systems" field',
+        'needs "systems" field',
         put_and_load_config_err("""
         tarball_upload {
           name: "ball"
@@ -487,8 +497,8 @@ class ImporterTest(test_case.TestCase):
 
     self.assertEqual(
         'Bad config structure: "tarball_upload" entry with name "conflicting" '
-            'is specifying a duplicate system(s): '
-            '[u\'external\', u\'s1\', u\'s3\', u\'s5\']',
+        'is specifying a duplicate system(s): '
+        '[u\'external\', u\'s1\', u\'s3\', u\'s5\']',
         put_and_load_config_err("""
         tarball {
           url: "http://example.com/tarball1"
@@ -523,7 +533,7 @@ class ImporterTest(test_case.TestCase):
   def test_load_config_bad_plainlists(self):
     self.assertEqual(
         'Bad config structure: "plainlist" entry "http://example.com/plainlist"'
-            ' needs "group" field',
+        ' needs "group" field',
         put_and_load_config_err("""
         plainlist {
           url: "http://example.com/plainlist"
@@ -558,10 +568,10 @@ class ImporterTest(test_case.TestCase):
     """)
 
     tarball = build_tar_gz({
-      'ldap/ok1': 'a',
-      'ldap/ok2': 'b',
-      'ldap/ignored': '1',
-      'ignored/zzz': '2',
+        'ldap/ok1': 'a',
+        'ldap/ok2': 'b',
+        'ldap/ignored': '1',
+        'ignored/zzz': '2',
     })
 
     groups, rev = importer.ingest_tarball('tarball.tar.gz', tarball)
@@ -569,32 +579,48 @@ class ImporterTest(test_case.TestCase):
     self.assertEqual(1, rev)
 
     expected_groups = {
-      'ldap/ok1': {
-        'auth_db_prev_rev': None,
-        'auth_db_rev': 1,
-        'created_by': auth.Identity(kind='user', name='mocked@example.com'),
-        'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'description': u'',
-        'globs': [],
-        'members': [auth.Identity(kind='user', name='a@zzz.example.com')],
-        'modified_by': auth.Identity(kind='user', name='mocked@example.com'),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
-      'ldap/ok2': {
-        'auth_db_prev_rev': None,
-        'auth_db_rev': 1,
-        'created_by': auth.Identity(kind='user', name='mocked@example.com'),
-        'created_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'description': u'',
-        'globs': [],
-        'members': [auth.Identity(kind='user', name='b@zzz.example.com')],
-        'modified_by': auth.Identity(kind='user', name='mocked@example.com'),
-        'modified_ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
-        'nested': [],
-        'owners': u'administrators',
-      },
+        'ldap/ok1': {
+            'auth_db_prev_rev':
+                None,
+            'auth_db_rev':
+                1,
+            'created_by':
+                auth.Identity(kind='user', name='mocked@example.com'),
+            'created_ts':
+                datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'description':
+                u'',
+            'globs': [],
+            'members': [auth.Identity(kind='user', name='a@zzz.example.com')],
+            'modified_by':
+                auth.Identity(kind='user', name='mocked@example.com'),
+            'modified_ts':
+                datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners':
+                u'administrators',
+        },
+        'ldap/ok2': {
+            'auth_db_prev_rev':
+                None,
+            'auth_db_rev':
+                1,
+            'created_by':
+                auth.Identity(kind='user', name='mocked@example.com'),
+            'created_ts':
+                datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'description':
+                u'',
+            'globs': [],
+            'members': [auth.Identity(kind='user', name='b@zzz.example.com')],
+            'modified_by':
+                auth.Identity(kind='user', name='mocked@example.com'),
+            'modified_ts':
+                datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+            'nested': [],
+            'owners':
+                u'administrators',
+        },
     }
     self.assertEqual(expected_groups, fetch_groups())
 
@@ -604,7 +630,7 @@ class ImporterTest(test_case.TestCase):
     self.assertEqual(0, rev)
 
     # Empty tarball => removes the groups, they are no longer exported.
-    tarball  = build_tar_gz({})
+    tarball = build_tar_gz({})
     groups, rev = importer.ingest_tarball('tarball.tar.gz', tarball)
     self.assertEqual(['ldap/ok1', 'ldap/ok2'], groups)
     self.assertEqual(2, rev)

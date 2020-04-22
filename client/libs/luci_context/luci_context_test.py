@@ -17,7 +17,9 @@ sys.path.insert(0, ROOT_DIR)
 
 from libs.luci_context import luci_context
 
+
 class TestLuciContext(unittest.TestCase):
+
   def setUp(self):
     self.ek = luci_context._ENV_KEY
     # Makes all logged messages go into unittest's buffer to be revealed on test
@@ -26,15 +28,20 @@ class TestLuciContext(unittest.TestCase):
 
   def tearDown(self):
     self.assertNotIn(
-      self.ek, os.environ, '%s in environ (%r)! Possible leak in test?' % (
-        self.ek, os.environ.get(self.ek)))
+        self.ek, os.environ, '%s in environ (%r)! Possible leak in test?' %
+        (self.ek, os.environ.get(self.ek)))
     luci_context._CUR_CONTEXT = None
 
   def test_ok(self):
     self.assertFalse(luci_context._check_ok('hi'))
     self.assertFalse(luci_context._check_ok({'hi': 'there'}))
-    self.assertFalse(luci_context._check_ok({'hi': 'there',
-                                             'ok': {'thing': 'true'}}))
+    self.assertFalse(
+        luci_context._check_ok({
+            'hi': 'there',
+            'ok': {
+                'thing': 'true'
+            }
+        }))
     self.assertTrue(luci_context._check_ok({'ok': {'thing': 'true'}}))
 
   def test_initial_load_dne(self):
@@ -43,6 +50,7 @@ class TestLuciContext(unittest.TestCase):
 
     def nope():
       raise Exception('I SHOULD NOT BE CALLED')
+
     og_load = luci_context._initial_load
     luci_context._initial_load = nope
     try:
@@ -90,9 +98,13 @@ class TestLuciContext(unittest.TestCase):
   def test_initial_load_win(self):
     with luci_context.write(something={'data': True}):
       self.assertDictEqual(luci_context.read_full(),
-                           {'something': {'data': True}})
+                           {'something': {
+                               'data': True
+                           }})
       self.assertDictEqual(luci_context._CUR_CONTEXT,
-                           {'something': {'data': True}})
+                           {'something': {
+                               'data': True
+                           }})
       self.assertDictEqual(luci_context.read('something'), {'data': True})
 
   def test_nested(self):

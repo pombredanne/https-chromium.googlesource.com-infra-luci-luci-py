@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Tools to control application running via dev_appserver.py.
 
 Useful for smoke and integration tests.
@@ -64,7 +63,7 @@ def is_port_free(host, port):
 
 def find_free_ports(host, base_port, count):
   """Finds several consecutive listening ports free to listen to."""
-  while base_port < (2<<16):
+  while base_port < (2 << 16):
     candidates = range(base_port, base_port + count)
     if all(is_port_free(host, port) for port in candidates):
       return candidates
@@ -125,26 +124,32 @@ class LocalApplication(object):
     self._serving = False
 
     # Find available ports, one per service and one for app admin.
-    free_ports = find_free_ports(
-        'localhost', self._base_port, len(self._app.services) + 1)
+    free_ports = find_free_ports('localhost', self._base_port,
+                                 len(self._app.services) + 1)
     self._port = free_ports[0]
 
     os.makedirs(os.path.join(self._root, 'storage'))
 
     # Launch the process.
     log_file = os.path.join(self._root, 'dev_appserver.log')
-    logging.info(
-        'Launching %s at %s, log is %s', self.app_id, self.url, log_file)
+    logging.info('Launching %s at %s, log is %s', self.app_id, self.url,
+                 log_file)
     cmd = [
-      '--port', str(self._port),
-      '--admin_port', str(free_ports[-1]),
-      '--storage_path', os.path.join(self._root, 'storage'),
-      '--automatic_restart', 'no',
-      '--log_level', 'debug',
-      # Note: The random policy will provide the same consistency every
-      # time the test is run because the random generator is always given
-      # the same seed.
-      '--datastore_consistency_policy', 'random',
+        '--port',
+        str(self._port),
+        '--admin_port',
+        str(free_ports[-1]),
+        '--storage_path',
+        os.path.join(self._root, 'storage'),
+        '--automatic_restart',
+        'no',
+        '--log_level',
+        'debug',
+        # Note: The random policy will provide the same consistency every
+        # time the test is run because the random generator is always given
+        # the same seed.
+        '--datastore_consistency_policy',
+        'random',
     ]
     if self._listen_all:
       cmd.extend(('--host', '0.0.0.0'))
@@ -164,10 +169,7 @@ class LocalApplication(object):
       kwargs['preexec_fn'] = terminate_with_parent
     with open(log_file, 'wb') as f:
       self._proc = self._app.spawn_dev_appserver(
-          cmd,
-          stdout=f,
-          stderr=subprocess.STDOUT,
-          **kwargs)
+          cmd, stdout=f, stderr=subprocess.STDOUT, **kwargs)
 
     # Create a client that can talk to the service.
     self._client = HttpClient(self.url)
@@ -246,6 +248,7 @@ class LocalApplication(object):
 
 class CustomHTTPErrorHandler(urllib.request.HTTPDefaultErrorHandler):
   """Swallows exceptions that would be thrown on >30x HTTP status."""
+
   def http_error_default(self, _request, response, _code, _msg, _hdrs):
     return response
 
@@ -254,8 +257,8 @@ class HttpClient(object):
   """Makes HTTP requests to some instance of dev_appserver."""
 
   # Return value of request(...) and json_request.
-  HttpResponse = collections.namedtuple(
-      'HttpResponse', ['http_code', 'body', 'headers'])
+  HttpResponse = collections.namedtuple('HttpResponse',
+                                        ['http_code', 'body', 'headers'])
 
   def __init__(self, url):
     self._url = url

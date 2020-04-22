@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Implements an integer set compression algorithm based on delta
 encoded varints, which is then deflate'd.
 
@@ -38,7 +37,7 @@ def pack(values):
     last = v
     while value > 127:
       out.append((1 << 7) | (value & 0x7F))
-      value >>=  7
+      value >>= 7
     out.append(value)
   return zlib.compress(bytes(out))
 

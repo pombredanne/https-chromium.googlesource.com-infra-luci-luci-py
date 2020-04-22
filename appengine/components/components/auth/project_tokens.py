@@ -1,7 +1,6 @@
 # Copyright 2019 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Project token implementation."""
 
 import datetime
@@ -14,15 +13,16 @@ from components import utils
 from . import exceptions
 from . import api
 
+
 @ndb.tasklet
 def project_token_async(
     project_id,
     oauth_scopes,
     auth_request_func,
-    min_validity_duration_sec=5*60,
+    min_validity_duration_sec=5 * 60,
     tags=None,
     token_server_url=None,
-    ):
+):
   """Creates a project token by contacting the token server.
 
   Args:
@@ -72,10 +72,10 @@ def project_token_async(
   # See MintProjectTokenRequest in
   # https://github.com/luci/luci-go/blob/master/tokenserver/api/minter/v1/token_minter.proto.
   req = {
-    'luci_project': project_id,
-    'oauth_scope': oauth_scopes,
-    'min_validity_duration': min_validity_duration_sec,
-    'audit_tags': tags,
+      'luci_project': project_id,
+      'oauth_scope': oauth_scopes,
+      'min_validity_duration': min_validity_duration_sec,
+      'audit_tags': tags,
   }
 
   # Request a new one.
@@ -85,7 +85,7 @@ def project_token_async(
   )
   res = yield auth_request_func(
       '%s/prpc/tokenserver.minter.TokenMinter/MintProjectToken' %
-          token_server_url,
+      token_server_url,
       method='POST',
       payload=req)
 
@@ -95,8 +95,8 @@ def project_token_async(
     raise exceptions.TokenCreationError('Bad response, no token')
 
   service_account_email = res.get('serviceAccountEmail')
-  if not service_account_email or (
-      not isinstance(service_account_email, basestring)):
+  if not service_account_email or (not isinstance(service_account_email,
+                                                  basestring)):
     logging.error('Bad MintProjectToken response: %s', res)
     raise exceptions.TokenCreationError(
         'Bad response, no service account email')
@@ -114,10 +114,8 @@ def project_token_async(
 
   logging.info(
       'Token server "%s" generated project token for %s, fingerprint=%s)',
-      res.get('serviceVersion'),
-      service_account_email,
-      utils.get_token_fingerprint(str(token))
-  )
+      res.get('serviceVersion'), service_account_email,
+      utils.get_token_fingerprint(str(token)))
 
   raise ndb.Return(token)
 

@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines high level authorization function called for all incoming requests.
 
 Lives in its own module to avoid introducing module dependency cycle between
@@ -12,7 +11,6 @@ from . import api
 from . import delegation
 from . import exceptions
 from . import model
-
 
 # A group with service accounts of LUCI microservices belonging to the current
 # LUCI deployment (and only them!).
@@ -30,15 +28,8 @@ LUCI_SERVICES_GROUP = 'auth-luci-services'
 X_LUCI_PROJECT = 'X-Luci-Project'
 
 
-def check_request(
-    ctx,
-    peer_identity,
-    peer_ip,
-    auth_details,
-    delegation_token,
-    project_header,
-    use_project_identites,
-    use_bots_ip_whitelist):
+def check_request(ctx, peer_identity, peer_ip, auth_details, delegation_token,
+                  project_header, use_project_identites, use_bots_ip_whitelist):
   """Prepares the request context, checking IP whitelist and delegation token.
 
   This is intended to be called by request processing middlewares right after

@@ -12,8 +12,8 @@ def main():
   assert len(sys.argv) == 1
 
   expected = {
-    'bar': 'Foo\n',
-    'foo': 'Bar\n',
+      'bar': 'Foo\n',
+      'foo': 'Bar\n',
   }
 
   if not os.path.basename(os.getcwd()) == 'tests':
@@ -21,9 +21,9 @@ def main():
     return 1
 
   root = os.path.join('trace_inputs', 'files2')
-  actual = dict(
-      (filename, open(os.path.join(root, filename), 'rb').read())
-      for filename in (os.listdir(root)) if filename != '.svn')
+  actual = dict((filename, open(os.path.join(root, filename), 'rb').read())
+                for filename in (os.listdir(root))
+                if filename != '.svn')
 
   if actual != expected:
     print('Failure')

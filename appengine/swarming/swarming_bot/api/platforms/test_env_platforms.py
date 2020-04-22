@@ -5,7 +5,6 @@
 import os
 import sys
 
-
 # swarming_bot/api/
 API_DIR = os.path.dirname(
     os.path.dirname(os.path.realpath(os.path.abspath(__file__))))

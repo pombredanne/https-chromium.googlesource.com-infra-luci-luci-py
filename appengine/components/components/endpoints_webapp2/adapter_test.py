@@ -48,10 +48,11 @@ class EndpointsService(remote.Service):
 
 
 class EndpointsWebapp2TestCase(test_case.TestCase):
+
   def test_decode_message_post(self):
     request = webapp2.Request(
         {
-          'QUERY_STRING': 's2=b',
+            'QUERY_STRING': 's2=b',
         },
         method='POST',
         body='{"s": "a"}',
@@ -63,7 +64,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
   def test_decode_message_get(self):
     request = webapp2.Request(
         {
-          'QUERY_STRING': 's=a',
+            'QUERY_STRING': 's=a',
         },
         method='GET',
         route_kwargs={'s2': 'b'},
@@ -75,13 +76,15 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
   def test_decode_message_get_resource_container(self):
     request = webapp2.Request(
         {
-          'QUERY_STRING': 's=a',
+            'QUERY_STRING': 's=a',
         },
         method='GET',
-        route_kwargs={'s2': 'b', 'x': 'c'},
+        route_kwargs={
+            's2': 'b',
+            'x': 'c'
+        },
     )
-    rc = adapter.decode_message(
-        EndpointsService.get_container.remote, request)
+    rc = adapter.decode_message(EndpointsService.get_container.remote, request)
     self.assertEqual(rc.s, 'a')
     self.assertEqual(rc.s2, 'b')
     self.assertEqual(rc.x, 'c')
@@ -93,32 +96,35 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
     request.method = 'POST'
     response = request.get_response(app)
     self.assertEqual(response.status_int, 403)
-    self.assertEqual(json.loads(response.body), {
-      'error': {
-        'message': 'access denied',
-      },
-    })
+    self.assertEqual(
+        json.loads(response.body), {
+            'error': {
+                'message': 'access denied',
+            },
+        })
 
   def test_api_routes(self):
-    routes = sorted([
-        r.template for r in adapter.api_routes([EndpointsService])])
-    self.assertEqual(routes, [
-        # Each route appears twice below because each route has two
-        # different handlers, one for HTTP OPTIONS and the other for
-        # user-defined methods.
-        '/_ah/api/Service/v1/get',
-        '/_ah/api/Service/v1/get',
-        '/_ah/api/Service/v1/get_container',
-        '/_ah/api/Service/v1/get_container',
-        '/_ah/api/Service/v1/post',
-        '/_ah/api/Service/v1/post',
-        '/_ah/api/Service/v1/post_403',
-        '/_ah/api/Service/v1/post_403',
-        '/_ah/api/discovery/v1/apis',
-        '/_ah/api/discovery/v1/apis/<name>/<version>/rest',
-        '/_ah/api/explorer',
-        '/_ah/api/static/proxy.html',
-    ])
+    routes = sorted(
+        [r.template for r in adapter.api_routes([EndpointsService])])
+    self.assertEqual(
+        routes,
+        [
+            # Each route appears twice below because each route has two
+            # different handlers, one for HTTP OPTIONS and the other for
+            # user-defined methods.
+            '/_ah/api/Service/v1/get',
+            '/_ah/api/Service/v1/get',
+            '/_ah/api/Service/v1/get_container',
+            '/_ah/api/Service/v1/get_container',
+            '/_ah/api/Service/v1/post',
+            '/_ah/api/Service/v1/post',
+            '/_ah/api/Service/v1/post_403',
+            '/_ah/api/Service/v1/post_403',
+            '/_ah/api/discovery/v1/apis',
+            '/_ah/api/discovery/v1/apis/<name>/<version>/rest',
+            '/_ah/api/explorer',
+            '/_ah/api/static/proxy.html',
+        ])
 
   def test_discovery_routing(self):
     app = webapp2.WSGIApplication(
@@ -140,20 +146,21 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
     self.assertEqual(response['items'][0]['id'], 'Service:v1')
 
   def test_proxy_routing(self):
-    app = webapp2.WSGIApplication(
-        [adapter.explorer_proxy_route('/api')], debug=True)
+    app = webapp2.WSGIApplication([adapter.explorer_proxy_route('/api')],
+                                  debug=True)
     request = webapp2.Request.blank('/api/static/proxy.html')
     request.method = 'GET'
     response = request.get_response(app).body
     self.assertIn('/api', response)
 
   def test_redirect_routing(self):
-    app = webapp2.WSGIApplication(
-        [adapter.explorer_redirect_route('/api')], debug=True)
+    app = webapp2.WSGIApplication([adapter.explorer_redirect_route('/api')],
+                                  debug=True)
     request = webapp2.Request.blank('/api/explorer')
     request.method = 'GET'
     response = request.get_response(app)
     self.assertEqual(response.status, '302 Moved Temporarily')
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

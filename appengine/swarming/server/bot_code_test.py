@@ -28,8 +28,10 @@ from components import config
 CLIENT_DIR = os.path.join(
     os.path.dirname(os.path.dirname(test_env.APP_DIR)), 'client')
 sys.path.insert(0, CLIENT_DIR)
-sys.path.insert(0, os.path.join(
-    CLIENT_DIR, 'third_party', 'httplib2', 'python%d' % sys.version_info.major))
+sys.path.insert(
+    0,
+    os.path.join(CLIENT_DIR, 'third_party', 'httplib2',
+                 'python%d' % sys.version_info.major))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
 from depot_tools import fix_encoding
 from utils import file_path
@@ -38,21 +40,22 @@ sys.path.pop(0)
 
 
 class BotManagementTest(test_case.TestCase):
+
   def setUp(self):
     super(BotManagementTest, self).setUp()
     self.testbed.init_user_stub()
 
-    self.mock(
-        auth, 'get_current_identity',
-        lambda: auth.Identity(auth.IDENTITY_USER, 'joe@localhost'))
-
+    self.mock(auth, 'get_current_identity',
+              lambda: auth.Identity(auth.IDENTITY_USER, 'joe@localhost'))
 
   def test_get_bootstrap(self):
+
     def get_self_config_mock(path, revision=None, store_last_good=False):
       self.assertEqual('scripts/bootstrap.py', path)
       self.assertEqual(None, revision)
       self.assertEqual(True, store_last_good)
       return None, 'foo bar'
+
     self.mock(config, 'get_self_config', get_self_config_mock)
     f = bot_code.get_bootstrap('localhost', 'token')
     expected = ('#!/usr/bin/env python\n'
@@ -63,11 +66,13 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(expected, f.content)
 
   def test_get_bot_config(self):
+
     def get_self_config_mock(path, revision=None, store_last_good=False):
       self.assertEqual('scripts/bot_config.py', path)
       self.assertEqual(None, revision)
       self.assertEqual(True, store_last_good)
       return None, 'foo bar'
+
     self.mock(config, 'get_self_config', get_self_config_mock)
     f = bot_code.get_bot_config()
     self.assertEqual('foo bar', f.content)
@@ -76,7 +81,7 @@ class BotManagementTest(test_case.TestCase):
     actual, additionals = bot_code.get_bot_version('http://localhost')
     self.assertTrue(re.match(r'^[0-9a-f]{64}$', actual), actual)
     expected = {
-      'config/bot_config.py': bot_code.get_bot_config().content,
+        'config/bot_config.py': bot_code.get_bot_config().content,
     }
     self.assertEqual(expected, additionals)
 
@@ -132,11 +137,10 @@ class BotManagementTest(test_case.TestCase):
       bot_path = os.path.join(temp_dir, 'swarming_bot.zip')
       with open(bot_path, 'wb') as f:
         f.write(zipped_code)
-      proc = subprocess.Popen(
-          [sys.executable, bot_path, 'start_bot', '-h'],
-          cwd=temp_dir,
-          stdout=subprocess.PIPE,
-          stderr=subprocess.STDOUT)
+      proc = subprocess.Popen([sys.executable, bot_path, 'start_bot', '-h'],
+                              cwd=temp_dir,
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.STDOUT)
       out = proc.communicate()[0]
       self.assertEqual(0, proc.returncode, out)
     finally:
@@ -158,8 +162,9 @@ class BotManagementTest(test_case.TestCase):
 
   def test_bootstrap_token(self):
     tok = bot_code.generate_bootstrap_token()
-    self.assertEqual(
-        {'for': 'user:joe@localhost'}, bot_code.validate_bootstrap_token(tok))
+    self.assertEqual({
+        'for': 'user:joe@localhost'
+    }, bot_code.validate_bootstrap_token(tok))
 
 
 if __name__ == '__main__':

@@ -12,7 +12,6 @@ import projects
 import services
 import storage
 
-
 _PERMISSION_READ = auth.Permission('configs.configSet.read')
 _PERMISSION_VALIDATE = auth.Permission('configs.configSet.validate')
 _PERMISSION_REIMPORT = auth.Permission('configs.configSet.reimport')
@@ -104,8 +103,8 @@ def is_admin():
   if auth.is_superuser():
     return True
   acl_cfg = _get_acl_cfg()
-  return auth.is_group_member(
-      acl_cfg and acl_cfg.admin_group or auth.ADMIN_GROUP)
+  return auth.is_group_member(acl_cfg and acl_cfg.admin_group or
+                              auth.ADMIN_GROUP)
 
 
 def has_services_access(service_ids):
@@ -122,9 +121,9 @@ def has_services_access(service_ids):
 
   service_id_set = set(service_ids)
   cfgs = {
-    s.id: s
-    for s in services.get_services_async().get_result()
-    if s.id in service_id_set
+      s.id: s
+      for s in services.get_services_async().get_result()
+      if s.id in service_id_set
   }
   has_access = _has_access([cfgs.get(sid) for sid in service_ids])
   return dict(zip(service_ids, has_access))
@@ -185,8 +184,8 @@ def _check_project_acl(project_id, permission, legacy_acl_group):
 # Cache acl.cfg for 10min. It never changes.
 @utils.cache_with_expiration(10 * 60)
 def _get_acl_cfg():
-  return storage.get_self_config_async(
-      common.ACL_FILENAME, service_config_pb2.AclCfg).get_result()
+  return storage.get_self_config_async(common.ACL_FILENAME,
+                                       service_config_pb2.AclCfg).get_result()
 
 
 def _check_acl_cfg(group_id):
@@ -200,10 +199,8 @@ def _check_acl_cfg(group_id):
   if is_admin():
     return True
   acl_cfg = _get_acl_cfg()
-  return (
-      acl_cfg and
-      getattr(acl_cfg, group_id) and
-      auth.is_group_member(getattr(acl_cfg, group_id)))
+  return (acl_cfg and getattr(acl_cfg, group_id) and
+          auth.is_group_member(getattr(acl_cfg, group_id)))
 
 
 def _has_access(resources):
@@ -212,14 +209,8 @@ def _has_access(resources):
     if r:
       access_values.update(r.access)
 
-  has_access = {
-    a: config.api._has_access(a)
-    for a in access_values
-  }
-  return [
-    bool(r) and any(has_access[a] for a in r.access)
-    for r in resources
-  ]
+  has_access = {a: config.api._has_access(a) for a in access_values}
+  return [bool(r) and any(has_access[a] for a in r.access) for r in resources]
 
 
 def _extract_project_id(config_set):

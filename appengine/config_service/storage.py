@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Storage of config files."""
 
 import hashlib
@@ -148,8 +147,7 @@ def get_latest_revisions_async(config_sets):
   """
   assert isinstance(config_sets, list)
   entities = yield ndb.get_multi_async(
-      ndb.Key(ConfigSet, cs) for cs in config_sets
-  )
+      ndb.Key(ConfigSet, cs) for cs in config_sets)
   latest_revisions = {e.key.id(): e.latest_revision for e in entities if e}
 
   raise ndb.Return({cs: latest_revisions.get(cs) for cs in config_sets})
@@ -184,24 +182,20 @@ def get_config_hashes_async(revs, path):
 
   # Load content hashes
   file_entities = yield ndb.get_multi_async([
-    ndb.Key(
-        ConfigSet, cs,
-        Revision, rev,
-        File, path)
-    for cs, rev in revs.items()
-    if rev
+      ndb.Key(ConfigSet, cs, Revision, rev, File, path)
+      for cs, rev in revs.items()
+      if rev
   ])
   content_url_and_hashes = {
-    # map key is config set
-    f.key.parent().parent().id(): (f.url, f.content_hash)
-    for f in file_entities
-    if f
+      # map key is config set
+      f.key.parent().parent().id(): (f.url, f.content_hash)
+      for f in file_entities
+      if f
   }
   raise ndb.Return({
-    cs: (
-        (rev, ) + content_url_and_hashes.get(cs)
-        if content_url_and_hashes.get(cs) else (None, None, None))
-    for cs, rev in revs.items()
+      cs: ((rev,) + content_url_and_hashes.get(cs)
+           if content_url_and_hashes.get(cs) else (None, None, None))
+      for cs, rev in revs.items()
   })
 
 
@@ -214,10 +208,8 @@ def get_configs_by_hashes_async(content_hashes):
   assert all(h for h in content_hashes)
   content_hashes = list(set(content_hashes))
   blobs = yield ndb.get_multi_async(ndb.Key(Blob, h) for h in content_hashes)
-  raise ndb.Return({
-    h: b.content if b else None
-    for h, b in zip(content_hashes, blobs)
-  })
+  raise ndb.Return(
+      {h: b.content if b else None for h, b in zip(content_hashes, blobs)})
 
 
 @ndb.tasklet
@@ -238,8 +230,8 @@ def get_latest_configs_async(config_sets, path, hashes_only=False):
     contents = yield get_configs_by_hashes_async(hashes)
 
   raise ndb.Return({
-    cs: (rev, file_url, content_hash, contents.get(content_hash))
-    for cs, (rev, file_url, content_hash) in revs_and_hashes.items()
+      cs: (rev, file_url, content_hash, contents.get(content_hash))
+      for cs, (rev, file_url, content_hash) in revs_and_hashes.items()
   })
 
 
@@ -263,10 +255,8 @@ def get_latest_messages_async(config_sets, path, message_factory):
       text_format.Merge(text, msg)
     return msg
 
-  raise ndb.Return({
-    cs: to_msg(text)
-    for cs, (_, _, _, text) in configs.items()
-  })
+  raise ndb.Return(
+      {cs: to_msg(text) for cs, (_, _, _, text) in configs.items()})
 
 
 @utils.cache

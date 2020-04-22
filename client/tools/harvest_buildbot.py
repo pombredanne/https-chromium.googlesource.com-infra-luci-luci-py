@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Harvest data on the Try Server.
 
 Please use sparingly. Large values for horizon will trash the Try Server memory.
@@ -60,18 +59,19 @@ def parse(b, horizon):
       # Print the first few lines.
       lines = base_unittests.stdio.splitlines()[:15]
       print('\n'.join('  ' + l for l in lines))
-    print('  %s  %s  %s  %s' % (
-      build.properties_as_dict['use_swarm_client_revision'],
-      build.properties_as_dict['swarm_hashes'],
-      build.properties_as_dict.get('use_swarm_client_revision'),
-      build.properties_as_dict.get('testfilter')))
+    print('  %s  %s  %s  %s' %
+          (build.properties_as_dict['use_swarm_client_revision'],
+           build.properties_as_dict['swarm_hashes'],
+           build.properties_as_dict.get('use_swarm_client_revision'),
+           build.properties_as_dict.get('testfilter')))
 
 
 def main():
   parser = optparse.OptionParser()
   parser.add_option('-b', '--buildbot_json', help='path to buildbot_json.py')
   parser.add_option(
-      '-u', '--url',
+      '-u',
+      '--url',
       default='http://build.chromium.org/p/tryserver.chromium/',
       help='server url, default: %default')
   parser.add_option('-H', '--horizon', default=100, type='int')

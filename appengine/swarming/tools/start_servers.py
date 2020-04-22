@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Starts local Swarming and Isolate servers."""
 
 from __future__ import print_function
@@ -12,7 +11,6 @@ import os
 import shutil
 import sys
 import tempfile
-
 
 APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CLIENT_DIR = os.path.join(os.path.dirname(os.path.dirname(APP_DIR)), 'client')
@@ -30,6 +28,7 @@ from tool_support import local_app
 
 class LocalServers(object):
   """Local Swarming and Isolate servers."""
+
   def __init__(self, listen_all, root):
     self._isolate_server = None
     self._swarming_server = None
@@ -102,7 +101,9 @@ def main():
   parser.add_argument(
       '-a', '--all', action='store_true', help='allow non local connection')
   parser.add_argument(
-      '-l', '--leak', action='store_true',
+      '-l',
+      '--leak',
+      action='store_true',
       help='leak logs instead of deleting on shutdown')
   args = parser.parse_args()
   root = tempfile.mkdtemp(prefix='start_servers')

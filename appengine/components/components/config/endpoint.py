@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Cloud Endpoints API for configs.
 
 * Reads/writes config service location.
@@ -20,7 +19,6 @@ from components import auth
 
 from . import common
 from . import validation
-
 
 METADATA_FORMAT_VERSION = "1.0"
 
@@ -98,8 +96,7 @@ class ConfigApi(remote.Service):
   """Configuration service."""
 
   @auth.endpoints_method(
-      ConfigSettingsMessage, ConfigSettingsMessage,
-      http_method='POST')
+      ConfigSettingsMessage, ConfigSettingsMessage, http_method='POST')
   @auth.require(lambda: auth.is_superuser() or auth.is_admin())
   def settings(self, request):
     """Reads/writes config service location. Accessible only by admins."""
@@ -113,21 +110,17 @@ class ConfigApi(remote.Service):
             request.trusted_config_account)
       except ValueError as ex:
         raise endpoints.BadRequestException(
-            'Invalid trusted_config_account %s: %s' % (
-              request.trusted_config_account,
-              ex.message))
+            'Invalid trusted_config_account %s: %s' %
+            (request.trusted_config_account, ex.message))
     changed = settings.modify(
-        updated_by=auth.get_current_identity().to_bytes(),
-        **delta)
+        updated_by=auth.get_current_identity().to_bytes(), **delta)
     if changed:
       logging.warning('Updated config settings')
     settings = common.ConfigSettings.fetch() or settings
     return ConfigSettingsMessage(
         service_hostname=settings.service_hostname,
-        trusted_config_account=(
-            settings.trusted_config_account.to_bytes()
-            if settings.trusted_config_account else None)
-    )
+        trusted_config_account=(settings.trusted_config_account.to_bytes()
+                                if settings.trusted_config_account else None))
 
   @auth.endpoints_method(
       ValidateRequestMessage, ValidateResponseMessage, http_method='POST')
@@ -146,16 +139,19 @@ class ConfigApi(remote.Service):
       text = m.text
       if isinstance(m.text, str):
         text = text.decode('ascii', errors='replace')
-      res.messages.append(ValidationMessage(
-          path=request.path,
-          severity=common.Severity.lookup_by_number(m.severity),
-          text=text,
-      ))
+      res.messages.append(
+          ValidationMessage(
+              path=request.path,
+              severity=common.Severity.lookup_by_number(m.severity),
+              text=text,
+          ))
     return res
 
   @auth.endpoints_method(
-      message_types.VoidMessage, ServiceDynamicMetadata,
-      http_method='GET', path='metadata')
+      message_types.VoidMessage,
+      ServiceDynamicMetadata,
+      http_method='GET',
+      path='metadata')
   @auth.require(is_trusted_requester)
   def get_metadata(self, _request):
     """Describes a service. Used by config service to discover other services.
@@ -169,8 +165,7 @@ class ConfigApi(remote.Service):
             name=self.api_info.name,
             version=self.api_info.version,
             path=self.api_info.path or '',
-        )
-    )
+        ))
     for p in sorted(validation.DEFAULT_RULE_SET.patterns()):
       meta.validation.patterns.append(ConfigPattern(**p._asdict()))
     return meta

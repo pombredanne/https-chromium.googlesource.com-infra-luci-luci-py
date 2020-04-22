@@ -2,7 +2,6 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Runs a command with optional isolated input/output.
 
 run_isolated takes cares of setting up a temporary environment, running a
@@ -80,20 +79,16 @@ from utils import net
 from utils import on_error
 from utils import subprocess42
 
-
 # Magic variables that can be found in the isolate task command line.
 ISOLATED_OUTDIR_PARAMETER = '${ISOLATED_OUTDIR}'
 EXECUTABLE_SUFFIX_PARAMETER = '${EXECUTABLE_SUFFIX}'
 SWARMING_BOT_FILE_PARAMETER = '${SWARMING_BOT_FILE}'
 
-
 # The name of the log file to use.
 RUN_ISOLATED_LOG_FILE = 'run_isolated.log'
 
-
 # The name of the log to use for the run_test_cases.py command
 RUN_TEST_CASES_LOG = 'run_test_cases.log'
-
 
 # Use short names for temporary directories. This is driven by Windows, which
 # imposes a relatively short maximum path length of 260 characters, often
@@ -120,7 +115,6 @@ ISOLATED_REVISION = 'git_revision:0b6932af7d7df8ddbb3f04ac2db29a236fed0c50'
 
 # Keep synced with task_request.py
 CACHE_NAME_RE = re.compile(r'^[a-z0-9_]{1,4096}$')
-
 
 OUTLIVING_ZOMBIE_MSG = """\
 *** Swarming tried multiple times to delete the %s directory and failed ***
@@ -156,11 +150,9 @@ for more information.
 *** May the SIGKILL force be with you ***
 """
 
-
 # Currently hardcoded. Eventually could be exposed as a flag once there's value.
 # 3 weeks
-MAX_AGE_SECS = 21*24*60*60
-
+MAX_AGE_SECS = 21 * 24 * 60 * 60
 
 TaskData = collections.namedtuple(
     'TaskData',
@@ -272,9 +264,8 @@ def change_tree_read_only(rootdir, read_only):
     # input file, the file must be deleted.
     file_path.make_tree_writeable(rootdir)
   else:
-    raise ValueError(
-        'change_tree_read_only(%s, %s): Unknown flag %s' %
-        (rootdir, read_only, read_only))
+    raise ValueError('change_tree_read_only(%s, %s): Unknown flag %s' %
+                     (rootdir, read_only, read_only))
 
 
 @contextlib.contextmanager
@@ -366,7 +357,6 @@ def replace_parameters(arg, out_dir, bot_file):
   return arg
 
 
-
 def get_command_env(tmp_dir, cipd_info, run_dir, env, env_prefixes, out_dir,
                     bot_file):
   """Returns full OS environment to run a command in.
@@ -439,16 +429,15 @@ def get_command_env(tmp_dir, cipd_info, run_dir, env, env_prefixes, out_dir,
   return out
 
 
-def run_command(
-    command, cwd, env, hard_timeout, grace_period, lower_priority, containment):
+def run_command(command, cwd, env, hard_timeout, grace_period, lower_priority,
+                containment):
   """Runs the command.
 
   Returns:
     tuple(process exit code, bool if had a hard timeout)
   """
-  logging.info(
-      'run_command(%s, %s, %s, %s, %s, %s)',
-      command, cwd, hard_timeout, grace_period, lower_priority, containment)
+  logging.info('run_command(%s, %s, %s, %s, %s, %s)', command, cwd,
+               hard_timeout, grace_period, lower_priority, containment)
 
   exit_code = None
   had_hard_timeout = False
@@ -466,8 +455,13 @@ def run_command(
           raise subprocess42.TimeoutExpired(command, None)
 
       proc = subprocess42.Popen(
-          command, cwd=cwd, env=env, detached=True, close_fds=True,
-          lower_priority=lower_priority, containment=containment)
+          command,
+          cwd=cwd,
+          env=env,
+          detached=True,
+          close_fds=True,
+          lower_priority=lower_priority,
+          containment=containment)
       with subprocess42.set_signal_handler(subprocess42.STOP_SIGNALS, handler):
         try:
           exit_code = proc.wait(hard_timeout or None)
@@ -511,9 +505,8 @@ def run_command(
             '<See the task\'s page for commands to help diagnose this issue '
             'by reproducing the task locally>\n')
       exit_code = 1
-  logging.info(
-      'Command finished with exit code %d (%s)',
-      exit_code, hex(0xffffffff & exit_code))
+  logging.info('Command finished with exit code %d (%s)', exit_code,
+               hex(0xffffffff & exit_code))
   return exit_code, had_hard_timeout
 
 
@@ -614,12 +607,12 @@ def fetch_and_map(isolated_hash, storage, cache, outdir):
       cache=cache,
       outdir=outdir,
       use_symlinks=False)
-  hot = (collections.Counter(cache.used) -
-         collections.Counter(cache.added)).elements()
+  hot = (collections.Counter(cache.used) - collections.Counter(
+      cache.added)).elements()
   return bundle, {
-    'duration': time.time() - start,
-    'items_cold': base64.b64encode(large.pack(sorted(cache.added))),
-    'items_hot': base64.b64encode(large.pack(sorted(hot))),
+      'duration': time.time() - start,
+      'items_cold': base64.b64encode(large.pack(sorted(cache.added))),
+      'items_hot': base64.b64encode(large.pack(sorted(hot))),
   }
 
 
@@ -668,8 +661,8 @@ def copy_recursively(src, dst):
 
   except OSError as e:
     if e.errno == errno.ENOENT:
-      logging.warning('Path %s does not exist or %s is a broken symlink',
-                      src, orig_src)
+      logging.warning('Path %s does not exist or %s is a broken symlink', src,
+                      orig_src)
     else:
       logging.info("Couldn't collect output file %s: %s", src, e)
 
@@ -699,9 +692,9 @@ def upload_then_delete(storage, out_dir, leak_temp_dir):
         results, f_cold, f_hot = isolateserver.archive_files_to_storage(
             storage, [out_dir], None, verify_push=True)
         outputs_ref = {
-          'isolated': results.values()[0],
-          'isolatedserver': storage.server_ref.url,
-          'namespace': storage.server_ref.namespace,
+            'isolated': results.values()[0],
+            'isolatedserver': storage.server_ref.url,
+            'namespace': storage.server_ref.namespace,
         }
         cold = sorted(i.size for i in f_cold)
         hot = sorted(i.size for i in f_hot)
@@ -727,9 +720,9 @@ def upload_then_delete(storage, out_dir, leak_temp_dir):
     # When this happens, it means there's a process error.
     logging.exception('Had difficulties removing out_dir %s: %s', out_dir, e)
   stats = {
-    'duration': time.time() - start,
-    'items_cold': base64.b64encode(large.pack(cold)),
-    'items_hot': base64.b64encode(large.pack(hot)),
+      'duration': time.time() - start,
+      'items_cold': base64.b64encode(large.pack(cold)),
+      'items_hot': base64.b64encode(large.pack(hot)),
   }
   return outputs_ref, success, stats
 
@@ -791,8 +784,7 @@ def map_and_run(data, constant_run_path):
   elif data.use_go_isolated:
     data = data._replace(root_dir=os.path.dirname(data.go_cache_dir))
   elif data.isolate_cache.cache_dir:
-    data = data._replace(
-        root_dir=os.path.dirname(data.isolate_cache.cache_dir))
+    data = data._replace(root_dir=os.path.dirname(data.isolate_cache.cache_dir))
   # See comment for these constants.
   # If root_dir is not specified, it is not constant.
   # TODO(maruel): This is not obvious. Change this to become an error once we
@@ -806,8 +798,8 @@ def map_and_run(data, constant_run_path):
     run_dir = make_temp_dir(ISOLATED_RUN_DIR, data.root_dir)
   # storage should be normally set but don't crash if it is not. This can happen
   # as Swarming task can run without an isolate server.
-  out_dir = make_temp_dir(
-      ISOLATED_OUT_DIR, data.root_dir) if data.storage else None
+  out_dir = make_temp_dir(ISOLATED_OUT_DIR,
+                          data.root_dir) if data.storage else None
   tmp_dir = make_temp_dir(ISOLATED_TMP_DIR, data.root_dir)
   isolated_client_dir = make_temp_dir(ISOLATED_CLIENT_DIR, data.root_dir)
   cwd = run_dir
@@ -878,9 +870,8 @@ def map_and_run(data, constant_run_path):
           # Need to switch the default account before 'get_command_env' call,
           # so it can grab correct value of LUCI_CONTEXT env var.
           with set_luci_context_account(data.switch_to_account, tmp_dir):
-            env = get_command_env(
-                tmp_dir, cipd_info, run_dir, data.env, data.env_prefix, out_dir,
-                data.bot_file)
+            env = get_command_env(tmp_dir, cipd_info, run_dir, data.env,
+                                  data.env_prefix, out_dir, data.bot_file)
             command = tools.find_executable(command, env)
             command = process_command(command, out_dir, data.bot_file)
             file_path.ensure_command_has_abs_path(command, cwd)
@@ -911,8 +902,8 @@ def map_and_run(data, constant_run_path):
       success = False
       if data.leak_temp_dir:
         success = True
-        logging.warning(
-            'Deliberately leaking %s for later examination', run_dir)
+        logging.warning('Deliberately leaking %s for later examination',
+                        run_dir)
       else:
         # On Windows rmtree(run_dir) call above has a synchronization effect: it
         # finishes only when all task child processes terminate (since a running
@@ -971,11 +962,11 @@ def run_tha_test(data, result_json):
   if result_json:
     # Write a json output file right away in case we get killed.
     result = {
-      'exit_code': None,
-      'had_hard_timeout': False,
-      'internal_failure': 'Was terminated before completion',
-      'outputs_ref': None,
-      'version': 5,
+        'exit_code': None,
+        'had_hard_timeout': False,
+        'internal_failure': 'Was terminated before completion',
+        'outputs_ref': None,
+        'version': 5,
     }
     tools.write_json(result_json, result, dense=True)
 
@@ -995,25 +986,26 @@ def run_tha_test(data, result_json):
   if result['outputs_ref']:
     # pylint: disable=unsubscriptable-object
     data = {
-      'hash': result['outputs_ref']['isolated'],
-      'namespace': result['outputs_ref']['namespace'],
-      'storage': result['outputs_ref']['isolatedserver'],
+        'hash': result['outputs_ref']['isolated'],
+        'namespace': result['outputs_ref']['namespace'],
+        'storage': result['outputs_ref']['isolatedserver'],
     }
     sys.stdout.flush()
-    print(
-        '[run_isolated_out_hack]%s[/run_isolated_out_hack]' %
-        tools.format_json(data, dense=True))
+    print('[run_isolated_out_hack]%s[/run_isolated_out_hack]' %
+          tools.format_json(data, dense=True))
     sys.stdout.flush()
   return result['exit_code'] or int(bool(result['internal_failure']))
 
 
 # Yielded by 'install_client_and_packages'.
-CipdInfo = collections.namedtuple('CipdInfo', [
-  'client',     # cipd.CipdClient object
-  'cache_dir',  # absolute path to bot-global cipd tag and instance cache
-  'stats',      # dict with stats to return to the server
-  'pins',       # dict with installed cipd pins to return to the server
-])
+CipdInfo = collections.namedtuple(
+    'CipdInfo',
+    [
+        'client',  # cipd.CipdClient object
+        'cache_dir',  # absolute path to bot-global cipd tag and instance cache
+        'stats',  # dict with stats to return to the server
+        'pins',  # dict with installed cipd pins to return to the server
+    ])
 
 
 @contextlib.contextmanager
@@ -1040,13 +1032,14 @@ def _install_packages(run_dir, cipd_cache_dir, client, packages):
     ...
   ]
   """
-  package_pins = [None]*len(packages)
+  package_pins = [None] * len(packages)
+
   def insert_pin(path, name, version, idx):
     package_pins[idx] = {
-      'package_name': name,
-      # swarming deals with 'root' as '.'
-      'path': path or '.',
-      'version': version,
+        'package_name': name,
+        # swarming deals with 'root' as '.'
+        'path': path or '.',
+        'version': version,
     }
 
   by_path = collections.defaultdict(list)
@@ -1140,23 +1133,23 @@ def install_client_and_packages(run_dir, packages, service_url,
     file_path.make_tree_files_read_only(run_dir)
 
     total_duration = time.time() - start
-    logging.info(
-        'Installing CIPD client and packages took %d seconds', total_duration)
+    logging.info('Installing CIPD client and packages took %d seconds',
+                 total_duration)
 
     yield CipdInfo(
-      client=client,
-      cache_dir=cipd_cache_dir,
-      stats={
-        'duration': total_duration,
-        'get_client_duration': get_client_duration,
-      },
-      pins={
-        'client_package': {
-          'package_name': client.package_name,
-          'version': client.instance_id,
+        client=client,
+        cache_dir=cipd_cache_dir,
+        stats={
+            'duration': total_duration,
+            'get_client_duration': get_client_duration,
         },
-        'packages': package_pins,
-      })
+        pins={
+            'client_package': {
+                'package_name': client.package_name,
+                'version': client.instance_id,
+            },
+            'packages': package_pins,
+        })
 
 
 def create_option_parser():
@@ -1165,65 +1158,75 @@ def create_option_parser():
       version=__version__,
       log_file=RUN_ISOLATED_LOG_FILE)
   parser.add_option(
-      '--clean', action='store_true',
+      '--clean',
+      action='store_true',
       help='Cleans the cache, trimming it necessary and remove corrupted items '
-           'and returns without executing anything; use with -v to know what '
-           'was done')
+      'and returns without executing anything; use with -v to know what '
+      'was done')
   parser.add_option(
       '--json',
       help='dump output metadata to json file. When used, run_isolated returns '
-           'non-zero only on internal failure')
+      'non-zero only on internal failure')
   parser.add_option(
       '--hard-timeout', type='float', help='Enforce hard timeout in execution')
   parser.add_option(
-      '--grace-period', type='float',
+      '--grace-period',
+      type='float',
       help='Grace period between SIGTERM and SIGKILL')
   parser.add_option(
-      '--raw-cmd', action='store_true',
+      '--raw-cmd',
+      action='store_true',
       help='Ignore the isolated command, use the one supplied at the command '
-           'line')
+      'line')
   parser.add_option(
       '--relative-cwd',
       help='Ignore the isolated \'relative_cwd\' and use this one instead; '
-           'requires --raw-cmd')
+      'requires --raw-cmd')
   parser.add_option(
-      '--env', default=[], action='append',
+      '--env',
+      default=[],
+      action='append',
       help='Environment variables to set for the child process')
   parser.add_option(
-      '--env-prefix', default=[], action='append',
+      '--env-prefix',
+      default=[],
+      action='append',
       help='Specify a VAR=./path/fragment to put in the environment variable '
-           'before executing the command. The path fragment must be relative '
-           'to the isolated run directory, and must not contain a `..` token. '
-           'The path will be made absolute and prepended to the indicated '
-           '$VAR using the OS\'s path separator. Multiple items for the same '
-           '$VAR will be prepended in order.')
+      'before executing the command. The path fragment must be relative '
+      'to the isolated run directory, and must not contain a `..` token. '
+      'The path will be made absolute and prepended to the indicated '
+      '$VAR using the OS\'s path separator. Multiple items for the same '
+      '$VAR will be prepended in order.')
   parser.add_option(
       '--bot-file',
       help='Path to a file describing the state of the host. The content is '
-           'defined by on_before_task() in bot_config.')
+      'defined by on_before_task() in bot_config.')
   parser.add_option(
       '--switch-to-account',
       help='If given, switches LUCI_CONTEXT to given logical service account '
-           '(e.g. "task" or "system") before launching the isolated process.')
+      '(e.g. "task" or "system") before launching the isolated process.')
   parser.add_option(
-      '--output', action='append',
+      '--output',
+      action='append',
       help='Specifies an output to return. If no outputs are specified, all '
-           'files located in $(ISOLATED_OUTDIR) will be returned; '
-           'otherwise, outputs in both $(ISOLATED_OUTDIR) and those '
-           'specified by --output option (there can be multiple) will be '
-           'returned. Note that if a file in OUT_DIR has the same path '
-           'as an --output option, the --output version will be returned.')
+      'files located in $(ISOLATED_OUTDIR) will be returned; '
+      'otherwise, outputs in both $(ISOLATED_OUTDIR) and those '
+      'specified by --output option (there can be multiple) will be '
+      'returned. Note that if a file in OUT_DIR has the same path '
+      'as an --output option, the --output version will be returned.')
   parser.add_option(
-      '-a', '--argsfile',
+      '-a',
+      '--argsfile',
       # This is actually handled in parse_args; it's included here purely so it
       # can make it into the help text.
       help='Specify a file containing a JSON array of arguments to this '
-           'script. If --argsfile is provided, no other argument may be '
-           'provided on the command line.')
+      'script. If --argsfile is provided, no other argument may be '
+      'provided on the command line.')
 
   group = optparse.OptionGroup(parser, 'Data source')
   group.add_option(
-      '-s', '--isolated',
+      '-s',
+      '--isolated',
       help='Hash of the .isolated to grab from the isolate server.')
   isolateserver.add_isolate_server_options(group)
   parser.add_option_group(group)
@@ -1240,28 +1243,35 @@ def create_option_parser():
       nargs=3,
       default=[],
       help='A named cache to request. Accepts 3 arguments: name, path, hint. '
-           'name identifies the cache, must match regex [a-z0-9_]{1,4096}. '
-           'path is a path relative to the run dir where the cache directory '
-           'must be put to. '
-           'This option can be specified more than once.')
+      'name identifies the cache, must match regex [a-z0-9_]{1,4096}. '
+      'path is a path relative to the run dir where the cache directory '
+      'must be put to. '
+      'This option can be specified more than once.')
   group.add_option(
-      '--named-cache-root', default='named_caches',
+      '--named-cache-root',
+      default='named_caches',
       help='Cache root directory. Default=%default')
   parser.add_option_group(group)
 
   group = optparse.OptionGroup(parser, 'Process containment')
   parser.add_option(
-      '--lower-priority', action='store_true',
+      '--lower-priority',
+      action='store_true',
       help='Lowers the child process priority')
   parser.add_option(
-      '--containment-type', choices=('NONE', 'AUTO', 'JOB_OBJECT'),
+      '--containment-type',
+      choices=('NONE', 'AUTO', 'JOB_OBJECT'),
       default='NONE',
       help='Type of container to use')
   parser.add_option(
-      '--limit-processes', type='int', default=0,
+      '--limit-processes',
+      type='int',
+      default=0,
       help='Maximum number of active processes in the containment')
   parser.add_option(
-      '--limit-total-committed-memory', type='int', default=0,
+      '--limit-total-committed-memory',
+      type='int',
+      default=0,
       help='Maximum sum of committed memory in the containment')
   parser.add_option_group(group)
 
@@ -1270,9 +1280,8 @@ def create_option_parser():
       '--leak-temp-dir',
       action='store_true',
       help='Deliberately leak isolate\'s temp dir for later examination. '
-           'Default: %default')
-  group.add_option(
-      '--root-dir', help='Use a directory instead of a random one')
+      'Default: %default')
+  group.add_option('--root-dir', help='Use a directory instead of a random one')
   parser.add_option_group(group)
 
   auth.add_auth_options(parser)
@@ -1303,7 +1312,7 @@ def process_named_cache_options(parser, options, time_fn=None):
     # with a really old cache.
     policies = local_caching.CachePolicies(
         # 1TiB.
-        max_cache_size=1024*1024*1024*1024,
+        max_cache_size=1024 * 1024 * 1024 * 1024,
         min_free_space=options.min_free_space,
         max_items=50,
         max_age_secs=MAX_AGE_SECS)
@@ -1431,14 +1440,13 @@ def main(args):
 
   auth.process_auth_options(parser, options)
 
-  isolateserver.process_isolate_server_options(
-      parser, options, True, False)
+  isolateserver.process_isolate_server_options(parser, options, True, False)
   if not options.isolate_server:
     if options.isolated:
       parser.error('--isolated requires --isolate-server')
     if ISOLATED_OUTDIR_PARAMETER in args:
       parser.error(
-        '%s in args requires --isolate-server' % ISOLATED_OUTDIR_PARAMETER)
+          '%s in args requires --isolate-server' % ISOLATED_OUTDIR_PARAMETER)
 
   if options.root_dir:
     options.root_dir = six.text_type(os.path.abspath(options.root_dir))
@@ -1456,16 +1464,16 @@ def main(args):
   for item in options.env_prefix:
     if '=' not in item:
       parser.error(
-        '--env-prefix %r is malformed, must be in the form `VAR=./path`'
-        % item)
+          '--env-prefix %r is malformed, must be in the form `VAR=./path`' %
+          item)
     key, opath = item.split('=', 1)
     if os.path.isabs(opath):
       parser.error('--env-prefix %r path is bad, must be relative.' % opath)
     opath = os.path.normpath(opath)
     if not os.path.realpath(os.path.join(cwd, opath)).startswith(cwd):
       parser.error(
-        '--env-prefix %r path is bad, must be relative and not contain `..`.'
-        % opath)
+          '--env-prefix %r path is bad, must be relative and not contain `..`.'
+          % opath)
     prefixes.setdefault(key, []).append(opath)
   options.env_prefix = prefixes
 
@@ -1505,8 +1513,9 @@ def main(args):
           # *must* be done manually via periodic 'run_isolated.py --clean'.
           named_cache.uninstall(path, name)
         except local_caching.NamedCacheError:
-          logging.exception('Error while removing named cache %r at %r. '
-                            'The cache will be lost.', path, name)
+          logging.exception(
+              'Error while removing named cache %r at %r. '
+              'The cache will be lost.', path, name)
 
   extra_args = []
   command = []
@@ -1562,8 +1571,8 @@ def main(args):
       containment=containment)
   try:
     if options.isolate_server:
-      server_ref = isolate_storage.ServerRef(
-          options.isolate_server, options.namespace)
+      server_ref = isolate_storage.ServerRef(options.isolate_server,
+                                             options.namespace)
       storage = isolateserver.get_storage(server_ref)
       with storage:
         data = data._replace(storage=storage)
@@ -1571,10 +1580,8 @@ def main(args):
         assert storage.server_ref.hash_algo == server_ref.hash_algo
         return run_tha_test(data, options.json)
     return run_tha_test(data, options.json)
-  except (
-      cipd.Error,
-      local_caching.NamedCacheError,
-      local_caching.NoMoreSpace) as ex:
+  except (cipd.Error, local_caching.NamedCacheError,
+          local_caching.NoMoreSpace) as ex:
     print(ex.message, file=sys.stderr)
     return 1
 

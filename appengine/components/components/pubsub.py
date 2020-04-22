@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Helper functions for working with Cloud Pub/Sub."""
 
 import base64
@@ -13,7 +12,6 @@ import re
 import webapp2
 
 from components import net
-
 
 # From Pub/Sub docs: `{subscription}` must start with a letter, and contain only
 # letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`),
@@ -28,6 +26,7 @@ _NAME_RE = re.compile(r'^[A-Za-z][A-Za-z0-9\-_\.~\+%]{2,254}$')
 
 class Error(Exception):
   """Raised on fatal errors."""
+
   def __init__(self, inner):
     super(Error, self).__init__(str(inner))
     self.inner = inner
@@ -39,6 +38,7 @@ class TransientError(Exception):
   Specifically not a subclass of Error, so that "except Error" block passes
   transient errors through.
   """
+
   def __init__(self, inner):
     super(TransientError, self).__init__(str(inner))
     self.inner = inner
@@ -80,19 +80,14 @@ def full_subscription_name(project, subscription):
 def validate_full_name(name, kind):
   """Returns True if name has form "projects/<project-id>/<kind>/<id>."""
   chunks = name.split('/')
-  return (
-      len(chunks) == 4 and
-      chunks[0] == 'projects' and
-      validate_project(chunks[1]) and
-      chunks[2] == kind and
-      _validate_name(chunks[3]))
+  return (len(chunks) == 4 and chunks[0] == 'projects' and
+          validate_project(chunks[1]) and chunks[2] == kind and
+          _validate_name(chunks[3]))
 
 
 def _validate_name(name):
   """Returns True if the name matches rules for topic and subcription names."""
-  return (
-      not name.startswith('goog') and
-      bool(_NAME_RE.match(name)))
+  return (not name.startswith('goog') and bool(_NAME_RE.match(name)))
 
 
 def _call_async(method, endpoint, payload=None):
@@ -175,10 +170,10 @@ def publish_multi(topic, messages):
     Error or TransientError.
   """
   assert validate_full_name(topic, 'topics'), topic
-  messages = [
-      {'attributes': attributes or {}, 'data': base64.b64encode(message)}
-      for message, attributes in messages.items()
-  ]
+  messages = [{
+      'attributes': attributes or {},
+      'data': base64.b64encode(message)
+  } for message, attributes in messages.items()]
 
   def call_publish():
     _call('POST', '%s:publish' % topic, payload={'messages': messages})
@@ -264,8 +259,10 @@ def get_subscription(subscription):
   return _call('GET', subscription, accepted_http_statuses=[404])
 
 
-def ensure_subscription_exists(
-    subscription, topic, push_config=None, ack_deadline_seconds=None):
+def ensure_subscription_exists(subscription,
+                               topic,
+                               push_config=None,
+                               ack_deadline_seconds=None):
   """Ensures given subscription exists.
 
   Will register new subscription or chage push config of an existing one
@@ -297,13 +294,15 @@ def ensure_subscription_exists(
       raise Error('Can\'t change ack deadline of an existing subscription')
     if push_config is not None and push_config != existing['pushConfig']:
       _call(
-          'POST', '%s:modifyPushConfig' % subscription,
+          'POST',
+          '%s:modifyPushConfig' % subscription,
           payload={'pushConfig': push_config})
     return
 
   def create_subscription():
     _call(
-        'PUT', subscription,
+        'PUT',
+        subscription,
         payload={
             'topic': topic,
             'pushConfig': push_config or {},
@@ -377,7 +376,8 @@ def iam_policy(object_name):
 
   if copied.policy != policy:
     _call(
-        'POST', '%s:setIamPolicy' % object_name,
+        'POST',
+        '%s:setIamPolicy' % object_name,
         payload={'policy': copied.policy})
 
 
@@ -502,7 +502,8 @@ class SubscriptionHandler(webapp2.RequestHandler):
   def get(self):
     """Queries for Pub/Sub messages."""
     response = _call(
-        'POST', '%s:pull' % self.get_subscription_name(),
+        'POST',
+        '%s:pull' % self.get_subscription_name(),
         payload={
             'maxMessages': self.MAX_MESSAGES,
             'returnImmediately': True,
@@ -512,14 +513,15 @@ class SubscriptionHandler(webapp2.RequestHandler):
     for received_message in response.get('receivedMessages', []):
       attributes = received_message.get('message', {}).get('attributes', {})
       message = received_message.get('message', {}).get('data', '')
-      logging.info(
-          'Received Pub/Sub message:\n%s\nAttributes:\n%s', message, attributes)
+      logging.info('Received Pub/Sub message:\n%s\nAttributes:\n%s', message,
+                   attributes)
       # TODO(smut): Process messages in parallel.
       self.process_message(message, attributes)
       message_ids.append(received_message['ackId'])
     if message_ids:
       _call(
-          'POST', '%s:acknowledge' % self.get_subscription_name(),
+          'POST',
+          '%s:acknowledge' % self.get_subscription_name(),
           payload={'ackIds': message_ids})
 
   def post(self):
@@ -538,8 +540,8 @@ class SubscriptionHandler(webapp2.RequestHandler):
       self.abort(403, 'Unexpected subscription: %s' % subscription)
       return
 
-    logging.info(
-        'Received Pub/Sub message:\n%s\nAttributes:\n%s', message, attributes)
+    logging.info('Received Pub/Sub message:\n%s\nAttributes:\n%s', message,
+                 attributes)
     return self.process_message(message, attributes)
 
   def process_message(self, message, attributes):

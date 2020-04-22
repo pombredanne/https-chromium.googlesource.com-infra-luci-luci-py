@@ -1,14 +1,12 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Implements a singleton."""
 
 import contextlib
 import logging
 import os
 import sys
-
 
 if sys.platform == 'win32':
   from ctypes import wintypes
@@ -22,6 +20,7 @@ class Singleton(object):
 
   On Windows, uses a global Mutex. On others, use a flock'ed file.
   """
+
   def __init__(self, rootdir):
     rootdir = os.path.realpath(rootdir)
     self.handle = None
@@ -44,8 +43,7 @@ class Singleton(object):
       # doesn't get to keep it alive.
       # pylint: disable=undefined-variable
       self.handle = wintypes.windll.kernel32.CreateMutexW(
-          wintypes.c_int(0),
-          wintypes.c_int(-1),
+          wintypes.c_int(0), wintypes.c_int(-1),
           wintypes.create_unicode_buffer(self.key))
       last_error = wintypes.GetLastError()
       logging.info('%s = %s ; %s', self.key, self.handle, last_error)

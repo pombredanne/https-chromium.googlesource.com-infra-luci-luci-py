@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Client tool to perform various authentication related tasks."""
 
 __version__ = '0.4'
@@ -149,14 +148,13 @@ def CMDcheck(parser, args):
 
 
 class OptionParserAuth(logging_utils.OptionParserWithLogging):
+
   def __init__(self, **kwargs):
     logging_utils.OptionParserWithLogging.__init__(
         self, prog='auth.py', **kwargs)
     self.server_group = optparse.OptionGroup(self, 'Server')
     self.server_group.add_option(
-        '-S', '--service',
-        metavar='URL', default='',
-        help='Service to use')
+        '-S', '--service', metavar='URL', default='', help='Service to use')
     self.add_option_group(self.server_group)
     add_auth_options(self)
 

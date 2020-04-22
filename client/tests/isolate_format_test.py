@@ -18,16 +18,17 @@ from depot_tools import auto_stub
 import isolate_format
 from utils import file_path
 
-
-FAKE_DIR = (
-    u'z:\\path\\to\\non_existing'
-    if sys.platform == 'win32' else u'/path/to/non_existing')
+FAKE_DIR = (u'z:\\path\\to\\non_existing'
+            if sys.platform == 'win32' else u'/path/to/non_existing')
 
 
 class IsolateFormatTest(auto_stub.TestCase):
+
   def test_unknown_key(self):
     try:
-      isolate_format.verify_variables({'foo': [],})
+      isolate_format.verify_variables({
+          'foo': [],
+      })
       self.fail()
     except AssertionError:
       pass
@@ -49,9 +50,9 @@ class IsolateFormatTest(auto_stub.TestCase):
 
   def test_load_isolate_as_config_empty(self):
     expected = {
-      (): {
-        'isolate_dir': FAKE_DIR,
-      },
+        (): {
+            'isolate_dir': FAKE_DIR,
+        },
     }
     self.assertEqual(
         expected,
@@ -59,81 +60,97 @@ class IsolateFormatTest(auto_stub.TestCase):
 
   def test_load_isolate_as_config(self):
     value = {
-      'conditions': [
-        ['OS=="amiga" or OS=="atari" or OS=="coleco" or OS=="dendy"', {
-          'variables': {
-            'files': ['a', 'b', 'touched'],
-          },
-        }],
-        ['OS=="atari"', {
-          'variables': {
-            'files': ['c', 'd', 'touched_a', 'x'],
-            'command': ['echo', 'Hello World'],
-            'read_only': 2,
-          },
-        }],
-        ['OS=="amiga" or OS=="coleco" or OS=="dendy"', {
-          'variables': {
-            'files': ['e', 'f', 'touched_e', 'x'],
-            'command': ['echo', 'You should get an Atari'],
-          },
-        }],
-        ['OS=="amiga"', {
-          'variables': {
-            'files': ['g'],
-            'read_only': 1,
-          },
-        }],
-        ['OS=="amiga" or OS=="atari" or OS=="dendy"', {
-          'variables': {
-            'files': ['h'],
-          },
-        }],
-      ],
+        'conditions': [
+            [
+                'OS=="amiga" or OS=="atari" or OS=="coleco" or OS=="dendy"',
+                {
+                    'variables': {
+                        'files': ['a', 'b', 'touched'],
+                    },
+                }
+            ],
+            [
+                'OS=="atari"',
+                {
+                    'variables': {
+                        'files': ['c', 'd', 'touched_a', 'x'],
+                        'command': ['echo', 'Hello World'],
+                        'read_only': 2,
+                    },
+                }
+            ],
+            [
+                'OS=="amiga" or OS=="coleco" or OS=="dendy"',
+                {
+                    'variables': {
+                        'files': ['e', 'f', 'touched_e', 'x'],
+                        'command': ['echo', 'You should get an Atari'],
+                    },
+                }
+            ],
+            ['OS=="amiga"', {
+                'variables': {
+                    'files': ['g'],
+                    'read_only': 1,
+                },
+            }],
+            [
+                'OS=="amiga" or OS=="atari" or OS=="dendy"',
+                {
+                    'variables': {
+                        'files': ['h'],
+                    },
+                }
+            ],
+        ],
     }
     expected = {
-      (None,): {
-        'isolate_dir': FAKE_DIR,
-      },
-      ('amiga',): {
-        'files': ['a', 'b', 'e', 'f', 'g', 'h', 'touched', 'touched_e', 'x'],
-        'command': ['echo', 'You should get an Atari'],
-        'isolate_dir': FAKE_DIR,
-        'read_only': 1,
-      },
-      ('atari',): {
-        'files': ['a', 'b', 'c', 'd', 'h', 'touched', 'touched_a', 'x'],
-        'command': ['echo', 'Hello World'],
-        'isolate_dir': FAKE_DIR,
-        'read_only': 2,
-      },
-      ('coleco',): {
-        'files': ['a', 'b', 'e', 'f', 'touched', 'touched_e', 'x'],
-        'command': ['echo', 'You should get an Atari'],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('dendy',): {
-        'files': ['a', 'b', 'e', 'f', 'h', 'touched', 'touched_e', 'x'],
-        'command': ['echo', 'You should get an Atari'],
-        'isolate_dir': FAKE_DIR,
-      },
+        (None,): {
+            'isolate_dir': FAKE_DIR,
+        },
+        ('amiga',): {
+            'files': [
+                'a', 'b', 'e', 'f', 'g', 'h', 'touched', 'touched_e', 'x'
+            ],
+            'command': ['echo', 'You should get an Atari'],
+            'isolate_dir':
+                FAKE_DIR,
+            'read_only':
+                1,
+        },
+        ('atari',): {
+            'files': ['a', 'b', 'c', 'd', 'h', 'touched', 'touched_a', 'x'],
+            'command': ['echo', 'Hello World'],
+            'isolate_dir': FAKE_DIR,
+            'read_only': 2,
+        },
+        ('coleco',): {
+            'files': ['a', 'b', 'e', 'f', 'touched', 'touched_e', 'x'],
+            'command': ['echo', 'You should get an Atari'],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('dendy',): {
+            'files': ['a', 'b', 'e', 'f', 'h', 'touched', 'touched_e', 'x'],
+            'command': ['echo', 'You should get an Atari'],
+            'isolate_dir': FAKE_DIR,
+        },
     }
     self.assertEqual(
-        expected, isolate_format.load_isolate_as_config(
-            FAKE_DIR, value, None).flatten())
+        expected,
+        isolate_format.load_isolate_as_config(FAKE_DIR, value, None).flatten())
 
   def test_load_isolate_as_config_duplicate_command(self):
     value = {
-      'variables': {
-        'command': ['rm', '-rf', '/'],
-      },
-      'conditions': [
-        ['OS=="atari"', {
-          'variables': {
-            'command': ['echo', 'Hello World'],
-          },
-        }],
-      ],
+        'variables': {
+            'command': ['rm', '-rf', '/'],
+        },
+        'conditions': [[
+            'OS=="atari"', {
+                'variables': {
+                    'command': ['echo', 'Hello World'],
+                },
+            }
+        ],],
     }
     try:
       isolate_format.load_isolate_as_config(FAKE_DIR, value, None)
@@ -143,133 +160,137 @@ class IsolateFormatTest(auto_stub.TestCase):
 
   def test_load_isolate_as_config_no_variable(self):
     value = {
-      'variables': {
-        'command': ['echo', 'You should get an Atari'],
-        'files': ['a', 'b', 'touched'],
-        'read_only': 1,
-      },
+        'variables': {
+            'command': ['echo', 'You should get an Atari'],
+            'files': ['a', 'b', 'touched'],
+            'read_only': 1,
+        },
     }
     # The key is the empty tuple, since there is no variable to bind to.
     expected = {
-      (): {
-        'command': ['echo', 'You should get an Atari'],
-        'files': ['a', 'b', 'touched'],
-        'isolate_dir': FAKE_DIR,
-        'read_only': 1,
-      },
+        (): {
+            'command': ['echo', 'You should get an Atari'],
+            'files': ['a', 'b', 'touched'],
+            'isolate_dir': FAKE_DIR,
+            'read_only': 1,
+        },
     }
     self.assertEqual(
-        expected, isolate_format.load_isolate_as_config(
-            FAKE_DIR, value, None).flatten())
+        expected,
+        isolate_format.load_isolate_as_config(FAKE_DIR, value, None).flatten())
 
   def test_merge_two_empty(self):
     actual = isolate_format.Configs(None, ()).union(
         isolate_format.load_isolate_as_config(FAKE_DIR, {}, None)).union(
             isolate_format.load_isolate_as_config(FAKE_DIR, {}, None))
     expected = {
-      (): {
-        'isolate_dir': FAKE_DIR,
-      },
+        (): {
+            'isolate_dir': FAKE_DIR,
+        },
     }
     self.assertEqual(expected, actual.flatten())
 
   def test_load_two_conditions(self):
     linux = {
-      'conditions': [
-        ['OS=="linux"', {
-          'variables': {
-            'files': [
-              'file_linux',
-              'file_common',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="linux"',
+            {
+                'variables': {
+                    'files': [
+                        'file_linux',
+                        'file_common',
+                    ],
+                },
+            }
+        ],],
     }
     mac = {
-      'conditions': [
-        ['OS=="mac"', {
-          'variables': {
-            'files': [
-              'file_mac',
-              'file_common',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="mac"', {
+                'variables': {
+                    'files': [
+                        'file_mac',
+                        'file_common',
+                    ],
+                },
+            }
+        ],],
     }
     expected = {
-      (None,): {
-        'isolate_dir': FAKE_DIR,
-      },
-      ('linux',): {
-        'files': ['file_common', 'file_linux'],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('mac',): {
-        'files': ['file_common', 'file_mac'],
-        'isolate_dir': FAKE_DIR,
-      },
+        (None,): {
+            'isolate_dir': FAKE_DIR,
+        },
+        ('linux',): {
+            'files': ['file_common', 'file_linux'],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('mac',): {
+            'files': ['file_common', 'file_mac'],
+            'isolate_dir': FAKE_DIR,
+        },
     }
     configs = isolate_format.Configs(None, ()).union(
         isolate_format.load_isolate_as_config(FAKE_DIR, linux, None)).union(
-            isolate_format.load_isolate_as_config(FAKE_DIR, mac, None)
-        ).flatten()
+            isolate_format.load_isolate_as_config(FAKE_DIR, mac,
+                                                  None)).flatten()
     self.assertEqual(expected, configs)
 
   def test_load_three_conditions(self):
     linux = {
-      'conditions': [
-        ['OS=="linux" and chromeos==1', {
-          'variables': {
-            'files': [
-              'file_linux',
-              'file_common',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="linux" and chromeos==1',
+            {
+                'variables': {
+                    'files': [
+                        'file_linux',
+                        'file_common',
+                    ],
+                },
+            }
+        ],],
     }
     mac = {
-      'conditions': [
-        ['OS=="mac" and chromeos==0', {
-          'variables': {
-            'files': [
-              'file_mac',
-              'file_common',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="mac" and chromeos==0',
+            {
+                'variables': {
+                    'files': [
+                        'file_mac',
+                        'file_common',
+                    ],
+                },
+            }
+        ],],
     }
     win = {
-      'conditions': [
-        ['OS=="win" and chromeos==0', {
-          'variables': {
-            'files': [
-              'file_win',
-              'file_common',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="win" and chromeos==0',
+            {
+                'variables': {
+                    'files': [
+                        'file_win',
+                        'file_common',
+                    ],
+                },
+            }
+        ],],
     }
     expected = {
-      (None, None): {
-        'isolate_dir': FAKE_DIR,
-      },
-      ('linux', 1): {
-        'files': ['file_common', 'file_linux'],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('mac', 0): {
-        'files': ['file_common', 'file_mac'],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('win', 0): {
-        'files': ['file_common', 'file_win'],
-        'isolate_dir': FAKE_DIR,
-      },
+        (None, None): {
+            'isolate_dir': FAKE_DIR,
+        },
+        ('linux', 1): {
+            'files': ['file_common', 'file_linux'],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('mac', 0): {
+            'files': ['file_common', 'file_mac'],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('win', 0): {
+            'files': ['file_common', 'file_win'],
+            'isolate_dir': FAKE_DIR,
+        },
     }
     configs = isolate_format.Configs(None, ()).union(
         isolate_format.load_isolate_as_config(FAKE_DIR, linux, None)).union(
@@ -282,71 +303,66 @@ class IsolateFormatTest(auto_stub.TestCase):
     self.assertEqual(None, isolate_format._safe_index(('a', 'b'), 'c'))
 
   def test_get_map_keys(self):
-    self.assertEqual(
-        (0, None, 1), isolate_format._get_map_keys(('a', 'b', 'c'), ('a', 'c')))
+    self.assertEqual((0, None, 1),
+                     isolate_format._get_map_keys(('a', 'b', 'c'), ('a', 'c')))
 
   def test_map_keys(self):
-    self.assertEqual(
-        ('a', None, 'c'),
-        isolate_format._map_keys((0, None, 1), ('a', 'c')))
+    self.assertEqual(('a', None, 'c'),
+                     isolate_format._map_keys((0, None, 1), ('a', 'c')))
 
   def test_load_multi_variables(self):
     # Load an .isolate with different condition on different variables.
     data = {
-      'conditions': [
-        ['OS=="abc"', {
-          'variables': {
-            'command': ['bar'],
-          },
-        }],
-        ['CHROMEOS=="1"', {
-          'variables': {
-            'command': ['foo'],
-          },
-        }],
-      ],
+        'conditions': [
+            ['OS=="abc"', {
+                'variables': {
+                    'command': ['bar'],
+                },
+            }],
+            ['CHROMEOS=="1"', {
+                'variables': {
+                    'command': ['foo'],
+                },
+            }],
+        ],
     }
     configs = isolate_format.load_isolate_as_config(FAKE_DIR, data, None)
     self.assertEqual(('CHROMEOS', 'OS'), configs.config_variables)
     flatten = dict((k, v.flatten()) for k, v in configs._by_config.items())
     expected = {
-      (None, None): {
-        'isolate_dir': FAKE_DIR,
-      },
-      (None, 'abc'): {
-        'command': ['bar'],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('1', None): {
-        'command': ['foo'],
-        'isolate_dir': FAKE_DIR,
-      },
-      # TODO(maruel): It is a conflict.
-      ('1', 'abc'): {
-        'command': ['bar'],
-        'isolate_dir': FAKE_DIR,
-      },
+        (None, None): {
+            'isolate_dir': FAKE_DIR,
+        },
+        (None, 'abc'): {
+            'command': ['bar'],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('1', None): {
+            'command': ['foo'],
+            'isolate_dir': FAKE_DIR,
+        },
+        # TODO(maruel): It is a conflict.
+        ('1', 'abc'): {
+            'command': ['bar'],
+            'isolate_dir': FAKE_DIR,
+        },
     }
     self.assertEqual(expected, flatten)
 
   def test_union_multi_variables(self):
     data1 = {
-      'conditions': [
-        ['OS=="abc"', {
-          'variables': {
-            'command': ['bar'],
-          },
-        }],
-      ],
+        'conditions': [['OS=="abc"', {
+            'variables': {
+                'command': ['bar'],
+            },
+        }],],
     }
     data2 = {
-      'conditions': [
-        ['CHROMEOS=="1"', {
-          'variables': {
-            'command': ['foo'],
-          },
-        }],
-      ],
+        'conditions': [['CHROMEOS=="1"', {
+            'variables': {
+                'command': ['foo'],
+            },
+        }],],
     }
     configs1 = isolate_format.load_isolate_as_config(FAKE_DIR, data1, None)
     configs2 = isolate_format.load_isolate_as_config(FAKE_DIR, data2, None)
@@ -354,17 +370,17 @@ class IsolateFormatTest(auto_stub.TestCase):
     self.assertEqual(('CHROMEOS', 'OS'), configs.config_variables)
     flatten = dict((k, v.flatten()) for k, v in configs._by_config.items())
     expected = {
-      (None, None): {
-        'isolate_dir': FAKE_DIR,
-      },
-      (None, 'abc'): {
-        'command': ['bar'],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('1', None): {
-        'command': ['foo'],
-        'isolate_dir': FAKE_DIR,
-      },
+        (None, None): {
+            'isolate_dir': FAKE_DIR,
+        },
+        (None, 'abc'): {
+            'command': ['bar'],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('1', None): {
+            'command': ['foo'],
+            'isolate_dir': FAKE_DIR,
+        },
     }
     self.assertEqual(expected, flatten)
 
@@ -375,32 +391,32 @@ class IsolateFormatTest(auto_stub.TestCase):
     rhs = isolate_format.ConfigSettings(rhs_values, '/src/base')
     out = lhs.union(rhs)
     expected = {
-      'files': ['data/', 'test/data/'],
-      'isolate_dir': '/src/base',
+        'files': ['data/', 'test/data/'],
+        'isolate_dir': '/src/base',
     }
     self.assertEqual(expected, out.flatten())
 
   def test_configs_comment(self):
     configs = isolate_format.load_isolate_as_config(
-            FAKE_DIR, {}, '# Yo dawg!\n# Chill out.\n').union(
-        isolate_format.load_isolate_as_config(FAKE_DIR, {}, None))
+        FAKE_DIR, {}, '# Yo dawg!\n# Chill out.\n').union(
+            isolate_format.load_isolate_as_config(FAKE_DIR, {}, None))
     self.assertEqual('# Yo dawg!\n# Chill out.\n', configs.file_comment)
 
     configs = isolate_format.load_isolate_as_config(FAKE_DIR, {}, None).union(
-        isolate_format.load_isolate_as_config(
-            FAKE_DIR, {}, '# Yo dawg!\n# Chill out.\n'))
+        isolate_format.load_isolate_as_config(FAKE_DIR, {},
+                                              '# Yo dawg!\n# Chill out.\n'))
     self.assertEqual('# Yo dawg!\n# Chill out.\n', configs.file_comment)
 
     # Only keep the first one.
     configs = isolate_format.load_isolate_as_config(
         FAKE_DIR, {}, '# Yo dawg!\n').union(
-            isolate_format.load_isolate_as_config(
-                FAKE_DIR, {}, '# Chill out.\n'))
+            isolate_format.load_isolate_as_config(FAKE_DIR, {},
+                                                  '# Chill out.\n'))
     self.assertEqual('# Yo dawg!\n', configs.file_comment)
 
   def test_extract_comment(self):
-    self.assertEqual(
-        '# Foo\n# Bar\n', isolate_format.extract_comment('# Foo\n# Bar\n{}'))
+    self.assertEqual('# Foo\n# Bar\n',
+                     isolate_format.extract_comment('# Foo\n# Bar\n{}'))
     self.assertEqual('', isolate_format.extract_comment('{}'))
 
   def _test_pretty_print_impl(self, value, expected):
@@ -479,17 +495,21 @@ class IsolateFormatTest(auto_stub.TestCase):
 
   def test_convert_old_to_new_else(self):
     isolate_with_else_clauses = {
-      'conditions': [
-        ['OS=="mac"', {
-          'variables': {'foo': 'bar'},
-        }, {
-          'variables': {'x': 'y'},
-        }],
-      ],
+        'conditions': [[
+            'OS=="mac"', {
+                'variables': {
+                    'foo': 'bar'
+                },
+            }, {
+                'variables': {
+                    'x': 'y'
+                },
+            }
+        ],],
     }
     with self.assertRaises(isolate_format.IsolateError):
-      isolate_format.load_isolate_as_config(
-          FAKE_DIR, isolate_with_else_clauses, None)
+      isolate_format.load_isolate_as_config(FAKE_DIR, isolate_with_else_clauses,
+                                            None)
 
   def test_match_configs(self):
     expectations = [
@@ -534,93 +554,87 @@ class IsolateFormatTest(auto_stub.TestCase):
 
   def test_load_with_globals(self):
     values = {
-      'variables': {
-        'files': [
-          'file_common',
+        'variables': {
+            'files': ['file_common',],
+        },
+        'conditions': [
+            [
+                'OS=="linux"',
+                {
+                    'variables': {
+                        'files': ['file_linux',],
+                        'read_only': 1,
+                    },
+                }
+            ],
+            [
+                'OS=="mac" or OS=="win"',
+                {
+                    'variables': {
+                        'files': ['file_non_linux',],
+                        'read_only': 0,
+                    },
+                }
+            ],
         ],
-      },
-      'conditions': [
-        ['OS=="linux"', {
-          'variables': {
-            'files': [
-              'file_linux',
-            ],
-            'read_only': 1,
-          },
-        }],
-        ['OS=="mac" or OS=="win"', {
-          'variables': {
-            'files': [
-              'file_non_linux',
-            ],
-            'read_only': 0,
-          },
-        }],
-      ],
     }
     expected = {
-      (None,): {
-        'files': [
-          'file_common',
-        ],
-        'isolate_dir': FAKE_DIR,
-      },
-      ('linux',): {
-        'files': [
-          'file_linux',
-        ],
-        'isolate_dir': FAKE_DIR,
-        'read_only': 1,
-      },
-      ('mac',): {
-        'files': [
-          'file_non_linux',
-        ],
-        'isolate_dir': FAKE_DIR,
-        'read_only': 0,
-      },
-      ('win',): {
-        'files': [
-          'file_non_linux',
-        ],
-        'isolate_dir': FAKE_DIR,
-        'read_only': 0,
-      },
+        (None,): {
+            'files': ['file_common',],
+            'isolate_dir': FAKE_DIR,
+        },
+        ('linux',): {
+            'files': ['file_linux',],
+            'isolate_dir': FAKE_DIR,
+            'read_only': 1,
+        },
+        ('mac',): {
+            'files': ['file_non_linux',],
+            'isolate_dir': FAKE_DIR,
+            'read_only': 0,
+        },
+        ('win',): {
+            'files': ['file_non_linux',],
+            'isolate_dir': FAKE_DIR,
+            'read_only': 0,
+        },
     }
     actual = isolate_format.load_isolate_as_config(FAKE_DIR, values, None)
     self.assertEqual(expected, actual.flatten())
 
   def test_and_or_bug(self):
     a = {
-      'conditions': [
-        ['use_x11==0', {
-          'variables': {
-            'command': ['foo', 'x11=0'],
-          },
-        }],
-        ['OS=="linux" and chromeos==0', {
-          'variables': {
-            'command': ['foo', 'linux'],
-            },
-          }],
+        'conditions': [
+            ['use_x11==0', {
+                'variables': {
+                    'command': ['foo', 'x11=0'],
+                },
+            }],
+            [
+                'OS=="linux" and chromeos==0',
+                {
+                    'variables': {
+                        'command': ['foo', 'linux'],
+                    },
+                }
+            ],
         ],
-      }
+    }
 
     def load_included_isolate(isolate_dir, _isolate_path):
       return isolate_format.load_isolate_as_config(isolate_dir, a, None)
+
     self.mock(isolate_format, 'load_included_isolate', load_included_isolate)
 
     b = {
-      'conditions': [
-        ['use_x11==1', {
-          'variables': {
-            'command': ['foo', 'x11=1'],
-          },
-        }],
-      ],
-      'includes': [
-        'a',
-      ],
+        'conditions': [
+            ['use_x11==1', {
+                'variables': {
+                    'command': ['foo', 'x11=1'],
+                },
+            }],
+        ],
+        'includes': ['a',],
     }
     variables = {'use_x11': 1, 'OS': 'linux', 'chromeos': 0}
     config = isolate_format.load_isolate_for_config('/', str(b), variables)
@@ -631,6 +645,7 @@ class IsolateFormatTest(auto_stub.TestCase):
 
 
 class IsolateFormatTmpDirTest(unittest.TestCase):
+
   def setUp(self):
     super(IsolateFormatTmpDirTest, self).setUp()
     self.tempdir = tempfile.mkdtemp(prefix=u'isolate_')
@@ -643,82 +658,75 @@ class IsolateFormatTmpDirTest(unittest.TestCase):
 
   def test_load_with_includes(self):
     included_isolate = {
-      'variables': {
-        'files': [
-          'file_common',
+        'variables': {
+            'files': ['file_common',],
+        },
+        'conditions': [
+            [
+                'OS=="linux"',
+                {
+                    'variables': {
+                        'files': ['file_linux',],
+                        'read_only': 1,
+                    },
+                }
+            ],
+            [
+                'OS=="mac" or OS=="win"',
+                {
+                    'variables': {
+                        'files': ['file_non_linux',],
+                        'read_only': 0,
+                    },
+                }
+            ],
         ],
-      },
-      'conditions': [
-        ['OS=="linux"', {
-          'variables': {
-            'files': [
-              'file_linux',
-            ],
-            'read_only': 1,
-          },
-        }],
-        ['OS=="mac" or OS=="win"', {
-          'variables': {
-            'files': [
-              'file_non_linux',
-            ],
-            'read_only': 0,
-          },
-        }],
-      ],
     }
     with open(os.path.join(self.tempdir, 'included.isolate'), 'wb') as f:
       isolate_format.pretty_print(included_isolate, f)
     values = {
-      'includes': ['included.isolate'],
-      'variables': {
-        'files': [
-          'file_less_common',
-        ],
-      },
-      'conditions': [
-        ['OS=="mac"', {
-          'variables': {
-            'files': [
-              'file_mac',
-            ],
-            'read_only': 2,
-          },
-        }],
-      ],
+        'includes': ['included.isolate'],
+        'variables': {
+            'files': ['file_less_common',],
+        },
+        'conditions': [[
+            'OS=="mac"',
+            {
+                'variables': {
+                    'files': ['file_mac',],
+                    'read_only': 2,
+                },
+            }
+        ],],
     }
     actual = isolate_format.load_isolate_as_config(self.tempdir, values, None)
 
     expected = {
-      (None,): {
-        'files': [
-          'file_common',
-          'file_less_common',
-        ],
-        'isolate_dir': self.tempdir,
-      },
-      ('linux',): {
-        'files': [
-          'file_linux',
-        ],
-        'isolate_dir': self.tempdir,
-        'read_only': 1,
-      },
-      ('mac',): {
-        'files': [
-          'file_mac',
-          'file_non_linux',
-        ],
-        'isolate_dir': self.tempdir,
-        'read_only': 2,
-      },
-      ('win',): {
-        'files': [
-          'file_non_linux',
-        ],
-        'isolate_dir': self.tempdir,
-        'read_only': 0,
-      },
+        (None,): {
+            'files': [
+                'file_common',
+                'file_less_common',
+            ],
+            'isolate_dir': self.tempdir,
+        },
+        ('linux',): {
+            'files': ['file_linux',],
+            'isolate_dir': self.tempdir,
+            'read_only': 1,
+        },
+        ('mac',): {
+            'files': [
+                'file_mac',
+                'file_non_linux',
+            ],
+            'isolate_dir': self.tempdir,
+            'read_only': 2,
+        },
+        ('win',): {
+            'files': ['file_non_linux',],
+            'isolate_dir': self.tempdir,
+            'read_only': 0,
+        },
     }
     self.assertEqual(expected, actual.flatten())
 
@@ -733,70 +741,73 @@ class IsolateFormatTmpDirTest(unittest.TestCase):
     os.mkdir(dir_3_2)
 
     isolate1 = {
-      'conditions': [
-        ['OS=="amiga" or OS=="win"', {
-          'variables': {
-            'command': [
-              'foo', 'amiga_or_win',
+        'conditions': [
+            [
+                'OS=="amiga" or OS=="win"',
+                {
+                    'variables': {
+                        'command': [
+                            'foo',
+                            'amiga_or_win',
+                        ],
+                    },
+                }
             ],
-          },
-        }],
-        ['OS=="linux"', {
-          'variables': {
-            'command': [
-              'foo', 'linux',
+            [
+                'OS=="linux"',
+                {
+                    'variables': {
+                        'command': [
+                            'foo',
+                            'linux',
+                        ],
+                        'files': ['file_linux',],
+                    },
+                }
             ],
-            'files': [
-              'file_linux',
+            [
+                'OS=="mac" or OS=="win"',
+                {
+                    'variables': {
+                        'files': ['file_non_linux',],
+                    },
+                }
             ],
-          },
-        }],
-        ['OS=="mac" or OS=="win"', {
-          'variables': {
-            'files': [
-              'file_non_linux',
-            ],
-          },
-        }],
-      ],
+        ],
     }
     isolate2 = {
-      'conditions': [
-        ['OS=="linux" or OS=="mac"', {
-          'variables': {
-            'command': [
-              'foo', 'linux_or_mac',
-            ],
-            'files': [
-              'other/file',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="linux" or OS=="mac"',
+            {
+                'variables': {
+                    'command': [
+                        'foo',
+                        'linux_or_mac',
+                    ],
+                    'files': ['other/file',],
+                },
+            }
+        ],],
     }
     # Do not define command in isolate3, otherwise commands in the other
     # included .isolated will be ignored.
     isolate3 = {
-      'includes': [
-        '../1/isolate1.isolate',
-        '2/isolate2.isolate',
-      ],
-      'conditions': [
-        ['OS=="amiga"', {
-          'variables': {
-            'files': [
-              'file_amiga',
-            ],
-          },
-        }],
-        ['OS=="mac"', {
-          'variables': {
-            'files': [
-              'file_mac',
-            ],
-          },
-        }],
-      ],
+        'includes': [
+            '../1/isolate1.isolate',
+            '2/isolate2.isolate',
+        ],
+        'conditions': [
+            ['OS=="amiga"', {
+                'variables': {
+                    'files': ['file_amiga',],
+                },
+            }],
+            ['OS=="mac"', {
+                'variables': {
+                    'files': ['file_mac',],
+                },
+            }],
+        ],
     }
     # No need to write isolate3.
     with open(os.path.join(dir_1, 'isolate1.isolate'), 'wb') as f:
@@ -809,51 +820,53 @@ class IsolateFormatTmpDirTest(unittest.TestCase):
     # file.
     actual = isolate_format.load_isolate_as_config(dir_3, isolate3, None)
     expected = {
-      (None,): {
-        # TODO(maruel): See TODO in ConfigSettings.flatten().
-        # TODO(maruel): If kept, in this case dir_3 should be selected.
-        'isolate_dir': dir_1,
-      },
-      ('amiga',): {
-        'command': ['foo', 'amiga_or_win'],
-        'files': [
-          # Note that the file was rebased from isolate1. This is important,
-          # isolate1 represent the canonical root path because it is the one
-          # that defined the command.
-          '../3/file_amiga',
-        ],
-        'isolate_dir': dir_1,
-      },
-      ('linux',): {
-        # Last included takes precedence. *command comes from isolate2*, so
-        # it becomes the canonical root, so reference to file from isolate1 is
-        # via '../../1'.
-        'command': ['foo', 'linux_or_mac'],
-        'files': [
-          '../../1/file_linux',
-          'other/file',
-        ],
-        'isolate_dir': dir_3_2,
-      },
-      ('mac',): {
-        'command': ['foo', 'linux_or_mac'],
-        'files': [
-          '../../1/file_non_linux',
-          '../file_mac',
-          'other/file',
-        ],
-        'isolate_dir': dir_3_2,
-      },
-      ('win',): {
-        # command comes from isolate1.
-        'command': ['foo', 'amiga_or_win'],
-        'files': [
-          # While this may be surprising, this is because the command was
-          # defined in isolate1, not isolate3.
-          'file_non_linux',
-        ],
-        'isolate_dir': dir_1,
-      },
+        (None,): {
+            # TODO(maruel): See TODO in ConfigSettings.flatten().
+            # TODO(maruel): If kept, in this case dir_3 should be selected.
+            'isolate_dir': dir_1,
+        },
+        ('amiga',): {
+            'command': ['foo', 'amiga_or_win'],
+            'files': [
+                # Note that the file was rebased from isolate1. This is important,
+                # isolate1 represent the canonical root path because it is the one
+                # that defined the command.
+                '../3/file_amiga',
+            ],
+            'isolate_dir':
+                dir_1,
+        },
+        ('linux',): {
+            # Last included takes precedence. *command comes from isolate2*, so
+            # it becomes the canonical root, so reference to file from isolate1 is
+            # via '../../1'.
+            'command': ['foo', 'linux_or_mac'],
+            'files': [
+                '../../1/file_linux',
+                'other/file',
+            ],
+            'isolate_dir': dir_3_2,
+        },
+        ('mac',): {
+            'command': ['foo', 'linux_or_mac'],
+            'files': [
+                '../../1/file_non_linux',
+                '../file_mac',
+                'other/file',
+            ],
+            'isolate_dir': dir_3_2,
+        },
+        ('win',): {
+            # command comes from isolate1.
+            'command': ['foo', 'amiga_or_win'],
+            'files': [
+                # While this may be surprising, this is because the command was
+                # defined in isolate1, not isolate3.
+                'file_non_linux',
+            ],
+            'isolate_dir':
+                dir_1,
+        },
     }
     self.assertEqual(expected, actual.flatten())
 
@@ -868,70 +881,79 @@ class IsolateFormatTmpDirTest(unittest.TestCase):
     os.mkdir(dir_3_2)
 
     isolate1 = {
-      'conditions': [
-        ['OS=="amiga" or OS=="win"', {
-          'variables': {
-            'command': [
-              'foo', 'amiga_or_win', '<(PATH)',
+        'conditions': [
+            [
+                'OS=="amiga" or OS=="win"',
+                {
+                    'variables': {
+                        'command': [
+                            'foo',
+                            'amiga_or_win',
+                            '<(PATH)',
+                        ],
+                    },
+                }
             ],
-          },
-        }],
-        ['OS=="linux"', {
-          'variables': {
-            'command': [
-              'foo', 'linux', '<(PATH)',
+            [
+                'OS=="linux"',
+                {
+                    'variables': {
+                        'command': [
+                            'foo',
+                            'linux',
+                            '<(PATH)',
+                        ],
+                        'files': ['<(PATH)/file_linux',],
+                    },
+                }
             ],
-            'files': [
-              '<(PATH)/file_linux',
+            [
+                'OS=="mac" or OS=="win"',
+                {
+                    'variables': {
+                        'files': ['<(PATH)/file_non_linux',],
+                    },
+                }
             ],
-          },
-        }],
-        ['OS=="mac" or OS=="win"', {
-          'variables': {
-            'files': [
-              '<(PATH)/file_non_linux',
-            ],
-          },
-        }],
-      ],
+        ],
     }
     isolate2 = {
-      'conditions': [
-        ['OS=="linux" or OS=="mac"', {
-          'variables': {
-            'command': [
-              'foo', 'linux_or_mac', '<(PATH)',
-            ],
-            'files': [
-              '<(PATH)/other/file',
-            ],
-          },
-        }],
-      ],
+        'conditions': [[
+            'OS=="linux" or OS=="mac"',
+            {
+                'variables': {
+                    'command': [
+                        'foo',
+                        'linux_or_mac',
+                        '<(PATH)',
+                    ],
+                    'files': ['<(PATH)/other/file',],
+                },
+            }
+        ],],
     }
     # Do not define command in isolate3, otherwise commands in the other
     # included .isolated will be ignored.
     isolate3 = {
-      'includes': [
-        '../1/isolate1.isolate',
-        '2/isolate2.isolate',
-      ],
-      'conditions': [
-        ['OS=="amiga"', {
-          'variables': {
-            'files': [
-              '<(PATH)/file_amiga',
+        'includes': [
+            '../1/isolate1.isolate',
+            '2/isolate2.isolate',
+        ],
+        'conditions': [
+            [
+                'OS=="amiga"',
+                {
+                    'variables': {
+                        'files': ['<(PATH)/file_amiga',],
+                    },
+                }
             ],
-          },
-        }],
-        ['OS=="mac"', {
-          'variables': {
-            'files': [
-              '<(PATH)/file_mac',
-            ],
-          },
-        }],
-      ],
+            ['OS=="mac"', {
+                'variables': {
+                    'files': ['<(PATH)/file_mac',],
+                },
+            }],
+        ],
     }
     # No need to write isolate3.
     with open(os.path.join(dir_1, 'isolate1.isolate'), 'wb') as f:
@@ -944,44 +966,41 @@ class IsolateFormatTmpDirTest(unittest.TestCase):
     # file.
     actual = isolate_format.load_isolate_as_config(dir_3, isolate3, None)
     expected = {
-      (None,): {
-        'isolate_dir': dir_1,
-      },
-      ('amiga',): {
-        'command': ['foo', 'amiga_or_win', '<(PATH)'],
-        'files': [
-          '<(PATH)/file_amiga',
-        ],
-        'isolate_dir': dir_1,
-      },
-      ('linux',): {
-        # Last included takes precedence. *command comes from isolate2*, so
-        # it becomes the canonical root, so reference to file from isolate1 is
-        # via '../../1'.
-        'command': ['foo', 'linux_or_mac', '<(PATH)'],
-        'files': [
-          '<(PATH)/file_linux',
-          '<(PATH)/other/file',
-        ],
-        'isolate_dir': dir_3_2,
-      },
-      ('mac',): {
-        'command': ['foo', 'linux_or_mac', '<(PATH)'],
-        'files': [
-          '<(PATH)/file_mac',
-          '<(PATH)/file_non_linux',
-          '<(PATH)/other/file',
-        ],
-        'isolate_dir': dir_3_2,
-      },
-      ('win',): {
-        # command comes from isolate1.
-        'command': ['foo', 'amiga_or_win', '<(PATH)'],
-        'files': [
-          '<(PATH)/file_non_linux',
-        ],
-        'isolate_dir': dir_1,
-      },
+        (None,): {
+            'isolate_dir': dir_1,
+        },
+        ('amiga',): {
+            'command': ['foo', 'amiga_or_win', '<(PATH)'],
+            'files': ['<(PATH)/file_amiga',],
+            'isolate_dir': dir_1,
+        },
+        ('linux',): {
+            # Last included takes precedence. *command comes from isolate2*, so
+            # it becomes the canonical root, so reference to file from isolate1 is
+            # via '../../1'.
+            'command': ['foo', 'linux_or_mac', '<(PATH)'],
+            'files': [
+                '<(PATH)/file_linux',
+                '<(PATH)/other/file',
+            ],
+            'isolate_dir': dir_3_2,
+        },
+        ('mac',): {
+            'command': ['foo', 'linux_or_mac', '<(PATH)'],
+            'files': [
+                '<(PATH)/file_mac',
+                '<(PATH)/file_non_linux',
+                '<(PATH)/other/file',
+            ],
+            'isolate_dir':
+                dir_3_2,
+        },
+        ('win',): {
+            # command comes from isolate1.
+            'command': ['foo', 'amiga_or_win', '<(PATH)'],
+            'files': ['<(PATH)/file_non_linux',],
+            'isolate_dir': dir_1,
+        },
     }
     self.assertEqual(expected, actual.flatten())
 

@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Replica side of Primary <-> Replica protocol.
 
 Also includes common code used by both Replica and Primary.
@@ -25,7 +24,6 @@ from . import realms
 from . import signature
 from .proto import replication_pb2
 
-
 # Messages for error codes in ServiceLinkResponse.
 LINKING_ERRORS = {
     replication_pb2.ServiceLinkResponse.TRANSPORT_ERROR: 'Transport error,',
@@ -33,22 +31,20 @@ LINKING_ERRORS = {
     replication_pb2.ServiceLinkResponse.AUTH_ERROR: 'Authentication error.',
 }
 
-
 # Returned by new_auth_db_snapshot.
-AuthDBSnapshot = collections.namedtuple(
-    'AuthDBSnapshot',
-    [
-        'global_config',
-        'groups',
-        'ip_whitelists',
-        'ip_whitelist_assignments',
-        'realms_globals',
-        'project_realms',
-    ])
+AuthDBSnapshot = collections.namedtuple('AuthDBSnapshot', [
+    'global_config',
+    'groups',
+    'ip_whitelists',
+    'ip_whitelist_assignments',
+    'realms_globals',
+    'project_realms',
+])
 
 
 class ProtocolError(Exception):
   """Raised when request to primary fails."""
+
   def __init__(self, status_code, msg):
     super(ProtocolError, self).__init__(msg)
     self.status_code = status_code
@@ -145,15 +141,13 @@ def new_auth_db_snapshot():
   ip_whitelist_assignments, ip_whitelists = model.fetch_ip_whitelists()
 
   snapshot = AuthDBSnapshot(
-      config_future.get_result() or model.AuthGlobalConfig(
-          key=model.root_key()
-      ),
+      config_future.get_result() or
+      model.AuthGlobalConfig(key=model.root_key()),
       groups_future.get_result(),
       ip_whitelists,
       ip_whitelist_assignments,
-      realms_globals_future.get_result() or model.AuthRealmsGlobals(
-          key=model.realms_globals_key()
-      ),
+      realms_globals_future.get_result() or
+      model.AuthRealmsGlobals(key=model.realms_globals_key()),
       project_realms_future.get_result(),
   )
   return state_future.get_result(), snapshot
@@ -224,10 +218,9 @@ def auth_db_snapshot_to_proto(snapshot, auth_db_proto=None):
 
   # Merge all per-project realms into a single realms_pb2.Realms. There are some
   # space savings there due to dedupping permissions lists.
-  realms.merge(
-      snapshot.realms_globals.permissions,
-      {r.key.id(): r.realms for r in snapshot.project_realms},
-      auth_db_proto.realms)
+  realms.merge(snapshot.realms_globals.permissions,
+               {r.key.id(): r.realms for r in snapshot.project_realms},
+               auth_db_proto.realms)
 
   return auth_db_proto
 
@@ -269,11 +262,8 @@ def push_auth_db(revision, auth_db):
   # Store AuthDB message as is first by deflating it and splitting it up into
   # multiple AuthDBSnapshotShard messages. If it fails midway, no big deal. It
   # will just hang in the datastore as unreferenced garbage.
-  shard_ids = store_sharded_auth_db(
-      auth_db,
-      state.primary_url,
-      revision.auth_db_rev,
-      512*1024)
+  shard_ids = store_sharded_auth_db(auth_db, state.primary_url,
+                                    revision.auth_db_rev, 512 * 1024)
 
   # Put shard IDs into AuthReplicationState, they are used in api.fetch_auth_db.
   @ndb.transactional
@@ -357,7 +347,7 @@ def load_sharded_auth_db(primary_url, auth_db_rev, shard_ids):
   out = cStringIO.StringIO()
   decompressor = zlib.decompressobj()
   for idx, shard in enumerate(shards):
-    data = decompressor.decompress(shard.blob, 512*1024)
+    data = decompressor.decompress(shard.blob, 512 * 1024)
     # Release the memory held by the shard ASAP
     shards[idx] = None
     shard.blob = None

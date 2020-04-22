@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """OAuth2 related utilities and implementation of browser based login flow."""
 
 from __future__ import print_function
@@ -42,7 +41,6 @@ from six.moves import BaseHTTPServer, urllib
 
 from libs import luci_context
 
-
 # Path to a file with cached OAuth2 credentials used by default. Can be
 # overridden by command line option or env variable.
 DEFAULT_OAUTH_TOKENS_CACHE = os.path.join(
@@ -55,18 +53,16 @@ OAUTH_SCOPES = 'https://www.googleapis.com/auth/userinfo.email'
 # Endpoint to generate access tokens.
 OAUTH_TOKEN_ENDPOINT = 'https://www.googleapis.com/oauth2/v3/token'
 
-
 # OAuth authentication method configuration, used by utils/net.py.
 # See doc string for 'make_oauth_config' for meaning of fields.
 OAuthConfig = collections.namedtuple('OAuthConfig', [
-  'disabled',
-  'tokens_cache',
-  'no_local_webserver',
-  'webserver_port',
-  'service_account_json',
-  'use_luci_context_auth',
+    'disabled',
+    'tokens_cache',
+    'no_local_webserver',
+    'webserver_port',
+    'service_account_json',
+    'use_luci_context_auth',
 ])
-
 
 # Indicates that no OAuth-based authentication performed by this module should
 # be automatically used.
@@ -78,49 +74,46 @@ DISABLED_OAUTH_CONFIG = OAuthConfig(
     service_account_json=None,
     use_luci_context_auth=None)
 
-
 # Access token with its expiration time (UTC datetime, or None if not known).
 AccessToken = collections.namedtuple('AccessToken', [
-  'token',
-  'expires_at',
+    'token',
+    'expires_at',
 ])
-
 
 # Service account credentials as loaded from JSON file.
-ServiceAccountCredentials = collections.namedtuple('ServiceAccountCredentials',
-[
-  'client_email',
-  'client_id',
-  'private_key', # PEM encoded.
-  'private_key_id',
-])
-
+ServiceAccountCredentials = collections.namedtuple(
+    'ServiceAccountCredentials',
+    [
+        'client_email',
+        'client_id',
+        'private_key',  # PEM encoded.
+        'private_key_id',
+    ])
 
 # Configuration fetched from a service, returned by _fetch_service_config.
 _ServiceConfig = collections.namedtuple('_ServiceConfig', [
-  'client_id',
-  'client_secret',
-  'primary_url',
+    'client_id',
+    'client_secret',
+    'primary_url',
 ])
 
 # Process cache of _fetch_service_config results.
 _service_config_cache = {}
 _service_config_cache_lock = threading.Lock()
 
-
 # LUCI context parameters as loaded from JSON file.
 #
 # https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/client/LUCI_CONTEXT.md
 LocalAuthParameters = collections.namedtuple('LocalAuthParameters', [
-  'rpc_port',
-  'secret',
-  'accounts',
-  'default_account_id',
+    'rpc_port',
+    'secret',
+    'accounts',
+    'default_account_id',
 ])
 
 # Values of 'accounts' section of LUCI_CONTEXT["local_auth"].
 LocalAuthAccount = collections.namedtuple('LocalAuthAccount', [
-  'id',
+    'id',
 ])
 
 
@@ -132,12 +125,11 @@ class BadLuciContextParameters(Exception):
   """LUCI context JSON parameters are missing or not valid."""
 
 
-def make_oauth_config(
-    disabled=None,
-    tokens_cache=None,
-    no_local_webserver=None,
-    webserver_port=None,
-    service_account_json=None):
+def make_oauth_config(disabled=None,
+                      tokens_cache=None,
+                      no_local_webserver=None,
+                      webserver_port=None,
+                      service_account_json=None):
   """Returns new instance of OAuthConfig.
 
   If some config option is not provided or None, it will be set to a reasonable
@@ -153,8 +145,8 @@ def make_oauth_config(
     service_account_json: path to JSON file with service account credentials.
   """
   if tokens_cache is None:
-    tokens_cache = os.environ.get(
-        'SWARMING_AUTH_TOKENS_CACHE', DEFAULT_OAUTH_TOKENS_CACHE)
+    tokens_cache = os.environ.get('SWARMING_AUTH_TOKENS_CACHE',
+                                  DEFAULT_OAUTH_TOKENS_CACHE)
   if no_local_webserver is None:
     no_local_webserver = tools.get_bool_env_var(
         'SWARMING_AUTH_NO_LOCAL_WEBSERVER')
@@ -166,8 +158,9 @@ def make_oauth_config(
 
   use_luci_context_auth = has_local_auth()
   if disabled is None:
-    disabled = (tools.is_headless()
-                and not service_account_json and not use_luci_context_auth)
+    disabled = (
+        tools.is_headless() and not service_account_json and
+        not use_luci_context_auth)
 
   if disabled:
     service_account_json = None
@@ -175,13 +168,8 @@ def make_oauth_config(
   elif service_account_json and use_luci_context_auth:
     raise ValueError('Cannot use both service account and LUCI_CONTEXT')
 
-  return OAuthConfig(
-      disabled,
-      tokens_cache,
-      no_local_webserver,
-      webserver_port,
-      service_account_json,
-      use_luci_context_auth)
+  return OAuthConfig(disabled, tokens_cache, no_local_webserver, webserver_port,
+                     service_account_json, use_luci_context_auth)
 
 
 def add_oauth_options(parser):
@@ -193,40 +181,40 @@ def add_oauth_options(parser):
       action='store_true',
       default=False,
       help='Use it to disable OAuth and rely only on IP whitelist for '
-           'authentication. OAuth gets disabled by default on bots that '
-           'do not have credentials.')
+      'authentication. OAuth gets disabled by default on bots that '
+      'do not have credentials.')
   parser.oauth_group.add_option(
       '--auth-tokens-cache',
       default=default_config.tokens_cache,
       metavar='FILE',
       help='Path to a file with oauth2client tokens cache. It should be a '
-           'safe location accessible only to a current user: knowing content '
-           'of this file is roughly equivalent to knowing account password. '
-           'Can also be set with SWARMING_AUTH_TOKENS_CACHE environment '
-           'variable. [default: %default]')
+      'safe location accessible only to a current user: knowing content '
+      'of this file is roughly equivalent to knowing account password. '
+      'Can also be set with SWARMING_AUTH_TOKENS_CACHE environment '
+      'variable. [default: %default]')
   parser.oauth_group.add_option(
       '--auth-no-local-webserver',
       action='store_true',
       default=default_config.no_local_webserver,
       help='Do not run a local web server when performing OAuth2 login flow. '
-           'Can also be set with SWARMING_AUTH_NO_LOCAL_WEBSERVER=1 '
-           'environment variable. [default: %default]')
+      'Can also be set with SWARMING_AUTH_NO_LOCAL_WEBSERVER=1 '
+      'environment variable. [default: %default]')
   parser.oauth_group.add_option(
       '--auth-host-port',
       type=int,
       default=default_config.webserver_port,
       metavar='PORT',
       help='Port a local web server should listen on. Used only if '
-           '--auth-no-local-webserver is not set. [default: %default]')
+      '--auth-no-local-webserver is not set. [default: %default]')
   parser.oauth_group.add_option(
       '--auth-service-account-json',
       default=default_config.service_account_json,
       metavar='FILE',
       help='Path to a JSON file with service account credentials to use. '
-           'Can be generated by "Generate new JSON key" button in '
-           '"Credentials" section of any Cloud Console project. The value can '
-           'also be set with SWARMING_AUTH_SERVICE_ACCOUNT_JSON environment '
-           'variable. [default: %default]')
+      'Can be generated by "Generate new JSON key" button in '
+      '"Credentials" section of any Cloud Console project. The value can '
+      'also be set with SWARMING_AUTH_SERVICE_ACCOUNT_JSON environment '
+      'variable. [default: %default]')
   parser.add_option_group(parser.oauth_group)
   # Use this occasion to monkey patch oauth2client's LockedFile to do retries by
   # default.
@@ -332,8 +320,8 @@ def create_access_token(urlhost, config, allow_user_interaction):
         body=body,
         headers={'Content-Type': 'application/x-www-form-urlencoded'})
     if resp.status != 200:
-      logging.error(
-          'Failed to grab access token for service account: %r', content)
+      logging.error('Failed to grab access token for service account: %r',
+                    content)
       return None
 
     try:
@@ -376,7 +364,7 @@ def create_access_token(urlhost, config, allow_user_interaction):
 
   # Success.
   logging.info('OAuth access_token refreshed. Expires in %s.',
-      credentials.token_expiry - datetime.datetime.utcnow())
+               credentials.token_expiry - datetime.datetime.utcnow())
   credentials.set_store(storage)
   storage.put(credentials)
   return AccessToken(credentials.access_token, credentials.token_expiry)
@@ -414,8 +402,8 @@ def _fetch_auth_service_url(urlhost):
   if not service_config:
     return None
   url = (service_config.primary_url or urlhost).rstrip('/')
-  assert url.startswith(
-      ('https://', 'http://127.0.0.1:', 'http://localhost:')), url
+  assert url.startswith(('https://', 'http://127.0.0.1:',
+                         'http://localhost:')), url
   return url
 
 
@@ -428,6 +416,7 @@ def _fetch_service_config(urlhost):
   Returns:
     Instance of _ServiceConfig on success, None on failure.
   """
+
   def do_fetch():
     # client_secret is not really a secret in that case. So an attacker can
     # impersonate service's identity in OAuth2 flow. But that's generally
@@ -443,10 +432,9 @@ def _fetch_service_config(urlhost):
         config = response.json()
         if not isinstance(config, dict):
           raise ValueError()
-        return _ServiceConfig(
-            config['client_id'],
-            config['client_not_so_secret'],
-            config.get('primary_url'))
+        return _ServiceConfig(config['client_id'],
+                              config['client_not_so_secret'],
+                              config.get('primary_url'))
       except (KeyError, ValueError) as err:
         logging.error('Invalid response from the service: %s', err)
     else:
@@ -527,11 +515,11 @@ def _make_assertion_jwt(service_account):
   # https://developers.google.com/accounts/docs/OAuth2ServiceAccount.
   now = long(time.time())
   payload = {
-    'aud': OAUTH_TOKEN_ENDPOINT,
-    'scope': OAUTH_SCOPES,
-    'iat': now,
-    'exp': now + 3600,
-    'iss': service_account.client_email,
+      'aud': OAUTH_TOKEN_ENDPOINT,
+      'scope': OAUTH_SCOPES,
+      'iat': now,
+      'exp': now + 3600,
+      'iss': service_account.client_email,
   }
   # oauth2client knows how to use PyCrypo or PyOpenSSL for signing. Both are
   # heavy libraries, that require compiled extensions. Use pure python 'rsa' lib
@@ -546,9 +534,10 @@ def _make_signed_jwt(payload, pkey):
   # See http://self-issued.info/docs/draft-jones-json-web-token.html.
   as_json = lambda d: json.dumps(d, sort_keys=True, separators=(',', ':'))
   b64encode = lambda d: base64.urlsafe_b64encode(d).rstrip('=')
-  to_sign = '%s.%s' % (
-      b64encode(as_json({'typ': 'JWT', 'alg': 'RS256'})),
-      b64encode(as_json(payload)))
+  to_sign = '%s.%s' % (b64encode(as_json({
+      'typ': 'JWT',
+      'alg': 'RS256'
+  })), b64encode(as_json(payload)))
   signature = rsa.sign(to_sign, pkey, 'SHA-256')
   return '%s.%s' % (to_sign, b64encode(signature))
 
@@ -559,8 +548,10 @@ def _make_signed_jwt(payload, pkey):
 
 def _run_oauth_dance(urlhost, config):
   """Perform full OAuth2 dance with the browser."""
+
   def out(s):
     print(s)
+
   def err(s):
     print(s, file=sys.stderr)
 
@@ -591,12 +582,11 @@ def _run_oauth_dance(urlhost, config):
       success = True
     use_local_webserver = success
     if not success:
-      out(
-        'Failed to start a local webserver listening on port %d.\n'
-        'Please check your firewall settings and locally running programs that '
-        'may be blocking or using those ports.\n\n'
-        'Falling back to --auth-no-local-webserver and continuing with '
-        'authentication.\n' % port)
+      out('Failed to start a local webserver listening on port %d.\n'
+          'Please check your firewall settings and locally running programs that '
+          'may be blocking or using those ports.\n\n'
+          'Falling back to --auth-no-local-webserver and continuing with '
+          'authentication.\n' % port)
 
   if use_local_webserver:
     oauth_callback = 'http://localhost:%s/' % port
@@ -607,16 +597,14 @@ def _run_oauth_dance(urlhost, config):
 
   if use_local_webserver:
     webbrowser.open(authorize_url, new=1, autoraise=True)
-    out(
-      'Your browser has been opened to visit:\n\n'
-      '    %s\n\n'
-      'If your browser is on a different machine then exit and re-run this '
-      'application with the command-line parameter\n\n'
-      '  --auth-no-local-webserver\n' % authorize_url)
+    out('Your browser has been opened to visit:\n\n'
+        '    %s\n\n'
+        'If your browser is on a different machine then exit and re-run this '
+        'application with the command-line parameter\n\n'
+        '  --auth-no-local-webserver\n' % authorize_url)
   else:
-    out(
-      'Go to the following link in your browser:\n\n'
-      '    %s\n' % authorize_url)
+    out('Go to the following link in your browser:\n\n'
+        '    %s\n' % authorize_url)
 
   try:
     code = None
@@ -626,9 +614,8 @@ def _run_oauth_dance(urlhost, config):
         err('Authentication request was rejected.')
         return None
       if 'code' not in httpd.query_params:
-        err(
-          'Failed to find "code" in the query parameters of the redirect.\n'
-          'Try running with --auth-no-local-webserver.')
+        err('Failed to find "code" in the query parameters of the redirect.\n'
+            'Try running with --auth-no-local-webserver.')
         return None
       code = httpd.query_params['code']
     else:
@@ -686,12 +673,12 @@ def _load_local_auth():
 
   try:
     return LocalAuthParameters(
-      rpc_port=int(data['rpc_port']),
-      secret=str(data['secret']),
-      accounts=[
-        LocalAuthAccount(id=acc['id']) for acc in data.get('accounts', [])
-      ],
-      default_account_id=data.get('default_account_id'))
+        rpc_port=int(data['rpc_port']),
+        secret=str(data['secret']),
+        accounts=[
+            LocalAuthAccount(id=acc['id']) for acc in data.get('accounts', [])
+        ],
+        default_account_id=data.get('default_account_id'))
   except (ValueError, KeyError):
     data['secret'] = '...'  # note: 'data' is a copy, it's fine to mutate it
     raise BadLuciContextParameters(
@@ -705,13 +692,13 @@ def _get_luci_context_access_token(local_auth):
     AccessToken on success.
     None on failure.
   """
-  logging.debug(
-      'local_auth: requesting an access token for account "%s"',
-      local_auth.default_account_id)
+  logging.debug('local_auth: requesting an access token for account "%s"',
+                local_auth.default_account_id)
   body = json.dumps({
-    'account_id': local_auth.default_account_id,  # may be None for old protocol
-    'scopes': [OAUTH_SCOPES],
-    'secret': local_auth.secret,
+      'account_id':
+          local_auth.default_account_id,  # may be None for old protocol
+      'scopes': [OAUTH_SCOPES],
+      'secret': local_auth.secret,
   })
   http = httplib2.Http()
   host = 'http://127.0.0.1:%d' % local_auth.rpc_port
@@ -737,9 +724,8 @@ def _get_luci_context_access_token(local_auth):
     return None
 
   if error_code or not access_token:
-    logging.error(
-        'local_auth: Error %d in retrieving access token: %s',
-        error_code, error_message)
+    logging.error('local_auth: Error %d in retrieving access token: %s',
+                  error_code, error_message)
     return None
 
   try:
@@ -750,7 +736,7 @@ def _get_luci_context_access_token(local_auth):
 
   logging.debug(
       'local_auth: got an access token for account "%s" that expires in %d sec',
-       local_auth.default_account_id, expiry - time.time())
+      local_auth.default_account_id, expiry - time.time())
 
   access_token = AccessToken(access_token, expiry_dt)
   if not _validate_luci_context_access_token(access_token):

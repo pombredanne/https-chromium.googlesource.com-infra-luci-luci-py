@@ -15,6 +15,7 @@ import cipd
 
 
 class Test(unittest.TestCase):
+
   def test_is_valid_package_name(self):
     self.assertTrue(cipd.is_valid_package_name('foo'))
     self.assertTrue(cipd.is_valid_package_name('foo/.bar'))
@@ -23,7 +24,7 @@ class Test(unittest.TestCase):
 
   def test_is_valid_package_name_template(self):
     for i in ('foo', 'foo${bar}', 'infra/tools/cipd/${platform}',
-        'infra/git/${os=linux,mac}-${arch}'):
+              'infra/git/${os=linux,mac}-${arch}'):
       self.assertTrue(cipd.is_valid_package_name_template(i), i)
     for i in ('foo{', 'foo{bar}', ''):
       self.assertFalse(cipd.is_valid_package_name_template(i), i)
@@ -35,26 +36,29 @@ class Test(unittest.TestCase):
   def test_is_valid_tag(self):
     self.assertTrue(cipd.is_valid_tag('foo:1'))
     self.assertFalse(cipd.is_valid_tag('foo'))
-    self.assertFalse(cipd.is_valid_tag('f'*401))
+    self.assertFalse(cipd.is_valid_tag('f' * 401))
 
   def test_is_valid_instance_id(self):
     # Legacy SHA1s.
-    self.assertTrue(cipd.is_valid_instance_id('1'*40))
+    self.assertTrue(cipd.is_valid_instance_id('1' * 40))
     self.assertFalse(cipd.is_valid_instance_id('1'))
     # Newer base64-encoded hashes. No padding symbol is used or allowed.
-    self.assertTrue(cipd.is_valid_instance_id(
-        'b-AF8UbArxfy_4EXYaa8vAxTncdMtMIorleb_Wg303UC'))
-    self.assertFalse(cipd.is_valid_instance_id(
-        'bAF8UbArxfy_UEXYaa8vAxTncdMtMIorleb_Wg30UC=='))
-    self.assertFalse(cipd.is_valid_instance_id(
-        'b-AF8UbArxfy/4EXYaa8vAxTncdMtMIorleb_Wg303UC'))
+    self.assertTrue(
+        cipd.is_valid_instance_id(
+            'b-AF8UbArxfy_4EXYaa8vAxTncdMtMIorleb_Wg303UC'))
+    self.assertFalse(
+        cipd.is_valid_instance_id(
+            'bAF8UbArxfy_UEXYaa8vAxTncdMtMIorleb_Wg30UC=='))
+    self.assertFalse(
+        cipd.is_valid_instance_id(
+            'b-AF8UbArxfy/4EXYaa8vAxTncdMtMIorleb_Wg303UC'))
 
   def test_is_pinned_version(self):
-    self.assertTrue(cipd.is_pinned_version('1'*40))
+    self.assertTrue(cipd.is_pinned_version('1' * 40))
     self.assertFalse(cipd.is_pinned_version('1'))
     self.assertTrue(cipd.is_pinned_version('foo:1'))
     self.assertFalse(cipd.is_pinned_version('ffff'))
-    self.assertFalse(cipd.is_pinned_version('some/very/long/' + 'ref'*20))
+    self.assertFalse(cipd.is_pinned_version('some/very/long/' + 'ref' * 20))
 
 
 if __name__ == '__main__':

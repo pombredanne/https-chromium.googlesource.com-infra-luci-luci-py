@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Uploads a ton of stuff to isolateserver to test its handling.
 
 Generates an histogram with the latencies to download a just uploaded file.
@@ -20,8 +19,9 @@ import random
 import sys
 import time
 
-CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
+CLIENT_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__.decode(sys.getfilesystemencoding()))))
 sys.path.insert(0, CLIENT_DIR)
 
 from utils import tools
@@ -40,6 +40,7 @@ from utils import threading_utils
 
 
 class Randomness(object):
+
   def __init__(self, random_pool_size=1024):
     """Creates 1mb of random data in a pool in 1kb chunks."""
     self.pool = [
@@ -51,13 +52,14 @@ class Randomness(object):
   def gen(self, size):
     """Returns a str containing random data from the pool of size |size|."""
     chunks = int(size / 1024)
-    rest = size - (chunks*1024)
+    rest = size - (chunks * 1024)
     data = ''.join(random.choice(self.pool) for _ in range(chunks))
     data += random.choice(self.pool)[:rest]
     return data
 
 
 class Progress(threading_utils.Progress):
+
   def _render_columns(self):
     """Prints the size data as 'units'."""
     columns_as_str = [
@@ -75,8 +77,7 @@ def print_results(results, columns, buckets):
   sizes = [i[1] for i in results]
 
   print('%sSIZES%s (bytes):' % (colorama.Fore.RED, colorama.Fore.RESET))
-  graph.print_histogram(
-      graph.generate_histogram(sizes, buckets), columns, '%d')
+  graph.print_histogram(graph.generate_histogram(sizes, buckets), columns, '%d')
   print('')
   total_size = sum(sizes)
   print('Total size  : %s' % graph.to_units(total_size))
@@ -91,8 +92,8 @@ def print_results(results, columns, buckets):
   if failures:
     print('')
     print('%sFAILURES%s:' % (colorama.Fore.RED, colorama.Fore.RESET))
-    print(
-        '\n'.join('  %s (%s)' % (i[0], graph.to_units(i[1])) for i in failures))
+    print('\n'.join(
+        '  %s (%s)' % (i[0], graph.to_units(i[1])) for i in failures))
 
 
 def gen_size(mid_size):
@@ -154,39 +155,55 @@ def main():
 
   parser = optparse.OptionParser(description=sys.modules[__name__].__doc__)
   parser.add_option(
-      '-I', '--isolate-server',
-      metavar='URL', default='',
+      '-I',
+      '--isolate-server',
+      metavar='URL',
+      default='',
       help='Isolate server to use')
   parser.add_option(
-      '--namespace', default='temporary%d-gzip' % time.time(), metavar='XX',
+      '--namespace',
+      default='temporary%d-gzip' % time.time(),
+      metavar='XX',
       help='Namespace to use on the server, default: %default')
   parser.add_option(
-      '--threads', type='int', default=16, metavar='N',
+      '--threads',
+      type='int',
+      default=16,
+      metavar='N',
       help='Parallel worker threads to use, default:%default')
 
   data_group = optparse.OptionGroup(parser, 'Amount of data')
   graph.unit_option(
       data_group, '--items', default=0, help='Number of items to upload')
   graph.unit_option(
-      data_group, '--max-size', default=0,
+      data_group,
+      '--max-size',
+      default=0,
       help='Loop until this amount of data was transferred')
   graph.unit_option(
-      data_group, '--mid-size', default=100*1024,
+      data_group,
+      '--mid-size',
+      default=100 * 1024,
       help='Rough average size of each item, default:%default')
   parser.add_option_group(data_group)
 
   ui_group = optparse.OptionGroup(parser, 'Result histogram')
   ui_group.add_option(
-      '--columns', type='int', default=graph.get_console_width(), metavar='N',
+      '--columns',
+      type='int',
+      default=graph.get_console_width(),
+      metavar='N',
       help='Width of histogram, default:%default')
   ui_group.add_option(
-      '--buckets', type='int', default=20, metavar='N',
+      '--buckets',
+      type='int',
+      default=20,
+      metavar='N',
       help='Number of histogram\'s buckets, default:%default')
   parser.add_option_group(ui_group)
 
   log_group = optparse.OptionGroup(parser, 'Logging')
-  log_group.add_option(
-      '--dump', metavar='FOO.JSON', help='Dumps to json file')
+  log_group.add_option('--dump', metavar='FOO.JSON', help='Dumps to json file')
   log_group.add_option(
       '-v', '--verbose', action='store_true', help='Enable logging')
   parser.add_option_group(log_group)
@@ -197,18 +214,16 @@ def main():
   if args:
     parser.error('Unsupported args: %s' % args)
   if bool(options.max_size) == bool(options.items):
-    parser.error(
-        'Use one of --max-size or --items.\n'
-        '  Use --max-size if you want to run it until NN bytes where '
-        'transfered.\n'
-        '  Otherwise use --items to run it for NN items.')
+    parser.error('Use one of --max-size or --items.\n'
+                 '  Use --max-size if you want to run it until NN bytes where '
+                 'transfered.\n'
+                 '  Otherwise use --items to run it for NN items.')
   options.isolate_server = options.isolate_server.rstrip('/')
   if not options.isolate_server:
     parser.error('--isolate-server is required.')
 
-  print(
-      ' - Using %d thread,  items=%d,  max-size=%d,  mid-size=%d' % (
-      options.threads, options.items, options.max_size, options.mid_size))
+  print(' - Using %d thread,  items=%d,  max-size=%d,  mid-size=%d' %
+        (options.threads, options.items, options.max_size, options.mid_size))
 
   start = time.time()
 
@@ -217,22 +232,18 @@ def main():
 
   columns = [('index', 0), ('data', 0), ('size', options.items)]
   progress = Progress(columns)
-  server_ref = isolate_storage.ServerRef(
-      options.isolate_server, options.namespace)
+  server_ref = isolate_storage.ServerRef(options.isolate_server,
+                                         options.namespace)
   storage = isolateserver.get_storage(server_ref)
-  do_item = functools.partial(
-      send_and_receive,
-      random_pool,
-      storage,
-      progress)
+  do_item = functools.partial(send_and_receive, random_pool, storage, progress)
 
   # TODO(maruel): Handle Ctrl-C should:
   # - Stop adding tasks.
   # - Stop scheduling tasks in ThreadPool.
   # - Wait for the remaining ungoing tasks to complete.
   # - Still print details and write the json file.
-  with threading_utils.ThreadPoolWithProgress(
-      progress, options.threads, options.threads, 0) as pool:
+  with threading_utils.ThreadPoolWithProgress(progress, options.threads,
+                                              options.threads, 0) as pool:
     if options.items:
       for _ in range(options.items):
         pool.add_task(0, do_item, gen_size(options.mid_size))

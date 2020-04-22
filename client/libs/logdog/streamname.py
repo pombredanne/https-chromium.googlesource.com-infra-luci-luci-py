@@ -9,7 +9,6 @@ import string
 # third_party/
 from six.moves import urllib
 
-
 _ALNUM_CHARS = string.ascii_letters + string.digits
 _SEGMENT_RE_BASE = r'[a-zA-Z0-9][a-zA-Z0-9:_\-.]*'
 _STREAM_NAME_RE = re.compile('^(' + _SEGMENT_RE_BASE + ')(/' +
@@ -159,13 +158,17 @@ class StreamPath(collections.namedtuple('_StreamPath', ('prefix', 'name'))):
       validate_stream_name(self.prefix)
     except ValueError as e:
       raise ValueError('Invalid prefix component [%s]: %s' % (
-          self.prefix, e.message,))
+          self.prefix,
+          e.message,
+      ))
 
     try:
       validate_stream_name(self.name)
     except ValueError as e:
       raise ValueError('Invalid name component [%s]: %s' % (
-          self.name, e.message,))
+          self.name,
+          e.message,
+      ))
 
   def __str__(self):
     return '%s/+/%s' % (self.prefix, self.name)

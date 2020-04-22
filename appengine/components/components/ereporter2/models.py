@@ -6,7 +6,6 @@ import hashlib
 
 from google.appengine.ext import ndb
 
-
 ### Models.
 
 

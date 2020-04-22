@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Auth management REST API."""
 
 import base64
@@ -32,7 +31,6 @@ from .. import signature
 from .. import version
 from ..proto import replication_pb2
 
-
 # Set by set_config_locked.
 _is_config_locked_cb = None
 
@@ -44,27 +42,25 @@ def get_rest_api_routes():
   assert model.IP_WHITELIST_NAME_RE.pattern[0] == '^'
   ip_whitelist_re = model.IP_WHITELIST_NAME_RE.pattern[1:]
   return [
-    webapp2.Route('/auth/api/v1/accounts/self', SelfHandler),
-    webapp2.Route('/auth/api/v1/accounts/self/xsrf_token', XSRFHandler),
-    webapp2.Route('/auth/api/v1/change_log', ChangeLogHandler),
-    webapp2.Route('/auth/api/v1/groups', GroupsHandler),
-    webapp2.Route('/auth/api/v1/groups/<name:%s>' % group_re, GroupHandler),
-    webapp2.Route('/auth/api/v1/internal/replication', ReplicationHandler),
-    webapp2.Route('/auth/api/v1/ip_whitelists', IPWhitelistsHandler),
-    webapp2.Route(
-        '/auth/api/v1/ip_whitelists/<name:%s>' % ip_whitelist_re,
-        IPWhitelistHandler),
-    webapp2.Route(
-        '/auth/api/v1/listing/groups/<name:%s>' % group_re,
-        GroupListingHandler),
-    webapp2.Route('/auth/api/v1/memberships/list', MembershipsListHandler),
-    webapp2.Route('/auth/api/v1/memberships/check', MembershipsCheckHandler),
-    webapp2.Route('/auth/api/v1/subgraph/<principal:.*$>', SubgraphHandler),
-    webapp2.Route('/auth/api/v1/suggest/groups', GroupsSuggestHandler),
-    webapp2.Route('/auth/api/v1/server/certificates', CertificatesHandler),
-    webapp2.Route('/auth/api/v1/server/info', ServerInfoHandler),
-    webapp2.Route('/auth/api/v1/server/oauth_config', OAuthConfigHandler),
-    webapp2.Route('/auth/api/v1/server/state', ServerStateHandler),
+      webapp2.Route('/auth/api/v1/accounts/self', SelfHandler),
+      webapp2.Route('/auth/api/v1/accounts/self/xsrf_token', XSRFHandler),
+      webapp2.Route('/auth/api/v1/change_log', ChangeLogHandler),
+      webapp2.Route('/auth/api/v1/groups', GroupsHandler),
+      webapp2.Route('/auth/api/v1/groups/<name:%s>' % group_re, GroupHandler),
+      webapp2.Route('/auth/api/v1/internal/replication', ReplicationHandler),
+      webapp2.Route('/auth/api/v1/ip_whitelists', IPWhitelistsHandler),
+      webapp2.Route('/auth/api/v1/ip_whitelists/<name:%s>' % ip_whitelist_re,
+                    IPWhitelistHandler),
+      webapp2.Route('/auth/api/v1/listing/groups/<name:%s>' % group_re,
+                    GroupListingHandler),
+      webapp2.Route('/auth/api/v1/memberships/list', MembershipsListHandler),
+      webapp2.Route('/auth/api/v1/memberships/check', MembershipsCheckHandler),
+      webapp2.Route('/auth/api/v1/subgraph/<principal:.*$>', SubgraphHandler),
+      webapp2.Route('/auth/api/v1/suggest/groups', GroupsSuggestHandler),
+      webapp2.Route('/auth/api/v1/server/certificates', CertificatesHandler),
+      webapp2.Route('/auth/api/v1/server/info', ServerInfoHandler),
+      webapp2.Route('/auth/api/v1/server/oauth_config', OAuthConfigHandler),
+      webapp2.Route('/auth/api/v1/server/state', ServerStateHandler),
   ]
 
 
@@ -74,6 +70,7 @@ def forbid_api_on_replica(method):
   If such method is called on a service in Replica mode, it would return
   HTTP 405 "Method Not Allowed".
   """
+
   @functools.wraps(method)
   def wrapper(self, *args, **kwargs):
     assert isinstance(self, webapp2.RequestHandler)
@@ -81,13 +78,14 @@ def forbid_api_on_replica(method):
       self.abort(
           405,
           json={
-            'primary_url': model.get_replication_state().primary_url,
-            'text': 'Use Primary service for API requests',
+              'primary_url': model.get_replication_state().primary_url,
+              'text': 'Use Primary service for API requests',
           },
           headers={
-            'Content-Type': 'application/json; charset=utf-8',
+              'Content-Type': 'application/json; charset=utf-8',
           })
     return method(self, *args, **kwargs)
+
   return wrapper
 
 
@@ -127,6 +125,7 @@ def _get_maybe_cached_auth_db(request):
 
 class EntityOperationError(Exception):
   """Raised by do_* methods in EntityHandlerBase to indicate a conflict."""
+
   def __init__(self, message, details=None):
     super(EntityOperationError, self).__init__(message)
     self.message = message
@@ -281,8 +280,8 @@ class EntityHandlerBase(handler.ApiHandler):
     def create(entity):
       if entity.key.get():
         return False, {
-          'http_code': 409,
-          'text': 'Such %s already exists' % self.entity_kind_title,
+            'http_code': 409,
+            'text': 'Such %s already exists' % self.entity_kind_title,
         }
       entity.record_revision(
           modified_by=api.get_current_identity(),
@@ -292,14 +291,14 @@ class EntityHandlerBase(handler.ApiHandler):
         self.do_create(entity)
       except EntityOperationError as exc:
         return False, {
-          'http_code': 409,
-          'text': exc.message,
-          'details': exc.details,
+            'http_code': 409,
+            'text': exc.message,
+            'details': exc.details,
         }
       except ValueError as exc:
         return False, {
-          'http_code': 400,
-          'text': str(exc),
+            'http_code': 400,
+            'text': str(exc),
         }
       model.replicate_auth_db()
       return True, None
@@ -339,16 +338,17 @@ class EntityHandlerBase(handler.ApiHandler):
       entity = self.get_entity_key(name).get()
       if not entity:
         return None, None, {
-          'http_code': 404,
-          'text': 'No such %s' % self.entity_kind_title,
+            'http_code': 404,
+            'text': 'No such %s' % self.entity_kind_title,
         }
       if (expected_ts and
           utils.datetime_to_rfc2822(entity.modified_ts) != expected_ts):
         return None, None, {
-          'http_code': 412,
-          'text':
-              '%s was modified by someone else' %
-              self.entity_kind_title.capitalize(),
+            'http_code':
+                412,
+            'text':
+                '%s was modified by someone else' %
+                self.entity_kind_title.capitalize(),
         }
       if not self.can_update(entity):
         # Raising from inside a transaction produces ugly logs. Just return the
@@ -366,14 +366,14 @@ class EntityHandlerBase(handler.ApiHandler):
         self.do_update(entity, params)
       except EntityOperationError as exc:
         return None, None, {
-          'http_code': 409,
-          'text': exc.message,
-          'details': exc.details,
+            'http_code': 409,
+            'text': exc.message,
+            'details': exc.details,
         }
       except ValueError as exc:
         return None, None, {
-          'http_code': 400,
-          'text': str(exc),
+            'http_code': 400,
+            'text': str(exc),
         }
       model.replicate_auth_db()
       return entity, None, None
@@ -388,9 +388,8 @@ class EntityHandlerBase(handler.ApiHandler):
         response={'ok': True},
         http_code=200,
         headers={
-          'Last-Modified': utils.datetime_to_rfc2822(entity.modified_ts),
-        }
-    )
+            'Last-Modified': utils.datetime_to_rfc2822(entity.modified_ts),
+        })
 
   @forbid_api_on_replica
   @api.require(acl.has_access)
@@ -407,10 +406,11 @@ class EntityHandlerBase(handler.ApiHandler):
       if not entity:
         if expected_ts:
           return None, {
-            'http_code': 412,
-            'text':
-                '%s was deleted by someone else' %
-                self.entity_kind_title.capitalize(),
+              'http_code':
+                  412,
+              'text':
+                  '%s was deleted by someone else' %
+                  self.entity_kind_title.capitalize(),
           }
         else:
           # Unconditionally deleting it, and it's already gone -> success.
@@ -418,10 +418,11 @@ class EntityHandlerBase(handler.ApiHandler):
       if (expected_ts and
           utils.datetime_to_rfc2822(entity.modified_ts) != expected_ts):
         return None, {
-          'http_code': 412,
-          'text':
-              '%s was modified by someone else' %
-              self.entity_kind_title.capitalize(),
+            'http_code':
+                412,
+            'text':
+                '%s was modified by someone else' %
+                self.entity_kind_title.capitalize(),
         }
       if not self.can_delete(entity):
         # Raising from inside a transaction produces ugly logs. Just return the
@@ -439,9 +440,9 @@ class EntityHandlerBase(handler.ApiHandler):
         self.do_delete(entity)
       except EntityOperationError as exc:
         return None, {
-          'http_code': 409,
-          'text': exc.message,
-          'details': exc.details,
+            'http_code': 409,
+            'text': exc.message,
+            'details': exc.details,
         }
       model.replicate_auth_db()
       return None, None
@@ -462,21 +463,21 @@ class SelfHandler(handler.ApiHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'doc':
-        'Returns identity of a caller based on passed authentication tokens, '
-        'as well as requester\'s IP address (as seen by AppEngine). Useful '
-        'when debugging authentication issues.',
-      'response_type': 'Self info',
-    },
+      {
+          'verb': 'GET',
+          'doc':
+              'Returns identity of a caller based on passed authentication tokens, '
+              'as well as requester\'s IP address (as seen by AppEngine). Useful '
+              'when debugging authentication issues.',
+          'response_type': 'Self info',
+      },
   ]
 
   @api.public
   def get(self):
     self.send_response({
-      'identity': api.get_current_identity().to_bytes(),
-      'ip': ipaddr.ip_to_string(api.get_peer_ip()),
+        'identity': api.get_current_identity().to_bytes(),
+        'ip': ipaddr.ip_to_string(api.get_peer_ip()),
     })
 
 
@@ -496,11 +497,10 @@ class XSRFHandler(handler.ApiHandler):
   @api.public
   def post(self):
     token = self.generate_xsrf_token()
-    self.send_response(
-        {
-          'expiration_sec': handler.XSRFToken.expiration_sec,
-          'xsrf_token': token,
-        })
+    self.send_response({
+        'expiration_sec': handler.XSRFToken.expiration_sec,
+        'xsrf_token': token,
+    })
 
 
 class ChangeLogHandler(handler.ApiHandler):
@@ -572,8 +572,8 @@ class ChangeLogHandler(handler.ApiHandler):
       self.abort_with_error(500, text=self.NEED_INDEX_ERROR_MESSAGE)
 
     self.send_response({
-      'changes': [c.to_jsonish() for c in changes],
-      'cursor': cursor.urlsafe() if cursor and more else None,
+        'changes': [c.to_jsonish() for c in changes],
+        'cursor': cursor.urlsafe() if cursor and more else None,
     })
 
 
@@ -596,11 +596,11 @@ class GroupsHandler(handler.ApiHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'doc': 'Lists names and descriptions of all known groups.',
-      'response_type': 'Groups',
-    },
+      {
+          'verb': 'GET',
+          'doc': 'Lists names and descriptions of all known groups.',
+          'response_type': 'Groups',
+      },
   ]
 
   @staticmethod
@@ -625,9 +625,11 @@ class GroupsHandler(handler.ApiHandler):
 
     # Grab a list of groups and corresponding revision for cache key.
     if not model.is_replica():
+
       def run():
         fut = model.AuthGroup.query(ancestor=model.root_key()).fetch_async()
         return model.get_auth_db_revision(), fut.get_result()
+
       auth_db_rev, group_list = ndb.transaction(run)
     else:
       auth_db = api.get_latest_auth_db()
@@ -640,14 +642,13 @@ class GroupsHandler(handler.ApiHandler):
     # operation, and group listing call shouldn't do it all the time. So throw
     # away all fields that enumerate group members.
     response = {
-      'groups': [
-        g.to_serializable_dict(
-            with_id_as='name',
-            exclude=('globs', 'members', 'nested'))
-        for g in sorted(group_list, key=lambda x: x.key.string_id())
-      ],
+        'groups': [
+            g.to_serializable_dict(
+                with_id_as='name', exclude=('globs', 'members', 'nested'))
+            for g in sorted(group_list, key=lambda x: x.key.string_id())
+        ],
     }
-    memcache.set(self.cache_key(auth_db_rev), response, time=24*3600)
+    memcache.set(self.cache_key(auth_db_rev), response, time=24 * 3600)
     self.adjust_response_for_user(response)
     self.send_response(response)
 
@@ -665,32 +666,33 @@ class GroupHandler(EntityHandlerBase):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'doc': 'Returns a group given its name. Doesn\'t expand nested groups.',
-      'response_type': 'Group',
-    },
-    {
-      'verb': 'POST',
-      'doc': 'Creates a new group (ensuring it is indeed new).',
-      'request_type': 'Group',
-      'response_type': 'Status',
-    },
-    {
-      'verb': 'PUT',
-      'doc':
-        'Updates an existing group. Use If-Unmodified-Since header to '
-        'avoid unintentional overwrites.',
-      'request_type': 'Group',
-      'response_type': 'Status',
-    },
-    {
-      'verb': 'DELETE',
-      'doc':
-        'Deletes an existing group. Use If-Unmodified-Since header to '
-        'avoid unintentional removals.',
-      'response_type': 'Status',
-    },
+      {
+          'verb':
+              'GET',
+          'doc':
+              'Returns a group given its name. Doesn\'t expand nested groups.',
+          'response_type':
+              'Group',
+      },
+      {
+          'verb': 'POST',
+          'doc': 'Creates a new group (ensuring it is indeed new).',
+          'request_type': 'Group',
+          'response_type': 'Status',
+      },
+      {
+          'verb': 'PUT',
+          'doc': 'Updates an existing group. Use If-Unmodified-Since header to '
+                 'avoid unintentional overwrites.',
+          'request_type': 'Group',
+          'response_type': 'Status',
+      },
+      {
+          'verb': 'DELETE',
+          'doc': 'Deletes an existing group. Use If-Unmodified-Since header to '
+                 'avoid unintentional removals.',
+          'response_type': 'Status',
+      },
   ]
 
   @classmethod
@@ -734,8 +736,8 @@ class GroupHandler(EntityHandlerBase):
     missing = model.get_missing_groups(to_check)
     if missing:
       raise EntityOperationError(
-          message=
-              'Some referenced groups don\'t exist: %s.' % ', '.join(missing),
+          message='Some referenced groups don\'t exist: %s.' %
+          ', '.join(missing),
           details={'missing': missing})
     entity.put()
 
@@ -766,9 +768,8 @@ class GroupHandler(EntityHandlerBase):
         missing = model.get_missing_groups(added_nested_groups)
         if missing:
           raise EntityOperationError(
-              message=
-                  'Some referenced groups don\'t exist: %s.'
-                  % ', '.join(missing),
+              message='Some referenced groups don\'t exist: %s.' %
+              ', '.join(missing),
               details={'missing': missing})
     # Now make sure updated group is not a part of new group dependency cycle.
     entity.populate(**params)
@@ -809,9 +810,8 @@ class GroupHandler(EntityHandlerBase):
     if referencing_groups:
       grs = sorted(referencing_groups)
       raise EntityOperationError(
-          message=(
-              'This group is being referenced by other groups: %s.' %
-                  ', '.join(grs)),
+          message=('This group is being referenced by other groups: %s.' %
+                   ', '.join(grs)),
           details={'groups': grs})
     entity.key.delete()
 
@@ -845,8 +845,8 @@ class ReplicationHandler(handler.AuthenticatingHandler):
       return
 
     # Check that request came from expected Primary service.
-    expected_ident = model.Identity(
-        model.IDENTITY_SERVICE, model.get_replication_state().primary_id)
+    expected_ident = model.Identity(model.IDENTITY_SERVICE,
+                                    model.get_replication_state().primary_id)
     if api.get_current_identity() != expected_ident:
       self.send_error(replication_pb2.ReplicationPushResponse.FORBIDDEN)
       return
@@ -874,12 +874,11 @@ class ReplicationHandler(handler.AuthenticatingHandler):
     # Handle it.
     logging.info('Received AuthDB push: rev %d', request.revision.auth_db_rev)
     if request.auth_code_version:
-      logging.info(
-          'Primary\'s auth component version: %s', request.auth_code_version)
+      logging.info('Primary\'s auth component version: %s',
+                   request.auth_code_version)
     applied, state = replication.push_auth_db(request.revision, request.auth_db)
-    logging.info(
-        'AuthDB push %s: rev is %d',
-        'applied' if applied else 'skipped', state.auth_db_rev)
+    logging.info('AuthDB push %s: rev is %d',
+                 'applied' if applied else 'skipped', state.auth_db_rev)
 
     # Send the response.
     response = replication_pb2.ReplicationPushResponse()
@@ -908,10 +907,10 @@ class IPWhitelistsHandler(handler.ApiHandler):
       raise NotImplementedError()
     entities = model.AuthIPWhitelist.query(ancestor=model.root_key())
     self.send_response({
-      'ip_whitelists': [
-        e.to_serializable_dict(with_id_as='name')
-        for e in sorted(entities, key=lambda x: x.key.id())
-      ],
+        'ip_whitelists': [
+            e.to_serializable_dict(with_id_as='name')
+            for e in sorted(entities, key=lambda x: x.key.id())
+        ],
     })
 
 
@@ -1008,9 +1007,9 @@ class PerIdentityBatchHandler(handler.ApiHandler):
 
     # Make the "batch" call with the single request.
     resp = self._handle_batch({
-      'per_identity': {
-        ident: self.collect_get_params(),
-      },
+        'per_identity': {
+            ident: self.collect_get_params(),
+        },
     })
 
     # Extract back singular response.
@@ -1049,10 +1048,10 @@ class PerIdentityBatchHandler(handler.ApiHandler):
       queries[ident] = params
 
     return {
-      'per_identity': {
-        ident.to_bytes(): res
-        for ident, res in self.execute_batch(queries).items()
-      },
+        'per_identity': {
+            ident.to_bytes(): res
+            for ident, res in self.execute_batch(queries).items()
+        },
     }
 
 
@@ -1061,11 +1060,11 @@ class GroupListingHandler(handler.ApiHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'doc': 'Lists all members of a group, expanding subgroups.',
-      'response_type': 'Group listing',
-    },
+      {
+          'verb': 'GET',
+          'doc': 'Lists all members of a group, expanding subgroups.',
+          'response_type': 'Group listing',
+      },
   ]
 
   @api.require(acl.has_access)
@@ -1078,11 +1077,17 @@ class GroupListingHandler(handler.ApiHandler):
     listing = _get_maybe_cached_auth_db(self.request).list_group(name)
 
     self.send_response({
-      'listing': {
-        'members': [{'principal': m.to_bytes()} for m in listing.members],
-        'globs': [{'principal': g.to_bytes()} for g in listing.globs],
-        'nested': [{'principal': n} for n in listing.nested],
-      },
+        'listing': {
+            'members': [{
+                'principal': m.to_bytes()
+            } for m in listing.members],
+            'globs': [{
+                'principal': g.to_bytes()
+            } for g in listing.globs],
+            'nested': [{
+                'principal': n
+            } for n in listing.nested],
+        },
     })
 
 
@@ -1091,70 +1096,78 @@ class MembershipsListHandler(PerIdentityBatchHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'params': 'identity=...',
-
-      'doc':
-        'Returns a list of groups an identity belongs to (including all '
-        'transitive relations) as a list of memberships.',
-
-      'response_type': {
-        'name': 'Membership list',
-        'doc': 'Represents a list of groups some identity is a member of.',
-        'example': {
-          'memberships': [
-            {'group': 'Group name'},
-            {'group': 'Another group name'},
-          ],
-        },
-      },
-    },
-
-    {
-      'verb': 'POST',
-
-      'doc':
-        'A batch version of the membership listing call. Executes multiple '
-        'queries for multiple identities in parallel.',
-
-      'request_type': {
-        'name': 'Batch listing request',
-        'doc':
-          'A request to query a list of groups of multiple identities in '
-          'parallel. Per-identity dict values are options for membership '
-          'listing (there are currently none, so pass null or {}).',
-        'example': {
-          'per_identity': {
-            'user:someone@example.com': None,
-            'user:someone_else@example.com': None,
+      {
+          'verb': 'GET',
+          'params': 'identity=...',
+          'doc':
+              'Returns a list of groups an identity belongs to (including all '
+              'transitive relations) as a list of memberships.',
+          'response_type': {
+              'name':
+                  'Membership list',
+              'doc':
+                  'Represents a list of groups some identity is a member of.',
+              'example': {
+                  'memberships': [
+                      {
+                          'group': 'Group name'
+                      },
+                      {
+                          'group': 'Another group name'
+                      },
+                  ],
+              },
           },
-        },
       },
-
-      'response_type': {
-        'name': 'Batch listing response',
-        'doc':
-          'For each identity specifies a list of groups it is a member of '
-          '(in the same format as non-batched version).',
-        'example': {
-          'per_identity': {
-            'user:someone@example.com': {
-              'memberships': [
-                {'group': 'Group name'},
-                {'group': 'Another group name'},
-              ],
-            },
-            'user:someone_else@example.com': {
-              'memberships': [
-                {'group': 'Group name'},
-                {'group': 'Another group name'},
-              ],
-            },
+      {
+          'verb': 'POST',
+          'doc':
+              'A batch version of the membership listing call. Executes multiple '
+              'queries for multiple identities in parallel.',
+          'request_type': {
+              'name': 'Batch listing request',
+              'doc':
+                  'A request to query a list of groups of multiple identities in '
+                  'parallel. Per-identity dict values are options for membership '
+                  'listing (there are currently none, so pass null or {}).',
+              'example': {
+                  'per_identity': {
+                      'user:someone@example.com': None,
+                      'user:someone_else@example.com': None,
+                  },
+              },
           },
-        },
+          'response_type': {
+              'name': 'Batch listing response',
+              'doc':
+                  'For each identity specifies a list of groups it is a member of '
+                  '(in the same format as non-batched version).',
+              'example': {
+                  'per_identity': {
+                      'user:someone@example.com': {
+                          'memberships': [
+                              {
+                                  'group': 'Group name'
+                              },
+                              {
+                                  'group': 'Another group name'
+                              },
+                          ],
+                      },
+                      'user:someone_else@example.com': {
+                          'memberships': [
+                              {
+                                  'group': 'Group name'
+                              },
+                              {
+                                  'group': 'Another group name'
+                              },
+                          ],
+                      },
+                  },
+              },
+          },
       },
-    },
   ]
 
   def collect_get_params(self):
@@ -1172,9 +1185,9 @@ class MembershipsListHandler(PerIdentityBatchHandler):
     resp = {}
     for ident in queries:
       resp[ident] = {
-        'memberships': [
-          {'group': g} for g in sorted(auth_db.fetch_groups_with_member(ident))
-        ],
+          'memberships': [{
+              'group': g
+          } for g in sorted(auth_db.fetch_groups_with_member(ident))],
       }
     return resp
 
@@ -1184,66 +1197,60 @@ class MembershipsCheckHandler(PerIdentityBatchHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'params': 'identity=...&groups=...',
-
-      'doc':
-        'Checks whether a user belongs to any of given groups (provided via '
-        '"groups" query parameter that can be specified multiple times).',
-
-      'response_type': {
-        'name': 'Check response',
-        'doc':
-          'Indicates whether the identity is a member of any of the groups '
-          'specified in the request.',
-        'example': {
-          'is_member': True,
-        }
-      },
-    },
-
-    {
-      'verb': 'POST',
-
-      'doc':
-        'A batch version of the membership check call. Executes multiple '
-        'checks for multiple identities in parallel.',
-
-      'request_type': {
-        'name': 'Batch check request',
-        'doc':
-          'Represents a request to check memberships of multiple identities in '
-          'parallel.',
-        'example': {
-          'per_identity': {
-            'user:someone@example.com': {
-              'groups': ['Group A', 'Group B'],
-            },
-            'user:someone_else@example.com': {
-              'groups': ['Group C', 'Group D'],
-            },
+      {
+          'verb': 'GET',
+          'params': 'identity=...&groups=...',
+          'doc':
+              'Checks whether a user belongs to any of given groups (provided via '
+              '"groups" query parameter that can be specified multiple times).',
+          'response_type': {
+              'name': 'Check response',
+              'doc':
+                  'Indicates whether the identity is a member of any of the groups '
+                  'specified in the request.',
+              'example': {
+                  'is_member': True,
+              }
           },
-        },
       },
-
-      'response_type': {
-        'name': 'Batch check response',
-        'doc':
-          'For each queried identity specifies whether it is a member of any '
-          'of the groups specified in the request for this identity.',
-        'example': {
-          'per_identity': {
-            'user:someone@example.com': {
-              'is_member': True,
-            },
-            'user:someone_else@example.com': {
-              'is_member': False,
-            },
+      {
+          'verb': 'POST',
+          'doc':
+              'A batch version of the membership check call. Executes multiple '
+              'checks for multiple identities in parallel.',
+          'request_type': {
+              'name': 'Batch check request',
+              'doc':
+                  'Represents a request to check memberships of multiple identities in '
+                  'parallel.',
+              'example': {
+                  'per_identity': {
+                      'user:someone@example.com': {
+                          'groups': ['Group A', 'Group B'],
+                      },
+                      'user:someone_else@example.com': {
+                          'groups': ['Group C', 'Group D'],
+                      },
+                  },
+              },
           },
-        },
-      }
-    },
+          'response_type': {
+              'name': 'Batch check response',
+              'doc':
+                  'For each queried identity specifies whether it is a member of any '
+                  'of the groups specified in the request for this identity.',
+              'example': {
+                  'per_identity': {
+                      'user:someone@example.com': {
+                          'is_member': True,
+                      },
+                      'user:someone_else@example.com': {
+                          'is_member': False,
+                      },
+                  },
+              },
+          }
+      },
   ]
 
   def collect_get_params(self):
@@ -1268,7 +1275,8 @@ class MembershipsCheckHandler(PerIdentityBatchHandler):
     for iden, p in queries.items():
       assert isinstance(p['groups'], list)
       resp[iden] = {
-        'is_member': any(auth_db.is_group_member(g, iden) for g in p['groups']),
+          'is_member':
+              any(auth_db.is_group_member(g, iden) for g in p['groups']),
       }
     return resp
 
@@ -1278,11 +1286,14 @@ class SubgraphHandler(handler.ApiHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'doc': 'Returns groups that include this principal and are owned by it.',
-      'response_type': 'Group subgraph',
-    },
+      {
+          'verb':
+              'GET',
+          'doc':
+              'Returns groups that include this principal and are owned by it.',
+          'response_type':
+              'Group subgraph',
+      },
   ]
 
   @api.require(acl.has_access)
@@ -1330,9 +1341,11 @@ class SubgraphHandler(handler.ApiHandler):
     # Per API contract the requested principal should have ID 0, verify this.
     assert subgraph.root_id == 0, subgraph.root_id
     self.send_response({
-      'subgraph': {
-        'nodes': [as_dict(node, edges) for node, edges in subgraph.describe()],
-      },
+        'subgraph': {
+            'nodes': [
+                as_dict(node, edges) for node, edges in subgraph.describe()
+            ],
+        },
     })
 
 
@@ -1341,20 +1354,18 @@ class GroupsSuggestHandler(handler.ApiHandler):
 
   # This is visible in the UI.
   api_doc = [
-    {
-      'verb': 'GET',
-      'params': 'name=...',
-
-      'doc': 'Suggests group names that match the given string.',
-
-      'response_type': {
-        'name': 'Names',
-        'doc': 'A list of group names.',
-        'example': {
-          'names': ['Group A', 'Group B'],
-        },
+      {
+          'verb': 'GET',
+          'params': 'name=...',
+          'doc': 'Suggests group names that match the given string.',
+          'response_type': {
+              'name': 'Names',
+              'doc': 'A list of group names.',
+              'example': {
+                  'names': ['Group A', 'Group B'],
+              },
+          },
       },
-    },
   ]
 
   @api.require(acl.has_access)
@@ -1375,10 +1386,10 @@ class ServerInfoHandler(handler.ApiHandler):
   @api.public
   def get(self):
     self.send_response({
-      'app_id': app_identity.get_application_id(),
-      'app_runtime': 'python27',
-      'app_version': utils.get_app_version(),
-      'service_account_name': utils.get_service_account_name(),
+        'app_id': app_identity.get_application_id(),
+        'app_runtime': 'python27',
+        'app_version': utils.get_app_version(),
+        'service_account_name': utils.get_service_account_name(),
     })
 
 
@@ -1429,11 +1440,11 @@ class OAuthConfigHandler(handler.ApiHandler):
     primary_url = replication_state.primary_url if replication_state else None
 
     self.send_response({
-      'additional_client_ids': additional_ids,
-      'client_id': client_id,
-      'client_not_so_secret': client_secret,
-      'primary_url': primary_url,
-      'token_server_url': token_server_url,
+        'additional_client_ids': additional_ids,
+        'client_id': client_id,
+        'client_not_so_secret': client_secret,
+        'primary_url': primary_url,
+        'token_server_url': token_server_url,
     })
 
   @forbid_api_on_replica
@@ -1490,7 +1501,7 @@ class ServerStateHandler(handler.ApiHandler):
       mode = 'standalone'
     state = model.get_replication_state() or model.AuthReplicationState()
     self.send_response({
-      'auth_code_version': version.__version__,
-      'mode': mode,
-      'replication_state': state.to_serializable_dict(),
+        'auth_code_version': version.__version__,
+        'mode': mode,
+        'replication_state': state.to_serializable_dict(),
     })

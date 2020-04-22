@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Framework to handle bookkeeping of statistics generation at the minute level.
 
 It implements all the code to update and store results coherently despise
@@ -60,11 +59,9 @@ from google.appengine.runtime import DeadlineExceededError
 
 from components import utils
 
-
 # Supported resolutions. In theory, 'weeks' and 'months' could be added one day
 # if desired.
 RESOLUTIONS = ('days', 'hours', 'minutes')
-
 
 # Number of minutes to ignore because they are too fresh. This is done so that
 # eventual log consistency doesn't have to be managed explicitly. On the dev
@@ -73,9 +70,13 @@ TOO_RECENT = 5 if not utils.is_local_dev_server() else 1
 
 
 class StatisticsFramework(object):
-  def __init__(
-      self, root_key_id, snapshot_cls, generate_snapshot,
-      max_backtrack_days=5, max_minutes_per_process=120):
+
+  def __init__(self,
+               root_key_id,
+               snapshot_cls,
+               generate_snapshot,
+               max_backtrack_days=5,
+               max_minutes_per_process=120):
     """Creates an instance to do bookkeeping of statistics.
 
     Arguments:
@@ -144,15 +145,11 @@ class StatisticsFramework(object):
         next_minute = next_minute + datetime.timedelta(minutes=1)
         now = utils.utcnow()
       return count
-    except (
-        datastore_errors.Error,
-        logservice.Error,
-        DeadlineExceededError) as e:
-      msg = (
-          'Got an error while processing stats.\n'
-          'Processing started at %s; tried to get up to %smins from now; '
-          'Processed %dmins\n%s') % (
-          original_minute, up_to, count, e)
+    except (datastore_errors.Error, logservice.Error,
+            DeadlineExceededError) as e:
+      msg = ('Got an error while processing stats.\n'
+             'Processing started at %s; tried to get up to %smins from now; '
+             'Processed %dmins\n%s') % (original_minute, up_to, count, e)
       if not count:
         logging.error(msg)
         # This is bad, it means that for the lifespan of the cron handler
@@ -182,7 +179,8 @@ class StatisticsFramework(object):
     """
     assert isinstance(hour, datetime.datetime)
     return ndb.Key(
-        self.stats_hour_cls, '%02d' % hour.hour,
+        self.stats_hour_cls,
+        '%02d' % hour.hour,
         parent=self.day_key(hour.date()))
 
   def minute_key(self, minute):
@@ -193,7 +191,8 @@ class StatisticsFramework(object):
     """
     assert isinstance(minute, datetime.datetime)
     return ndb.Key(
-        self.stats_minute_cls, '%02d' % minute.minute,
+        self.stats_minute_cls,
+        '%02d' % minute.minute,
         parent=self.hour_key(minute))
 
   ### Protected code.
@@ -229,7 +228,8 @@ class StatisticsFramework(object):
       if minute_after.date() != timestamp.date():
         # That was 23:59. Make sure day for 00:00 exists.
         self.stats_day_cls.get_or_insert(
-            str(minute_after.date()), parent=self.root_key,
+            str(minute_after.date()),
+            parent=self.root_key,
             values_compressed=self.snapshot_cls())
 
       if minute_after.hour != timestamp.hour:
@@ -278,7 +278,7 @@ class StatisticsFramework(object):
       else:
         logging.info('Selected: %s', day.key)
     else:
-      last_sealed_day = q.get(offset=count-1)
+      last_sealed_day = q.get(offset=count - 1)
       assert last_sealed_day
       # Take the next unsealed day. Note that if there's a non-sealed, sealed,
       # sealed sequence of self.stats_day_cls, the non-sealed entity will be
@@ -296,13 +296,14 @@ class StatisticsFramework(object):
     assert hour_bit < 24, (hour_bit, day.timestamp.date())
 
     hour = self.stats_hour_cls.get_or_insert(
-        '%02d' % hour_bit, parent=day.key,
+        '%02d' % hour_bit,
+        parent=day.key,
         values_compressed=self.snapshot_cls())
     minute_bit = _lowest_missing_bit(hour.minutes_bitmap)
     assert minute_bit < 60, minute_bit
     date = day.timestamp.date()
-    result = datetime.datetime(
-        date.year, date.month, date.day, hour_bit, minute_bit)
+    result = datetime.datetime(date.year, date.month, date.day, hour_bit,
+                               minute_bit)
     logging.info('Using: %s', result)
     return result
 
@@ -327,11 +328,13 @@ class StatisticsFramework(object):
     # cache.
     opts = ndb.ContextOptions(use_memcache=False)
     future_day = self.stats_day_cls.get_or_insert_async(
-        str(moment.date()), parent=self.root_key,
+        str(moment.date()),
+        parent=self.root_key,
         values_compressed=self.snapshot_cls(),
         context_options=opts)
     future_hour = self.stats_hour_cls.get_or_insert_async(
-        '%02d' % moment.hour, parent=self.day_key(moment.date()),
+        '%02d' % moment.hour,
+        parent=self.day_key(moment.date()),
         values_compressed=self.snapshot_cls(),
         context_options=opts)
     future_minute = self.stats_minute_cls.get_by_id_async(
@@ -362,9 +365,8 @@ class StatisticsFramework(object):
       hour.minutes_bitmap |= minute_bit
       futures.append(hour.put_async(use_memcache=False))
       if hour.minutes_bitmap == self.stats_hour_cls.SEALED_BITMAP:
-        logging.info(
-            '%s Hour is sealed: %s %s:00',
-            self.root_key.id(), day.key.id(), hour.key.id())
+        logging.info('%s Hour is sealed: %s %s:00', self.root_key.id(),
+                     day.key.id(), hour.key.id())
 
     # Adds data for the past hour back into day.
     if hour.minutes_bitmap == self.stats_hour_cls.SEALED_BITMAP:
@@ -375,8 +377,7 @@ class StatisticsFramework(object):
         day.hours_bitmap |= hour_bit
         futures.append(day.put_async(use_memcache=False))
         if day.hours_bitmap == self.stats_day_cls.SEALED_BITMAP:
-          logging.info(
-              '%s Day is sealed: %s', self.root_key.id(), day.key.id())
+          logging.info('%s Day is sealed: %s', self.root_key.id(), day.key.id())
 
     if futures:
       ndb.Future.wait_all(futures)
@@ -398,6 +399,7 @@ class StatsRoot(ndb.Model):
 
 
 def _generate_stats_day_cls(snapshot_cls):
+
   class StatsDay(ndb.Model):
     """Statistics for the whole day.
 
@@ -428,7 +430,7 @@ def _generate_stats_day_cls(snapshot_cls):
     SEALED_BITMAP = 0xFFFFFF
 
     # The span of this snapshot.
-    span = datetime.timedelta(seconds=24*60*60)
+    span = datetime.timedelta(seconds=24 * 60 * 60)
 
     @property
     def values(self):
@@ -460,6 +462,7 @@ def _generate_stats_day_cls(snapshot_cls):
 
 
 def _generate_stats_hour_cls(snapshot_cls):
+
   class StatsHour(ndb.Model):
     """Statistics for a single hour.
 
@@ -488,7 +491,7 @@ def _generate_stats_hour_cls(snapshot_cls):
     SEALED_BITMAP = 0xFFFFFFFFFFFFFFF
 
     # The span of this snapshot.
-    span = datetime.timedelta(seconds=60*60)
+    span = datetime.timedelta(seconds=60 * 60)
 
     @property
     def values(self):
@@ -501,8 +504,7 @@ def _generate_stats_hour_cls(snapshot_cls):
       """
       key = self.key
       year, month, day = key.parent().id().split('-', 2)
-      return datetime.datetime(
-          int(year), int(month), int(day), int(key.id()))
+      return datetime.datetime(int(year), int(month), int(day), int(key.id()))
 
     @property
     def timestamp_str(self):
@@ -523,6 +525,7 @@ def _generate_stats_hour_cls(snapshot_cls):
 
 
 def _generate_stats_minute_cls(snapshot_cls):
+
   class StatsMinute(ndb.Model):
     """Statistics for a single minute.
 
@@ -567,8 +570,8 @@ def _generate_stats_minute_cls(snapshot_cls):
       """Returns the timestamp as a string."""
       key = self.key
       parent = key.parent()
-      return '%sT%s:%s' % (
-          parent.parent().string_id(), parent.string_id(), key.string_id())
+      return '%sT%s:%s' % (parent.parent().string_id(), parent.string_id(),
+                           key.string_id())
 
     def to_dict(self):
       out = self.values.to_dict()
@@ -601,6 +604,7 @@ def _get_snapshot_as_dict_future(keys):
     list of ndb.Future returning the to_dict() value (instead of the entity
     itself) of the entities present or None if the entity doesn't exist.
   """
+
   def _fix_future(future, out):
     """Converts a ndb.Future to a StatisticsFramework entity into a dict of the
     snapshot.
@@ -713,15 +717,16 @@ def get_stats(handler, resolution, now, num_items, as_dict):
         False, returns the raw objects that needs to be handled manually.
   """
   mapping = {
-    'days': _get_days_keys,
-    'hours': _get_hours_keys,
-    'minutes': _get_minutes_keys,
+      'days': _get_days_keys,
+      'hours': _get_hours_keys,
+      'minutes': _get_minutes_keys,
   }
   keys = mapping[resolution](handler, now, num_items)
   if as_dict:
     return [
-      i.get_result() for i in _get_snapshot_as_dict_future(keys)
-      if i.get_result()
+        i.get_result()
+        for i in _get_snapshot_as_dict_future(keys)
+        if i.get_result()
     ]
   # Automatically skip missing entities.
   return [i for i in ndb.get_multi(keys) if i]

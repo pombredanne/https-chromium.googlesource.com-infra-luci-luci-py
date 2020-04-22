@@ -39,7 +39,6 @@ def bootstrap():
   auth.bootstrap_group(full_access, bots, 'Can read and write from/to Isolate')
 
   # Add a fake admin for local dev server.
-  auth.bootstrap_group(
-      auth.ADMIN_GROUP,
-      [auth.Identity(auth.IDENTITY_USER, 'test@example.com')],
-      'Users that can manage groups')
+  auth.bootstrap_group(auth.ADMIN_GROUP,
+                       [auth.Identity(auth.IDENTITY_USER, 'test@example.com')],
+                       'Users that can manage groups')

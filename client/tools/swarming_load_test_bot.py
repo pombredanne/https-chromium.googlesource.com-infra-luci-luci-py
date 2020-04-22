@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Triggers a ton of fake jobs to test its handling under high load.
 
 Generates an histogram with the latencies to process the tasks and number of
@@ -22,8 +21,9 @@ import threading
 import time
 import zipfile
 
-CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
+CLIENT_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__.decode(sys.getfilesystemencoding()))))
 sys.path.insert(0, CLIENT_DIR)
 
 from utils import tools
@@ -54,7 +54,7 @@ def print_results(results, columns, buckets):
   print('Total items  : %d' % len(results))
   average = 0
   if delays:
-    average = sum(delays)/ len(delays)
+    average = sum(delays) / len(delays)
   print('Average delay: %s' % graph.to_units(average))
   print('')
 
@@ -102,9 +102,9 @@ class FakeSwarmBot(object):
   It polls for job, acts as if it was processing them and return the fake
   result.
   """
-  def __init__(
-      self, swarming_url, dimensions, swarm_bot_version_hash, hostname, index,
-      progress, duration, events, kill_event):
+
+  def __init__(self, swarming_url, dimensions, swarm_bot_version_hash, hostname,
+               index, progress, duration, events, kill_event):
     self._lock = threading.Lock()
     self._swarming = swarming_url
     self._index = index
@@ -114,12 +114,12 @@ class FakeSwarmBot(object):
     self._kill_event = kill_event
     self._bot_id = '%s-%d' % (hostname, index)
     self._attributes = {
-      'dimensions': dimensions,
-      'id': self._bot_id,
-      # TODO(maruel): Use os_utilities.py.
-      'ip': '127.0.0.1',
-      'try_count': 0,
-      'version': swarm_bot_version_hash,
+        'dimensions': dimensions,
+        'id': self._bot_id,
+        # TODO(maruel): Use os_utilities.py.
+        'ip': '127.0.0.1',
+        'try_count': 0,
+        'version': swarm_bot_version_hash,
     }
 
     self._thread = threading.Thread(target=self._run, name='bot%d' % index)
@@ -183,9 +183,8 @@ class FakeSwarmBot(object):
         result_url = manifest['result_url']
         test_run = json.loads(store_cmd['args'])
         if result_url != test_run['result_url']:
-          self._progress.update_item(
-              'Unexpected result url: %s != %s' %
-              (result_url, test_run['result_url']))
+          self._progress.update_item('Unexpected result url: %s != %s' %
+                                     (result_url, test_run['result_url']))
           self._events.put('invalid_result_url')
           break
         ping_url = test_run['ping_url']
@@ -206,8 +205,8 @@ class FakeSwarmBot(object):
 
         # In the old API, r=<task_id>&id=<bot_id> is passed as the url.
         data = {
-          'o': TASK_OUTPUT,
-          'x': '0',
+            'o': TASK_OUTPUT,
+            'x': '0',
         }
         result = net.url_read(manifest['result_url'], data=data)
         self._progress.update_item(
@@ -234,40 +233,53 @@ def main():
   colorama.init()
   parser = optparse.OptionParser(description=sys.modules[__name__].__doc__)
   parser.add_option(
-      '-S', '--swarming',
-      metavar='URL', default='',
+      '-S',
+      '--swarming',
+      metavar='URL',
+      default='',
       help='Swarming server to use')
   parser.add_option(
       '--suffix', metavar='NAME', default='', help='Bot suffix name to use')
   swarming.add_filter_options(parser)
   # Use improbable values to reduce the chance of interfering with real bots.
-  parser.set_defaults(
-      dimensions=[
-        ('cpu', ['arm36']),
-        ('hostname', socket.getfqdn()),
-        ('os', OS_NAME),
-      ])
+  parser.set_defaults(dimensions=[
+      ('cpu', ['arm36']),
+      ('hostname', socket.getfqdn()),
+      ('os', OS_NAME),
+  ])
 
   group = optparse.OptionGroup(parser, 'Load generated')
   group.add_option(
-      '--bots', type='int', default=300, metavar='N',
+      '--bots',
+      type='int',
+      default=300,
+      metavar='N',
       help='Number of swarming bots, default: %default')
   group.add_option(
-      '-c', '--consume', type='float', default=60., metavar='N',
+      '-c',
+      '--consume',
+      type='float',
+      default=60.,
+      metavar='N',
       help='Duration (s) for consuming a request, default: %default')
   parser.add_option_group(group)
 
   group = optparse.OptionGroup(parser, 'Display options')
   group.add_option(
-      '--columns', type='int', default=graph.get_console_width(), metavar='N',
+      '--columns',
+      type='int',
+      default=graph.get_console_width(),
+      metavar='N',
       help='For histogram display, default:%default')
   group.add_option(
-      '--buckets', type='int', default=20, metavar='N',
+      '--buckets',
+      type='int',
+      default=20,
+      metavar='N',
       help='Number of buckets for histogram display, default:%default')
   parser.add_option_group(group)
 
-  parser.add_option(
-      '--dump', metavar='FOO.JSON', help='Dumps to json file')
+  parser.add_option('--dump', metavar='FOO.JSON', help='Dumps to json file')
   parser.add_option(
       '-v', '--verbose', action='store_true', help='Enables logging')
 
@@ -282,9 +294,8 @@ def main():
     parser.error('Needs --consume > 0. 0.01 is a valid value.')
   swarming.process_filter_options(parser, options)
 
-  print(
-      'Running %d bots, each task lasting %.1fs' % (
-        options.bots, options.consume))
+  print('Running %d bots, each task lasting %.1fs' % (options.bots,
+                                                      options.consume))
   print('Ctrl-C to exit.')
   print('[processing/processed/bots]')
   columns = [('processing', 0), ('processed', 0), ('bots', 0)]
@@ -297,10 +308,9 @@ def main():
   if options.suffix:
     hostname += '-' + options.suffix
   bots = [
-    FakeSwarmBot(
-      options.swarming, options.dimensions, swarm_bot_version_hash, hostname, i,
-      progress, options.consume, events, kill_event)
-    for i in range(options.bots)
+      FakeSwarmBot(options.swarming, options.dimensions, swarm_bot_version_hash,
+                   hostname, i, progress, options.consume, events, kill_event)
+      for i in range(options.bots)
   ]
   try:
     # Wait for all the bots to come alive.

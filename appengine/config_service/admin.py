@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Administration API accessible only by service admins.
 
 Defined as Endpoints API mostly to abuse API Explorer UI and not to write our
@@ -23,7 +22,6 @@ from components import auth
 from components.datastore_utils import config
 
 import acl
-
 
 # This is used by endpoints indirectly.
 package = 'luci-config'

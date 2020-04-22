@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines main bulk of public API of auth component.
 
 Functions defined here can be safely called often (multiple times per request),
@@ -44,40 +43,39 @@ from .proto import realms_pb2
 
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'AuthDetails',
-  'AuthenticationError',
-  'AuthorizationError',
-  'autologin',
-  'disable_process_cache',
-  'Error',
-  'get_auth_details',
-  'get_current_identity',
-  'get_delegation_token',
-  'get_peer_identity',
-  'get_peer_ip',
-  'get_process_cache_expiration_sec',
-  'get_request_auth_db',
-  'get_secret',
-  'get_web_client_id',
-  'GroupListing',
-  'has_permission',
-  'has_permission_dryrun',
-  'is_admin',
-  'is_group_member',
-  'is_in_ip_whitelist',
-  'is_superuser',
-  'legacy_realm',
-  'list_group',
-  'new_auth_details',
-  'Permission',
-  'public',
-  'require',
-  'root_realm',
-  'SecretKey',
-  'verify_ip_whitelisted',
-  'warmup',
+    'AuthDetails',
+    'AuthenticationError',
+    'AuthorizationError',
+    'autologin',
+    'disable_process_cache',
+    'Error',
+    'get_auth_details',
+    'get_current_identity',
+    'get_delegation_token',
+    'get_peer_identity',
+    'get_peer_ip',
+    'get_process_cache_expiration_sec',
+    'get_request_auth_db',
+    'get_secret',
+    'get_web_client_id',
+    'GroupListing',
+    'has_permission',
+    'has_permission_dryrun',
+    'is_admin',
+    'is_group_member',
+    'is_in_ip_whitelist',
+    'is_superuser',
+    'legacy_realm',
+    'list_group',
+    'new_auth_details',
+    'Permission',
+    'public',
+    'require',
+    'root_realm',
+    'SecretKey',
+    'verify_ip_whitelisted',
+    'warmup',
 ]
-
 
 # A callback (configured through appengine_config.py mechanism) that returns
 # a list of additional OAuth client IDs we trust in this GAE application.
@@ -109,13 +107,11 @@ _auth_db_fetch_lock = threading.Lock()
 # Thread local storage for RequestCache (see 'get_request_cache').
 _thread_local = threading.local()
 
-
 # The endpoint used to validate an access token on dev server.
 TOKEN_INFO_ENDPOINT = 'https://www.googleapis.com/oauth2/v1/tokeninfo'
 
 # OAuth2 client_id of the "API Explorer" web app.
 API_EXPLORER_CLIENT_ID = '292824132082.apps.googleusercontent.com'
-
 
 ################################################################################
 ## Exception classes.
@@ -123,6 +119,7 @@ API_EXPLORER_CLIENT_ID = '292824132082.apps.googleusercontent.com'
 
 class Error(Exception):
   """Base class for exceptions raised by auth component."""
+
   def __init__(self, message=None):
     super(Error, self).__init__(message or self.__doc__)
 
@@ -142,55 +139,59 @@ class RealmsError(Error):
 ################################################################################
 ## AuthDB.
 
-
 # Name of a secret. Used by 'get_secret' function.
 SecretKey = collections.namedtuple('SecretKey', ['name'])
-
 
 # The representation of AuthGroup used by AuthDB, preprocessed for faster
 # membership checks. We keep it in AuthDB in place of AuthGroup to reduce RAM
 # usage.
-CachedGroup = collections.namedtuple('CachedGroup', [
-  'members',  # == frozenset(m.to_bytes() for m in auth_group.members)
-  'globs',
-  'nested',
-  'description',
-  'owners',
-  'created_ts',
-  'created_by',
-  'modified_ts',
-  'modified_by',
-])
-
+CachedGroup = collections.namedtuple(
+    'CachedGroup',
+    [
+        'members',  # == frozenset(m.to_bytes() for m in auth_group.members)
+        'globs',
+        'nested',
+        'description',
+        'owners',
+        'created_ts',
+        'created_by',
+        'modified_ts',
+        'modified_by',
+    ])
 
 # GroupListing is returned by list_group.
-GroupListing = collections.namedtuple('GroupListing', [
-  'members',  # list of Identity in no particular order
-  'globs',    # list of IdentityGlob in no particular order
-  'nested',   # list of strings with nested group names in no particular order
-])
-
+GroupListing = collections.namedtuple(
+    'GroupListing',
+    [
+        'members',  # list of Identity in no particular order
+        'globs',  # list of IdentityGlob in no particular order
+        'nested',  # list of strings with nested group names in no particular order
+    ])
 
 # OAuthConfig is extracted from the AuthDB proto or from AuthGlobalConfig.
-OAuthConfig = collections.namedtuple('OAuthConfig', [
-  'oauth_client_id',              # str
-  'oauth_client_secret',          # str
-  'oauth_additional_client_ids',  # list of str
-])
-
+OAuthConfig = collections.namedtuple(
+    'OAuthConfig',
+    [
+        'oauth_client_id',  # str
+        'oauth_client_secret',  # str
+        'oauth_additional_client_ids',  # list of str
+    ])
 
 # The representation of realms_pb2.Realm used by AuthDB, preprocessed for faster
 # checks.
-CachedRealm = collections.namedtuple('CachedRealm', [
-  'per_permission_sets',  # permission index -> [PrincipalsSet].
-])
-
+CachedRealm = collections.namedtuple(
+    'CachedRealm',
+    [
+        'per_permission_sets',  # permission index -> [PrincipalsSet].
+    ])
 
 # Represents a set of groups and identities, used by CachedRealm.
-PrincipalsSet = collections.namedtuple('PrincipalsSet', [
-  'groups',  # tuple(['group1', 'group2', ...])
-  'idents',  # frozenset(['user:abc@example.com', ...])
-])
+PrincipalsSet = collections.namedtuple(
+    'PrincipalsSet',
+    [
+        'groups',  # tuple(['group1', 'group2', ...])
+        'idents',  # frozenset(['user:abc@example.com', ...])
+    ])
 
 
 class AuthDB(object):
@@ -217,14 +218,9 @@ class AuthDB(object):
         additional_client_ids=[])
 
   @staticmethod
-  def from_entities(
-        replication_state,
-        global_config,
-        groups,
-        ip_whitelist_assignments,
-        ip_whitelists,
-        additional_client_ids
-    ):
+  def from_entities(replication_state, global_config, groups,
+                    ip_whitelist_assignments, ip_whitelists,
+                    additional_client_ids):
     """Constructs AuthDB from various (already loaded) datastore entities.
 
     Args:
@@ -254,10 +250,9 @@ class AuthDB(object):
     return AuthDB(
         from_what='from_entities',
         replication_state=replication_state,
-        oauth_config=OAuthConfig(
-            global_config.oauth_client_id,
-            global_config.oauth_client_secret,
-            global_config.oauth_additional_client_ids),
+        oauth_config=OAuthConfig(global_config.oauth_client_id,
+                                 global_config.oauth_client_secret,
+                                 global_config.oauth_additional_client_ids),
         token_server_url=global_config.token_server_url,
         groups=cached_groups,
         ip_whitelist_assignments={
@@ -307,26 +302,24 @@ class AuthDB(object):
             model.Identity.from_bytes(e.identity): e.ip_whitelist
             for e in auth_db.ip_whitelist_assignments
         },
-        ip_whitelists={
-            e.name: list(e.subnets) for e in auth_db.ip_whitelists
-        },
+        ip_whitelists={e.name: list(e.subnets) for e in auth_db.ip_whitelists},
         realms_pb=auth_db.realms if auth_db.HasField('realms') else None,
         additional_client_ids=additional_client_ids)
 
   # Note: do not use __init__ directly, use one of AuthDB.empty(),
   # AuthDB.from_entities() or AuthDB.from_proto() instead.
   def __init__(
-        self,
-        from_what,                 # str
-        replication_state,         # AuthReplicationState
-        oauth_config,              # OAuthConfig
-        token_server_url,          # str
-        groups,                    # {str -> CachedGroup}
-        ip_whitelist_assignments,  # {Identity -> str}
-        ip_whitelists,             # {str -> [str]}
-        realms_pb,                 # realms_pb2.Realms or None
-        additional_client_ids      # [str]
-    ):
+      self,
+      from_what,  # str
+      replication_state,  # AuthReplicationState
+      oauth_config,  # OAuthConfig
+      token_server_url,  # str
+      groups,  # {str -> CachedGroup}
+      ip_whitelist_assignments,  # {Identity -> str}
+      ip_whitelists,  # {str -> [str]}
+      realms_pb,  # realms_pb2.Realms or None
+      additional_client_ids  # [str]
+  ):
     self._from_what = from_what  # for tests only
     self._replication_state = replication_state
     self._oauth_config = oauth_config
@@ -353,7 +346,7 @@ class AuthDB(object):
     # These are populated from realms_pb2.Realms.
     self._use_realms = realms_pb is not None
     self._permissions = {}  # {str name -> int index}
-    self._realms = {}       # {str name -> CachedRealm}
+    self._realms = {}  # {str name -> CachedRealm}
     if realms_pb:
       with _all_perms_lock:
         registered_perms = list(_all_perms)
@@ -410,8 +403,8 @@ class AuthDB(object):
     # permission will just always return DENY.
     for p in registered_perms:
       if p not in self._permissions:
-        logging.warning(
-            'Permission %r is not in the AuthDB rev %d', p, self.auth_db_rev)
+        logging.warning('Permission %r is not in the AuthDB rev %d', p,
+                        self.auth_db_rev)
 
     # Conceptually, for each realm we are building a map "permission -> set of
     # principals". But to save memory we represent "set of principals" as a list
@@ -464,9 +457,8 @@ class AuthDB(object):
         assert self._globs_idx is not None
         assert self._nested_idx is not None
         assert self._owned_idx is not None
-        return (
-            self._members_idx, self._globs_idx,
-            self._nested_idx, self._owned_idx)
+        return (self._members_idx, self._globs_idx, self._nested_idx,
+                self._owned_idx)
 
       logging.info('Building in-memory indexes...')
 
@@ -536,15 +528,15 @@ class AuthDB(object):
       # An unknown group is empty.
       group_obj = self._groups.get(group_name)
       if not group_obj:
-        logging.warning(
-            'Querying unknown group: %s via %s', group_name, current)
+        logging.warning('Querying unknown group: %s via %s', group_name,
+                        current)
         return False
 
       # In a group DAG a group can not reference any of its ancestors, since it
       # creates a cycle.
       if group_name in current:
-        logging.warning(
-            'Cycle in a group graph: %s via %s', group_name, current)
+        logging.warning('Cycle in a group graph: %s via %s', group_name,
+                        current)
         return False
 
       # Explored this group already (and didn't find |identity| there) while
@@ -608,8 +600,8 @@ class AuthDB(object):
       GroupListing object.
     """
     members = set()  # set of strings (not Identity!), see CachedGroup
-    globs = set()    # set of IdentityGlob
-    nested = set()   # set of strings
+    globs = set()  # set of IdentityGlob
+    nested = set()  # set of strings
 
     def accumulate(group_obj):
       members.update(group_obj.members)
@@ -806,9 +798,8 @@ class AuthDB(object):
     self._check_realms_available()
 
     if not isinstance(permission, Permission):
-      raise TypeError(
-          'Bad permission type: got %s, want auth.Permission' %
-          (type(permission),))
+      raise TypeError('Bad permission type: got %s, want auth.Permission' %
+                      (type(permission),))
 
     perm_idx = self._permissions.get(permission.name)
     if perm_idx is None:
@@ -881,24 +872,21 @@ class AuthDB(object):
     if len(spl) != 2 or not spl[0] or not spl[1]:
       raise ValueError('Bad realm %r, want "<project>:<name>"' % (name,))
     if (not _PROJECT_NAME_RE.match(spl[0]) or
-        not (
-            _REALM_NAME_RE.match(spl[1]) or
-            spl[1] == _ROOT_REALM or
-            spl[1] == _LEGACY_REALM
-        )):
+        not (_REALM_NAME_RE.match(spl[1]) or spl[1] == _ROOT_REALM or
+             spl[1] == _LEGACY_REALM)):
       raise ValueError(
           'Bad realm %r: should be "<project>:<name>" where '
-          '<project> matches %r and <name> matches %r or is %s or %s' % (
-          name, _PROJECT_NAME_RE.pattern, _REALM_NAME_RE.pattern,
-          _ROOT_REALM, _LEGACY_REALM))
+          '<project> matches %r and <name> matches %r or is %s or %s' %
+          (name, _PROJECT_NAME_RE.pattern, _REALM_NAME_RE.pattern, _ROOT_REALM,
+           _LEGACY_REALM))
 
     # Same as root_realm(...) except skipping the validation, we already did it.
     root_name = str('%s:%s' % (spl[0], _ROOT_REALM))
 
     # Can't fallback to the root if already checking it.
     if name == root_name:
-      logging.warning(
-          'Checking %r in a non-existing root realm %r: denying', perm, name)
+      logging.warning('Checking %r in a non-existing root realm %r: denying',
+                      perm, name)
       return None
 
     # Fallback to the root and log the outcome.
@@ -964,8 +952,7 @@ def set_web_client_id(web_client_id):
   """Changes the configured OAuth2 client ID for the web UI."""
   cfg = AuthWebUIConfig.fetch() or AuthWebUIConfig()
   cfg.modify(
-      updated_by=get_current_identity().to_bytes(),
-      web_client_id=web_client_id)
+      updated_by=get_current_identity().to_bytes(), web_client_id=web_client_id)
 
 
 ################################################################################
@@ -1005,8 +992,8 @@ def attempt_oauth_initialization(scope):
       logging.warning('DeadlineExceededError: %s', e)
       continue
     except oauth.OAuthServiceFailureError as e:
-      logging.warning(
-          'oauth.OAuthServiceFailureError (%s): %s', e.__class__.__name__, e)
+      logging.warning('oauth.OAuthServiceFailureError (%s): %s',
+                      e.__class__.__name__, e)
       # oauth library "caches" the error code in os.environ and retrying
       # oauth.get_client_id doesn't do anything. Clear this cache first, see
       # oauth_api.py, _maybe_call_get_oauth_user in GAE SDK.
@@ -1117,8 +1104,7 @@ def check_oauth_access_token(header):
   if utils.is_local_dev_server():
     # auth_call returns tuple (Identity, AuthDetails). There are no additional
     # details if not using native GAE OAuth API.
-    auth_call = lambda: (
-        dev_oauth_authentication(header, TOKEN_INFO_ENDPOINT), None)
+    auth_call = lambda: (dev_oauth_authentication(header, TOKEN_INFO_ENDPOINT), None)
   else:
     auth_call = extract_oauth_caller_identity
 
@@ -1189,18 +1175,19 @@ def dev_oauth_authentication(header, token_info_endpoint, suffix=''):
 ################################################################################
 ## RequestCache.
 
-
 # Additional information extracted from the credentials by an auth method.
 #
 # Lives in the request authentication context (aka RequestCache). Cleared in
 # a presence of a delegation token.
-AuthDetails = collections.namedtuple('AuthDetails', [
-  'is_superuser',  # True if the caller is GAE-level administrator
+AuthDetails = collections.namedtuple(
+    'AuthDetails',
+    [
+        'is_superuser',  # True if the caller is GAE-level administrator
 
-  # Populated when using 'gce_vm_authentication' method.
-  'gce_instance',  # name of a GCE VM that is making the call
-  'gce_project',   # name of a GCE project that owns a VM making the call
-])
+        # Populated when using 'gce_vm_authentication' method.
+        'gce_instance',  # name of a GCE VM that is making the call
+        'gce_project',  # name of a GCE project that owns a VM making the call
+    ])
 
 
 # pylint: disable=redefined-outer-name
@@ -1249,7 +1236,7 @@ class RequestCache(object):
 
   @auth_details.setter
   def auth_details(self, value):
-    assert self._auth_details is None # haven't been set yet
+    assert self._auth_details is None  # haven't been set yet
     assert value is None or isinstance(value, AuthDetails), value
     self._auth_details = value or new_auth_details()
 
@@ -1392,10 +1379,8 @@ def fetch_auth_db(known_auth_db=None):
     # the snapshot of AuthDB in the datastore.
     state = model.get_replication_state()
     if known_auth_db is not None:
-      return (
-          not state or
-          state.primary_id != known_auth_db.primary_id or
-          state.auth_db_rev != known_auth_db.auth_db_rev), state
+      return (not state or state.primary_id != known_auth_db.primary_id or
+              state.auth_db_rev != known_auth_db.auth_db_rev), state
     return True, state
 
   @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT)
@@ -1412,18 +1397,19 @@ def fetch_auth_db(known_auth_db=None):
     # since it does some heavy computations. Instead just return all kwargs for
     # it, so AuthDB can be built outside.
     return {
-      'replication_state': (
-          replication_state_future.get_result() or
-          model.AuthReplicationState(key=model.replication_state_key())
-      ),
-      'global_config': (
-          global_config_future.get_result() or
-          model.AuthGlobalConfig(key=root_key)
-      ),
-      'groups': groups_future.get_result(),
-      'ip_whitelist_assignments': ip_whitelist_assignments,
-      'ip_whitelists': ip_whitelists,
-      'additional_client_ids': additional_client_ids,
+        'replication_state': (
+            replication_state_future.get_result() or
+            model.AuthReplicationState(key=model.replication_state_key())),
+        'global_config': (global_config_future.get_result() or
+                          model.AuthGlobalConfig(key=root_key)),
+        'groups':
+            groups_future.get_result(),
+        'ip_whitelist_assignments':
+            ip_whitelist_assignments,
+        'ip_whitelists':
+            ip_whitelists,
+        'additional_client_ids':
+            additional_client_ids,
     }
 
   need_refetch, replication_state = prepare()
@@ -1441,18 +1427,15 @@ def fetch_auth_db(known_auth_db=None):
   # In Replica mode load AuthDB snapshot proto stored in the datastore as is.
   # It is put there by replication.push_auth_db(...) when the replica receives
   # AuthDB pushes from the primary.
-  auth_db = replication.load_sharded_auth_db(
-      replication_state.primary_url,
-      replication_state.auth_db_rev,
-      replication_state.shard_ids)
+  auth_db = replication.load_sharded_auth_db(replication_state.primary_url,
+                                             replication_state.auth_db_rev,
+                                             replication_state.shard_ids)
   if not auth_db:
-    raise Error(
-        'Could not load sharded AuthDB of %s rev %d, shard_ids: %s' %
-        (
-            replication_state.primary_url,
-            replication_state.auth_db_rev,
-            ', '.join(replication_state.shard_ids),
-        ))
+    raise Error('Could not load sharded AuthDB of %s rev %d, shard_ids: %s' % (
+        replication_state.primary_url,
+        replication_state.auth_db_rev,
+        ', '.join(replication_state.shard_ids),
+    ))
   return AuthDB.from_proto(replication_state, auth_db, additional_client_ids)
 
 
@@ -1617,10 +1600,9 @@ def _roll_auth_db_cache(candidate):
   # AuthDB revisions are not directly comparable in this case, so assume
   # 'candidate' is newer.
   if _auth_db.primary_id != candidate.primary_id:
-    logging.info(
-        'AuthDB primary changed %s (rev %d) -> %s (rev %d)',
-        _auth_db.primary_id, _auth_db.auth_db_rev,
-        candidate.primary_id, candidate.auth_db_rev)
+    logging.info('AuthDB primary changed %s (rev %d) -> %s (rev %d)',
+                 _auth_db.primary_id, _auth_db.auth_db_rev,
+                 candidate.primary_id, candidate.auth_db_rev)
     _auth_db = candidate
     _auth_db_expiration = time.time() + _process_cache_expiration_sec
     return _auth_db
@@ -1630,8 +1612,8 @@ def _roll_auth_db_cache(candidate):
   if candidate.auth_db_rev < _auth_db.auth_db_rev:
     logging.info(
         'Someone else updated the cached AuthDB already '
-        '(cached rev %d > fetched rev %d)',
-        _auth_db.auth_db_rev, candidate.auth_db_rev)
+        '(cached rev %d > fetched rev %d)', _auth_db.auth_db_rev,
+        candidate.auth_db_rev)
     return _auth_db
 
   # Prefer to reuse the known copy if it matches the fetched one, it may have
@@ -1639,9 +1621,8 @@ def _roll_auth_db_cache(candidate):
   # is strictly fresher.
   if candidate.auth_db_rev > _auth_db.auth_db_rev:
     _auth_db = candidate
-    logging.info(
-        'Updated cached AuthDB: rev %d->%d',
-        _auth_db.auth_db_rev, candidate.auth_db_rev)
+    logging.info('Updated cached AuthDB: rev %d->%d', _auth_db.auth_db_rev,
+                 candidate.auth_db_rev)
 
   # Bump the expiration time even if the candidate's version is same as the
   # current cached one. We've just confirmed it is still fresh, we can keep
@@ -1664,17 +1645,16 @@ class Graph(object):
   """
 
   # Note: exact values of labels end up in JSON API output, so change carefully.
-  IN   = 'IN'    # edge A->B labeled 'IN' means 'A is subset of B'
+  IN = 'IN'  # edge A->B labeled 'IN' means 'A is subset of B'
   OWNS = 'OWNS'  # edge A->B labeled 'OWNS' means 'A owns B'
 
   def __init__(self):
-    self._nodes = []        # list of all added nodes
+    self._nodes = []  # list of all added nodes
     self._nodes_to_id = {}  # node object -> index of the node in _nodes
     self._root_id = None
     self._edges = collections.defaultdict(lambda: {
-      self.IN: set(),
-      self.OWNS: set(),
-    })
+        self.IN: set(),
+        self.OWNS: set(),})
 
   @property
   def root_id(self):
@@ -1855,8 +1835,8 @@ def is_in_ip_whitelist(whitelist_name, ip, warn_if_missing=True):
     ip: instance of ipaddr.IP.
     warn_if_missing: if True and IP whitelist is missing, logs a warning.
   """
-  return get_request_cache().auth_db.is_in_ip_whitelist(
-      whitelist_name, ip, warn_if_missing)
+  return get_request_cache().auth_db.is_in_ip_whitelist(whitelist_name, ip,
+                                                        warn_if_missing)
 
 
 def verify_ip_whitelisted(identity, ip):
@@ -1920,6 +1900,7 @@ def require(callback, error_msg=None):
     def get(self):
       ....
   """
+
   def decorator(func):
     # @public decorator sets __auth_public attribute.
     if hasattr(func, '__auth_public'):
@@ -2003,7 +1984,6 @@ def is_decorated(func):
 ################################################################################
 ## Realms permission checks.
 
-
 # Allowed LUCI project names, see realms.proto and LUCI Config service.
 _PROJECT_NAME_RE = re.compile(r'^[a-z0-9\-_]{1,100}$')
 # Allowed non-special (not "@...") realm names in realms.cfg.
@@ -2045,8 +2025,8 @@ class Permission(collections.namedtuple('Permission', 'name')):
     parts = name.split('.')
     if len(parts) != 3 or any(p == '' for p in parts):
       raise ValueError(
-          'Permissions should have form <service>.<subject>.<verb>, got %r'
-          % name)
+          'Permissions should have form <service>.<subject>.<verb>, got %r' %
+          name)
     with _all_perms_lock:
       perm = super(Permission, cls).__new__(cls, name)
       return _all_perms.setdefault(name, perm)
@@ -2140,13 +2120,11 @@ def has_permission(permission, realms, identity=None):
       permission, realms, identity or get_current_identity())
 
 
-def has_permission_dryrun(
-      permission,
-      realms,
-      expected_result,
-      identity=None,
-      tracking_bug=None
-  ):
+def has_permission_dryrun(permission,
+                          realms,
+                          expected_result,
+                          identity=None,
+                          tracking_bug=None):
   """Compares result of has_permission(...) to `expected_result`.
 
   Also catches ValueError and RealmsError and logs them.
@@ -2186,19 +2164,17 @@ def has_permission_dryrun(
   try:
     result = auth_db.has_permission(permission, realms, identity)
   except (ValueError, RealmsError) as exc:
-    logging.exception(
-        '%s: exception %s, want %s',
-        log_pfx, type(exc).__name__, 'ALLOW' if expected_result else 'DENY')
+    logging.exception('%s: exception %s, want %s', log_pfx,
+                      type(exc).__name__,
+                      'ALLOW' if expected_result else 'DENY')
     return
 
   if result == bool(expected_result):
     logging.info('%s: match - %s', log_pfx, 'ALLOW' if result else 'DENY')
   else:
-    logging.warning(
-        '%s: mismatch - got %s, want %s',
-        log_pfx,
-        'ALLOW' if result else 'DENY',
-        'ALLOW' if expected_result else 'DENY')
+    logging.warning('%s: mismatch - got %s, want %s', log_pfx,
+                    'ALLOW' if result else 'DENY',
+                    'ALLOW' if expected_result else 'DENY')
 
 
 def _validated_project_id(project):
@@ -2206,7 +2182,6 @@ def _validated_project_id(project):
   if not isinstance(project, basestring):
     raise TypeError('Expecting a string, got %s' % (type(project),))
   if not _PROJECT_NAME_RE.match(project):
-    raise ValueError(
-        'Invalid project name %r: should match %r' %
-        (project, _PROJECT_NAME_RE.pattern))
+    raise ValueError('Invalid project name %r: should match %r' %
+                     (project, _PROJECT_NAME_RE.pattern))
   return str(project)  # get rid of 'unicode'

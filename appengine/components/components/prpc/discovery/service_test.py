@@ -88,6 +88,7 @@ file {
 
 
 class DiscoveryServiceTests(unittest.TestCase):
+
   def test(self):
     serv = service.Discovery()
     serv.add_service(TestService.DESCRIPTION)

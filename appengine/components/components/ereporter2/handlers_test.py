@@ -28,38 +28,57 @@ from components.ereporter2 import on_error
 from components.ereporter2 import ui
 from test_support import test_case
 
-
 # Access to a protected member XXX of a client class - pylint: disable=W0212
 
 
 def ErrorRecord(**kwargs):
   """Returns an ErrorRecord filled with default dummy values."""
   vals = {
-      'request_id': '123',
-      'start_time': None,
-      'exception_time': None,
-      'latency': 0,
-      'mcycles': 0,
-      'ip': '0.0.1.0',
-      'nickname': None,
-      'referrer': None,
-      'user_agent': 'Comodore64',
-      'host': 'localhost',
-      'resource': '/foo',
-      'method': 'GET',
-      'task_queue_name': None,
-      'was_loading_request': False,
-      'version': 'v1',
-      'module': 'default',
-      'handler_module': 'main.app',
-      'gae_version': '1.9.0',
-      'instance': '123',
-      'status': 200,
+      'request_id':
+          '123',
+      'start_time':
+          None,
+      'exception_time':
+          None,
+      'latency':
+          0,
+      'mcycles':
+          0,
+      'ip':
+          '0.0.1.0',
+      'nickname':
+          None,
+      'referrer':
+          None,
+      'user_agent':
+          'Comodore64',
+      'host':
+          'localhost',
+      'resource':
+          '/foo',
+      'method':
+          'GET',
+      'task_queue_name':
+          None,
+      'was_loading_request':
+          False,
+      'version':
+          'v1',
+      'module':
+          'default',
+      'handler_module':
+          'main.app',
+      'gae_version':
+          '1.9.0',
+      'instance':
+          '123',
+      'status':
+          200,
       'message': (
           u'Traceback (most recent call last):\n'
           '  File "handlers_frontend.py", line 461, in post\n'
           '    for entry_info, exists in self.check_entry_infos('
-              'entries, namespace):\n'
+          'entries, namespace):\n'
           '  File "handlers_frontend.py", line 343, in check_entry_infos\n'
           '    future = ndb.Future.wait_any(futures)\n'
           '  File "appengine/ext/ndb/tasklets.py", line 338, in wait_any\n'
@@ -69,10 +88,10 @@ def ErrorRecord(**kwargs):
           '  File "appengine/ext/ndb/eventloop.py", line 197, in run0\n'
           '    callback(*args, **kwds)\n'
           '  File "appengine/ext/ndb/tasklets.py", line 474, in '
-              '_on_future_completion\n'
+          '_on_future_completion\n'
           '    self._help_tasklet_along(ns, ds_conn, gen, val)\n'
           '  File "appengine/ext/ndb/tasklets.py", line 371, in '
-              '_help_tasklet_along\n'
+          '_help_tasklet_along\n'
           '    value = gen.send(val)\n'
           '  File "appengine/ext/ndb/context.py", line 751, in get\n'
           '    pbs = entity._to_pb(set_key=False).SerializePartialToString()\n'
@@ -92,6 +111,7 @@ def ErrorRecord(**kwargs):
 
 
 class Base(test_case.TestCase):
+
   def setUp(self):
     super(Base, self).setUp()
     self.testbed.init_user_stub()
@@ -105,6 +125,7 @@ class Base(test_case.TestCase):
 
 
 class Ereporter2FrontendTest(Base):
+
   def setUp(self):
     super(Ereporter2FrontendTest, self).setUp()
     self.app = webtest.TestApp(
@@ -112,20 +133,25 @@ class Ereporter2FrontendTest(Base):
         extra_environ={'REMOTE_ADDR': '127.0.0.1'})
 
   def mock_as_admin(self):
+
     def is_group_member_mock(group, identity=None):
       return group == auth.model.ADMIN_GROUP or original(group, identity)
+
     original = self.mock(auth.api, 'is_group_member', is_group_member_mock)
+
     class admin(object):
+
       def email(self):
         return 'admin@example.com'
+
     self.mock(auth.AuthenticatingHandler, 'get_current_user', lambda _s: admin)
 
   def test_frontend_general(self):
     self.mock_as_admin()
     exception = (
-      '/ereporter2/api/v1/on_error',
-      r'/restricted/ereporter2/errors/<error_id:\d+>',
-      '/restricted/ereporter2/request/<request_id:[0-9a-fA-F]+>',
+        '/ereporter2/api/v1/on_error',
+        r'/restricted/ereporter2/errors/<error_id:\d+>',
+        '/restricted/ereporter2/request/<request_id:[0-9a-fA-F]+>',
     )
     for route in handlers.get_frontend_routes():
       if not route.template in exception:
@@ -136,13 +162,14 @@ class Ereporter2FrontendTest(Base):
       # cases.
       self.assertEqual('123', request_id)
       return logservice.RequestLog()
+
     self.mock(logscraper, '_log_request_id', gen_request)
     self.app.get('/restricted/ereporter2/request/123', status=200)
 
   def test_on_error_handler(self):
     self.mock(logging, 'error', lambda *_a, **_k: None)
     data = {
-      'foo': 'bar',
+        'foo': 'bar',
     }
     for key in on_error.VALID_ERROR_KEYS:
       data[key] = 'bar %s' % key
@@ -150,18 +177,20 @@ class Ereporter2FrontendTest(Base):
     data['duration'] = 2.3
     data['source'] = 'run_isolated'
     params = {
-      'r': data,
-      'v': '1',
+        'r': data,
+        'v': '1',
     }
     response = self.app.post(
-        '/ereporter2/api/v1/on_error', json.dumps(params), status=200,
+        '/ereporter2/api/v1/on_error',
+        json.dumps(params),
+        status=200,
         content_type='application/json; charset=utf-8').json
 
     self.assertEqual(1, models.Error.query().count())
     error_id = models.Error.query().get().key.integer_id()
     expected = {
-      'id': error_id,
-      'url': u'http://localhost/restricted/ereporter2/errors/%d' % error_id,
+        'id': error_id,
+        'url': u'http://localhost/restricted/ereporter2/errors/%d' % error_id,
     }
     self.assertEqual(expected, response)
 
@@ -175,12 +204,16 @@ class Ereporter2FrontendTest(Base):
   def test_on_error_handler_bad_type(self):
     self.mock(logging, 'error', lambda *_a, **_k: None)
     params = {
-      # 'args' should be a list.
-      'r': {'args': 'bar'},
-      'v': '1',
+        # 'args' should be a list.
+        'r': {
+            'args': 'bar'
+        },
+        'v': '1',
     }
     response = self.app.post(
-        '/ereporter2/api/v1/on_error', json.dumps(params), status=200,
+        '/ereporter2/api/v1/on_error',
+        json.dumps(params),
+        status=200,
         content_type='application/json; charset=utf-8').json
     # There's still a response but it will be an error about the error.
     self.assertEqual(1, models.Error.query().count())
@@ -191,8 +224,8 @@ class Ereporter2FrontendTest(Base):
     # Log an error, ensure it's returned, silence it, ensure it's silenced.
     self.mock_as_admin()
     exceptions = [ErrorRecord()]
-    self.mock(
-        logscraper, '_extract_exceptions_from_logs', lambda *_: exceptions[:])
+    self.mock(logscraper, '_extract_exceptions_from_logs',
+              lambda *_: exceptions[:])
 
     resp = self.app.get('/restricted/ereporter2/report')
     # Grep the form. This is crude parsing with assumption of the form layout.
@@ -204,12 +237,12 @@ class Ereporter2FrontendTest(Base):
     self.assertEqual('/restricted/ereporter2/silence', silence_url)
 
     expected_inputs = {
-      'exception_type': 'DeadlineExceededError',
-      'signature': 'DeadlineExceededError@check_entry_infos',
-      'mute_type': 'exception_type',
-      'silenced': None,
-      'silenced_until': 'T',
-      'threshold': '10',
+        'exception_type': 'DeadlineExceededError',
+        'signature': 'DeadlineExceededError@check_entry_infos',
+        'mute_type': 'exception_type',
+        'silenced': None,
+        'silenced_until': 'T',
+        'threshold': '10',
     }
     actual_inputs = {}
     for i in re.findall(r'(\<input .+?\<\/input\>)', form, re.DOTALL):
@@ -232,6 +265,7 @@ class Ereporter2FrontendTest(Base):
         if i.request_id == request_id:
           return logservice.RequestLog()
       self.fail()
+
     self.mock(logscraper, '_log_request_id', gen_request)
     self.app.get('/restricted/ereporter2/request/123', status=200)
 
@@ -254,6 +288,7 @@ class Ereporter2FrontendTest(Base):
 
 
 class Ereporter2BackendTest(Base):
+
   def setUp(self):
     super(Ereporter2BackendTest, self).setUp()
     self.app = webtest.TestApp(
@@ -274,8 +309,7 @@ class Ereporter2BackendTest(Base):
     self.mock(logscraper, '_extract_exceptions_from_logs', lambda *_: data)
     self.mock(acl, 'get_ereporter2_recipients', lambda: ['joe@localhost'])
     headers = {'X-AppEngine-Cron': 'true'}
-    response = self.app.get(
-        '/internal/cron/ereporter2/mail', headers=headers)
+    response = self.app.get('/internal/cron/ereporter2/mail', headers=headers)
     self.assertEqual(response.status_int, 200)
     self.assertEqual(response.normal_body, 'Success.')
     self.assertEqual(response.content_type, 'text/plain')
@@ -285,15 +319,14 @@ class Ereporter2BackendTest(Base):
     message = messages[0]
     self.assertTrue(hasattr(message, 'to'), message.html)
     escaped = data[0].message.replace('"', '&#34;')
-    expected_text = (
-      '1 occurrences of 1 errors across 1 versions.\n\n'
-      'DeadlineExceededError@check_entry_infos\n'
-      'Handler: main.app\n'
-      'Modules: default\n'
-      'Versions: v1\n'
-      'GET localhost/foo (HTTP 200)\n') + escaped + (
-      '\n'
-      '1 occurrences: Entry \n\n')
+    expected_text = ('1 occurrences of 1 errors across 1 versions.\n\n'
+                     'DeadlineExceededError@check_entry_infos\n'
+                     'Handler: main.app\n'
+                     'Modules: default\n'
+                     'Versions: v1\n'
+                     'GET localhost/foo (HTTP 200)\n') + escaped + (
+                         '\n'
+                         '1 occurrences: Entry \n\n')
     self.assertEqual(expected_text, message.body.payload)
 
   def test_cron_old_errors(self):

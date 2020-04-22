@@ -2,7 +2,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Common code to stream (and backfill) rows to BigQuery."""
 
 import datetime
@@ -17,14 +16,12 @@ from components import net
 from components import utils
 import bqh
 
-
 # Oldest entity to backfill.
 #
 # https://cloud.google.com/bigquery/streaming-data-into-bigquery#streaming_into_partitioned_tables
 # states that the oldest row that can be streamed to a partitioned table by
 # TIMESTAMP is 1 year old. Use 364 days for safety.
 _OLDEST_BACKFILL = datetime.timedelta(days=364)
-
 
 ### Models
 
@@ -88,18 +85,24 @@ def _send_to_bq_raw(dataset, table_name, rows):
       'https://www.googleapis.com/bigquery/v2/projects/%s/datasets/%s/tables/'
       '%s/insertAll') % (app_identity.get_application_id(), dataset, table_name)
   payload = {
-    'kind': 'bigquery#tableDataInsertAllRequest',
-    # Do not fail entire request because of one bad row.
-    # We handle invalid rows below.
-    'skipInvalidRows': True,
-    'ignoreUnknownValues': False,
-    'rows': [
-      {'insertId': row_id, 'json': bqh.message_to_dict(row)}
-      for row_id, row in rows
-    ],
+      'kind':
+          'bigquery#tableDataInsertAllRequest',
+      # Do not fail entire request because of one bad row.
+      # We handle invalid rows below.
+      'skipInvalidRows':
+          True,
+      'ignoreUnknownValues':
+          False,
+      'rows': [{
+          'insertId': row_id,
+          'json': bqh.message_to_dict(row)
+      } for row_id, row in rows],
   }
   res = net.json_request(
-      url=url, method='POST', payload=payload, scopes=bqh.INSERT_ROWS_SCOPE,
+      url=url,
+      method='POST',
+      payload=payload,
+      scopes=bqh.INSERT_ROWS_SCOPE,
       deadline=600)
 
   dropped = 0
@@ -132,8 +135,8 @@ def _send_to_bq_raw(dataset, table_name, rows):
 ### Public API.
 
 
-def cron_trigger_tasks(
-    table_name, baseurl, task_name, max_seconds, max_taskqueues):
+def cron_trigger_tasks(table_name, baseurl, task_name, max_seconds,
+                       max_taskqueues):
   """Triggers tasks to send rows to BigQuery via time based slicing.
 
   It triggers one task queue task per 1 minute slice of time to process. It will
@@ -171,7 +174,8 @@ def cron_trigger_tasks(
     # Flush the previous state, especially if it was the deprecated way, and
     # start over.
     state = BqState(
-        id=table_name, ts=start,
+        id=table_name,
+        ts=start,
         oldest=recent_cutoff - minute,
         recent=recent_cutoff)
     state.put()

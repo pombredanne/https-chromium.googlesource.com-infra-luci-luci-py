@@ -21,7 +21,6 @@ from components.auth import signature
 from components.auth import tokens
 from test_support import test_case
 
-
 URL_SAFE_ALPHABET = set(string.letters + string.digits + '-_')
 
 
@@ -63,8 +62,8 @@ class StringConvertersTest(test_case.TestCase):
     self.assertEqual(['abc', 'def'], tokens.normalize_message(('abc', 'def')))
 
   def test_normalize_message_unicode(self):
-    self.assertEqual(
-        ['\xd0\xbf', 'abc'], tokens.normalize_message([u'\u043f', 'abc']))
+    self.assertEqual(['\xd0\xbf', 'abc'],
+                     tokens.normalize_message([u'\u043f', 'abc']))
 
   def test_normalize_embedded_reserved_keys(self):
     with self.assertRaises(ValueError):
@@ -100,21 +99,20 @@ class ComputeMacTest(test_case.TestCase):
     # Different data -> different MACs.
     # Also boundaries between data strings matter.
     macs = (
-      tokens.compute_mac(self.algo, 'secret', []),
-      tokens.compute_mac(self.algo, 'secret', ['']),
-      tokens.compute_mac(self.algo, 'secret', ['', '']),
-      tokens.compute_mac(self.algo, 'secret', ['\x00']),
-      tokens.compute_mac(self.algo, 'secret', ['a', 'b']),
-      tokens.compute_mac(self.algo, 'secret', ['ab']),
-      tokens.compute_mac(self.algo, 'secret', ['0' * 10]),
-      tokens.compute_mac(self.algo, 'secret', ['0'] + 10 * ['']),
+        tokens.compute_mac(self.algo, 'secret', []),
+        tokens.compute_mac(self.algo, 'secret', ['']),
+        tokens.compute_mac(self.algo, 'secret', ['', '']),
+        tokens.compute_mac(self.algo, 'secret', ['\x00']),
+        tokens.compute_mac(self.algo, 'secret', ['a', 'b']),
+        tokens.compute_mac(self.algo, 'secret', ['ab']),
+        tokens.compute_mac(self.algo, 'secret', ['0' * 10]),
+        tokens.compute_mac(self.algo, 'secret', ['0'] + 10 * ['']),
     )
     self.assertTrue(len(set(macs)) == len(macs))
 
   def test_compute_mac_length(self):
-    self.assertEqual(
-        tokens.MAC_ALGOS[self.algo][1],
-        len(tokens.compute_mac(self.algo, 'secret', ['a'])))
+    self.assertEqual(tokens.MAC_ALGOS[self.algo][1],
+                     len(tokens.compute_mac(self.algo, 'secret', ['a'])))
 
   def test_compute_mac_uses_secret(self):
     # Different secrets -> different MACs.
@@ -132,11 +130,16 @@ class TokenEncodeDecodeTest(test_case.TestCase):
   def test_simple(self):
     # Test case: (version, message, embedded).
     cases = (
-      (1, [], {}),
-      (255, [], {}),
-      (1, ['Hello'], {}),
-      (1, [], {'a': 'b'}),
-      (1, ['', 'some', 'more'], {'a': 'b', '_i': 'd'}),
+        (1, [], {}),
+        (255, [], {}),
+        (1, ['Hello'], {}),
+        (1, [], {
+            'a': 'b'
+        }),
+        (1, ['', 'some', 'more'], {
+            'a': 'b',
+            '_i': 'd'
+        }),
     )
     for version, message, embedded in cases:
       tok = tokens.encode_token(self.algo, version, 'secret', message, embedded)
@@ -148,9 +151,9 @@ class TokenEncodeDecodeTest(test_case.TestCase):
 
   def test_many_secrets(self):
     tok = tokens.encode_token(self.algo, 1, 'old', ['msg'], {'a': 'b'})
-    self.assertEqual(
-        (1, {'a': 'b'}),
-        tokens.decode_token(self.algo, tok, ['new', 'old'], ['msg']))
+    self.assertEqual((1, {
+        'a': 'b'
+    }), tokens.decode_token(self.algo, tok, ['new', 'old'], ['msg']))
 
   def test_bad_secret(self):
     tok = tokens.encode_token(self.algo, 1, 'ancient', ['msg'], {'a': 'b'})
@@ -226,9 +229,11 @@ class TestToken(test_case.TestCase):
   def mock_get_secret(self):
     """Capture calls to api.get_secret."""
     calls = []
+
     def mocked_get_secret(key):
       calls.append(key)
       return ['1', '2', '3']
+
     self.mock(tokens.api, 'get_secret', mocked_get_secret)
     return calls
 
@@ -256,6 +261,7 @@ class TestToken(test_case.TestCase):
     self.assertEqual([SimpleToken.secret_key], calls)
 
   def test_checks_version(self):
+
     class TokenV1(tokens.TokenKind):
       secret_key = api.SecretKey('secret')
       expiration_sec = 3600
@@ -284,7 +290,7 @@ class TestToken(test_case.TestCase):
     # If clocks moves slightly backward, it's still OK. Happens if token is
     # generated on one machine, but validated on another one with slightly late
     # clock.
-    self.mock_now(origin, -tokens.ALLOWED_CLOCK_DRIFT_SEC+5)
+    self.mock_now(origin, -tokens.ALLOWED_CLOCK_DRIFT_SEC + 5)
     SimpleToken.validate(tok)
 
     # If token is from far future, then something is fishy...
@@ -329,26 +335,34 @@ class TestToken(test_case.TestCase):
     self.assertTrue(GoodToken.generate())
 
   def test_is_configured_bad_algo(self):
+
     class BadToken(GoodToken):
       algo = 'some-unknown-algo'
+
     with self.assertRaises(ValueError):
       BadToken.generate()
 
   def test_is_configured_bad_expiration(self):
+
     class BadToken(GoodToken):
       expiration_sec = None
+
     with self.assertRaises(ValueError):
       BadToken.generate()
 
   def test_is_configured_bad_secret_key(self):
+
     class BadToken(GoodToken):
       secret_key = None
+
     with self.assertRaises(ValueError):
       BadToken.generate()
 
   def test_is_configured_bad_version(self):
+
     class BadToken(GoodToken):
       version = 256
+
     with self.assertRaises(ValueError):
       BadToken.generate()
 
@@ -365,27 +379,30 @@ class TestSignJWT(test_case.TestCase):
     self.mock_now(self.NOW)
     self.mock(utils, 'get_service_account_name', lambda: 'a@example.com')
     self.signed = []
+
     def sign_blob_mock(blob):
       self.signed.append(blob)
       return 'key_id', 'signature'
+
     self.mock(app_identity, 'sign_blob', sign_blob_mock)
 
   def test_works(self):
     # Note: we can't use verify_jwt in this test because tokens produced by
     # sign_jwt do not have 'kid' header field which is required by verify_jwt.
     expected_hdr = b64.encode('{"alg":"RS256","typ":"JWT"}')
-    expected_claims = b64.encode(utils.encode_to_json({
-        'aud': 'some audience',
-        'email': 'a@example.com',
-        'exp': 1514772061,  # matches NOW+1h
-        'iat': 1514768461,  # matches NOW
-        'iss': 'a@example.com',
-        'sub': 'a@example.com',
-    }))
+    expected_claims = b64.encode(
+        utils.encode_to_json({
+            'aud': 'some audience',
+            'email': 'a@example.com',
+            'exp': 1514772061,  # matches NOW+1h
+            'iat': 1514768461,  # matches NOW
+            'iss': 'a@example.com',
+            'sub': 'a@example.com',
+        }))
     expected_sig = b64.encode('signature')
     self.assertEqual(
-        tokens.sign_jwt(u'some audience'),
-        '.'.join((expected_hdr, expected_claims, expected_sig)))
+        tokens.sign_jwt(u'some audience'), '.'.join(
+            (expected_hdr, expected_claims, expected_sig)))
     self.assertEqual(self.signed[0], '.'.join((expected_hdr, expected_claims)))
 
 
@@ -400,18 +417,21 @@ class TestVerifyJWT(test_case.TestCase):
     self.mock_now(self.NOW)
 
   def mock_certs_bundle(self, valid_key=KEY, valid_sig=SIG, expected_blob=None):
+
     class MockedBundle(object):
+
       def check_signature(_, blob, key_name, sig):
         if expected_blob is not None:
           self.assertEqual(blob, expected_blob)
         if key_name != valid_key:
           raise signature.CertificateError('No such key')
         return sig == valid_sig
+
     return MockedBundle()
 
   def make_jwt(self, hdr, payload, sig=SIG):
-    return '%s.%s.%s' % (
-        to_json_b64(hdr), to_json_b64(payload), b64.encode(sig))
+    return '%s.%s.%s' % (to_json_b64(hdr), to_json_b64(payload),
+                         b64.encode(sig))
 
   def make_good_jwt(self, iat=None, exp=None, nbf=OMIT):
     hdr = {'alg': 'RS256', 'kid': self.KEY}
@@ -436,7 +456,7 @@ class TestVerifyJWT(test_case.TestCase):
   def test_wrong_number_of_segments(self):
     _, _, jwt = self.make_good_jwt()
     with self.assertRaises(tokens.InvalidTokenError) as err:
-      tokens.verify_jwt(jwt+'.aaaa', self.mock_certs_bundle())
+      tokens.verify_jwt(jwt + '.aaaa', self.mock_certs_bundle())
     self.assertIn('should have 3 segments', err.exception.message)
 
   def test_bad_base64(self):
@@ -446,30 +466,35 @@ class TestVerifyJWT(test_case.TestCase):
 
   def test_header_not_a_dict(self):
     with self.assertRaises(tokens.InvalidTokenError) as err:
-      tokens.verify_jwt(
-          '%s.%s.aaaa' % (to_json_b64([]), to_json_b64({})),
-          self.mock_certs_bundle())
+      tokens.verify_jwt('%s.%s.aaaa' % (to_json_b64([]), to_json_b64({})),
+                        self.mock_certs_bundle())
     self.assertIn('not a dict', err.exception.message)
 
   def test_typ_not_jwt(self):
     with self.assertRaises(tokens.InvalidTokenError) as err:
       tokens.verify_jwt(
-          self.make_jwt({'typ': 'NOTJWT', 'alg': 'RS256', 'kid': self.KEY}, {}),
-          self.mock_certs_bundle())
+          self.make_jwt({
+              'typ': 'NOTJWT',
+              'alg': 'RS256',
+              'kid': self.KEY
+          }, {}), self.mock_certs_bundle())
     self.assertIn('Only JWT tokens are supported', err.exception.message)
 
   def test_alg_not_rs256(self):
     with self.assertRaises(tokens.InvalidTokenError) as err:
       tokens.verify_jwt(
-          self.make_jwt({'alg': 'NOTRS256', 'kid': self.KEY}, {}),
-          self.mock_certs_bundle())
+          self.make_jwt({
+              'alg': 'NOTRS256',
+              'kid': self.KEY
+          }, {}), self.mock_certs_bundle())
     self.assertIn('Only RS256 tokens are supported', err.exception.message)
 
   def test_kid_is_required(self):
     with self.assertRaises(tokens.InvalidTokenError) as err:
       tokens.verify_jwt(
-          self.make_jwt({'alg': 'RS256'}, {}),
-          self.mock_certs_bundle())
+          self.make_jwt({
+              'alg': 'RS256'
+          }, {}), self.mock_certs_bundle())
     self.assertIn('Key ID is not specified', err.exception.message)
 
   def test_unknown_key(self):
@@ -500,31 +525,28 @@ class TestVerifyJWT(test_case.TestCase):
 
   def test_cant_be_used_before_iat(self):
     future = utils.time_time() + tokens.ALLOWED_CLOCK_DRIFT_SEC + 1
-    _, _, jwt = self.make_good_jwt(iat=future, exp=future+3600)
+    _, _, jwt = self.make_good_jwt(iat=future, exp=future + 3600)
     with self.assertRaises(tokens.InvalidTokenError) as err:
       tokens.verify_jwt(jwt, self.mock_certs_bundle())
-    self.assertIn(
-        'Bad JWT: too early (now 1514768461 < nbf 1514768492)',
-        err.exception.message)
+    self.assertIn('Bad JWT: too early (now 1514768461 < nbf 1514768492)',
+                  err.exception.message)
 
   def test_cant_be_used_before_nbf(self):
     now = utils.time_time()
     future = now + tokens.ALLOWED_CLOCK_DRIFT_SEC + 1
-    _, _, jwt = self.make_good_jwt(iat=now, nbf=future, exp=future+3600)
+    _, _, jwt = self.make_good_jwt(iat=now, nbf=future, exp=future + 3600)
     with self.assertRaises(tokens.InvalidTokenError) as err:
       tokens.verify_jwt(jwt, self.mock_certs_bundle())
-    self.assertIn(
-        'Bad JWT: too early (now 1514768461 < nbf 1514768492)',
-        err.exception.message)
+    self.assertIn('Bad JWT: too early (now 1514768461 < nbf 1514768492)',
+                  err.exception.message)
 
   def test_cant_be_used_after_exp(self):
     past = utils.time_time() - tokens.ALLOWED_CLOCK_DRIFT_SEC - 1
-    _, _, jwt = self.make_good_jwt(iat=past-3600, exp=past)
+    _, _, jwt = self.make_good_jwt(iat=past - 3600, exp=past)
     with self.assertRaises(tokens.InvalidTokenError) as err:
       tokens.verify_jwt(jwt, self.mock_certs_bundle())
-    self.assertIn(
-        'Bad JWT: expired (now 1514768461 > exp 1514768430)',
-        err.exception.message)
+    self.assertIn('Bad JWT: expired (now 1514768461 > exp 1514768430)',
+                  err.exception.message)
 
 
 if __name__ == '__main__':

@@ -9,13 +9,11 @@ from google.appengine.api import logservice
 
 from components import utils
 
-
 # Logs prefix.
 #
 # The idea is that a request handler logs with this prefix, and this is reaped
 # back by reading the logs, which enables reconstructing the stats.
 PREFIX = 'Stats: '
-
 
 ## Private code.
 
@@ -39,7 +37,6 @@ def _yield_logs(start_time, end_time):
 
 
 ## Public code.
-
 
 # One handled HTTP request and the associated statistics if any.
 StatsEntry = collections.namedtuple('StatsEntry', ('request', 'entries'))
@@ -71,7 +68,8 @@ def yield_entries(start_time, end_time):
 
     # Gathers all the entries added via add_entry().
     entries = [
-      l.message[offset:] for l in request.app_logs
-      if l.level <= logservice.LOG_LEVEL_INFO and l.message.startswith(PREFIX)
+        l.message[offset:]
+        for l in request.app_logs
+        if l.level <= logservice.LOG_LEVEL_INFO and l.message.startswith(PREFIX)
     ]
     yield StatsEntry(request, entries)

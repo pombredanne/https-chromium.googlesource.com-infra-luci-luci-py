@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Toolset to run multiple Swarming tasks in parallel."""
 
 import json
@@ -12,8 +11,9 @@ import sys
 import tempfile
 import time
 
-CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding()))))
+CLIENT_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__.decode(sys.getfilesystemencoding()))))
 sys.path.insert(0, CLIENT_DIR)
 
 from utils import tools
@@ -29,10 +29,9 @@ from utils import tools
 
 def task_to_name(name, dimensions, isolated_hash):
   """Returns a task name the same way swarming.py generates them."""
-  return '%s/%s/%s' % (
-      name,
-      '_'.join('%s=%s' % (k, v) for k, v in sorted(dimensions.items())),
-      isolated_hash[:8])
+  return '%s/%s/%s' % (name, '_'.join(
+      '%s=%s' % (k, v) for k, v in sorted(dimensions.items())),
+                       isolated_hash[:8])
 
 
 def capture(cmd):
@@ -50,12 +49,18 @@ def trigger(swarming_server, isolate_server, task_name, isolated_hash, args):
   os.close(fd)
   try:
     cmd = [
-      'swarming.py', 'trigger',
-      '--swarming', swarming_server,
-      '--isolate-server', isolate_server,
-      '--task-name', task_name,
-      '--dump-json', jsonfile,
-      '-s', isolated_hash,
+        'swarming.py',
+        'trigger',
+        '--swarming',
+        swarming_server,
+        '--isolate-server',
+        isolate_server,
+        '--task-name',
+        task_name,
+        '--dump-json',
+        jsonfile,
+        '-s',
+        isolated_hash,
     ]
     returncode, out, duration = capture(cmd + args)
     with open(jsonfile) as f:
@@ -74,9 +79,9 @@ def collect(swarming_server, task_id):
 
 class Runner(object):
   """Runners runs tasks in parallel on Swarming."""
-  def __init__(
-      self, swarming_server, isolate_server, add_task, progress,
-      extra_trigger_args):
+
+  def __init__(self, swarming_server, isolate_server, add_task, progress,
+               extra_trigger_args):
     self.swarming_server = swarming_server
     self.isolate_server = isolate_server
     self.add_task = add_task
@@ -87,10 +92,7 @@ class Runner(object):
     args = sum((['--dimension', k, v] for k, v in dimensions.items()), [])
     args.extend(sum((['--env', k, v] for k, v in env), []))
     returncode, stdout, duration, task_id = trigger(
-        self.swarming_server,
-        self.isolate_server,
-        task_name,
-        isolated_hash,
+        self.swarming_server, self.isolate_server, task_name, isolated_hash,
         args + self.extra_trigger_args)
     step_name = '%s (%3.2fs)' % (task_name, duration)
     if returncode:
@@ -105,15 +107,14 @@ class Runner(object):
     step_name = '%s (%3.2fs)' % (task_name, duration)
     if returncode:
       # Only print the output for failures, successes are unexciting.
-      self.progress.update_item(
-          'Failed %s:\n%s' % (step_name, stdout), index=1)
+      self.progress.update_item('Failed %s:\n%s' % (step_name, stdout), index=1)
       return (task_name, dimensions, stdout)
     self.progress.update_item('Passed %s' % step_name, index=1)
     return None, None, None
 
 
-def run_swarming_tasks_parallel(
-    swarming_server, isolate_server, extra_trigger_args, tasks):
+def run_swarming_tasks_parallel(swarming_server, isolate_server,
+                                extra_trigger_args, tasks):
   """Triggers swarming tasks in parallel and gets results.
 
   This is done by using one thread per task and shelling out swarming.py.
@@ -134,15 +135,14 @@ def run_swarming_tasks_parallel(
   progress = threading_utils.Progress([('index', 0), ('size', total)])
   progress.use_cr_only = False
   start = time.time()
-  with threading_utils.ThreadPoolWithProgress(
-      progress, runs, runs, total) as pool:
-    runner = Runner(
-        swarming_server, isolate_server, pool.add_task, progress,
-        extra_trigger_args)
+  with threading_utils.ThreadPoolWithProgress(progress, runs, runs,
+                                              total) as pool:
+    runner = Runner(swarming_server, isolate_server, pool.add_task, progress,
+                    extra_trigger_args)
 
     for task_name, isolated_hash, dimensions, env in tasks:
-      pool.add_task(
-          0, runner.trigger, task_name, isolated_hash, dimensions, env)
+      pool.add_task(0, runner.trigger, task_name, isolated_hash, dimensions,
+                    env)
 
     # Runner.collect() only return task failures.
     for failed_task in pool.iter_results():
@@ -159,32 +159,47 @@ def run_swarming_tasks_parallel(
 
 
 class OptionParser(logging_utils.OptionParserWithLogging):
+
   def __init__(self, **kwargs):
     logging_utils.OptionParserWithLogging.__init__(self, **kwargs)
     self.server_group = optparse.OptionGroup(self, 'Server')
     self.server_group.add_option(
-        '-S', '--swarming',
-        metavar='URL', default=os.environ.get('SWARMING_SERVER', ''),
+        '-S',
+        '--swarming',
+        metavar='URL',
+        default=os.environ.get('SWARMING_SERVER', ''),
         help='Swarming server to use')
     isolateserver.add_isolate_server_options(self.server_group)
     self.add_option_group(self.server_group)
     auth.add_auth_options(self)
     self.add_option(
-        '-d', '--dimension', default=[], action='append', nargs=2,
-        dest='dimensions', metavar='FOO bar',
+        '-d',
+        '--dimension',
+        default=[],
+        action='append',
+        nargs=2,
+        dest='dimensions',
+        metavar='FOO bar',
         help='dimension to filter on')
     self.add_option(
-        '--priority', type='int',
+        '--priority',
+        type='int',
         help='The lower value, the more important the task is. It may be '
-            'important to specify a higher priority since the default value '
-            'will make the task to be triggered only when the bots are idle.')
+        'important to specify a higher priority since the default value '
+        'will make the task to be triggered only when the bots are idle.')
     self.add_option(
-        '--deadline', type='int', default=6*60*60,
+        '--deadline',
+        type='int',
+        default=6 * 60 * 60,
         help='Seconds to allow the task to be pending for a bot to run before '
-            'this task request expires.')
+        'this task request expires.')
     self.add_option(
-        '--env', default=[], action='append', nargs=2,
-        metavar='ENV VAL', help='environment variables')
+        '--env',
+        default=[],
+        action='append',
+        nargs=2,
+        metavar='ENV VAL',
+        help='environment variables')
 
   def parse_args(self, *args, **kwargs):
     options, args = logging_utils.OptionParserWithLogging.parse_args(

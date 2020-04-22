@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Packing and unpacking of ndb.Key.
 
 End users are only given packed keys, which permits to not expose internal
@@ -11,10 +10,8 @@ schema details to the user.
 
 from google.appengine.ext import ndb
 
-
 # Mask to TaskRequest key ids so they become decreasing numbers.
-TASK_REQUEST_KEY_ID_MASK = int(2L**63-1)
-
+TASK_REQUEST_KEY_ID_MASK = int(2L**63 - 1)
 
 ### Entities relationships.
 

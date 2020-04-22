@@ -22,7 +22,6 @@ from proto.config import config_pb2
 from server import acl
 from server import task_request
 
-
 # Default names of authorization groups.
 ADMINS_GROUP = 'administrators'
 PRIVILEGED_USERS_GROUP = ADMINS_GROUP
@@ -31,6 +30,7 @@ BOT_BOOTSTRAP_GROUP = ADMINS_GROUP
 
 
 class AclTest(test_case.TestCase):
+
   def setUp(self):
     super(AclTest, self).setUp()
     auth_testing.reset_local_state()
@@ -39,12 +39,13 @@ class AclTest(test_case.TestCase):
     def settings():
       return config_pb2.SettingsCfg(
           auth=config_pb2.AuthSettings(
-            admins_group='admins',
-            bot_bootstrap_group='bot_bootstrap',
-            privileged_users_group='privileged_users',
-            users_group='users',
-            view_all_bots_group='view_all_bots',
-            view_all_tasks_group='view_all_tasks'))
+              admins_group='admins',
+              bot_bootstrap_group='bot_bootstrap',
+              privileged_users_group='privileged_users',
+              users_group='users',
+              view_all_bots_group='view_all_bots',
+              view_all_tasks_group='view_all_tasks'))
+
     self.mock(config, 'settings', settings)
     self._task_owned = task_request.TaskRequest(
         authenticated=auth.get_current_identity())

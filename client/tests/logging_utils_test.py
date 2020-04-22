@@ -17,7 +17,6 @@ import test_env
 from utils import file_path
 from utils import logging_utils
 
-
 # PID YYYY-MM-DD HH:MM:SS.MMM
 _LOG_HEADER = r'^%d \d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\.\d\d\d' % os.getpid()
 _LOG_HEADER_PID = r'^\d+ \d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\.\d\d\d'
@@ -67,18 +66,17 @@ class Test(unittest.TestCase):
     # nothing blows up.
     # Everything is done in a child process because the called functions mutate
     # the global state.
-    r = subprocess.call(
-        [sys.executable, '-u', 'phase1.py', self.tmp],
-        cwd=os.path.join(test_env.TESTS_DIR, 'logging_utils'))
+    r = subprocess.call([sys.executable, '-u', 'phase1.py', self.tmp],
+                        cwd=os.path.join(test_env.TESTS_DIR, 'logging_utils'))
     self.assertEqual(0, r)
     self.assertEqual({'shared.1.log'}, set(os.listdir(self.tmp)))
     with open(os.path.join(self.tmp, 'shared.1.log'), 'rb') as f:
       lines = f.read().splitlines()
     expected = [
-      r' I: Parent1',
-      r' I: Child1',
-      r' I: Child2',
-      r' I: Parent2',
+        r' I: Parent1',
+        r' I: Child1',
+        r' I: Child2',
+        r' I: Parent2',
     ]
     for e, l in zip(expected, lines):
       ex = _LOG_HEADER_PID + e + '$'

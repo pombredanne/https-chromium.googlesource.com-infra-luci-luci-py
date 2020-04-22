@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Runs the coverage tool on unit tests in %s and prints out report.
 
 The tests are run in parallel for maximum efficiency.
@@ -42,15 +41,18 @@ def _run_coverage(root, args):
 def _start_coverage(root, args):
   """Returns a Popen instance."""
   return subprocess.Popen(
-      ['coverage'] + args, cwd=root,
-      stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+      ['coverage'] + args,
+      cwd=root,
+      stderr=subprocess.STDOUT,
+      stdout=subprocess.PIPE)
 
 
 def main(root, blacklist, omit):
   parser = optparse.OptionParser(
       description=sys.modules[__name__].__doc__ % root)
   parser.add_option(
-      '-H', '--html',
+      '-H',
+      '--html',
       help='Generates HTML report to this directory instead of printing it out')
   options, args = parser.parse_args()
   if args:
@@ -66,15 +68,15 @@ def main(root, blacklist, omit):
 
   # http://nedbatchelder.com/code/coverage/config.html
   rcfile_content = (
-    '[report]',
-    'exclude_lines =',
-    r'    pragma: no cover',
-    r'    def __repr__\(',
-    r'    raise NotImplementedError\(',
-    r'    if False:',
-    r'    unittest\.TestCase\.maxDiff = None',
-    r'    (self|test)\.fail\(',
-    'precision = 1',
+      '[report]',
+      'exclude_lines =',
+      r'    pragma: no cover',
+      r'    def __repr__\(',
+      r'    raise NotImplementedError\(',
+      r'    if False:',
+      r'    unittest\.TestCase\.maxDiff = None',
+      r'    (self|test)\.fail\(',
+      'precision = 1',
   )
 
   h, rcfile = tempfile.mkstemp(prefix='coverage', suffix='.rc')
@@ -83,16 +85,16 @@ def main(root, blacklist, omit):
     with open(rcfile, 'wb') as f:
       f.write('\n'.join(rcfile_content) + '\n')
     flags = [
-      'run',
-      '--parallel-mode',
-      '--omit=' + omit,
-      '--rcfile=' + rcfile,
-      '--source=' + root,
+        'run',
+        '--parallel-mode',
+        '--omit=' + omit,
+        '--rcfile=' + rcfile,
+        '--source=' + root,
     ]
     start = time.time()
     processes = {
-      _start_coverage(root, flags + [test]): None
-      for test in _get_tests(root, blacklist)
+        _start_coverage(root, flags + [test]): None
+        for test in _get_tests(root, blacklist)
     }
     if not processes:
       print('Failed to find any test in %s' % root)
@@ -117,17 +119,17 @@ def main(root, blacklist, omit):
       time.sleep(0.1)
     end = time.time()
     results = [not v for v in processes.values()]
-    print(
-        '\n%d out of %d tests succeeded in %.2fs.\n' %
-        (sum(results), len(results), end-start))
+    print('\n%d out of %d tests succeeded in %.2fs.\n' %
+          (sum(results), len(results), end - start))
     _run_coverage(root, ['combine', '--rcfile=' + rcfile])
 
     if options.html:
       full_path = os.path.normpath(os.path.join(root, options.html))
       args = [
-        'html',
-        '--directory', os.path.relpath(full_path, root),
-        '--rcfile=' + rcfile,
+          'html',
+          '--directory',
+          os.path.relpath(full_path, root),
+          '--rcfile=' + rcfile,
       ]
       _run_coverage(root, args)
       rel_path = os.path.relpath(full_path, os.getcwd())
@@ -135,9 +137,8 @@ def main(root, blacklist, omit):
         print('First run "cd %s"' % root)
         rel_path = options.html
       print('Start a web browser with "python -m SimpleHTTPServer"')
-      print(
-          'Then point your web browser at http://%s:8000/%s' %
-          (socket.getfqdn(), rel_path.replace(os.path.sep, '/')))
+      print('Then point your web browser at http://%s:8000/%s' %
+            (socket.getfqdn(), rel_path.replace(os.path.sep, '/')))
     else:
       args = ['report', '-m', '--rcfile=' + rcfile]
       _run_coverage(root, args)
@@ -150,7 +151,6 @@ def main(root, blacklist, omit):
 
 
 if __name__ == '__main__':
-  sys.exit(main(
-      ROOT_DIR,
-      ('third_party', 'tools'),
-      'PRESUBMIT.py,third_party/*,tools/*'))
+  sys.exit(
+      main(ROOT_DIR, ('third_party', 'tools'),
+           'PRESUBMIT.py,third_party/*,tools/*'))

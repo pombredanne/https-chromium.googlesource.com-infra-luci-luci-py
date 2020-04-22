@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Main entry point for Swarming service.
 
 This file contains the URL handlers for all the Swarming service URLs,
@@ -25,24 +24,23 @@ from server import bot_code
 from server import bot_groups_config
 from server import config
 
-
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-
 
 # Helper class for displaying the sort options in html templates.
 SortOptions = collections.namedtuple('SortOptions', ['key', 'name'])
-
 
 ### is_admin pages.
 
 
 class RestrictedConfigHandler(auth.AuthenticatingHandler):
+
   @auth.autologin
   @auth.require(acl.can_view_config)
   def get(self):
     # Template parameters schema matches settings_info() return value.
-    self.response.write(template.render(
-        'swarming/restricted_config.html', config.settings_info()))
+    self.response.write(
+        template.render('swarming/restricted_config.html',
+                        config.settings_info()))
 
 
 ### Mapreduce related handlers
@@ -83,8 +81,7 @@ class BotsListHandler(auth.AuthenticatingHandler):
     limit = int(self.request.get('limit', 100))
 
     dimensions = (
-      l.strip() for l in self.request.get('dimensions', '').splitlines()
-    )
+        l.strip() for l in self.request.get('dimensions', '').splitlines())
     dimensions = [i for i in dimensions if i]
 
     new_ui_link = '/botlist?l=%d' % limit
@@ -109,7 +106,7 @@ class TasksHandler(auth.AuthenticatingHandler):
   def get(self):
     limit = int(self.request.get('limit', 100))
     task_tags = [
-      line for line in self.request.get('task_tag', '').splitlines() if line
+        line for line in self.request.get('task_tag', '').splitlines() if line
     ]
 
     new_ui_link = '/tasklist?l=%d' % limit
@@ -136,12 +133,13 @@ class UIHandler(auth.AuthenticatingHandler):
   This landing page is stamped with the OAuth 2.0 client id from the
   configuration.
   """
+
   @auth.public
   def get(self, page):
     page = page or 'swarming'
 
     params = {
-      'client_id': config.settings().ui_client_id,
+        'client_id': config.settings().ui_client_id,
     }
     # Can cache for 1 week, because the only thing that would change in this
     # template is the oauth client id, which changes very infrequently.
@@ -149,8 +147,8 @@ class UIHandler(auth.AuthenticatingHandler):
     self.response.cache_control.public = True
     self.response.cache_control.max_age = 604800
     try:
-      self.response.write(template.render(
-        'wcui/public_%s_index.html' % page, params))
+      self.response.write(
+          template.render('wcui/public_%s_index.html' % page, params))
     except template.TemplateNotFound:
       self.abort(404, 'Page %s not found.', page)
 
@@ -165,7 +163,7 @@ class UIHandler(auth.AuthenticatingHandler):
         # We assume the template specifies '%s' in its last path component.
         # We strip it to get a "parent" path that we can put into CSP. Note that
         # whitelisting an entire display server domain is unnecessary wide.
-        csp['frame-src'].append(tmpl[:tmpl.rfind('/')+1])
+        csp['frame-src'].append(tmpl[:tmpl.rfind('/') + 1])
     extra = config.settings().extra_child_src_csp_url
     # Note that frame-src was once child-src, which was deprecated and support
     # was dropped by some browsers. See
@@ -175,6 +173,7 @@ class UIHandler(auth.AuthenticatingHandler):
 
 
 class WarmupHandler(webapp2.RequestHandler):
+
   def get(self):
     auth.warmup()
     bot_code.get_swarming_bot_zip(self.request.host_url)
@@ -186,6 +185,7 @@ class WarmupHandler(webapp2.RequestHandler):
 
 class EmailHandler(webapp2.RequestHandler):
   """Blackhole any email sent."""
+
   def post(self, to):
     pass
 

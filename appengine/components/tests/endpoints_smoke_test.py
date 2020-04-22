@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Smoke test for Cloud Endpoints support in auth component.
 
 It launches app via dev_appserver and queries a bunch of cloud endpoints
@@ -23,6 +22,7 @@ from tool_support import local_app
 
 
 class CloudEndpointsSmokeTest(unittest.TestCase):
+
   def setUp(self):
     super(CloudEndpointsSmokeTest, self).setUp()
     self.root = tempfile.mkdtemp(prefix='endpoints_smoke_test')

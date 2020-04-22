@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """High level tasks execution scheduling API.
 
 This is the interface closest to the HTTP handlers.
@@ -35,9 +34,7 @@ from server import task_request
 from server import task_result
 from server import task_to_run
 
-
 ### Private stuff.
-
 
 _PROBABILITY_OF_QUICK_COMEBACK = 0.05
 
@@ -88,7 +85,7 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   to_put = [to_run, result_summary]
   # Check if there's a TaskSlice fallback that could be reenqueued.
   new_to_run = None
-  offset = result_summary.current_task_slice+1
+  offset = result_summary.current_task_slice + 1
   rest = request.num_task_slices - offset
   for index in range(rest):
     # Use the lookup created just before the transaction. There's a small race
@@ -96,7 +93,7 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
     if len(capacity) > index and capacity[index]:
       # Enqueue a new TasktoRun for this next TaskSlice, it has capacity!
       new_to_run = task_to_run.new_task_to_run(request, index + offset)
-      result_summary.current_task_slice = index+offset
+      result_summary.current_task_slice = index + offset
       to_put.append(new_to_run)
       break
     if len(capacity) <= index:
@@ -110,11 +107,10 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
           'index=%d, capacity=%s\n'
           'TaskResultSummary: task_id=%s, current_task_slice=%d, '
           'num_task_slices=%d\n'
-          'TaskToRun: task_id=%s, task_slice_index=%d, try_number=%d',
-          index, capacity,
-          result_summary.task_id, result_summary.current_task_slice,
-          request.num_task_slices,
-          to_run.task_id, to_run.task_slice_index, to_run.try_number)
+          'TaskToRun: task_id=%s, task_slice_index=%d, try_number=%d', index,
+          capacity, result_summary.task_id, result_summary.current_task_slice,
+          request.num_task_slices, to_run.task_id, to_run.task_slice_index,
+          to_run.try_number)
 
   if not new_to_run:
     # There's no fallback, giving up.
@@ -191,8 +187,8 @@ def _expire_task(to_run_key, request, inline):
       request.task_slice(i) for i in range(index + 1, request.num_task_slices)
   ]
   capacity = [
-    t.wait_for_capacity or bot_management.has_capacity(t.properties.dimensions)
-    for t in slices
+      t.wait_for_capacity or
+      bot_management.has_capacity(t.properties.dimensions) for t in slices
   ]
 
   # When running inline, do not retry too much.
@@ -201,16 +197,15 @@ def _expire_task(to_run_key, request, inline):
   es_cfg = external_scheduler.config_for_task(request)
 
   # It'll be caught by next cron job execution in case of failure.
-  run = lambda: _expire_task_tx(
-      now, request, to_run_key, result_summary_key, capacity, es_cfg)
+  run = lambda: _expire_task_tx(now, request, to_run_key, result_summary_key, capacity, es_cfg)
   try:
     summary, new_to_run = datastore_utils.transaction(run, retries=retries)
   except datastore_utils.CommitError:
     summary = None
     new_to_run = None
   if summary:
-    logging.info(
-        'Expired %s', task_pack.pack_result_summary_key(result_summary_key))
+    logging.info('Expired %s',
+                 task_pack.pack_result_summary_key(result_summary_key))
     ts_mon_metrics.on_task_expired(summary, to_run_key.get())
   return summary, new_to_run
 
@@ -231,8 +226,8 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
   # DB TX ran but the reply never comes to the bot. This is the worst case as
   # this leads to a task that results in BOT_DIED without ever starting. This
   # case is specifically handled in cron_handle_bot_died().
-  logging.info(
-      '_reap_task(%s)', task_pack.pack_result_summary_key(result_summary_key))
+  logging.info('_reap_task(%s)',
+               task_pack.pack_result_summary_key(result_summary_key))
 
   es_cfg = external_scheduler.config_for_task(request)
 
@@ -260,14 +255,13 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
       # try failed and the retry is being reaped by the same bot. Deny that, as
       # the bot may be deeply broken and could be in a killing spree.
       # TODO(maruel): Allow retry for bot locked task using 'id' dimension.
-      logging.warning(
-          '%s can\'t retry its own internal failure task',
-          result_summary.task_id)
+      logging.warning('%s can\'t retry its own internal failure task',
+                      result_summary.task_id)
       return None, None
     to_run.queue_number = None
     to_run.expiration_ts = None
-    run_result = task_result.new_run_result(
-        request, to_run, bot_id, bot_version, bot_dimensions)
+    run_result = task_result.new_run_result(request, to_run, bot_id,
+                                            bot_version, bot_dimensions)
     # Upon bot reap, both .started_ts and .modified_ts matches. They differ on
     # the first ping.
     run_result.started_ts = now
@@ -435,7 +429,7 @@ def _copy_summary(src, dst, skip_list):
   assert type(src) == type(dst), '%s!=%s' % (src.__class__, dst.__class__)
   # Access to a protected member _XX of a client class - pylint: disable=W0212
   kwargs = {
-    k: getattr(src, k) for k in src._properties_fixed() if k not in skip_list
+      k: getattr(src, k) for k in src._properties_fixed() if k not in skip_list
   }
   dst.populate(**kwargs)
 
@@ -450,27 +444,26 @@ def _maybe_pubsub_notify_now(result_summary, request):
   not needed (e.g. messages was sent successfully or fatal error happened).
   """
   assert not ndb.in_transaction()
-  assert isinstance(
-      result_summary, task_result.TaskResultSummary), result_summary
+  assert isinstance(result_summary,
+                    task_result.TaskResultSummary), result_summary
   assert isinstance(request, task_request.TaskRequest), request
   if (result_summary.state not in task_result.State.STATES_RUNNING and
       request.pubsub_topic):
     task_id = task_pack.pack_result_summary_key(result_summary.key)
     try:
-      _pubsub_notify(
-          task_id, request.pubsub_topic,
-          request.pubsub_auth_token, request.pubsub_userdata)
+      _pubsub_notify(task_id, request.pubsub_topic, request.pubsub_auth_token,
+                     request.pubsub_userdata)
     except pubsub.TransientError:
       logging.exception('Transient error when sending PubSub notification')
       return False
     except pubsub.Error:
       logging.exception('Fatal error when sending PubSub notification')
-      return True # do not retry it
+      return True  # do not retry it
   return True
 
 
-def _maybe_taskupdate_notify_via_tq(
-    result_summary, request, es_cfg, transactional):
+def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg,
+                                    transactional):
   """Enqueues tasks to send PubSub and es notifications for given request.
 
   Arguments:
@@ -483,16 +476,16 @@ def _maybe_taskupdate_notify_via_tq(
   Raises CommitError on errors (to abort the transaction).
   """
   assert transactional == ndb.in_transaction()
-  assert isinstance(
-      result_summary, task_result.TaskResultSummary), result_summary
+  assert isinstance(result_summary,
+                    task_result.TaskResultSummary), result_summary
   assert isinstance(request, task_request.TaskRequest), request
   if request.pubsub_topic:
     task_id = task_pack.pack_result_summary_key(result_summary.key)
     payload = {
-      'task_id': task_id,
-      'topic': request.pubsub_topic,
-      'auth_token': request.pubsub_auth_token,
-      'userdata': request.pubsub_userdata,
+        'task_id': task_id,
+        'topic': request.pubsub_topic,
+        'auth_token': request.pubsub_auth_token,
+        'userdata': request.pubsub_userdata,
     }
     ok = utils.enqueue_task(
         '/internal/taskqueue/important/pubsub/notify-task/%s' % task_id,
@@ -503,8 +496,8 @@ def _maybe_taskupdate_notify_via_tq(
       raise datastore_utils.CommitError('Failed to enqueue task')
 
   if es_cfg:
-    external_scheduler.notify_requests(
-        es_cfg, [(request, result_summary)], True, False)
+    external_scheduler.notify_requests(es_cfg, [(request, result_summary)],
+                                       True, False)
 
 
 def _pubsub_notify(task_id, topic, auth_token, userdata):
@@ -542,7 +535,7 @@ def _find_dupe_task(now, h):
   # TODO(maruel): Make a reverse map on successful task completion so this
   # becomes a simple ndb.get().
   cls = task_result.TaskResultSummary
-  q = cls.query(cls.properties_hash==h).order(cls.key)
+  q = cls.query(cls.properties_hash == h).order(cls.key)
   for i, dupe_summary in enumerate(q.iter(batch_size=1)):
     # It is possible for the query to return stale items.
     if (dupe_summary.state != task_result.State.COMPLETED or
@@ -568,9 +561,8 @@ def _dedupe_result_summary(dupe_summary, result_summary, task_slice_index):
   """Copies the results from dupe_summary into result_summary."""
   # PerformanceStats is not copied over, since it's not relevant, nothing
   # ran.
-  _copy_summary(
-      dupe_summary, result_summary,
-      ('created_ts', 'modified_ts', 'name', 'user', 'tags'))
+  _copy_summary(dupe_summary, result_summary,
+                ('created_ts', 'modified_ts', 'name', 'user', 'tags'))
   # Zap irrelevant properties.
   result_summary.cost_saved_usd = dupe_summary.cost_usd
   result_summary.costs_usd = []
@@ -612,9 +604,8 @@ def _is_allowed_to_schedule(pool_cfg):
   # Log relevant info about the delegation to simplify debugging.
   peer_id = auth.get_peer_identity()
   token_tags = set(delegation_token.tags or [])
-  logging.info(
-      'Using delegation, delegatee is "%s", delegation tags are %s',
-      peer_id.to_bytes(), sorted(map(str, token_tags)))
+  logging.info('Using delegation, delegatee is "%s", delegation tags are %s',
+               peer_id.to_bytes(), sorted(map(str, token_tags)))
 
   # Is the delegatee listed in the config?
   trusted_delegatee = pool_cfg.trusted_delegatees.get(peer_id)
@@ -632,10 +623,9 @@ def _is_allowed_to_schedule(pool_cfg):
         sorted(map(str, cross)))
     return True
 
-  logging.warning(
-      'Expecting any of %s tags, got %s, forbidding the call',
-      sorted(map(str, trusted_delegatee.required_delegation_tags)),
-      sorted(map(str, token_tags)))
+  logging.warning('Expecting any of %s tags, got %s, forbidding the call',
+                  sorted(map(str, trusted_delegatee.required_delegation_tags)),
+                  sorted(map(str, token_tags)))
   return False
 
 
@@ -658,11 +648,11 @@ def _is_allowed_service_account(service_account, pool_cfg):
   return False
 
 
-def _bot_update_tx(
-    run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-    hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel,
-    performance_stats, now, result_summary_key, server_version, request,
-    es_cfg, canceled):
+def _bot_update_tx(run_result_key, bot_id, output, output_chunk_start,
+                   exit_code, duration, hard_timeout, io_timeout, cost_usd,
+                   outputs_ref, cipd_pins, need_cancel, performance_stats, now,
+                   result_summary_key, server_version, request, es_cfg,
+                   canceled):
   """Runs the transaction for bot_update_task().
 
   es_cfg is only required when need_cancel is True.
@@ -691,13 +681,11 @@ def _bot_update_tx(
 
   if run_result.bot_id != bot_id:
     result_summary_future.wait()
-    return None, None, (
-        'expected bot (%s) but had update from bot %s' % (
-        run_result.bot_id, bot_id))
+    return None, None, ('expected bot (%s) but had update from bot %s' %
+                        (run_result.bot_id, bot_id))
 
   if not run_result.started_ts:
-    return None, None, 'TaskRunResult is broken; %s' % (
-        run_result.to_dict())
+    return None, None, 'TaskRunResult is broken; %s' % (run_result.to_dict())
 
   if exit_code is not None:
     if run_result.exit_code is not None:
@@ -773,7 +761,7 @@ def _bot_update_tx(
     # The situation where a shard is retried but the bot running the previous
     # try somehow reappears and reports success, the result must still show
     # the last try's result. We still need to update cost_usd manually.
-    result_summary.costs_usd[run_result.try_number-1] = run_result.cost_usd
+    result_summary.costs_usd[run_result.try_number - 1] = run_result.cost_usd
     result_summary.modified_ts = now
   else:
     # Performance warning: this function calls properties_hash() which will
@@ -783,8 +771,8 @@ def _bot_update_tx(
   to_put.append(result_summary)
 
   if need_cancel and run_result.state in task_result.State.STATES_RUNNING:
-    _cancel_task_tx(
-        request, result_summary, True, bot_id, now, es_cfg, run_result)
+    _cancel_task_tx(request, result_summary, True, bot_id, now, es_cfg,
+                    run_result)
 
   ndb.put_multi(to_put)
 
@@ -801,7 +789,12 @@ def _set_fallbacks_to_exit_code_and_duration(run_result, now):
   return run_result
 
 
-def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
+def _cancel_task_tx(request,
+                    result_summary,
+                    kill_running,
+                    bot_id,
+                    now,
+                    es_cfg,
                     run_result=None):
   """Runs the transaction for cancel_task().
 
@@ -834,8 +827,7 @@ def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
     # PENDING.
     result_summary.state = task_result.State.CANCELED
     to_run_key = task_to_run.request_to_task_to_run_key(
-        request,
-        result_summary.try_number or 1,
+        request, result_summary.try_number or 1,
         result_summary.current_task_slice or 0)
     to_run_future = to_run_key.get_async()
 
@@ -908,8 +900,8 @@ def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
     # We were unable to ensure the given request was at the desired slice. This
     # means the external scheduler must have stale state about this request, so
     # notify it of the newest state.
-    external_scheduler.notify_requests(
-        es_cfg, [(request, result_summary)], True, False)
+    external_scheduler.notify_requests(es_cfg, [(request, result_summary)],
+                                       True, False)
     if raise_exception:
       raise external_scheduler.ExternalSchedulerException(
           'unable to ensure active slice for task %s' % task_id)
@@ -937,6 +929,7 @@ def _ensure_active_slice(request, task_slice_index):
                try_number, and slice, if exists, or None otherwise.
     Boolean: Whether or not it should raise exception
   """
+
   def run():
     logging.debug('_ensure_active_slice(%s, %d)', request.task_id,
                   task_slice_index)
@@ -973,8 +966,8 @@ def _ensure_active_slice(request, task_slice_index):
     if not result_summary.is_pending:
       logging.debug(
           '_ensure_active_slice: request is not PENDING.'
-          ' state: "%s", task_id: "%s"',
-          result_summary.to_string(), result_summary.task_id)
+          ' state: "%s", task_id: "%s"', result_summary.to_string(),
+          result_summary.task_id)
       # just notify to external scheudler without exception
       return None, False
 
@@ -1002,8 +995,8 @@ def _bot_reap_task_external_scheduler(bot_dimensions, bot_version, es_cfg):
   if not request or not to_run:
     return None, None, None
 
-  run_result, secret_bytes = _reap_task(
-      bot_dimensions, bot_version, to_run.key, request, False)
+  run_result, secret_bytes = _reap_task(bot_dimensions, bot_version, to_run.key,
+                                        request, False)
   if not run_result:
     raise external_scheduler.ExternalSchedulerException(
         'failed to reap %s' % task_pack.pack_request_key(to_run.request_key))
@@ -1093,8 +1086,8 @@ def check_schedule_request_acl(request):
     raise auth.AuthorizationError(
         'Can\'t submit tasks to pool "%s" not defined in pools.cfg' % pool)
 
-  logging.info(
-      'Looking at the pool "%s" in pools.cfg, rev "%s"', pool, pool_cfg.rev)
+  logging.info('Looking at the pool "%s" in pools.cfg, rev "%s"', pool,
+               pool_cfg.rev)
 
   # Verify the caller can use the pool at all.
   if not _is_allowed_to_schedule(pool_cfg):
@@ -1208,16 +1201,15 @@ def schedule_request(request, secret_bytes):
   # that use an external scheduler, and which are not effectively live unless
   # the external scheduler is aware of them.
   if es_cfg:
-    external_scheduler.notify_requests(
-        es_cfg, [(request, result_summary)], False, False)
+    external_scheduler.notify_requests(es_cfg, [(request, result_summary)],
+                                       False, False)
 
   if dupe_summary:
-    logging.debug(
-        'New request %s reusing %s', result_summary.task_id,
-        dupe_summary.task_id)
+    logging.debug('New request %s reusing %s', result_summary.task_id,
+                  dupe_summary.task_id)
   elif result_summary.state == task_result.State.NO_RESOURCE:
-    logging.warning(
-        'New request %s denied with NO_RESOURCE', result_summary.task_id)
+    logging.warning('New request %s denied with NO_RESOURCE',
+                    result_summary.task_id)
     logging.debug('New request %s', result_summary.task_id)
   else:
     logging.debug('New request %s', result_summary.task_id)
@@ -1285,10 +1277,10 @@ def bot_reap_task(bot_dimensions, bot_version):
         t = request.task_slice(i)
         slice_expiration += datetime.timedelta(seconds=t.expiration_secs)
       if now <= slice_expiration and expiration_ts < now:
-        logging.info('Task slice is expired, but task is not expired; '
-                     'slice index: %d, slice expiration: %s, '
-                     'task expiration: %s',
-                     slice_index, slice_expiration, expiration_ts)
+        logging.info(
+            'Task slice is expired, but task is not expired; '
+            'slice index: %d, slice expiration: %s, '
+            'task expiration: %s', slice_index, slice_expiration, expiration_ts)
 
       if expiration_ts < now:
         # The whole task request has expired.
@@ -1320,19 +1312,18 @@ def bot_reap_task(bot_dimensions, bot_version):
         # yield_next_available_task_to_dispatch().
         slice_index = task_to_run.task_to_run_key_slice_index(new_to_run.key)
         t = request.task_slice(slice_index)
-        if not task_to_run.match_dimensions(
-            t.properties.dimensions, bot_dimensions):
+        if not task_to_run.match_dimensions(t.properties.dimensions,
+                                            bot_dimensions):
           continue
         to_run = new_to_run
 
-      run_result, secret_bytes = _reap_task(
-          bot_dimensions, bot_version, to_run.key, request, True)
+      run_result, secret_bytes = _reap_task(bot_dimensions, bot_version,
+                                            to_run.key, request, True)
       if not run_result:
         failures += 1
         # Sad thing is that there is not way here to know the try number.
-        logging.info(
-            'failed to reap: %s0',
-            task_pack.pack_request_key(to_run.request_key))
+        logging.info('failed to reap: %s0',
+                     task_pack.pack_request_key(to_run.request_key))
         continue
 
       # We successfully reaped a task.
@@ -1347,15 +1338,14 @@ def bot_reap_task(bot_dimensions, bot_version):
   finally:
     logging.debug(
         'bot_reap_task(%s) in %.3fs: %d iterated, %d reenqueued, %d expired, '
-        '%d stale_index, %d failured',
-        bot_id, time.time()-start, iterated, reenqueued, expired, stale_index,
+        '%d stale_index, %d failured', bot_id,
+        time.time() - start, iterated, reenqueued, expired, stale_index,
         failures)
 
 
-def bot_update_task(
-    run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-    hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
-    performance_stats, canceled):
+def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
+                    exit_code, duration, hard_timeout, io_timeout, cost_usd,
+                    outputs_ref, cipd_pins, performance_stats, canceled):
   """Updates a TaskRunResult and TaskResultSummary, along TaskOutputChunk.
 
   Arguments:
@@ -1393,15 +1383,15 @@ def bot_update_task(
   if performance_stats and duration is None:
     raise ValueError(
         'duration must be set when performance_stats is set\n'
-        'duration: %s; performance_stats: %s' %
-        (duration, performance_stats))
+        'duration: %s; performance_stats: %s' % (duration, performance_stats))
 
   packed = task_pack.pack_run_result_key(run_result_key)
   logging.debug(
-      'bot_update_task(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-      packed, bot_id, len(output) if output else output, output_chunk_start,
-      exit_code, duration, hard_timeout, io_timeout, cost_usd, outputs_ref,
-      cipd_pins, performance_stats)
+      'bot_update_task(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', packed,
+      bot_id,
+      len(output) if output else output, output_chunk_start, exit_code,
+      duration, hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins,
+      performance_stats)
 
   result_summary_key = task_pack.run_result_key_to_result_summary_key(
       run_result_key)
@@ -1421,11 +1411,7 @@ def bot_update_task(
       es_cfg = external_scheduler.config_for_task(request)
 
   now = utils.utcnow()
-  run = lambda: _bot_update_tx(
-      run_result_key, bot_id, output, output_chunk_start, exit_code, duration,
-      hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel,
-      performance_stats, now, result_summary_key, server_version, request,
-      es_cfg, canceled)
+  run = lambda: _bot_update_tx(run_result_key, bot_id, output, output_chunk_start, exit_code, duration, hard_timeout, io_timeout, cost_usd, outputs_ref, cipd_pins, need_cancel, performance_stats, now, result_summary_key, server_version, request, es_cfg, canceled)
   try:
     smry, run_result, error = datastore_utils.transaction(run)
   except datastore_utils.CommitError as e:
@@ -1437,8 +1423,8 @@ def bot_update_task(
     # Take no chance and explicitly clear the ndb memcache entry. A very rare
     # race condition is observed where a stale version of the entities it kept
     # in memcache.
-    ndb.get_context()._clear_memcache(
-        [result_summary_key, run_result_key]).check_success()
+    ndb.get_context()._clear_memcache([result_summary_key,
+                                       run_result_key]).check_success()
   assert bool(error) != bool(run_result), (error, run_result)
   if error:
     logging.error('Task %s %s', packed, error)
@@ -1448,13 +1434,13 @@ def bot_update_task(
     return None
   if smry.state not in task_result.State.STATES_RUNNING:
     ok = utils.enqueue_task(
-      '/internal/taskqueue/important/tasks/cancel-children-tasks',
-      'cancel-children-tasks',
-      payload=utils.encode_to_json({'task': smry.task_id})
-    )
+        '/internal/taskqueue/important/tasks/cancel-children-tasks',
+        'cancel-children-tasks',
+        payload=utils.encode_to_json({
+            'task': smry.task_id
+        }))
     if not ok:
-      raise Error(
-          'Failed to push cancel children task for %s' % smry.task_id)
+      raise Error('Failed to push cancel children task for %s' % smry.task_id)
 
   # Hack a bit to tell the bot what it needs to hear (see handler_bot.py). It's
   # kind of an ugly hack but the other option is to return the whole run_result.
@@ -1483,8 +1469,8 @@ def bot_terminate_task(run_result_key, bot_id):
   es_cfg = external_scheduler.config_for_task(request)
 
   def run():
-    run_result, result_summary = ndb.get_multi(
-        (run_result_key, result_summary_key))
+    run_result, result_summary = ndb.get_multi((run_result_key,
+                                                result_summary_key))
     if bot_id and run_result.bot_id != bot_id:
       return 'Bot %s sent task kill for task %s owned by bot %s' % (
           bot_id, packed, run_result.bot_id)
@@ -1597,8 +1583,8 @@ def cancel_task(request, result_key, kill_running, bot_id):
     """1 DB GET, 1 memcache write, 2x DB PUTs, 1x task queue."""
     # Need to get the current try number to know which TaskToRun to fetch.
     result_summary = result_key.get()
-    return _cancel_task_tx(
-        request, result_summary, kill_running, bot_id, now, es_cfg)
+    return _cancel_task_tx(request, result_summary, kill_running, bot_id, now,
+                           es_cfg)
 
   return datastore_utils.transaction(run)
 
@@ -1621,6 +1607,7 @@ def cron_abort_expired_task_to_run():
     tasks or properly receive results from the bots.
   """
   enqueued = []
+
   def _enqueue_task(to_runs):
     payload = {'task_to_runs': to_runs}
     ok = utils.enqueue_task(
@@ -1679,12 +1666,10 @@ def cron_handle_bot_died():
           ignored += 1
     finally:
       if killed:
-        logging.error(
-            'BOT_DIED!\n%d tasks:\n%s',
-            len(killed),
-            '\n'.join('  %s' % i for i in killed))
-      logging.info(
-          'Killed %d; retried %d; ignored: %d', len(killed), retried, ignored)
+        logging.error('BOT_DIED!\n%d tasks:\n%s', len(killed),
+                      '\n'.join('  %s' % i for i in killed))
+      logging.info('Killed %d; retried %d; ignored: %d', len(killed), retried,
+                   ignored)
     # These are returned primarily for unit testing verification.
     return killed, retried, ignored
   except datastore_errors.NeedIndexError as e:
@@ -1712,13 +1697,14 @@ def cron_handle_external_cancellations():
 
       for c in cancellations:
         data = {
-          u'bot_id': c.bot_id,
-          u'task_id': c.task_id,
+            u'bot_id': c.bot_id,
+            u'task_id': c.task_id,
         }
         payload = utils.encode_to_json(data)
         if not utils.enqueue_task(
             '/internal/taskqueue/important/tasks/cancel-task-on-bot',
-            queue_name='cancel-task-on-bot', payload=payload):
+            queue_name='cancel-task-on-bot',
+            payload=payload):
           logging.error('Failed to enqueue task-cancellation.')
 
 
@@ -1759,9 +1745,9 @@ def cron_task_bot_distribution():
     req = result.request
     for i in range(req.num_task_slices):
       t = req.task_slice(i)
-      dimensions = tuple(sorted(
-            (k, tuple(sorted(v)))
-            for k, v in t.properties.dimensions.items()))
+      dimensions = tuple(
+          sorted((k, tuple(sorted(v)))
+                 for k, v in t.properties.dimensions.items()))
       n_tasks_by_dimensions[dimensions] += 1
 
   # Second, count how many bots have those dimensions for each set.
@@ -1804,9 +1790,8 @@ def task_handle_pubsub_task(payload):
   """Handles task enqueued by _maybe_pubsub_notify_via_tq."""
   # Do not catch errors to trigger task queue task retry. Errors should not
   # happen in normal case.
-  _pubsub_notify(
-      payload['task_id'], payload['topic'],
-      payload['auth_token'], payload['userdata'])
+  _pubsub_notify(payload['task_id'], payload['topic'], payload['auth_token'],
+                 payload['userdata'])
 
 
 def task_expire_tasks(task_to_runs):
@@ -1840,15 +1825,11 @@ def task_expire_tasks(task_to_runs):
   finally:
     if killed:
       logging.info(
-          'EXPIRED!\n%d tasks:\n%s',
-          len(killed),
-          '\n'.join(
-            '  %s  %s' % (
-              i.task_id, i.task_slice(0).properties.dimensions)
-            for i in killed))
-    logging.info(
-        'Reenqueued %d tasks, killed %d, skipped %d',
-        reenqueued, len(killed), skipped)
+          'EXPIRED!\n%d tasks:\n%s', len(killed), '\n'.join(
+              '  %s  %s' % (i.task_id, i.task_slice(0).properties.dimensions)
+              for i in killed))
+    logging.info('Reenqueued %d tasks, killed %d, skipped %d', reenqueued,
+                 len(killed), skipped)
 
 
 def task_cancel_running_children_tasks(parent_result_summary_id):
@@ -1865,16 +1846,17 @@ def task_cancel_running_children_tasks(parent_result_summary_id):
   for version, tasks in sorted(children_tasks_per_version.items()):
     logging.info('Sending %d tasks to version %s', len(tasks), version)
     payload = utils.encode_to_json({
-      'tasks': tasks,
-      'kill_running': True,
+        'tasks': tasks,
+        'kill_running': True,
     })
     ok = utils.enqueue_task(
         '/internal/taskqueue/important/tasks/cancel',
-        'cancel-tasks', payload=payload,
+        'cancel-tasks',
+        payload=payload,
         # cancel task on specific version of backend module.
         use_dedicated_module=False,
         version=version)
     if not ok:
       raise Error(
-          'Failed to enqueue task to cancel queue; version: %s, payload: %s' % (
-            version, payload))
+          'Failed to enqueue task to cancel queue; version: %s, payload: %s' %
+          (version, payload))

@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Models and functions to build and query Auth DB change log."""
 
 import datetime
@@ -40,11 +39,10 @@ def process_change(auth_db_rev):
 
 ### Code to generate a change log for AuthDB commits.
 
-
 # Regexp for valid values of AuthDBChange.target property.
 TARGET_RE = re.compile(
-    r'^[0-9a-zA-Z_]{1,40}\$' +                # entity kind
-    r'[0-9a-zA-Z_\-\./ @]{1,300}' +           # entity ID (group, IP whitelist)
+    r'^[0-9a-zA-Z_]{1,40}\$' +  # entity kind
+    r'[0-9a-zA-Z_\-\./ @]{1,300}' +  # entity ID (group, IP whitelist)
     r'(\$[0-9a-zA-Z_@\-\./\:\* ]{1,200})?$')  # optional subentity ID
 
 
@@ -97,43 +95,43 @@ class AuthDBChange(polymodel.PolyModel):
   model.py). Code here also asserts this.
   """
   # AuthDBGroupChange change types.
-  CHANGE_GROUP_CREATED             = 1000
+  CHANGE_GROUP_CREATED = 1000
   CHANGE_GROUP_DESCRIPTION_CHANGED = 1100
-  CHANGE_GROUP_OWNERS_CHANGED      = 1150
-  CHANGE_GROUP_MEMBERS_ADDED       = 1200
-  CHANGE_GROUP_MEMBERS_REMOVED     = 1300
-  CHANGE_GROUP_GLOBS_ADDED         = 1400
-  CHANGE_GROUP_GLOBS_REMOVED       = 1500
-  CHANGE_GROUP_NESTED_ADDED        = 1600
-  CHANGE_GROUP_NESTED_REMOVED      = 1700
-  CHANGE_GROUP_DELETED             = 1800
+  CHANGE_GROUP_OWNERS_CHANGED = 1150
+  CHANGE_GROUP_MEMBERS_ADDED = 1200
+  CHANGE_GROUP_MEMBERS_REMOVED = 1300
+  CHANGE_GROUP_GLOBS_ADDED = 1400
+  CHANGE_GROUP_GLOBS_REMOVED = 1500
+  CHANGE_GROUP_NESTED_ADDED = 1600
+  CHANGE_GROUP_NESTED_REMOVED = 1700
+  CHANGE_GROUP_DELETED = 1800
 
   # AuthDBIPWhitelistChange change types.
-  CHANGE_IPWL_CREATED             = 3000
+  CHANGE_IPWL_CREATED = 3000
   CHANGE_IPWL_DESCRIPTION_CHANGED = 3100
-  CHANGE_IPWL_SUBNETS_ADDED       = 3200
-  CHANGE_IPWL_SUBNETS_REMOVED     = 3300
-  CHANGE_IPWL_DELETED             = 3400
+  CHANGE_IPWL_SUBNETS_ADDED = 3200
+  CHANGE_IPWL_SUBNETS_REMOVED = 3300
+  CHANGE_IPWL_DELETED = 3400
 
   # AuthDBIPWhitelistAssignmentChange change types.
-  CHANGE_IPWLASSIGN_SET   = 5000
+  CHANGE_IPWLASSIGN_SET = 5000
   CHANGE_IPWLASSIGN_UNSET = 5100
 
   # AuthDBConfigChange change types.
-  CHANGE_CONF_OAUTH_CLIENT_CHANGED     = 7000
-  CHANGE_CONF_CLIENT_IDS_ADDED         = 7100
-  CHANGE_CONF_CLIENT_IDS_REMOVED       = 7200
+  CHANGE_CONF_OAUTH_CLIENT_CHANGED = 7000
+  CHANGE_CONF_CLIENT_IDS_ADDED = 7100
+  CHANGE_CONF_CLIENT_IDS_REMOVED = 7200
   CHANGE_CONF_TOKEN_SERVER_URL_CHANGED = 7300
-  CHANGE_CONF_SECURITY_CONFIG_CHANGED  = 7400
+  CHANGE_CONF_SECURITY_CONFIG_CHANGED = 7400
 
   # AuthRealmsGlobalsChange change types.
   CHANGE_REALMS_GLOBALS_CHANGED = 9000
 
   # AuthProjectRealmsChange change types.
-  CHANGE_PROJECT_REALMS_CREATED     = 10000
-  CHANGE_PROJECT_REALMS_CHANGED     = 10100
+  CHANGE_PROJECT_REALMS_CREATED = 10000
+  CHANGE_PROJECT_REALMS_CHANGED = 10100
   CHANGE_PROJECT_REALMS_REEVALUATED = 10200
-  CHANGE_PROJECT_REALMS_REMOVED     = 10300
+  CHANGE_PROJECT_REALMS_REMOVED = 10300
 
   # What kind of a change this is (see CHANGE_*). Defines what subclass to use.
   change_type = ndb.IntegerProperty()
@@ -152,6 +150,7 @@ class AuthDBChange(polymodel.PolyModel):
 
   def to_jsonish(self):
     """Returns JSON-serializable dict with entity properties for REST API."""
+
     def simplify(v):
       if isinstance(v, list):
         return [simplify(i) for i in v]
@@ -162,6 +161,7 @@ class AuthDBChange(polymodel.PolyModel):
       elif isinstance(v, datetime.datetime):
         return utils.datetime_to_timestamp(v)
       return v
+
     as_dict = self.to_dict(exclude=['class_'])
     for k, v in as_dict.items():
       if k.startswith('security_config_') and v:
@@ -176,8 +176,9 @@ class AuthDBChange(polymodel.PolyModel):
 
 # Integer CHANGE_* => string for UI.
 _CHANGE_TYPE_TO_STRING = {
-  v: k[len('CHANGE_'):] for k, v in AuthDBChange.__dict__.items()
-  if k.startswith('CHANGE_')
+    v: k[len('CHANGE_'):]
+    for k, v in AuthDBChange.__dict__.items()
+    if k.startswith('CHANGE_')
 }
 
 
@@ -214,8 +215,8 @@ def generate_changes(auth_db_rev):
   rev = change_log_revision_key(auth_db_rev).get()
   if rev:
     logging.info(
-        'Rev %d was already processed at %s by app ver %s',
-        auth_db_rev, utils.datetime_to_rfc2822(rev.when), rev.app_version)
+        'Rev %d was already processed at %s by app ver %s', auth_db_rev,
+        utils.datetime_to_rfc2822(rev.when), rev.app_version)
     return
 
   # Use kindless query to grab _all_ changed entities regardless of their kind.
@@ -245,6 +246,7 @@ def generate_changes(auth_db_rev):
       if not change_log_revision_key(prev_rev).get():
         logging.info('Enqueuing task to process rev %d', prev_rev)
         enqueue_process_change_task(prev_rev)
+
   commit()
 
 
@@ -261,8 +263,8 @@ def diff_entity_by_key(cur_key):
   # historical_revision_key(...) as a parent. historical_revision_key(...) has
   # 'Rev' as a kind name.
   assert cur_key.parent().kind() == 'Rev', cur_key
-  assert '$' not in cur_key.id(), cur_key # '$' is used as delimiter
-  assert '!' not in cur_key.id(), cur_key # '!' is used as delimiter
+  assert '$' not in cur_key.id(), cur_key  # '$' is used as delimiter
+  assert '!' not in cur_key.id(), cur_key  # '!' is used as delimiter
   kind = cur_key.kind()
   if kind not in KNOWN_HISTORICAL_ENTITIES:
     logging.error('Unexpected entity kind in historical log: %r', kind)
@@ -272,7 +274,8 @@ def diff_entity_by_key(cur_key):
   # Construct a new key with the class object (*History) already provided.
   orig_kind, diff_callback = KNOWN_HISTORICAL_ENTITIES[kind]
   cur_key = ndb.Key(
-      orig_kind.get_historical_copy_class(), cur_key.id(),
+      orig_kind.get_historical_copy_class(),
+      cur_key.id(),
       parent=cur_key.parent())
   cur_ver = yield cur_key.get_async()
   if cur_ver is None:
@@ -603,16 +606,12 @@ def diff_project_realms(target, old, new):
 
   if new.auth_db_deleted:
     yield change(
-        'REMOVED',
-        config_rev_old=new.config_rev,
-        perms_rev_old=new.perms_rev)
+        'REMOVED', config_rev_old=new.config_rev, perms_rev_old=new.perms_rev)
     return
 
   if old is None:
     yield change(
-        'CREATED',
-        config_rev_new=new.config_rev,
-        perms_rev_new=new.perms_rev)
+        'CREATED', config_rev_new=new.config_rev, perms_rev_new=new.perms_rev)
     return
 
   if old.realms == new.realms:
@@ -625,15 +624,11 @@ def diff_project_realms(target, old, new):
 
   if config_changed or (not config_changed and not reevaluated):
     yield change(
-        'CHANGED',
-        config_rev_old=old.config_rev,
-        config_rev_new=new.config_rev)
+        'CHANGED', config_rev_old=old.config_rev, config_rev_new=new.config_rev)
 
   if reevaluated:
     yield change(
-        'REEVALUATED',
-        perms_rev_old=old.perms_rev,
-        perms_rev_new=new.perms_rev)
+        'REEVALUATED', perms_rev_old=old.perms_rev, perms_rev_new=new.perms_rev)
 
 
 ###
@@ -648,15 +643,14 @@ def diff_lists(old, new):
 
 # Name of *History entity class name => (original class, diffing function).
 KNOWN_HISTORICAL_ENTITIES = {
-  'AuthGroupHistory': (model.AuthGroup, diff_groups),
-  'AuthIPWhitelistHistory': (model.AuthIPWhitelist, diff_ip_whitelists),
-  'AuthIPWhitelistAssignmentsHistory': (
-      model.AuthIPWhitelistAssignments, diff_ip_whitelist_assignments),
-  'AuthGlobalConfigHistory': (model.AuthGlobalConfig, diff_global_config),
-  'AuthRealmsGlobalsHistory': (model.AuthRealmsGlobals, diff_realms_globals),
-  'AuthProjectRealmsHistory': (model.AuthProjectRealms, diff_project_realms),
+    'AuthGroupHistory': (model.AuthGroup, diff_groups),
+    'AuthIPWhitelistHistory': (model.AuthIPWhitelist, diff_ip_whitelists),
+    'AuthIPWhitelistAssignmentsHistory': (model.AuthIPWhitelistAssignments,
+                                          diff_ip_whitelist_assignments),
+    'AuthGlobalConfigHistory': (model.AuthGlobalConfig, diff_global_config),
+    'AuthRealmsGlobalsHistory': (model.AuthRealmsGlobals, diff_realms_globals),
+    'AuthProjectRealmsHistory': (model.AuthProjectRealms, diff_project_realms),
 }
-
 
 ### Code to query change log.
 
@@ -823,13 +817,16 @@ def enqueue_process_change_task(auth_db_rev):
 
 
 class InternalProcessChangeHandler(webapp2.RequestHandler):
+
   def post(self, auth_db_rev):
     # We don't know task queue name during module loading time, so delay
     # decorator application until the actual call.
     queue_name = config.ensure_configured().PROCESS_CHANGE_TASK_QUEUE
+
     @decorators.require_taskqueue(queue_name)
     def call_me(_self):
       process_change(int(auth_db_rev))
+
     call_me(self)
 
 
@@ -840,7 +837,7 @@ def get_backend_routes():
   from auth_service backend module.
   """
   return [
-    webapp2.Route(
-        r'/internal/auth/taskqueue/process-change/<auth_db_rev:\d+>',
-        InternalProcessChangeHandler),
+      webapp2.Route(
+          r'/internal/auth/taskqueue/process-change/<auth_db_rev:\d+>',
+          InternalProcessChangeHandler),
   ]

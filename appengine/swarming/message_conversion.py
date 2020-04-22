@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module facilitates conversion from dictionaries to ProtoRPC messages.
 
 Given a dictionary whose keys' names and values' types comport with the
@@ -22,15 +21,14 @@ from server import task_pack
 from server import task_request
 from server import task_result
 
-
 ### Private API.
 
 
 def _string_pairs_from_dict(dictionary):
   # For key: value items like env.
   return [
-    swarming_rpcs.StringPair(key=k, value=v)
-    for k, v in sorted((dictionary or {}).items())
+      swarming_rpcs.StringPair(key=k, value=v)
+      for k, v in sorted((dictionary or {}).items())
   ]
 
 
@@ -47,8 +45,8 @@ def _duplicate_string_pairs_from_dict(dictionary):
 def _string_list_pairs_from_dict(dictionary):
   # For key: values items like bot dimensions.
   return [
-    swarming_rpcs.StringListPair(key=k, value=v)
-    for k, v in sorted((dictionary or {}).items())
+      swarming_rpcs.StringListPair(key=k, value=v)
+      for k, v in sorted((dictionary or {}).items())
   ]
 
 
@@ -61,7 +59,7 @@ def _ndb_to_rpc(cls, entity, **overrides):
 
 def _rpc_to_ndb(cls, entity, **overrides):
   kwargs = {
-    m: getattr(entity, m) for m in cls._properties if not m in overrides
+      m: getattr(entity, m) for m in cls._properties if not m in overrides
   }
   kwargs.update(overrides)
   return cls(**{k: v for k, v in kwargs.items() if v is not None})
@@ -74,21 +72,22 @@ def _taskproperties_from_rpc(props):
   if props.cipd_input:
     client_package = None
     if props.cipd_input.client_package:
-      client_package = _rpc_to_ndb(
-          task_request.CipdPackage, props.cipd_input.client_package)
+      client_package = _rpc_to_ndb(task_request.CipdPackage,
+                                   props.cipd_input.client_package)
     cipd_input = _rpc_to_ndb(
         task_request.CipdInput,
         props.cipd_input,
         client_package=client_package,
         packages=[
-          _rpc_to_ndb(task_request.CipdPackage, p)
-          for p in props.cipd_input.packages
+            _rpc_to_ndb(task_request.CipdPackage, p)
+            for p in props.cipd_input.packages
         ])
 
   containment = task_request.Containment()
   if props.containment:
     containment = _rpc_to_ndb(
-        task_request.Containment, props.containment,
+        task_request.Containment,
+        props.containment,
         containment_type=int(props.containment.containment_type or 0))
 
   inputs_ref = None
@@ -115,8 +114,8 @@ def _taskproperties_from_rpc(props):
       command=props.command or [],
       containment=containment,
       has_secret_bytes=secret_bytes is not None,
-      secret_bytes=None, # ignore this, it's handled out of band
-      dimensions=None, # it's named dimensions_data
+      secret_bytes=None,  # ignore this, it's handled out of band
+      dimensions=None,  # it's named dimensions_data
       dimensions_data=dims,
       env={i.key: i.value for i in props.env},
       env_prefixes={i.key: i.value for i in props.env_prefixes},
@@ -131,16 +130,15 @@ def _taskproperties_to_rpc(props):
   if props.cipd_input:
     client_package = None
     if props.cipd_input.client_package:
-      client_package = _ndb_to_rpc(
-          swarming_rpcs.CipdPackage,
-          props.cipd_input.client_package)
+      client_package = _ndb_to_rpc(swarming_rpcs.CipdPackage,
+                                   props.cipd_input.client_package)
     cipd_input = _ndb_to_rpc(
         swarming_rpcs.CipdInput,
         props.cipd_input,
         client_package=client_package,
         packages=[
-          _ndb_to_rpc(swarming_rpcs.CipdPackage, p)
-          for p in props.cipd_input.packages
+            _ndb_to_rpc(swarming_rpcs.CipdPackage, p)
+            for p in props.cipd_input.packages
         ])
 
   containment = swarming_rpcs.Containment()
@@ -187,7 +185,7 @@ def epoch_to_datetime(value):
   if not value:
     return None
   try:
-    return utils.timestamp_to_datetime(value*1000000.)
+    return utils.timestamp_to_datetime(value * 1000000.)
   except OverflowError as e:
     raise ValueError(e)
 
@@ -255,8 +253,8 @@ def new_task_request_from_rpc(msg, now):
       raise ValueError('missing expiration_secs')
     props, secret_bytes = _taskproperties_from_rpc(msg.properties)
     slices = [
-      task_request.TaskSlice(
-          properties=props, expiration_secs=msg.expiration_secs),
+        task_request.TaskSlice(
+            properties=props, expiration_secs=msg.expiration_secs),
     ]
   elif msg.task_slices:
     if msg.expiration_secs:
@@ -277,10 +275,10 @@ def new_task_request_from_rpc(msg, now):
 
   pttf = swarming_rpcs.PoolTaskTemplateField
   template_apply = {
-    pttf.AUTO: task_request.TEMPLATE_AUTO,
-    pttf.CANARY_NEVER: task_request.TEMPLATE_CANARY_NEVER,
-    pttf.CANARY_PREFER: task_request.TEMPLATE_CANARY_PREFER,
-    pttf.SKIP: task_request.TEMPLATE_SKIP,
+      pttf.AUTO: task_request.TEMPLATE_AUTO,
+      pttf.CANARY_NEVER: task_request.TEMPLATE_CANARY_NEVER,
+      pttf.CANARY_PREFER: task_request.TEMPLATE_CANARY_PREFER,
+      pttf.SKIP: task_request.TEMPLATE_SKIP,
   }[msg.pool_task_template]
 
   req = _rpc_to_ndb(
@@ -313,16 +311,13 @@ def task_result_to_rpc(entity, send_stats):
   cipd_pins = None
   if entity.cipd_pins:
     cipd_pins = swarming_rpcs.CipdPins(
-      client_package=(
-        _ndb_to_rpc(swarming_rpcs.CipdPackage,
-                    entity.cipd_pins.client_package)
-        if entity.cipd_pins.client_package else None
-      ),
-      packages=[
-        _ndb_to_rpc(swarming_rpcs.CipdPackage, pkg)
-        for pkg in entity.cipd_pins.packages
-      ] if entity.cipd_pins.packages else None
-    )
+        client_package=(_ndb_to_rpc(swarming_rpcs.CipdPackage,
+                                    entity.cipd_pins.client_package)
+                        if entity.cipd_pins.client_package else None),
+        packages=[
+            _ndb_to_rpc(swarming_rpcs.CipdPackage, pkg)
+            for pkg in entity.cipd_pins.packages
+        ] if entity.cipd_pins.packages else None)
   performance_stats = None
   if send_stats and entity.performance_stats.is_valid:
 
@@ -337,11 +332,16 @@ def task_result_to_rpc(entity, send_stats):
         isolated_download=op(entity.performance_stats.isolated_download),
         isolated_upload=op(entity.performance_stats.isolated_upload))
   kwargs = {
-    'bot_dimensions': _string_list_pairs_from_dict(entity.bot_dimensions or {}),
-    'cipd_pins': cipd_pins,
-    'outputs_ref': outputs_ref,
-    'performance_stats': performance_stats,
-    'state': swarming_rpcs.TaskState(entity.state),
+      'bot_dimensions':
+          _string_list_pairs_from_dict(entity.bot_dimensions or {}),
+      'cipd_pins':
+          cipd_pins,
+      'outputs_ref':
+          outputs_ref,
+      'performance_stats':
+          performance_stats,
+      'state':
+          swarming_rpcs.TaskState(entity.state),
   }
   if entity.__class__ is task_result.TaskRunResult:
     kwargs['costs_usd'] = []
@@ -355,7 +355,4 @@ def task_result_to_rpc(entity, send_stats):
     # This returns the right value for deduped tasks too.
     k = entity.run_result_key
     kwargs['run_id'] = task_pack.pack_run_result_key(k) if k else None
-  return _ndb_to_rpc(
-      swarming_rpcs.TaskResult,
-      entity,
-      **kwargs)
+  return _ndb_to_rpc(swarming_rpcs.TaskResult, entity, **kwargs)

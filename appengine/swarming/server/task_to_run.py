@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Task entity that describe when a task is to be scheduled.
 
 This module doesn't do the scheduling itself. It only describes the tasks ready
@@ -45,7 +44,6 @@ from server import config
 from server import task_pack
 from server import task_queues
 from server import task_request
-
 
 ### Models.
 
@@ -126,8 +124,7 @@ class TaskToRun(ndb.Model):
     """Returns the TaskRunResult ndb.Key that will be created for this TaskToRun
     once reaped.
     """
-    summary_key = task_pack.request_key_to_result_summary_key(
-        self.request_key)
+    summary_key = task_pack.request_key_to_result_summary_key(self.request_key)
     return task_pack.result_summary_key_to_run_result_key(
         summary_key, self.try_number)
 
@@ -197,8 +194,8 @@ def _gen_queue_number(dimensions_hash, timestamp, priority):
     # assert works.
     t = long(round((timestamp - year_start).total_seconds() * 10.))
 
-  assert t >= 0 and t <= 0x7FFFFFFF, (
-      hex(t), dimensions_hash, timestamp, priority)
+  assert t >= 0 and t <= 0x7FFFFFFF, (hex(t), dimensions_hash, timestamp,
+                                      priority)
   # 31-22 == 9, leaving room for overflow with the addition.
   # 0x3fc00000 is the priority mask.
   # It is important that priority mixed with time is an addition, not a bitwise
@@ -239,10 +236,9 @@ def _memcache_to_run_key(to_run_key):
   See set_lookup_cache() for more explanation.
   """
   request_key = task_to_run_key_to_request_key(to_run_key)
-  return '%x-%d-%d' % (
-      request_key.integer_id(),
-      task_to_run_key_try_number(to_run_key),
-      task_to_run_key_slice_index(to_run_key))
+  return '%x-%d-%d' % (request_key.integer_id(),
+                       task_to_run_key_try_number(to_run_key),
+                       task_to_run_key_slice_index(to_run_key))
 
 
 @ndb.tasklet
@@ -268,14 +264,8 @@ class _QueryStats(object):
     return (
         '%d total, %d exp %d no_queue, %d hash mismatch, %d cache negative, '
         '%d dimensions mismatch, %d ignored, %d broken') % (
-        self.total,
-        self.expired,
-        self.no_queue,
-        self.hash_mismatch,
-        self.cache_lookup,
-        self.real_mismatch,
-        self.ignored,
-        self.broken)
+            self.total, self.expired, self.no_queue, self.hash_mismatch,
+            self.cache_lookup, self.real_mismatch, self.ignored, self.broken)
 
 
 @ndb.tasklet
@@ -314,9 +304,8 @@ def _validate_task_async(bot_dimensions, stats, now, to_run):
 
   # Expire as the bot polls by returning it, and task_scheduler will handle it.
   if to_run.expiration_ts < now:
-    logging.debug(
-        '_validate_task_async(%s): expired %s < %s',
-        packed, to_run.expiration_ts, now)
+    logging.debug('_validate_task_async(%s): expired %s < %s', packed,
+                  to_run.expiration_ts, now)
     stats.expired += 1
   else:
     # It's a valid task! Note that in the meantime, another bot may have reaped
@@ -332,6 +321,7 @@ def _yield_pages_async(q, size):
   """
   next_cursor = [None]
   should_continue = [True]
+
   def fire(page, result):
     results, cursor, more = page.get_result()
     result.set_result(results)
@@ -355,9 +345,9 @@ def _get_task_to_run_query(dimensions_hash):
   # See _gen_queue_number() as of why << 31. This query cannot use the key
   # because it is not a root entity.
   return TaskToRun.query(default_options=opts).order(
-          TaskToRun.queue_number).filter(
-              TaskToRun.queue_number >= (dimensions_hash << 31),
-              TaskToRun.queue_number < ((dimensions_hash+1) << 31))
+      TaskToRun.queue_number).filter(
+          TaskToRun.queue_number >= (dimensions_hash << 31),
+          TaskToRun.queue_number < ((dimensions_hash + 1) << 31))
 
 
 def _yield_potential_tasks(bot_id):
@@ -398,9 +388,9 @@ def _yield_potential_tasks(bot_id):
       time.sleep(r)
     logging.debug(
         '_yield_potential_tasks(%s): waited %.3fs for %d items from %d Futures',
-        bot_id, time.time() - start,
-        sum(len(f.get_result()) for f in futures if f.done()),
-        len(futures))
+        bot_id,
+        time.time() - start,
+        sum(len(f.get_result()) for f in futures if f.done()), len(futures))
     # items is a list of TaskToRun. The entities are needed because property
     # queue_number is used to sort according to each task's priority.
     items = []
@@ -498,7 +488,7 @@ def new_task_to_run(request, task_slice_index):
     for i in range(task_slice_index):
       offset += request.task_slice(i).expiration_secs
   exp = request.created_ts + datetime.timedelta(
-      seconds=request.task_slice(task_slice_index).expiration_secs+offset)
+      seconds=request.task_slice(task_slice_index).expiration_secs + offset)
   h = request.task_slice(task_slice_index).properties.dimensions
   qn = _gen_queue_number(
       task_queues.hash_dimensions(h), request.created_ts, request.priority)
@@ -620,13 +610,13 @@ def yield_next_available_task_to_dispatch(bot_dimensions):
     ndb.Future.wait_all(futures)
     # stats output is a bit misleading here, as many _validate_task_async()
     # could be started yet never yielded.
-    logging.debug(
-        'yield_next_available_task_to_dispatch(%s) in %.3fs: %s',
-        bot_id, (utils.utcnow() - now).total_seconds(), stats)
+    logging.debug('yield_next_available_task_to_dispatch(%s) in %.3fs: %s',
+                  bot_id, (utils.utcnow() - now).total_seconds(), stats)
 
 
 def yield_expired_task_to_run():
   """Yields the expired TaskToRun still marked as available."""
+
   # The query fetches tasks that reached expiration time recently
   # to avoid fetching all past tasks. It uses a large batch size
   # since the entities are very small and to reduce RPC overhead.

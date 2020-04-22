@@ -21,6 +21,7 @@ def write_content(path, content):
 
 
 class FSTest(unittest.TestCase):
+
   @classmethod
   def setUpClass(cls):
     if not file_path.enable_symlink():
@@ -71,23 +72,19 @@ class FSTest(unittest.TestCase):
 
     # Ensures that followlinks is respected in walk().
     expected = [
-      (self.tempdir, ['dir', 'ld'], ['lf']),
-      (dirpath, [], ['file']),
+        (self.tempdir, ['dir', 'ld'], ['lf']),
+        (dirpath, [], ['file']),
     ]
-    actual = [
-      (r, sorted(d), sorted(f))
-      for r, d, f in sorted(fs.walk(self.tempdir, followlinks=False))
-    ]
+    actual = [(r, sorted(d), sorted(f))
+              for r, d, f in sorted(fs.walk(self.tempdir, followlinks=False))]
     self.assertEqual(expected, actual)
     expected = [
-      (self.tempdir, ['dir', 'ld'], ['lf']),
-      (dirpath, [], ['file']),
-      (linkdir, [], ['file']),
+        (self.tempdir, ['dir', 'ld'], ['lf']),
+        (dirpath, [], ['file']),
+        (linkdir, [], ['file']),
     ]
-    actual = [
-      (r, sorted(d), sorted(f))
-      for r, d, f in sorted(fs.walk(self.tempdir, followlinks=True))
-    ]
+    actual = [(r, sorted(d), sorted(f))
+              for r, d, f in sorted(fs.walk(self.tempdir, followlinks=True))]
     self.assertEqual(expected, actual)
 
   def test_symlink_absolute(self):
@@ -118,23 +115,19 @@ class FSTest(unittest.TestCase):
 
     # Ensures that followlinks is respected in walk().
     expected = [
-      (self.tempdir, ['dir', 'ld'], ['lf']),
-      (dirpath, [], ['file']),
+        (self.tempdir, ['dir', 'ld'], ['lf']),
+        (dirpath, [], ['file']),
     ]
-    actual = [
-      (r, sorted(d), sorted(f))
-      for r, d, f in sorted(fs.walk(self.tempdir, followlinks=False))
-    ]
+    actual = [(r, sorted(d), sorted(f))
+              for r, d, f in sorted(fs.walk(self.tempdir, followlinks=False))]
     self.assertEqual(expected, actual)
     expected = [
-      (self.tempdir, ['dir', 'ld'], ['lf']),
-      (dirpath, [], ['file']),
-      (linkdir, [], ['file']),
+        (self.tempdir, ['dir', 'ld'], ['lf']),
+        (dirpath, [], ['file']),
+        (linkdir, [], ['file']),
     ]
-    actual = [
-      (r, sorted(d), sorted(f))
-      for r, d, f in sorted(fs.walk(self.tempdir, followlinks=True))
-    ]
+    actual = [(r, sorted(d), sorted(f))
+              for r, d, f in sorted(fs.walk(self.tempdir, followlinks=True))]
     self.assertEqual(expected, actual)
 
   def test_symlink_missing_destination_rel(self):

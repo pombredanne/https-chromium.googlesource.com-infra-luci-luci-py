@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """A stripped-down implementation of the gRPC interface for Python on AppEngine.
 
 The Server class itself also provides the bulk of the implementation which
@@ -26,41 +25,40 @@ from components.prpc import headers
 from components.prpc.codes import StatusCode
 from components.prpc.context import ServicerContext
 
-
 __all__ = [
-  'HandlerCallDetails',
-  'Server',
-  'StatusCode',
+    'HandlerCallDetails',
+    'Server',
+    'StatusCode',
 ]
 
 # pylint: disable=pointless-string-statement
 
 _PRPC_TO_HTTP_STATUS = {
-  StatusCode.OK: httplib.OK,
-  StatusCode.CANCELLED: httplib.NO_CONTENT,
-  StatusCode.INVALID_ARGUMENT: httplib.BAD_REQUEST,
-  StatusCode.DEADLINE_EXCEEDED: httplib.SERVICE_UNAVAILABLE,
-  StatusCode.NOT_FOUND: httplib.NOT_FOUND,
-  StatusCode.ALREADY_EXISTS: httplib.CONFLICT,
-  StatusCode.PERMISSION_DENIED: httplib.FORBIDDEN,
-  StatusCode.RESOURCE_EXHAUSTED: httplib.SERVICE_UNAVAILABLE,
-  StatusCode.FAILED_PRECONDITION: httplib.PRECONDITION_FAILED,
-  StatusCode.OUT_OF_RANGE: httplib.BAD_REQUEST,
-  StatusCode.UNIMPLEMENTED: httplib.NOT_IMPLEMENTED,
-  StatusCode.INTERNAL: httplib.INTERNAL_SERVER_ERROR,
-  StatusCode.UNAVAILABLE: httplib.SERVICE_UNAVAILABLE,
-  StatusCode.UNAUTHENTICATED: httplib.UNAUTHORIZED,
+    StatusCode.OK: httplib.OK,
+    StatusCode.CANCELLED: httplib.NO_CONTENT,
+    StatusCode.INVALID_ARGUMENT: httplib.BAD_REQUEST,
+    StatusCode.DEADLINE_EXCEEDED: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.NOT_FOUND: httplib.NOT_FOUND,
+    StatusCode.ALREADY_EXISTS: httplib.CONFLICT,
+    StatusCode.PERMISSION_DENIED: httplib.FORBIDDEN,
+    StatusCode.RESOURCE_EXHAUSTED: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.FAILED_PRECONDITION: httplib.PRECONDITION_FAILED,
+    StatusCode.OUT_OF_RANGE: httplib.BAD_REQUEST,
+    StatusCode.UNIMPLEMENTED: httplib.NOT_IMPLEMENTED,
+    StatusCode.INTERNAL: httplib.INTERNAL_SERVER_ERROR,
+    StatusCode.UNAVAILABLE: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.UNAUTHENTICATED: httplib.UNAUTHORIZED,
 }
-
 
 _Service = collections.namedtuple('_Service', ['servicer', 'methods'])
 
-
 # Details about the RPC call passed to the interceptors.
-HandlerCallDetails = collections.namedtuple('HandlerCallDetails', [
-  'method',               # full method name <service>.<method>
-  'invocation_metadata',  # (k, v) pairs list with metadata sent by the client
-])
+HandlerCallDetails = collections.namedtuple(
+    'HandlerCallDetails',
+    [
+        'method',  # full method name <service>.<method>
+        'invocation_metadata',  # (k, v) pairs list with metadata sent by the client
+    ])
 
 
 class Server(object):
@@ -115,14 +113,13 @@ class Server(object):
 
     # Construct handler.
     methods = {
-      method.name: (
-        # Fully-qualified proto type names will always begin with a '.' which
-        # GetSymbol doesn't strip out.
-        sym_db.GetSymbol(method.input_type[1:]),
-        sym_db.GetSymbol(method.output_type[1:]),
-        getattr(servicer, method.name),
-      )
-      for method in desc.method if hasattr(servicer, method.name)
+        method.name: (
+            # Fully-qualified proto type names will always begin with a '.' which
+            # GetSymbol doesn't strip out.
+            sym_db.GetSymbol(method.input_type[1:]),
+            sym_db.GetSymbol(method.output_type[1:]),
+            getattr(servicer, method.name),
+        ) for method in desc.method if hasattr(servicer, method.name)
     }
 
     full_name = desc.name
@@ -139,9 +136,12 @@ class Server(object):
 
   def get_routes(self):
     """Returns a list of webapp2.Route for all the routes the API handles."""
-    return [webapp2.Route('/prpc/<service>/<method>',
-                          handler=self._handler(),
-                          methods=['POST', 'OPTIONS'])]
+    return [
+        webapp2.Route(
+            '/prpc/<service>/<method>',
+            handler=self._handler(),
+            methods=['POST', 'OPTIONS'])
+    ]
 
   def _handler(self):
     """Returns a RequestHandler class with access to this server's data."""
@@ -247,8 +247,8 @@ class Server(object):
         try:
           # TODO(nodir,mknyszek): Poll for context to hit timeout or be
           # canceled.
-          response = server._run_interceptors(
-              request, context, call_details, handler, 0)
+          response = server._run_interceptors(request, context, call_details,
+                                              handler, 0)
         except Exception:
           logging.exception('Service implementation threw an exception')
           context.set_code(StatusCode.INTERNAL)
@@ -312,8 +312,8 @@ class Server(object):
       return handler(request, context)
 
     def continuation(request, context, call_details):
-      return self._run_interceptors(
-          request, context, call_details, handler, idx+1)
+      return self._run_interceptors(request, context, call_details, handler,
+                                    idx + 1)
 
     interceptor = self._interceptors[idx]
     return interceptor(request, context, call_details, continuation)

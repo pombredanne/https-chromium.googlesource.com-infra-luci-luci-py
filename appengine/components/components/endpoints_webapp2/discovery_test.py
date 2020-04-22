@@ -66,14 +66,16 @@ class Service(remote.Service):
       endpoints.ResourceContainer(
           message_types.VoidMessage,
           string=messages.StringField(1, repeated=True)),
-      Message, http_method='GET')
+      Message,
+      http_method='GET')
   def query_string_method(self, _):
     """An HTTP GET method supporting query strings."""
     return Message()
 
   @endpoints.method(
       endpoints.ResourceContainer(Message, path=messages.StringField(1)),
-      Message, path='{path}/method')
+      Message,
+      path='{path}/method')
   def path_parameter_method(self, _):
     """An HTTP POST method supporting path parameters."""
     return Message()
@@ -133,264 +135,275 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
   def test_get_methods(self):
     """Tests discovery._get_methods."""
     expected = (
-      # methods
-      {
-        'get_method': {
-          'description': 'An HTTP GET method.',
-          'httpMethod': 'GET',
-          'id': 'service.get_method',
-          'path': 'get_method',
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-        'path_parameter_method': {
-          'description': 'An HTTP POST method supporting path parameters.',
-          'httpMethod': 'POST',
-          'id': 'service.path_parameter_method',
-          'parameterOrder': [
-            'path',
-          ],
-          'parameters': {
-            'path': {
-              'location': 'path',
-              'type': 'string',
-            },
-          },
-          'path': '{path}/method',
-          'request': {
-            '$ref': 'DiscoveryTestMessage',
-            'parameterName': 'resource',
-          },
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-        'post_method': {
-          'description': 'An HTTP POST method. Has a multi-line description.',
-          'httpMethod': 'POST',
-          'id': 'service.post_method',
-          'path': 'post_method',
-          'request': {
-            '$ref': 'DiscoveryTestMessage',
-            'parameterName': 'resource',
-          },
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-        'query_string_method': {
-          'description': 'An HTTP GET method supporting query strings.',
-          'httpMethod': 'GET',
-          'id': 'service.query_string_method',
-          'parameters': {
-            'string': {
-              'location': 'query',
-              'repeated': True,
-              'type': 'string',
-            },
-          },
-          'path': 'query_string_method',
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-      },
-      # resources
-      {
-        'resource': {
-          'methods': {
-            'a': {
-              'description': 'A method belonging to a resource.',
-              'httpMethod': 'POST',
-              'id': 'service.resource.a',
-              'path': 'resource_method_a',
-              'request': {
-                '$ref': 'DiscoveryTestMessage',
-                'parameterName': 'resource',
-              },
-              'response': {
-                '$ref': 'DiscoveryTestMessage',
-              },
-              'scopes': [
-                'https://www.googleapis.com/auth/userinfo.email',
-              ],
-            },
-          },
-          'resources': {
-            'subresource': {
-              'methods': {
-                'b': {
-                  'description': 'A method belonging to a sub-resource.',
-                  'httpMethod': 'POST',
-                  'id': 'service.resource.subresource.b',
-                  'path': 'resource_method_b',
-                  'request': {
+        # methods
+        {
+            'get_method': {
+                'description': 'An HTTP GET method.',
+                'httpMethod': 'GET',
+                'id': 'service.get_method',
+                'path': 'get_method',
+                'response': {
                     '$ref': 'DiscoveryTestMessage',
-                    'parameterName': 'resource',
-                  },
-                  'response': {
-                    '$ref': 'DiscoveryTestMessage',
-                  },
-                  'scopes': [
-                    'https://www.googleapis.com/auth/userinfo.email',
-                  ],
-                    },
-                'c': {
-                  'description': 'A method belonging to a sub-resource.',
-                  'httpMethod': 'POST',
-                  'id': 'service.resource.subresource.c',
-                  'path': 'resource_method_c',
-                  'request': {
-                    '$ref': 'DiscoveryTestMessage',
-                    'parameterName': 'resource',
-                  },
-                  'response': {
-                    '$ref': 'DiscoveryTestMessage',
-                  },
-                  'scopes': [
-                    'https://www.googleapis.com/auth/userinfo.email',
-                  ],
                 },
-              },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
             },
-          },
+            'path_parameter_method': {
+                'description':
+                    'An HTTP POST method supporting path parameters.',
+                'httpMethod':
+                    'POST',
+                'id':
+                    'service.path_parameter_method',
+                'parameterOrder': ['path',],
+                'parameters': {
+                    'path': {
+                        'location': 'path',
+                        'type': 'string',
+                    },
+                },
+                'path':
+                    '{path}/method',
+                'request': {
+                    '$ref': 'DiscoveryTestMessage',
+                    'parameterName': 'resource',
+                },
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
+            },
+            'post_method': {
+                'description':
+                    'An HTTP POST method. Has a multi-line description.',
+                'httpMethod':
+                    'POST',
+                'id':
+                    'service.post_method',
+                'path':
+                    'post_method',
+                'request': {
+                    '$ref': 'DiscoveryTestMessage',
+                    'parameterName': 'resource',
+                },
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
+            },
+            'query_string_method': {
+                'description': 'An HTTP GET method supporting query strings.',
+                'httpMethod': 'GET',
+                'id': 'service.query_string_method',
+                'parameters': {
+                    'string': {
+                        'location': 'query',
+                        'repeated': True,
+                        'type': 'string',
+                    },
+                },
+                'path': 'query_string_method',
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
+            },
         },
-      },
-      # schemas
-      {
-        'DiscoveryTestMessage': {
-          'description': 'A message to test with.',
-          'id': 'DiscoveryTestMessage',
-          'properties': {
-            'boolean': {
-              'default': True,
-              'type': 'boolean',
+        # resources
+        {
+            'resource': {
+                'methods': {
+                    'a': {
+                        'description':
+                            'A method belonging to a resource.',
+                        'httpMethod':
+                            'POST',
+                        'id':
+                            'service.resource.a',
+                        'path':
+                            'resource_method_a',
+                        'request': {
+                            '$ref': 'DiscoveryTestMessage',
+                            'parameterName': 'resource',
+                        },
+                        'response': {
+                            '$ref': 'DiscoveryTestMessage',
+                        },
+                        'scopes': [
+                            'https://www.googleapis.com/auth/userinfo.email',
+                        ],
+                    },
+                },
+                'resources': {
+                    'subresource': {
+                        'methods': {
+                            'b': {
+                                'description':
+                                    'A method belonging to a sub-resource.',
+                                'httpMethod':
+                                    'POST',
+                                'id':
+                                    'service.resource.subresource.b',
+                                'path':
+                                    'resource_method_b',
+                                'request': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                    'parameterName': 'resource',
+                                },
+                                'response': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                },
+                                'scopes': [
+                                    'https://www.googleapis.com/auth/userinfo.email',
+                                ],
+                            },
+                            'c': {
+                                'description':
+                                    'A method belonging to a sub-resource.',
+                                'httpMethod':
+                                    'POST',
+                                'id':
+                                    'service.resource.subresource.c',
+                                'path':
+                                    'resource_method_c',
+                                'request': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                    'parameterName': 'resource',
+                                },
+                                'response': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                },
+                                'scopes': [
+                                    'https://www.googleapis.com/auth/userinfo.email',
+                                ],
+                            },
+                        },
+                    },
+                },
             },
-            'integer': {
-              'default': '2',
-              'format': 'int64',
-              'type': 'string',
-            },
-            'repeated': {
-              'items': {
-                'type': 'boolean',
-              },
-              'type': 'array',
-            },
-            'required': {
-              'required': True,
-              'type': 'boolean',
-            },
-            'string': {
-              'type': 'string',
-            },
-            'variant': {
-              'default': 3,
-              'format': 'int32',
-              'type': 'integer',
-            },
-          },
-          'type': 'object',
         },
-      },
+        # schemas
+        {
+            'DiscoveryTestMessage': {
+                'description': 'A message to test with.',
+                'id': 'DiscoveryTestMessage',
+                'properties': {
+                    'boolean': {
+                        'default': True,
+                        'type': 'boolean',
+                    },
+                    'integer': {
+                        'default': '2',
+                        'format': 'int64',
+                        'type': 'string',
+                    },
+                    'repeated': {
+                        'items': {
+                            'type': 'boolean',
+                        },
+                        'type': 'array',
+                    },
+                    'required': {
+                        'required': True,
+                        'type': 'boolean',
+                    },
+                    'string': {
+                        'type': 'string',
+                    },
+                    'variant': {
+                        'default': 3,
+                        'format': 'int32',
+                        'type': 'integer',
+                    },
+                },
+                'type': 'object',
+            },
+        },
     )
     self.assertEqual(discovery._get_methods(Service), expected)
 
   def test_get_parameters(self):
     """Tests for discovery._get_parameters."""
     expected = {
-      'parameterOrder': [
-        'boolean',
-        'string',
-        'required',
-      ],
-      'parameters': {
-        'boolean': {
-          'default': 'true',
-          'location': 'path',
-          'type': 'boolean',
+        'parameterOrder': [
+            'boolean',
+            'string',
+            'required',
+        ],
+        'parameters': {
+            'boolean': {
+                'default': 'true',
+                'location': 'path',
+                'type': 'boolean',
+            },
+            'integer': {
+                'default': '2',
+                'format': 'int64',
+                'location': 'query',
+                'type': 'string',
+            },
+            'repeated': {
+                'location': 'query',
+                'repeated': True,
+                'type': 'boolean',
+            },
+            'required': {
+                'location': 'query',
+                'required': True,
+                'type': 'boolean',
+            },
+            'string': {
+                'location': 'path',
+                'type': 'string',
+            },
+            'variant': {
+                'default': '3',
+                'format': 'int32',
+                'location': 'query',
+                'type': 'integer',
+            },
         },
-        'integer': {
-          'default': '2',
-          'format': 'int64',
-          'location': 'query',
-          'type': 'string',
-        },
-        'repeated': {
-          'location': 'query',
-          'repeated': True,
-          'type': 'boolean',
-        },
-        'required': {
-          'location': 'query',
-          'required': True,
-          'type': 'boolean',
-        },
-        'string': {
-          'location': 'path',
-          'type': 'string',
-        },
-        'variant': {
-          'default': '3',
-          'format': 'int32',
-          'location': 'query',
-          'type': 'integer',
-        },
-      },
     }
-    self.assertEqual(discovery._get_parameters(
-        Message, 'path/{boolean}/with/{string}/parameters'), expected)
+    self.assertEqual(
+        discovery._get_parameters(
+            Message, 'path/{boolean}/with/{string}/parameters'), expected)
 
   def test_get_schemas(self):
     """Tests for discovery._get_schemas."""
     expected = {
-      'DiscoveryTestChild': {
-        'description': 'A child message to test recursion with.',
-        'id': 'DiscoveryTestChild',
-        'properties': {
-          'enum': {
-            'default': 'UNKNOWN',
-            'enum': [
-              'KNOWN',
-              'UNKNOWN',
-            ],
-            'enumDescriptions': [
-              '',
-              '',
-            ],
-            'type': 'string',
-          },
-        },
-        'type': 'object',
-      },
-      'DiscoveryTestParent': {
-        'description': 'A parent message to test recursion with.',
-        'id': 'DiscoveryTestParent',
-        'properties': {
-          'child': {
-            '$ref': 'DiscoveryTestChild',
+        'DiscoveryTestChild': {
             'description': 'A child message to test recursion with.',
-          },
-          'datetime': {
-            'format': 'date-time',
-            'type': 'string',
-          },
+            'id': 'DiscoveryTestChild',
+            'properties': {
+                'enum': {
+                    'default': 'UNKNOWN',
+                    'enum': [
+                        'KNOWN',
+                        'UNKNOWN',
+                    ],
+                    'enumDescriptions': [
+                        '',
+                        '',
+                    ],
+                    'type': 'string',
+                },
+            },
+            'type': 'object',
         },
-        'type': 'object',
-      },
+        'DiscoveryTestParent': {
+            'description': 'A parent message to test recursion with.',
+            'id': 'DiscoveryTestParent',
+            'properties': {
+                'child': {
+                    '$ref': 'DiscoveryTestChild',
+                    'description': 'A child message to test recursion with.',
+                },
+                'datetime': {
+                    'format': 'date-time',
+                    'type': 'string',
+                },
+            },
+            'type': 'object',
+        },
     }
     self.assertEqual(discovery._get_schemas([Parent]), expected)
 
@@ -399,411 +412,462 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
     with self.assertRaises(AssertionError):
       discovery.generate([], 'localhost:8080', '/api')
     expected = {
-      'auth': {
-        'oauth2': {
-          'scopes': {
-            'https://www.googleapis.com/auth/userinfo.email': {
-              'description': 'https://www.googleapis.com/auth/userinfo.email',
+        'auth': {
+            'oauth2': {
+                'scopes': {
+                    'https://www.googleapis.com/auth/userinfo.email': {
+                        'description':
+                            'https://www.googleapis.com/auth/userinfo.email',
+                    },
+                },
             },
-          },
         },
-      },
-      'basePath': '/api/service/v1',
-      'baseUrl': 'http://localhost:8080/api/service/v1',
-      'batchPath': 'batch',
-      'description': 'A service to test with.',
-      'discoveryVersion': 'v1',
-      'documentationLink': 'link',
-      'icons': {
-        'x16': 'https://www.google.com/images/icons/product/search-16.gif',
-        'x32': 'https://www.google.com/images/icons/product/search-32.gif',
-      },
-      'id': 'service:v1',
-      'kind': 'discovery#restDescription',
-      'methods': {
-        'get_method': {
-          'description': 'An HTTP GET method.',
-          'httpMethod': 'GET',
-          'id': 'service.get_method',
-          'path': 'get_method',
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
+        'basePath': '/api/service/v1',
+        'baseUrl': 'http://localhost:8080/api/service/v1',
+        'batchPath': 'batch',
+        'description': 'A service to test with.',
+        'discoveryVersion': 'v1',
+        'documentationLink': 'link',
+        'icons': {
+            'x16': 'https://www.google.com/images/icons/product/search-16.gif',
+            'x32': 'https://www.google.com/images/icons/product/search-32.gif',
         },
-        'path_parameter_method': {
-          'description': 'An HTTP POST method supporting path parameters.',
-          'httpMethod': 'POST',
-          'id': 'service.path_parameter_method',
-          'parameterOrder': [
-            'path',
-          ],
-          'parameters': {
-            'path': {
-              'location': 'path',
-              'type': 'string',
+        'id': 'service:v1',
+        'kind': 'discovery#restDescription',
+        'methods': {
+            'get_method': {
+                'description': 'An HTTP GET method.',
+                'httpMethod': 'GET',
+                'id': 'service.get_method',
+                'path': 'get_method',
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
             },
-          },
-          'path': '{path}/method',
-          'request': {
-            '$ref': 'DiscoveryTestMessage',
-            'parameterName': 'resource',
-          },
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-        'post_method': {
-          'description': 'An HTTP POST method. Has a multi-line description.',
-          'httpMethod': 'POST',
-          'id': 'service.post_method',
-          'path': 'post_method',
-          'request': {
-            '$ref': 'DiscoveryTestMessage',
-            'parameterName': 'resource',
-          },
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-        'query_string_method': {
-          'description': 'An HTTP GET method supporting query strings.',
-          'httpMethod': 'GET',
-          'id': 'service.query_string_method',
-          'parameters': {
-            'string': {
-              'location': 'query',
-              'repeated': True,
-              'type': 'string',
-            },
-          },
-          'path': 'query_string_method',
-          'response': {
-            '$ref': 'DiscoveryTestMessage',
-          },
-          'scopes': [
-            'https://www.googleapis.com/auth/userinfo.email',
-          ],
-        },
-      },
-      'name': 'service',
-      'parameters': {
-        'alt': {
-          'default': 'json',
-          'description': 'Data format for the response.',
-          'enum': ['json'],
-          'enumDescriptions': [
-            'Responses with Content-Type of application/json',
-          ],
-          'location': 'query',
-          'type': 'string',
-        },
-        'fields': {
-          'description': (
-              'Selector specifying which fields to include in a partial'
-              ' response.'),
-          'location': 'query',
-          'type': 'string',
-        },
-        'key': {
-          'description': (
-              'API key. Your API key identifies your project and provides you'
-              ' with API access, quota, and reports. Required unless you'
-              ' provide an OAuth 2.0 token.'),
-          'location': 'query',
-          'type': 'string',
-        },
-        'oauth_token': {
-          'description': 'OAuth 2.0 token for the current user.',
-          'location': 'query',
-          'type': 'string',
-        },
-        'prettyPrint': {
-          'default': 'true',
-          'description': 'Returns response with indentations and line breaks.',
-          'location': 'query',
-          'type': 'boolean',
-        },
-        'quotaUser': {
-          'description': (
-              'Available to use for quota purposes for server-side'
-              ' applications. Can be any arbitrary string assigned to a user,'
-              ' but should not exceed 40 characters. Overrides userIp if both'
-              ' are provided.'),
-          'location': 'query',
-          'type': 'string',
-        },
-        'userIp': {
-          'description': (
-              'IP address of the site where the request originates. Use this if'
-              ' you want to enforce per-user limits.'),
-          'location': 'query',
-          'type': 'string',
-        },
-      },
-      'protocol': 'rest',
-      'resources': {
-        'resource': {
-          'methods': {
-            'a': {
-              'description': 'A method belonging to a resource.',
-              'httpMethod': 'POST',
-              'id': 'service.resource.a',
-              'path': 'resource_method_a',
-              'request': {
-                '$ref': 'DiscoveryTestMessage',
-                'parameterName': 'resource',
-              },
-              'response': {
-                '$ref': 'DiscoveryTestMessage',
-              },
-              'scopes': [
-                'https://www.googleapis.com/auth/userinfo.email',
-              ],
-            },
-          },
-          'resources': {
-            'subresource': {
-              'methods': {
-                'b': {
-                  'description': 'A method belonging to a sub-resource.',
-                  'httpMethod': 'POST',
-                  'id': 'service.resource.subresource.b',
-                  'path': 'resource_method_b',
-                  'request': {
+            'path_parameter_method': {
+                'description':
+                    'An HTTP POST method supporting path parameters.',
+                'httpMethod':
+                    'POST',
+                'id':
+                    'service.path_parameter_method',
+                'parameterOrder': ['path',],
+                'parameters': {
+                    'path': {
+                        'location': 'path',
+                        'type': 'string',
+                    },
+                },
+                'path':
+                    '{path}/method',
+                'request': {
                     '$ref': 'DiscoveryTestMessage',
                     'parameterName': 'resource',
-                  },
-                  'response': {
-                    '$ref': 'DiscoveryTestMessage',
-                  },
-                  'scopes': [
-                    'https://www.googleapis.com/auth/userinfo.email',
-                  ],
                 },
-                'c': {
-                  'description': 'A method belonging to a sub-resource.',
-                  'httpMethod': 'POST',
-                  'id': 'service.resource.subresource.c',
-                  'path': 'resource_method_c',
-                  'request': {
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
+            },
+            'post_method': {
+                'description':
+                    'An HTTP POST method. Has a multi-line description.',
+                'httpMethod':
+                    'POST',
+                'id':
+                    'service.post_method',
+                'path':
+                    'post_method',
+                'request': {
                     '$ref': 'DiscoveryTestMessage',
                     'parameterName': 'resource',
-                  },
-                  'response': {
-                    '$ref': 'DiscoveryTestMessage',
-                  },
-                  'scopes': [
-                    'https://www.googleapis.com/auth/userinfo.email',
-                  ],
                 },
-              },
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
             },
-          },
+            'query_string_method': {
+                'description': 'An HTTP GET method supporting query strings.',
+                'httpMethod': 'GET',
+                'id': 'service.query_string_method',
+                'parameters': {
+                    'string': {
+                        'location': 'query',
+                        'repeated': True,
+                        'type': 'string',
+                    },
+                },
+                'path': 'query_string_method',
+                'response': {
+                    '$ref': 'DiscoveryTestMessage',
+                },
+                'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
+            },
         },
-      },
-      'rootUrl': 'http://localhost:8080/api/',
-      'schemas': {
-        'DiscoveryTestMessage': {
-          'description': 'A message to test with.',
-          'id': 'DiscoveryTestMessage',
-          'properties': {
-            'boolean': {
-              'default': True,
-              'type': 'boolean',
+        'name': 'service',
+        'parameters': {
+            'alt': {
+                'default':
+                    'json',
+                'description':
+                    'Data format for the response.',
+                'enum': ['json'],
+                'enumDescriptions': [
+                    'Responses with Content-Type of application/json',
+                ],
+                'location':
+                    'query',
+                'type':
+                    'string',
             },
-            'integer': {
-              'default': '2',
-              'format': 'int64',
-              'type': 'string',
+            'fields': {
+                'description': (
+                    'Selector specifying which fields to include in a partial'
+                    ' response.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
             },
-            'repeated': {
-              'items': {
-                'type': 'boolean',
-              },
-              'type': 'array',
+            'key': {
+                'description': (
+                    'API key. Your API key identifies your project and provides you'
+                    ' with API access, quota, and reports. Required unless you'
+                    ' provide an OAuth 2.0 token.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
             },
-            'required': {
-              'required': True,
-              'type': 'boolean',
+            'oauth_token': {
+                'description': 'OAuth 2.0 token for the current user.',
+                'location': 'query',
+                'type': 'string',
             },
-            'string': {
-              'type': 'string',
+            'prettyPrint': {
+                'default':
+                    'true',
+                'description':
+                    'Returns response with indentations and line breaks.',
+                'location':
+                    'query',
+                'type':
+                    'boolean',
             },
-            'variant': {
-              'default': 3,
-              'format': 'int32',
-              'type': 'integer',
+            'quotaUser': {
+                'description': (
+                    'Available to use for quota purposes for server-side'
+                    ' applications. Can be any arbitrary string assigned to a user,'
+                    ' but should not exceed 40 characters. Overrides userIp if both'
+                    ' are provided.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
             },
-          },
-          'type': 'object',
+            'userIp': {
+                'description': (
+                    'IP address of the site where the request originates. Use this if'
+                    ' you want to enforce per-user limits.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
+            },
         },
-      },
-      'servicePath': 'service/v1/',
-      'title': 'Titled Service',
-      'version': 'v1',
+        'protocol': 'rest',
+        'resources': {
+            'resource': {
+                'methods': {
+                    'a': {
+                        'description':
+                            'A method belonging to a resource.',
+                        'httpMethod':
+                            'POST',
+                        'id':
+                            'service.resource.a',
+                        'path':
+                            'resource_method_a',
+                        'request': {
+                            '$ref': 'DiscoveryTestMessage',
+                            'parameterName': 'resource',
+                        },
+                        'response': {
+                            '$ref': 'DiscoveryTestMessage',
+                        },
+                        'scopes': [
+                            'https://www.googleapis.com/auth/userinfo.email',
+                        ],
+                    },
+                },
+                'resources': {
+                    'subresource': {
+                        'methods': {
+                            'b': {
+                                'description':
+                                    'A method belonging to a sub-resource.',
+                                'httpMethod':
+                                    'POST',
+                                'id':
+                                    'service.resource.subresource.b',
+                                'path':
+                                    'resource_method_b',
+                                'request': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                    'parameterName': 'resource',
+                                },
+                                'response': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                },
+                                'scopes': [
+                                    'https://www.googleapis.com/auth/userinfo.email',
+                                ],
+                            },
+                            'c': {
+                                'description':
+                                    'A method belonging to a sub-resource.',
+                                'httpMethod':
+                                    'POST',
+                                'id':
+                                    'service.resource.subresource.c',
+                                'path':
+                                    'resource_method_c',
+                                'request': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                    'parameterName': 'resource',
+                                },
+                                'response': {
+                                    '$ref': 'DiscoveryTestMessage',
+                                },
+                                'scopes': [
+                                    'https://www.googleapis.com/auth/userinfo.email',
+                                ],
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        'rootUrl': 'http://localhost:8080/api/',
+        'schemas': {
+            'DiscoveryTestMessage': {
+                'description': 'A message to test with.',
+                'id': 'DiscoveryTestMessage',
+                'properties': {
+                    'boolean': {
+                        'default': True,
+                        'type': 'boolean',
+                    },
+                    'integer': {
+                        'default': '2',
+                        'format': 'int64',
+                        'type': 'string',
+                    },
+                    'repeated': {
+                        'items': {
+                            'type': 'boolean',
+                        },
+                        'type': 'array',
+                    },
+                    'required': {
+                        'required': True,
+                        'type': 'boolean',
+                    },
+                    'string': {
+                        'type': 'string',
+                    },
+                    'variant': {
+                        'default': 3,
+                        'format': 'int32',
+                        'type': 'integer',
+                    },
+                },
+                'type': 'object',
+            },
+        },
+        'servicePath': 'service/v1/',
+        'title': 'Titled Service',
+        'version': 'v1',
     }
     self.assertEqual(
         discovery.generate([Service], 'localhost:8080', '/api'), expected)
     expected = {
-      'auth': {
-        'oauth2': {
-          'scopes': {
-            'https://www.googleapis.com/auth/userinfo.email': {
-              'description': 'https://www.googleapis.com/auth/userinfo.email',
+        'auth': {
+            'oauth2': {
+                'scopes': {
+                    'https://www.googleapis.com/auth/userinfo.email': {
+                        'description':
+                            'https://www.googleapis.com/auth/userinfo.email',
+                    },
+                },
             },
-          },
         },
-      },
-      'basePath': '/api/split/v1',
-      'baseUrl': 'http://localhost:8080/api/split/v1',
-      'batchPath': 'batch',
-      'description': 'A split service to test with.',
-      'discoveryVersion': 'v1',
-      'icons': {
-        'x16': 'https://www.google.com/images/icons/product/search-16.gif',
-        'x32': 'https://www.google.com/images/icons/product/search-32.gif',
-      },
-      'id': 'split:v1',
-      'kind': 'discovery#restDescription',
-      'name': 'split',
-      'parameters': {
-        'alt': {
-          'default': 'json',
-          'description': 'Data format for the response.',
-          'enum': ['json'],
-          'enumDescriptions': [
-            'Responses with Content-Type of application/json',
-          ],
-          'location': 'query',
-          'type': 'string',
+        'basePath': '/api/split/v1',
+        'baseUrl': 'http://localhost:8080/api/split/v1',
+        'batchPath': 'batch',
+        'description': 'A split service to test with.',
+        'discoveryVersion': 'v1',
+        'icons': {
+            'x16': 'https://www.google.com/images/icons/product/search-16.gif',
+            'x32': 'https://www.google.com/images/icons/product/search-32.gif',
         },
-        'fields': {
-          'description': (
-              'Selector specifying which fields to include in a partial'
-              ' response.'),
-          'location': 'query',
-          'type': 'string',
-        },
-        'key': {
-          'description': (
-              'API key. Your API key identifies your project and provides you'
-              ' with API access, quota, and reports. Required unless you'
-              ' provide an OAuth 2.0 token.'),
-          'location': 'query',
-          'type': 'string',
-        },
-        'oauth_token': {
-          'description': 'OAuth 2.0 token for the current user.',
-          'location': 'query',
-          'type': 'string',
-        },
-        'prettyPrint': {
-          'default': 'true',
-          'description': 'Returns response with indentations and line breaks.',
-          'location': 'query',
-          'type': 'boolean',
-        },
-        'quotaUser': {
-          'description': (
-              'Available to use for quota purposes for server-side'
-              ' applications. Can be any arbitrary string assigned to a user,'
-              ' but should not exceed 40 characters. Overrides userIp if both'
-              ' are provided.'),
-          'location': 'query',
-          'type': 'string',
-        },
-        'userIp': {
-          'description': (
-              'IP address of the site where the request originates. Use this if'
-              ' you want to enforce per-user limits.'),
-          'location': 'query',
-          'type': 'string',
-        },
-      },
-      'protocol': 'rest',
-      'resources': {
-        'sa': {
-          'methods': {
-            'post_method': {
-              'description': 'An HTTP POST method.',
-              'httpMethod': 'POST',
-              'id': 'split.sa.post_method',
-              'path': 'a/post_method',
-              'response': {
-                '$ref': 'DiscoveryTestMessage',
-              },
-              'scopes': [
-                'https://www.googleapis.com/auth/userinfo.email',
-              ],
+        'id': 'split:v1',
+        'kind': 'discovery#restDescription',
+        'name': 'split',
+        'parameters': {
+            'alt': {
+                'default':
+                    'json',
+                'description':
+                    'Data format for the response.',
+                'enum': ['json'],
+                'enumDescriptions': [
+                    'Responses with Content-Type of application/json',
+                ],
+                'location':
+                    'query',
+                'type':
+                    'string',
             },
-          },
+            'fields': {
+                'description': (
+                    'Selector specifying which fields to include in a partial'
+                    ' response.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
+            },
+            'key': {
+                'description': (
+                    'API key. Your API key identifies your project and provides you'
+                    ' with API access, quota, and reports. Required unless you'
+                    ' provide an OAuth 2.0 token.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
+            },
+            'oauth_token': {
+                'description': 'OAuth 2.0 token for the current user.',
+                'location': 'query',
+                'type': 'string',
+            },
+            'prettyPrint': {
+                'default':
+                    'true',
+                'description':
+                    'Returns response with indentations and line breaks.',
+                'location':
+                    'query',
+                'type':
+                    'boolean',
+            },
+            'quotaUser': {
+                'description': (
+                    'Available to use for quota purposes for server-side'
+                    ' applications. Can be any arbitrary string assigned to a user,'
+                    ' but should not exceed 40 characters. Overrides userIp if both'
+                    ' are provided.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
+            },
+            'userIp': {
+                'description': (
+                    'IP address of the site where the request originates. Use this if'
+                    ' you want to enforce per-user limits.'),
+                'location':
+                    'query',
+                'type':
+                    'string',
+            },
         },
-        'sb': {
-          'methods': {
-            'post_method': {
-              'description':
-                  'An HTTP POST method.',
-              'httpMethod': 'POST',
-              'id': 'split.sb.post_method',
-              'path': 'b/post_method',
-              'response': {
-                '$ref': 'DiscoveryTestMessage',
-              },
-              'scopes': [
-                'https://www.googleapis.com/auth/userinfo.email',
-              ],
+        'protocol': 'rest',
+        'resources': {
+            'sa': {
+                'methods': {
+                    'post_method': {
+                        'description':
+                            'An HTTP POST method.',
+                        'httpMethod':
+                            'POST',
+                        'id':
+                            'split.sa.post_method',
+                        'path':
+                            'a/post_method',
+                        'response': {
+                            '$ref': 'DiscoveryTestMessage',
+                        },
+                        'scopes': [
+                            'https://www.googleapis.com/auth/userinfo.email',
+                        ],
+                    },
+                },
             },
-          },
+            'sb': {
+                'methods': {
+                    'post_method': {
+                        'description':
+                            'An HTTP POST method.',
+                        'httpMethod':
+                            'POST',
+                        'id':
+                            'split.sb.post_method',
+                        'path':
+                            'b/post_method',
+                        'response': {
+                            '$ref': 'DiscoveryTestMessage',
+                        },
+                        'scopes': [
+                            'https://www.googleapis.com/auth/userinfo.email',
+                        ],
+                    },
+                },
+            },
         },
-      },
-      'rootUrl': 'http://localhost:8080/api/',
-      'schemas': {
-        'DiscoveryTestMessage': {
-          'description': 'A message to test with.',
-          'id': 'DiscoveryTestMessage',
-          'properties': {
-            'boolean': {
-              'default': True,
-              'type': 'boolean',
+        'rootUrl': 'http://localhost:8080/api/',
+        'schemas': {
+            'DiscoveryTestMessage': {
+                'description': 'A message to test with.',
+                'id': 'DiscoveryTestMessage',
+                'properties': {
+                    'boolean': {
+                        'default': True,
+                        'type': 'boolean',
+                    },
+                    'integer': {
+                        'default': '2',
+                        'format': 'int64',
+                        'type': 'string',
+                    },
+                    'repeated': {
+                        'items': {
+                            'type': 'boolean',
+                        },
+                        'type': 'array',
+                    },
+                    'required': {
+                        'required': True,
+                        'type': 'boolean',
+                    },
+                    'string': {
+                        'type': 'string',
+                    },
+                    'variant': {
+                        'default': 3,
+                        'format': 'int32',
+                        'type': 'integer',
+                    },
+                },
+                'type': 'object',
             },
-            'integer': {
-              'default': '2',
-              'format': 'int64',
-              'type': 'string',
-            },
-            'repeated': {
-              'items': {
-                'type': 'boolean',
-              },
-              'type': 'array',
-            },
-            'required': {
-              'required': True,
-              'type': 'boolean',
-            },
-            'string': {
-              'type': 'string',
-            },
-            'variant': {
-              'default': 3,
-              'format': 'int32',
-              'type': 'integer',
-            },
-          },
-          'type': 'object',
         },
-      },
-      'servicePath': 'split/v1/',
-      'version': 'v1',
+        'servicePath': 'split/v1/',
+        'version': 'v1',
     }
     self.assertEqual(
         discovery.generate([ServiceA, ServiceB], 'localhost:8080', '/api'),
@@ -812,45 +876,66 @@ class DiscoveryWebapp2TestCase(test_case.TestCase):
   def test_directory(self):
     """Tests for discovery.directory."""
     expected = {
-      'discoveryVersion': 'v1',
-      'items': [
-        {
-          'description': 'A service to test with.',
-          'discoveryLink': './apis/service/v1/rest',
-          'discoveryRestUrl':
-              'http://localhost:8080/api/discovery/v1/apis/service/v1/rest',
-          'documentationLink': 'link',
-          'icons': {
-            'x16': 'https://www.google.com/images/icons/product/search-16.gif',
-            'x32': 'https://www.google.com/images/icons/product/search-32.gif',
-          },
-          'id': 'service:v1',
-          'kind': 'discovery#directoryItem',
-          'name': 'service',
-          'preferred': True,
-          'version': 'v1',
-        },
-        {
-          'description': 'A split service to test with.',
-          'discoveryLink': './apis/split/v1/rest',
-          'discoveryRestUrl':
-              'http://localhost:8080/api/discovery/v1/apis/split/v1/rest',
-          'icons': {
-            'x16': 'https://www.google.com/images/icons/product/search-16.gif',
-            'x32': 'https://www.google.com/images/icons/product/search-32.gif',
-          },
-          'id': 'split:v1',
-          'kind': 'discovery#directoryItem',
-          'name': 'split',
-          'preferred': True,
-          'version': 'v1',
-        },
-      ],
-      'kind': 'discovery#directoryList',
+        'discoveryVersion':
+            'v1',
+        'items': [
+            {
+                'description':
+                    'A service to test with.',
+                'discoveryLink':
+                    './apis/service/v1/rest',
+                'discoveryRestUrl':
+                    'http://localhost:8080/api/discovery/v1/apis/service/v1/rest',
+                'documentationLink':
+                    'link',
+                'icons': {
+                    'x16':
+                        'https://www.google.com/images/icons/product/search-16.gif',
+                    'x32':
+                        'https://www.google.com/images/icons/product/search-32.gif',
+                },
+                'id':
+                    'service:v1',
+                'kind':
+                    'discovery#directoryItem',
+                'name':
+                    'service',
+                'preferred':
+                    True,
+                'version':
+                    'v1',
+            },
+            {
+                'description':
+                    'A split service to test with.',
+                'discoveryLink':
+                    './apis/split/v1/rest',
+                'discoveryRestUrl':
+                    'http://localhost:8080/api/discovery/v1/apis/split/v1/rest',
+                'icons': {
+                    'x16':
+                        'https://www.google.com/images/icons/product/search-16.gif',
+                    'x32':
+                        'https://www.google.com/images/icons/product/search-32.gif',
+                },
+                'id':
+                    'split:v1',
+                'kind':
+                    'discovery#directoryItem',
+                'name':
+                    'split',
+                'preferred':
+                    True,
+                'version':
+                    'v1',
+            },
+        ],
+        'kind':
+            'discovery#directoryList',
     }
     self.assertEqual(
-        discovery.directory(
-            [Service, ServiceA, ServiceB], 'localhost:8080', '/api'), expected)
+        discovery.directory([Service, ServiceA, ServiceB], 'localhost:8080',
+                            '/api'), expected)
 
 
 if __name__ == '__main__':

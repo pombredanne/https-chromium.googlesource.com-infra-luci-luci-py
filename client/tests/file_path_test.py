@@ -28,6 +28,7 @@ def write_content(filepath, content):
 
 
 class FilePathTest(auto_stub.TestCase):
+
   def setUp(self):
     super(FilePathTest, self).setUp()
     self._tempdir = None
@@ -71,10 +72,8 @@ class FilePathTest(auto_stub.TestCase):
     umask = test_env.umask() if umask is None else umask
     actual = fs.stat(filepath).st_mode
     expected = mode & ~umask
-    self.assertEqual(
-        expected,
-        actual,
-        (filepath, oct(expected), oct(actual), oct(umask)))
+    self.assertEqual(expected, actual,
+                     (filepath, oct(expected), oct(actual), oct(umask)))
 
   def assertMaskedFileMode(self, filepath, mode):
     """It's usually when the file was first marked read only."""
@@ -88,8 +87,7 @@ class FilePathTest(auto_stub.TestCase):
   def test_native_case_end_with_dot_os_path_sep(self):
     path = file_path.get_native_path_case(test_env.CLIENT_DIR + os.path.sep)
     self.assertEqual(
-        file_path.get_native_path_case(path + '.' + os.path.sep),
-        path)
+        file_path.get_native_path_case(path + '.' + os.path.sep), path)
 
   def test_native_case_non_existing(self):
     # Make sure it doesn't throw on non-existing files.
@@ -185,14 +183,15 @@ class FilePathTest(auto_stub.TestCase):
   def test_rmtree_unicode(self):
     subdir = os.path.join(self.tempdir, 'hi')
     fs.mkdir(subdir)
-    filepath = os.path.join(
-        subdir, u'\u0627\u0644\u0635\u064A\u0646\u064A\u0629')
+    filepath = os.path.join(subdir,
+                            u'\u0627\u0644\u0635\u064A\u0646\u064A\u0629')
     with fs.open(filepath, 'wb') as f:
       f.write(b'hi')
     # In particular, it fails when the input argument is a str.
     file_path.rmtree(str(subdir))
 
   if sys.platform == 'darwin':
+
     def test_native_case_symlink_wrong_case(self):
       base_dir = file_path.get_native_path_case(test_env.TESTS_DIR)
       trace_inputs_dir = os.path.join(base_dir, 'trace_inputs')
@@ -202,13 +201,11 @@ class FilePathTest(auto_stub.TestCase):
       # Make sure the symlink is not resolved.
       data = os.path.join(trace_inputs_dir, 'Files2')
       actual = file_path.get_native_path_case(data)
-      self.assertEqual(
-          os.path.join(trace_inputs_dir, 'files2'), actual)
+      self.assertEqual(os.path.join(trace_inputs_dir, 'files2'), actual)
 
       data = os.path.join(trace_inputs_dir, 'Files2', '')
       actual = file_path.get_native_path_case(data)
-      self.assertEqual(
-          os.path.join(trace_inputs_dir, 'files2', ''), actual)
+      self.assertEqual(os.path.join(trace_inputs_dir, 'files2', ''), actual)
 
       data = os.path.join(trace_inputs_dir, 'Files2', 'Child1.py')
       actual = file_path.get_native_path_case(data)
@@ -217,6 +214,7 @@ class FilePathTest(auto_stub.TestCase):
           os.path.join(trace_inputs_dir, 'files2', 'Child1.py'), actual)
 
   if sys.platform in ('darwin', 'win32'):
+
     def test_native_case_not_sensitive(self):
       # The home directory is almost guaranteed to have mixed upper/lower case
       # letters on both Windows and OSX.
@@ -238,8 +236,8 @@ class FilePathTest(auto_stub.TestCase):
     def test_native_case_not_sensitive_non_existent(self):
       # This test also ensures that the output is independent on the input
       # string case.
-      non_existing = os.path.join(
-          'trace_input_test_this_dir_should_not_exist', 'really not', '')
+      non_existing = os.path.join('trace_input_test_this_dir_should_not_exist',
+                                  'really not', '')
       path = os.path.expanduser(os.path.join(u'~', non_existing))
       path = path.replace('/', os.path.sep)
       self.assertFalse(fs.exists(path))
@@ -251,6 +249,7 @@ class FilePathTest(auto_stub.TestCase):
       self.assertEqual(lower[:-len(non_existing)], upper[:-len(non_existing)])
 
   if sys.platform == 'win32':
+
     def test_native_case_alternate_datastream(self):
       # Create the file manually, since tempfile doesn't support ADS.
       tempdir = six.text_type(tempfile.mkdtemp(prefix=u'trace_inputs'))
@@ -262,14 +261,12 @@ class FilePathTest(auto_stub.TestCase):
         open(filepath, 'w').close()
         self.assertEqual(filepath, file_path.get_native_path_case(filepath))
         data_suffix = ':$DATA'
-        self.assertEqual(
-            filepath + data_suffix,
-            file_path.get_native_path_case(filepath + data_suffix))
+        self.assertEqual(filepath + data_suffix,
+                         file_path.get_native_path_case(filepath + data_suffix))
 
         open(filepath + '$DATA', 'w').close()
-        self.assertEqual(
-            filepath + data_suffix,
-            file_path.get_native_path_case(filepath + data_suffix))
+        self.assertEqual(filepath + data_suffix,
+                         file_path.get_native_path_case(filepath + data_suffix))
         # Ensure the ADS weren't created as separate file. You love NTFS, don't
         # you?
         self.assertEqual([basename], fs.listdir(tempdir))
@@ -311,20 +308,18 @@ class FilePathTest(auto_stub.TestCase):
     def test_filter_processes_tree_win(self):
       # Create a grand-child.
       script = (
-        'import subprocess,sys;'
-        'proc = subprocess.Popen('
+          'import subprocess,sys;'
+          'proc = subprocess.Popen('
           '[sys.executable, \'-u\', \'-c\', \'import time; print(1); '
           'time.sleep(60)\'], stdout=subprocess.PIPE); '
-        # Signal grand child is ready.
-        'print(proc.stdout.read(1)); '
-        # Wait for parent to have completed the test.
-        'sys.stdin.read(1); '
-        'proc.kill()'
-      )
-      proc = subprocess.Popen(
-          [sys.executable, '-u', '-c', script],
-          stdin=subprocess.PIPE,
-          stdout=subprocess.PIPE)
+          # Signal grand child is ready.
+          'print(proc.stdout.read(1)); '
+          # Wait for parent to have completed the test.
+          'sys.stdin.read(1); '
+          'proc.kill()')
+      proc = subprocess.Popen([sys.executable, '-u', '-c', script],
+                              stdin=subprocess.PIPE,
+                              stdout=subprocess.PIPE)
       try:
         proc.stdout.read(1)
         processes = file_path.filter_processes_tree_win(
@@ -338,6 +333,7 @@ class FilePathTest(auto_stub.TestCase):
         proc.wait()
 
   if sys.platform != 'win32':
+
     def test_symlink(self):
       # This test will fail if the checkout is in a symlink.
       actual = file_path.split_at_symlink(None, test_env.CLIENT_DIR)
@@ -351,14 +347,13 @@ class FilePathTest(auto_stub.TestCase):
 
       actual = file_path.split_at_symlink(
           None, os.path.join(test_env.TESTS_DIR, 'trace_inputs', 'files2'))
-      expected = (
-          os.path.join(test_env.TESTS_DIR, 'trace_inputs'), 'files2', '')
+      expected = (os.path.join(test_env.TESTS_DIR, 'trace_inputs'), 'files2',
+                  '')
       self.assertEqual(expected, actual)
 
       actual = file_path.split_at_symlink(
           test_env.CLIENT_DIR, os.path.join('tests', 'trace_inputs', 'files2'))
-      expected = (
-          os.path.join('tests', 'trace_inputs'), 'files2', '')
+      expected = (os.path.join('tests', 'trace_inputs'), 'files2', '')
       self.assertEqual(expected, actual)
       actual = file_path.split_at_symlink(
           test_env.CLIENT_DIR,
@@ -377,6 +372,7 @@ class FilePathTest(auto_stub.TestCase):
       self.assertEqual('files2', os.path.basename(actual))
 
   else:
+
     def test_undeleteable_chmod(self):
       # Create a file and a directory with an empty ACL. Then try to delete it.
       dirpath = os.path.join(self.tempdir, 'd')

@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Functions to produce and verify RSA+SHA256 signatures.
 
 Based on app_identity.sign_blob() and app_identity.get_public_certificates()
@@ -23,18 +22,16 @@ from google.appengine.runtime import apiproxy_errors
 
 from components import utils
 
-
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'CertificateBundle',
-  'CertificateError',
-  'get_google_oauth2_certs',
-  'get_own_public_certificates',
-  'get_service_account_certificates',
-  'get_service_public_certificates',
-  'sign_blob',
+    'CertificateBundle',
+    'CertificateError',
+    'get_google_oauth2_certs',
+    'get_own_public_certificates',
+    'get_service_account_certificates',
+    'get_service_public_certificates',
+    'sign_blob',
 ]
-
 
 # Base URL to fetch Google service account certs from.
 _GOOGLE_ROBOT_CERTS_URL = 'https://www.googleapis.com/robot/v1/metadata/x509/'
@@ -46,7 +43,7 @@ _GOOGLE_OAUTH2_CERTS_URL = 'https://www.googleapis.com/oauth2/v1/certs'
 # This is fine, since certs lifetime are usually 12h or more.
 _CERTS_CACHE_EXP_SEC = 3600
 
-_certs_cache = {} # cache key => (CertificateBundle, cache expiration time)
+_certs_cache = {}  # cache key => (CertificateBundle, cache expiration time)
 _certs_cache_lock = threading.Lock()
 
 
@@ -85,7 +82,7 @@ class CertificateBundle(object):
   def __init__(self, jsonish):
     self._jsonish = jsonish
     self._lock = threading.Lock()
-    self._verifiers = {} # key_id => PKCS1_v1_5 verifier
+    self._verifiers = {}  # key_id => PKCS1_v1_5 verifier
 
   @property
   def service_account_name(self):
@@ -166,8 +163,7 @@ class CertificateBundle(object):
         # (ssl.PEM_cert_to_DER_cert), but 'ssl' is not importable in GAE sandbox
         # on dev server (C extension is not whitelisted).
         lines = x509_cert.strip().split('\n')
-        if (len(lines) < 3 or
-            lines[0] != '-----BEGIN CERTIFICATE-----' or
+        if (len(lines) < 3 or lines[0] != '-----BEGIN CERTIFICATE-----' or
             lines[-1] != '-----END CERTIFICATE-----'):
           raise CertificateError('Invalid certificate format')
         der = base64.b64decode(''.join(lines[1:-1]))
@@ -228,16 +224,16 @@ def get_own_public_certificates():
       if attempt == 3:
         raise
   return CertificateBundle({
-    'app_id': app_identity.get_application_id(),
-    'service_account_name': utils.get_service_account_name(),
-    'certificates': [
-      {
-        'key_name': cert.key_name,
-        'x509_certificate_pem': cert.x509_certificate_pem,
-      }
-      for cert in certs
-    ],
-    'timestamp': utils.datetime_to_timestamp(utils.utcnow()),
+      'app_id':
+          app_identity.get_application_id(),
+      'service_account_name':
+          utils.get_service_account_name(),
+      'certificates': [{
+          'key_name': cert.key_name,
+          'x509_certificate_pem': cert.x509_certificate_pem,
+      } for cert in certs],
+      'timestamp':
+          utils.datetime_to_timestamp(utils.utcnow()),
   })
 
 
@@ -249,9 +245,8 @@ def get_service_public_certificates(service_url):
 
   Raises CertificateError on errors.
   """
-  return _use_cached_or_fetch(
-      'v1:service_certs:%s' % service_url,
-      lambda: _fetch_service_certs(service_url))
+  return _use_cached_or_fetch('v1:service_certs:%s' % service_url,
+                              lambda: _fetch_service_certs(service_url))
 
 
 def get_service_account_certificates(service_account_name):
@@ -299,8 +294,8 @@ def _fetch_service_certs(service_url):
       continue
     # It MUST return 200 on success, it can't return 403, 404 or >=500.
     if result.status_code != 200:
-      logging.warning(
-          'GET %s failed, HTTP %d: %r', url, result.status_code, result.content)
+      logging.warning('GET %s failed, HTTP %d: %r', url, result.status_code,
+                      result.content)
       continue
     return json.loads(result.content)
 
@@ -335,20 +330,19 @@ def _fetch_certs_from_json(url, service_account_name=None):
       continue
     # It MUST return 200 on success, it can't return 403, 404 or >=500.
     if result.status_code != 200:
-      logging.warning(
-          'GET %s failed, HTTP %d: %r', url, result.status_code, result.content)
+      logging.warning('GET %s failed, HTTP %d: %r', url, result.status_code,
+                      result.content)
       continue
     response = json.loads(result.content)
     return {
-      'service_account_name': service_account_name,
-      'certificates': [
-        {
-          'key_name': key_name,
-          'x509_certificate_pem': pem,
-        }
-        for key_name, pem in sorted(response.items())
-      ],
-      'timestamp': utils.datetime_to_timestamp(utils.utcnow()),
+        'service_account_name':
+            service_account_name,
+        'certificates': [{
+            'key_name': key_name,
+            'x509_certificate_pem': pem,
+        } for key_name, pem in sorted(response.items())],
+        'timestamp':
+            utils.datetime_to_timestamp(utils.utcnow()),
     }
 
   # All attempts failed, give up.

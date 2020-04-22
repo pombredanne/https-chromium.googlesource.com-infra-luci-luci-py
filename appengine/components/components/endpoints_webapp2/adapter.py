@@ -21,9 +21,7 @@ from components import template
 import discovery
 import partial
 
-
 PROTOCOL = protojson.EndpointsProtoJson()
-
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -88,34 +86,37 @@ def decode_message(remote_method_info, request):
 def add_cors_headers(headers):
   headers['Access-Control-Allow-Origin'] = '*'
   headers['Access-Control-Allow-Headers'] = (
-    'Origin, Authorization, Content-Type, Accept, User-Agent')
-  headers['Access-Control-Allow-Methods'] = (
-    'DELETE, GET, OPTIONS, POST, PUT')
+      'Origin, Authorization, Content-Type, Accept, User-Agent')
+  headers['Access-Control-Allow-Methods'] = ('DELETE, GET, OPTIONS, POST, PUT')
 
 
 class CorsHandler(webapp2.RequestHandler):
+
   def options(self, *_args, **_kwargs):
     add_cors_headers(self.response.headers)
 
 
 def path_handler(api_class, api_method, service_path):
   """Returns a webapp2.RequestHandler subclass for the API methods."""
+
   # Why return a class? Because webapp2 explicitly checks if handler that we
   # passed to Route is a class.
 
   class Handler(webapp2.RequestHandler):
+
     def dispatch(self):
       add_cors_headers(self.response.headers)
 
       api = api_class()
-      api.initialize_request_state(remote.HttpRequestState(
-          remote_host=None,
-          remote_address=self.request.remote_addr,
-          server_host=self.request.host,
-          server_port=self.request.server_port,
-          http_method=self.request.method,
-          service_path=service_path,
-          headers=self.request.headers.items()))
+      api.initialize_request_state(
+          remote.HttpRequestState(
+              remote_host=None,
+              remote_address=self.request.remote_addr,
+              server_host=self.request.host,
+              server_port=self.request.server_port,
+              http_method=self.request.method,
+              service_path=service_path,
+              headers=self.request.headers.items()))
 
       try:
         req = decode_message(api_method.remote, self.request)
@@ -144,8 +145,9 @@ def path_handler(api_class, api_method, service_path):
                 # then encode_message will fail). Instead, call encode_message
                 # first, then load the JSON string into a dict, mask the dict,
                 # and dump it back to JSON.
-                response_body = json.dumps(partial.mask(
-                    json.loads(response_body), self.request.get('fields')))
+                response_body = json.dumps(
+                    partial.mask(
+                        json.loads(response_body), self.request.get('fields')))
               except (partial.ParsingError, ValueError) as e:
                 # Log the error but return the full response.
                 logging.warning('Ignoring erroneous field mask %r: %s',
@@ -177,8 +179,8 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
 
   # Add routes for each class.
   for api_class in api_classes:
-    api_base_path = '%s/%s/%s' % (
-        base_path, api_class.api_info.name, api_class.api_info.version)
+    api_base_path = '%s/%s/%s' % (base_path, api_class.api_info.name,
+                                  api_class.api_info.version)
     templates = set()
 
     # Add routes for each method of each class.
@@ -238,8 +240,9 @@ def discovery_handler_factory(api_classes, base_path):
   # Create a map of (name, version) => [services...].
   service_map = collections.defaultdict(list)
   for api_class in api_classes:
-    service_map[(api_class.api_info.name, api_class.api_info.version)].append(
-        api_class)
+    service_map[(api_class.api_info.name,
+                 api_class.api_info.version)].append(api_class)
+
   class DiscoveryHandler(webapp2.RequestHandler):
     """Returns a discovery document for known services."""
 
@@ -252,7 +255,10 @@ def discovery_handler_factory(api_classes, base_path):
       self.response.headers['Content-Type'] = 'application/json'
       json.dump(
           discovery.generate(services, host, base_path),
-          self.response, indent=2, sort_keys=True, separators=(',', ':'))
+          self.response,
+          indent=2,
+          sort_keys=True,
+          separators=(',', ':'))
 
   return DiscoveryHandler
 
@@ -268,9 +274,8 @@ def discovery_service_route(api_classes, base_path):
   Returns:
     A webapp2.Route.
   """
-  return webapp2.Route(
-      '%s/discovery/v1/apis/<name>/<version>/rest' % base_path,
-      discovery_handler_factory(api_classes, base_path))
+  return webapp2.Route('%s/discovery/v1/apis/<name>/<version>/rest' % base_path,
+                       discovery_handler_factory(api_classes, base_path))
 
 
 def directory_handler_factory(api_classes, base_path):
@@ -284,6 +289,7 @@ def directory_handler_factory(api_classes, base_path):
   Returns:
     A webapp2.RequestHandler.
   """
+
   class DirectoryHandler(webapp2.RequestHandler):
     """Returns a directory list for known services."""
 
@@ -292,7 +298,10 @@ def directory_handler_factory(api_classes, base_path):
       self.response.headers['Content-Type'] = 'application/json'
       json.dump(
           discovery.directory(api_classes, host, base_path),
-          self.response, indent=2, sort_keys=True, separators=(',', ':'))
+          self.response,
+          indent=2,
+          sort_keys=True,
+          separators=(',', ':'))
 
   return DirectoryHandler
 
@@ -308,9 +317,8 @@ def directory_service_route(api_classes, base_path):
   Returns:
     A webapp2.Route.
   """
-  return webapp2.Route(
-      '%s/discovery/v1/apis' % base_path,
-      directory_handler_factory(api_classes, base_path))
+  return webapp2.Route('%s/discovery/v1/apis' % base_path,
+                       directory_handler_factory(api_classes, base_path))
 
 
 def explorer_proxy_route(base_path):
@@ -322,12 +330,14 @@ def explorer_proxy_route(base_path):
   Returns:
     A webapp2.Route.
   """
+
   class ProxyHandler(webapp2.RequestHandler):
     """Returns a proxy capable of handling requests from API explorer."""
 
     def get(self):
-      self.response.write(template.render(
-          'adapter/proxy.html', params={'base_path': base_path}))
+      self.response.write(
+          template.render(
+              'adapter/proxy.html', params={'base_path': base_path}))
 
   template.bootstrap({
       'adapter': os.path.join(THIS_DIR, 'templates'),
@@ -344,6 +354,7 @@ def explorer_redirect_route(base_path):
   Returns:
     A webapp2.Route.
   """
+
   class RedirectHandler(webapp2.RequestHandler):
     """Returns a handler redirecting to the API explorer."""
 

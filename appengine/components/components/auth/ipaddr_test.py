@@ -14,9 +14,9 @@ from test_support import test_case
 
 
 class IpAddrTest(test_case.TestCase):
+
   def test_ip_from_string_v4_ok(self):
-    self.assertEqual(
-        ipaddr.IP(32, 0), ipaddr.ip_from_string('0.0.0.0'))
+    self.assertEqual(ipaddr.IP(32, 0), ipaddr.ip_from_string('0.0.0.0'))
     self.assertEqual(
         ipaddr.IP(32, 0xffffffff), ipaddr.ip_from_string('255.255.255.255'))
     self.assertEqual(
@@ -66,7 +66,6 @@ class IpAddrTest(test_case.TestCase):
         ipaddr.ip_from_string('ffff:0:0:0:0:0:0:0'),
         ipaddr.ip_from_string('ffff::'))
 
-
   def test_ip_from_string_v6_omitting_zeros_bad(self):
     with self.assertRaises(ValueError):
       ipaddr.ip_from_string('::1::')
@@ -89,10 +88,11 @@ class IpAddrTest(test_case.TestCase):
   def test_ip_to_string_v6_ok(self):
     call = lambda val: ipaddr.ip_to_string(ipaddr.IP(128, val))
     self.assertEqual('0:0:0:0:0:0:0:0', call(0))
-    self.assertEqual('ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff', call(2**128-1))
+    self.assertEqual('ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+                     call(2**128 - 1))
     self.assertEqual('0:0:0:0:0:0:0:ffff', call(0xffff))
-    self.assertEqual(
-        'ffff:0:0:0:0:0:0:0', call(0xffff0000000000000000000000000000L))
+    self.assertEqual('ffff:0:0:0:0:0:0:0',
+                     call(0xffff0000000000000000000000000000L))
 
   def test_ip_to_string_v6_bad(self):
     with self.assertRaises(ValueError):
@@ -100,8 +100,8 @@ class IpAddrTest(test_case.TestCase):
 
   def test_normalize_ip(self):
     self.assertEqual('127.0.0.1', ipaddr.normalize_ip('127.000.000.001'))
-    self.assertEqual(
-        '0:0:0:0:0:0:0:1', ipaddr.normalize_ip('00:00:00:00:00:00:00:1'))
+    self.assertEqual('0:0:0:0:0:0:0:1',
+                     ipaddr.normalize_ip('00:00:00:00:00:00:00:1'))
 
   def test_subnet_from_string_v4(self):
     self.assertEqual(
@@ -119,17 +119,13 @@ class IpAddrTest(test_case.TestCase):
         ipaddr.Subnet(128, 1, 0xffffffffffffffffffffffffffffffffL),
         ipaddr.subnet_from_string('0:0:0:0:0:0:0:1'))
     self.assertEqual(
-        ipaddr.Subnet(
-            128,
-            0xfffffffefffdfffcfffbfffafff0fff9L,
-            0xffffffffffffffffffffffffffffffffL),
+        ipaddr.Subnet(128, 0xfffffffefffdfffcfffbfffafff0fff9L,
+                      0xffffffffffffffffffffffffffffffffL),
         ipaddr.subnet_from_string(
             'ffff:fffe:fffd:fffc:fffb:fffa:fff0:fff9/128'))
     self.assertEqual(
-        ipaddr.Subnet(
-            128,
-            0xfffffffefffdfffcfffbfffa00000000L,
-            0xffffffffffffffffffffffff00000000L),
+        ipaddr.Subnet(128, 0xfffffffefffdfffcfffbfffa00000000L,
+                      0xffffffffffffffffffffffff00000000L),
         ipaddr.subnet_from_string('ffff:fffe:fffd:fffc:fffb:fffa:fff0:fff9/96'))
 
   def test_subnet_from_string_bad(self):
@@ -152,19 +148,16 @@ class IpAddrTest(test_case.TestCase):
   def test_subnet_to_string_v6(self):
     call = lambda base, mask: (
         ipaddr.subnet_to_string(ipaddr.Subnet(128, base, mask)))
-    self.assertEqual(
-        '0:0:0:0:0:0:0:1/128',
-        call(1, 0xffffffffffffffffffffffffffffffffL))
+    self.assertEqual('0:0:0:0:0:0:0:1/128',
+                     call(1, 0xffffffffffffffffffffffffffffffffL))
     self.assertEqual(
         'ffff:fffe:fffd:fffc:fffb:fffa:fff0:fff9/128',
-        call(
-            0xfffffffefffdfffcfffbfffafff0fff9L,
-            0xffffffffffffffffffffffffffffffffL))
+        call(0xfffffffefffdfffcfffbfffafff0fff9L,
+             0xffffffffffffffffffffffffffffffffL))
     self.assertEqual(
         'ffff:fffe:fffd:fffc:fffb:fffa:0:0/96',
-        call(
-            0xfffffffefffdfffcfffbfffa00000000L,
-            0xffffffffffffffffffffffff00000000L))
+        call(0xfffffffefffdfffcfffbfffa00000000L,
+             0xffffffffffffffffffffffff00000000L))
 
   def test_subnet_to_string_bad(self):
     with self.assertRaises(ValueError):
@@ -189,15 +182,15 @@ class IpAddrTest(test_case.TestCase):
     self.assertTrue(call('255.255.255.255', '0.0.0.0/0'))
 
     self.assertTrue(call('0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1/128'))
-    self.assertTrue(call(
-        'ffff:fffe:fffd:fffc:fffb:fffa:fff0:1234',
-        'ffff:fffe:fffd:fffc:fffb:fffa:fff0:0/112'))
-    self.assertFalse(call(
-        'ffff:fffe:fffd:fffc:fffb:fffa:fff1:1234',
-        'ffff:fffe:fffd:fffc:fffb:fffa:fff0:0/112'))
-    self.assertFalse(call(
-        'ffff:fffe:fffd:fffc:fffb:fffa:fff0:2',
-        'ffff:fffe:fffd:fffc:fffb:fffa:fff0:0/127'))
+    self.assertTrue(
+        call('ffff:fffe:fffd:fffc:fffb:fffa:fff0:1234',
+             'ffff:fffe:fffd:fffc:fffb:fffa:fff0:0/112'))
+    self.assertFalse(
+        call('ffff:fffe:fffd:fffc:fffb:fffa:fff1:1234',
+             'ffff:fffe:fffd:fffc:fffb:fffa:fff0:0/112'))
+    self.assertFalse(
+        call('ffff:fffe:fffd:fffc:fffb:fffa:fff0:2',
+             'ffff:fffe:fffd:fffc:fffb:fffa:fff0:0/127'))
 
     self.assertFalse(call('0:0:0:0:0:0:0:0', '0.0.0.0/32'))
 

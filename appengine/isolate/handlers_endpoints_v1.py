@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Isolate Server frontend url handlers."""
 
 import binascii
@@ -36,11 +35,9 @@ import metrics
 import model
 import stats
 
-
 # The minimum size, in bytes, an entry must be before it gets stored in Google
 # Cloud Storage, otherwise it is stored as a blob property.
 MIN_SIZE_FOR_GS = 501
-
 
 ### Utility
 
@@ -143,10 +140,8 @@ class ServerDetails(messages.Message):
 
 ### Utility
 
-
 # default expiration time for signed links
 DEFAULT_LINK_EXPIRATION = datetime.timedelta(hours=4)
-
 
 # messages for generating and validating upload tickets
 UPLOAD_MESSAGES = ['datastore', 'gs']
@@ -201,7 +196,8 @@ def hash_compressed_content(namespace, content):
 
 
 @auth.endpoints_api(
-    name='isolateservice', version='v1',
+    name='isolateservice',
+    version='v1',
     description='Version 1 of Isolate Service')
 class IsolateService(remote.Service):
   """Implements Isolate's API methods."""
@@ -263,13 +259,13 @@ class IsolateService(remote.Service):
         # generate preupload ticket
         status = PreuploadStatus(
             index=index,
-            upload_ticket=self.generate_ticket(
-                digest_element, request.namespace))
+            upload_ticket=self.generate_ticket(digest_element,
+                                               request.namespace))
 
         # generate GS upload URL if necessary
         if self.should_push_to_gs(digest_element):
-          key = entry_key_or_error(
-              request.namespace.namespace, digest_element.digest)
+          key = entry_key_or_error(request.namespace.namespace,
+                                   digest_element.digest)
           status.gs_upload_url = self.gs_url_signer.get_upload_url(
               filename=key.id(),
               content_type='application/octet-stream',
@@ -278,8 +274,9 @@ class IsolateService(remote.Service):
         response.items.append(status)
 
     # Tag existing entities and collect stats.
-    self.tag_existing(DigestCollection(
-        items=list(existing_digests), namespace=request.namespace))
+    self.tag_existing(
+        DigestCollection(
+            items=list(existing_digests), namespace=request.namespace))
     stats.add_entry(stats.LOOKUP, len(request.items), len(existing_digests))
     return response
 
@@ -342,19 +339,16 @@ class IsolateService(remote.Service):
           'Invalid offset %d. Offset must be between 0 and content length.' %
           offset)
     metrics.file_size(stored.compressed_size - offset)
-    stats.add_entry(
-        stats.RETURN,
-        stored.compressed_size - offset,
-        'GS; %s' % stored.key.id())
-    return RetrievedContent(url=self.gs_url_signer.get_download_url(
-        filename=key.id(),
-        expiration=DEFAULT_LINK_EXPIRATION))
+    stats.add_entry(stats.RETURN, stored.compressed_size - offset,
+                    'GS; %s' % stored.key.id())
+    return RetrievedContent(
+        url=self.gs_url_signer.get_download_url(
+            filename=key.id(), expiration=DEFAULT_LINK_EXPIRATION))
 
   # TODO(kjlubick): Rework these APIs, the http_method part seems to break
   # API explorer.
   @auth.endpoints_method(
-    message_types.VoidMessage, ServerDetails,
-    http_method='GET')
+      message_types.VoidMessage, ServerDetails, http_method='GET')
   @auth.require(acl.isolate_readable)
   def server_details(self, _request):
     return ServerDetails(server_version=utils.get_app_version())
@@ -373,8 +367,8 @@ class IsolateService(remote.Service):
       raise endpoints.BadRequestException(
           'Upload ticket was empty or not provided.')
     try:
-      embedded = TokenSigner.validate(
-          request.upload_ticket, UPLOAD_MESSAGES[uploaded_to_gs])
+      embedded = TokenSigner.validate(request.upload_ticket,
+                                      UPLOAD_MESSAGES[uploaded_to_gs])
     except (auth.InvalidTokenError, ValueError) as error:
       raise endpoints.BadRequestException(
           'Ticket validation failed: %s' % error.message)
@@ -391,8 +385,8 @@ class IsolateService(remote.Service):
       if not file_info:
         logging.debug('%s', digest)
         raise endpoints.BadRequestException(
-            'File should be in Google Storage.\nFile: \'%s\' Size: %d.' % (
-                key.id(), size))
+            'File should be in Google Storage.\nFile: \'%s\' Size: %d.' %
+            (key.id(), size))
       content = None
       compressed_size = file_info.size
     else:
@@ -423,8 +417,7 @@ class IsolateService(remote.Service):
       if (digest, size) != actual:
         raise endpoints.BadRequestException(
             'Embedded digest does not match provided data: '
-            '(digest, size): (%r, %r); expected: %r' % (
-                digest, size, actual))
+            '(digest, size): (%r, %r); expected: %r' % (digest, size, actual))
       try:
         entry.put()
       except datastore_errors.Error as e:
@@ -434,19 +427,15 @@ class IsolateService(remote.Service):
       # Enqueue verification task transactionally as the entity is stored.
       try:
         store_and_enqueue_verify_task(entry, utils.get_task_queue_host())
-      except (
-          datastore_errors.Error,
-          runtime.apiproxy_errors.CancelledError,
-          runtime.apiproxy_errors.DeadlineExceededError,
-          runtime.apiproxy_errors.OverQuotaError,
-          runtime.DeadlineExceededError,
-          taskqueue.Error) as e:
+      except (datastore_errors.Error, runtime.apiproxy_errors.CancelledError,
+              runtime.apiproxy_errors.DeadlineExceededError,
+              runtime.apiproxy_errors.OverQuotaError,
+              runtime.DeadlineExceededError, taskqueue.Error) as e:
         raise endpoints.InternalServerErrorException(
             'Unable to store the entity: %s.' % e.__class__.__name__)
 
-    stats.add_entry(
-        stats.STORE, entry.compressed_size,
-        'GS; %s' % entry.key.id() if uploaded_to_gs else 'inline')
+    stats.add_entry(stats.STORE, entry.compressed_size,
+                    'GS; %s' % entry.key.id() if uploaded_to_gs else 'inline')
     return PushPing(ok=True)
 
   @classmethod
@@ -492,10 +481,10 @@ class IsolateService(remote.Service):
     Raises:
       BadRequestException if any digest is not a valid hexadecimal number.
     """
+
     # Kick off all queries in parallel. Build mapping Future -> digest.
     def fetch(digest):
-      key = entry_key_or_error(
-          entries.namespace.namespace, digest.digest)
+      key = entry_key_or_error(entries.namespace.namespace, digest.digest)
       return key.get_async(use_cache=False)
 
     return utils.async_apply(entries.items, fetch, unordered=True)
@@ -530,17 +519,16 @@ class IsolateService(remote.Service):
         #   expanded_size != -1.
         #
         # TODO(maruel): Using logging.error to catch these in the short term.
-        logging.error(
-            'Upload race.\n%s is not yet fully uploaded.', digest.digest)
+        logging.error('Upload race.\n%s is not yet fully uploaded.',
+                      digest.digest)
         # TODO(maruel): Force the client to upload.
         #obj = None
       seen_unseen[bool(obj)].add(digest)
+    logging.debug('Hit:%s', ''.join(
+        sorted('\n%s' % d.digest for d in seen_unseen[True])))
     logging.debug(
-        'Hit:%s',
-        ''.join(sorted('\n%s' % d.digest for d in seen_unseen[True])))
-    logging.debug(
-        'Missing:%s',
-        ''.join(sorted('\n%s' % d.digest for d in seen_unseen[False])))
+        'Missing:%s', ''.join(
+            sorted('\n%s' % d.digest for d in seen_unseen[False])))
     return seen_unseen
 
   @staticmethod
@@ -559,10 +547,9 @@ class IsolateService(remote.Service):
     """On demand instance of CloudStorageURLSigner object."""
     if not self._gs_url_signer:
       settings = config.settings()
-      self._gs_url_signer = gcs.URLSigner(
-          settings.gs_bucket,
-          settings.gs_client_id_email,
-          settings.gs_private_key)
+      self._gs_url_signer = gcs.URLSigner(settings.gs_bucket,
+                                          settings.gs_client_id_email,
+                                          settings.gs_private_key)
     return self._gs_url_signer
 
   @staticmethod
@@ -576,9 +563,9 @@ class IsolateService(remote.Service):
       the enqueued task if there were existing entries; None otherwise
     """
     if collection.items:
-      url = '/internal/taskqueue/tag/%s/%s' % (
-          collection.namespace.namespace,
-          utils.datetime_to_timestamp(utils.utcnow()))
+      url = '/internal/taskqueue/tag/%s/%s' % (collection.namespace.namespace,
+                                               utils.datetime_to_timestamp(
+                                                   utils.utcnow()))
       payload = ''.join(
           binascii.unhexlify(digest.digest) for digest in collection.items)
       return utils.enqueue_task(url, 'tag', payload=payload)
@@ -591,4 +578,5 @@ def get_routes():
   return endpoints_webapp2.api_routes([
       config.ConfigApi,
       IsolateService,
-  ], base_path='/api')
+  ],
+                                      base_path='/api')

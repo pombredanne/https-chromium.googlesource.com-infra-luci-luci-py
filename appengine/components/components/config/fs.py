@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """fs.Provider reads configs from the filesystem."""
 
 import logging
@@ -39,11 +38,8 @@ class Provider(object):
       logging.warning(
           'config: parameters %r are ignored in the filesystem mode',
           kwargs.keys())
-    filename = os.path.join(
-        self.root,
-        config_set.replace('/', os.path.sep),
-        SEPARATOR,
-        path.replace('/', os.path.sep))
+    filename = os.path.join(self.root, config_set.replace('/', os.path.sep),
+                            SEPARATOR, path.replace('/', os.path.sep))
     filename = os.path.abspath(filename)
     assert filename.startswith(os.path.abspath(self.root)), filename
     content = None

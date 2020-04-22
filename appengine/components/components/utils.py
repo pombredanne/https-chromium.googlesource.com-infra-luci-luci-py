@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Mixed bag of utilities."""
 
 import binascii
@@ -32,13 +31,11 @@ from google.appengine.runtime import apiproxy_errors
 from protorpc import messages
 from protorpc.remote import protojson
 
-
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DATETIME_FORMAT = u'%Y-%m-%d %H:%M:%S'
 DATE_FORMAT = u'%Y-%m-%d'
 VALID_DATETIME_FORMATS = ('%Y-%m-%d', '%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S')
-
 
 # UTC datetime corresponding to zero Unix timestamp.
 EPOCH = datetime.datetime.utcfromtimestamp(0)
@@ -46,7 +43,6 @@ EPOCH = datetime.datetime.utcfromtimestamp(0)
 # Module to run task queue tasks on by default. Used by get_task_queue_host
 # function. Can be changed by 'set_task_queue_module' function.
 _task_queue_module = 'backend'
-
 
 ## GAE environment
 
@@ -85,19 +81,16 @@ def is_unit_test():
     return False
   # devappserver2 sets up some sort of a sandbox that is not activated for
   # unit tests. So differentiate based on that.
-  return all(
-      'google.appengine.tools.devappserver2' not in str(p)
-      for p in sys.meta_path)
+  return all('google.appengine.tools.devappserver2' not in str(p)
+             for p in sys.meta_path)
 
 
 def _get_memory_usage():
   """Returns the amount of memory used as an float in MiB."""
   try:
     return apiruntime.runtime.memory_usage().current()
-  except (AssertionError,
-          apiproxy_errors.CancelledError,
-          apiproxy_errors.DeadlineExceededError,
-          apiproxy_errors.RPCFailedError,
+  except (AssertionError, apiproxy_errors.CancelledError,
+          apiproxy_errors.DeadlineExceededError, apiproxy_errors.RPCFailedError,
           runtime.DeadlineExceededError) as e:
     logging.warning('Failed to get memory usage: %s', e)
     return None
@@ -122,6 +115,7 @@ def report_memory(app):
   """
   min_delta = 0.5
   old_dispatcher = app.router.dispatch
+
   def dispatch_and_report(*args, **kwargs):
     before = _get_memory_usage()
     deadline = False
@@ -136,9 +130,9 @@ def report_memory(app):
       if not deadline:
         after = _get_memory_usage()
         if before and after and after >= before + min_delta:
-          logging.debug(
-              'Memory usage: %.1f -> %.1f MB; delta: %.1f MB',
-              before, after, after-before)
+          logging.debug('Memory usage: %.1f -> %.1f MB; delta: %.1f MB', before,
+                        after, after - before)
+
   app.router.dispatch = dispatch_and_report
 
 
@@ -241,8 +235,8 @@ def parse_rfc3339_datetime(value):
   seconds = td.seconds + td.days * 86400
   if len(nano_value) > 9:
     raise ValueError(
-        'Failed to parse timestamp: nanos %r more than 9 fractional digits'
-        % nano_value)
+        'Failed to parse timestamp: nanos %r more than 9 fractional digits' %
+        nano_value)
   if nano_value:
     nanos = round(float('0.' + nano_value) * 1e9)
   else:
@@ -258,10 +252,10 @@ def parse_rfc3339_datetime(value):
     if pos == -1:
       raise ValueError('Invalid timezone offset value: %r' % timezone)
     if timezone[0] == '+':
-      seconds -= (int(timezone[1:pos])*60+int(timezone[pos+1:]))*60
+      seconds -= (int(timezone[1:pos]) * 60 + int(timezone[pos + 1:])) * 60
     else:
-      seconds += (int(timezone[1:pos])*60+int(timezone[pos+1:]))*60
-  return timestamp_to_datetime(int(seconds)*1e6 + int(nanos)/1e3)
+      seconds += (int(timezone[1:pos]) * 60 + int(timezone[pos + 1:])) * 60
+  return timestamp_to_datetime(int(seconds) * 1e6 + int(nanos) / 1e3)
 
 
 def constant_time_equals(a, b):
@@ -335,8 +329,10 @@ def cache(func):
 
 def cache_with_expiration(expiration_sec):
   """Decorator that implements in-memory cache for a zero-parameter function."""
+
   def decorator(func):
     return _Cache(func, expiration_sec).get_wrapper()
+
   return decorator
 
 
@@ -427,8 +423,8 @@ def memcache_async(key, key_args=None, time=None):
       # Instead of putting a raw value to memcache, put tuple (value,)
       # so we can distinguish a cached None value and absence of the value.
 
-      cache_key = 'utils.memcache/%s/%s%s' % (
-          get_app_version(), key, repr(arg_values))
+      cache_key = 'utils.memcache/%s/%s%s' % (get_app_version(), key,
+                                              repr(arg_values))
 
       ctx = ndb.get_context()
       result = yield ctx.memcache_get(cache_key)
@@ -442,18 +438,23 @@ def memcache_async(key, key_args=None, time=None):
       raise ndb.Return(result)
 
     return decorated
+
   return decorator
 
 
 def memcache(*args, **kwargs):
   """Blocking version of memcache_async."""
   decorator_async = memcache_async(*args, **kwargs)
+
   def decorator(func):
     decorated_async = decorator_async(func)
+
     @functools.wraps(func)
     def decorated(*args, **kwargs):
       return decorated_async(*args, **kwargs).get_result()
+
     return decorated
+
   return decorator
 
 
@@ -482,8 +483,8 @@ def get_versioned_hosturl():
     # certificate here and not assume unsecured connection.
     return 'http://' + modules.get_hostname()
 
-  return 'https://%s-dot-%s' % (
-      get_app_version(), app_identity.get_default_version_hostname())
+  return 'https://%s-dot-%s' % (get_app_version(),
+                                app_identity.get_default_version_hostname())
 
 
 @cache
@@ -537,7 +538,7 @@ def get_module_version_list(module_list, tainted):
     module_list = gae_memcache.get('modules_list')
     if not module_list:
       module_list = modules.get_modules()
-      gae_memcache.set('modules_list', module_list, time=10*60)
+      gae_memcache.set('modules_list', module_list, time=10 * 60)
 
   for module in module_list:
     # If the function it called too often, it'll raise a OverQuotaError.
@@ -593,16 +594,15 @@ def set_task_queue_module(module):
 
 
 @ndb.tasklet
-def enqueue_task_async(
-    url,
-    queue_name,
-    params=None,
-    payload=None,
-    name=None,
-    countdown=None,
-    use_dedicated_module=True,
-    version=None,
-    transactional=False):
+def enqueue_task_async(url,
+                       queue_name,
+                       params=None,
+                       payload=None,
+                       name=None,
+                       countdown=None,
+                       use_dedicated_module=True,
+                       version=None,
+                       transactional=False):
   """Adds a task to a task queue.
 
   If |use_dedicated_module| is True (default) the task will be executed by
@@ -618,8 +618,8 @@ def enqueue_task_async(
   Logs an error and returns False if task queue is acting up.
   """
   assert not use_dedicated_module or version is None, (
-    'use_dedicated_module(%s) and version(%s) are both specified' % (
-    use_dedicated_module, version))
+      'use_dedicated_module(%s) and version(%s) are both specified' %
+      (use_dedicated_module, version))
 
   try:
     headers = None
@@ -627,9 +627,9 @@ def enqueue_task_async(
       headers = {'Host': get_task_queue_host()}
     elif version is not None:
       headers = {
-        'Host': '%s-dot-%s-dot-%s' % (
-          version, _task_queue_module,
-          app_identity.get_default_version_hostname())
+          'Host':
+              '%s-dot-%s-dot-%s' % (version, _task_queue_module,
+                                    app_identity.get_default_version_hostname())
       }
 
     # Note that just using 'target=module' here would redirect task request to
@@ -644,19 +644,15 @@ def enqueue_task_async(
     yield task.add_async(queue_name=queue_name, transactional=transactional)
     raise ndb.Return(True)
   except (taskqueue.TombstonedTaskError, taskqueue.TaskAlreadyExistsError):
-    logging.info(
-        'Task %r deduplicated (already exists in queue %r)',
-        name, queue_name)
+    logging.info('Task %r deduplicated (already exists in queue %r)', name,
+                 queue_name)
     raise ndb.Return(True)
-  except (
-      taskqueue.Error,
-      runtime.DeadlineExceededError,
-      runtime.apiproxy_errors.CancelledError,
-      runtime.apiproxy_errors.DeadlineExceededError,
-      runtime.apiproxy_errors.OverQuotaError) as e:
-    logging.warning(
-        'Problem adding task %r to task queue %r (%s): %s',
-        url, queue_name, e.__class__.__name__, e)
+  except (taskqueue.Error, runtime.DeadlineExceededError,
+          runtime.apiproxy_errors.CancelledError,
+          runtime.apiproxy_errors.DeadlineExceededError,
+          runtime.apiproxy_errors.OverQuotaError) as e:
+    logging.warning('Problem adding task %r to task queue %r (%s): %s', url,
+                    queue_name, e.__class__.__name__, e)
     raise ndb.Return(False)
 
 
@@ -689,9 +685,7 @@ def to_json_encodable(data):
     return [to_json_encodable(i) for i in data]
   if isinstance(data, dict):
     assert all(isinstance(k, basestring) for k in data), data
-    return {
-      to_json_encodable(k): to_json_encodable(v) for k, v in data.items()
-    }
+    return {to_json_encodable(k): to_json_encodable(v) for k, v in data.items()}
 
   if isinstance(data, datetime.datetime):
     # Convert datetime objects into a string, stripping off milliseconds. Only

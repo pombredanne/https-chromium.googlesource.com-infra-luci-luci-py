@@ -40,28 +40,24 @@ class CreateTokenTest(test_case.TestCase):
     def urlfetch(url, payload, **_rest):
       urlfetch.called = True
       self.assertEqual(
-          url,
-          'https://tokens.example.com/prpc/tokenserver.minter.TokenMinter/'
-              'MintProjectToken')
+          url, 'https://tokens.example.com/prpc/tokenserver.minter.TokenMinter/'
+          'MintProjectToken')
       payload = json.loads(payload)
       self.assertEqual(payload, urlfetch.expected_payload)
       expiry = utils.utcnow() + datetime.timedelta(seconds=1800)
       res = {
-        'accessToken': 'deadbeef',
-        'serviceAccountEmail': 'foo@bar.com',
-        'expiry': expiry.isoformat('T') + 'Z',
+          'accessToken': 'deadbeef',
+          'serviceAccountEmail': 'foo@bar.com',
+          'expiry': expiry.isoformat('T') + 'Z',
       }
 
-      raise ndb.Return(
-          self.Response(200, json.dumps(res, sort_keys=True)))
+      raise ndb.Return(self.Response(200, json.dumps(res, sort_keys=True)))
 
     urlfetch.expected_payload = {
-      u'luci_project': u'test-project',
-      u'oauth_scope': [
-        u'https://www.googleapis.com/auth/cloud-platform',
-      ],
-      u'min_validity_duration': 300,
-      u'audit_tags': [],
+        u'luci_project': u'test-project',
+        u'oauth_scope': [u'https://www.googleapis.com/auth/cloud-platform',],
+        u'min_validity_duration': 300,
+        u'audit_tags': [],
     }
 
     urlfetch.called = False
@@ -74,17 +70,15 @@ class CreateTokenTest(test_case.TestCase):
         primary_id='example-app-id',
     ).put()
     model.AuthGlobalConfig(
-      key=model.root_key(),
-      token_server_url='https://tokens.example.com',
+        key=model.root_key(),
+        token_server_url='https://tokens.example.com',
     ).put()
 
     args = {
-      'project_id': 'test-project',
-      'oauth_scopes': [
-        u'https://www.googleapis.com/auth/cloud-platform',
-      ],
-      'min_validity_duration_sec': 300,
-      'auth_request_func': service_account.authenticated_request_async,
+        'project_id': 'test-project',
+        'oauth_scopes': [u'https://www.googleapis.com/auth/cloud-platform',],
+        'min_validity_duration_sec': 300,
+        'auth_request_func': service_account.authenticated_request_async,
     }
     result = project_tokens.project_token(**args)
     self.assertTrue(urlfetch.called)
@@ -96,30 +90,30 @@ class CreateTokenTest(test_case.TestCase):
   def test_http_500(self):
     res = ndb.Future()
     res.set_result(self.Response(500, 'Server internal error'))
-    self.mock(service_account, '_urlfetch_async', lambda  **_k: res)
+    self.mock(service_account, '_urlfetch_async', lambda **_k: res)
 
     with self.assertRaises(exceptions.TokenCreationError):
       project_tokens.project_token(
-        project_id='luci-project',
-        oauth_scopes=['https://www.googleapis.com/auth/cloud-platform'],
-        auth_request_func=service_account.authenticated_request_async,
-        min_validity_duration_sec=5*60,
-        tags=None,
-        token_server_url='https://example.com')
+          project_id='luci-project',
+          oauth_scopes=['https://www.googleapis.com/auth/cloud-platform'],
+          auth_request_func=service_account.authenticated_request_async,
+          min_validity_duration_sec=5 * 60,
+          tags=None,
+          token_server_url='https://example.com')
 
   def test_http_403(self):
     res = ndb.Future()
     res.set_result(self.Response(403, 'Not authorized'))
-    self.mock(service_account, '_urlfetch_async', lambda  **_k: res)
+    self.mock(service_account, '_urlfetch_async', lambda **_k: res)
 
     with self.assertRaises(exceptions.TokenAuthorizationError):
       project_tokens.project_token(
-        project_id=['test-project'],
-        oauth_scopes=['https://www.googleapis.com/auth/cloud-platform'],
-        auth_request_func=service_account.authenticated_request_async,
-        min_validity_duration_sec=5*60,
-        tags=None,
-        token_server_url='https://example.com')
+          project_id=['test-project'],
+          oauth_scopes=['https://www.googleapis.com/auth/cloud-platform'],
+          auth_request_func=service_account.authenticated_request_async,
+          min_validity_duration_sec=5 * 60,
+          tags=None,
+          token_server_url='https://example.com')
 
 
 if __name__ == '__main__':

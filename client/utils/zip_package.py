@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utilities to work with importable python zip packages."""
 
 import atexit
@@ -17,18 +16,16 @@ import threading
 import zipfile
 import zipimport
 
-
 # Glob patterns for files to exclude from a package by default.
 EXCLUDE_LIST = (
-  # Ignore hidden files (including .svn and .git).
-  r'\..*',
+    # Ignore hidden files (including .svn and .git).
+    r'\..*',
 
-  # Ignore precompiled python files since they depend on python version and we
-  # don't want zip package to be version-depended.
-  r'.*\.pyc$',
-  r'.*\.pyo$',
+    # Ignore precompiled python files since they depend on python version and we
+    # don't want zip package to be version-depended.
+    r'.*\.pyc$',
+    r'.*\.pyo$',
 )
-
 
 # Temporary files extracted by extract_resource. Removed in atexit hook.
 _extracted_files = []
@@ -118,7 +115,9 @@ class ZipPackage(object):
       raise ZipPackageError('Not a python file: %s' % absolute_path)
     self.add_file(absolute_path, archive_path)
 
-  def add_directory(self, absolute_path, archive_path=None,
+  def add_directory(self,
+                    absolute_path,
+                    archive_path=None,
                     exclude=EXCLUDE_LIST):
     """Recursively adds all files from given directory to the package.
 
@@ -275,7 +274,7 @@ def _write_temp_data(name, data, temp_dir):
     return None
 
   try:
-    fd = os.open(filepath, os.O_WRONLY|os.O_CREAT|os.O_EXCL, 0o600)
+    fd = os.open(filepath, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     with os.fdopen(fd, 'wb') as f:
       f.write(data)
     return filepath
@@ -304,8 +303,7 @@ def extract_resource(package, resource, temp_dir=None):
       ppath = package.__file__.decode(sys.getfilesystemencoding())
     else:
       ppath = package.__file__
-    path = os.path.join(os.path.dirname(ppath),
-        resource.replace('/', os.sep))
+    path = os.path.join(os.path.dirname(ppath), resource.replace('/', os.sep))
     if not os.path.exists(path):
       raise ValueError('No such resource in %s: %s' % (package, resource))
     return path

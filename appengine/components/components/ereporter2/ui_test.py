@@ -19,13 +19,12 @@ from components.ereporter2 import logscraper
 from components.ereporter2 import ui
 from test_support import test_case
 
-
 ABS_PATH = os.path.abspath(__file__)
 ROOT_DIR = os.path.dirname(ABS_PATH)
 
-
 # Access to a protected member XXX of a client class - pylint: disable=W0212
 # Method could be a function - pylint: disable=R0201
+
 
 def ErrorRecord(**kwargs):
   """Returns an ErrorRecord filled with default dummy values."""
@@ -60,6 +59,7 @@ def ErrorRecord(**kwargs):
 
 
 class Ereporter2Test(test_case.TestCase):
+
   def setUp(self):
     super(Ereporter2Test, self).setUp()
     self.testbed.init_user_stub()
@@ -74,8 +74,7 @@ class Ereporter2Test(test_case.TestCase):
     super(Ereporter2Test, self).tearDown()
 
   def assertContent(self, message):
-    self.assertEqual(
-        u'no_reply@sample-app.appspotmail.com', message.sender)
+    self.assertEqual(u'no_reply@sample-app.appspotmail.com', message.sender)
     self.assertEqual(u'Exceptions on "sample-app" at "2014-06-24"',
                      message.subject)
     expected_html = (
@@ -91,23 +90,22 @@ class Ereporter2Test(test_case.TestCase):
         '1 occurrences: <a href="http://foo/request/a">Entry</a> <p>\n'
         '<br>\n'
         '</body></html>')
-    self.assertEqual(
-        expected_html.splitlines(), message.html.payload.splitlines())
-    expected_text = (
-        '1 occurrences of 1 errors across 1 versions.\n'
-        '\n'
-        'Failed\n'
-        'Handler: main.app\n'
-        'Modules: default\n'
-        'Versions: v1\n'
-        'GET localhost/foo (HTTP 200)\n'
-        'Failed\n'
-        '1 occurrences: Entry \n\n')
+    self.assertEqual(expected_html.splitlines(),
+                     message.html.payload.splitlines())
+    expected_text = ('1 occurrences of 1 errors across 1 versions.\n'
+                     '\n'
+                     'Failed\n'
+                     'Handler: main.app\n'
+                     'Modules: default\n'
+                     'Versions: v1\n'
+                     'GET localhost/foo (HTTP 200)\n'
+                     'Failed\n'
+                     '1 occurrences: Entry \n\n')
     self.assertEqual(expected_text, message.body.payload)
 
   def test_email_no_recipients(self):
     data = [
-      ErrorRecord(),
+        ErrorRecord(),
     ]
     self.mock(logscraper, '_extract_exceptions_from_logs', lambda *_: data)
     result = ui._generate_and_email_report(
@@ -126,7 +124,7 @@ class Ereporter2Test(test_case.TestCase):
 
   def test_email_recipients(self):
     data = [
-      ErrorRecord(),
+        ErrorRecord(),
     ]
     self.mock(logscraper, '_extract_exceptions_from_logs', lambda *_: data)
     result = ui._generate_and_email_report(
@@ -157,40 +155,41 @@ class Ereporter2Test(test_case.TestCase):
   def test_records_to_params(self):
     msg = logscraper._STACK_TRACE_MARKER + u'\nDeadlineExceededError'
     data = [
-      ErrorRecord(),
-      ErrorRecord(message=msg),
-      ErrorRecord(),
+        ErrorRecord(),
+        ErrorRecord(message=msg),
+        ErrorRecord(),
     ]
     self.mock(logscraper, '_extract_exceptions_from_logs', lambda *_: data)
     module_versions = [('foo', 'bar')]
     report, ignored, end_time = logscraper.scrape_logs_for_errors(
         10, 20, module_versions)
     self.assertEqual(20, end_time)
-    out = ui._records_to_params(
-        report, len(ignored), 'http://localhost:1/request_id',
-        'http://localhost:2/report')
+    out = ui._records_to_params(report, len(ignored),
+                                'http://localhost:1/request_id',
+                                'http://localhost:2/report')
     expected = {
-      'error_count': 2,
-      'ignored_count': 0,
-      'occurrence_count': 3,
-      'report_url': 'http://localhost:2/report',
-      'request_id_url': 'http://localhost:1/request_id',
-      'version_count': 1,
+        'error_count': 2,
+        'ignored_count': 0,
+        'occurrence_count': 3,
+        'report_url': 'http://localhost:2/report',
+        'request_id_url': 'http://localhost:1/request_id',
+        'version_count': 1,
     }
     out.pop('errors')
     self.assertEqual(expected, out)
 
 
 class Ereporter2RecipientsTest(test_case.TestCase):
+
   def test_recipients_from_auth_group(self):
     fake_listing = auth.GroupListing([
-      auth.Identity(auth.IDENTITY_USER, 'a@example.com'),
-      auth.Identity(auth.IDENTITY_USER, 'b@example.com'),
-      auth.Identity(auth.IDENTITY_SERVICE, 'blah-service'),
+        auth.Identity(auth.IDENTITY_USER, 'a@example.com'),
+        auth.Identity(auth.IDENTITY_USER, 'b@example.com'),
+        auth.Identity(auth.IDENTITY_SERVICE, 'blah-service'),
     ], [], [])
     self.mock(auth, 'list_group', lambda _: fake_listing)
-    self.assertEqual(
-        ['a@example.com', 'b@example.com'], acl.get_ereporter2_recipients())
+    self.assertEqual(['a@example.com', 'b@example.com'],
+                     acl.get_ereporter2_recipients())
 
 
 if __name__ == '__main__':

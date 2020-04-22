@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Implements a client library for reading and writing LUCI_CONTEXT compatible
 files.
 
@@ -57,8 +56,8 @@ def _tf(data, data_raw=False, workdir=None):
     try:
       os.unlink(tf.name)
     except OSError as ex:
-      _LOGGER.error(
-        'Failed to delete written LUCI_CONTEXT file %r: %s', tf.name, ex)
+      _LOGGER.error('Failed to delete written LUCI_CONTEXT file %r: %s',
+                    tf.name, ex)
 
 
 def _to_utf8(obj):
@@ -84,23 +83,23 @@ def _to_encodable(obj):
 
 
 class MultipleLUCIContextException(Exception):
+
   def __init__(self):
-    super(MultipleLUCIContextException, self).__init__(
-      'Attempted to write LUCI_CONTEXT in multiple threads')
+    super(MultipleLUCIContextException,
+          self).__init__('Attempted to write LUCI_CONTEXT in multiple threads')
 
 
 def _check_ok(data):
   if not isinstance(data, dict):
-    _LOGGER.error(
-      'LUCI_CONTEXT does not contain a dict: %s', type(data).__name__)
+    _LOGGER.error('LUCI_CONTEXT does not contain a dict: %s',
+                  type(data).__name__)
     return False
 
   bad = False
   for k, v in data.items():
     if not isinstance(v, dict):
       bad = True
-      _LOGGER.error(
-        'LUCI_CONTEXT[%r] is not a dict: %s', k, type(v).__name__)
+      _LOGGER.error('LUCI_CONTEXT[%r] is not a dict: %s', k, type(v).__name__)
 
   return not bad
 
@@ -147,8 +146,8 @@ def _mutate(section_values):
     elif isinstance(value, dict):
       new_val[section] = value
     else:
-      raise ValueError(
-        'Bad type for LUCI_CONTEXT[%r]: %s', section, type(value).__name__)
+      raise ValueError('Bad type for LUCI_CONTEXT[%r]: %s', section,
+                       type(value).__name__)
   return new_val
 
 

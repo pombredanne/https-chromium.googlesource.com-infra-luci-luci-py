@@ -21,6 +21,7 @@ import storage
 
 
 class NotificationsTestCase(test_case.TestCase):
+
   def test_notify_gitiles_rejection(self):
     ctx = validation.Context()
     ctx.error('err')
@@ -34,8 +35,8 @@ class NotificationsTestCase(test_case.TestCase):
 
     self.mock(notifications, '_send', mock.Mock())
 
-    john = gitiles.Contribution(
-        'John', 'john@x.com', datetime.datetime(2015, 1, 1))
+    john = gitiles.Contribution('John', 'john@x.com',
+                                datetime.datetime(2015, 1, 1))
     commit = gitiles.Commit(
         sha=new_rev,
         tree='badcoffee',
@@ -52,8 +53,8 @@ class NotificationsTestCase(test_case.TestCase):
 
     self.mock(auth, 'list_group', mock.Mock())
     auth.list_group.return_value = auth.GroupListing([
-      auth.Identity('user', 'bill@x.com'),
-      auth.Identity('service', 'foo'),
+        auth.Identity('user', 'bill@x.com'),
+        auth.Identity('service', 'foo'),
     ], [], [])
 
     # Notify.
@@ -70,18 +71,26 @@ class NotificationsTestCase(test_case.TestCase):
     self.assertEqual(email.cc, {'bill@x.com'})
 
     template.render.assert_called_with(
-        'templates/validation_notification.html',
-        {
-          'author': 'John',
-          'messages': [
-            {'severity': 'ERROR', 'text': 'err'},
-            {'severity': 'WARNING', 'text': 'warn'}
-          ],
-          'rev_link': new_loc,
-          'rev_hash': 'aaaaaaa',
-          'rev_repo': 'x',
-          'cur_rev_hash': None,
-          'cur_rev_link': None,
+        'templates/validation_notification.html', {
+            'author':
+                'John',
+            'messages': [{
+                'severity': 'ERROR',
+                'text': 'err'
+            }, {
+                'severity': 'WARNING',
+                'text': 'warn'
+            }],
+            'rev_link':
+                new_loc,
+            'rev_hash':
+                'aaaaaaa',
+            'rev_repo':
+                'x',
+            'cur_rev_hash':
+                None,
+            'cur_rev_link':
+                None,
         })
 
     # Do not send second time.
@@ -94,27 +103,34 @@ class NotificationsTestCase(test_case.TestCase):
     ndb.Key(notifications.Notification, str(new_loc)).delete()
 
     storage.ConfigSet(
-      id='projects/x',
-      latest_revision=old_rev,
-      latest_revision_url=str(old_loc),
-      location=str(base)
-    ).put()
+        id='projects/x',
+        latest_revision=old_rev,
+        latest_revision_url=str(old_loc),
+        location=str(base)).put()
 
     template.render.reset_mock()
     notifications.notify_gitiles_rejection('projects/x', new_loc, ctx.result())
     template.render.assert_called_with(
-        'templates/validation_notification.html',
-        {
-          'author': 'John',
-          'messages': [
-            {'severity': 'ERROR', 'text': 'err'},
-            {'severity': 'WARNING', 'text': 'warn'}
-          ],
-          'rev_link': new_loc,
-          'rev_hash': 'aaaaaaa',
-          'rev_repo': 'x',
-          'cur_rev_hash': 'bbbbbbb',
-          'cur_rev_link': old_loc,
+        'templates/validation_notification.html', {
+            'author':
+                'John',
+            'messages': [{
+                'severity': 'ERROR',
+                'text': 'err'
+            }, {
+                'severity': 'WARNING',
+                'text': 'warn'
+            }],
+            'rev_link':
+                new_loc,
+            'rev_hash':
+                'aaaaaaa',
+            'rev_repo':
+                'x',
+            'cur_rev_hash':
+                'bbbbbbb',
+            'cur_rev_link':
+                old_loc,
         })
 
 

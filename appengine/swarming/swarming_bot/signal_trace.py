@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Prints stack trace on SIGUSR1 and starts interactive console on SIGUSR2."""
 
 import StringIO
@@ -44,8 +43,8 @@ def _debug(_sig, frame):
     import readline
   except ImportError:
     pass
-  msg = 'Signal received : entering python shell.\nTraceback:\n%s' % (
-      ''.join(traceback.format_stack(frame)))
+  msg = 'Signal received : entering python shell.\nTraceback:\n%s' % (''.join(
+      traceback.format_stack(frame)))
   symbols = set(frame.f_locals.keys() + frame.f_globals.keys())
   msg += 'Symbols:\n%s' % '\n'.join('  ' + x for x in sorted(symbols))
   code.InteractiveConsole(d).interact(msg)

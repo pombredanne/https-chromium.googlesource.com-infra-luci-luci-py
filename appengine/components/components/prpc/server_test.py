@@ -66,6 +66,7 @@ class BadTestServicer(object):
 
 
 class PRPCServerTestCase(test_case.TestCase):
+
   def setUp(self):
     super(PRPCServerTestCase, self).setUp()
     s = server.Server()
@@ -95,8 +96,8 @@ class PRPCServerTestCase(test_case.TestCase):
 
   def make_headers(self, enc):
     return {
-      'Content-Type': enc[1],
-      'Accept': enc[1],
+        'Content-Type': enc[1],
+        'Accept': enc[1],
     }
 
   def check_headers(self, headers, prpc_code, origin=None):
@@ -144,12 +145,14 @@ class PRPCServerTestCase(test_case.TestCase):
 
   def test_context(self):
     calls = []
+
     def rpc_callback(_request, context):
       calls.append({
-        'peer': context.peer(),
-        'is_active': context.is_active(),
-        'time_remaining': context.time_remaining(),
+          'peer': context.peer(),
+          'is_active': context.is_active(),
+          'time_remaining': context.time_remaining(),
       })
+
     self.service.give_callback = rpc_callback
 
     headers = self.make_headers(encoding.Encoding.BINARY)
@@ -162,11 +165,11 @@ class PRPCServerTestCase(test_case.TestCase):
     self.assertEqual(len(raw_resp), 0)
 
     self.assertEqual(calls, [
-      {
-        'is_active': True,
-        'peer': 'ipv6:[::ffff:127.0.0.1]',
-        'time_remaining': None,
-      },
+        {
+            'is_active': True,
+            'peer': 'ipv6:[::ffff:127.0.0.1]',
+            'time_remaining': None,
+        },
     ])
 
   def test_servicer_persistence(self):
@@ -317,6 +320,7 @@ class PRPCServerTestCase(test_case.TestCase):
 
 
 class InterceptorsTestCase(test_case.TestCase):
+
   def make_test_server_app(self, servicer, interceptors):
     s = server.Server()
     s.add_service(servicer)
@@ -328,12 +332,16 @@ class InterceptorsTestCase(test_case.TestCase):
   def call_echo(self, app, m, headers=None, return_raw_resp=False):
     headers = dict(headers or {})
     headers.update({
-      'Content-Type': encoding.Encoding.JSON[1],
-      'Accept': encoding.Encoding.JSON[1],
+        'Content-Type': encoding.Encoding.JSON[1],
+        'Accept': encoding.Encoding.JSON[1],
     })
     raw_resp = app.post(
         '/prpc/test.Test/Echo',
-        json.dumps({'r': {'m': m}}),
+        json.dumps({
+            'r': {
+                'm': m
+            }
+        }),
         headers,
         expect_errors=True)
     if return_raw_resp:
@@ -344,7 +352,10 @@ class InterceptorsTestCase(test_case.TestCase):
     s = TestServicer()
     app = self.make_test_server_app(s, [])
     resp = self.call_echo(app, 123)
-    self.assertEqual(resp, {u'response': [u'hello!', u'123']}, )
+    self.assertEqual(
+        resp,
+        {u'response': [u'hello!', u'123']},
+    )
     self.assertEqual(s.echoed.r.m, 123)
 
   def test_single_noop_interceptor(self):
@@ -357,7 +368,10 @@ class InterceptorsTestCase(test_case.TestCase):
     s = TestServicer()
     app = self.make_test_server_app(s, [interceptor])
     resp = self.call_echo(app, 123, headers={'Authorization': 'x'})
-    self.assertEqual(resp, {u'response': [u'hello!', u'123']}, )
+    self.assertEqual(
+        resp,
+        {u'response': [u'hello!', u'123']},
+    )
     self.assertEqual(s.echoed.r.m, 123)
 
     # Interceptor called and saw relevant metadata.
@@ -369,34 +383,44 @@ class InterceptorsTestCase(test_case.TestCase):
     self.assertEqual(dict(details.invocation_metadata)['authorization'], 'x')
 
   def test_interceptor_replies(self):
+
     def interceptor(request, context, details, cont):
       return test_pb2.EchoResponse(response=['intercepted!', str(request.r.m)])
 
     s = TestServicer()
     app = self.make_test_server_app(s, [interceptor])
     resp = self.call_echo(app, 123)
-    self.assertEqual(resp, {u'response': [u'intercepted!', u'123']}, )
+    self.assertEqual(
+        resp,
+        {u'response': [u'intercepted!', u'123']},
+    )
     self.assertIsNone(s.echoed)
 
   def test_interceptor_chain(self):
     calls = []
 
     def make(name):
+
       def interceptor(request, context, details, cont):
         calls.append(name)
         return cont(request, context, details)
+
       return interceptor
 
     s = TestServicer()
     app = self.make_test_server_app(s, [make(1), make(2), make(3)])
     resp = self.call_echo(app, 123)
-    self.assertEqual(resp, {u'response': [u'hello!', u'123']}, )
+    self.assertEqual(
+        resp,
+        {u'response': [u'hello!', u'123']},
+    )
     self.assertEqual(s.echoed.r.m, 123)
 
     # Interceptors are called in correct order.
     self.assertEqual(calls, [1, 2, 3])
 
   def test_interceptor_exceptions(self):
+
     class Error(Exception):
       pass
 

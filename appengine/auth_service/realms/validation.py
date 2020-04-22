@@ -1,7 +1,6 @@
 # Copyright 2020 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Validation of realms.cfg config files."""
 
 from components import auth
@@ -11,7 +10,6 @@ from proto import realms_config_pb2
 
 from realms import common
 from realms import permissions
-
 
 # TODO(vadimsh): Figure out how to handle deletion of roles and permissions.
 # Right now deleting a role/permission would result in all configs that use it
@@ -24,8 +22,8 @@ from realms import permissions
 def register():
   """Register the config validation hook."""
   # pylint: disable=unused-variable
-  @validation.project_config_rule(
-      common.cfg_path(), realms_config_pb2.RealmsCfg)
+  @validation.project_config_rule(common.cfg_path(),
+                                  realms_config_pb2.RealmsCfg)
   def validate_realms_cfg(cfg, ctx):
     validate_realms_cfg_with_db(permissions.db(), cfg, ctx)
 
@@ -45,7 +43,7 @@ def validate_custom_roles_list(db, roles, ctx):
   graph = {}  # custom role name => set of custom roles it `extends` from
 
   for i, role in enumerate(roles):
-    with ctx.prefix('Custom role #%d ("%s"): ', i+1, role.name):
+    with ctx.prefix('Custom role #%d ("%s"): ', i + 1, role.name):
       if not role.name.startswith(permissions.CUSTOM_ROLE_PREFIX):
         ctx.error('name should start with "%s"', permissions.CUSTOM_ROLE_PREFIX)
         continue
@@ -79,9 +77,8 @@ def validate_custom_roles_list(db, roles, ctx):
       continue  # already found it to be a part of a cycle, don't report again
     cycle = find_cycle(name, graph)
     if cycle:
-      ctx.error(
-          'Custom role "%s" cyclically extends itself: %s',
-          name, ' -> '.join('"%s"' % node for node in cycle))
+      ctx.error('Custom role "%s" cyclically extends itself: %s', name,
+                ' -> '.join('"%s"' % node for node in cycle))
       cyclic.update(cycle)
     else:
       valid[name] = role
@@ -92,9 +89,8 @@ def validate_custom_roles_list(db, roles, ctx):
 def validate_permission(db, perm, ctx):
   """Emits errors if the permission is not defined."""
   if perm not in db.permissions:
-    ctx.error(
-        'permission "%s" is not defined in permissions DB ver "%s"',
-        perm, db.revision)
+    ctx.error('permission "%s" is not defined in permissions DB ver "%s"', perm,
+              db.revision)
 
 
 def validate_role_ref(db, name, custom_roles, ctx):
@@ -102,23 +98,21 @@ def validate_role_ref(db, name, custom_roles, ctx):
   if name.startswith(permissions.BUILTIN_ROLE_PREFIX):
     if name in db.roles:
       return True
-    ctx.error(
-        'referencing a role "%s" not defined in permissions DB ver "%s"',
-        name, db.revision)
+    ctx.error('referencing a role "%s" not defined in permissions DB ver "%s"',
+              name, db.revision)
     return False
 
   if name.startswith(permissions.CUSTOM_ROLE_PREFIX):
     if name in custom_roles:
       return True
-    ctx.error(
-        'referencing a role "%s" not defined in the realms config', name)
+    ctx.error('referencing a role "%s" not defined in the realms config', name)
     return False
 
   ctx.error(
       'bad role reference "%s": must be either some predefined '
       'role ("%s..."), or a custom role defined somewhere in this '
-      'file ("%s...")',
-      name, permissions.BUILTIN_ROLE_PREFIX, permissions.CUSTOM_ROLE_PREFIX)
+      'file ("%s...")', name, permissions.BUILTIN_ROLE_PREFIX,
+      permissions.CUSTOM_ROLE_PREFIX)
   return False
 
 
@@ -128,7 +122,7 @@ def validate_realms_list(db, realms, custom_roles_map, ctx):
   graph = {}  # realm name => set of realms it `extends` from
 
   for i, realm in enumerate(realms):
-    with ctx.prefix('Realm #%d ("%s"): ', i+1, realm.name):
+    with ctx.prefix('Realm #%d ("%s"): ', i + 1, realm.name):
       if not validate_realm_name(realm.name, ctx):
         continue
       if realm.name in graph:
@@ -137,7 +131,7 @@ def validate_realms_list(db, realms, custom_roles_map, ctx):
 
       # Bindings must refer to known roles.
       for j, binding in enumerate(realm.bindings):
-        with ctx.prefix('binding #%d (role "%s") - ', j+1, binding.role):
+        with ctx.prefix('binding #%d (role "%s") - ', j + 1, binding.role):
           validate_binding(db, binding, custom_roles_map, ctx)
 
       # The root realm can't have any parents, it makes a cycle.
@@ -168,9 +162,8 @@ def validate_realms_list(db, realms, custom_roles_map, ctx):
       continue  # already found it to be a part of a cycle, don't report again
     cycle = find_cycle(name, graph)
     if cycle:
-      ctx.error(
-          'Realm "%s" cyclically extends itself: %s',
-          name, ' -> '.join('"%s"' % node for node in cycle))
+      ctx.error('Realm "%s" cyclically extends itself: %s', name,
+                ' -> '.join('"%s"' % node for node in cycle))
       cyclic.update(cycle)
 
 
@@ -179,9 +172,8 @@ def validate_realm_name(name, ctx):
   if name.startswith('@'):
     if name == common.ROOT_REALM or name == common.LEGACY_REALM:
       return True
-    ctx.error(
-        'unknown special realm name, only "%s" and "%s" are allowed',
-        common.ROOT_REALM, common.LEGACY_REALM)
+    ctx.error('unknown special realm name, only "%s" and "%s" are allowed',
+              common.ROOT_REALM, common.LEGACY_REALM)
     return False
   if not common.REALM_NAME_RE.match(name):
     ctx.error('the name must match "%s"', common.REALM_NAME_RE.pattern)
@@ -222,7 +214,7 @@ def find_cycle(start, graph):
     KeyError if there's a reference to a node that is not in the `graph` map.
   """
   explored = set()  # set of roots of totally explored subgraphs
-  visiting = []     # stack of nodes currently being traversed
+  visiting = []  # stack of nodes currently being traversed
 
   def visit(node):
     if node in explored:

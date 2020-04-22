@@ -11,8 +11,10 @@ import sys
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 CLIENT_DIR = os.path.dirname(os.path.dirname(THIS_DIR))
 sys.path.insert(0, CLIENT_DIR)
-sys.path.insert(0, os.path.join(
-    CLIENT_DIR, 'third_party', 'httplib2', 'python%d' % sys.version_info.major))
+sys.path.insert(
+    0,
+    os.path.join(CLIENT_DIR, 'third_party', 'httplib2',
+                 'python%d' % sys.version_info.major))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party', 'pyasn1'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party', 'rsa'))
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
@@ -22,7 +24,6 @@ from utils import on_error
 # third_party/
 from depot_tools import fix_encoding
 import urllib3
-
 
 # This is not useful here, since it's accessing a local host for the test.
 urllib3.disable_warnings()
