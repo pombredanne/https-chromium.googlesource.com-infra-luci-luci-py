@@ -214,30 +214,37 @@ class NetTest(test_case.TestCase):
 
   def test_json_request_works(self):
     self.mock_urlfetch([
-      ({
-        'deadline': 123,
-        'headers': {
-          'Authorization': 'Bearer token',
-          'Accept': 'application/json; charset=utf-8',
-          'Content-Type': 'application/json; charset=utf-8',
-          'Header': 'value',
-        },
-        'method': 'POST',
-        'payload': '{"key":"value"}',
-        'url': 'http://localhost/123?a=%3D&b=%26',
-      }, Response(200, ')]}\'\n{"a":"b"}', {})),
+        ({
+            'deadline': 123,
+            'headers': {
+                'Authorization': 'Bearer token',
+                'Accept': 'application/json; charset=utf-8',
+                'Content-Type': 'application/json; charset=utf-8',
+                'Header': 'value',
+            },
+            'method': 'POST',
+            'payload': '{"key":"value"}',
+            'url': 'http://localhost/123?a=%3D&b=%26',
+        }, Response(200, ')]}\'\n{"a":"b"}',
+                    {'example-header': 'example-value'})),
     ])
+    response_headers = {}
     response = net.json_request(
         url='http://localhost/123',
         method='POST',
         payload={'key': 'value'},
-        params={'a': '=', 'b': '&'},
+        params={
+            'a': '=',
+            'b': '&'
+        },
         headers={'Header': 'value'},
         scopes=['scope'],
         service_account_key=auth.ServiceAccountKey('a', 'b', 'c'),
         deadline=123,
-        max_attempts=5)
+        max_attempts=5,
+        response_headers=response_headers)
     self.assertEqual({'a': 'b'}, response)
+    self.assertEqual(response_headers, {'example-header': 'example-value'})
 
   def test_json_with_jwt_auth_works(self):
     self.mock_urlfetch([
