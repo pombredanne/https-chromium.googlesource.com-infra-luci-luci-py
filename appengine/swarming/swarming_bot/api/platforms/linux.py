@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """GNU/Linux specific utility functions."""
 
 from __future__ import absolute_import
@@ -22,9 +21,7 @@ from utils import tools
 from api.platforms import common
 from api.platforms import gpu
 
-
 ## Private stuff.
-
 
 libc = ctypes.cdll.LoadLibrary(ctypes.util.find_library('c'))
 
@@ -34,6 +31,7 @@ CPU_SETSIZE = 1024
 NCPUBITS = 8 * ctypes.sizeof(cpu_mask_t)
 
 pid_t = ctypes.c_uint64
+
 
 class cpu_set_t(ctypes.Structure):
   _fields_ = [('__bits', cpu_mask_t * (CPU_SETSIZE // NCPUBITS))]
@@ -61,9 +59,7 @@ def get_num_processors():
   # find out the number of usable processors instead.
   cpu_set = cpu_set_t()
   err = libc.sched_getaffinity(
-      pid_t(os.getpid()),
-      ctypes.sizeof(cpu_set_t),
-      ctypes.pointer(cpu_set))
+      pid_t(os.getpid()), ctypes.sizeof(cpu_set_t), ctypes.pointer(cpu_set))
   if err != 0:
     # This is not a big deal, fallback onto multiprocessing. This happens on
     # MIPS.
@@ -77,8 +73,8 @@ def _lspci():
   list(Bus, Type, Vendor [ID], Device [ID], extra...)
   """
   try:
-    lines = subprocess.check_output(
-        ['lspci', '-mm', '-nn'], stderr=subprocess.PIPE).splitlines()
+    lines = subprocess.check_output(['lspci', '-mm', '-nn'],
+                                    stderr=subprocess.PIPE).splitlines()
   except (OSError, subprocess.CalledProcessError):
     # It normally happens on Google Compute Engine as lspci is not installed by
     # default and on ARM since they do not have a PCI bus.
@@ -175,7 +171,7 @@ def get_audio():
     return None
   # Join columns 'Vendor' and 'Device'. 'man lspci' for more details.
   return [
-    u': '.join(l[2:4]) for l in pci_devices if l[1] == 'Audio device [0403]'
+      u': '.join(l[2:4]) for l in pci_devices if l[1] == 'Audio device [0403]'
   ]
 
 
@@ -187,8 +183,10 @@ def get_cpuinfo():
     # Intel.
     cpu_info[u'flags'] = values[u'flags']
     cpu_info[u'model'] = [
-      int(values[u'cpu family']), int(values[u'model']),
-      int(values[u'stepping']), int(values[u'microcode'], 0),
+        int(values[u'cpu family']),
+        int(values[u'model']),
+        int(values[u'stepping']),
+        int(values[u'microcode'], 0),
     ]
     cpu_info[u'name'] = values[u'model name']
     cpu_info[u'vendor'] = values[u'vendor_id']
@@ -200,8 +198,9 @@ def get_cpuinfo():
     # CPU implementer == 0x41 means ARM.
     cpu_info[u'flags'] = values[u'Features']
     cpu_info[u'model'] = (
-      int(values[u'CPU variant'], 0), int(values[u'CPU part'], 0),
-      int(values[u'CPU revision']),
+        int(values[u'CPU variant'], 0),
+        int(values[u'CPU part'], 0),
+        int(values[u'CPU revision']),
     )
     # ARM CPUs have a serial number embedded. Intel did try on the Pentium III
     # but gave up after backlash;
@@ -306,8 +305,8 @@ def get_reboot_required():
 def get_ssd():
   """Returns a list of SSD disks."""
   try:
-    out = subprocess.check_output(
-        ['lsblk', '-d', '-o', 'name,rota']).splitlines()
+    out = subprocess.check_output(['lsblk', '-d', '-o',
+                                   'name,rota']).splitlines()
     ssd = []
     for line in out:
       match = re.match(r'(\w+)\s+(0|1)', line)
@@ -497,7 +496,7 @@ exit 0
       'cmd': ' '.join(pipes.quote(c) for c in command),
       'cwd': pipes.quote(cwd),
       'user': pipes.quote(user),
-    }
+  }
 
 
 def generate_autostart_desktop(command, name):
@@ -505,18 +504,17 @@ def generate_autostart_desktop(command, name):
 
   http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
   """
-  return (
-    '[Desktop Entry]\n'
-    'Type=Application\n'
-    'Name=%(name)s\n'
-    'Exec=%(cmd)s\n'
-    'Hidden=false\n'
-    'NoDisplay=false\n'
-    'Comment=Created by os_utilities.py in swarming_bot.zip\n'
-    'X-GNOME-Autostart-enabled=true\n') % {
-      'cmd': ' '.join(pipes.quote(c) for c in command),
-      'name': name,
-    }
+  return ('[Desktop Entry]\n'
+          'Type=Application\n'
+          'Name=%(name)s\n'
+          'Exec=%(cmd)s\n'
+          'Hidden=false\n'
+          'NoDisplay=false\n'
+          'Comment=Created by os_utilities.py in swarming_bot.zip\n'
+          'X-GNOME-Autostart-enabled=true\n') % {
+              'cmd': ' '.join(pipes.quote(c) for c in command),
+              'name': name,
+          }
 
 
 @tools.cached

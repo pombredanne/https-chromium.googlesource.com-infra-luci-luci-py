@@ -25,11 +25,11 @@ from utils import tools
 
 import isolateserver_fake
 
-
 ALGO = hashlib.sha1
 
 
 class SymlinkTest(unittest.TestCase):
+
   def setUp(self):
     super(SymlinkTest, self).setUp()
     self.old_cwd = six.text_type(os.getcwd())
@@ -45,6 +45,7 @@ class SymlinkTest(unittest.TestCase):
       super(SymlinkTest, self).tearDown()
 
   if sys.platform == 'darwin':
+
     def test_expand_symlinks_path_case(self):
       # Ensures that the resulting path case is fixed on case insensitive file
       # system.
@@ -86,15 +87,15 @@ class SymlinkTest(unittest.TestCase):
       subsymlinkdir = os.path.join(basedir, u'symlinkdir')
       fs.symlink('linkedDir1', subsymlinkdir)
 
-      actual = isolated_format.file_to_metadata(
-          subsymlinkdir.upper(), True, False)
+      actual = isolated_format.file_to_metadata(subsymlinkdir.upper(), True,
+                                                False)
       self.assertEqual({'l': u'linkeddir1'}, actual)
 
-      actual = isolated_format.file_to_metadata(
-          linkeddir1.upper(), True, False)
+      actual = isolated_format.file_to_metadata(linkeddir1.upper(), True, False)
       self.assertEqual({'l': u'../linkeddir2'}, actual)
 
   if sys.platform != 'win32':
+
     def test_symlink_input_absolute_path(self):
       # A symlink is outside of the checkout, it should be treated as a normal
       # directory.
@@ -134,49 +135,50 @@ class SymlinkTest(unittest.TestCase):
       actual = isolated_format.file_to_metadata(sym_file, True, True)
       actual['h'] = isolated_format.hash_file(sym_file, ALGO)
       expected = {
-        # SHA-1 of empty string
-        'h': 'da39a3ee5e6b4b0d3255bfef95601890afd80709',
-        'm': 256,
-        's': 0,
+          # SHA-1 of empty string
+          'h': 'da39a3ee5e6b4b0d3255bfef95601890afd80709',
+          'm': 256,
+          's': 0,
       }
       self.assertEqual(expected, actual)
 
 
 class TestIsolated(auto_stub.TestCase):
+
   def test_load_isolated_empty(self):
     m = isolated_format.load_isolated('{}', isolateserver_fake.ALGO)
     self.assertEqual({}, m)
 
   def test_load_isolated_good(self):
     data = {
-      u'command': [u'foo', u'bar'],
-      u'files': {
-        u'a': {
-          u'l': u'somewhere',
+        u'command': [u'foo', u'bar'],
+        u'files': {
+            u'a': {
+                u'l': u'somewhere',
+            },
+            u'b': {
+                u'm': 123,
+                u'h': u'0123456789abcdef0123456789abcdef01234567',
+                u's': 3,
+            }
         },
-        u'b': {
-          u'm': 123,
-          u'h': u'0123456789abcdef0123456789abcdef01234567',
-          u's': 3,
-        }
-      },
-      u'includes': [u'0123456789abcdef0123456789abcdef01234567'],
-      u'read_only': 1,
-      u'relative_cwd': u'somewhere_else',
-      u'version': isolated_format.ISOLATED_FILE_VERSION,
+        u'includes': [u'0123456789abcdef0123456789abcdef01234567'],
+        u'read_only': 1,
+        u'relative_cwd': u'somewhere_else',
+        u'version': isolated_format.ISOLATED_FILE_VERSION,
     }
     m = isolated_format.load_isolated(json.dumps(data), isolateserver_fake.ALGO)
     self.assertEqual(data, m)
 
   def test_load_isolated_bad(self):
     data = {
-      u'files': {
-        u'a': {
-          u'l': u'somewhere',
-          u'h': u'0123456789abcdef0123456789abcdef01234567'
-        }
-      },
-      u'version': isolated_format.ISOLATED_FILE_VERSION,
+        u'files': {
+            u'a': {
+                u'l': u'somewhere',
+                u'h': u'0123456789abcdef0123456789abcdef01234567'
+            }
+        },
+        u'version': isolated_format.ISOLATED_FILE_VERSION,
     }
     with self.assertRaises(isolated_format.IsolatedError):
       isolated_format.load_isolated(json.dumps(data), isolateserver_fake.ALGO)
@@ -184,8 +186,12 @@ class TestIsolated(auto_stub.TestCase):
   def test_load_isolated_bad_abs(self):
     for i in ('/a', 'a/..', 'a/', '\\\\a'):
       data = {
-        u'files': {i: {u'l': u'somewhere'}},
-        u'version': isolated_format.ISOLATED_FILE_VERSION,
+          u'files': {
+              i: {
+                  u'l': u'somewhere'
+              }
+          },
+          u'version': isolated_format.ISOLATED_FILE_VERSION,
       }
       with self.assertRaises(isolated_format.IsolatedError):
         isolated_format.load_isolated(json.dumps(data), isolateserver_fake.ALGO)
@@ -193,16 +199,16 @@ class TestIsolated(auto_stub.TestCase):
   def test_load_isolated_os_only(self):
     # Tolerate 'os' on older version.
     data = {
-      u'os': 'HP/UX',
-      u'version': '1.3',
+        u'os': 'HP/UX',
+        u'version': '1.3',
     }
     m = isolated_format.load_isolated(json.dumps(data), isolateserver_fake.ALGO)
     self.assertEqual(data, m)
 
   def test_load_isolated_os_only_bad(self):
     data = {
-      u'os': 'HP/UX',
-      u'version': isolated_format.ISOLATED_FILE_VERSION,
+        u'os': 'HP/UX',
+        u'version': isolated_format.ISOLATED_FILE_VERSION,
     }
     with self.assertRaises(isolated_format.IsolatedError):
       isolated_format.load_isolated(json.dumps(data), isolateserver_fake.ALGO)
@@ -210,16 +216,17 @@ class TestIsolated(auto_stub.TestCase):
   def test_load_isolated_path(self):
     # Automatically convert the path case.
     wrong_path_sep = u'\\' if os.path.sep == '/' else u'/'
+
     def gen_data(path_sep):
       return {
-        u'command': [u'foo', u'bar'],
-        u'files': {
-          path_sep.join(('a', 'b')): {
-            u'l': path_sep.join(('..', 'somewhere')),
+          u'command': [u'foo', u'bar'],
+          u'files': {
+              path_sep.join(('a', 'b')): {
+                  u'l': path_sep.join(('..', 'somewhere')),
+              },
           },
-        },
-        u'relative_cwd': path_sep.join(('somewhere', 'else')),
-        u'version': isolated_format.ISOLATED_FILE_VERSION,
+          u'relative_cwd': path_sep.join(('somewhere', 'else')),
+          u'version': isolated_format.ISOLATED_FILE_VERSION,
       }
 
     data = gen_data(wrong_path_sep)

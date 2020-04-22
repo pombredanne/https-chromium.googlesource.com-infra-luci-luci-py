@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Accesses files on Google Cloud Storage via Google Cloud Storage Client API.
 
 References:
@@ -35,22 +34,16 @@ import cloudstorage
 
 # Export some exceptions for users of this module.
 # pylint: disable=W0611
-from cloudstorage.errors import (
-    AuthorizationError,
-    FatalError,
-    ForbiddenError,
-    NotFoundError,
-    TransientError)
+from cloudstorage.errors import (AuthorizationError, FatalError, ForbiddenError,
+                                 NotFoundError, TransientError)
 
 import config
 from components import utils
-
 
 # The limit is 32 megs but it's a tad on the large side. Use 512kb chunks
 # instead to not clog memory when there's multiple concurrent requests being
 # served.
 CHUNK_SIZE = 512 * 1024
-
 
 # Return value for get_file_info call.
 FileInfo = collections.namedtuple('FileInfo', ['size'])
@@ -125,9 +118,8 @@ def delete_file_async(bucket, filename, ignore_missing):
       return
     except cloudstorage.errors.NotFoundError:
       if not ignore_missing:
-        logging.warning(
-            'Trying to delete a GS file that\'s not there: /%s/%s',
-            bucket, filename)
+        logging.warning('Trying to delete a GS file that\'s not there: /%s/%s',
+                        bucket, filename)
       return
     except cloudstorage.errors.TransientError as e:
       if i == max_tries:
@@ -180,8 +172,7 @@ def read_file(bucket, filename, chunk_size=CHUNK_SIZE):
   file_ref = None
   try:
     with cloudstorage.open(
-        path,
-        read_buffer_size=chunk_size,
+        path, read_buffer_size=chunk_size,
         retry_params=_make_retry_params()) as file_ref:
       while True:
         data = file_ref.read(chunk_size)
@@ -192,9 +183,8 @@ def read_file(bucket, filename, chunk_size=CHUNK_SIZE):
         # Remove reference to a buffer so it can be GC'ed.
         data = None
   except Exception as exc:
-    logging.warning(
-        'Exception while reading \'%s\', read %d bytes: %s %s',
-        path, bytes_read, exc.__class__.__name__, exc)
+    logging.warning('Exception while reading \'%s\', read %d bytes: %s %s',
+                    path, bytes_read, exc.__class__.__name__, exc)
     raise
   finally:
     # Remove lingering references to |data| and |file_ref| so they get GC'ed
@@ -320,8 +310,12 @@ class URLSigner(object):
     signature = base64.b64encode(signer.sign(SHA256.new(data_to_sign)))
     return signature
 
-  def get_signed_url(self, filename, http_verb, expiration=DEFAULT_EXPIRATION,
-                     content_type='', content_md5=''):
+  def get_signed_url(self,
+                     filename,
+                     http_verb,
+                     expiration=DEFAULT_EXPIRATION,
+                     content_type='',
+                     content_md5=''):
     """Returns signed URL that can be used by clients to access a file."""
     # Prepare data to sign.
     filename = str(filename)
@@ -342,14 +336,22 @@ class URLSigner(object):
     return self.GS_URL % {
         'bucket': self.bucket,
         'filename': filename,
-        'query': query_params}
+        'query': query_params
+    }
 
   def get_download_url(self, filename, expiration=DEFAULT_EXPIRATION):
     """Returns signed URL that can be used to download a file."""
     return self.get_signed_url(filename, 'GET', expiration=expiration)
 
-  def get_upload_url(self, filename, expiration=DEFAULT_EXPIRATION,
-                     content_type='', content_md5=''):
+  def get_upload_url(self,
+                     filename,
+                     expiration=DEFAULT_EXPIRATION,
+                     content_type='',
+                     content_md5=''):
     """Returns signed URL that can be used to upload a file."""
-    return self.get_signed_url(filename, 'PUT', expiration=expiration,
-        content_type=content_type, content_md5=content_md5)
+    return self.get_signed_url(
+        filename,
+        'PUT',
+        expiration=expiration,
+        content_type=content_type,
+        content_md5=content_md5)

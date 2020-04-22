@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Endpoints version of is_member API."""
 
 import endpoints
@@ -14,14 +13,12 @@ from .. import api
 from .. import endpoints_support
 from .. import model
 
-
 ### ProtoRPC Messages
 
-
 MembershipRequest = endpoints.ResourceContainer(
-  message_types.VoidMessage,
-  group=messages.StringField(1, required=True),
-  identity=messages.StringField(2, required=True))
+    message_types.VoidMessage,
+    group=messages.StringField(1, required=True),
+    identity=messages.StringField(2, required=True))
 
 
 class MembershipResponse(messages.Message):
@@ -36,7 +33,8 @@ class AuthService(remote.Service):
   """Verifies if a given identity is a member of a particular group."""
 
   @endpoints_support.endpoints_method(
-      MembershipRequest, MembershipResponse,
+      MembershipRequest,
+      MembershipResponse,
       http_method='GET',
       path='/membership')
   @api.require(acl.has_access)

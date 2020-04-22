@@ -17,7 +17,7 @@ def bootstrap():
 def render(name, params=None):
   """Shorthand to render a template."""
   out = {
-    'google_analytics': config.settings().google_analytics,
+      'google_analytics': config.settings().google_analytics,
   }
   out.update(params or {})
   return template.render(name, out)

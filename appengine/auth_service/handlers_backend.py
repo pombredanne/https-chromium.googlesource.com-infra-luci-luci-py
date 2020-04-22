@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Auth Server backend url handlers."""
 
 import webapp2
@@ -18,12 +17,14 @@ import replication
 
 
 class InternalRefreshReplicatedAuthDBCronHandler(webapp2.RequestHandler):
+
   @decorators.require_cronjob
   def get(self):
     replication.refresh_replicated_authdb()
 
 
 class InternalRevokePubSubAuthCronHandler(webapp2.RequestHandler):
+
   @decorators.require_cronjob
   def get(self):
     pubsub.revoke_stale_authorization()
@@ -31,6 +32,7 @@ class InternalRevokePubSubAuthCronHandler(webapp2.RequestHandler):
 
 
 class InternalUpdateConfigCronHandler(webapp2.RequestHandler):
+
   @decorators.require_cronjob
   def get(self):
     if config.is_remote_configured():
@@ -38,6 +40,7 @@ class InternalUpdateConfigCronHandler(webapp2.RequestHandler):
 
 
 class InternalUpdateRealmsCronHandler(webapp2.RequestHandler):
+
   @decorators.require_cronjob
   def get(self):
     if config.is_remote_configured():
@@ -46,12 +49,14 @@ class InternalUpdateRealmsCronHandler(webapp2.RequestHandler):
 
 
 class InternalImportGroupsCronHandler(webapp2.RequestHandler):
+
   @decorators.require_cronjob
   def get(self):
     importer.import_external_groups()
 
 
 class InternalReplicationTaskHandler(webapp2.RequestHandler):
+
   @decorators.require_taskqueue('replication')
   def post(self, auth_db_rev):
     success = replication.update_replicas_task(int(auth_db_rev))
@@ -64,24 +69,18 @@ def get_routes():
   routes.extend(change_log.get_backend_routes())
   # Auth service's own routes.
   routes.extend([
-    webapp2.Route(
-        r'/internal/cron/refresh_replicated_authdb',
-        InternalRefreshReplicatedAuthDBCronHandler),
-    webapp2.Route(
-        r'/internal/cron/revoke_stale_pubsub_auth',
-        InternalRevokePubSubAuthCronHandler),
-    webapp2.Route(
-        r'/internal/cron/update_config',
-        InternalUpdateConfigCronHandler),
-    webapp2.Route(
-        r'/internal/cron/update_realms',
-        InternalUpdateRealmsCronHandler),
-    webapp2.Route(
-        r'/internal/cron/import_groups',
-        InternalImportGroupsCronHandler),
-    webapp2.Route(
-        r'/internal/taskqueue/replication/<auth_db_rev:\d+>',
-        InternalReplicationTaskHandler),
+      webapp2.Route(r'/internal/cron/refresh_replicated_authdb',
+                    InternalRefreshReplicatedAuthDBCronHandler),
+      webapp2.Route(r'/internal/cron/revoke_stale_pubsub_auth',
+                    InternalRevokePubSubAuthCronHandler),
+      webapp2.Route(r'/internal/cron/update_config',
+                    InternalUpdateConfigCronHandler),
+      webapp2.Route(r'/internal/cron/update_realms',
+                    InternalUpdateRealmsCronHandler),
+      webapp2.Route(r'/internal/cron/import_groups',
+                    InternalImportGroupsCronHandler),
+      webapp2.Route(r'/internal/taskqueue/replication/<auth_db_rev:\d+>',
+                    InternalReplicationTaskHandler),
   ])
   return routes
 

@@ -1,7 +1,6 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Isolate Server frontend url handlers."""
 
 import collections
@@ -26,49 +25,48 @@ from components import auth
 from components import stats_framework
 from components import utils
 
-
 # GViz data description.
 _GVIZ_DESCRIPTION = {
-  'failures': ('number', 'Failures'),
-  'requests': ('number', 'Total'),
-  'other_requests': ('number', 'Other'),
-  'uploads': ('number', 'Uploads'),
-  'uploads_bytes': ('number', 'Uploaded'),
-  'downloads': ('number', 'Downloads'),
-  'downloads_bytes': ('number', 'Downloaded'),
-  'contains_requests': ('number', 'Lookups'),
-  'contains_lookups': ('number', 'Items looked up'),
+    'failures': ('number', 'Failures'),
+    'requests': ('number', 'Total'),
+    'other_requests': ('number', 'Other'),
+    'uploads': ('number', 'Uploads'),
+    'uploads_bytes': ('number', 'Uploaded'),
+    'downloads': ('number', 'Downloads'),
+    'downloads_bytes': ('number', 'Downloaded'),
+    'contains_requests': ('number', 'Lookups'),
+    'contains_lookups': ('number', 'Items looked up'),
 }
 
 # Warning: modifying the order here requires updating templates/stats.html.
 _GVIZ_COLUMNS_ORDER = (
-  'key',
-  'requests',
-  'other_requests',
-  'failures',
-  'uploads',
-  'downloads',
-  'contains_requests',
-  'uploads_bytes',
-  'downloads_bytes',
-  'contains_lookups',
+    'key',
+    'requests',
+    'other_requests',
+    'failures',
+    'uploads',
+    'downloads',
+    'contains_requests',
+    'uploads_bytes',
+    'downloads_bytes',
+    'contains_lookups',
 )
 
 _ISOLATED_ROOT_MEMBERS = (
-  'algo',
-  'command',
-  'files',
-  'includes',
-  'read_only',
-  'relative_cwd',
-  'version',
+    'algo',
+    'command',
+    'files',
+    'includes',
+    'read_only',
+    'relative_cwd',
+    'version',
 )
-
 
 ### Restricted handlers
 
 
 class RestrictedConfigHandler(auth.AuthenticatingHandler):
+
   @auth.autologin
   @auth.require(auth.is_admin)
   def get(self):
@@ -76,6 +74,7 @@ class RestrictedConfigHandler(auth.AuthenticatingHandler):
 
   @staticmethod
   def cast_to_type(param_name, value):
+
     def to_bool(value):
       # pylint: disable=unidiomatic-typecheck
       if type(value) is bool:
@@ -91,9 +90,9 @@ class RestrictedConfigHandler(auth.AuthenticatingHandler):
   def post(self):
     # Convert MultiDict into a dict.
     params = {
-      k: self.cast_to_type(k, self.request.params.getone(k))
-      for k in self.request.params
-      if k not in ('keyid', 'xsrf_token')
+        k: self.cast_to_type(k, self.request.params.getone(k))
+        for k in self.request.params
+        if k not in ('keyid', 'xsrf_token')
     }
     cfg = config.settings(fresh=True)
     keyid = int(self.request.get('keyid', '0'))
@@ -123,14 +122,15 @@ class RestrictedConfigHandler(auth.AuthenticatingHandler):
 
 
 class RestrictedPurgeHandler(auth.AuthenticatingHandler):
+
   @auth.autologin
   @auth.require(auth.is_admin)
   def get(self):
     params = {
-      'digest': '',
-      'message': '',
-      'namespace': '',
-      'xsrf_token': self.generate_xsrf_token(),
+        'digest': '',
+        'message': '',
+        'namespace': '',
+        'xsrf_token': self.generate_xsrf_token(),
     }
     self.response.write(
         template.render('isolate/restricted_purge.html', params))
@@ -140,10 +140,10 @@ class RestrictedPurgeHandler(auth.AuthenticatingHandler):
     namespace = self.request.get('namespace')
     digest = self.request.get('digest')
     params = {
-      'digest': digest,
-      'message': '',
-      'namespace': namespace,
-      'xsrf_token': self.generate_xsrf_token(),
+        'digest': digest,
+        'message': '',
+        'namespace': namespace,
+        'xsrf_token': self.generate_xsrf_token(),
     }
     try:
       key = model.get_entry_key(namespace, digest)
@@ -191,6 +191,7 @@ class RestrictedLaunchMapReduceJob(auth.AuthenticatingHandler):
 
 
 class BrowseHandler(auth.AuthenticatingHandler):
+
   @auth.autologin
   @auth.require(acl.isolate_readable)
   def get(self):
@@ -199,9 +200,9 @@ class BrowseHandler(auth.AuthenticatingHandler):
     digest = self.request.get('digest', '') or self.request.get('hash', '')
     save_as = self.request.get('as', '')
     params = {
-      u'as': unicode(save_as),
-      u'digest': unicode(digest),
-      u'namespace': unicode(namespace),
+        u'as': unicode(save_as),
+        u'digest': unicode(digest),
+        u'namespace': unicode(namespace),
     }
     # Check for existence of element, so we can 400/404
     if digest and namespace:
@@ -220,6 +221,7 @@ class BrowseHandler(auth.AuthenticatingHandler):
 
 
 class ContentHandler(auth.AuthenticatingHandler):
+
   @auth.autologin
   @auth.require(acl.isolate_readable)
   def get(self):
@@ -268,27 +270,28 @@ class ContentHandler(auth.AuthenticatingHandler):
     if len(content) > 33554000:
       host = modules.get_hostname(module='default', version='default')
       # host is something like default.default.myisolateserver.appspot.com
-      host = host.replace('default.default.','')
+      host = host.replace('default.default.', '')
       sizeInMib = len(content) / (1024.0 * 1024.0)
-      content = ('Sorry, your file is %1.1f MiB big, which exceeds the 32 MiB'
-      ' App Engine limit.\nTo work around this, run the following command:\n'
-      '    python isolateserver.py download -I %s --namespace %s -f %s %s'
-      % (sizeInMib, host, namespace, digest, digest))
+      content = (
+          'Sorry, your file is %1.1f MiB big, which exceeds the 32 MiB'
+          ' App Engine limit.\nTo work around this, run the following command:\n'
+          '    python isolateserver.py download -I %s --namespace %s -f %s %s' %
+          (sizeInMib, host, namespace, digest, digest))
     else:
       self.response.headers['Content-Disposition'] = str(
-        'filename=%s' % self.request.get('as') or digest)
+          'filename=%s' % self.request.get('as') or digest)
       try:
         json_data = json.loads(content)
         if self._is_isolated_format(json_data):
           self.response.headers['Content-Type'] = 'text/html; charset=utf-8'
           if 'files' in json_data:
             json_data['files'] = collections.OrderedDict(
-              sorted(
-                json_data['files'].items(),
-                key=lambda (filepath, data): filepath))
+                sorted(
+                    json_data['files'].items(),
+                    key=lambda (filepath, data): filepath))
           params = {
-            'namespace': namespace,
-            'isolated': json_data,
+              'namespace': namespace,
+              'isolated': json_data,
           }
           content = template.render('isolate/isolated.html', params)
       except ValueError:
@@ -304,9 +307,8 @@ class ContentHandler(auth.AuthenticatingHandler):
     if 'files' in json_data and not isinstance(json_data['files'], dict):
       return False
     actual = set(json_data)
-    return actual.issubset(_ISOLATED_ROOT_MEMBERS) and (
-        'files' in actual or 'includes' in actual
-    )
+    return actual.issubset(_ISOLATED_ROOT_MEMBERS) and ('files' in actual or
+                                                        'includes' in actual)
 
 
 ###  Public pages.
@@ -318,16 +320,16 @@ class RootHandler(auth.AuthenticatingHandler):
   @auth.public
   def get(self):
     params = {
-      'is_admin': auth.is_admin(),
-      'is_user': acl.isolate_readable(),
-      'mapreduce_jobs': [],
-      'user_type': acl.get_user_type(),
+        'is_admin': auth.is_admin(),
+        'is_user': acl.isolate_readable(),
+        'mapreduce_jobs': [],
+        'user_type': acl.get_user_type(),
     }
     if auth.is_admin():
-      params['mapreduce_jobs'] = [
-        {'id': job_id, 'name': job_def['job_name']}
-        for job_id, job_def in mapreduce_jobs.MAPREDUCE_JOBS.items()
-      ]
+      params['mapreduce_jobs'] = [{
+          'id': job_id,
+          'name': job_def['job_name']
+      } for job_id, job_def in mapreduce_jobs.MAPREDUCE_JOBS.items()]
       params['xsrf_token'] = self.generate_xsrf_token()
     self.response.write(template.render('isolate/root.html', params))
 
@@ -338,10 +340,11 @@ class UIHandler(auth.AuthenticatingHandler):
   This landing page is stamped with the OAuth 2.0 client id from the
   configuration.
   """
+
   @auth.public
   def get(self):
     params = {
-      'client_id': config.settings().ui_client_id,
+        'client_id': config.settings().ui_client_id,
     }
     # Can cache for 1 week, because the only thing that would change in this
     # template is the oauth client id, which changes very infrequently.
@@ -349,13 +352,14 @@ class UIHandler(auth.AuthenticatingHandler):
     self.response.cache_control.public = True
     self.response.cache_control.max_age = 604800
     try:
-      self.response.write(template.render(
-        'isolate/public_isolate_index.html', params))
+      self.response.write(
+          template.render('isolate/public_isolate_index.html', params))
     except template.TemplateNotFound:
       self.abort(404, 'Page not found.')
 
 
 class WarmupHandler(webapp2.RequestHandler):
+
   def get(self):
     config.warmup()
     auth.warmup()
@@ -365,6 +369,7 @@ class WarmupHandler(webapp2.RequestHandler):
 
 class EmailHandler(webapp2.RequestHandler):
   """Blackhole any email sent."""
+
   def post(self, to):
     pass
 
@@ -377,20 +382,19 @@ def get_routes():
   ]
   if not utils.should_disable_ui_routes():
     routes.extend([
-      # Administrative urls.
-      webapp2.Route(r'/restricted/config', RestrictedConfigHandler),
-      webapp2.Route(r'/restricted/purge', RestrictedPurgeHandler),
+        # Administrative urls.
+        webapp2.Route(r'/restricted/config', RestrictedConfigHandler),
+        webapp2.Route(r'/restricted/purge', RestrictedPurgeHandler),
 
-      # Mapreduce related urls.
-      webapp2.Route(
-          r'/restricted/launch_mapreduce',
-          RestrictedLaunchMapReduceJob),
+        # Mapreduce related urls.
+        webapp2.Route(r'/restricted/launch_mapreduce',
+                      RestrictedLaunchMapReduceJob),
 
-      # User web pages.
-      webapp2.Route(r'/browse', BrowseHandler),
-      webapp2.Route(r'/content', ContentHandler),
-      webapp2.Route(r'/', RootHandler),
-      webapp2.Route(r'/newui', UIHandler),
+        # User web pages.
+        webapp2.Route(r'/browse', BrowseHandler),
+        webapp2.Route(r'/content', ContentHandler),
+        webapp2.Route(r'/', RootHandler),
+        webapp2.Route(r'/newui', UIHandler),
     ])
   routes.extend(handlers_endpoints_v1.get_routes())
   return routes

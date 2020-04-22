@@ -8,9 +8,11 @@ import sys
 import unittest
 import StringIO
 
-ROOT_DIR = os.path.dirname(os.path.abspath(os.path.join(
-    __file__.decode(sys.getfilesystemencoding()),
-    os.pardir, os.pardir, os.pardir)))
+ROOT_DIR = os.path.dirname(
+    os.path.abspath(
+        os.path.join(
+            __file__.decode(sys.getfilesystemencoding()), os.pardir, os.pardir,
+            os.pardir)))
 sys.path.insert(0, ROOT_DIR)
 
 # pylint: disable=no-name-in-module
@@ -25,7 +27,7 @@ class StreamNameTestCase(unittest.TestCase):
   def testInvalidStreamNamesRaiseValueError(self):
     for name in (
         '',
-        'a' * (streamname._MAX_STREAM_NAME_LENGTH+1),
+        'a' * (streamname._MAX_STREAM_NAME_LENGTH + 1),
         ' s p a c e s ',
         '-hyphen',
         'stream/path/+/not/name',
@@ -75,9 +77,7 @@ class StreamPathTestCase(unittest.TestCase):
     ):
       prefix, name = path.split('/+/')
       parsed = streamname.StreamPath.parse(path)
-      self.assertEqual(
-          parsed,
-          streamname.StreamPath(prefix=prefix, name=name))
+      self.assertEqual(parsed, streamname.StreamPath(prefix=prefix, name=name))
       self.assertEqual(str(parsed), path)
 
   def testParseInvalidValidPathRaisesValueError(self):
@@ -98,26 +98,24 @@ class StreamPathTestCase(unittest.TestCase):
     for project, path, url in (
         ('test', streamname.StreamPath(prefix='foo', name='bar/baz'),
          'https://example.appspot.com/v/?s=test%2Ffoo%2F%2B%2Fbar%2Fbaz'),
-
         ('test', streamname.StreamPath(prefix='foo', name='bar/**'),
          'https://example.appspot.com/v/?s=test%2Ffoo%2F%2B%2Fbar%2F%2A%2A'),
-
         ('test', streamname.StreamPath(prefix='**', name='**'),
          'https://example.appspot.com/v/?s=test%2F%2A%2A%2F%2B%2F%2A%2A'),
     ):
       self.assertEqual(
           streamname.get_logdog_viewer_url('example.appspot.com', project,
-                                           path),
-          url)
+                                           path), url)
 
     # Multiple streams.
     self.assertEqual(
-        streamname.get_logdog_viewer_url('example.appspot.com', 'test',
+        streamname.get_logdog_viewer_url(
+            'example.appspot.com',
+            'test',
             streamname.StreamPath(prefix='foo', name='bar/baz'),
             streamname.StreamPath(prefix='qux', name='**'),
-        ),
-        ('https://example.appspot.com/v/?s=test%2Ffoo%2F%2B%2Fbar%2Fbaz&'
-         's=test%2Fqux%2F%2B%2F%2A%2A'))
+        ), ('https://example.appspot.com/v/?s=test%2Ffoo%2F%2B%2Fbar%2Fbaz&'
+            's=test%2Fqux%2F%2B%2F%2A%2A'))
 
 
 if __name__ == '__main__':

@@ -15,7 +15,6 @@ from google.appengine.ext import ndb
 from components.datastore_utils import serializable
 from test_support import test_case
 
-
 # Access to a protected member _XX of a client class - pylint: disable=W0212
 
 
@@ -26,6 +25,7 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_simple_properties(self):
     """Simple properties are unmodified in to_serializable_dict()."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       blob_prop = ndb.BlobProperty()
       bool_prop = ndb.BooleanProperty()
@@ -38,14 +38,16 @@ class SerializableModelTest(test_case.TestCase):
 
     # Test data in simple dict form.
     as_serializable_dict = {
-      'blob_prop': 'blob',
-      'bool_prop': True,
-      'float_prop': 3.14,
-      'int_prop': 42,
-      'json_prop': ['a list', 'why', 'not?'],
-      'pickle_prop': {'some': 'dict'},
-      'str_prop': 'blah-blah',
-      'text_prop': 'longer blah-blah',
+        'blob_prop': 'blob',
+        'bool_prop': True,
+        'float_prop': 3.14,
+        'int_prop': 42,
+        'json_prop': ['a list', 'why', 'not?'],
+        'pickle_prop': {
+            'some': 'dict'
+        },
+        'str_prop': 'blah-blah',
+        'text_prop': 'longer blah-blah',
     }
 
     # Same data but in entity form. Constructing entity directly from
@@ -59,23 +61,21 @@ class SerializableModelTest(test_case.TestCase):
         set(prop.__class__ for prop in Entity._properties.values()))
 
     # Check entity -> serializable dict conversion.
-    self.assertEqual(
-        as_serializable_dict,
-        as_entity.to_serializable_dict())
+    self.assertEqual(as_serializable_dict, as_entity.to_serializable_dict())
 
     # Check serializable dict -> Entity conversion.
-    self.assertEqual(
-        as_entity,
-        Entity.from_serializable_dict(as_serializable_dict))
+    self.assertEqual(as_entity,
+                     Entity.from_serializable_dict(as_serializable_dict))
 
   def test_serializable_properties(self):
     """Check that |serializable_properties| works as expected."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       serializable_properties = {
-        'prop_rw': serializable.READABLE | serializable.WRITABLE,
-        'prop_r': serializable.READABLE,
-        'prop_w': serializable.WRITABLE,
-        'prop_hidden_1': 0,
+          'prop_rw': serializable.READABLE | serializable.WRITABLE,
+          'prop_r': serializable.READABLE,
+          'prop_w': serializable.WRITABLE,
+          'prop_hidden_1': 0,
       }
       prop_r = ndb.IntegerProperty(default=0)
       prop_w = ndb.IntegerProperty(default=0)
@@ -86,43 +86,52 @@ class SerializableModelTest(test_case.TestCase):
     entity = Entity()
 
     # Only fields with READABLE flag set show up in to_serializable_dict().
-    self.assertEqual(
-        {'prop_r': 0, 'prop_rw': 0},
-        entity.to_serializable_dict())
+    self.assertEqual({'prop_r': 0, 'prop_rw': 0}, entity.to_serializable_dict())
 
     # Fields with WRITABLE flag can be used in convert_serializable_dict.
-    self.assertEqual(
-        {'prop_rw': 1, 'prop_w': 2},
-        Entity.convert_serializable_dict({'prop_rw': 1, 'prop_w': 2}))
+    self.assertEqual({
+        'prop_rw': 1,
+        'prop_w': 2
+    }, Entity.convert_serializable_dict({
+        'prop_rw': 1,
+        'prop_w': 2
+    }))
 
     # Writable fields are optional.
-    self.assertEqual(
-        {'prop_rw': 1},
-        Entity.convert_serializable_dict({'prop_rw': 1}))
+    self.assertEqual({
+        'prop_rw': 1
+    }, Entity.convert_serializable_dict({
+        'prop_rw': 1
+    }))
 
     # convert_serializable_dict ignores read only, hidden and unrecognized keys.
     all_props = {
-      'prop_r': 0,
-      'prop_rw': 1,
-      'prop_w': 2,
-      'prop_hidden_1': 3,
-      'prop_hidden_2': 4,
-      'unknown_prop': 5,
+        'prop_r': 0,
+        'prop_rw': 1,
+        'prop_w': 2,
+        'prop_hidden_1': 3,
+        'prop_hidden_2': 4,
+        'unknown_prop': 5,
     }
-    self.assertEqual(
-        {'prop_rw': 1, 'prop_w': 2},
-        Entity.convert_serializable_dict(all_props))
+    self.assertEqual({
+        'prop_rw': 1,
+        'prop_w': 2
+    }, Entity.convert_serializable_dict(all_props))
 
   def test_entity_id(self):
     """Test that 'with_id_as' argument in to_serializable_dict is respected."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       pass
-    self.assertEqual(
-        {'my_id': 'abc'},
-        Entity(id='abc').to_serializable_dict(with_id_as='my_id'))
+
+    self.assertEqual({
+        'my_id': 'abc'
+    },
+                     Entity(id='abc').to_serializable_dict(with_id_as='my_id'))
 
   def test_datetime_properties(self):
     """Test handling of DateTimeProperty."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       dt = ndb.DateTimeProperty()
 
@@ -137,8 +146,10 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_repeated_properties(self):
     """Test that properties with repeated=True are handled."""
+
     class IntsEntity(ndb.Model, serializable.SerializableModelMixin):
       ints = ndb.IntegerProperty(repeated=True)
+
     class DatesEntity(ndb.Model, serializable.SerializableModelMixin):
       dates = ndb.DateTimeProperty(repeated=True)
 
@@ -151,23 +162,30 @@ class SerializableModelTest(test_case.TestCase):
     self.assertEqual({'dates': []}, DatesEntity().to_serializable_dict())
 
     # List of ints works (as an example of simple repeated property).
-    self.assertEqual(
-        {'ints': [1, 2]},
-        IntsEntity(ints=[1, 2]).to_serializable_dict())
-    self.assertEqual(
-        {'ints': [1, 2]},
-        IntsEntity.convert_serializable_dict({'ints': [1, 2]}))
+    self.assertEqual({
+        'ints': [1, 2]
+    },
+                     IntsEntity(ints=[1, 2]).to_serializable_dict())
+    self.assertEqual({
+        'ints': [1, 2]
+    }, IntsEntity.convert_serializable_dict({
+        'ints': [1, 2]
+    }))
 
     # List of datetimes works (as an example of not-so-simple property).
-    self.assertEqual(
-        {'dates': [ts, ts]},
-        DatesEntity(dates=[dt, dt]).to_serializable_dict())
-    self.assertEqual(
-        {'dates': [dt, dt]},
-        DatesEntity.convert_serializable_dict({'dates': [ts, ts]}))
+    self.assertEqual({
+        'dates': [ts, ts]
+    },
+                     DatesEntity(dates=[dt, dt]).to_serializable_dict())
+    self.assertEqual({
+        'dates': [dt, dt]
+    }, DatesEntity.convert_serializable_dict({
+        'dates': [ts, ts]
+    }))
 
   def _test_structured_properties_class(self, structured_cls):
     """Common testing for StructuredProperty and LocalStructuredProperty."""
+
     # Plain ndb.Model.
     class InnerSimple(ndb.Model):
       a = ndb.IntegerProperty()
@@ -175,7 +193,7 @@ class SerializableModelTest(test_case.TestCase):
     # With SerializableModelMixin.
     class InnerSmart(ndb.Model, serializable.SerializableModelMixin):
       serializable_properties = {
-        'a': serializable.READABLE | serializable.WRITABLE,
+          'a': serializable.READABLE | serializable.WRITABLE,
       }
       a = ndb.IntegerProperty()
       b = ndb.IntegerProperty()
@@ -189,9 +207,14 @@ class SerializableModelTest(test_case.TestCase):
     entity = Outter()
     entity.simple = InnerSimple(a=1)
     entity.smart = InnerSmart(a=2, b=3)
-    self.assertEqual(
-        {'simple': {'a': 1}, 'smart': {'a': 2}},
-        entity.to_serializable_dict())
+    self.assertEqual({
+        'simple': {
+            'a': 1
+        },
+        'smart': {
+            'a': 2
+        }
+    }, entity.to_serializable_dict())
 
     # Works backwards as well. Note that 'convert_serializable_dict' returns
     # a dictionary that can be fed to entity's 'populate' or constructor. Entity
@@ -199,10 +222,18 @@ class SerializableModelTest(test_case.TestCase):
     # properties.
     self.assertEqual(
         Outter(simple=InnerSimple(a=1), smart=InnerSmart(a=2)),
-        Outter.from_serializable_dict({'simple': {'a': 1}, 'smart': {'a': 2}}))
+        Outter.from_serializable_dict({
+            'simple': {
+                'a': 1
+            },
+            'smart': {
+                'a': 2
+            }
+        }))
 
   def _test_repeated_structured_properties_class(self, structured_cls):
     """Common testing for StructuredProperty and LocalStructuredProperty."""
+
     class Inner(ndb.Model):
       a = ndb.IntegerProperty()
 
@@ -212,14 +243,23 @@ class SerializableModelTest(test_case.TestCase):
     # Repeated structured property -> list of dicts.
     entity = Outter()
     entity.inner.extend([Inner(a=1), Inner(a=2)])
-    self.assertEqual(
-        {'inner': [{'a': 1}, {'a': 2}]},
-        entity.to_serializable_dict())
+    self.assertEqual({
+        'inner': [{
+            'a': 1
+        }, {
+            'a': 2
+        }]
+    }, entity.to_serializable_dict())
 
     # Reverse also works.
     self.assertEqual(
-        entity,
-        Outter.from_serializable_dict({'inner': [{'a': 1}, {'a': 2}]}))
+        entity, Outter.from_serializable_dict({
+            'inner': [{
+                'a': 1
+            }, {
+                'a': 2
+            }]
+        }))
 
   def test_structured_properties(self):
     """Test handling of StructuredProperty."""
@@ -239,29 +279,36 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_exclude_works(self):
     """|exclude| argument of to_serializable_dict() is respected."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       prop1 = ndb.IntegerProperty()
       prop2 = ndb.IntegerProperty()
       prop3 = ndb.IntegerProperty()
 
     entity = Entity(prop1=1, prop2=2, prop3=3)
-    self.assertEqual(
-        {'prop1': 1, 'prop3': 3},
-        entity.to_serializable_dict(exclude=['prop2']))
+    self.assertEqual({
+        'prop1': 1,
+        'prop3': 3
+    }, entity.to_serializable_dict(exclude=['prop2']))
 
   def test_from_serializable_dict_kwargs_work(self):
     """Keyword arguments in from_serializable_dict are passed to constructor."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       prop = ndb.IntegerProperty()
 
     # Pass entity key via keyword parameters.
-    entity = Entity.from_serializable_dict(
-        {'prop': 123}, id='my id', parent=ndb.Key('Fake', 'parent'))
+    entity = Entity.from_serializable_dict({
+        'prop': 123
+    },
+                                           id='my id',
+                                           parent=ndb.Key('Fake', 'parent'))
     self.assertEqual(123, entity.prop)
     self.assertEqual(ndb.Key('Fake', 'parent', 'Entity', 'my id'), entity.key)
 
   def test_from_serializable_dict_kwargs_precedence(self):
     """Keyword arguments in from_serializable_dict take precedence."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       prop = ndb.IntegerProperty()
 
@@ -272,6 +319,7 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_bad_type_in_from_serializable_dict(self):
     """from_serializable_dict raises ValueError when seeing unexpected type."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       pass
 
@@ -281,6 +329,7 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_bad_type_for_repeated_property(self):
     """Trying to deserialize repeated property not from a list -> ValueError."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       prop = ndb.IntegerProperty(repeated=True)
 
@@ -301,6 +350,7 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_bad_type_for_simple_property(self):
     """Trying to deserialize non-number into IntegerProperty -> ValueError."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       prop = ndb.IntegerProperty()
 
@@ -312,6 +362,7 @@ class SerializableModelTest(test_case.TestCase):
 
   def test_bad_type_for_datetime_property(self):
     """Trying to deserialize non-number into DateTimeProperty -> ValueError."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       prop = ndb.DateTimeProperty()
 
@@ -323,6 +374,7 @@ class SerializableModelTest(test_case.TestCase):
 
 
 class BytesSerializableObject(serializable.BytesSerializable):
+
   def __init__(self, payload):  # pylint: disable=W0231
     self.payload = payload
 
@@ -343,12 +395,15 @@ class BytesSerializableTest(test_case.TestCase):
 
   def test_bytes_serializable(self):
     """Test to_serializable_dict and convert_serializable_dict."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       bytes_prop = BytesSerializableObjectProperty()
 
     # Ensure to_serializable_dict uses to_bytes.
     self.assertEqual(
-        {'bytes_prop': 'prefix:hi'},
+        {
+            'bytes_prop': 'prefix:hi'
+        },
         Entity(bytes_prop=BytesSerializableObject('hi')).to_serializable_dict())
 
     # Ensure convert_serializable_dict uses from_bytes.
@@ -357,6 +412,7 @@ class BytesSerializableTest(test_case.TestCase):
 
 
 class JsonSerializableObject(serializable.JsonSerializable):
+
   def __init__(self, payload):  # pylint: disable=W0231
     self.payload = payload
 
@@ -377,17 +433,21 @@ class JsonSerializableTest(test_case.TestCase):
 
   def test_json_serializable(self):
     """Test to_serializable_dict and convert_serializable_dict."""
+
     class Entity(ndb.Model, serializable.SerializableModelMixin):
       json_prop = JsonSerializableObjectProperty()
 
     # Ensure to_serializable_dict uses to_jsonish.
     self.assertEqual(
-        {'json_prop': {'payload': [1, 2]}},
+        {
+            'json_prop': {
+                'payload': [1, 2]
+            }
+        },
         Entity(json_prop=JsonSerializableObject([1, 2])).to_serializable_dict())
 
     # Ensure convert_serializable_dict uses from_jsonish.
-    entity = Entity.from_serializable_dict(
-        {'json_prop': {'payload': [1, 2]}})
+    entity = Entity.from_serializable_dict({'json_prop': {'payload': [1, 2]}})
     self.assertEqual([1, 2], entity.json_prop.payload)
 
 

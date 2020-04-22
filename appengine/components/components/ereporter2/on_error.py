@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Manages user reports.
 
 These are DB stored reports, vs logservice based reports. This is for events
@@ -24,10 +23,8 @@ from components import utils
 from . import formatter
 from . import models
 
-
 # Amount of time to keep error logs around.
 ERROR_TIME_TO_LIVE = datetime.timedelta(days=30)
-
 
 # Keys that can be specified by the client.
 # pylint: disable=W0212
@@ -51,7 +48,7 @@ def log(**kwargs):
         logging.error('Dropping unknown detail %s: %s', key, value)
         kwargs.pop(key)
       elif isinstance(value, basestring) and len(value) > LIMIT:
-        value = value[:LIMIT-1] + u'\u2026'
+        value = value[:LIMIT - 1] + u'\u2026'
         kwargs[key] = value
 
     if kwargs.get('source') == 'server':
@@ -80,8 +77,8 @@ def log(**kwargs):
         stack=stack)
     error.put()
     key_id = error.key.integer_id()
-    logging.error(
-        'Failed to log a %s error\n%s\n%s', error.source, key_id, error.message)
+    logging.error('Failed to log a %s error\n%s\n%s', error.source, key_id,
+                  error.message)
     return key_id
 
 

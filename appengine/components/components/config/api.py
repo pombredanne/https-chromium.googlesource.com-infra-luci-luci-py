@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Contains functions to access configs.
 
 Uses remote.Provider or fs.Provider to load configs, depending on whether config
@@ -24,13 +23,14 @@ from . import fs
 from . import remote
 from .proto import project_config_pb2
 
-
-Project = collections.namedtuple('Project', [
-  'id',  # Unique project id, defined in projects.cfg
-  'repo_type',   # e.g. 'GITILES'
-  'repo_url',   # e.g. 'https://chromium.googlesource.com/chromium/src'
-  'name',  # e.g. 'Chromium browser'
-])
+Project = collections.namedtuple(
+    'Project',
+    [
+        'id',  # Unique project id, defined in projects.cfg
+        'repo_type',  # e.g. 'GITILES'
+        'repo_url',  # e.g. 'https://chromium.googlesource.com/chromium/src'
+        'name',  # e.g. 'Chromium browser'
+    ])
 
 
 @ndb.tasklet
@@ -45,8 +45,11 @@ def _get_config_provider_async():  # pragma: no cover
 
 
 @ndb.tasklet
-def get_async(
-    config_set, path, dest_type=None, revision=None, store_last_good=False):
+def get_async(config_set,
+              path,
+              dest_type=None,
+              revision=None,
+              store_last_good=False):
   """Reads a revision and contents of a config.
 
   If |store_last_good| is True (default is False), does not make remote calls,
@@ -92,7 +95,10 @@ def get_async(
 
   provider = yield _get_config_provider_async()
   result = yield provider.get_async(
-      config_set, path, revision=revision, dest_type=dest_type,
+      config_set,
+      path,
+      revision=revision,
+      dest_type=dest_type,
       store_last_good=store_last_good)
   raise ndb.Return(result)
 
@@ -177,9 +183,8 @@ def get_project_configs_async(path, dest_type=None):
     try:
       config = common._convert_config(content, dest_type)
     except common.ConfigFormatError as ex:
-      logging.exception(
-          'Could not parse config at %s in config set %s: %r',
-          path, config_set, content)
+      logging.exception('Could not parse config at %s in config set %s: %r',
+                        path, config_set, content)
       result[project_id] = (revision, None, ex)
     else:
       result[project_id] = (revision, config, None)
@@ -221,9 +226,8 @@ def get_ref_configs_async(path, dest_type=None):
     try:
       config = common._convert_config(content, dest_type)
     except common.ConfigFormatError as ex:
-      logging.exception(
-          'Could not parse config at %s in config set %s: %r',
-          path, config_set, content)
+      logging.exception('Could not parse config at %s in config set %s: %r',
+                        path, config_set, content)
       ref_value = (revision, None, ex)
     else:
       ref_value = (revision, config, None)
@@ -281,7 +285,9 @@ def has_project_access_async(project_id, identity=None):
   This function does not do RPC to config service.
   """
   cfg = yield get_project_config_async(
-      project_id, 'project.cfg', project_config_pb2.ProjectCfg,
+      project_id,
+      'project.cfg',
+      project_config_pb2.ProjectCfg,
       store_last_good=True)
   raise ndb.Return(cfg and any(_has_access(a, identity) for a in cfg.access))
 

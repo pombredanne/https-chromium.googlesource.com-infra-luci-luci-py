@@ -25,12 +25,12 @@ import handlers
 
 def bootstrap_templates():
   TEMPLATES_DIR = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'templates')
+      os.path.dirname(os.path.abspath(__file__)), 'templates')
   template.bootstrap(
-      {'templates': TEMPLATES_DIR},
-      global_env={
-        'hostname': app_identity.get_default_version_hostname()
-      })
+      {
+          'templates': TEMPLATES_DIR
+      },
+      global_env={'hostname': app_identity.get_default_version_hostname()})
 
 
 def create_html_app():  # pragma: no cover
@@ -42,8 +42,8 @@ def create_html_app():  # pragma: no cover
 def create_endpoints_app():  # pragma: no cover
   """Returns WSGI app that serves cloud endpoints requests."""
   # The default regex doesn't allow / but config_sets and paths have / in them.
-  return endpoints_webapp2.api_server(
-      [api.ConfigApi, admin.AdminApi], regex='.+')
+  return endpoints_webapp2.api_server([api.ConfigApi, admin.AdminApi],
+                                      regex='.+')
 
 
 def create_backend_app():  # pragma: no cover

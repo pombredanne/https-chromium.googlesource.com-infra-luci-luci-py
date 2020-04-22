@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Isolate Server frontend pRPC handlers."""
 
 import datetime
@@ -13,7 +12,7 @@ from components import stats_framework
 from components import utils
 
 from proto import isolated_pb2  # pylint: disable=no-name-in-module
-from proto import isolated_prpc_pb2 # pylint: disable=no-name-in-module
+from proto import isolated_prpc_pb2  # pylint: disable=no-name-in-module
 
 import stats
 
@@ -23,9 +22,9 @@ class IsolatedService(object):
 
   DESCRIPTION = isolated_prpc_pb2.IsolatedServiceDescription
   _RESOLUTION_MAP = {
-    isolated_pb2.MINUTE: 'minutes',
-    isolated_pb2.HOUR: 'hours',
-    isolated_pb2.DAY: 'days',
+      isolated_pb2.MINUTE: 'minutes',
+      isolated_pb2.HOUR: 'hours',
+      isolated_pb2.DAY: 'days',
   }
 
   def Stats(self, request, context):
@@ -46,8 +45,8 @@ class IsolatedService(object):
       now = utils.utcnow()
     # Round time to the minute.
     now = datetime.datetime(*now.timetuple()[:5], tzinfo=now.tzinfo)
-    entities = stats_framework.get_stats(
-        stats.STATS_HANDLER, res, now, request.page_size, False)
+    entities = stats_framework.get_stats(stats.STATS_HANDLER, res, now,
+                                         request.page_size, False)
     out = isolated_pb2.StatsResponse()
     for s in entities:
       stats.snapshot_to_proto(s, out.measurements.add())

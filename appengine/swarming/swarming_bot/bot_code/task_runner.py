@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Runs a Swarming task.
 
 Downloads all the necessary files to run the task, executes the command and
@@ -36,20 +35,16 @@ from libs import luci_context
 import bot_auth
 import remote_client
 
-
 # Path to this file or the zip containing this file.
 THIS_FILE = os.path.abspath(zip_package.get_main_script_path())
 
-
 # Current task_runner_out version.
 OUT_VERSION = 3
-
 
 # On Windows, SIGTERM is actually sent as SIGBREAK since there's no real
 # SIGTERM.  SIGBREAK is not defined on posix since it's a pure Windows concept.
 SIG_BREAK_OR_TERM = (
     signal.SIGBREAK if sys.platform == 'win32' else signal.SIGTERM)
-
 
 # Used to implement monotonic_time for a clock that never goes backward.
 _last_now = 0
@@ -75,8 +70,8 @@ def get_run_isolated():
   return [sys.executable, '-u', THIS_FILE, 'run_isolated']
 
 
-def get_isolated_args(work_dir, task_details, isolated_result,
-                      bot_file, run_isolated_flags):
+def get_isolated_args(work_dir, task_details, isolated_result, bot_file,
+                      run_isolated_flags):
   """Returns the command to call run_isolated. Mocked in tests."""
   bot_dir = os.path.dirname(work_dir)
   if os.path.isfile(isolated_result):
@@ -85,17 +80,18 @@ def get_isolated_args(work_dir, task_details, isolated_result,
 
   # Isolated options.
   if task_details.isolated:
-    cmd.extend(
-        [
-          '-I', task_details.isolated['server'].encode('utf-8'),
-          '--namespace', task_details.isolated['namespace'].encode('utf-8'),
-        ])
+    cmd.extend([
+        '-I',
+        task_details.isolated['server'].encode('utf-8'),
+        '--namespace',
+        task_details.isolated['namespace'].encode('utf-8'),
+    ])
     isolated_input = task_details.isolated.get('input')
     if isolated_input:
-      cmd.extend(
-          [
-            '--isolated', isolated_input,
-          ])
+      cmd.extend([
+          '--isolated',
+          isolated_input,
+      ])
 
   # Named caches options.
   # Specify --named-cache-root unconditionally so run_isolated.py never creates
@@ -103,11 +99,12 @@ def get_isolated_args(work_dir, task_details, isolated_result,
   cmd.extend(['--named-cache-root', os.path.join(bot_dir, 'c')])
   if task_details.caches:
     for c in task_details.caches:
-      cmd.extend(
-          [
-            '--named-cache', c['name'], c['path'].replace('/', os.sep),
-            c['hint'],
-          ])
+      cmd.extend([
+          '--named-cache',
+          c['name'],
+          c['path'].replace('/', os.sep),
+          c['hint'],
+      ])
 
   # Expected output files:
   for output in task_details.outputs:
@@ -119,26 +116,31 @@ def get_isolated_args(work_dir, task_details, isolated_result,
     cmd.append('--cipd-enabled')
     for pkg in task_details.cipd_input.get('packages', []):
       cmd.extend([
-        '--cipd-package',
-        '%s:%s:%s' % (pkg['path'], pkg['package_name'], pkg['version'])])
-    cmd.extend(
-        [
-          '--cipd-cache', os.path.join(bot_dir, 'cipd_cache'),
-          '--cipd-client-package',
-          task_details.cipd_input['client_package']['package_name'],
-          '--cipd-client-version',
-          task_details.cipd_input['client_package']['version'],
-          '--cipd-server', task_details.cipd_input.get('server'),
-        ])
-
-  cmd.extend(
-      [
-        # Switch to 'task' logical account, if it is set.
-        '--switch-to-account', 'task',
-        '--json', isolated_result,
-        '--log-file', os.path.join(bot_dir, 'logs', 'run_isolated.log'),
-        '--root-dir', work_dir,
+          '--cipd-package',
+          '%s:%s:%s' % (pkg['path'], pkg['package_name'], pkg['version'])
       ])
+    cmd.extend([
+        '--cipd-cache',
+        os.path.join(bot_dir, 'cipd_cache'),
+        '--cipd-client-package',
+        task_details.cipd_input['client_package']['package_name'],
+        '--cipd-client-version',
+        task_details.cipd_input['client_package']['version'],
+        '--cipd-server',
+        task_details.cipd_input.get('server'),
+    ])
+
+  cmd.extend([
+      # Switch to 'task' logical account, if it is set.
+      '--switch-to-account',
+      'task',
+      '--json',
+      isolated_result,
+      '--log-file',
+      os.path.join(bot_dir, 'logs', 'run_isolated.log'),
+      '--root-dir',
+      work_dir,
+  ])
   if bot_file:
     cmd.extend(('--bot-file', bot_file))
 
@@ -173,13 +175,12 @@ def get_isolated_args(work_dir, task_details, isolated_result,
 
 class Containment(object):
   """Containment details."""
-  _EXPECTED = frozenset(
-      (
-        'containment_type',
-        'limit_processes',
-        'limit_total_committed_memory',
-        'lower_priority',
-      ))
+  _EXPECTED = frozenset((
+      'containment_type',
+      'limit_processes',
+      'limit_total_committed_memory',
+      'lower_priority',
+  ))
 
   def __init__(self, data):
     if set(data) != self._EXPECTED:
@@ -200,9 +201,8 @@ class Containment(object):
     if self.limit_processes:
       out.extend(('--limit-processes', str(self.limit_processes)))
     if self.limit_total_committed_memory:
-      out.extend(
-          ('--limit-total-committed-memory',
-            str(self.limit_total_committed_memory)))
+      out.extend(('--limit-total-committed-memory',
+                  str(self.limit_total_committed_memory)))
     return out
 
 
@@ -211,29 +211,28 @@ class TaskDetails(object):
 
   It only contains what the bot needs to know.
   """
-  _EXPECTED = frozenset(
-      (
-        'bot_authenticated_as',
-        'bot_id',
-        'caches',
-        'cipd_input',
-        'command',
-        'containment',
-        'dimensions',
-        'env',
-        'env_prefixes',
-        'extra_args',
-        'grace_period',
-        'hard_timeout',
-        'host',
-        'io_timeout',
-        'isolated',
-        'outputs',
-        'relative_cwd',
-        'secret_bytes',
-        'service_accounts',
-        'task_id',
-      ))
+  _EXPECTED = frozenset((
+      'bot_authenticated_as',
+      'bot_id',
+      'caches',
+      'cipd_input',
+      'command',
+      'containment',
+      'dimensions',
+      'env',
+      'env_prefixes',
+      'extra_args',
+      'grace_period',
+      'hard_timeout',
+      'host',
+      'io_timeout',
+      'isolated',
+      'outputs',
+      'relative_cwd',
+      'secret_bytes',
+      'service_accounts',
+      'task_id',
+  ))
 
   def __init__(self, data):
     logging.info('TaskDetails(%s)', data)
@@ -259,11 +258,11 @@ class TaskDetails(object):
     self.caches = data['caches']
 
     self.env = {
-      k.encode('utf-8'): v.encode('utf-8') for k, v in data['env'].items()
+        k.encode('utf-8'): v.encode('utf-8') for k, v in data['env'].items()
     }
     self.env_prefixes = {
-      k.encode('utf-8'): [path.encode('utf-8') for path in v]
-      for k, v in (data.get('env_prefixes') or {}).items()
+        k.encode('utf-8'): [path.encode('utf-8') for path in v]
+        for k, v in (data.get('env_prefixes') or {}).items()
     }
     self.grace_period = data['grace_period']
     self.hard_timeout = data['hard_timeout']
@@ -288,6 +287,7 @@ class TaskDetails(object):
 
 class ExitSignal(Exception):
   """Raised on a signal that the process must exit immediately."""
+
   def __init__(self, sig):
     super(ExitSignal, self).__init__(u'task_runner received signal %s' % sig)
     self.signal = sig
@@ -297,9 +297,8 @@ class InternalError(Exception):
   """Raised on unrecoverable errors that abort task with 'internal error'."""
 
 
-def load_and_run(
-    in_file, swarming_server, is_grpc, cost_usd_hour, start, out_file,
-    run_isolated_flags, bot_file, auth_params_file):
+def load_and_run(in_file, swarming_server, is_grpc, cost_usd_hour, start,
+                 out_file, run_isolated_flags, bot_file, auth_params_file):
   """Loads the task's metadata, prepares auth environment and executes the task.
 
   This may throw all sorts of exceptions in case of failure. It's up to the
@@ -345,9 +344,7 @@ def load_and_run(
       # Override LUCI_CONTEXT['local_auth']. If the task is not using auth,
       # do NOT inherit existing local_auth (if its there). Kick it out by
       # passing None.
-      context_edits = {
-        'local_auth': local_auth_context
-      }
+      context_edits = {'local_auth': local_auth_context}
 
       # Extend existing LUCI_CONTEXT['swarming'], if any.
       if task_details.secret_bytes is not None:
@@ -360,7 +357,7 @@ def load_and_run(
         try:
           if auth_system:
             return auth_system.get_bot_headers()
-          return (None, None) # A timeout of "None" means "don't use auth"
+          return (None, None)  # A timeout of "None" means "don't use auth"
         except bot_auth.AuthSystemError as e:
           raise InternalError('Failed to grab bot auth headers: %s' % e)
 
@@ -387,9 +384,8 @@ def load_and_run(
       # Auth environment is up, start the command. task_result is dumped to
       # disk in 'finally' block.
       with luci_context.stage(_tmpdir=work_dir, **context_edits) as ctx_file:
-        task_result = run_command(
-            remote, task_details, work_dir, cost_usd_hour,
-            start, run_isolated_flags, bot_file, ctx_file)
+        task_result = run_command(remote, task_details, work_dir, cost_usd_hour,
+                                  start, run_isolated_flags, bot_file, ctx_file)
   except (ExitSignal, InternalError, remote_client.InternalError) as e:
     # This normally means run_command() didn't get the chance to run, as it
     # itself traps exceptions and will report accordingly. In this case, we want
@@ -397,11 +393,11 @@ def load_and_run(
     logging.exception('Exception caught in run_command().')
     if not task_result:
       task_result = {
-        u'exit_code': -1,
-        u'hard_timeout': False,
-        u'io_timeout': False,
-        u'must_signal_internal_failure': str(e.message or 'unknown error'),
-        u'version': OUT_VERSION,
+          u'exit_code': -1,
+          u'hard_timeout': False,
+          u'io_timeout': False,
+          u'must_signal_internal_failure': str(e.message or 'unknown error'),
+          u'version': OUT_VERSION,
       }
   finally:
     # We've found tests to delete the working directory work_dir when quitting,
@@ -437,16 +433,17 @@ def fail_without_command(remote, task_id, params, cost_usd_hour, task_start,
   # Ignore server reply to stop.
   remote.post_task_update(task_id, params, (stdout, 0), 1)
   return {
-    u'exit_code': exit_code,
-    u'hard_timeout': False,
-    u'io_timeout': False,
-    u'must_signal_internal_failure': None,
-    u'version': OUT_VERSION,
+      u'exit_code': exit_code,
+      u'hard_timeout': False,
+      u'io_timeout': False,
+      u'must_signal_internal_failure': None,
+      u'version': OUT_VERSION,
   }
 
 
 class _FailureOnStart(Exception):
   """Process run_isolated couldn't be started."""
+
   def __init__(self, exit_code, stdout):
     super(_FailureOnStart, self).__init__(stdout)
     self.exit_code = exit_code
@@ -476,9 +473,8 @@ def _start_task_runner(args, work_dir, ctx_file):
     with open(args_path, 'wb') as f:
       json.dump(args, f)
   except (IOError, OSError) as e:
-    raise _FailureOnStart(
-        e.errno or -1,
-        'Could not write args to %s: %s' % (args_path, e))
+    raise _FailureOnStart(e.errno or -1,
+                          'Could not write args to %s: %s' % (args_path, e))
 
   try:
     # TODO(maruel): Support separate streams for stdout and stderr.
@@ -572,11 +568,10 @@ class _OutputBuffer(object):
     - self._last_pop was more than "self._max_packet_interval seconds ago".
     """
     packet_interval = (
-        self._min_packet_interval if self._stdout
-        else self._max_packet_interval)
-    return (
-        len(self._stdout) >= self._max_chunk_size or
-        (self._last_loop - self._last_pop) > packet_interval)
+        self._min_packet_interval
+        if self._stdout else self._max_packet_interval)
+    return (len(self._stdout) >= self._max_chunk_size or
+            (self._last_loop - self._last_pop) > packet_interval)
 
   def calc_yield_wait(self, timed_out):
     """Calculates the maximum number of seconds to wait in yield_any().
@@ -593,8 +588,8 @@ class _OutputBuffer(object):
       return 0.
 
     out = (
-        self._min_packet_interval if self._stdout
-        else self._max_packet_interval)
+        self._min_packet_interval
+        if self._stdout else self._max_packet_interval)
     now = monotonic_time()
     if self._task_details.hard_timeout:
       out = min(out, self._start + self._task_details.hard_timeout - now)
@@ -605,8 +600,8 @@ class _OutputBuffer(object):
     return out
 
 
-def run_command(remote, task_details, work_dir, cost_usd_hour,
-                task_start, run_isolated_flags, bot_file, ctx_file):
+def run_command(remote, task_details, work_dir, cost_usd_hour, task_start,
+                run_isolated_flags, bot_file, ctx_file):
   """Runs a command and sends packets to the server to stream results back.
 
   Implements both I/O and hard timeouts. Sends the packets numbered, so the
@@ -626,12 +621,13 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
   # _reap_task() in task_scheduler.py for more information.
   start = monotonic_time()
   params = {
-    'cost_usd': cost_usd_hour * (start - task_start) / 60. / 60.,
+      'cost_usd': cost_usd_hour * (start - task_start) / 60. / 60.,
   }
   if not remote.post_task_update(task_details.task_id, params):
     # Don't even bother, the task was already canceled.
-    logging.debug('Task has been already canceled. Won\'t start it. '
-                  'task_id: %s. Sending update...', task_details.task_id)
+    logging.debug(
+        'Task has been already canceled. Won\'t start it. '
+        'task_id: %s. Sending update...', task_details.task_id)
     # crbug.com/1052208:
     # Send task update again for the server to know that the task has stopped.
     # Sending 'canceled' signal to the server for the task to be 'CANCELED'
@@ -639,16 +635,16 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     params['canceled'] = True
     remote.post_task_update(task_details.task_id, params, exit_code=-1)
     return {
-      u'exit_code': -1,
-      u'hard_timeout': False,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': OUT_VERSION,
+        u'exit_code': -1,
+        u'hard_timeout': False,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'version': OUT_VERSION,
     }
 
   isolated_result = os.path.join(work_dir, 'isolated_result.json')
-  args = get_isolated_args(work_dir, task_details,
-                           isolated_result, bot_file, run_isolated_flags)
+  args = get_isolated_args(work_dir, task_details, isolated_result, bot_file,
+                           run_isolated_flags)
   # Hard timeout enforcement is deferred to run_isolated. Grace is doubled to
   # give one 'grace_period' slot to the child process and one slot to upload
   # the results back.
@@ -722,9 +718,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
             kill_sent = True
       logging.info('Waiting for process exit')
       exit_code = proc.wait()
-    except (
-        ExitSignal, InternalError, IOError,
-        OSError, remote_client.InternalError) as e:
+    except (ExitSignal, InternalError, IOError, OSError,
+            remote_client.InternalError) as e:
       # Something wrong happened, try to kill the child process.
       must_signal_internal_failure = str(e.message or 'unknown error')
       exit_code = kill_and_wait(proc, task_details.grace_period, e.message)
@@ -778,12 +773,12 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
           params['bot_overhead'] = params['duration']
           params['duration'] = run_isolated_result['duration']
           params['bot_overhead'] -= params['duration']
-          params['bot_overhead'] -= run_isolated_result.get(
-              'download', {}).get('duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'upload', {}).get('duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'cipd', {}).get('duration', 0)
+          params['bot_overhead'] -= run_isolated_result.get('download', {}).get(
+              'duration', 0)
+          params['bot_overhead'] -= run_isolated_result.get('upload', {}).get(
+              'duration', 0)
+          params['bot_overhead'] -= run_isolated_result.get('cipd', {}).get(
+              'duration', 0)
           if params['bot_overhead'] < 0:
             params['bot_overhead'] = 0
         isolated_stats = run_isolated_result.get('stats', {}).get('isolated')
@@ -829,8 +824,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         params.pop('cipd_pins', None)
       remote.post_task_update(task_details.task_id, params, buf.pop(),
                               exit_code)
-      logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
-                    'params: %s.', task_details.task_id, exit_code, params)
+      logging.debug(
+          'Last task update finished. task_id: %s, exit_code: %s, '
+          'params: %s.', task_details.task_id, exit_code, params)
       if must_signal_internal_failure:
         remote.post_task_error(task_details.task_id,
                                must_signal_internal_failure)
@@ -844,11 +840,11 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         must_signal_internal_failure = str(e.message or 'unknown error')
 
     return {
-      u'exit_code': exit_code,
-      u'hard_timeout': had_hard_timeout,
-      u'io_timeout': had_io_timeout,
-      u'must_signal_internal_failure': must_signal_internal_failure,
-      u'version': OUT_VERSION,
+        u'exit_code': exit_code,
+        u'hard_timeout': had_hard_timeout,
+        u'io_timeout': had_io_timeout,
+        u'must_signal_internal_failure': must_signal_internal_failure,
+        u'version': OUT_VERSION,
     }
   finally:
     file_path.try_remove(unicode(isolated_result))
@@ -868,7 +864,8 @@ def main(args):
   parser.add_option(
       '--swarming-server', help='Swarming server to send data back')
   parser.add_option(
-      '--is-grpc', action='store_true',
+      '--is-grpc',
+      action='store_true',
       help='If true, --swarming-server is a gRPC proxy')
   parser.add_option(
       '--cost-usd-hour', type='float', help='Cost of this VM in $/h')
@@ -891,10 +888,9 @@ def main(args):
     options.start = now
 
   try:
-    load_and_run(
-        options.in_file, options.swarming_server, options.is_grpc,
-        options.cost_usd_hour, options.start, options.out_file,
-        args, options.bot_file, options.auth_params_file)
+    load_and_run(options.in_file, options.swarming_server, options.is_grpc,
+                 options.cost_usd_hour, options.start, options.out_file, args,
+                 options.bot_file, options.auth_params_file)
     return 0
   finally:
     logging.info('quitting')

@@ -1,7 +1,6 @@
 # Copyright 2019 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Fast(er) base64 urlsafe encoding/decoding for internal use in auth component.
 
 Borrowed from ndb's key.py, where it is claimed they are 3-4x faster than

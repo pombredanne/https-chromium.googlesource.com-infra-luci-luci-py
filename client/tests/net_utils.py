@@ -17,16 +17,21 @@ def make_fake_response(content, url, code=200, headers=None):
   assert isinstance(content, six.binary_type), content
   headers = dict(headers or {})
   headers['Content-Length'] = len(content)
+
   class _Fake(object):
+
     def __init__(self):
       self.content = content
+
     def iter_content(self, chunk_size):
       c = self.content
       while c:
         yield c[:chunk_size]
         c = c[chunk_size:]
+
     def read(self):
       return self.content
+
   return net.HttpResponse(_Fake(), url, code, headers)
 
 
@@ -41,6 +46,7 @@ def make_fake_error(code, url, content=None, headers=None):
 
 class TestCase(auto_stub.TestCase):
   """Mocks out url_open() calls."""
+
   def setUp(self):
     super(TestCase, self).setUp()
     self.mock(net, 'url_open', self._url_open)

@@ -25,6 +25,7 @@ from test_support import test_case
 
 
 class ApiTestCase(test_case.TestCase):
+
   def setUp(self):
     super(ApiTestCase, self).setUp()
     self.provider = mock.Mock()
@@ -36,8 +37,8 @@ class ApiTestCase(test_case.TestCase):
         ('deadbeef', test_config_pb2.Config(param='value')))
 
   def test_get(self):
-    revision, cfg = config.get(
-        'services/foo', 'bar.cfg', test_config_pb2.Config)
+    revision, cfg = config.get('services/foo', 'bar.cfg',
+                               test_config_pb2.Config)
     self.assertEqual(revision, 'deadbeef')
     self.assertEqual(cfg.param, 'value')
 
@@ -47,93 +48,93 @@ class ApiTestCase(test_case.TestCase):
     self.assertEqual(cfg.param, 'value')
 
   def test_get_project_config(self):
-    revision, cfg = config.get_project_config(
-        'foo', 'bar.cfg', test_config_pb2.Config)
+    revision, cfg = config.get_project_config('foo', 'bar.cfg',
+                                              test_config_pb2.Config)
     self.assertEqual(revision, 'deadbeef')
     self.assertEqual(cfg.param, 'value')
 
   def test_get_ref_config(self):
-    revision, cfg = config.get_ref_config(
-        'foo', 'refs/x', 'bar.cfg', test_config_pb2.Config)
+    revision, cfg = config.get_ref_config('foo', 'refs/x', 'bar.cfg',
+                                          test_config_pb2.Config)
     self.assertEqual(revision, 'deadbeef')
     self.assertEqual(cfg, test_config_pb2.Config(param='value'))
 
   def test_get_projects(self):
     self.provider.get_projects_async.return_value = ndb.Future()
     self.provider.get_projects_async.return_value.set_result([
-      {
-       'id': 'chromium',
-       'repo_type': 'GITILES',
-       'repo_url': 'https://chromium.googlesource.com/chromium/src',
-       'name': 'Chromium browser'
-      },
-      {
-       'id': 'infra',
-       'repo_type': 'GITILES',
-       'repo_url': 'https://chromium.googlesource.com/infra/infra',
-      },
+        {
+            'id': 'chromium',
+            'repo_type': 'GITILES',
+            'repo_url': 'https://chromium.googlesource.com/chromium/src',
+            'name': 'Chromium browser'
+        },
+        {
+            'id': 'infra',
+            'repo_type': 'GITILES',
+            'repo_url': 'https://chromium.googlesource.com/infra/infra',
+        },
     ])
     projects = config.get_projects()
     self.assertEqual(projects, [
-      config.Project(
-          id='chromium',
-          repo_type='GITILES',
-          repo_url='https://chromium.googlesource.com/chromium/src',
-          name='Chromium browser'),
-      config.Project(
-          id='infra',
-          repo_type='GITILES',
-          repo_url='https://chromium.googlesource.com/infra/infra',
-          name=''),
+        config.Project(
+            id='chromium',
+            repo_type='GITILES',
+            repo_url='https://chromium.googlesource.com/chromium/src',
+            name='Chromium browser'),
+        config.Project(
+            id='infra',
+            repo_type='GITILES',
+            repo_url='https://chromium.googlesource.com/infra/infra',
+            name=''),
     ])
 
   def test_get_project_configs(self):
     self.provider.get_project_configs_async.return_value = ndb.Future()
     self.provider.get_project_configs_async.return_value.set_result({
-      'projects/chromium': ('deadbeef', 'param: "value"'),
-      'projects/v8': ('aaaabbbb', 'param: "value2"'),
-      'projects/skia': ('badcoffee', 'invalid config'),
+        'projects/chromium': ('deadbeef', 'param: "value"'),
+        'projects/v8': ('aaaabbbb', 'param: "value2"'),
+        'projects/skia': ('badcoffee', 'invalid config'),
     })
 
     actual = config.get_project_configs('bar.cfg', test_config_pb2.Config)
     self.assertIsInstance(actual['skia'][2], config.ConfigFormatError)
     expected = {
-      'chromium': ('deadbeef', test_config_pb2.Config(param='value'), None),
-      'v8': ('aaaabbbb', test_config_pb2.Config(param='value2'), None),
-      'skia': ('badcoffee', None, actual['skia'][2]),
+        'chromium': ('deadbeef', test_config_pb2.Config(param='value'), None),
+        'v8': ('aaaabbbb', test_config_pb2.Config(param='value2'), None),
+        'skia': ('badcoffee', None, actual['skia'][2]),
     }
     self.assertEqual(expected, actual)
 
   def test_get_ref_configs(self):
     self.provider.get_ref_configs_async.return_value = ndb.Future()
     self.provider.get_ref_configs_async.return_value.set_result({
-      'projects/chromium/refs/heads/master': ('dead', 'param: "master"'),
-      'projects/chromium/refs/non-branch': ('beef', 'param: "ref"'),
-      'projects/v8/refs/heads/master': ('aaaa', 'param: "value2"'),
-      'projects/skia/refs/heads/master': ('badcoffee', 'invalid config'),
+        'projects/chromium/refs/heads/master': ('dead', 'param: "master"'),
+        'projects/chromium/refs/non-branch': ('beef', 'param: "ref"'),
+        'projects/v8/refs/heads/master': ('aaaa', 'param: "value2"'),
+        'projects/skia/refs/heads/master': ('badcoffee', 'invalid config'),
     })
 
     actual = config.get_ref_configs('bar.cfg', test_config_pb2.Config)
-    self.assertIsInstance(
-        actual['skia']['refs/heads/master'][2], config.ConfigFormatError)
+    self.assertIsInstance(actual['skia']['refs/heads/master'][2],
+                          config.ConfigFormatError)
     expected = {
-      'chromium': {
-        'refs/heads/master': (
-          'dead', test_config_pb2.Config(param='master'), None),
-        'refs/non-branch': (
-          'beef', test_config_pb2.Config(param='ref'), None),
-      },
-      'v8': {
-        'refs/heads/master': (
-          'aaaa', test_config_pb2.Config(param='value2'), None),
-      },
-      'skia': {
-        'refs/heads/master': (
-          'badcoffee',
-          None,
-          actual['skia']['refs/heads/master'][2],
-        ),
-      }
+        'chromium': {
+            'refs/heads/master': ('dead',
+                                  test_config_pb2.Config(param='master'), None),
+            'refs/non-branch': ('beef', test_config_pb2.Config(param='ref'),
+                                None),
+        },
+        'v8': {
+            'refs/heads/master': ('aaaa',
+                                  test_config_pb2.Config(param='value2'), None),
+        },
+        'skia': {
+            'refs/heads/master': (
+                'badcoffee',
+                None,
+                actual['skia']['refs/heads/master'][2],
+            ),
+        }
     }
     self.assertEqual(expected, actual)
 
@@ -149,10 +150,7 @@ class ApiTestCase(test_case.TestCase):
     self.mock(api, 'get_project_config_async', mock.Mock())
     api.get_project_config_async.return_value = ndb.Future()
     api.get_project_config_async.return_value.set_result(
-        project_config_pb2.ProjectCfg(
-            access=['group:all'],
-        )
-    )
+        project_config_pb2.ProjectCfg(access=['group:all'],))
 
     self.assertTrue(config.has_project_access('chromium'))
 
@@ -166,10 +164,7 @@ class ApiTestCase(test_case.TestCase):
     self.mock(api, 'get_project_config_async', mock.Mock())
     api.get_project_config_async.return_value = ndb.Future()
     api.get_project_config_async.return_value.set_result(
-        project_config_pb2.ProjectCfg(
-            access=['anonymous:anonymous'],
-        )
-    )
+        project_config_pb2.ProjectCfg(access=['anonymous:anonymous'],))
 
     self.assertTrue(config.has_project_access('chromium'))
 
@@ -187,7 +182,6 @@ class ApiTestCase(test_case.TestCase):
     )
 
     self.assertFalse(config.has_project_access('chromium'))
-
 
 
 if __name__ == '__main__':

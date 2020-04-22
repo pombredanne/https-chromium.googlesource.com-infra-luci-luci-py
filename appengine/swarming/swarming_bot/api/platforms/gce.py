@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Google Compute Engine specific utility functions."""
 
 import base64
@@ -17,18 +16,14 @@ from utils import tools
 
 from six.moves import urllib
 
-
 ### Private stuff.
-
 
 # One-tuple that contains cached metadata, as returned by get_metadata.
 _CACHED_METADATA = None
 
-
 # Cache of GCE OAuth2 token.
 _CACHED_OAUTH2_TOKEN = {}
 _CACHED_OAUTH2_TOKEN_LOCK = threading.Lock()
-
 
 # Cached signed GCE VM metadata (keyed by the audience URL).
 _CACHED_METADATA_TOKEN = {}
@@ -58,15 +53,14 @@ def _raw_metadata_request(path):
   url = 'http://metadata.google.internal' + path
   headers = {'Metadata-Flavor': 'Google'}
   for i in range(0, 10):
-    time.sleep(i*2)
+    time.sleep(i * 2)
     try:
       resp = urllib.request.urlopen(
           urllib.request.Request(url, headers=headers), timeout=10)
       return bytes(resp.read().encode('utf-8'))
     except IOError as e:
-      logging.warning(
-          'Failed to grab GCE metadata from %s on attempt #%d: %s',
-          path, i+1, e)
+      logging.warning('Failed to grab GCE metadata from %s on attempt #%d: %s',
+                      path, i + 1, e)
   return None
 
 
@@ -152,14 +146,13 @@ def oauth2_access_token_with_expiration(account):
     if cached_tok and cached_tok['expiresAt'] >= time.time() + 600:
       return cached_tok['accessToken'], cached_tok['expiresAt']
     # Grab the token.
-    url = (
-        'http://metadata.google.internal/computeMetadata/v1/instance'
-        '/service-accounts/%s/token' % account)
+    url = ('http://metadata.google.internal/computeMetadata/v1/instance'
+           '/service-accounts/%s/token' % account)
     headers = {'Metadata-Flavor': 'Google'}
     access_token, expires_at = oauth.oauth2_access_token_from_url(url, headers)
     tok = {
-      'accessToken': access_token,
-      'expiresAt': expires_at,
+        'accessToken': access_token,
+        'expiresAt': expires_at,
     }
     _CACHED_OAUTH2_TOKEN[account] = tok
     return access_token, expires_at

@@ -13,7 +13,7 @@ from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
 
 from components.datastore_utils import properties
-from components.protoutil  import test_proto_pb2
+from components.protoutil import test_proto_pb2
 from test_support import test_case
 
 
@@ -31,6 +31,7 @@ class PP(ndb.Model):
 
 
 class PropertiesTest(test_case.TestCase):
+
   def test_DeterministicJsonProperty(self):
     self.assertEqual({'a': 1}, DJP(prop={'a': 1}).prop)
 

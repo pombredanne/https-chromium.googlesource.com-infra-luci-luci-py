@@ -2,7 +2,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """A low-level blob storage/retrieval interface to the Isolate server"""
 
 import base64
@@ -26,7 +25,7 @@ import isolated_format
 import six
 
 try:
-  import grpc # for error codes
+  import grpc  # for error codes
   from utils import grpc_proxy
   from proto import bytestream_pb2
   # If not present, grpc crashes later.
@@ -36,15 +35,12 @@ except ImportError as err:
   grpc_proxy = None
   bytestream_pb2 = None
 
-
 # Chunk size to use when reading from network stream.
 NET_IO_FILE_CHUNK = 16 * 1024
-
 
 # Read timeout in seconds for downloads from isolate storage. If there's no
 # response from the server within this timeout whole download will be aborted.
 DOWNLOAD_READ_TIMEOUT = 60
-
 
 # Stores the gRPC proxy address. Must be set if the storage API class is
 # IsolateServerGrpc (call 'set_grpc_proxy').
@@ -56,6 +52,7 @@ class ServerRef(object):
 
   This is expected to be an isolate server.
   """
+
   def __init__(self, url, namespace):
     """
     Args:
@@ -116,9 +113,11 @@ class Item(object):
   the main thread. It is never used concurrently from multiple threads.
   """
 
-  def __init__(
-      self, digest=None, size=None, high_priority=False,
-      compression_level=6):
+  def __init__(self,
+               digest=None,
+               size=None,
+               high_priority=False,
+               compression_level=6):
     self._digest = digest
     self._size = size
     self._high_priority = high_priority
@@ -343,15 +342,13 @@ class IsolateServer(StorageApi):
 
   def fetch(self, digest, _size, offset):
     assert offset >= 0
-    source_url = '%s/_ah/api/isolateservice/v1/retrieve' % (
-        self.server_ref.url)
+    source_url = '%s/_ah/api/isolateservice/v1/retrieve' % (self.server_ref.url)
     logging.debug('download_file(%s, %d)', source_url, offset)
     response = self._do_fetch(source_url, digest, offset)
 
     if not response:
-      raise IOError(
-          'Attempted to fetch from %s; no data exist: %s / %s.' % (
-            source_url, self.server_ref.namespace, digest))
+      raise IOError('Attempted to fetch from %s; no data exist: %s / %s.' %
+                    (source_url, self.server_ref.namespace, digest))
 
     # for DB uploads
     content = response.get('content')
@@ -390,8 +387,8 @@ class IsolateServer(StorageApi):
 
       # Ensure returned offset equals requested one.
       if offset != content_offset:
-        raise IOError('Expecting offset %d, got %d (Content-Range is %s)' % (
-            offset, content_offset, content_range))
+        raise IOError('Expecting offset %d, got %d (Content-Range is %s)' %
+                      (offset, content_offset, content_range))
 
       # Ensure entire tail of the file is returned.
       if size is not None and last_byte_index + 1 != size:
@@ -418,13 +415,12 @@ class IsolateServer(StorageApi):
         # PUT file to |upload_url|.
         success = self._do_push(push_state, content)
         if not success:
-          raise IOError('Failed to upload file with hash %s to URL %s' % (
-              item.digest, push_state.upload_url))
+          raise IOError('Failed to upload file with hash %s to URL %s' %
+                        (item.digest, push_state.upload_url))
         push_state.uploaded = True
       else:
-        logging.info(
-            'A file %s already uploaded, retrying finalization only',
-            item.digest)
+        logging.info('A file %s already uploaded, retrying finalization only',
+                     item.digest)
 
       # Optionally notify the server that it's done.
       if push_state.finalize_url:
@@ -440,9 +436,8 @@ class IsolateServer(StorageApi):
                 'upload_ticket': push_state.preupload_status['upload_ticket'],
             })
         if not response or not response.get('ok'):
-          raise IOError(
-              'Failed to finalize file with hash %s\n%r' %
-              (item.digest, response))
+          raise IOError('Failed to finalize file with hash %s\n%r' %
+                        (item.digest, response))
       push_state.finalized = True
     finally:
       with self._lock:
@@ -454,14 +449,13 @@ class IsolateServer(StorageApi):
 
     # Request body is a json encoded list of dicts.
     body = {
-        'items': [
-          {
+        'items': [{
             'digest': item.digest,
             'is_isolated': bool(item.high_priority),
             'size': item.size,
-          } for item in items
-        ],
-        'namespace': self._namespace_dict,
+        } for item in items],
+        'namespace':
+            self._namespace_dict,
     }
 
     query_url = '%s/_ah/api/isolateservice/v1/preupload' % self.server_ref.url
@@ -471,8 +465,7 @@ class IsolateServer(StorageApi):
     try:
       response = net.url_read_json(url=query_url, data=body)
       if response is None:
-        raise isolated_format.MappingError(
-            'Failed to execute preupload query')
+        raise isolated_format.MappingError('Failed to execute preupload query')
     except ValueError as err:
       raise isolated_format.MappingError(
           'Invalid response from server: %s, body is %s' % (err, response))
@@ -485,8 +478,8 @@ class IsolateServer(StorageApi):
       index = int(preupload_status['index'])
       missing_items[items[index]] = _IsolateServerPushState(
           preupload_status, items[index].size)
-    logging.info('Queried %d files, %d cache hit',
-        len(items), len(items) - len(missing_items))
+    logging.info('Queried %d files, %d cache hit', len(items),
+                 len(items) - len(missing_items))
     return missing_items
 
   def _do_fetch(self, url, digest, offset):
@@ -512,9 +505,7 @@ class IsolateServer(StorageApi):
     # TODO(maruel): url + '?' + urllib.urlencode(data) once a HTTP GET endpoint
     # is added.
     return net.url_read_json(
-        url=url,
-        data=data,
-        read_timeout=DOWNLOAD_READ_TIMEOUT)
+        url=url, data=data, read_timeout=DOWNLOAD_READ_TIMEOUT)
 
   def _do_push(self, push_state, content):
     """Uploads isolated file to the URL.
@@ -585,9 +576,8 @@ class IsolateServerGrpc(StorageApi):
 
   def __init__(self, server_ref, proxy):
     super(IsolateServerGrpc, self).__init__()
-    logging.info(
-        'Using gRPC for Isolate with server %s, proxy %s',
-        server_ref.url, proxy)
+    logging.info('Using gRPC for Isolate with server %s, proxy %s',
+                 server_ref.url, proxy)
     self._server_ref = server_ref
     self._lock = threading.Lock()
     self._memory_use = 0
@@ -611,8 +601,8 @@ class IsolateServerGrpc(StorageApi):
     request = bytestream_pb2.ReadRequest()
     if not size:
       size = -1
-    request.resource_name = '%s/blobs/%s/%d' % (
-        self._proxy.prefix, digest, size)
+    request.resource_name = '%s/blobs/%s/%d' % (self._proxy.prefix, digest,
+                                                size)
     try:
       for response in self._proxy.get_stream('Read', request):
         yield response.data
@@ -632,14 +622,16 @@ class IsolateServerGrpc(StorageApi):
     self._num_pushes += 1
 
     try:
+
       def chunker():
         # Returns one bit of content at a time
-        if (isinstance(content, str)
-            or not isinstance(content, collections.Iterable)):
+        if (isinstance(content, str) or
+            not isinstance(content, collections.Iterable)):
           yield content
         else:
           for chunk in content:
             yield chunk
+
       def slicer():
         # Ensures every bit of content is under the gRPC max size; yields
         # proto messages to send via gRPC.
@@ -670,9 +662,9 @@ class IsolateServerGrpc(StorageApi):
           # it's already there.
           self._already_exists += 1
           if self._already_exists % 100 == 0:
-            logging.info('unnecessarily pushed %d/%d blobs (%.1f%%)' % (
-                self._already_exists, self._num_pushes,
-                100.0 * self._already_exists / self._num_pushes))
+            logging.info('unnecessarily pushed %d/%d blobs (%.1f%%)' %
+                         (self._already_exists, self._num_pushes,
+                          100.0 * self._already_exists / self._num_pushes))
         else:
           logging.error('gRPC error during push: throwing as IOError (%s)' % r)
           raise IOError(r)
@@ -681,8 +673,8 @@ class IsolateServerGrpc(StorageApi):
         raise IOError(e)
 
       if response is not None and response.committed_size != item.size:
-        raise IOError('%s/%d: incorrect size written (%d)' % (
-            item.digest, item.size, response.committed_size))
+        raise IOError('%s/%d: incorrect size written (%d)' %
+                      (item.digest, item.size, response.committed_size))
       elif response is None and item.size > 0:
         # This happens when the content generator is exhausted and the gRPC call
         # simply returns None. Throw gRPC error as this is not recoverable.

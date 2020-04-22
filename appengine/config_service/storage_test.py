@@ -25,7 +25,6 @@ class StorageTestCase(test_case.TestCase):
     confg_set_key = storage.ConfigSet(
         id=config_set,
         location='https://x.com',
-
         latest_revision=revision,
         latest_revision_url=revision_url,
         latest_revision_time=datetime.datetime(2016, 1, 1),
@@ -46,66 +45,65 @@ class StorageTestCase(test_case.TestCase):
     self.put_file('foo', 'deadbeef', 'config.cfg', 'content')
     self.put_file('bar', 'badcoffee', 'config.cfg', 'content2')
     expected = {
-      'foo': (
-          'deadbeef',
-          'https://x.com/+/deadbeef/config.cfg',
-          'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea',
-      ),
-      'bar': (
-          'badcoffee',
-          'https://x.com/+/badcoffee/config.cfg',
-          'v1:db00fd65b218578127ea51f3dffac701f12f486a',
-      ),
+        'foo': (
+            'deadbeef',
+            'https://x.com/+/deadbeef/config.cfg',
+            'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea',
+        ),
+        'bar': (
+            'badcoffee',
+            'https://x.com/+/badcoffee/config.cfg',
+            'v1:db00fd65b218578127ea51f3dffac701f12f486a',
+        ),
     }
-    actual = storage.get_config_hashes_async(
-      {'foo': 'deadbeef', 'bar': 'badcoffee'}, 'config.cfg').get_result()
+    actual = storage.get_config_hashes_async({
+        'foo': 'deadbeef',
+        'bar': 'badcoffee'
+    }, 'config.cfg').get_result()
     self.assertEqual(expected, actual)
 
   def test_get_non_existing_config(self):
     self.put_file('foo', 'deadbeef', 'config.cfg', 'content')
     expected = {
-      'foo': (
-          'deadbeef',
-          'https://x.com/+/deadbeef/config.cfg',
-          'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea',
-       ),
-      'bar': (None, None, None),
+        'foo': (
+            'deadbeef',
+            'https://x.com/+/deadbeef/config.cfg',
+            'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea',
+        ),
+        'bar': (None, None, None),
     }
-    actual = storage.get_config_hashes_async(
-      {'foo': 'deadbeef', 'bar': 'badcoffee'}, 'config.cfg').get_result()
+    actual = storage.get_config_hashes_async({
+        'foo': 'deadbeef',
+        'bar': 'badcoffee'
+    }, 'config.cfg').get_result()
     self.assertEqual(expected, actual)
 
   def test_get_latest_config(self):
     self.put_file('foo', 'deadbeef', 'config.cfg', 'content')
     self.put_file('bar', 'badcoffee', 'config.cfg', 'content2')
     expected = {
-      'foo': (
-          'deadbeef',
-          'https://x.com/+/deadbeef/config.cfg',
-          'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea'
-      ),
-      'bar': (
-          'badcoffee',
-          'https://x.com/+/badcoffee/config.cfg',
-          'v1:db00fd65b218578127ea51f3dffac701f12f486a'
-      ),
+        'foo': ('deadbeef', 'https://x.com/+/deadbeef/config.cfg',
+                'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea'),
+        'bar': ('badcoffee', 'https://x.com/+/badcoffee/config.cfg',
+                'v1:db00fd65b218578127ea51f3dffac701f12f486a'),
     }
-    actual = storage.get_config_hashes_async(
-        {'foo': None, 'bar': None}, 'config.cfg').get_result()
+    actual = storage.get_config_hashes_async({
+        'foo': None,
+        'bar': None
+    }, 'config.cfg').get_result()
     self.assertEqual(expected, actual)
 
   def test_get_latest_non_existing_config_set(self):
     self.put_file('foo', 'deadbeef', 'config.cfg', 'content')
     expected = {
-      'foo': (
-          'deadbeef',
-          'https://x.com/+/deadbeef/config.cfg',
-          'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea'
-      ),
-      'bar': (None, None, None),
+        'foo': ('deadbeef', 'https://x.com/+/deadbeef/config.cfg',
+                'v1:6b584e8ece562ebffc15d38808cd6b98fc3d97ea'),
+        'bar': (None, None, None),
     }
-    actual = storage.get_config_hashes_async(
-      {'foo': None, 'bar': None}, 'config.cfg').get_result()
+    actual = storage.get_config_hashes_async({
+        'foo': None,
+        'bar': None
+    }, 'config.cfg').get_result()
     self.assertEqual(expected, actual)
 
   def test_get_config_by_hash(self):
@@ -138,12 +136,12 @@ class StorageTestCase(test_case.TestCase):
         gitiles=service_config_pb2.ImportCfg.Gitiles(fetch_log_deadline=42))
     self.mock(storage, 'get_latest_configs_async', mock.Mock())
     storage.get_latest_configs_async.return_value = future({
-      storage.get_self_config_set(): (
-          'rev', 'file://config', 'hash',
-          'gitiles { fetch_archive_deadline: 10 }'),
+        storage.get_self_config_set(): (
+            'rev', 'file://config', 'hash',
+            'gitiles { fetch_archive_deadline: 10 }'),
     })
-    msg = storage.get_self_config_async(
-        'import.cfg', lambda: default_msg).get_result()
+    msg = storage.get_self_config_async('import.cfg',
+                                        lambda: default_msg).get_result()
     self.assertEqual(msg.gitiles.fetch_log_deadline, 42)
 
   def test_get_self_config(self):
@@ -152,19 +150,20 @@ class StorageTestCase(test_case.TestCase):
     self.mock(storage, 'get_config_hashes_async', mock.Mock())
     self.mock(storage, 'get_configs_by_hashes_async', mock.Mock())
     storage.get_config_hashes_async.return_value = future({
-        storage.get_self_config_set(): (
-            'deadbeef', 'file://config', 'beefdead'),
+        storage.get_self_config_set(): ('deadbeef', 'file://config',
+                                        'beefdead'),
     })
     storage.get_configs_by_hashes_async.return_value = future({
-      'beefdead': 'project_access_group: "group"',
+        'beefdead': 'project_access_group: "group"',
     })
 
     actual = storage.get_self_config_async(
         'acl.cfg', service_config_pb2.AclCfg).get_result()
     self.assertEqual(expected, actual)
 
-    storage.get_config_hashes_async.assert_called_once_with(
-        {storage.get_self_config_set(): None}, 'acl.cfg')
+    storage.get_config_hashes_async.assert_called_once_with({
+        storage.get_self_config_set(): None
+    }, 'acl.cfg')
     storage.get_configs_by_hashes_async.assert_called_once_with(['beefdead'])
 
     # memcached:

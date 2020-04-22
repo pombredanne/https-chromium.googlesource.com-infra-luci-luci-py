@@ -29,7 +29,6 @@ from six.moves import urllib
 
 from utils import on_error
 
-
 PEM = os.path.join(test_env.TESTS_DIR, 'self_signed.pem')
 
 
@@ -39,14 +38,13 @@ def _serialize_env():
 
 
 class HttpsServer(BaseHTTPServer.HTTPServer):
+
   def __init__(self, addr, cls, hostname, pem):
     BaseHTTPServer.HTTPServer.__init__(self, addr, cls)
     self.hostname = hostname
     self.pem = pem
     self.socket = ssl.wrap_socket(
-        self.socket,
-        server_side=True,
-        certfile=self.pem)
+        self.socket, server_side=True, certfile=self.pem)
     self.keep_running = True
     self.requests = []
     self._thread = None
@@ -86,10 +84,10 @@ class HttpsServer(BaseHTTPServer.HTTPServer):
 
 
 class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
+
   def log_message(self, fmt, *args):  # pylint: disable=arguments-differ
-    logging.debug(
-        '%s - - [%s] %s',
-        self.address_string(), self.log_date_time_string(), fmt % args)
+    logging.debug('%s - - [%s] %s', self.address_string(),
+                  self.log_date_time_string(), fmt % args)
 
   def parse_POST(self):
     ctype, pdict = cgi.parse_header(self.headers['Content-Type'])
@@ -117,8 +115,8 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
     self.send_header('Content-type', 'application/json; charset=utf-8')
     self.end_headers()
     data = {
-      'id': '1234',
-      'url': 'https://localhost/error/1234',
+        'id': '1234',
+        'url': 'https://localhost/error/1234',
     }
     self.wfile.write(json.dumps(data))
 
@@ -128,8 +126,8 @@ def start_server():
   # A premade passwordless self-signed certificate. It works because older
   # urllib doesn't verify the certificate validity. Disable SSL certificate
   # verification for more recent version.
-  create_unverified_https_context = getattr(
-      ssl, '_create_unverified_context', None)
+  create_unverified_https_context = getattr(ssl, '_create_unverified_context',
+                                            None)
   # pylint: disable=using-constant-test
   if create_unverified_https_context:
     ssl._create_default_https_context = create_unverified_https_context
@@ -153,6 +151,7 @@ class OnErrorBase(auto_stub.TestCase):
 
 
 class OnErrorTest(OnErrorBase):
+
   def test_report(self):
     url = 'https://localhost/'
     on_error.report_on_exception_exit(url)
@@ -170,11 +169,15 @@ class OnErrorTest(OnErrorBase):
 
 
 class OnErrorServerTest(OnErrorBase):
+
   def call(self, url, arg, returncode):
     cmd = [sys.executable, '-u', 'main.py', url, arg]
     logging.info('Running: %s', ' '.join(cmd))
     proc = subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=os.environ,
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        env=os.environ,
         universal_newlines=True,
         cwd=os.path.join(test_env.TESTS_DIR, 'on_error'))
     out = proc.communicate()[0]
@@ -202,10 +205,9 @@ class OnErrorServerTest(OnErrorBase):
     # Rerun itself, report an error manually, ensure the error was reported.
     httpd = start_server()
     out = self.call(httpd.url, 'report', 0)
-    expected = (
-        'Sending the report ... done.\n'
-        'Report URL: https://localhost/error/1234\n'
-        'Oh dang\n')
+    expected = ('Sending the report ... done.\n'
+                'Report URL: https://localhost/error/1234\n'
+                'Oh dang\n')
     self.assertEqual(expected, out)
 
     actual = self.one_request(httpd)
@@ -231,10 +233,9 @@ class OnErrorServerTest(OnErrorBase):
     # Rerun itself, report an exception manually, ensure the error was reported.
     httpd = start_server()
     out = self.call(httpd.url, 'exception', 0)
-    expected = (
-        'Sending the crash report ... done.\n'
-        'Report URL: https://localhost/error/1234\n'
-        'Really\nYou are not my type\n')
+    expected = ('Sending the crash report ... done.\n'
+                'Report URL: https://localhost/error/1234\n'
+                'Really\nYou are not my type\n')
     self.assertEqual(expected, out)
 
     actual = self.one_request(httpd)
@@ -264,10 +265,9 @@ class OnErrorServerTest(OnErrorBase):
     # Rerun itself, report an exception manually, ensure the error was reported.
     httpd = start_server()
     out = self.call(httpd.url, 'exception_no_msg', 0)
-    expected = (
-        'Sending the crash report ... done.\n'
-        'Report URL: https://localhost/error/1234\n'
-        'You are not my type #2\n')
+    expected = ('Sending the crash report ... done.\n'
+                'Report URL: https://localhost/error/1234\n'
+                'You are not my type #2\n')
     self.assertEqual(expected, out)
 
     actual = self.one_request(httpd)
@@ -297,17 +297,16 @@ class OnErrorServerTest(OnErrorBase):
     # Rerun itself, report an error with a crash, ensure the error was reported.
     httpd = start_server()
     out = self.call(httpd.url, 'crash', 1)
-    expected = (
-        u'Traceback (most recent call last):\n'
-        u'  File "main.py", line 0, in <module>\n'
-        u'    sys.exit(run_shell_out(*sys.argv[1:]))\n'
-        u'  File "main.py", line 0, in run_shell_out\n'
-        u'    raise ValueError(\'Oops\')\n'
-        u'ValueError: Oops\n'
-        u'Sending the crash report ... done.\n'
-        u'Report URL: https://localhost/error/1234\n'
-        u'Process exited due to exception\n'
-        u'Oops\n')
+    expected = (u'Traceback (most recent call last):\n'
+                u'  File "main.py", line 0, in <module>\n'
+                u'    sys.exit(run_shell_out(*sys.argv[1:]))\n'
+                u'  File "main.py", line 0, in run_shell_out\n'
+                u'    raise ValueError(\'Oops\')\n'
+                u'ValueError: Oops\n'
+                u'Sending the crash report ... done.\n'
+                u'Report URL: https://localhost/error/1234\n'
+                u'Process exited due to exception\n'
+                u'Oops\n')
     # Remove numbers so editing the code doesn't invalidate the expectation.
     self.assertEqual(expected, re.sub(r' \d+', ' 0', out))
 
@@ -339,16 +338,15 @@ class OnErrorServerTest(OnErrorBase):
   def test_shell_out_crash_server_down(self):
     # Rerun itself, report an error, ensure the error was reported.
     out = self.call('https://localhost:1', 'crash', 1)
-    expected = (
-        u'Traceback (most recent call last):\n'
-        u'  File "main.py", line 0, in <module>\n'
-        u'    sys.exit(run_shell_out(*sys.argv[1:]))\n'
-        u'  File "main.py", line 0, in run_shell_out\n'
-        u'    raise ValueError(\'Oops\')\n'
-        u'ValueError: Oops\n'
-        u'Sending the crash report ... failed!\n'
-        u'Process exited due to exception\n'
-        u'Oops\n')
+    expected = (u'Traceback (most recent call last):\n'
+                u'  File "main.py", line 0, in <module>\n'
+                u'    sys.exit(run_shell_out(*sys.argv[1:]))\n'
+                u'  File "main.py", line 0, in run_shell_out\n'
+                u'    raise ValueError(\'Oops\')\n'
+                u'ValueError: Oops\n'
+                u'Sending the crash report ... failed!\n'
+                u'Process exited due to exception\n'
+                u'Oops\n')
     # Remove numbers so editing the code doesn't invalidate the expectation.
     self.assertEqual(expected, re.sub(r' \d+', ' 0', out))
 

@@ -131,6 +131,7 @@ class MainTest(test_case.EndpointsTestCase):
     def _expiration_jitter(now, expiration):
       out = now + datetime.timedelta(seconds=expiration)
       return out, out
+
     self.mock(model, 'expiration_jitter', _expiration_jitter)
     now = self.mock_now(datetime.datetime(2020, 1, 2, 3, 4, 5), 0)
     request = self.store_request('sha1-raw', 'Foo')
@@ -145,7 +146,7 @@ class MainTest(test_case.EndpointsTestCase):
     self.assertEqual(0, self.execute_tasks())
 
     # Try again, second later.
-    self.mock_now(now, config.settings().default_expiration+1)
+    self.mock_now(now, config.settings().default_expiration + 1)
     self.app.get(
         '/internal/cron/cleanup/trigger/expired',
         headers={'X-AppEngine-Cron': 'true'})
@@ -159,6 +160,7 @@ class MainTest(test_case.EndpointsTestCase):
   def test_cron_cleanup_trigger_orphan(self):
     now = 12345678.
     self.mock(time, 'time', lambda: now)
+
     # Asserts that lost GCS files are deleted through a task queue.
     def _list_files(bucket):
       self.assertEqual('sample-app', bucket)
@@ -167,7 +169,7 @@ class MainTest(test_case.EndpointsTestCase):
           filename=bucket + '/namespace/recent',
           st_size=10,
           etag='123',
-          st_ctime=now - 24*60*60,
+          st_ctime=now - 24 * 60 * 60,
           content_type=None,
           metadata=None,
           is_dir=False)
@@ -175,20 +177,23 @@ class MainTest(test_case.EndpointsTestCase):
           filename=bucket + '/namespace/old',
           st_size=11,
           etag='123',
-          st_ctime=now - 24*60*60-1,
+          st_ctime=now - 24 * 60 * 60 - 1,
           content_type=None,
           metadata=None,
           is_dir=False)
       return [('namespace/recent', recent), ('namespace/old', old)]
+
     self.mock(gcs, 'list_files', _list_files)
 
     called = []
+
     @ndb.tasklet
     def _delete_file_async(bucket, filename, ignore_missing):
       called.append(filename)
       self.assertEqual('sample-app', bucket)
       self.assertEqual(True, ignore_missing)
       raise ndb.Return(None)
+
     self.mock(gcs, 'delete_file_async', _delete_file_async)
 
     self.app.get(

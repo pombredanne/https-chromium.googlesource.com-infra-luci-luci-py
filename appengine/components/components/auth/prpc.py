@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines pRPC server interceptor that initializes auth context."""
 
 import logging
@@ -14,7 +13,6 @@ from . import config
 from . import delegation
 from . import ipaddr
 from . import model
-
 
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = ['prpc_interceptor']
@@ -57,7 +55,6 @@ def prpc_interceptor(request, context, call_details, continuation):
 
 
 ### Private stuff.
-
 
 # Keys to look up in the metadata. Must be lowercase.
 _AUTHORIZATION_METADATA_KEY = 'authorization'
@@ -134,9 +131,7 @@ def _log_auth_error(title, exc, metadata, peer_ip):
     metadata: RPC invocation metadata, as a list of (k, v) pairs.
     peer_ip: ipaddr.IP with the peer IP address.
   """
-  logging.warning(
-      '%s.\n%s\nPeer: %s\nIP: %s\nOrigin: %s',
-      title, exc.message,
-      api.get_peer_identity().to_bytes(),
-      ipaddr.ip_to_string(peer_ip),
-      _grab_metadata(metadata, 'origin') or '<unknown>')
+  logging.warning('%s.\n%s\nPeer: %s\nIP: %s\nOrigin: %s', title, exc.message,
+                  api.get_peer_identity().to_bytes(),
+                  ipaddr.ip_to_string(peer_ip),
+                  _grab_metadata(metadata, 'origin') or '<unknown>')

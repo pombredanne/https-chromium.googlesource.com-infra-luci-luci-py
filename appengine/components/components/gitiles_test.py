@@ -21,7 +21,6 @@ from components import auth
 from components import gerrit
 from components import gitiles
 
-
 HOSTNAME = 'chromium.googlesource.com'
 PROJECT = 'project'
 REVISION = '404d1697dca23824bc1130061a5bd2be4e073922'
@@ -29,6 +28,7 @@ PATH = '/dir'
 
 
 class GitilesTestCase(test_case.TestCase):
+
   def setUp(self):
     super(GitilesTestCase, self).setUp()
     self.mock(auth, 'get_access_token', mock.Mock(return_value=('token', 0.0)))
@@ -62,42 +62,41 @@ class GitilesTestCase(test_case.TestCase):
   def test_get_commit(self):
     req_path = 'project/+/%s' % REVISION
     self.mock_fetch_json({
-      'commit': REVISION,
-      'tree': '3cfb41e1c6c37e61c3eccfab2395752298a5743c',
-      'parents': [
-        '4087678c002d57e1148f21da5e00867df9a7d973',
-      ],
-      'author': {
-        'name': 'John Doe',
-        'email': 'john.doe@chromium.org',
-        'time': 'Tue Apr 29 00:00:00 2014',
-      },
-      'committer': {
-        'name': 'John Doe',
-        'email': 'john.doe@chromium.org',
-        'time': 'Tue Apr 29 00:00:00 2014',
-      },
-      'message': 'Subject\\n\\nBody',
-      'tree_diff': [
-        {
-          'type': 'modify',
-          'old_id': 'f23dec7da271f7e9d8c55a35f32f6971b7ce486d',
-          'old_mode': 33188,
-          'old_path': 'codereview.settings',
-          'new_id': '0bdbda926c49aa3cc4b7248bc22cc261abff5f94',
-          'new_mode': 33188,
-          'new_path': 'codereview.settings',
+        'commit':
+            REVISION,
+        'tree':
+            '3cfb41e1c6c37e61c3eccfab2395752298a5743c',
+        'parents': ['4087678c002d57e1148f21da5e00867df9a7d973',],
+        'author': {
+            'name': 'John Doe',
+            'email': 'john.doe@chromium.org',
+            'time': 'Tue Apr 29 00:00:00 2014',
         },
-        {
-          'type': 'add',
-          'old_id': '0000000000000000000000000000000000000000',
-          'old_mode': 0,
-          'old_path': '/dev/null',
-          'new_id': 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391',
-          'new_mode': 33188,
-          'new_path': 'x',
-        }
-      ],
+        'committer': {
+            'name': 'John Doe',
+            'email': 'john.doe@chromium.org',
+            'time': 'Tue Apr 29 00:00:00 2014',
+        },
+        'message':
+            'Subject\\n\\nBody',
+        'tree_diff': [{
+            'type': 'modify',
+            'old_id': 'f23dec7da271f7e9d8c55a35f32f6971b7ce486d',
+            'old_mode': 33188,
+            'old_path': 'codereview.settings',
+            'new_id': '0bdbda926c49aa3cc4b7248bc22cc261abff5f94',
+            'new_mode': 33188,
+            'new_path': 'codereview.settings',
+        },
+                      {
+                          'type': 'add',
+                          'old_id': '0000000000000000000000000000000000000000',
+                          'old_mode': 0,
+                          'old_path': '/dev/null',
+                          'new_id': 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391',
+                          'new_mode': 33188,
+                          'new_path': 'x',
+                      }],
     })
 
     commit = gitiles.get_commit(HOSTNAME, PROJECT, REVISION)
@@ -112,20 +111,21 @@ class GitilesTestCase(test_case.TestCase):
   def test_get_tree(self):
     req_path = 'project/+/deadbeef/dir'
     self.mock_fetch_json({
-        'id': 'c244aa92a18cd719c55205f99e04333840330012',
+        'id':
+            'c244aa92a18cd719c55205f99e04333840330012',
         'entries': [
-          {
-            'id': '0244aa92a18cd719c55205f99e04333840330012',
-            'name': 'a',
-            'type': 'blob',
-            'mode': 33188,
-          },
-          {
-            'id': '9c247a8aa968a3e2641addf1f4bd4acfc24e7915',
-            'name': 'b',
-            'type': 'blob',
-            'mode': 33188,
-          },
+            {
+                'id': '0244aa92a18cd719c55205f99e04333840330012',
+                'name': 'a',
+                'type': 'blob',
+                'mode': 33188,
+            },
+            {
+                'id': '9c247a8aa968a3e2641addf1f4bd4acfc24e7915',
+                'name': 'b',
+                'type': 'blob',
+                'mode': 33188,
+            },
         ],
     })
 
@@ -133,53 +133,49 @@ class GitilesTestCase(test_case.TestCase):
     gerrit.fetch_json_async.assert_called_once_with(HOSTNAME, req_path)
     self.assertIsNotNone(tree)
     self.assertEqual(tree.id, 'c244aa92a18cd719c55205f99e04333840330012')
-    self.assertEqual(
-        tree.entries[0].id, '0244aa92a18cd719c55205f99e04333840330012')
+    self.assertEqual(tree.entries[0].id,
+                     '0244aa92a18cd719c55205f99e04333840330012')
     self.assertEqual(tree.entries[0].name, 'a')
 
   def test_get_log(self):
     req_path = 'project/+log/master/'
     self.mock_fetch_json({
-      'log': [
-        {
-          'commit': REVISION,
-          'tree': '3cfb41e1c6c37e61c3eccfab2395752298a5743c',
-          'parents': [
-            '4087678c002d57e1148f21da5e00867df9a7d973',
-          ],
-          'author': {
-            'name': 'John Doe',
-            'email': 'john.doe@chromium.org',
-            'time': 'Tue Apr 29 00:00:00 2014',
-          },
-          'committer': {
-            'name': 'John Doe',
-            'email': 'john.doe@chromium.org',
-            'time': 'Tue Apr 29 00:00:00 2014',
-          },
-          'message': 'Subject\\n\\nBody',
-          'tree_diff': [],
-        },
-        {
-          'commit': '4087678c002d57e1148f21da5e00867df9a7d973',
-          'tree': '3cfb41asdc37e61c3eccfab2395752298a5743c',
-          'parents': [
-            '1237678c002d57e1148f21da5e00867df9a7d973',
-          ],
-          'author': {
-            'name': 'John Doe',
-            'email': 'john.doe@chromium.org',
-            'time': 'Tue Apr 29 00:00:00 2014',
-          },
-          'committer': {
-            'name': 'John Doe',
-            'email': 'john.doe@chromium.org',
-            'time': 'Tue Apr 29 00:00:00 2014',
-          },
-          'message': 'Subject2\\n\\nBody2',
-          'tree_diff': [],
-        },
-      ],
+        'log': [
+            {
+                'commit': REVISION,
+                'tree': '3cfb41e1c6c37e61c3eccfab2395752298a5743c',
+                'parents': ['4087678c002d57e1148f21da5e00867df9a7d973',],
+                'author': {
+                    'name': 'John Doe',
+                    'email': 'john.doe@chromium.org',
+                    'time': 'Tue Apr 29 00:00:00 2014',
+                },
+                'committer': {
+                    'name': 'John Doe',
+                    'email': 'john.doe@chromium.org',
+                    'time': 'Tue Apr 29 00:00:00 2014',
+                },
+                'message': 'Subject\\n\\nBody',
+                'tree_diff': [],
+            },
+            {
+                'commit': '4087678c002d57e1148f21da5e00867df9a7d973',
+                'tree': '3cfb41asdc37e61c3eccfab2395752298a5743c',
+                'parents': ['1237678c002d57e1148f21da5e00867df9a7d973',],
+                'author': {
+                    'name': 'John Doe',
+                    'email': 'john.doe@chromium.org',
+                    'time': 'Tue Apr 29 00:00:00 2014',
+                },
+                'committer': {
+                    'name': 'John Doe',
+                    'email': 'john.doe@chromium.org',
+                    'time': 'Tue Apr 29 00:00:00 2014',
+                },
+                'message': 'Subject2\\n\\nBody2',
+                'tree_diff': [],
+            },
+        ],
     })
 
     log = gitiles.get_log(HOSTNAME, 'project', 'master', limit=2)
@@ -187,38 +183,38 @@ class GitilesTestCase(test_case.TestCase):
         HOSTNAME, req_path, params={'n': 2})
 
     john = gitiles.Contribution(
-        name='John Doe', email='john.doe@chromium.org',
+        name='John Doe',
+        email='john.doe@chromium.org',
         time=datetime.datetime(2014, 4, 29))
     self.assertEqual(
         log,
         gitiles.Log(
             commits=[
-              gitiles.Commit(
-                  sha=REVISION,
-                  tree='3cfb41e1c6c37e61c3eccfab2395752298a5743c',
-                  parents=[
-                    '4087678c002d57e1148f21da5e00867df9a7d973',
-                  ],
-                  message='Subject\\n\\nBody',
-                  author=john,
-                  committer=john,
-                  tree_diff=[],
-              ),
-              gitiles.Commit(
-                  sha='4087678c002d57e1148f21da5e00867df9a7d973',
-                  tree='3cfb41asdc37e61c3eccfab2395752298a5743c',
-                  parents=[
-                    '1237678c002d57e1148f21da5e00867df9a7d973',
-                  ],
-                  message='Subject2\\n\\nBody2',
-                  author=john,
-                  committer=john,
-                  tree_diff=[],
-              ),
+                gitiles.Commit(
+                    sha=REVISION,
+                    tree='3cfb41e1c6c37e61c3eccfab2395752298a5743c',
+                    parents=[
+                        '4087678c002d57e1148f21da5e00867df9a7d973',
+                    ],
+                    message='Subject\\n\\nBody',
+                    author=john,
+                    committer=john,
+                    tree_diff=[],
+                ),
+                gitiles.Commit(
+                    sha='4087678c002d57e1148f21da5e00867df9a7d973',
+                    tree='3cfb41asdc37e61c3eccfab2395752298a5743c',
+                    parents=[
+                        '1237678c002d57e1148f21da5e00867df9a7d973',
+                    ],
+                    message='Subject2\\n\\nBody2',
+                    author=john,
+                    committer=john,
+                    tree_diff=[],
+                ),
             ],
             next_cursor=None,
-        )
-    )
+        ))
 
   def test_get_log_with_slash(self):
     req_path = 'project/+log/master/'
@@ -277,9 +273,7 @@ class GitilesTestCase(test_case.TestCase):
     self.assertEqual(patch, 'thepatch')
 
     gerrit.fetch_async.assert_called_once_with(
-        HOSTNAME,
-        req_path,
-        headers={'Accept': 'text/plain'})
+        HOSTNAME, req_path, headers={'Accept': 'text/plain'})
 
   def test_to_from_dict(self):
     loc = gitiles.Location.parse(
@@ -337,8 +331,8 @@ class GitilesTestCase(test_case.TestCase):
     url = ('http://localhost/project.git/+/'
            'f9af6214956f071d0e541d05e65285b3600079a0d/path')
     loc = gitiles.Location.parse(url)
-    self.assertEqual(
-        loc.treeish, 'refs/heads/f9af6214956f071d0e541d05e65285b3600079a0d')
+    self.assertEqual(loc.treeish,
+                     'refs/heads/f9af6214956f071d0e541d05e65285b3600079a0d')
 
   def test_parse_location_HEAD_treeish(self):
     url = 'http://localhost/project/+/HEAD/path'
@@ -348,9 +342,9 @@ class GitilesTestCase(test_case.TestCase):
   def test_parse_resolve(self):
     self.mock(gitiles, 'get_refs', mock.Mock())
     gitiles.get_refs.return_value = {
-      'refs/heads/master': {},
-      'refs/heads/a/b': {},
-      'refs/tags/c/d': {},
+        'refs/heads/master': {},
+        'refs/heads/a/b': {},
+        'refs/tags/c/d': {},
     }
     loc = gitiles.Location.parse_resolve('http://h/p/+/a/b/c')
     self.assertEqual(loc.treeish, 'refs/heads/a/b')
@@ -366,7 +360,7 @@ class GitilesTestCase(test_case.TestCase):
   def test_parse_resolve_head(self):
     self.mock(gitiles, 'get_refs', mock.Mock())
     gitiles.get_refs.return_value = {
-      'refs/heads/a/b': {},
+        'refs/heads/a/b': {},
     }
     loc = gitiles.Location.parse_resolve('http://h/p/+/refs/heads/a/b/c')
     self.assertEqual(loc.treeish, 'refs/heads/a/b')
@@ -380,23 +374,28 @@ class GitilesTestCase(test_case.TestCase):
 
   def test_location_neq(self):
     loc1 = gitiles.Location(
-        hostname='localhost', project='project',
-        treeish='treeish', path='/path')
+        hostname='localhost',
+        project='project',
+        treeish='treeish',
+        path='/path')
     loc2 = gitiles.Location(
-        hostname='localhost', project='project',
-        treeish='treeish', path='/path')
+        hostname='localhost',
+        project='project',
+        treeish='treeish',
+        path='/path')
     self.assertFalse(loc1.__ne__(loc2))
 
   def test_location_str(self):
     loc = gitiles.Location(
-        hostname='localhost', project='project',
-        treeish='treeish', path='/path')
+        hostname='localhost',
+        project='project',
+        treeish='treeish',
+        path='/path')
     self.assertEqual(loc, 'https://localhost/project/+/treeish/path')
 
   def test_location_str_with_slash_path(self):
     loc = gitiles.Location(
-        hostname='localhost', project='project',
-        treeish='treeish', path='/')
+        hostname='localhost', project='project', treeish='treeish', path='/')
     self.assertEqual(loc, 'https://localhost/project/+/treeish')
 
   def test_location_str_defaults_to_head(self):

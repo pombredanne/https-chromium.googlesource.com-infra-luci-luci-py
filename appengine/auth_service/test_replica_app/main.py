@@ -12,6 +12,7 @@ from components import utils
 
 
 class WarmupHandler(webapp2.RequestHandler):
+
   def get(self):
     auth.warmup()
     self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
@@ -26,11 +27,10 @@ ndb.add_flow_exception(datastore_errors.NeedIndexError)
 
 # Add a fake admin for local dev server.
 if not auth.is_replica():
-  auth.bootstrap_group(
-      auth.ADMIN_GROUP,
-      [auth.Identity(auth.IDENTITY_USER, 'test@example.com')],
-      'Users that can manage groups')
+  auth.bootstrap_group(auth.ADMIN_GROUP,
+                       [auth.Identity(auth.IDENTITY_USER, 'test@example.com')],
+                       'Users that can manage groups')
 
 # /_ah/warmup is used by the smoke test to detect that app is alive.
-app = webapp2.WSGIApplication(
-    [webapp2.Route(r'/_ah/warmup', WarmupHandler)], debug=True)
+app = webapp2.WSGIApplication([webapp2.Route(r'/_ah/warmup', WarmupHandler)],
+                              debug=True)

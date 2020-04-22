@@ -19,11 +19,14 @@ import remote_client
 
 
 class TestRemoteClient(auto_stub.TestCase):
+
   def setUp(self):
     super(TestRemoteClient, self).setUp()
     self.slept = 0
+
     def sleep_mock(t):
       self.slept += t
+
     self.mock(time, 'sleep', sleep_mock)
 
   def test_initialize_success(self):
@@ -40,26 +43,30 @@ class TestRemoteClient(auto_stub.TestCase):
     headers = {'A': 'a'}
     exp_ts = time.time() + 3600
     attempt = [0]
+
     def callback():
       attempt[0] += 1
       if attempt[0] == 10:
         return headers, exp_ts
       raise Exception('fail')
+
     c = remote_client.RemoteClientNative('http://localhost:1', callback,
                                          'localhost', '/')
     c.initialize(threading.Event())
-    self.assertEqual(9*2, self.slept)
+    self.assertEqual(9 * 2, self.slept)
     self.assertTrue(c.uses_auth)
     self.assertEqual(headers, c.get_authentication_headers())
 
   def test_initialize_gives_up(self):
+
     def callback():
       raise Exception('fail')
+
     c = remote_client.RemoteClientNative('http://localhost:1', callback,
                                          'localhost', '/')
     with self.assertRaises(remote_client.InitializationError):
       c.initialize(threading.Event())
-    self.assertEqual(29*2, self.slept)
+    self.assertEqual(29 * 2, self.slept)
     self.assertFalse(c.uses_auth)
     self.assertEqual({}, c.get_authentication_headers())
 
@@ -70,16 +77,16 @@ class TestRemoteClient(auto_stub.TestCase):
     auth_headers = {'A': 'a'}
     auth_exp_ts = time.time() + 3600
 
-    c = remote_client.RemoteClientNative(
-        'http://localhost:1',
-        lambda: (auth_headers, auth_exp_ts),
-        'localhost',
-        '/')
+    c = remote_client.RemoteClientNative('http://localhost:1',
+                                         lambda: (auth_headers, auth_exp_ts),
+                                         'localhost', '/')
     self.assertTrue(c.uses_auth)
 
     self.assertEqual({'Cookie': 'GOOGAPPUID=899'}, c.get_headers())
-    self.assertEqual({'A': 'a', 'Cookie': 'GOOGAPPUID=899'},
-                     c.get_headers(include_auth=True))
+    self.assertEqual({
+        'A': 'a',
+        'Cookie': 'GOOGAPPUID=899'
+    }, c.get_headers(include_auth=True))
 
   def test_get_authentication_headers(self):
     self.mock(time, 'time', lambda: 100000)
@@ -120,6 +127,7 @@ class TestRemoteClient(auto_stub.TestCase):
           'task_id': 'task_id',
       }, data)
       return fake_resp
+
     self.mock(c, '_url_read_json', mocked_call)
 
     resp = c.mint_oauth_token('task_id', 'account_id', ['a', 'b'])
@@ -128,8 +136,10 @@ class TestRemoteClient(auto_stub.TestCase):
   def test_mint_oauth_token_transient_err(self):
     c = remote_client.RemoteClientNative('http://localhost:1', None,
                                          'localhost', '/')
+
     def mocked_call(*_args, **_kwargs):
       return None  # that's how net.url_read_json indicates HTTP 500 :-/
+
     self.mock(c, '_url_read_json', mocked_call)
     with self.assertRaises(remote_client.InternalError):
       c.mint_oauth_token('task_id', 'account_id', ['a', 'b'])
@@ -137,8 +147,10 @@ class TestRemoteClient(auto_stub.TestCase):
   def test_mint_oauth_token_fatal_err(self):
     c = remote_client.RemoteClientNative('http://localhost:1', None,
                                          'localhost', '/')
+
     def mocked_call(*_args, **_kwargs):
       return {'error': 'blah'}
+
     self.mock(c, '_url_read_json', mocked_call)
     with self.assertRaises(remote_client.MintOAuthTokenError):
       c.mint_oauth_token('task_id', 'account_id', ['a', 'b'])

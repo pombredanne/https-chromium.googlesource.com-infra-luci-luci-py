@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Classes and functions for generic network communication over HTTP."""
 
 import io
@@ -34,11 +33,9 @@ from utils import configs
 from utils import oauth
 from utils import tools
 
-
 # Disable warnings. https://crbug.com/958933
 # https://urllib3.readthedocs.org/en/latest/security.html#ssl-warnings
 urllib3.disable_warnings()
-
 
 # TODO(vadimsh): Refactor this stuff to be less magical, less global and less
 # bad.
@@ -47,7 +44,7 @@ urllib3.disable_warnings()
 URL_OPEN_MAX_ATTEMPTS = 30
 
 # Default timeout when retrying.
-URL_OPEN_TIMEOUT = 6*60.
+URL_OPEN_TIMEOUT = 6 * 60.
 
 # Default timeout when reading from open HTTP connection.
 URL_READ_TIMEOUT = 60
@@ -66,7 +63,6 @@ CONTENT_ENCODERS = {
     JSON_CONTENT_TYPE:
         lambda x: json.dumps(x, sort_keys=True, separators=(',', ':')),
 }
-
 
 # Google Storage URL regular expression.
 GS_STORAGE_HOST_URL_RE = re.compile(r'https://(.+\.)?storage\.googleapis\.com')
@@ -288,6 +284,7 @@ def get_http_service(urlhost, allow_cached=True):
   """Returns existing or creates new instance of HttpService that can send
   requests to given base urlhost.
   """
+
   def new_service():
     # Create separate authenticator only if engine is not providing
     # authentication already. Also we use signed URLs for Google Storage, no
@@ -299,12 +296,10 @@ def get_http_service(urlhost, allow_cached=True):
     if not engine_cls.provides_auth and not is_gs and not conf.disabled:
       authenticator = (
           authenticators.LuciContextAuthenticator()
-          if conf.use_luci_context_auth else
-          authenticators.OAuthAuthenticator(urlhost, conf))
+          if conf.use_luci_context_auth else authenticators.OAuthAuthenticator(
+              urlhost, conf))
     return HttpService(
-        urlhost,
-        engine=engine_cls(),
-        authenticator=authenticator)
+        urlhost, engine=engine_cls(), authenticator=authenticator)
 
   # Ensure consistency in url naming.
   urlhost = str(urlhost).lower().rstrip('/')
@@ -380,9 +375,8 @@ class HttpService(object):
       # Transparently retry 404 IIF it is a CloudEndpoints API call *and* the
       # result is not JSON. This assumes that we only use JSON encoding. This
       # is workaround for known Cloud Endpoints bug.
-      return (
-          suburl.startswith('/_ah/api/') and
-          not resp.content_type.startswith('application/json'))
+      return (suburl.startswith('/_ah/api/') and
+              not resp.content_type.startswith('application/json'))
     # All other 4** errors are fatal.
     if resp.code < 500:
       return False
@@ -427,19 +421,18 @@ class HttpService(object):
     if self.authenticator and self.authenticator.supports_login:
       self.authenticator.logout()
 
-  def request(
-      self,
-      urlpath,
-      data=None,
-      content_type=None,
-      max_attempts=URL_OPEN_MAX_ATTEMPTS,
-      retry_50x=True,
-      timeout=URL_OPEN_TIMEOUT,
-      read_timeout=URL_READ_TIMEOUT,
-      stream=True,
-      method=None,
-      headers=None,
-      follow_redirects=True):
+  def request(self,
+              urlpath,
+              data=None,
+              content_type=None,
+              max_attempts=URL_OPEN_MAX_ATTEMPTS,
+              retry_50x=True,
+              timeout=URL_OPEN_TIMEOUT,
+              read_timeout=URL_READ_TIMEOUT,
+              stream=True,
+              method=None,
+              headers=None,
+              follow_redirects=True):
     """Attempts to open the given url multiple times.
 
     |urlpath| is relative to the server root, i.e. '/some/request?param=1'.
@@ -513,15 +506,13 @@ class HttpService(object):
     for attempt in retry_loop(max_attempts, timeout):
       # Log non-first attempt.
       if attempt.attempt:
-        logging.warning(
-            'Retrying request %s, attempt %d/%d...',
-            resource_url, attempt.attempt, max_attempts)
+        logging.warning('Retrying request %s, attempt %d/%d...', resource_url,
+                        attempt.attempt, max_attempts)
 
       try:
         # Prepare and send a new request.
-        request = HttpRequest(
-            method, resource_url, query_params, body,
-            headers, read_timeout, stream, follow_redirects)
+        request = HttpRequest(method, resource_url, query_params, body, headers,
+                              read_timeout, stream, follow_redirects)
         if self.authenticator:
           self.authenticator.authorize(request)
         response = self.engine.perform_request(request)
@@ -530,9 +521,8 @@ class HttpService(object):
 
       except (ConnectionError, TimeoutError) as e:
         last_error = e
-        logging.warning(
-            'Unable to open url %s on attempt %d: %s',
-            request.get_full_url(), attempt.attempt, e)
+        logging.warning('Unable to open url %s on attempt %d: %s',
+                        request.get_full_url(), attempt.attempt, e)
         continue
 
       except HttpError as e:
@@ -554,9 +544,9 @@ class HttpService(object):
               attempt.skip_sleep = True
               continue
           # Authentication attempt was unsuccessful.
-          logging.error(
-              'Request to %s failed with HTTP status code %d: %s',
-              request.get_full_url(), e.response.code, e.description())
+          logging.error('Request to %s failed with HTTP status code %d: %s',
+                        request.get_full_url(), e.response.code,
+                        e.description())
           if self.authenticator and self.authenticator.supports_login:
             logging.error(
                 'Use auth.py to login if haven\'t done so already:\n'
@@ -568,28 +558,26 @@ class HttpService(object):
           # This HttpError means we reached the server and there was a problem
           # with the request, so don't retry. Dump entire reply to debug log and
           # only a friendly error message to error log.
-          logging.debug(
-              'Request to %s failed with HTTP status code %d.\n%s',
-              request.get_full_url(), e.response.code,
-              e.description(verbose=True))
-          logging.error(
-              'Request to %s failed with HTTP status code %d: %s',
-              request.get_full_url(), e.response.code, e.description())
+          logging.debug('Request to %s failed with HTTP status code %d.\n%s',
+                        request.get_full_url(), e.response.code,
+                        e.description(verbose=True))
+          logging.error('Request to %s failed with HTTP status code %d: %s',
+                        request.get_full_url(), e.response.code,
+                        e.description())
           return None
 
         # Retry all other errors.
-        logging.warning(
-            'Server responded with error on %s on attempt %d: %s',
-            request.get_full_url(), attempt.attempt, e.description())
+        logging.warning('Server responded with error on %s on attempt %d: %s',
+                        request.get_full_url(), attempt.attempt,
+                        e.description())
         continue
 
     if isinstance(last_error, HttpError):
       error_msg = last_error.description(verbose=True)
     else:
       error_msg = str(last_error)
-    logging.error(
-        'Unable to open given url, %s, after %d attempts.\n%s',
-        request.get_full_url(), max_attempts, error_msg)
+    logging.error('Unable to open given url, %s, after %d attempts.\n%s',
+                  request.get_full_url(), max_attempts, error_msg)
 
     return None
 
@@ -627,9 +615,8 @@ class HttpService(object):
 class HttpRequest(object):
   """Request to HttpService."""
 
-  def __init__(
-      self, method, url, params, body,
-      headers, timeout, stream, follow_redirects):
+  def __init__(self, method, url, params, body, headers, timeout, stream,
+               follow_redirects):
     """Arguments:
       |method| - HTTP method to use
       |url| - relative URL to the resource, without query parameters
@@ -703,7 +690,7 @@ class HttpResponse(object):
           yield buf
     except self._timeout_exc_classes as e:
       logging.error('Timeout while reading from %s, read %d of %s: %s',
-          self._url, read, self.get_header('Content-Length'), e)
+                    self._url, read, self.get_header('Content-Length'), e)
       raise TimeoutError(e)
 
   def read(self):
@@ -720,7 +707,7 @@ class HttpResponse(object):
       return self._response.read()
     except self._timeout_exc_classes as e:
       logging.error('Timeout while reading from %s, expected %s bytes: %s',
-          self._url, self.get_header('Content-Length'), e)
+                    self._url, self.get_header('Content-Length'), e)
       raise TimeoutError(e)
 
   def get_header(self, header):
@@ -753,12 +740,10 @@ class RequestsLibEngine(object):
   #
   # Will be caught while reading a streaming response in HttpResponse.read and
   # transformed to TimeoutError.
-  timeout_exception_classes = (
-      socket.timeout, ssl.SSLError,
-      requests.Timeout,
-      requests.ConnectionError,
-      urllib3.exceptions.ProtocolError,
-      urllib3.exceptions.TimeoutError)
+  timeout_exception_classes = (socket.timeout, ssl.SSLError, requests.Timeout,
+                               requests.ConnectionError,
+                               urllib3.exceptions.ProtocolError,
+                               urllib3.exceptions.TimeoutError)
 
   def __init__(self):
     super(RequestsLibEngine, self).__init__()
@@ -768,11 +753,13 @@ class RequestsLibEngine(object):
     self.session.verify = tools.get_cacerts_bundle()
     # Configure connection pools.
     for protocol in ('https://', 'http://'):
-      self.session.mount(protocol, adapters.HTTPAdapter(
-          pool_connections=64,
-          pool_maxsize=64,
-          max_retries=0,
-          pool_block=False))
+      self.session.mount(
+          protocol,
+          adapters.HTTPAdapter(
+              pool_connections=64,
+              pool_maxsize=64,
+              max_retries=0,
+              pool_block=False))
 
   def perform_request(self, request):
     """Sends a HttpRequest to the server and reads back the response.

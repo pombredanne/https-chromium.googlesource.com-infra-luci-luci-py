@@ -62,8 +62,8 @@ def _to_bq_value(value, field_desc):
     # Enums are stored as strings.
     enum_val = field_desc.enum_type.values_by_number.get(value)
     if not enum_val:
-      raise ValueError('Invalid value %r for enum type %s' % (
-          value, field_desc.enum_type.full_name))
+      raise ValueError('Invalid value %r for enum type %s' %
+                       (value, field_desc.enum_type.full_name))
     return enum_val.name
   elif isinstance(value, duration_pb2.Duration):
     return value.ToTimedelta().total_seconds()
@@ -131,6 +131,7 @@ class UnsupportedTypeError(Exception):
 
   row_type: string representation of type.
   """
+
   def __init__(self, row_type):
     msg = 'Unsupported row type for BigQueryHelper.send_rows: %s' % row_type
     super(UnsupportedTypeError, self).__init__(msg)
@@ -142,6 +143,7 @@ class BigQueryInsertError(Exception):
   insert_errors is in the form of a list of mappings, where each mapping
   contains an "index" key corresponding to a row and an "errors" key.
   """
+
   def __init__(self, insert_errors):
     message = self._construct_message(insert_errors)
     super(BigQueryInsertError, self).__init__(message)

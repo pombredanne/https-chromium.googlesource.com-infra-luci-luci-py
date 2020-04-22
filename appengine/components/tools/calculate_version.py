@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Given current git checkout state return version string to use for an app."""
 
 import contextlib
@@ -99,10 +98,10 @@ def is_pristine(root, mergebase):
     return False
 
   # Look for local uncommitted diff.
-  return not (
-      git(['diff', '--ignore-submodules=none', mergebase], cwd=root) or
-      git(['diff', '--ignore-submodules', '--cached', mergebase], cwd=root) or
-      git(['status', '-s', '--porcelain=v2'], cwd=root))
+  return not (git(['diff', '--ignore-submodules=none', mergebase], cwd=root) or
+              git(['diff', '--ignore-submodules', '--cached', mergebase],
+                  cwd=root) or
+              git(['status', '-s', '--porcelain=v2'], cwd=root))
 
 
 def calculate_version(root, tag, additional_chars=0):
@@ -126,7 +125,7 @@ def calculate_version(root, tag, additional_chars=0):
   # https://tools.ietf.org/html/rfc2181#section-11, labels in domains can't be
   # more than 63 chars - additional_chars.
   return _get_limited_version(pseudo_revision, mergebase, pristine, user, tag,
-                             63 - additional_chars)
+                              63 - additional_chars)
 
 
 def _get_cleaned_git_branch_name(root):
@@ -144,8 +143,8 @@ def _get_cleaned_git_branch_name(root):
   return ''.join(b for b in clean if b in valid)
 
 
-def _get_limited_version(
-    pseudo_revision, mergebase, pristine, user, tag, limit):
+def _get_limited_version(pseudo_revision, mergebase, pristine, user, tag,
+                         limit):
   """Return version, limited to the given 'limit' number of chars.
 
   Arguments:
@@ -188,8 +187,8 @@ def _get_limited_version(
   current_chars_without_user = orig_version_len - len(user) - 8
   chars_for_user = limit - current_chars_without_user
   tainted_text = '-%s' % user[:max(min_user_chars, chars_for_user)]
-  version = _get_version(
-      pseudo_revision, mergebase, tainted_text, tag).strip('-')
+  version = _get_version(pseudo_revision, mergebase, tainted_text,
+                         tag).strip('-')
   if len(version) <= limit:
     return version
 
@@ -217,8 +216,7 @@ def checkout_root(cwd):
 def main():
   parser = optparse.OptionParser(description=sys.modules[__name__].__doc__)
   parser.add_option('-v', '--verbose', action='store_true')
-  parser.add_option(
-      '-t', '--tag', help='Tag to attach to a tainted version')
+  parser.add_option('-t', '--tag', help='Tag to attach to a tainted version')
   options, args = parser.parse_args()
   logging.basicConfig(level=logging.DEBUG if options.verbose else logging.ERROR)
 

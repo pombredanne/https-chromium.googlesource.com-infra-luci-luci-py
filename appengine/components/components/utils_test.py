@@ -38,6 +38,7 @@ class Rambling(ndb.Model):
 
 
 class UtilsTest(test_case.TestCase):
+
   def test_json(self):
     r = Rambling(
         a=2,
@@ -47,14 +48,14 @@ class UtilsTest(test_case.TestCase):
     actual = utils.to_json_encodable([r])
     # Confirm that default is tight encoding and sorted keys.
     expected = [
-      {
-        'a': 2,
-        'b': 0.2,
-        'c': u'2012-01-02 03:04:05',
-        'd': u'2012-01-02',
-        'e': 1,
-        'f': u'\u0129',
-      },
+        {
+            'a': 2,
+            'b': 0.2,
+            'c': u'2012-01-02 03:04:05',
+            'd': u'2012-01-02',
+            'e': 1,
+            'f': u'\u0129',
+        },
     ]
     self.assertEqual(expected, actual)
 
@@ -93,12 +94,12 @@ class UtilsTest(test_case.TestCase):
     self.assertEqual(now, parsed)
 
     ok_cases = [
-      ('2017-08-17T04:21:32.722952943Z', (2017, 8, 17, 4, 21, 32, 722953)),
-      ('2017-08-17T04:21:32Z',           (2017, 8, 17, 4, 21, 32, 0)),
-      ('1972-01-01T10:00:20.021-05:00',  (1972, 1, 1, 15, 0, 20, 21000)),
-      ('1972-01-01T10:00:20.021+05:00',  (1972, 1, 1, 5, 0, 20, 21000)),
-      ('1985-04-12T23:20:50.52Z',        (1985, 4,  12, 23, 20, 50, 520000)),
-      ('1996-12-19T16:39:57-08:00',      (1996, 12, 20,  0, 39, 57,  0)),
+        ('2017-08-17T04:21:32.722952943Z', (2017, 8, 17, 4, 21, 32, 722953)),
+        ('2017-08-17T04:21:32Z', (2017, 8, 17, 4, 21, 32, 0)),
+        ('1972-01-01T10:00:20.021-05:00', (1972, 1, 1, 15, 0, 20, 21000)),
+        ('1972-01-01T10:00:20.021+05:00', (1972, 1, 1, 5, 0, 20, 21000)),
+        ('1985-04-12T23:20:50.52Z', (1985, 4, 12, 23, 20, 50, 520000)),
+        ('1996-12-19T16:39:57-08:00', (1996, 12, 20, 0, 39, 57, 0)),
     ]
     for val, expected in ok_cases:
       parsed = utils.parse_rfc3339_datetime(val)
@@ -106,12 +107,12 @@ class UtilsTest(test_case.TestCase):
       self.assertEqual(datetime.datetime(*expected), parsed)
 
     bad_cases = [
-      '',
-      '1985-04-12T23:20:50.52',            # no timezone
-      '2017:08:17T04:21:32Z',              # bad base format
-      '2017-08-17T04:21:32.7229529431Z' ,  # more than nano second precision
-      '2017-08-17T04:21:32Zblah',          # trailing data
-      '1972-01-01T10:00:20.021-0500',      # bad timezone format
+        '',
+        '1985-04-12T23:20:50.52',  # no timezone
+        '2017:08:17T04:21:32Z',  # bad base format
+        '2017-08-17T04:21:32.7229529431Z',  # more than nano second precision
+        '2017-08-17T04:21:32Zblah',  # trailing data
+        '1972-01-01T10:00:20.021-0500',  # bad timezone format
     ]
     for val in bad_cases:
       with self.assertRaises(ValueError):
@@ -119,8 +120,8 @@ class UtilsTest(test_case.TestCase):
 
   def test_datetime_to_rfc2822(self):
     self.assertEqual(
-      'Mon, 02 Jan 2012 03:04:05 -0000',
-      utils.datetime_to_rfc2822(datetime.datetime(2012, 1, 2, 3, 4, 5)))
+        'Mon, 02 Jan 2012 03:04:05 -0000',
+        utils.datetime_to_rfc2822(datetime.datetime(2012, 1, 2, 3, 4, 5)))
 
   def test_milliseconds_since_epoch(self):
     self.mock_now(datetime.datetime(1970, 1, 2, 3, 4, 5, 6789))
@@ -140,6 +141,7 @@ class UtilsTest(test_case.TestCase):
     self.assertEqual(1, len(calls))
 
   def test_cache_with_tasklets(self):
+
     @utils.cache
     def f():
       ndb.sleep(0).wait()  # Yield thread.
@@ -208,6 +210,7 @@ class UtilsTest(test_case.TestCase):
 
 
 class FakeNdbContext(object):
+
   def __init__(self):
     self.get_calls = []
     self.set_calls = []
@@ -250,17 +253,15 @@ class MemcacheTest(test_case.TestCase):
     self.f_async(1, 2, 3, 4, 5).get_result()
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 3, 4]'])
     self.assertEqual(self.f_calls, [(1, 2, 3, 4, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 3, 4]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 3, 4]',
+                                           ('value',), 54)])
 
   def test_call(self):
     self.f(1, 2, 3, 4, 5)
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 3, 4]'])
     self.assertEqual(self.f_calls, [(1, 2, 3, 4, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 3, 4]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 3, 4]',
+                                           ('value',), 54)])
 
     self.ctx.get_calls = []
     self.f_calls = []
@@ -275,9 +276,8 @@ class MemcacheTest(test_case.TestCase):
     self.assertEqual(self.f(1, 2, 3, 4), None)
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 3, 4]'])
     self.assertEqual(self.f_calls, [(1, 2, 3, 4, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 3, 4]', (None,), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 3, 4]',
+                                           (None,), 54)])
 
     self.ctx.get_calls = []
     self.f_calls = []
@@ -287,56 +287,50 @@ class MemcacheTest(test_case.TestCase):
     self.assertEqual(self.f_calls, [])
     self.assertEqual(self.ctx.set_calls, [])
 
-
   def test_call_without_optional_arg(self):
     self.f(1, 2)
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 3, 4]'])
     self.assertEqual(self.f_calls, [(1, 2, 3, 4, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 3, 4]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 3, 4]',
+                                           ('value',), 54)])
 
   def test_call_kwargs(self):
     self.f(1, 2, c=30, d=40)
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 30, 40]'])
     self.assertEqual(self.f_calls, [(1, 2, 30, 40, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 30, 40]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 30, 40]',
+                                           ('value',), 54)])
 
   def test_call_all_kwargs(self):
     self.f(a=1, b=2, c=30, d=40)
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 30, 40]'])
     self.assertEqual(self.f_calls, [(1, 2, 30, 40, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 30, 40]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 30, 40]',
+                                           ('value',), 54)])
 
   def test_call_packed_args(self):
     self.f(*[1, 2])
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 3, 4]'])
     self.assertEqual(self.f_calls, [(1, 2, 3, 4, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 3, 4]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 3, 4]',
+                                           ('value',), 54)])
 
   def test_call_packed_kwargs(self):
     self.f(1, 2, **{'c': 30, 'd': 40})
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 30, 40]'])
     self.assertEqual(self.f_calls, [(1, 2, 30, 40, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 30, 40]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 30, 40]',
+                                           ('value',), 54)])
 
   def test_call_packed_both(self):
     self.f(*[1, 2], **{'c': 30, 'd': 40})
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[1, 2, 30, 40]'])
     self.assertEqual(self.f_calls, [(1, 2, 30, 40, 5)])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[1, 2, 30, 40]', ('value',), 54)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[1, 2, 30, 40]',
+                                           ('value',), 54)])
 
   def test_empty_key_arg(self):
+
     @utils.memcache('f')
     def f(a):
       # pylint: disable=unused-argument
@@ -344,9 +338,8 @@ class MemcacheTest(test_case.TestCase):
 
     f(1)
     self.assertEqual(self.ctx.get_calls, ['utils.memcache/v1a/f[]'])
-    self.assertEqual(
-        self.ctx.set_calls,
-        [('utils.memcache/v1a/f[]', (1,), None)])
+    self.assertEqual(self.ctx.set_calls, [('utils.memcache/v1a/f[]',
+                                           (1,), None)])
 
   def test_nonexisting_arg(self):
     with self.assertRaises(KeyError):
@@ -387,10 +380,10 @@ class MemcacheTest(test_case.TestCase):
 
 
 class FingerprintTest(test_case.TestCase):
+
   def test_get_token_fingerprint(self):
-    self.assertEqual(
-        '8b7df143d91c716ecfa5fc1730022f6b',
-        utils.get_token_fingerprint(u'blah'))
+    self.assertEqual('8b7df143d91c716ecfa5fc1730022f6b',
+                     utils.get_token_fingerprint(u'blah'))
 
 
 class AsyncApplyTest(test_case.TestCase):
@@ -491,20 +484,30 @@ class TaskQueueTest(test_case.TestCase):
     # Task.add_async is not allowed to return plain value.
     mock_task.return_value.add_async.return_value = []
 
-    self.assertTrue(utils.enqueue_task_async(
-      '/internal/test', 'test').get_result())
+    self.assertTrue(
+        utils.enqueue_task_async('/internal/test', 'test').get_result())
     mock_task.assert_called_once_with(
-      name=None, url='/internal/test', countdown=None,
-      headers={'Host': 'appengine.host'}, params=None, payload=None)
+        name=None,
+        url='/internal/test',
+        countdown=None,
+        headers={'Host': 'appengine.host'},
+        params=None,
+        payload=None)
 
     mock_task.reset_mock()
-    self.assertTrue(utils.enqueue_task_async(
-      '/internal/test', 'test', use_dedicated_module=False,
-      version='4420-5e77b02').get_result())
+    self.assertTrue(
+        utils.enqueue_task_async(
+            '/internal/test',
+            'test',
+            use_dedicated_module=False,
+            version='4420-5e77b02').get_result())
     mock_task.assert_called_once_with(
-      name=None, url='/internal/test', countdown=None,
-      headers={'Host': '4420-5e77b02-dot-backend-dot-default-appengine.host'},
-      params=None, payload=None)
+        name=None,
+        url='/internal/test',
+        countdown=None,
+        headers={'Host': '4420-5e77b02-dot-backend-dot-default-appengine.host'},
+        params=None,
+        payload=None)
 
 
 if __name__ == '__main__':

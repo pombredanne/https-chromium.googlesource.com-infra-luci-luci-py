@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Intelligent natural sort implementation."""
 
 import re
@@ -10,12 +9,14 @@ import re
 def natcmp(a, b):
   """Natural string comparison, case sensitive."""
   try_int = lambda s: int(s) if s.isdigit() else s
+
   def natsort_key(s):
     if not isinstance(s, basestring):
       # Since re.findall() generates a list out of a string, returns a list here
       # to balance the comparison done in cmp().
       return [s]
     return map(try_int, re.findall(r'(\d+|\D+)', s))
+
   return cmp(natsort_key(a), natsort_key(b))
 
 

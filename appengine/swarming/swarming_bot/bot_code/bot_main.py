@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Swarming bot main process.
 
 This is the program that communicates with the Swarming server, ensures the code
@@ -60,14 +59,11 @@ from utils import subprocess42
 from utils import tools
 from utils import zip_package
 
-
 ### Globals
-
 
 # Used to opportunistically set the error handler to notify the server when the
 # process exits due to an exception.
 _ERROR_HANDLER_WAS_REGISTERED = False
-
 
 # Set to the zip's name containing this file. This is set to the absolute path
 # to swarming_bot.zip when run as part of swarming_bot.zip. This value is
@@ -78,10 +74,8 @@ _ERROR_HANDLER_WAS_REGISTERED = False
 THIS_FILE = unicode(os.path.abspath(zip_package.get_main_script_path()))
 THIS_DIR = os.path.dirname(THIS_FILE)
 
-
 # The singleton, initially unset.
 SINGLETON = singleton.Singleton(THIS_DIR)
-
 
 # Whitelist of files that can be present in the bot's directory. Anything else
 # will be forcibly deleted on startup! Note that 'w' (work) is not in this list,
@@ -103,41 +97,38 @@ PASSLIST = (
     'swarming_bot.zip',
 )
 
-
 # These settings are documented in ../config/bot_config.py.
 # Keep in sync with ../config/bot_config.py. This is enforced by a unit test.
 DEFAULT_SETTINGS = {
-  'free_partition': {
-    'root': {
-      'size': 1 * 1024*1024*1024,
-      'max_percent': 10.,
-      'min_percent': 6.,
+    'free_partition': {
+        'root': {
+            'size': 1 * 1024 * 1024 * 1024,
+            'max_percent': 10.,
+            'min_percent': 6.,
+        },
+        'bot': {
+            'size': 4 * 1024 * 1024 * 1024,
+            'max_percent': 15.,
+            'min_percent': 7.,
+            'wiggle': 250 * 1024 * 1024,
+        },
     },
-    'bot': {
-      'size': 4 * 1024*1024*1024,
-      'max_percent': 15.,
-      'min_percent': 7.,
-      'wiggle': 250 * 1024*1024,
+    'caches': {
+        'isolated': {
+            'size': 50 * 1024 * 1024 * 1024,
+            'items': 50 * 1024,
+        },
     },
-  },
-  'caches': {
-    'isolated': {
-      'size': 50 * 1024*1024*1024,
-      'items': 50*1024,
-    },
-  },
 }
 
 # Keep in sync with ../../ts_mon_metrics.py
-_IGNORED_DIMENSIONS = (
-    'android_devices', 'caches', 'id', 'server_version', 'temp_band')
-
+_IGNORED_DIMENSIONS = ('android_devices', 'caches', 'id', 'server_version',
+                       'temp_band')
 
 ### Monitoring
 
-
-_bucketer = ts_mon.GeometricBucketer(growth_factor=10**0.07,
-                                     num_finite_buckets=100)
+_bucketer = ts_mon.GeometricBucketer(
+    growth_factor=10**0.07, num_finite_buckets=100)
 
 _hooks_durations = ts_mon.CumulativeDistributionMetric(
     'swarming/bots/hooks/durations',
@@ -158,13 +149,14 @@ def _pool_from_dimensions(dimensions):
       continue
     # Strip all the prefixes of other values. values is already sorted.
     for i, value in enumerate(values):
-      if not any(v.startswith(value) for v in values[i+1:]):
+      if not any(v.startswith(value) for v in values[i + 1:]):
         pairs.append(u'%s:%s' % (key, value))
   return u'|'.join(sorted(pairs))
 
 
 def _monitor_call(func):
   """Decorates a functions and reports the runtime to ts_mon."""
+
   def hook(chained, botobj, name, *args, **kwargs):
     start = time.time()
     try:
@@ -176,8 +168,12 @@ def _monitor_call(func):
         if flat_dims:
           logging.info('ts_mon hook_name=%r pool=%r', name, flat_dims)
           _hooks_durations.add(
-              duration, fields={u'hookname': name, u'pool': flat_dims})
-      logging.info('%s(): %gs', name, round(duration/1000., 3))
+              duration, fields={
+                  u'hookname': name,
+                  u'pool': flat_dims
+              })
+      logging.info('%s(): %gs', name, round(duration / 1000., 3))
+
   return hook
 
 
@@ -197,7 +193,6 @@ def _init_ts_mon():
 
 
 ### bot_config handler
-
 
 # Reference to the config/bot_config.py module inside the swarming_bot.zip file.
 # This variable is initialized inside _get_bot_config().
@@ -243,7 +238,7 @@ def _register_extra_bot_config(content):
   try:
     compiled = compile(content, 'injected.py', 'exec')
     _EXTRA_BOT_CONFIG = types.ModuleType('injected')
-    exec(compiled, _EXTRA_BOT_CONFIG.__dict__)
+    exec (compiled, _EXTRA_BOT_CONFIG.__dict__)
   except (SyntaxError, TypeError) as e:
     _set_quarantined(
         'handshake returned invalid injected bot_config.py: %s' % e)
@@ -300,8 +295,7 @@ def _log_process_info():
   try:
     import psutil
     process_count = collections.Counter(
-      proc.name() for proc in psutil.process_iter()
-    )
+        proc.name() for proc in psutil.process_iter())
     logging.info('Processes running: %s', process_count)
 
   except ImportError:
@@ -342,10 +336,10 @@ def _get_dimensions(botobj):
   except Exception as e:
     logging.exception('os.utilities.get_dimensions() failed')
     return {
-      u'error': [u'%s\n%s' % (e, traceback.format_exc()[-2048:])],
-      u'id': [_get_botid_safe()],
-      u'quarantined': [u'1'],
-      u'server_version': [_get_server_version_safe()],
+        u'error': [u'%s\n%s' % (e, traceback.format_exc()[-2048:])],
+        u'id': [_get_botid_safe()],
+        u'quarantined': [u'1'],
+        u'server_version': [_get_server_version_safe()],
     }
 
 
@@ -420,12 +414,12 @@ def _get_disks_quarantine(botobj, disks):
   root = 'c:\\' if sys.platform == 'win32' else '/'
 
   errors = []
+
   def _check_for_quarantine(r, i, key):
     min_free = _min_free_disk(i, settings[key])
-    if int(i[u'free_mb']*1024*1024) < min_free:
-      errors.append(
-          u'Not enough free disk space on %s. %.1fmib < %.1fmib' %
-          (r, i[u'free_mb'], round(min_free / 1024. / 1024., 1)))
+    if int(i[u'free_mb'] * 1024 * 1024) < min_free:
+      errors.append(u'Not enough free disk space on %s. %.1fmib < %.1fmib' %
+                    (r, i[u'free_mb'], round(min_free / 1024. / 1024., 1)))
 
   # root may be missing in the case of netbooted devices.
   if root in disks:
@@ -475,7 +469,7 @@ def _min_free_disk(infos, settings):
 
   See _get_settings() in ../config/bot_config.py for an explanation.
   """
-  size = int(infos[u'size_mb']*1024*1024)
+  size = int(infos[u'size_mb'] * 1024 * 1024)
   x1 = settings['size'] or 0
   x2 = int(round(size * float(settings['max_percent'] or 0) * 0.01))
   # Select the lowest non-zero value.
@@ -571,9 +565,9 @@ def get_attributes(botobj):
   - botobj: bot.Bot instance or None
   """
   return {
-    u'dimensions': _get_dimensions(botobj),
-    u'state': _get_state(botobj, 0),
-    u'version': generate_version(),
+      u'dimensions': _get_dimensions(botobj),
+      u'state': _get_state(botobj, 0),
+      u'version': generate_version(),
   }
 
 
@@ -587,26 +581,22 @@ def get_bot(config):
   # This variable is used to bootstrap the initial bot.Bot object, which then is
   # used to get the dimensions and state.
   attributes = {
-    'dimensions': {u'id': ['none']},
-    'state': {},
-    'version': generate_version(),
+      'dimensions': {
+          u'id': ['none']
+      },
+      'state': {},
+      'version': generate_version(),
   }
   hostname = _get_botid_safe()
   base_dir = THIS_DIR
   # Use temporary Bot object to call get_attributes. Attributes are needed to
   # construct the "real" bot.Bot.
   attributes = get_attributes(
-    bot.Bot(
-      remote_client.createRemoteClient(config['server'],
-                                       None,
-                                       hostname,
-                                       base_dir,
-                                       config.get('swarming_grpc_proxy')),
-      attributes,
-      config['server'],
-      config['server_version'],
-      base_dir,
-      _on_shutdown_hook))
+      bot.Bot(
+          remote_client.createRemoteClient(
+              config['server'], None, hostname, base_dir,
+              config.get('swarming_grpc_proxy')), attributes, config['server'],
+          config['server_version'], base_dir, _on_shutdown_hook))
 
   # Make remote client callback use the returned bot object. We assume here
   # RemoteClient doesn't call its callback in the constructor (since 'botobj' is
@@ -614,15 +604,9 @@ def get_bot(config):
   botobj = bot.Bot(
       remote_client.createRemoteClient(
           config['server'],
-          lambda: _get_authentication_headers(botobj),
-          hostname,
-          base_dir,
-          config.get('swarming_grpc_proxy')),
-      attributes,
-      config['server'],
-      config['server_version'],
-      base_dir,
-      _on_shutdown_hook)
+          lambda: _get_authentication_headers(botobj), hostname, base_dir,
+          config.get('swarming_grpc_proxy')), attributes, config['server'],
+      config['server_version'], base_dir, _on_shutdown_hook)
   return botobj
 
 
@@ -638,8 +622,8 @@ def get_config():
   except (zipfile.BadZipfile, IOError, OSError, TypeError, ValueError):
     logging.exception('Invalid config.json!')
     config = {
-      u'server': u'',
-      u'server_version': u'N/A',
+        u'server': u'',
+        u'server_version': u'N/A',
     }
   if not _ERROR_HANDLER_WAS_REGISTERED and config['server']:
     on_error.report_on_exception_exit(config['server'])
@@ -684,8 +668,9 @@ def _run_isolated_flags(botobj):
   partition = settings['free_partition']['bot']
   size = os_utilities.get_disk_size(THIS_FILE)
   min_free = (
-      _min_free_disk({'size_mb': size}, partition) +
-      partition['wiggle'])
+      _min_free_disk({
+          'size_mb': size
+      }, partition) + partition['wiggle'])
   logging.info('size %d, partition %s, min_free %s', size, partition, min_free)
   args = [
       '--cache',
@@ -724,12 +709,12 @@ def _Popen(botobj, cmd, **kwargs):
   else:
     kwargs['close_fds'] = True
   return subprocess42.Popen(
-        cmd,
-        stdin=subprocess42.PIPE,
-        stderr=subprocess42.STDOUT,
-        cwd=botobj.base_dir,
-        detached=True,
-        **kwargs)
+      cmd,
+      stdin=subprocess42.PIPE,
+      stderr=subprocess42.STDOUT,
+      cwd=botobj.base_dir,
+      detached=True,
+      **kwargs)
 
 
 def _clean_cache(botobj):
@@ -743,9 +728,12 @@ def _clean_cache(botobj):
   based on the policies and update state.json.
   """
   cmd = [
-    sys.executable, THIS_FILE, 'run_isolated',
-    '--clean',
-    '--log-file', os.path.join(botobj.base_dir, 'logs', 'run_isolated.log'),
+      sys.executable,
+      THIS_FILE,
+      'run_isolated',
+      '--clean',
+      '--log-file',
+      os.path.join(botobj.base_dir, 'logs', 'run_isolated.log'),
   ]
   cmd.extend(_run_isolated_flags(botobj))
   logging.info('Running: %s', cmd)
@@ -893,15 +881,24 @@ def _run_manifest(botobj, manifest, start):
     auth_params_dumper.start()
 
     command = [
-      sys.executable, THIS_FILE, 'task_runner',
-      '--swarming-server', url,
-      '--in-file', task_in_file,
-      '--out-file', task_result_file,
-      '--cost-usd-hour', str(botobj.state.get('cost_usd_hour') or 0.),
-      # Include the time taken to poll the task in the cost.
-      '--start', str(start),
-      '--bot-file', bot_file,
-      '--auth-params-file', auth_params_file,
+        sys.executable,
+        THIS_FILE,
+        'task_runner',
+        '--swarming-server',
+        url,
+        '--in-file',
+        task_in_file,
+        '--out-file',
+        task_result_file,
+        '--cost-usd-hour',
+        str(botobj.state.get('cost_usd_hour') or 0.),
+        # Include the time taken to poll the task in the cost.
+        '--start',
+        str(start),
+        '--bot-file',
+        bot_file,
+        '--auth-params-file',
+        auth_params_file,
     ]
     if botobj.remote.is_grpc:
       command.append('--is-grpc')
@@ -933,7 +930,7 @@ def _run_manifest(botobj, manifest, start):
         internal_failure = True
         msg = 'task_runner hung'
         try:
-          proc.wait(2*grace_period)
+          proc.wait(2 * grace_period)
         except subprocess42.TimeoutExpired:
           logging.error('Sending SIGKILL to task_runner')
           proc.kill()
@@ -959,7 +956,7 @@ def _run_manifest(botobj, manifest, start):
       internal_failure = True
     elif task_result[u'must_signal_internal_failure']:
       msg = (
-        'Execution failed: %s' % task_result[u'must_signal_internal_failure'])
+          'Execution failed: %s' % task_result[u'must_signal_internal_failure'])
       internal_failure = True
 
     failure = bool(task_result.get('exit_code')) if task_result else False
@@ -976,9 +973,8 @@ def _run_manifest(botobj, manifest, start):
       auth_params_dumper.stop()
     if internal_failure:
       _post_error_task(botobj, msg, task_id)
-    _call_hook_safe(
-        True, botobj, 'on_after_task', failure, internal_failure,
-        task_dimensions, task_result)
+    _call_hook_safe(True, botobj, 'on_after_task', failure, internal_failure,
+                    task_dimensions, task_result)
     if fs.isdir(work_dir):
       try:
         file_path.rmtree(work_dir)
@@ -1000,6 +996,7 @@ def _run_bot(arg_error):
   # The quit_bit is to signal that the bot process must shutdown. It is
   # different from a request to restart the bot process or reboot the host.
   quit_bit = threading.Event()
+
   def handler(sig, _):
     # A signal terminates the bot process, it doesn't cause it to restart.
     logging.info('Got signal %s', sig)
@@ -1030,8 +1027,8 @@ def _run_bot_inner(arg_error, quit_bit):
     # fail and we'll handle it there.
     hostname = _get_botid_safe()
     base_dir = os.path.dirname(THIS_FILE)
-    remote = remote_client.createRemoteClient(config['server'], None,
-                                              hostname, base_dir,
+    remote = remote_client.createRemoteClient(config['server'], None, hostname,
+                                              base_dir,
                                               config.get('swarming_grpc_proxy'))
     remote.ping()
   except Exception:
@@ -1169,8 +1166,8 @@ def _do_handshake(botobj, quit_bit):
       if content:
         _register_extra_bot_config(content)
       break
-    logging.error(
-        'Failed to contact for handshake, retrying in %d sec...', sleep_time)
+    logging.error('Failed to contact for handshake, retrying in %d sec...',
+                  sleep_time)
     quit_bit.wait(sleep_time)
     sleep_time = min(300, sleep_time * 2)
 
@@ -1197,8 +1194,9 @@ def _poll_server(botobj, quit_bit, last_action):
 
   if cmd == 'sleep':
     # Value is duration
-    _call_hook_safe(
-        True, botobj, 'on_bot_idle', max(0, time.time() - last_action))
+    _call_hook_safe(True, botobj, 'on_bot_idle',
+                    max(0,
+                        time.time() - last_action))
     _maybe_update_lkgbc(botobj)
     try:
       # Sometimes throw with "[Errno 4] Interrupted function call", especially
@@ -1293,9 +1291,8 @@ def _bot_restart(botobj, message, filepath=None):
   proc = _Popen(botobj, [sys.executable, filepath, 'is_fine'])
   output, _ = proc.communicate()
   if proc.returncode:
-    botobj.post_error(
-        'New bot code is bad: proc exit = %s. stdout:\n%s' %
-        (proc.returncode, output))
+    botobj.post_error('New bot code is bad: proc exit = %s. stdout:\n%s' %
+                      (proc.returncode, output))
     if sys.platform == 'win32' and proc.returncode == -1073741502:
       # STATUS_DLL_INIT_FAILED generally means that something bad happened, and
       # a reboot magically clears things out. :(
@@ -1387,7 +1384,7 @@ def _maybe_update_lkgbc(botobj):
       cur = fs.stat(THIS_FILE)
       if org.st_size == org.st_size and org.st_mtime >= cur.st_mtime:
         return False
-      if org.st_mtime >= time.time() - 7*24*60*60:
+      if org.st_mtime >= time.time() - 7 * 24 * 60 * 60:
         return False
 
     # Copy the current file back to LKGBC.
@@ -1430,9 +1427,8 @@ def main(argv):
   # this host at once.
   if not SINGLETON.acquire():
     if sys.platform == 'darwin':
-      msg = (
-          'Found a previous bot, %d rebooting as a workaround for '
-          'https://crbug.com/569610.') % os.getpid()
+      msg = ('Found a previous bot, %d rebooting as a workaround for '
+             'https://crbug.com/569610.') % os.getpid()
     else:
       msg = ('Found a previous bot, %d rebooting as a workaround for '
              'https://crbug.com/1061531' % os.getpid())
@@ -1452,7 +1448,6 @@ def main(argv):
   try:
     return _run_bot(error)
   finally:
-    _call_hook_safe(
-        True, bot.Bot(None, None, None, None, base_dir, None),
-        'on_bot_shutdown')
+    _call_hook_safe(True, bot.Bot(None, None, None, None, base_dir, None),
+                    'on_bot_shutdown')
     logging.info('main() returning')

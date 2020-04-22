@@ -1,7 +1,6 @@
 # Copyright 2019 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Helpers for managing AuthDB dump in Google Cloud Storage."""
 
 import binascii
@@ -19,7 +18,6 @@ from components import utils
 
 import acl
 import config
-
 
 # Object ACLs can have at most 100 entries. We limit them to 80 to have some
 # breathing room before the hard limit is reached. When this happens, either
@@ -45,6 +43,7 @@ def authorize_reader(email):
   Raises:
     Error if reached GCS ACL entries limit or GCS call fails.
   """
+
   @ndb.transactional
   def add_if_necessary():
     readers = _list_authorized_readers()
@@ -53,8 +52,7 @@ def authorize_reader(email):
     if len(readers) >= _MAX_ACL_ENTRIES:
       raise Error('Reached the soft limit on GCS ACL entries')
     reader = AuthDBReader(
-        key=_auth_db_reader_key(email),
-        authorized_at=utils.utcnow())
+        key=_auth_db_reader_key(email), authorized_at=utils.utcnow())
     reader.put()
 
   add_if_necessary()
@@ -115,12 +113,12 @@ def upload_auth_db(signed_auth_db, revision_json):
   assert not gs_path.endswith('/'), gs_path
   readers = _list_authorized_readers()
   _upload_file(
-      path=gs_path+'/latest.db',
+      path=gs_path + '/latest.db',
       data=signed_auth_db,
       content_type='application/protobuf',
       readers=readers)
   _upload_file(
-      path=gs_path+'/latest.json',
+      path=gs_path + '/latest.json',
       data=revision_json,
       content_type='application/json',
       readers=readers)
@@ -176,12 +174,14 @@ def _update_gcs_acls():
     return
   assert not gs_path.endswith('/'), gs_path
   acls = _gcs_acls(_list_authorized_readers())
-  _set_gcs_metadata(
-      gs_path+'/latest.db',
-      {'acl': acls, 'contentType': 'application/protobuf'})
-  _set_gcs_metadata(
-      gs_path+'/latest.json',
-      {'acl': acls, 'contentType': 'application/json'})
+  _set_gcs_metadata(gs_path + '/latest.db', {
+      'acl': acls,
+      'contentType': 'application/protobuf'
+  })
+  _set_gcs_metadata(gs_path + '/latest.json', {
+      'acl': acls,
+      'contentType': 'application/json'
+  })
 
 
 def _upload_file(path, data, content_type, readers):
@@ -202,9 +202,10 @@ def _upload_file(path, data, content_type, readers):
   # We upload both metadata and body in a single request, see:
   # https://cloud.google.com/storage/docs/json_api/v1/how-tos/multipart-upload.
   bucket, name = path.split('/', 1)
-  payload, boundary = _multipart_payload(
-      data, content_type,
-      {'name': name, 'acl': _gcs_acls(readers)})
+  payload, boundary = _multipart_payload(data, content_type, {
+      'name': name,
+      'acl': _gcs_acls(readers)
+  })
   try:
     net.request(
         url='https://www.googleapis.com/upload/storage/v1/b/%s/o' % bucket,

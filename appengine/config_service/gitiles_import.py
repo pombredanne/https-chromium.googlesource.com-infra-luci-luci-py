@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Imports config files stored in Gitiles.
 
 If services_config_location is set in admin.GlobalConfig root entity,
@@ -40,7 +39,6 @@ import projects
 import storage
 import validation
 
-
 GITILES_STORAGE_TYPE = admin.ServiceConfigStorageType.GITILES
 GITILES_LOCATION_TYPE = service_config_pb2.ConfigSetLocation.GITILES
 DEFAULT_GITILES_IMPORT_CONFIG = service_config_pb2.ImportCfg.Gitiles(
@@ -49,12 +47,10 @@ DEFAULT_GITILES_IMPORT_CONFIG = service_config_pb2.ImportCfg.Gitiles(
     ref_config_default_path='luci',
 )
 
-
 import_attempt_metric = metrics.CounterMetric(
     'config_service/import_attempt',
     'Counter of import attempts of a config set',
     [metrics.StringField('config_set')])
-
 
 import_success_metric = metrics.CounterMetric(
     'config_service/import_success',
@@ -91,8 +87,8 @@ def _commit_to_revision_info(commit, location):
 def get_gitiles_config():
   cfg = service_config_pb2.ImportCfg(gitiles=DEFAULT_GITILES_IMPORT_CONFIG)
   try:
-    cfg = storage.get_self_config_async(
-        common.IMPORT_FILENAME, lambda: cfg).get_result()
+    cfg = storage.get_self_config_async(common.IMPORT_FILENAME,
+                                        lambda: cfg).get_result()
   except text_format.ParseError:
     # It is critical that get_gitiles_config() returns a valid config.
     # If import.cfg is broken, it should not break importing mechanism,
@@ -121,8 +117,8 @@ def _resolved_location(url):
   return loc
 
 
-def _import_revision(
-    config_set, base_location, commit, force_update, project_id):
+def _import_revision(config_set, base_location, commit, force_update,
+                     project_id):
   """Imports a referenced Gitiles revision into a config set.
 
   |base_location| will be used to set storage.ConfigSet.location.
@@ -132,12 +128,9 @@ def _import_revision(
   Puts ConfigSet initialized from arguments.
   """
   revision = commit.sha
-  assert re.match('[0-9a-f]{40}', revision), (
-      '"%s" is not a valid sha' % revision
-  )
-  rev_key = ndb.Key(
-      storage.ConfigSet, config_set,
-      storage.Revision, revision)
+  assert re.match('[0-9a-f]{40}',
+                  revision), ('"%s" is not a valid sha' % revision)
+  rev_key = ndb.Key(storage.ConfigSet, config_set, storage.Revision, revision)
 
   location = base_location._replace(treeish=revision)
   attempt = storage.ImportAttempt(
@@ -167,8 +160,8 @@ def _import_revision(
       project_id=project_id,
       deadline=get_gitiles_config().fetch_archive_deadline)
   if not archive:
-    logging.warning(
-        'Configuration %s does not exist. Probably it was deleted', config_set)
+    logging.warning('Configuration %s does not exist. Probably it was deleted',
+                    config_set)
     attempt.success = True
     attempt.message = 'Config directory not found. Imported as empty'
   else:
@@ -177,17 +170,16 @@ def _import_revision(
         config_set, rev_key, archive, location)
     if validation_result.has_errors:
       logging.warning('Invalid revision %s@%s', config_set, revision)
-      notifications.notify_gitiles_rejection(
-          config_set, location, validation_result)
+      notifications.notify_gitiles_rejection(config_set, location,
+                                             validation_result)
 
       attempt.success = False
       attempt.message = 'Validation errors'
       attempt.validation_messages = [
-        storage.ImportAttempt.ValidationMessage(
-            severity=config.Severity.lookup_by_number(m.severity),
-            text=m.text,
-        )
-        for m in validation_result.messages
+          storage.ImportAttempt.ValidationMessage(
+              severity=config.Severity.lookup_by_number(m.severity),
+              text=m.text,
+          ) for m in validation_result.messages
       ]
       attempt.put()
       return
@@ -237,15 +229,14 @@ def _read_and_validate_archive(config_set, rev_key, archive, location):
   entities = []
   for name, content in files.items():
     content_hash = storage.compute_hash(content)
-    blob_futures.append(storage.import_blob_async(
-      content=content, content_hash=content_hash))
+    blob_futures.append(
+        storage.import_blob_async(content=content, content_hash=content_hash))
     entities.append(
-      storage.File(
-        id=name,
-        parent=rev_key,
-        content_hash=content_hash,
-        url=str(location.join(name)))
-    )
+        storage.File(
+            id=name,
+            parent=rev_key,
+            content_hash=content_hash,
+            url=str(location.join(name))))
   # Wait for Blobs to be imported before proceeding.
   ndb.Future.wait_all(blob_futures)
   return entities, ctx.result()
@@ -263,12 +254,13 @@ def _import_config_set(config_set, location, project_id=None):
   assert location
 
   commit = None
+
   def save_attempt(success, msg):
     storage.ImportAttempt(
-      key=storage.last_import_attempt_key(config_set),
-      revision=_commit_to_revision_info(commit, location),
-      success=success,
-      message=msg,
+        key=storage.last_import_attempt_key(config_set),
+        revision=_commit_to_revision_info(commit, location),
+        success=success,
+        message=msg,
     ).put()
 
   try:
@@ -298,30 +290,29 @@ def _import_config_set(config_set, location, project_id=None):
 
     config_set_key = ndb.Key(storage.ConfigSet, config_set)
     config_set_entity = config_set_key.get()
-    force_update = (config_set_entity and
-                    config_set_entity.version < storage.ConfigSet.CUR_VERSION)
-    if (config_set_entity and config_set_entity.latest_revision == commit.sha
-        and not force_update):
+    force_update = (
+        config_set_entity and
+        config_set_entity.version < storage.ConfigSet.CUR_VERSION)
+    if (config_set_entity and
+        config_set_entity.latest_revision == commit.sha and not force_update):
       save_attempt(True, 'Up-to-date')
       logging.debug('Up-to-date')
       import_success_metric.increment(fields={'config_set': config_set})
       return
 
-    logging.info(
-        'Rolling %s => %s',
-        config_set_entity and config_set_entity.latest_revision, commit.sha)
+    logging.info('Rolling %s => %s', config_set_entity and
+                 config_set_entity.latest_revision, commit.sha)
     _import_revision(config_set, location, commit, force_update, project_id)
     import_success_metric.increment(fields={'config_set': config_set})
   except urlfetch_errors.DeadlineExceededError:
     save_attempt(False, 'Could not import: deadline exceeded')
     raise Error(
         'Could not import config set %s from %s: urlfetch deadline exceeded' %
-            (config_set, location))
+        (config_set, location))
   except net.AuthError:
     save_attempt(False, 'Could not import: permission denied')
-    raise Error(
-        'Could not import config set %s from %s: permission denied' % (
-            config_set, location))
+    raise Error('Could not import config set %s from %s: permission denied' %
+                (config_set, location))
 
 
 ## Import individual config set
@@ -374,8 +365,8 @@ def import_project(project_id):
 
   # Update project repo info.
   repo_url = str(loc._replace(treeish=None, path=None))
-  projects.update_import_info(
-      project_id, projects.RepositoryType.GITILES, repo_url)
+  projects.update_import_info(project_id, projects.RepositoryType.GITILES,
+                              repo_url)
 
   _import_config_set(config_set, loc, project_id)
 
@@ -402,10 +393,9 @@ def import_ref(project_id, ref_name):
       ref = r
 
   if ref is None:
-    raise NotFoundError(
-        ('ref "%s" is not found in project %s. '
-         'Possibly it is not declared in projects/%s:refs.cfg') %
-        (ref_name, project_id, project_id))
+    raise NotFoundError(('ref "%s" is not found in project %s. '
+                         'Possibly it is not declared in projects/%s:refs.cfg')
+                        % (ref_name, project_id, project_id))
   cfg = get_gitiles_config()
   loc = loc._replace(
       treeish=ref_name,
@@ -489,8 +479,8 @@ def cron_run_import():  # pragma: no cover
   # For each config set, schedule a push task.
   # This assumes that tasks are processed faster than we add them.
   tasks = [
-    taskqueue.Task(url='/internal/task/luci-config/gitiles_import/%s' % cs)
-    for cs in config_sets
+      taskqueue.Task(url='/internal/task/luci-config/gitiles_import/%s' % cs)
+      for cs in config_sets
   ]
 
   # Task Queues try to preserve FIFO semantics. But if something is partially

@@ -11,9 +11,8 @@ sys.path.insert(0, os.path.join(APP_DIR, '..', 'components'))
 
 from tools import run_coverage
 
-
 if __name__ == '__main__':
-  sys.exit(run_coverage.main(
-      APP_DIR,
-      ('tools',),
-      'PRESUBMIT.py,cloudstorage,components,mapreduce,*test*,tool*'))
+  sys.exit(
+      run_coverage.main(
+          APP_DIR, ('tools',),
+          'PRESUBMIT.py,cloudstorage,components,mapreduce,*test*,tool*'))

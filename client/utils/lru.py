@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines a dictionary that can evict least recently used items."""
 
 import collections
@@ -22,6 +21,7 @@ class LRUDict(object):
 
   Can also store its state as *.json file on disk.
   """
+
   @staticmethod
   def time_fn():
     """Called to determine current timestamp when adding an entry.
@@ -92,8 +92,8 @@ class LRUDict(object):
             'Broken state file %s, expecting pairs: %s' % (state_file, item))
       if not isinstance(item[1], list) or len(item[1]) != 2:
         raise ValueError(
-            'Broken state file %s, expecting second item to be a item: %s' % (
-              state_file, item))
+            'Broken state file %s, expecting second item to be a item: %s' %
+            (state_file, item))
       if not isinstance(item[1][1], (int, float)):
         raise ValueError(
             'Broken state file %s, expecting second item of the second item '

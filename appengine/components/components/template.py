@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Setups jinja2 environment to be reused by all components and services."""
 
 import datetime
@@ -17,9 +16,7 @@ from google.appengine.api import users
 
 from components import natsort
 
-
 NON_BREAKING_HYPHEN = u'\u2011'
-
 
 ### Private stuff.
 
@@ -67,7 +64,7 @@ def _timedeltaformat(value, include_ms=False):
   total_seconds = value.total_seconds()
   suffix = ''
   if include_ms:
-    ms = int(round(total_seconds-int(total_seconds), 3) * 1000)
+    ms = int(round(total_seconds - int(total_seconds), 3) * 1000)
     if ms:
       suffix = '.%03d' % ms
   hours, remainder = divmod(int(round(total_seconds)), 3600)
@@ -88,16 +85,15 @@ def _utf8(s):
 
 # Filters available by default.
 _DEFAULT_GLOBAL_FILTERS = {
-  'basename': _basename,
-  'datetimeformat': _datetimeformat,
-  'encode_to_json': utils.encode_to_json,
-  'epochformat': _epochformat,
-  'natsort': _natsorted,
-  'succinctdatetimeformat': _succinctdatetimeformat,
-  'timedeltaformat': _timedeltaformat,
-  'utf8': _utf8,
+    'basename': _basename,
+    'datetimeformat': _datetimeformat,
+    'encode_to_json': utils.encode_to_json,
+    'epochformat': _epochformat,
+    'natsort': _natsorted,
+    'succinctdatetimeformat': _succinctdatetimeformat,
+    'timedeltaformat': _timedeltaformat,
+    'utf8': _utf8,
 }
-
 
 # All the templates paths: prefix -> path.
 _TEMPLATE_PATHS = {}
@@ -105,7 +101,6 @@ _TEMPLATE_PATHS = {}
 _GLOBAL_ENV = {}
 # Registered filters.
 _GLOBAL_FILTERS = _DEFAULT_GLOBAL_FILTERS.copy()
-
 
 ### Public API.
 
@@ -123,8 +118,7 @@ def bootstrap(paths, global_env=None, filters=None):
     filters: dict with filters to add to global filter list.
   """
   assert isinstance(paths, dict), paths
-  assert all(
-      _TEMPLATE_PATHS.get(k, v) == v for k, v in paths.items()), paths
+  assert all(_TEMPLATE_PATHS.get(k, v) == v for k, v in paths.items()), paths
   assert all(os.path.isabs(p) for p in paths.values()), paths
   assert all(os.path.isdir(p) for p in paths.values()), paths
 
@@ -132,17 +126,14 @@ def bootstrap(paths, global_env=None, filters=None):
     assert isinstance(global_env, dict), global_env
     assert all(isinstance(k, str) for k in global_env), global_env
     assert all(
-        _GLOBAL_ENV.get(k, v) == v
-        for k, v in global_env.items()), global_env
+        _GLOBAL_ENV.get(k, v) == v for k, v in global_env.items()), global_env
 
   if filters is not None:
     assert isinstance(filters, dict), filters
     assert all(
-        isinstance(k, str) and callable(v)
-        for k, v in filters.items()), filters
+        isinstance(k, str) and callable(v) for k, v in filters.items()), filters
     assert all(
-        _GLOBAL_FILTERS.get(k, v) == v
-        for k, v in filters.items()), filters
+        _GLOBAL_FILTERS.get(k, v) == v for k, v in filters.items()), filters
 
   _TEMPLATE_PATHS.update(paths)
 
@@ -176,8 +167,8 @@ def get_jinja_env():
   # the GAE SDK.
   env = jinja2.Environment(
       loader=jinja2.PrefixLoader({
-        prefix: jinja2.FileSystemLoader(path)
-        for prefix, path in _TEMPLATE_PATHS.items()
+          prefix: jinja2.FileSystemLoader(path)
+          for prefix, path in _TEMPLATE_PATHS.items()
       }),
       autoescape=True,
       extensions=['jinja2.ext.autoescape'],
@@ -192,11 +183,14 @@ def _get_defaults():
   """Returns parameters used by most templates/base.html."""
   account = users.get_current_user()
   return {
-    'nickname': account.email() if account else 'Sign in',
-    'now': utils.utcnow(),
-    # Hack to enable multi-login.
-    'signin_link': users.create_login_url('/').replace(
-        '/accounts/ServiceLogin', '/a/SelectSession', 1),
+      'nickname':
+          account.email() if account else 'Sign in',
+      'now':
+          utils.utcnow(),
+      # Hack to enable multi-login.
+      'signin_link':
+          users.create_login_url('/').replace('/accounts/ServiceLogin',
+                                              '/a/SelectSession', 1),
   }
 
 

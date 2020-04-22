@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utility functions for google.protobuf.field_mask_pb2.FieldMask.
 
 Supports advanced field mask semantics:
@@ -48,7 +47,6 @@ __all__ = [
     'Mask',
     'STAR',
 ]
-
 
 # Used in a parsed path to represent a star segment.
 # See Mask docstring.
@@ -157,8 +155,7 @@ class Mask(object):
     """
     assert path
     return self._includes(
-        _parse_path(path, self.desc, repeated=self.repeated)[0]
-    )
+        _parse_path(path, self.desc, repeated=self.repeated)[0])
 
   def _includes(self, path, start_at=0):
     """Implements includes()."""
@@ -243,8 +240,7 @@ class Mask(object):
     """
     assert path
     parsed_path, desc, repeated = _parse_path(
-        path, self.desc, repeated=self.repeated
-    )
+        path, self.desc, repeated=self.repeated)
     if self._includes(parsed_path) == INCLUDE_ENTIRELY:
       # Return a mask that includes everything.
       return Mask(desc=desc, repeated=repeated)
@@ -259,8 +255,11 @@ class Mask(object):
     return child and child._submask(path, start_at + 1)
 
   @classmethod
-  def from_field_mask(
-      cls, field_mask, desc, json_names=False, update_mask=False):
+  def from_field_mask(cls,
+                      field_mask,
+                      desc,
+                      json_names=False,
+                      update_mask=False):
     """Parses a field mask to a Mask.
 
     Removes trailing stars, e.g. parses ['a.*'] as ['a'].
@@ -296,8 +295,8 @@ class Mask(object):
         if node.repeated and update_mask:
           raise ValueError(
               ('update mask allows a repeated field only at the last '
-               'position; field "%s" in "%s" is not last')
-              % (node_name, field_mask.paths[i]))
+               'position; field "%s" in "%s" is not last') %
+              (node_name, field_mask.paths[i]))
         if seg not in node.children:
           if node.desc.GetOptions().map_entry:
             child = cls(node.desc.fields_by_name['value'].message_type)
@@ -314,10 +313,8 @@ class Mask(object):
 
   def __eq__(self, other):
     """Returns True if other is equivalent to self."""
-    return (
-        self.desc == other.desc and
-        self.repeated == other.repeated and
-        self.children == other.children)
+    return (self.desc == other.desc and self.repeated == other.repeated and
+            self.children == other.children)
 
   def __ne__(self, other):
     """Returns False if other is equivalent to self."""
@@ -354,7 +351,6 @@ def _remove_trailing_stars(paths):
 
 # Token types.
 _STAR, _PERIOD, _LITERAL, _STRING, _INTEGER, _UNKNOWN, _EOF = range(7)
-
 
 _INTEGER_FIELD_TYPES = {
     descriptor.FieldDescriptor.TYPE_INT64,
@@ -437,8 +433,7 @@ def _parse_path(path, desc, repeated=False, json_names=False):
 
     if ctx.desc is None:
       raise ValueError(
-          'scalar field "%s" cannot have subfields' % ctx.field_path
-      )
+          'scalar field "%s" cannot have subfields' % ctx.field_path)
 
     if is_map_key:
       key_type = ctx.desc.fields_by_name['key'].type
@@ -471,8 +466,7 @@ def _parse_path(path, desc, repeated=False, json_names=False):
     field = _find_field(ctx.desc, tok, json_names)
     if field is None:
       raise ValueError(
-          'field "%s" does not exist in message %s' % (tok, ctx.desc.full_name)
-      )
+          'field "%s" does not exist in message %s' % (tok, ctx.desc.full_name))
     ctx.advance_to_field(field)
     return field.name, False
 

@@ -14,10 +14,9 @@ import types
 
 from . import streamname, varint
 
-
-_StreamParamsBase = collections.namedtuple('_StreamParamsBase',
+_StreamParamsBase = collections.namedtuple(
+    '_StreamParamsBase',
     ('name', 'type', 'content_type', 'tags', 'tee', 'binary_file_extension'))
-
 
 # Magic number at the beginning of a Butler stream
 #
@@ -69,9 +68,9 @@ class StreamParams(_StreamParamsBase):
       raise ValueError('Invalid tee type (%s)' % (self.tee,))
 
     if not isinstance(self.binary_file_extension,
-        (types.NoneType, types.StringTypes)):
-      raise ValueError('Invalid binary file extension type (%s)' % (
-          self.binary_file_extension,))
+                      (types.NoneType, types.StringTypes)):
+      raise ValueError('Invalid binary file extension type (%s)' %
+                       (self.binary_file_extension,))
 
   def to_json(self):
     """Returns (str): The JSON representation of the StreamParams.
@@ -91,6 +90,7 @@ class StreamParams(_StreamParamsBase):
     def maybe_add(key, value):
       if value is not None:
         obj[key] = value
+
     maybe_add('contentType', self.content_type)
     maybe_add('tags', self.tags)
     maybe_add('tee', self.tee)
@@ -180,7 +180,6 @@ class StreamClient(object):
       """
       return self._stream_client.get_viewer_url(self._params.name)
 
-
   class _BasicStream(_StreamBase):
     """Wraps a basic file descriptor, offering "write" and "close"."""
 
@@ -201,7 +200,6 @@ class StreamClient(object):
     def close(self):
       return self._fd.close()
 
-
   class _DatagramStream(_StreamBase):
     """Wraps a stream object to write length-prefixed datagrams."""
 
@@ -216,8 +214,10 @@ class StreamClient(object):
     def close(self):
       return self._fd.close()
 
-
-  def __init__(self, project=None, prefix=None, coordinator_host=None,
+  def __init__(self,
+               project=None,
+               prefix=None,
+               coordinator_host=None,
                namespace=''):
     """Constructs a new base StreamClient instance.
 
@@ -284,10 +284,9 @@ class StreamClient(object):
     if not self._project:
       raise KeyError('Stream project is not configured')
 
-    return streamname.get_logdog_viewer_url(
-        self._coordinator_host,
-        self._project,
-        self.get_stream_path(name))
+    return streamname.get_logdog_viewer_url(self._coordinator_host,
+                                            self._project,
+                                            self.get_stream_path(name))
 
   def _register_new_stream(self, name):
     """Registers a new stream name.
@@ -382,7 +381,11 @@ class StreamClient(object):
       if fd is not None:
         fd.close()
 
-  def open_text(self, name, content_type=None, tags=None, tee=None,
+  def open_text(self,
+                name,
+                content_type=None,
+                tags=None,
+                tee=None,
                 binary_file_extension=None):
     """Returns (file): A file-like object for a single text stream.
 
@@ -435,8 +438,12 @@ class StreamClient(object):
       if fd is not None:
         fd.close()
 
-  def open_binary(self, name, content_type=None, tags=None, tee=None,
-                binary_file_extension=None):
+  def open_binary(self,
+                  name,
+                  content_type=None,
+                  tags=None,
+                  tee=None,
+                  binary_file_extension=None):
     """Returns (file): A file-like object for a single binary stream.
 
     This creates a new butler BINARY stream with the specified parameters.
@@ -488,7 +495,11 @@ class StreamClient(object):
       if fd is not None:
         fd.close()
 
-  def open_datagram(self, name, content_type=None, tags=None, tee=None,
+  def open_datagram(self,
+                    name,
+                    content_type=None,
+                    tags=None,
+                    tee=None,
                     binary_file_extension=None):
     """Creates a new butler DATAGRAM stream with the specified parameters.
 
@@ -537,6 +548,7 @@ class _NamedPipeStreamClient(StreamClient):
   def _connect_raw(self):
     return open(self._name, 'wb')
 
+
 _default_registry.register_protocol('net.pipe', _NamedPipeStreamClient)
 
 
@@ -559,7 +571,6 @@ class _UnixDomainSocketStreamClient(StreamClient):
     def close(self):
       self._fd.close()
 
-
   def __init__(self, path, **kwargs):
     """Initializes a new UNIX domain socket stream client.
 
@@ -579,5 +590,6 @@ class _UnixDomainSocketStreamClient(StreamClient):
     sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     sock.connect(self._path)
     return self.SocketFile(sock)
+
 
 _default_registry.register_protocol('unix', _UnixDomainSocketStreamClient)

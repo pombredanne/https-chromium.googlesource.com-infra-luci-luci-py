@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """remote.Provider reads configs from a remote config service."""
 
 import base64
@@ -24,7 +23,6 @@ from components import utils
 
 from . import common
 from . import validation
-
 
 MEMCACHE_PREFIX = 'components.config/v2/'
 # Delete LastGoodConfig if it was not accessed for more than a week.
@@ -93,8 +91,11 @@ class Provider(object):
     raise ndb.Return(content)
 
   @ndb.tasklet
-  def get_config_hash_async(
-      self, config_set, path, revision=None, use_memcache=True):
+  def get_config_hash_async(self,
+                            config_set,
+                            path,
+                            revision=None,
+                            use_memcache=True):
     """Returns tuple (revision, content_hash). Optionally memcaches results.
 
     If |revision| is not specified, memcaches for only 1 min.
@@ -106,12 +107,11 @@ class Provider(object):
 
     content_hash = None
     if use_memcache:
-      cache_key = (
-          '%sconfig_hash/%s:%s@%s' %
-          (MEMCACHE_PREFIX, config_set, path, revision or '!latest'))
+      cache_key = ('%sconfig_hash/%s:%s@%s' % (MEMCACHE_PREFIX, config_set,
+                                               path, revision or '!latest'))
       ctx = ndb.get_context()
-      revision, content_hash = (
-          (yield ctx.memcache_get(cache_key)) or (revision, None))
+      revision, content_hash = ((yield ctx.memcache_get(cache_key)) or
+                                (revision, None))
 
     if not content_hash:
       url_path = format_url('config_sets/%s/config/%s', config_set, path)
@@ -128,9 +128,12 @@ class Provider(object):
     raise ndb.Return(revision, content_hash)
 
   @ndb.tasklet
-  def get_async(
-      self, config_set, path, revision=None, dest_type=None,
-      store_last_good=None):
+  def get_async(self,
+                config_set,
+                path,
+                revision=None,
+                dest_type=None,
+                store_last_good=None):
     """Returns tuple (revision, content).
 
     If not found, returns (None, None).
@@ -172,14 +175,13 @@ class Provider(object):
     for cfg in configs:
       cfg['content'] = yield cfg['get_content_future']
       if not cfg['content']:
-        logging.error(
-            'Config content for %s was not loaded by hash %r',
-            cfg['config_set'], cfg['content_hash'])
+        logging.error('Config content for %s was not loaded by hash %r',
+                      cfg['config_set'], cfg['content_hash'])
 
     raise ndb.Return({
-      cfg['config_set']: (cfg['revision'], cfg['content'])
-      for cfg in configs
-      if cfg['content']
+        cfg['config_set']: (cfg['revision'], cfg['content'])
+        for cfg in configs
+        if cfg['content']
     })
 
   def get_project_configs_async(self, path):
@@ -234,12 +236,10 @@ class Provider(object):
     revision, content_hash = yield self.get_config_hash_async(
         config_set, path, use_memcache=False)
     if not revision:
-      logging.warning(
-          'Could not fetch hash of latest %s', config_key.id())
+      logging.warning('Could not fetch hash of latest %s', config_key.id())
       return
 
-    binary_missing = (
-      current.proto_message_name and not current.content_binary)
+    binary_missing = (current.proto_message_name and not current.content_binary)
     if current.revision == revision and not binary_missing:
       assert current.content_hash == content_hash
       return
@@ -248,16 +248,15 @@ class Provider(object):
     if current.content_hash != content_hash:
       content = yield self.get_config_by_hash_async(content_hash)
       if content is None:
-        logging.warning(
-            'Could not fetch config content %s by hash %s',
-            config_key.id(), content_hash)
+        logging.warning('Could not fetch config content %s by hash %s',
+                        config_key.id(), content_hash)
         return
       logging.debug('Validating %s:%s@%s', config_set, path, revision)
       ctx = validation.Context.logging()
       validation.validate(config_set, path, content, ctx=ctx)
       if ctx.result().has_errors:
-        logging.exception(
-            'Invalid config %s:%s@%s is ignored', config_set, path, revision)
+        logging.exception('Invalid config %s:%s@%s is ignored', config_set,
+                          path, revision)
         return
 
     # content may be None if we think that it matches what we have locally.
@@ -279,25 +278,23 @@ class Provider(object):
 
       if config.proto_message_name and not config.content_binary:
         try:
-          config.content_binary = _content_to_binary(
-              config.proto_message_name, config.content)
+          config.content_binary = _content_to_binary(config.proto_message_name,
+                                                     config.content)
         except common.ConfigFormatError:
-          logging.exception(
-              'Invalid config %s:%s@%s is ignored', config_set, path,
-              revision)
+          logging.exception('Invalid config %s:%s@%s is ignored', config_set,
+                            path, revision)
           return
 
       yield config.put_async()
-      logging.info(
-          'Updated last good config %s to %s',
-          config_key.id(), revision)
+      logging.info('Updated last good config %s to %s', config_key.id(),
+                   revision)
+
     yield update()
 
 
 def _content_to_binary(proto_message_name, content):
   try:
-    dest_type = protobuf.symbol_database.Default().GetSymbol(
-        proto_message_name)
+    dest_type = protobuf.symbol_database.Default().GetSymbol(proto_message_name)
   except KeyError:
     logging.exception(
         'Could not load message type %s. Skipping binary serialization',
@@ -319,17 +316,15 @@ def _get_last_good_async(config_set, path, dest_type):
     try:
       protobuf.symbol_database.Default().GetSymbol(proto_message_name)
     except KeyError:  # pragma: no cover
-      logging.exception(
-          'Recompile %s proto message with the latest protoc',
-          proto_message_name)
+      logging.exception('Recompile %s proto message with the latest protoc',
+                        proto_message_name)
       proto_message_name = None
 
   last_good = yield LastGoodConfig.get_by_id_async(last_good_id)
 
   # If entity does not exist, or its last_access_ts wasn't updated for a while
   # or its proto_message_name is not up to date, then update the entity.
-  if (not last_good or
-      not last_good.last_access_ts or
+  if (not last_good or not last_good.last_access_ts or
       now - last_good.last_access_ts > UPDATE_LAST_ACCESS_TIME_FREQUENCY or
       last_good.proto_message_name != proto_message_name):
     # pylint does not like this usage of transactional_tasklet
@@ -343,6 +338,7 @@ def _get_last_good_async(config_set, path, dest_type):
         last_good.content_binary = None
         last_good.proto_message_name = proto_message_name
       yield last_good.put_async()
+
     yield update()
 
   if not last_good or not last_good.revision:
@@ -351,14 +347,13 @@ def _get_last_good_async(config_set, path, dest_type):
 
   force_text = False
   if last_good.proto_message_name != proto_message_name:
-    logging.error(
-        ('Config message type for %s:%s differs in the datastore (%s) and in '
-         'the code (%s). We have updated the cron job to parse configs using '
-         'new message type, so this error should disappear soon. '
-         'If it persists, check logs of the cron job that updates the configs.'
-        ),
-        config_set, path, last_good.proto_message_name,
-        proto_message_name)
+    logging.error((
+        'Config message type for %s:%s differs in the datastore (%s) and in '
+        'the code (%s). We have updated the cron job to parse configs using '
+        'new message type, so this error should disappear soon. '
+        'If it persists, check logs of the cron job that updates the configs.'),
+                  config_set, path, last_good.proto_message_name,
+                  proto_message_name)
     # Since the message type is not necessarily the same, it is safer to
     # unsuccessfully load config as text than successfully load a binary config
     # of an entirely different message type.

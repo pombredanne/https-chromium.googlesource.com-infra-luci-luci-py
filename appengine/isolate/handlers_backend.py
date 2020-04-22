@@ -1,7 +1,6 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Isolate Server backend url handlers."""
 
 import binascii
@@ -26,12 +25,12 @@ import template
 from components import decorators
 from components import utils
 
-
 ### Utility
 
 
 class Accumulator(object):
   """Accumulates output from a generator."""
+
   def __init__(self, source):
     self.accumulated = []
     self._source = source
@@ -52,18 +51,15 @@ def _split_payload(request, chunk_size, max_chunks):
   if len(content) % chunk_size:
     msg = (
         'Payload must be in increments of %d bytes, had %d bytes total, last '
-        'chunk was of length %d' % (
-              chunk_size,
-              len(content),
-              len(content) % chunk_size))
+        'chunk was of length %d' % (chunk_size, len(content),
+                                    len(content) % chunk_size))
     logging.error(msg)
     request.abort(400, detail=msg)
 
   count = len(content) / chunk_size
   if count > max_chunks:
-    msg = (
-        'Requested more than %d hash digests in a single request, '
-        'aborting' % count)
+    msg = ('Requested more than %d hash digests in a single request, '
+           'aborting' % count)
     logging.warning(msg)
     request.abort(400, detail=msg)
 
@@ -123,29 +119,23 @@ def _incremental_delete(query, delete_async):
       futures, _ = _throttle_futures(futures, 25)
 
       # Time to stop querying.
-      if (time.time() - start) > 9*60:
+      if (time.time() - start) > 9 * 60:
         break
 
     for f in futures:
       f.get_result()
-  except (
-      datastore_errors.BadRequestError,
-      datastore_errors.InternalError,
-      datastore_errors.Timeout,
-      datastore_errors.TransactionFailedError,
-      runtime.DeadlineExceededError) as e:
+  except (datastore_errors.BadRequestError, datastore_errors.InternalError,
+          datastore_errors.Timeout, datastore_errors.TransactionFailedError,
+          runtime.DeadlineExceededError) as e:
     logging.info('Silencing exception %s', e)
 
   # Try to do the best it can.
   for f in futures:
     try:
       f.get_result()
-    except (
-        datastore_errors.BadRequestError,
-        datastore_errors.InternalError,
-        datastore_errors.Timeout,
-        datastore_errors.TransactionFailedError,
-        runtime.DeadlineExceededError) as e:
+    except (datastore_errors.BadRequestError, datastore_errors.InternalError,
+            datastore_errors.Timeout, datastore_errors.TransactionFailedError,
+            runtime.DeadlineExceededError) as e:
       logging.info('Silencing exception as last chance; %s', e)
 
   return deleted_count
@@ -168,7 +158,7 @@ def _yield_orphan_gcs_files(gs_bucket):
   # pylint: disable=too-many-nested-blocks
   try:
     futures = {}
-    cutoff = time.time() - 24*60*60
+    cutoff = time.time() - 24 * 60 * 60
     # https://cloud.google.com/appengine/docs/standard/python/googlecloudstorageclient/gcsfilestat_class
     for filepath, filestats in gcs.list_files(gs_bucket):
       # If the file was uploaded in the last hour, ignore it.
@@ -232,9 +222,8 @@ def _yield_orphan_gcs_files(gs_bucket):
     logging.info(
         'Found:\n'
         '- %d good GCS files; %d bytes (%.1fTiB)\n'
-        '- %d orphaned files; %d bytes (%.1fGiB)',
-        good, size_good, size_good_tb,
-        orphaned, size_orphaned, size_orphaned_gb)
+        '- %d orphaned files; %d bytes (%.1fGiB)', good, size_good,
+        size_good_tb, orphaned, size_orphaned, size_orphaned_gb)
 
 
 ### Cron handlers
@@ -242,6 +231,7 @@ def _yield_orphan_gcs_files(gs_bucket):
 
 class CronCleanupExpiredHandler(webapp2.RequestHandler):
   """Triggers taskqueues to delete 500 items at a time."""
+
   @decorators.require_cronjob
   def get(self):
     # On the production instance, there's so many expired items that running the
@@ -258,7 +248,7 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
 
     # Do not run for more than 9 minutes. Exceeding 10min hard limit causes 500.
     # Normally this cron job should complete within a few milliseconds.
-    time_to_stop = time.time() + 9*60
+    time_to_stop = time.time() + 9 * 60
     now = utils.utcnow()
 
     # Get the very oldest item. The reason for keys_only=True is that we suspect
@@ -328,7 +318,8 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
       data = {'start': current, 'end': end}
       if utils.enqueue_task(
           '/internal/taskqueue/cleanup/query_expired',
-          'cleanup-query-expired', payload=utils.encode_to_json(data)):
+          'cleanup-query-expired',
+          payload=utils.encode_to_json(data)):
         triggered += 1
       else:
         logging.warning('Failed to trigger task for %s', data)
@@ -339,16 +330,17 @@ class CronCleanupExpiredHandler(webapp2.RequestHandler):
 
 class CronCleanupOrphanHandler(webapp2.RequestHandler):
   """Triggers a taskqueue."""
+
   @decorators.require_cronjob
   def get(self):
-    if not utils.enqueue_task(
-        '/internal/taskqueue/cleanup/orphan',
-        'cleanup-orphan'):
+    if not utils.enqueue_task('/internal/taskqueue/cleanup/orphan',
+                              'cleanup-orphan'):
       logging.warning('Failed to trigger task')
 
 
 class CronStatsUpdateHandler(webapp2.RequestHandler):
   """Called every few minutes to update statistics."""
+
   @decorators.require_cronjob
   def get(self):
     minutes = stats.cron_generate_stats()
@@ -358,6 +350,7 @@ class CronStatsUpdateHandler(webapp2.RequestHandler):
 
 class CronStatsSendToBQHandler(webapp2.RequestHandler):
   """Called every few minutes to send statistics to BigQuery."""
+
   @decorators.require_cronjob
   def get(self):
     stats.cron_send_to_bq()
@@ -372,7 +365,7 @@ class TaskCleanupQueryExpiredHandler(webapp2.RequestHandler):
   @decorators.require_taskqueue('cleanup-query-expired')
   def post(self):
     # Do not run for more than 9 minutes. Exceeding 10min hard limit causes 500.
-    time_to_stop = time.time() + 9*60
+    time_to_stop = time.time() + 9 * 60
 
     data = json.loads(self.request.body)
     start = utils.parse_datetime(data['start'])
@@ -381,9 +374,8 @@ class TaskCleanupQueryExpiredHandler(webapp2.RequestHandler):
 
     triggered = 0
     total = 0
-    q = model.ContentEntry.query(
-        model.ContentEntry.expiration_ts >= start,
-        model.ContentEntry.expiration_ts < end)
+    q = model.ContentEntry.query(model.ContentEntry.expiration_ts >= start,
+                                 model.ContentEntry.expiration_ts < end)
     cursor = None
     more = True
     while more and time.time() < time_to_stop:
@@ -397,7 +389,8 @@ class TaskCleanupQueryExpiredHandler(webapp2.RequestHandler):
       data = utils.encode_to_json([k.string_id() for k in keys])
       if utils.enqueue_task(
           '/internal/taskqueue/cleanup/expired',
-          'cleanup-expired', payload=data):
+          'cleanup-expired',
+          payload=data):
         triggered += 1
       else:
         logging.warning('Failed to trigger task')
@@ -410,7 +403,7 @@ class TaskCleanupExpiredHandler(webapp2.RequestHandler):
   @decorators.require_taskqueue('cleanup-expired')
   def post(self):
     keys = [
-      model.entry_key_from_id(str(l)) for l in json.loads(self.request.body)
+        model.entry_key_from_id(str(l)) for l in json.loads(self.request.body)
     ]
     total = _incremental_delete(keys, model.delete_entry_and_gs_entry_async)
     logging.info('Deleted %d expired entries', total)
@@ -449,11 +442,10 @@ class TaskTagWorkerHandler(webapp2.RequestHandler):
 
   This makes sure they are not evicted from the LRU cache too fast.
   """
-  @decorators.silence(
-      datastore_errors.InternalError,
-      datastore_errors.Timeout,
-      datastore_errors.TransactionFailedError,
-      runtime.DeadlineExceededError)
+
+  @decorators.silence(datastore_errors.InternalError, datastore_errors.Timeout,
+                      datastore_errors.TransactionFailedError,
+                      runtime.DeadlineExceededError)
   @decorators.require_taskqueue('tag')
   def post(self, namespace, timestamp):
     saved = 0
@@ -469,8 +461,8 @@ class TaskTagWorkerHandler(webapp2.RequestHandler):
       save_futures = []
       while fetch_futures:
         # Return opportunistically the first entity that can be retrieved.
-        fetch_futures, done = _throttle_futures(
-            fetch_futures, len(fetch_futures)-1)
+        fetch_futures, done = _throttle_futures(fetch_futures,
+                                                len(fetch_futures) - 1)
         for f in done:
           item = f.get_result()
           if item and item.next_tag_ts < now:
@@ -483,8 +475,7 @@ class TaskTagWorkerHandler(webapp2.RequestHandler):
 
       for f in save_futures:
         f.get_result()
-      logging.info(
-          'Timestamped %d entries out of %d', saved, len(digests))
+      logging.info('Timestamped %d entries out of %d', saved, len(digests))
     except Exception as e:
       logging.error('Failed to stamp entries: %s\n%d entries', e, len(digests))
       raise
@@ -496,18 +487,15 @@ class TaskVerifyWorkerHandler(webapp2.RequestHandler):
   @staticmethod
   def purge_entry(entry, message, *args):
     """Logs error message, deletes |entry| from datastore and GS."""
-    logging.error(
-        'Verification failed for %s: %s', entry.key.id(), message % args)
+    logging.error('Verification failed for %s: %s', entry.key.id(),
+                  message % args)
     # pylint is confused that ndb.tasklet returns a ndb.Future.
     # pylint: disable=no-member
     model.delete_entry_and_gs_entry_async(entry.key).get_result()
 
-  @decorators.silence(
-      datastore_errors.InternalError,
-      datastore_errors.Timeout,
-      datastore_errors.TransactionFailedError,
-      gcs.TransientError,
-      runtime.DeadlineExceededError)
+  @decorators.silence(datastore_errors.InternalError, datastore_errors.Timeout,
+                      datastore_errors.TransactionFailedError,
+                      gcs.TransientError, runtime.DeadlineExceededError)
   @decorators.require_taskqueue('verify')
   def post(self, namespace, hash_key):
     original_request = self.request.get('req')
@@ -519,8 +507,8 @@ class TaskVerifyWorkerHandler(webapp2.RequestHandler):
       logging.warning('Was already verified\n%s', original_request)
       return
     if entry.content is not None:
-      logging.error(
-          'Should not be called with inline content\n%s', original_request)
+      logging.error('Should not be called with inline content\n%s',
+                    original_request)
       return
 
     # Get GS file size.
@@ -537,10 +525,9 @@ class TaskVerifyWorkerHandler(webapp2.RequestHandler):
 
     # Expected stored length and actual length should match.
     if gs_file_info.size != entry.compressed_size:
-      self.purge_entry(entry,
-          'Bad GS file: expected size is %d, actual size is %d\n%s',
-          entry.compressed_size, gs_file_info.size,
-          original_request)
+      self.purge_entry(
+          entry, 'Bad GS file: expected size is %d, actual size is %d\n%s',
+          entry.compressed_size, gs_file_info.size, original_request)
       return
 
     save_to_memcache = (
@@ -583,32 +570,30 @@ class TaskVerifyWorkerHandler(webapp2.RequestHandler):
 
     except gcs.NotFoundError as e:
       # Somebody deleted a file between get_file_info and read_file calls.
-      self.purge_entry(
-          entry, 'File was unexpectedly deleted\n%s', original_request)
+      self.purge_entry(entry, 'File was unexpectedly deleted\n%s',
+                       original_request)
       return
     except (gcs.ForbiddenError, gcs.AuthorizationError) as e:
       # Misconfiguration in Google Storage ACLs. Don't delete an entry, it may
       # be fine. Maybe ACL problems would be fixed before the next retry.
-      logging.warning(
-          'CloudStorage auth issues (%s): %s', e.__class__.__name__, e)
+      logging.warning('CloudStorage auth issues (%s): %s', e.__class__.__name__,
+                      e)
       # Abort so the job is retried automatically.
       return self.abort(500)
     except (gcs.FatalError, zlib.error, IOError) as e:
       # ForbiddenError and AuthorizationError inherit FatalError, so this except
       # block should be last.
       # It's broken or unreadable.
-      self.purge_entry(entry,
-          'Failed to read the file (%s): %s\n%s',
-          e.__class__.__name__, e, original_request)
+      self.purge_entry(entry, 'Failed to read the file (%s): %s\n%s',
+                       e.__class__.__name__, e, original_request)
       return
 
     # Verified. Data matches the hash.
     entry.expanded_size = expanded_size
     entry.is_verified = True
     future = entry.put_async()
-    logging.info(
-        '%d bytes (%d bytes expanded) verified\n%s',
-        entry.compressed_size, expanded_size, original_request)
+    logging.info('%d bytes (%d bytes expanded) verified\n%s',
+                 entry.compressed_size, expanded_size, original_request)
     if save_to_memcache:
       model.save_in_memcache(namespace, hash_key, ''.join(stream.accumulated))
     future.wait()
@@ -620,6 +605,7 @@ class TaskVerifyWorkerHandler(webapp2.RequestHandler):
 
 class TaskLaunchMapReduceJobWorkerHandler(webapp2.RequestHandler):
   """Called via task queue or cron to start a map reduce job."""
+
   @decorators.require_taskqueue(mapreduce_jobs.MAPREDUCE_TASK_QUEUE)
   def post(self, job_id):  # pylint: disable=no-self-use
     mapreduce_jobs.launch_job(job_id)
@@ -639,43 +625,34 @@ def get_routes():
   namespace_key = namespace + hashkey
 
   return [
-    # Cron jobs.
-    webapp2.Route(
-        r'/internal/cron/cleanup/trigger/expired',
-        CronCleanupExpiredHandler),
-    webapp2.Route(
-        r'/internal/cron/cleanup/trigger/orphan',
-        CronCleanupOrphanHandler),
+      # Cron jobs.
+      webapp2.Route(r'/internal/cron/cleanup/trigger/expired',
+                    CronCleanupExpiredHandler),
+      webapp2.Route(r'/internal/cron/cleanup/trigger/orphan',
+                    CronCleanupOrphanHandler),
 
-    # Cleanup tasks.
-    webapp2.Route(
-        r'/internal/taskqueue/cleanup/query_expired',
-        TaskCleanupQueryExpiredHandler),
-    webapp2.Route(
-        r'/internal/taskqueue/cleanup/expired',
-        TaskCleanupExpiredHandler),
-    webapp2.Route(
-        r'/internal/taskqueue/cleanup/orphan',
-        TaskCleanupOrphanHandler),
+      # Cleanup tasks.
+      webapp2.Route(r'/internal/taskqueue/cleanup/query_expired',
+                    TaskCleanupQueryExpiredHandler),
+      webapp2.Route(r'/internal/taskqueue/cleanup/expired',
+                    TaskCleanupExpiredHandler),
+      webapp2.Route(r'/internal/taskqueue/cleanup/orphan',
+                    TaskCleanupOrphanHandler),
 
-    # Tasks triggered by other request handlers.
-    webapp2.Route(
-        r'/internal/taskqueue/tag%s/<timestamp:\d+>' % namespace,
-        TaskTagWorkerHandler),
-    webapp2.Route(
-        r'/internal/taskqueue/verify%s' % namespace_key,
-        TaskVerifyWorkerHandler),
+      # Tasks triggered by other request handlers.
+      webapp2.Route(r'/internal/taskqueue/tag%s/<timestamp:\d+>' % namespace,
+                    TaskTagWorkerHandler),
+      webapp2.Route(r'/internal/taskqueue/verify%s' % namespace_key,
+                    TaskVerifyWorkerHandler),
 
-    # Stats
-    webapp2.Route(
-        r'/internal/cron/stats/update', CronStatsUpdateHandler),
-    webapp2.Route(
-        r'/internal/cron/stats/send_to_bq', CronStatsSendToBQHandler),
+      # Stats
+      webapp2.Route(r'/internal/cron/stats/update', CronStatsUpdateHandler),
+      webapp2.Route(r'/internal/cron/stats/send_to_bq',
+                    CronStatsSendToBQHandler),
 
-    # Mapreduce related urls.
-    webapp2.Route(
-        r'/internal/taskqueue/mapreduce/launch/<job_id:[^\/]+>',
-        TaskLaunchMapReduceJobWorkerHandler),
+      # Mapreduce related urls.
+      webapp2.Route(r'/internal/taskqueue/mapreduce/launch/<job_id:[^\/]+>',
+                    TaskLaunchMapReduceJobWorkerHandler),
   ]
 
 

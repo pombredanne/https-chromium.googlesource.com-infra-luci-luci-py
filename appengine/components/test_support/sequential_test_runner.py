@@ -24,8 +24,8 @@ def run_tests(test_files, python3=False):
     run_cnt += 1
 
   print('\n-------------------------------------------------------------------')
-  print('Ran %d test files, Skipped %d test files' %
-        (run_cnt, len(skipped_tests)))
+  print('Ran %d test files, Skipped %d test files' % (run_cnt,
+                                                      len(skipped_tests)))
 
   if len(skipped_tests) > 0:
     print('\nSkipped tests:')

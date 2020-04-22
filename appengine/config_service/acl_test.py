@@ -25,13 +25,14 @@ def can_read_config_set(config_set):
 
 
 class AclTestCase(test_case.TestCase):
+
   def setUp(self):
     super(AclTestCase, self).setUp()
     self.mock(auth, 'get_current_identity', mock.Mock())
     auth.get_current_identity.return_value = auth.Anonymous
     self.mock(auth, 'is_group_member', mock.Mock(return_value=False))
-    self.mock(
-        services, 'get_services_async', mock.Mock(return_value=future([])))
+    self.mock(services, 'get_services_async',
+              mock.Mock(return_value=future([])))
 
     acl_cfg = service_config_pb2.AclCfg(
         project_access_group='project-admins',
@@ -50,8 +51,8 @@ class AclTestCase(test_case.TestCase):
     self.assertFalse(can_read_config_set('services/swarming'))
 
     services.get_services_async.return_value = future([
-      service_config_pb2.Service(
-          id='swarming', access=['group:swarming-app']),
+        service_config_pb2.Service(
+            id='swarming', access=['group:swarming-app']),
     ])
     auth.is_group_member.side_effect = lambda g, *_: g == 'swarming-app'
 
@@ -67,10 +68,14 @@ class AclTestCase(test_case.TestCase):
     self.assertFalse(can_read_config_set('services/swarming'))
 
   def test_has_project_access_group(self):
-    self.mock(projects, 'get_metadata_async', mock.Mock(return_value=future({
-      'secret': project_config_pb2.ProjectCfg(
-          access=['group:googlers', 'a@a.com']),
-    })))
+    self.mock(
+        projects, 'get_metadata_async',
+        mock.Mock(
+            return_value=future({
+                'secret':
+                    project_config_pb2.ProjectCfg(
+                        access=['group:googlers', 'a@a.com']),
+            })))
 
     self.assertFalse(can_read_config_set('projects/secret'))
 
@@ -81,10 +86,14 @@ class AclTestCase(test_case.TestCase):
     self.assertTrue(can_read_config_set('projects/secret'))
 
   def test_has_project_access_identity(self):
-    self.mock(projects, 'get_metadata_async', mock.Mock(return_value=future({
-      'secret': project_config_pb2.ProjectCfg(
-          access=['group:googlers', 'a@a.com']),
-    })))
+    self.mock(
+        projects, 'get_metadata_async',
+        mock.Mock(
+            return_value=future({
+                'secret':
+                    project_config_pb2.ProjectCfg(
+                        access=['group:googlers', 'a@a.com']),
+            })))
 
     self.assertFalse(can_read_config_set('projects/secret'))
 

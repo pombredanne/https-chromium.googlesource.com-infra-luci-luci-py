@@ -19,6 +19,7 @@ def hash_content(content):
 
 
 class FakeSigner(object):
+
   @classmethod
   def generate(cls, message, embedded):
     return '%s_<<<%s>>>' % (repr(message), json.dumps(embedded))
@@ -27,8 +28,8 @@ class FakeSigner(object):
   def validate(cls, ticket, message):
     a = re.match(r'^' + repr(message) + r'_<<<(.*)>>>$', ticket, re.DOTALL)
     if not a:
-      raise ValueError('Message %s cannot validate ticket %s' % (
-          repr(message), ticket))
+      raise ValueError(
+          'Message %s cannot validate ticket %s' % (repr(message), ticket))
     return json.loads(a.groups()[0])
 
 
@@ -47,15 +48,12 @@ class FakeIsolateServerHandler(httpserver.Handler):
 
   def _generate_ticket(self, entry_dict):
     """Generates an 'upload_ticket' to reply as PreuploadStatus."""
-    embedded = dict(
-        entry_dict,
-        **{
-            'c': 'flate',
-            'h': 'SHA-1',
-        })
-    message = (
-        'gs' if self._should_push_to_gs(embedded['i'], embedded['s'])
-        else 'datastore')
+    embedded = dict(entry_dict, **{
+        'c': 'flate',
+        'h': 'SHA-1',
+    })
+    message = ('gs' if self._should_push_to_gs(embedded['i'], embedded['s'])
+               else 'datastore')
     return FakeSigner.generate(message, embedded)
 
   def _storage_helper(self, body, finalize_gs):
@@ -85,7 +83,8 @@ class FakeIsolateServerHandler(httpserver.Handler):
       self.send_json({
           'client_id': 'c',
           'client_not_so_secret': 's',
-          'primary_url': self.server.url})
+          'primary_url': self.server.url
+      })
     elif self.path == '/auth/api/v1/accounts/self':
       self.send_json({'identity': 'user:joe', 'xsrf_token': 'foo'})
     elif self.path.startswith('/FAKE_GCS/'):
@@ -100,6 +99,7 @@ class FakeIsolateServerHandler(httpserver.Handler):
     body = self.read_body()
     if self.path.startswith('/_ah/api/isolateservice/v1/preupload'):
       response = {'items': []}
+
       def append_entry(entry, index, li):
         """Converts a {'h', 's', 'i'} to ["<upload url>", "<finalize url>"] or
         None.
@@ -136,8 +136,8 @@ class FakeIsolateServerHandler(httpserver.Handler):
       namespace = request['namespace']['namespace']
       data = self.server.contents[namespace].get(request['digest'])
       if data is None:
-        logging.error(
-            'Failed to retrieve %s / %s', namespace, request['digest'])
+        logging.error('Failed to retrieve %s / %s', namespace,
+                      request['digest'])
       elif self._should_push_to_gs(None, len(data)):
         self.send_json({
             'url': self._generate_signed_url(request['digest'], namespace)

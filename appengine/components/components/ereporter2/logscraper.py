@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Backend functions to gather error reports."""
 
 import collections
@@ -19,7 +18,6 @@ from components import utils
 from . import formatter
 from . import models
 
-
 # Silence this error message specifically. There's no action item here.
 SOFT_MEMORY_EXCEEDED = u'Exceeded soft memory limit'
 
@@ -31,19 +29,15 @@ MEMORY_EXCEEDED_PREFIXES = (
 
 MEMORY_EXCEEDED = u'Exceeded memory limit'
 
-
 ### Private constants.
-
 
 # Markers to read back a stack trace.
 _STACK_TRACE_MARKER = u'Traceback (most recent call last):'
-
 
 # Number of first error records to show in the category error list.
 _ERROR_LIST_HEAD_SIZE = 10
 # Number of last error records to show in the category error list.
 _ERROR_LIST_TAIL_SIZE = 10
-
 
 ### Private suff.
 
@@ -106,6 +100,7 @@ class _CappedList(object):
 
 class _ErrorCategory(object):
   """Describes a 'class' of error messages' according to an unique signature."""
+
   def __init__(self, signature):
     assert isinstance(signature, unicode), signature
     # Remove the version embedded in the signature.
@@ -144,20 +139,17 @@ class _ErrorRecord(object):
   """Describes the context in which an error was logged."""
 
   # Use slots to reduce memory footprint of _ErrorRecord object.
-  __slots__ = (
-      'request_id', 'start_time', 'exception_time', 'latency', 'mcycles', 'ip',
-      'nickname', 'referrer', 'user_agent', 'host', 'resource', 'method',
-      'task_queue_name', 'was_loading_request', 'version', 'module',
-      'handler_module', 'gae_version', 'instance', 'status', 'message',
-      'exception_type', 'signature')
+  __slots__ = ('request_id', 'start_time', 'exception_time', 'latency',
+               'mcycles', 'ip', 'nickname', 'referrer', 'user_agent', 'host',
+               'resource', 'method', 'task_queue_name', 'was_loading_request',
+               'version', 'module', 'handler_module', 'gae_version', 'instance',
+               'status', 'message', 'exception_type', 'signature')
 
-  def __init__(
-      self, request_id, start_time, exception_time, latency, mcycles,
-      ip, nickname, referrer, user_agent,
-      host, resource, method, task_queue_name,
-      was_loading_request, version, module, handler_module, gae_version,
-      instance,
-      status, message, signature, exception_type):
+  def __init__(self, request_id, start_time, exception_time, latency, mcycles,
+               ip, nickname, referrer, user_agent, host, resource, method,
+               task_queue_name, was_loading_request, version, module,
+               handler_module, gae_version, instance, status, message,
+               signature, exception_type):
     assert isinstance(message, unicode), repr(message)
     # Unique identifier.
     self.request_id = request_id
@@ -241,12 +233,12 @@ def _signature_from_message(message):
     if not re.match(formatter.RE_STACK_TRACE_FILE, lines[index]):
       break
     if (len(lines) > index + 1 and
-        re.match(formatter.RE_STACK_TRACE_FILE, lines[index+1])):
+        re.match(formatter.RE_STACK_TRACE_FILE, lines[index + 1])):
       # It happens occasionally with jinja2 templates.
       stacktrace.append(lines[index])
       index += 1
     else:
-      stacktrace.extend(lines[index:index+2])
+      stacktrace.extend(lines[index:index + 2])
       index += 2
 
   if index >= len(lines):
@@ -338,13 +330,13 @@ def _extract_exceptions_from_logs(start_time, end_time, module_versions):
       signature, exception_type = _signature_from_message(message)
       if exception_type:
         yield _ErrorRecord(
-            entry.request_id,
-            entry.start_time, log_time, entry.latency, entry.mcycles,
-            entry.ip, entry.nickname, entry.referrer, entry.user_agent,
-            entry.host, entry.resource, entry.method, entry.task_queue_name,
-            entry.was_loading_request, entry.version_id, entry.module_id,
-            entry.url_map_entry, entry.app_engine_release, entry.instance_key,
-            entry.status, message, signature, exception_type)
+            entry.request_id, entry.start_time, log_time, entry.latency,
+            entry.mcycles, entry.ip, entry.nickname, entry.referrer,
+            entry.user_agent, entry.host, entry.resource, entry.method,
+            entry.task_queue_name, entry.was_loading_request, entry.version_id,
+            entry.module_id, entry.url_map_entry, entry.app_engine_release,
+            entry.instance_key, entry.status, message, signature,
+            exception_type)
   except logservice.Error as e:
     # It's not worth generating an error log when logservice is temporarily
     # down. Retrying is not worth either.
@@ -360,16 +352,19 @@ def _should_ignore_error_category(monitoring, error_category):
   if (monitoring.silenced_until and
       monitoring.silenced_until >= utils.utcnow()):
     return True
-  if (monitoring.threshold and len(error_category.events) <
-      monitoring.threshold):
+  if (monitoring.threshold and
+      len(error_category.events) < monitoring.threshold):
     return True
   return False
 
 
 def _log_request_id(request_id):
   """Returns a logservice.RequestLog for a request id or None if not found."""
-  request = list(logservice.fetch(
-      include_incomplete=True, include_app_logs=True, request_ids=[request_id]))
+  request = list(
+      logservice.fetch(
+          include_incomplete=True,
+          include_app_logs=True,
+          request_ids=[request_id]))
   if not request:
     logging.info('Dang, didn\'t find the request_id %s', request_id)
     return None
@@ -402,18 +397,18 @@ def scrape_logs_for_errors(start_time, end_time, module_versions):
 
   # In practice, we don't expect more than ~100 entities.
   filters = {
-    e.key.string_id(): e for e in models.ErrorReportingMonitoring.query()
+      e.key.string_id(): e for e in models.ErrorReportingMonitoring.query()
   }
 
   # Gather all the error categories.
   buckets = {}
-  for error_record in _extract_exceptions_from_logs(
-      start_time, end_time, module_versions):
-    bucket = buckets.setdefault(
-        error_record.signature, _ErrorCategory(error_record.signature))
+  for error_record in _extract_exceptions_from_logs(start_time, end_time,
+                                                    module_versions):
+    bucket = buckets.setdefault(error_record.signature,
+                                _ErrorCategory(error_record.signature))
     bucket.append_error(error_record)
     # Abort, there's too much logs.
-    if (utils.time_time() - start) >= 9*60:
+    if (utils.time_time() - start) >= 9 * 60:
       end_time = error_record.start_time
       break
 
@@ -422,11 +417,12 @@ def scrape_logs_for_errors(start_time, end_time, module_versions):
   ignored = []
   for category in buckets.values():
     # Ignore either the exception or the signature. Signature takes precedence.
-    f = filters.get(models.ErrorReportingMonitoring.error_to_key_id(
-        category.signature))
+    f = filters.get(
+        models.ErrorReportingMonitoring.error_to_key_id(category.signature))
     if not f and category.exception_type:
-      f = filters.get(models.ErrorReportingMonitoring.error_to_key_id(
-          category.exception_type))
+      f = filters.get(
+          models.ErrorReportingMonitoring.error_to_key_id(
+              category.exception_type))
     if _should_ignore_error_category(f, category):
       ignored.append(category)
     else:

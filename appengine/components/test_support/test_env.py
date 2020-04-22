@@ -20,8 +20,8 @@ def setup_test_env(app_id='sample-app'):
   _INITIALIZED = True
 
   # For depot_tools.
-  sys.path.insert(
-      0, os.path.join(ROOT_DIR, '..', '..', 'client', 'third_party'))
+  sys.path.insert(0, os.path.join(ROOT_DIR, '..', '..', 'client',
+                                  'third_party'))
   # For 'from components import ...' and 'from test_support import ...'.
   sys.path.insert(0, ROOT_DIR)
   sys.path.insert(0, os.path.join(ROOT_DIR, '..', 'third_party_local'))

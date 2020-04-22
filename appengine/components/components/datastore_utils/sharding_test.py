@@ -21,6 +21,7 @@ class EntityX(ndb.Model):
 
 
 class ShardingTest(test_case.TestCase):
+
   def test_shard_key(self):
     actual = sharding.shard_key('1234', 2, 'Root')
     expected = "Key('Root', '12')"

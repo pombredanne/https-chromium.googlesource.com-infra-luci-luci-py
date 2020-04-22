@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Common gRPC implementation for Swarming and Isolate"""
 
 import logging
@@ -25,7 +24,6 @@ try:
 except ImportError as err:
   grpc = None
 
-
 # If gRPC was successfully imported, try to import certifi as well.  This is not
 # actually used anywhere in this module, but if certifi is missing,
 # google.auth.transport will fail (see
@@ -39,14 +37,11 @@ if grpc is not None:
     # Will print out error messages later (ie when we have a logger)
     pass
 
-
 # How many times to retry a gRPC call
 MAX_GRPC_ATTEMPTS = 30
 
-
 # Longest time to sleep between gRPC calls
 MAX_GRPC_SLEEP = 10.
-
 
 # Start the timeout at three minutes.
 GRPC_TIMEOUT_SEC = 3 * 60
@@ -101,8 +96,8 @@ class Proxy(object):
   def __init__(self, proxy, stub_class):
     self._verbose = os.environ.get('LUCI_GRPC_PROXY_VERBOSE')
     if self._verbose:
-      logging.info('Enabled verbose mode for %s with stub %s',
-                   proxy, stub_class.__name__)
+      logging.info('Enabled verbose mode for %s with stub %s', proxy,
+                   stub_class.__name__)
     # NB: everything in url is unicode; convert to strings where
     # needed.
     url = urllib.parse.urlparse(proxy)
@@ -113,8 +108,8 @@ class Proxy(object):
     elif url.scheme == 'https':
       self._secure = True
     else:
-      raise ValueError('gRPC proxy %s must use http[s], not %s' % (
-          proxy, url.scheme))
+      raise ValueError(
+          'gRPC proxy %s must use http[s], not %s' % (proxy, url.scheme))
     if url.netloc == '':
       raise ValueError('gRPC proxy is missing hostname: %s' % proxy)
     self._host = url.netloc
@@ -124,8 +119,8 @@ class Proxy(object):
     if self._prefix.startswith('/'):
       self._prefix = self._prefix[1:]
     if url.params != '' or url.fragment != '':
-      raise ValueError('gRPC proxy may not contain params or fragments: %s' %
-                       proxy)
+      raise ValueError(
+          'gRPC proxy may not contain params or fragments: %s' % proxy)
     self._debug_info = ['full proxy name: ' + proxy]
     self._channel = self._create_channel()
     self._stub = stub_class(self._channel)
@@ -150,8 +145,8 @@ class Proxy(object):
     security = 'insecure'
     if self._secure:
       security = 'secure'
-    return 'gRPC %s proxy %s/%s' % (
-        security, self._host, self._stub.__class__.__name__)
+    return 'gRPC %s proxy %s/%s' % (security, self._host,
+                                    self._stub.__class__.__name__)
 
   def call_unary(self, name, request):
     """Calls a method, waiting if the service is not available.
@@ -168,10 +163,10 @@ class Proxy(object):
       request = list(request)
       is_generator = True
 
-    for attempt in range(1, MAX_GRPC_ATTEMPTS+1):
+    for attempt in range(1, MAX_GRPC_ATTEMPTS + 1):
       try:
-        return self.call_no_retries(name, request
-                                    if not is_generator else iter(request))
+        return self.call_no_retries(
+            name, request if not is_generator else iter(request))
       except grpc.RpcError as g:
         if g.code() is not grpc.StatusCode.UNAVAILABLE:
           raise
@@ -233,8 +228,7 @@ class Proxy(object):
   def _dump_proxy_info(self):
     logging.warning('DETAILED PROXY INFO')
     logging.warning('prefix = %s', self.prefix)
-    logging.warning('debug info:\n\t%s\n\n',
-                    '\n\t'.join(self._debug_info))
+    logging.warning('debug info:\n\t%s\n\n', '\n\t'.join(self._debug_info))
 
   def _create_channel(self):
     # Make sure grpc was successfully imported

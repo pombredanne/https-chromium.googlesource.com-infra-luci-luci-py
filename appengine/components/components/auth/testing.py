@@ -1,7 +1,6 @@
 # Copyright 2019 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utilities for internal components.auth tests."""
 
 import collections
@@ -13,11 +12,9 @@ from components.auth import delegation
 from components.auth import model
 from test_support import test_case
 
-
 # Mocked subset of config tuple returned by config.ensure_configured().
-_MockedConfig = collections.namedtuple('_MockedConfig', [
-    'USE_PROJECT_IDENTITIES'
-])
+_MockedConfig = collections.namedtuple('_MockedConfig',
+                                       ['USE_PROJECT_IDENTITIES'])
 
 
 class TestCase(test_case.TestCase):
@@ -30,9 +27,8 @@ class TestCase(test_case.TestCase):
     api.reset_local_state()
 
     self.logged_errors = []
-    self.mock(
-        logging, 'error',
-        lambda *args, **kwargs: self.logged_errors.append((args, kwargs)))
+    self.mock(logging, 'error',
+              lambda *args, **kwargs: self.logged_errors.append((args, kwargs)))
     self.logged_warnings = []
     self.mock(
         logging, 'warning',

@@ -13,7 +13,6 @@ from protorpc import remote
 from components import auth
 from components import endpoints_webapp2
 
-
 package = 'testing_api'
 
 
@@ -24,11 +23,9 @@ class WhoResponse(messages.Message):
 
 @auth.endpoints_api(name='testing_service', version='v1')
 class TestingServiceApi(remote.Service):
+
   @auth.endpoints_method(
-      message_types.VoidMessage,
-      WhoResponse,
-      name='who',
-      http_method='GET')
+      message_types.VoidMessage, WhoResponse, name='who', http_method='GET')
   @auth.public
   def who(self, _request):
     return WhoResponse(

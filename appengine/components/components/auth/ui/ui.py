@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Auth management UI handlers."""
 
 import functools
@@ -22,11 +21,9 @@ from .. import handler
 from .. import model
 from .. import replication
 
-
 # templates/.
 TEMPLATES_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'templates')
-
 
 # Global static configuration set in 'configure_ui'.
 _ui_app_name = 'Unknown'
@@ -65,11 +62,11 @@ def get_ui_routes():
       routes.extend(cls.get_webapp2_routes())
     # Routes for everything else.
     routes.extend([
-      webapp2.Route(r'/auth', MainHandler),
-      webapp2.Route(r'/auth/bootstrap', BootstrapHandler, name='bootstrap'),
-      webapp2.Route(r'/auth/bootstrap/oauth', BootstrapOAuthHandler),
-      webapp2.Route(r'/auth/link', LinkToPrimaryHandler),
-      webapp2.Route(r'/auth/listing', GroupListingHandler),
+        webapp2.Route(r'/auth', MainHandler),
+        webapp2.Route(r'/auth/bootstrap', BootstrapHandler, name='bootstrap'),
+        webapp2.Route(r'/auth/bootstrap/oauth', BootstrapOAuthHandler),
+        webapp2.Route(r'/auth/link', LinkToPrimaryHandler),
+        webapp2.Route(r'/auth/listing', GroupListingHandler),
     ])
   return routes
 
@@ -80,6 +77,7 @@ def forbid_ui_on_replica(method):
   If such method is called on a service in Replica mode, it would return
   HTTP 405 "Method Not Allowed".
   """
+
   @functools.wraps(method)
   def wrapper(self, *args, **kwargs):
     assert isinstance(self, webapp2.RequestHandler)
@@ -89,6 +87,7 @@ def forbid_ui_on_replica(method):
           405,
           detail='Not allowed on a replica, see primary at %s' % primary_url)
     return method(self, *args, **kwargs)
+
   return wrapper
 
 
@@ -98,6 +97,7 @@ def redirect_ui_on_replica(method):
   If such method is called on a service in Replica mode, it would return
   HTTP 302 redirect to corresponding method on Primary.
   """
+
   @functools.wraps(method)
   def wrapper(self, *args, **kwargs):
     assert isinstance(self, webapp2.RequestHandler)
@@ -109,6 +109,7 @@ def redirect_ui_on_replica(method):
       assert self.request.path_qs.startswith('/'), self.request.path_qs
       self.redirect(primary_url.rstrip('/') + self.request.path_qs, abort=True)
     return method(self, *args, **kwargs)
+
   return wrapper
 
 
@@ -137,11 +138,11 @@ class AdminPageHandler(handler.AuthenticatingHandler):
       status: HTTP status code to return.
     """
     full_env = {
-      'app_name': _ui_app_name,
-      'csp_nonce': self.csp_nonce,
-      'identity': api.get_current_identity(),
-      'logout_url': json.dumps(self.create_logout_url('/')), # see base.html
-      'xsrf_token': self.generate_xsrf_token(),
+        'app_name': _ui_app_name,
+        'csp_nonce': self.csp_nonce,
+        'identity': api.get_current_identity(),
+        'logout_url': json.dumps(self.create_logout_url('/')),  # see base.html
+        'xsrf_token': self.generate_xsrf_token(),
     }
     full_env.update(env or {})
     self.response.set_status(status)
@@ -151,8 +152,8 @@ class AdminPageHandler(handler.AuthenticatingHandler):
   def authentication_error(self, error):
     """Shows 'Access denied' page."""
     env = {
-      'page_title': 'Access Denied',
-      'error': error,
+        'page_title': 'Access Denied',
+        'error': error,
     }
     self.reply('auth/admin/access_denied.html', env=env, status=401)
 
@@ -172,8 +173,8 @@ class AdminPageHandler(handler.AuthenticatingHandler):
 
     # No access.
     env = {
-      'page_title': 'Access Denied',
-      'error': error,
+        'page_title': 'Access Denied',
+        'error': error,
     }
     self.reply('auth/admin/access_denied.html', env=env, status=403)
 
@@ -191,23 +192,23 @@ class BootstrapHandler(AdminPageHandler):
   @api.require(api.is_superuser)
   def get(self):
     env = {
-      'page_title': 'Bootstrap',
-      'admin_group': model.ADMIN_GROUP,
-      'return_url': self.request.get('r') or '',
+        'page_title': 'Bootstrap',
+        'admin_group': model.ADMIN_GROUP,
+        'return_url': self.request.get('r') or '',
     }
     self.reply('auth/admin/bootstrap.html', env)
 
   @forbid_ui_on_replica
   @api.require(api.is_superuser)
   def post(self):
-    added = model.bootstrap_group(
-        model.ADMIN_GROUP, [api.get_current_identity()],
-        'Users that can manage groups')
+    added = model.bootstrap_group(model.ADMIN_GROUP,
+                                  [api.get_current_identity()],
+                                  'Users that can manage groups')
     env = {
-      'page_title': 'Bootstrap',
-      'admin_group': model.ADMIN_GROUP,
-      'added': added,
-      'return_url': self.request.get('return_url') or '',
+        'page_title': 'Bootstrap',
+        'admin_group': model.ADMIN_GROUP,
+        'added': added,
+        'return_url': self.request.get('return_url') or '',
     }
     self.reply('auth/admin/bootstrap_done.html', env)
 
@@ -234,9 +235,9 @@ class BootstrapOAuthHandler(AdminPageHandler):
 
   def show_page(self, web_client_id, saved=False):
     env = {
-      'page_title': 'OAuth2 web client ID',
-      'web_client_id': web_client_id or '',
-      'saved': saved,
+        'page_title': 'OAuth2 web client ID',
+        'web_client_id': web_client_id or '',
+        'saved': saved,
     }
     self.reply('auth/admin/bootstrap_oauth.html', env)
 
@@ -261,10 +262,10 @@ class LinkToPrimaryHandler(AdminPageHandler):
   def get(self):
     ticket = self.decode_link_ticket()
     env = {
-      'generated_by': ticket.generated_by,
-      'page_title': 'Switch',
-      'primary_id': ticket.primary_id,
-      'primary_url': ticket.primary_url,
+        'generated_by': ticket.generated_by,
+        'page_title': 'Switch',
+        'primary_id': ticket.primary_id,
+        'primary_url': ticket.primary_url,
     }
     self.reply('auth/admin/linking.html', env)
 
@@ -280,11 +281,11 @@ class LinkToPrimaryHandler(AdminPageHandler):
       success = False
       error_msg = exc.message
     env = {
-      'error_msg': error_msg,
-      'page_title': 'Switch',
-      'primary_id': ticket.primary_id,
-      'primary_url': ticket.primary_url,
-      'success': success,
+        'error_msg': error_msg,
+        'page_title': 'Switch',
+        'primary_id': ticket.primary_id,
+        'primary_url': ticket.primary_url,
+        'success': success,
     }
     self.reply('auth/admin/linking_done.html', env)
 
@@ -328,13 +329,20 @@ class UIHandler(handler.AuthenticatingHandler):
     # This goes to both Jinja2 env and Javascript config object.
     user = self.get_current_user()
     common = {
-      'account_picture': user.picture() if user else None,
-      'auth_service_config_locked': False, # overridden in auth_service
-      'is_admin': api.is_admin(),
-      'login_url': self.create_login_url(self.request.url),
-      'logout_url': self.create_logout_url('/'),
-      'using_gae_auth': self.auth_method == handler.gae_cookie_authentication,
-      'xsrf_token': self.generate_xsrf_token(),
+        'account_picture':
+            user.picture() if user else None,
+        'auth_service_config_locked':
+            False,  # overridden in auth_service
+        'is_admin':
+            api.is_admin(),
+        'login_url':
+            self.create_login_url(self.request.url),
+        'logout_url':
+            self.create_logout_url('/'),
+        'using_gae_auth':
+            self.auth_method == handler.gae_cookie_authentication,
+        'xsrf_token':
+            self.generate_xsrf_token(),
     }
     if _ui_data_callback:
       common.update(_ui_data_callback())
@@ -347,23 +355,27 @@ class UIHandler(handler.AuthenticatingHandler):
 
     # This will be accessible from Javascript as global 'config' variable.
     js_config = {
-      'identity': api.get_current_identity().to_bytes(),
+        'identity': api.get_current_identity().to_bytes(),
     }
     js_config.update(common)
 
     # Jinja2 environment to use to render a template.
     full_env = {
-      'app_name': _ui_app_name,
-      'app_version': utils.get_app_version(),
-      'config': json.dumps(js_config),
-      'csp_nonce': self.csp_nonce,
-      'identity': api.get_current_identity(),
-      'js_module_name': js_module_name,
-      'navbar': [
-        (cls.navbar_tab_id, cls.navbar_tab_title, cls.navbar_tab_url)
-        for cls in _ui_navbar_tabs
-        if cls.is_visible()
-      ],
+        'app_name':
+            _ui_app_name,
+        'app_version':
+            utils.get_app_version(),
+        'config':
+            json.dumps(js_config),
+        'csp_nonce':
+            self.csp_nonce,
+        'identity':
+            api.get_current_identity(),
+        'js_module_name':
+            js_module_name,
+        'navbar': [(cls.navbar_tab_id, cls.navbar_tab_title, cls.navbar_tab_url)
+                   for cls in _ui_navbar_tabs
+                   if cls.is_visible()],
     }
     full_env.update(common)
     full_env.update(env)
@@ -377,8 +389,8 @@ class UIHandler(handler.AuthenticatingHandler):
     """Shows 'Access denied' page."""
     # TODO(vadimsh): This will be deleted once we use Google Sign-In.
     env = {
-      'page_title': 'Access Denied',
-      'error': error,
+        'page_title': 'Access Denied',
+        'error': error,
     }
     self.reply('auth/access_denied.html', env=env, status=401)
 
@@ -399,14 +411,15 @@ class UIHandler(handler.AuthenticatingHandler):
 
     # No access.
     env = {
-      'page_title': 'Access Denied',
-      'error': error,
+        'page_title': 'Access Denied',
+        'error': error,
     }
     self.reply('auth/access_denied.html', env=env, status=403)
 
 
 class MainHandler(UIHandler):
   """Redirects to first navbar tab."""
+
   @redirect_ui_on_replica
   @api.require(acl.has_access)
   def get(self):
@@ -436,10 +449,10 @@ class UINavbarTabHandler(UIHandler):
   def get(self, **_params):
     """Renders page HTML to HTTP response stream."""
     env = {
-      'css_file': self.css_file,
-      'js_file': self.js_file_url,
-      'navbar_tab_id': self.navbar_tab_id,
-      'page_title': self.navbar_tab_title,
+        'css_file': self.css_file,
+        'js_file': self.js_file_url,
+        'navbar_tab_id': self.navbar_tab_id,
+        'page_title': self.navbar_tab_title,
     }
     self.reply(self.template_file, env)
 
@@ -461,8 +474,8 @@ class UINavbarTabHandler(UIHandler):
 class GroupsHandler(UINavbarTabHandler):
   """Page with Groups management."""
   routes = [
-    '/auth/groups',
-    '/auth/groups/<group:.*>',  # 'group' is handled by js code
+      '/auth/groups',
+      '/auth/groups/<group:.*>',  # 'group' is handled by js code
   ]
   navbar_tab_url = '/auth/groups'
   navbar_tab_id = 'groups'
@@ -535,137 +548,147 @@ class ApiDocHandler(UINavbarTabHandler):
 
   # These can be used as 'request_type' and 'response_type' in api_doc.
   doc_types = [
-    {
-      'name': 'Status',
-      'doc': 'Outcome of some operation.',
-      'example': {'ok': True},
-    },
-    {
-      'name': 'Self info',
-      'doc': 'Information about the requester.',
-      'example': {
-        'identity': 'user:someone@example.com',
-        'ip': '192.168.0.1',
-      },
-    },
-    {
-      'name': 'Group',
-      'doc': 'Represents a group, as stored in the database.',
-      'example': {
-        'group': {
-          'caller_can_modify': True,
-          'created_by': 'user:someone@example.com',
-          'created_ts': 1409250754978540,
-          'description': 'Some free form description',
-          'globs': ['user:*@example.com'],
-          'members': ['user:a@example.com', 'anonymous:anonymous'],
-          'modified_by': 'user:someone@example.com',
-          'modified_ts': 1470871200558130,
-          'name': 'Some group',
-          'nested': ['Some nested group', 'Another nested group'],
-          'owners': 'Owning group',
-        },
-      },
-    },
-    {
-      'name': 'Groups',
-      'doc':
-        'All groups, along with their metadata. Does not include members '
-        'listings.',
-      'example': {
-        'groups': [
-          {
-            'caller_can_modify': True,
-            'created_by': 'user:someone@example.com',
-            'created_ts': 1409250754978540,
-            'description': 'Some free form description',
-            'modified_by': 'user:someone@example.com',
-            'modified_ts': 1470871200558130,
-            'name': 'Some group',
-            'owners': 'Owning group',
+      {
+          'name': 'Status',
+          'doc': 'Outcome of some operation.',
+          'example': {
+              'ok': True
           },
-          {
-            'caller_can_modify': True,
-            'created_by': 'user:someone@example.com',
-            'created_ts': 1409250754978540,
-            'description': 'Another description',
-            'modified_by': 'user:someone@example.com',
-            'modified_ts': 1470871200558130,
-            'name': 'Another group',
-            'owners': 'Owning group',
+      },
+      {
+          'name': 'Self info',
+          'doc': 'Information about the requester.',
+          'example': {
+              'identity': 'user:someone@example.com',
+              'ip': '192.168.0.1',
           },
-        ],
       },
-    },
-    {
-      'name': 'Group listing',
-      'doc':
-        'Recursive listing of all members, globs and nested groups inside '
-        'a group. In no particular order.',
-      'example': {
-        'listing': {
-          'members': [
-            {'principal': 'user:someone@example.com'},
-            {'principal': 'user:another@example.com'},
-          ],
-          'globs': [
-            {'principal': 'user:*@example.com'},
-          ],
-          'nested': [
-            {'principal': 'Nested group'},
-            {'principal': 'Another nested group'},
-          ],
-        },
+      {
+          'name': 'Group',
+          'doc': 'Represents a group, as stored in the database.',
+          'example': {
+              'group': {
+                  'caller_can_modify': True,
+                  'created_by': 'user:someone@example.com',
+                  'created_ts': 1409250754978540,
+                  'description': 'Some free form description',
+                  'globs': ['user:*@example.com'],
+                  'members': ['user:a@example.com', 'anonymous:anonymous'],
+                  'modified_by': 'user:someone@example.com',
+                  'modified_ts': 1470871200558130,
+                  'name': 'Some group',
+                  'nested': ['Some nested group', 'Another nested group'],
+                  'owners': 'Owning group',
+              },
+          },
       },
-    },
-    {
-      'name': 'Group subgraph',
-      'doc':
-        'Subgraph with all groups that include a principal (perhaps indirectly)'
-        ' or owned by it (also perhaps indirectly). Each node has an ID that '
-        'matches its index in "nodes" array. These IDs are referenced in '
-        '"edges" relations. ID of the node that matches the principal of '
-        'interest is 0, i.e it is always first in "nodes" array.',
-      'example': {
-        'subgraph': {
-          'nodes': [
-            {
-              'kind': 'IDENTITY',
-              'edges': {
-                'IN': [1, 2],
-              },
-              'value': 'user:someone@example.com',
-            },
-            {
-              'kind': 'GLOB',
-              'edges': {
-                'IN': [2],
-              },
-              'value': 'user:*',
-            },
-            {
-              'kind': 'GROUP',
-              'edges': {
-                'IN': [3],
-                'OWNS': [2, 4],
-              },
-              'value': 'owners-group',
-            },
-            {
-              'kind': 'GROUP',
-              'edges': {
-                'OWNS': [3],
-              },
-              'value': 'another-owners-group',
-            },
-            {
-              'kind': 'GROUP',
-              'value': 'owned-group',
-            },
-          ],
-        },
+      {
+          'name': 'Groups',
+          'doc':
+              'All groups, along with their metadata. Does not include members '
+              'listings.',
+          'example': {
+              'groups': [
+                  {
+                      'caller_can_modify': True,
+                      'created_by': 'user:someone@example.com',
+                      'created_ts': 1409250754978540,
+                      'description': 'Some free form description',
+                      'modified_by': 'user:someone@example.com',
+                      'modified_ts': 1470871200558130,
+                      'name': 'Some group',
+                      'owners': 'Owning group',
+                  },
+                  {
+                      'caller_can_modify': True,
+                      'created_by': 'user:someone@example.com',
+                      'created_ts': 1409250754978540,
+                      'description': 'Another description',
+                      'modified_by': 'user:someone@example.com',
+                      'modified_ts': 1470871200558130,
+                      'name': 'Another group',
+                      'owners': 'Owning group',
+                  },
+              ],
+          },
       },
-    },
+      {
+          'name': 'Group listing',
+          'doc':
+              'Recursive listing of all members, globs and nested groups inside '
+              'a group. In no particular order.',
+          'example': {
+              'listing': {
+                  'members': [
+                      {
+                          'principal': 'user:someone@example.com'
+                      },
+                      {
+                          'principal': 'user:another@example.com'
+                      },
+                  ],
+                  'globs': [{
+                      'principal': 'user:*@example.com'
+                  },],
+                  'nested': [
+                      {
+                          'principal': 'Nested group'
+                      },
+                      {
+                          'principal': 'Another nested group'
+                      },
+                  ],
+              },
+          },
+      },
+      {
+          'name': 'Group subgraph',
+          'doc':
+              'Subgraph with all groups that include a principal (perhaps indirectly)'
+              ' or owned by it (also perhaps indirectly). Each node has an ID that '
+              'matches its index in "nodes" array. These IDs are referenced in '
+              '"edges" relations. ID of the node that matches the principal of '
+              'interest is 0, i.e it is always first in "nodes" array.',
+          'example': {
+              'subgraph': {
+                  'nodes': [
+                      {
+                          'kind': 'IDENTITY',
+                          'edges': {
+                              'IN': [1, 2],
+                          },
+                          'value': 'user:someone@example.com',
+                      },
+                      {
+                          'kind': 'GLOB',
+                          'edges': {
+                              'IN': [2],
+                          },
+                          'value': 'user:*',
+                      },
+                      {
+                          'kind': 'GROUP',
+                          'edges': {
+                              'IN': [3],
+                              'OWNS': [2, 4],
+                          },
+                          'value': 'owners-group',
+                      },
+                      {
+                          'kind': 'GROUP',
+                          'edges': {
+                              'OWNS': [3],
+                          },
+                          'value': 'another-owners-group',
+                      },
+                      {
+                          'kind': 'GROUP',
+                          'value': 'owned-group',
+                      },
+                  ],
+              },
+          },
+      },
   ]
 
   @redirect_ui_on_replica
@@ -711,28 +734,28 @@ class ApiDocHandler(UINavbarTabHandler):
         if 'params' in doc:
           path += '?' + doc['params']
         api_methods.append({
-          'verb': doc['verb'],
-          'path': path,
-          'doc': doc['doc'],
-          'request_type': add_doc_type(doc.get('request_type')),
-          'response_type': add_doc_type(doc.get('response_type')),
+            'verb': doc['verb'],
+            'path': path,
+            'doc': doc['doc'],
+            'request_type': add_doc_type(doc.get('request_type')),
+            'response_type': add_doc_type(doc.get('response_type')),
         })
 
     env = {
-      'navbar_tab_id': self.navbar_tab_id,
-      'page_title': self.navbar_tab_title,
-      'api_methods': api_methods,
-      'doc_types': doc_types,
+        'navbar_tab_id': self.navbar_tab_id,
+        'page_title': self.navbar_tab_title,
+        'api_methods': api_methods,
+        'doc_types': doc_types,
     }
     self.reply('auth/api.html', env)
 
 
 # Register them as default tabs. Order is important.
 _ui_navbar_tabs = (
-  GroupsHandler,
-  ChangeLogHandler,
-  LookupHandler,
-  OAuthConfigHandler,
-  IPWhitelistsHandler,
-  ApiDocHandler,
+    GroupsHandler,
+    ChangeLogHandler,
+    LookupHandler,
+    OAuthConfigHandler,
+    IPWhitelistsHandler,
+    ApiDocHandler,
 )

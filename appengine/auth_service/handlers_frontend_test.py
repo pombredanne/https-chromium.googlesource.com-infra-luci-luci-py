@@ -21,7 +21,6 @@ import handlers_frontend
 import importer
 import replication
 
-
 GOOD_IMPORTER_CONFIG = """
 # Comment.
 tarball {
@@ -61,6 +60,7 @@ class FrontendHandlersTest(test_case.TestCase):
       super(FrontendHandlersTest, self).tearDown()
 
   def mock_oauth_authentication(self):
+
     def mocked(request):
       hdr = request.headers.get('Authorization')
       if not hdr:
@@ -69,15 +69,18 @@ class FrontendHandlersTest(test_case.TestCase):
         raise auth.AuthenticationError()
       email = hdr[len('Bearer '):]
       return auth.Identity(auth.IDENTITY_USER, email), None
+
     self.mock(auth, 'oauth_authentication', mocked)
 
   def mock_ingest_tarball(self, raise_error=False):
     calls = []
+
     def mocked(name, content):
       if raise_error:
         raise importer.BundleImportError('Import error')
       calls.append((auth.get_current_identity(), name, content))
       return ['a', 'b', 'c'], 123
+
     self.mock(handlers_frontend.importer, 'ingest_tarball', mocked)
     return calls
 
@@ -114,12 +117,12 @@ class FrontendHandlersTest(test_case.TestCase):
   def test_importer_config_post_bad(self):
     self.mock_admin()
     response = self.app.post_json(
-        '/auth_service/api/v1/importer/config',
-        {'config': BAD_IMPORTER_CONFIG},
+        '/auth_service/api/v1/importer/config', {'config': BAD_IMPORTER_CONFIG},
         headers={'X-XSRF-Token': auth_testing.generate_xsrf_token_for_test()},
         status=400)
-    self.assertEqual(
-        {'text': '"url" field is required in TarballEntry'}, response.json)
+    self.assertEqual({
+        'text': '"url" field is required in TarballEntry'
+    }, response.json)
     self.assertEqual('', importer.read_config())
 
   def test_importer_config_post_locked(self):
@@ -130,8 +133,9 @@ class FrontendHandlersTest(test_case.TestCase):
         {'config': GOOD_IMPORTER_CONFIG},
         headers={'X-XSRF-Token': auth_testing.generate_xsrf_token_for_test()},
         status=409)
-    self.assertEqual(
-        {'text': 'The configuration is managed elsewhere'}, response.json)
+    self.assertEqual({
+        'text': 'The configuration is managed elsewhere'
+    }, response.json)
 
   def test_importer_ingest_tarball_ok(self):
     self.mock_oauth_authentication()
@@ -140,11 +144,12 @@ class FrontendHandlersTest(test_case.TestCase):
         '/auth_service/api/v1/importer/ingest_tarball/zzz',
         'tar body',
         headers={'Authorization': 'Bearer xxx@example.com'})
-    self.assertEqual(
-        {u'auth_db_rev': 123, u'groups': [u'a', u'b', u'c']}, response.json)
-    self.assertEqual(
-      [(auth.Identity(kind='user', name='xxx@example.com'), 'zzz', 'tar body')],
-      calls)
+    self.assertEqual({
+        u'auth_db_rev': 123,
+        u'groups': [u'a', u'b', u'c']
+    }, response.json)
+    self.assertEqual([(auth.Identity(kind='user', name='xxx@example.com'),
+                       'zzz', 'tar body')], calls)
 
   def test_importer_ingest_tarball_error(self):
     self.mock_oauth_authentication()

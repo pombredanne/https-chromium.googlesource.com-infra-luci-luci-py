@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Understands .isolated files and can do local operations on them."""
 
 import hashlib
@@ -21,23 +20,19 @@ from utils import tools
 # Version stored and expected in .isolated files.
 ISOLATED_FILE_VERSION = '1.6'
 
-
 # Chunk size to use when doing disk I/O.
 DISK_FILE_CHUNK = 1024 * 1024
-
 
 # Sadly, hashlib uses 'shaX' instead of the standard 'sha-X' so explicitly
 # specify the names here.
 SUPPORTED_ALGOS = {
-  'sha-1': hashlib.sha1,
-  'sha-256': hashlib.sha256,
-  'sha-512': hashlib.sha512,
+    'sha-1': hashlib.sha1,
+    'sha-256': hashlib.sha256,
+    'sha-512': hashlib.sha512,
 }
-
 
 # Used for serialization.
 SUPPORTED_ALGOS_REVERSE = dict((v, k) for k, v in SUPPORTED_ALGOS.items())
-
 
 SUPPORTED_FILE_TYPES = ['basic', 'tar']
 
@@ -182,9 +177,8 @@ def _expand_symlinks(indir, relfile):
       todo = post_symlink
       continue
     if file_path.path_starts_with(target, symlink_path):
-      raise MappingError(
-          'Can\'t map recursive symlink reference %s -> %s' %
-          (symlink_path, target))
+      raise MappingError('Can\'t map recursive symlink reference %s -> %s' %
+                         (symlink_path, target))
     logging.info('Found symlink: %s -> %s', symlink_path, target)
     symlinks.append(os.path.relpath(symlink_path, indir))
     # Treat the common prefix of the old and new paths as done, and start
@@ -197,8 +191,7 @@ def _expand_symlinks(indir, relfile):
         break
       prefix_length += 1
     done = os.path.sep.join(target[:prefix_length])
-    todo = os.path.join(
-        os.path.sep.join(target[prefix_length:]), post_symlink)
+    todo = os.path.join(os.path.sep.join(target[prefix_length:]), post_symlink)
 
   relfile = os.path.relpath(done, indir)
   relfile = relfile.rstrip(os.path.sep) + is_directory * os.path.sep
@@ -341,7 +334,8 @@ def file_to_metadata(filepath, read_only, collapse_symlinks):
     filemode &= ~(stat.S_IWGRP | stat.S_IRWXO)
     if read_only:
       filemode &= ~stat.S_IWUSR
-    if filemode & (stat.S_IXUSR|stat.S_IRGRP) == (stat.S_IXUSR|stat.S_IRGRP):
+    if filemode & (stat.S_IXUSR | stat.S_IRGRP) == (stat.S_IXUSR
+                                                    | stat.S_IRGRP):
       # Only keep x group bit if both x user bit and group read bit are set.
       filemode |= stat.S_IXGRP
     else:
@@ -418,9 +412,8 @@ def load_isolated(content, algo):
   expected_version = tuple(map(int, ISOLATED_FILE_VERSION.split('.')))
   # Major version must match.
   if version[0] != expected_version[0]:
-    raise IsolatedError(
-        'Expected compatible \'%s\' version, got %r' %
-        (ISOLATED_FILE_VERSION, value))
+    raise IsolatedError('Expected compatible \'%s\' version, got %r' %
+                        (ISOLATED_FILE_VERSION, value))
 
   algo_name = SUPPORTED_ALGOS_REVERSE[algo]
 
@@ -429,9 +422,8 @@ def load_isolated(content, algo):
       if not isinstance(value, six.string_types):
         raise IsolatedError('Expected string, got %r' % value)
       if value not in SUPPORTED_ALGOS:
-        raise IsolatedError(
-            'Expected one of \'%s\', got %r' %
-            (', '.join(sorted(SUPPORTED_ALGOS)), value))
+        raise IsolatedError('Expected one of \'%s\', got %r' % (', '.join(
+            sorted(SUPPORTED_ALGOS)), value))
       if value != SUPPORTED_ALGOS_REVERSE[algo]:
         raise IsolatedError(
             'Expected \'%s\', got %r' % (SUPPORTED_ALGOS_REVERSE[algo], value))
@@ -471,15 +463,15 @@ def load_isolated(content, algo):
               raise IsolatedError('Expected int, got %r' % subsubvalue)
           elif subsubkey == 'h':
             if not is_valid_hash(subsubvalue, algo):
-              raise IsolatedError('Expected %s, got %r' %
-                                  (algo_name, subsubvalue))
+              raise IsolatedError(
+                  'Expected %s, got %r' % (algo_name, subsubvalue))
           elif subsubkey == 's':
             if not isinstance(subsubvalue, six.integer_types):
               raise IsolatedError('Expected int or long, got %r' % subsubvalue)
           elif subsubkey == 't':
             if subsubvalue not in SUPPORTED_FILE_TYPES:
-              raise IsolatedError('Expected one of \'%s\', got %r' % (
-                  ', '.join(sorted(SUPPORTED_FILE_TYPES)), subsubvalue))
+              raise IsolatedError('Expected one of \'%s\', got %r' % (', '.join(
+                  sorted(SUPPORTED_FILE_TYPES)), subsubvalue))
           else:
             raise IsolatedError('Unknown subsubkey %s' % subsubkey)
         if bool('h' in subvalue) == bool('l' in subvalue):
@@ -496,8 +488,7 @@ def load_isolated(content, algo):
               subvalue)
         if bool('l' in subvalue) and bool('m' in subvalue):
           raise IsolatedError(
-              'Cannot use \'m\' (mode) and \'l\' (link), got: %r' %
-              subvalue)
+              'Cannot use \'m\' (mode) and \'l\' (link), got: %r' % subvalue)
 
     elif key == 'includes':
       if not isinstance(value, list):
@@ -532,13 +523,12 @@ def load_isolated(content, algo):
   # from another OS.
   wrong_path_sep = '/' if os.path.sep == '\\' else '\\'
   if 'files' in data:
-    data['files'] = dict(
-        (k.replace(wrong_path_sep, os.path.sep), v)
-        for k, v in data['files'].items())
+    data['files'] = dict((k.replace(wrong_path_sep, os.path.sep), v)
+                         for k, v in data['files'].items())
     for v in data['files'].values():
       if 'l' in v:
         v['l'] = v['l'].replace(wrong_path_sep, os.path.sep)
   if 'relative_cwd' in data:
-    data['relative_cwd'] = data['relative_cwd'].replace(
-        wrong_path_sep, os.path.sep)
+    data['relative_cwd'] = data['relative_cwd'].replace(wrong_path_sep,
+                                                        os.path.sep)
   return data

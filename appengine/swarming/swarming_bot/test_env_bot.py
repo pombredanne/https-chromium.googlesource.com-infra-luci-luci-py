@@ -5,7 +5,6 @@
 import os
 import sys
 
-
 # swarming_bot/
 BOT_DIR = os.path.dirname(os.path.realpath(os.path.abspath(__file__)))
 
@@ -69,5 +68,7 @@ def setup_test_env():
   six_path = os.path.join(client, 'third_party', 'six')
   if six_path not in sys.path:
     sys.path.insert(0, six_path)
-  sys.path.insert(0, os.path.join(
-      client, 'third_party', 'httplib2', 'python%d' % sys.version_info.major))
+  sys.path.insert(
+      0,
+      os.path.join(client, 'third_party', 'httplib2',
+                   'python%d' % sys.version_info.major))

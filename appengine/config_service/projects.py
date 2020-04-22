@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Provides info about projects (service tenants)."""
 
 import logging
@@ -16,7 +15,6 @@ from components.config.proto import service_config_pb2
 
 import common
 import storage
-
 
 DEFAULT_REF_CFG = project_config_pb2.RefsCfg(
     refs=[project_config_pb2.RefsCfg.Ref(name='refs/heads/master')])
@@ -45,15 +43,14 @@ def update_import_info(project_id, repo_type, repo_url):
     return
   if info:
     values = (
-      ('repo_url', repo_url, info.repo_url),
-      ('repo_type', repo_type, info.repo_type),
+        ('repo_url', repo_url, info.repo_url),
+        ('repo_type', repo_type, info.repo_type),
     )
-    logging.warning('Changing project %s repo info:\n%s',
-        project_id,
-        '\n'.join([
-          '%s: %s -> %s' % (attr, old_value, new_value)
-          for attr, old_value, new_value in values
-          if old_value != new_value
+    logging.warning(
+        'Changing project %s repo info:\n%s', project_id, '\n'.join([
+            '%s: %s -> %s' % (attr, old_value, new_value)
+            for attr, old_value, new_value in values
+            if old_value != new_value
         ]))
   ProjectImportInfo(id=project_id, repo_type=repo_type, repo_url=repo_url).put()
 
@@ -87,8 +84,8 @@ def get_repos_async(project_ids):
   infos = yield ndb.get_multi_async(
       ndb.Key(ProjectImportInfo, pid) for pid in project_ids)
   raise ndb.Return({
-    pid: (info.repo_type, info.repo_url) if info else (None, None)
-    for pid, info in zip(project_ids, infos)
+      pid: (info.repo_type, info.repo_url) if info else (None, None)
+      for pid, info in zip(project_ids, infos)
   })
 
 
@@ -105,8 +102,7 @@ def get_metadata_async(project_ids):
   ctx = ndb.get_context()
   # ctx.memcache_get is auto-batching. Internally it makes get_multi RPC.
   cache_futs = {
-    pid: ctx.memcache_get(pid, namespace=cache_ns)
-    for pid in project_ids
+      pid: ctx.memcache_get(pid, namespace=cache_ns) for pid in project_ids
   }
   yield cache_futs.values()
   result = {}
@@ -126,19 +122,18 @@ def get_metadata_async(project_ids):
       missing.append(pid)
 
   if missing:
-    fetched = yield _get_project_configs_async(
-        missing, common.PROJECT_METADATA_FILENAME,
-        project_config_pb2.ProjectCfg)
+    fetched = yield _get_project_configs_async(missing,
+                                               common.PROJECT_METADATA_FILENAME,
+                                               project_config_pb2.ProjectCfg)
     result.update(fetched)  # at this point result must have all project ids
     # Cache metadata for 10 min. In practice, it never changes.
     # ctx.memcache_set is auto-batching. Internally it makes set_multi RPC.
     yield [
-      ctx.memcache_set(
-          pid,
-          cfg.SerializeToString() if cfg else PROJECT_DOES_NOT_EXIST_SENTINEL,
-          namespace=cache_ns,
-          time=60 * 10)
-      for pid, cfg in fetched.items()
+        ctx.memcache_set(
+            pid,
+            cfg.SerializeToString() if cfg else PROJECT_DOES_NOT_EXIST_SENTINEL,
+            namespace=cache_ns,
+            time=60 * 10) for pid, cfg in fetched.items()
     ]
 
   raise ndb.Return(result)
@@ -151,12 +146,11 @@ def get_refs(project_ids):
 
   The list of refs stored in refs.cfg of a project.
   """
-  cfgs = _get_project_configs_async(
-      project_ids, common.REFS_FILENAME, project_config_pb2.RefsCfg
-  ).get_result()
+  cfgs = _get_project_configs_async(project_ids, common.REFS_FILENAME,
+                                    project_config_pb2.RefsCfg).get_result()
   return {
-    pid: None if cfg is None else cfg.refs or DEFAULT_REF_CFG.refs
-    for pid, cfg in cfgs.items()
+      pid: None if cfg is None else cfg.refs or DEFAULT_REF_CFG.refs
+      for pid, cfg in cfgs.items()
   }
 
 
@@ -175,12 +169,11 @@ def _get_project_configs_async(project_ids, path, message_factory):
   def get_async():
     prefix = 'projects/'
     msgs = yield storage.get_latest_messages_async(
-        [prefix + pid for pid in _filter_existing(project_ids)],
-        path, message_factory)
+        [prefix + pid for pid in _filter_existing(project_ids)], path,
+        message_factory)
     raise ndb.Return({
-      # msgs may not have a key because we filter project ids by existence
-      pid: msgs.get(prefix + pid)
-      for pid in project_ids
+        # msgs may not have a key because we filter project ids by existence
+        pid: msgs.get(prefix + pid) for pid in project_ids
     })
 
   return get_async()
@@ -193,7 +186,4 @@ def _filter_existing(project_ids):
     return project_ids
   assert all(pid for pid in project_ids)
   all_project_ids = set(p.id for p in get_projects())
-  return [
-    pid for pid in project_ids
-    if pid in all_project_ids
-  ]
+  return [pid for pid in project_ids if pid in all_project_ids]

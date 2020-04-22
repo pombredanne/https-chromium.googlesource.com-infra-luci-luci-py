@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """High level test for Primary <-> Replica replication logic.
 
 It launches two local services (Primary and Replica) via dev_appserver and sets
@@ -30,13 +29,14 @@ REPLICA_APP_DIR = os.path.join(APP_DIR, 'test_replica_app')
 
 
 class ReplicationTest(unittest.TestCase):
+
   def setUp(self):
     super(ReplicationTest, self).setUp()
     self.root = tempfile.mkdtemp(prefix='replication_smoke_test')
-    self.auth_service = local_app.LocalApplication(
-        APP_DIR, 9500, False, self.root)
-    self.replica = local_app.LocalApplication(
-        REPLICA_APP_DIR, 9600, False, self.root)
+    self.auth_service = local_app.LocalApplication(APP_DIR, 9500, False,
+                                                   self.root)
+    self.replica = local_app.LocalApplication(REPLICA_APP_DIR, 9600, False,
+                                              self.root)
     # Launch both first, only then wait for them to come online.
     apps = [self.auth_service, self.replica]
     for app in apps:
@@ -110,12 +110,10 @@ class ReplicationTest(unittest.TestCase):
     replica_state = self.replica.client.json_request(
         '/auth/api/v1/server/state').body
     self.assertEqual('replica', replica_state['mode'])
-    self.assertEqual(
-        self.auth_service.app_id,
-        replica_state['replication_state']['primary_id'])
-    self.assertEqual(
-        self.auth_service.url,
-        replica_state['replication_state']['primary_url'])
+    self.assertEqual(self.auth_service.app_id,
+                     replica_state['replication_state']['primary_id'])
+    self.assertEqual(self.auth_service.url,
+                     replica_state['replication_state']['primary_url'])
 
   def wait_for_sync(self, timeout=4):
     """Waits for replica to catch up to primary."""
@@ -125,7 +123,7 @@ class ReplicationTest(unittest.TestCase):
     deadline = time.time() + timeout
     while time.time() < deadline:
       replica_rev = self.replica.client.json_request(
-        '/auth/api/v1/server/state').body['replication_state']['auth_db_rev']
+          '/auth/api/v1/server/state').body['replication_state']['auth_db_rev']
       if replica_rev == primary_rev:
         return
       time.sleep(0.1)
@@ -134,11 +132,11 @@ class ReplicationTest(unittest.TestCase):
   def check_oauth_config_replication(self):
     """Verifies changes to OAuth config propagate to replica."""
     oauth_config = {
-      u'additional_client_ids': [u'a', u'b'],
-      u'client_id': u'some-id',
-      u'client_not_so_secret': u'secret',
-      u'primary_url': u'http://localhost:9500',
-      u'token_server_url': u'https://example.com',
+        u'additional_client_ids': [u'a', u'b'],
+        u'client_id': u'some-id',
+        u'client_not_so_secret': u'secret',
+        u'primary_url': u'http://localhost:9500',
+        u'token_server_url': u'https://example.com',
     }
     response = self.auth_service.client.json_request(
         resource='/auth/api/v1/server/oauth_config',
@@ -158,11 +156,11 @@ class ReplicationTest(unittest.TestCase):
     """Verifies changes to groups propagate to replica."""
     logging.info('Creating group')
     group = {
-      'name': 'some-group',
-      'members': ['user:hyde@example.com', 'user:jekyll@example.com'],
-      'globs': ['user:*@google.com'],
-      'nested': [],
-      'description': 'Blah',
+        'name': 'some-group',
+        'members': ['user:hyde@example.com', 'user:jekyll@example.com'],
+        'globs': ['user:*@google.com'],
+        'nested': [],
+        'description': 'Blah',
     }
     response = self.auth_service.client.json_request(
         resource='/auth/api/v1/groups/some-group',
@@ -172,15 +170,13 @@ class ReplicationTest(unittest.TestCase):
 
     # Read it back from primary to grab created_ts and modified_ts.
     response = self.auth_service.client.json_request(
-        '/auth/api/v1/groups/some-group',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups/some-group', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(200, response.http_code)
     group = response.body
 
     # Group listing also works.
     response = self.auth_service.client.json_request(
-        '/auth/api/v1/groups',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(200, response.http_code)
     groups = response.body
 
@@ -188,24 +184,22 @@ class ReplicationTest(unittest.TestCase):
     self.wait_for_sync()
 
     response = self.replica.client.json_request(
-        '/auth/api/v1/groups/some-group',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups/some-group', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(200, response.http_code)
     self.assertEqual(group, response.body)
 
     response = self.replica.client.json_request(
-        '/auth/api/v1/groups',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(200, response.http_code)
     self.assertEqual(groups, response.body)
 
     logging.info('Modifying group')
     group = {
-      'name': 'some-group',
-      'members': ['user:hyde@example.com'],
-      'globs': ['user:*@google.com'],
-      'nested': [],
-      'description': 'Some other blah',
+        'name': 'some-group',
+        'members': ['user:hyde@example.com'],
+        'globs': ['user:*@google.com'],
+        'nested': [],
+        'description': 'Some other blah',
     }
     response = self.auth_service.client.json_request(
         resource='/auth/api/v1/groups/some-group',
@@ -216,16 +210,14 @@ class ReplicationTest(unittest.TestCase):
 
     # Read it back from primary to grab created_ts and modified_ts.
     response = self.auth_service.client.json_request(
-        '/auth/api/v1/groups/some-group',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups/some-group', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(200, response.http_code)
     group = response.body
 
     # Ensure replica got the update.
     self.wait_for_sync()
     response = self.replica.client.json_request(
-        '/auth/api/v1/groups/some-group',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups/some-group', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(200, response.http_code)
     self.assertEqual(group, response.body)
 
@@ -239,8 +231,7 @@ class ReplicationTest(unittest.TestCase):
     # Ensure replica got the update.
     self.wait_for_sync()
     response = self.replica.client.json_request(
-        '/auth/api/v1/groups/some-group',
-        headers={'Cache-Control': 'no-cache'})
+        '/auth/api/v1/groups/some-group', headers={'Cache-Control': 'no-cache'})
     self.assertEqual(404, response.http_code)
 
   def check_snapshot_endpoint(self):
@@ -257,8 +248,8 @@ class ReplicationTest(unittest.TestCase):
 
     self.assertEqual(latest, at_rev)
     deflated = base64.b64decode(latest['deflated_body'])
-    self.assertEqual(
-        latest['sha256'], hashlib.sha256(zlib.decompress(deflated)).hexdigest())
+    self.assertEqual(latest['sha256'],
+                     hashlib.sha256(zlib.decompress(deflated)).hexdigest())
 
 
 if __name__ == '__main__':

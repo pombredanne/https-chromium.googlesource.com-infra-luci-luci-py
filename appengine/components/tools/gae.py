@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Wrapper around GAE SDK tools to simplify working with multi-service apps."""
 
 from __future__ import absolute_import
@@ -83,7 +82,9 @@ def CMDactive(parser, args):
   This is an approximation of querying which version is the default.
   """
   parser.add_option(
-      '-b', '--bare', action='store_true',
+      '-b',
+      '--bare',
+      action='store_true',
       help='Only print the version(s), nothing else')
   app, options, _services = parser.parse_args(args)
   data = app.get_actives()
@@ -136,14 +137,13 @@ def CMDcleanup(parser, args):
     fd, path = tempfile.mkstemp()
     atexit.register(lambda: os.remove(path))
     with os.fdopen(fd, 'w') as f:
-      header = (
-        '# Remove lines that correspond to versions\n'
-        '# you\'d like to delete from \'%s\'.\n')
+      header = ('# Remove lines that correspond to versions\n'
+                '# you\'d like to delete from \'%s\'.\n')
       f.write(header % app.app_id + '\n'.join(versions) + '\n')
 
     # Let user remove versions that are no longer needed.
-    editor = os.environ.get(
-        'EDITOR', 'notepad.exe' if sys.platform == 'win32' else 'vi')
+    editor = os.environ.get('EDITOR',
+                            'notepad.exe' if sys.platform == 'win32' else 'vi')
     exit_code = os.system('%s %s' % (editor, path))
     if exit_code:
       print('Aborted.')
@@ -170,8 +170,8 @@ def CMDcleanup(parser, args):
 
   # Deleting a version is a destructive operation, confirm.
   if not options.force:
-    ok = gae_sdk_utils.confirm(
-        'Delete the following versions?', app, versions_to_remove)
+    ok = gae_sdk_utils.confirm('Delete the following versions?', app,
+                               versions_to_remove)
     if not ok:
       print('Aborted.')
       return 1
@@ -189,7 +189,9 @@ def CMDdevserver(parser, args):
   parser.allow_positional_args = True
   parser.disable_interspersed_args()
   parser.add_option(
-      '-o', '--open', action='store_true',
+      '-o',
+      '--open',
+      action='store_true',
       help='Listen to all interfaces (less secure)')
   app, options, args = parser.parse_args(args)
   # Let dev_appserver.py handle Ctrl+C interrupts.
@@ -211,7 +213,8 @@ def CMDshell(parser, args):
   parser.add_option(
       '-H', '--host', help='Only necessary if not hosted on .appspot.com')
   parser.add_option(
-      '--local', action='store_true',
+      '--local',
+      action='store_true',
       help='Operates locally on an empty dev instance')
   app, options, args = parser.parse_args(args)
 
@@ -240,12 +243,11 @@ def CMDshell(parser, args):
     from google.appengine.ext.remote_api import remote_api_stub
     try:
       print('If asked to login, run:\n')
-      print(
-          'gcloud auth application-default login '
-          '--scopes=https://www.googleapis.com/auth/appengine.apis,'
-          'https://www.googleapis.com/auth/userinfo.email\n')
-      remote_api_stub.ConfigureRemoteApiForOAuth(
-          options.host, '/_ah/remote_api')
+      print('gcloud auth application-default login '
+            '--scopes=https://www.googleapis.com/auth/appengine.apis,'
+            'https://www.googleapis.com/auth/userinfo.email\n')
+      remote_api_stub.ConfigureRemoteApiForOAuth(options.host,
+                                                 '/_ah/remote_api')
     except urllib.error.URLError:
       print('Failed to access %s' % options.host, file=sys.stderr)
       return 1
@@ -270,6 +272,7 @@ def CMDshell(parser, args):
     from google.appengine.api import urlfetch
     from google.appengine.ext import ndb
     return locals().copy()
+
   context = setup_context()
 
   # Fancy readline support.
@@ -284,8 +287,8 @@ def CMDshell(parser, args):
       readline.read_history_file(history_file)
 
   prompt = [
-    'App Engine interactive console for "%s".' % app.app_id,
-    'Available symbols:',
+      'App Engine interactive console for "%s".' % app.app_id,
+      'Available symbols:',
   ]
   prompt.extend(sorted('  %s' % symbol for symbol in context))
   code.interact('\n'.join(prompt), None, context)
@@ -353,7 +356,9 @@ def CMDupload(parser, args):
   """
   parser.add_tag_option()
   parser.add_option(
-      '-x', '--switch', action='store_true',
+      '-x',
+      '--switch',
+      action='store_true',
       help='Switch version after uploading new code')
   parser.add_switch_option()
   parser.add_force_option()
@@ -365,14 +370,17 @@ def CMDupload(parser, args):
       parser.error('No such service: %s' % service)
 
   # Additional chars is for the app_id as well as 5 chars for '-dot-'.
-  version = calculate_version.calculate_version(
-    app.app_dir, options.tag, len(app.app_id)+5)
+  version = calculate_version.calculate_version(app.app_dir, options.tag,
+                                                len(app.app_id) + 5)
 
   # Updating indexes, queues, etc is a disruptive operation. Confirm.
   if not options.force:
     approved = gae_sdk_utils.confirm(
         'Upload new version, update indexes, queues and cron jobs?',
-        app, version, services, default_yes=True)
+        app,
+        version,
+        services,
+        default_yes=True)
     if not approved:
       print('Aborted.')
       return 1
@@ -416,8 +424,8 @@ def CMDversion(parser, args):
   parser.add_tag_option()
   app, options, _ = parser.parse_args(args)
   # Additional chars is for the app_id as well as 5 chars for '-dot-'.
-  print(calculate_version.calculate_version(
-    app.app_dir, options.tag, len(app.app_id)+5))
+  print(calculate_version.calculate_version(app.app_dir, options.tag,
+                                            len(app.app_id) + 5))
   return 0
 
 
@@ -438,14 +446,18 @@ class OptionParser(optparse.OptionParser):
 
   def add_switch_option(self):
     self.add_option(
-        '-n', '--no-log', action='store_true',
+        '-n',
+        '--no-log',
+        action='store_true',
         help='Do not print logs from the current server active version to the '
-             'one being switched to')
+        'one being switched to')
     gae_sdk_utils.add_roll_duration_option(self)
 
   def add_force_option(self):
     self.add_option(
-        '-f', '--force', action='store_true',
+        '-f',
+        '--force',
+        action='store_true',
         help='Do not ask for confirmation')
 
   def parse_args(self, *args, **kwargs):
@@ -481,13 +493,13 @@ def _find_app_dir(search_dir):
   A root directory is denoted either by presence of '.git' subdir, or 'ROOT'
   file.
   """
+
   def is_root(p):
-    return (
-        os.path.isdir(os.path.join(p, '.git')) or
-        os.path.isfile(os.path.join(p, 'ROOT')) or
-        os.path.dirname(p) == p)
+    return (os.path.isdir(os.path.join(p, '.git')) or
+            os.path.isfile(os.path.join(p, 'ROOT')) or os.path.dirname(p) == p)
 
   cached_check = {}
+
   def is_app_dir(p):
     if p not in cached_check:
       cached_check[p] = not is_root(p) and gae_sdk_utils.is_app_dir(p)

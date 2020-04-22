@@ -2,7 +2,6 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Front end tool to operate on .isolate files.
 
 This includes creating, merging or compiling them to generate a .isolated file.
@@ -49,20 +48,16 @@ from utils import file_path
 from utils import fs
 from utils import subprocess42
 
-
 # Exit code of 'archive' and 'batcharchive' if the command fails due to an error
 # in *.isolate file (format error, or some referenced files are missing, etc.)
 EXIT_CODE_ISOLATE_ERROR = 1
-
 
 # Exit code of 'archive' and 'batcharchive' if the command fails due to
 # a network or server issue. It is an infrastructure failure.
 EXIT_CODE_UPLOAD_ERROR = 101
 
-
 # Supported version of *.isolated.gen.json files consumed by CMDbatcharchive.
 ISOLATED_GEN_JSON_VERSION = 1
-
 
 # Warning printed when variables are used. This is meant to reduce the use of
 # variables.
@@ -75,6 +70,7 @@ https://crbug.com/907880
 
 class ExecutionError(Exception):
   """A generic error occurred."""
+
   def __str__(self):
     return self.args[0]
 
@@ -148,8 +144,7 @@ def _normalize_path_variable(cwd, relative_base_dir, key, value):
 
   # All variables are relative to the .isolate file.
   normalized = os.path.relpath(normalized, relative_base_dir)
-  logging.debug(
-      'Translated variable %s from %s to %s', key, value, normalized)
+  logging.debug('Translated variable %s from %s to %s', key, value, normalized)
   return normalized
 
 
@@ -159,15 +154,13 @@ def normalize_path_variables(cwd, path_variables, relative_base_dir):
   For each 'path' variable: first normalizes it based on |cwd|, verifies it
   exists then sets it as relative to relative_base_dir.
   """
-  logging.info(
-      'normalize_path_variables(%s, %s, %s)', cwd, path_variables,
-      relative_base_dir)
+  logging.info('normalize_path_variables(%s, %s, %s)', cwd, path_variables,
+               relative_base_dir)
   assert isinstance(cwd, six.text_type), cwd
   assert isinstance(relative_base_dir, six.text_type), relative_base_dir
   relative_base_dir = file_path.get_native_path_case(relative_base_dir)
-  return dict(
-      (k, _normalize_path_variable(cwd, relative_base_dir, k, v))
-      for k, v in path_variables.items())
+  return dict((k, _normalize_path_variable(cwd, relative_base_dir, k, v))
+              for k, v in path_variables.items())
 
 
 ### Internal state files.
@@ -189,9 +182,9 @@ def chromium_save_isolated(isolated, data, path_variables, algo):
 
   def extract_into_included_isolated(prefix):
     new_slave = {
-      'algo': data['algo'],
-      'files': {},
-      'version': data['version'],
+        'algo': data['algo'],
+        'files': {},
+        'version': data['version'],
     }
     for f in data['files'].keys():
       if f.startswith(prefix):
@@ -243,7 +236,7 @@ class Flattenable(object):
     if data:
       raise ValueError(
           'Found unexpected entry %s while constructing an object %s' %
-            (data, cls.__name__), data, cls.__name__)
+          (data, cls.__name__), data, cls.__name__)
     return out
 
   def _load_member(self, member, value):
@@ -274,39 +267,39 @@ class SavedState(Flattenable):
   separator instead of '/' used in .isolate file.
   """
   MEMBERS = (
-    # Value of sys.platform so that the file is rejected if loaded from a
-    # different OS. While this should never happen in practice, users are ...
-    # "creative".
-    'OS',
-    # Algorithm used to generate the hash. The only supported value is at the
-    # time of writing 'sha-1'.
-    'algo',
-    # List of included .isolated files. Used to support/remember 'slave'
-    # .isolated files. Relative path to isolated_basedir.
-    'child_isolated_files',
-    # Cache of the processed command. This value is saved because .isolated
-    # files are never loaded by isolate.py so it's the only way to load the
-    # command safely.
-    'command',
-    # GYP variables that are used to generate conditions. The most frequent
-    # example is 'OS'.
-    'config_variables',
-    # Cache of the files found so the next run can skip hash calculation.
-    'files',
-    # Path of the original .isolate file. Relative path to isolated_basedir.
-    'isolate_file',
-    # GYP variables used to generate the .isolated files paths based on path
-    # variables. Frequent examples are DEPTH and PRODUCT_DIR.
-    'path_variables',
-    # If the generated directory tree should be read-only. Defaults to 1.
-    'read_only',
-    # Relative cwd to use to start the command.
-    'relative_cwd',
-    # Root directory the files are mapped from.
-    'root_dir',
-    # Version of the saved state file format. Any breaking change must update
-    # the value.
-    'version',
+      # Value of sys.platform so that the file is rejected if loaded from a
+      # different OS. While this should never happen in practice, users are ...
+      # "creative".
+      'OS',
+      # Algorithm used to generate the hash. The only supported value is at the
+      # time of writing 'sha-1'.
+      'algo',
+      # List of included .isolated files. Used to support/remember 'slave'
+      # .isolated files. Relative path to isolated_basedir.
+      'child_isolated_files',
+      # Cache of the processed command. This value is saved because .isolated
+      # files are never loaded by isolate.py so it's the only way to load the
+      # command safely.
+      'command',
+      # GYP variables that are used to generate conditions. The most frequent
+      # example is 'OS'.
+      'config_variables',
+      # Cache of the files found so the next run can skip hash calculation.
+      'files',
+      # Path of the original .isolate file. Relative path to isolated_basedir.
+      'isolate_file',
+      # GYP variables used to generate the .isolated files paths based on path
+      # variables. Frequent examples are DEPTH and PRODUCT_DIR.
+      'path_variables',
+      # If the generated directory tree should be read-only. Defaults to 1.
+      'read_only',
+      # Relative cwd to use to start the command.
+      'relative_cwd',
+      # Root directory the files are mapped from.
+      'root_dir',
+      # Version of the saved state file format. Any breaking change must update
+      # the value.
+      'version',
   )
 
   # Bump this version whenever the saved state changes. It is also keyed on the
@@ -387,17 +380,21 @@ class SavedState(Flattenable):
 
     https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/Design.md#file-format
     """
+
     def strip(data):
       """Returns a 'files' entry with only the whitelisted keys."""
       return dict((k, data[k]) for k in ('h', 'l', 'm', 's') if k in data)
 
     out = {
-      'algo': self.algo_name,
-      'files': dict(
-          (filepath, strip(data)) for filepath, data in self.files.items()),
-      # The version of the .state file is different than the one of the
-      # .isolated file.
-      'version': isolated_format.ISOLATED_FILE_VERSION,
+        'algo':
+            self.algo_name,
+        'files':
+            dict((filepath, strip(data))
+                 for filepath, data in self.files.items()),
+        # The version of the .state file is different than the one of the
+        # .isolated file.
+        'version':
+            isolated_format.ISOLATED_FILE_VERSION,
     }
     out['read_only'] = self.read_only if self.read_only is not None else 1
     if self.command:
@@ -465,6 +462,7 @@ class SavedState(Flattenable):
     return out
 
   def __str__(self):
+
     def dict_to_str(d):
       return ''.join('\n    %s=%s' % (k, d[k]) for k in sorted(d))
 
@@ -482,6 +480,7 @@ class SavedState(Flattenable):
 
 class CompleteState(object):
   """Contains all the state to run the task at hand."""
+
   def __init__(self, isolated_filepath, saved_state):
     super(CompleteState, self).__init__()
     assert isolated_filepath is None or os.path.isabs(isolated_filepath)
@@ -527,8 +526,8 @@ class CompleteState(object):
 
     # Processes the variables with the new found relative root. Note that 'cwd'
     # is used when path variables are used.
-    path_variables = normalize_path_variables(
-        cwd, path_variables, isolate_cmd_dir)
+    path_variables = normalize_path_variables(cwd, path_variables,
+                                              isolate_cmd_dir)
     # Update the rest of the saved state.
     self.saved_state.update(isolate_file, path_variables)
 
@@ -558,15 +557,13 @@ class CompleteState(object):
       if not file_path.path_starts_with(self.saved_state.root_dir, dest):
         raise isolated_format.MappingError(
             'Path variable %s=%r points outside the inferred root directory '
-            '%s; %s'
-            % (k, v, self.saved_state.root_dir, dest))
+            '%s; %s' % (k, v, self.saved_state.root_dir, dest))
     # Normalize the files based to self.saved_state.root_dir. It is important to
     # keep the trailing os.path.sep at that step.
     infiles = [
-      file_path.relpath(
-          file_path.normpath(os.path.join(isolate_cmd_dir, f)),
-          self.saved_state.root_dir)
-      for f in infiles
+        file_path.relpath(
+            file_path.normpath(os.path.join(isolate_cmd_dir, f)),
+            self.saved_state.root_dir) for f in infiles
     ]
     follow_symlinks = False
     if not collapse_symlinks:
@@ -574,11 +571,8 @@ class CompleteState(object):
     # Expand the directories by listing each file inside. Up to now, trailing
     # os.path.sep must be kept.
     infiles = _expand_directories_and_symlinks(
-        self.saved_state.root_dir,
-        infiles,
-        tools.gen_blacklist(blacklist),
-        follow_symlinks,
-        ignore_broken_items)
+        self.saved_state.root_dir, infiles, tools.gen_blacklist(blacklist),
+        follow_symlinks, ignore_broken_items)
 
     # Finally, update the new data to be able to generate the foo.isolated file,
     # the file that is used by run_isolated.py.
@@ -602,9 +596,7 @@ class CompleteState(object):
         # saved_state. This performance optimization is not done anymore. This
         # code is going away soon and shouldn't be used in new code.
         meta = isolated_format.file_to_metadata(
-            filepath,
-            self.saved_state.read_only,
-            collapse_symlinks)
+            filepath, self.saved_state.read_only, collapse_symlinks)
         if 'l' not in meta:
           meta['h'] = isolated_format.hash_file(filepath, self.saved_state.algo)
         self.saved_state.files[infile] = meta
@@ -613,12 +605,9 @@ class CompleteState(object):
     """Saves self.saved_state and creates a .isolated file."""
     logging.debug('Dumping to %s' % self.isolated_filepath)
     self.saved_state.child_isolated_files = chromium_save_isolated(
-        self.isolated_filepath,
-        self.saved_state.to_isolated(),
-        self.saved_state.path_variables,
-        self.saved_state.algo)
-    total_bytes = sum(
-        i.get('s', 0) for i in self.saved_state.files.values())
+        self.isolated_filepath, self.saved_state.to_isolated(),
+        self.saved_state.path_variables, self.saved_state.algo)
+    total_bytes = sum(i.get('s', 0) for i in self.saved_state.files.values())
     if total_bytes:
       # TODO(maruel): Stats are missing the .isolated files.
       logging.debug('Total size: %d bytes' % total_bytes)
@@ -631,6 +620,7 @@ class CompleteState(object):
     return self.saved_state.root_dir
 
   def __str__(self):
+
     def indent(data, indent_length):
       """Indents text."""
       spacing = ' ' * indent_length
@@ -691,8 +681,7 @@ def load_complete_state(options, cwd, subdir, skip_update):
         # discard the saved state.
         logging.warning(
             '--isolated %s != %s as saved in %s. Discarding saved state',
-            rel_isolate,
-            complete_state.saved_state.isolate_file,
+            rel_isolate, complete_state.saved_state.isolate_file,
             isolatedfile_to_state(options.isolated))
         complete_state = CompleteState(
             options.isolated,
@@ -713,8 +702,8 @@ def load_complete_state(options, cwd, subdir, skip_update):
     # .isolate file. So translate all variables first.
     translated_path_variables = dict(
         (k,
-          os.path.normpath(os.path.join(complete_state.saved_state.relative_cwd,
-            v)))
+         os.path.normpath(
+             os.path.join(complete_state.saved_state.relative_cwd, v)))
         for k, v in complete_state.saved_state.path_variables.items())
     subdir = isolate_format.eval_variables(subdir, translated_path_variables)
     subdir = subdir.replace('/', os.path.sep)
@@ -758,8 +747,7 @@ def create_isolate_tree(outdir, root_dir, files, relative_cwd, read_only):
 @tools.profile
 def prepare_for_archival(options, cwd):
   """Loads the isolated file and create |infiles| for archival."""
-  complete_state = load_complete_state(
-      options, cwd, options.subdir, False)
+  complete_state = load_complete_state(options, cwd, options.subdir, False)
   # Make sure that complete_state isn't modified until save_files() is
   # called, because any changes made to it here will propagate to the files
   # created (which is probably not intended).
@@ -769,7 +757,7 @@ def prepare_for_archival(options, cwd):
   # Add all the .isolated files.
   isolated_hash = []
   isolated_files = [
-    options.isolated,
+      options.isolated,
   ] + complete_state.saved_state.child_isolated_files
   for item in isolated_files:
     item_path = os.path.join(
@@ -778,12 +766,11 @@ def prepare_for_archival(options, cwd):
     # likely smallish (under 500kb) and its file size is needed.
     with fs.open(item_path, 'rb') as f:
       content = f.read()
-    isolated_hash.append(
-        complete_state.saved_state.algo(content).hexdigest())
+    isolated_hash.append(complete_state.saved_state.algo(content).hexdigest())
     isolated_metadata = {
-      'h': isolated_hash[-1],
-      's': len(content),
-      'priority': '0'
+        'h': isolated_hash[-1],
+        's': len(content),
+        'priority': '0'
     }
     infiles[item_path] = isolated_metadata
   return complete_state, infiles, isolated_hash
@@ -818,8 +805,8 @@ def _process_infiles(infiles):
   logging.info('Skipped %d duplicated entries', skipped)
 
 
-def _expand_directories_and_symlinks(
-    indir, infiles, blacklist, follow_symlinks, ignore_broken_items):
+def _expand_directories_and_symlinks(indir, infiles, blacklist, follow_symlinks,
+                                     ignore_broken_items):
   """Expands the directories and the symlinks, applies the blacklist and
   verifies files exist.
 
@@ -837,10 +824,9 @@ def _expand_directories_and_symlinks(
     try:
       # Ignore the symlink hint, this code will be eventually deleted so it is
       # not worth optimizing.
-      out.extend(
-          relpath for relpath, _is_symlink
-          in isolated_format.expand_directory_and_symlink(
-              indir, relfile, blacklist, follow_symlinks))
+      out.extend(relpath for relpath, _is_symlink in
+                 isolated_format.expand_directory_and_symlink(
+                     indir, relfile, blacklist, follow_symlinks))
     except isolated_format.MappingError as e:
       if not ignore_broken_items:
         raise
@@ -943,8 +929,8 @@ def CMDarchive(parser, args):
   process_isolate_options(parser, options)
   auth.process_auth_options(parser, options)
   isolateserver.process_isolate_server_options(parser, options, True, True)
-  server_ref = isolate_storage.ServerRef(
-      options.isolate_server, options.namespace)
+  server_ref = isolate_storage.ServerRef(options.isolate_server,
+                                         options.namespace)
   result = isolate_and_archive([(options, six.text_type(os.getcwd()))],
                                server_ref)
   if result is None:
@@ -1005,8 +991,8 @@ def CMDbatcharchive(parser, args):
     work_units.append((parse_archive_command_line(args, cwd), cwd))
 
   # Perform the archival, all at once.
-  server_ref = isolate_storage.ServerRef(
-      options.isolate_server, options.namespace)
+  server_ref = isolate_storage.ServerRef(options.isolate_server,
+                                         options.namespace)
   isolated_hashes = isolate_and_archive(work_units, server_ref)
 
   # TODO(vadimsh): isolate_and_archive returns None on upload failure, there's
@@ -1035,8 +1021,8 @@ def CMDcheck(parser, args):
     parser.error('Unsupported argument: %s' % args)
   process_isolate_options(parser, options)
 
-  complete_state = load_complete_state(
-      options, os.getcwd(), options.subdir, False)
+  complete_state = load_complete_state(options, os.getcwd(), options.subdir,
+                                       False)
 
   # Nothing is done specifically. Just store the result and state.
   complete_state.save_files()
@@ -1065,10 +1051,10 @@ def CMDremap(parser, args):
   if fs.listdir(options.outdir):
     raise ExecutionError('Can\'t remap in a non-empty directory')
 
-  create_isolate_tree(
-      options.outdir, complete_state.root_dir, complete_state.saved_state.files,
-      complete_state.saved_state.relative_cwd,
-      complete_state.saved_state.read_only)
+  create_isolate_tree(options.outdir, complete_state.root_dir,
+                      complete_state.saved_state.files,
+                      complete_state.saved_state.relative_cwd,
+                      complete_state.saved_state.read_only)
   if complete_state.isolated_filepath:
     complete_state.save_files()
   return 0
@@ -1089,22 +1075,21 @@ def CMDrun(parser, args):
   add_skip_refresh_option(parser)
   options, args = parser.parse_args(args)
   process_isolate_options(parser, options, require_isolated=False)
-  complete_state = load_complete_state(
-      options, os.getcwd(), None, options.skip_refresh)
+  complete_state = load_complete_state(options, os.getcwd(), None,
+                                       options.skip_refresh)
   cmd = complete_state.saved_state.command + args
   if not cmd:
     raise ExecutionError('No command to run.')
   cmd = tools.find_executable(cmd)
 
-  outdir = run_isolated.make_temp_dir(
-      u'isolate-%s' % datetime.date.today(),
-      os.path.dirname(complete_state.root_dir))
+  outdir = run_isolated.make_temp_dir(u'isolate-%s' % datetime.date.today(),
+                                      os.path.dirname(complete_state.root_dir))
   try:
     # TODO(maruel): Use run_isolated.run_tha_test().
-    cwd = create_isolate_tree(
-        outdir, complete_state.root_dir, complete_state.saved_state.files,
-        complete_state.saved_state.relative_cwd,
-        complete_state.saved_state.read_only)
+    cwd = create_isolate_tree(outdir, complete_state.root_dir,
+                              complete_state.saved_state.files,
+                              complete_state.saved_state.relative_cwd,
+                              complete_state.saved_state.read_only)
     file_path.ensure_command_has_abs_path(cmd, cwd)
     logging.info('Running %s, cwd=%s' % (cmd, cwd))
     try:
@@ -1147,14 +1132,13 @@ def _process_variable_arg(option, opt, _value, parser):
 def add_variable_option(parser):
   """Adds --isolated and --<foo>-variable to an OptionParser."""
   parser.add_option(
-      '-s', '--isolated',
+      '-s',
+      '--isolated',
       metavar='FILE',
       help='.isolated file to generate or read')
   # Keep for compatibility. TODO(maruel): Remove once not used anymore.
   parser.add_option(
-      '-r', '--result',
-      dest='isolated',
-      help=optparse.SUPPRESS_HELP)
+      '-r', '--result', dest='isolated', help=optparse.SUPPRESS_HELP)
   # There is really 3 kind of variables:
   # - path variables, like DEPTH or PRODUCT_DIR that should be
   #   replaced opportunistically when tracing tests.
@@ -1181,25 +1165,30 @@ def add_variable_option(parser):
       dest='path_variables',
       metavar='FOO BAR',
       help='Path variables are used to replace file paths when loading a '
-           '.isolate file, default: %default')
+      '.isolate file, default: %default')
+
 
 def add_isolate_options(parser):
   """Adds --isolate, --isolated, --out and --<foo>-variable options."""
   isolateserver.add_archive_options(parser)
   group = optparse.OptionGroup(parser, 'Common options')
   group.add_option(
-      '-i', '--isolate',
+      '-i',
+      '--isolate',
       metavar='FILE',
       help='.isolate file to load the dependency data from')
   add_variable_option(group)
   group.add_option(
-      '--ignore_broken_items', action='store_true',
+      '--ignore_broken_items',
+      action='store_true',
       default=bool(os.environ.get('ISOLATE_IGNORE_BROKEN_ITEMS')),
       help='Indicates that invalid entries in the isolated file to be '
-           'only be logged and not stop processing. Defaults to True if '
-           'env var ISOLATE_IGNORE_BROKEN_ITEMS is set')
+      'only be logged and not stop processing. Defaults to True if '
+      'env var ISOLATE_IGNORE_BROKEN_ITEMS is set')
   group.add_option(
-      '-L', '--collapse_symlinks', action='store_true',
+      '-L',
+      '--collapse_symlinks',
+      action='store_true',
       help='Treat any symlinks as if they were the normal underlying file')
   parser.add_option_group(group)
 
@@ -1208,16 +1197,17 @@ def add_subdir_option(parser):
   parser.add_option(
       '--subdir',
       help='Filters to a subdirectory. Its behavior changes depending if it '
-           'is a relative path as a string or as a path variable. Path '
-           'variables are always keyed from the directory containing the '
-           '.isolate file. Anything else is keyed on the root directory.')
+      'is a relative path as a string or as a path variable. Path '
+      'variables are always keyed from the directory containing the '
+      '.isolate file. Anything else is keyed on the root directory.')
 
 
 def add_skip_refresh_option(parser):
   parser.add_option(
-      '--skip-refresh', action='store_true',
+      '--skip-refresh',
+      action='store_true',
       help='Skip reading .isolate file and do not refresh the hash of '
-           'dependencies')
+      'dependencies')
 
 
 def add_outdir_options(parser):
@@ -1228,7 +1218,9 @@ def add_outdir_options(parser):
   a file system.
   """
   parser.add_option(
-      '-o', '--outdir', metavar='DIR',
+      '-o',
+      '--outdir',
+      metavar='DIR',
       help='Directory used to recreate the tree.')
 
 
@@ -1270,6 +1262,7 @@ def process_isolate_options(parser, options, cwd=None, require_isolated=True):
       return int(s)
     except ValueError:
       return s.decode('utf-8')
+
   options.config_variables = dict(
       (k, try_make_int(v)) for k, v in options.config_variables)
   options.path_variables = dict(options.path_variables)
@@ -1289,7 +1282,7 @@ def process_isolate_options(parser, options, cwd=None, require_isolated=True):
 def main(argv):
   dispatcher = subcommand.CommandDispatcher(__name__)
   parser = logging_utils.OptionParserWithLogging(
-        version=__version__, verbose=int(os.environ.get('ISOLATE_DEBUG', 0)))
+      version=__version__, verbose=int(os.environ.get('ISOLATE_DEBUG', 0)))
   try:
     return dispatcher.execute(parser, argv)
   except isolated_format.MappingError as e:

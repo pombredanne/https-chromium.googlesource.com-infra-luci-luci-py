@@ -20,6 +20,7 @@ from test_support import test_case
 
 
 class ValidationTestCase(test_case.TestCase):
+
   def setUp(self):
     super(ValidationTestCase, self).setUp()
     self.rule_set = validation.RuleSet()
@@ -27,7 +28,9 @@ class ValidationTestCase(test_case.TestCase):
   def test_rule(self):
     validating_func = mock.Mock()
     rule = validation.rule(
-        'projects/foo', 'bar.cfg', test_config_pb2.Config,
+        'projects/foo',
+        'bar.cfg',
+        test_config_pb2.Config,
         rule_set=self.rule_set)
     rule(validating_func)
 
@@ -46,22 +49,26 @@ class ValidationTestCase(test_case.TestCase):
 
   def test_patterns(self):
     validation.rule(
-        'projects/foo', 'bar.cfg', test_config_pb2.Config,
+        'projects/foo',
+        'bar.cfg',
+        test_config_pb2.Config,
         rule_set=self.rule_set)
     validation.rule(
-        'services/foo', 'foo.cfg', test_config_pb2.Config,
+        'services/foo',
+        'foo.cfg',
+        test_config_pb2.Config,
         rule_set=self.rule_set)
     validation.rule(
-        'services/foo', 'foo.cfg', test_config_pb2.Config,
+        'services/foo',
+        'foo.cfg',
+        test_config_pb2.Config,
         rule_set=self.rule_set)
     self.assertEqual(
-      self.rule_set.patterns(),
-      {
-        validation.ConfigPattern('projects/foo', 'bar.cfg'),
-        validation.ConfigPattern('services/foo', 'foo.cfg'),
-        validation.ConfigPattern('services/foo', 'foo.cfg'),
-      }
-    )
+        self.rule_set.patterns(), {
+            validation.ConfigPattern('projects/foo', 'bar.cfg'),
+            validation.ConfigPattern('services/foo', 'foo.cfg'),
+            validation.ConfigPattern('services/foo', 'foo.cfg'),
+        })
 
   def test_context_metadata(self):
     ctx = validation.Context()
@@ -86,11 +93,13 @@ class ValidationTestCase(test_case.TestCase):
         config_set='regex:projects/f[^/]+',
         path='regex:.+.yaml',
         rule_set=self.rule_set)
+
     def validate_yaml(cfg, ctx):
       try:
         yaml.safe_load(cfg)
       except Exception as ex:
         ctx.error('%s', ex)
+
     rule(validate_yaml)
 
     self.rule_set.validate('projects/foo', 'bar.cfg', '}{')
@@ -102,8 +111,7 @@ class ValidationTestCase(test_case.TestCase):
 
   def test_project_config_rule(self):
     validation.project_config_rule(
-        'bar.cfg', test_config_pb2.Config,
-        rule_set=self.rule_set)
+        'bar.cfg', test_config_pb2.Config, rule_set=self.rule_set)
 
     self.assertTrue(self.rule_set.is_defined_for('projects/foo', 'bar.cfg'))
     self.assertTrue(self.rule_set.is_defined_for('projects/baz', 'bar.cfg'))
@@ -114,22 +122,23 @@ class ValidationTestCase(test_case.TestCase):
 
   def test_ref_config_rule(self):
     validation.ref_config_rule(
-        'bar.cfg', test_config_pb2.Config,
-        rule_set=self.rule_set)
+        'bar.cfg', test_config_pb2.Config, rule_set=self.rule_set)
 
     self.assertTrue(
-        self.rule_set.is_defined_for(
-            'projects/baz/refs/heads/master', 'bar.cfg'))
+        self.rule_set.is_defined_for('projects/baz/refs/heads/master',
+                                     'bar.cfg'))
 
     self.assertFalse(
-        self.rule_set.is_defined_for(
-            'projects/baz/refs/heads/master', 'nonbar.cfg'))
+        self.rule_set.is_defined_for('projects/baz/refs/heads/master',
+                                     'nonbar.cfg'))
     self.assertFalse(self.rule_set.is_defined_for('services/foo', 'bar.cfg'))
     self.assertFalse(self.rule_set.is_defined_for('projects/baz', 'bar.cfg'))
 
   def test_remove_rule(self):
     rule = validation.rule(
-        'projects/foo', 'bar.cfg', test_config_pb2.Config,
+        'projects/foo',
+        'bar.cfg',
+        test_config_pb2.Config,
         rule_set=self.rule_set)
 
     with self.assertRaises(ValueError):
@@ -150,27 +159,27 @@ class ValidationTestCase(test_case.TestCase):
 
   def test_is_valid_secure_url(self):
     true = [
-      'http://localhost',
-      'http://localhost/',
-      'http://localhost/yo',
-      'http://localhost:1',
-      'http://localhost:1/yo',
-      'https://localhost',
-      'https://localhost/',
-      'https://localhost/yo',
-      'https://localhost:1',
-      'https://localhost:1/yo',
-      'https://user@bar.com',
-      'https://user:pass@bar.com',
+        'http://localhost',
+        'http://localhost/',
+        'http://localhost/yo',
+        'http://localhost:1',
+        'http://localhost:1/yo',
+        'https://localhost',
+        'https://localhost/',
+        'https://localhost/yo',
+        'https://localhost:1',
+        'https://localhost:1/yo',
+        'https://user@bar.com',
+        'https://user:pass@bar.com',
     ]
     for i in true:
       self.assertTrue(validation.is_valid_secure_url(i), i)
     false = [
-      'http://',
-      'http://#yo',
-      'http://evil.com',
-      'http://localhost:pwd@evil.com',
-      'https://',
+        'http://',
+        'http://#yo',
+        'http://evil.com',
+        'http://localhost:pwd@evil.com',
+        'https://',
     ]
     for i in false:
       self.assertFalse(validation.is_valid_secure_url(i), i)

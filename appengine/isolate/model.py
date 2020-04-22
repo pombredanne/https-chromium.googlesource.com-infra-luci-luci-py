@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Isolate Server model(s)."""
 
 import datetime
@@ -19,19 +18,15 @@ import gcs
 from components import datastore_utils
 from components import utils
 
-
 # The maximum number of entries that can be queried in a single request.
 MAX_KEYS_PER_DB_OPS = 1000
 
-
 # Maximum size of file stored in GS to be saved in memcache. The value must be
 # small enough so that the whole content can safely fit in memory.
-MAX_MEMCACHE_ISOLATED = 500*1024
-
+MAX_MEMCACHE_ISOLATED = 500 * 1024
 
 # Valid namespace key.
 NAMESPACE_RE = r'[a-z0-9A-Z\-._]+'
-
 
 #### Models
 
@@ -81,10 +76,8 @@ class ContentEntry(ndb.Model):
 
 ### Private stuff.
 
-
 # Valid hash keys.
 _HASH_LETTERS = frozenset('0123456789abcdef')
-
 
 ### Public API.
 
@@ -137,7 +130,8 @@ def entry_key_from_id(key_id):
     # deprecate sharding_letters.
     N = 4
   return ndb.Key(
-      ContentEntry, key_id,
+      ContentEntry,
+      key_id,
       parent=datastore_utils.shard_key(hash_key, N, 'ContentShard'))
 
 
@@ -162,7 +156,7 @@ def get_content(namespace, hash_key):
     entity = key.get()
     if entity is None:
       raise LookupError("namespace %s, key %s does not refer to anything" %
-        (namespace, hash_key))
+                        (namespace, hash_key))
     return (entity.content, entity)
 
 
@@ -170,7 +164,7 @@ def expiration_jitter(now, expiration):
   """Returns expiration/next_tag pair to set in a ContentEntry."""
   jittered = random.uniform(1, 1.2) * expiration
   expiration = now + datetime.timedelta(seconds=jittered)
-  next_tag = now + datetime.timedelta(seconds=jittered*0.1)
+  next_tag = now + datetime.timedelta(seconds=jittered * 0.1)
   return expiration, next_tag
 
 
@@ -184,8 +178,7 @@ def expand_content(namespace, source):
       yield data
       del data
       while zlib_state.unconsumed_tail:
-        data = zlib_state.decompress(
-            zlib_state.unconsumed_tail, gcs.CHUNK_SIZE)
+        data = zlib_state.decompress(zlib_state.unconsumed_tail, gcs.CHUNK_SIZE)
         yield data
         del data
       del i
@@ -210,7 +203,7 @@ def save_in_memcache(namespace, hash_key, content, async=False):
     if not memcache.set(hash_key, content, namespace=namespace_key):
       msg = 'Failed to save content to memcache.\n%s\\%s %d bytes' % (
           namespace_key, hash_key, len(content))
-      if len(content) < 100*1024:
+      if len(content) < 100 * 1024:
         logging.error(msg)
       else:
         logging.warning(msg)
@@ -223,8 +216,8 @@ def new_content_entry(key, **kwargs):
 
   Doesn't store it. Just creates a new ContentEntry instance.
   """
-  expiration, next_tag = expiration_jitter(
-      utils.utcnow(), config.settings().default_expiration)
+  expiration, next_tag = expiration_jitter(utils.utcnow(),
+                                           config.settings().default_expiration)
   return ContentEntry(
       key=key, expiration_ts=expiration, next_tag_ts=next_tag, **kwargs)
 

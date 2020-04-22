@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Allow multiline strings in text protobuf format.
 
 Usage:
@@ -34,7 +33,6 @@ only exactly-matching whitespace prefixes count).
 
 import re
 import textwrap
-
 
 _START_RE = re.compile(r'^(.*)<<\s*([_a-zA-Z]+)\s*$')
 _SPACE_RE = re.compile('^(\s*)')
@@ -98,7 +96,7 @@ def _escape_char(c):
       '\n': r'\n',
       '\r': r'\r',
       '\t': r'\t',
-      '"':  r'\"',
+      '"': r'\"',
       '\\': r'\\',
   }
   res = subst.get(c)

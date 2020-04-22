@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Integration with webapp2."""
 
 # Disable 'Method could be a function.'
@@ -26,23 +25,25 @@ from . import tokens
 
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'ApiHandler',
-  'AuthenticatingHandler',
-  'gae_cookie_authentication',
-  'get_authenticated_routes',
-  'oauth_authentication',
-  'require_xsrf_token_request',
-  'service_to_service_authentication',
+    'ApiHandler',
+    'AuthenticatingHandler',
+    'gae_cookie_authentication',
+    'get_authenticated_routes',
+    'oauth_authentication',
+    'require_xsrf_token_request',
+    'service_to_service_authentication',
 ]
 
 
 def require_xsrf_token_request(f):
   """Use for handshaking APIs."""
+
   @functools.wraps(f)
   def hook(self, *args, **kwargs):
     if not self.request.headers.get('X-XSRF-Token-Request'):
       raise api.AuthorizationError('Missing required XSRF request header')
     return f(self, *args, **kwargs)
+
   return hook
 
 
@@ -114,9 +115,8 @@ class AuthenticatingHandler(webapp2.RequestHandler):
     policy = self.get_content_security_policy()
     if policy:
       self.response.headers['Content-Security-Policy'] = '; '.join(
-        str('%s %s' % (directive, ' '.join(sources)))
-        for directive, sources in sorted(policy.items())
-      )
+          str('%s %s' % (directive, ' '.join(sources)))
+          for directive, sources in sorted(policy.items()))
     # Enforce HTTPS by adding the HSTS header; 365*24*60*60s.
     # https://www.owasp.org/index.php/HTTP_Strict_Transport_Security
     self.response.headers['Strict-Transport-Security'] = (
@@ -166,13 +166,12 @@ class AuthenticatingHandler(webapp2.RequestHandler):
       # A browser doesn't send Authorization: 'Bearer ...' or any other headers
       # by itself. So XSRF check is not required if header based authentication
       # is used.
-      using_headers_auth = method_func in (
-          oauth_authentication, service_to_service_authentication)
+      using_headers_auth = method_func in (oauth_authentication,
+                                           service_to_service_authentication)
 
       # Fail if XSRF token is required, but not provided.
-      need_xsrf_token = (
-          not using_headers_auth and
-          self.request.method in self.xsrf_token_enforce_on)
+      need_xsrf_token = (not using_headers_auth and
+                         self.request.method in self.xsrf_token_enforce_on)
       if need_xsrf_token and self.xsrf_token is None:
         raise api.AuthorizationError('XSRF token is missing')
 
@@ -228,10 +227,8 @@ class AuthenticatingHandler(webapp2.RequestHandler):
     Args:
       conf: components.auth GAE config, see config.py.
     """
-    return (
-        oauth_authentication,
-        gae_cookie_authentication,
-        service_to_service_authentication)
+    return (oauth_authentication, gae_cookie_authentication,
+            service_to_service_authentication)
 
   def generate_xsrf_token(self, xsrf_token_data=None):
     """Returns new XSRF token that embeds |xsrf_token_data|.
@@ -239,8 +236,8 @@ class AuthenticatingHandler(webapp2.RequestHandler):
     The token is bound to current identity and is valid only when used by same
     identity.
     """
-    return XSRFToken.generate(
-        [api.get_current_identity().to_bytes()], xsrf_token_data)
+    return XSRFToken.generate([api.get_current_identity().to_bytes()],
+                              xsrf_token_data)
 
   @property
   def xsrf_token(self):
@@ -328,42 +325,35 @@ class AuthenticatingHandler(webapp2.RequestHandler):
     # all HTML tags were removed. Warning if seeing this post 2016, it could
     # take a while.
     csp = {
-      'default-src': ["'self'"],
-
-      'script-src': [
-        "'self'",
-        "'unsafe-inline'",  # fallback if the browser doesn't support nonces
-        "'unsafe-eval'",    # required by Polymer and Handlebars templates
-
-        'https://www.google-analytics.com',
-        'https://www.google.com/jsapi',
-        'https://apis.google.com',
-        'https://www.gstatic.com', # Google charts loader
-      ],
-
-      'style-src': [
-        "'self'",
-        "'unsafe-inline'",  # fallback if the browser doesn't support nonces
-        "https://fonts.googleapis.com",
-        "https://www.gstatic.com", # Google charts styling
-      ],
-
-      'frame-src': [
-        'https://accounts.google.com',  # Google OAuth2 library opens iframes
-      ],
-
-      'img-src': [
-        "'self'",
-        'https://www.google-analytics.com',
-        'https://*.googleusercontent.com',  # Google user avatars
-      ],
-
-      'font-src': [
-        "'self'",
-        "https://fonts.gstatic.com",  # Google-hosted fonts
-      ],
-
-      'object-src': ["'none'"],  # we don't generally use Flash or Java
+        'default-src': ["'self'"],
+        'script-src': [
+            "'self'",
+            "'unsafe-inline'",  # fallback if the browser doesn't support nonces
+            "'unsafe-eval'",  # required by Polymer and Handlebars templates
+            'https://www.google-analytics.com',
+            'https://www.google.com/jsapi',
+            'https://apis.google.com',
+            'https://www.gstatic.com',  # Google charts loader
+        ],
+        'style-src': [
+            "'self'",
+            "'unsafe-inline'",  # fallback if the browser doesn't support nonces
+            "https://fonts.googleapis.com",
+            "https://www.gstatic.com",  # Google charts styling
+        ],
+        'frame-src': [
+            'https://accounts.google.com',  # Google OAuth2 library opens iframes
+        ],
+        'img-src': [
+            "'self'",
+            'https://www.google-analytics.com',
+            'https://*.googleusercontent.com',  # Google user avatars
+        ],
+        'font-src': [
+            "'self'",
+            "https://fonts.gstatic.com",  # Google-hosted fonts
+        ],
+        'object-src': ["'none'"],  # we don't generally use Flash or Java
     }
 
     # When 'unsafe-inline' and 'nonce-*' are both specified, newer browsers
@@ -406,8 +396,8 @@ class AuthenticatingHandler(webapp2.RequestHandler):
       error: instance of AuthorizationError subclass.
     """
     logging.warning(
-        'Authorization error.\n%s\nPeer: %s\nIP: %s\nOrigin: %s',
-        error, api.get_peer_identity().to_bytes(), self.request.remote_addr,
+        'Authorization error.\n%s\nPeer: %s\nIP: %s\nOrigin: %s', error,
+        api.get_peer_identity().to_bytes(), self.request.remote_addr,
         self.request.headers.get('Origin'))
     self.abort(403, detail=str(error))
 
@@ -463,8 +453,8 @@ class ApiHandler(AuthenticatingHandler):
 
   def authorization_error(self, error):
     logging.warning(
-        'Authorization error.\n%s\nPeer: %s\nIP: %s\nOrigin: %s',
-        error, api.get_peer_identity().to_bytes(), self.request.remote_addr,
+        'Authorization error.\n%s\nPeer: %s\nIP: %s\nOrigin: %s', error,
+        api.get_peer_identity().to_bytes(), self.request.remote_addr,
         self.request.headers.get('Origin'))
     self.abort_with_error(403, text=str(error))
 
@@ -491,9 +481,8 @@ class ApiHandler(AuthenticatingHandler):
     if self._json_body is None:
       if (self.CONTENT_TYPE_BASE and
           self.request.content_type != self.CONTENT_TYPE_BASE):
-        msg = (
-            'Expecting JSON body with content type \'%s\'' %
-            self.CONTENT_TYPE_BASE)
+        msg = ('Expecting JSON body with content type \'%s\'' %
+               self.CONTENT_TYPE_BASE)
         self.abort_with_error(400, text=msg)
       try:
         self._json_body = self.request.json
@@ -512,9 +501,8 @@ def get_authenticated_routes(app):
   # This code is adapted from router's __repr__ method (that enumerate
   # all routes for pretty-printing).
   routes = list(app.router.match_routes)
-  routes.extend(
-      v for k, v in app.router.build_routes.items()
-      if v not in app.router.match_routes)
+  routes.extend(v for k, v in app.router.build_routes.items()
+                if v not in app.router.match_routes)
   return [r for r in routes if issubclass(r.handler, AuthenticatingHandler)]
 
 
@@ -591,6 +579,7 @@ class CurrentUser(object):
 
 
 class GAEUsersAPI(object):
+
   @staticmethod
   def get_current_user(request):  # pylint: disable=unused-argument
     user = users.get_current_user()
@@ -607,5 +596,5 @@ class GAEUsersAPI(object):
 
 # See AuthenticatingHandler._get_users_api().
 _METHOD_TO_USERS_API = {
-  gae_cookie_authentication: GAEUsersAPI,
+    gae_cookie_authentication: GAEUsersAPI,
 }

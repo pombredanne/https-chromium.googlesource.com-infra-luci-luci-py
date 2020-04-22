@@ -25,7 +25,6 @@ from components import utils
 from test_support import stats_framework_logs_mock
 from test_support import test_case
 
-
 # TODO(maruel): Split stats_logs specific test into a separate unit test.
 
 
@@ -72,9 +71,10 @@ def strip_seconds(timestamp):
 
 
 class StatsFrameworkTest(test_case.TestCase):
+
   def test_empty(self):
-    handler = stats_framework.StatisticsFramework(
-        'test_framework', Snapshot, self.fail)
+    handler = stats_framework.StatisticsFramework('test_framework', Snapshot,
+                                                  self.fail)
 
     self.assertEqual(0, stats_framework.StatsRoot.query().count())
     self.assertEqual(0, handler.stats_day_cls.query().count())
@@ -86,8 +86,8 @@ class StatsFrameworkTest(test_case.TestCase):
     self.assertEquals(1, stats_framework.TOO_RECENT)
 
   def test_framework_empty(self):
-    handler = stats_framework.StatisticsFramework(
-        'test_framework', Snapshot, self.fail)
+    handler = stats_framework.StatisticsFramework('test_framework', Snapshot,
+                                                  self.fail)
     now = get_now()
     self.mock_now(now, 0)
     handler._set_last_processed_time(strip_seconds(now))
@@ -112,13 +112,12 @@ class StatsFrameworkTest(test_case.TestCase):
       return Snapshot(
           requests=1, b=1, inner=InnerSnapshot(c='%d,' % len(called)))
 
-    handler = stats_framework.StatisticsFramework(
-        'test_framework', Snapshot, gen_data)
+    handler = stats_framework.StatisticsFramework('test_framework', Snapshot,
+                                                  gen_data)
 
     now = get_now()
     self.mock_now(now, 0)
-    start_date = now - datetime.timedelta(
-        days=handler._max_backtrack_days)
+    start_date = now - datetime.timedelta(days=handler._max_backtrack_days)
     limit = handler._max_minutes_per_process
 
     i = handler.process_next_chunk(5)
@@ -127,8 +126,8 @@ class StatsFrameworkTest(test_case.TestCase):
     # Fresh new stats gathering always starts at midnight.
     midnight = datetime.datetime(*start_date.date().timetuple()[:3])
     expected_calls = [
-      calendar.timegm((midnight + datetime.timedelta(minutes=i)).timetuple())
-      for i in range(limit)
+        calendar.timegm((midnight + datetime.timedelta(minutes=i)).timetuple())
+        for i in range(limit)
     ]
     self.assertEqual(expected_calls, called)
 
@@ -137,10 +136,10 @@ class StatsFrameworkTest(test_case.TestCase):
     self.assertEqual(1, len(root))
     # When timestamp is not set, it starts at the begining of the day,
     # MAX_BACKTRACK days ago, then process MAX_MINUTES_PER_PROCESS.
-    timestamp = midnight + datetime.timedelta(seconds=(limit - 1)*60)
+    timestamp = midnight + datetime.timedelta(seconds=(limit - 1) * 60)
     expected = {
-      'created': now,
-      'timestamp': timestamp,
+        'created': now,
+        'timestamp': timestamp,
     }
     self.assertEqual(expected, root[0].to_dict())
 
@@ -183,22 +182,21 @@ class StatsFrameworkTest(test_case.TestCase):
     for h in hours:
       # These are left out from .to_dict().
       self.assertEqual(now, h.created)
-      self.assertEqual((1<<60)-1, h.minutes_bitmap)
+      self.assertEqual((1 << 60) - 1, h.minutes_bitmap)
 
     # Verify minutes.
-    expected = [
-      {
-        'key':
-            (midnight + datetime.timedelta(seconds=i*60)).strftime(
-              '%Y-%m-%dT%H:%M'),
-        'requests': 1,
-        'b': 1.,
+    expected = [{
+        'key': (midnight +
+                datetime.timedelta(seconds=i * 60)).strftime('%Y-%m-%dT%H:%M'),
+        'requests':
+            1,
+        'b':
+            1.,
         'd': [],
         'inner': {
-          'c': u'%d,' % (i + 1),
+            'c': u'%d,' % (i + 1),
         },
-      } for i in range(limit)
-    ]
+    } for i in range(limit)]
     minutes = handler.stats_minute_cls.query().fetch()
     self.assertEqual(expected, [d.to_dict() for d in minutes])
     for m in minutes:
@@ -215,13 +213,13 @@ class StatsFrameworkTest(test_case.TestCase):
       return Snapshot(
           requests=1, b=1, inner=InnerSnapshot(c='%d,' % len(called)))
 
-    handler = stats_framework.StatisticsFramework(
-        'test_framework', Snapshot, gen_data)
+    handler = stats_framework.StatisticsFramework('test_framework', Snapshot,
+                                                  gen_data)
 
     now = get_now()
     self.mock_now(now, 0)
     handler._set_last_processed_time(
-        strip_seconds(now) - datetime.timedelta(seconds=3*60))
+        strip_seconds(now) - datetime.timedelta(seconds=3 * 60))
     i = handler.process_next_chunk(1)
     self.assertEqual(2, i)
     self.assertEqual(1, stats_framework.StatsRoot.query().count())
@@ -240,68 +238,70 @@ class StatsFrameworkTest(test_case.TestCase):
         strip_seconds(now) - datetime.timedelta(seconds=60), root.timestamp)
 
     expected = [
-      {
-        'key': '2010-01-02',
-        'requests': 0,
-        'b': 0.0,
-        'd': [],
-        'inner': {'c': u''},
-      },
+        {
+            'key': '2010-01-02',
+            'requests': 0,
+            'b': 0.0,
+            'd': [],
+            'inner': {
+                'c': u''
+            },
+        },
     ]
-    self.assertEqual(
-        expected, stats_framework.get_stats(handler, 'days', now, 100, True))
+    self.assertEqual(expected,
+                     stats_framework.get_stats(handler, 'days', now, 100, True))
 
     expected = [
-      {
-        'key': '2010-01-02T03',
-        'requests': 2,
-        'b': 2.0,
-        'd': [],
-        'inner': {'c': u'1,2,'},
-      },
+        {
+            'key': '2010-01-02T03',
+            'requests': 2,
+            'b': 2.0,
+            'd': [],
+            'inner': {
+                'c': u'1,2,'
+            },
+        },
     ]
     self.assertEqual(
         expected, stats_framework.get_stats(handler, 'hours', now, 100, True))
 
     expected = [
-      {
-        'key': '2010-01-02T03:03',
-        'requests': 1,
-        'b': 1.0,
-        'd': [],
-        'inner': {'c': u'2,'},
-      },
-      {
-        'key': '2010-01-02T03:02',
-        'requests': 1,
-        'b': 1.0,
-        'd': [],
-        'inner': {'c': u'1,'},
-      },
+        {
+            'key': '2010-01-02T03:03',
+            'requests': 1,
+            'b': 1.0,
+            'd': [],
+            'inner': {
+                'c': u'2,'
+            },
+        },
+        {
+            'key': '2010-01-02T03:02',
+            'requests': 1,
+            'b': 1.0,
+            'd': [],
+            'inner': {
+                'c': u'1,'
+            },
+        },
     ]
     self.assertEqual(
         expected, stats_framework.get_stats(handler, 'minutes', now, 100, True))
 
   def test_keys(self):
-    handler = stats_framework.StatisticsFramework(
-        'test_framework', Snapshot, self.fail)
+    handler = stats_framework.StatisticsFramework('test_framework', Snapshot,
+                                                  self.fail)
     date = datetime.datetime(2010, 1, 2)
     self.assertEqual(
         ndb.Key('StatsRoot', 'test_framework', 'StatsDay', '2010-01-02'),
         handler.day_key(date.date()))
 
     self.assertEqual(
-        ndb.Key(
-          'StatsRoot', 'test_framework',
-          'StatsDay', '2010-01-02',
-          'StatsHour', '00'),
-        handler.hour_key(date))
+        ndb.Key('StatsRoot', 'test_framework', 'StatsDay', '2010-01-02',
+                'StatsHour', '00'), handler.hour_key(date))
     self.assertEqual(
-        ndb.Key(
-          'StatsRoot', 'test_framework',
-          'StatsDay', '2010-01-02',
-          'StatsHour', '00',
-          'StatsMinute', '00'),
+        ndb.Key('StatsRoot', 'test_framework', 'StatsDay',
+                '2010-01-02', 'StatsHour', '00', 'StatsMinute', '00'),
         handler.minute_key(date))
 
   def test_yield_empty(self):
@@ -319,26 +319,29 @@ def generate_snapshot(start_time, end_time):
 
 
 class StatsFrameworkLogTest(test_case.TestCase):
+
   def setUp(self):
     super(StatsFrameworkLogTest, self).setUp()
     stats_framework_logs_mock.configure(self)
-    self.h = stats_framework.StatisticsFramework(
-        'test_framework', Snapshot, generate_snapshot)
+    self.h = stats_framework.StatisticsFramework('test_framework', Snapshot,
+                                                 generate_snapshot)
 
     class GenerateHandler(webapp2.RequestHandler):
+
       def get(self2):
         stats_logs.add_entry('Hello')
         self2.response.write('Yay')
 
     class JsonHandler(webapp2.RequestHandler):
+
       def get(self2):
         self2.response.headers['Content-Type'] = (
             'application/json; charset=utf-8')
         duration = int(self2.request.get('duration', 120))
         now = self2.request.get('now')
         resolution = self2.request.get('resolution')
-        data = stats_framework.get_stats(
-            self.h, resolution, now, duration, True)
+        data = stats_framework.get_stats(self.h, resolution, now, duration,
+                                         True)
         self2.response.write(stats_framework.utils.encode_to_json(data))
 
     routes = [
@@ -374,152 +377,184 @@ class StatsFrameworkLogTest(test_case.TestCase):
 
   def test_json_empty_minutes(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
-    self.assertEqual(
-        [], self.app.get('/json?resolution=minutes&duration=9').json)
+    self.assertEqual([],
+                     self.app.get('/json?resolution=minutes&duration=9').json)
 
   def test_json_empty_processed_days(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
+        {
+            u'key': u'2010-01-02',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=days&duration=9').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=days&duration=9').json)
 
   def test_json_empty_processed_hours(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02T03',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T02',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
+        {
+            u'key': u'2010-01-02T03',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T02',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=hours&duration=9').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=hours&duration=9').json)
 
   def test_json_empty_processed_minutes(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02T03:04',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T03:03',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T03:02',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T03:01',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T03:00',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T02:59',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T02:58',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T02:57',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T02:56',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T02:55',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
+        {
+            u'key': u'2010-01-02T03:04',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T03:03',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T03:02',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T03:01',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T03:00',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T02:59',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T02:58',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T02:57',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T02:56',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T02:55',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=minutes&duration=11').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=minutes&duration=11').json)
 
   def test_json_empty_processed_minutes_limited(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02T03:04',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T03:03',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
-      {
-        u'key': u'2010-01-02T03:02',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
+        {
+            u'key': u'2010-01-02T03:04',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T03:03',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
+        {
+            u'key': u'2010-01-02T03:02',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=minutes&duration=3').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=minutes&duration=3').json)
 
   def test_json_two_days(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
@@ -527,16 +562,18 @@ class StatsFrameworkLogTest(test_case.TestCase):
     self.assertEqual('Yay', self.app.get('/generate').body)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u''},
-        u'requests': 0,
-      },
+        {
+            u'key': u'2010-01-02',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u''
+            },
+            u'requests': 0,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=days&duration=9').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=days&duration=9').json)
 
   def test_json_two_hours(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
@@ -544,16 +581,18 @@ class StatsFrameworkLogTest(test_case.TestCase):
     self.assertEqual('Yay', self.app.get('/generate').body)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02T03',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u'HelloHello'},
-        u'requests': 2,
-      },
+        {
+            u'key': u'2010-01-02T03',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u'HelloHello'
+            },
+            u'requests': 2,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=hours&duration=1').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=hours&duration=1').json)
 
   def test_json_two_minutes(self):
     stats_framework_logs_mock.reset_timestamp(self.h, self.now)
@@ -561,34 +600,31 @@ class StatsFrameworkLogTest(test_case.TestCase):
     self.assertEqual('Yay', self.app.get('/generate').body)
     self.h.process_next_chunk(0)
     expected = [
-      {
-        u'key': u'2010-01-02T03:04',
-        u'b': 0.0,
-        u'd': [],
-        u'inner': {u'c': u'HelloHello'},
-        u'requests': 2,
-      },
+        {
+            u'key': u'2010-01-02T03:04',
+            u'b': 0.0,
+            u'd': [],
+            u'inner': {
+                u'c': u'HelloHello'
+            },
+            u'requests': 2,
+        },
     ]
-    self.assertEqual(
-        expected, self.app.get('/json?resolution=minutes&duration=1').json)
+    self.assertEqual(expected,
+                     self.app.get('/json?resolution=minutes&duration=1').json)
 
   def test_accumulate(self):
-    a = Snapshot(
-        requests=23,
-        b=0.1,
-        inner=InnerSnapshot(c='foo'),
-        d=['a', 'b'])
+    a = Snapshot(requests=23, b=0.1, inner=InnerSnapshot(c='foo'), d=['a', 'b'])
     b = Snapshot(
-        requests=None,
-        b=None,
-        inner=InnerSnapshot(c=None),
-        d=['c', 'd'])
+        requests=None, b=None, inner=InnerSnapshot(c=None), d=['c', 'd'])
     a.accumulate(b)
     expected = {
-      'b': 0.1,
-      'd': ['a', 'b'],
-      'inner': {'c': 'foo'},
-      'requests': 23,
+        'b': 0.1,
+        'd': ['a', 'b'],
+        'inner': {
+            'c': 'foo'
+        },
+        'requests': 23,
     }
     self.assertEqual(expected, a.to_dict())
 

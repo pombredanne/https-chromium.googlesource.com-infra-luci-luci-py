@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines the mapreduces, which are used to do one-off mass updates on entities
 and other manually triggered maintenance tasks.
 
@@ -18,27 +17,25 @@ from mapreduce import mapreduce_pipeline
 import config
 import gcs
 
-
 # Task queue name to run all map reduce jobs on.
 MAPREDUCE_TASK_QUEUE = 'mapreduce-jobs'
 
-
 # Registered mapreduce jobs, displayed on admin page.
 MAPREDUCE_JOBS = {
-  'find_missing_gs_files': {
-    'job_name': 'Report missing GS files',
-    'mapper_spec': 'mapreduce_jobs.find_missing_gs_files',
-    'mapper_params': {
-      'entity_kind': 'model.ContentEntry',
+    'find_missing_gs_files': {
+        'job_name': 'Report missing GS files',
+        'mapper_spec': 'mapreduce_jobs.find_missing_gs_files',
+        'mapper_params': {
+            'entity_kind': 'model.ContentEntry',
+        },
     },
-  },
-  'delete_broken_entries': {
-    'job_name': 'Delete entries that do not have corresponding GS files',
-    'mapper_spec': 'mapreduce_jobs.delete_broken_entries',
-    'mapper_params': {
-      'entity_kind': 'model.ContentEntry',
+    'delete_broken_entries': {
+        'job_name': 'Delete entries that do not have corresponding GS files',
+        'mapper_spec': 'mapreduce_jobs.delete_broken_entries',
+        'mapper_params': {
+            'entity_kind': 'model.ContentEntry',
+        },
     },
-  },
 }
 
 
@@ -47,8 +44,8 @@ def launch_job(job_id):
   assert job_id in MAPREDUCE_JOBS, 'Unknown mapreduce job id %s' % job_id
   job_def = MAPREDUCE_JOBS[job_id].copy()
   job_def.setdefault('shards', 64)
-  job_def.setdefault(
-      'input_reader_spec', 'mapreduce.input_readers.DatastoreInputReader')
+  job_def.setdefault('input_reader_spec',
+                     'mapreduce.input_readers.DatastoreInputReader')
   job_def['mapper_params'] = job_def['mapper_params'].copy()
   job_def['mapper_params'].setdefault(
       'bucket_name', app_identity.get_default_gcs_bucket_name())

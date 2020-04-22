@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Authenticators used for network communication over HTTP."""
 
 import datetime
@@ -55,8 +54,8 @@ class OAuthAuthenticator(Authenticator):
           # Token without expiration time never expired.
           need_refresh = False
       if need_refresh:
-        self._access_token = oauth.create_access_token(
-            self.urlhost, self.config, False)
+        self._access_token = oauth.create_access_token(self.urlhost,
+                                                       self.config, False)
       if self._access_token:
         request.headers['Authorization'] = (
             'Bearer %s' % self._access_token.token)
@@ -64,8 +63,8 @@ class OAuthAuthenticator(Authenticator):
   def login(self, allow_user_interaction):
     with self._lock:
       # Forcefully refresh the token.
-      self._access_token = oauth.create_access_token(
-          self.urlhost, self.config, allow_user_interaction)
+      self._access_token = oauth.create_access_token(self.urlhost, self.config,
+                                                     allow_user_interaction)
       return self._access_token is not None
 
   def logout(self):

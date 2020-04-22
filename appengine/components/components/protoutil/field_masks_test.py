@@ -26,6 +26,7 @@ Mask = field_masks.Mask
 
 
 class ParsePathTests(unittest.TestCase):
+
   def parse(self, path, **kwargs):
     return field_masks._parse_path(path, TEST_DESC, **kwargs)[0]
 
@@ -236,6 +237,7 @@ class NormalizePathsTests(unittest.TestCase):
 
 
 class FromFieldMaskTests(unittest.TestCase):
+
   def parse(self, paths, **kwargs):
     fm = field_mask_pb2.FieldMask(paths=paths)
     return Mask.from_field_mask(fm, TEST_DESC, **kwargs)
@@ -247,59 +249,70 @@ class FromFieldMaskTests(unittest.TestCase):
 
   def test_str(self):
     actual = self.parse(['str'])
-    expected = Mask(TEST_DESC, children={
-        'str': Mask(),
-    })
+    expected = Mask(
+        TEST_DESC, children={
+            'str': Mask(),
+        })
     self.assertEqual(actual, expected)
 
   def test_str_num(self):
     actual = self.parse(['str', 'num'])
-    expected = Mask(TEST_DESC, children={
-        'str': Mask(),
-        'num': Mask(),
-    })
+    expected = Mask(
+        TEST_DESC, children={
+            'str': Mask(),
+            'num': Mask(),
+        })
     self.assertEqual(actual, expected)
 
   def test_str_msg_num(self):
     actual = self.parse(['str', 'msg.num'])
-    expected = Mask(TEST_DESC, children={
-        'str': Mask(),
-        'msg': Mask(TEST_DESC, children={
-            'num': Mask(),
-        }),
-    })
+    expected = Mask(
+        TEST_DESC,
+        children={
+            'str': Mask(),
+            'msg': Mask(TEST_DESC, children={
+                'num': Mask(),
+            }),
+        })
     self.assertEqual(actual, expected)
 
   def test_redunant(self):
     actual = self.parse(['msg', 'msg.num'])
-    expected = Mask(TEST_DESC, children={
-        'msg': Mask(TEST_DESC),
-    })
+    expected = Mask(
+        TEST_DESC, children={
+            'msg': Mask(TEST_DESC),
+        })
     self.assertEqual(actual, expected)
 
   def test_redunant_star(self):
     actual = self.parse(['msg.*', 'msg.msg.num'])
-    expected = Mask(TEST_DESC, children={
-        'msg': Mask(TEST_DESC),
-    })
+    expected = Mask(
+        TEST_DESC, children={
+            'msg': Mask(TEST_DESC),
+        })
     self.assertEqual(actual, expected)
 
   def test_json_names(self):
     actual = self.parse(['mapStrNum.aB', 'str'], json_names=True)
     map_str_num_desc = TEST_DESC.fields_by_name['map_str_num'].message_type
-    expected = Mask(TEST_DESC, children={
-        'str': Mask(),
-        'map_str_num': Mask(map_str_num_desc, repeated=True, children={
-            'aB': Mask(),
-        }),
-    })
+    expected = Mask(
+        TEST_DESC,
+        children={
+            'str':
+                Mask(),
+            'map_str_num':
+                Mask(map_str_num_desc, repeated=True, children={
+                    'aB': Mask(),
+                }),
+        })
     self.assertEqual(actual, expected)
 
   def test_update_mask(self):
     actual = self.parse(['msgs'], update_mask=True)
-    expected = Mask(TEST_DESC, children={
-        'msgs': Mask(TEST_DESC, repeated=True),
-    })
+    expected = Mask(
+        TEST_DESC, children={
+            'msgs': Mask(TEST_DESC, repeated=True),
+        })
     self.assertEqual(actual, expected)
 
   def test_update_mask_with_intermediate_repeated_field(self):
@@ -309,6 +322,7 @@ class FromFieldMaskTests(unittest.TestCase):
 
 
 class IncludeTests(unittest.TestCase):
+
   def mask(self, *paths):
     return Mask.from_field_mask(
         field_mask_pb2.FieldMask(paths=list(paths)), TEST_DESC)
@@ -393,24 +407,19 @@ class TrimTests(unittest.TestCase):
     self.assertEqual(msg, TestMsg(msg=TestMsg(num=1)))
 
   def test_submessage_repeated_trim(self):
-    msg = TestMsg(
-        msgs=[TestMsg(num=1), TestMsg(num=2)])
+    msg = TestMsg(msgs=[TestMsg(num=1), TestMsg(num=2)])
     self.trim(msg, 'str')
     self.assertEqual(msg, TestMsg())
 
   def test_submessage_repeated_leave_entirely(self):
-    msg = TestMsg(
-        msgs=[TestMsg(num=1), TestMsg(num=2)])
-    expected = TestMsg(
-        msgs=[TestMsg(num=1), TestMsg(num=2)])
+    msg = TestMsg(msgs=[TestMsg(num=1), TestMsg(num=2)])
+    expected = TestMsg(msgs=[TestMsg(num=1), TestMsg(num=2)])
     self.trim(msg, 'msgs')
     self.assertEqual(msg, expected)
 
   def test_submessage_repeated_leave_entirely_trailing_star(self):
-    msg = TestMsg(
-        msgs=[TestMsg(num=1), TestMsg(num=2)])
-    expected = TestMsg(
-        msgs=[TestMsg(num=1), TestMsg(num=2)])
+    msg = TestMsg(msgs=[TestMsg(num=1), TestMsg(num=2)])
+    expected = TestMsg(msgs=[TestMsg(num=1), TestMsg(num=2)])
     self.trim(msg, 'msgs.*')
     self.assertEqual(msg, expected)
 
@@ -456,12 +465,9 @@ class TrimTests(unittest.TestCase):
         map_str_msg={
             'a': TestMsg(num=1),
             'b': TestMsg(num=2),
-        },
-        num=1)
+        }, num=1)
     self.trim(msg, 'map_str_msg.a')
-    self.assertEqual(
-        msg,
-        TestMsg(map_str_msg={'a': TestMsg(num=1)}))
+    self.assertEqual(msg, TestMsg(map_str_msg={'a': TestMsg(num=1)}))
 
   def test_map_str_msg_leave_key_partially(self):
     msg = TestMsg(
@@ -471,9 +477,7 @@ class TrimTests(unittest.TestCase):
         },
         num=1)
     self.trim(msg, 'map_str_msg.a.num')
-    self.assertEqual(
-        msg,
-        TestMsg(map_str_msg={'a': TestMsg(num=1)}))
+    self.assertEqual(msg, TestMsg(map_str_msg={'a': TestMsg(num=1)}))
 
 
 class MergeTests(unittest.TestCase):
@@ -509,7 +513,6 @@ class MergeTests(unittest.TestCase):
     self.mask('msg').merge(src, dest)
     self.assertEqual(dest.msg, src.msg)
 
-
   def test_unrelated_fields(self):
     src = TestMsg(num=1, str='a')
     dest = TestMsg(num=2, str='b')
@@ -532,6 +535,7 @@ class MergeTests(unittest.TestCase):
 
 
 class SubmaskTests(unittest.TestCase):
+
   def mask(self, *paths):
     return Mask.from_field_mask(
         field_mask_pb2.FieldMask(paths=list(paths)), TEST_DESC)

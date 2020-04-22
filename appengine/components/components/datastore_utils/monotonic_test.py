@@ -15,7 +15,6 @@ from components.datastore_utils import monotonic
 from components.datastore_utils import txn
 from test_support import test_case
 
-
 # Access to a protected member _XX of a client class - pylint: disable=W0212
 
 
@@ -27,11 +26,13 @@ class EntityX(ndb.Model):
 
 
 class EntityY(ndb.Model):
+
   def _pre_put_hook(self):
     super(EntityY, self)._pre_put_hook()
 
 
 class MonotonicTest(test_case.TestCase):
+
   def setUp(self):
     super(MonotonicTest, self).setUp()
     self.parent = ndb.Key('Root', 1)
@@ -79,8 +80,8 @@ class MonotonicTest(test_case.TestCase):
     EntityX(id=2, parent=self.parent).put()
     data = EntityX(id=1, parent=self.parent)
     new_keys = [
-      ndb.Key('EntityX', 2, parent=self.parent),
-      ndb.Key('EntityX', 3, parent=self.parent),
+        ndb.Key('EntityX', 2, parent=self.parent),
+        ndb.Key('EntityX', 3, parent=self.parent),
     ]
     actual = monotonic.insert(data, lambda: new_keys.pop(0))
     self.assertEqual([], new_keys)
@@ -93,25 +94,26 @@ class MonotonicTest(test_case.TestCase):
     EntityX(id=3, parent=self.parent).put()
     data = EntityX(id=1, parent=self.parent)
     new_keys = [
-      ndb.Key('EntityX', 2, parent=self.parent),
-      ndb.Key('EntityX', 3, parent=self.parent),
+        ndb.Key('EntityX', 2, parent=self.parent),
+        ndb.Key('EntityX', 3, parent=self.parent),
     ]
-    actual = monotonic.insert(
-        data, lambda: new_keys.pop(0) if new_keys else None)
+    actual = monotonic.insert(data,
+                              lambda: new_keys.pop(0) if new_keys else None)
     self.assertEqual([], new_keys)
     self.assertEqual(None, actual)
 
   def test_insert_transaction_failure(self):
     EntityX(id=1, parent=self.parent).put()
     calls = []
+
     def transaction_async(*args, **kwargs):
       calls.append(1)
       if len(calls) < 2:
         raise txn.CommitError()
       return old_transaction_async(*args, **kwargs)
 
-    old_transaction_async = self.mock(
-        txn, 'transaction_async', transaction_async)
+    old_transaction_async = self.mock(txn, 'transaction_async',
+                                      transaction_async)
 
     actual = monotonic.insert(EntityX(id=2, parent=self.parent))
     expected = ndb.Key('EntityX', 2, parent=self.parent)
@@ -128,7 +130,7 @@ class MonotonicTest(test_case.TestCase):
     # First entity id is HIGH_KEY_ID, second is HIGH_KEY_ID-1.
     cls = monotonic.get_versioned_root_model('fidoula')
     parent_key = ndb.Key(cls, 'foo')
-    for i in (monotonic.HIGH_KEY_ID, monotonic.HIGH_KEY_ID-1):
+    for i in (monotonic.HIGH_KEY_ID, monotonic.HIGH_KEY_ID - 1):
       monotonic.store_new_version(EntityX(parent=parent_key), cls)
       actual = monotonic.get_versioned_most_recent(EntityX, parent_key)
       expected = EntityX(key=ndb.Key('EntityX', i, parent=parent_key))
@@ -138,13 +140,13 @@ class MonotonicTest(test_case.TestCase):
     # First entity id is HIGH_KEY_ID, second is HIGH_KEY_ID-1.
     cls = monotonic.get_versioned_root_model('fidoula')
     parent_key = ndb.Key(cls, 'foo')
-    for i in (monotonic.HIGH_KEY_ID, monotonic.HIGH_KEY_ID-1):
+    for i in (monotonic.HIGH_KEY_ID, monotonic.HIGH_KEY_ID - 1):
       monotonic.store_new_version(EntityX(parent=parent_key), cls)
       actual = monotonic.get_versioned_most_recent_with_root(
           EntityX, parent_key)
       expected = (
-        cls(key=parent_key, current=i),
-        EntityX(key=ndb.Key('EntityX', i, parent=parent_key)),
+          cls(key=parent_key, current=i),
+          EntityX(key=ndb.Key('EntityX', i, parent=parent_key)),
       )
       self.assertEqual(expected, actual)
 
@@ -157,8 +159,9 @@ class MonotonicTest(test_case.TestCase):
 
     actual = monotonic.get_versioned_most_recent_with_root(EntityX, parent_key)
     expected = (
-      cls(key=parent_key, current=monotonic.HIGH_KEY_ID),
-      EntityX(key=ndb.Key('EntityX', monotonic.HIGH_KEY_ID, parent=parent_key)),
+        cls(key=parent_key, current=monotonic.HIGH_KEY_ID),
+        EntityX(
+            key=ndb.Key('EntityX', monotonic.HIGH_KEY_ID, parent=parent_key)),
     )
     self.assertEqual(expected, actual)
 
@@ -171,8 +174,8 @@ class MonotonicTest(test_case.TestCase):
 
     actual = monotonic.get_versioned_most_recent_with_root(EntityX, parent_key)
     expected = (
-      cls(key=parent_key, current=23),
-      EntityX(key=ndb.Key('EntityX', 23, parent=parent_key)),
+        cls(key=parent_key, current=23),
+        EntityX(key=ndb.Key('EntityX', 23, parent=parent_key)),
     )
     self.assertEqual(expected, actual)
 
@@ -181,14 +184,15 @@ class MonotonicTest(test_case.TestCase):
     parent_key = ndb.Key(cls, 'foo')
     monotonic.store_new_version(EntityX(parent=parent_key), cls)
     monotonic.store_new_version(EntityX(parent=parent_key), cls)
-    EntityX(id=monotonic.HIGH_KEY_ID-2, parent=parent_key).put()
+    EntityX(id=monotonic.HIGH_KEY_ID - 2, parent=parent_key).put()
 
     # The unexpected entity is not registered.
     actual = monotonic.get_versioned_most_recent_with_root(EntityX, parent_key)
     expected = (
-      cls(key=parent_key, current=monotonic.HIGH_KEY_ID-1),
-      EntityX(
-          key=ndb.Key('EntityX', monotonic.HIGH_KEY_ID-1, parent=parent_key)),
+        cls(key=parent_key, current=monotonic.HIGH_KEY_ID - 1),
+        EntityX(
+            key=ndb.Key(
+                'EntityX', monotonic.HIGH_KEY_ID - 1, parent=parent_key)),
     )
     self.assertEqual(expected, actual)
 
@@ -197,9 +201,10 @@ class MonotonicTest(test_case.TestCase):
     monotonic.store_new_version(EntityX(parent=parent_key), cls)
     actual = monotonic.get_versioned_most_recent_with_root(EntityX, parent_key)
     expected = (
-      cls(key=parent_key, current=monotonic.HIGH_KEY_ID-3),
-      EntityX(
-          key=ndb.Key('EntityX', monotonic.HIGH_KEY_ID-3, parent=parent_key)),
+        cls(key=parent_key, current=monotonic.HIGH_KEY_ID - 3),
+        EntityX(
+            key=ndb.Key(
+                'EntityX', monotonic.HIGH_KEY_ID - 3, parent=parent_key)),
     )
     self.assertEqual(expected, actual)
 
@@ -218,8 +223,10 @@ class MonotonicTest(test_case.TestCase):
     # group.
     cls = monotonic.get_versioned_root_model('fidoula')
     parent = ndb.Key(cls, 'foo')
+
     class Unrelated(ndb.Model):
       b = ndb.IntegerProperty()
+
     unrelated = Unrelated(id='bar', parent=parent, b=42)
     actual = monotonic.store_new_version(
         EntityX(a=1, parent=parent), cls, extra=[unrelated])
@@ -238,13 +245,15 @@ class MonotonicTest(test_case.TestCase):
     actual = monotonic.store_new_version(EntityX(a=1, parent=parent), cls)
 
     calls = []
+
     def transaction_async(*args, **kwargs):
       calls.append(1)
       if len(calls) < 2:
         raise txn.CommitError()
       return old_transaction_async(*args, **kwargs)
-    old_transaction_async = self.mock(
-        txn, 'transaction_async', transaction_async)
+
+    old_transaction_async = self.mock(txn, 'transaction_async',
+                                      transaction_async)
 
     actual = monotonic.store_new_version(EntityX(a=2, parent=parent), cls)
     self.assertEqual(

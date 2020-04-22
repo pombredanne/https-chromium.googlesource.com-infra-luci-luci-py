@@ -8,13 +8,14 @@ import re
 
 from components.prpc import encoding
 
-
-ParsedHeaders = collections.namedtuple('ParsedHeaders', [
-  'content_type',       # an encoding.Encoding value for the incoming request
-  'accept',             # an encoding.Encoding value for the outgoing response
-  'timeout',            # RPC timeout as a number of seconds or None
-  'invocation_metadata' # metadata as a list of (k, v) pairs with lowercase keys
-])
+ParsedHeaders = collections.namedtuple(
+    'ParsedHeaders',
+    [
+        'content_type',  # an encoding.Encoding value for the incoming request
+        'accept',  # an encoding.Encoding value for the outgoing response
+        'timeout',  # RPC timeout as a number of seconds or None
+        'invocation_metadata'  # metadata as a list of (k, v) pairs with lowercase keys
+    ])
 
 
 def _parse_media_type(media_type):
@@ -52,7 +53,7 @@ def _parse_timeout(timeout):
     raise ValueError('Incorrectly formatted timeout header')
   unit = m.group('units')
   if unit == 'H':
-    multiplier = 60*60
+    multiplier = 60 * 60
   elif unit == 'M':
     multiplier = 60
   elif unit == 'S':
@@ -107,8 +108,6 @@ def parse_headers(headers):
       header = header[:-len('-bin')]
     invocation_metadata.append((header, value))
 
-  return ParsedHeaders(
-      content_type,
-      _parse_accept_header(headers.get('Accept')),
-      _parse_timeout(headers.get('X-Prpc-Timeout')),
-      invocation_metadata)
+  return ParsedHeaders(content_type, _parse_accept_header(
+      headers.get('Accept')), _parse_timeout(headers.get('X-Prpc-Timeout')),
+                       invocation_metadata)

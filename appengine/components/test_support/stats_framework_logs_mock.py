@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Code to help test cases using stats_framework.
 
 Implicitly depends on auto_stub.
@@ -14,12 +13,12 @@ import webtest
 from components.stats_framework import stats_logs
 from components import utils
 
-
 ## Private code.
 
 
 class _RequestLog(object):
   """Simple mock of logservice.RequestLog."""
+
   def __init__(self):
     self.status = 200
     self.response_size = None
@@ -76,7 +75,7 @@ def reset_timestamp(handler, timestamp):
   Otherwise by default StatsFramework will backtrace to MAX_BACKTRACK days
   ago and will then limit processing to MAX_MINUTES_PER_PROCESS minutes.
   """
-  timestamp = timestamp - datetime.timedelta(seconds=10*60)
+  timestamp = timestamp - datetime.timedelta(seconds=10 * 60)
   timestamp = datetime.datetime(*timestamp.timetuple()[:5], second=0)
   # pylint: disable=W0212
   handler._set_last_processed_time(timestamp)

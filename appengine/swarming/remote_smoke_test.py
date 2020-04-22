@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Integration test for the Swarming server."""
 
 import json
@@ -34,10 +33,10 @@ def gen_isolated(isolate, script, includes=None):
   """Archives a script to `isolate` server."""
   tmp = tempfile.mkdtemp(prefix='swarming_smoke')
   data = {
-    'variables': {
-      'command': ['python', '-u', 'script.py'],
-      'files': ['script.py'],
-    },
+      'variables': {
+          'command': ['python', '-u', 'script.py'],
+          'files': ['script.py'],
+      },
   }
   try:
     with open(os.path.join(tmp, 'script.py'), 'wb') as f:
@@ -48,8 +47,14 @@ def gen_isolated(isolate, script, includes=None):
       json.dump(data, f, sort_keys=True, separators=(',', ':'))
     isolated = os.path.join(tmp, 'script.isolated')
     cmd = [
-      os.path.join(CLIENT_DIR, 'isolate.py'), 'archive',
-      '-I', isolate, '-i', path, '-s', isolated,
+        os.path.join(CLIENT_DIR, 'isolate.py'),
+        'archive',
+        '-I',
+        isolate,
+        '-i',
+        path,
+        '-s',
+        isolated,
     ]
     out = subprocess.check_output(cmd)
     if includes:
@@ -62,8 +67,13 @@ def gen_isolated(isolate, script, includes=None):
       with open(isolated, 'wb') as f:
         json.dump(data, f, sort_keys=True, separators=(',', ':'))
       cmd = [
-        os.path.join(CLIENT_DIR, 'isolateserver.py'), 'archive',
-        '-I', isolate, '--namespace', 'default-gzip', isolated,
+          os.path.join(CLIENT_DIR, 'isolateserver.py'),
+          'archive',
+          '-I',
+          isolate,
+          '--namespace',
+          'default-gzip',
+          isolated,
       ]
       out = subprocess.check_output(cmd)
     return out.split(' ', 1)[0]
@@ -91,11 +101,20 @@ def test_expiration(swarming, isolate, extra_flags):
   """Schedule a task that cannot be scheduled and expire."""
   h = gen_isolated(isolate, 'print(\'SUCCESS\')')
   start = time.time()
-  out, exitcode = capture(
-      [
-        SWARMING_SCRIPT, 'run', '-S', swarming, '-I', isolate, h,
-        '--expiration', '30', '-d', 'invalid', 'always',
-      ] + extra_flags)
+  out, exitcode = capture([
+      SWARMING_SCRIPT,
+      'run',
+      '-S',
+      swarming,
+      '-I',
+      isolate,
+      h,
+      '--expiration',
+      '30',
+      '-d',
+      'invalid',
+      'always',
+  ] + extra_flags)
   duration = time.time() - start
   if exitcode != 1:
     return 'Unexpected exit code: %d' % exitcode
@@ -108,17 +127,22 @@ def test_expiration(swarming, isolate, extra_flags):
 def test_io_timeout(swarming, isolate, extra_flags):
   """Runs a task that triggers IO timeout."""
   h = gen_isolated(
-      isolate,
-      'import time\n'
+      isolate, 'import time\n'
       'print(\'SUCCESS\')\n'
       'time.sleep(40)\n'
       'print(\'FAILURE\')')
   start = time.time()
-  out, exitcode = capture(
-      [
-        SWARMING_SCRIPT, 'run', '-S', swarming, '-I', isolate, h,
-        '--io-timeout', '30',
-      ] + extra_flags)
+  out, exitcode = capture([
+      SWARMING_SCRIPT,
+      'run',
+      '-S',
+      swarming,
+      '-I',
+      isolate,
+      h,
+      '--io-timeout',
+      '30',
+  ] + extra_flags)
   duration = time.time() - start
   if exitcode != 1:
     return 'Unexpected exit code: %d\n%s' % (exitcode, out)
@@ -135,11 +159,17 @@ def test_hard_timeout(swarming, isolate, extra_flags):
       '  print(\'.\')\n'
       '  time.sleep(10)\n')
   start = time.time()
-  out, exitcode = capture(
-      [
-        SWARMING_SCRIPT, 'run', '-S', swarming, '-I', isolate, h,
-        '--hard-timeout', '30',
-      ] + extra_flags)
+  out, exitcode = capture([
+      SWARMING_SCRIPT,
+      'run',
+      '-S',
+      swarming,
+      '-I',
+      isolate,
+      h,
+      '--hard-timeout',
+      '30',
+  ] + extra_flags)
   duration = time.time() - start
   if exitcode != 1:
     return 'Unexpected exit code: %d\n%s' % (exitcode, out)
@@ -158,26 +188,26 @@ def test_reentrant(swarming, isolate, extra_flags):
   """
   # First isolate the whole client directory.
   cmd = [
-    os.path.join(CLIENT_DIR, 'isolateserver.py'), 'archive',
-    '-I', isolate, '--namespace', 'default-gzip', '--blacklist', 'tests',
-    CLIENT_DIR,
+      os.path.join(CLIENT_DIR, 'isolateserver.py'),
+      'archive',
+      '-I',
+      isolate,
+      '--namespace',
+      'default-gzip',
+      '--blacklist',
+      'tests',
+      CLIENT_DIR,
   ]
   client_isolated = subprocess.check_output(cmd).split()[0]
   logging.info('- %s', client_isolated)
 
-  script = '\n'.join((
-      'import os',
-      'import subprocess',
-      'import sys',
-      'print("Before\\n")',
-      'print("SWARMING_TASK_ID=%s\\n" % os.environ["SWARMING_TASK_ID"])',
-      'subprocess.check_call(',
-      '  [sys.executable, "-u", "example/3_swarming_run_auto_upload.py",',
-      '    "-S", "%s",' % swarming,
-      '    "-I", "%s",' % isolate,
-      '    "--verbose",',
-      '  ])',
-      'print("After\\n")'))
+  script = '\n'.join(
+      ('import os', 'import subprocess', 'import sys', 'print("Before\\n")',
+       'print("SWARMING_TASK_ID=%s\\n" % os.environ["SWARMING_TASK_ID"])',
+       'subprocess.check_call(',
+       '  [sys.executable, "-u", "example/3_swarming_run_auto_upload.py",',
+       '    "-S", "%s",' % swarming, '    "-I", "%s",' % isolate,
+       '    "--verbose",', '  ])', 'print("After\\n")'))
   h = gen_isolated(isolate, script, [client_isolated])
   subprocess.check_output(
       [SWARMING_SCRIPT, 'run', '-S', swarming, '-I', isolate, h] + extra_flags)
@@ -231,7 +261,8 @@ def main():
   for name, fn in sorted(tests.items()):
     logging.info('%s', name)
     t = threading.Thread(
-        target=run_test, name=name,
+        target=run_test,
+        name=name,
         args=(results, options.swarming, options.isolate_server, extra_flags,
               name, fn))
     t.start()
@@ -240,8 +271,8 @@ def main():
   maxlen = max(len(name) for name in tests)
   for i in range(len(tests)):
     name, result, duration = results.get()
-    print('[%d/%d] %-*s: %4.1fs: %s' %
-        (i, len(tests), maxlen, name, duration, result))
+    print('[%d/%d] %-*s: %4.1fs: %s' % (i, len(tests), maxlen, name, duration,
+                                        result))
 
   return 0
 

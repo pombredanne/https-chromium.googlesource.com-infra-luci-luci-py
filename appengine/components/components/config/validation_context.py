@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines `Context` class, convenient for customizable validation.
 
 Usage:
@@ -30,9 +29,9 @@ import contextlib
 import logging
 
 __all__ = [
-  'Context',
-  'Message',
-  'Result',
+    'Context',
+    'Message',
+    'Result',
 ]
 
 Message = collections.namedtuple('Message', ['text', 'severity'])
@@ -40,6 +39,7 @@ ResultBase = collections.namedtuple('ResultBase', ['messages'])
 
 
 class Result(ResultBase):
+
   def _has_level(self, severity):
     return any(m.severity >= severity for m in self.messages)
 
@@ -139,12 +139,14 @@ class Context(object):
       exc_type (type): exception type to raise. Defaults to ValueError.
     """
     exc_type = exc_type or ValueError
+
     def on_message(msg):
       if msg.severity >= logging.ERROR:
         text = msg.text
         if prefix:
           text = '%s%s' % (prefix, text)
         raise exc_type(text)
+
     return cls(on_message=on_message)
 
   @classmethod

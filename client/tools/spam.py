@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """spam.py spams stdout for load testing the stdout handler.
 
 To use on the server, use:
@@ -28,7 +27,9 @@ def main():
   parser.add_option(
       '--duration', type='float', default=5., help='Duration in seconds')
   parser.add_option(
-      '--sleep', type='float', default=1.,
+      '--sleep',
+      type='float',
+      default=1.,
       help='Sleep in seconds between burst')
   parser.add_option(
       '--size', type='int', default=10, help='Data written at each burst')

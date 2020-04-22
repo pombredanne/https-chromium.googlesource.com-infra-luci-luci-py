@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Integration with Cloud Endpoints.
 
 This module is used only when 'endpoints' is importable (see auth/__init__.py).
@@ -26,17 +25,15 @@ from components import utils
 
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'endpoints_api',
-  'endpoints_method',
+    'endpoints_api',
+    'endpoints_method',
 ]
-
 
 # TODO(vadimsh): id_token auth (used when talking to Cloud Endpoints from
 # Android for example) is not supported yet, since this module talks to
 # OAuth API directly to validate client_ids to simplify usage of Cloud Endpoints
 # APIs by service accounts. Otherwise, each service account (or rather it's
 # client_id) has to be hardcoded into the application source code.
-
 
 # Cloud Endpoints auth library likes to spam logging.debug(...) messages: four
 # messages per _every_ authenticated request. Monkey patch it.
@@ -51,21 +48,25 @@ users_id_token.logging.setLevel(logging.INFO)
 def monkey_patch_endpoints_logger():
   logger = logging.getLogger('endpoints.api_backend_service')
   original = logger.handle
+
   def patched_handle(record):
     if record.levelno >= logging.ERROR:
       record.levelno = logging.WARNING
       record.levelname = logging.getLevelName(record.levelno)
     return original(record)
+
   logger.handle = patched_handle
+
+
 monkey_patch_endpoints_logger()
 
 
 @util.positional(2)
-def endpoints_api(
-    name, version,
-    auth_level=None,
-    allowed_client_ids=None,
-    **kwargs):
+def endpoints_api(name,
+                  version,
+                  auth_level=None,
+                  allowed_client_ids=None,
+                  **kwargs):
   """Same as @endpoints.api but tweaks default auth related properties.
 
   By default API marked with this decorator will use same authentication scheme
@@ -112,7 +113,8 @@ def endpoints_api(
   #   - api_class() is explicitly called which returns a function, which is then
   #     called with the  remote.Service class as argument.
   api_decorator = endpoints.api(
-      name, version,
+      name,
+      version,
       auth_level=auth_level,
       allowed_client_ids=allowed_client_ids,
       **kwargs)
@@ -131,18 +133,19 @@ def endpoints_api(
 
   # Monkey patch api_decorator to make 'api_class' to return wrapped decorator.
   orig = api_decorator.api_class
+
   def patched_api_class(*args, **kwargs):
     wrapper = orig(*args, **kwargs)
     return lambda cls: fn(wrapper(cls))
+
   api_decorator.api_class = patched_api_class
 
   return api_decorator
 
 
-def endpoints_method(
-    request_message=message_types.VoidMessage,
-    response_message=message_types.VoidMessage,
-    **kwargs):
+def endpoints_method(request_message=message_types.VoidMessage,
+                     response_message=message_types.VoidMessage,
+                     **kwargs):
   """Same as @endpoints.method but also adds auth state initialization code.
 
   Also forbids changing auth parameters on per-method basis, since it
@@ -163,14 +166,14 @@ def endpoints_method(
   # decorator does.
 
   def new_decorator(func):
+
     @initialize_oauth
     @endpoints.method(request_message, response_message, **kwargs)
     @functools.wraps(func)
     def wrapper(service, *args, **kwargs):
       try:
-        initialize_request_auth(
-            service.request_state.remote_address,
-            service.request_state.headers)
+        initialize_request_auth(service.request_state.remote_address,
+                                service.request_state.headers)
         return func(service, *args, **kwargs)
       except endpoints.BadRequestException as e:
         # Useful to debug HTTP 400s.
@@ -179,18 +182,22 @@ def endpoints_method(
       except api.AuthenticationError as ex:
         logging.warning(
             'Authentication error.\n%s\nPeer: %s\nIP: %s\nOrigin: %s',
-            ex.message, api.get_peer_identity().to_bytes(),
+            ex.message,
+            api.get_peer_identity().to_bytes(),
             service.request_state.remote_address,
             service.request_state.headers.get('Origin'))
         raise endpoints.UnauthorizedException(ex.message)
       except api.AuthorizationError as ex:
         logging.warning(
             'Authorization error.\n%s\nPeer: %s\nIP: %s\nOrigin: %s',
-            ex.message, api.get_peer_identity().to_bytes(),
+            ex.message,
+            api.get_peer_identity().to_bytes(),
             service.request_state.remote_address,
             service.request_state.headers.get('Origin'))
         raise endpoints.ForbiddenException(ex.message)
+
     return wrapper
+
   return new_decorator
 
 
@@ -203,14 +210,14 @@ def initialize_oauth(method):
   TODO(vadimsh): This call is unnecessary if id_token is used instead of
   access_token. We do not use id_tokens currently.
   """
+
   @functools.wraps(method)
   def wrapper(service, *args, **kwargs):
     if service.request_state.headers.get('Authorization'):
       # See _maybe_set_current_user_vars in endpoints/users_id_token.py.
       scopes = (
           method.method_info.scopes
-          if method.method_info.scopes is not None
-          else service.api_info.scopes)
+          if method.method_info.scopes is not None else service.api_info.scopes)
       # GAE OAuth module uses internal cache for OAuth RCP responses. The cache
       # key, unfortunately, is basically str(scopes), and a single scope passed
       # as a string (Endpoints lib does that) and a list with one scope only
@@ -219,6 +226,7 @@ def initialize_oauth(method):
       scopes = scopes[0] if len(scopes) == 1 else scopes
       api.attempt_oauth_initialization(scopes)
     return method(service, *args, **kwargs)
+
   return wrapper
 
 

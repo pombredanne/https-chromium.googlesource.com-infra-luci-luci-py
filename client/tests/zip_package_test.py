@@ -26,6 +26,7 @@ def check_output(*args, **kwargs):
 
 
 class ZipPackageTest(unittest.TestCase):
+
   def setUp(self):
     super(ZipPackageTest, self).setUp()
     self.temp_dir = tempfile.mkdtemp(prefix=u'zip_package_test')
@@ -67,16 +68,16 @@ class ZipPackageTest(unittest.TestCase):
   def test_require_absolute_file_paths(self):
     # Add some files to temp_dir.
     self.stage_files([
-      'a.txt',
-      'b.py',
-      'c/c.txt',
+        'a.txt',
+        'b.py',
+        'c/c.txt',
     ])
 
     # Item to add -> method used to add it.
     cases = [
-      ('a.txt', zip_package.ZipPackage.add_file),
-      ('b.py', zip_package.ZipPackage.add_python_file),
-      ('c', zip_package.ZipPackage.add_directory),
+        ('a.txt', zip_package.ZipPackage.add_file),
+        ('b.py', zip_package.ZipPackage.add_python_file),
+        ('c', zip_package.ZipPackage.add_directory),
     ]
 
     for path, method in cases:
@@ -90,10 +91,10 @@ class ZipPackageTest(unittest.TestCase):
   def test_added_files_are_under_root(self):
     # Add some files to temp_dir.
     self.stage_files([
-      'a.txt',
-      'p.py',
-      'pkg/1.txt',
-      'some_dir/2.txt',
+        'a.txt',
+        'p.py',
+        'pkg/1.txt',
+        'some_dir/2.txt',
     ])
 
     # Adding using |archive_path| should work.
@@ -137,9 +138,9 @@ class ZipPackageTest(unittest.TestCase):
 
   def test_adding_py_instead_of_pyc(self):
     self.stage_files([
-      'file.py',
-      'file.pyo',
-      'file.pyc',
+        'file.py',
+        'file.pyo',
+        'file.pyc',
     ])
     for alternative in ('file.pyc', 'file.pyo'):
       pkg = zip_package.ZipPackage(self.temp_dir)
@@ -155,19 +156,19 @@ class ZipPackageTest(unittest.TestCase):
 
   def test_add_directory(self):
     should_add = [
-      'script.py',
-      'a/1.txt',
-      'a/2.txt',
-      'a/b/3.txt',
-      'a/script.py',
+        'script.py',
+        'a/1.txt',
+        'a/2.txt',
+        'a/b/3.txt',
+        'a/script.py',
     ]
     should_ignore = [
-      'script.pyc',
-      'a/script.pyo',
-      '.git/stuff',
-      '.svn/stuff',
-      'a/.svn/stuff',
-      'a/b/.svn/stuff',
+        'script.pyc',
+        'a/script.pyo',
+        '.git/stuff',
+        '.svn/stuff',
+        'a/.svn/stuff',
+        'a/b/.svn/stuff',
     ]
     # Add a whole set and verify only files from |should_add| were added.
     self.stage_files(should_add + should_ignore)
@@ -227,8 +228,9 @@ class ZipPackageTest(unittest.TestCase):
     # Test assumes that it runs from a normal checkout, not a zip.
     self.assertFalse(zip_package.is_zipped_module(sys.modules[__name__]))
     self.assertIsNone(zip_package.get_module_zip_archive(sys.modules[__name__]))
-    self.assertTrue(os.path.abspath(
-        zip_package.get_main_script_path()).startswith(test_env.CLIENT_DIR))
+    self.assertTrue(
+        os.path.abspath(zip_package.get_main_script_path()).startswith(
+            test_env.CLIENT_DIR))
 
     # Build executable zip that calls same functions.
     pkg = zip_package.ZipPackage(self.temp_dir)
@@ -286,7 +288,7 @@ class ZipPackageTest(unittest.TestCase):
     expected = os.path.join(
         self.temp_dir,
         'e47a41780d9cb4a1234e4915b14443bdaa8fae9f821b00f0f2fed719661572f6-cert.'
-            'pem')
+        'pem')
     self.assertEqual(expected, actual)
 
 

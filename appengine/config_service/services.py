@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Provides info about registered luci services."""
 
 import logging
@@ -32,8 +31,8 @@ def get_services_async():
   Returns:
     A list of service_config_pb2.Service.
   """
-  cfg = yield storage.get_self_config_async(
-      common.SERVICES_REGISTRY_FILENAME, service_config_pb2.ServicesCfg)
+  cfg = yield storage.get_self_config_async(common.SERVICES_REGISTRY_FILENAME,
+                                            service_config_pb2.ServicesCfg)
   raise ndb.Return(cfg.services or [])
 
 

@@ -25,17 +25,19 @@ from components.auth import testing
 from components.auth.proto import delegation_pb2
 from test_support import test_case
 
-
-CapturedState = collections.namedtuple('CapturedState', [
-  'current_identity',  # value of get_current_identity().to_bytes()
-  'is_superuser',      # value of is_superuser()
-  'peer_identity',     # value of get_peer_identity().to_bytes()
-  'peer_ip',           # value of get_peer_ip()
-  'delegation_token',  # value of get_delegation_token()
-])
+CapturedState = collections.namedtuple(
+    'CapturedState',
+    [
+        'current_identity',  # value of get_current_identity().to_bytes()
+        'is_superuser',  # value of is_superuser()
+        'peer_identity',  # value of get_peer_identity().to_bytes()
+        'peer_ip',  # value of get_peer_ip()
+        'delegation_token',  # value of get_delegation_token()
+    ])
 
 
 class MockContext(object):
+
   def __init__(self, peer, metadata):
     self.code = prpclib.StatusCode.OK
     self.details = None
@@ -78,23 +80,28 @@ class PrpcAuthTest(testing.TestCase):
         ident = model.Identity(model.IDENTITY_USER, email)
       self.mock(api, 'check_oauth_access_token', lambda _: (ident, None))
     else:
+
       def raise_exc(_):
         raise api.AuthenticationError('OMG, bad token')
+
       self.mock(api, 'check_oauth_access_token', raise_exc)
 
     ctx = MockContext(peer_id, metadata)
     call_details = prpclib.HandlerCallDetails('service.Method', metadata)
 
     state = []
+
     def continuation(request, context, call_details):
-      state.append(CapturedState(
-          current_identity=api.get_current_identity().to_bytes(),
-          is_superuser=api.is_superuser(),
-          peer_identity=api.get_peer_identity().to_bytes(),
-          peer_ip=api.get_peer_ip(),
-          delegation_token=api.get_delegation_token(),
-      ))
+      state.append(
+          CapturedState(
+              current_identity=api.get_current_identity().to_bytes(),
+              is_superuser=api.is_superuser(),
+              peer_identity=api.get_peer_identity().to_bytes(),
+              peer_ip=api.get_peer_ip(),
+              delegation_token=api.get_delegation_token(),
+          ))
       return empty_pb2.Empty()
+
     prpc.prpc_interceptor(empty_pb2.Empty(), ctx, call_details, continuation)
 
     self.assertTrue(len(state) <= 1)
@@ -102,23 +109,27 @@ class PrpcAuthTest(testing.TestCase):
 
   def test_anonymous_ipv4(self):
     state, _ = self.call('ipv4:192.168.1.100', None)
-    self.assertEqual(state, CapturedState(
-        current_identity='anonymous:anonymous',
-        is_superuser=False,
-        peer_identity='anonymous:anonymous',
-        peer_ip=ipaddr.ip_from_string('192.168.1.100'),
-        delegation_token=None,
-    ))
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='anonymous:anonymous',
+            is_superuser=False,
+            peer_identity='anonymous:anonymous',
+            peer_ip=ipaddr.ip_from_string('192.168.1.100'),
+            delegation_token=None,
+        ))
 
   def test_anonymous_ipv6(self):
     state, _ = self.call('ipv6:[::1]', None)
-    self.assertEqual(state, CapturedState(
-        current_identity='anonymous:anonymous',
-        is_superuser=False,
-        peer_identity='anonymous:anonymous',
-        peer_ip=ipaddr.ip_from_string('::1'),
-        delegation_token=None,
-    ))
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='anonymous:anonymous',
+            is_superuser=False,
+            peer_identity='anonymous:anonymous',
+            peer_ip=ipaddr.ip_from_string('::1'),
+            delegation_token=None,
+        ))
 
   def test_anonymous_bad_peer_id(self):
     state, ctx = self.call('zzz:zzz', None)
@@ -130,13 +141,15 @@ class PrpcAuthTest(testing.TestCase):
 
   def test_good_access_token(self):
     state, _ = self.call('ipv4:127.0.0.1', 'a@example.com')
-    self.assertEqual(state, CapturedState(
-        current_identity='user:a@example.com',
-        is_superuser=False,
-        peer_identity='user:a@example.com',
-        peer_ip=ipaddr.ip_from_string('127.0.0.1'),
-        delegation_token=None,
-    ))
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='user:a@example.com',
+            is_superuser=False,
+            peer_identity='user:a@example.com',
+            peer_ip=ipaddr.ip_from_string('127.0.0.1'),
+            delegation_token=None,
+        ))
 
   def test_bad_acess_token(self):
     state, ctx = self.call('ipv4:127.0.0.1', 'BROKEN')
@@ -145,26 +158,30 @@ class PrpcAuthTest(testing.TestCase):
     self.assertEqual(ctx.details, 'OMG, bad token')
 
   def test_ip_whitelisted_bot(self):
-    model.bootstrap_ip_whitelist(
-        model.bots_ip_whitelist(), ['192.168.1.100/32'])
+    model.bootstrap_ip_whitelist(model.bots_ip_whitelist(),
+                                 ['192.168.1.100/32'])
 
     state, _ = self.call('ipv4:192.168.1.100', None)
-    self.assertEqual(state, CapturedState(
-        current_identity='bot:whitelisted-ip',
-        is_superuser=False,
-        peer_identity='bot:whitelisted-ip',
-        peer_ip=ipaddr.ip_from_string('192.168.1.100'),
-        delegation_token=None,
-    ))
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='bot:whitelisted-ip',
+            is_superuser=False,
+            peer_identity='bot:whitelisted-ip',
+            peer_ip=ipaddr.ip_from_string('192.168.1.100'),
+            delegation_token=None,
+        ))
 
     state, _ = self.call('ipv4:127.0.0.1', None)
-    self.assertEqual(state, CapturedState(
-        current_identity='anonymous:anonymous',
-        is_superuser=False,
-        peer_identity='anonymous:anonymous',
-        peer_ip=ipaddr.ip_from_string('127.0.0.1'),
-        delegation_token=None,
-    ))
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='anonymous:anonymous',
+            is_superuser=False,
+            peer_identity='anonymous:anonymous',
+            peer_ip=ipaddr.ip_from_string('127.0.0.1'),
+            delegation_token=None,
+        ))
 
   def test_ip_whitelist_whitelisted(self):
     model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
@@ -172,13 +189,15 @@ class PrpcAuthTest(testing.TestCase):
         model.Identity(model.IDENTITY_USER, 'a@example.com'), 'whitelist')
 
     state, _ = self.call('ipv4:192.168.1.100', 'a@example.com')
-    self.assertEqual(state, CapturedState(
-        current_identity='user:a@example.com',
-        is_superuser=False,
-        peer_identity='user:a@example.com',
-        peer_ip=ipaddr.ip_from_string('192.168.1.100'),
-        delegation_token=None,
-    ))
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='user:a@example.com',
+            is_superuser=False,
+            peer_identity='user:a@example.com',
+            peer_ip=ipaddr.ip_from_string('192.168.1.100'),
+            delegation_token=None,
+        ))
 
   def test_ip_whitelist_not_whitelisted(self):
     model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
@@ -200,30 +219,32 @@ class PrpcAuthTest(testing.TestCase):
         creation_time=int(utils.time_time()),
         validity_duration=3600)
     tok_pb = delegation_pb2.DelegationToken(
-      serialized_subtoken=subtoken.SerializeToString(),
-      signer_id='user:token-server@example.com',
-      signing_key_id='signing-key',
-      pkcs1_sha256_sig='fake-signature')
+        serialized_subtoken=subtoken.SerializeToString(),
+        signer_id='user:token-server@example.com',
+        signing_key_id='signing-key',
+        pkcs1_sha256_sig='fake-signature')
     tok = b64.encode(tok_pb.SerializeToString())
 
     # Valid delegation token.
-    state, ctx = self.call(
-        'ipv4:127.0.0.1', 'peer@a.com', {'X-Delegation-Token-V1': tok})
-    self.assertEqual(state, CapturedState(
-        current_identity='user:delegated@a.com',
-        is_superuser=False,
-        peer_identity='user:peer@a.com',
-        peer_ip=ipaddr.ip_from_string('127.0.0.1'),
-        delegation_token=subtoken,
-    ))
+    state, ctx = self.call('ipv4:127.0.0.1', 'peer@a.com',
+                           {'X-Delegation-Token-V1': tok})
+    self.assertEqual(
+        state,
+        CapturedState(
+            current_identity='user:delegated@a.com',
+            is_superuser=False,
+            peer_identity='user:peer@a.com',
+            peer_ip=ipaddr.ip_from_string('127.0.0.1'),
+            delegation_token=subtoken,
+        ))
 
     # Invalid delegation token.
-    state, ctx = self.call(
-        'ipv4:127.0.0.1', 'peer@a.com', {'X-Delegation-Token-V1': tok + 'blah'})
+    state, ctx = self.call('ipv4:127.0.0.1', 'peer@a.com',
+                           {'X-Delegation-Token-V1': tok + 'blah'})
     self.assertIsNone(state)
     self.assertEqual(ctx.code, prpclib.StatusCode.PERMISSION_DENIED)
-    self.assertEqual(
-        ctx.details, 'Bad delegation token: Bad proto: Truncated message.')
+    self.assertEqual(ctx.details,
+                     'Bad delegation token: Bad proto: Truncated message.')
 
   def test_x_luci_project_works(self):
     self.mock_group(check.LUCI_SERVICES_GROUP, ['user:peer@a.com'])
@@ -237,24 +258,24 @@ class PrpcAuthTest(testing.TestCase):
 
     # With header, but X-Luci-Project auth is off -> authenticated as is.
     self.mock_config(USE_PROJECT_IDENTITIES=False)
-    state, ctx = self.call(
-        'ipv4:127.0.0.1', 'peer@a.com', {check.X_LUCI_PROJECT: 'proj-name'})
+    state, ctx = self.call('ipv4:127.0.0.1', 'peer@a.com',
+                           {check.X_LUCI_PROJECT: 'proj-name'})
     self.assertEqual(ctx.code, prpclib.StatusCode.OK)
     self.assertEqual(state.current_identity, 'user:peer@a.com')
     self.assertEqual(state.peer_identity, 'user:peer@a.com')
 
     # With header and X-Luci-Project auth is on -> authenticated as project.
     self.mock_config(USE_PROJECT_IDENTITIES=True)
-    state, ctx = self.call(
-        'ipv4:127.0.0.1', 'peer@a.com', {check.X_LUCI_PROJECT: 'proj-name'})
+    state, ctx = self.call('ipv4:127.0.0.1', 'peer@a.com',
+                           {check.X_LUCI_PROJECT: 'proj-name'})
     self.assertEqual(ctx.code, prpclib.StatusCode.OK)
     self.assertEqual(state.current_identity, 'project:proj-name')
     self.assertEqual(state.peer_identity, 'user:peer@a.com')
 
   def test_x_luci_project_from_unrecognized_service(self):
     self.mock_config(USE_PROJECT_IDENTITIES=True)
-    _, ctx = self.call(
-        'ipv4:127.0.0.1', 'peer@a.com', {check.X_LUCI_PROJECT: 'proj-name'})
+    _, ctx = self.call('ipv4:127.0.0.1', 'peer@a.com',
+                       {check.X_LUCI_PROJECT: 'proj-name'})
     self.assertEqual(ctx.code, prpclib.StatusCode.UNAUTHENTICATED)
     self.assertEqual(
         ctx.details,
@@ -263,9 +284,10 @@ class PrpcAuthTest(testing.TestCase):
 
   def test_x_luci_project_with_delegation_token(self):
     self.mock_config(USE_PROJECT_IDENTITIES=True)
-    _, ctx = self.call(
-        'ipv4:127.0.0.1', 'peer@a.com',
-        {check.X_LUCI_PROJECT: 'proj-name', 'X-Delegation-Token-V1': 'tok'})
+    _, ctx = self.call('ipv4:127.0.0.1', 'peer@a.com', {
+        check.X_LUCI_PROJECT: 'proj-name',
+        'X-Delegation-Token-V1': 'tok'
+    })
     self.assertEqual(ctx.code, prpclib.StatusCode.UNAUTHENTICATED)
     self.assertEqual(
         ctx.details,

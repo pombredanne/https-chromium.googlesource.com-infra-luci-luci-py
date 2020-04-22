@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Imports groups from some external tar.gz bundle or plain text list.
 
 External URL should serve *.tar.gz file with the following file structure:
@@ -102,7 +101,7 @@ def config_key():
 class GroupImporterConfig(ndb.Model):
   """Singleton entity with group importer configuration JSON."""
   config_proto = ndb.TextProperty()
-  config_revision = ndb.JsonProperty() # see config.py, _update_imports_config
+  config_revision = ndb.JsonProperty()  # see config.py, _update_imports_config
   modified_by = auth.IdentityProperty(indexed=False)
   modified_ts = ndb.DateTimeProperty(auto_now=True, indexed=False)
 
@@ -153,9 +152,8 @@ def validate_config_proto(config):
       try:
         model.Identity(model.IDENTITY_USER, email)
       except ValueError:
-        raise ValueError(
-            'invalid email "%s" in tarball_upload entry "%s"' %
-            (email, entry.name))
+        raise ValueError('invalid email "%s" in tarball_upload entry "%s"' %
+                         (email, entry.name))
 
   # Validate tarball and tarball_upload fields.
   seen_systems = set(['external'])
@@ -266,9 +264,8 @@ def ingest_tarball(name, content):
     if caller == model.Identity(model.IDENTITY_USER, email):
       break
   else:
-    logging.error(
-        'Caller %s is not authorized to upload tarball "%s"',
-        caller.to_bytes(), entry.name)
+    logging.error('Caller %s is not authorized to upload tarball "%s"',
+                  caller.to_bytes(), entry.name)
     raise auth.AuthorizationError()
 
   # Authorization check passed. Now parse the tarball, converting it into
@@ -276,8 +273,8 @@ def ingest_tarball(name, content):
   # the datastore.
   logging.info('Ingesting tarball "%s" uploaded by %s', name, caller.to_bytes())
   bundles = load_tarball(content, entry.systems, entry.groups, entry.domain)
-  return import_bundles(
-      bundles, caller, 'Uploaded as "%s" tarball' % entry.name)
+  return import_bundles(bundles, caller,
+                        'Uploaded as "%s" tarball' % entry.name)
 
 
 def import_external_groups():
@@ -292,8 +289,8 @@ def import_external_groups():
 
   # Fetch files specified in the config in parallel.
   entries = list(config.tarball) + list(config.plainlist)
-  files = utils.async_apply(
-      entries, lambda e: fetch_file_async(e.url, e.oauth_scopes))
+  files = utils.async_apply(entries,
+                            lambda e: fetch_file_async(e.url, e.oauth_scopes))
 
   # {system name -> group name -> list of identities}
   bundles = {}
@@ -301,8 +298,7 @@ def import_external_groups():
     # Unpack tarball into {system name -> group name -> list of identities}.
     if isinstance(e, config_pb2.GroupImporterConfig.TarballEntry):
       fetched = load_tarball(contents, e.systems, e.groups, e.domain)
-      assert not (
-          set(fetched) & set(bundles)), (fetched.keys(), bundles.keys())
+      assert not (set(fetched) & set(bundles)), (fetched.keys(), bundles.keys())
       bundles.update(fetched)
       continue
 
@@ -318,8 +314,8 @@ def import_external_groups():
 
     assert False, 'Unreachable'
 
-  import_bundles(
-      bundles, model.get_service_self_identity(), 'External group import')
+  import_bundles(bundles, model.get_service_self_identity(),
+                 'External group import')
 
 
 def import_bundles(bundles, provided_by, change_log_comment):
@@ -364,14 +360,10 @@ def import_bundles(bundles, provided_by, change_log_comment):
     # Apply mutations, bump revision number.
     for e in entities_to_put:
       e.record_revision(
-          modified_by=provided_by,
-          modified_ts=ts,
-          comment=change_log_comment)
+          modified_by=provided_by, modified_ts=ts, comment=change_log_comment)
     for e in entities_to_delete:
       e.record_deletion(
-          modified_by=provided_by,
-          modified_ts=ts,
-          comment=change_log_comment)
+          modified_by=provided_by, modified_ts=ts, comment=change_log_comment)
     futures = []
     futures.extend(ndb.put_multi_async(entities_to_put))
     futures.extend(ndb.delete_multi_async(e.key for e in entities_to_delete))
@@ -392,8 +384,8 @@ def import_bundles(bundles, provided_by, change_log_comment):
     entities_to_delete = []
     revision, existing_groups = snapshot_groups()
     for system, groups in bundles.items():
-      to_put, to_delete = prepare_import(
-          system, existing_groups, groups, ts, provided_by)
+      to_put, to_delete = prepare_import(system, existing_groups, groups, ts,
+                                         provided_by)
       entities_to_put.extend(to_put)
       entities_to_delete.extend(to_delete)
     if not entities_to_put and not entities_to_delete:
@@ -505,8 +497,8 @@ def extract_tar_archive(content):
           yield item.name, extracted
 
 
-def prepare_import(
-    system_name, existing_groups, imported_groups, timestamp, provided_by):
+def prepare_import(system_name, existing_groups, imported_groups, timestamp,
+                   provided_by):
   """Prepares lists of entities to put and delete to apply group import.
 
   Operates exclusively over '<system name>/*' groups.
@@ -529,8 +521,9 @@ def prepare_import(
 
   # Pick only groups that belong to |system_name|.
   system_groups = {
-    g.key.id(): g for g in existing_groups
-    if g.key.id().startswith('%s/' % system_name)
+      g.key.id(): g
+      for g in existing_groups
+      if g.key.id().startswith('%s/' % system_name)
   }
 
   def clear_group(group_name):
