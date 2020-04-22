@@ -88,6 +88,24 @@
       "revId": "edb14e71325e1b3aec1ef5b25b2a4f4046937042",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a59d3fb_25f5dde3",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-04-22T19:56:18Z",
+      "side": 1,
+      "message": "I want the file to be formatted using a single consistent style. Yes, please use --full.",
+      "parentUuid": "b93f74ba_e6fcc17f",
+      "revId": "edb14e71325e1b3aec1ef5b25b2a4f4046937042",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
