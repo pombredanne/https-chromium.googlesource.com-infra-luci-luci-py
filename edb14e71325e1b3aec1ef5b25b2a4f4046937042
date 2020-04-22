@@ -70,6 +70,24 @@
       "revId": "edb14e71325e1b3aec1ef5b25b2a4f4046937042",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b93f74ba_e6fcc17f",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-22T19:54:30Z",
+      "side": 1,
+      "message": "`git cl format` changes format only around diff.\nOr do you want me to use --full?",
+      "parentUuid": "01cf74e9_046e6f65",
+      "revId": "edb14e71325e1b3aec1ef5b25b2a4f4046937042",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
