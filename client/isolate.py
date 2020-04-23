@@ -392,15 +392,12 @@ class SavedState(Flattenable):
       return dict((k, data[k]) for k in ('h', 'l', 'm', 's') if k in data)
 
     out = {
-        'algo':
-            self.algo_name,
-        'files':
-            dict((filepath, strip(data))
-                 for filepath, data in self.files.items()),
+        'algo': self.algo_name,
+        'files': dict(
+            (filepath, strip(data)) for filepath, data in self.files.items()),
         # The version of the .state file is different than the one of the
         # .isolated file.
-        'version':
-            isolated_format.ISOLATED_FILE_VERSION,
+        'version': isolated_format.ISOLATED_FILE_VERSION,
     }
     out['read_only'] = self.read_only if self.read_only is not None else 1
     if self.command:

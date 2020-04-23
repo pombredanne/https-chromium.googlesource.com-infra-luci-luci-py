@@ -72,23 +72,18 @@ def _gen_request_slices(**kwargs):
   args = {
       # Don't be confused, this is not part of the API. This code is
       # constructing a DB entity, not a swarming_rpcs.NewTaskRequest.
-      u'created_ts':
-          now,
+      u'created_ts': now,
       u'manual_tags': [u'tag:1'],
-      u'name':
-          u'yay',
-      u'priority':
-          50,
+      u'name': u'yay',
+      u'priority': 50,
       u'task_slices': [
           task_request.TaskSlice(
               expiration_secs=60,
               properties=_gen_properties(),
               wait_for_capacity=False),
       ],
-      u'user':
-          u'Jesus',
-      u'bot_ping_tolerance_secs':
-          120,
+      u'user': u'Jesus',
+      u'bot_ping_tolerance_secs': 120,
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)

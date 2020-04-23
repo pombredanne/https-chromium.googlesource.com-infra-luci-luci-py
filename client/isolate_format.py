@@ -391,12 +391,10 @@ class ConfigSettings(object):
       return sorted(l + list(map(rebase_item, r)))
 
     var = {
-        'command':
-            self.command or rhs.command,
-        'files':
-            map_both(self.files, rhs.files),
-        'read_only':
-            rhs.read_only if self.read_only is None else self.read_only,
+        'command': self.command or rhs.command,
+        'files': map_both(self.files, rhs.files),
+        'read_only': rhs.read_only
+                     if self.read_only is None else self.read_only,
     }
     return ConfigSettings(var, l_rel_cwd)
 
