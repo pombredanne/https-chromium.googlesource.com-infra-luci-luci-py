@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "39459e4a_a645adea",
+        "filename": ".yapfignore",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T10:21:49Z",
+      "side": 1,
+      "message": "Done\nhttps://crrev.com/c/2162408",
+      "parentUuid": "41b56d86_2f718882",
+      "revId": "6bb69e1253f7a8a31c169c38ba72a57703b41699",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5740a200_75e6913c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2020-04-23T09:53:54Z",
       "side": 1,
       "message": "could you divide this to smaller CL?\ne.g.\nclient\nswarming/server\nswarming/swarming_bot\nrest",
+      "revId": "6bb69e1253f7a8a31c169c38ba72a57703b41699",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a5320e8_a2ce7b67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T10:21:49Z",
+      "side": 1,
+      "message": "Divided, will abandon this CL.\nclient: https://crrev.com/c/2162409\nswarming server: https://crrev.com/c/2162410\nswarming bot: https://crrev.com/c/2162411",
+      "parentUuid": "5740a200_75e6913c",
       "revId": "6bb69e1253f7a8a31c169c38ba72a57703b41699",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
