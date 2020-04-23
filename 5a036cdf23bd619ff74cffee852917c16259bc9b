@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ce5696b_ce47c06b",
+        "filename": "appengine/auth_service/config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T02:10:00Z",
+      "side": 1,
+      "message": "Btw, Is this line brake a Google standard?\nI know yapf does this. But personally it\u0027s not readable.",
+      "revId": "5a036cdf23bd619ff74cffee852917c16259bc9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77fd35fa_830ce307",
+        "filename": "appengine/auth_service/config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T02:10:00Z",
+      "side": 1,
+      "message": "Why does yapf suggest line brake here?",
+      "revId": "5a036cdf23bd619ff74cffee852917c16259bc9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b9b65e1_e2ad67b5",
+        "filename": "appengine/auth_service/config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T02:10:00Z",
+      "side": 1,
+      "message": "same",
+      "revId": "5a036cdf23bd619ff74cffee852917c16259bc9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e9e1110_18a6f093",
+        "filename": "appengine/auth_service/config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T02:10:00Z",
+      "side": 1,
+      "message": "The original one is more redable?",
+      "revId": "5a036cdf23bd619ff74cffee852917c16259bc9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a5ce32a_e265cc63",
+        "filename": "appengine/auth_service/config_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-23T02:10:00Z",
+      "side": 1,
+      "message": "same",
+      "revId": "5a036cdf23bd619ff74cffee852917c16259bc9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
