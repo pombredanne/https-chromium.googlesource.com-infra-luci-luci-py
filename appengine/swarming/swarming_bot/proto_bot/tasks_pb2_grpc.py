@@ -18,17 +18,17 @@ class TasksStub(object):
         '/google.devtools.remoteworkers.v1test2.Tasks/GetTask',
         request_serializer=tasks__pb2.GetTaskRequest.SerializeToString,
         response_deserializer=tasks__pb2.Task.FromString,
-        )
+    )
     self.UpdateTaskResult = channel.unary_unary(
         '/google.devtools.remoteworkers.v1test2.Tasks/UpdateTaskResult',
         request_serializer=tasks__pb2.UpdateTaskResultRequest.SerializeToString,
         response_deserializer=tasks__pb2.TaskResult.FromString,
-        )
+    )
     self.AddTaskLog = channel.unary_unary(
         '/google.devtools.remoteworkers.v1test2.Tasks/AddTaskLog',
         request_serializer=tasks__pb2.AddTaskLogRequest.SerializeToString,
         response_deserializer=tasks__pb2.AddTaskLogResponse.FromString,
-        )
+    )
 
 
 class TasksServicer(object):

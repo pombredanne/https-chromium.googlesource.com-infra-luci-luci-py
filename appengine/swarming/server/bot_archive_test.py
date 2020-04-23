@@ -15,13 +15,14 @@ test_env.setup_test_env()
 
 from proto.config import config_pb2
 
-
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 _EXPECTED_CONFIG_KEYS = {
-  'enable_ts_monitoring', 'isolate_grpc_proxy', 'server', 'server_version',
-  'swarming_grpc_proxy',
+    'enable_ts_monitoring',
+    'isolate_grpc_proxy',
+    'server',
+    'server_version',
+    'swarming_grpc_proxy',
 }
 
 
@@ -32,6 +33,7 @@ def _read_config():
 
 
 class Test(unittest.TestCase):
+
   def test_file(self):
     self.assertEqual(_EXPECTED_CONFIG_KEYS, set(_read_config()))
 

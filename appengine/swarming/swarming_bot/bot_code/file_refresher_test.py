@@ -22,6 +22,7 @@ import file_refresher
 
 
 class TestFileRefresherThread(auto_stub.TestCase):
+
   def setUp(self):
     super(TestFileRefresherThread, self).setUp()
     self.root_dir = tempfile.mkdtemp(prefix='file_refresher')
@@ -33,17 +34,20 @@ class TestFileRefresherThread(auto_stub.TestCase):
 
   def test_works(self):
     counter = [0]
+
     def callback():
       counter[0] += 1
       return counter[0]
+
     r = file_refresher.FileRefresherThread(self.path, callback, 0.1)
     r.start()
     time.sleep(1)
     r.stop()
-    self.assertTrue(0 < counter[0] < 15) # was called reasonable number of times
+    self.assertTrue(
+        0 < counter[0] < 15)  # was called reasonable number of times
     with open(self.path, 'rb') as f:
       body = json.load(f)
-    self.assertEqual(counter[0], body) # actually updated the file
+    self.assertEqual(counter[0], body)  # actually updated the file
 
 
 if __name__ == '__main__':

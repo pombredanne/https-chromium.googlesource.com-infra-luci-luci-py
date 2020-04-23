@@ -30,23 +30,21 @@ from server import pools_config
 from server import task_pack
 from server import task_request
 
-
 # pylint: disable=W0212
 
 
 def _gen_cipd_input(**kwargs):
   """Creates a CipdInput."""
   args = {
-    u'client_package': task_request.CipdPackage(
-        package_name=u'infra/tools/cipd/${platform}',
-        version=u'git_revision:deadbeef'),
-    u'packages': [
-      task_request.CipdPackage(
-          package_name=u'rm',
-          path=u'bin',
+      u'client_package': task_request.CipdPackage(
+          package_name=u'infra/tools/cipd/${platform}',
           version=u'git_revision:deadbeef'),
-    ],
-    u'server': u'https://chrome-infra-packages.appspot.com'
+      u'packages': [
+          task_request.CipdPackage(
+              package_name=u'rm', path=u'bin',
+              version=u'git_revision:deadbeef'),
+      ],
+      u'server': u'https://chrome-infra-packages.appspot.com'
   }
   args.update(kwargs)
   return task_request.CipdInput(**args)
@@ -55,29 +53,34 @@ def _gen_cipd_input(**kwargs):
 def _gen_properties(**kwargs):
   """Creates a TaskProperties."""
   args = {
-    u'cipd_input': _gen_cipd_input(),
-    u'command': [u'command1', u'arg1'],
-    u'containment': {
-      u'lower_priority': False,
-      u'containment_type': None,
-      u'limit_processes': None,
-      u'limit_total_committed_memory': None,
-    },
-    u'dimensions': {
-      u'OS': [u'Windows-3.1.1'],
-      u'hostname': [u'localhost'],
-      u'pool': [u'default'],
-    },
-    u'env': {u'foo': u'bar', u'joe': u'2'},
-    u'env_prefixes': {u'PATH': [u'local/path']},
-    u'execution_timeout_secs': 30,
-    u'grace_period_secs': 30,
-    u'idempotent': False,
-    u'inputs_ref': task_request.FilesRef(
-        isolatedserver=u'https://isolateserver.appspot.com',
-        namespace=u'default-gzip'),
-    u'io_timeout_secs': None,
-    u'has_secret_bytes': False,
+      u'cipd_input': _gen_cipd_input(),
+      u'command': [u'command1', u'arg1'],
+      u'containment': {
+          u'lower_priority': False,
+          u'containment_type': None,
+          u'limit_processes': None,
+          u'limit_total_committed_memory': None,
+      },
+      u'dimensions': {
+          u'OS': [u'Windows-3.1.1'],
+          u'hostname': [u'localhost'],
+          u'pool': [u'default'],
+      },
+      u'env': {
+          u'foo': u'bar',
+          u'joe': u'2'
+      },
+      u'env_prefixes': {
+          u'PATH': [u'local/path']
+      },
+      u'execution_timeout_secs': 30,
+      u'grace_period_secs': 30,
+      u'idempotent': False,
+      u'inputs_ref': task_request.FilesRef(
+          isolatedserver=u'https://isolateserver.appspot.com',
+          namespace=u'default-gzip'),
+      u'io_timeout_secs': None,
+      u'has_secret_bytes': False,
   }
   args.update(kwargs)
   args[u'dimensions_data'] = args.pop(u'dimensions')
@@ -89,15 +92,16 @@ def _gen_request_slices(**kwargs):
   template_apply = kwargs.pop('_template_apply', task_request.TEMPLATE_AUTO)
   now = utils.utcnow()
   args = {
-    u'created_ts': now,
-    u'manual_tags': [u'tag:1'],
-    u'name': u'Request name',
-    u'priority': 50,
-    u'task_slices': [
-      task_request.TaskSlice(expiration_secs=30, properties=_gen_properties()),
-    ],
-    u'user': u'Jesus',
-    u'bot_ping_tolerance_secs': 120,
+      u'created_ts': now,
+      u'manual_tags': [u'tag:1'],
+      u'name': u'Request name',
+      u'priority': 50,
+      u'task_slices': [
+          task_request.TaskSlice(
+              expiration_secs=30, properties=_gen_properties()),
+      ],
+      u'user': u'Jesus',
+      u'bot_ping_tolerance_secs': 120,
   }
   args.update(kwargs)
   # Note that ndb model constructor accepts dicts for structured properties.
@@ -110,9 +114,8 @@ def _gen_request(properties=None, **kwargs):
   """Creates a TaskRequest with a single TaskSlice."""
   return _gen_request_slices(
       task_slices=[
-        task_request.TaskSlice(
-            expiration_secs=30,
-            properties=properties or _gen_properties()),
+          task_request.TaskSlice(
+              expiration_secs=30, properties=properties or _gen_properties()),
       ],
       **kwargs)
 
@@ -140,6 +143,7 @@ def _gen_task_template(cache=None, cipd_package=None, env=None):
 
   Returns constructed pools_config.TaskTemplate.
   """
+
   def env_value(var, combo_value):
     prefix, soft = (), False
     if isinstance(combo_value, tuple):
@@ -155,19 +159,16 @@ def _gen_task_template(cache=None, cipd_package=None, env=None):
     return pools_config.Env(var, value, tuple(map(unicode, prefix)), soft)
 
   return pools_config.TaskTemplate(
-    cache=sorted(
-      pools_config.CacheEntry(unicode(name), unicode(path))
-      for name, path in (cache or {}).items()
-    ),
-    cipd_package=sorted(
-      pools_config.CipdPackage(unicode(path), unicode(pkg), unicode(version))
-      for (path, pkg), version in (cipd_package or {}).items()
-    ),
-    env=sorted(
-      env_value(unicode(var), value)
-      for var, value in (env or {}).items()
-    ),
-    inclusions=(),
+      cache=sorted(
+          pools_config.CacheEntry(unicode(name), unicode(path))
+          for name, path in (cache or {}).items()),
+      cipd_package=sorted(
+          pools_config.CipdPackage(
+              unicode(path), unicode(pkg), unicode(version))
+          for (path, pkg), version in (cipd_package or {}).items()),
+      env=sorted(
+          env_value(unicode(var), value) for var, value in (env or {}).items()),
+      inclusions=(),
   )
 
 
@@ -176,12 +177,14 @@ class Prop(object):
 
 
 class TestCase(test_case.TestCase):
+
   def setUp(self):
     super(TestCase, self).setUp()
     auth_testing.mock_get_current_identity(self)
 
 
 class TaskRequestPrivateTest(TestCase):
+
   def test_validate_task_run_id(self):
     self.assertEqual(
         '1d69b9f088008811',
@@ -192,29 +195,30 @@ class TaskRequestPrivateTest(TestCase):
 
   def test_apply_template_simple(self):
     tt = _gen_task_template(
-      cache={'cache': 'c'},
-      cipd_package={('cipd', 'some/pkg'): 'latest'},
-      env={'ENV': ('1', ['a'])},
+        cache={'cache': 'c'},
+        cipd_package={('cipd', 'some/pkg'): 'latest'},
+        env={'ENV': ('1', ['a'])},
     )
     p = task_request.TaskProperties()
     task_request._apply_task_template(tt, p)
-    self.assertEqual(p, task_request.TaskProperties(
-      env={u'ENV': u'1'},
-      env_prefixes={u'ENV': [u'a']},
-      caches=[task_request.CacheEntry(name=u'cache', path=u'c')],
-      cipd_input=task_request.CipdInput(
-          packages=[task_request.CipdPackage(
-              package_name=u'some/pkg', path=u'cipd', version=u'latest')])
-    ))
+    self.assertEqual(
+        p,
+        task_request.TaskProperties(
+            env={u'ENV': u'1'},
+            env_prefixes={u'ENV': [u'a']},
+            caches=[task_request.CacheEntry(name=u'cache', path=u'c')],
+            cipd_input=task_request.CipdInput(packages=[
+                task_request.CipdPackage(
+                    package_name=u'some/pkg', path=u'cipd', version=u'latest')
+            ])))
 
   def test_apply_template_env_set_error(self):
     tt = _gen_task_template(env={'ENV': ('1', ['a'])})
     p = task_request.TaskProperties(env={u'ENV': u'10'})
     with self.assertRaises(ValueError) as ex:
       task_request._apply_task_template(tt, p)
-    self.assertEqual(
-        ex.exception.message,
-        "request.env[u'ENV'] conflicts with pool's template")
+    self.assertEqual(ex.exception.message,
+                     "request.env[u'ENV'] conflicts with pool's template")
 
   def test_apply_template_env_prefix_set_error(self):
     tt = _gen_task_template(env={'ENV': ('1', ['a'])})
@@ -229,34 +233,37 @@ class TaskRequestPrivateTest(TestCase):
     tt = _gen_task_template(env={'ENV': ('1', ['a'], True)})
     p = task_request.TaskProperties(env={u'ENV': u'2'})
     task_request._apply_task_template(tt, p)
-    self.assertEqual(p, task_request.TaskProperties(
-        env={u'ENV': u'2'},
-        env_prefixes={u'ENV': [u'a']},
-    ))
+    self.assertEqual(
+        p,
+        task_request.TaskProperties(
+            env={u'ENV': u'2'},
+            env_prefixes={u'ENV': [u'a']},
+        ))
 
   def test_apply_template_env_prefixes_append_soft(self):
     tt = _gen_task_template(env={'ENV': ('1', ['a'], True)})
     p = task_request.TaskProperties(env_prefixes={u'ENV': [u'b']})
     task_request._apply_task_template(tt, p)
-    self.assertEqual(p, task_request.TaskProperties(
-      env={u'ENV': u'1'},
-      env_prefixes={u'ENV': [u'a', u'b']},
-    ))
+    self.assertEqual(
+        p,
+        task_request.TaskProperties(
+            env={u'ENV': u'1'},
+            env_prefixes={u'ENV': [u'a', u'b']},
+        ))
 
   def test_apply_template_conflicting_cache(self):
     tt = _gen_task_template(cache={'c': 'C'})
     p = task_request.TaskProperties(
-      caches=[task_request.CacheEntry(name='c', path='B')])
+        caches=[task_request.CacheEntry(name='c', path='B')])
     with self.assertRaises(ValueError) as ex:
       task_request._apply_task_template(tt, p)
-    self.assertEqual(
-        ex.exception.message,
-        "request.cache['c'] conflicts with pool's template")
+    self.assertEqual(ex.exception.message,
+                     "request.cache['c'] conflicts with pool's template")
 
   def test_apply_template_conflicting_cache_path(self):
     tt = _gen_task_template(cache={'c': 'C'})
     p = task_request.TaskProperties(
-      caches=[task_request.CacheEntry(name='other', path='C')])
+        caches=[task_request.CacheEntry(name='other', path='C')])
     with self.assertRaises(ValueError) as ex:
       task_request._apply_task_template(tt, p)
     self.assertEqual(
@@ -267,10 +274,10 @@ class TaskRequestPrivateTest(TestCase):
   def test_apply_template_conflicting_cache_cipd_path(self):
     tt = _gen_task_template(cache={'c': 'C'})
     p = task_request.TaskProperties(
-        cipd_input=task_request.CipdInput(
-            packages=[
-              task_request.CipdPackage(
-                path='C', package_name='pkg', version='latest')]))
+        cipd_input=task_request.CipdInput(packages=[
+            task_request.CipdPackage(
+                path='C', package_name='pkg', version='latest')
+        ]))
     with self.assertRaises(ValueError) as ex:
       task_request._apply_task_template(tt, p)
     self.assertEqual(
@@ -281,10 +288,10 @@ class TaskRequestPrivateTest(TestCase):
   def test_apply_template_conflicting_cipd_package(self):
     tt = _gen_task_template(cipd_package={('C', 'pkg'): 'latest'})
     p = task_request.TaskProperties(
-        cipd_input=task_request.CipdInput(
-            packages=[
-              task_request.CipdPackage(
-                path='C', package_name='other', version='latest')]))
+        cipd_input=task_request.CipdInput(packages=[
+            task_request.CipdPackage(
+                path='C', package_name='other', version='latest')
+        ]))
     with self.assertRaises(ValueError) as ex:
       task_request._apply_task_template(tt, p)
     self.assertEqual(
@@ -295,7 +302,7 @@ class TaskRequestPrivateTest(TestCase):
   def test_apply_template_conflicting_cipd_cache_path(self):
     tt = _gen_task_template(cipd_package={('C', 'pkg'): 'latest'})
     p = task_request.TaskProperties(
-      caches=[task_request.CacheEntry(name='other', path='C')])
+        caches=[task_request.CacheEntry(name='other', path='C')])
     with self.assertRaises(ValueError) as ex:
       task_request._apply_task_template(tt, p)
     self.assertEqual(
@@ -305,6 +312,7 @@ class TaskRequestPrivateTest(TestCase):
 
 
 class TaskRequestApiTest(TestCase):
+
   def setUp(self):
     super(TaskRequestApiTest, self).setUp()
     # pool_configs is a mapping of pool name -> pools_config.PoolConfig. Tests
@@ -337,13 +345,8 @@ class TaskRequestApiTest(TestCase):
 
   def test_get_automatic_tags(self):
     req = _gen_request()
-    expected = set((
-        u'hostname:localhost',
-        u'OS:Windows-3.1.1',
-        u'pool:default',
-        u'priority:50',
-        u'service_account:none',
-        u'user:Jesus'))
+    expected = set((u'hostname:localhost', u'OS:Windows-3.1.1', u'pool:default',
+                    u'priority:50', u'service_account:none', u'user:Jesus'))
     self.assertEqual(expected, task_request.get_automatic_tags(req, 0))
     with self.assertRaises(IndexError):
       task_request.get_automatic_tags(req, 1)
@@ -351,36 +354,32 @@ class TaskRequestApiTest(TestCase):
   def test_get_automatic_tags_slices(self):
     # Repeated TaskSlice.
     slices = [
-      task_request.TaskSlice(
-          expiration_secs=60,
-          properties=_gen_properties(
-              dimensions={u'gpu': [u'1234:5678'], u'pool': [u'GPU']})),
-      task_request.TaskSlice(
-          expiration_secs=60,
-          properties=_gen_properties(
-              dimensions={u'gpu': [u'none'], u'pool': [u'GPU']})),
+        task_request.TaskSlice(
+            expiration_secs=60,
+            properties=_gen_properties(dimensions={
+                u'gpu': [u'1234:5678'],
+                u'pool': [u'GPU']
+            })),
+        task_request.TaskSlice(
+            expiration_secs=60,
+            properties=_gen_properties(dimensions={
+                u'gpu': [u'none'],
+                u'pool': [u'GPU']
+            })),
     ]
     req = _gen_request_slices(task_slices=slices)
-    expected = set((
-        u'gpu:1234:5678',
-        u'pool:GPU',
-        u'priority:50',
-        u'service_account:none',
-        u'user:Jesus'))
+    expected = set((u'gpu:1234:5678', u'pool:GPU', u'priority:50',
+                    u'service_account:none', u'user:Jesus'))
     self.assertEqual(expected, task_request.get_automatic_tags(req, 0))
-    expected = set((
-        u'gpu:none',
-        u'pool:GPU',
-        u'priority:50',
-        u'service_account:none',
-        u'user:Jesus'))
+    expected = set((u'gpu:none', u'pool:GPU', u'priority:50',
+                    u'service_account:none', u'user:Jesus'))
     self.assertEqual(expected, task_request.get_automatic_tags(req, 1))
     with self.assertRaises(IndexError):
       task_request.get_automatic_tags(req, 2)
 
   def test_create_termination_task(self):
-    request = task_request.create_termination_task(u'some-bot',
-        wait_for_capacity=True)
+    request = task_request.create_termination_task(
+        u'some-bot', wait_for_capacity=True)
     self.assertTrue(request.task_slice(0).properties.is_terminate)
 
   def test_new_request_key(self):
@@ -401,9 +400,11 @@ class TaskRequestApiTest(TestCase):
       self.fail('Failed to find randomness')
 
   def test_new_request_key_zero(self):
+
     def getrandbits(i):
       self.assertEqual(i, 16)
       return 0x7766
+
     self.mock(random, 'getrandbits', getrandbits)
     self.mock_now(task_request._BEGINING_OF_THE_WORLD)
     key = task_request.new_request_key()
@@ -418,9 +419,11 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual('0x0000000000077661', '0x%016x' % key_id)
 
   def test_new_request_key_end(self):
+
     def getrandbits(i):
       self.assertEqual(i, 16)
       return 0x7766
+
     self.mock(random, 'getrandbits', getrandbits)
     days_until_end_of_the_world = 2**43 / 24. / 60. / 60. / 1000.
     num_days = int(days_until_end_of_the_world)
@@ -429,8 +432,9 @@ class TaskRequestApiTest(TestCase):
         (days_until_end_of_the_world - num_days) * 24. * 60. * 60. - 0.001)
     self.assertEqual(101806, num_days)
     self.assertEqual(278, int(num_days / 365.3))
-    now = (task_request._BEGINING_OF_THE_WORLD +
-        datetime.timedelta(days=num_days, seconds=num_seconds))
+    now = (
+        task_request._BEGINING_OF_THE_WORLD + datetime.timedelta(
+            days=num_days, seconds=num_seconds))
     self.mock_now(now)
     key = task_request.new_request_key()
     # Remove the XOR.
@@ -457,9 +461,7 @@ class TaskRequestApiTest(TestCase):
     parent_id = task_pack.pack_request_key(parent.key) + u'1'
     req = _gen_request(
         properties=_gen_properties(
-            idempotent=True,
-            relative_cwd=u'deeep',
-            has_secret_bytes=True),
+            idempotent=True, relative_cwd=u'deeep', has_secret_bytes=True),
         parent_task_id=parent_id)
     # TaskRequest with secret must have a valid key.
     req.key = task_request.new_request_key()
@@ -469,75 +471,78 @@ class TaskRequestApiTest(TestCase):
     # Needed for properties_hash() call.
     sb.put()
     expected_properties = {
-      'caches': [],
-      'cipd_input': {
-        'client_package': {
-          'package_name': u'infra/tools/cipd/${platform}',
-          'path': None,
-          'version': u'git_revision:deadbeef',
+        'caches': [],
+        'cipd_input': {
+            'client_package': {
+                'package_name': u'infra/tools/cipd/${platform}',
+                'path': None,
+                'version': u'git_revision:deadbeef',
+            },
+            'packages': [{
+                'package_name': u'rm',
+                'path': u'bin',
+                'version': u'git_revision:deadbeef',
+            }],
+            'server': u'https://chrome-infra-packages.appspot.com'
         },
-        'packages': [{
-          'package_name': u'rm',
-          'path': u'bin',
-          'version': u'git_revision:deadbeef',
-        }],
-        'server': u'https://chrome-infra-packages.appspot.com'
-      },
-      'command': [u'command1', u'arg1'],
-      'containment': {
-        u'lower_priority': False,
-        u'containment_type': None,
-        u'limit_processes': None,
-        u'limit_total_committed_memory': None,
-      },
-      'relative_cwd': u'deeep',
-      'dimensions': {
-        u'OS': [u'Windows-3.1.1'],
-        u'hostname': [u'localhost'],
-        u'pool': [u'default'],
-      },
-      'env': {u'foo': u'bar', u'joe': u'2'},
-      'env_prefixes': {u'PATH': [u'local/path']},
-      'extra_args': [],
-      'execution_timeout_secs': 30,
-      'grace_period_secs': 30,
-      'has_secret_bytes': True,
-      'idempotent': True,
-      'inputs_ref': {
-        'isolated': None,
-        'isolatedserver': u'https://isolateserver.appspot.com',
-        'namespace': u'default-gzip',
-      },
-      'io_timeout_secs': None,
-      'outputs': [],
+        'command': [u'command1', u'arg1'],
+        'containment': {
+            u'lower_priority': False,
+            u'containment_type': None,
+            u'limit_processes': None,
+            u'limit_total_committed_memory': None,
+        },
+        'relative_cwd': u'deeep',
+        'dimensions': {
+            u'OS': [u'Windows-3.1.1'],
+            u'hostname': [u'localhost'],
+            u'pool': [u'default'],
+        },
+        'env': {
+            u'foo': u'bar',
+            u'joe': u'2'
+        },
+        'env_prefixes': {
+            u'PATH': [u'local/path']
+        },
+        'extra_args': [],
+        'execution_timeout_secs': 30,
+        'grace_period_secs': 30,
+        'has_secret_bytes': True,
+        'idempotent': True,
+        'inputs_ref': {
+            'isolated': None,
+            'isolatedserver': u'https://isolateserver.appspot.com',
+            'namespace': u'default-gzip',
+        },
+        'io_timeout_secs': None,
+        'outputs': [],
     }
     expected_request = {
-      'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
-      'name': u'Request name',
-      'parent_task_id': unicode(parent_id),
-      'priority': 50,
-      'pubsub_topic': None,
-      'pubsub_userdata': None,
-      'service_account': u'none',
-      'tags': [
-        u'OS:Windows-3.1.1',
-        u'hostname:localhost',
-        u'pool:default',
-        u'priority:50',
-        u'service_account:none',
-        u'swarming.pool.template:no_config',
-        u'tag:1',
-        u'user:Jesus',
-      ],
-      'task_slices': [
-        {
-          'expiration_secs': 30,
-          'properties': expected_properties,
-          'wait_for_capacity': False,
-        },
-      ],
-      'user': u'Jesus',
-      'bot_ping_tolerance_secs': 120,
+        'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+        'name': u'Request name',
+        'parent_task_id': unicode(parent_id),
+        'priority': 50,
+        'pubsub_topic': None,
+        'pubsub_userdata': None,
+        'service_account': u'none',
+        'tags': [
+            u'OS:Windows-3.1.1',
+            u'hostname:localhost',
+            u'pool:default',
+            u'priority:50',
+            u'service_account:none',
+            u'swarming.pool.template:no_config',
+            u'tag:1',
+            u'user:Jesus',
+        ],
+        'task_slices': [{
+            'expiration_secs': 30,
+            'properties': expected_properties,
+            'wait_for_capacity': False,
+        },],
+        'user': u'Jesus',
+        'bot_ping_tolerance_secs': 120,
     }
     actual = req.to_dict()
     actual.pop('created_ts')
@@ -555,9 +560,9 @@ class TaskRequestApiTest(TestCase):
         properties=_gen_properties(
             command=[],
             inputs_ref={
-              'isolated': '0123456789012345678901234567890123456789',
-              'isolatedserver': 'http://localhost:1',
-              'namespace': 'default-gzip',
+                'isolated': '0123456789012345678901234567890123456789',
+                'isolatedserver': 'http://localhost:1',
+                'namespace': 'default-gzip',
             }))
     # Parent entity must have a valid key id and be stored.
     parent.key = task_request.new_request_key()
@@ -575,75 +580,78 @@ class TaskRequestApiTest(TestCase):
     # Needed for properties_hash() call.
     sb.put()
     expected_properties = {
-      'caches': [],
-      'cipd_input': {
-        'client_package': {
-          'package_name': u'infra/tools/cipd/${platform}',
-          'path': None,
-          'version': u'git_revision:deadbeef',
+        'caches': [],
+        'cipd_input': {
+            'client_package': {
+                'package_name': u'infra/tools/cipd/${platform}',
+                'path': None,
+                'version': u'git_revision:deadbeef',
+            },
+            'packages': [{
+                'package_name': u'rm',
+                'path': u'bin',
+                'version': u'git_revision:deadbeef',
+            }],
+            'server': u'https://chrome-infra-packages.appspot.com'
         },
-        'packages': [{
-          'package_name': u'rm',
-          'path': u'bin',
-          'version': u'git_revision:deadbeef',
-        }],
-        'server': u'https://chrome-infra-packages.appspot.com'
-      },
-      'command': [u'command1', u'arg1'],
-      'containment': {
-        u'lower_priority': False,
-        u'containment_type': None,
-        u'limit_processes': None,
-        u'limit_total_committed_memory': None,
-      },
-      'relative_cwd': None,
-      'dimensions': {
-        u'OS': [u'Windows-3.1.1'],
-        u'hostname': [u'localhost'],
-        u'pool': [u'default'],
-      },
-      'env': {u'foo': u'bar', u'joe': u'2'},
-      'env_prefixes': {u'PATH': [u'local/path']},
-      'extra_args': [],
-      'execution_timeout_secs': 30,
-      'grace_period_secs': 30,
-      'idempotent': True,
-      'inputs_ref': {
-        'isolated': None,
-        'isolatedserver': u'https://isolateserver.appspot.com',
-        'namespace': u'default-gzip',
-      },
-      'io_timeout_secs': None,
-      'outputs': [],
-      'has_secret_bytes': True,
+        'command': [u'command1', u'arg1'],
+        'containment': {
+            u'lower_priority': False,
+            u'containment_type': None,
+            u'limit_processes': None,
+            u'limit_total_committed_memory': None,
+        },
+        'relative_cwd': None,
+        'dimensions': {
+            u'OS': [u'Windows-3.1.1'],
+            u'hostname': [u'localhost'],
+            u'pool': [u'default'],
+        },
+        'env': {
+            u'foo': u'bar',
+            u'joe': u'2'
+        },
+        'env_prefixes': {
+            u'PATH': [u'local/path']
+        },
+        'extra_args': [],
+        'execution_timeout_secs': 30,
+        'grace_period_secs': 30,
+        'idempotent': True,
+        'inputs_ref': {
+            'isolated': None,
+            'isolatedserver': u'https://isolateserver.appspot.com',
+            'namespace': u'default-gzip',
+        },
+        'io_timeout_secs': None,
+        'outputs': [],
+        'has_secret_bytes': True,
     }
     expected_request = {
-      'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
-      'name': u'Request name',
-      'parent_task_id': unicode(parent_id),
-      'priority': 50,
-      'pubsub_topic': None,
-      'pubsub_userdata': None,
-      'service_account': u'none',
-      'tags': [
-        u'OS:Windows-3.1.1',
-        u'hostname:localhost',
-        u'pool:default',
-        u'priority:50',
-        u'service_account:none',
-        u'swarming.pool.template:no_config',
-        u'tag:1',
-        u'user:Jesus',
-      ],
-      'task_slices': [
-        {
-          'expiration_secs': 30,
-          'properties': expected_properties,
-          'wait_for_capacity': False,
-        },
-      ],
-      'user': u'Jesus',
-      'bot_ping_tolerance_secs': 120,
+        'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+        'name': u'Request name',
+        'parent_task_id': unicode(parent_id),
+        'priority': 50,
+        'pubsub_topic': None,
+        'pubsub_userdata': None,
+        'service_account': u'none',
+        'tags': [
+            u'OS:Windows-3.1.1',
+            u'hostname:localhost',
+            u'pool:default',
+            u'priority:50',
+            u'service_account:none',
+            u'swarming.pool.template:no_config',
+            u'tag:1',
+            u'user:Jesus',
+        ],
+        'task_slices': [{
+            'expiration_secs': 30,
+            'properties': expected_properties,
+            'wait_for_capacity': False,
+        },],
+        'user': u'Jesus',
+        'bot_ping_tolerance_secs': 120,
     }
     actual = req.to_dict()
     # expiration_ts - created_ts == scheduling_expiration_secs.
@@ -675,8 +683,8 @@ class TaskRequestApiTest(TestCase):
   def test_init_new_request_idempotent(self):
     request = _gen_request(properties=_gen_properties(idempotent=True))
     as_dict = request.to_dict()
-    self.assertEqual(
-        True, as_dict['task_slices'][0]['properties']['idempotent'])
+    self.assertEqual(True,
+                     as_dict['task_slices'][0]['properties']['idempotent'])
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     # Ensure the algorithm is deterministic.
@@ -695,22 +703,24 @@ class TaskRequestApiTest(TestCase):
     request = _gen_request(
         properties=_gen_properties(
             inputs_ref=task_request.FilesRef(
-                isolated='dead' * (64/4),
+                isolated='dead' * (64 / 4),
                 isolatedserver='astuce-service',
                 namespace='sha256-GCP')))
     request.put()
     as_dict = request.to_dict()
     expected = {
-      'isolated':
-          u'deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddead',
-      'isolatedserver': u'astuce-service',
-      'namespace': u'sha256-GCP',
+        'isolated': u'deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddead',
+        'isolatedserver': u'astuce-service',
+        'namespace': u'sha256-GCP',
     }
-    self.assertEqual(
-        expected, as_dict['task_slices'][0]['properties']['inputs_ref'])
+    self.assertEqual(expected,
+                     as_dict['task_slices'][0]['properties']['inputs_ref'])
 
-  def _set_pool_config_with_templates(
-      self, prod=None, canary=None, canary_chance=None, pool_name=u'default'):
+  def _set_pool_config_with_templates(self,
+                                      prod=None,
+                                      canary=None,
+                                      canary_chance=None,
+                                      pool_name=u'default'):
     """Builds a new pools_config.PoolConfig populated with the given
     pools_config.TaskTemplate objects and assigns it into the mocked
     `pools_confi.get_pool_config()` method.
@@ -722,7 +732,7 @@ class TaskRequestApiTest(TestCase):
     deployment = None
     if prod is not None:
       deployment = pools_config.TaskTemplateDeployment(
-            prod=prod, canary=canary, canary_chance=canary_chance)
+          prod=prod, canary=canary, canary_chance=canary_chance)
 
     self._pool_configs[pool_name] = pools_config.PoolConfig(
         name=pool_name,
@@ -736,7 +746,8 @@ class TaskRequestApiTest(TestCase):
         bot_monitoring=None,
         default_isolate=None,
         default_cipd=None,
-        external_schedulers=None,)
+        external_schedulers=None,
+    )
 
   def test_init_new_request_skip_template(self):
     self._set_pool_config_with_templates(_gen_task_template(env={'hi': 'prod'}))
@@ -756,9 +767,9 @@ class TaskRequestApiTest(TestCase):
 
   def test_init_new_request_prod_template(self):
     self._set_pool_config_with_templates(
-      _gen_task_template(env={'hi': 'prod'}),
-      canary=None,
-      canary_chance=0,  # always prefer prod serverside
+        _gen_task_template(env={'hi': 'prod'}),
+        canary=None,
+        canary_chance=0,  # always prefer prod serverside
     )
 
     request = _gen_request()
@@ -770,9 +781,9 @@ class TaskRequestApiTest(TestCase):
 
   def test_init_new_request_canary_template(self):
     self._set_pool_config_with_templates(
-      _gen_task_template(env={'hi': 'prod'}),
-      _gen_task_template(env={'hi': 'canary'}),
-      canary_chance=10000,  # always prefer canary serverside
+        _gen_task_template(env={'hi': 'prod'}),
+        _gen_task_template(env={'hi': 'canary'}),
+        canary_chance=10000,  # always prefer canary serverside
     )
 
     request = _gen_request()
@@ -784,9 +795,9 @@ class TaskRequestApiTest(TestCase):
 
   def test_init_new_request_canary_never_template(self):
     self._set_pool_config_with_templates(
-      _gen_task_template(env={'hi': 'prod'}),
-      _gen_task_template(env={'hi': 'canary'}),
-      canary_chance=10000,  # always prefer canary serverside
+        _gen_task_template(env={'hi': 'prod'}),
+        _gen_task_template(env={'hi': 'canary'}),
+        canary_chance=10000,  # always prefer canary serverside
     )
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_CANARY_NEVER)
@@ -798,9 +809,9 @@ class TaskRequestApiTest(TestCase):
 
   def test_init_new_request_canary_prefer_template(self):
     self._set_pool_config_with_templates(
-      _gen_task_template(env={'hi': 'prod'}),
-      _gen_task_template(env={'hi': 'canary'}),
-      canary_chance=0,  # always prefer prod serverside
+        _gen_task_template(env={'hi': 'prod'}),
+        _gen_task_template(env={'hi': 'canary'}),
+        canary_chance=0,  # always prefer prod serverside
     )
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_CANARY_PREFER)
@@ -812,8 +823,8 @@ class TaskRequestApiTest(TestCase):
 
   def test_init_new_request_canary_prefer_prod_template(self):
     self._set_pool_config_with_templates(
-      _gen_task_template(env={'hi': 'prod'}),
-      # No canary defined, even though caller would prefer it, if available.
+        _gen_task_template(env={'hi': 'prod'}),
+        # No canary defined, even though caller would prefer it, if available.
     )
 
     request = _gen_request(_template_apply=task_request.TEMPLATE_CANARY_PREFER)
@@ -834,9 +845,9 @@ class TaskRequestApiTest(TestCase):
         created_ts=now,
         manual_tags=['tag:2'],
         task_slices=[
-          task_request.TaskSlice(
-              expiration_secs=129,
-              properties=_gen_properties(idempotent=True)),
+            task_request.TaskSlice(
+                expiration_secs=129,
+                properties=_gen_properties(idempotent=True)),
         ])
     self.assertEqual(
         request_1.task_slice(0).properties_hash(request_1),
@@ -848,8 +859,7 @@ class TaskRequestApiTest(TestCase):
     request_1 = _gen_request(
         properties=_gen_properties(execution_timeout_secs=30, idempotent=True))
     request_2 = _gen_request(
-        properties=_gen_properties(
-            execution_timeout_secs=129, idempotent=True))
+        properties=_gen_properties(execution_timeout_secs=129, idempotent=True))
     self.assertNotEqual(
         request_1.task_slice(0).properties_hash(request_1),
         request_2.task_slice(0).properties_hash(request_2))
@@ -859,6 +869,7 @@ class TaskRequestApiTest(TestCase):
     def getrandbits(i):
       self.assertEqual(i, 16)
       return 0x7766
+
     self.mock(random, 'getrandbits', getrandbits)
     self.mock_now(task_request._BEGINING_OF_THE_WORLD)
 
@@ -873,20 +884,19 @@ class TaskRequestApiTest(TestCase):
 
     request_props = _gen_properties(
         inputs_ref={
-          'isolated': '0123456789012345678901234567890123456789',
-          'isolatedserver': 'http://localhost:1',
-          'namespace': 'default-gzip',
+            'isolated': '0123456789012345678901234567890123456789',
+            'isolatedserver': 'http://localhost:1',
+            'namespace': 'default-gzip',
         },
         relative_cwd=u'subdir',
         caches=[
-          task_request.CacheEntry(name=u'git_chromium', path=u'git_cache'),
+            task_request.CacheEntry(name=u'git_chromium', path=u'git_cache'),
         ],
         cipd_input=_gen_cipd_input(
             packages=[
-              task_request.CipdPackage(
-                  package_name=u'foo', path=u'tool', version=u'git:12345'),
-            ],
-        ),
+                task_request.CipdPackage(
+                    package_name=u'foo', path=u'tool', version=u'git:12345'),
+            ],),
         idempotent=True,
         outputs=[u'foo'],
         has_secret_bytes=True,
@@ -899,11 +909,11 @@ class TaskRequestApiTest(TestCase):
     )
     request = _gen_request_slices(
         task_slices=[
-          task_request.TaskSlice(
-              expiration_secs=30,
-              properties=request_props,
-              wait_for_capacity=True,
-          ),
+            task_request.TaskSlice(
+                expiration_secs=30,
+                properties=request_props,
+                wait_for_capacity=True,
+            ),
         ],
         # The user is ignored; the value is overridden by the parent task's
         # user.
@@ -927,8 +937,8 @@ class TaskRequestApiTest(TestCase):
             namespace=u'default-gzip',
         ),
         cipd_inputs=[
-          swarming_pb2.CIPDPackage(
-              package_name=u'foo', version=u'git:12345', dest_path=u'tool'),
+            swarming_pb2.CIPDPackage(
+                package_name=u'foo', version=u'git:12345', dest_path=u'tool'),
         ],
         named_caches=[
             swarming_pb2.NamedCacheEntry(
@@ -946,16 +956,16 @@ class TaskRequestApiTest(TestCase):
         # secret_bytes cannot be retrieved, but is included in properties_hash.
         has_secret_bytes=True,
         dimensions=[
-          swarming_pb2.StringListPair(key=u'OS', values=[u'Windows-3.1.1']),
-          swarming_pb2.StringListPair(key=u'hostname', values=[u'localhost']),
-          swarming_pb2.StringListPair(key=u'pool', values=[u'default']),
+            swarming_pb2.StringListPair(key=u'OS', values=[u'Windows-3.1.1']),
+            swarming_pb2.StringListPair(key=u'hostname', values=[u'localhost']),
+            swarming_pb2.StringListPair(key=u'pool', values=[u'default']),
         ],
         env=[
-          swarming_pb2.StringPair(key=u'foo', value=u'bar'),
-          swarming_pb2.StringPair(key=u'joe', value=u'2'),
+            swarming_pb2.StringPair(key=u'foo', value=u'bar'),
+            swarming_pb2.StringPair(key=u'joe', value=u'2'),
         ],
         env_paths=[
-          swarming_pb2.StringListPair(key=u'PATH', values=[u'local/path']),
+            swarming_pb2.StringListPair(key=u'PATH', values=[u'local/path']),
         ],
         execution_timeout=duration_pb2.Duration(seconds=30),
         grace_period=duration_pb2.Duration(seconds=30),
@@ -967,12 +977,12 @@ class TaskRequestApiTest(TestCase):
     expected = swarming_pb2.TaskRequest(
         # Scheduling.
         task_slices=[
-          swarming_pb2.TaskSlice(
-              properties=expected_props,
-              expiration=duration_pb2.Duration(seconds=30),
-              wait_for_capacity=True,
-              properties_hash=props_h,
-          ),
+            swarming_pb2.TaskSlice(
+                properties=expected_props,
+                expiration=duration_pb2.Duration(seconds=30),
+                wait_for_capacity=True,
+                properties_hash=props_h,
+            ),
         ],
         priority=50,
         service_account=u'foo@gserviceaccount.com',
@@ -981,14 +991,14 @@ class TaskRequestApiTest(TestCase):
         name=u'Request name',
         authenticated='user:mocked@example.com',
         tags=[
-          u'OS:Windows-3.1.1',
-          u'hostname:localhost',
-          u'pool:default',
-          u'priority:50',
-          u'service_account:foo@gserviceaccount.com',
-          u'swarming.pool.template:no_config',
-          u'tag:1',
-          u'user:Jesus',
+            u'OS:Windows-3.1.1',
+            u'hostname:localhost',
+            u'pool:default',
+            u'priority:50',
+            u'service_account:foo@gserviceaccount.com',
+            u'swarming.pool.template:no_config',
+            u'tag:1',
+            u'user:Jesus',
         ],
         user=u'Jesus',
         # Hierarchy.
@@ -1043,6 +1053,7 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(ValueError):
       # No TaskSlice
       _gen_request_slices(task_slices=[])
+
     def _gen_slice(**props):
       return task_request.TaskSlice(
           expiration_secs=60, properties=_gen_properties(**props))
@@ -1069,20 +1080,19 @@ class TaskRequestApiTest(TestCase):
       req.put()
     # Different pools.
     slices = [
-      task_request.TaskSlice(
-          expiration_secs=60,
-          properties=_gen_properties(dimensions={u'pool': [u'GPU']})),
-      task_request.TaskSlice(
-          expiration_secs=60,
-          properties=_gen_properties(dimensions={u'pool': [u'other']})),
+        task_request.TaskSlice(
+            expiration_secs=60,
+            properties=_gen_properties(dimensions={u'pool': [u'GPU']})),
+        task_request.TaskSlice(
+            expiration_secs=60,
+            properties=_gen_properties(dimensions={u'pool': [u'other']})),
     ]
     req = _gen_request_slices(task_slices=slices)
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
 
   def test_request_bad_command(self):
-    req = _gen_request(
-        properties=_gen_properties(command=[], inputs_ref=None))
+    req = _gen_request(properties=_gen_properties(command=[], inputs_ref=None))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     with self.assertRaises(datastore_errors.BadValueError):
@@ -1091,15 +1101,15 @@ class TaskRequestApiTest(TestCase):
       _gen_request(properties=_gen_properties(command='python'))
     _gen_request(properties=_gen_properties(command=['python'])).put()
     _gen_request(properties=_gen_properties(command=[u'python'])).put()
-    _gen_request(properties=_gen_properties(command=[u'python']*128)).put()
+    _gen_request(properties=_gen_properties(command=[u'python'] * 128)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(properties=_gen_properties(command=[u'python']*129)).put()
+      _gen_request(properties=_gen_properties(command=[u'python'] * 129)).put()
 
   def test_request_bad_extra_args(self):
     _gen_request(
         properties=_gen_properties(
             command=[],
-            extra_args=[u'python']*128,
+            extra_args=[u'python'] * 128,
             inputs_ref=task_request.FilesRef(
                 isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
                 isolatedserver='http://localhost:1',
@@ -1108,7 +1118,7 @@ class TaskRequestApiTest(TestCase):
       _gen_request(
           properties=_gen_properties(
               command=[],
-              extra_args=[u'python']*129,
+              extra_args=[u'python'] * 129,
               inputs_ref=task_request.FilesRef(
                   isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
                   isolatedserver='http://localhost:1',
@@ -1124,69 +1134,60 @@ class TaskRequestApiTest(TestCase):
                   namespace='default-gzip'))).put()
 
   def test_request_bad_cipd_input(self):
+
     def mkcipdreq(idempotent=False, **cipd_input):
       return _gen_request(
           properties=_gen_properties(
-              idempotent=idempotent,
-              cipd_input=_gen_cipd_input(**cipd_input)))
+              idempotent=idempotent, cipd_input=_gen_cipd_input(**cipd_input)))
 
     req = mkcipdreq(packages=[{}])
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     with self.assertRaises(datastore_errors.BadValueError):
-      mkcipdreq(
-          packages=[
-            task_request.CipdPackage(
-                package_name='infra|rm', path='.', version='latest'),
-          ])
+      mkcipdreq(packages=[
+          task_request.CipdPackage(
+              package_name='infra|rm', path='.', version='latest'),
+      ])
     req = mkcipdreq(
         packages=[task_request.CipdPackage(package_name='rm', path='.')])
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
-    req = mkcipdreq(
-        packages=[
-          task_request.CipdPackage(package_name='rm', version='latest'),
-        ])
+    req = mkcipdreq(packages=[
+        task_request.CipdPackage(package_name='rm', version='latest'),
+    ])
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     with self.assertRaises(datastore_errors.BadValueError):
-      mkcipdreq(
-          packages=[
-            task_request.CipdPackage(
-                package_name='rm', path='/', version='latest'),
-          ])
-    with self.assertRaises(datastore_errors.BadValueError):
-      mkcipdreq(
-          packages=[
-            task_request.CipdPackage(
-                package_name='rm', path='/a', version='latest'),
-          ])
-    with self.assertRaises(datastore_errors.BadValueError):
-      mkcipdreq(
-          packages=[
-            task_request.CipdPackage(
-                package_name='rm', path='a/..', version='latest'),
-          ])
-    with self.assertRaises(datastore_errors.BadValueError):
-      mkcipdreq(
-          packages=[
-            task_request.CipdPackage(
-                package_name='rm', path='a/./b', version='latest'),
-          ])
-    req = mkcipdreq(
-        packages=[
+      mkcipdreq(packages=[
           task_request.CipdPackage(
-              package_name='rm', path='.', version='latest'),
+              package_name='rm', path='/', version='latest'),
+      ])
+    with self.assertRaises(datastore_errors.BadValueError):
+      mkcipdreq(packages=[
           task_request.CipdPackage(
-              package_name='rm', path='.', version='canary'),
-        ])
+              package_name='rm', path='/a', version='latest'),
+      ])
+    with self.assertRaises(datastore_errors.BadValueError):
+      mkcipdreq(packages=[
+          task_request.CipdPackage(
+              package_name='rm', path='a/..', version='latest'),
+      ])
+    with self.assertRaises(datastore_errors.BadValueError):
+      mkcipdreq(packages=[
+          task_request.CipdPackage(
+              package_name='rm', path='a/./b', version='latest'),
+      ])
+    req = mkcipdreq(packages=[
+        task_request.CipdPackage(package_name='rm', path='.', version='latest'),
+        task_request.CipdPackage(package_name='rm', path='.', version='canary'),
+    ])
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     req = mkcipdreq(
         idempotent=True,
         packages=[
-          task_request.CipdPackage(
-              package_name='rm', path='.', version='latest'),
+            task_request.CipdPackage(
+                package_name='rm', path='.', version='latest'),
         ])
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
@@ -1197,19 +1198,17 @@ class TaskRequestApiTest(TestCase):
           client_package=task_request.CipdPackage(
               package_name='--bad package--'))
     mkcipdreq().put()
-    mkcipdreq(
-        packages=[
-          task_request.CipdPackage(
-              package_name='rm', path='.', version='latest'),
-        ]).put()
+    mkcipdreq(packages=[
+        task_request.CipdPackage(package_name='rm', path='.', version='latest'),
+    ]).put()
     mkcipdreq(
         client_package=task_request.CipdPackage(
             package_name='infra/tools/cipd/${platform}',
             version='git_revision:daedbeef'),
         packages=[
-          task_request.CipdPackage(
-              package_name='rm', path='.', version='latest'),
-          ],
+            task_request.CipdPackage(
+                package_name='rm', path='.', version='latest'),
+        ],
         server='https://chrome-infra-packages.appspot.com').put()
 
   def test_request_bad_named_cache(self):
@@ -1255,12 +1254,12 @@ class TaskRequestApiTest(TestCase):
     mkcachereq(
         task_request.CacheEntry(name='git_chromium', path='git_cache'),
         task_request.CacheEntry(name='build_chromium', path='out'))
-    mkcachereq(task_request.CacheEntry(name=u'g'*128, path=u'git_cache'))
+    mkcachereq(task_request.CacheEntry(name=u'g' * 128, path=u'git_cache'))
     with self.assertRaises(datastore_errors.BadValueError):
-      mkcachereq(task_request.CacheEntry(name=u'g'*129, path=u'git_cache'))
-    mkcachereq(task_request.CacheEntry(name=u'g', path=u'p'*256))
+      mkcachereq(task_request.CacheEntry(name=u'g' * 129, path=u'git_cache'))
+    mkcachereq(task_request.CacheEntry(name=u'g', path=u'p' * 256))
     with self.assertRaises(datastore_errors.BadValueError):
-      mkcachereq(task_request.CacheEntry(name=u'g', path=u'p'*257))
+      mkcachereq(task_request.CacheEntry(name=u'g', path=u'p' * 257))
     # Too many.
     c = [
         task_request.CacheEntry(name=unicode(i), path=unicode(i))
@@ -1279,25 +1278,23 @@ class TaskRequestApiTest(TestCase):
     req = _gen_request(
         properties=_gen_properties(
             caches=[
-              task_request.CacheEntry(name='git_chromium', path='git_cache'),
+                task_request.CacheEntry(name='git_chromium', path='git_cache'),
             ],
-            cipd_input=_gen_cipd_input(
-                packages=[
-                  task_request.CipdPackage(
-                      package_name='foo', path='git_cache', version='latest'),
-                ])))
+            cipd_input=_gen_cipd_input(packages=[
+                task_request.CipdPackage(
+                    package_name='foo', path='git_cache', version='latest'),
+            ])))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     req = _gen_request(
         properties=_gen_properties(
             caches=[
-              task_request.CacheEntry(name='git_chromium', path='git_cache1'),
+                task_request.CacheEntry(name='git_chromium', path='git_cache1'),
             ],
-            cipd_input=_gen_cipd_input(
-                packages=[
-                  task_request.CipdPackage(
-                      package_name='foo', path='git_cache2', version='latest'),
-                ]))).put()
+            cipd_input=_gen_cipd_input(packages=[
+                task_request.CipdPackage(
+                    package_name='foo', path='git_cache2', version='latest'),
+            ]))).put()
 
   def test_request_bad_dimensions(self):
     # Type error.
@@ -1307,30 +1304,45 @@ class TaskRequestApiTest(TestCase):
       _gen_request(properties=_gen_properties(dimensions={}))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
-          properties=_gen_properties(dimensions={u'id': u'b', u'a:': u'b'}))
+          properties=_gen_properties(dimensions={
+              u'id': u'b',
+              u'a:': u'b'
+          }))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
-          properties=_gen_properties(dimensions={u'id': u'b', u'a.': u'b'}))
+          properties=_gen_properties(dimensions={
+              u'id': u'b',
+              u'a.': u'b'
+          }))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
-          properties=_gen_properties(dimensions={u'id': u'b', u'a': [u'b']}))
+          properties=_gen_properties(dimensions={
+              u'id': u'b',
+              u'a': [u'b']
+          }))
     # >1 value for id.
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(
-          properties=_gen_properties(dimensions={u'id': [u'a', u'b']}))
+      _gen_request(properties=_gen_properties(dimensions={u'id': [u'a', u'b']}))
     # >1 value for pool.
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
           properties=_gen_properties(dimensions={u'pool': [u'b', u'b']}))
     _gen_request(
-        properties=_gen_properties(
-            dimensions={u'id': [u'b'], u'pool': [u'b']})).put()
+        properties=_gen_properties(dimensions={
+            u'id': [u'b'],
+            u'pool': [u'b']
+        })).put()
     _gen_request(
-        properties=_gen_properties(
-            dimensions={u'id': [u'b'], u'pool': [u'b'], u'a.': [u'c']})).put()
+        properties=_gen_properties(dimensions={
+            u'id': [u'b'],
+            u'pool': [u'b'],
+            u'a.': [u'c']
+        })).put()
     _gen_request(
-        properties=_gen_properties(
-            dimensions={u'pool': [u'b'], u'a.': [u'b', u'c']})).put()
+        properties=_gen_properties(dimensions={
+            u'pool': [u'b'],
+            u'a.': [u'b', u'c']
+        })).put()
 
   def test_request_bad_dimensions_key(self):
     # Max # keys.
@@ -1348,14 +1360,14 @@ class TaskRequestApiTest(TestCase):
       _gen_request(properties=_gen_properties(dimensions=d)).put()
     # Key length.
     d = {
-      u'pool': [u'default'],
-      u'v'*config.DIMENSION_KEY_LENGTH: [u'v'],
+        u'pool': [u'default'],
+        u'v' * config.DIMENSION_KEY_LENGTH: [u'v'],
     }
     _gen_request(properties=_gen_properties(dimensions=d)).put()
     with self.assertRaises(datastore_errors.BadValueError):
       d = {
-        u'pool': [u'default'],
-        u'v'*(config.DIMENSION_KEY_LENGTH+1): [u'value'],
+          u'pool': [u'default'],
+          u'v' * (config.DIMENSION_KEY_LENGTH + 1): [u'value'],
       }
       _gen_request(properties=_gen_properties(dimensions=d)).put()
 
@@ -1368,14 +1380,14 @@ class TaskRequestApiTest(TestCase):
       _gen_request(properties=_gen_properties(dimensions=d)).put()
     # Value length.
     d = {
-      u'pool': [u'default'],
-      u'v': [u'v'*config.DIMENSION_VALUE_LENGTH],
+        u'pool': [u'default'],
+        u'v': [u'v' * config.DIMENSION_VALUE_LENGTH],
     }
     _gen_request(properties=_gen_properties(dimensions=d)).put()
     with self.assertRaises(datastore_errors.BadValueError):
       d = {
-        u'pool': [u'default'],
-        u'v': [u'v'*(config.DIMENSION_VALUE_LENGTH+1)],
+          u'pool': [u'default'],
+          u'v': [u'v' * (config.DIMENSION_VALUE_LENGTH + 1)],
       }
       _gen_request(properties=_gen_properties(dimensions=d)).put()
     with self.assertRaises(datastore_errors.BadValueError):
@@ -1429,10 +1441,10 @@ class TaskRequestApiTest(TestCase):
     e = {u'k': u'v'}
     _gen_request(properties=_gen_properties(env=e)).put()
     # Key length.
-    e = {u'k'*64: u'v'}
+    e = {u'k' * 64: u'v'}
     _gen_request(properties=_gen_properties(env=e)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      e = {u'k'*65: u'v'}
+      e = {u'k' * 65: u'v'}
       _gen_request(properties=_gen_properties(env=e)).put()
     # # keys.
     e = {u'k%s' % i: u'v' for i in range(64)}
@@ -1441,10 +1453,10 @@ class TaskRequestApiTest(TestCase):
       e = {u'k%s' % i: u'v' for i in range(65)}
       _gen_request(properties=_gen_properties(env=e)).put()
     # Value length.
-    e = {u'k': u'v'*1024}
+    e = {u'k': u'v' * 1024}
     _gen_request(properties=_gen_properties(env=e)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      e = {u'k': u'v'*1025}
+      e = {u'k': u'v' * 1025}
       _gen_request(properties=_gen_properties(env=e)).put()
 
   def test_request_bad_env_prefixes(self):
@@ -1457,10 +1469,10 @@ class TaskRequestApiTest(TestCase):
     e = {u'k': [u'v']}
     _gen_request(properties=_gen_properties(env_prefixes=e)).put()
     # Key length.
-    e = {u'k'*64: [u'v']}
+    e = {u'k' * 64: [u'v']}
     _gen_request(properties=_gen_properties(env_prefixes=e)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      e = {u'k'*65: [u'v']}
+      e = {u'k' * 65: [u'v']}
       _gen_request(properties=_gen_properties(env_prefixes=e)).put()
     # # keys.
     e = {u'k%s' % i: [u'v'] for i in range(64)}
@@ -1469,23 +1481,23 @@ class TaskRequestApiTest(TestCase):
       e = {u'k%s' % i: [u'v'] for i in range(65)}
       _gen_request(properties=_gen_properties(env_prefixes=e)).put()
     # Value length.
-    e = {u'k': [u'v'*1024]}
+    e = {u'k': [u'v' * 1024]}
     _gen_request(properties=_gen_properties(env_prefixes=e)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      e = {u'k': [u'v'*1025]}
+      e = {u'k': [u'v' * 1025]}
       _gen_request(properties=_gen_properties(env_prefixes=e)).put()
 
   def test_request_bad_priority(self):
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(priority=task_request.MAXIMUM_PRIORITY+1)
+      _gen_request(priority=task_request.MAXIMUM_PRIORITY + 1)
     _gen_request(priority=task_request.MAXIMUM_PRIORITY).put()
 
   def test_request_bad_bot_ping_tolerance(self):
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
-          bot_ping_tolerance_secs=task_request._MAX_BOT_PING_TOLERANCE_SECS+1)
+          bot_ping_tolerance_secs=task_request._MAX_BOT_PING_TOLERANCE_SECS + 1)
       _gen_request(
-          bot_ping_tolerance_secs=task_request._MIN_BOT_PING_TOLERANCE_SECS-1)
+          bot_ping_tolerance_secs=task_request._MIN_BOT_PING_TOLERANCE_SECS - 1)
 
   def test_request_bad_execution_timeout(self):
     # When used locally, it is set to 1, which means it's impossible to test
@@ -1498,14 +1510,14 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
           properties=_gen_properties(
-            execution_timeout_secs=task_request._MIN_TIMEOUT_SECS-1))
+              execution_timeout_secs=task_request._MIN_TIMEOUT_SECS - 1))
     _gen_request(
         properties=_gen_properties(
-          execution_timeout_secs=task_request._MIN_TIMEOUT_SECS))
+            execution_timeout_secs=task_request._MIN_TIMEOUT_SECS))
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
           properties=_gen_properties(
-              execution_timeout_secs=task_request.MAX_TIMEOUT_SECS+1))
+              execution_timeout_secs=task_request.MAX_TIMEOUT_SECS + 1))
     _gen_request(
         properties=_gen_properties(
             execution_timeout_secs=task_request.MAX_TIMEOUT_SECS)).put()
@@ -1516,39 +1528,38 @@ class TaskRequestApiTest(TestCase):
       _gen_request_slices(
           created_ts=now,
           task_slices=[
-            task_request.TaskSlice(
-                expiration_secs=None,
-                properties=_gen_properties()),
+              task_request.TaskSlice(
+                  expiration_secs=None, properties=_gen_properties()),
           ])
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request_slices(
           created_ts=now,
           task_slices=[
-            task_request.TaskSlice(
-                expiration_secs=task_request._MIN_TIMEOUT_SECS-1,
-                properties=_gen_properties()),
+              task_request.TaskSlice(
+                  expiration_secs=task_request._MIN_TIMEOUT_SECS - 1,
+                  properties=_gen_properties()),
           ])
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request_slices(
           created_ts=now,
           task_slices=[
-            task_request.TaskSlice(
-                expiration_secs=task_request.MAX_EXPIRATION_SECS+1,
-                properties=_gen_properties()),
+              task_request.TaskSlice(
+                  expiration_secs=task_request.MAX_EXPIRATION_SECS + 1,
+                  properties=_gen_properties()),
           ])
     _gen_request_slices(
         created_ts=now,
         task_slices=[
-          task_request.TaskSlice(
-              expiration_secs=task_request._MIN_TIMEOUT_SECS,
-              properties=_gen_properties()),
+            task_request.TaskSlice(
+                expiration_secs=task_request._MIN_TIMEOUT_SECS,
+                properties=_gen_properties()),
         ]).put()
     _gen_request_slices(
         created_ts=now,
         task_slices=[
-          task_request.TaskSlice(
-              expiration_secs=task_request.MAX_EXPIRATION_SECS,
-              properties=_gen_properties()),
+            task_request.TaskSlice(
+                expiration_secs=task_request.MAX_EXPIRATION_SECS,
+                properties=_gen_properties()),
         ]).put()
 
   def test_request_bad_inputs_ref(self):
@@ -1561,12 +1572,13 @@ class TaskRequestApiTest(TestCase):
                 isolatedserver='http://localhost:1',
                 namespace='default-gzip'))).put()
     # Bad digest.
-    req = _gen_request(properties=_gen_properties(
-        command=['see', 'spot', 'run'],
-        inputs_ref=task_request.FilesRef(
-            isolated='deadbeef',
-            isolatedserver='http://localhost:1',
-            namespace='default-gzip')))
+    req = _gen_request(
+        properties=_gen_properties(
+            command=['see', 'spot', 'run'],
+            inputs_ref=task_request.FilesRef(
+                isolated='deadbeef',
+                isolatedserver='http://localhost:1',
+                namespace='default-gzip')))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     # inputs_ref without server/namespace.
@@ -1575,29 +1587,32 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     # Without digest nor command.
-    req = _gen_request(properties=_gen_properties(
-        command=[],
-        inputs_ref=task_request.FilesRef(
-            isolatedserver='https://isolateserver.appspot.com',
-            namespace='default-gzip^^^')))
+    req = _gen_request(
+        properties=_gen_properties(
+            command=[],
+            inputs_ref=task_request.FilesRef(
+                isolatedserver='https://isolateserver.appspot.com',
+                namespace='default-gzip^^^')))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     # For 'sha256-GCP', the length must be 64.
-    req = _gen_request(properties=_gen_properties(
-        command=[],
-        inputs_ref=task_request.FilesRef(
-            isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-            isolatedserver='foo-bar',
-            namespace='sha256-GCP')))
+    req = _gen_request(
+        properties=_gen_properties(
+            command=[],
+            inputs_ref=task_request.FilesRef(
+                isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
+                isolatedserver='foo-bar',
+                namespace='sha256-GCP')))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     # For 'sha256-GCP', the isolatedserver value must not contain '://'.
-    req = _gen_request(properties=_gen_properties(
-        command=[],
-        inputs_ref=task_request.FilesRef(
-            isolated='dead' * (64/4),
-            isolatedserver='foo://bar',
-            namespace='sha256-GCP')))
+    req = _gen_request(
+        properties=_gen_properties(
+            command=[],
+            inputs_ref=task_request.FilesRef(
+                isolated='dead' * (64 / 4),
+                isolatedserver='foo://bar',
+                namespace='sha256-GCP')))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
 
@@ -1607,9 +1622,10 @@ class TaskRequestApiTest(TestCase):
       _gen_request(pubsub_topic=u'a')
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(pubsub_topic=u'projects/a/topics/ab').put()
-    _gen_request(pubsub_topic=u'projects/' + u'a'*1004 + u'/topics/abc').put()
+    _gen_request(pubsub_topic=u'projects/' + u'a' * 1004 + u'/topics/abc').put()
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(pubsub_topic=u'projects/' + u'a'*1005 + u'/topics/abc').put()
+      _gen_request(
+          pubsub_topic=u'projects/' + u'a' * 1005 + u'/topics/abc').put()
 
   def test_request_bad_service_account(self):
     _gen_request(service_account=u'none').put()
@@ -1617,25 +1633,25 @@ class TaskRequestApiTest(TestCase):
     _gen_request(service_account=u'joe@localhost').put()
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(service_account=u'joe').put()
-    _gen_request(service_account=u'joe@'+u'l'*124).put()
+    _gen_request(service_account=u'joe@' + u'l' * 124).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(service_account=u'joe@'+u'l'*125).put()
+      _gen_request(service_account=u'joe@' + u'l' * 125).put()
 
   def test_request_bad_tags(self):
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(manual_tags=['a']).put()
 
   def test_request_bad_tags_too_many(self):
-    _gen_request(manual_tags=['a:b']*256).put()
+    _gen_request(manual_tags=['a:b'] * 256).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(manual_tags=['a:b']*257).put()
+      _gen_request(manual_tags=['a:b'] * 257).put()
 
   def test_request_bad_tags_too_long(self):
     # Minus 2 for the 'a:' prefix.
     l = task_request._TAG_LENGTH - 2
-    _gen_request(manual_tags=['a:' + 'b'*l]).put()
+    _gen_request(manual_tags=['a:' + 'b' * l]).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(manual_tags=['a:' + 'a'*(l+1)]).put()
+      _gen_request(manual_tags=['a:' + 'a' * (l + 1)]).put()
 
   def test_validate_priority(self):
     with self.assertRaises(TypeError):
@@ -1643,15 +1659,15 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       task_request.validate_priority(-1)
     with self.assertRaises(datastore_errors.BadValueError):
-      task_request.validate_priority(task_request.MAXIMUM_PRIORITY+1)
+      task_request.validate_priority(task_request.MAXIMUM_PRIORITY + 1)
     task_request.validate_priority(0)
     task_request.validate_priority(1)
     task_request.validate_priority(task_request.MAXIMUM_PRIORITY)
 
   def test_datetime_to_request_base_id(self):
     now = datetime.datetime(2012, 1, 2, 3, 4, 5, 123456)
-    self.assertEqual(
-        0xeb5313d0300000, task_request.datetime_to_request_base_id(now))
+    self.assertEqual(0xeb5313d0300000,
+                     task_request.datetime_to_request_base_id(now))
 
   def test_convert_to_request_key(self):
     """Indirectly tested by API."""
@@ -1674,9 +1690,9 @@ class TaskRequestApiTest(TestCase):
         task_request.request_id_to_key(0xeb5313d0300000))
 
   def test_secret_bytes(self):
-    task_request.SecretBytes(secret_bytes='a'*(20*1024)).put()
+    task_request.SecretBytes(secret_bytes='a' * (20 * 1024)).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      task_request.SecretBytes(secret_bytes='a'*(20*1024+1)).put()
+      task_request.SecretBytes(secret_bytes='a' * (20 * 1024 + 1)).put()
 
   def test_cron_delete_old_task_requests(self):
     # Creating 1000 tasks would make this test significantly slower.
@@ -1696,18 +1712,30 @@ class TaskRequestApiTest(TestCase):
     self.mock_now(now + task_request._OLD_TASK_REQUEST_CUT_OFF, 11)
     self.assertEqual(12, task_request.cron_delete_old_task_requests())
     expected = [
-      (
-        ('/internal/taskqueue/cleanup/tasks/delete', 'delete-tasks'),
-        {'payload': utils.encode_to_json({u'task_ids': task_ids[0:5]})},
-      ),
-      (
-        ('/internal/taskqueue/cleanup/tasks/delete', 'delete-tasks'),
-        {'payload': utils.encode_to_json({u'task_ids': task_ids[5:10]})},
-      ),
-      (
-        ('/internal/taskqueue/cleanup/tasks/delete', 'delete-tasks'),
-        {'payload': utils.encode_to_json({u'task_ids': task_ids[10:12]})},
-      ),
+        (
+            ('/internal/taskqueue/cleanup/tasks/delete', 'delete-tasks'),
+            {
+                'payload': utils.encode_to_json({
+                    u'task_ids': task_ids[0:5]
+                })
+            },
+        ),
+        (
+            ('/internal/taskqueue/cleanup/tasks/delete', 'delete-tasks'),
+            {
+                'payload': utils.encode_to_json({
+                    u'task_ids': task_ids[5:10]
+                })
+            },
+        ),
+        (
+            ('/internal/taskqueue/cleanup/tasks/delete', 'delete-tasks'),
+            {
+                'payload': utils.encode_to_json({
+                    u'task_ids': task_ids[10:12]
+                })
+            },
+        ),
     ]
     # task_ids[12:14] are not touched.
     self.assertEqual(expected, self._enqueue_calls)
@@ -1718,6 +1746,7 @@ class TaskRequestApiTest(TestCase):
     # test_cron_delete_old_task_requests.
     class Foo(ndb.Model):
       pass
+
     task_ids = []
     for _ in range(5):
       request = _gen_request_slices()
@@ -1734,19 +1763,23 @@ class TaskRequestApiTest(TestCase):
   def test_task_bq_empty(self):
     # Empty, nothing is done.
     start = utils.utcnow()
-    end = start+datetime.timedelta(seconds=60)
+    end = start + datetime.timedelta(seconds=60)
     self.assertEqual((0, 0), task_request.task_bq(start, end))
 
   def test_task_bq(self):
+
     def getrandbits(i):
       self.assertEqual(i, 16)
       return 0x7766
+
     self.mock(random, 'getrandbits', getrandbits)
     payloads = []
+
     def send_to_bq(table_name, rows):
       self.assertEqual('task_requests', table_name)
       payloads.append(rows)
       return 0
+
     self.mock(bq_state, 'send_to_bq', send_to_bq)
 
     # Generate two tasks requests.
@@ -1766,8 +1799,8 @@ class TaskRequestApiTest(TestCase):
     actual_rows = payloads[0]
     self.assertEqual(2, len(actual_rows))
     expected = [
-      request_1.task_id,
-      request_2.task_id,
+        request_1.task_id,
+        request_2.task_id,
     ]
     self.assertEqual(expected, [r[0] for r in actual_rows])
 
@@ -1788,7 +1821,6 @@ class TaskRequestApiTest(TestCase):
     it = task_request.yield_request_keys_by_parent_task_id(parent_summary_id)
     expected = [child_request_1_key, child_request_2_key]
     self.assertEqual(sorted(expected), sorted([k for k in it]))
-
 
   def test_normalize_or_dimensions(self):
     dim1 = _gen_request(

@@ -47,6 +47,7 @@ def flatten_task_updates(updates):
 
 class Handler(httpserver.Handler):
   """Minimal Swarming bot server fake implementation."""
+
   def do_GET(self):
     if self.path == '/swarming/api/v1/bot/server_ping':
       self.send_response(200)
@@ -56,7 +57,7 @@ class Handler(httpserver.Handler):
           'client_id': 'id',
           'client_not_so_secret': 'hunter2',
           'primary_url': self.server.url,
-        })
+      })
     raise NotImplementedError(self.path)
 
   def do_POST(self):

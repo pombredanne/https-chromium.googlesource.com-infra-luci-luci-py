@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Contains logic to parse .isolate files.
 
 This module doesn't touch the file system. It's the job of the client code to do
@@ -23,7 +22,6 @@ import sys
 import six
 
 from utils import fs
-
 
 # Valid variable name.
 VALID_VARIABLE = '[A-Za-z_][A-Za-z_0-9]*'
@@ -51,9 +49,8 @@ def determine_root_dir(relative_root, infiles):
       x = os.path.dirname(x)
     if deepest_root.startswith(x):
       deepest_root = x
-  logging.info(
-      'determine_root_dir(%s, %d files) -> %s',
-      relative_root, len(infiles), deepest_root)
+  logging.info('determine_root_dir(%s, %d files) -> %s', relative_root,
+               len(infiles), deepest_root)
   return deepest_root
 
 
@@ -62,8 +59,8 @@ def replace_variable(part, variables):
   if m:
     if m.group(1) not in variables:
       raise IsolateError(
-        'Variable "%s" was not found in %s.\nDid you forget to specify '
-        '--path-variable?' % (m.group(1), variables))
+          'Variable "%s" was not found in %s.\nDid you forget to specify '
+          '--path-variable?' % (m.group(1), variables))
     return str(variables[m.group(1)])
   return part
 
@@ -202,8 +199,8 @@ def match_configs(expr, config_variables, all_configs):
   # TODO(maruel): Use the intelligent way by inspecting expr instead of doing
   # trial and error to figure out which variable is bound.
   combinations = []
-  for bound_variables in itertools.product(
-      (True, False), repeat=len(config_variables)):
+  for bound_variables in itertools.product((True, False),
+                                           repeat=len(config_variables)):
     # Add the combination of variables bound.
     combinations.append(
         ([c for c, b in zip(config_variables, bound_variables) if b],
@@ -232,9 +229,9 @@ def match_configs(expr, config_variables, all_configs):
 def verify_variables(variables):
   """Verifies the |variables| dictionary is in the expected format."""
   VALID_VARIABLES = [
-    'command',
-    'files',
-    'read_only',
+      'command',
+      'files',
+      'read_only',
   ]
   assert isinstance(variables, dict), variables
   assert set(VALID_VARIABLES).issuperset(set(variables)), variables.keys()
@@ -312,10 +309,9 @@ def verify_root(value, variables_and_values):
 
 def get_folders(values_dict):
   """Returns a dict of all the folders in the given value_dict."""
-  return dict(
-    (item, configs) for (item, configs) in values_dict.items()
-    if item.endswith('/')
-  )
+  return dict((item, configs)
+              for (item, configs) in values_dict.items()
+              if item.endswith('/'))
 
 
 class ConfigSettings(object):
@@ -329,6 +325,7 @@ class ConfigSettings(object):
   .files is the list of dependencies. The items use '/' as a path separator.
   .read_only describe how to map the files.
   """
+
   def __init__(self, values, isolate_dir):
     verify_variables(values)
     if isolate_dir is None:
@@ -391,9 +388,10 @@ class ConfigSettings(object):
       return sorted(l + list(map(rebase_item, r)))
 
     var = {
-      'command': self.command or rhs.command,
-      'files': map_both(self.files, rhs.files),
-      'read_only': rhs.read_only if self.read_only is None else self.read_only,
+        'command': self.command or rhs.command,
+        'files': map_both(self.files, rhs.files),
+        'read_only': rhs.read_only
+                     if self.read_only is None else self.read_only,
     }
     return ConfigSettings(var, l_rel_cwd)
 
@@ -455,6 +453,7 @@ class Configs(object):
   configuration selected. It is implicitly dependent on which .isolate defines
   the 'command' that will take effect.
   """
+
   def __init__(self, file_comment, config_variables):
     self.file_comment = file_comment
     # Contains the names of the config variables seen while processing
@@ -534,9 +533,8 @@ class Configs(object):
     return dict((k, v.flatten()) for k, v in self._by_config.items())
 
   def __str__(self):
-    return 'Configs(%s,%s)' % (
-      self._config_variables,
-      ''.join('\n  %s' % str(f) for f in self._by_config))
+    return 'Configs(%s,%s)' % (self._config_variables, ''.join(
+        '\n  %s' % str(f) for f in self._by_config))
 
 
 def load_included_isolate(isolate_dir, isolate_path):

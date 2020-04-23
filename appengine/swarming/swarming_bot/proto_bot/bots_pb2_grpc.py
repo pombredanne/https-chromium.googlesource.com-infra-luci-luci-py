@@ -19,17 +19,18 @@ class BotsStub(object):
         '/google.devtools.remoteworkers.v1test2.Bots/CreateBotSession',
         request_serializer=bots__pb2.CreateBotSessionRequest.SerializeToString,
         response_deserializer=bots__pb2.BotSession.FromString,
-        )
+    )
     self.UpdateBotSession = channel.unary_unary(
         '/google.devtools.remoteworkers.v1test2.Bots/UpdateBotSession',
         request_serializer=bots__pb2.UpdateBotSessionRequest.SerializeToString,
         response_deserializer=bots__pb2.BotSession.FromString,
-        )
+    )
     self.PostBotEventTemp = channel.unary_unary(
         '/google.devtools.remoteworkers.v1test2.Bots/PostBotEventTemp',
         request_serializer=bots__pb2.PostBotEventTempRequest.SerializeToString,
-        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty
+        .FromString,
+    )
 
 
 class BotsServicer(object):
@@ -65,7 +66,8 @@ def add_BotsServicer_to_server(servicer, server):
       'PostBotEventTemp': grpc.unary_unary_rpc_method_handler(
           servicer.PostBotEventTemp,
           request_deserializer=bots__pb2.PostBotEventTempRequest.FromString,
-          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty
+          .SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

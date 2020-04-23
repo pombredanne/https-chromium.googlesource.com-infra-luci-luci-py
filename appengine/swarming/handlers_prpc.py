@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Swarming Server frontend pRPC handlers."""
 
 import logging
@@ -56,8 +55,8 @@ class BotAPIService(object):
       if end:
         q = q.filter(bot_management.BotEvent.ts < end)
 
-      items, cursor = datastore_utils.fetch_page(
-          q, page_size, request.page_token)
+      items, cursor = datastore_utils.fetch_page(q, page_size,
+                                                 request.page_token)
       if not items:
         # Check if the bot exists, if not, return a 404. We check BotRoot, not
         # BotInfo, so that even deleted bots can be queried. See bot_management

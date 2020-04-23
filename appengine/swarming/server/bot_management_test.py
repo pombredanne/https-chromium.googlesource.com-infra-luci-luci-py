@@ -29,30 +29,28 @@ from server import bot_management
 from server import config
 from server import task_queues
 
-
 _VERSION = unicode(hashlib.sha256().hexdigest())
 
 
-def _bot_event(
-    bot_id=None,
-    external_ip='8.8.4.4',
-    authenticated_as=None,
-    dimensions=None,
-    state=None,
-    version=_VERSION,
-    quarantined=False,
-    maintenance_msg=None,
-    task_id=None,
-    task_name=None,
-    **kwargs):
+def _bot_event(bot_id=None,
+               external_ip='8.8.4.4',
+               authenticated_as=None,
+               dimensions=None,
+               state=None,
+               version=_VERSION,
+               quarantined=False,
+               maintenance_msg=None,
+               task_id=None,
+               task_name=None,
+               **kwargs):
   """Calls bot_management.bot_event with default arguments."""
   if not bot_id:
     bot_id = u'id1'
   if not dimensions and kwargs.get('event_type') != 'bot_connected':
     dimensions = {
-      u'id': [bot_id],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
+        u'id': [bot_id],
+        u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+        u'pool': [u'default'],
     }
   if not authenticated_as:
     authenticated_as = u'bot:%s.domain' % bot_id
@@ -79,34 +77,36 @@ def _ensure_bot_info(bot_id=u'id1', **kwargs):
 
 def _gen_bot_info(**kwargs):
   out = {
-    'authenticated_as': u'bot:id1.domain',
-    'composite': [
-      bot_management.BotInfo.NOT_IN_MAINTENANCE,
-      bot_management.BotInfo.ALIVE,
-      bot_management.BotInfo.HEALTHY,
-      bot_management.BotInfo.IDLE,
-    ],
-    'dimensions': {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
-    },
-    'external_ip': u'8.8.4.4',
-    'first_seen_ts': utils.utcnow(),
-    'id': 'id1',
-    'is_dead': False,
-    'last_seen_ts': utils.utcnow(),
-    'lease_id': None,
-    'lease_expiration_ts': None,
-    'leased_indefinitely': None,
-    'machine_lease': None,
-    'machine_type': None,
-    'quarantined': False,
-    'maintenance_msg': None,
-    'state': {u'ram': 65},
-    'task_id': None,
-    'task_name': None,
-    'version': _VERSION,
+      'authenticated_as': u'bot:id1.domain',
+      'composite': [
+          bot_management.BotInfo.NOT_IN_MAINTENANCE,
+          bot_management.BotInfo.ALIVE,
+          bot_management.BotInfo.HEALTHY,
+          bot_management.BotInfo.IDLE,
+      ],
+      'dimensions': {
+          u'id': [u'id1'],
+          u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+          u'pool': [u'default'],
+      },
+      'external_ip': u'8.8.4.4',
+      'first_seen_ts': utils.utcnow(),
+      'id': 'id1',
+      'is_dead': False,
+      'last_seen_ts': utils.utcnow(),
+      'lease_id': None,
+      'lease_expiration_ts': None,
+      'leased_indefinitely': None,
+      'machine_lease': None,
+      'machine_type': None,
+      'quarantined': False,
+      'maintenance_msg': None,
+      'state': {
+          u'ram': 65
+      },
+      'task_id': None,
+      'task_name': None,
+      'version': _VERSION,
   }
   out.update(kwargs)
   return out
@@ -114,27 +114,29 @@ def _gen_bot_info(**kwargs):
 
 def _gen_bot_event(**kwargs):
   out = {
-    'authenticated_as': u'bot:id1.domain',
-    'dimensions': {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
-    },
-    'external_ip': u'8.8.4.4',
-    'last_seen_ts': None,
-    'lease_id': None,
-    'lease_expiration_ts': None,
-    'leased_indefinitely': None,
-    'machine_lease': None,
-    'machine_type': None,
-    'message': None,
-    'quarantined': False,
-    'maintenance_msg': None,
-    'state': {u'ram': 65},
-    'task_id': None,
-    'ts': utils.utcnow(),
-    'version': _VERSION,
-    }
+      'authenticated_as': u'bot:id1.domain',
+      'dimensions': {
+          u'id': [u'id1'],
+          u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+          u'pool': [u'default'],
+      },
+      'external_ip': u'8.8.4.4',
+      'last_seen_ts': None,
+      'lease_id': None,
+      'lease_expiration_ts': None,
+      'leased_indefinitely': None,
+      'machine_lease': None,
+      'machine_type': None,
+      'message': None,
+      'quarantined': False,
+      'maintenance_msg': None,
+      'state': {
+          u'ram': 65
+      },
+      'task_id': None,
+      'ts': utils.utcnow(),
+      'version': _VERSION,
+  }
   out.update(kwargs)
   return out
 
@@ -165,9 +167,9 @@ class BotManagementTest(test_case.TestCase):
   def test_BotEvent_proto_events(self):
     # Ensures all bot event states can be converted to a proto.
     dimensions = {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
+        u'id': [u'id1'],
+        u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+        u'pool': [u'default'],
     }
     for name in bot_management.BotEvent.ALLOWED_EVENTS:
       event_key = _bot_event(
@@ -183,8 +185,10 @@ class BotManagementTest(test_case.TestCase):
   def test_BotEvent_proto_maintenance(self):
     # Also test a misconfigured bot not in a pool.
     event_key = _bot_event(
-        event_type=u'bot_connected', bot_id=u'id1',
-        dimensions={u'id': [u'id1']}, maintenance_msg=u'Too hot')
+        event_type=u'bot_connected',
+        bot_id=u'id1',
+        dimensions={u'id': [u'id1']},
+        maintenance_msg=u'Too hot')
     actual = swarming_pb2.BotEvent()
     event_key.get().to_proto(actual)
     expected = swarming_pb2.BotEvent(
@@ -192,15 +196,14 @@ class BotManagementTest(test_case.TestCase):
         bot=swarming_pb2.Bot(
             bot_id=u'id1',
             dimensions=[
-              swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
+                swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
             ],
             status=swarming_pb2.OVERHEAD_MAINTENANCE_EXTERNAL,
             status_msg=u'Too hot',
             info=swarming_pb2.BotInfo(
-                supplemental=struct_pb2.Struct(
-                    fields={
-                      u'ram': struct_pb2.Value(number_value=65),
-                    }),
+                supplemental=struct_pb2.Struct(fields={
+                    u'ram': struct_pb2.Value(number_value=65),
+                }),
                 version=_VERSION,
                 external_ip=u'8.8.4.4',
                 authenticated_as=u'bot:id1.domain',
@@ -213,9 +216,16 @@ class BotManagementTest(test_case.TestCase):
   def test_BotEvent_proto_quarantine(self):
     # Also test that a bot can belong to two pools.
     event_key = _bot_event(
-        event_type=u'bot_connected', bot_id=u'id1',
-        dimensions={u'id': [u'id1'], u'pool': [u'next', u'previous']},
-        state={u'ram': 65, u'quarantined': u'sad bot'},
+        event_type=u'bot_connected',
+        bot_id=u'id1',
+        dimensions={
+            u'id': [u'id1'],
+            u'pool': [u'next', u'previous']
+        },
+        state={
+            u'ram': 65,
+            u'quarantined': u'sad bot'
+        },
         quarantined=True)
     actual = swarming_pb2.BotEvent()
     event_key.get().to_proto(actual)
@@ -225,17 +235,18 @@ class BotManagementTest(test_case.TestCase):
             bot_id=u'id1',
             pools=[u'next', u'previous'],
             dimensions=[
-              swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
-              swarming_pb2.StringListPair(
-                  key=u'pool', values=[u'next', u'previous']),
+                swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
+                swarming_pb2.StringListPair(
+                    key=u'pool', values=[u'next', u'previous']),
             ],
             status=swarming_pb2.QUARANTINED_BY_BOT,
             status_msg=u'sad bot',
             info=swarming_pb2.BotInfo(
                 supplemental=struct_pb2.Struct(
                     fields={
-                      u'quarantined': struct_pb2.Value(string_value=u'sad bot'),
-                      u'ram': struct_pb2.Value(number_value=65),
+                        u'quarantined': struct_pb2.Value(
+                            string_value=u'sad bot'),
+                        u'ram': struct_pb2.Value(number_value=65),
                     }),
                 version=_VERSION,
                 external_ip=u'8.8.4.4',
@@ -249,20 +260,20 @@ class BotManagementTest(test_case.TestCase):
   def test_bot_event(self):
     # connected.
     d = {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
+        u'id': [u'id1'],
+        u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+        u'pool': [u'default'],
     }
     event = 'request_sleep'
     _bot_event(event_type=event, bot_id='id1', dimensions=d)
 
     expected = _gen_bot_info()
-    self.assertEqual(
-        expected, bot_management.get_info_key('id1').get().to_dict())
+    self.assertEqual(expected,
+                     bot_management.get_info_key('id1').get().to_dict())
 
-    self.assertEqual(
-        [event, 5],
-        memcache.get('id1:2010-01-02T03:04', namespace='BotEvents'))
+    self.assertEqual([event, 5],
+                     memcache.get(
+                         'id1:2010-01-02T03:04', namespace='BotEvents'))
 
   @parameterized.expand([
       (u'task_completed', True, False),
@@ -298,13 +309,13 @@ class BotManagementTest(test_case.TestCase):
     if reset_task:
       # bot_info.task_id and bot_info.task_name should be reset
       expected = _gen_bot_info(
-          composite=composite+[bot_management.BotInfo.IDLE],
+          composite=composite + [bot_management.BotInfo.IDLE],
           id=bot_id,
           task_name=None)
     else:
       # bot_info.task_id and bot_info.task_name should be kept
       expected = _gen_bot_info(
-          composite=composite+[bot_management.BotInfo.BUSY],
+          composite=composite + [bot_management.BotInfo.BUSY],
           id=bot_id,
           task_id=task_id,
           task_name=task_name)
@@ -362,10 +373,10 @@ class BotManagementTest(test_case.TestCase):
     _bot_event(event_type='request_task', task_id='12311', task_name='yo')
     expected = _gen_bot_info(
         composite=[
-          bot_management.BotInfo.NOT_IN_MAINTENANCE,
-          bot_management.BotInfo.ALIVE,
-          bot_management.BotInfo.HEALTHY,
-          bot_management.BotInfo.BUSY,
+            bot_management.BotInfo.NOT_IN_MAINTENANCE,
+            bot_management.BotInfo.ALIVE,
+            bot_management.BotInfo.HEALTHY,
+            bot_management.BotInfo.BUSY,
         ],
         task_id=u'12311',
         task_name=u'yo')
@@ -373,16 +384,16 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(expected, bot_info.to_dict())
 
     expected = [
-      _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
-      _gen_bot_event(event_type=u'bot_connected', dimensions={}),
+        _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
+        _gen_bot_event(event_type=u'bot_connected', dimensions={}),
     ]
     self.assertEqual(
         expected,
         [e.to_dict() for e in bot_management.get_events_query('id1', True)])
 
-    self.assertEqual(
-        ['bot_connected', 5, 'request_task', 5],
-        memcache.get('id1:2010-01-02T03:04', namespace='BotEvents'))
+    self.assertEqual(['bot_connected', 5, 'request_task', 5],
+                     memcache.get(
+                         'id1:2010-01-02T03:04', namespace='BotEvents'))
 
   def test_bot_event_update_dimensions(self):
     bot_id = 'id1'
@@ -399,16 +410,18 @@ class BotManagementTest(test_case.TestCase):
     # 'request_sleep' initializes BotInfo with given dimensions at first poll.
     _bot_event(
         event_type='request_sleep',
-        dimensions={'id': ['id1'], 'os': ['Android'], 'pool': ['default']})
-    self.assertEqual(
-        bot_info_key.get().dimensions_flat,
-        [u'id:id1', u'os:Android', u'pool:default'])
+        dimensions={
+            'id': ['id1'],
+            'os': ['Android'],
+            'pool': ['default']
+        })
+    self.assertEqual(bot_info_key.get().dimensions_flat,
+                     [u'id:id1', u'os:Android', u'pool:default'])
 
     # 'bot_connected' doesn't update dimensions since bot_config isn't injected.
     _bot_event(event_type='bot_connected')
-    self.assertEqual(
-        bot_info_key.get().dimensions_flat,
-        [u'id:id1', u'os:Android', u'pool:default'])
+    self.assertEqual(bot_info_key.get().dimensions_flat,
+                     [u'id:id1', u'os:Android', u'pool:default'])
 
   def test_get_info_key(self):
     self.assertEqual(
@@ -421,8 +434,8 @@ class BotManagementTest(test_case.TestCase):
         bot_management.get_root_key('foo'))
 
   def test_get_settings_key(self):
-    expected = ndb.Key(
-        bot_management.BotRoot, 'foo', bot_management.BotSettings, 'settings')
+    expected = ndb.Key(bot_management.BotRoot, 'foo',
+                       bot_management.BotSettings, 'settings')
     self.assertEqual(expected, bot_management.get_settings_key('foo'))
 
   def test_has_capacity(self):
@@ -442,8 +455,11 @@ class BotManagementTest(test_case.TestCase):
     # A bot comes online. There's some capacity now.
     _bot_event(
         event_type='request_sleep',
-        dimensions={'id': ['id1'], 'pool': ['default'], 'os': ['Ubuntu',
-          'Ubuntu-16.04']})
+        dimensions={
+            'id': ['id1'],
+            'pool': ['default'],
+            'os': ['Ubuntu', 'Ubuntu-16.04']
+        })
     self.assertEqual(1, bot_management.BotInfo.query().count())
     self.assertEqual(True, bot_management.has_capacity(d))
 
@@ -463,8 +479,11 @@ class BotManagementTest(test_case.TestCase):
     botid = 'id1'
     _bot_event(
         event_type='request_sleep',
-        dimensions={'id': [botid], 'pool': ['default'], 'os': ['Ubuntu',
-          'Ubuntu-16.04']})
+        dimensions={
+            'id': [botid],
+            'pool': ['default'],
+            'os': ['Ubuntu', 'Ubuntu-16.04']
+        })
     self.assertEqual(True, bot_management.has_capacity(d))
 
     or_dimensions = {
@@ -478,7 +497,7 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(True, bot_management.has_capacity(d))
     self.assertEqual(True, bot_management.has_capacity(or_dimensions))
 
-    self.mock_now(self.now, config.settings().bot_death_timeout_secs-1)
+    self.mock_now(self.now, config.settings().bot_death_timeout_secs - 1)
     self.assertEqual(True, bot_management.has_capacity(d))
     self.assertEqual(True, bot_management.has_capacity(or_dimensions))
 
@@ -489,40 +508,53 @@ class BotManagementTest(test_case.TestCase):
   def test_cron_update_bot_info(self):
     # Create two bots, one becomes dead, updating the cron job fixes composite.
     timeout = bot_management.config.settings().bot_death_timeout_secs
+
     def check(dead, alive):
       q = bot_management.filter_availability(
-          bot_management.BotInfo.query(), quarantined=None, in_maintenance=None,
-          is_dead=True, is_busy=None)
+          bot_management.BotInfo.query(),
+          quarantined=None,
+          in_maintenance=None,
+          is_dead=True,
+          is_busy=None)
       self.assertEqual(dead, [t.to_dict() for t in q])
       q = bot_management.filter_availability(
-          bot_management.BotInfo.query(), quarantined=None, in_maintenance=None,
-          is_dead=False, is_busy=None)
+          bot_management.BotInfo.query(),
+          quarantined=None,
+          in_maintenance=None,
+          is_dead=False,
+          is_busy=None)
       self.assertEqual(alive, [t.to_dict() for t in q])
 
     _bot_event(event_type='request_sleep')
     # One second before the timeout value.
-    then = self.mock_now(self.now, timeout-1)
+    then = self.mock_now(self.now, timeout - 1)
     _bot_event(
         event_type='request_sleep',
         bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:id2.domain',
-        dimensions={'id': ['id2'], 'foo': ['bar']})
+        external_ip='8.8.4.4',
+        authenticated_as='bot:id2.domain',
+        dimensions={
+            'id': ['id2'],
+            'foo': ['bar']
+        })
 
-    bot1_alive = _gen_bot_info(
-        first_seen_ts=self.now, last_seen_ts=self.now)
+    bot1_alive = _gen_bot_info(first_seen_ts=self.now, last_seen_ts=self.now)
     bot1_dead = _gen_bot_info(
         first_seen_ts=self.now,
         last_seen_ts=self.now,
         composite=[
-          bot_management.BotInfo.NOT_IN_MAINTENANCE,
-          bot_management.BotInfo.DEAD,
-          bot_management.BotInfo.HEALTHY,
-          bot_management.BotInfo.IDLE,
+            bot_management.BotInfo.NOT_IN_MAINTENANCE,
+            bot_management.BotInfo.DEAD,
+            bot_management.BotInfo.HEALTHY,
+            bot_management.BotInfo.IDLE,
         ],
         is_dead=True)
     bot2_alive = _gen_bot_info(
         authenticated_as=u'bot:id2.domain',
-        dimensions={u'foo': [u'bar'], u'id': [u'id2']},
+        dimensions={
+            u'foo': [u'bar'],
+            u'id': [u'id2']
+        },
         first_seen_ts=then,
         id='id2',
         last_seen_ts=then)
@@ -573,33 +605,35 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(2, bot_management.cron_delete_old_bot())
     actual = bot_management.BotEvent.query().fetch(keys_only=True)
     self.assertEqual([event_key], actual)
-    self.assertEqual(
-        [u'id1'],
-        [k.string_id() for k in
-          bot_management.BotRoot.query().fetch(keys_only=True)])
+    self.assertEqual([u'id1'], [
+        k.string_id()
+        for k in bot_management.BotRoot.query().fetch(keys_only=True)
+    ])
 
   def test_cron_aggregate_dimensions(self):
     # TODO(maruel): https://crbug.com/912154
     self.assertEqual(0, bot_management.cron_aggregate_dimensions())
 
   def test_filter_dimensions(self):
-    pass # Tested in handlers_endpoints_test
+    pass  # Tested in handlers_endpoints_test
 
   def test_filter_availability(self):
-    pass # Tested in handlers_endpoints_test
+    pass  # Tested in handlers_endpoints_test
 
   def test_task_bq_empty(self):
     # Empty, nothing is done.
     start = utils.utcnow()
-    end = start+datetime.timedelta(seconds=60)
+    end = start + datetime.timedelta(seconds=60)
     self.assertEqual((0, 0), bot_management.task_bq_events(start, end))
 
   def test_task_bq_events(self):
     payloads = []
+
     def send_to_bq(table_name, rows):
       self.assertEqual('bot_events', table_name)
       payloads.append(rows)
       return 0
+
     self.mock(bq_state, 'send_to_bq', send_to_bq)
 
     # Generate a few events.

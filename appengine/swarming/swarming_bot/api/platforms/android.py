@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Android specific utility functions.
 
 This file serves as an API to bot_config.py. bot_config.py can be replaced on
@@ -102,8 +101,8 @@ KNOWN_APPS = frozenset([
 def get_unknown_apps(device):
   return [
       p for p in device.GetPackages() or []
-      if (not p.startswith(('com.android.', 'com.google.')) and
-          p not in KNOWN_APPS)
+      if (not p.startswith(('com.android.',
+                            'com.google.')) and p not in KNOWN_APPS)
   ]
 
 
@@ -117,7 +116,7 @@ def get_devices(bot=None, endpoints=None, enable_resets=False):
   devices = []
   if not gce.is_gce():
     devices += high.GetLocalDevices(
-      'swarming', 10000, 10000, as_root=False, enable_resets=enable_resets)
+        'swarming', 10000, 10000, as_root=False, enable_resets=enable_resets)
 
   if endpoints:
     devices += high.GetRemoteDevices(
@@ -146,10 +145,10 @@ def get_dimensions(devices):
   # build.product because the latter is deprecated.
   # https://android.googlesource.com/platform/build/+/master/tools/buildinfo.sh
   dimension_properties = {
-    u'device_os': ['build.id'],
-    u'device_os_flavor': ['product.brand', 'product.system.brand'],
-    u'device_os_type': ['build.type'],
-    u'device_type': ['product.device', 'build.product', 'product.board'],
+      u'device_os': ['build.id'],
+      u'device_os_flavor': ['product.brand', 'product.system.brand'],
+      u'device_os_type': ['build.type'],
+      u'device_type': ['product.device', 'build.product', 'product.board'],
   }
   for dim in dimension_properties:
     dimensions[dim] = set()
@@ -176,7 +175,9 @@ def get_dimensions(devices):
 
   # Add the first character of each device_os to the dimension.
   android_vers = {
-    os[0] for os in dimensions.get(u'device_os', []) if os and os[0].isupper()
+      os[0]
+      for os in dimensions.get(u'device_os', [])
+      if os and os[0].isupper()
   }
   dimensions[u'device_os'] = dimensions[u'device_os'].union(android_vers)
   dimensions[u'android'].sort()
@@ -188,6 +189,7 @@ def get_dimensions(devices):
 
   # Tweaks the 'product.brand' prop to be a little more readable.
   if dimensions.get(u'device_os_flavor'):
+
     def _fix_flavor(flavor):
       flavor = flavor.lower()
       # Non-aosp stock android is reported as 'google'. Other OEMs that ship
@@ -200,7 +202,7 @@ def get_dimensions(devices):
 
   nb_android = len(dimensions[u'android'])
   dimensions[u'android_devices'] = map(
-      str, range(nb_android, max(0, nb_android-4), -1))
+      str, range(nb_android, max(0, nb_android - 4), -1))
 
   # TODO(maruel): Add back once dimensions limit is figured out and there's a
   # need.
@@ -211,8 +213,7 @@ def get_dimensions(devices):
   dimensions[u'os'] = ['Android']
 
   logging.info(
-      'get_dimensions() (device part) took %gs' %
-      round(time.time() - start, 1))
+      'get_dimensions() (device part) took %gs' % round(time.time() - start, 1))
 
   def _get_package_versions(package):
     versions = set()
@@ -234,16 +235,9 @@ def get_dimensions(devices):
 def get_state(devices):
   """Returns state information about all the devices connected to the host.
   """
-  keys = (
-    u'board.platform',
-    u'build.product',
-    u'build.fingerprint',
-    u'build.id',
-    u'build.type',
-    u'build.version.sdk',
-    u'product.board',
-    u'product.cpu.abi',
-    u'product.device')
+  keys = (u'board.platform', u'build.product', u'build.fingerprint',
+          u'build.id', u'build.type', u'build.version.sdk', u'product.board',
+          u'product.cpu.abi', u'product.device')
 
   def fn(device):
     if not device.is_valid or device.failure:
@@ -253,21 +247,23 @@ def get_state(devices):
       return {u'state': 'unavailable'}
     no_sd_card = properties.get(u'ro.product.model', '') in ['Chromecast']
     return {
-      u'battery': device.GetBattery(),
-      u'build': {key: properties.get(u'ro.'+key, '<missing>') for key in keys},
-      u'cpu': device.GetCPUScale(),
-      u'disk': device.GetDisk(),
-      u'imei': device.GetIMEI(),
-      u'ip': device.GetIPs(),
-      u'max_uid': device.GetLastUID(),
-      u'mem': device.GetMemInfo(),
-      u'other_packages': get_unknown_apps(device),
-      u'port_path': device.port_path,
-      u'processes': device.GetProcessCount(),
-      u'state': (u'available' if
-          no_sd_card or device.IsFullyBooted()[0] else u'booting'),
-      u'temp': device.GetTemperatures(),
-      u'uptime': device.GetUptime(),
+        u'battery': device.GetBattery(),
+        u'build': {
+            key: properties.get(u'ro.' + key, '<missing>') for key in keys
+        },
+        u'cpu': device.GetCPUScale(),
+        u'disk': device.GetDisk(),
+        u'imei': device.GetIMEI(),
+        u'ip': device.GetIPs(),
+        u'max_uid': device.GetLastUID(),
+        u'mem': device.GetMemInfo(),
+        u'other_packages': get_unknown_apps(device),
+        u'port_path': device.port_path,
+        u'processes': device.GetProcessCount(),
+        u'state': (u'available'
+                   if no_sd_card or device.IsFullyBooted()[0] else u'booting'),
+        u'temp': device.GetTemperatures(),
+        u'uptime': device.GetUptime(),
     }
 
   start = time.time()
@@ -278,6 +274,5 @@ def get_state(devices):
       }
   }
   logging.info(
-      'get_state() (device part) took %gs' %
-      round(time.time() - start, 1))
+      'get_state() (device part) took %gs' % round(time.time() - start, 1))
   return state

@@ -8,7 +8,6 @@ import sys
 
 import six
 
-
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 APPENGINE_DIR = os.path.dirname(os.path.dirname(THIS_DIR))
 COMPONENTS_DIR = os.path.join(APPENGINE_DIR, 'components')

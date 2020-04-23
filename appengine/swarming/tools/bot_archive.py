@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Generates the swarming_bot.zip archive for local testing."""
 
 import argparse
@@ -21,8 +20,8 @@ def read_config():
 
 def get_swarming_bot_zip():
   config = read_config()
-  bot_config_path = os.path.join(
-      ROOT_DIR, 'swarming_bot', 'config', 'bot_config.py')
+  bot_config_path = os.path.join(ROOT_DIR, 'swarming_bot', 'config',
+                                 'bot_config.py')
   with open(bot_config_path, 'rb') as f:
     additionals = {'config/bot_config.py': f.read()}
   from server import bot_archive

@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utilities."""
 
 import logging
@@ -30,6 +29,7 @@ def exec_python(args):
     # TODO(maruel): If stdin closes, it tells the child process that the parent
     # process died.
     proc = subprocess42.Popen(cmd, detached=True, stdin=subprocess42.PIPE)
+
     def handler(sig, _):
       logging.info('Got signal %s', sig)
       # Always send SIGTERM, which is properly translated.

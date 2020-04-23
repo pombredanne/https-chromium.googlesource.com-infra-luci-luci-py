@@ -21,6 +21,7 @@ from server import bot_code
 
 
 class FrontendTest(test_env_handlers.AppTestBase):
+
   def setUp(self):
     super(FrontendTest, self).setUp()
     template.bootstrap()
@@ -28,8 +29,8 @@ class FrontendTest(test_env_handlers.AppTestBase):
     self.app = webtest.TestApp(
         handlers_frontend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
 
   def tearDown(self):
@@ -50,24 +51,22 @@ class FrontendTest(test_env_handlers.AppTestBase):
     # URL prefixes that correspond to routes that are not protected by swarming
     # app code. It may be routes that do not require login or routes protected
     # by GAE itself via 'login: admin' in app.yaml.
-    using_app_login_prefixes = (
-      '/auth/',
-    )
+    using_app_login_prefixes = ('/auth/',)
 
     public_urls = frozenset([
-      '/',
-      '/oldui',
-      '/_ah/warmup',
-      '/api/config/v1/validate',
-      '/auth',
-      '/ereporter2/api/v1/on_error',
-      '/api/discovery/v1/apis',
-      '/api/static/proxy.html',
-      '/api/swarming/v1/server/permissions',
-      '/swarming/api/v1/client/list',
-      '/swarming/api/v1/bot/server_ping',
-      '/user/tasks',
-      '/restricted/bots',
+        '/',
+        '/oldui',
+        '/_ah/warmup',
+        '/api/config/v1/validate',
+        '/auth',
+        '/ereporter2/api/v1/on_error',
+        '/api/discovery/v1/apis',
+        '/api/static/proxy.html',
+        '/api/swarming/v1/server/permissions',
+        '/swarming/api/v1/client/list',
+        '/swarming/api/v1/bot/server_ping',
+        '/user/tasks',
+        '/restricted/bots',
     ])
 
     # Grab the set of all routes.
@@ -77,9 +76,9 @@ class FrontendTest(test_env_handlers.AppTestBase):
 
     # Get all routes that are not protected by GAE auth mechanism.
     routes_to_check = [
-      route for route in routes
-      if (route.template not in public_urls and
-          not route.template.startswith(using_app_login_prefixes))
+        route for route in routes
+        if (route.template not in public_urls and
+            not route.template.startswith(using_app_login_prefixes))
     ]
 
     # Produces a body to POST to a /swarming/api/v1/bot/* request.
@@ -114,12 +113,11 @@ class FrontendTest(test_env_handlers.AppTestBase):
       if response.status_int == 302:
         # There's two reasons, either login or redirect to api-explorer.
         options = (
-          # See user_service_stub.py, _DEFAULT_LOGIN_URL.
-          'https://www.google.com/accounts/Login?continue=',
-          'https://apis-explorer.appspot.com/apis-explorer',
+            # See user_service_stub.py, _DEFAULT_LOGIN_URL.
+            'https://www.google.com/accounts/Login?continue=',
+            'https://apis-explorer.appspot.com/apis-explorer',
         )
-        self.assertTrue(
-            response.headers['Location'].startswith(options), route)
+        self.assertTrue(response.headers['Location'].startswith(options), route)
 
     self.set_as_anonymous()
     # Try to execute 'get' and 'post' and verify they fail with 403 or 405.

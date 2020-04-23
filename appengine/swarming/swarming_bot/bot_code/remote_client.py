@@ -22,7 +22,6 @@ from remote_client_errors import InternalError
 from remote_client_errors import MintOAuthTokenError
 from remote_client_errors import PollError
 
-
 # RemoteClient will attempt to refresh the authentication headers once they are
 # this close to the expiration.
 #
@@ -39,13 +38,12 @@ from remote_client_errors import PollError
 # than the minimum expiration time of headers produced by bot_config's
 # get_authentication_headers hook (otherwise we'll be calling this hook all the
 # time). On GCE machines it is usually 10 min.
-AUTH_HEADERS_EXPIRATION_SEC = 9*60+30
-
+AUTH_HEADERS_EXPIRATION_SEC = 9 * 60 + 30
 
 # How long to wait for a response from the server. Must not be greater than
 # AUTH_HEADERS_EXPIRATION_SEC, since otherwise there's a chance auth headers
 # will expire while we wait for connection.
-NET_CONNECTION_TIMEOUT_SEC = 3*60
+NET_CONNECTION_TIMEOUT_SEC = 3 * 60
 
 
 def createRemoteClient(server, auth, hostname, work_dir, grpc_proxy):
@@ -223,13 +221,11 @@ class RemoteClientNative(object):
           if self._headers:
             logging.info(
                 'Fetched auth headers (%s), they expire in %d sec. '
-                'Next check in %d sec.',
-                self._headers.keys(),
-                self._exp_ts - time.time(),
-                next_check)
+                'Next check in %d sec.', self._headers.keys(),
+                self._exp_ts - time.time(), next_check)
           else:
-            logging.info(
-                'No headers available yet, next check in %d sec.', next_check)
+            logging.info('No headers available yet, next check in %d sec.',
+                         next_check)
         else:
           logging.info('Using auth headers (%s).', self._headers.keys())
       return self._headers or {}
@@ -292,8 +288,8 @@ class RemoteClientNative(object):
     if exit_code != None:
       data['exit_code'] = exit_code
 
-    resp = self._url_read_json(
-        '/swarming/api/v1/bot/task_update/%s' % task_id, data)
+    resp = self._url_read_json('/swarming/api/v1/bot/task_update/%s' % task_id,
+                               data)
     logging.debug('post_task_update() = %s', resp)
     if not resp or resp.get('error'):
       raise InternalError(
@@ -308,15 +304,13 @@ class RemoteClientNative(object):
         'task_id': task_id,
     }
     resp = self._url_read_json(
-        '/swarming/api/v1/bot/task_error/%s' % task_id,
-        data=data)
+        '/swarming/api/v1/bot/task_error/%s' % task_id, data=data)
     return resp and resp['resp'] == 1
 
   def do_handshake(self, attributes):
     """Performs the initial handshake. Returns a dict (contents TBD)"""
     return self._url_read_json(
-        '/swarming/api/v1/bot/handshake',
-        data=attributes)
+        '/swarming/api/v1/bot/handshake', data=attributes)
 
   def poll(self, attributes):
     """Polls for new work or other commands; returns a (cmd, value) pair as
@@ -329,8 +323,7 @@ class RemoteClientNative(object):
     """
     resp = self._url_read_json('/swarming/api/v1/bot/poll', data=attributes)
     if not resp or resp.get('error'):
-      raise PollError(
-          resp.get('error') if resp else 'Failed to contact server')
+      raise PollError(resp.get('error') if resp else 'Failed to contact server')
 
     cmd = resp['cmd']
     if cmd == 'sleep':

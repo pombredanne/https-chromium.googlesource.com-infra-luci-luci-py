@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Swarming bot code. Includes bootstrap and swarming_bot.zip.
 
 It includes everything that is AppEngine specific. The non-GAE code is in
@@ -25,7 +24,6 @@ from components import utils
 from server import bot_archive
 from server import config as local_config
 
-
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # In theory, a memcache entry can be 1MB in size, and this sometimes works, but
@@ -34,12 +32,9 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #    - aludwin@, June 2017
 MAX_MEMCACHED_SIZE_BYTES = 250000
 
-
 ### Models.
 
-
 File = collections.namedtuple('File', ('content', 'who', 'when', 'version'))
-
 
 ### Public APIs.
 
@@ -58,11 +53,10 @@ def get_bootstrap(host_url, bootstrap_token=None):
   if bootstrap_token:
     quoted = urllib.parse.quote_plus(bootstrap_token)
     assert bootstrap_token == quoted, bootstrap_token
-  header = (
-      '#!/usr/bin/env python\n'
-      '# coding: utf-8\n'
-      'host_url = %r\n'
-      'bootstrap_token = %r\n') % (host_url or '', bootstrap_token or '')
+  header = ('#!/usr/bin/env python\n'
+            '# coding: utf-8\n'
+            'host_url = %r\n'
+            'bootstrap_token = %r\n') % (host_url or '', bootstrap_token or '')
 
   # Check in luci-config imported file if present.
   rev, cfg = config.get_self_config(
@@ -115,9 +109,10 @@ def get_bot_version(host):
   # Need to calculate it.
   additionals = {'config/bot_config.py': get_bot_config().content}
   bot_dir = os.path.join(ROOT_DIR, 'swarming_bot')
-  version = bot_archive.get_swarming_bot_version(
-      bot_dir, host, utils.get_app_version(), additionals,
-      local_config.settings())
+  version = bot_archive.get_swarming_bot_version(bot_dir, host,
+                                                 utils.get_app_version(),
+                                                 additionals,
+                                                 local_config.settings())
   memcache.set('version-' + signature, version, namespace='bot_code', time=60)
   return version, additionals
 
@@ -137,12 +132,13 @@ def get_swarming_bot_zip(host):
   # Get the start bot script from the database, if present. Pass an empty
   # file if the files isn't present.
   additionals = additionals or {
-    'config/bot_config.py': get_bot_config().content,
+      'config/bot_config.py': get_bot_config().content,
   }
   bot_dir = os.path.join(ROOT_DIR, 'swarming_bot')
-  content, version = bot_archive.get_swarming_bot_zip(
-      bot_dir, host, utils.get_app_version(), additionals,
-      local_config.settings())
+  content, version = bot_archive.get_swarming_bot_zip(bot_dir, host,
+                                                      utils.get_app_version(),
+                                                      additionals,
+                                                      local_config.settings())
   logging.info('generated bot code %s; %d bytes', version, len(content))
   cache_swarming_bot_zip(version, content)
   return content
@@ -159,21 +155,22 @@ def get_cached_swarming_bot_zip(version):
 
   # Get everything asynchronously. If something's missing, the hash will be
   # wrong so no need to check that we got something from each call.
-  futures = [bot_memcache_get(version, 'content', p)
-             for p in range(int(num_parts))]
+  futures = [
+      bot_memcache_get(version, 'content', p) for p in range(int(num_parts))
+  ]
   content = ''
   missing = 0
   for idx, f in enumerate(futures):
     chunk = f.get_result()
     if chunk is None:
-      logging.debug(
-          'bot code %s was missing chunk %d/%d', version, idx, len(futures))
+      logging.debug('bot code %s was missing chunk %d/%d', version, idx,
+                    len(futures))
       missing += 1
     else:
       content += chunk
   if missing:
-    logging.warning(
-        'bot code %s was missing %d/%d chunks', version, missing, len(futures))
+    logging.warning('bot code %s was missing %d/%d chunks', version, missing,
+                    len(futures))
     return None
   h = hashlib.sha256()
   h.update(content)
@@ -192,28 +189,28 @@ def cache_swarming_bot_zip(version, content):
   futures = []
   while len(content) > 0:
     chunk_size = min(MAX_MEMCACHED_SIZE_BYTES, len(content))
-    futures.append(bot_memcache_set(content[:chunk_size],
-                                    version, 'content', p))
+    futures.append(
+        bot_memcache_set(content[:chunk_size], version, 'content', p))
     content = content[chunk_size:]
     p += 1
   for f in futures:
     f.check_success()
   meta = "%s:%s" % (p, h.hexdigest())
   bot_memcache_set(meta, version, 'meta').check_success()
-  logging.info('bot %s with sig %s saved in memcached in %d chunks',
-               version, h.hexdigest(), p)
+  logging.info('bot %s with sig %s saved in memcached in %d chunks', version,
+               h.hexdigest(), p)
 
 
 def bot_memcache_get(version, desc, part=None):
   """Mockable async memcache getter."""
-  return ndb.get_context().memcache_get(bot_key(version, desc, part),
-                                        namespace='bot_code')
+  return ndb.get_context().memcache_get(
+      bot_key(version, desc, part), namespace='bot_code')
 
 
 def bot_memcache_set(value, version, desc, part=None):
   """Mockable async memcache setter."""
-  return ndb.get_context().memcache_set(bot_key(version, desc, part),
-                                        value, namespace='bot_code')
+  return ndb.get_context().memcache_set(
+      bot_key(version, desc, part), value, namespace='bot_code')
 
 
 def bot_key(version, desc, part=None):
@@ -250,9 +247,10 @@ def generate_bootstrap_token():
   """
   # The embedded payload is mostly FYI. The important expiration time is added
   # by BootstrapToken already.
-  return BootstrapToken.generate(message=None, embedded={
-    'for': auth.get_current_identity().to_bytes(),
-  })
+  return BootstrapToken.generate(
+      message=None, embedded={
+          'for': auth.get_current_identity().to_bytes(),
+      })
 
 
 def validate_bootstrap_token(tok):

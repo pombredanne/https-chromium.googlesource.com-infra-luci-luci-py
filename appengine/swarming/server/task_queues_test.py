@@ -31,15 +31,24 @@ from server import task_request
 
 def _assert_bot(bot_id=u'bot1', dimensions=None):
   bot_dimensions = {
-    u'cpu': [u'x86-64', u'x64'],
-    u'id': [bot_id],
-    u'os': [u'Ubuntu-16.04', u'Ubuntu'],
-    u'pool': [u'default'],
+      u'cpu': [u'x86-64', u'x64'],
+      u'id': [bot_id],
+      u'os': [u'Ubuntu-16.04', u'Ubuntu'],
+      u'pool': [u'default'],
   }
   bot_dimensions.update(dimensions or {})
   bot_management.bot_event(
-      'request_sleep', bot_id, '1.2.3.4', bot_id, bot_dimensions, {},
-      '1234', False, None, None, None, register_dimensions=True)
+      'request_sleep',
+      bot_id,
+      '1.2.3.4',
+      bot_id,
+      bot_dimensions, {},
+      '1234',
+      False,
+      None,
+      None,
+      None,
+      register_dimensions=True)
   bot_root_key = bot_management.get_root_key(bot_id)
   return task_queues.assert_bot_async(bot_root_key, bot_dimensions).get_result()
 
@@ -47,15 +56,15 @@ def _assert_bot(bot_id=u'bot1', dimensions=None):
 def _gen_properties(**kwargs):
   """Creates a TaskProperties."""
   args = {
-    'command': [u'command1'],
-    'dimensions': {
-      u'cpu': [u'x86-64'],
-      u'os': [u'Ubuntu-16.04'],
-      u'pool': [u'default'],
-    },
-    'env': {},
-    'execution_timeout_secs': 24*60*60,
-    'io_timeout_secs': None,
+      'command': [u'command1'],
+      'dimensions': {
+          u'cpu': [u'x86-64'],
+          u'os': [u'Ubuntu-16.04'],
+          u'pool': [u'default'],
+      },
+      'env': {},
+      'execution_timeout_secs': 24 * 60 * 60,
+      'io_timeout_secs': None,
   }
   args.update(kwargs)
   args[u'dimensions_data'] = args.pop(u'dimensions')
@@ -66,16 +75,15 @@ def _gen_request(properties=None):
   """Creates a TaskRequest."""
   now = utils.utcnow()
   args = {
-    'created_ts': now,
-    'manual_tags': [u'tag:1'],
-    'name': 'Request name',
-    'priority': 50,
-    'task_slices': [
-      task_request.TaskSlice(
-          expiration_secs=60,
-          properties=properties or _gen_properties()),
-    ],
-    'user': 'Jesus',
+      'created_ts': now,
+      'manual_tags': [u'tag:1'],
+      'name': 'Request name',
+      'priority': 50,
+      'task_slices': [
+          task_request.TaskSlice(
+              expiration_secs=60, properties=properties or _gen_properties()),
+      ],
+      'user': 'Jesus',
   }
   req = task_request.TaskRequest(**args)
   task_request.init_new_request(req, True, task_request.TEMPLATE_AUTO)
@@ -83,14 +91,15 @@ def _gen_request(properties=None):
 
 
 class TaskQueuesApiTest(test_env_handlers.AppTestBase):
+
   def setUp(self):
     super(TaskQueuesApiTest, self).setUp()
     # Setup the backend to handle task queues.
     self.app = webtest.TestApp(
         handlers_backend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
     self._enqueue_async_orig = self.mock(utils, 'enqueue_task_async',
                                          self._enqueue_async)
@@ -169,16 +178,16 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     with self.assertRaises(datastore_errors.BadValueError):
       cls(sets=[setcls(dimensions_flat=['a:b'])]).put()
     with self.assertRaises(datastore_errors.BadValueError):
-      cls(sets=[
-        setcls(valid_until_ts=now, dimensions_flat=['a:b', 'a:b'])]).put()
+      cls(sets=[setcls(valid_until_ts=now, dimensions_flat=['a:b', 'a:b'])
+               ]).put()
+    with self.assertRaises(datastore_errors.BadValueError):
+      cls(sets=[setcls(valid_until_ts=now, dimensions_flat=['c:d', 'a:b'])
+               ]).put()
     with self.assertRaises(datastore_errors.BadValueError):
       cls(sets=[
-        setcls(valid_until_ts=now, dimensions_flat=['c:d', 'a:b'])]).put()
-    with self.assertRaises(datastore_errors.BadValueError):
-      cls(sets=[
-        setcls(valid_until_ts=now, dimensions_flat=['a:b', 'c:d']),
-        setcls(valid_until_ts=now, dimensions_flat=['a:b', 'c:d']),
-        ]).put()
+          setcls(valid_until_ts=now, dimensions_flat=['a:b', 'c:d']),
+          setcls(valid_until_ts=now, dimensions_flat=['a:b', 'c:d']),
+      ]).put()
     cls(sets=[setcls(valid_until_ts=now, dimensions_flat=['a:b'])]).put()
 
   def assert_count(self, count, entity):
@@ -204,15 +213,13 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     request = self._assert_task()
     self.assertEqual(1, _assert_bot())
     valid_until_ts = request.expiration_ts + task_queues._EXTEND_VALIDITY
-    self.assertEqual(
-        valid_until_ts,
-        task_queues.BotTaskDimensions.query().get().valid_until_ts)
+    self.assertEqual(valid_until_ts,
+                     task_queues.BotTaskDimensions.query().get().valid_until_ts)
 
     self.mock_now(now, 60)
     self.assertEqual(None, _assert_bot())
-    self.assertEqual(
-        valid_until_ts,
-        task_queues.BotTaskDimensions.query().get().valid_until_ts)
+    self.assertEqual(valid_until_ts,
+                     task_queues.BotTaskDimensions.query().get().valid_until_ts)
 
   def test_assert_task_async(self):
     self.assert_count(0, task_queues.BotTaskDimensions)
@@ -229,13 +236,13 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.mock_now(now)
     request = self._assert_task()
     valid_until_ts = request.expiration_ts + task_queues._EXTEND_VALIDITY
-    self.assertEqual(
-        valid_until_ts, task_queues.TaskDimensions.query().get().valid_until_ts)
+    self.assertEqual(valid_until_ts,
+                     task_queues.TaskDimensions.query().get().valid_until_ts)
 
     self.mock_now(now, 60)
     self._assert_task(tasks=0)
-    self.assertEqual(
-        valid_until_ts, task_queues.TaskDimensions.query().get().valid_until_ts)
+    self.assertEqual(valid_until_ts,
+                     task_queues.TaskDimensions.query().get().valid_until_ts)
 
   def test_get_queues(self):
     # See more complex test below.
@@ -267,11 +274,10 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     # payload.
     # Trigger multiple task queues to go deeper in the code.
     request_1 = _gen_request(
-        properties=_gen_properties(
-            dimensions={
-              u'cpu': [u'x86-64'],
-              u'pool': [u'default'],
-            }))
+        properties=_gen_properties(dimensions={
+            u'cpu': [u'x86-64'],
+            u'pool': [u'default'],
+        }))
     task_queues.assert_task_async(request_1).get_result()
     self.assertEqual(1, len(payloads))
     f = task_queues.rebuild_task_cache_async(payloads[-1])
@@ -281,38 +287,37 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(60, request_1.expiration_secs)
     expected = now + task_queues._EXTEND_VALIDITY + datetime.timedelta(
         seconds=request_1.expiration_secs)
-    self.assertEqual(
-        expected, task_queues.TaskDimensions.query().get().valid_until_ts)
+    self.assertEqual(expected,
+                     task_queues.TaskDimensions.query().get().valid_until_ts)
 
     request_2 = _gen_request(
-        properties=_gen_properties(
-            dimensions={
-              u'os': [u'Ubuntu-16.04'],
-              u'pool': [u'default'],
-            }))
+        properties=_gen_properties(dimensions={
+            u'os': [u'Ubuntu-16.04'],
+            u'pool': [u'default'],
+        }))
     task_queues.assert_task_async(request_2).get_result()
     self.assertEqual(2, len(payloads))
     f = task_queues.rebuild_task_cache_async(payloads[-1])
     self.assertEqual(True, f.get_result())
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(2, task_queues.TaskDimensions.query().count())
-    self.assertEqual(
-        [227177418, 1843498234], task_queues.get_queues(bot_root_key))
+    self.assertEqual([227177418, 1843498234],
+                     task_queues.get_queues(bot_root_key))
     memcache.flush_all()
-    self.assertEqual(
-        [227177418, 1843498234], task_queues.get_queues(bot_root_key))
+    self.assertEqual([227177418, 1843498234],
+                     task_queues.get_queues(bot_root_key))
 
     # Now expire the two TaskDimensions, one at a time, and rebuild the task
     # queue.
     offset = (task_queues._EXTEND_VALIDITY + datetime.timedelta(
-      seconds=request_1.expiration_secs)).total_seconds() + 1
+        seconds=request_1.expiration_secs)).total_seconds() + 1
     self.mock_now(now, offset)
     f = task_queues.rebuild_task_cache_async(payloads[0])
     self.assertEqual(True, f.get_result())
     self.assertEqual(6, task_queues.BotTaskDimensions.query().count())
     self.assertEqual(2, task_queues.TaskDimensions.query().count())
-    self.assertEqual(
-        [227177418, 1843498234], task_queues.get_queues(bot_root_key))
+    self.assertEqual([227177418, 1843498234],
+                     task_queues.get_queues(bot_root_key))
     # Observe the effect of memcache. See comment in get_queues().
     memcache.flush_all()
     self.assertEqual([], task_queues.get_queues(bot_root_key))
@@ -326,11 +331,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     self.assertEqual([], task_queues.get_queues(bot_root_key))
 
     # Get past _KEEP_DEAD.
-    offset = (
-        task_queues._EXTEND_VALIDITY +
-        task_queues._KEEP_DEAD + datetime.timedelta(
-            seconds=request_1.expiration_secs)
-      ).total_seconds() + 1
+    offset = (task_queues._EXTEND_VALIDITY + task_queues._KEEP_DEAD + datetime
+              .timedelta(seconds=request_1.expiration_secs)).total_seconds() + 1
     self.mock_now(now, offset)
     self.assertEqual([], task_queues.get_queues(bot_root_key))
     f = task_queues.rebuild_task_cache_async(payloads[0])
@@ -600,8 +602,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     bot_root_key = bot_management.get_root_key(u'bot1')
     task_queues.get_queues(bot_root_key)
     self.assertEqual(True, task_queues.probably_has_capacity(d))
-    self.assertEqual(
-        [1843498234], memcache.get('bot1', namespace='task_queues'))
+    self.assertEqual([1843498234], memcache.get(
+        'bot1', namespace='task_queues'))
 
   def test_set_has_capacity(self):
     d = {u'pool': [u'default'], u'os': [u'Ubuntu-16.04']}
@@ -651,7 +653,7 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
 
   def test_assert_task_async_call_rebuld_task_cache_async(self):
     self.assertEqual(0, _assert_bot())
-    dimensions={
+    dimensions = {
         u'id': [u'bot1'],
     }
     self.mock_now(datetime.datetime(2020, 1, 2, 3, 4, 5))
@@ -696,7 +698,8 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(now)
     request = self._assert_task()
-    exp = (request.expiration_ts - request.created_ts +
+    exp = (
+        request.expiration_ts - request.created_ts +
         task_queues._EXTEND_VALIDITY)
     self.assertEqual(1, _assert_bot())
     # One hour later, the bot changes dimensions.
@@ -782,13 +785,13 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
     }
     self.assertEqual(actual, expected)
 
-
   def test_cron_tidy_stale(self):
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(now)
     self.assertEqual(0, _assert_bot())
     request = self._assert_task()
-    exp = (request.expiration_ts - request.created_ts +
+    exp = (
+        request.expiration_ts - request.created_ts +
         task_queues._EXTEND_VALIDITY)
     self.assert_count(1, task_queues.BotTaskDimensions)
     self.assert_count(1, task_queues.TaskDimensions)

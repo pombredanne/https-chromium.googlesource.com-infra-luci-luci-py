@@ -22,17 +22,17 @@ tools.cached = lambda func: func
 
 import win
 
-
 MockWinVer = collections.namedtuple('MockWinVer', ['product_type'])
 
 
 class TestWin(auto_stub.TestCase):
+
   def test_from_cygwin_path(self):
     data = [
-      ('foo', None),
-      ('x:\\foo$', None),
-      ('X:\\foo$', None),
-      ('/cygdrive/x/foo$', 'x:\\foo$'),
+        ('foo', None),
+        ('x:\\foo$', None),
+        ('X:\\foo$', None),
+        ('/cygdrive/x/foo$', 'x:\\foo$'),
     ]
     for i, (inputs, expected) in enumerate(data):
       actual = win.from_cygwin_path(inputs)
@@ -40,10 +40,10 @@ class TestWin(auto_stub.TestCase):
 
   def test_to_cygwin_path(self):
     data = [
-      ('foo', None),
-      ('x:\\foo$', '/cygdrive/x/foo$'),
-      ('X:\\foo$', '/cygdrive/x/foo$'),
-      ('/cygdrive/x/foo$', None),
+        ('foo', None),
+        ('x:\\foo$', '/cygdrive/x/foo$'),
+        ('X:\\foo$', '/cygdrive/x/foo$'),
+        ('/cygdrive/x/foo$', None),
     ]
     for i, (inputs, expected) in enumerate(data):
       actual = win.to_cygwin_path(inputs)
@@ -74,84 +74,73 @@ class TestWin(auto_stub.TestCase):
     if sys.platform != 'win32':
       return
     marketing_name_client_ver_map = {
-      u'Server': u'10',
-      u'2012ServerR2': u'8.1',
-      u'2012Server': u'8',
-      u'2008ServerR2': u'7',
-      u'2008Server': u'Vista',
-      u'2003Server': u'XP',
-      u'10': u'10',
-      u'8.1': u'8.1',
-      u'8': u'8',
-      u'7': u'7',
-      u'Vista': u'Vista',
-      u'XP': u'XP',
-      u'2000': u'2000',
+        u'Server': u'10',
+        u'2012ServerR2': u'8.1',
+        u'2012Server': u'8',
+        u'2008ServerR2': u'7',
+        u'2008Server': u'Vista',
+        u'2003Server': u'XP',
+        u'10': u'10',
+        u'8.1': u'8.1',
+        u'8': u'8',
+        u'7': u'7',
+        u'Vista': u'Vista',
+        u'XP': u'XP',
+        u'2000': u'2000',
     }
     marketing_name = win.get_os_version_names()[0]
     client_ver = win.get_client_versions()
-    self.assertEqual(
-      [marketing_name_client_ver_map[marketing_name]], client_ver)
+    self.assertEqual([marketing_name_client_ver_map[marketing_name]],
+                     client_ver)
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win10(self):
     self.assert_get_os_dims_mock(
-        1,
-        u'\nMicrosoft Windows [Version 10.0.17763.503]',
+        1, u'\nMicrosoft Windows [Version 10.0.17763.503]',
         ('10', '10.0.17763', '', u'Multiprocessor Free'),
         [u'10', u'10-17763', u'10-17763.503'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win2016(self):
     self.assert_get_os_dims_mock(
         3, '\nMicrosoft Windows [Version 10.0.14393]\n',
         ('10', '10.0.14393', '', u'Multiprocessor Free'),
         [u'Server', u'Server-14393'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win2019(self):
     self.assert_get_os_dims_mock(
         3, '\nMicrosoft Windows [Version 10.0.17763.557]\n',
         ('10', '10.0.17763', '', u'Multiprocessor Free'),
         [u'Server', u'Server-17763', u'Server-17763.557'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win7sp1(self):
     self.assert_get_os_dims_mock(
-        1,
-        '\nMicrosoft Windows [Version 6.1.7601]\n',
-        ('7', '6.1.7601', 'SP1', u'Multiprocessor Free'),
-        [u'7', u'7-SP1'])
+        1, '\nMicrosoft Windows [Version 6.1.7601]\n',
+        ('7', '6.1.7601', 'SP1', u'Multiprocessor Free'), [u'7', u'7-SP1'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win8_1(self):
     self.assert_get_os_dims_mock(
-        1,
-        '\nMicrosoft Windows [Version 6.3.9600]\n',
-        ('8.1', '6.3.9600', '', u'Multiprocessor Free'),
-        [u'8.1', u'8.1-SP0'])
-
+        1, '\nMicrosoft Windows [Version 6.3.9600]\n',
+        ('8.1', '6.3.9600', '', u'Multiprocessor Free'), [u'8.1', u'8.1-SP0'])
 
   def test_list_top_windows(self):
     if sys.platform == 'win32':
       win.list_top_windows()
 
   def test_version(self):
-    m = re.search(
-        win._CMD_RE, 'Microsoft Windows [version 10.0.15063]', re.IGNORECASE)
+    m = re.search(win._CMD_RE, 'Microsoft Windows [version 10.0.15063]',
+                  re.IGNORECASE)
     self.assertEqual(('10.0', '15063'), m.groups())
-    m = re.search(
-        win._CMD_RE, 'Microsoft Windows [version 10.0.16299.19]', re.IGNORECASE)
+    m = re.search(win._CMD_RE, 'Microsoft Windows [version 10.0.16299.19]',
+                  re.IGNORECASE)
     self.assertEqual(('10.0', '16299.19'), m.groups())
 
 

@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Functions to generate OAuth access tokens to use by bots or inside tasks."""
 
 import collections
@@ -20,16 +19,16 @@ from components import utils
 
 from server import task_pack
 
-
 # Brackets for possible lifetimes of OAuth tokens produced by this module.
 MIN_TOKEN_LIFETIME_SEC = 5 * 60
 MAX_TOKEN_LIFETIME_SEC = 3600 * 60  # this is just hardcoded by Google APIs
 
-
-AccessToken = collections.namedtuple('AccessToken', [
-  'access_token',  # actual access token
-  'expiry',        # unix timestamp (in seconds, int) when it expires
-])
+AccessToken = collections.namedtuple(
+    'AccessToken',
+    [
+        'access_token',  # actual access token
+        'expiry',  # unix timestamp (in seconds, int) when it expires
+    ])
 
 
 class PermissionError(Exception):
@@ -160,7 +159,9 @@ def get_oauth_token_grant(service_account, validity_duration):
   # extra life.
   if new_exp_ts < now + validity_duration:
     _log_token_grant(
-        'Got unexpectedly short-lived', new_grant, new_exp_ts,
+        'Got unexpectedly short-lived',
+        new_grant,
+        new_exp_ts,
         log_call=logging.error)
     raise InternalError('Got unexpectedly short-lived grant, see server logs')
 
@@ -168,10 +169,10 @@ def get_oauth_token_grant(service_account, validity_duration):
   memcache.set(
       key=cache_key,
       value={
-        'oauth_token_grant': new_grant,
-        'exp_ts': utils.datetime_to_timestamp(new_exp_ts),
+          'oauth_token_grant': new_grant,
+          'exp_ts': utils.datetime_to_timestamp(new_exp_ts),
       },
-      time=utils.datetime_to_timestamp(new_exp_ts)/1e6,
+      time=utils.datetime_to_timestamp(new_exp_ts) / 1e6,
       namespace=_OAUTH_TOKEN_GRANT_CACHE_NS)
 
   _log_token_grant('Generated new', new_grant, new_exp_ts)
@@ -231,9 +232,9 @@ def get_task_account_token(task_id, bot_id, scopes):
 
   # Additional information for Token Server's logs.
   audit_tags = [
-    'swarming:bot_id:%s' % bot_id,
-    'swarming:task_id:%s' % task_id,
-    'swarming:task_name:%s' % task_request.name,
+      'swarming:bot_id:%s' % bot_id,
+      'swarming:task_id:%s' % task_id,
+      'swarming:task_name:%s' % task_request.name,
   ]
 
   # Use this token to grab the real OAuth token. Note that the bot caches the
@@ -242,8 +243,8 @@ def get_task_account_token(task_id, bot_id, scopes):
       task_request.service_account_token, scopes, audit_tags)
 
   # Log and return the token.
-  token = AccessToken(
-      access_token, int(utils.datetime_to_timestamp(expiry)/1e6))
+  token = AccessToken(access_token,
+                      int(utils.datetime_to_timestamp(expiry) / 1e6))
   _check_and_log_token('task associated', task_request.service_account, token)
   return task_request.service_account, token
 
@@ -299,7 +300,6 @@ def get_system_account_token(system_service_account, scopes):
 
 ### Private code
 
-
 # Matches service account email (or rather close enough superset of it).
 _SERVICE_ACCOUNT_RE = re.compile(r'^[0-9a-zA-Z_\-\.\+\%]+@[0-9a-zA-Z_\-\.]+$')
 
@@ -330,12 +330,12 @@ def _mint_oauth_token_grant(service_account, end_user, validity_duration):
     InternalError if the RPC fails unexpectedly.
   """
   resp = _call_token_server(
-    'MintOAuthTokenGrant', {
-      'serviceAccount': service_account,
-      'validityDuration': int(validity_duration.total_seconds()),
-      'endUser': end_user.to_bytes(),
-      'auditTags': _common_audit_tags(),
-    })
+      'MintOAuthTokenGrant', {
+          'serviceAccount': service_account,
+          'validityDuration': int(validity_duration.total_seconds()),
+          'endUser': end_user.to_bytes(),
+          'auditTags': _common_audit_tags(),
+      })
   try:
     grant_token = str(resp['grantToken'])
     service_version = str(resp['serviceVersion'])
@@ -364,12 +364,12 @@ def _mint_oauth_token_via_grant(grant_token, oauth_scopes, audit_tags):
     InternalError if the RPC fails unexpectedly.
   """
   resp = _call_token_server(
-    'MintOAuthTokenViaGrant', {
-      'grantToken': grant_token,
-      'oauthScope': oauth_scopes,
-      'minValidityDuration': MIN_TOKEN_LIFETIME_SEC,
-      'auditTags': _common_audit_tags() + audit_tags,
-    })
+      'MintOAuthTokenViaGrant', {
+          'grantToken': grant_token,
+          'oauthScope': oauth_scopes,
+          'minValidityDuration': MIN_TOKEN_LIFETIME_SEC,
+          'auditTags': _common_audit_tags() + audit_tags,
+      })
   try:
     access_token = str(resp['accessToken'])
     service_version = str(resp['serviceVersion'])
@@ -415,9 +415,8 @@ def _call_token_server(method, request):
         payload=request,
         scopes=[net.EMAIL_SCOPE])
   except net.Error as exc:
-    logging.error(
-        'Error calling %s (HTTP %s: %s):\n%s',
-        method, exc.status_code, exc.message, exc.response)
+    logging.error('Error calling %s (HTTP %s: %s):\n%s', method,
+                  exc.status_code, exc.message, exc.response)
     if exc.status_code == 403:
       raise PermissionError(
           'HTTP 403 from the token server:\n%s' % exc.response)
@@ -439,18 +438,18 @@ def _common_audit_tags():
   # Note: particular names and format of tags is chosen to be consistent with
   # Token Server's logging.
   return [
-    'swarming:gae_request_id:%s' % os.getenv('REQUEST_LOG_ID', '?'),
-    'swarming:service_version:%s/%s' % (
-        app_identity.get_application_id(), utils.get_app_version()),
+      'swarming:gae_request_id:%s' % os.getenv('REQUEST_LOG_ID', '?'),
+      'swarming:service_version:%s/%s' % (app_identity.get_application_id(),
+                                          utils.get_app_version()),
   ]
 
 
 def _log_token_grant(prefix, token, exp_ts, log_call=logging.info):
   """Logs details about an OAuth token grant."""
-  ts = utils.datetime_to_timestamp(exp_ts)/1e6
+  ts = utils.datetime_to_timestamp(exp_ts) / 1e6
   log_call(
-      '%s OAuth token grant: fingerprint=%s, expiry=%d, expiry_in=%d',
-      prefix, utils.get_token_fingerprint(token), ts, ts - utils.time_time())
+      '%s OAuth token grant: fingerprint=%s, expiry=%d, expiry_in=%d', prefix,
+      utils.get_token_fingerprint(token), ts, ts - utils.time_time())
 
 
 def _check_and_log_token(flavor, account_email, token):
@@ -458,10 +457,8 @@ def _check_and_log_token(flavor, account_email, token):
   expires_in = token.expiry - utils.time_time()
   logging.info(
       'Got %s access token: email=%s, fingerprint=%s, expiry=%d, expiry_in=%d',
-      flavor, account_email,
-      utils.get_token_fingerprint(token.access_token),
-      token.expiry,
-      expires_in)
+      flavor, account_email, utils.get_token_fingerprint(token.access_token),
+      token.expiry, expires_in)
   # Give 2 min of wiggle room to account for various effects related to
   # relativity of clocks (us vs Google backends that produce the token) and
   # indeterminism of network propagation delays. 2 min should be more than

@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Instance specific settings."""
 
 import logging
@@ -20,12 +19,9 @@ from proto.config import config_pb2
 
 NAMESPACE_RE = re.compile(r'^[a-z0-9A-Z\-._]+$')
 
-
 ConfigApi = config.ConfigApi
 
-
 ### Public code.
-
 
 # Maximum acceptable length for dimensions.
 DIMENSION_KEY_LENGTH = 64
@@ -48,12 +44,11 @@ def settings_info():
   rev_url = _gitiles_url(_get_configs_url(), rev, _SETTINGS_CFG_FILENAME)
   cfg_service_hostname = config.config_service_hostname()
   return {
-    'cfg': cfg,
-    'rev': rev,
-    'rev_url': rev_url,
-    'config_service_url': (
-        'https://%s' % cfg_service_hostname if cfg_service_hostname else ''
-    ),
+      'cfg': cfg,
+      'rev': rev,
+      'rev_url': rev_url,
+      'config_service_url': (
+          'https://%s' % cfg_service_hostname if cfg_service_hostname else ''),
   }
 
 
@@ -79,24 +74,19 @@ def validate_flat_dimension(d):
 
 def validate_dimension_key(key):
   """Returns True if the dimension key is valid."""
-  return (
-      isinstance(key, unicode) and
-      key and
-      len(key) <= DIMENSION_KEY_LENGTH and
-      bool(re.match(DIMENSION_KEY_RE, key)))
+  return (isinstance(key, unicode) and key and
+          len(key) <= DIMENSION_KEY_LENGTH and
+          bool(re.match(DIMENSION_KEY_RE, key)))
 
 
 def validate_dimension_value(value):
   """Returns True if the dimension value is valid."""
-  return (
-      bool(isinstance(value, unicode) and
-      value and
-      len(value) <= DIMENSION_VALUE_LENGTH and
-      value.strip() == value))
+  return (bool(
+      isinstance(value, unicode) and value and
+      len(value) <= DIMENSION_VALUE_LENGTH and value.strip() == value))
 
 
 ### Private code.
-
 
 _SETTINGS_CFG_FILENAME = 'settings.cfg'
 _SECONDS_IN_YEAR = 60 * 60 * 24 * 365
@@ -148,6 +138,7 @@ def _validate_resultdb_settings(cfg, ctx=None):
 @validation.self_rule(_SETTINGS_CFG_FILENAME, config_pb2.SettingsCfg)
 def _validate_settings(cfg, ctx):
   """Validates settings.cfg file against proto message schema."""
+
   def within_year(value):
     if value < 0:
       ctx.error('cannot be negative')
@@ -199,9 +190,9 @@ def _gitiles_url(configs_url, rev, path):
   """URL to a directory in gitiles -> URL to a file at concrete revision."""
   try:
     loc = gitiles.Location.parse(configs_url)
-    return str(loc._replace(
-        treeish=rev or loc.treeish,
-        path=posixpath.join(loc.path, path)))
+    return str(
+        loc._replace(
+            treeish=rev or loc.treeish, path=posixpath.join(loc.path, path)))
   except ValueError:
     # Not a gitiles URL, return as is.
     return configs_url
@@ -229,8 +220,8 @@ def _get_settings_with_defaults():
   """
   rev, cfg = _get_settings()
   cfg = cfg or config_pb2.SettingsCfg()
-  cfg.reusable_task_age_secs = cfg.reusable_task_age_secs or 7*24*60*60
-  cfg.bot_death_timeout_secs = cfg.bot_death_timeout_secs or 10*60
+  cfg.reusable_task_age_secs = cfg.reusable_task_age_secs or 7 * 24 * 60 * 60
+  cfg.bot_death_timeout_secs = cfg.bot_death_timeout_secs or 10 * 60
 
   cfg.auth.admins_group = cfg.auth.admins_group or 'administrators'
   cfg.auth.bot_bootstrap_group = cfg.auth.bot_bootstrap_group or \

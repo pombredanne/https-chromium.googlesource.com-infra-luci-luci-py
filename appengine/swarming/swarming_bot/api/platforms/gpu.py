@@ -1,17 +1,13 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """GPU specific utility functions."""
-
-
 
 AMD = u'1002'
 ASPEED = u'1a03'
 INTEL = u'8086'
 MAXTROX = u'102b'
 NVIDIA = u'10de'
-
 
 _VENDOR_MAPPING = {
     AMD: (
@@ -23,8 +19,7 @@ _VENDOR_MAPPING = {
             u'6779': u'Radeon HD 6450/7450/8450',
             u'679e': u'Radeon HD 7800',
             u'67ef': u'Radeon RX 560',
-            u'6821':
-                u'Radeon R8 M370X',  # 'HD 8800M' or 'R7 M380' based on rev_id
+            u'6821': u'Radeon R8 M370X',  # 'HD 8800M' or 'R7 M380' based on rev_id
             u'683d': u'Radeon HD 7700',
             u'9830': u'Radeon HD 8400',
             u'9874': u'Carrizo',

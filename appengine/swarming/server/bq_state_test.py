@@ -36,7 +36,8 @@ class BotManagementTest(test_case.TestCase):
     now = datetime.datetime(2020, 1, 2, 3, 4)
     bq_state.BqState(id='foo').put()
     bq_state.BqState(
-        id='foo', recent=now, oldest=now - datetime.timedelta(seconds=60)).put()
+        id='foo', recent=now,
+        oldest=now - datetime.timedelta(seconds=60)).put()
     with self.assertRaises(datastore_errors.BadValueError):
       bq_state.BqState(id='foo', oldest=now).put()
     with self.assertRaises(datastore_errors.BadValueError):
@@ -57,34 +58,36 @@ class BotManagementTest(test_case.TestCase):
     now = datetime.datetime(2020, 1, 2, 3, 4, 5, 678900)
     self.mock_now(now)
     urls = []
+
     def enqueue_task(url, task_name):
       urls.append(url)
       self.assertEqual('tqname', task_name)
       return True
+
     self.mock(utils, 'enqueue_task', enqueue_task)
-    actual = bq_state.cron_trigger_tasks(
-        'mytable', '/internal/taskqueue/foo/', 'tqname', 100, 10)
+    actual = bq_state.cron_trigger_tasks('mytable', '/internal/taskqueue/foo/',
+                                         'tqname', 100, 10)
     self.assertEqual(10, actual)
     self.assertEqual(1, bq_state.BqState.query().count())
     expected = {
-      # Values are exclusive; they are the next values to process.
-      'oldest': datetime.datetime(2020, 1, 2, 2, 51),
-      'recent': datetime.datetime(2020, 1, 2, 3, 2),
-      'ts': now,
+        # Values are exclusive; they are the next values to process.
+        'oldest': datetime.datetime(2020, 1, 2, 2, 51),
+        'recent': datetime.datetime(2020, 1, 2, 3, 2),
+        'ts': now,
     }
     self.assertEqual(expected, bq_state.BqState.get_by_id('mytable').to_dict())
     expected = [
-      # Only backfill.
-      '/internal/taskqueue/foo/2020-01-02T03:01',
-      '/internal/taskqueue/foo/2020-01-02T03:00',
-      '/internal/taskqueue/foo/2020-01-02T02:59',
-      '/internal/taskqueue/foo/2020-01-02T02:58',
-      '/internal/taskqueue/foo/2020-01-02T02:57',
-      '/internal/taskqueue/foo/2020-01-02T02:56',
-      '/internal/taskqueue/foo/2020-01-02T02:55',
-      '/internal/taskqueue/foo/2020-01-02T02:54',
-      '/internal/taskqueue/foo/2020-01-02T02:53',
-      '/internal/taskqueue/foo/2020-01-02T02:52',
+        # Only backfill.
+        '/internal/taskqueue/foo/2020-01-02T03:01',
+        '/internal/taskqueue/foo/2020-01-02T03:00',
+        '/internal/taskqueue/foo/2020-01-02T02:59',
+        '/internal/taskqueue/foo/2020-01-02T02:58',
+        '/internal/taskqueue/foo/2020-01-02T02:57',
+        '/internal/taskqueue/foo/2020-01-02T02:56',
+        '/internal/taskqueue/foo/2020-01-02T02:55',
+        '/internal/taskqueue/foo/2020-01-02T02:54',
+        '/internal/taskqueue/foo/2020-01-02T02:53',
+        '/internal/taskqueue/foo/2020-01-02T02:52',
     ]
     self.assertEqual(expected, urls)
 
@@ -96,8 +99,7 @@ class BotManagementTest(test_case.TestCase):
     self.mock_now(now)
 
     oldest = (
-        now_trimmed - bq_state._OLDEST_BACKFILL +
-        datetime.timedelta(minutes=3))
+        now_trimmed - bq_state._OLDEST_BACKFILL + datetime.timedelta(minutes=3))
     bq_state.BqState(
         id='mytable',
         ts=now,
@@ -105,31 +107,33 @@ class BotManagementTest(test_case.TestCase):
         recent=datetime.datetime(2020, 1, 2, 2, 59)).put()
 
     urls = []
+
     def enqueue_task(url, task_name):
       urls.append(url)
       self.assertEqual('tqname', task_name)
       return True
+
     self.mock(utils, 'enqueue_task', enqueue_task)
 
-    actual = bq_state.cron_trigger_tasks(
-        'mytable', '/internal/taskqueue/foo/', 'tqname', 100, 10)
+    actual = bq_state.cron_trigger_tasks('mytable', '/internal/taskqueue/foo/',
+                                         'tqname', 100, 10)
     self.assertEqual(6, actual)
     self.assertEqual(1, bq_state.BqState.query().count())
     expected = {
-      'oldest': datetime.datetime(2019, 1, 3, 3, 4),
-      'recent': datetime.datetime(2020, 1, 2, 3, 2),
-      'ts': now,
+        'oldest': datetime.datetime(2019, 1, 3, 3, 4),
+        'recent': datetime.datetime(2020, 1, 2, 3, 2),
+        'ts': now,
     }
     self.assertEqual(expected, bq_state.BqState.get_by_id('mytable').to_dict())
     expected = [
-      # Front filling.
-      '/internal/taskqueue/foo/2020-01-02T02:59',
-      '/internal/taskqueue/foo/2020-01-02T03:00',
-      '/internal/taskqueue/foo/2020-01-02T03:01',
-      # Backfilling.
-      '/internal/taskqueue/foo/2019-01-03T03:07',
-      '/internal/taskqueue/foo/2019-01-03T03:06',
-      '/internal/taskqueue/foo/2019-01-03T03:05',
+        # Front filling.
+        '/internal/taskqueue/foo/2020-01-02T02:59',
+        '/internal/taskqueue/foo/2020-01-02T03:00',
+        '/internal/taskqueue/foo/2020-01-02T03:01',
+        # Backfilling.
+        '/internal/taskqueue/foo/2019-01-03T03:07',
+        '/internal/taskqueue/foo/2019-01-03T03:06',
+        '/internal/taskqueue/foo/2019-01-03T03:05',
     ]
     self.assertEqual(expected, urls)
 
@@ -138,14 +142,14 @@ class BotManagementTest(test_case.TestCase):
     now = datetime.datetime(2020, 1, 2, 3, 4, 5, 678900)
     self.mock_now(now)
     self.mock(utils, 'enqueue_task', self.fail)
-    actual = bq_state.cron_trigger_tasks(
-        'mytable', '/internal/taskqueue/foo/', 'tqname', 0, 10)
+    actual = bq_state.cron_trigger_tasks('mytable', '/internal/taskqueue/foo/',
+                                         'tqname', 0, 10)
     self.assertEqual(0, actual)
     self.assertEqual(1, bq_state.BqState.query().count())
     expected = {
-      'oldest': datetime.datetime(2020, 1, 2, 3, 1),
-      'recent': datetime.datetime(2020, 1, 2, 3, 2),
-      'ts': now,
+        'oldest': datetime.datetime(2020, 1, 2, 3, 1),
+        'recent': datetime.datetime(2020, 1, 2, 3, 2),
+        'ts': now,
     }
     self.assertEqual(expected, bq_state.BqState.get_by_id('mytable').to_dict())
 
@@ -155,16 +159,17 @@ class BotManagementTest(test_case.TestCase):
 
   def test_send_to_bq(self):
     payloads = []
+
     def json_request(url, method, payload, scopes, deadline):
       self.assertEqual(
           'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
-            'swarming/tables/foo/insertAll',
-          url)
+          'swarming/tables/foo/insertAll', url)
       payloads.append(payload)
       self.assertEqual('POST', method)
       self.assertEqual(bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
       self.assertEqual(600, deadline)
       return {'insertErrors': []}
+
     self.mock(bq_state.net, 'json_request', json_request)
 
     rows = [
@@ -173,11 +178,11 @@ class BotManagementTest(test_case.TestCase):
     ]
     self.assertEqual(0, bq_state.send_to_bq('foo', rows))
     expected = [
-      {
-        'ignoreUnknownValues': False,
-        'kind': 'bigquery#tableDataInsertAllRequest',
-        'skipInvalidRows': True,
-      },
+        {
+            'ignoreUnknownValues': False,
+            'kind': 'bigquery#tableDataInsertAllRequest',
+            'skipInvalidRows': True,
+        },
     ]
     actual_rows = payloads[0].pop('rows')
     self.assertEqual(expected, payloads)
@@ -186,11 +191,11 @@ class BotManagementTest(test_case.TestCase):
   def test_send_to_bq_fail(self):
     # Test the failure code path.
     payloads = []
+
     def json_request(url, method, payload, scopes, deadline):
       self.assertEqual(
           'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
-            'swarming/tables/foo/insertAll',
-          url)
+          'swarming/tables/foo/insertAll', url)
       first = not payloads
       payloads.append(payload)
       self.assertEqual('POST', method)
@@ -199,19 +204,16 @@ class BotManagementTest(test_case.TestCase):
       # Return an error on the first call.
       if first:
         return {
-          'insertErrors': [
-            {
-              'index': 0,
-              'errors': [
-                {
-                  'reason': 'sadness',
-                  'message': 'Oh gosh',
-                },
-              ],
-            },
-          ],
+            'insertErrors': [{
+                'index': 0,
+                'errors': [{
+                    'reason': 'sadness',
+                    'message': 'Oh gosh',
+                },],
+            },],
         }
       return {'insertErrors': []}
+
     self.mock(bq_state.net, 'json_request', json_request)
 
     rows = [
@@ -222,18 +224,18 @@ class BotManagementTest(test_case.TestCase):
 
     self.assertEqual(2, len(payloads), payloads)
     expected = {
-      'ignoreUnknownValues': False,
-      'kind': 'bigquery#tableDataInsertAllRequest',
-      'skipInvalidRows': True,
+        'ignoreUnknownValues': False,
+        'kind': 'bigquery#tableDataInsertAllRequest',
+        'skipInvalidRows': True,
     }
     actual_rows = payloads[0].pop('rows')
     self.assertEqual(expected, payloads[0])
     self.assertEqual(2, len(actual_rows))
 
     expected = {
-      'ignoreUnknownValues': False,
-      'kind': 'bigquery#tableDataInsertAllRequest',
-      'skipInvalidRows': True,
+        'ignoreUnknownValues': False,
+        'kind': 'bigquery#tableDataInsertAllRequest',
+        'skipInvalidRows': True,
     }
     actual_rows = payloads[1].pop('rows')
     self.assertEqual(expected, payloads[1])

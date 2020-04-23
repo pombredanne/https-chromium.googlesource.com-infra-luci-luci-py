@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Starts a local bot to connect to a local server."""
 
 from __future__ import print_function
@@ -45,6 +44,7 @@ class LocalBot(object):
   It creates its own temporary directory to download the zip and run tasks
   locally.
   """
+
   def __init__(self, swarming_server_url, redirect, botdir):
     self._botdir = botdir
     self._swarming_server_url = swarming_server_url

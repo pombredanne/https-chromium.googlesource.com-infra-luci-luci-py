@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Archives a set of files or directories to an Isolate Server."""
 
 __version__ = '0.9.0'
@@ -46,16 +45,13 @@ from utils import on_error
 from utils import subprocess42
 from utils import threading_utils
 
-
 # Version of isolate protocol passed to the server in /handshake request.
 ISOLATE_PROTOCOL_VERSION = '1.0'
-
 
 # Maximum expected delay (in seconds) between successive file fetches or uploads
 # in Storage. If it takes longer than that, a deadlock might be happening
 # and all stack frames for all threads are dumped to log.
 DEADLOCK_TIMEOUT = 5 * 60
-
 
 # The number of files to check the isolate server per /pre-upload query.
 # All files are sorted by likelihood of a change in the file content
@@ -70,26 +66,34 @@ DEADLOCK_TIMEOUT = 5 * 60
 # files missing" case.
 ITEMS_PER_CONTAINS_QUERIES = (20, 20, 50, 50, 50, 100)
 
-
 # A list of already compressed extension types that should not receive any
 # compression before being uploaded.
 ALREADY_COMPRESSED_TYPES = [
-    '7z', 'avi', 'cur', 'gif', 'h264', 'jar', 'jpeg', 'jpg', 'mp4', 'pdf',
-    'png', 'wav', 'zip',
+    '7z',
+    'avi',
+    'cur',
+    'gif',
+    'h264',
+    'jar',
+    'jpeg',
+    'jpg',
+    'mp4',
+    'pdf',
+    'png',
+    'wav',
+    'zip',
 ]
-
 
 # The delay (in seconds) to wait between logging statements when retrieving
 # the required files. This is intended to let the user (or buildbot) know that
 # the program is still running.
 DELAY_BETWEEN_UPDATES_IN_SECS = 30
 
-
 DEFAULT_BLACKLIST = (
-  # Temporary vim or python files.
-  r'^.+\.(?:pyc|swp)$',
-  # .git or .svn directory.
-  r'^(?:.+' + re.escape(os.path.sep) + r'|)\.(?:git|svn)$',
+    # Temporary vim or python files.
+    r'^.+\.(?:pyc|swp)$',
+    # .git or .svn directory.
+    r'^(?:.+' + re.escape(os.path.sep) + r'|)\.(?:git|svn)$',
 )
 
 
@@ -149,9 +153,10 @@ def fileobj_path(fileobj):
 
 # TODO(tansell): Replace fileobj_copy with shutil.copyfileobj once proper file
 # wrappers have been created.
-def fileobj_copy(
-    dstfileobj, srcfileobj, size=-1,
-    chunk_size=isolated_format.DISK_FILE_CHUNK):
+def fileobj_copy(dstfileobj,
+                 srcfileobj,
+                 size=-1,
+                 chunk_size=isolated_format.DISK_FILE_CHUNK):
   """Copy data from srcfileobj to dstfileobj.
 
   Providing size means exactly that amount of data will be copied (if there
@@ -166,7 +171,7 @@ def fileobj_copy(
   while written != size:
     readsize = chunk_size
     if size > 0:
-      readsize = min(readsize, size-written)
+      readsize = min(readsize, size - written)
     data = srcfileobj.read(readsize)
     if not data:
       if size == -1:
@@ -256,8 +261,8 @@ def zip_compress(content_generator, level=7):
     yield tail
 
 
-def zip_decompress(
-    content_generator, chunk_size=isolated_format.DISK_FILE_CHUNK):
+def zip_decompress(content_generator,
+                   chunk_size=isolated_format.DISK_FILE_CHUNK):
   """Reads zipped data from |content_generator| and yields decompressed data.
 
   Decompresses data in small chunks (no larger than |chunk_size|) so that
@@ -331,6 +336,7 @@ def _create_symlinks(base_directory, files):
 
 class _ThreadFile(object):
   """Multithreaded fake file. Used by TarBundle."""
+
   def __init__(self):
     self._data = threading_utils.TaskChannel()
     self._offset = 0
@@ -459,6 +465,7 @@ class TarBundle(isolate_storage.Item):
   def content(self):
     """Generates the tarfile content on the fly."""
     obj = _ThreadFile()
+
     def _tar_thread():
       try:
         t = tarfile.open(
@@ -491,9 +498,9 @@ class TarBundle(isolate_storage.Item):
     self._digest = h.hexdigest()
     self._size = total
     self._meta = {
-      'h': self.digest,
-      's': self.size,
-      't': u'tar',
+        'h': self.digest,
+        's': self.size,
+        't': u'tar',
     }
 
 
@@ -664,8 +671,9 @@ class Storage(object):
           if len(batch) == batch_size or (not item and batch):
             if len(batch) == batch_size:
               batch_size_index += 1
-              batch_size = ITEMS_PER_CONTAINS_QUERIES[
-                  min(batch_size_index, len(ITEMS_PER_CONTAINS_QUERIES)-1)]
+              batch_size = ITEMS_PER_CONTAINS_QUERIES[min(
+                  batch_size_index,
+                  len(ITEMS_PER_CONTAINS_QUERIES) - 1)]
             batches_to_lookup.put(batch)
             batch = []
           if item is None:
@@ -684,6 +692,7 @@ class Storage(object):
       """
       try:
         channel = threading_utils.TaskChannel()
+
         def _contains(b):
           if self._aborted:
             raise Aborted()
@@ -748,9 +757,8 @@ class Storage(object):
             item = channel.next()
             uploaded.append(item)
             pending_upload -= 1
-            logging.debug(
-                'Uploaded %d; %d pending: %s (%d)',
-                len(uploaded), pending_upload, item.digest, item.size)
+            logging.debug('Uploaded %d; %d pending: %s (%d)', len(uploaded),
+                          pending_upload, item.digest, item.size)
       except Exception:
         exc_channel.send_exception()
 
@@ -811,8 +819,8 @@ class Storage(object):
     """
     # Thread pool task priority.
     priority = (
-        threading_utils.PRIORITY_HIGH if item.high_priority
-        else threading_utils.PRIORITY_MED)
+        threading_utils.PRIORITY_HIGH
+        if item.high_priority else threading_utils.PRIORITY_MED)
 
     def _push(content):
       """Pushes an isolate_storage.Item and returns it to |channel|."""
@@ -857,8 +865,9 @@ class Storage(object):
       # Pass '[data]' explicitly because the compressed data is not same as the
       # one provided by 'item'. Since '[data]' is a list, it can safely be
       # reused during retries.
-      self.net_thread_pool.add_task_with_channel(
-          channel, priority, _push, [data])
+      self.net_thread_pool.add_task_with_channel(channel, priority, _push,
+                                                 [data])
+
     self.cpu_thread_pool.add_task(priority, zip_and_push)
 
   def push(self, item, push_state):
@@ -908,6 +917,7 @@ class Storage(object):
       size: expected size of the item (after decompression).
       sink: function that will be called as sink(generator).
     """
+
     def fetch():
       self._fetch(digest, size, sink)
       return digest
@@ -938,11 +948,10 @@ class FetchQueue(object):
     # wait().
     self._waiting_on_ready = set()
 
-  def add(
-      self,
-      digest,
-      size=local_caching.UNKNOWN_FILE_SIZE,
-      priority=threading_utils.PRIORITY_MED):
+  def add(self,
+          digest,
+          size=local_caching.UNKNOWN_FILE_SIZE,
+          priority=threading_utils.PRIORITY_MED):
     """Starts asynchronous fetch of item |digest|."""
     # Fetching it now?
     if digest in self._pending:
@@ -970,9 +979,8 @@ class FetchQueue(object):
 
     # Start fetching.
     self._pending.add(digest)
-    self.storage.async_fetch(
-        self._channel, priority, digest, size,
-        functools.partial(self.cache.write, digest))
+    self.storage.async_fetch(self._channel, priority, digest, size,
+                             functools.partial(self.cache.write, digest))
 
   def wait_on(self, digest):
     """Updates digests to be waited on by 'wait'."""
@@ -1100,14 +1108,14 @@ class FetchStreamVerifier(object):
 
     if ((self.expected_size != local_caching.UNKNOWN_FILE_SIZE) and
         (self.expected_size != self.current_size)):
-      msg = 'Incorrect file size: want %d, got %d' % (
-          self.expected_size, self.current_size)
+      msg = 'Incorrect file size: want %d, got %d' % (self.expected_size,
+                                                      self.current_size)
       raise IOError(msg)
 
     actual_digest = self.rolling_hash.hexdigest()
     if self.expected_digest != actual_digest:
-      msg = 'Incorrect digest: want %s, got %s' % (
-          self.expected_digest, actual_digest)
+      msg = 'Incorrect digest: want %s, got %s' % (self.expected_digest,
+                                                   actual_digest)
       raise IOError(msg)
 
 
@@ -1233,8 +1241,8 @@ class IsolatedBundle(object):
 
         # Preemptively request hashed files.
         if 'h' in properties:
-          fetch_queue.add(
-              properties['h'], properties['s'], threading_utils.PRIORITY_MED)
+          fetch_queue.add(properties['h'], properties['s'],
+                          threading_utils.PRIORITY_MED)
 
   def _update_self(self, node):
     """Extracts bundle global parameters from loaded *.isolated file.
@@ -1317,7 +1325,11 @@ def _map_file(dst, digest, props, cache, read_only, use_symlinks):
         raise isolated_format.IsolatedError('Unknown file type %r' % filetype)
 
 
-def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
+def fetch_isolated(isolated_hash,
+                   storage,
+                   cache,
+                   outdir,
+                   use_symlinks,
                    filter_cb=None):
   """Aggressively downloads the .isolated file(s), then download all the files.
 
@@ -1333,9 +1345,8 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
   Returns:
     IsolatedBundle object that holds details about loaded *.isolated file.
   """
-  logging.debug(
-      'fetch_isolated(%s, %s, %s, %s, %s)',
-      isolated_hash, storage, cache, outdir, use_symlinks)
+  logging.debug('fetch_isolated(%s, %s, %s, %s, %s)', isolated_hash, storage,
+                cache, outdir, use_symlinks)
   # Hash algorithm to use, defined by namespace |storage| is using.
   algo = storage.server_ref.hash_algo
   fetch_queue = FetchQueue(storage, cache)
@@ -1344,9 +1355,10 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
   with tools.Profiler('GetIsolateds'):
     # Optionally support local files by manually adding them to cache.
     if not isolated_format.is_valid_hash(isolated_hash, algo):
-      logging.debug('%s is not a valid hash, assuming a file '
-                    '(algo was %s, hash size was %d)',
-                    isolated_hash, algo(), algo().digest_size)
+      logging.debug(
+          '%s is not a valid hash, assuming a file '
+          '(algo was %s, hash size was %d)', isolated_hash, algo(),
+          algo().digest_size)
       path = six.text_type(os.path.abspath(isolated_hash))
       try:
         isolated_hash = fetch_queue.inject_local_file(path, algo)
@@ -1377,7 +1389,7 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
 
     # Now block on the remaining files to be downloaded and mapped.
     logging.info('Retrieving remaining files (%d of them)...',
-        fetch_queue.pending_count)
+                 fetch_queue.pending_count)
     last_update = time.time()
 
     with threading_utils.ThreadPool(2, 32, 32) as putfile_thread_pool:
@@ -1394,9 +1406,8 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
             fullpath = os.path.join(outdir, filepath)
 
             putfile_thread_pool.add_task(threading_utils.PRIORITY_HIGH,
-                                         _map_file, fullpath, digest,
-                                         props, cache, bundle.read_only,
-                                         use_symlinks)
+                                         _map_file, fullpath, digest, props,
+                                         cache, bundle.read_only, use_symlinks)
 
           # Report progress.
           duration = time.time() - last_update
@@ -1414,10 +1425,9 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
   # Cache could evict some items we just tried to fetch, it's a fatal error.
   if not fetch_queue.verify_all_cached():
     free_disk = file_path.get_free_space(cache.cache_dir)
-    msg = (
-        'Cache is too small to hold all requested files.\n'
-        '  %s\n  cache=%dbytes, %d items; %sb free_space') % (
-          cache.policies, cache.total_size, len(cache), free_disk)
+    msg = ('Cache is too small to hold all requested files.\n'
+           '  %s\n  cache=%dbytes, %d items; %sb free_space') % (
+               cache.policies, cache.total_size, len(cache), free_disk)
     raise isolated_format.MappingError(msg)
   return bundle
 
@@ -1468,24 +1478,19 @@ def _print_upload_stats(items, missing):
   """Prints upload stats."""
   total = len(items)
   total_size = sum(f.size for f in items)
-  logging.info(
-      'Total:      %6d, %9.1fkiB', total, total_size / 1024.)
+  logging.info('Total:      %6d, %9.1fkiB', total, total_size / 1024.)
   cache_hit = set(items).difference(missing)
   cache_hit_size = sum(f.size for f in cache_hit)
-  logging.info(
-      'cache hit:  %6d, %9.1fkiB, %6.2f%% files, %6.2f%% size',
-      len(cache_hit),
-      cache_hit_size / 1024.,
-      len(cache_hit) * 100. / total,
-      cache_hit_size * 100. / total_size if total_size else 0)
+  logging.info('cache hit:  %6d, %9.1fkiB, %6.2f%% files, %6.2f%% size',
+               len(cache_hit), cache_hit_size / 1024.,
+               len(cache_hit) * 100. / total,
+               cache_hit_size * 100. / total_size if total_size else 0)
   cache_miss = missing
   cache_miss_size = sum(f.size for f in cache_miss)
-  logging.info(
-      'cache miss: %6d, %9.1fkiB, %6.2f%% files, %6.2f%% size',
-      len(cache_miss),
-      cache_miss_size / 1024.,
-      len(cache_miss) * 100. / total,
-      cache_miss_size * 100. / total_size if total_size else 0)
+  logging.info('cache miss: %6d, %9.1fkiB, %6.2f%% files, %6.2f%% size',
+               len(cache_miss), cache_miss_size / 1024.,
+               len(cache_miss) * 100. / total,
+               cache_miss_size * 100. / total_size if total_size else 0)
 
 
 def _enqueue_dir(dirpath, blacklist, hash_algo, hash_algo_name):
@@ -1497,8 +1502,8 @@ def _enqueue_dir(dirpath, blacklist, hash_algo, hash_algo_name):
     FileItem for every file found, plus one for the .isolated file itself.
   """
   files = {}
-  for item, relpath, meta in _directory_to_metadata(
-      dirpath, hash_algo, blacklist):
+  for item, relpath, meta in _directory_to_metadata(dirpath, hash_algo,
+                                                    blacklist):
     # item is None for a symlink.
     files[relpath] = meta
     if item:
@@ -1506,9 +1511,9 @@ def _enqueue_dir(dirpath, blacklist, hash_algo, hash_algo_name):
 
   # TODO(maruel): If there' not file, don't yield an .isolated file.
   data = {
-    'algo': hash_algo_name,
-    'files': files,
-    'version': isolated_format.ISOLATED_FILE_VERSION,
+      'algo': hash_algo_name,
+      'files': files,
+      'version': isolated_format.ISOLATED_FILE_VERSION,
   }
   # Keep the file in memory. This is fine because .isolated files are relatively
   # small.
@@ -1566,8 +1571,8 @@ def archive_files_to_storage(storage, files, blacklist, verify_push=False):
         if fs.isdir(filepath):
           # Uploading a whole directory.
           item = None
-          for item in _enqueue_dir(
-              filepath, blacklist, hash_algo, hash_algo_name):
+          for item in _enqueue_dir(filepath, blacklist, hash_algo,
+                                   hash_algo_name):
             channel.send_result(item)
             items_found.append(item)
             # The very last item will be the .isolated file.
@@ -1636,8 +1641,8 @@ def CMDarchive(parser, args):
   add_archive_options(parser)
   options, files = parser.parse_args(args)
   process_isolate_server_options(parser, options, True, True)
-  server_ref = isolate_storage.ServerRef(
-      options.isolate_server, options.namespace)
+  server_ref = isolate_storage.ServerRef(options.isolate_server,
+                                         options.namespace)
   if files == ['-']:
     files = (l.rstrip('\n\r') for l in sys.stdin)
   if not files:
@@ -1661,17 +1666,28 @@ def CMDdownload(parser, args):
   """
   add_isolate_server_options(parser)
   parser.add_option(
-      '-s', '--isolated', metavar='HASH',
+      '-s',
+      '--isolated',
+      metavar='HASH',
       help='hash of an isolated file, .isolated file content is discarded, use '
-           '--file if you need it')
+      '--file if you need it')
   parser.add_option(
-      '-f', '--file', metavar='HASH DEST', default=[], action='append', nargs=2,
+      '-f',
+      '--file',
+      metavar='HASH DEST',
+      default=[],
+      action='append',
+      nargs=2,
       help='hash and destination of a file, can be used multiple times')
   parser.add_option(
-      '-t', '--target', metavar='DIR', default='download',
+      '-t',
+      '--target',
+      metavar='DIR',
+      default='download',
       help='destination directory')
   parser.add_option(
-      '--use-symlinks', action='store_true',
+      '--use-symlinks',
+      action='store_true',
       help='Use symlinks instead of hardlinks')
   add_cache_options(parser)
   options, args = parser.parse_args(args)
@@ -1694,8 +1710,8 @@ def CMDdownload(parser, args):
         (fs.isdir(options.target) and fs.listdir(options.target))):
       parser.error(
           '--target \'%s\' exists, please use another target' % options.target)
-  server_ref = isolate_storage.ServerRef(
-      options.isolate_server, options.namespace)
+  server_ref = isolate_storage.ServerRef(options.isolate_server,
+                                         options.namespace)
   with get_storage(server_ref) as storage:
     # Fetching individual files.
     if options.file:
@@ -1706,12 +1722,10 @@ def CMDdownload(parser, args):
         dest = six.text_type(dest)
         pending[digest] = dest
         storage.async_fetch(
-            channel,
-            threading_utils.PRIORITY_MED,
-            digest,
+            channel, threading_utils.PRIORITY_MED, digest,
             local_caching.UNKNOWN_FILE_SIZE,
-            functools.partial(
-                local_caching.file_write, os.path.join(options.target, dest)))
+            functools.partial(local_caching.file_write,
+                              os.path.join(options.target, dest)))
       while pending:
         fetched = channel.next()
         dest = pending.pop(fetched)
@@ -1738,28 +1752,32 @@ def CMDdownload(parser, args):
 def add_archive_options(parser):
   parser.add_option(
       '--blacklist',
-      action='append', default=list(DEFAULT_BLACKLIST),
+      action='append',
+      default=list(DEFAULT_BLACKLIST),
       help='List of regexp to use as blacklist filter when uploading '
-           'directories')
+      'directories')
 
 
 def add_isolate_server_options(parser):
   """Adds --isolate-server and --namespace options to parser."""
   parser.add_option(
-      '-I', '--isolate-server',
-      metavar='URL', default=os.environ.get('ISOLATE_SERVER', ''),
+      '-I',
+      '--isolate-server',
+      metavar='URL',
+      default=os.environ.get('ISOLATE_SERVER', ''),
       help='URL of the Isolate Server to use. Defaults to the environment '
-           'variable ISOLATE_SERVER if set. No need to specify https://, this '
-           'is assumed.')
+      'variable ISOLATE_SERVER if set. No need to specify https://, this '
+      'is assumed.')
   parser.add_option(
       '--grpc-proxy', help='gRPC proxy by which to communicate to Isolate')
   parser.add_option(
-      '--namespace', default='default-gzip',
+      '--namespace',
+      default='default-gzip',
       help='The namespace to use on the Isolate Server, default: %default')
 
 
-def process_isolate_server_options(
-    parser, options, set_exception_handler, required):
+def process_isolate_server_options(parser, options, set_exception_handler,
+                                   required):
   """Processes the --isolate-server option.
 
   Returns the identity as determined by the server.
@@ -1788,29 +1806,31 @@ def process_isolate_server_options(
 def add_cache_options(parser):
   cache_group = optparse.OptionGroup(parser, 'Cache management')
   cache_group.add_option(
-      '--cache', metavar='DIR', default='cache',
+      '--cache',
+      metavar='DIR',
+      default='cache',
       help='Directory to keep a local cache of the files. Accelerates download '
-           'by reusing already downloaded files. Default=%default')
+      'by reusing already downloaded files. Default=%default')
   cache_group.add_option(
       '--max-cache-size',
       type='int',
       metavar='NNN',
-      default=50*1024*1024*1024,
+      default=50 * 1024 * 1024 * 1024,
       help='Trim if the cache gets larger than this value, default=%default')
   cache_group.add_option(
       '--min-free-space',
       type='int',
       metavar='NNN',
-      default=2*1024*1024*1024,
+      default=2 * 1024 * 1024 * 1024,
       help='Trim if disk free space becomes lower than this value, '
-           'default=%default')
+      'default=%default')
   cache_group.add_option(
       '--max-items',
       type='int',
       metavar='NNN',
       default=100000,
       help='Trim if more than this number of items are in the cache '
-           'default=%default')
+      'default=%default')
   parser.add_option_group(cache_group)
 
 
@@ -1821,7 +1841,7 @@ def process_cache_options(options, trim, **kwargs):
         options.min_free_space,
         options.max_items,
         # 3 weeks.
-        max_age_secs=21*24*60*60)
+        max_age_secs=21 * 24 * 60 * 60)
 
     # |options.cache| path may not exist until DiskContentAddressedCache()
     # instance is created.
@@ -1831,6 +1851,7 @@ def process_cache_options(options, trim, **kwargs):
 
 
 class OptionParserIsolateServer(logging_utils.OptionParserWithLogging):
+
   def __init__(self, **kwargs):
     logging_utils.OptionParserWithLogging.__init__(
         self,

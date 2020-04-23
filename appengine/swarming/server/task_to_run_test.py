@@ -39,17 +39,15 @@ from server import task_to_run
 def _gen_cipd(**kwargs):
   """Creates a CipdInputs."""
   args = {
-      u'client_package':
-          task_request.CipdPackage(
-              package_name=u'infra/tools/cipd/${platform}',
-              version=u'git_revision:deadbeef'),
+      u'client_package': task_request.CipdPackage(
+          package_name=u'infra/tools/cipd/${platform}',
+          version=u'git_revision:deadbeef'),
       u'packages': [
           task_request.CipdPackage(
               package_name=u'rm', path=u'bin',
               version=u'git_revision:deadbeef'),
       ],
-      u'server':
-          u'https://chrome-infra-packages.appspot.com',
+      u'server': u'https://chrome-infra-packages.appspot.com',
   }
   args.update(kwargs)
   return task_request.CipdInput(**args)
@@ -58,8 +56,7 @@ def _gen_cipd(**kwargs):
 def _gen_properties(**kwargs):
   """Creates a TaskProperties."""
   args = {
-      u'cipd_input':
-          _gen_cipd(),
+      u'cipd_input': _gen_cipd(),
       u'command': [u'command1', u'arg1'],
       u'dimensions': {
           u'OS': [u'Windows-3.1.1'],
@@ -73,20 +70,14 @@ def _gen_properties(**kwargs):
       u'env_prefixes': {
           u'PATH': [u'local/path']
       },
-      u'execution_timeout_secs':
-          24 * 60 * 60,
-      u'grace_period_secs':
-          30,
-      u'idempotent':
-          False,
-      u'inputs_ref':
-          task_request.FilesRef(
-              isolatedserver=u'https://isolateserver.appspot.com',
-              namespace=u'default-gzip'),
-      u'io_timeout_secs':
-          None,
-      u'has_secret_bytes':
-          u'secret_bytes' in kwargs,
+      u'execution_timeout_secs': 24 * 60 * 60,
+      u'grace_period_secs': 30,
+      u'idempotent': False,
+      u'inputs_ref': task_request.FilesRef(
+          isolatedserver=u'https://isolateserver.appspot.com',
+          namespace=u'default-gzip'),
+      u'io_timeout_secs': None,
+      u'has_secret_bytes': u'secret_bytes' in kwargs,
   }
   args.update(kwargs)
   args[u'dimensions_data'] = args.pop(u'dimensions')
@@ -121,9 +112,18 @@ def _gen_request(properties=None, **kwargs):
 
 def _yield_next_available_task_to_dispatch(bot_dimensions):
   bot_id = bot_dimensions[u'id'][0]
-  bot_management.bot_event('bot_connected', bot_id, '1.2.3.4', 'joe@localhost',
-                           bot_dimensions, {'state': 'real'}, '1234', False,
-                           None, None, None, register_dimensions=False)
+  bot_management.bot_event(
+      'bot_connected',
+      bot_id,
+      '1.2.3.4',
+      'joe@localhost',
+      bot_dimensions, {'state': 'real'},
+      '1234',
+      False,
+      None,
+      None,
+      None,
+      register_dimensions=False)
   bot_root_key = bot_management.get_root_key(bot_id)
   task_queues.assert_bot_async(bot_root_key, bot_dimensions).get_result()
   return [
@@ -619,18 +619,13 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'try_number': 1,
         },
         {
-            'created_ts':
-                self.now + datetime.timedelta(seconds=1),
-            'expiration_ts':
-                self.now + datetime.timedelta(minutes=1, seconds=1),
-            'expiration_delay':
-                None,
-            'queue_number':
-                '0x5385bf749f3d2484',
-            'task_slice_index':
-                0,
-            'try_number':
-                1,
+            'created_ts': self.now + datetime.timedelta(seconds=1),
+            'expiration_ts': self.now + datetime.timedelta(
+                minutes=1, seconds=1),
+            'expiration_delay': None,
+            'queue_number': '0x5385bf749f3d2484',
+            'task_slice_index': 0,
+            'try_number': 1,
         },
     ]
     # There is a significant risk of non-determinism.
@@ -665,19 +660,14 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     actual = _yield_next_available_task_to_dispatch(bot_dimensions)
     expected = [
         {
-            'created_ts':
-                self.now + datetime.timedelta(seconds=-1),
+            'created_ts': self.now + datetime.timedelta(seconds=-1),
             # Due to time being late on the second requester frontend.
-            'expiration_ts':
-                self.now + datetime.timedelta(minutes=1, seconds=-1),
-            'expiration_delay':
-                None,
-            'queue_number':
-                '0x5385bf749f3d2498',
-            'task_slice_index':
-                0,
-            'try_number':
-                1,
+            'expiration_ts': self.now + datetime.timedelta(
+                minutes=1, seconds=-1),
+            'expiration_delay': None,
+            'queue_number': '0x5385bf749f3d2498',
+            'task_slice_index': 0,
+            'try_number': 1,
         },
         {
             'created_ts': self.now,

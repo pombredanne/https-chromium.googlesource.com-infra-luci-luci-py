@@ -2,7 +2,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Ambient task queues generated from the actual load.
 
 This means that the task queues are deduced by the actual load, they are never
@@ -65,7 +64,6 @@ from components import utils
 from server import config
 from server.constants import OR_DIM_SEP
 
-
 # Extends the validity of TaskDimensionsSet and BotTaskDimensions, added to the
 # incoming TaskRequest expiration_secs.
 #
@@ -79,7 +77,6 @@ from server.constants import OR_DIM_SEP
 #
 # For 8000 task queues, that gives a rate of (8000/(4*60*60)) 0.5QPS.
 _EXTEND_VALIDITY = datetime.timedelta(hours=4, minutes=10)
-
 
 # Additional time where TaskDimensionsSet (and by extension TaskDimensions) are
 # kept in the DB even if not applicable anymore. This is to reduce the
@@ -306,7 +303,6 @@ class TaskDimensions(ndb.Model):
 
 ### Private APIs.
 
-
 # Limit in rebuild_task_cache_async. Meant to be overridden in unit test.
 _CAP_FUTURES_LIMIT = 50
 
@@ -464,8 +460,8 @@ def _rebuild_bot_cache_async(bot_dimensions, bot_root_key):
   finally:
     logging.debug(
         '_rebuild_bot_cache_async(%s) in %.3fs. Registered for %d queues; '
-        'cleaned %d',
-        bot_id, (utils.utcnow()-now).total_seconds(), len(matches), cleaned[0])
+        'cleaned %d', bot_id, (utils.utcnow() - now).total_seconds(),
+        len(matches), cleaned[0])
 
 
 def _get_task_dimensions_key(dimensions_hash, dimensions):
@@ -473,12 +469,10 @@ def _get_task_dimensions_key(dimensions_hash, dimensions):
   # Both 'id' and 'pool' are guaranteed to have at most 1 item for a single
   # TaskProperty.
   if u'id' in dimensions:
-    return ndb.Key(
-        TaskDimensionsRoot, u'id:%s' % dimensions[u'id'][0],
-        TaskDimensions, dimensions_hash)
-  return ndb.Key(
-      TaskDimensionsRoot, u'pool:%s' % dimensions[u'pool'][0],
-      TaskDimensions, dimensions_hash)
+    return ndb.Key(TaskDimensionsRoot, u'id:%s' % dimensions[u'id'][0],
+                   TaskDimensions, dimensions_hash)
+  return ndb.Key(TaskDimensionsRoot, u'pool:%s' % dimensions[u'pool'][0],
+                 TaskDimensions, dimensions_hash)
 
 
 @ndb.tasklet
@@ -652,11 +646,11 @@ def _assert_task_props_async(properties, expiration_ts):
   # TODO(maruel): Make it a tasklet.
   dimensions_hash = hash_dimensions(properties.dimensions)
   data = {
-    u'dimensions': properties.dimensions,
-    u'dimensions_hash': str(dimensions_hash),
-    # _EXTEND_VALIDITY here is a way to lower the QPS of the taskqueue
-    # 'rebuild-cache'.
-    u'valid_until_ts': expiration_ts + _EXTEND_VALIDITY,
+      u'dimensions': properties.dimensions,
+      u'dimensions_hash': str(dimensions_hash),
+      # _EXTEND_VALIDITY here is a way to lower the QPS of the taskqueue
+      # 'rebuild-cache'.
+      u'valid_until_ts': expiration_ts + _EXTEND_VALIDITY,
   }
   payload = utils.encode_to_json(data)
 
@@ -676,7 +670,7 @@ def _assert_task_props_async(properties, expiration_ts):
     # Reduce the check to be 5~10 minutes earlier to help reduce an attack of
     # task queues when there's a strong on-going load of tasks happening. This
     # jitter is essentially removed from _EXTEND_VALIDITY window.
-    jitter = datetime.timedelta(seconds=random.randint(5*60, 10*60))
+    jitter = datetime.timedelta(seconds=random.randint(5 * 60, 10 * 60))
     valid_until_ts = expiration_ts - jitter
     s = obj.match_request(properties.dimensions)
     if s:
@@ -1037,13 +1031,12 @@ def get_queues(bot_root_key):
   if dimensions_hashes is not None:
     # Note: This may return stale queues. We may want to change the format to
     # include the expiration.
-    logging.debug(
-        'get_queues(%s): can run from %d queues (memcache)\n%s',
-        bot_id, len(dimensions_hashes), dimensions_hashes)
+    logging.debug('get_queues(%s): can run from %d queues (memcache)\n%s',
+                  bot_id, len(dimensions_hashes), dimensions_hashes)
     # Refresh all the keys.
-    memcache.set_multi(
-        {str(d): True for d in dimensions_hashes},
-        time=61, namespace='task_queues_tasks')
+    memcache.set_multi({str(d): True for d in dimensions_hashes},
+                       time=61,
+                       namespace='task_queues_tasks')
     return dimensions_hashes
 
   # Retrieve all the dimensions_hash that this bot could run that have
@@ -1051,20 +1044,19 @@ def get_queues(bot_root_key):
   # should be fast.
   now = utils.utcnow()
   dimensions_hashes = sorted(
-      obj.key.integer_id() for obj in
-      BotTaskDimensions.query(ancestor=bot_root_key)
+      obj.key.integer_id()
+      for obj in BotTaskDimensions.query(ancestor=bot_root_key)
       if obj.valid_until_ts >= now)
   # crbug.com/1065306:
   # Cache expires in 5 minutes.
   # It should be shortened further or removed according to load on Datastore.
-  memcache.set(bot_id,dimensions_hashes, time=60*5, namespace='task_queues')
-  logging.info(
-      'get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
-      bot_id, (utils.utcnow()-now).total_seconds(),
-      len(dimensions_hashes), dimensions_hashes)
-  memcache.set_multi(
-      {str(d): True for d in dimensions_hashes},
-      time=61, namespace='task_queues_tasks')
+  memcache.set(bot_id, dimensions_hashes, time=60 * 5, namespace='task_queues')
+  logging.info('get_queues(%s): Query in %.3fs: can run from %d queues\n%s',
+               bot_id, (utils.utcnow() - now).total_seconds(),
+               len(dimensions_hashes), dimensions_hashes)
+  memcache.set_multi({str(d): True for d in dimensions_hashes},
+                     time=61,
+                     namespace='task_queues_tasks')
   return dimensions_hashes
 
 
@@ -1153,7 +1145,7 @@ def rebuild_task_cache_async(payload):
                                         task_dimensions_key)
   finally:
     # Any of the calls above could throw. Log how far long we processed.
-    duration = (utils.utcnow()-now).total_seconds()
+    duration = (utils.utcnow() - now).total_seconds()
     logging.debug(
         'rebuild_task_cache(%d) in %.3fs\n%s\ndimensions_flat size=%d',
         task_dimensions_hash, duration, task_dimensions,
@@ -1183,5 +1175,5 @@ def cron_tidy_stale():
     logging.info(
         'cron_tidy_stale() in %.3fs; TaskDimensions: found %d, deleted %d; '
         'BotTaskDimensions: found %d, deleted %d',
-        (utils.utcnow() - now).total_seconds(),
-        len(td), sum(1 for i in td if i), len(btd), sum(1 for i in btd if i))
+        (utils.utcnow() - now).total_seconds(), len(td), sum(
+            1 for i in td if i), len(btd), sum(1 for i in btd if i))

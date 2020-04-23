@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Generates the file /etc/udev/rules.d/android_swarming_bot.rules to enable
 automatic Swarming bot to be fired up when an Android device with USB debugging
 is connected.
@@ -33,8 +32,8 @@ def gen_udev_rule(user, dev_filters):
   # The command executed must exit immediately.
   script = os.path.join(ROOT_DIR, 'udev_start_bot_deferred.sh')
   items = [
-    'ACTION=="add"',
-    'SUBSYSTEM=="usb"',
+      'ACTION=="add"',
+      'SUBSYSTEM=="usb"',
   ]
   items.extend(dev_filters)
   # - sudo -u <user> is important otherwise a user writeable script would be run
@@ -103,18 +102,20 @@ def main():
     return 1
 
   parser = optparse.OptionParser(
-      description=sys.modules[__name__].__doc__,
-      version=__version__)
+      description=sys.modules[__name__].__doc__, version=__version__)
   parser.add_option('--file', help=optparse.SUPPRESS_HELP)
   parser.add_option(
-      '-d', '--dev_filters', default=[], action='append',
+      '-d',
+      '--dev_filters',
+      default=[],
+      action='append',
       help='udev filters to use; get device id with "lsusb" then udev details '
-           'with "udevadm info -a -n /dev/bus/usb/002/001"')
+      'with "udevadm info -a -n /dev/bus/usb/002/001"')
   parser.add_option(
-      '--user', default=getpass.getuser(),
+      '--user',
+      default=getpass.getuser(),
       help='User account to start the bot with')
-  parser.add_option(
-      '--test', help='Tests the rule for a device')
+  parser.add_option('--test', help='Tests the rule for a device')
   options, args = parser.parse_args()
   if args:
     parser.error('Unsupported arguments %s' % args)

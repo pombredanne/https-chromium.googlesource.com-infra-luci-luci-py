@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines the mapreduces, which are used to do one-off mass updates on entities
 and other manually triggered maintenance tasks.
 
@@ -24,44 +23,42 @@ from components import utils
 from server import task_pack
 from server import task_result  # Needed for entity.get()
 
-
 # Base path to the mapreduce pipeline.
 MAPREDUCE_PIPELINE_BASE_PATH = '/internal/mapreduce/pipeline'
 # Task queue name to run all map reduce jobs on.
 MAPREDUCE_TASK_QUEUE = 'mapreduce-jobs'
 
-
 # Registered mapreduce jobs, displayed on admin page.
 MAPREDUCE_JOBS = {
-  'backfill_tags': {
-    'job_name': 'Backfill tags',
-    'mapper_spec': 'mapreduce_jobs.backfill_tags',
-    'mapper_params': {
-      'entity_kind': 'server.task_result.TaskResultSummary',
+    'backfill_tags': {
+        'job_name': 'Backfill tags',
+        'mapper_spec': 'mapreduce_jobs.backfill_tags',
+        'mapper_params': {
+            'entity_kind': 'server.task_result.TaskResultSummary',
+        },
     },
-  },
-  'fix_tags': {
-    'job_name': 'fix_tags',
-    'mapper_spec': 'mapreduce_jobs.fix_tags',
-    'mapper_params': {
-      'entity_kind': 'server.task_result.TaskResultSummary',
+    'fix_tags': {
+        'job_name': 'fix_tags',
+        'mapper_spec': 'mapreduce_jobs.fix_tags',
+        'mapper_params': {
+            'entity_kind': 'server.task_result.TaskResultSummary',
+        },
     },
-  },
-  'delete_old': {
-    'job_name': 'delete_old',
-    'mapper_spec': 'mapreduce_jobs.delete_old',
-    'mapper_params': {
-      'entity_kind': 'server.task_request.TaskRequest',
+    'delete_old': {
+        'job_name': 'delete_old',
+        'mapper_spec': 'mapreduce_jobs.delete_old',
+        'mapper_params': {
+            'entity_kind': 'server.task_request.TaskRequest',
+        },
     },
-  },
-  'find_ios_infrastructure_failures': {
-    'job_name': 'Find iOS Infrastructure Failures',
-    'mapper_spec': 'mapreduce_jobs.map_ios_infrastructure_failures',
-    'reducer_spec': 'mapreduce_jobs.reduce_ios_infrastructure_failures',
-    'mapper_params': {
-      'entity_kind': 'server.task_result.TaskResultSummary',
+    'find_ios_infrastructure_failures': {
+        'job_name': 'Find iOS Infrastructure Failures',
+        'mapper_spec': 'mapreduce_jobs.map_ios_infrastructure_failures',
+        'reducer_spec': 'mapreduce_jobs.reduce_ios_infrastructure_failures',
+        'mapper_params': {
+            'entity_kind': 'server.task_result.TaskResultSummary',
+        },
     },
-  },
 }
 
 
@@ -72,8 +69,8 @@ def launch_job(job_id):
   # 256 helps getting things done faster but it is very easy to burn thousands
   # of $ within a few hours. Don't forget to update queue.yaml accordingly.
   job_def.setdefault('shards', 128)
-  job_def.setdefault(
-      'input_reader_spec', 'mapreduce.input_readers.DatastoreInputReader')
+  job_def.setdefault('input_reader_spec',
+                     'mapreduce.input_readers.DatastoreInputReader')
   job_def['mapper_params'] = job_def['mapper_params'].copy()
   job_def['mapper_params'].setdefault(
       'bucket_name', app_identity.get_default_gcs_bucket_name())
@@ -93,7 +90,6 @@ def launch_job(job_id):
 
 
 ### Actual mappers
-
 
 OLD_TASKS_CUTOFF = utils.utcnow() - datetime.timedelta(hours=12)
 
@@ -184,14 +180,14 @@ def map_ios_infrastructure_failures(entity):
     return
 
   labels = {
-    'buildername': None,
-    'buildnumber': None,
-    'device_type': None,
-    'ios_version': None,
-    'master': None,
-    'platform': None,
-    'revision': None,
-    'xcode_version': None,
+      'buildername': None,
+      'buildnumber': None,
+      'device_type': None,
+      'ios_version': None,
+      'master': None,
+      'platform': None,
+      'revision': None,
+      'xcode_version': None,
   }
 
   for label in labels:

@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This modules is imported by AppEngine and defines the frontend 'app' object.
 
 It is a separate file so that application bootstrapping code like ereporter2,
@@ -64,15 +63,15 @@ def create_application():
   gae_ts_mon.initialize(frontend_app, is_enabled_fn=is_enabled_callback)
 
   endpoints_api = endpoints_webapp2.api_server([
-    handlers_endpoints.SwarmingServerService,
-    handlers_endpoints.SwarmingTaskService,
-    handlers_endpoints.SwarmingTasksService,
-    handlers_endpoints.SwarmingQueuesService,
-    handlers_endpoints.SwarmingBotService,
-    handlers_endpoints.SwarmingBotsService,
-    # components.config endpoints for validation and configuring of luci-config
-    # service URL.
-    config.ConfigApi,
+      handlers_endpoints.SwarmingServerService,
+      handlers_endpoints.SwarmingTaskService,
+      handlers_endpoints.SwarmingTasksService,
+      handlers_endpoints.SwarmingQueuesService,
+      handlers_endpoints.SwarmingBotService,
+      handlers_endpoints.SwarmingBotsService,
+      # components.config endpoints for validation and configuring of luci-config
+      # service URL.
+      config.ConfigApi,
   ])
   gae_ts_mon.instrument_wsgi_application(endpoints_api)
 
