@@ -461,8 +461,7 @@ class IsolateServer(StorageApi):
             'is_isolated': bool(item.high_priority),
             'size': item.size,
         } for item in items],
-        'namespace':
-            self._namespace_dict,
+        'namespace': self._namespace_dict,
     }
 
     query_url = '%s/_ah/api/isolateservice/v1/preupload' % self.server_ref.url

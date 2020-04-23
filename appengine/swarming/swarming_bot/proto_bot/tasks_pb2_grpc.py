@@ -51,26 +51,21 @@ class TasksServicer(object):
 
 def add_TasksServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'GetTask':
-          grpc.unary_unary_rpc_method_handler(
-              servicer.GetTask,
-              request_deserializer=tasks__pb2.GetTaskRequest.FromString,
-              response_serializer=tasks__pb2.Task.SerializeToString,
-          ),
-      'UpdateTaskResult':
-          grpc.unary_unary_rpc_method_handler(
-              servicer.UpdateTaskResult,
-              request_deserializer=tasks__pb2.UpdateTaskResultRequest
-              .FromString,
-              response_serializer=tasks__pb2.TaskResult.SerializeToString,
-          ),
-      'AddTaskLog':
-          grpc.unary_unary_rpc_method_handler(
-              servicer.AddTaskLog,
-              request_deserializer=tasks__pb2.AddTaskLogRequest.FromString,
-              response_serializer=tasks__pb2.AddTaskLogResponse
-              .SerializeToString,
-          ),
+      'GetTask': grpc.unary_unary_rpc_method_handler(
+          servicer.GetTask,
+          request_deserializer=tasks__pb2.GetTaskRequest.FromString,
+          response_serializer=tasks__pb2.Task.SerializeToString,
+      ),
+      'UpdateTaskResult': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateTaskResult,
+          request_deserializer=tasks__pb2.UpdateTaskResultRequest.FromString,
+          response_serializer=tasks__pb2.TaskResult.SerializeToString,
+      ),
+      'AddTaskLog': grpc.unary_unary_rpc_method_handler(
+          servicer.AddTaskLog,
+          request_deserializer=tasks__pb2.AddTaskLogRequest.FromString,
+          response_serializer=tasks__pb2.AddTaskLogResponse.SerializeToString,
+      ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'google.devtools.remoteworkers.v1test2.Tasks', rpc_method_handlers)

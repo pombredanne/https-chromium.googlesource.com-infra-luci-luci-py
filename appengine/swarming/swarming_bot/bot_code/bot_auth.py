@@ -86,20 +86,13 @@ def prepare_auth_params_json(bot, manifest):
     return acc.get('service_account') or 'none'
 
   return {
-      'bot_id':
-          bot.id,
-      'task_id':
-          manifest['task_id'],
-      'swarming_http_headers':
-          bot.remote.get_authentication_headers(),
-      'swarming_http_headers_exp':
-          bot.remote.authentication_headers_expiration,
-      'bot_service_account':
-          bot_service_account,
-      'system_service_account':
-          account('system'),
-      'task_service_account':
-          account('task'),
+      'bot_id': bot.id,
+      'task_id': manifest['task_id'],
+      'swarming_http_headers': bot.remote.get_authentication_headers(),
+      'swarming_http_headers_exp': bot.remote.authentication_headers_expiration,
+      'bot_service_account': bot_service_account,
+      'system_service_account': account('system'),
+      'task_service_account': account('task'),
   }
 
 

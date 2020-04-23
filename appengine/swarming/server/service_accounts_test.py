@@ -82,12 +82,9 @@ class OAuthTokenGrantTest(TestBase):
                 'swarming:gae_request_id:7357B3D7091D',
                 'swarming:service_version:sample-app/v1a',
             ],
-            'endUser':
-                'user:end-user@example.com',
-            'serviceAccount':
-                'service-account@example.com',
-            'validityDuration':
-                7200,
+            'endUser': 'user:end-user@example.com',
+            'serviceAccount': 'service-account@example.com',
+            'validityDuration': 7200,
         },
         response={
             'grantToken': 'totally_real_token',
@@ -120,12 +117,9 @@ class OAuthTokenGrantTest(TestBase):
                 'swarming:gae_request_id:7357B3D7091D',
                 'swarming:service_version:sample-app/v1a',
             ],
-            'endUser':
-                'user:end-user@example.com',
-            'serviceAccount':
-                'service-account@example.com',
-            'validityDuration':
-                7200,
+            'endUser': 'user:end-user@example.com',
+            'serviceAccount': 'service-account@example.com',
+            'validityDuration': 7200,
         },
         response={
             'grantToken': 'another_totally_real_token',
@@ -159,13 +153,10 @@ class TaskAccountTokenTest(TestBase):
   def make_task_request(self, service_account, service_account_token):
     now = utils.utcnow()
     args = {
-        'created_ts':
-            now,
+        'created_ts': now,
         'manual_tags': [u'tag:1'],
-        'name':
-            'Request with %s' % service_account,
-        'priority':
-            50,
+        'name': 'Request with %s' % service_account,
+        'priority': 50,
         'task_slices': [
             task_request.TaskSlice(
                 expiration_secs=60,
@@ -174,8 +165,7 @@ class TaskAccountTokenTest(TestBase):
                     dimensions_data={u'pool': [u'default']},
                     execution_timeout_secs=24 * 60 * 60)),
         ],
-        'user':
-            'Someone',
+        'user': 'Someone',
     }
     req = task_request.TaskRequest(**args)
     task_request.init_new_request(req, True, task_request.TEMPLATE_AUTO)

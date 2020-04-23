@@ -58,10 +58,8 @@ def get_manifest(script=None, isolated=None, **kwargs):
   """
   isolated_input = isolated and isolated.get('input')
   out = {
-      'bot_authenticated_as':
-          'foo',
-      'bot_id':
-          'localhost',
+      'bot_authenticated_as': 'foo',
+      'bot_id': 'localhost',
       'caches': [],
       'cipd_input': {},
       'command': [sys.executable, '-u', '-c', script]
@@ -76,25 +74,16 @@ def get_manifest(script=None, isolated=None, **kwargs):
       'env': {},
       'env_prefixes': {},
       'extra_args': [],
-      'grace_period':
-          30.,
-      'hard_timeout':
-          10.,
-      'host':
-          'bar',
-      'io_timeout':
-          10.,
-      'isolated':
-          isolated,
+      'grace_period': 30.,
+      'hard_timeout': 10.,
+      'host': 'bar',
+      'io_timeout': 10.,
+      'isolated': isolated,
       'outputs': [],
-      'relative_cwd':
-          None,
-      'secret_bytes':
-          None,
-      'service_accounts':
-          None,
-      'task_id':
-          23,
+      'relative_cwd': None,
+      'secret_bytes': None,
+      'service_accounts': None,
+      'task_id': 23,
   }
   out.update(kwargs)
   return out
@@ -478,11 +467,9 @@ class TestTaskRunner(TestTaskRunnerBase):
         'command': ['python', 'parent.py'],
         'files': {
             name: {
-                'h':
-                    self.isolateserver.add_content_compressed(
-                        'default-gzip', content),
-                's':
-                    len(content),
+                'h': self.isolateserver.add_content_compressed(
+                    'default-gzip', content),
+                's': len(content),
             } for name, content in files.items()
         },
     })
@@ -1023,18 +1010,15 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
             'print(p.pid)\n'
             'p.wait()\n'
             'sys.exit(p.returncode)\n'),
-        'grand_children.py':
-            self.SCRIPT_SIGNAL_HANG,
+        'grand_children.py': self.SCRIPT_SIGNAL_HANG,
     }
     isolated = json.dumps({
         'command': ['python', '-u', 'parent.py'],
         'files': {
             name: {
-                'h':
-                    self.isolateserver.add_content_compressed(
-                        'default-gzip', content),
-                's':
-                    len(content),
+                'h': self.isolateserver.add_content_compressed(
+                    'default-gzip', content),
+                's': len(content),
             } for name, content in files.items()
         },
     })
