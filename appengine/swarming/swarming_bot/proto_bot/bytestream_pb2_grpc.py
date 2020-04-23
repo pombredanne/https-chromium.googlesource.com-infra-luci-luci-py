@@ -42,17 +42,19 @@ class ByteStreamStub(object):
         '/google.bytestream.ByteStream/Read',
         request_serializer=bytestream__pb2.ReadRequest.SerializeToString,
         response_deserializer=bytestream__pb2.ReadResponse.FromString,
-        )
+    )
     self.Write = channel.stream_unary(
         '/google.bytestream.ByteStream/Write',
         request_serializer=bytestream__pb2.WriteRequest.SerializeToString,
         response_deserializer=bytestream__pb2.WriteResponse.FromString,
-        )
+    )
     self.QueryWriteStatus = channel.unary_unary(
         '/google.bytestream.ByteStream/QueryWriteStatus',
-        request_serializer=bytestream__pb2.QueryWriteStatusRequest.SerializeToString,
-        response_deserializer=bytestream__pb2.QueryWriteStatusResponse.FromString,
-        )
+        request_serializer=bytestream__pb2.QueryWriteStatusRequest
+        .SerializeToString,
+        response_deserializer=bytestream__pb2.QueryWriteStatusResponse
+        .FromString,
+    )
 
 
 class ByteStreamServicer(object):
@@ -141,21 +143,28 @@ class ByteStreamServicer(object):
 
 def add_ByteStreamServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'Read': grpc.unary_stream_rpc_method_handler(
-          servicer.Read,
-          request_deserializer=bytestream__pb2.ReadRequest.FromString,
-          response_serializer=bytestream__pb2.ReadResponse.SerializeToString,
-      ),
-      'Write': grpc.stream_unary_rpc_method_handler(
-          servicer.Write,
-          request_deserializer=bytestream__pb2.WriteRequest.FromString,
-          response_serializer=bytestream__pb2.WriteResponse.SerializeToString,
-      ),
-      'QueryWriteStatus': grpc.unary_unary_rpc_method_handler(
-          servicer.QueryWriteStatus,
-          request_deserializer=bytestream__pb2.QueryWriteStatusRequest.FromString,
-          response_serializer=bytestream__pb2.QueryWriteStatusResponse.SerializeToString,
-      ),
+      'Read':
+          grpc.unary_stream_rpc_method_handler(
+              servicer.Read,
+              request_deserializer=bytestream__pb2.ReadRequest.FromString,
+              response_serializer=bytestream__pb2.ReadResponse
+              .SerializeToString,
+          ),
+      'Write':
+          grpc.stream_unary_rpc_method_handler(
+              servicer.Write,
+              request_deserializer=bytestream__pb2.WriteRequest.FromString,
+              response_serializer=bytestream__pb2.WriteResponse
+              .SerializeToString,
+          ),
+      'QueryWriteStatus':
+          grpc.unary_unary_rpc_method_handler(
+              servicer.QueryWriteStatus,
+              request_deserializer=bytestream__pb2.QueryWriteStatusRequest
+              .FromString,
+              response_serializer=bytestream__pb2.QueryWriteStatusResponse
+              .SerializeToString,
+          ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'google.bytestream.ByteStream', rpc_method_handlers)
