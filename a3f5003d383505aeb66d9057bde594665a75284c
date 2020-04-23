@@ -22,6 +22,23 @@
       "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffc6e5eb_9aa130a2",
+        "filename": "client/proto/bytestream_pb2_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-23T08:01:34Z",
+      "side": 1,
+      "message": "do not apply format change for generated code?",
+      "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
