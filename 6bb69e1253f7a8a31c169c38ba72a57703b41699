@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41b56d86_2f718882",
+        "filename": ".yapfignore",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-23T09:53:54Z",
+      "side": 1,
+      "message": "could you extract this to separate CL?",
+      "revId": "6bb69e1253f7a8a31c169c38ba72a57703b41699",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5740a200_75e6913c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-23T09:53:54Z",
+      "side": 1,
+      "message": "could you divide this to smaller CL?\ne.g.\nclient\nswarming/server\nswarming/swarming_bot\nrest",
+      "revId": "6bb69e1253f7a8a31c169c38ba72a57703b41699",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
