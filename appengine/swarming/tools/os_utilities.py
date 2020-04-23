@@ -31,8 +31,7 @@ def main():
         data = {
             u'dimensions':
                 os_utilities.get_dimensions_all_devices_android(devices),
-            u'state':
-                os_utilities.get_state_all_devices_android(devices),
+            u'state': os_utilities.get_state_all_devices_android(devices),
         }
       finally:
         platforms.android.close_devices(devices)

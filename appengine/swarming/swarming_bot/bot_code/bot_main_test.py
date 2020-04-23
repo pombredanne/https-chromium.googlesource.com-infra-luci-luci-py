@@ -230,8 +230,7 @@ class TestBotMain(TestBotBase):
             (u'Not enough free disk space on %s. 0.1mib < 100.0mib\n'
              u'Not enough free disk space on %s. 0.1mib < 150.0mib') %
             (root, botobj.base_dir),
-        u'sleep_streak':
-            1,
+        u'sleep_streak': 1,
     }
     self.assertEqual(expected, bot_main._get_state(botobj, 1))
 
@@ -888,8 +887,8 @@ class TestBotMain(TestBotBase):
             },
             'swarming_http_headers_exp': int(time.time() + 3600),
             'bot_service_account': 'none',
-            'system_service_account':
-                'robot@example.com',  # as in task manifest
+            # as in task manifest
+            'system_service_account': 'robot@example.com',
             'task_service_account': 'bot',
         })
 

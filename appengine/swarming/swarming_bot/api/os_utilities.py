@@ -775,9 +775,8 @@ def get_timeseries_data(name, project, service_account, **kwargs):
     GetTimeseriesDataFailure
   """
   params = {
-      'youngest':
-          kwargs.get('youngest')
-          or time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+      'youngest': kwargs.get('youngest')
+                  or time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
   }
   if kwargs.get('count'):
     params['count'] = kwargs['count']
