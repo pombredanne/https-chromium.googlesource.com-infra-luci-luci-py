@@ -248,35 +248,23 @@ def get_state(devices):
       return {u'state': 'unavailable'}
     no_sd_card = properties.get(u'ro.product.model', '') in ['Chromecast']
     return {
-        u'battery':
-            device.GetBattery(),
+        u'battery': device.GetBattery(),
         u'build': {
             key: properties.get(u'ro.' + key, '<missing>') for key in keys
         },
-        u'cpu':
-            device.GetCPUScale(),
-        u'disk':
-            device.GetDisk(),
-        u'imei':
-            device.GetIMEI(),
-        u'ip':
-            device.GetIPs(),
-        u'max_uid':
-            device.GetLastUID(),
-        u'mem':
-            device.GetMemInfo(),
-        u'other_packages':
-            get_unknown_apps(device),
-        u'port_path':
-            device.port_path,
-        u'processes':
-            device.GetProcessCount(),
+        u'cpu': device.GetCPUScale(),
+        u'disk': device.GetDisk(),
+        u'imei': device.GetIMEI(),
+        u'ip': device.GetIPs(),
+        u'max_uid': device.GetLastUID(),
+        u'mem': device.GetMemInfo(),
+        u'other_packages': get_unknown_apps(device),
+        u'port_path': device.port_path,
+        u'processes': device.GetProcessCount(),
         u'state': (u'available'
                    if no_sd_card or device.IsFullyBooted()[0] else u'booting'),
-        u'temp':
-            device.GetTemperatures(),
-        u'uptime':
-            device.GetUptime(),
+        u'temp': device.GetTemperatures(),
+        u'uptime': device.GetUptime(),
     }
 
   start = time.time()

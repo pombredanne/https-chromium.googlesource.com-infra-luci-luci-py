@@ -53,25 +53,22 @@ class BotsServicer(object):
 
 def add_BotsServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'CreateBotSession':
-          grpc.unary_unary_rpc_method_handler(
-              servicer.CreateBotSession,
-              request_deserializer=bots__pb2.CreateBotSessionRequest.FromString,
-              response_serializer=bots__pb2.BotSession.SerializeToString,
-          ),
-      'UpdateBotSession':
-          grpc.unary_unary_rpc_method_handler(
-              servicer.UpdateBotSession,
-              request_deserializer=bots__pb2.UpdateBotSessionRequest.FromString,
-              response_serializer=bots__pb2.BotSession.SerializeToString,
-          ),
-      'PostBotEventTemp':
-          grpc.unary_unary_rpc_method_handler(
-              servicer.PostBotEventTemp,
-              request_deserializer=bots__pb2.PostBotEventTempRequest.FromString,
-              response_serializer=google_dot_protobuf_dot_empty__pb2.Empty
-              .SerializeToString,
-          ),
+      'CreateBotSession': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateBotSession,
+          request_deserializer=bots__pb2.CreateBotSessionRequest.FromString,
+          response_serializer=bots__pb2.BotSession.SerializeToString,
+      ),
+      'UpdateBotSession': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateBotSession,
+          request_deserializer=bots__pb2.UpdateBotSessionRequest.FromString,
+          response_serializer=bots__pb2.BotSession.SerializeToString,
+      ),
+      'PostBotEventTemp': grpc.unary_unary_rpc_method_handler(
+          servicer.PostBotEventTemp,
+          request_deserializer=bots__pb2.PostBotEventTempRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty
+          .SerializeToString,
+      ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'google.devtools.remoteworkers.v1test2.Bots', rpc_method_handlers)

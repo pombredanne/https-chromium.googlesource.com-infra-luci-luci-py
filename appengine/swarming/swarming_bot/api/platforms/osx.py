@@ -571,18 +571,16 @@ def get_cpuinfo():
       subprocess.check_output(['sysctl', 'machdep.cpu']))
   # http://unix.stackexchange.com/questions/43539/what-do-the-flags-in-proc-cpuinfo-mean
   return {
-      u'flags':
-          sorted(i.lower() for i in values[u'machdep.cpu.features'].split()),
+      u'flags': sorted(
+          i.lower() for i in values[u'machdep.cpu.features'].split()),
       u'model': [
           int(values['machdep.cpu.family']),
           int(values['machdep.cpu.model']),
           int(values['machdep.cpu.stepping']),
           int(values['machdep.cpu.microcode_version']),
       ],
-      u'name':
-          values[u'machdep.cpu.brand_string'],
-      u'vendor':
-          values[u'machdep.cpu.vendor'],
+      u'name': values[u'machdep.cpu.brand_string'],
+      u'vendor': values[u'machdep.cpu.vendor'],
   }
 
 
