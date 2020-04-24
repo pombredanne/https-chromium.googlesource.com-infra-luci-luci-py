@@ -34,6 +34,24 @@
       "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a067b4fa_8453ed29",
+        "filename": ".style.yapf",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-24T08:02:50Z",
+      "side": 1,
+      "message": "`git cl format` works for python without .style.yapf?",
+      "parentUuid": "d4f2a6eb_a71d2621",
+      "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
