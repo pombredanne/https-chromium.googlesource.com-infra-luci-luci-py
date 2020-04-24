@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42ea9d09_5a949600",
+        "filename": "client/tests/on_error_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T01:36:32Z",
+      "side": 1,
+      "message": "Better to recover the original maxDiff at teardown?",
+      "revId": "445dec2b98ecc7f1cf1a45150304d3505382c854",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
