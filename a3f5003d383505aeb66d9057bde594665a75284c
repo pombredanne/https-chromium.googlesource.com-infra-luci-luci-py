@@ -116,6 +116,24 @@
       "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "536cd24d_89a73a3d",
+        "filename": "client/proto/bytestream_pb2_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-24T07:40:10Z",
+      "side": 1,
+      "message": "not change? \nwhat is parent CL?",
+      "parentUuid": "0b7431e4_ea811c07",
+      "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
