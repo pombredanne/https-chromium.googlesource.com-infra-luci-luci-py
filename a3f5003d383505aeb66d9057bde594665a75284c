@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "9f0cef12_b62e63bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T05:00:19Z",
+      "side": 1,
+      "message": "Thank you. Will do if many people prefer this style.",
+      "parentUuid": "9602b795_ac8275d1",
+      "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffc6e5eb_9aa130a2",
         "filename": "client/proto/bytestream_pb2_grpc.py",
         "patchSetId": 2
@@ -56,6 +74,24 @@
       "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b7431e4_ea811c07",
+        "filename": "client/proto/bytestream_pb2_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T05:00:19Z",
+      "side": 1,
+      "message": "Fixed in the parent CL.",
+      "parentUuid": "ffc6e5eb_9aa130a2",
+      "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
