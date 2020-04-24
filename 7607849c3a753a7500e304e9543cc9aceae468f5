@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70ad530d_49797c10",
+        "filename": ".style.yapf",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-24T07:50:00Z",
+      "side": 1,
+      "message": "by the way, chromium seems just stopped using chromium style.\nand I prefer to follow them rather than pursuing our preference.\nhttps://github.com/google/yapf/pull/789",
+      "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
