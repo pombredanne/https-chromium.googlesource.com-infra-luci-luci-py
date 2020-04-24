@@ -70,6 +70,24 @@
       "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ca3f68b_0facae7d",
+        "filename": ".style.yapf",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-24T08:12:44Z",
+      "side": 1,
+      "message": "that sounds good to me",
+      "parentUuid": "7fd58de1_e18c8c96",
+      "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
