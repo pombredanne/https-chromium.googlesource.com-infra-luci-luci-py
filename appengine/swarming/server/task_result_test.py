@@ -64,21 +64,16 @@ def _gen_request_slice(**kwargs):
   """Creates a TaskRequest."""
   now = utils.utcnow()
   args = {
-      'created_ts':
-          now,
+      'created_ts': now,
       'manual_tags': [u'tag:1'],
-      'name':
-          'Request name',
-      'priority':
-          50,
+      'name': 'Request name',
+      'priority': 50,
       'task_slices': [
           task_request.TaskSlice(
               expiration_secs=60, properties=_gen_properties()),
       ],
-      'user':
-          'Jesus',
-      'bot_ping_tolerance_secs':
-          120,
+      'user': 'Jesus',
+      'bot_ping_tolerance_secs': 120,
   }
   args.update(kwargs)
   ret = task_request.TaskRequest(**args)
@@ -730,14 +725,12 @@ class TaskResultApiTest(TestCase):
     run_result = _gen_run_result(
         properties=_gen_properties(
             cipd_input={
-                u'client_package':
-                    cipd_client_pkg,
+                u'client_package': cipd_client_pkg,
                 u'packages': [
                     task_request.CipdPackage(
                         package_name=u'rm', path=u'bin', version=u'latest'),
                 ],
-                u'server':
-                    u'http://localhost:2'
+                u'server': u'http://localhost:2'
             },
             containment=task_request.Containment(lower_priority=True),
         ),)

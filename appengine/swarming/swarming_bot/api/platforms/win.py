@@ -357,10 +357,8 @@ def get_cpuinfo():
             int(match.group(2)),
             int(match.group(3))
         ],
-        u'name':
-            name,
-        u'vendor':
-            vendor,
+        u'name': name,
+        u'vendor': vendor,
     }
   finally:
     k.Close()

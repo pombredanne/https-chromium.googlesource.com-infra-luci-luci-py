@@ -78,8 +78,7 @@ def _ensure_bot_info(bot_id=u'id1', **kwargs):
 
 def _gen_bot_info(**kwargs):
   out = {
-      'authenticated_as':
-          u'bot:id1.domain',
+      'authenticated_as': u'bot:id1.domain',
       'composite': [
           bot_management.BotInfo.NOT_IN_MAINTENANCE,
           bot_management.BotInfo.ALIVE,
@@ -91,39 +90,24 @@ def _gen_bot_info(**kwargs):
           u'os': [u'Ubuntu', u'Ubuntu-16.04'],
           u'pool': [u'default'],
       },
-      'external_ip':
-          u'8.8.4.4',
-      'first_seen_ts':
-          utils.utcnow(),
-      'id':
-          'id1',
-      'is_dead':
-          False,
-      'last_seen_ts':
-          utils.utcnow(),
-      'lease_id':
-          None,
-      'lease_expiration_ts':
-          None,
-      'leased_indefinitely':
-          None,
-      'machine_lease':
-          None,
-      'machine_type':
-          None,
-      'quarantined':
-          False,
-      'maintenance_msg':
-          None,
+      'external_ip': u'8.8.4.4',
+      'first_seen_ts': utils.utcnow(),
+      'id': 'id1',
+      'is_dead': False,
+      'last_seen_ts': utils.utcnow(),
+      'lease_id': None,
+      'lease_expiration_ts': None,
+      'leased_indefinitely': None,
+      'machine_lease': None,
+      'machine_type': None,
+      'quarantined': False,
+      'maintenance_msg': None,
       'state': {
           u'ram': 65
       },
-      'task_id':
-          None,
-      'task_name':
-          None,
-      'version':
-          _VERSION,
+      'task_id': None,
+      'task_name': None,
+      'version': _VERSION,
   }
   out.update(kwargs)
   return out
@@ -261,10 +245,9 @@ class BotManagementTest(test_case.TestCase):
             info=swarming_pb2.BotInfo(
                 supplemental=struct_pb2.Struct(
                     fields={
-                        u'quarantined':
-                            struct_pb2.Value(string_value=u'sad bot'),
-                        u'ram':
-                            struct_pb2.Value(number_value=65),
+                        u'quarantined': struct_pb2.Value(
+                            string_value=u'sad bot'),
+                        u'ram': struct_pb2.Value(number_value=65),
                     }),
                 version=_VERSION,
                 external_ip=u'8.8.4.4',
