@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8b434d5_90fc8952",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-24T07:54:49Z",
+      "side": 1,
+      "message": "why not use valid_until_ts ?",
+      "revId": "98ce9b7554ecb53a878e47ede92562d8041ccdfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
