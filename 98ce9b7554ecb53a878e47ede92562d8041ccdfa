@@ -16,6 +16,24 @@
       "revId": "98ce9b7554ecb53a878e47ede92562d8041ccdfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe012cb_8645a9b7",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T08:07:27Z",
+      "side": 1,
+      "message": "They have different validities.\n\nThe expiration time of BotDimensions is 20-40 mins because it\u0027s expensive computation.\nThe expiration time of task_queues is 5 mins because BotTaskDimensions can be retrieved easily by bot id.",
+      "parentUuid": "f8b434d5_90fc8952",
+      "revId": "98ce9b7554ecb53a878e47ede92562d8041ccdfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
