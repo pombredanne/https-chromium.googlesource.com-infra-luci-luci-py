@@ -696,25 +696,23 @@ def bootstrap_dev_server_acls():
   global _LOCAL_FAKE_CONFIG
   _LOCAL_FAKE_CONFIG = _PoolsCfg(
       {
-          'default':
-              PoolConfig(
-                  name='default',
-                  rev='pools_cfg_rev',
-                  scheduling_users=frozenset([
-                      auth.Identity(auth.IDENTITY_USER,
-                                    'smoke-test@example.com'),
-                      auth.Identity(auth.IDENTITY_BOT, 'whitelisted-ip'),
-                  ]),
-                  scheduling_groups=frozenset(),
-                  trusted_delegatees={},
-                  service_accounts=frozenset(),
-                  service_accounts_groups=tuple(),
-                  task_template_deployment=None,
-                  bot_monitoring=None,
-                  default_isolate=None,
-                  default_cipd=None,
-                  external_schedulers=None,
-              ),
+          'default': PoolConfig(
+              name='default',
+              rev='pools_cfg_rev',
+              scheduling_users=frozenset([
+                  auth.Identity(auth.IDENTITY_USER, 'smoke-test@example.com'),
+                  auth.Identity(auth.IDENTITY_BOT, 'whitelisted-ip'),
+              ]),
+              scheduling_groups=frozenset(),
+              trusted_delegatees={},
+              service_accounts=frozenset(),
+              service_accounts_groups=tuple(),
+              task_template_deployment=None,
+              bot_monitoring=None,
+              default_isolate=None,
+              default_cipd=None,
+              external_schedulers=None,
+          ),
       },
       (None, None),
   )

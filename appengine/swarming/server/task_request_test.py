@@ -37,17 +37,15 @@ from server import task_request
 def _gen_cipd_input(**kwargs):
   """Creates a CipdInput."""
   args = {
-      u'client_package':
-          task_request.CipdPackage(
-              package_name=u'infra/tools/cipd/${platform}',
-              version=u'git_revision:deadbeef'),
+      u'client_package': task_request.CipdPackage(
+          package_name=u'infra/tools/cipd/${platform}',
+          version=u'git_revision:deadbeef'),
       u'packages': [
           task_request.CipdPackage(
               package_name=u'rm', path=u'bin',
               version=u'git_revision:deadbeef'),
       ],
-      u'server':
-          u'https://chrome-infra-packages.appspot.com'
+      u'server': u'https://chrome-infra-packages.appspot.com'
   }
   args.update(kwargs)
   return task_request.CipdInput(**args)
@@ -56,8 +54,7 @@ def _gen_cipd_input(**kwargs):
 def _gen_properties(**kwargs):
   """Creates a TaskProperties."""
   args = {
-      u'cipd_input':
-          _gen_cipd_input(),
+      u'cipd_input': _gen_cipd_input(),
       u'command': [u'command1', u'arg1'],
       u'containment': {
           u'lower_priority': False,
@@ -77,20 +74,14 @@ def _gen_properties(**kwargs):
       u'env_prefixes': {
           u'PATH': [u'local/path']
       },
-      u'execution_timeout_secs':
-          30,
-      u'grace_period_secs':
-          30,
-      u'idempotent':
-          False,
-      u'inputs_ref':
-          task_request.FilesRef(
-              isolatedserver=u'https://isolateserver.appspot.com',
-              namespace=u'default-gzip'),
-      u'io_timeout_secs':
-          None,
-      u'has_secret_bytes':
-          False,
+      u'execution_timeout_secs': 30,
+      u'grace_period_secs': 30,
+      u'idempotent': False,
+      u'inputs_ref': task_request.FilesRef(
+          isolatedserver=u'https://isolateserver.appspot.com',
+          namespace=u'default-gzip'),
+      u'io_timeout_secs': None,
+      u'has_secret_bytes': False,
   }
   args.update(kwargs)
   args[u'dimensions_data'] = args.pop(u'dimensions')
@@ -102,21 +93,16 @@ def _gen_request_slices(**kwargs):
   template_apply = kwargs.pop('_template_apply', task_request.TEMPLATE_AUTO)
   now = utils.utcnow()
   args = {
-      u'created_ts':
-          now,
+      u'created_ts': now,
       u'manual_tags': [u'tag:1'],
-      u'name':
-          u'Request name',
-      u'priority':
-          50,
+      u'name': u'Request name',
+      u'priority': 50,
       u'task_slices': [
           task_request.TaskSlice(
               expiration_secs=30, properties=_gen_properties()),
       ],
-      u'user':
-          u'Jesus',
-      u'bot_ping_tolerance_secs':
-          120,
+      u'user': u'Jesus',
+      u'bot_ping_tolerance_secs': 120,
   }
   args.update(kwargs)
   # Note that ndb model constructor accepts dicts for structured properties.
@@ -503,8 +489,7 @@ class TaskRequestApiTest(TestCase):
                 'path': u'bin',
                 'version': u'git_revision:deadbeef',
             }],
-            'server':
-                u'https://chrome-infra-packages.appspot.com'
+            'server': u'https://chrome-infra-packages.appspot.com'
         },
         'command': [u'command1', u'arg1'],
         'containment': {
@@ -540,20 +525,13 @@ class TaskRequestApiTest(TestCase):
         'outputs': [],
     }
     expected_request = {
-        'authenticated':
-            auth_testing.DEFAULT_MOCKED_IDENTITY,
-        'name':
-            u'Request name',
-        'parent_task_id':
-            unicode(parent_id),
-        'priority':
-            50,
-        'pubsub_topic':
-            None,
-        'pubsub_userdata':
-            None,
-        'service_account':
-            u'none',
+        'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+        'name': u'Request name',
+        'parent_task_id': unicode(parent_id),
+        'priority': 50,
+        'pubsub_topic': None,
+        'pubsub_userdata': None,
+        'service_account': u'none',
         'tags': [
             u'OS:Windows-3.1.1',
             u'hostname:localhost',
@@ -569,10 +547,8 @@ class TaskRequestApiTest(TestCase):
             'properties': expected_properties,
             'wait_for_capacity': False,
         },],
-        'user':
-            u'Jesus',
-        'bot_ping_tolerance_secs':
-            120,
+        'user': u'Jesus',
+        'bot_ping_tolerance_secs': 120,
     }
     actual = req.to_dict()
     actual.pop('created_ts')
@@ -622,8 +598,7 @@ class TaskRequestApiTest(TestCase):
                 'path': u'bin',
                 'version': u'git_revision:deadbeef',
             }],
-            'server':
-                u'https://chrome-infra-packages.appspot.com'
+            'server': u'https://chrome-infra-packages.appspot.com'
         },
         'command': [u'command1', u'arg1'],
         'containment': {
@@ -659,20 +634,13 @@ class TaskRequestApiTest(TestCase):
         'has_secret_bytes': True,
     }
     expected_request = {
-        'authenticated':
-            auth_testing.DEFAULT_MOCKED_IDENTITY,
-        'name':
-            u'Request name',
-        'parent_task_id':
-            unicode(parent_id),
-        'priority':
-            50,
-        'pubsub_topic':
-            None,
-        'pubsub_userdata':
-            None,
-        'service_account':
-            u'none',
+        'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+        'name': u'Request name',
+        'parent_task_id': unicode(parent_id),
+        'priority': 50,
+        'pubsub_topic': None,
+        'pubsub_userdata': None,
+        'service_account': u'none',
         'tags': [
             u'OS:Windows-3.1.1',
             u'hostname:localhost',
@@ -688,10 +656,8 @@ class TaskRequestApiTest(TestCase):
             'properties': expected_properties,
             'wait_for_capacity': False,
         },],
-        'user':
-            u'Jesus',
-        'bot_ping_tolerance_secs':
-            120,
+        'user': u'Jesus',
+        'bot_ping_tolerance_secs': 120,
     }
     actual = req.to_dict()
     # expiration_ts - created_ts == scheduling_expiration_secs.

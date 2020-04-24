@@ -48,12 +48,9 @@ def settings_info():
   rev_url = _gitiles_url(_get_configs_url(), rev, _SETTINGS_CFG_FILENAME)
   cfg_service_hostname = config.config_service_hostname()
   return {
-      'cfg':
-          cfg,
-      'rev':
-          rev,
-      'rev_url':
-          rev_url,
+      'cfg': cfg,
+      'rev': rev,
+      'rev_url': rev_url,
       'config_service_url': (
           'https://%s' % cfg_service_hostname if cfg_service_hostname else ''),
   }
