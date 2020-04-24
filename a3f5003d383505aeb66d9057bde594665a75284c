@@ -134,6 +134,24 @@
       "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c54ee59_1ea7bcff",
+        "filename": "client/proto/bytestream_pb2_grpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T07:44:50Z",
+      "side": 1,
+      "message": "\u003e not change? \n\nThere is no change on this CL, anymore.\n\n\u003e what is parent CL?\n\nSorry was derived form the big CL, which was abandoned.\n_pb2_grpc.py is ignored in yapfignore, which I submitted https://crrev.com/c/2162408.",
+      "parentUuid": "536cd24d_89a73a3d",
+      "revId": "a3f5003d383505aeb66d9057bde594665a75284c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
