@@ -52,6 +52,24 @@
       "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd58de1_e18c8c96",
+        "filename": ".style.yapf",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T08:11:49Z",
+      "side": 1,
+      "message": "I don\u0027t know, I will change the style to pep8 if it doesn\u0027t work.\nIt may try to find \".style.yapf\" a parent directory.",
+      "parentUuid": "a067b4fa_8453ed29",
+      "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
