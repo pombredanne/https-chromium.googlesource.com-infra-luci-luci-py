@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Swarming bot management, e.g. list of known bots and their state.
 
     +-----------+
@@ -74,10 +73,8 @@ from server import config
 from server import task_pack
 from server import task_queues
 
-
 # BotEvent entities are deleted when they are older than the cutoff.
 _OLD_BOT_EVENTS_CUT_OFF = datetime.timedelta(days=366)
-
 
 ### Models.
 
@@ -238,8 +235,8 @@ class BotInfo(_BotCommon):
   HEALTHY = 1 << 3  # 8
   QUARANTINED = 1 << 2  # 4
   # One of:
-  IDLE = 1<<1 # 2
-  BUSY = 1<<0 # 1
+  IDLE = 1 << 1  # 2
+  BUSY = 1 << 0  # 1
 
   # First time this bot was seen.
   first_seen_ts = ndb.DateTimeProperty(auto_now_add=True, indexed=False)
@@ -395,7 +392,7 @@ class BotEvent(_BotCommon):
   def previous_key(self):
     """Returns the ndb.Key to the previous event."""
     return ndb.Key(
-        self.__class__, self.key.integer_id()+1, parent=self.key.parent())
+        self.__class__, self.key.integer_id() + 1, parent=self.key.parent())
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.BotEvent."""
@@ -521,10 +518,9 @@ def filter_availability(q, quarantined, in_maintenance, is_dead, is_busy):
   return q
 
 
-def bot_event(
-    event_type, bot_id, external_ip, authenticated_as, dimensions, state,
-    version, quarantined, maintenance_msg, task_id, task_name,
-    register_dimensions, **kwargs):
+def bot_event(event_type, bot_id, external_ip, authenticated_as, dimensions,
+              state, version, quarantined, maintenance_msg, task_id, task_name,
+              register_dimensions, **kwargs):
   """Records when a bot has queried for work.
 
   This event happening usually means the bot is alive (not dead), except for
@@ -735,6 +731,7 @@ def has_capacity(dimensions):
 
 def cron_update_bot_info():
   """Refreshes BotInfo.composite for dead bots."""
+
   @ndb.tasklet
   def run(bot_key):
     bot = yield bot_key.get_async()
@@ -813,7 +810,7 @@ def cron_delete_old_bot_events():
   # 9.5 minutes (out of 10 allowed for a cron job) results in 'Exceeded soft
   # private memory limit of 512 MB with 512 MB' even if this loop should be
   # fairly light on memory usage.
-  time_to_stop = start + datetime.timedelta(seconds=int(4.5*60))
+  time_to_stop = start + datetime.timedelta(seconds=int(4.5 * 60))
   end_ts = start - _OLD_BOT_EVENTS_CUT_OFF
   more = True
   cursor = None
@@ -849,13 +846,14 @@ def cron_delete_old_bot_events():
   except runtime.DeadlineExceededError:
     pass
   finally:
+
     def _format_ts(t):
       # datetime.datetime
       return t.strftime(u'%Y-%m-%d %H:%M') if t else 'N/A'
 
     def _format_delta(e, s):
       # datetime.timedelta
-      return str(e-s).rsplit('.', 1)[0] if e and s else 'N/A'
+      return str(e - s).rsplit('.', 1)[0] if e and s else 'N/A'
 
     logging.info(
         'Deleted %d BotEvent entities; from %s\n'
@@ -870,7 +868,7 @@ def cron_delete_old_bot():
   # 9.5 minutes (out of 10 allowed for a cron job) results in 'Exceeded soft
   # private memory limit of 512 MB with 512 MB' even if this loop should be
   # fairly light on memory usage.
-  time_to_stop = start + datetime.timedelta(seconds=int(4.5*60))
+  time_to_stop = start + datetime.timedelta(seconds=int(4.5 * 60))
   total = 0
   deleted = []
   try:
@@ -896,9 +894,8 @@ def cron_delete_old_bot():
   except runtime.DeadlineExceededError:
     pass
   finally:
-    logging.info(
-        'Deleted %d entities from the following bots:\n%s',
-        total, ', '.join(sorted(deleted)))
+    logging.info('Deleted %d entities from the following bots:\n%s', total,
+                 ', '.join(sorted(deleted)))
 
 
 def cron_aggregate_dimensions():
@@ -911,8 +908,8 @@ def cron_aggregate_dimensions():
       if k != 'id':
         seen.setdefault(k, set()).add(v)
   dims = [
-    DimensionValues(dimension=k, values=sorted(values))
-    for k, values in sorted(seen.items())
+      DimensionValues(dimension=k, values=sorted(values))
+      for k, values in sorted(seen.items())
   ]
 
   logging.info('Saw dimensions %s', dims)
@@ -923,6 +920,7 @@ def cron_aggregate_dimensions():
 
 def task_bq_events(start, end):
   """Sends BotEvents to BigQuery swarming.bot_events table."""
+
   def _convert(e):
     """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.BotEvent()

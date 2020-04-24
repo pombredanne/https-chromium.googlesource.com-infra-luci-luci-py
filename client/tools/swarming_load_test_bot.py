@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Triggers a ton of fake jobs to test its handling under high load.
 
 Generates an histogram with the latencies to process the tasks and number of
@@ -273,7 +272,10 @@ def main():
       metavar='N',
       help='For histogram display, default:%default')
   group.add_option(
-      '--buckets', type='int', default=20, metavar='N',
+      '--buckets',
+      type='int',
+      default=20,
+      metavar='N',
       help='Number of buckets for histogram display, default:%default')
   parser.add_option_group(group)
 
@@ -292,9 +294,8 @@ def main():
     parser.error('Needs --consume > 0. 0.01 is a valid value.')
   swarming.process_filter_options(parser, options)
 
-  print(
-      'Running %d bots, each task lasting %.1fs' % (
-        options.bots, options.consume))
+  print('Running %d bots, each task lasting %.1fs' % (options.bots,
+                                                      options.consume))
   print('Ctrl-C to exit.')
   print('[processing/processed/bots]')
   columns = [('processing', 0), ('processed', 0), ('bots', 0)]
@@ -307,10 +308,9 @@ def main():
   if options.suffix:
     hostname += '-' + options.suffix
   bots = [
-    FakeSwarmBot(
-      options.swarming, options.dimensions, swarm_bot_version_hash, hostname, i,
-      progress, options.consume, events, kill_event)
-    for i in range(options.bots)
+      FakeSwarmBot(options.swarming, options.dimensions, swarm_bot_version_hash,
+                   hostname, i, progress, options.consume, events, kill_event)
+      for i in range(options.bots)
   ]
   try:
     # Wait for all the bots to come alive.

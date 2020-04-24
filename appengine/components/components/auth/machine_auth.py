@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Implements authentication based on LUCI machine tokens.
 
 LUCI machine tokens are short lived signed protobuf blobs that (among other
@@ -33,15 +32,13 @@ from . import model
 from . import signature
 from .proto import machine_token_pb2
 
-
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'BadTokenError',
-  'TransientError',
-  'machine_authentication',
-  'optional_machine_authentication',
+    'BadTokenError',
+    'TransientError',
+    'machine_authentication',
+    'optional_machine_authentication',
 ]
-
 
 # HTTP header that carries the machine token.
 MACHINE_TOKEN_HEADER = 'X-Luci-Machine-Token'
@@ -148,8 +145,8 @@ def machine_authentication(request):
   except signature.CertificateError as exc:
     if exc.transient:
       raise TransientError(str(exc))
-    log_error(
-        request, body, exc, 'Unexpected error when checking the signature')
+    log_error(request, body, exc,
+              'Unexpected error when checking the signature')
     raise BadTokenError()
 
   # The token is valid. Construct the bot identity.
@@ -178,7 +175,7 @@ def optional_machine_authentication(request):
   try:
     return machine_authentication(request)
   except BadTokenError:
-    return None, None # error details are already logged
+    return None, None  # error details are already logged
 
 
 def b64_decode(data):
@@ -198,12 +195,12 @@ def log_error(request, token_body, exc, msg, *args):
     lines.append('  remote_addr: %s' % request.remote_addr)
   if token_body:
     lines.extend([
-      '  machine_fqdn: %s' % token_body.machine_fqdn,
-      '  issued_by: %s' % token_body.issued_by,
-      '  issued_at: %s' % token_body.issued_at,
-      '  now: %s' % int(utils.time_time()), # for comparison with issued_at
-      '  lifetime: %s' % token_body.lifetime,
-      '  ca_id: %s' % token_body.ca_id,
-      '  cert_sn: %s' % token_body.cert_sn,
+        '  machine_fqdn: %s' % token_body.machine_fqdn,
+        '  issued_by: %s' % token_body.issued_by,
+        '  issued_at: %s' % token_body.issued_at,
+        '  now: %s' % int(utils.time_time()),  # for comparison with issued_at
+        '  lifetime: %s' % token_body.lifetime,
+        '  ca_id: %s' % token_body.ca_id,
+        '  cert_sn: %s' % token_body.cert_sn,
     ])
   logging.warning('\n'.join(lines))

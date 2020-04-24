@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Calculate statistics about tasks, counts per day.
 
 Saves the data fetched from the server into a json file to enable reprocessing
@@ -33,7 +32,6 @@ from six.moves import urllib
 # pylint: disable=ungrouped-imports
 from utils import graph
 from utils import threading_utils
-
 
 _EPOCH = datetime.datetime.utcfromtimestamp(0)
 
@@ -95,6 +93,7 @@ def fetch_tasks(swarming, start, end, state, tags, parallel):
 
   Fetch per hour because otherwise it's too slow.
   """
+
   def process(data):
     """Returns the list of flattened dimensions for these tasks."""
     items = data.get('items', [])
@@ -102,9 +101,8 @@ def fetch_tasks(swarming, start, end, state, tags, parallel):
     return [_flatten_dimensions(t['properties']['dimensions']) for t in items]
 
   delta = datetime.timedelta(hours=1)
-  return _fetch_daily_internal(
-      delta, swarming, process, 'tasks/requests', start, end, state, tags,
-      parallel)
+  return _fetch_daily_internal(delta, swarming, process, 'tasks/requests',
+                               start, end, state, tags, parallel)
 
 
 def fetch_counts(swarming, start, end, state, tags, parallel):
@@ -112,6 +110,7 @@ def fetch_counts(swarming, start, end, state, tags, parallel):
 
   def process(data):
     return int(data['count'])
+
   delta = datetime.timedelta(days=1)
   return _fetch_daily_internal(delta, swarming, process, 'tasks/count', start,
                                end, state, tags, parallel)
@@ -142,11 +141,8 @@ def present_dimensions(items, daily_count):
     for d in dimensions:
       per_dimension[d][date] += 1
   for i, (dimension, data) in enumerate(sorted(per_dimension.items())):
-    print(
-        '%s%s%s' % (
-          colorama.Style.BRIGHT + colorama.Fore.MAGENTA,
-          dimension,
-          colorama.Fore.RESET))
+    print('%s%s%s' % (colorama.Style.BRIGHT + colorama.Fore.MAGENTA, dimension,
+                      colorama.Fore.RESET))
     present_counts(data, daily_count)
     if i != len(per_dimension) - 1:
       print('')
@@ -233,15 +229,15 @@ def main():
   parser.add_option_group(group)
 
   parser.add_option(
-      '--json', default='counts.json',
+      '--json',
+      default='counts.json',
       help='File containing raw data; default: %default')
   parser.add_option(
       '--parallel',
       default=100,
       type='int',
       help='Concurrent queries; default: %default')
-  parser.add_option(
-      '-v', '--verbose', action='count', default=0, help='Log')
+  parser.add_option('-v', '--verbose', action='count', default=0, help='Log')
   options, args = parser.parse_args()
 
   if args:
@@ -249,9 +245,9 @@ def main():
   logging.basicConfig(level=logging.DEBUG if options.verbose else logging.ERROR)
   start = parse_time_option(options.start)
   end = parse_time_option(options.end)
-  print('From %s (%d) to %s (%d)' % (
-      start, int((start- _EPOCH).total_seconds()),
-      end, int((end - _EPOCH).total_seconds())))
+  print('From %s (%d) to %s (%d)' % (start, int(
+      (start - _EPOCH).total_seconds()), end, int(
+          (end - _EPOCH).total_seconds())))
   if options.swarming:
     if options.show_dimensions:
       data = fetch_tasks(options.swarming, start, end, options.state,

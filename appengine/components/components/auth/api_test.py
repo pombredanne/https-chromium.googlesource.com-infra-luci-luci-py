@@ -30,20 +30,18 @@ from components import utils
 from test_support import test_case
 
 
-def new_auth_db(
-      replication_state=None,
-      global_config=None,
-      groups=None,
-      ip_whitelist_assignments=None,
-      ip_whitelists=None,
-      additional_client_ids=None
-  ):
+def new_auth_db(replication_state=None,
+                global_config=None,
+                groups=None,
+                ip_whitelist_assignments=None,
+                ip_whitelists=None,
+                additional_client_ids=None):
   return api.AuthDB.from_entities(
       replication_state=replication_state or model.AuthReplicationState(),
       global_config=global_config or model.AuthGlobalConfig(),
       groups=groups or [],
-      ip_whitelist_assignments=(
-          ip_whitelist_assignments or model.AuthIPWhitelistAssignments()),
+      ip_whitelist_assignments=(ip_whitelist_assignments or
+                                model.AuthIPWhitelistAssignments()),
       ip_whitelists=ip_whitelists or [],
       additional_client_ids=additional_client_ids or [])
 
@@ -58,17 +56,17 @@ class AuthDBTest(test_case.TestCase):
 
   def test_get_group(self):
     g = model.AuthGroup(
-      key=model.group_key('group'),
-      members=[
-        model.Identity.from_bytes('user:b@example.com'),
-        model.Identity.from_bytes('user:a@example.com'),
-      ],
-      globs=[model.IdentityGlob.from_bytes('user:*')],
-      nested=['blah'],
-      created_by=model.Identity.from_bytes('user:x@example.com'),
-      created_ts=datetime.datetime(2014, 1, 2, 3, 4, 5),
-      modified_by=model.Identity.from_bytes('user:y@example.com'),
-      modified_ts=datetime.datetime(2015, 1, 2, 3, 4, 5))
+        key=model.group_key('group'),
+        members=[
+            model.Identity.from_bytes('user:b@example.com'),
+            model.Identity.from_bytes('user:a@example.com'),
+        ],
+        globs=[model.IdentityGlob.from_bytes('user:*')],
+        nested=['blah'],
+        created_by=model.Identity.from_bytes('user:x@example.com'),
+        created_ts=datetime.datetime(2014, 1, 2, 3, 4, 5),
+        modified_by=model.Identity.from_bytes('user:y@example.com'),
+        modified_ts=datetime.datetime(2015, 1, 2, 3, 4, 5))
 
     db = new_auth_db(groups=[g])
 
@@ -81,15 +79,14 @@ class AuthDBTest(test_case.TestCase):
 
     # Members list is sorted.
     self.assertEqual(from_cache.members, [
-      model.Identity.from_bytes('user:a@example.com'),
-      model.Identity.from_bytes('user:b@example.com'),
+        model.Identity.from_bytes('user:a@example.com'),
+        model.Identity.from_bytes('user:b@example.com'),
     ])
 
     # Fields that are know to be different.
     exclude = ['members', 'auth_db_rev', 'auth_db_prev_rev']
     self.assertEqual(
-        from_cache.to_dict(exclude=exclude),
-        g.to_dict(exclude=exclude))
+        from_cache.to_dict(exclude=exclude), g.to_dict(exclude=exclude))
 
   def test_is_group_member(self):
     # Test identity.
@@ -134,6 +131,7 @@ class AuthDBTest(test_case.TestCase):
         is_member([with_nesting, with_listing], model.Anonymous, 'WithNesting'))
 
   def test_list_group(self):
+
     def list_group(groups, group, recursive):
       l = new_auth_db(groups=groups).list_group(group, recursive)
       return api.GroupListing(
@@ -141,25 +139,25 @@ class AuthDBTest(test_case.TestCase):
 
     grp_1 = model.AuthGroup(id='1')
     grp_1.members.extend([
-      model.Identity(model.IDENTITY_USER, 'a@example.com'),
-      model.Identity(model.IDENTITY_USER, 'b@example.com'),
+        model.Identity(model.IDENTITY_USER, 'a@example.com'),
+        model.Identity(model.IDENTITY_USER, 'b@example.com'),
     ])
     grp_1.globs.extend([
-      model.IdentityGlob(model.IDENTITY_USER, '*@a.example.com'),
-      model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
+        model.IdentityGlob(model.IDENTITY_USER, '*@a.example.com'),
+        model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
     ])
 
     grp_2 = model.AuthGroup(id='2')
     grp_2.nested.append('1')
     grp_2.members.extend([
-      # Specify 'b' again, even though it's in a nested group.
-      model.Identity(model.IDENTITY_USER, 'b@example.com'),
-      model.Identity(model.IDENTITY_USER, 'c@example.com'),
+        # Specify 'b' again, even though it's in a nested group.
+        model.Identity(model.IDENTITY_USER, 'b@example.com'),
+        model.Identity(model.IDENTITY_USER, 'c@example.com'),
     ])
     grp_2.globs.extend([
-      # Specify '*@b.example.com' again, even though it's in a nested group.
-      model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
-      model.IdentityGlob(model.IDENTITY_USER, '*@c.example.com'),
+        # Specify '*@b.example.com' again, even though it's in a nested group.
+        model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
+        model.IdentityGlob(model.IDENTITY_USER, '*@c.example.com'),
     ])
 
     # Unknown group.
@@ -170,12 +168,12 @@ class AuthDBTest(test_case.TestCase):
     # Non recursive.
     expected = api.GroupListing(
         members=[
-          model.Identity(model.IDENTITY_USER, 'b@example.com'),
-          model.Identity(model.IDENTITY_USER, 'c@example.com'),
+            model.Identity(model.IDENTITY_USER, 'b@example.com'),
+            model.Identity(model.IDENTITY_USER, 'c@example.com'),
         ],
         globs=[
-          model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
-          model.IdentityGlob(model.IDENTITY_USER, '*@c.example.com'),
+            model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
+            model.IdentityGlob(model.IDENTITY_USER, '*@c.example.com'),
         ],
         nested=['1'])
     self.assertEqual(expected, list_group([grp_1, grp_2], '2', False))
@@ -183,14 +181,14 @@ class AuthDBTest(test_case.TestCase):
     # Recursive.
     expected = api.GroupListing(
         members=[
-          model.Identity(model.IDENTITY_USER, 'a@example.com'),
-          model.Identity(model.IDENTITY_USER, 'b@example.com'),
-          model.Identity(model.IDENTITY_USER, 'c@example.com'),
+            model.Identity(model.IDENTITY_USER, 'a@example.com'),
+            model.Identity(model.IDENTITY_USER, 'b@example.com'),
+            model.Identity(model.IDENTITY_USER, 'c@example.com'),
         ],
         globs=[
-          model.IdentityGlob(model.IDENTITY_USER, '*@a.example.com'),
-          model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
-          model.IdentityGlob(model.IDENTITY_USER, '*@c.example.com'),
+            model.IdentityGlob(model.IDENTITY_USER, '*@a.example.com'),
+            model.IdentityGlob(model.IDENTITY_USER, '*@b.example.com'),
+            model.IdentityGlob(model.IDENTITY_USER, '*@c.example.com'),
         ],
         nested=['1'])
     self.assertEqual(expected, list_group([grp_1, grp_2], '2', True))
@@ -208,8 +206,7 @@ class AuthDBTest(test_case.TestCase):
 
     # This should not hang, but produce error message.
     auth_db = new_auth_db(groups=[group1, group2])
-    self.assertFalse(
-        auth_db.is_group_member('Group1', model.Anonymous))
+    self.assertFalse(auth_db.is_group_member('Group1', model.Anonymous))
     self.assertEqual(1, len(warnings))
     self.assertTrue('Cycle in a group graph' in warnings[0])
 
@@ -234,11 +231,9 @@ class AuthDBTest(test_case.TestCase):
 
   def test_is_allowed_oauth_client_id(self):
     global_config = model.AuthGlobalConfig(
-        oauth_client_id='1',
-        oauth_additional_client_ids=['2', '3'])
+        oauth_client_id='1', oauth_additional_client_ids=['2', '3'])
     auth_db = new_auth_db(
-        global_config=global_config,
-        additional_client_ids=['local'])
+        global_config=global_config, additional_client_ids=['local'])
     self.assertFalse(auth_db.is_allowed_oauth_client_id(None))
     self.assertTrue(auth_db.is_allowed_oauth_client_id('1'))
     self.assertTrue(auth_db.is_allowed_oauth_client_id('2'))
@@ -319,12 +314,7 @@ class AuthDBTest(test_case.TestCase):
         globs=['user:*@example.com'],
         nested=[],
         owners='Group A')
-    add_group(
-        name='Group C',
-        members=[],
-        globs=[],
-        nested=[],
-        owners='Group C')
+    add_group(name='Group C', members=[], globs=[], nested=[], owners='Group C')
 
     # And a bunch IP whitelist.
     model.AuthIPWhitelistAssignments(
@@ -375,19 +365,19 @@ class AuthDBTest(test_case.TestCase):
 
     # Groups.
     self.assertEqual(
-        expected_groups,
-        {
+        expected_groups, {
             name: (g.members, g.globs, g.nested, g.owners)
             for name, g in auth_db._groups.items()
         })
 
     # IP whitelists and whitelist assignments.
-    self.assertEqual(
-        {model.Anonymous: 'some ip whitelist'},
-        auth_db._ip_whitelist_assignments)
-    self.assertEqual(
-        {'bots': ['127.0.0.1/32'], 'some ip whitelist': ['127.0.0.1/32']},
-        auth_db._ip_whitelists)
+    self.assertEqual({
+        model.Anonymous: 'some ip whitelist'
+    }, auth_db._ip_whitelist_assignments)
+    self.assertEqual({
+        'bots': ['127.0.0.1/32'],
+        'some ip whitelist': ['127.0.0.1/32']
+    }, auth_db._ip_whitelists)
 
     return auth_db
 
@@ -429,12 +419,14 @@ class AuthDBTest(test_case.TestCase):
     # Mock AuthSecret.bootstrap to capture calls to it.
     original = api.model.AuthSecret.bootstrap
     calls = []
+
     @classmethod
     def mocked_bootstrap(cls, name):
       calls.append(name)
       result = original(name)
       result.values = ['123']
       return result
+
     self.mock(api.model.AuthSecret, 'bootstrap', mocked_bootstrap)
 
     auth_db = new_auth_db()
@@ -460,23 +452,24 @@ class AuthDBTest(test_case.TestCase):
   def make_auth_db_with_ip_whitelist():
     """AuthDB with a@example.com assigned IP whitelist '127.0.0.1/32'."""
     return new_auth_db(
-      ip_whitelists=[
-        model.AuthIPWhitelist(
-          key=model.ip_whitelist_key('some ip whitelist'),
-          subnets=['127.0.0.1/32'],
-        ),
-        model.AuthIPWhitelist(
-          key=model.ip_whitelist_key('bots'),
-          subnets=['192.168.1.1/32', '::1/32'],
-        ),
-      ],
-      ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
-        assignments=[
-          model.AuthIPWhitelistAssignments.Assignment(
-            identity=model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            ip_whitelist='some ip whitelist',)
+        ip_whitelists=[
+            model.AuthIPWhitelist(
+                key=model.ip_whitelist_key('some ip whitelist'),
+                subnets=['127.0.0.1/32'],
+            ),
+            model.AuthIPWhitelist(
+                key=model.ip_whitelist_key('bots'),
+                subnets=['192.168.1.1/32', '::1/32'],
+            ),
         ],
-      ),
+        ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
+            assignments=[
+                model.AuthIPWhitelistAssignments.Assignment(
+                    identity=model.Identity(model.IDENTITY_USER,
+                                            'a@example.com'),
+                    ip_whitelist='some ip whitelist',
+                )
+            ],),
     )
 
   def test_verify_ip_whitelisted_ok(self):
@@ -499,14 +492,14 @@ class AuthDBTest(test_case.TestCase):
 
   def test_verify_ip_whitelisted_missing_whitelist(self):
     auth_db = new_auth_db(
-      ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
-        assignments=[
-          model.AuthIPWhitelistAssignments.Assignment(
-            identity=model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            ip_whitelist='missing ip whitelist',)
-        ],
-      ),
-    )
+        ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
+            assignments=[
+                model.AuthIPWhitelistAssignments.Assignment(
+                    identity=model.Identity(model.IDENTITY_USER,
+                                            'a@example.com'),
+                    ip_whitelist='missing ip whitelist',
+                )
+            ],),)
     with self.assertRaises(api.AuthorizationError):
       auth_db.verify_ip_whitelisted(
           model.Identity(model.IDENTITY_USER, 'a@example.com'),
@@ -533,15 +526,18 @@ class TestAuthDBCache(test_case.TestCase):
 
   def set_fetched_auth_db(self, auth_db):
     """Mocks fetch_auth_db to return |auth_db|."""
+
     def mock_fetch_auth_db(known_auth_db=None):
       if (known_auth_db is not None and
           auth_db.auth_db_rev == known_auth_db.auth_db_rev):
         return known_auth_db
       return auth_db
+
     self.mock(api, 'fetch_auth_db', mock_fetch_auth_db)
 
   def test_get_request_cache_different_threads(self):
     """Ensure get_request_cache() respects multiple threads."""
+
     # Runs in its own thread.
     def thread_proc():
       request_cache = api.reinitialize_request_cache()
@@ -647,6 +643,7 @@ class TestAuthDBCache(test_case.TestCase):
     def mock_fetch_auth_db(**_kwargs):
       fetching_now.set()
       return auth_db_queue.get()
+
     self.mock(api, 'fetch_auth_db', mock_fetch_auth_db)
     future = run_in_thread(api.get_process_auth_db)
 
@@ -684,6 +681,7 @@ class TestAuthDBCache(test_case.TestCase):
     # Emulate an exception in fetch_auth_db.
     def mock_fetch_auth_db(*_kwargs):
       raise Exception('Boom!')
+
     self.mock(api, 'fetch_auth_db', mock_fetch_auth_db)
 
     # Capture calls to logging.exception.
@@ -759,6 +757,7 @@ class ApiTest(test_case.TestCase):
   def test_require_decorator_ok(self):
     """@require calls the callback and then decorated function."""
     callback_calls = []
+
     def require_callback():
       callback_calls.append(1)
       return True
@@ -783,6 +782,7 @@ class ApiTest(test_case.TestCase):
     self.assertFalse(forbidden_calls)
 
   def test_require_decorator_error_msg(self):
+
     @api.require(lambda: False, 'Forbidden!')
     def forbidden():
       pass
@@ -793,6 +793,7 @@ class ApiTest(test_case.TestCase):
   def test_require_decorator_nesting_ok(self):
     """Permission checks are called in order."""
     calls = []
+
     def check(name):
       calls.append(name)
       return True
@@ -808,6 +809,7 @@ class ApiTest(test_case.TestCase):
   def test_require_decorator_nesting_first_deny(self):
     """First deny raises AuthorizationError."""
     calls = []
+
     def check(name, result):
       calls.append(name)
       return result
@@ -827,6 +829,7 @@ class ApiTest(test_case.TestCase):
   def test_require_decorator_nesting_non_first_deny(self):
     """Non-first deny also raises AuthorizationError."""
     calls = []
+
     def check(name, result):
       calls.append(name)
       return result
@@ -845,11 +848,13 @@ class ApiTest(test_case.TestCase):
 
   def test_require_decorator_on_method(self):
     calls = []
+
     def checker():
       calls.append(1)
       return True
 
     class Class(object):
+
       @api.require(checker)
       def method(self, *args, **kwargs):
         return (self, args, kwargs)
@@ -860,11 +865,13 @@ class ApiTest(test_case.TestCase):
 
   def test_require_decorator_on_static_method(self):
     calls = []
+
     def checker():
       calls.append(1)
       return True
 
     class Class(object):
+
       @staticmethod
       @api.require(checker)
       def static_method(*args, **kwargs):
@@ -875,22 +882,26 @@ class ApiTest(test_case.TestCase):
 
   def test_require_decorator_on_class_method(self):
     calls = []
+
     def checker():
       calls.append(1)
       return True
 
     class Class(object):
+
       @classmethod
       @api.require(checker)
       def class_method(cls, *args, **kwargs):
         return (cls, args, kwargs)
 
-    self.assertEqual(
-        (Class, ('value',), {'a': 2}), Class.class_method('value', a=2))
+    self.assertEqual((Class, ('value',), {
+        'a': 2
+    }), Class.class_method('value', a=2))
     self.assertEqual(1, len(calls))
 
   def test_require_decorator_ndb_nesting_require_first(self):
     calls = []
+
     def checker():
       calls.append(1)
       return True
@@ -899,11 +910,13 @@ class ApiTest(test_case.TestCase):
     @ndb.non_transactional
     def func(*args, **kwargs):
       return (args, kwargs)
+
     self.assertEqual((('value',), {'a': 2}), func('value', a=2))
     self.assertEqual(1, len(calls))
 
   def test_require_decorator_ndb_nesting_require_last(self):
     calls = []
+
     def checker():
       calls.append(1)
       return True
@@ -912,11 +925,13 @@ class ApiTest(test_case.TestCase):
     @api.require(checker)
     def func(*args, **kwargs):
       return (args, kwargs)
+
     self.assertEqual((('value',), {'a': 2}), func('value', a=2))
     self.assertEqual(1, len(calls))
 
   def test_public_then_require_fails(self):
     with self.assertRaises(TypeError):
+
       @api.public
       @api.require(lambda: True)
       def func():
@@ -924,6 +939,7 @@ class ApiTest(test_case.TestCase):
 
   def test_require_then_public_fails(self):
     with self.assertRaises(TypeError):
+
       @api.require(lambda: True)
       @api.public
       def func():
@@ -931,18 +947,20 @@ class ApiTest(test_case.TestCase):
 
   def test_is_decorated(self):
     self.assertTrue(api.is_decorated(api.public(lambda: None)))
-    self.assertTrue(
-        api.is_decorated(api.require(lambda: True)(lambda: None)))
+    self.assertTrue(api.is_decorated(api.require(lambda: True)(lambda: None)))
 
 
 class OAuthAccountsTest(test_case.TestCase):
   """Test for extract_oauth_caller_identity function."""
 
   def mock_all(self, user_email, client_id, allowed_client_ids=()):
+
     class FakeUser(object):
       email = lambda _: user_email
+
     class FakeAuthDB(object):
       is_allowed_oauth_client_id = lambda _, cid: cid in allowed_client_ids
+
     self.mock(api.oauth, 'get_current_user', lambda _: FakeUser())
     self.mock(api.oauth, 'get_client_id', lambda _: client_id)
     self.mock(api, 'get_request_auth_db', FakeAuthDB)
@@ -953,9 +971,8 @@ class OAuthAccountsTest(test_case.TestCase):
 
   def test_is_allowed_oauth_client_id_ok(self):
     self.mock_all('email@email.com', 'some-client-id', ['some-client-id'])
-    self.assertEqual(
-        (self.user('email@email.com'), api.new_auth_details()),
-        api.extract_oauth_caller_identity())
+    self.assertEqual((self.user('email@email.com'), api.new_auth_details()),
+                     api.extract_oauth_caller_identity())
 
   def test_is_allowed_oauth_client_id_not_ok(self):
     self.mock_all('email@email.com', 'some-client-id', ['another-client-id'])
@@ -969,6 +986,7 @@ class OAuthAccountsTest(test_case.TestCase):
 
 
 class AuthWebUIConfigTest(test_case.TestCase):
+
   def test_works(self):
     utils.clear_cache(api.get_web_client_id)
     self.assertEqual('', api.get_web_client_id_uncached())
@@ -978,17 +996,19 @@ class AuthWebUIConfigTest(test_case.TestCase):
 
 
 class AuthDBBuilder(object):
+
   def __init__(self):
     self.groups = []
 
   def group(self, name, members=None, globs=None, nested=None, owners=None):
-    self.groups.append(model.AuthGroup(
-        key=model.group_key(name),
-        members=[model.Identity.from_bytes(m) for m in (members or [])],
-        globs=[model.IdentityGlob.from_bytes(g) for g in (globs or [])],
-        nested=nested or [],
-        owners=owners or 'default-owners-group',
-    ))
+    self.groups.append(
+        model.AuthGroup(
+            key=model.group_key(name),
+            members=[model.Identity.from_bytes(m) for m in (members or [])],
+            globs=[model.IdentityGlob.from_bytes(g) for g in (globs or [])],
+            nested=nested or [],
+            owners=owners or 'default-owners-group',
+        ))
     return self
 
   def build(self):
@@ -996,6 +1016,7 @@ class AuthDBBuilder(object):
 
 
 class RelevantSubgraphTest(test_case.TestCase):
+
   def call(self, db, principal):
     if '*' in principal:
       principal = model.IdentityGlob.from_bytes(principal)
@@ -1013,12 +1034,13 @@ class RelevantSubgraphTest(test_case.TestCase):
 
   def test_empty(self):
     db = AuthDBBuilder().build()
-    self.assertEqual(
-        {0: ('user:a@example.com', {})}, self.call(db, 'user:a@example.com'))
-    self.assertEqual(
-        {0: ('user:*@example.com', {})}, self.call(db, 'user:*@example.com'))
-    self.assertEqual(
-        {0: ('group', {})}, self.call(db, 'group'))
+    self.assertEqual({
+        0: ('user:a@example.com', {})
+    }, self.call(db, 'user:a@example.com'))
+    self.assertEqual({
+        0: ('user:*@example.com', {})
+    }, self.call(db, 'user:*@example.com'))
+    self.assertEqual({0: ('group', {})}, self.call(db, 'group'))
 
   def test_identity_discoverable_directly_and_through_glob(self):
     b = AuthDBBuilder()
@@ -1027,12 +1049,18 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('g3', [], ['user:*@example.com'])
     b.group('g4', ['user:a@example.com'], ['user:*'])
     self.assertEqual({
-      0: ('user:a@example.com', {'IN': [1, 3, 4, 5]}),
-      1: ('user:*@example.com', {'IN': [2]}),
-      2: ('g3', {}),
-      3: ('user:*', {'IN': [4]}),
-      4: ('g4', {}),
-      5: ('g1', {}),
+        0: ('user:a@example.com', {
+            'IN': [1, 3, 4, 5]
+        }),
+        1: ('user:*@example.com', {
+            'IN': [2]
+        }),
+        2: ('g3', {}),
+        3: ('user:*', {
+            'IN': [4]
+        }),
+        4: ('g4', {}),
+        5: ('g1', {}),
     }, self.call(b.build(), 'user:a@example.com'))
 
   def test_glob_is_matched_directly(self):
@@ -1040,8 +1068,10 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('g1', [], ['user:*@example.com'])
     b.group('g2', [], ['user:*'])
     self.assertEqual({
-      0: ('user:*@example.com', {'IN': [1]}),
-      1: ('g1', {}),
+        0: ('user:*@example.com', {
+            'IN': [1]
+        }),
+        1: ('g1', {}),
     }, self.call(b.build(), 'user:*@example.com'))
 
   def test_simple_group_lookup(self):
@@ -1050,9 +1080,13 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('g2', nested=['g3'])
     b.group('g3')
     self.assertEqual({
-      0: ('g3', {'IN': [1, 2]}),
-      1: ('g1', {}),
-      2: ('g2', {'IN': [1]}),
+        0: ('g3', {
+            'IN': [1, 2]
+        }),
+        1: ('g1', {}),
+        2: ('g2', {
+            'IN': [1]
+        }),
     }, self.call(b.build(), 'g3'))
 
   def test_ownership_relations(self):
@@ -1063,11 +1097,19 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('d-includes-owned-by-root', nested=['c-owned-by-root'])
     b.group('e-owned-by-3', owners='d-includes-owned-by-root')
     self.assertEqual({
-      0: ('b-inner', {'IN': [1]}),
-      1: ('a-root', {'OWNS': [2]}),
-      2: ('c-owned-by-root', {'IN': [3]}),
-      3: ('d-includes-owned-by-root', {'OWNS': [4]}),
-      4: ('e-owned-by-3', {}),
+        0: ('b-inner', {
+            'IN': [1]
+        }),
+        1: ('a-root', {
+            'OWNS': [2]
+        }),
+        2: ('c-owned-by-root', {
+            'IN': [3]
+        }),
+        3: ('d-includes-owned-by-root', {
+            'OWNS': [4]
+        }),
+        4: ('e-owned-by-3', {}),
     }, self.call(b.build(), 'b-inner'))
 
   def test_diamond(self):
@@ -1077,10 +1119,16 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('middle2', nested=['bottom'])
     b.group('bottom')
     self.assertEqual({
-      0: ('bottom', {'IN': [1, 3]}),
-      1: ('middle1', {'IN': [2]}),
-      2: ('top', {}),
-      3: ('middle2', {'IN': [2]}),
+        0: ('bottom', {
+            'IN': [1, 3]
+        }),
+        1: ('middle1', {
+            'IN': [2]
+        }),
+        2: ('top', {}),
+        3: ('middle2', {
+            'IN': [2]
+        }),
     }, self.call(b.build(), 'bottom'))
 
   def test_cycle(self):
@@ -1091,8 +1139,12 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('g1', nested=['g2'])
     b.group('g2', nested=['g1', 'g2'])
     self.assertEqual({
-      0: ('g2', {'IN': [0, 1]}),
-      1: ('g1', {'IN': [0]}),
+        0: ('g2', {
+            'IN': [0, 1]
+        }),
+        1: ('g1', {
+            'IN': [0]
+        }),
     }, self.call(b.build(), 'g2'))
 
   def test_selfowners(self):
@@ -1101,10 +1153,13 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('g2')
     self.assertEqual({0: ('g1', {'OWNS': [0]})}, self.call(b.build(), 'g1'))
     self.assertEqual({
-      0: ('g2', {'IN': [1]}),
-      1: ('g1', {'OWNS': [1]}),
+        0: ('g2', {
+            'IN': [1]
+        }),
+        1: ('g1', {
+            'OWNS': [1]
+        }),
     }, self.call(b.build(), 'g2'))
-
 
   def test_messy_graph(self):
     b = AuthDBBuilder()
@@ -1114,17 +1169,30 @@ class RelevantSubgraphTest(test_case.TestCase):
     b.group('g2', nested=['directly'])
     b.group('g3', nested=['g1'])
     self.assertEqual({
-      0: ('user:a@example.com', {'IN': [1, 5]}),
-      1: ('user:*@example.com', {'IN': [2]}),
-      2: ('via-glob', {'IN': [3]}),
-      3: ('g1', {'IN': [4]}),
-      4: ('g3', {}),
-      5: ('directly', {'IN': [6]}),
-      6: ('g2', {'OWNS': [3]}),
+        0: ('user:a@example.com', {
+            'IN': [1, 5]
+        }),
+        1: ('user:*@example.com', {
+            'IN': [2]
+        }),
+        2: ('via-glob', {
+            'IN': [3]
+        }),
+        3: ('g1', {
+            'IN': [4]
+        }),
+        4: ('g3', {}),
+        5: ('directly', {
+            'IN': [6]
+        }),
+        6: ('g2', {
+            'OWNS': [3]
+        }),
     }, self.call(b.build(), 'user:a@example.com'))
 
 
 class PermissionsTest(test_case.TestCase):
+
   def test_happy_path(self):
     p1 = api.Permission('service.subject.verb')
     p2 = api.Permission('service.subject.verb')
@@ -1149,6 +1217,7 @@ class PermissionsTest(test_case.TestCase):
 
 
 class RealmStringsTest(test_case.TestCase):
+
   def test_happy_path(self):
     self.assertEqual(api.root_realm('proj'), 'proj:@root')
     self.assertEqual(api.root_realm(u'proj'), 'proj:@root')
@@ -1177,41 +1246,40 @@ ID3 = model.Identity.from_bytes('user:3@example.com')
 
 
 class PermissionCheckTest(test_case.TestCase):
+
   @staticmethod
   def auth_db(realms_map, groups=None, api_version=None):
     return api.AuthDB.from_proto(
         replication_state=model.AuthReplicationState(),
         auth_db=replication_pb2.AuthDB(
-            groups=[
-                {
-                    'name': name,
-                    'members': [m.to_bytes() for m in members],
-                    'created_by': 'user:zzz@example.com',
-                    'modified_by': 'user:zzz@example.com',
-                } for name, members in (groups or {}).items()
-            ],
+            groups=[{
+                'name': name,
+                'members': [m.to_bytes() for m in members],
+                'created_by': 'user:zzz@example.com',
+                'modified_by': 'user:zzz@example.com',
+            } for name, members in (groups or {}).items()],
             realms={
-                'api_version': api_version or realms.API_VERSION,
-                'permissions': [
-                    {'name': p.name} for p in ALL_PERMS
-                ],
-                'realms': [
-                    {
-                        'name': name,
-                        'bindings': [
-                            {
-                                'permissions': [
-                                    ALL_PERMS.index(p)
-                                    for p in perms
-                                ],
-                                'principals': [
-                                    p if isinstance(p, str) else p.to_bytes()
-                                    for p in principals
-                                ],
-                            } for perms, principals in sorted(bindings.items())
-                        ],
-                    } for name, bindings in sorted(realms_map.items())
-                ],
+                'api_version':
+                    api_version or realms.API_VERSION,
+                'permissions': [{
+                    'name': p.name
+                } for p in ALL_PERMS],
+                'realms': [{
+                    'name':
+                        name,
+                    'bindings': [
+                        {
+                            'permissions': [ALL_PERMS.index(p)
+                                            for p in perms],
+                            'principals': [
+                                p if isinstance(p, str) else p.to_bytes()
+                                for p in principals
+                            ],
+                        }
+                        for perms, principals in sorted(bindings.items())
+                    ],
+                }
+                           for name, bindings in sorted(realms_map.items())],
             },
         ),
         additional_client_ids=[])
@@ -1223,8 +1291,10 @@ class PermissionCheckTest(test_case.TestCase):
     self.logs = {}
     for lvl in ('info', 'warning', 'error', 'exception'):
       self.logs[lvl] = []
+
       def appender(lvl):  # need to capture lvl in a separate closure
         return lambda msg, *args: self.logs[lvl].append(msg % args)
+
       self.mock(api.logging, lvl, appender(lvl))
 
   def assert_logs_empty(self, lvl):
@@ -1258,10 +1328,10 @@ class PermissionCheckTest(test_case.TestCase):
     self.assert_check(db, PERM0, ['proj:realm'], ID2, True)
     self.assert_check(db, PERM1, ['proj:realm'], ID2, False)
     self.assert_check(db, PERM2, ['proj:realm'], ID2, True)
-    self.assert_check(
-        db, PERM2, ['proj:realm', 'proj:another/realm'], ID1, True)
-    self.assert_check(
-        db, PERM2, ['proj:realm', 'proj:another/realm'], ID3, True)
+    self.assert_check(db, PERM2, ['proj:realm', 'proj:another/realm'], ID1,
+                      True)
+    self.assert_check(db, PERM2, ['proj:realm', 'proj:another/realm'], ID3,
+                      True)
 
   def test_inclusion_through_group(self):
     db = self.auth_db({
@@ -1270,7 +1340,12 @@ class PermissionCheckTest(test_case.TestCase):
             (PERM0, PERM1): ['group:empty', 'group:g1'],
             (PERM0, PERM2): ['group:empty', 'group:g2'],
         },
-    }, groups={'empty': [], 'g1': [ID1], 'g2': [ID2]})
+    },
+                      groups={
+                          'empty': [],
+                          'g1': [ID1],
+                          'g2': [ID2]
+                      })
     self.assert_check(db, PERM0, ['proj:realm'], ID1, True)
     self.assert_check(db, PERM1, ['proj:realm'], ID1, True)
     self.assert_check(db, PERM2, ['proj:realm'], ID1, False)
@@ -1343,31 +1418,36 @@ class PermissionCheckTest(test_case.TestCase):
     # Match.
     self.logs['info'] = []
     api.has_permission_dryrun(PERM0, ['proj:@root'], True, ID1, 'bug')
-    self.assert_logs('info',
+    self.assert_logs(
+        'info',
         "bug: has_permission_dryrun('luci.dev.testing0', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: match - ALLOW")
     self.logs['info'] = []
     api.has_permission_dryrun(PERM1, ['proj:@root'], False, ID1, 'bug')
-    self.assert_logs('info',
+    self.assert_logs(
+        'info',
         "bug: has_permission_dryrun('luci.dev.testing1', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: match - DENY")
 
     # Mismatch.
     self.logs['warning'] = []
     api.has_permission_dryrun(PERM0, ['proj:@root'], False, ID1, 'bug')
-    self.assert_logs('warning',
+    self.assert_logs(
+        'warning',
         "bug: has_permission_dryrun('luci.dev.testing0', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: mismatch - got ALLOW, want DENY")
     self.logs['warning'] = []
     api.has_permission_dryrun(PERM1, ['proj:@root'], True, ID1, 'bug')
-    self.assert_logs('warning',
+    self.assert_logs(
+        'warning',
         "bug: has_permission_dryrun('luci.dev.testing1', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: mismatch - got DENY, want ALLOW")
 
     # Blow up.
     self.logs['exception'] = []
     api.has_permission_dryrun(PERM1, ['@root'], True, ID1, 'bug')
-    self.assert_logs('exception',
+    self.assert_logs(
+        'exception',
         "bug: has_permission_dryrun('luci.dev.testing1', ['@root'], "
         "'user:1@example.com'), authdb=0: exception ValueError, want ALLOW")
 

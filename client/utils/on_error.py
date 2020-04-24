@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Declares a single function to report errors to a server.
 
 By running the script, you accept that errors will be reported to the server you
@@ -24,18 +23,16 @@ from . import net
 from . import tools
 from . import zip_package
 
-
 # It is very important to not get reports from non Chromium infrastructure. We
 # *really* do not want to know anything about you, dear non Google employee.
 _ENABLED_DOMAINS = (
-  '.chromium.org',
-  '.google.com',
-  '.google.com.internal',
+    '.chromium.org',
+    '.google.com',
+    '.google.com.internal',
 )
 
 # If this envar is '1' then disable reports. Useful when developing the client.
 _DISABLE_ENVVAR = 'SWARMING_DISABLE_ON_ERROR'
-
 
 # Set this variable to the net.HttpService server to be used to report errors.
 # It must be done early at process startup. Once this value is set, it is
@@ -54,20 +51,17 @@ _TIME_STARTED = time.time()
 
 _HOSTNAME = None
 
-
 # Paths that can be stripped from the stack traces by _relative_path().
 _PATHS_TO_STRIP = (
-  os.getcwd() + os.path.sep,
-  os.path.dirname(os.__file__) + os.path.sep,
-  '.' + os.path.sep,
+    os.getcwd() + os.path.sep,
+    os.path.dirname(os.__file__) + os.path.sep,
+    '.' + os.path.sep,
 )
-
 
 # Used to simplify the stack trace, by removing path information when possible.
 _RE_STACK_TRACE_FILE = (
     r'^(?P<prefix>  File \")(?P<file>[^\"]+)(?P<suffix>\"\, line )'
     r'(?P<line_no>\d+)(?P<rest>|\, in .+)$')
-
 
 ### Private stuff.
 
@@ -85,6 +79,7 @@ def _relative_path(path):
 
 def _reformat_stack(stack):
   """Post processes the stack trace through _relative_path()."""
+
   def replace(l):
     m = re.match(_RE_STACK_TRACE_FILE, l, re.DOTALL)
     if m:
@@ -131,8 +126,7 @@ def _serialize_env():
   It happens that the environment variable may have non-ASCII characters like
   ANSI escape code.
   """
-  return dict(
-      (k, v.encode('ascii', 'replace')) for k, v in os.environ.items())
+  return dict((k, v.encode('ascii', 'replace')) for k, v in os.environ.items())
 
 
 def _report_exception(message, e, stack):
@@ -146,16 +140,16 @@ def _report_exception(message, e, stack):
     message += (_format_exception(e)).rstrip()
 
   params = {
-    'args': sys.argv,
-    'cwd': os.getcwd(),
-    'duration': time.time() - _TIME_STARTED,
-    'env': _serialize_env(),
-    'hostname': _HOSTNAME,
-    'message': message,
-    'os': sys.platform,
-    'python_version': platform.python_version(),
-    'source': _SOURCE,
-    'user': getpass.getuser(),
+      'args': sys.argv,
+      'cwd': os.getcwd(),
+      'duration': time.time() - _TIME_STARTED,
+      'env': _serialize_env(),
+      'hostname': _HOSTNAME,
+      'message': message,
+      'os': sys.platform,
+      'python_version': platform.python_version(),
+      'source': _SOURCE,
+      'user': getpass.getuser(),
   }
   if e:
     params['category'] = 'exception'
@@ -173,9 +167,9 @@ def _report_exception(message, e, stack):
     params['version'] = version
 
   data = {
-    'r': params,
-    # Bump the version when changing the packet format.
-    'v': '1',
+      'r': params,
+      # Bump the version when changing the packet format.
+      'v': '1',
   }
   response = _post(data)
   if response and response.get('url'):
@@ -200,10 +194,8 @@ def _check_for_exception_on_exit():
   if not last_tb:
     return
 
-  _report_exception(
-      'Process exited due to exception',
-      exception,
-      ''.join(traceback.format_tb(last_tb)))
+  _report_exception('Process exited due to exception', exception, ''.join(
+      traceback.format_tb(last_tb)))
 
 
 def _is_in_test():

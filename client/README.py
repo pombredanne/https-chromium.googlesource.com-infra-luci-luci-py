@@ -10,7 +10,6 @@
 
 # Line too long (NN/80)
 # pylint: disable=C0301
-
 """Test tracing and isolation infrastructure.
 
 A few scripts have strict dependency rules:

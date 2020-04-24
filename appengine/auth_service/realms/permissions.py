@@ -1,7 +1,6 @@
 # Copyright 2020 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Database of defined permissions and roles."""
 
 import collections
@@ -14,7 +13,6 @@ BUILTIN_ROLE_PREFIX = 'role/'
 # Prefix for role names that can be defined in user-supplied realms.cfg.
 CUSTOM_ROLE_PREFIX = 'customRole/'
 
-
 # Representation of all defined roles and permissions.
 #
 # Must be treated as immutable once constructed. Do not mess with it.
@@ -26,16 +24,16 @@ CUSTOM_ROLE_PREFIX = 'customRole/'
 DB = collections.namedtuple(
     'DB',
     [
-        'revision',     # an arbitrary string identifying a particular version
+        'revision',  # an arbitrary string identifying a particular version
         'permissions',  # a dict {permission str => realms_pb2.Permission}
-        'roles',        # a dict {full role name str => Role}
+        'roles',  # a dict {full role name str => Role}
     ])
 
 # Represents a single role.
 Role = collections.namedtuple(
     'Role',
     [
-        'name',         # full name of the role
+        'name',  # full name of the role
         'permissions',  # a tuple with permission strings sorted alphabetically
     ])
 
@@ -143,9 +141,8 @@ class Builder(object):
     allowed.
     """
     if not name.startswith(BUILTIN_ROLE_PREFIX):
-      raise ValueError(
-          'Built-in roles must start with %s, got %s' %
-          (BUILTIN_ROLE_PREFIX, name))
+      raise ValueError('Built-in roles must start with %s, got %s' %
+                       (BUILTIN_ROLE_PREFIX, name))
     if name in self.roles:
       raise ValueError('Role %s has already been defined' % (name,))
     perms = set()

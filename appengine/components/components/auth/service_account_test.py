@@ -22,15 +22,14 @@ from components.auth import model
 from components.auth import service_account
 from test_support import test_case
 
-
 EMPTY_SECRET_KEY = service_account.ServiceAccountKey(None, None, None)
 FAKE_SECRET_KEY = service_account.ServiceAccountKey('email', 'pkey', 'pkey_id')
-
 
 MockedResponse = collections.namedtuple('MockedResponse', 'status_code content')
 
 
 class FakeSigner(object):
+
   def __init__(self):
     self.claimsets = []
 
@@ -54,8 +53,10 @@ class GetProjectAccessTokenTest(test_case.TestCase):
   def setUp(self):
     super(GetProjectAccessTokenTest, self).setUp()
     self.log_lines = []
+
     def mocked_log(msg, *args):
       self.log_lines.append(msg % args)
+
     self.mock(logging, 'info', mocked_log)
     self.mock(logging, 'error', mocked_log)
     self.mock(logging, 'warning', mocked_log)
@@ -67,16 +68,17 @@ class GetProjectAccessTokenTest(test_case.TestCase):
     self.mock_now(datetime.datetime(2015, 1, 2, 3))
 
     model.AuthReplicationState(
-      key=model.replication_state_key(),
-      primary_url='https://auth.example.com',
-      primary_id='example-app-id',
+        key=model.replication_state_key(),
+        primary_url='https://auth.example.com',
+        primary_id='example-app-id',
     ).put()
     model.AuthGlobalConfig(
-      key=model.root_key(),
-      token_server_url='https://tokens.example.com',
+        key=model.root_key(),
+        token_server_url='https://tokens.example.com',
     ).put()
 
     calls = []
+
     @ndb.tasklet
     def mocked_urlfetch_async(*args, **_):
       mocked_urlfetch_async.called = True
@@ -87,9 +89,8 @@ class GetProjectAccessTokenTest(test_case.TestCase):
           'serviceAccountEmail': 'service@account.com',
           'expiry': expiry.isoformat('T') + 'Z'
       }
-      raise ndb.Return(
-          self.Response(200, json.dumps(res, sort_keys=True))
-      )
+      raise ndb.Return(self.Response(200, json.dumps(res, sort_keys=True)))
+
     self.mock(service_account, '_urlfetch_async', mocked_urlfetch_async)
 
     # non-cached
@@ -98,9 +99,9 @@ class GetProjectAccessTokenTest(test_case.TestCase):
         scopes=['https://www.googleapis.com/auth/cloud-platform'],
     )
     self.assertEqual(token[0], 'someaccesstoken')
-    self.assertEqual(token[1],
-                     self.totimestamp(
-                         utils.utcnow() + datetime.timedelta(seconds=1800)))
+    self.assertEqual(
+        token[1],
+        self.totimestamp(utils.utcnow() + datetime.timedelta(seconds=1800)))
     self.assertTrue(mocked_urlfetch_async.called)
     mocked_urlfetch_async.called = False
 
@@ -110,9 +111,9 @@ class GetProjectAccessTokenTest(test_case.TestCase):
         scopes=['https://www.googleapis.com/auth/cloud-platform'],
     )
     self.assertEqual(token[0], 'someaccesstoken')
-    self.assertEqual(token[1],
-                     self.totimestamp(
-                         utils.utcnow() + datetime.timedelta(seconds=1800)))
+    self.assertEqual(
+        token[1],
+        self.totimestamp(utils.utcnow() + datetime.timedelta(seconds=1800)))
     self.assertFalse(mocked_urlfetch_async.called)
 
     # cache expired
@@ -122,18 +123,21 @@ class GetProjectAccessTokenTest(test_case.TestCase):
         min_lifetime_sec=1800,
     )
     self.assertEqual(token[0], 'someaccesstoken')
-    self.assertEqual(token[1],
-                     self.totimestamp(
-                         utils.utcnow() + datetime.timedelta(seconds=1800)))
+    self.assertEqual(
+        token[1],
+        self.totimestamp(utils.utcnow() + datetime.timedelta(seconds=1800)))
     self.assertTrue(mocked_urlfetch_async.called)
 
 
 class GetAccessTokenTest(test_case.TestCase):
+
   def setUp(self):
     super(GetAccessTokenTest, self).setUp()
     self.log_lines = []
+
     def mocked_log(msg, *args):
       self.log_lines.append(msg % args)
+
     self.mock(logging, 'info', mocked_log)
     self.mock(logging, 'error', mocked_log)
     self.mock(logging, 'warning', mocked_log)
@@ -151,6 +155,7 @@ class GetAccessTokenTest(test_case.TestCase):
     def via_gae_api(*args):
       calls.append(('gae_api', args))
       return 'token', 0
+
     self.mock(service_account.app_identity, 'get_access_token', via_gae_api)
 
     return calls
@@ -185,10 +190,8 @@ class GetAccessTokenTest(test_case.TestCase):
     calls = self.mock_methods()
     self.mock(service_account, '_memcache_key', lambda **_kwargs: 'cache_key')
 
-
-    self.assertEqual(
-        ('token', 0),
-        service_account.get_access_token('scope', FAKE_SECRET_KEY))
+    self.assertEqual(('token', 0),
+                     service_account.get_access_token('scope', FAKE_SECRET_KEY))
     self.assertEqual(1, len(calls))
 
     jwt_based, args = calls[0]
@@ -203,9 +206,9 @@ class GetAccessTokenTest(test_case.TestCase):
   def test_get_jwt_based_token_memcache(self):
     now = datetime.datetime(2015, 1, 2, 3)
 
-
     def randint_mock(start, end):
       return (start + end) / 2
+
     self.mock(service_account, '_randint', randint_mock)
 
     # Fake memcache, dev server's one doesn't know about mocked time.
@@ -217,23 +220,27 @@ class GetAccessTokenTest(test_case.TestCase):
       if key not in memcache or memcache[key][1] < utils.time_time():
         raise ndb.Return(None)
       raise ndb.Return(memcache[key][0])
+
     self.mock(service_account, '_memcache_get', fake_get)
 
     @ndb.tasklet
     def fake_set(key, value, exp, namespace=None):
       self.assertEqual(service_account._MEMCACHE_NS, namespace)
       memcache[key] = (value, exp)
+
     self.mock(service_account, '_memcache_set', fake_set)
 
     # Stub calls to real minting method.
     calls = []
+
     @ndb.tasklet
     def fake_mint_token(*args):
       calls.append(args)
       raise ndb.Return({
-        'access_token': 'token@%d' % utils.time_time(),
-        'exp_ts': utils.time_time() + 3600,
+          'access_token': 'token@%d' % utils.time_time(),
+          'exp_ts': utils.time_time() + 3600,
       })
+
     self.mock(service_account, '_mint_jwt_based_token_async', fake_mint_token)
 
     fake_signer = FakeSigner()
@@ -281,49 +288,49 @@ class GetAccessTokenTest(test_case.TestCase):
 
   def test_mint_jwt_based_token(self):
     self.mock_now(datetime.datetime(2015, 1, 2, 3))
-    self.mock(os, 'urandom', lambda x: '1'*x)
+    self.mock(os, 'urandom', lambda x: '1' * x)
 
     calls = []
+
     @ndb.tasklet
     def mocked_call(**kwargs):
       calls.append(kwargs)
       raise ndb.Return({'access_token': 'token', 'expires_in': 3600})
+
     self.mock(service_account, '_call_async', mocked_call)
 
     signer = FakeSigner()
-    token = service_account._mint_jwt_based_token_async(
-        ['scope1', 'scope2'], signer).get_result()
+    token = service_account._mint_jwt_based_token_async(['scope1', 'scope2'],
+                                                        signer).get_result()
     self.assertEqual({'access_token': 'token', 'exp_ts': 1420171200.0}, token)
 
     self.assertEqual([{
-      'aud': 'https://www.googleapis.com/oauth2/v4/token',
-      'exp': 1420171195,
-      'iat': 1420167595,
-      'iss': 'fake@example.com',
-      'jti': 'MTExMTExMTExMTExMTExMQ',
-      'scope': 'scope1 scope2',
+        'aud': 'https://www.googleapis.com/oauth2/v4/token',
+        'exp': 1420171195,
+        'iat': 1420167595,
+        'iss': 'fake@example.com',
+        'jti': 'MTExMTExMTExMTExMTExMQ',
+        'scope': 'scope1 scope2',
     }], signer.claimsets)
 
-    self.assertEqual([
-      {
+    self.assertEqual([{
         'url': 'https://www.googleapis.com/oauth2/v4/token',
         'method': 'POST',
         'headers': {
-          'Accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
         'payload':
             'grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&'
             'assertion=fake_jwt',
-      }], calls)
+    }], calls)
 
   def mock_urlfetch(self, calls):
     calls = calls[:]
 
     @ndb.tasklet
-    def urlfetch_mock(
-        url, payload, method, headers,
-        follow_redirects, deadline, validate_certificate):
+    def urlfetch_mock(url, payload, method, headers, follow_redirects, deadline,
+                      validate_certificate):
       self.assertFalse(follow_redirects)
       self.assertEqual(deadline, 5)
       self.assertTrue(validate_certificate)
@@ -332,10 +339,10 @@ class GetAccessTokenTest(test_case.TestCase):
       call = calls.pop(0).copy()
       response = call.pop('response')
       self.assertEqual({
-        'url': url,
-        'payload': payload,
-        'method': method,
-        'headers': headers,
+          'url': url,
+          'payload': payload,
+          'method': method,
+          'headers': headers,
       }, call)
       if isinstance(response, Exception):
         raise response
@@ -348,51 +355,69 @@ class GetAccessTokenTest(test_case.TestCase):
 
   def test_call_async_success(self):
     calls = self.mock_urlfetch([
-      {
-        'url': 'http://example.com',
-        'payload': 'blah',
-        'method': 'POST',
-        'headers': {'A': 'a'},
-        'response': (200, {'abc': 'def'}),
-      },
+        {
+            'url': 'http://example.com',
+            'payload': 'blah',
+            'method': 'POST',
+            'headers': {
+                'A': 'a'
+            },
+            'response': (200, {
+                'abc': 'def'
+            }),
+        },
     ])
     response = service_account._call_async(
         url='http://example.com',
         payload='blah',
         method='POST',
-        headers={'A': 'a'}).get_result()
+        headers={
+            'A': 'a'
+        }).get_result()
     self.assertEqual({'abc': 'def'}, response)
     self.assertFalse(calls)
 
   def test_call_async_transient_error(self):
     calls = self.mock_urlfetch([
-      {
-        'url': 'http://example.com',
-        'payload': 'blah',
-        'method': 'POST',
-        'headers': {'A': 'a'},
-        'response': (500, {'error': 'zzz'}),
-      },
-      {
-        'url': 'http://example.com',
-        'payload': 'blah',
-        'method': 'POST',
-        'headers': {'A': 'a'},
-        'response': urlfetch.Error('blah'),
-      },
-      {
-        'url': 'http://example.com',
-        'payload': 'blah',
-        'method': 'POST',
-        'headers': {'A': 'a'},
-        'response': (200, {'abc': 'def'}),
-      },
+        {
+            'url': 'http://example.com',
+            'payload': 'blah',
+            'method': 'POST',
+            'headers': {
+                'A': 'a'
+            },
+            'response': (500, {
+                'error': 'zzz'
+            }),
+        },
+        {
+            'url': 'http://example.com',
+            'payload': 'blah',
+            'method': 'POST',
+            'headers': {
+                'A': 'a'
+            },
+            'response': urlfetch.Error('blah'),
+        },
+        {
+            'url': 'http://example.com',
+            'payload': 'blah',
+            'method': 'POST',
+            'headers': {
+                'A': 'a'
+            },
+            'response': (200, {
+                'abc': 'def'
+            }),
+        },
     ])
     response = service_account._call_async(
         url='http://example.com',
         payload='blah',
         method='POST',
-        headers={'A': 'a'}).get_result()
+        headers={
+            'A': 'a'
+        }).get_result()
     self.assertEqual({'abc': 'def'}, response)
     self.assertFalse(calls)
 
@@ -410,48 +435,60 @@ class GetAccessTokenTest(test_case.TestCase):
     } for _ in range(0, 4)])
     with self.assertRaises(service_account.AccessTokenError) as err:
       service_account._call_async(
-        url='http://example.com',
-        payload='blah',
-        method='POST',
-        headers={'A': 'a'}).get_result()
+          url='http://example.com',
+          payload='blah',
+          method='POST',
+          headers={
+              'A': 'a'
+          }).get_result()
     self.assertTrue(err.exception.transient)
     self.assertFalse(calls)
 
   def test_call_async_fatal_error(self):
     calls = self.mock_urlfetch([
-      {
-        'url': 'http://example.com',
-        'payload': 'blah',
-        'method': 'POST',
-        'headers': {'A': 'a'},
-        'response': (403, {'error': 'zzz'}),
-      },
+        {
+            'url': 'http://example.com',
+            'payload': 'blah',
+            'method': 'POST',
+            'headers': {
+                'A': 'a'
+            },
+            'response': (403, {
+                'error': 'zzz'
+            }),
+        },
     ])
     with self.assertRaises(service_account.AccessTokenError) as err:
       service_account._call_async(
-        url='http://example.com',
-        payload='blah',
-        method='POST',
-        headers={'A': 'a'}).get_result()
+          url='http://example.com',
+          payload='blah',
+          method='POST',
+          headers={
+              'A': 'a'
+          }).get_result()
     self.assertFalse(err.exception.transient)
     self.assertFalse(calls)
 
   def test_call_async_not_json(self):
     calls = self.mock_urlfetch([
-      {
-        'url': 'http://example.com',
-        'payload': 'blah',
-        'method': 'POST',
-        'headers': {'A': 'a'},
-        'response': MockedResponse(200, 'not a json'),
-      },
+        {
+            'url': 'http://example.com',
+            'payload': 'blah',
+            'method': 'POST',
+            'headers': {
+                'A': 'a'
+            },
+            'response': MockedResponse(200, 'not a json'),
+        },
     ])
     with self.assertRaises(service_account.AccessTokenError) as err:
       service_account._call_async(
-        url='http://example.com',
-        payload='blah',
-        method='POST',
-        headers={'A': 'a'}).get_result()
+          url='http://example.com',
+          payload='blah',
+          method='POST',
+          headers={
+              'A': 'a'
+          }).get_result()
     self.assertFalse(err.exception.transient)
     self.assertFalse(calls)
 
@@ -460,17 +497,19 @@ class GetAccessTokenTest(test_case.TestCase):
 
     # We have to fake RSA, since PyCrypto is not available in unit tests.
     rsa_sign_calls = []
+
     def mocked_rsa_sign(*args):
       rsa_sign_calls.append(args)
       return '\x00signature\x00'
+
     self.mock(signer, '_rsa_sign', mocked_rsa_sign)
 
     claimset = {
-      'aud': 'https://www.googleapis.com/oauth2/v4/token',
-      'exp': 1420171185,
-      'iat': 1420167585,
-      'iss': 'fake@example.com',
-      'scope': 'scope1 scope2',
+        'aud': 'https://www.googleapis.com/oauth2/v4/token',
+        'exp': 1420171185,
+        'iat': 1420167585,
+        'iss': 'fake@example.com',
+        'scope': 'scope1 scope2',
     }
 
     jwt = signer.sign_claimset_async(claimset).get_result()
@@ -479,14 +518,14 @@ class GetAccessTokenTest(test_case.TestCase):
     chunks = jwt.split('.')
     self.assertEqual(3, len(chunks))
     self.assertEqual({
-      u'alg': u'RS256',
-      u'kid': u'pkey_id',
-      u'typ': u'JWT',
+        u'alg': u'RS256',
+        u'kid': u'pkey_id',
+        u'typ': u'JWT',
     }, json.loads(service_account._b64_decode(chunks[0])))
-    self.assertEqual(
-        claimset, json.loads(service_account._b64_decode(chunks[1])))
-    self.assertEqual(
-        '\x00signature\x00', service_account._b64_decode(chunks[2]))
+    self.assertEqual(claimset, json.loads(
+        service_account._b64_decode(chunks[1])))
+    self.assertEqual('\x00signature\x00',
+                     service_account._b64_decode(chunks[2]))
 
     # Logged the token, the signature is truncated.
     self.assertEqual(
@@ -502,65 +541,60 @@ class GetAccessTokenTest(test_case.TestCase):
     orig_get_access_token_async = service_account.get_access_token_async
 
     expire_time = '2014-10-02T15:01:23.045123456Z'
+
     @ndb.tasklet
     def urlfetch_mock(**kwargs):
+
       class Response(dict):
+
         def __init__(self, *args, **kwargs):
           super(Response, self).__init__(*args, **kwargs)
           self.status_code = 200
           self.content = json.dumps(self)
 
       mock_dict = {
-        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/":
-          Response({
-            "accessToken": 'foobartoken',
-            "expireTime": expire_time,
-        })
+          "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/":
+              Response({
+                  "accessToken": 'foobartoken',
+                  "expireTime": expire_time,
+              })
       }
       for url_prefix, response in mock_dict.items():
         if kwargs['url'].find(url_prefix) == 0:
           raise ndb.Return(response)
       raise Exception('url not found in mock: %s' % kwargs['url'])
+
     self.mock(service_account, '_urlfetch', urlfetch_mock)
 
     @ndb.tasklet
-    def get_access_token_async_mock(
-        scopes, service_account_key=None,
-        act_as=None, min_lifetime_sec=5*60):
+    def get_access_token_async_mock(scopes,
+                                    service_account_key=None,
+                                    act_as=None,
+                                    min_lifetime_sec=5 * 60):
       if service_account_key:
         raise ndb.Return("FAKETOKENFAKETOKEN")
-      result = yield orig_get_access_token_async(
-          scopes,
-          service_account_key,
-          act_as,
-          min_lifetime_sec
-      )
+      result = yield orig_get_access_token_async(scopes, service_account_key,
+                                                 act_as, min_lifetime_sec)
       raise ndb.Return(result)
 
     # Wrap get_access_token to mock out local signing
-    self.mock(service_account,
-              'get_access_token_async',
+    self.mock(service_account, 'get_access_token_async',
               get_access_token_async_mock)
 
     # Quick self check on mock of local-signer based flow
-    self.assertEqual("FAKETOKENFAKETOKEN",
-                     service_account.get_access_token_async(
-                         ["a", "b"],
-                         service_account_key=FAKE_SECRET_KEY
-                     ).get_result())
+    self.assertEqual(
+        "FAKETOKENFAKETOKEN",
+        service_account.get_access_token_async(
+            ["a", "b"], service_account_key=FAKE_SECRET_KEY).get_result())
 
     res = service_account.get_access_token_async(
-        ["c"],
-        service_account_key=None,
-        act_as="foo@example.com").get_result()
+        ["c"], service_account_key=None, act_as="foo@example.com").get_result()
     self.assertEqual(
-        (
-          'foobartoken',
-          int(
-              utils.datetime_to_timestamp(
-                  utils.parse_rfc3339_datetime(expire_time)) / 1e6)
-        ),
-        res)
+        ('foobartoken',
+         int(
+             utils.datetime_to_timestamp(
+                 utils.parse_rfc3339_datetime(expire_time)) / 1e6)), res)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

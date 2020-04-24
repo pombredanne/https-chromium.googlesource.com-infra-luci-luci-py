@@ -398,14 +398,16 @@ class RemoteClientGrpc(object):
       def stream():
         logging.info('Writing to ByteStream:\n%s', req)
         yield req
+
       res = self._proxy_bs.call_unary('Write', stream())
     except grpc_proxy.grpc.RpcError as r:
       logging.error('gRPC error during stdout update: %s' % r)
       raise r
 
     if res is not None and res.committed_size != self._stdout_offset:
-      raise InternalError('%s: incorrect size written (got %d, want %d)' % (
-          req.resource_name, res.committed_size, self._stdout_offset))
+      raise InternalError(
+          '%s: incorrect size written (got %d, want %d)' %
+          (req.resource_name, res.committed_size, self._stdout_offset))
 
     if finished:
       self._stdout_offset = 0
@@ -416,7 +418,7 @@ class RemoteClientGrpc(object):
     # task_runner.py yet. Until then, take the task_id (currently in the form
     # projects/project/tasks/taskid) and extract the taskid from it.
     project_id = self._proxy_bs.prefix
-    real_task_id = task_id[task_id.rfind('/')+1:]
+    real_task_id = task_id[task_id.rfind('/') + 1:]
     return '%s/logs/%s/%s/stdout' % (project_id, self.bot_id, real_task_id)
 
   def _complete_task(self, task_id, params, exit_code):
@@ -481,6 +483,7 @@ def _worker_to_bot_group_cfg(worker):
     dims[k] = dims.get(k, [])
     dims[k].append(prop.value)
   return dims
+
 
 def _time_to_duration(time_f, duration):
   duration.seconds = int(time_f)

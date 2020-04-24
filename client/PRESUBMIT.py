@@ -1,12 +1,12 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Top-level presubmit script for swarm_client.
 
 See http://dev.chromium.org/developers/how-tos/depottools/presubmit-scripts for
 details on the presubmit API built into gcl.
 """
+
 
 def CommonChecks(input_api, output_api):
   import sys

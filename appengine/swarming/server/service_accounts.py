@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Functions to generate OAuth access tokens to use by bots or inside tasks."""
 
 import collections
@@ -19,7 +18,6 @@ from components import net
 from components import utils
 
 from server import task_pack
-
 
 # Brackets for possible lifetimes of OAuth tokens produced by this module.
 MIN_TOKEN_LIFETIME_SEC = 5 * 60
@@ -302,7 +300,6 @@ def get_system_account_token(system_service_account, scopes):
 
 ### Private code
 
-
 # Matches service account email (or rather close enough superset of it).
 _SERVICE_ACCOUNT_RE = re.compile(r'^[0-9a-zA-Z_\-\.\+\%]+@[0-9a-zA-Z_\-\.]+$')
 
@@ -449,7 +446,7 @@ def _common_audit_tags():
 
 def _log_token_grant(prefix, token, exp_ts, log_call=logging.info):
   """Logs details about an OAuth token grant."""
-  ts = utils.datetime_to_timestamp(exp_ts)/1e6
+  ts = utils.datetime_to_timestamp(exp_ts) / 1e6
   log_call(
       '%s OAuth token grant: fingerprint=%s, expiry=%d, expiry_in=%d', prefix,
       utils.get_token_fingerprint(token), ts, ts - utils.time_time())

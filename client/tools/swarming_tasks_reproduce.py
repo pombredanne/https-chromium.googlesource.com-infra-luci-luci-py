@@ -3,7 +3,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Reproduce one or multiple tasks from one Swarming server on another one."""
 
 from __future__ import print_function
@@ -95,9 +94,8 @@ def reproduce(server_old, server_new, task_id):
     cmd.extend(('--named-cache', d['name'], d['path']))
   for p in prop.get('cipd_input', {}).get('packages', []):
     # server and client_package in cipd_input are not reused.
-    cmd.extend((
-      '--cipd-package',
-      '%s:%s:%s' % (p['path'], p['package_name'], p['version'])))
+    cmd.extend(('--cipd-package',
+                '%s:%s:%s' % (p['path'], p['package_name'], p['version'])))
   h, tmp = tempfile.mkstemp(prefix='reproduce', suffix='.json')
   os.close(h)
   try:
@@ -134,7 +132,9 @@ def main():
   group.add_argument(
       '--task-id', action='append', default=[], help='Task IDs to reproduce')
   group.add_argument(
-      '--tags', action='append', default=[],
+      '--tags',
+      action='append',
+      default=[],
       help='Tags to query tasks to reproduce')
   parser.add_argument('-v', '--verbose', action='store_true')
   args = parser.parse_args()
@@ -151,7 +151,7 @@ def main():
 
   for i, task_id in enumerate(args.task_id):
     task_id, name = reproduce(args.old, args.new or args.old, task_id)
-    print(u'%d/%d: %s %s' % (i+1, len(args.task_id), task_id, cut(name)))
+    print(u'%d/%d: %s %s' % (i + 1, len(args.task_id), task_id, cut(name)))
   return 0
 
 

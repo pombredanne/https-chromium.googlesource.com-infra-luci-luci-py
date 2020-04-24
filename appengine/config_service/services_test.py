@@ -20,28 +20,34 @@ import storage
 
 
 class ProjectsTestCase(test_case.TestCase):
+
   def setUp(self):
     super(ProjectsTestCase, self).setUp()
     self.mock(storage, 'get_self_config_async', mock.Mock())
     storage.get_self_config_async.return_value = future(
-        service_config_pb2.ServicesCfg(
-            services=[
-              service_config_pb2.Service(
-                  id='foo', metadata_url='https://foo.com/metadata'),
-              service_config_pb2.Service(id='metadataless'),
-            ]
-        ))
+        service_config_pb2.ServicesCfg(services=[
+            service_config_pb2.Service(
+                id='foo', metadata_url='https://foo.com/metadata'),
+            service_config_pb2.Service(id='metadataless'),
+        ]))
 
   def mock_metadata_entity(self):
     dct = {
-      'version': '1.0',
-      'validation': {
-        'url': 'https://a.com/validate',
-        'patterns': [
-          {'config_set': 'projects/foo', 'path': 'bar.cfg'},
-          {'config_set': 'regex:services/.+', 'path': 'regex:.+'},
-        ]
-      }
+        'version': '1.0',
+        'validation': {
+            'url':
+                'https://a.com/validate',
+            'patterns': [
+                {
+                    'config_set': 'projects/foo',
+                    'path': 'bar.cfg'
+                },
+                {
+                    'config_set': 'regex:services/.+',
+                    'path': 'regex:.+'
+                },
+            ]
+        }
     }
     mck_meta = (services._dict_to_dynamic_metadata(dct).SerializeToString())
     storage.ServiceDynamicMetadata(
@@ -50,42 +56,43 @@ class ProjectsTestCase(test_case.TestCase):
     ).put()
 
   @staticmethod
-  def service_proto(
-      sid='deadbeef',
-      metadata_url='https://a.com/metadata',
-      jwt_auth=None):
+  def service_proto(sid='deadbeef',
+                    metadata_url='https://a.com/metadata',
+                    jwt_auth=None):
     return service_config_pb2.Service(
-        id=sid,
-        metadata_url=metadata_url,
-        jwt_auth=jwt_auth)
+        id=sid, metadata_url=metadata_url, jwt_auth=jwt_auth)
 
   def test_dict_to_dynamic_metadata(self):
     with self.assertRaises(services.DynamicMetadataError):
       services._dict_to_dynamic_metadata([])
 
     self.assertEqual(
-      services._dict_to_dynamic_metadata({
-        'version': '1.0',
-        'validation': {
-          'url': 'https://a.com/validate',
-          'patterns': [
-            {'config_set': 'projects/foo', 'path': 'bar.cfg'},
-            {'config_set': 'regex:services/.+', 'path': 'regex:.+'},
-          ]
-        }
-      }),
-      service_config_pb2.ServiceDynamicMetadata(
-          validation=service_config_pb2.Validator(
-              url='https://a.com/validate',
-              patterns=[
-                service_config_pb2.ConfigPattern(
-                    config_set='projects/foo', path='bar.cfg'),
-                service_config_pb2.ConfigPattern(
-                    config_set='regex:services/.+', path='regex:.+'),
-              ]
-          )
-      )
-    )
+        services._dict_to_dynamic_metadata({
+            'version': '1.0',
+            'validation': {
+                'url':
+                    'https://a.com/validate',
+                'patterns': [
+                    {
+                        'config_set': 'projects/foo',
+                        'path': 'bar.cfg'
+                    },
+                    {
+                        'config_set': 'regex:services/.+',
+                        'path': 'regex:.+'
+                    },
+                ]
+            }
+        }),
+        service_config_pb2.ServiceDynamicMetadata(
+            validation=service_config_pb2.Validator(
+                url='https://a.com/validate',
+                patterns=[
+                    service_config_pb2.ConfigPattern(
+                        config_set='projects/foo', path='bar.cfg'),
+                    service_config_pb2.ConfigPattern(
+                        config_set='regex:services/.+', path='regex:.+'),
+                ])))
 
   def test_get_metadata_async_not_found(self):
     with self.assertRaises(services.DynamicMetadataError):
@@ -101,14 +108,21 @@ class ProjectsTestCase(test_case.TestCase):
     self.mock_metadata_entity()
     self.mock(net, 'json_request_async', mock.Mock())
     dct = {
-      'version': '1.0',
-      'validation': {
-        'url': 'https://a.com/validate',
-        'patterns': [
-          {'config_set': 'projects/foo', 'path': 'bar.cfg'},
-          {'config_set': 'regex:services/.+', 'path': 'regex:.+'},
-        ]
-      }
+        'version': '1.0',
+        'validation': {
+            'url':
+                'https://a.com/validate',
+            'patterns': [
+                {
+                    'config_set': 'projects/foo',
+                    'path': 'bar.cfg'
+                },
+                {
+                    'config_set': 'regex:services/.+',
+                    'path': 'regex:.+'
+                },
+            ]
+        }
     }
 
     net.json_request_async.return_value = future(dct)
@@ -129,14 +143,21 @@ class ProjectsTestCase(test_case.TestCase):
     self.mock_metadata_entity()
     self.mock(net, 'json_request_async', mock.Mock())
     dct = {
-      'version': '1.0',
-      'validation': {
-        'url': 'https://a.com/validate',
-        'patterns': [
-          {'config_set': 'projects/foo', 'path': 'bar.cfg'},
-          {'config_set': 'regex:services/.+', 'path': 'regex:.+'},
-        ]
-      }
+        'version': '1.0',
+        'validation': {
+            'url':
+                'https://a.com/validate',
+            'patterns': [
+                {
+                    'config_set': 'projects/foo',
+                    'path': 'bar.cfg'
+                },
+                {
+                    'config_set': 'regex:services/.+',
+                    'path': 'regex:.+'
+                },
+            ]
+        }
     }
 
     net.json_request_async.return_value = future(dct)
@@ -160,14 +181,21 @@ class ProjectsTestCase(test_case.TestCase):
     self.mock_metadata_entity()
     self.mock(net, 'json_request_async', mock.Mock())
     dct = {
-      'version': '1.0',
-      'validation': {
-        'url': 'https://a.com/different_validate',
-        'patterns': [
-          {'config_set': 'projects/bar', 'path': 'foo.cfg'},
-          {'config_set': 'regex:services/.+', 'path': 'regex:.+'},
-        ]
-      }
+        'version': '1.0',
+        'validation': {
+            'url':
+                'https://a.com/different_validate',
+            'patterns': [
+                {
+                    'config_set': 'projects/bar',
+                    'path': 'foo.cfg'
+                },
+                {
+                    'config_set': 'regex:services/.+',
+                    'path': 'regex:.+'
+                },
+            ]
+        }
     }
 
     net.json_request_async.return_value = future(dct)

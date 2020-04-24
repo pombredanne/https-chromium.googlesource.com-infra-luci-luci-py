@@ -1,9 +1,7 @@
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
-
 """Miscellaneous utility functions."""
-
 
 import contextlib
 import datetime
@@ -16,9 +14,9 @@ import sys
 import tempfile
 import time
 
-
 # UTC datetime corresponding to zero Unix timestamp.
 EPOCH = datetime.datetime.utcfromtimestamp(0)
+
 
 def parse_rfc3339_epoch(value):
   """Parses RFC 3339 datetime string as epoch
@@ -60,22 +58,22 @@ def parse_rfc3339_epoch(value):
   seconds = td.seconds + td.days * 86400
   if len(nano_value) > 9:
     raise ValueError(
-        'Failed to parse timestamp: nanos %r more than 9 fractional digits'
-        % nano_value)
+        'Failed to parse timestamp: nanos %r more than 9 fractional digits' %
+        nano_value)
   # Parse timezone offsets.
   if value[timezone_offset] == 'Z':
     if len(value) != timezone_offset + 1:
-      raise ValueError('Failed to parse timestamp: invalid trailing data %r'
-                       % value)
+      raise ValueError(
+          'Failed to parse timestamp: invalid trailing data %r' % value)
   else:
     timezone = value[timezone_offset:]
     pos = timezone.find(':')
     if pos == -1:
       raise ValueError('Invalid timezone offset value: %r' % timezone)
     if timezone[0] == '+':
-      seconds -= (int(timezone[1:pos])*60+int(timezone[pos+1:]))*60
+      seconds -= (int(timezone[1:pos]) * 60 + int(timezone[pos + 1:])) * 60
     else:
-      seconds += (int(timezone[1:pos])*60+int(timezone[pos+1:]))*60
+      seconds += (int(timezone[1:pos]) * 60 + int(timezone[pos + 1:])) * 60
   return seconds
 
 
@@ -242,5 +240,5 @@ def temporary_directory(suffix="", prefix="tmp", dir=None,
         # TODO(pgervais,496347) Make this work reliably on Windows.
         shutil.rmtree(tempdir, ignore_errors=True)
       except OSError as ex:  # pragma: no cover
-        print >> sys.stderr, (
-          "ERROR: {!r} while cleaning up {!r}".format(ex, tempdir))
+        print >> sys.stderr, ("ERROR: {!r} while cleaning up {!r}".format(
+            ex, tempdir))

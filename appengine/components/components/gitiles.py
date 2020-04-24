@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Gitiles functions for GAE environment."""
 
 import base64
@@ -21,29 +20,27 @@ class TreeishResolutionError(Exception):
   """Failed to resolve a treeish. See Location.parse."""
 
 
-Contribution = collections.namedtuple(
-    'Contribution', ['name', 'email', 'time'])
+Contribution = collections.namedtuple('Contribution', ['name', 'email', 'time'])
 Commit = collections.namedtuple(
     'Commit',
     ['sha', 'tree', 'parents', 'author', 'committer', 'message', 'tree_diff'])
 TreeEntry = collections.namedtuple(
     'TreeEntry',
     [
-      # Content hash.
-      'id',
-      # Entry name, e.g. filename or directory name.
-      'name',
-      # Object type, e.g. "blob" or "tree".
-      'type',
-      # For files, numeric file mode.
-      'mode',
+        # Content hash.
+        'id',
+        # Entry name, e.g. filename or directory name.
+        'name',
+        # Object type, e.g. "blob" or "tree".
+        'type',
+        # For files, numeric file mode.
+        'mode',
     ])
 Tree = collections.namedtuple('Tree', ['id', 'entries'])
 Log = collections.namedtuple('Log', ['commits', 'next_cursor'])
 
 RGX_URL_PATH = re.compile(r'^/([^\+]+)(\+/(.*))?$')
 RGX_HASH = re.compile(r'^[0-9a-f]{40}$')
-
 
 LocationTuple = collections.namedtuple(
     'LocationTuple', ['hostname', 'project', 'treeish', 'path'])
@@ -86,12 +83,7 @@ class Location(LocationTuple):
     project = d.get('project')
     treeish = d.get('treeish')
     path = d.get('path')
-    _validate_args(
-        hostname,
-        project,
-        treeish,
-        path,
-        path_required=True)
+    _validate_args(hostname, project, treeish, path, path_required=True)
     return cls(hostname, project, treeish, path)
 
   @classmethod
@@ -149,9 +141,8 @@ class Location(LocationTuple):
 
     # if not HEAD or a hash, should be prefixed with refs/heads/
     treeish = treeish or ['HEAD']
-    if (treeish[:2] != ['refs', 'heads']
-        and treeish != ['HEAD']
-        and not (len(treeish) == 1 and RGX_HASH.match(treeish[0]))):
+    if (treeish[:2] != ['refs', 'heads'] and treeish != ['HEAD'] and
+        not (len(treeish) == 1 and RGX_HASH.match(treeish[0]))):
       treeish = ['refs', 'heads'] + treeish
 
     treeish_str = '/'.join(treeish)
@@ -215,44 +206,36 @@ class Location(LocationTuple):
     return path
 
   def get_log_async(self, **kwargs):
-    return get_log_async(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_log_async(self.hostname, self.project, self.treeish_safe,
+                         self.path_safe, **kwargs)
 
   def get_log(self, **kwargs):
-    return get_log(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_log(self.hostname, self.project, self.treeish_safe,
+                   self.path_safe, **kwargs)
 
   def get_tree_async(self, **kwargs):
-    return get_tree_async(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_tree_async(self.hostname, self.project, self.treeish_safe,
+                          self.path_safe, **kwargs)
 
   def get_tree(self, **kwargs):
-    return get_tree(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_tree(self.hostname, self.project, self.treeish_safe,
+                    self.path_safe, **kwargs)
 
   def get_archive_async(self, **kwargs):
-    return get_archive(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_archive(self.hostname, self.project, self.treeish_safe,
+                       self.path_safe, **kwargs)
 
   def get_archive(self, **kwargs):
-    return get_archive(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_archive(self.hostname, self.project, self.treeish_safe,
+                       self.path_safe, **kwargs)
 
   def get_file_content_async(self, **kwargs):
-    return get_file_content_async(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_file_content_async(self.hostname, self.project,
+                                  self.treeish_safe, self.path_safe, **kwargs)
 
   def get_file_content(self, **kwargs):
-    return get_file_content(
-        self.hostname, self.project, self.treeish_safe, self.path_safe,
-        **kwargs)
+    return get_file_content(self.hostname, self.project, self.treeish_safe,
+                            self.path_safe, **kwargs)
 
 
 def parse_time(tm):
@@ -279,14 +262,13 @@ def parse_time(tm):
 
 
 def _parse_commit(data):
+
   def parse_contribution(data):
     time = data.get('time')
     if time is not None:  # pragma: no branch
       time = parse_time(time)
     return Contribution(
-        name=data.get('name'),
-        email=data.get('email'),
-        time=time)
+        name=data.get('name'), email=data.get('email'), time=time)
 
   return Commit(
       sha=data['commit'],
@@ -306,8 +288,8 @@ def get_commit_async(hostname, project, treeish):
     Commit object, or None if the commit was not found.
   """
   _validate_args(hostname, project, treeish)
-  data = yield gerrit.fetch_json_async(
-      hostname, '%s/+/%s' % _quote_all(project, treeish))
+  data = yield gerrit.fetch_json_async(hostname,
+                                       '%s/+/%s' % _quote_all(project, treeish))
   raise ndb.Return(_parse_commit(data) if data is not None else None)
 
 
@@ -329,17 +311,17 @@ def get_tree_async(hostname, project, treeish, path=None):
   if data is None:
     raise ndb.Return(None)
 
-  raise ndb.Return(Tree(
-      id=data['id'],
-      entries=[
-        TreeEntry(
-            id=e['id'],
-            name=e['name'],
-            type=e['type'],
-            mode=e['mode'],
-        )
-        for e in data.get('entries', [])
-      ]))
+  raise ndb.Return(
+      Tree(
+          id=data['id'],
+          entries=[
+              TreeEntry(
+                  id=e['id'],
+                  name=e['name'],
+                  type=e['type'],
+                  mode=e['mode'],
+              ) for e in data.get('entries', [])
+          ]))
 
 
 def get_tree(*args, **kwargs):
@@ -348,10 +330,14 @@ def get_tree(*args, **kwargs):
 
 
 @ndb.tasklet
-def get_log_async(
-    hostname, project, treeish, path=None, from_treeish=None, limit=None,
-    cursor=None,
-    **fetch_kwargs):
+def get_log_async(hostname,
+                  project,
+                  treeish,
+                  path=None,
+                  from_treeish=None,
+                  limit=None,
+                  cursor=None,
+                  **fetch_kwargs):
   """Gets a commit log.
 
   Does not support paging.
@@ -376,10 +362,11 @@ def get_log_async(
       **fetch_kwargs)
   if data is None:
     raise ndb.Return(None)
-  raise ndb.Return(Log(
-      commits=[_parse_commit(c) for c in data.get('log', [])],
-      next_cursor=data.get('next'),
-  ))
+  raise ndb.Return(
+      Log(
+          commits=[_parse_commit(c) for c in data.get('log', [])],
+          next_cursor=data.get('next'),
+      ))
 
 
 def get_log(*args, **kwargs):
@@ -388,8 +375,12 @@ def get_log(*args, **kwargs):
 
 
 @ndb.tasklet
-def get_file_content_async(
-    hostname, project, treeish, path, cmd='', **fetch_kwargs):
+def get_file_content_async(hostname,
+                           project,
+                           treeish,
+                           path,
+                           cmd='',
+                           **fetch_kwargs):
   """Gets file contents.
 
   Returns:
@@ -409,8 +400,8 @@ def get_file_content(*args, **kwargs):
   return get_file_content_async(*args, **kwargs).get_result()
 
 
-def get_archive_async(
-    hostname, project, treeish, dir_path=None, **fetch_kwargs):
+def get_archive_async(hostname, project, treeish, dir_path=None,
+                      **fetch_kwargs):
   """Gets a directory as a tar.gz archive or None if not found."""
   _validate_args(hostname, project, treeish, dir_path)
   dir_path = (dir_path or '').strip('/')
@@ -443,7 +434,7 @@ def get_refs_async(hostname, project, ref_prefix=None, **fetch_kwargs):
 
   prepend_prefix = False
   if len(ref_prefix) > len('refs/'):
-    path += ref_prefix[4:-1] # exclude "refs" prefix and "/" suffix.
+    path += ref_prefix[4:-1]  # exclude "refs" prefix and "/" suffix.
     prepend_prefix = True
   res = yield gerrit.fetch_json_async(hostname, path, **fetch_kwargs)
   if res is None:
@@ -465,8 +456,8 @@ def get_refs(*args, **kwargs):
 
 
 @ndb.tasklet
-def get_diff_async(
-    hostname, project, from_commit, to_commit, path, **fetch_kwargs):
+def get_diff_async(hostname, project, from_commit, to_commit, path,
+                   **fetch_kwargs):
   """Loads diff between two treeishes.
 
   Returns:
@@ -499,8 +490,11 @@ def _validate_treeish(treeish):
   assert not treeish.endswith('/'), treeish
 
 
-def _validate_args(
-    hostname, project, treeish='HEAD', path=None, path_required=False):
+def _validate_args(hostname,
+                   project,
+                   treeish='HEAD',
+                   path=None,
+                   path_required=False):
   assert_non_empty_string(hostname)
   assert_non_empty_string(project)
   _validate_treeish(treeish)

@@ -75,9 +75,8 @@ class TestOsUtilities(auto_stub.TestCase):
     self.mock(os_utilities, 'get_cpuinfo',
               lambda: {u'name': 'Cavium Octeon II V0.1'})
     self.mock(sys, 'maxsize', 2**31 - 1)
-    self.assertEqual(
-        os_utilities.get_cpu_dimensions(),
-        [u'mips', u'mips-32', u'mips-32-Cavium_Octeon_II_V0.1'])
+    self.assertEqual(os_utilities.get_cpu_dimensions(),
+                     [u'mips', u'mips-32', u'mips-32-Cavium_Octeon_II_V0.1'])
 
   def test_parse_intel_model(self):
     examples = [
@@ -154,7 +153,8 @@ class TestOsUtilities(auto_stub.TestCase):
     actual.discard(u'windows_client_version')
 
     expected = {
-        u'cores', u'cpu', u'gce', u'gpu', u'id', u'os', u'pool', u'python'}
+        u'cores', u'cpu', u'gce', u'gpu', u'id', u'os', u'pool', u'python'
+    }
     if platforms.is_gce():
       expected.add(u'image')
       expected.add(u'zone')
@@ -228,8 +228,10 @@ class TestOsUtilities(auto_stub.TestCase):
     if manual_mock:
       # On macOS.
       class Mock(object):
+
         def get_metadata(self):
           return None
+
       platforms.gce = Mock()
     try:
       self.mock(platforms.gce, 'get_metadata',
@@ -261,6 +263,7 @@ class TestOsUtilities(auto_stub.TestCase):
     pass
 
   def test_host_reboot(self):
+
     class Foo(Exception):
       pass
 
@@ -286,8 +289,10 @@ class TestOsUtilities(auto_stub.TestCase):
     self.mock(logging, 'error', lambda *_: None)
 
     now = [0]
+
     def mock_sleep(dt):
       now[0] += dt
+
     self.mock(time, 'sleep', mock_sleep)
     self.mock(time, 'time', lambda: now[0])
 

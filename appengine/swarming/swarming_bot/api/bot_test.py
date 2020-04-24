@@ -23,6 +23,7 @@ def make_bot(remote=None):
 
 
 class TestBot(unittest.TestCase):
+
   def test_get_pseudo_rand(self):
     # This test assumes little endian.
     # The following confirms the equivalent code in Bot.get_pseudo_rand():
@@ -37,6 +38,7 @@ class TestBot(unittest.TestCase):
     # the line number will change as the code is modified.
     prefix = ('US has failed us\n' 'Calling stack:\n' '  0  ')
     calls = []
+
     class FakeRemote(object):
       # pylint: disable=no-self-argument
       def post_bot_event(self2, event_type, message, attributes):

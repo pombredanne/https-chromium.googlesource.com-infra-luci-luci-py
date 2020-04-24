@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Provides functions: get_native_path_case(), isabs() and safe_join().
 
 This module assumes that filesystem is not changing while current process
@@ -34,9 +33,7 @@ import six
 HARDLINK, HARDLINK_WITH_FALLBACK, SYMLINK, SYMLINK_WITH_FALLBACK, COPY = range(
     1, 6)
 
-
 ## OS-specific imports
-
 
 if sys.platform == 'win32':
   import locale
@@ -46,58 +43,55 @@ elif sys.platform == 'darwin':
   import Carbon.File
   import MacOS
 
-
 if sys.platform == 'win32':
+
   class LUID(ctypes.Structure):
     _fields_ = [
-      ('low_part', wintypes.DWORD), ('high_part', wintypes.LONG),
+        ('low_part', wintypes.DWORD),
+        ('high_part', wintypes.LONG),
     ]
-
 
   class LUID_AND_ATTRIBUTES(ctypes.Structure):
     _fields_ = [('LUID', LUID), ('attributes', wintypes.DWORD)]
 
-
   class TOKEN_PRIVILEGES(ctypes.Structure):
     _fields_ = [
-      ('count', wintypes.DWORD), ('privileges', LUID_AND_ATTRIBUTES*0),
+        ('count', wintypes.DWORD),
+        ('privileges', LUID_AND_ATTRIBUTES * 0),
     ]
 
     def get_array(self):
       array_type = LUID_AND_ATTRIBUTES * self.count
       return ctypes.cast(self.privileges, ctypes.POINTER(array_type)).contents
 
-
   GetCurrentProcess = windll.kernel32.GetCurrentProcess
   GetCurrentProcess.restype = wintypes.HANDLE
   OpenProcessToken = windll.advapi32.OpenProcessToken
-  OpenProcessToken.argtypes = (
-      wintypes.HANDLE, wintypes.DWORD, ctypes.POINTER(wintypes.HANDLE))
+  OpenProcessToken.argtypes = (wintypes.HANDLE, wintypes.DWORD,
+                               ctypes.POINTER(wintypes.HANDLE))
   OpenProcessToken.restype = wintypes.BOOL
   LookupPrivilegeValue = windll.advapi32.LookupPrivilegeValueW
-  LookupPrivilegeValue.argtypes = (
-      wintypes.LPCWSTR, wintypes.LPCWSTR, ctypes.POINTER(LUID))
+  LookupPrivilegeValue.argtypes = (wintypes.LPCWSTR, wintypes.LPCWSTR,
+                                   ctypes.POINTER(LUID))
   LookupPrivilegeValue.restype = wintypes.BOOL
   LookupPrivilegeName = windll.advapi32.LookupPrivilegeNameW
-  LookupPrivilegeName.argtypes = (
-      wintypes.LPCWSTR, ctypes.POINTER(LUID), wintypes.LPWSTR,
-      ctypes.POINTER(wintypes.DWORD))
+  LookupPrivilegeName.argtypes = (wintypes.LPCWSTR,
+                                  ctypes.POINTER(LUID), wintypes.LPWSTR,
+                                  ctypes.POINTER(wintypes.DWORD))
   LookupPrivilegeName.restype = wintypes.BOOL
   PTOKEN_PRIVILEGES = ctypes.POINTER(TOKEN_PRIVILEGES)
   AdjustTokenPrivileges = windll.advapi32.AdjustTokenPrivileges
   AdjustTokenPrivileges.restype = wintypes.BOOL
-  AdjustTokenPrivileges.argtypes = (
-      wintypes.HANDLE, wintypes.BOOL, PTOKEN_PRIVILEGES,
-      wintypes.DWORD, PTOKEN_PRIVILEGES,
-      ctypes.POINTER(wintypes.DWORD))
-
+  AdjustTokenPrivileges.argtypes = (wintypes.HANDLE, wintypes.BOOL,
+                                    PTOKEN_PRIVILEGES, wintypes.DWORD,
+                                    PTOKEN_PRIVILEGES,
+                                    ctypes.POINTER(wintypes.DWORD))
 
   def FormatError(err):
     """Returns a formatted error on Windows in unicode."""
     # We need to take in account the current code page.
     return ctypes.wintypes.FormatError(err).decode(
         locale.getpreferredencoding(), 'replace')
-
 
   def QueryDosDevice(drive_letter):
     """Returns the Windows 'native' path for a DOS drive letter."""
@@ -111,11 +105,10 @@ if sys.platform == 'win32':
       err = ctypes.GetLastError()
       if err:
         # pylint: disable=undefined-variable
-        msg = u'QueryDosDevice(%s): %s (%d)' % (
-              drive_letter, FormatError(err), err)
+        msg = u'QueryDosDevice(%s): %s (%d)' % (drive_letter, FormatError(err),
+                                                err)
         raise WindowsError(err, msg.encode('utf-8'))
     return p.value
-
 
   def GetShortPathName(long_path):
     """Returns the Windows short path equivalent for a 'long' path."""
@@ -129,11 +122,10 @@ if sys.platform == 'win32':
     err = ctypes.GetLastError()
     if err:
       # pylint: disable=undefined-variable
-      msg = u'GetShortPathName(%s): %s (%d)' % (
-            long_path, FormatError(err), err)
+      msg = u'GetShortPathName(%s): %s (%d)' % (long_path, FormatError(err),
+                                                err)
       raise WindowsError(err, msg.encode('utf-8'))
     return None
-
 
   def GetLongPathName(short_path):
     """Returns the Windows long path equivalent for a 'short' path."""
@@ -147,11 +139,10 @@ if sys.platform == 'win32':
     err = ctypes.GetLastError()
     if err:
       # pylint: disable=undefined-variable
-      msg = u'GetLongPathName(%s): %s (%d)' % (
-            short_path, FormatError(err), err)
+      msg = u'GetLongPathName(%s): %s (%d)' % (short_path, FormatError(err),
+                                               err)
       raise WindowsError(err, msg.encode('utf-8'))
     return None
-
 
   def MoveFileEx(oldpath, newpath, flags):
     """Calls MoveFileEx, converting errors to WindowsError exceptions."""
@@ -160,10 +151,9 @@ if sys.platform == 'win32':
     if not windll.kernel32.MoveFileExW(old_p, new_p, int(flags)):
       # pylint: disable=undefined-variable
       err = ctypes.GetLastError()
-      msg = u'MoveFileEx(%s, %s, %d): %s (%d)' % (
-            oldpath, newpath, flags, FormatError(err), err)
+      msg = u'MoveFileEx(%s, %s, %d): %s (%d)' % (oldpath, newpath, flags,
+                                                  FormatError(err), err)
       raise WindowsError(err, msg.encode('utf-8'))
-
 
   class DosDriveMap(object):
     """Maps \\Device\\HarddiskVolumeN to N: on Windows."""
@@ -199,8 +189,7 @@ if sys.platform == 'win32':
       match = re.match(r'(^\\Device\\[a-zA-Z0-9]+)(\\.*)?$', path)
       if not match:
         raise ValueError(
-            'Can\'t convert %s into a Win32 compatible path' % path,
-            path)
+            'Can\'t convert %s into a Win32 compatible path' % path, path)
       if not match.group(1) in self._MAPPING:
         # Unmapped partitions may be accessed by windows for the
         # fun of it while the test is running. Discard these.
@@ -209,7 +198,6 @@ if sys.platform == 'win32':
       if not drive or not match.group(2):
         return drive
       return drive + match.group(2)
-
 
   def change_acl_for_delete(path):
     """Zaps the SECURITY_DESCRIPTOR's DACL on a directory entry that is tedious
@@ -232,8 +220,8 @@ if sys.platform == 'win32':
     sd.SetSecurityDescriptorOwner(user, False)
     dacl = win32security.ACL()
     dacl.Initialize()
-    dacl.AddAccessAllowedAce(
-        win32security.ACL_REVISION_DS, FILE_ALL_ACCESS, user)
+    dacl.AddAccessAllowedAce(win32security.ACL_REVISION_DS, FILE_ALL_ACCESS,
+                             user)
     sd.SetSecurityDescriptorDacl(1, dacl, 0)
     # Note that this assumes the object is either owned by the current user or
     # its group or that the current ACL permits this. Otherwise it will silently
@@ -246,11 +234,9 @@ if sys.platform == 'win32':
     if not (os.stat(path).st_mode & stat.S_IWUSR):
       os.chmod(path, 0o777)
 
-
   def isabs(path):
     """Accepts X: as an absolute path, unlike python's os.path.isabs()."""
     return os.path.isabs(path) or len(path) == 2 and path[1] == ':'
-
 
   def find_item_native_case(root, item):
     """Gets the native path case of a single item based at root_path."""
@@ -259,7 +245,6 @@ if sys.platform == 'win32':
 
     root = get_native_path_case(root)
     return os.path.basename(get_native_path_case(os.path.join(root, item)))
-
 
   @tools.profile
   @tools.cached
@@ -270,8 +255,8 @@ if sys.platform == 'win32':
     """
     assert isinstance(p, six.text_type), repr(p)
     if not isabs(p):
-      raise ValueError(
-          'get_native_path_case(%r): Require an absolute path' % p, p)
+      raise ValueError('get_native_path_case(%r): Require an absolute path' % p,
+                       p)
 
     # Make sure it is normalized to os.path.sep. Do not do it here to keep the
     # function fast
@@ -307,17 +292,15 @@ if sys.platform == 'win32':
     # drive letter in the case it was given.
     return out[0].upper() + out[1:] + suffix
 
-
   def get_process_token():
     """Get the current process token."""
     TOKEN_ALL_ACCESS = 0xF01FF
     token = ctypes.wintypes.HANDLE()
-    if not OpenProcessToken(
-        GetCurrentProcess(), TOKEN_ALL_ACCESS, ctypes.byref(token)):
+    if not OpenProcessToken(GetCurrentProcess(), TOKEN_ALL_ACCESS,
+                            ctypes.byref(token)):
       # pylint: disable=undefined-variable
       raise WindowsError('Couldn\'t get process token')
     return token
-
 
   def get_luid(name):
     """Returns the LUID for a privilege."""
@@ -326,7 +309,6 @@ if sys.platform == 'win32':
       # pylint: disable=undefined-variable
       raise WindowsError('Couldn\'t lookup privilege value')
     return luid
-
 
   def enable_privilege(name):
     """Enables the privilege for the current process token.
@@ -347,13 +329,11 @@ if sys.platform == 'win32':
     try:
       if not AdjustTokenPrivileges(token, False, tp, 0, None, None):
         # pylint: disable=undefined-variable
-        raise WindowsError(
-            u'AdjustTokenPrivileges(%r): failed: %s' %
-              (name, ctypes.GetLastError()))
+        raise WindowsError(u'AdjustTokenPrivileges(%r): failed: %s' %
+                           (name, ctypes.GetLastError()))
     finally:
       windll.kernel32.CloseHandle(token)
     return ctypes.GetLastError() != ERROR_NOT_ALL_ASSIGNED
-
 
   def enable_symlink():
     """Enable SeCreateSymbolicLinkPrivilege for the current token.
@@ -376,7 +356,6 @@ if sys.platform == 'win32':
     """
     return enable_privilege(u'SeCreateSymbolicLinkPrivilege')
 
-
   def kill_children_processes(root):
     """Try to kill all children processes indistriminately and prints updates to
     stderr.
@@ -389,12 +368,9 @@ if sys.platform == 'win32':
       return False
     sys.stderr.write('Enumerating processes:\n')
     for _, proc in sorted(processes.items()):
-      sys.stderr.write(
-          '- pid %d; Handles: %d; Exe: %s; Cmd: %s\n' % (
-            proc.ProcessId,
-            proc.HandleCount,
-            proc.ExecutablePath,
-            proc.CommandLine))
+      sys.stderr.write('- pid %d; Handles: %d; Exe: %s; Cmd: %s\n' %
+                       (proc.ProcessId, proc.HandleCount, proc.ExecutablePath,
+                        proc.CommandLine))
     sys.stderr.write('Terminating %d processes:\n' % len(processes))
     for pid in sorted(processes):
       try:
@@ -405,9 +381,7 @@ if sys.platform == 'win32':
         sys.stderr.write('- failed to kill %s, error %s\n' % (pid, e))
     return True
 
-
   ## Windows private code.
-
 
   def _enum_processes_win():
     """Returns all processes on the system that are accessible to this process.
@@ -421,11 +395,11 @@ if sys.platform == 'win32':
     wbem = wmi_service.ConnectServer('.', 'root\\cimv2')
     return [proc for proc in wbem.ExecQuery('SELECT * FROM Win32_Process')]
 
-
   def _filter_processes_dir_win(processes, root_dir):
     """Returns all processes which has their main executable located inside
     root_dir.
     """
+
     def normalize_path(filename):
       try:
         return GetLongPathName(six.text_type(filename)).lower()
@@ -449,10 +423,9 @@ if sys.platform == 'win32':
     long_names = ((process_name(proc), proc) for proc in processes)
 
     return [
-      proc for name, proc in long_names
-      if name is not None and name.startswith(root_dir)
+        proc for name, proc in long_names
+        if name is not None and name.startswith(root_dir)
     ]
-
 
   def _filter_processes_tree_win(processes):
     """Returns all the processes under the current process."""
@@ -464,14 +437,12 @@ if sys.platform == 'win32':
       found = set()
       for pid in out:
         found.update(
-            p.ProcessId for p in processes.values()
-            if p.ParentProcessId == pid)
+            p.ProcessId for p in processes.values() if p.ParentProcessId == pid)
       found -= set(out)
       if not found:
         break
       out.update((p, processes[p]) for p in found)
     return out.values()
-
 
   def _get_children_processes_win(root):
     """Returns a list of processes.
@@ -493,13 +464,10 @@ if sys.platform == 'win32':
     processes.pop(os.getpid())
     return processes
 
-
 elif sys.platform == 'darwin':
-
 
   # On non-windows, keep the stdlib behavior.
   isabs = os.path.isabs
-
 
   def find_item_native_case(root_path, item):
     """Gets the native path case of a single item based at root_path.
@@ -515,7 +483,6 @@ elif sys.platform == 'darwin':
       if element.lower() == item:
         return element
     return None
-
 
   @tools.profile
   @tools.cached
@@ -564,13 +531,10 @@ elif sys.platform == 'darwin':
     #logging.debug('get_native_path_case(%s) = %s' % (path, base))
     return base
 
-
   def enable_symlink():
     return True
 
-
   ## OSX private code.
-
 
   def _native_case(p):
     """Gets the native path case. Warning: this function resolves symlinks."""
@@ -579,8 +543,8 @@ elif sys.platform == 'darwin':
       # The OSX underlying code uses NFD but python strings are in NFC. This
       # will cause issues with os.listdir() for example. Since the dtrace log
       # *is* in NFC, normalize it here.
-      out = unicodedata.normalize(
-          'NFC', rel_ref.FSRefMakePath().decode('utf-8'))
+      out = unicodedata.normalize('NFC',
+                                  rel_ref.FSRefMakePath().decode('utf-8'))
       if p.endswith(os.path.sep) and not out.endswith(os.path.sep):
         return out + os.path.sep
       return out
@@ -592,9 +556,8 @@ elif sys.platform == 'darwin':
         base = os.path.dirname(p)
         rest = os.path.basename(p)
         return os.path.join(_native_case(base), rest)
-      raise OSError(
-          e.args[0], 'Failed to get native path for %s' % p, p, e.args[1])
-
+      raise OSError(e.args[0], 'Failed to get native path for %s' % p, p,
+                    e.args[1])
 
   def _split_at_symlink_native(base_path, rest):
     """Returns the native path for a symlink."""
@@ -607,13 +570,10 @@ elif sys.platform == 'darwin':
       symlink = find_item_native_case(base_path, symlink)
     return base, symlink, rest
 
-
 else:  # OSes other than Windows and OSX.
-
 
   # On non-windows, keep the stdlib behavior.
   isabs = os.path.isabs
-
 
   def find_item_native_case(root, item):
     """Gets the native path case of a single item based at root_path."""
@@ -622,7 +582,6 @@ else:  # OSes other than Windows and OSX.
 
     root = get_native_path_case(root)
     return os.path.basename(get_native_path_case(os.path.join(root, item)))
-
 
   @tools.profile
   @tools.cached
@@ -651,13 +610,11 @@ else:  # OSes other than Windows and OSX.
     # systems running ARM.
     return path if out == path else out
 
-
   def enable_symlink():
     return True
 
 
 if sys.platform != 'win32':  # All non-Windows OSes.
-
 
   def safe_join(*args):
     """Joins path elements like os.path.join() but doesn't abort on absolute
@@ -679,7 +636,6 @@ if sys.platform != 'win32':  # All non-Windows OSes.
         else:
           out += os.path.sep + element
     return out
-
 
   @tools.profile
   def split_at_symlink(base_dir, relfile):
@@ -713,15 +669,13 @@ if sys.platform != 'win32':  # All non-Windows OSes.
         base = os.path.dirname(relfile[:index])
         symlink = os.path.basename(relfile[:index])
         rest = relfile[index:]
-        logging.debug(
-            'split_at_symlink(%s, %s) -> (%s, %s, %s)' %
-            (base_dir, relfile, base, symlink, rest))
+        logging.debug('split_at_symlink(%s, %s) -> (%s, %s, %s)' %
+                      (base_dir, relfile, base, symlink, rest))
         return base, symlink, rest
       if index == len(relfile):
         break
       index += 1
     return relfile, None, None
-
 
   def kill_children_processes(root):
     """Not yet implemented on posix."""
@@ -805,8 +759,7 @@ def fix_native_path_case(root, path):
     part = find_item_native_case(native_case_path, raw_part)
     if not part:
       raise OSError(
-          'File %s doesn\'t exist' %
-          os.path.join(native_case_path, raw_part))
+          'File %s doesn\'t exist' % os.path.join(native_case_path, raw_part))
     native_case_path = os.path.join(native_case_path, part)
 
   return os.path.normpath(native_case_path)
@@ -892,11 +845,11 @@ def set_read_only(path, read_only):
   mode = orig_mode
   # TODO(maruel): Stop removing GO bits.
   if read_only:
-    mode &= stat.S_IRUSR|stat.S_IXUSR # 0500
+    mode &= stat.S_IRUSR | stat.S_IXUSR  # 0500
   else:
-    mode |= stat.S_IRUSR|stat.S_IWUSR # 0600
+    mode |= stat.S_IRUSR | stat.S_IWUSR  # 0600
     if sys.platform != 'win32' and stat.S_ISDIR(mode):
-      mode |= stat.S_IXUSR # 0100
+      mode |= stat.S_IXUSR  # 0100
   if hasattr(os, 'lchmod'):
     fs.lchmod(path, mode)  # pylint: disable=E1101
   else:
@@ -955,9 +908,8 @@ def link_file(outfile, infile, action):
   if not fs.isfile(infile):
     raise OSError('%s is missing' % infile)
   if fs.isfile(outfile):
-    raise OSError(
-        '%s already exist; insize:%d; outsize:%d' %
-        (outfile, fs.stat(infile).st_size, fs.stat(outfile).st_size))
+    raise OSError('%s already exist; insize:%d; outsize:%d' %
+                  (outfile, fs.stat(infile).st_size, fs.stat(outfile).st_size))
 
   if action == COPY:
     readable_copy(outfile, infile)
@@ -970,9 +922,8 @@ def link_file(outfile, infile, action):
     except OSError:
       if action == SYMLINK:
         raise
-      logging.warning(
-          'Failed to symlink, falling back to copy %s to %s' % (
-            infile, outfile))
+      logging.warning('Failed to symlink, falling back to copy %s to %s' %
+                      (infile, outfile))
       # Signal caller that fallback copy was used.
       readable_copy(outfile, infile)
       return False
@@ -987,8 +938,7 @@ def link_file(outfile, infile, action):
 
   # Probably a different file system.
   logging.warning(
-      'Failed to hardlink, falling back to copy %s to %s' % (
-        infile, outfile))
+      'Failed to hardlink, falling back to copy %s to %s' % (infile, outfile))
   readable_copy(outfile, infile)
   # Signal caller that fallback copy was used.
   return False
@@ -1009,7 +959,7 @@ def atomic_replace(path, body):
   path = os.path.abspath(path)
   dir_name, base_name = os.path.split(path)
 
-  fd, tmp_name = tempfile.mkstemp(dir=dir_name, prefix=base_name+'_')
+  fd, tmp_name = tempfile.mkstemp(dir=dir_name, prefix=base_name + '_')
   try:
     with os.fdopen(fd, 'wb') as f:
       f.write(body)
@@ -1020,7 +970,7 @@ def atomic_replace(path, body):
     else:
       # Flags are MOVEFILE_REPLACE_EXISTING|MOVEFILE_WRITE_THROUGH.
       MoveFileEx(six.text_type(tmp_name), six.text_type(path), 0x1 | 0x8)
-    tmp_name = None # no need to remove it in 'finally' block anymore
+    tmp_name = None  # no need to remove it in 'finally' block anymore
   finally:
     if tmp_name:
       try:
@@ -1132,8 +1082,8 @@ def make_tree_deleteable(root):
       # Try passwordless sudo, just in case. In practice, it is preferable
       # to use linux capabilities.
       with open(os.devnull, 'rb') as f:
-        if not subprocess42.call(
-            ['sudo', '-n', 'chmod', 'a+rwX,-t', p], stdin=f):
+        if not subprocess42.call(['sudo', '-n', 'chmod', 'a+rwX,-t', p],
+                                 stdin=f):
           return False
       logging.debug('sudo chmod %s failed', p)
     return True
@@ -1210,16 +1160,13 @@ def rmtree(root):
           sys.stderr.write('- %s (failed to update ACL: %s)\n' % (path, e))
 
     if i != max_tries - 1:
-      delay = (i+1)*2
-      sys.stderr.write(
-          'Failed to delete %s (%d files remaining).\n'
-          '  Maybe the test has a subprocess outliving it.\n'
-          '  Sleeping %d seconds.\n' %
-          (root, len(errors), delay))
+      delay = (i + 1) * 2
+      sys.stderr.write('Failed to delete %s (%d files remaining).\n'
+                       '  Maybe the test has a subprocess outliving it.\n'
+                       '  Sleeping %d seconds.\n' % (root, len(errors), delay))
       time.sleep(delay)
 
-  sys.stderr.write(
-      'Failed to delete %s. The following files remain:\n' % root)
+  sys.stderr.write('Failed to delete %s. The following files remain:\n' % root)
   # The same path may be listed multiple times.
   for path in sorted(set(path for _, path, _ in errors)):
     sys.stderr.write('- %s\n' % path)
@@ -1233,7 +1180,7 @@ def rmtree(root):
     if not kill_children_processes(root):
       break
     if i != max_tries - 1:
-      time.sleep((i+1)*2)
+      time.sleep((i + 1) * 2)
   else:
     processes = _get_children_processes_win(root)
     if processes:

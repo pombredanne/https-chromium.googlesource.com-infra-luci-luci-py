@@ -17,7 +17,6 @@ from test_support import test_case
 
 from server import task_pack
 
-
 # pylint: disable=W0212
 
 
@@ -76,9 +75,8 @@ class TaskPackApiTest(test_case.TestCase):
     self.assertEqual(expected, run_result_key)
     run_result_key = task_pack.result_summary_key_to_run_result_key(
         result_summary_key, 2)
-    expected = ndb.Key(
-        'TaskRequest', 0x7fffffffffffffee, 'TaskResultSummary', 1,
-        'TaskRunResult', 2)
+    expected = ndb.Key('TaskRequest', 0x7fffffffffffffee, 'TaskResultSummary',
+                       1, 'TaskRunResult', 2)
     self.assertEqual(expected, run_result_key)
 
     with self.assertRaises(ValueError):
@@ -94,7 +92,7 @@ class TaskPackApiTest(test_case.TestCase):
         result_summary_key, 1)
     perf_stats_key = task_pack.run_result_key_to_performance_stats_key(
         run_result_key)
-    self.assertEqual('PerformanceStats',perf_stats_key.kind())
+    self.assertEqual('PerformanceStats', perf_stats_key.kind())
 
   def test_run_result_key_to_result_summary_key(self):
     request_key = task_pack.unpack_request_key('11')
@@ -132,8 +130,8 @@ class TaskPackApiTest(test_case.TestCase):
 
   def test_unpack_result_summary_key(self):
     actual = task_pack.unpack_result_summary_key('bb80210')
-    expected = ndb.Key(
-        'TaskRequest', 0x7fffffffff447fde, 'TaskResultSummary', 1)
+    expected = ndb.Key('TaskRequest', 0x7fffffffff447fde, 'TaskResultSummary',
+                       1)
     self.assertEqual(expected, actual)
 
     with self.assertRaises(ValueError):
@@ -146,9 +144,8 @@ class TaskPackApiTest(test_case.TestCase):
   def test_unpack_run_result_key(self):
     for i in ('1', '2'):
       actual = task_pack.unpack_run_result_key('bb8021' + i)
-      expected = ndb.Key(
-          'TaskRequest', 0x7fffffffff447fde,
-          'TaskResultSummary', 1, 'TaskRunResult', int(i))
+      expected = ndb.Key('TaskRequest', 0x7fffffffff447fde, 'TaskResultSummary',
+                         1, 'TaskRunResult', int(i))
       self.assertEqual(expected, actual)
 
     with self.assertRaises(ValueError):

@@ -24,7 +24,6 @@ from server import task_request
 
 from google.protobuf import text_format
 
-
 TEST_CONFIG = pools_pb2.PoolsCfg(
     pool=[
         pools_pb2.Pool(
@@ -146,8 +145,8 @@ class PoolsConfigTest(test_case.TestCase):
     self.assertEqual(expected2, pools_config.get_pool_config('another_name'))
     self.assertEqual(['another_name', 'pool_name'], pools_config.known())
 
-
   def test_validate_external_services_isolate(self):
+
     def msg(**kwargs):
       return pools_pb2.PoolsCfg(
           default_external_services=pools_pb2.ExternalServices(
@@ -245,7 +244,8 @@ class PoolsConfigTest(test_case.TestCase):
     n = 'x' * 300
     cfg = pools_pb2.PoolsCfg(pool=[pools_pb2.Pool(name=[n])])
     self.validator_test(cfg, [
-      'pool #0 (%s): bad pool name "%s", not a valid dimension value' % (n, n),
+        'pool #0 (%s): bad pool name "%s", not a valid dimension value' %
+        (n, n),
     ])
 
   def test_duplicate_pool_name(self):
@@ -264,8 +264,8 @@ class PoolsConfigTest(test_case.TestCase):
             schedulers=pools_pb2.Schedulers(user=['not valid email'],)),
     ])
     self.validator_test(cfg, [
-      'pool #0 (abc): bad user value "not valid email" - '
-      'Identity has invalid format: not valid email',
+        'pool #0 (abc): bad user value "not valid email" - '
+        'Identity has invalid format: not valid email',
     ])
 
   def test_bad_scheduling_group(self):
@@ -274,7 +274,7 @@ class PoolsConfigTest(test_case.TestCase):
             name=['abc'], schedulers=pools_pb2.Schedulers(group=['!!!'],)),
     ])
     self.validator_test(cfg, [
-      'pool #0 (abc): bad group name "!!!"',
+        'pool #0 (abc): bad group name "!!!"',
     ])
 
   def test_no_delegatee_peer_id(self):
@@ -365,7 +365,7 @@ class PoolsConfigTest(test_case.TestCase):
             bot_monitoring='missing',
         )])
     self.validator_test(cfg, [
-      'pool #0 (abc): refer to missing bot_monitoring u\'missing\'',
+        'pool #0 (abc): refer to missing bot_monitoring u\'missing\'',
     ])
 
   def test_good_bot_monitoring(self):
@@ -383,11 +383,12 @@ class PoolsConfigTest(test_case.TestCase):
             pools_pb2.BotMonitoring(name='mon', dimension_key='a'),
         ])
     self.validator_test(cfg, [
-      'bot_monitoring not referred to: mon',
+        'bot_monitoring not referred to: mon',
     ])
 
 
 class TaskTemplateBaseTest(unittest.TestCase):
+
   def setUp(self):
     super(TaskTemplateBaseTest, self).setUp()
     self._canary_dice_roll = 5000  # 50%
@@ -422,6 +423,7 @@ class TaskTemplateBaseTest(unittest.TestCase):
 
 
 class TestTaskTemplates(TaskTemplateBaseTest):
+
   @staticmethod
   def parse(textpb):
     return text_format.Merge(textpb, pools_pb2.TaskTemplate())
@@ -513,12 +515,11 @@ class TestTaskTemplates(TaskTemplateBaseTest):
     tti.update(self.ctx, self.tt(env=[self.PE(var='VAR', value='2')]), None)
 
     self.assertEqual(
-        self.tt(env=[self.PE(var='VAR', value='2')]),
-        tti.finalize(self.ctx))
+        self.tt(env=[self.PE(var='VAR', value='2')]), tti.finalize(self.ctx))
 
     # add new
-    tti.update(
-        self.ctx, self.tt(env=[self.PE(var='OTHER', value='thing')]), None)
+    tti.update(self.ctx, self.tt(env=[self.PE(var='OTHER', value='thing')]),
+               None)
 
     self.assertEqual(
         self.tt(env=[
@@ -531,8 +532,9 @@ class TestTaskTemplates(TaskTemplateBaseTest):
   def test_task_template_update_env_prefix(self):
     tti = pools_config.TaskTemplate._Intermediate(self.ctx,
                                                   pools_pb2.TaskTemplate())
-    tti.update(self.ctx, self.tt(env=[
-        self.PE(var='PATH', prefix=['1'], soft=True)]), None)
+    tti.update(self.ctx,
+               self.tt(env=[self.PE(var='PATH', prefix=['1'], soft=True)]),
+               None)
 
     self.assertEqual(
         self.tt(env=[self.PE(var='PATH', prefix=['1'], soft=True)]),
@@ -546,8 +548,8 @@ class TestTaskTemplates(TaskTemplateBaseTest):
         tti.finalize(self.ctx))
 
     # existing, add new
-    tti.update(
-        self.ctx, self.tt(env=[self.PE(var='OTHER', prefix=['thing'])]), None)
+    tti.update(self.ctx, self.tt(env=[self.PE(var='OTHER', prefix=['thing'])]),
+               None)
 
     self.assertEqual(
         self.tt(env=[
@@ -671,6 +673,7 @@ class TestTaskTemplates(TaskTemplateBaseTest):
 
 
 class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
+
   @staticmethod
   def parse(textpb):
     return text_format.Merge(textpb, pools_pb2.PoolsCfg())
@@ -718,8 +721,8 @@ class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
       }
     """)
 
-    pools_config._resolve_task_template_inclusions(
-        self.ctx, poolcfg.task_template)
+    pools_config._resolve_task_template_inclusions(self.ctx,
+                                                   poolcfg.task_template)
 
     self.assertEqual(
         [x.text for x in self.ctx.result().messages],
@@ -742,8 +745,8 @@ class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
       }
     """)
 
-    pools_config._resolve_task_template_inclusions(
-        self.ctx, poolcfg.task_template)
+    pools_config._resolve_task_template_inclusions(self.ctx,
+                                                   poolcfg.task_template)
 
     self.assertEqual([x.text for x in self.ctx.result().messages], [
         'template[u\'d\']: template u\'a\' included (transitively) multiple '
@@ -759,8 +762,8 @@ class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
     template_map = pools_config._resolve_task_template_inclusions(
         self.ctx, poolcfg.task_template)
     self.assertDictEqual(template_map, {
-      'a': pools_config.TaskTemplate.CYCLE,
-      'b': pools_config.TaskTemplate.CYCLE,
+        'a': pools_config.TaskTemplate.CYCLE,
+        'b': pools_config.TaskTemplate.CYCLE,
     })
 
     tail = ', which causes an import cycle'
@@ -774,8 +777,9 @@ class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
       task_template: {}
     """)
 
-    self.assertIsNone(pools_config._resolve_task_template_inclusions(
-        self.ctx, poolcfg.task_template))
+    self.assertIsNone(
+        pools_config._resolve_task_template_inclusions(self.ctx,
+                                                       poolcfg.task_template))
 
     self.assertEqual([x.text for x in self.ctx.result().messages],
                      ['one or more templates has a blank name'])
@@ -786,8 +790,9 @@ class TestPoolCfgTaskTemplate(TaskTemplateBaseTest):
       task_template: {name: "a"}
     """)
 
-    self.assertIsNone(pools_config._resolve_task_template_inclusions(
-        self.ctx, poolcfg.task_template))
+    self.assertIsNone(
+        pools_config._resolve_task_template_inclusions(self.ctx,
+                                                       poolcfg.task_template))
 
     self.assertEqual([x.text for x in self.ctx.result().messages],
                      ['one or more templates has a duplicate name'])
@@ -875,9 +880,8 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
         pools_config._resolve_task_template_deployments(
             self.ctx, {}, poolcfg.task_template_deployment))
 
-    self.assertEqual(
-        [x.text for x in self.ctx.result().messages],
-        ['deployment[0]: has no name'])
+    self.assertEqual([x.text for x in self.ctx.result().messages],
+                     ['deployment[0]: has no name'])
 
   def test_resolve_bad_canary(self):
     poolcfg = self.parse("""
@@ -887,10 +891,10 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     pools_config._resolve_task_template_deployments(
         self.ctx, {}, poolcfg.task_template_deployment)
 
-    self.assertEqual(
-        [x.text for x in self.ctx.result().messages],
-        ['deployment[u\'a\']: '+
-         'canary_chance out of range `[0,9999]`: 10000 -> %100.00'])
+    self.assertEqual([x.text for x in self.ctx.result().messages], [
+        'deployment[u\'a\']: ' +
+        'canary_chance out of range `[0,9999]`: 10000 -> %100.00'
+    ])
 
   def test_resolve_bad_canary_2(self):
     poolcfg = self.parse("""
@@ -900,10 +904,9 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     pools_config._resolve_task_template_deployments(
         self.ctx, {}, poolcfg.task_template_deployment)
 
-    self.assertEqual(
-        [x.text for x in self.ctx.result().messages],
-        [('deployment[u\'a\']: '
-          'canary_chance out of range `[0,9999]`: -1 -> %-0.01')])
+    self.assertEqual([x.text for x in self.ctx.result().messages],
+                     [('deployment[u\'a\']: '
+                       'canary_chance out of range `[0,9999]`: -1 -> %-0.01')])
 
   def test_resolve_single_deployment(self):
     poolcfg = self.parse("""
@@ -932,12 +935,13 @@ class TestPoolCfgTaskTemplateDeployments(TaskTemplateBaseTest):
     dmap = pools_config._resolve_task_template_deployments(
         self.ctx, tmap, poolcfg.task_template_deployment)
 
-    self.assertEqual(pools_config.TaskTemplateDeployment(
-      prod=self.tt(
-        env=[self.PE(var='VAR', value='1')],
-        inclusions='a'),
-      canary=None, canary_chance=0,
-    ), pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
+    self.assertEqual(
+        pools_config.TaskTemplateDeployment(
+            prod=self.tt(env=[self.PE(var='VAR', value='1')], inclusions='a'),
+            canary=None,
+            canary_chance=0,
+        ),
+        pools_config._resolve_deployment(self.ctx, poolcfg.pool[0], tmap, dmap))
 
     self.assertEqual(
         pools_config.TaskTemplateDeployment(
@@ -1001,8 +1005,8 @@ class TestBotMonitoring(TaskTemplateBaseTest):
     dimension_key: "same"
     dimension_key: "same"
     """)
-    self.validator_test(
-        [bm], ['bot_monitoring u\'hi\': duplicate dimension_key'])
+    self.validator_test([bm],
+                        ['bot_monitoring u\'hi\': duplicate dimension_key'])
 
   def test_bad_repeated_name(self):
     bm = [

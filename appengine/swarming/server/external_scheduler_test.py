@@ -79,11 +79,12 @@ def _gen_request(**kwargs):
 
 
 class FakeExternalScheduler(object):
+
   def __init__(self, test):
     self._test = test
     self.called_with_requests = []
 
-  def AssignTasks(self, req, credentials): # pylint: disable=unused-argument
+  def AssignTasks(self, req, credentials):  # pylint: disable=unused-argument
     self._test.assertIsInstance(req, plugin_pb2.AssignTasksRequest)
     self.called_with_requests.append(req)
     resp = plugin_pb2.AssignTasksResponse()
@@ -108,7 +109,7 @@ class FakeExternalScheduler(object):
     self.called_with_requests.append(req)
     return plugin_pb2.NotifyTasksResponse()
 
-  def GetCallbacks(self, req, credentials): # pylint: disable=unused-argument
+  def GetCallbacks(self, req, credentials):  # pylint: disable=unused-argument
     self._test.assertIsInstance(req, plugin_pb2.GetCallbacksRequest)
     self.called_with_requests.append(req)
     resp = plugin_pb2.GetCallbacksResponse()
@@ -142,8 +143,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
     self.app = webtest.TestApp(
         handlers_backend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
     self._enqueue_orig = self.mock(utils, 'enqueue_task', self._enqueue)
     self._enqueue_async_orig = self.mock(utils, 'enqueue_task_async',
@@ -202,8 +203,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_notify_requests(self):
     request = _gen_request()
     result_summary = task_scheduler.schedule_request(request, None)
-    external_scheduler.notify_requests(
-        self.es_cfg, [(request, result_summary)], False, False)
+    external_scheduler.notify_requests(self.es_cfg, [(request, result_summary)],
+                                       False, False)
 
     self.assertEqual(len(self._client.called_with_requests), 1)
     called_with = self._client.called_with_requests[0]
@@ -220,8 +221,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_notify_request_with_tq(self):
     request = _gen_request()
     result_summary = task_scheduler.schedule_request(request, None)
-    external_scheduler.notify_requests(
-      self.es_cfg, [(request, result_summary)], True, False)
+    external_scheduler.notify_requests(self.es_cfg, [(request, result_summary)],
+                                       True, False)
 
     # There should have been no call to _get_client yet.
     self.assertEqual(self._client, None)
@@ -277,8 +278,8 @@ class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
     self.app = webtest.TestApp(
         handlers_backend.create_application(True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
 
     self.cfg = config.settings()
@@ -347,8 +348,7 @@ class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
     self._setup_client()
     # Since use_tq is false, the requests below should be sent out immediately.
     external_scheduler.notify_requests(
-        self.cfg_foo,
-        [(request, result_summary)],
+        self.cfg_foo, [(request, result_summary)],
         False,
         False,
         batch_mode=True)

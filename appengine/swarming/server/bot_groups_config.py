@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Functions to fetch and interpret bots.cfg file with list of bot groups."""
 
 import ast
@@ -21,9 +20,7 @@ from components.config import validation
 from proto.config import bots_pb2
 from server import config as local_config
 
-
 BOTS_CFG_FILENAME = 'bots.cfg'
-
 
 # Validated and "frozen" bots_pb2.BotAuth proto, see its doc for meaning of
 # fields.
@@ -81,7 +78,6 @@ BotGroupConfig = collections.namedtuple(
         # True if it's default group config.
         'is_default',
     ])
-
 
 # Represents bots_pb2.BotsCfg after all includes are expanded, along with its
 # revision and a digest string.
@@ -200,7 +196,7 @@ def refetch_from_config_service(ctx=None):
     if cur and cur.digest == cfg.digest:
       logging.info(
           'Config is up-to-date at rev "%s" (digest "%s"), updated %s ago',
-          cfg.rev, cfg.digest, now-cur.last_update_ts)
+          cfg.rev, cfg.digest, now - cur.last_update_ts)
       return
 
     logging.info(
@@ -238,7 +234,6 @@ def clear_cache():
 
 ### Private stuff.
 
-
 # Bump this to force trigger bots.cfg cache refresh, even if the config itself
 # didn't change.
 #
@@ -246,7 +241,6 @@ def clear_cache():
 # the cache. Note that we intentionally keep older version of the config to
 # allow GAE instances that still run the old code to use them.
 _BOT_CFG_CACHE_VER = 2
-
 
 # How often to synchronize in-process bots.cfg cache with what's in the
 # datastore.
@@ -373,6 +367,7 @@ def _include_bot_config_scripts(cfg, digest, ctx):
   # Different bot groups often include same scripts. Deduplicate calls to
   # 'get_self_config'.
   cached = {}  # path -> (rev, content)
+
   def fetch_script(path):
     if path not in cached:
       rev, content = config.get_self_config(path, store_last_good=True)
@@ -419,9 +414,8 @@ def _get_expanded_bots_cfg(known_digest=None):
     # This branch is hit when we deploy the service the first time, before
     # the fetch cron runs, or after changing _BOT_CFG_CACHE_VER. We manually
     # refresh the cache in this case, not waiting for the cron.
-    logging.warning(
-        'No bots.cfg cached for code v%d, forcing the refresh',
-        _BOT_CFG_CACHE_VER)
+    logging.warning('No bots.cfg cached for code v%d, forcing the refresh',
+                    _BOT_CFG_CACHE_VER)
     expanded = refetch_from_config_service()  # raises BadConfigError on errors
     if expanded and known_digest and expanded.digest == known_digest:
       return False, None
@@ -606,7 +600,7 @@ def _expand_bot_id_expr(expr):
   if expr.count('{') > 1 or expr.count('}') > 1 or left > right:
     raise ValueError('bad bot_id set expression')
 
-  prefix, body, suffix = expr[:left], expr[left+1:right], expr[right+1:]
+  prefix, body, suffix = expr[:left], expr[left + 1:right], expr[right + 1:]
 
   # An explicit list?
   if ',' in body:
@@ -672,9 +666,8 @@ def _fetch_bot_groups():
     # Someone is already refreshing the cache? Let them finish.
     if _cache.fetcher_thread is not None:
       delta = utils.time_time() - exp
-      msg = (
-          'Using stale cached bots.cfg at rev %s while another thread is '
-          'refreshing it. Cache expired %.1f sec ago.')
+      msg = ('Using stale cached bots.cfg at rev %s while another thread is '
+             'refreshing it. Cache expired %.1f sec ago.')
       if delta > 5:
         # Only warn if it's more than 5 seconds.
         logging.warning(msg, known_cfg.rev, delta)
@@ -741,8 +734,8 @@ def _do_fetch_bot_groups(known_cfg=None):
           # This should not happen in validated config. If it does, log the
           # error, but carry on, since dying here will bring service offline.
           if bot_id in direct_matches:
-            logging.error(
-                'Bot "%s" is specified in two different bot groups', bot_id)
+            logging.error('Bot "%s" is specified in two different bot groups',
+                          bot_id)
             continue
           if bot_id in known_prefixes:
             # TODO(tandrii): change to error and skip this prefix
@@ -789,8 +782,8 @@ def _validate_email(ctx, email, designation):
     ctx.error('invalid %s email "%s"', designation, email)
 
 
-def _validate_group_bot_ids(
-    ctx, group_bot_ids, group_idx, known_bot_ids, known_bot_id_prefixes):
+def _validate_group_bot_ids(ctx, group_bot_ids, group_idx, known_bot_ids,
+                            known_bot_id_prefixes):
   """Validates bot_id sections of a group and updates known_bot_ids."""
   for bot_id_expr in group_bot_ids:
     try:
@@ -809,18 +802,16 @@ def _validate_group_bot_ids(
       ctx.error('bad bot_id expression "%s" - %s', bot_id_expr, exc)
 
 
-def _validate_group_bot_id_prefixes(
-    ctx, group_bot_id_prefixes, group_idx, known_bot_id_prefixes,
-    known_bot_ids):
+def _validate_group_bot_id_prefixes(ctx, group_bot_id_prefixes, group_idx,
+                                    known_bot_id_prefixes, known_bot_ids):
   """Validates bot_id_prefixes and updates known_bot_id_prefixes."""
   for bot_id_prefix in group_bot_id_prefixes:
     if not bot_id_prefix:
       ctx.error('empty bot_id_prefix is not allowed')
       continue
     if bot_id_prefix in known_bot_id_prefixes:
-      ctx.error(
-          'bot_id_prefix "%s" is already specified in group #%d',
-          bot_id_prefix, known_bot_id_prefixes[bot_id_prefix])
+      ctx.error('bot_id_prefix "%s" is already specified in group #%d',
+                bot_id_prefix, known_bot_id_prefixes[bot_id_prefix])
       continue
     if bot_id_prefix in known_bot_ids:
       ctx.error(
@@ -838,8 +829,8 @@ def _validate_group_bot_id_prefixes(
         continue
       ctx.error(
           msg + ', defined in group #%d, making group assigned for bots '
-          'with prefix "%s" ambigious',
-          bot_id_prefix, p, idx, min(p, bot_id_prefix))
+          'with prefix "%s" ambigious', bot_id_prefix, p, idx,
+          min(p, bot_id_prefix))
     known_bot_id_prefixes[bot_id_prefix] = group_idx
 
 
@@ -873,16 +864,15 @@ def _validate_system_service_account(ctx, bot_group):
     # If it is 'bot', the bot auth must be configured to use OAuth, since we
     # need to get a bot token somewhere.
     if not any(a.require_service_account for a in bot_group.auth):
-      ctx.error(
-          'system_service_account "bot" requires '
-          'auth.require_service_account to be used')
+      ctx.error('system_service_account "bot" requires '
+                'auth.require_service_account to be used')
   elif bot_group.system_service_account:
     # TODO(vadimsh): Strictly speaking we can try to grab a token right
     # here and thus check that IAM policies are configured. But it's not
     # clear what happens if they are not. Will config-service reject the
     # config forever? Will it attempt to revalidate it later?
-    _validate_email(
-        ctx, bot_group.system_service_account, 'system service account')
+    _validate_email(ctx, bot_group.system_service_account,
+                    'system service account')
 
 
 @validation.self_rule(BOTS_CFG_FILENAME, bots_pb2.BotsCfg)
@@ -907,8 +897,8 @@ def _validate_bots_cfg(cfg, ctx):
 
       # Validate bot_id_prefix and make sure bot_id_prefix groups do not
       # intersect.
-      _validate_group_bot_id_prefixes(
-          ctx, entry.bot_id_prefix, i, bot_id_prefixes, bot_ids)
+      _validate_group_bot_id_prefixes(ctx, entry.bot_id_prefix, i,
+                                      bot_id_prefixes, bot_ids)
 
       # A group without bot_id and bot_id_prefix is applied to bots that don't
       # fit any other groups. There should be at most one such group.
@@ -955,6 +945,5 @@ def _validate_bots_cfg(cfg, ctx):
         try:
           ast.parse(entry.bot_config_script_content)
         except (SyntaxError, TypeError) as e:
-          ctx.error(
-              'invalid bot config script "%s": %s' %
-              (entry.bot_config_script, e))
+          ctx.error('invalid bot config script "%s": %s' %
+                    (entry.bot_config_script, e))

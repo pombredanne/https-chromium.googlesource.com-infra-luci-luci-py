@@ -53,9 +53,8 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
     self.send_octet_stream('')
 
   def log_message(self, fmt, *args):
-    logging.info(
-        '%s - - [%s] %s', self.address_string(), self.log_date_time_string(),
-        fmt % args)
+    logging.info('%s - - [%s] %s', self.address_string(),
+                 self.log_date_time_string(), fmt % args)
 
 
 class Server(object):
@@ -66,8 +65,8 @@ class Server(object):
     assert issubclass(self._HANDLER_CLS, Handler), self._HANDLER_CLS
     self._closed = False
     self._stopped = False
-    self._server = BaseHTTPServer.HTTPServer(
-        ('127.0.0.1', 0), self._HANDLER_CLS)
+    self._server = BaseHTTPServer.HTTPServer(('127.0.0.1', 0),
+                                             self._HANDLER_CLS)
     self._server.parent = self
     self._server.url = self.url = 'http://127.0.0.1:%d' % (
         self._server.server_port)

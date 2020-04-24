@@ -17,15 +17,13 @@ import test_env
 import isolated_format
 from utils import file_path
 
-
 # Ensure that the testing machine has access to this server.
 ISOLATE_SERVER = 'https://isolateserver.appspot.com/'
 
-
 CONTENTS = {
-  'empty_file.txt': '',
-  'small_file.txt': 'small file\n',
-  # TODO(maruel): symlinks.
+    'empty_file.txt': '',
+    'small_file.txt': 'small file\n',
+    # TODO(maruel): symlinks.
 }
 
 
@@ -41,8 +39,8 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
     # before being uploaded.
     # TODO(maruel): This should not be leaked to the client. It's a
     # transport/storage detail.
-    self.namespace = ('temporary' + str(long(time.time())).split('.', 1)[0]
-                      + '-gzip')
+    self.namespace = (
+        'temporary' + str(long(time.time())).split('.', 1)[0] + '-gzip')
     self.tempdir = tempfile.mkdtemp(prefix=u'isolateserver')
     self.rootdir = os.path.join(self.tempdir, 'rootdir')
     self.test_data = os.path.join(self.tempdir, 'test_data')
@@ -57,14 +55,16 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
   def _run(self, args):
     """Runs isolateserver.py."""
     cmd = [
-        sys.executable, os.path.join(test_env.CLIENT_DIR, 'isolateserver.py'),
+        sys.executable,
+        os.path.join(test_env.CLIENT_DIR, 'isolateserver.py'),
     ]
     cmd.extend(args)
-    cmd.extend(
-        [
-          '--isolate-server', ISOLATE_SERVER,
-          '--namespace', self.namespace,
-        ])
+    cmd.extend([
+        '--isolate-server',
+        ISOLATE_SERVER,
+        '--namespace',
+        self.namespace,
+    ])
     if '-v' in sys.argv:
       cmd.append('--verbose')
       subprocess.check_call(cmd)
@@ -81,9 +81,11 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
   def _download_given_files(self, files):
     """Tries to download the files from the server."""
     args = [
-      'download',
-      '--cache', os.path.join(self.tempdir, 'cache'),
-      '--target', self.rootdir,
+        'download',
+        '--cache',
+        os.path.join(self.tempdir, 'cache'),
+        '--target',
+        self.rootdir,
     ]
     file_hashes = [isolated_format.hash_file(f, hashlib.sha1) for f in files]
     for f in file_hashes:
@@ -113,6 +115,7 @@ class IsolateServerArchiveSmokeTest(unittest.TestCase):
     self._archive_given_files([name])
 
   if sys.maxsize == (2**31) - 1:
+
     def test_archive_multiple_huge_file(self):
       # Create multiple files over 2.5gb. This test exists to stress the virtual
       # address space on 32 bits systems

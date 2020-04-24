@@ -26,7 +26,6 @@ from components.auth.proto import delegation_pb2
 
 from test_support import test_case
 
-
 FAKE_IDENT = model.Identity.from_bytes('user:a@a.com')
 
 
@@ -71,6 +70,7 @@ class DelegationTestBase(test_case.TestCase):
 
 
 class SerializationTest(DelegationTestBase):
+
   def test_serialization_works(self):
     msg = fake_token_proto()
     tok = serialize_token(msg)
@@ -97,6 +97,7 @@ class SerializationTest(DelegationTestBase):
 
 
 class SignatureTest(DelegationTestBase):
+
   def setUp(self):
     super(SignatureTest, self).setUp()
     api.reset_local_state()  # to clear request-cached AuthDB
@@ -153,6 +154,7 @@ class SignatureTest(DelegationTestBase):
 
 
 class ValidationTest(DelegationTestBase):
+
   def test_passes_validation(self):
     tok = fake_subtoken_proto('user:abc@example.com')
     ident = delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty())
@@ -166,13 +168,13 @@ class ValidationTest(DelegationTestBase):
   def test_expired(self):
     now = int(utils.time_time())
     tok = fake_subtoken_proto(
-        'user:abc@example.com', creation_time=now-120, validity_duration=60)
+        'user:abc@example.com', creation_time=now - 120, validity_duration=60)
     with self.assertRaises(exceptions.BadTokenError):
       delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty())
 
   def test_not_active_yet(self):
     now = int(utils.time_time())
-    tok = fake_subtoken_proto('user:abc@example.com', creation_time=now+120)
+    tok = fake_subtoken_proto('user:abc@example.com', creation_time=now + 120)
     with self.assertRaises(exceptions.BadTokenError):
       delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty())
 
@@ -182,8 +184,8 @@ class ValidationTest(DelegationTestBase):
     tok = fake_subtoken_proto('user:abc@example.com')
     # Works -29 sec before activation.
     self.mock_now(now, -29)
-    self.assertTrue(delegation.check_subtoken(
-        tok, FAKE_IDENT, api.AuthDB.empty()))
+    self.assertTrue(
+        delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty()))
     # Doesn't work before that.
     self.mock_now(now, -31)
     with self.assertRaises(exceptions.BadTokenError):
@@ -195,8 +197,8 @@ class ValidationTest(DelegationTestBase):
     tok = fake_subtoken_proto('user:abc@example.com', validity_duration=3600)
     # Active at now + 3599.
     self.mock_now(now, 3599)
-    self.assertTrue(delegation.check_subtoken(
-        tok, FAKE_IDENT, api.AuthDB.empty()))
+    self.assertTrue(
+        delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty()))
     # Expired at now + 3601.
     self.mock_now(now, 3601)
     with self.assertRaises(exceptions.BadTokenError):
@@ -206,15 +208,13 @@ class ValidationTest(DelegationTestBase):
     tok = fake_subtoken_proto(
         'user:abc@example.com', services=['service:app-id'])
     # Passes.
-    self.mock(
-        model, 'get_service_self_identity',
-        lambda: model.Identity.from_bytes('service:app-id'))
-    self.assertTrue(delegation.check_subtoken(
-        tok, FAKE_IDENT, api.AuthDB.empty()))
+    self.mock(model, 'get_service_self_identity',
+              lambda: model.Identity.from_bytes('service:app-id'))
+    self.assertTrue(
+        delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty()))
     # Fails.
-    self.mock(
-        model, 'get_service_self_identity',
-        lambda: model.Identity.from_bytes('service:another-app-id'))
+    self.mock(model, 'get_service_self_identity',
+              lambda: model.Identity.from_bytes('service:another-app-id'))
     with self.assertRaises(exceptions.BadTokenError):
       delegation.check_subtoken(tok, FAKE_IDENT, api.AuthDB.empty())
 
@@ -222,10 +222,9 @@ class ValidationTest(DelegationTestBase):
     auth_db = api.AuthDB.empty()
     self.mock(
         auth_db, 'is_group_member',
-        lambda gr, ident: gr == 'abc' and ident.to_bytes() == 'user:b@b.com'
-    )
+        lambda gr, ident: gr == 'abc' and ident.to_bytes() == 'user:b@b.com')
     tok = fake_subtoken_proto(
-          'user:abc@example.com', audience=['user:a@a.com', 'group:abc'])
+        'user:abc@example.com', audience=['user:a@a.com', 'group:abc'])
     # Works.
     make_id = model.Identity.from_bytes
     self.assertTrue(
@@ -248,34 +247,35 @@ class CreateTokenTest(DelegationTestBase):
     def urlfetch(url, payload, **_rest):
       urlfetch.called = True
       self.assertEqual(
-          url,
-          'https://tokens.example.com/prpc/tokenserver.minter.TokenMinter/'
-              'MintDelegationToken')
+          url, 'https://tokens.example.com/prpc/tokenserver.minter.TokenMinter/'
+          'MintDelegationToken')
       payload = json.loads(payload)
       self.assertEqual(payload, urlfetch.expected_payload)
       res = {
-        'token': 'deadbeef',
-        'serviceVersion': 'app-id/version-id',
-        'delegationSubtoken': {
-          'kind': 'BEARER_DELEGATION_TOKEN',
-          'validityDuration': payload['validityDuration'],
-          'subtokenId': '12345',
-        },
+          'token': 'deadbeef',
+          'serviceVersion': 'app-id/version-id',
+          'delegationSubtoken': {
+              'kind': 'BEARER_DELEGATION_TOKEN',
+              'validityDuration': payload['validityDuration'],
+              'subtokenId': '12345',
+          },
       }
       raise ndb.Return(
           self.Response(200, ")]}'\n" + json.dumps(res, sort_keys=True)))
 
     urlfetch.expected_payload = {
-      u'audience': [
-        u'REQUESTOR',
-        u'group:g',
-        u'user:a1@example.com',
-        u'user:a2@example.com',
-      ],
-      u'services': [u'https://example.com', u'service:1', u'service:2'],
-      u'delegatedIdentity': u'user:i@example.com',
-      u'tags': [u'a:b', u'c:d'],
-      u'validityDuration': 3000,
+        u'audience': [
+            u'REQUESTOR',
+            u'group:g',
+            u'user:a1@example.com',
+            u'user:a2@example.com',
+        ],
+        u'services': [u'https://example.com', u'service:1', u'service:2'],
+        u'delegatedIdentity':
+            u'user:i@example.com',
+        u'tags': [u'a:b', u'c:d'],
+        u'validityDuration':
+            3000,
     }
     urlfetch.called = False
 
@@ -292,26 +292,28 @@ class CreateTokenTest(DelegationTestBase):
     ).put()
 
     args = {
-      'audience': [
-        'user:a1@example.com',
-        model.Identity('user', 'a2@example.com'),
-        'group:g',
-        'REQUESTOR',
-      ],
-      'services': [
-        'service:1',
-        model.Identity('service', '2'),
-        'https://example.com',
-      ],
-      'max_validity_duration_sec': 3000,
-      'impersonate': model.Identity('user', 'i@example.com'),
-      'tags': ['c:d', 'a:b'],
+        'audience': [
+            'user:a1@example.com',
+            model.Identity('user', 'a2@example.com'),
+            'group:g',
+            'REQUESTOR',
+        ],
+        'services': [
+            'service:1',
+            model.Identity('service', '2'),
+            'https://example.com',
+        ],
+        'max_validity_duration_sec':
+            3000,
+        'impersonate':
+            model.Identity('user', 'i@example.com'),
+        'tags': ['c:d', 'a:b'],
     }
     result = delegation.delegate(**args)
     self.assertTrue(urlfetch.called)
     self.assertEqual(result.token, 'deadbeef')
-    self.assertEqual(
-        result.expiry, utils.utcnow() + datetime.timedelta(seconds=3000))
+    self.assertEqual(result.expiry,
+                     utils.utcnow() + datetime.timedelta(seconds=3000))
 
     # Get from cache.
     urlfetch.called = False
@@ -326,31 +328,31 @@ class CreateTokenTest(DelegationTestBase):
     result = delegation.delegate(**args)
     self.assertTrue(urlfetch.called)
     self.assertEqual(result.token, 'deadbeef')
-    self.assertEqual(
-        result.expiry, utils.utcnow() + datetime.timedelta(seconds=5000))
+    self.assertEqual(result.expiry,
+                     utils.utcnow() + datetime.timedelta(seconds=5000))
     self.assertTrue(urlfetch.called)
 
   def test_http_500(self):
     res = ndb.Future()
     res.set_result(self.Response(500, 'Server internal error'))
-    self.mock(service_account, '_urlfetch_async', lambda  **_k: res)
+    self.mock(service_account, '_urlfetch_async', lambda **_k: res)
 
     with self.assertRaises(exceptions.TokenCreationError):
       delegation.delegate(
-        audience=['*'],
-        services=['*'],
-        token_server_url='https://example.com')
+          audience=['*'],
+          services=['*'],
+          token_server_url='https://example.com')
 
   def test_http_403(self):
     res = ndb.Future()
     res.set_result(self.Response(403, 'Not authorized'))
-    self.mock(service_account, '_urlfetch_async', lambda  **_k: res)
+    self.mock(service_account, '_urlfetch_async', lambda **_k: res)
 
     with self.assertRaises(exceptions.TokenAuthorizationError):
       delegation.delegate(
-        audience=['*'],
-        services=['*'],
-        token_server_url='https://example.com')
+          audience=['*'],
+          services=['*'],
+          token_server_url='https://example.com')
 
 
 if __name__ == '__main__':

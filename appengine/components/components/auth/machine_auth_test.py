@@ -20,43 +20,46 @@ from test_support import test_case
 
 from components.auth.proto import machine_token_pb2
 
-
 GOOD_CERTS = {
-  'certificates': [
-    {
-      'key_name': 'signing_key',
-      'x509_certificate_pem': 'cert',
-    },
-  ],
+    'certificates': [{
+        'key_name': 'signing_key',
+        'x509_certificate_pem': 'cert',
+    },],
 }
 
 
 class MachineAuthTest(test_case.TestCase):
+
   def setUp(self):
     super(MachineAuthTest, self).setUp()
     self.mock_now(datetime.datetime(2016, 1, 2, 3, 4, 5))
 
     self.logs = []
-    self.mock(
-        machine_auth.logging, 'warning', lambda msg, *_: self.logs.append(msg))
+    self.mock(machine_auth.logging, 'warning',
+              lambda msg, *_: self.logs.append(msg))
 
     def is_group_member(group, ident):
       return (group == machine_auth.TOKEN_SERVERS_GROUP and
-          ident.to_bytes() == 'user:good-issuer@example.com')
+              ident.to_bytes() == 'user:good-issuer@example.com')
+
     self.mock(machine_auth.api, 'is_group_member', is_group_member)
 
     self.mock_check_signature(True)
 
   def mock_check_signature(self, is_valid=False, exc=None):
     bundle = signature.CertificateBundle(GOOD_CERTS)
+
     def mocked_check_sig(**_kwargs):
       if exc:
         raise exc  # pylint: disable=raising-bad-type
       return is_valid
+
     self.mock(bundle, 'check_signature', mocked_check_sig)
+
     def get(asked):
       self.assertEqual('good-issuer@example.com', asked)
       return bundle
+
     self.mock(signature, 'get_service_account_certificates', get)
 
   def has_log(self, msg):
@@ -119,14 +122,14 @@ class MachineAuthTest(test_case.TestCase):
 
   def test_bad_issued_by_field(self):
     body = self.good_body()
-    body.issued_by='not an email'
+    body.issued_by = 'not an email'
     with self.assertRaises(machine_auth.BadTokenError):
       self.call(body)
     self.assertTrue(self.has_log('Bad issued_by field'))
 
   def test_unknown_issuer(self):
     body = self.good_body()
-    body.issued_by='unknown-issuer@example.com'
+    body.issued_by = 'unknown-issuer@example.com'
     with self.assertRaises(machine_auth.BadTokenError):
       self.call(body)
     self.assertTrue(self.has_log('Unknown token issuer'))

@@ -18,10 +18,12 @@ from six.moves import BaseHTTPServer
 from six.moves import socketserver
 
 # OAuth access token with its expiration time.
-AccessToken = collections.namedtuple('AccessToken', [
-  'access_token',  # urlsafe str with the token
-  'expiry',        # expiration time as unix timestamp in seconds
-])
+AccessToken = collections.namedtuple(
+    'AccessToken',
+    [
+        'access_token',  # urlsafe str with the token
+        'expiry',  # expiration time as unix timestamp in seconds
+    ])
 
 
 class TokenError(Exception):
@@ -84,7 +86,7 @@ class LocalAuthServer(object):
   """
 
   def __init__(self):
-    self._lock = threading.Lock() # guards everything below
+    self._lock = threading.Lock()  # guards everything below
     self._accept_thread = None
     self._cache = {}  # dict ((account_id, scopes) => AccessToken | TokenError).
     self._token_provider = None
@@ -107,9 +109,8 @@ class LocalAuthServer(object):
     assert all(isinstance(acc, Account) for acc in accounts), accounts
 
     # 'default_account_id' is either not set, or one of the supported accounts.
-    assert (
-        not default_account_id or
-        any(default_account_id == acc.id for acc in accounts))
+    assert (not default_account_id or
+            any(default_account_id == acc.id for acc in accounts))
 
     server = _HTTPServer(self, ('127.0.0.1', port))
 
@@ -254,9 +255,8 @@ class LocalAuthServer(object):
       if not self._server:
         raise RPCError(503, 'Stopped already.')
       tok_or_err = self._cache.get(cache_key)
-      need_refresh = (
-          not tok_or_err or
-          isinstance(tok_or_err, AccessToken) and should_refresh(tok_or_err))
+      need_refresh = (not tok_or_err or isinstance(tok_or_err, AccessToken) and
+                      should_refresh(tok_or_err))
 
     # Do the refresh outside of the RPC server lock to unblock other clients
     # that are hitting the cache. The token provider should implement its own
@@ -276,8 +276,8 @@ class LocalAuthServer(object):
     # Done.
     if isinstance(tok_or_err, AccessToken):
       return {
-        'access_token': tok_or_err.access_token,
-        'expiry': int(tok_or_err.expiry),
+          'access_token': tok_or_err.access_token,
+          'expiry': int(tok_or_err.expiry),
       }
     if isinstance(tok_or_err, TokenError):
       return {
@@ -301,7 +301,7 @@ def should_refresh(tok):
   """Returns True if the token must be refreshed because it expires soon."""
   # LUCI_CONTEXT protocol requires that returned tokens are alive for at least
   # 2.5 min. See LUCI_CONTEXT.md. Add 30 sec extra of leeway.
-  return time.time() > tok.expiry - 3*60
+  return time.time() > tok.expiry - 3 * 60
 
 
 class _HTTPServer(socketserver.ThreadingMixIn, BaseHTTPServer.HTTPServer):
@@ -324,8 +324,8 @@ class _HTTPServer(socketserver.ThreadingMixIn, BaseHTTPServer.HTTPServer):
 
   def serve_forever(self, poll_interval=None):
     """Overrides default poll interval."""
-    BaseHTTPServer.HTTPServer.serve_forever(
-        self, poll_interval or self.poll_interval)
+    BaseHTTPServer.HTTPServer.serve_forever(self, poll_interval or
+                                            self.poll_interval)
 
   def handle_error(self, request, client_address):
     """Overrides default handle_error that dumbs stuff to stdout."""
@@ -369,8 +369,8 @@ class _RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     # The request body MUST be JSON. Ignore charset, we don't care.
     ct = self.headers.get('content-type')
     if not ct or ct.split(';')[0] != 'application/json':
-      self.send_error(
-          400, 'Expecting "application/json" Content-Type, got %r' % ct)
+      self.send_error(400,
+                      'Expecting "application/json" Content-Type, got %r' % ct)
       return
 
     # Read the body. Chunked transfer encoding or compression is no supported.
@@ -421,6 +421,7 @@ def testing_main():
   logging.basicConfig(level=logging.DEBUG)
 
   class DumbProvider(object):
+
     def generate_token(self, account_id, scopes):
       logging.info('generate_token(%r, %r) called', account_id, scopes)
       return AccessToken('fake_tok_for_%s' % account_id, time.time() + 80)

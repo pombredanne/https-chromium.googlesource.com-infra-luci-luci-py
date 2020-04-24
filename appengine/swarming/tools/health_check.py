@@ -2,7 +2,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Check the health of a Swarming version."""
 
 import argparse
@@ -41,6 +40,7 @@ def retry_exception(exc_type, max_attempts, delay):
         except exc_type:
           time.sleep(delay)
       return fn(*args, **kwargs)
+
     return wrapper
 
   return deco
@@ -95,8 +95,7 @@ def main():
   args = parser.parse_args()
 
   url = 'https://{server_version}-dot-{appid}.appspot.com'.format(
-      appid=args.appid,
-      server_version=args.server_version)
+      appid=args.appid, server_version=args.server_version)
   print('Swarming server:', url)
 
   pool = args.pool

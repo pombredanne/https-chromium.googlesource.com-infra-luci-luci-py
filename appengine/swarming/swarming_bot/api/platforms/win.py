@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Windows specific utility functions."""
 
 import ctypes
@@ -18,9 +17,7 @@ from utils import tools
 import common
 import gpu
 
-
 ## Private stuff.
-
 
 _WIN32_CLIENT_NAMES = {
     u'5.0': u'2000',
@@ -65,8 +62,8 @@ def _get_disk_info(mount_point):
       ctypes.c_wchar_p(mount_point), None, ctypes.pointer(total_bytes),
       ctypes.pointer(free_bytes))
   return {
-    u'free_mb': round(free_bytes.value / 1024. / 1024., 1),
-    u'size_mb': round(total_bytes.value / 1024. / 1024., 1),
+      u'free_mb': round(free_bytes.value / 1024. / 1024., 1),
+      u'size_mb': round(total_bytes.value / 1024. / 1024., 1),
   }
 
 
@@ -170,8 +167,8 @@ def _get_window_class(hwnd):
   name = ctypes.create_unicode_buffer(257)
   name_len = ctypes.windll.user32.GetClassNameW(hwnd, name, len(name))
   if name_len <= 0 or name_len >= len(name):
-    raise ctypes.WinError(descr='GetClassNameW failed; %s' %
-                          ctypes.FormatError())
+    raise ctypes.WinError(
+        descr='GetClassNameW failed; %s' % ctypes.FormatError())
   return name.value
 
 
@@ -282,8 +279,8 @@ def get_startup_dir():
 
   # On cygwin 1.5, which is still used on some bots, '~' points inside
   # c:\\cygwin\\home so use USERPROFILE.
-  return '%s\\%s\\' % (
-    os.environ.get('USERPROFILE', 'DUMMY, ONLY USED IN TESTS'), startup)
+  return '%s\\%s\\' % (os.environ.get('USERPROFILE',
+                                      'DUMMY, ONLY USED IN TESTS'), startup)
 
 
 def get_disks_info():
@@ -318,9 +315,8 @@ def get_visual_studio_versions():
   import _winreg
 
   try:
-    k = _winreg.OpenKey(
-        _winreg.HKEY_LOCAL_MACHINE,
-        'SOFTWARE\\Wow6432Node\\Microsoft\\VSCommon')
+    k = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
+                        'SOFTWARE\\Wow6432Node\\Microsoft\\VSCommon')
   # pylint: disable=undefined-variable
   except WindowsError:
     return None
@@ -342,9 +338,8 @@ def get_cpuinfo():
   # Another option is IsProcessorFeaturePresent().
   # https://msdn.microsoft.com/en-us/library/windows/desktop/ms724482.aspx
   import _winreg
-  k = _winreg.OpenKey(
-      _winreg.HKEY_LOCAL_MACHINE,
-      'HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0')
+  k = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
+                      'HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0')
   try:
     identifier, _ = _winreg.QueryValueEx(k, 'Identifier')
     match = re.match(r'^.+ Family (\d+) Model (\d+) Stepping (\d+)$',
@@ -509,8 +504,7 @@ def get_integrity_level():
         ctypes.byref(info_size)):
       logging.error(
           'GetTokenInformation(): Unknown error with buffer size %d: %d',
-          info_size.value,
-          ctypes.windll.kernel32.GetLastError())
+          info_size.value, ctypes.windll.kernel32.GetLastError())
       return None
     p_sid_size = ctypes.windll.advapi32.GetSidSubAuthorityCount(
         token_info.Label.Sid)
@@ -540,6 +534,7 @@ def get_physical_ram():
         ('dwAvailVirtual', ctypes.c_ulonglong),
         ('dwAvailExtendedVirtual', ctypes.c_ulonglong),
     ]
+
   stat = MemoryStatusEx()
   stat.dwLength = ctypes.sizeof(MemoryStatusEx)  # pylint: disable=W0201
   ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(stat))
@@ -590,9 +585,9 @@ def get_ssd():
   # https://docs.microsoft.com/en-us/previous-versions/windows/desktop/stormgmt/msft-physicaldisk
   try:
     return sorted(
-      d.DeviceId for d in wbem.ExecQuery('SELECT * FROM MSFT_PhysicalDisk')
-      if d.MediaType == 4
-    )
+        d.DeviceId
+        for d in wbem.ExecQuery('SELECT * FROM MSFT_PhysicalDisk')
+        if d.MediaType == 4)
   except AttributeError:
     return ()
 
@@ -611,8 +606,7 @@ def list_top_windows():
   # Set up various user32 functions that are needed.
   ctypes.windll.user32.EnumWindows.restype = ctypes.c_long  # BOOL
   ctypes.windll.user32.EnumWindows.argtypes = [
-      window_enum_proc_prototype,
-      ctypes.py_object
+      window_enum_proc_prototype, ctypes.py_object
   ]
   ctypes.windll.user32.IsWindowVisible.restype = ctypes.c_long  # BOOL
   ctypes.windll.user32.IsWindowVisible.argtypes = [ctypes.c_void_p]  # HWND
@@ -629,13 +623,12 @@ def list_top_windows():
     """
     # Dig deeper into visible, non-iconified, topmost windows.
     if (ctypes.windll.user32.IsWindowVisible(hwnd) and
-        not ctypes.windll.user32.IsIconic(hwnd) and
-        _is_topmost_window(hwnd)):
+        not ctypes.windll.user32.IsIconic(hwnd) and _is_topmost_window(hwnd)):
       # Fetch the class name and make sure it's not owned by the Windows shell.
       class_name = _get_window_class(hwnd)
-      if (class_name and
-          class_name not in ['Button', 'Shell_TrayWnd',
-                             'Shell_SecondaryTrayWnd']):
+      if (class_name and class_name not in [
+          'Button', 'Shell_TrayWnd', 'Shell_SecondaryTrayWnd'
+      ]):
         out.append(class_name)
     return 1
 

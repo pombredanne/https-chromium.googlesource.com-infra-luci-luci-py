@@ -35,7 +35,6 @@ from utils import subprocess42
 from utils import tools
 from utils import zip_package
 
-
 # pylint: disable=no-self-argument
 
 
@@ -103,8 +102,8 @@ class TestBotMain(TestBotBase):
     self.mock(subprocess42, 'call', self.fail)
     self.mock(time, 'time', lambda: 100.)
     self.mock(remote_client, 'make_appengine_id', lambda *a: 42)
-    config_path = os.path.join(
-        test_env_bot_code.BOT_DIR, 'config', 'config.json')
+    config_path = os.path.join(test_env_bot_code.BOT_DIR, 'config',
+                               'config.json')
     with open(config_path, 'rb') as f:
       config = json.load(f)
     self.mock(bot_main, 'get_config', lambda: config)
@@ -117,9 +116,8 @@ class TestBotMain(TestBotBase):
     # Test results shouldn't depend on where they run. And they should not use
     # real GCE tokens.
     self.mock(gce, 'is_gce', lambda: False)
-    self.mock(
-        gce, 'oauth2_access_token_with_expiration',
-        lambda *_args, **_kwargs: ('fake-access-token', 0))
+    self.mock(gce, 'oauth2_access_token_with_expiration',
+              lambda *_args, **_kwargs: ('fake-access-token', 0))
     # Ensures the global state is reset after each test case.
     self.mock(bot_main, '_BOT_CONFIG', None)
     self.mock(bot_main, '_EXTRA_BOT_CONFIG', None)
@@ -133,10 +131,12 @@ class TestBotMain(TestBotBase):
   def test_hook_restart(self):
     from config import bot_config
     obj = self.make_bot()
+
     def get_dimensions(botobj):
       self.assertEqual(obj, botobj)
       obj.bot_restart('Yo')
       return {u'id': [u'foo'], u'pool': [u'bar']}
+
     self.mock(bot_config, 'get_dimensions', get_dimensions)
     restarts = []
     self.mock(bot_main, '_bot_restart', lambda *args: restarts.append(args))
@@ -152,6 +152,7 @@ class TestBotMain(TestBotBase):
   def test_get_dimensions(self):
     from config import bot_config
     obj = self.make_bot()
+
     def get_dimensions(botobj):
       self.assertEqual(obj, botobj)
       return {u'yo': [u'dawh']}
@@ -163,16 +164,20 @@ class TestBotMain(TestBotBase):
   def test_get_dimensions_extra(self):
     from config import bot_config
     obj = self.make_bot()
+
     def get_dimensions(botobj):
       self.assertEqual(obj, botobj)
       return {u'yo': [u'dawh']}
+
     self.mock(bot_config, 'get_dimensions', get_dimensions)
 
     # The extra version takes priority.
     class extra(object):
-      def get_dimensions(self2, botobj): # pylint: disable=no-self-argument
+
+      def get_dimensions(self2, botobj):  # pylint: disable=no-self-argument
         self.assertEqual(obj, botobj)
         return {u'alternative': [u'truth']}
+
     self.mock(bot_main, '_EXTRA_BOT_CONFIG', extra())
     expected = {u'alternative': [u'truth'], u'server_version': [u'version1']}
     self.assertEqual(expected, bot_main._get_dimensions(obj))
@@ -183,9 +188,11 @@ class TestBotMain(TestBotBase):
   def test_get_state(self):
     from config import bot_config
     obj = self.make_bot()
+
     def get_state(botobj):
       self.assertEqual(obj, botobj)
       return {'yo': 'dawh'}
+
     self.mock(bot_config, 'get_state', get_state)
     expected = {'sleep_streak': 0.1, 'yo': 'dawh'}
     self.assertEqual(expected, bot_main._get_state(obj, 0.1))
@@ -193,6 +200,7 @@ class TestBotMain(TestBotBase):
   def test_get_state_quarantine(self):
     botobj = bot_main.get_bot(bot_main.get_config())
     root = u'c:\\' if sys.platform == 'win32' else u'/'
+
     def get_state(_):
       return {
           u'disks': {
@@ -250,9 +258,11 @@ class TestBotMain(TestBotBase):
       return {u'os': [u'safe']}
 
     self.mock(os_utilities, 'get_dimensions', get_dimensions_os)
+
     def get_state(botobj):
       self.assertEqual(obj, botobj)
       return {'yo': 'dawh'}
+
     self.mock(bot_config, 'get_state', get_state)
 
     expected = {
@@ -338,11 +348,11 @@ class TestBotMain(TestBotBase):
         },
     }
     expected = {
-      'a': {
-        'a': 1,
-        'b': 3,
-        'c': 4,
-      },
+        'a': {
+            'a': 1,
+            'b': 3,
+            'c': 4,
+        },
     }
     self.assertEqual(expected, bot_main._dict_deep_merge(a, b))
     self.assertEqual(a, bot_main._dict_deep_merge(a, None))
@@ -367,8 +377,9 @@ class TestBotMain(TestBotBase):
     self.expected_requests([])
     bot_main.setup_bot(False)
     expected = [
-      (('Starting new swarming bot: %s' % bot_main.THIS_FILE,),
-        {'timeout': 900}),
+        (('Starting new swarming bot: %s' % bot_main.THIS_FILE,), {
+            'timeout': 900
+        }),
     ]
     self.assertEqual(expected, restarts)
     # It is called twice, one as part of setup_bot(False), another as part of
@@ -423,12 +434,17 @@ class TestBotMain(TestBotBase):
     bot_config = bot_main._get_bot_config()
     bot_config.base_func = lambda: 'yo'
     try:
+
       def do_handshake(attributes):
         return {
-          'bot_version': attributes['version'],
-          'bot_group_cfg_version': None,
-          'bot_group_cfg': None,
-          'bot_config': textwrap.dedent("""
+            'bot_version':
+                attributes['version'],
+            'bot_group_cfg_version':
+                None,
+            'bot_group_cfg':
+                None,
+            'bot_config':
+                textwrap.dedent("""
               from config import bot_config
               def get_dimensions(_):
                 return {
@@ -438,6 +454,7 @@ class TestBotMain(TestBotBase):
                 }
               """),
         }
+
       self.mock(obj.remote, 'do_handshake', do_handshake)
       bot_main._do_handshake(obj, quit_bit)
       self.assertFalse(quit_bit.is_set())
@@ -457,15 +474,19 @@ class TestBotMain(TestBotBase):
     second = threading.Event()
     from config import bot_config
     obj = self.make_bot()
+
     def on_bot_shutdown_1(botobj):
       self.assertEqual(obj, botobj)
       first.set()
+
     self.mock(bot_config, 'on_bot_shutdown', on_bot_shutdown_1)
 
     class extra(object):
-      def on_bot_shutdown(self2, botobj): # pylint: disable=no-self-argument
+
+      def on_bot_shutdown(self2, botobj):  # pylint: disable=no-self-argument
         self.assertEqual(obj, botobj)
         second.set()
+
     self.mock(bot_main, '_EXTRA_BOT_CONFIG', extra())
     bot_main._call_hook(True, obj, 'on_bot_shutdown')
     self.assertTrue(first.is_set())
@@ -479,6 +500,7 @@ class TestBotMain(TestBotBase):
 
     # Test the run_bot() loop. Does not use self.bot.
     self.mock(time, 'time', lambda: 126.0)
+
     class Foo(Exception):
       pass
 
@@ -502,6 +524,7 @@ class TestBotMain(TestBotBase):
 
     orig = bot_main.get_bot
     botobj = [None]
+
     def get_bot(config):
       botobj[0] = orig(config)
       return botobj[0]
@@ -511,14 +534,14 @@ class TestBotMain(TestBotBase):
     self.mock(bot_main, 'get_config', lambda: {
         'server': self.url,
         'server_version': '1',})
-    self.mock(
-        bot_main, '_get_dimensions', lambda _: self.attributes['dimensions'])
+    self.mock(bot_main, '_get_dimensions',
+              lambda _: self.attributes['dimensions'])
     self.mock(os_utilities, 'get_state', lambda *_: self.attributes['state'])
 
     # pylint: disable=unused-argument
     class Popen(object):
-      def __init__(
-          self2, cmd, detached, cwd, stdout, stderr, stdin, close_fds):
+
+      def __init__(self2, cmd, detached, cwd, stdout, stderr, stdin, close_fds):
         self2.returncode = None
         expected = [sys.executable, bot_main.THIS_FILE, 'run_isolated']
         self.assertEqual(expected, cmd[:len(expected)])
@@ -532,6 +555,7 @@ class TestBotMain(TestBotBase):
         self.assertEqual(None, i)
         self2.returncode = 0
         return '', None
+
     self.mock(subprocess42, 'Popen', Popen)
 
     self.expected_requests([
@@ -782,6 +806,7 @@ class TestBotMain(TestBotBase):
         'must_signal_internal_failure': None,
         'version': 3,
     }
+
     # Method should have "self" as first argument - pylint: disable=E0213
     class Popen(object):
 
@@ -792,13 +817,20 @@ class TestBotMain(TestBotBase):
                                        'task_runner_out.json')
         cmd = cmd[:]
         expected = [
-          sys.executable, bot_main.THIS_FILE, 'task_runner',
-          '--swarming-server', url,
-          '--in-file',
-          os.path.join(self.root_dir, 'w', 'task_runner_in.json'),
-          '--out-file', self2._out_file,
-          '--cost-usd-hour', '3600.0', '--start', '100.0',
-          '--bot-file',
+            sys.executable,
+            bot_main.THIS_FILE,
+            'task_runner',
+            '--swarming-server',
+            url,
+            '--in-file',
+            os.path.join(self.root_dir, 'w', 'task_runner_in.json'),
+            '--out-file',
+            self2._out_file,
+            '--cost-usd-hour',
+            '3600.0',
+            '--start',
+            '100.0',
+            '--bot-file',
         ]
         # After than there may be --bot-file and --auth-params-file. Then --
         # will be used to mark the separation of flags meant to be sent to
@@ -821,7 +853,7 @@ class TestBotMain(TestBotBase):
         self.assertEqual(subprocess42.PIPE, stdin)
         self.assertEqual(sys.platform != 'win32', close_fds)
 
-      def wait(self2, timeout=None): # pylint: disable=unused-argument
+      def wait(self2, timeout=None):  # pylint: disable=unused-argument
         self2.returncode = returncode
         with open(self2._out_file, 'wb') as f:
           json.dump(result, f)
@@ -834,6 +866,7 @@ class TestBotMain(TestBotBase):
                    'TODO(crbug.com/1017545): post_error_task was called')
   def test_run_manifest(self):
     self.mock(bot_main, '_post_error_task', self.print_err_and_fail)
+
     def call_hook(botobj, name, *args):
       if name == 'on_after_task':
         failure, internal_failure, dimensions, summary = args
@@ -842,6 +875,7 @@ class TestBotMain(TestBotBase):
         self.assertEqual(False, internal_failure)
         self.assertEqual({'os': 'Amiga', 'pool': 'default'}, dimensions)
         self.assertEqual(result, summary)
+
     self.mock(bot_main, '_call_hook', call_hook)
     result = self._mock_popen(url='https://localhost:3')
 
@@ -860,9 +894,8 @@ class TestBotMain(TestBotBase):
     self.assertEqual(self.root_dir, self.bot.base_dir)
     bot_main._run_manifest(self.bot, manifest, time.time())
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): post_error_task was called')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): post_error_task was called')
   def test_run_manifest_with_auth_headers(self):
     self.bot = self.make_bot(
         auth_headers_cb=lambda: ({'A': 'a'}, time.time() + 3600))
@@ -877,6 +910,7 @@ class TestBotMain(TestBotBase):
         self.assertEqual(False, internal_failure)
         self.assertEqual({'os': 'Amiga', 'pool': 'default'}, dimensions)
         self.assertEqual(result, summary)
+
     self.mock(bot_main, '_call_hook', call_hook)
     result = self._mock_popen(
         url='https://localhost:3',
@@ -916,9 +950,8 @@ class TestBotMain(TestBotBase):
     self.assertEqual(self.root_dir, self.bot.base_dir)
     bot_main._run_manifest(self.bot, manifest, time.time())
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): post_error_task was called')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): post_error_task was called')
   def test_run_manifest_task_failure(self):
     self.mock(bot_main, '_post_error_task', self.print_err_and_fail)
 
@@ -951,6 +984,7 @@ class TestBotMain(TestBotBase):
   def test_run_manifest_internal_failure(self):
     posted = []
     self.mock(bot_main, '_post_error_task', lambda *args: posted.append(args))
+
     def call_hook(_botobj, name, *args):
       if name == 'on_after_task':
         failure, internal_failure, dimensions, summary = args
@@ -1015,10 +1049,12 @@ class TestBotMain(TestBotBase):
 
   def test_update_bot(self):
     restarts = []
+
     def bot_restart(_botobj, message, filepath):
       self.assertEqual('Updating to 123', message)
       self.assertEqual(new_zip, filepath)
       restarts.append(1)
+
     self.mock(bot_main, '_bot_restart', bot_restart)
     # Mock the file to download in the temporary directory.
     self.mock(bot_main, 'THIS_FILE',
@@ -1041,6 +1077,7 @@ class TestBotMain(TestBotBase):
       with zipfile.ZipFile(f, 'w') as z:
         z.writestr('__main__.py', 'print("hi")')
       return True
+
     self.mock(net, 'url_retrieve', url_retrieve)
     self.bot.remote.bot_id = self.bot.id
     bot_main._update_bot(self.bot, '123')
@@ -1050,6 +1087,7 @@ class TestBotMain(TestBotBase):
 
     def check(x):
       self.assertEqual(logging.WARNING, x)
+
     self.mock(logging_utils, 'set_console_level', check)
 
     def run_bot(error):
@@ -1062,8 +1100,10 @@ class TestBotMain(TestBotBase):
       # pylint: disable=no-self-argument
       def acquire(self2):
         return True
+
       def release(self2):
         self.fail()
+
     self.mock(bot_main, 'SINGLETON', Singleton())
 
     self.assertEqual(0, bot_main.main([]))
@@ -1112,6 +1152,7 @@ class TestBotMain(TestBotBase):
 
 
 class TestBotNotMocked(TestBotBase):
+
   @unittest.skipIf(
       sys.platform == 'win32', 'TODO(crbug.com/1017545): '
       '__init__() got an unexpected keyword argument \\\'creationflags\\\'')
@@ -1121,9 +1162,12 @@ class TestBotNotMocked(TestBotBase):
     def exec_python(args):
       calls.append(args)
       return 23
+
     self.mock(bot_main.common, 'exec_python', exec_python)
+
     # pylint: disable=unused-argument
     class Popen(object):
+
       def __init__(self2, cmd, cwd, stdin, stdout, stderr, close_fds, detached):
         self2.returncode = None
         expected = [sys.executable, bot_main.THIS_FILE, 'is_fine']
@@ -1138,6 +1182,7 @@ class TestBotNotMocked(TestBotBase):
       def communicate(self2):
         self2.returncode = 0
         return '', None
+
     self.mock(subprocess42, 'Popen', Popen)
 
     with self.assertRaises(SystemExit) as e:

@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Sharding Entity group utility function to improve performance.
 
 This enforces artificial root entity grouping, which can be actually useful in
@@ -14,16 +13,13 @@ import string
 from google.appengine.ext import ndb
 
 __all__ = [
-  'shard_key',
-  'hashed_shard_key',
+    'shard_key',
+    'hashed_shard_key',
 ]
-
 
 ### Private stuff.
 
-
 _HEX = frozenset(string.hexdigits.lower())
-
 
 ### Public API.
 

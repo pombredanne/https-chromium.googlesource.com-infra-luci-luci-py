@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Helper functions for interacting with an external scheduler."""
 
 import collections
@@ -295,7 +294,10 @@ def task_batch_handle_notifications():
     enqueued = utils.enqueue_task(
         '/internal/taskqueue/important/external_scheduler/notify-tasks',
         'es-notify-tasks',
-        params={'es_host': address, 'request_json': request_json},
+        params={
+            'es_host': address,
+            'request_json': request_json
+        },
         transactional=ndb.in_transaction())
     if not enqueued:
       logging.warning('Failed to enqueue external scheduler task, skipping')

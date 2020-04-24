@@ -19,6 +19,7 @@ from google import protobuf
 import protoutil
 import test_proto_pb2
 
+
 class MergeDictTests(unittest.TestCase):
 
   def test_works(self):
@@ -28,33 +29,34 @@ class MergeDictTests(unittest.TestCase):
         num=1,
         nums=[1, 2],
         msg=test_proto_pb2.Msg(num=3),
-        msgs=[test_proto_pb2.Msg(num=4), test_proto_pb2.Msg(num=5)]
-    )
+        msgs=[test_proto_pb2.Msg(num=4),
+              test_proto_pb2.Msg(num=5)])
     data = {
         'str': 'a',
         'strs': ['a', 'b'],
         'num': 2,
         'nums': [3, 4],
         'msg': {
-          'num': 5,
+            'num': 5,
         },
         'msgs': [{
-          'num': 6,
+            'num': 6,
         }],
     }
     protoutil.merge_dict(data, msg)
-    self.assertEqual(msg, test_proto_pb2.Msg(
-        str='a',
-        strs=['s1', 's2', 'a', 'b'],
-        num=2,
-        nums=[1, 2, 3, 4],
-        msg=test_proto_pb2.Msg(num=5),
-        msgs=[
-            test_proto_pb2.Msg(num=4),
-            test_proto_pb2.Msg(num=5),
-            test_proto_pb2.Msg(num=6),
-        ]
-    ))
+    self.assertEqual(
+        msg,
+        test_proto_pb2.Msg(
+            str='a',
+            strs=['s1', 's2', 'a', 'b'],
+            num=2,
+            nums=[1, 2, 3, 4],
+            msg=test_proto_pb2.Msg(num=5),
+            msgs=[
+                test_proto_pb2.Msg(num=4),
+                test_proto_pb2.Msg(num=5),
+                test_proto_pb2.Msg(num=6),
+            ]))
 
   def test_invalid_field_name(self):
     with self.assertRaises(TypeError):

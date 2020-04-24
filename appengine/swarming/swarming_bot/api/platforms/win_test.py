@@ -22,7 +22,6 @@ tools.cached = lambda func: func
 
 import win
 
-
 MockWinVer = collections.namedtuple('MockWinVer', ['product_type'])
 
 
@@ -102,18 +101,16 @@ class TestWin(auto_stub.TestCase):
         ('10', '10.0.17763', '', u'Multiprocessor Free'),
         [u'10', u'10-17763', u'10-17763.503'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win2016(self):
     self.assert_get_os_dims_mock(
         3, '\nMicrosoft Windows [Version 10.0.14393]\n',
         ('10', '10.0.14393', '', u'Multiprocessor Free'),
         [u'Server', u'Server-14393'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win2019(self):
     self.assert_get_os_dims_mock(
         3, '\nMicrosoft Windows [Version 10.0.17763.557]\n',
@@ -127,25 +124,23 @@ class TestWin(auto_stub.TestCase):
         1, '\nMicrosoft Windows [Version 6.1.7601]\n',
         ('7', '6.1.7601', 'SP1', u'Multiprocessor Free'), [u'7', u'7-SP1'])
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
+  @unittest.skipIf(sys.platform == 'win32',
+                   'TODO(crbug.com/1017545): fix assertions')
   def test_get_os_dims_mock_win8_1(self):
     self.assert_get_os_dims_mock(
         1, '\nMicrosoft Windows [Version 6.3.9600]\n',
         ('8.1', '6.3.9600', '', u'Multiprocessor Free'), [u'8.1', u'8.1-SP0'])
-
 
   def test_list_top_windows(self):
     if sys.platform == 'win32':
       win.list_top_windows()
 
   def test_version(self):
-    m = re.search(
-        win._CMD_RE, 'Microsoft Windows [version 10.0.15063]', re.IGNORECASE)
+    m = re.search(win._CMD_RE, 'Microsoft Windows [version 10.0.15063]',
+                  re.IGNORECASE)
     self.assertEqual(('10.0', '15063'), m.groups())
-    m = re.search(
-        win._CMD_RE, 'Microsoft Windows [version 10.0.16299.19]', re.IGNORECASE)
+    m = re.search(win._CMD_RE, 'Microsoft Windows [version 10.0.16299.19]',
+                  re.IGNORECASE)
     self.assertEqual(('10.0', '16299.19'), m.groups())
 
 

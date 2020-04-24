@@ -3,7 +3,6 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Traces an executable and its child processes and extract the files accessed
 by them.
 
@@ -55,14 +54,12 @@ from utils import subprocess42
 
 if sys.platform == 'win32':
   from ctypes.wintypes import byref, c_int, c_wchar_p
-  from ctypes.wintypes import windll # pylint: disable=E0611
-
+  from ctypes.wintypes import windll  # pylint: disable=E0611
 
 __version__ = '0.2'
 
-
-BASE_DIR = os.path.dirname(os.path.abspath(
-    __file__.decode(sys.getfilesystemencoding())))
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__.decode(sys.getfilesystemencoding())))
 ROOT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
 
 
@@ -70,8 +67,8 @@ class TracingFailure(Exception):
   """An exception occurred during tracing."""
 
   def __init__(self, description, pid, line_number, line, *args):
-    super(TracingFailure, self).__init__(
-        description, pid, line_number, line, *args)
+    super(TracingFailure, self).__init__(description, pid, line_number, line,
+                                         *args)
     self.description = description
     self.pid = pid
     self.line_number = line_number
@@ -94,10 +91,10 @@ class TracingFailure(Exception):
 ## OS-specific functions
 
 if sys.platform == 'win32':
+
   def get_current_encoding():
     """Returns the 'ANSI' code page associated to the process."""
     return 'cp%d' % int(windll.kernel32.GetACP())
-
 
   def CommandLineToArgvW(command_line):
     """Splits a commandline into argv using CommandLineToArgvW()."""
@@ -129,12 +126,8 @@ def create_subprocess_thunk():
   """
   handle, name = tempfile.mkstemp(prefix=u'trace_inputs_thunk', suffix='.py')
   try:
-    os.write(
-        handle,
-        (
-          'import subprocess, sys\n'
-          'sys.exit(subprocess.call(sys.argv[2:]))\n'
-        ))
+    os.write(handle, ('import subprocess, sys\n'
+                      'sys.exit(subprocess.call(sys.argv[2:]))\n'))
   finally:
     os.close(handle)
   return name
@@ -204,10 +197,8 @@ def strace_process_quoted_arguments(text):
         state = INSIDE_STRING
       else:
         raise ValueError(
-            'Can\'t process char \'%s\' at column %d for: %r' % (
-              char, index, text),
-            index,
-            text)
+            'Can\'t process char \'%s\' at column %d for: %r' %
+            (char, index, text), index, text)
     elif char == ',':
       if state in (NEED_COMMA_OR_DOT, NEED_COMMA):
         state = NEED_SPACE
@@ -218,10 +209,8 @@ def strace_process_quoted_arguments(text):
         state = INSIDE_STRING
       else:
         raise ValueError(
-            'Can\'t process char \'%s\' at column %d for: %r' % (
-              char, index, text),
-            index,
-            text)
+            'Can\'t process char \'%s\' at column %d for: %r' %
+            (char, index, text), index, text)
     elif char == ' ':
       if state == NEED_SPACE:
         state = NEED_QUOTE
@@ -232,10 +221,8 @@ def strace_process_quoted_arguments(text):
         state = INSIDE_STRING
       else:
         raise ValueError(
-            'Can\'t process char \'%s\' at column %d for: %r' % (
-              char, index, text),
-            index,
-            text)
+            'Can\'t process char \'%s\' at column %d for: %r' %
+            (char, index, text), index, text)
     elif char == '.':
       if state in (NEED_QUOTE, NEED_COMMA_OR_DOT):
         # The string is incomplete, this mean the strace -s flag should be
@@ -264,23 +251,17 @@ def strace_process_quoted_arguments(text):
         state = ESCAPED
       else:
         raise ValueError(
-            'Can\'t process char \'%s\' at column %d for: %r' % (
-              char, index, text),
-            index,
-            text)
+            'Can\'t process char \'%s\' at column %d for: %r' %
+            (char, index, text), index, text)
     else:
       if state == INSIDE_STRING:
         out[-1] += char
       else:
         raise ValueError(
-            'Can\'t process char \'%s\' at column %d for: %r' % (
-              char, index, text),
-            index,
-            text)
+            'Can\'t process char \'%s\' at column %d for: %r' %
+            (char, index, text), index, text)
   if state not in (NEED_COMMA, NEED_COMMA_OR_DOT):
-    raise ValueError(
-        'String is incorrectly terminated: %r' % text,
-        text)
+    raise ValueError('String is incorrectly terminated: %r' % text, text)
   return out
 
 
@@ -322,12 +303,11 @@ class Results(object):
       # Check internal consistency.
       assert path, path
       assert tainted or bool(root) != bool(file_path.isabs(path)), (root, path)
-      assert tainted or (
-          not fs.exists(self.full_path) or
-          (self.full_path == file_path.get_native_path_case(self.full_path))), (
-              tainted,
-              self.full_path,
-              file_path.get_native_path_case(self.full_path))
+      assert tainted or (not fs.exists(self.full_path) or
+                         (self.full_path == file_path.get_native_path_case(
+                             self.full_path))), (tainted, self.full_path,
+                                                 file_path.get_native_path_case(
+                                                     self.full_path))
 
     @property
     def existent(self):
@@ -377,8 +357,8 @@ class Results(object):
       """
       for variable, root_path in variables.items():
         if self.path.startswith(root_path):
-          return self._clone(
-              self.root, variable + self.path[len(root_path):], True)
+          return self._clone(self.root, variable + self.path[len(root_path):],
+                             True)
       # No need to clone, returns ourself.
       return self
 
@@ -389,9 +369,8 @@ class Results(object):
       path that was used to access the file or through the real path.
       """
       # Check internal consistency.
-      assert (
-          self.tainted or
-          (file_path.isabs(root) and root.endswith(os.path.sep))), root
+      assert (self.tainted or
+              (file_path.isabs(root) and root.endswith(os.path.sep))), root
       if not self.full_path.startswith(root):
         # Now try to resolve the symlinks to see if it can be reached this way.
         # Only try *after* trying without resolving symlink.
@@ -453,11 +432,12 @@ class Results(object):
     in this directory. It is possible that the directory is empty so that
     size==0; this happens if there's only an invalid symlink in it.
     """
+
     def __init__(self, root, path, tainted, size, nb_files):
       """path='.' is a valid value and must be handled appropriately."""
       assert not path.endswith(os.path.sep), path
-      super(Results.Directory, self).__init__(
-          root, path + os.path.sep, tainted, size, nb_files)
+      super(Results.Directory, self).__init__(root, path + os.path.sep, tainted,
+                                              size, nb_files)
 
     def flatten(self):
       out = super(Results.Directory, self).flatten()
@@ -466,12 +446,8 @@ class Results(object):
 
     def _clone(self, new_root, new_path, tainted):
       """Clones itself keeping meta-data."""
-      out = self.__class__(
-          new_root,
-          new_path.rstrip(os.path.sep),
-          tainted,
-          self.size,
-          self.nb_files)
+      out = self.__class__(new_root, new_path.rstrip(os.path.sep), tainted,
+                           self.size, self.nb_files)
       out._real_path = self._real_path
       return out
 
@@ -517,11 +493,8 @@ class Results(object):
       assert file_path.isabs(root) and root.endswith(os.path.sep), root
       # Loads the files after since they are constructed as objects.
       out = self.__class__(
-          self.pid,
-          filter(None, (f.strip_root(root) for f in self.files)),
-          self.executable,
-          self.command,
-          self.initial_cwd,
+          self.pid, filter(None, (f.strip_root(root) for f in self.files)),
+          self.executable, self.command, self.initial_cwd,
           [c.strip_root(root) for c in self.children])
       logging.debug(
           'strip_root(%s) %d -> %d' % (root, len(self.files), len(out.files)))
@@ -534,7 +507,7 @@ class Results(object):
 
   def flatten(self):
     return {
-      'root': self.process.flatten(),
+        'root': self.process.flatten(),
     }
 
   @property
@@ -569,6 +542,7 @@ class Results(object):
 
 class ApiBase(object):
   """OS-agnostic API to trace a process and its children."""
+
   class Context(object):
     """Processes one log line at a time and keeps the list of traced processes.
 
@@ -581,11 +555,13 @@ class ApiBase(object):
     valid process for the corresponding processid. For the strace case, the
     tree's head is guessed at the last moment.
     """
+
     class Process(object):
       """Keeps context for one traced child process.
 
       Logs all the files this process touched. Ignores directories.
       """
+
       def __init__(self, blacklist, pid, initial_cwd):
         # Check internal consistency.
         assert isinstance(pid, int), repr(pid)
@@ -602,6 +578,7 @@ class ApiBase(object):
 
       def to_results_process(self):
         """Resolves file case sensitivity and or late-bound strings."""
+
         # When resolving files, it's normal to get dupe because a file could be
         # opened multiple times with different case. Resolve the deduplication
         # here.
@@ -638,16 +615,15 @@ class ApiBase(object):
         # Renders all the files as strings, as some could be RelativePath
         # instances. It is important to do it first since there could still be
         # multiple entries with the same path but different modes.
-        rendered = (
-            fix_and_blacklist_path(f, m) for f, m in self.files.items())
+        rendered = (fix_and_blacklist_path(f, m) for f, m in self.files.items())
         files = sorted(
-          (f for f in rendered if f[0]),
-          key=lambda x: (x[0], Results.File.ACCEPTABLE_MODES.index(x[1])))
+            (f for f in rendered if f[0]),
+            key=lambda x: (x[0], Results.File.ACCEPTABLE_MODES.index(x[1])))
         # Then converting into a dict will automatically clean up lesser
         # important values.
         files = [
-          Results.File(None, f, False, None, m)
-          for f, m in dict(files).items()
+            Results.File(None, f, False, None, m)
+            for f, m in dict(files).items()
         ]
         return Results.Process(self.pid, files, fix_path(self.executable),
                                self.command, fix_path(self.initial_cwd),
@@ -677,6 +653,7 @@ class ApiBase(object):
 
   class Tracer(object):
     """During it's lifetime, the tracing subsystem is enabled."""
+
     def __init__(self, logname):
       self._logname = logname
       self._lock = threading.RLock()
@@ -710,8 +687,7 @@ class ApiBase(object):
         if not self._initialized:
           raise TracingFailure(
               'Called %s.close() on an unitialized object' %
-                  self.__class__.__name__,
-              None, None, None)
+              self.__class__.__name__, None, None, None)
         try:
           while self._scripts_to_cleanup:
             try:
@@ -731,8 +707,8 @@ class ApiBase(object):
 
     def _gen_logdata(self):
       """Returns the data to be saved in the trace file."""
-      return  {
-        'traces': self._traces,
+      return {
+          'traces': self._traces,
       }
 
     def __enter__(self):
@@ -789,6 +765,7 @@ class ApiBase(object):
 
 class Strace(ApiBase):
   """strace implies linux."""
+
   @staticmethod
   def load_filename(filename):
     """Parses a filename in a log."""
@@ -799,7 +776,7 @@ class Strace(ApiBase):
     while i < len(filename):
       c = filename[i]
       if c == '\\':
-        out += chr(int(filename[i+1:i+4], 8))
+        out += chr(int(filename[i + 1:i + 4], 8))
         i += 4
       else:
         out += c
@@ -825,6 +802,7 @@ class Strace(ApiBase):
     processes in order. With that, it should be possible to not use RelativePath
     anymore. This would significantly simplify the code!
     """
+
     class Process(ApiBase.Context.Process):
       """Represents the state of a process.
 
@@ -869,8 +847,10 @@ class Strace(ApiBase):
             same reason than with True.
           - None: ignore result.
         """
+
         def meta_hook(function):
           assert function.__name__.startswith('handle_')
+
           def hook(self, args, result):
             if expect_zero is True and not result.startswith('0'):
               return None
@@ -880,14 +860,17 @@ class Strace(ApiBase):
             if not match:
               raise TracingFailure(
                   'Failed to parse %s(%s) = %s' %
-                  (function.__name__[len('handle_'):], args, result),
-                  None, None, None)
+                  (function.__name__[len('handle_'):], args, result), None,
+                  None, None)
             return function(self, match.groups(), result)
+
           return hook
+
         return meta_hook
 
       class RelativePath(object):
         """A late-bound relative path."""
+
         def __init__(self, parent, value):
           assert_is_renderable(parent)
           self.parent = parent
@@ -978,9 +961,8 @@ class Strace(ApiBase):
           if match:
             if match.group(1) in self._pending_calls:
               raise TracingFailure(
-                  'Found two unfinished calls for the same function',
-                  None, None, None,
-                  self._pending_calls)
+                  'Found two unfinished calls for the same function', None,
+                  None, None, self._pending_calls)
             self._pending_calls[match.group(1)] = (
                 match.group(1) + match.group(2))
             return None
@@ -1005,8 +987,7 @@ class Strace(ApiBase):
             if match.group(1) not in self._pending_calls:
               raise TracingFailure(
                   'Found a resumed call that was not logged as unfinished',
-                  None, None, None,
-                  self._pending_calls)
+                  None, None, None, self._pending_calls)
             pending = self._pending_calls.pop(match.group(1))
             # Reconstruct the line.
             line = pending + match.group(2)
@@ -1037,12 +1018,9 @@ class Strace(ApiBase):
           raise
         except (KeyError, NotImplementedError, ValueError), e:
           raise TracingFailure(
-              'Trace generated a %s exception: %s' % (
-                  e.__class__.__name__, str(e)),
-              self.pid,
-              self._line_number,
-              line,
-              e)
+              'Trace generated a %s exception: %s' % (e.__class__.__name__,
+                                                      str(e)), self.pid,
+              self._line_number, line, e)
 
       @parse_args(r'^\"(.+?)\", [FKORWX_|]+$', True)
       def handle_access(self, args, _result):
@@ -1090,8 +1068,8 @@ class Strace(ApiBase):
           self.command = strace_process_quoted_arguments(args[1])
         except ValueError as e:
           raise TracingFailure(
-              'Failed to process command line argument:\n%s' % e.args[0],
-              None, None, None)
+              'Failed to process command line argument:\n%s' % e.args[0], None,
+              None, None)
 
       def handle_exit_group(self, _args, _result):
         """Removes cwd."""
@@ -1130,8 +1108,8 @@ class Strace(ApiBase):
               self.cwd = self._mangle(filepath)
             else:
               # It should always match.
-              assert self.cwd == Strace.load_filename(filepath), (
-                  self.cwd, filepath)
+              assert self.cwd == Strace.load_filename(filepath), (self.cwd,
+                                                                  filepath)
 
       @parse_args(r'^\"(.+?)\", \"(.+?)\"$', True)
       def handle_link(self, args, _result):
@@ -1172,8 +1150,8 @@ class Strace(ApiBase):
           # TODO(maruel): Resolve file handle.
           if not args[1].startswith('0x'):
             t = (
-                Results.File.READ if 'O_RDONLY' in args[2]
-                else Results.File.WRITE)
+                Results.File.READ
+                if 'O_RDONLY' in args[2] else Results.File.WRITE)
           self._handle_file(args[1][1:-1], t)
         else:
           # TODO(maruel): Implement relative open if necessary instead of the
@@ -1183,8 +1161,7 @@ class Strace(ApiBase):
 
       @parse_args(
           r'^(\".+?\"|0x[a-f0-9]+), (?:\".+?\"(?:\.\.\.)?|0x[a-f0-9]+), '
-            r'\d+$',
-          False)
+          r'\d+$', False)
       def handle_readlink(self, args, _result):
         # TODO(maruel): Resolve file handle.
         if not args[0].startswith('0x'):
@@ -1250,8 +1227,7 @@ class Strace(ApiBase):
       def _handle_unknown(function, args, result):
         raise TracingFailure(
             'Unexpected/unimplemented trace %s(%s)= %s' %
-            (function, args, result),
-            None, None, None)
+            (function, args, result), None, None, None)
 
       def _handling_forking(self, name, result):
         """Transfers cwd."""
@@ -1267,11 +1243,9 @@ class Strace(ApiBase):
         if child.parentid is not None or childpid in self.children:
           raise TracingFailure(
               'Found internal inconsitency in process lifetime detection '
-              'during a %s()=%s call:\n%s' % (
-                name,
-                result,
-                sorted(self._root()._process_lookup)),
-              None, None, None)
+              'during a %s()=%s call:\n%s' %
+              (name, result, sorted(self._root()._process_lookup)), None, None,
+              None)
         # Copy the cwd object.
         child.initial_cwd = self.get_cwd()
         child.parentid = self.pid
@@ -1333,11 +1307,7 @@ class Strace(ApiBase):
         else:
           raise TracingFailure(
               'Found internal inconsitency in process lifetime detection '
-              'while finding the root process',
-              None,
-              None,
-              None,
-              self.root_pid,
+              'while finding the root process', None, None, None, self.root_pid,
               sorted(self._process_lookup))
       else:
         # The sudo case. The traced process was started manually so its pid is
@@ -1346,22 +1316,14 @@ class Strace(ApiBase):
       if not self.root_process:
         raise TracingFailure(
             'Found internal inconsitency in process lifetime detection '
-            'while finding the root process',
-            None,
-            None,
-            None,
-            self.root_pid,
+            'while finding the root process', None, None, None, self.root_pid,
             sorted(self._process_lookup))
       process = self.root_process.to_results_process()
       if sorted(self._process_lookup) != sorted(p.pid for p in process.all):
         raise TracingFailure(
             'Found internal inconsitency in process lifetime detection '
-            'while looking for len(tree) == len(list)',
-            None,
-            None,
-            None,
-            sorted(self._process_lookup),
-            sorted(p.pid for p in process.all))
+            'while looking for len(tree) == len(list)', None, None, None,
+            sorted(self._process_lookup), sorted(p.pid for p in process.all))
       return Results(process)
 
     def get_or_set_proc(self, pid):
@@ -1417,8 +1379,7 @@ class Strace(ApiBase):
 
       # Ensure all file related APIs are hooked.
       traces = ','.join(
-          [i for i in Strace.Context.traces()
-            if not i.startswith('syscall_')] +
+          [i for i in Strace.Context.traces() if not i.startswith('syscall_')] +
           ['file'])
       flags = [
           # Each child process has its own trace file. It is necessary because
@@ -1488,7 +1449,7 @@ class Strace(ApiBase):
       else:
         # Non-sudo case.
         trace_cmd = [
-          'strace',
+            'strace',
         ] + flags + cmd
         logging.debug(' '.join(trace_cmd))
         child_proc = subprocess.Popen(
@@ -1506,14 +1467,13 @@ class Strace(ApiBase):
 
       with self._lock:
         assert tracename not in (i['trace'] for i in self._traces)
-        self._traces.append(
-          {
+        self._traces.append({
             'cmd': cmd,
             'cwd': cwd,
             'output': saved_out,
             'pid': root_pid,
             'trace': tracename,
-          })
+        })
       return child_proc.returncode, out
 
   def __init__(self, use_sudo=None):
@@ -1542,8 +1502,8 @@ class Strace(ApiBase):
       if trace_name and item['trace'] != trace_name:
         continue
       result = {
-        'output': item['output'],
-        'trace': item['trace'],
+          'output': item['output'],
+          'trace': item['trace'],
       }
       try:
         context = cls.Context(blacklist, item['pid'], item['cwd'])
@@ -1586,6 +1546,7 @@ class Dtrace(ApiBase):
   errno is not printed in the log since this implementation currently only cares
   about files that were successfully opened.
   """
+
   class Context(ApiBase.Context):
     # Format: index pid function(args)
     RE_HEADER = re.compile(r'^\d+ (\d+) ([a-zA-Z_\-]+)\((.*?)\)$')
@@ -1642,12 +1603,8 @@ class Dtrace(ApiBase):
         raise
       except (KeyError, NotImplementedError, ValueError), e:
         raise TracingFailure(
-            'Trace generated a %s exception: %s' % (
-                e.__class__.__name__, str(e)),
-            pid,
-            self._line_number,
-            line,
-            e)
+            'Trace generated a %s exception: %s' %
+            (e.__class__.__name__, str(e)), pid, self._line_number, line, e)
 
     def to_results(self):
       process = self.root_process.to_results_process()
@@ -1675,17 +1632,15 @@ class Dtrace(ApiBase):
       if pid in self._process_lookup:
         raise TracingFailure(
             'Found internal inconsitency in proc_start: %d started two times' %
-                pid,
-            None, None, None)
+            pid, None, None, None)
       match = self.RE_PROC_START.match(args)
       if not match:
-        raise TracingFailure(
-            'Failed to parse arguments: %s' % args,
-            None, None, None)
+        raise TracingFailure('Failed to parse arguments: %s' % args, None, None,
+                             None)
       ppid = int(match.group(1))
       if ppid == self._thunk_pid and not self.root_process:
-        proc = self.root_process = self.Process(
-            self.blacklist, pid, self._initial_cwd)
+        proc = self.root_process = self.Process(self.blacklist, pid,
+                                                self._initial_cwd)
       elif ppid in self._process_lookup:
         proc = self.Process(self.blacklist, pid, self._process_lookup[ppid].cwd)
         self._process_lookup[ppid].children.append(proc)
@@ -1694,8 +1649,7 @@ class Dtrace(ApiBase):
         return
       self._process_lookup[pid] = proc
       logging.debug(
-          'New child: %s -> %d  cwd:%s' %
-          (ppid, pid, render(proc.initial_cwd)))
+          'New child: %s -> %d  cwd:%s' % (ppid, pid, render(proc.initial_cwd)))
 
     def handle_proc_exit(self, pid, _args):
       """Removes cwd."""
@@ -1718,17 +1672,15 @@ class Dtrace(ApiBase):
         return
       match = self.RE_EXECVE.match(args)
       if not match:
-        raise TracingFailure(
-            'Failed to parse arguments: %r' % args,
-            None, None, None)
+        raise TracingFailure('Failed to parse arguments: %r' % args, None, None,
+                             None)
       proc = self._process_lookup[pid]
       proc.executable = match.group(1)
       self._handle_file(pid, proc.executable, Results.File.READ)
       proc.command = self.process_escaped_arguments(match.group(3))
       if int(match.group(2)) != len(proc.command):
-        raise TracingFailure(
-            'Failed to parse execve() arguments: %s' % args,
-            None, None, None)
+        raise TracingFailure('Failed to parse execve() arguments: %s' % args,
+                             None, None, None)
 
     def handle_chdir(self, pid, args):
       """Updates cwd."""
@@ -1754,18 +1706,15 @@ class Dtrace(ApiBase):
         return
       match = self.RE_OPEN.match(args)
       if not match:
-        raise TracingFailure(
-            'Failed to parse arguments: %s' % args,
-            None, None, None)
+        raise TracingFailure('Failed to parse arguments: %s' % args, None, None,
+                             None)
       flag = int(match.group(2), 16)
       if self.O_DIRECTORY & flag == self.O_DIRECTORY:
         # Ignore directories.
         return
       self._handle_file(
-          pid,
-          match.group(1),
-          Results.File.READ if not ((self.O_RDWR | self.O_WRONLY) & flag)
-            else Results.File.WRITE)
+          pid, match.group(1), Results.File.READ
+          if not ((self.O_RDWR | self.O_WRONLY) & flag) else Results.File.WRITE)
 
     def handle_rename(self, pid, args):
       if pid not in self._process_lookup:
@@ -1773,9 +1722,8 @@ class Dtrace(ApiBase):
         return
       match = self.RE_RENAME.match(args)
       if not match:
-        raise TracingFailure(
-            'Failed to parse arguments: %s' % args,
-            None, None, None)
+        raise TracingFailure('Failed to parse arguments: %s' % args, None, None,
+                             None)
       self._handle_file(pid, match.group(1), Results.File.READ)
       self._handle_file(pid, match.group(2), Results.File.WRITE)
 
@@ -2252,9 +2200,8 @@ class Dtrace(ApiBase):
       assert os.path.normpath(cwd) == cwd, cwd
       with self._lock:
         if not self._initialized:
-          raise TracingFailure(
-              'Called Tracer.trace() on an unitialized object',
-              None, None, None, tracename)
+          raise TracingFailure('Called Tracer.trace() on an unitialized object',
+                               None, None, None, tracename)
         assert tracename not in (i['trace'] for i in self._traces)
 
       # Starts the script wrapper to start the child process. This signals the
@@ -2264,9 +2211,9 @@ class Dtrace(ApiBase):
         stdout = subprocess.PIPE
         stderr = subprocess.STDOUT
       child_cmd = [
-        sys.executable,
-        self._signal_script,
-        tracename,
+          sys.executable,
+          self._signal_script,
+          tracename,
       ]
       # Call a dummy function so that dtrace knows I'm about to launch a process
       # that needs to be traced.
@@ -2285,14 +2232,13 @@ class Dtrace(ApiBase):
 
       with self._lock:
         assert tracename not in (i['trace'] for i in self._traces)
-        self._traces.append(
-          {
+        self._traces.append({
             'cmd': cmd,
             'cwd': cwd,
             'pid': child.pid,
             'output': out,
             'trace': tracename,
-          })
+        })
       return child.returncode, out
 
     def close(self, timeout=None):
@@ -2341,15 +2287,15 @@ class Dtrace(ApiBase):
       errors = [l for l in lines if l.startswith('dtrace:')]
       if errors:
         raise TracingFailure(
-            'Found errors in the trace: %s' % '\n'.join(errors),
-            None, None, None, logname)
+            'Found errors in the trace: %s' % '\n'.join(errors), None, None,
+            None, logname)
       try:
         lines = sorted(lines, key=lambda l: int(l.split(' ', 1)[0]))
       except ValueError:
         raise TracingFailure(
             'Found errors in the trace: %s' % '\n'.join(
-                l for l in lines if l.split(' ', 1)[0].isdigit()),
-            None, None, None, logname)
+                l for l in lines if l.split(' ', 1)[0].isdigit()), None, None,
+            None, logname)
       with fs.open(logname, 'wb') as logfile:
         logfile.write(''.join(lines))
 
@@ -2381,8 +2327,8 @@ class Dtrace(ApiBase):
       if trace_name and item['trace'] != trace_name:
         continue
       result = {
-        'output': item['output'],
-        'trace': item['trace'],
+          'output': item['output'],
+          'trace': item['trace'],
       }
       try:
         context = cls.Context(blacklist_more, item['pid'], item['cwd'])
@@ -2425,15 +2371,15 @@ class LogmanTrace(ApiBase):
     USER_DATA = 6
 
     class Process(ApiBase.Context.Process):
+
       def __init__(self, *args):
         super(LogmanTrace.Context.Process, self).__init__(*args)
         # Handle file objects that succeeded.
         self.file_objects = {}
 
     def __init__(self, blacklist, thunk_pid, trace_name, thunk_cmd):
-      logging.info(
-          '%s(%d, %s, %s)', self.__class__.__name__, thunk_pid, trace_name,
-          thunk_cmd)
+      logging.info('%s(%d, %s, %s)', self.__class__.__name__, thunk_pid,
+                   trace_name, thunk_cmd)
       super(LogmanTrace.Context, self).__init__(blacklist)
       self._drive_map = file_path.DosDriveMap()
       # Threads mapping to the corresponding process id.
@@ -2453,14 +2399,12 @@ class LogmanTrace(ApiBase):
       try:
         # By Opcode
         handler = getattr(
-            self,
-            'handle_%s_%s' % (line[self.EVENT_NAME], line[self.TYPE]),
+            self, 'handle_%s_%s' % (line[self.EVENT_NAME], line[self.TYPE]),
             None)
         if not handler:
           raise TracingFailure(
-              'Unexpected event %s_%s' % (
-                  line[self.EVENT_NAME], line[self.TYPE]),
-              None, None, None)
+              'Unexpected event %s_%s' % (line[self.EVENT_NAME],
+                                          line[self.TYPE]), None, None, None)
         handler(line)
       except TracingFailure, e:
         # Hack in the values since the handler could be a static function.
@@ -2471,18 +2415,15 @@ class LogmanTrace(ApiBase):
         raise
       except (KeyError, NotImplementedError, ValueError), e:
         raise TracingFailure(
-            'Trace generated a %s exception: %s' % (
-                e.__class__.__name__, str(e)),
-            line[self.PID],
-            self._line_number,
-            line,
-            e)
+            'Trace generated a %s exception: %s' % (e.__class__.__name__,
+                                                    str(e)), line[self.PID],
+            self._line_number, line, e)
 
     def to_results(self):
       if not self.root_process:
         raise TracingFailure(
-            'Failed to detect the initial process %d' % self._thunk_pid,
-            None, None, None)
+            'Failed to detect the initial process %d' % self._thunk_pid, None,
+            None, None)
       process = self.root_process.to_results_process()
       return Results(process)
 
@@ -2522,8 +2463,8 @@ class LogmanTrace(ApiBase):
       if line[EVENTS_LOST] != '0':
         raise TracingFailure(
             ('%s events were lost during trace, please increase the buffer '
-             'size from %s') % (line[EVENTS_LOST], line[BUFFER_SIZE]),
-            None, None, None)
+             'size from %s') % (line[EVENTS_LOST], line[BUFFER_SIZE]), None,
+            None, None)
 
     def handle_FileIo_Cleanup(self, line):
       """General wisdom: if a file is closed, it's because it was opened.
@@ -2622,9 +2563,8 @@ class LogmanTrace(ApiBase):
       ppid = line[self.PID]
       pid = int(line[PROCESS_ID], 16)
       command_line = CommandLineToArgvW(line[COMMAND_LINE])
-      logging.debug(
-          'New process %d->%d (%s) %s' %
-            (ppid, pid, line[IMAGE_FILE_NAME], command_line))
+      logging.debug('New process %d->%d (%s) %s' %
+                    (ppid, pid, line[IMAGE_FILE_NAME], command_line))
 
       if pid == self._thunk_pid:
         # Need to ignore processes we don't know about because the log is
@@ -2674,8 +2614,7 @@ class LogmanTrace(ApiBase):
         cmd0 = cmd0.replace('/', os.path.sep)
         cmd0 = os.path.normpath(cmd0)
         proc.executable = file_path.get_native_path_case(cmd0)
-      logging.info(
-          'New child: %s -> %d %s' % (ppid, pid, proc.executable))
+      logging.info('New child: %s -> %d %s' % (ppid, pid, proc.executable))
 
     def handle_Thread_End(self, line):
       """Has the same parameters as Thread_Start."""
@@ -2722,26 +2661,26 @@ class LogmanTrace(ApiBase):
   class Tracer(ApiBase.Tracer):
     # The basic headers.
     EXPECTED_HEADER = [
-      u'Event Name',
-      u'Type',
-      u'Event ID',
-      u'Version',
-      u'Channel',
-      u'Level',  # 5
-      u'Opcode',
-      u'Task',
-      u'Keyword',
-      u'PID',
-      u'TID',  # 10
-      u'Processor Number',
-      u'Instance ID',
-      u'Parent Instance ID',
-      u'Activity ID',
-      u'Related Activity ID',  # 15
-      u'Clock-Time',
-      u'Kernel(ms)',  # Both have a resolution of ~15ms which makes them
-      u'User(ms)',    # pretty much useless.
-      u'User Data',   # Extra arguments that are event-specific.
+        u'Event Name',
+        u'Type',
+        u'Event ID',
+        u'Version',
+        u'Channel',
+        u'Level',  # 5
+        u'Opcode',
+        u'Task',
+        u'Keyword',
+        u'PID',
+        u'TID',  # 10
+        u'Processor Number',
+        u'Instance ID',
+        u'Parent Instance ID',
+        u'Activity ID',
+        u'Related Activity ID',  # 15
+        u'Clock-Time',
+        u'Kernel(ms)',  # Both have a resolution of ~15ms which makes them
+        u'User(ms)',  # pretty much useless.
+        u'User Data',  # Extra arguments that are event-specific.
     ]
     # Only the useful headers common to all entries are listed there. Any column
     # at 19 or higher is dependent on the specific event.
@@ -2762,24 +2701,25 @@ class LogmanTrace(ApiBase):
       """
       # 0. Had a ',' or one of the following ' ' after a comma, next should
       # be ' ', '"' or string or ',' for an empty field.
-      (HAD_DELIMITER,
-       # 1. Processing an unquoted field up to ','.
-       IN_STR,
-       # 2. Processing a new field starting with '"'.
-       STARTING_STR_QUOTED,
-       # 3. Second quote in a row at the start of a field. It could be either
-       # '""foo""' or '""'. Who the hell thought it was a great idea to use
-       # the same character for delimiting and escaping?
-       STARTING_SECOND_QUOTE,
-       # 4. A quote inside a quoted string where the previous character was
-       # not a quote, so the string is not empty. Can be either: end of a
-       # quoted string (a delimiter) or a quote escape. The next char must be
-       # either '"' or ','.
-       HAD_QUOTE_IN_QUOTED,
-       # 5. Second quote inside a quoted string.
-       HAD_SECOND_QUOTE_IN_A_ROW_IN_QUOTED,
-       # 6. Processing a field that started with '"'.
-       IN_STR_QUOTED) = range(7)
+      (
+          HAD_DELIMITER,
+          # 1. Processing an unquoted field up to ','.
+          IN_STR,
+          # 2. Processing a new field starting with '"'.
+          STARTING_STR_QUOTED,
+          # 3. Second quote in a row at the start of a field. It could be either
+          # '""foo""' or '""'. Who the hell thought it was a great idea to use
+          # the same character for delimiting and escaping?
+          STARTING_SECOND_QUOTE,
+          # 4. A quote inside a quoted string where the previous character was
+          # not a quote, so the string is not empty. Can be either: end of a
+          # quoted string (a delimiter) or a quote escape. The next char must be
+          # either '"' or ','.
+          HAD_QUOTE_IN_QUOTED,
+          # 5. Second quote inside a quoted string.
+          HAD_SECOND_QUOTE_IN_A_ROW_IN_QUOTED,
+          # 6. Processing a field that started with '"'.
+          IN_STR_QUOTED) = range(7)
 
       def __init__(self, f):
         self.f = f
@@ -2874,8 +2814,7 @@ class LogmanTrace(ApiBase):
               # Terminated with an empty field.
               self.STARTING_SECOND_QUOTE,
               # Terminated with a normal quoted field.
-              self.HAD_QUOTE_IN_QUOTED), (
-              line, state, fields)
+              self.HAD_QUOTE_IN_QUOTED), (line, state, fields)
         return fields
 
     def __init__(self, logname):
@@ -2934,9 +2873,8 @@ class LogmanTrace(ApiBase):
       assert os.path.normpath(cwd) == cwd, cwd
       with self._lock:
         if not self._initialized:
-          raise TracingFailure(
-              'Called Tracer.trace() on an unitialized object',
-              None, None, None, tracename)
+          raise TracingFailure('Called Tracer.trace() on an unitialized object',
+                               None, None, None, tracename)
         assert tracename not in (i['trace'] for i in self._traces)
 
       # Use "logman -?" for help.
@@ -2993,10 +2931,10 @@ class LogmanTrace(ApiBase):
           super(LogmanTrace.Tracer, self).close()
         finally:
           cmd_stop = [
-            'logman.exe',
-            'stop',
-            'NT Kernel Logger',
-            '-ets',  # Sends the command directly to the kernel.
+              'logman.exe',
+              'stop',
+              'NT Kernel Logger',
+              '-ets',  # Sends the command directly to the kernel.
           ]
           logging.debug('Running: %s' % cmd_stop)
           subprocess.check_call(
@@ -3013,9 +2951,9 @@ class LogmanTrace(ApiBase):
       self._trim_log(logformat)
 
     def _gen_logdata(self):
-      return  {
-        'format': 'csv',
-        'traces': self._traces,
+      return {
+          'format': 'csv',
+          'traces': self._traces,
       }
 
     def _trim_log(self, logformat):
@@ -3029,8 +2967,9 @@ class LogmanTrace(ApiBase):
       elif logformat == 'csv':
         assert sys.getfilesystemencoding() == 'mbcs'
         file_handle = codecs.open(
-              self._logname + '.' + logformat, 'r',
-              encoding=get_current_encoding())
+            self._logname + '.' + logformat,
+            'r',
+            encoding=get_current_encoding())
 
       supported_events = LogmanTrace.Context.supported_events()
 
@@ -3043,9 +2982,8 @@ class LogmanTrace(ApiBase):
         for index, line in enumerate(generator):
           if not index:
             if line != self.EXPECTED_HEADER:
-              raise TracingFailure(
-                  'Found malformed header: %s' % line,
-                  None, None, None)
+              raise TracingFailure('Found malformed header: %s' % line, None,
+                                   None, None)
             continue
           # As you can see, the CSV is full of useful non-redundant information:
           # pylint: disable=too-many-boolean-expressions
@@ -3060,8 +2998,8 @@ class LogmanTrace(ApiBase):
               line[14] != self.NULL_GUID or  # Activity ID
               line[15] != ''):  # Related Activity ID
             raise TracingFailure(
-                'Found unexpected values in line: %s' % ' '.join(line),
-                  None, None, None)
+                'Found unexpected values in line: %s' % ' '.join(line), None,
+                None, None)
 
           if (line[self.EVENT_NAME], line[self.TYPE]) not in supported_events:
             continue
@@ -3102,13 +3040,15 @@ class LogmanTrace(ApiBase):
       LOCALE_INVARIANT = 0x7F
       windll.kernel32.SetThreadLocale(LOCALE_INVARIANT)
       cmd_convert = [
-        'tracerpt.exe',
-        '-l', self._logname + '.etl',
-        '-o', self._logname + '.' + logformat,
-        '-gmt',  # Use UTC
-        '-y',  # No prompt
-        # Use -of XML to get the header of each items after column 19, e.g. all
-        # the actual headers of 'User Data'.
+          'tracerpt.exe',
+          '-l',
+          self._logname + '.etl',
+          '-o',
+          self._logname + '.' + logformat,
+          '-gmt',  # Use UTC
+          '-y',  # No prompt
+          # Use -of XML to get the header of each items after column 19, e.g. all
+          # the actual headers of 'User Data'.
       ]
 
       if logformat == 'csv':
@@ -3224,8 +3164,8 @@ def extract_directories(root_dir, files, blacklist):
   assert not (root_dir or '').endswith(os.path.sep), root_dir
   # It is important for root_dir to not be a symlinked path, make sure to call
   # os.path.realpath() as needed.
-  assert not root_dir or (
-      os.path.realpath(file_path.get_native_path_case(root_dir)) == root_dir)
+  assert not root_dir or (os.path.realpath(
+      file_path.get_native_path_case(root_dir)) == root_dir)
   assert not any(isinstance(f, Results.Directory) for f in files)
   # Remove non existent files.
   files = [f for f in files if f.existent]
@@ -3243,7 +3183,7 @@ def extract_directories(root_dir, files, blacklist):
     directory = os.path.dirname(path)
     assert directory
     # Do not use os.path.basename() so trailing os.path.sep is kept.
-    basename = path[len(directory)+1:]
+    basename = path[len(directory) + 1:]
     files_in_directory = buckets.setdefault(directory, {})
     files_in_directory[basename] = fileobj
     # Add all the directories recursively up to root.
@@ -3257,8 +3197,8 @@ def extract_directories(root_dir, files, blacklist):
   root_prefix = len(root_dir) + 1 if root_dir else 0
   for directory in sorted(buckets, reverse=True):
     if not fs.isdir(directory):
-      logging.debug(
-          '%s was a directory but doesn\'t exist anymore; ignoring', directory)
+      logging.debug('%s was a directory but doesn\'t exist anymore; ignoring',
+                    directory)
       continue
     actual = set(f for f in fs.listdir(directory) if not blacklist(f))
     expected = set(buckets[directory])
@@ -3305,14 +3245,17 @@ def CMDtrace(parser, args):
   """Traces an executable."""
   parser.allow_interspersed_args = False
   parser.add_option(
-      '-q', '--quiet', action='store_true',
+      '-q',
+      '--quiet',
+      action='store_true',
       help='Redirects traced executable output to /dev/null')
   parser.add_option(
-      '-s', '--sudo', action='store_true',
+      '-s',
+      '--sudo',
+      action='store_true',
       help='Use sudo when shelling out the tracer tool (ignored on Windows)')
   parser.add_option(
-      '-n', '--no-sudo', action='store_false',
-      help='Don\'t use sudo')
+      '-n', '--no-sudo', action='store_false', help='Don\'t use sudo')
   options, args = parser.parse_args(args)
 
   if not args:
@@ -3333,7 +3276,8 @@ def CMDtrace(parser, args):
 def CMDread(parser, args):
   """Reads the logs and prints the result."""
   parser.add_option(
-      '-V', '--variable',
+      '-V',
+      '--variable',
       nargs=2,
       action='append',
       dest='variables',
@@ -3345,15 +3289,19 @@ def CMDread(parser, args):
   parser.add_option(
       '--root-dir',
       help='Root directory to base everything off it. Anything outside of this '
-           'this directory will not be reported')
+      'this directory will not be reported')
   parser.add_option(
       '--trace-name',
       help='Only reads one of the trace. Defaults to reading all traces')
   parser.add_option(
-      '-j', '--json', action='store_true',
+      '-j',
+      '--json',
+      action='store_true',
       help='Outputs raw result data as json')
   parser.add_option(
-      '--trace-blacklist', action='append', default=[],
+      '--trace-blacklist',
+      action='append',
+      default=[],
       help='List of regexp to use as blacklist filter')
   options, args = parser.parse_args(args)
 
@@ -3383,8 +3331,8 @@ def CMDread(parser, args):
       if options.json:
         output_as_json.append(results.flatten())
       else:
-        simplified = extract_directories(
-            options.root_dir, results.files, blacklist)
+        simplified = extract_directories(options.root_dir, results.files,
+                                         blacklist)
         simplified = [f.replace_variables(variables) for f in simplified]
         if len(data) > 1:
           print('Trace: %s' % item['trace'])
@@ -3392,9 +3340,8 @@ def CMDread(parser, args):
         print('Non existent: %d' % len(results.non_existent))
         for f in results.non_existent:
           print('  %s' % f.path)
-        print(
-            'Interesting: %d reduced to %d' % (
-                len(results.existent), len(simplified)))
+        print('Interesting: %d reduced to %d' % (len(results.existent),
+                                                 len(simplified)))
         for f in simplified:
           print('  %s' % f.path)
 

@@ -15,7 +15,6 @@ from utils import tools
 
 import linux
 
-
 EXYNOS_CPU_INFO = r"""
 Processor : ARMv7 Processor rev 4 (v7l)
 processor : 0
@@ -36,7 +35,6 @@ Revision  : 0000
 Serial    : 0000000000000000
 """
 
-
 CAVIUM_CPU_INFO = r"""
 processor : 0
 BogoMIPS  : 200.00
@@ -56,7 +54,6 @@ CPU variant : 0x1
 CPU part  : 0x0a1
 CPU revision  : 1
 """
-
 
 MIPS64_CPU_INFO = r"""
 chrome-bot@build23-b3:/tmp/1$ cat /proc/cpuinfo
@@ -197,6 +194,7 @@ NO_K8S_CGROUP = """
 
 
 class TestDocker(auto_stub.TestCase):
+
   def tearDown(self):
     super(TestDocker, self).tearDown()
     tools.clear_cache_all()
@@ -210,6 +208,7 @@ class TestDocker(auto_stub.TestCase):
 
   def test_get_inside_docker_no_k8s(self):
     self.assertEqual(None, self.get_inside_docker(NO_K8S_CGROUP))
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

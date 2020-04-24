@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This module defines Auth Server frontend url handlers."""
 
 import os
@@ -33,17 +32,16 @@ import replication
 # Importing for the side effect of registering the config validation hook.
 import realms
 
-
 # Path to search for jinja templates.
 TEMPLATES_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'templates')
-
 
 ################################################################################
 ## UI handlers.
 
 
 class WarmupHandler(webapp2.RequestHandler):
+
   def get(self):
     auth.warmup()
     self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
@@ -52,6 +50,7 @@ class WarmupHandler(webapp2.RequestHandler):
 
 class EmailHandler(webapp2.RequestHandler):
   """Blackhole any email sent."""
+
   def post(self, to):
     pass
 
@@ -82,15 +81,15 @@ def get_additional_ui_data():
   config_revisions = {}
   for path, rev in config.get_revisions().items():
     config_revisions[path] = {
-      'rev': rev.revision if rev else 'none',
-      'url': rev.url if rev else 'about:blank',
+        'rev': rev.revision if rev else 'none',
+        'url': rev.url if rev else 'about:blank',
     }
   return {
-    'auth_service_config_locked': True,
-    'auth_service_configs': {
-      'remote_url': config.get_remote_url(),
-      'revisions': config_revisions,
-    },
+      'auth_service_config_locked': True,
+      'auth_service_configs': {
+          'remote_url': config.get_remote_url(),
+          'revisions': config_revisions,
+      },
   }
 
 
@@ -133,9 +132,9 @@ class AuthDBRevisionsHandler(auth.ApiHandler):
     if not snapshot:
       self.abort_with_error(404, text='No such snapshot: %s' % rev)
     resp = {
-      'auth_db_rev': snapshot.key.integer_id(),
-      'created_ts': utils.datetime_to_timestamp(snapshot.created_ts),
-      'sha256': snapshot.auth_db_sha256,
+        'auth_db_rev': snapshot.key.integer_id(),
+        'created_ts': utils.datetime_to_timestamp(snapshot.created_ts),
+        'sha256': snapshot.auth_db_sha256,
     }
     if not skip_body:
       assert snapshot.auth_db_deflated
@@ -178,12 +177,12 @@ class AuthDBSubscriptionAuthHandler(auth.ApiHandler):
     """
     try:
       return self.send_response({
-        'topic': pubsub.topic_name(),
-        'authorized': pubsub.is_authorized_subscriber(self.caller_email()),
-        'gs': {
-          'auth_db_gs_path': config.get_settings().auth_db_gs_path,
-          'authorized': gcs.is_authorized_reader(self.caller_email()),
-        },
+          'topic': pubsub.topic_name(),
+          'authorized': pubsub.is_authorized_subscriber(self.caller_email()),
+          'gs': {
+              'auth_db_gs_path': config.get_settings().auth_db_gs_path,
+              'authorized': gcs.is_authorized_reader(self.caller_email()),
+          },
       })
     except (gcs.Error, pubsub.Error) as e:
       self.abort_with_error(409, text=str(e))
@@ -210,12 +209,12 @@ class AuthDBSubscriptionAuthHandler(auth.ApiHandler):
       pubsub.authorize_subscriber(self.caller_email())
       gcs.authorize_reader(self.caller_email())
       return self.send_response({
-        'topic': pubsub.topic_name(),
-        'authorized': True,
-        'gs': {
-          'auth_db_gs_path': config.get_settings().auth_db_gs_path,
+          'topic': pubsub.topic_name(),
           'authorized': True,
-        },
+          'gs': {
+              'auth_db_gs_path': config.get_settings().auth_db_gs_path,
+              'authorized': True,
+          },
       })
     except (gcs.Error, pubsub.Error) as e:
       self.abort_with_error(409, text=str(e))
@@ -238,12 +237,12 @@ class AuthDBSubscriptionAuthHandler(auth.ApiHandler):
       pubsub.deauthorize_subscriber(self.caller_email())
       gcs.deauthorize_reader(self.caller_email())
       return self.send_response({
-        'topic': pubsub.topic_name(),
-        'authorized': False,
-        'gs': {
-          'auth_db_gs_path': config.get_settings().auth_db_gs_path,
+          'topic': pubsub.topic_name(),
           'authorized': False,
-        },
+          'gs': {
+              'auth_db_gs_path': config.get_settings().auth_db_gs_path,
+              'authorized': False,
+          },
       })
     except (gcs.Error, pubsub.Error) as e:
       self.abort_with_error(409, text=str(e))
@@ -294,8 +293,8 @@ class ImporterIngestTarballHandler(auth.ApiHandler):
     try:
       groups, auth_db_rev = importer.ingest_tarball(name, self.request.body)
       self.send_response({
-        'groups': groups,
-        'auth_db_rev': auth_db_rev,
+          'groups': groups,
+          'auth_db_rev': auth_db_rev,
       })
     except importer.BundleImportError as e:
       self.abort_with_error(400, error=str(e))
@@ -312,16 +311,18 @@ class ServiceListingHandler(auth.ApiHandler):
         key=lambda x: x.key.id())
     last_auth_state = model.get_replication_state()
     self.send_response({
-      'services': [
-        x.to_serializable_dict(with_id_as='app_id') for x in services
-      ],
-      'auth_code_version': version.__version__,
-      'auth_db_rev': {
-        'primary_id': last_auth_state.primary_id,
-        'rev': last_auth_state.auth_db_rev,
-        'ts': utils.datetime_to_timestamp(last_auth_state.modified_ts),
-      },
-      'now': utils.datetime_to_timestamp(utils.utcnow()),
+        'services': [
+            x.to_serializable_dict(with_id_as='app_id') for x in services
+        ],
+        'auth_code_version':
+            version.__version__,
+        'auth_db_rev': {
+            'primary_id': last_auth_state.primary_id,
+            'rev': last_auth_state.auth_db_rev,
+            'ts': utils.datetime_to_timestamp(last_auth_state.modified_ts),
+        },
+        'now':
+            utils.datetime_to_timestamp(utils.utcnow()),
     })
 
 
@@ -362,7 +363,7 @@ class GenerateLinkingURL(auth.ApiHandler):
       domain = current_hostname.partition('.')[2]
       naked_app_id = app_id
       if ':' in app_id:
-        naked_app_id = app_id[app_id.find(':')+1:]
+        naked_app_id = app_id[app_id.find(':') + 1:]
       host = 'https://%s.%s' % (naked_app_id, domain)
 
     # URL to a handler on Replica that initiates Replica <-> Primary handshake.
@@ -426,34 +427,28 @@ def get_routes():
   routes.extend(rest_api.get_rest_api_routes())
   routes.extend(ui.get_ui_routes())
   routes.extend([
-    # UI routes.
-    webapp2.Route(
-        r'/', webapp2.RedirectHandler, defaults={'_uri': '/auth/groups'}),
-    webapp2.Route(r'/_ah/mail/<to:.+>', EmailHandler),
-    webapp2.Route(r'/_ah/warmup', WarmupHandler),
+      # UI routes.
+      webapp2.Route(
+          r'/', webapp2.RedirectHandler, defaults={'_uri': '/auth/groups'}),
+      webapp2.Route(r'/_ah/mail/<to:.+>', EmailHandler),
+      webapp2.Route(r'/_ah/warmup', WarmupHandler),
 
-    # API routes.
-    webapp2.Route(
-        r'/auth_service/api/v1/authdb/revisions/<rev:(latest|[0-9]+)>',
-        AuthDBRevisionsHandler),
-    webapp2.Route(
-        r'/auth_service/api/v1/authdb/subscription/authorization',
-        AuthDBSubscriptionAuthHandler),
-    webapp2.Route(
-        r'/auth_service/api/v1/importer/config',
-        ImporterConfigHandler),
-    webapp2.Route(
-        r'/auth_service/api/v1/importer/ingest_tarball/<name:.+>',
-        ImporterIngestTarballHandler),
-    webapp2.Route(
-        r'/auth_service/api/v1/internal/link_replica',
-        LinkRequestHandler),
-    webapp2.Route(
-        r'/auth_service/api/v1/services',
-        ServiceListingHandler),
-    webapp2.Route(
-        r'/auth_service/api/v1/services/<app_id:%s>/linking_url' % app_id_re,
-        GenerateLinkingURL),
+      # API routes.
+      webapp2.Route(
+          r'/auth_service/api/v1/authdb/revisions/<rev:(latest|[0-9]+)>',
+          AuthDBRevisionsHandler),
+      webapp2.Route(r'/auth_service/api/v1/authdb/subscription/authorization',
+                    AuthDBSubscriptionAuthHandler),
+      webapp2.Route(r'/auth_service/api/v1/importer/config',
+                    ImporterConfigHandler),
+      webapp2.Route(r'/auth_service/api/v1/importer/ingest_tarball/<name:.+>',
+                    ImporterIngestTarballHandler),
+      webapp2.Route(r'/auth_service/api/v1/internal/link_replica',
+                    LinkRequestHandler),
+      webapp2.Route(r'/auth_service/api/v1/services', ServiceListingHandler),
+      webapp2.Route(
+          r'/auth_service/api/v1/services/<app_id:%s>/linking_url' % app_id_re,
+          GenerateLinkingURL),
   ])
   return routes
 
@@ -466,14 +461,14 @@ def create_application(debug):
   ui.configure_ui(
       app_name='Auth Service',
       ui_tabs=[
-        ui.GroupsHandler,
-        ui.ChangeLogHandler,
-        ui.LookupHandler,
-        ServicesHandler,
-        ui.OAuthConfigHandler,
-        ui.IPWhitelistsHandler,
-        ConfigHandler,
-        ui.ApiDocHandler,
+          ui.GroupsHandler,
+          ui.ChangeLogHandler,
+          ui.LookupHandler,
+          ServicesHandler,
+          ui.OAuthConfigHandler,
+          ui.IPWhitelistsHandler,
+          ConfigHandler,
+          ui.ApiDocHandler,
       ],
       ui_data_callback=get_additional_ui_data)
   template.bootstrap({'auth_service': TEMPLATES_DIR})

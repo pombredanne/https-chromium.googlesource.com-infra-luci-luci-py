@@ -1,11 +1,9 @@
 # Copyright 2020 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utilities to work with realms_pb2 messages."""
 
 from .proto import realms_pb2
-
 
 # Currently acceptable version of Realms API. See api_version in realms.proto.
 API_VERSION = 1
@@ -47,21 +45,18 @@ def merge(permissions, realms, out=None):
       # Relabel permission indexes, drop empty bindings that may appear.
       bindings = []
       for b in old_realm.bindings:
-        perms = sorted(
-            old_to_new[idx]
-            for idx in b.permissions
-            if old_to_new[idx] is not None
-        )
+        perms = sorted(old_to_new[idx]
+                       for idx in b.permissions
+                       if old_to_new[idx] is not None)
         if perms:
           bindings.append((perms, b.principals))
 
       # Add the relabeled realm to the output.
-      assert old_realm.name.startswith(proj_id+':'), old_realm.name
+      assert old_realm.name.startswith(proj_id + ':'), old_realm.name
       new_realm = out.realms.add()
       new_realm.name = old_realm.name
       new_realm.bindings.extend(
           realms_pb2.Binding(permissions=perms, principals=principals)
-          for perms, principals in sorted(bindings, key=lambda x: x[0])
-      )
+          for perms, principals in sorted(bindings, key=lambda x: x[0]))
 
   return out

@@ -17,6 +17,7 @@ from test_support import test_case
 
 
 class ValidationContextTestCase(test_case.TestCase):
+
   def test_logs_and_prefix(self):
     ctx = validation_context.Context()
     self.assertFalse(ctx.result().has_errors)
@@ -31,22 +32,24 @@ class ValidationContextTestCase(test_case.TestCase):
       ctx.error('no cat')
 
     self.assertEqual(
-      ctx.result(),
-      validation_context.Result(
-        messages=[
-          validation_context.Message(
-              severity=logging.ERROR, text='hello world'),
-          validation_context.Message(
-              severity=logging.WARNING, text='prefix 3 warning 2'),
-          validation_context.Message(
-              severity=logging.ERROR, text=u'unicode \xf0\x9f\x90\xb1 no cat'),
-        ],
-      ),
+        ctx.result(),
+        validation_context.Result(
+            messages=[
+                validation_context.Message(
+                    severity=logging.ERROR, text='hello world'),
+                validation_context.Message(
+                    severity=logging.WARNING, text='prefix 3 warning 2'),
+                validation_context.Message(
+                    severity=logging.ERROR,
+                    text=u'unicode \xf0\x9f\x90\xb1 no cat'),
+            ],),
     )
 
   def test_raise_on_error(self):
+
     class Error(Exception):
       pass
+
     ctx = validation_context.Context.raise_on_error(exc_type=Error)
     with self.assertRaises(Error):
       ctx.error('1')

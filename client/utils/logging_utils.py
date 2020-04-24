@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utility relating to logging."""
 
 from __future__ import print_function
@@ -57,18 +56,14 @@ if sys.platform == 'win32':
     """
     path = six.text_type(path)
     handle = ctypes.windll.kernel32.CreateFileW(
-        path,
-        GENERIC_READ|GENERIC_WRITE,
-        FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
-        None,
-        OPEN_ALWAYS,
-        FILE_ATTRIBUTE_NORMAL,
-        None)
+        path, GENERIC_READ | GENERIC_WRITE,
+        FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, None,
+        OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, None)
     ctr_handle = msvcrt.open_osfhandle(handle, os.O_BINARY | os.O_NOINHERIT)
     return os.fdopen(ctr_handle, 'r+b')
 
-
   class NoInheritRotatingFileHandler(logging.handlers.RotatingFileHandler):
+
     def _open(self):
       """Opens the log file without handle inheritance but with file sharing.
 
@@ -79,17 +74,14 @@ if sys.platform == 'win32':
         # Do the equivalent of
         # codecs.open(self.baseFilename, self.mode, self.encoding)
         info = codecs.lookup(self.encoding)
-        f = codecs.StreamReaderWriter(
-            f, info.streamreader, info.streamwriter, 'replace')
+        f = codecs.StreamReaderWriter(f, info.streamreader, info.streamwriter,
+                                      'replace')
         f.encoding = self.encoding
       return f
 
-
 else:  # Not Windows.
 
-
   NoInheritRotatingFileHandler = logging.handlers.RotatingFileHandler
-
 
 # Levels used for logging.
 LEVELS = [logging.ERROR, logging.INFO, logging.DEBUG]
@@ -97,6 +89,7 @@ LEVELS = [logging.ERROR, logging.INFO, logging.DEBUG]
 
 class CaptureLogs(object):
   """Captures all the logs in a context."""
+
   def __init__(self, prefix, root=None):
     handle, self._path = tempfile.mkstemp(prefix=prefix, suffix='.log')
     os.close(handle)
@@ -208,8 +201,7 @@ def prepare_logging(filename, root=None):
         os.path.dirname(os.path.abspath(six.text_type(filename))))
     try:
       rotating_file = NoInheritRotatingFileHandler(
-          filename, maxBytes=10 * 1024 * 1024, backupCount=5,
-          encoding='utf-8')
+          filename, maxBytes=10 * 1024 * 1024, backupCount=5, encoding='utf-8')
       rotating_file.setLevel(logging.DEBUG)
       rotating_file.setFormatter(formatter)
       rotating_file.addFilter(Filter())
@@ -243,17 +235,22 @@ class OptionParserWithLogging(optparse.OptionParser):
     optparse.OptionParser.__init__(self, **kwargs)
     self.group_logging = optparse.OptionGroup(self, 'Logging')
     self.group_logging.add_option(
-        '-v', '--verbose',
+        '-v',
+        '--verbose',
         action='count',
         default=verbose,
         help='Use multiple times to increase verbosity')
     if self.enable_log_file:
       self.group_logging.add_option(
-          '-l', '--log-file',
+          '-l',
+          '--log-file',
           default=log_file,
           help='The name of the file to store rotating log details')
       self.group_logging.add_option(
-          '--no-log', action='store_const', const='', dest='log_file',
+          '--no-log',
+          action='store_const',
+          const='',
+          dest='log_file',
           help='Disable log file')
 
   def parse_args(self, *args, **kwargs):
@@ -262,8 +259,8 @@ class OptionParserWithLogging(optparse.OptionParser):
 
     options, args = optparse.OptionParser.parse_args(self, *args, **kwargs)
     prepare_logging(self.enable_log_file and options.log_file, self.logger_root)
-    set_console_level(
-        LEVELS[min(len(LEVELS) - 1, options.verbose)], self.logger_root)
+    set_console_level(LEVELS[min(len(LEVELS) - 1, options.verbose)],
+                      self.logger_root)
     return options, args
 
 
@@ -283,17 +280,22 @@ class ArgumentParserWithLogging(argparse.ArgumentParser):
   def _add_logging_group(self):
     group = self.add_argument_group('Logging')
     group.add_argument(
-        '-v', '--verbose',
+        '-v',
+        '--verbose',
         action='count',
         default=self.__verbose,
         help='Use multiple times to increase verbosity')
     if self.enable_log_file:
       group.add_argument(
-          '-l', '--log-file',
+          '-l',
+          '--log-file',
           default=self.__log_file,
           help='The name of the file to store rotating log details')
       group.add_argument(
-          '--no-log', action='store_const', const='', dest='log_file',
+          '--no-log',
+          action='store_const',
+          const='',
+          dest='log_file',
           help='Disable log file')
 
   def parse_args(self, *args, **kwargs):
@@ -302,6 +304,6 @@ class ArgumentParserWithLogging(argparse.ArgumentParser):
 
     args = super(ArgumentParserWithLogging, self).parse_args(*args, **kwargs)
     prepare_logging(self.enable_log_file and args.log_file, self.logger_root)
-    set_console_level(
-        LEVELS[min(len(LEVELS) - 1, args.verbose)], self.logger_root)
+    set_console_level(LEVELS[min(len(LEVELS) - 1, args.verbose)],
+                      self.logger_root)
     return args

@@ -17,23 +17,29 @@ from test_support import test_case
 
 
 class ConfigTest(test_case.TestCase):
+
   def setUp(self):
     super(ConfigTest, self).setUp()
     # Disable in-memory NDB cache, it messes with cache related test cases.
     ndb.get_context().set_cache_policy(lambda _: False)
 
   def test_bootstrap(self):
+
     class Config(config.GlobalConfig):
       param = ndb.StringProperty()
+
       def set_defaults(self):
         self.param = 'abc'
+
     conf = Config.cached()
     self.assertEqual('abc', conf.param)
     self.assertEqual(conf.to_dict(), conf.fetch().to_dict())
 
   def test_fetch_store(self):
+
     class Config(config.GlobalConfig):
       param = ndb.StringProperty()
+
     conf = Config.fetch()
     self.assertIsNone(conf)
     conf = Config.cached()

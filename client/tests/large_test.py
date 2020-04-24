@@ -13,6 +13,7 @@ from utils import large
 
 
 class LargeTest(unittest.TestCase):
+
   def test_1m_1(self):
     array = range(1000000)
     data = large.pack(array)

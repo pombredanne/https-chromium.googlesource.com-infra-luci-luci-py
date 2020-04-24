@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Primary side of Primary <-> Replica protocol."""
 
 import base64
@@ -28,7 +27,6 @@ from components.auth.proto import replication_pb2
 import config
 import gcs
 import pubsub
-
 
 # Possible values of push_status field of AuthReplicaState.
 PUSH_STATUS_SUCCESS = 0
@@ -59,14 +57,14 @@ class AuthReplicaState(ndb.Model, datastore_utils.SerializableModelMixin):
   """
   # How to convert this entity to serializable dict.
   serializable_properties = {
-    'replica_url': datastore_utils.READABLE,
-    'auth_db_rev': datastore_utils.READABLE,
-    'rev_modified_ts': datastore_utils.READABLE,
-    'auth_code_version': datastore_utils.READABLE,
-    'push_started_ts': datastore_utils.READABLE,
-    'push_finished_ts': datastore_utils.READABLE,
-    'push_status': datastore_utils.READABLE,
-    'push_error': datastore_utils.READABLE,
+      'replica_url': datastore_utils.READABLE,
+      'auth_db_rev': datastore_utils.READABLE,
+      'rev_modified_ts': datastore_utils.READABLE,
+      'auth_code_version': datastore_utils.READABLE,
+      'push_started_ts': datastore_utils.READABLE,
+      'push_finished_ts': datastore_utils.READABLE,
+      'push_status': datastore_utils.READABLE,
+      'push_error': datastore_utils.READABLE,
   }
 
   # URL of a host to push updates to, especially useful on dev_appserver.
@@ -165,9 +163,11 @@ def configure_as_primary():
 
   Called during loading of backend and frontend modules before any other calls.
   """
+
   def replication_callback(auth_state):
     assert ndb.in_transaction()
     trigger_replication(auth_state.auth_db_rev, transactional=True)
+
   model.configure_as_primary(replication_callback)
 
 
@@ -179,9 +179,7 @@ def is_replica(ident):
 def register_replica(app_id, replica_url):
   """Creates a new AuthReplicaState or resets the state of existing one."""
   ent = AuthReplicaState(
-      id=app_id,
-      parent=replicas_root_key(),
-      replica_url=replica_url)
+      id=app_id, parent=replicas_root_key(), replica_url=replica_url)
   ent.put()
   trigger_replication()
 
@@ -218,6 +216,7 @@ def refresh_replicated_authdb():
     cur = model.get_replication_state()
     if cur.auth_db_rev == state.auth_db_rev:
       model.replicate_auth_db()
+
   trigger()
 
 
@@ -290,8 +289,8 @@ def update_replicas_task(auth_db_rev):
 
   # Grab last known replicas state and push only to replicas that are behind.
   stale_replicas = [
-    entity for entity in AuthReplicaState.query(ancestor=replicas_root_key())
-    if entity.auth_db_rev is None or entity.auth_db_rev < auth_db_rev
+      entity for entity in AuthReplicaState.query(ancestor=replicas_root_key())
+      if entity.auth_db_rev is None or entity.auth_db_rev < auth_db_rev
   ]
   if not stale_replicas:
     logging.info('All replicas are up-to-date.')
@@ -300,9 +299,8 @@ def update_replicas_task(auth_db_rev):
   # Push the blob to all out-of-date replicas, in parallel.
   push_started_ts = utils.utcnow()
   futures = {
-    push_to_replica(
-        replica.replica_url, auth_db_blob, key_name, sig_b64): replica
-    for replica in stale_replicas
+      push_to_replica(replica.replica_url, auth_db_blob, key_name, sig_b64):
+      replica for replica in stale_replicas
   }
 
   # Wait for all attempts to complete.
@@ -343,8 +341,8 @@ def update_replicas_task(auth_db_rev):
             finished_ts=utils.utcnow(),
             current_revision=current_revision,
             auth_code_version=auth_code_version)
-        logging.info(
-            'Replica %s is updated to rev %d', replica.key.id(), stored_rev)
+        logging.info('Replica %s is updated to rev %d', replica.key.id(),
+                     stored_rev)
       else:
         stored_rev = _update_state_on_fail(
             key=replica.key,
@@ -357,10 +355,8 @@ def update_replicas_task(auth_db_rev):
         if stored_rev is None or stored_rev > auth_db_rev:
           if replica in retry:
             retry.remove(replica)
-    except (
-        datastore_errors.InternalError,
-        datastore_errors.Timeout,
-        datastore_errors.TransactionFailedError) as exc:
+    except (datastore_errors.InternalError, datastore_errors.Timeout,
+            datastore_errors.TransactionFailedError) as exc:
       logging.exception(
           'Datastore error when updating replica state: %s.\n'
           'Replica id is %s.', exc.__class__.__name__, replica.key.id())
@@ -411,11 +407,12 @@ def store_auth_db_snapshot(replication_state, auth_db_blob):
   def insert():
     if not key.get():
       e = AuthDBSnapshot(
-        key=key,
-        auth_db_deflated=deflated,
-        auth_db_sha256=sha256,
-        created_ts=replication_state.modified_ts)
+          key=key,
+          auth_db_deflated=deflated,
+          auth_db_sha256=sha256,
+          created_ts=replication_state.modified_ts)
       e.put()
+
   insert()
 
   @ndb.transactional
@@ -428,6 +425,7 @@ def store_auth_db_snapshot(replication_state, auth_db_blob):
       latest.modified_ts = replication_state.modified_ts
       latest.auth_db_sha256 = sha256
       latest.put()
+
   update_latest_pointer()
 
 
@@ -481,10 +479,10 @@ def push_to_replica(replica_url, auth_db_blob, key_name, sig):
 
   # Pass signature via the headers.
   headers = {
-    'Content-Type': 'application/octet-stream',
-    'X-URLFetch-Service-Id': utils.get_urlfetch_service_id(),
-    'X-AuthDB-SigKey-v1': key_name,
-    'X-AuthDB-SigVal-v1': sig,
+      'Content-Type': 'application/octet-stream',
+      'X-URLFetch-Service-Id': utils.get_urlfetch_service_id(),
+      'X-AuthDB-SigKey-v1': key_name,
+      'X-AuthDB-SigVal-v1': sig,
   }
 
   # On dev appserver emulate X-Appengine-Inbound-Appid header.
@@ -533,8 +531,8 @@ def push_to_replica(replica_url, auth_db_blob, key_name, sig):
 
 
 @ndb.transactional
-def _update_state_on_success(
-    key, started_ts, finished_ts, current_revision, auth_code_version):
+def _update_state_on_success(key, started_ts, finished_ts, current_revision,
+                             auth_code_version):
   """Updates AuthReplicaState after a successful push.
 
   Args:

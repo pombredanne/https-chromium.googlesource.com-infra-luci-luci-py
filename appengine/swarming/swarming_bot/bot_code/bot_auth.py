@@ -137,8 +137,8 @@ def process_auth_params_json(val):
   exp = val.get('swarming_http_headers_exp')
   if not (exp is None or isinstance(exp, (int, long))):
     raise ValueError(
-        'Expecting "swarming_http_headers_exp" to be int or None, got %r'
-        % (exp,))
+        'Expecting "swarming_http_headers_exp" to be int or None, got %r' %
+        (exp,))
 
   # The headers must be ASCII for sure, so don't bother with picking the
   # correct unicode encoding, default would work. If not, it'll raise
@@ -165,6 +165,7 @@ class _LockMap(object):
   """A map of locks."""
 
   class _LockWithRC(object):
+
     def __init__(self):
       self.lock = threading.Lock()
       self.ref_count = 0
@@ -287,6 +288,7 @@ class AuthSystem(object):
       bot_email = params.bot_service_account
 
     available_accounts = []
+
     def add_account(account_id, email):
       if email == 'bot':
         email = bot_email
@@ -416,14 +418,14 @@ class AuthSystem(object):
       # Ask Swarming server to generate a new token for us.
       if not rpc_client:
         raise auth_server.RPCError(500, 'No RPC client, can\'t fetch token')
-      tok, service_account = self._grab_token_via_rpc(
-          auth_params, rpc_client, account_id, scopes)
+      tok, service_account = self._grab_token_via_rpc(auth_params, rpc_client,
+                                                      account_id, scopes)
 
     if tok.expiry - time.time() < 0:
       raise auth_server.RPCError(
           500, ('The new %r token (belonging to %r) has already expired (%d vs '
-                '%d). Check the system clock.' % (
-                    account_id, service_account, tok.expiry, time.time())))
+                '%d). Check the system clock.' %
+                (account_id, service_account, tok.expiry, time.time())))
 
     logging.info('Got %r token (belongs to %r), expires in %d sec', account_id,
                  service_account, tok.expiry - time.time())
@@ -450,7 +452,7 @@ class AuthSystem(object):
     # Default to some safe small expiration in case bot_main doesn't report it
     # to us. This may happen if get_authentication_header bot hook is not
     # reporting expiration time.
-    exp = auth_params.swarming_http_headers_exp or (time.time() + 4*60)
+    exp = auth_params.swarming_http_headers_exp or (time.time() + 4 * 60)
 
     # TODO(vadimsh): For GCE bots specifically we can pass a list of OAuth
     # scopes granted to the GCE token and verify it contains all the requested
@@ -479,9 +481,7 @@ class AuthSystem(object):
         # WARNING: This call may indirectly call 'get_bot_headers', so we have
         # to use a different lock here (not self._lock).
         resp = rpc_client.mint_oauth_token(
-            task_id=auth_params.task_id,
-            account_id=account_id,
-            scopes=scopes)
+            task_id=auth_params.task_id, account_id=account_id, scopes=scopes)
       except remote_client.InternalError as exc:
         # Raising RPCError propagates transient error status to clients, so that
         # they can decide to retry later.

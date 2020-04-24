@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Calculate statistics about the fleet per OS and GPU.
 
 Saves the data fetched from the server into a json file to enable reprocessing
@@ -16,7 +15,6 @@ import optparse
 import os
 import subprocess
 import sys
-
 
 CLIENT_DIR = os.path.dirname(
     os.path.dirname(
@@ -55,8 +53,8 @@ def present_data(bots, bucket_type, order_count):
   maxlen = max(len(i) for i in buckets)
   print('%-*s  Alive  Dead' % (maxlen, 'Type'))
   counts = {
-    k: [len(v), sum(1 for i in v if i.get('is_dead'))]
-    for k, v in buckets.items()
+      k: [len(v), sum(1 for i in v if i.get('is_dead'))]
+      for k, v in buckets.items()
   }
   key = (lambda x: -x[1][0]) if order_count else (lambda x: x)
   for bucket, count in sorted(counts.items(), key=key):
@@ -69,7 +67,7 @@ def do_bucket(bots, bucket_type):
   for bot in bots:
     # Convert dimensions from list of StringPairs to dict of list.
     bot['dimensions'] = {
-      i['key']: i['value'] for i in bot.get('dimensions', [])
+        i['key']: i['value'] for i in bot.get('dimensions', [])
     }
     os_types = bot['dimensions'].get('os', ['Unknown'])
     try:
@@ -91,11 +89,14 @@ def do_bucket(bots, bucket_type):
 def main():
   parser = optparse.OptionParser(description=sys.modules['__main__'].__doc__)
   parser.add_option(
-      '-S', '--swarming',
-      metavar='URL', default=os.environ.get('SWARMING_SERVER', ''),
+      '-S',
+      '--swarming',
+      metavar='URL',
+      default=os.environ.get('SWARMING_SERVER', ''),
       help='Swarming server to use')
   parser.add_option(
-      '--json', default='fleet.json',
+      '--json',
+      default='fleet.json',
       help='File containing raw data; default: %default')
   parser.add_option('-v', '--verbose', action='count', default=0)
   parser.add_option('--count', action='store_true', help='Order by count')

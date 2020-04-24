@@ -15,12 +15,13 @@ def child():
   print('child from %s' % os.getcwd())
   # Force file opening with a non-normalized path.
   open(os.path.join('tests', '..', 'trace_inputs.py'), 'rb').close()
-  open(os.path.join(
-      'tests', '..', 'tests', 'trace_inputs_smoke_test.py'), 'rb').close()
+  open(
+      os.path.join('tests', '..', 'tests', 'trace_inputs_smoke_test.py'),
+      'rb').close()
   # Do not wait for the child to exit.
   # Use relative directory.
-  subprocess.Popen(
-      ['python', 'child2.py'], cwd=os.path.join('tests', 'trace_inputs'))
+  subprocess.Popen(['python', 'child2.py'],
+                   cwd=os.path.join('tests', 'trace_inputs'))
   return 0
 
 

@@ -8,7 +8,6 @@ import re
 # third_party/
 import colorama
 
-
 UNITS = ('', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y')
 
 
@@ -39,11 +38,11 @@ def generate_histogram(data, buckets):
     return {data[0]: len(data)}
 
   buckets = min(len(data), buckets)
-  bucket_size = (maximum-minimum)/buckets
+  bucket_size = (maximum - minimum) / buckets
   out = dict((i, 0) for i in range(buckets))
   for i in data:
-    out[min(int((i-minimum)/bucket_size), buckets-1)] += 1
-  return dict(((k*bucket_size)+minimum, v) for k, v in out.items())
+    out[min(int((i - minimum) / bucket_size), buckets - 1)] += 1
+  return dict(((k * bucket_size) + minimum, v) for k, v in out.items())
 
 
 def print_histogram(data, columns=0, key_format=None):
@@ -117,5 +116,10 @@ def unit_arg(option, opt, value, parser):
 def unit_option(parser, *args, **kwargs):
   """Add an option that uses unit_arg()."""
   parser.add_option(
-      *args, type='str', metavar='N', action='callback', callback=unit_arg,
-      nargs=1, **kwargs)
+      *args,
+      type='str',
+      metavar='N',
+      action='callback',
+      callback=unit_arg,
+      nargs=1,
+      **kwargs)

@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines access groups.
 
     +------+
@@ -218,7 +217,6 @@ def bootstrap_dev_server_acls():
   auth.bootstrap_group(admins_group, [admin], 'Swarming administrators')
 
   # Add an instance admin (for easier manual testing when running dev server).
-  auth.bootstrap_group(
-      auth.ADMIN_GROUP,
-      [auth.Identity(auth.IDENTITY_USER, 'test@example.com')],
-      'Users that can manage groups')
+  auth.bootstrap_group(auth.ADMIN_GROUP,
+                       [auth.Identity(auth.IDENTITY_USER, 'test@example.com')],
+                       'Users that can manage groups')

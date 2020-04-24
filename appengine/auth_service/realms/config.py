@@ -1,7 +1,6 @@
 # Copyright 2020 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Loading and interpretation of realms.cfg config files.
 
 The primary purpose of the logic here is to keep datastore entities that are
@@ -39,10 +38,8 @@ from realms import validation
 
 import replication
 
-
 # Register the config validation hook.
 validation.register()
-
 
 # Information about fetched or previously processed realms.cfg.
 #
@@ -52,15 +49,14 @@ validation.register()
 RealmsCfgRev = collections.namedtuple(
     'RealmsCfgRev',
     [
-        'project_id',     # ID of the project in LUCI Config
-        'config_rev',     # the revision the config was fetched from, FYI
+        'project_id',  # ID of the project in LUCI Config
+        'config_rev',  # the revision the config was fetched from, FYI
         'config_digest',  # digest of the raw config body
 
         # These two are mutually exclusive, and one MUST be non-None.
         'config_body',  # byte blob with the fetched config
-        'perms_rev',    # revision of the permissions DB used
+        'perms_rev',  # revision of the permissions DB used
     ])
-
 
 # How many AuthDB revisions to produce when permission.DB changes (e.g. when
 # a new permission is added to an existing role).
@@ -114,13 +110,10 @@ def execute_jobs(jobs, txn_sleep_time):
       time.sleep(txn_sleep_time)
     try:
       job()
-    except (
-          apiproxy_errors.Error,
-          datastore_errors.Error,
-          replication.ReplicationTriggerError) as exc:
-      logging.error(
-          'Failed, will try again later: %s - %s',
-          exc.__class__.__name__, exc)
+    except (apiproxy_errors.Error, datastore_errors.Error,
+            replication.ReplicationTriggerError) as exc:
+      logging.error('Failed, will try again later: %s - %s',
+                    exc.__class__.__name__, exc)
       success = False
   return success
 
@@ -198,9 +191,8 @@ def check_config_changes(db, latest, stored):
   for rev in latest:
     cur = stored_map.get(rev.project_id)
     if not cur or cur.config_digest != rev.config_digest:
-      yield functools.partial(
-          update_realms, db, [rev],
-          'Realms config rev "%s"' % rev.config_rev)
+      yield functools.partial(update_realms, db, [rev],
+                              'Realms config rev "%s"' % rev.config_rev)
     elif cur.perms_rev != db.revision:
       reeval.append(rev)  # was evaluated with potentially stale roles
 
@@ -216,9 +208,8 @@ def check_config_changes(db, latest, stored):
   # split it into DB_REEVAL_REVISIONS revisions, hoping for the best.
   batch_size = max(1, len(reeval) // DB_REEVAL_REVISIONS)
   for i in range(0, len(reeval), batch_size):
-    yield functools.partial(
-        update_realms, db, reeval[i:i+batch_size],
-        'Permissions rev "%s"' % db.revision)
+    yield functools.partial(update_realms, db, reeval[i:i + batch_size],
+                            'Permissions rev "%s"' % db.revision)
 
 
 @ndb.tasklet
@@ -231,13 +222,14 @@ def get_latest_revs_async():
     # get_project_configs_async.
     assert body is not None
     assert exc is None
-    out.append(RealmsCfgRev(
-        project_id=project_id,
-        config_rev=rev or 'unknown',
-        config_digest=hashlib.sha256(body).hexdigest(),
-        config_body=body,
-        perms_rev=None,
-    ))
+    out.append(
+        RealmsCfgRev(
+            project_id=project_id,
+            config_rev=rev or 'unknown',
+            config_digest=hashlib.sha256(body).hexdigest(),
+            config_body=body,
+            perms_rev=None,
+        ))
   raise ndb.Return(out)
 
 
@@ -248,13 +240,14 @@ def get_stored_revs_async():
   metas = yield AuthProjectRealmsMeta.query(
       ancestor=model.root_key()).fetch_async()
   for meta in metas:
-    out.append(RealmsCfgRev(
-        project_id=meta.project_id,
-        config_rev=meta.config_rev,
-        config_digest=meta.config_digest,
-        config_body=None,
-        perms_rev=meta.perms_rev,
-    ))
+    out.append(
+        RealmsCfgRev(
+            project_id=meta.project_id,
+            config_rev=meta.config_rev,
+            config_digest=meta.config_digest,
+            config_body=None,
+            perms_rev=meta.perms_rev,
+        ))
   raise ndb.Return(out)
 
 
@@ -301,9 +294,7 @@ def update_realms(db, revs, comment):
   @ndb.transactional
   def update():
     existing = ndb.get_multi(
-        model.project_realms_key(rev.project_id)
-        for rev, _ in expanded
-    )
+        model.project_realms_key(rev.project_id) for rev, _ in expanded)
 
     updated = []
     metas = []
@@ -327,20 +318,20 @@ def update_realms(db, revs, comment):
         ent.config_rev = rev.config_rev
         ent.perms_rev = db.revision
         ent.record_revision(
-            modified_by=model.get_service_self_identity(),
-            comment=comment)
+            modified_by=model.get_service_self_identity(), comment=comment)
         updated.append(ent)
       else:
         logging.info('Realms config in project "%s" are fresh', rev.project_id)
 
       # Always update AuthProjectRealmsMeta to match the state we just checked.
-      metas.append(AuthProjectRealmsMeta(
-          key=project_realms_meta_key(rev.project_id),
-          config_rev=rev.config_rev,
-          perms_rev=db.revision,
-          config_digest=rev.config_digest,
-          modified_ts=utils.utcnow(),
-      ))
+      metas.append(
+          AuthProjectRealmsMeta(
+              key=project_realms_meta_key(rev.project_id),
+              config_rev=rev.config_rev,
+              perms_rev=db.revision,
+              config_digest=rev.config_digest,
+              modified_ts=utils.utcnow(),
+          ))
 
     logging.info('Persisting changes...')
     ndb.put_multi(updated + metas)
@@ -401,5 +392,6 @@ class AuthProjectRealmsMeta(ndb.Model):
 def project_realms_meta_key(project_id):
   """An ndb.Key for an AuthProjectRealmsMeta entity."""
   return ndb.Key(
-      AuthProjectRealmsMeta, 'meta',
+      AuthProjectRealmsMeta,
+      'meta',
       parent=model.project_realms_key(project_id))

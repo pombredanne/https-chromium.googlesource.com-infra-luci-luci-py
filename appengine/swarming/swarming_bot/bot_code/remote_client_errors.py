@@ -13,6 +13,7 @@ class InitializationError(Exception):
 
 class BotCodeError(Exception):
   """Raised by RemoteClient.get_bot_code."""
+
   def __init__(self, new_zip, url, version):
     super(BotCodeError,
           self).__init__('Unable to download %s from %s; first tried version %s'

@@ -1,7 +1,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Functions to fetch and parse pools.cfg file with list of pools.
 
 See comments in proto/pools.proto for more context. Structures defined here are
@@ -24,11 +23,9 @@ from server import config as local_config
 from server import directory_occlusion
 from server import service_accounts
 
-
 POOLS_CFG_FILENAME = 'pools.cfg'
 
 NAMESPACE_RE = re.compile(r'^[a-z0-9A-Z\-._]+$')
-
 
 # Validated read-only representation of one pool.
 PoolConfig = collections.namedtuple(
@@ -207,6 +204,7 @@ class TaskTemplate(_TaskTemplate):
     This is used internally by the .from_pb method to build up a finalized
     TaskTemplate instance.
     """
+
     def __init__(self, ctx, t):
       assert isinstance(t, pools_pb2.TaskTemplate)
 
@@ -261,9 +259,7 @@ class TaskTemplate(_TaskTemplate):
 
       if include_name:
         if include_name in self.inclusions:
-          ctx.error(
-              'template %r included multiple times',
-              include_name)
+          ctx.error('template %r included multiple times', include_name)
         self.inclusions.add(include_name)
 
       for transitive_include in other.inclusions:
@@ -350,9 +346,8 @@ class TaskTemplate(_TaskTemplate):
           found_cycle = True
           ctx.error('depends on %r, which causes an import cycle', include)
         else:
-          assert False, (
-              'resolve_func returned a bad type: %s: %r' % (
-                  type(resolved), resolved))
+          assert False, ('resolve_func returned a bad type: %s: %r' %
+                         (type(resolved), resolved))
       except KeyError:
         ctx.error('unknown include: %r', include)
 
@@ -390,17 +385,17 @@ def known():
 
 ### Private stuff.
 
-
 # Used only on dev server as an ultimate fallback to enable local_smoke_test to
 # work.
 _LOCAL_FAKE_CONFIG = None
 
 # Parsed representation of pools.cfg ready for queries.
-_PoolsCfg = collections.namedtuple('_PoolsCfg', [
-  'pools',  # dict {pool name => PoolConfig tuple}
-
-  'default_external_services', # (IsolateServer, CipdServer)
-])
+_PoolsCfg = collections.namedtuple(
+    '_PoolsCfg',
+    [
+        'pools',  # dict {pool name => PoolConfig tuple}
+        'default_external_services',  # (IsolateServer, CipdServer)
+    ])
 
 
 def _resolve_task_template_inclusions(ctx, task_templates):
@@ -419,6 +414,7 @@ def _resolve_task_template_inclusions(ctx, task_templates):
     return
 
   resolved = {}  # name -> TaskTemplate | None | TaskTemplate.CYCLE
+
   def resolve(name):
     # Let this raise KeyError if not found
     template = template_map[name]
@@ -435,8 +431,8 @@ def _resolve_task_template_inclusions(ctx, task_templates):
   return resolved
 
 
-def _resolve_task_template_deployments(
-    ctx, template_map, task_template_deployments):
+def _resolve_task_template_deployments(ctx, template_map,
+                                       task_template_deployments):
   ret = {}
 
   for i, deployment in enumerate(task_template_deployments):
@@ -450,8 +446,7 @@ def _resolve_task_template_deployments(
   return ret
 
 
-def _resolve_deployment(
-    ctx, pool_msg, template_map, deployment_map):
+def _resolve_deployment(ctx, pool_msg, template_map, deployment_map):
   deployment_scheme = pool_msg.WhichOneof('task_deployment_scheme')
   if deployment_scheme == 'task_template_deployment':
     if pool_msg.task_template_deployment not in deployment_map:
@@ -577,10 +572,9 @@ def _fetch_pools_config():
   if cfg.HasField('default_external_services'):
     ext = cfg.default_external_services
     default_isolate = IsolateServer(ext.isolate.server, ext.isolate.namespace)
-    default_cipd = CipdServer(
-        ext.cipd.server,
-        ext.cipd.client_package.package_name,
-        ext.cipd.client_package.version)
+    default_cipd = CipdServer(ext.cipd.server,
+                              ext.cipd.client_package.package_name,
+                              ext.cipd.client_package.version)
 
   pools = {}
   for msg in cfg.pool:
@@ -612,8 +606,7 @@ def _fetch_pools_config():
 def _validate_pools_cfg(cfg, ctx):
   """Validates pools.cfg file."""
 
-  template_map = _resolve_task_template_inclusions(
-      ctx, cfg.task_template)
+  template_map = _resolve_task_template_inclusions(ctx, cfg.task_template)
   deployment_map = _resolve_task_template_deployments(
       ctx, template_map, cfg.task_template_deployment)
   bot_monitorings = _resolve_bot_monitoring(ctx, cfg.bot_monitoring)
@@ -685,9 +678,8 @@ def _validate_pools_cfg(cfg, ctx):
         else:
           bot_monitoring_unreferred.discard(msg.bot_monitoring)
   if bot_monitoring_unreferred:
-    ctx.error(
-        'bot_monitoring not referred to: %s',
-        ', '.join(sorted(bot_monitoring_unreferred)))
+    ctx.error('bot_monitoring not referred to: %s', ', '.join(
+        sorted(bot_monitoring_unreferred)))
 
 
 def bootstrap_dev_server_acls():

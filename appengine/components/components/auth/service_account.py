@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Generation of OAuth2 token for a service account.
 
 Supports three ways to generate OAuth2 tokens:
@@ -31,28 +30,29 @@ from . import exceptions
 
 from components import utils
 
-
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'get_access_token',
-  'get_access_token_async',
-  'get_project_access_token',
-  'get_project_access_token_async',
-  'AccessTokenError',
-  'ServiceAccountKey',
+    'get_access_token',
+    'get_access_token_async',
+    'get_project_access_token',
+    'get_project_access_token_async',
+    'AccessTokenError',
+    'ServiceAccountKey',
 ]
 
 # Information about @*.iam.gserviceaccount.com. Field values can be extracted
 # from corresponding fields in JSON file produced by "Generate new JSON key"
 # button in "Credentials" section of any Cloud Console project.
-ServiceAccountKey = collections.namedtuple('ServiceAccountKey', [
-  # Service account email.
-  'client_email',
-  # Service account PEM encoded private key.
-  'private_key',
-  # Service account key fingerprint, an unique identifier of this key.
-  'private_key_id',
-])
+ServiceAccountKey = collections.namedtuple(
+    'ServiceAccountKey',
+    [
+        # Service account email.
+        'client_email',
+        # Service account PEM encoded private key.
+        'private_key',
+        # Service account key fingerprint, an unique identifier of this key.
+        'private_key_id',
+    ])
 
 
 class AccessTokenError(Exception):
@@ -78,8 +78,8 @@ def authenticated_request_async(url, method='GET', payload=None, params=None):
   scope = 'https://www.googleapis.com/auth/userinfo.email'
   access_token = get_access_token(scope)[0]
   headers = {
-    'Accept': 'application/json; charset=utf-8',
-    'Authorization': 'Bearer %s' % access_token,
+      'Accept': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer %s' % access_token,
   }
 
   if payload is not None:
@@ -138,8 +138,7 @@ def authenticated_request(**kwargs):
 
 
 @ndb.tasklet
-def get_project_access_token_async(
-    project_id, scopes, min_lifetime_sec=5*60):
+def get_project_access_token_async(project_id, scopes, min_lifetime_sec=5 * 60):
   """Returns an OAuth2 access token for a project.
 
   Args:
@@ -158,8 +157,8 @@ def get_project_access_token_async(
   # fresh).
   if min_lifetime_sec <= 0 or min_lifetime_sec > 30 * 60:
     raise ValueError(
-        '"min_lifetime_sec" should be in range (0; 1800], actual: %d'
-        % min_lifetime_sec)
+        '"min_lifetime_sec" should be in range (0; 1800], actual: %d' %
+        min_lifetime_sec)
 
   # Accept a single string to mimic app_identity.get_access_token behavior.
   if isinstance(scopes, basestring):
@@ -168,10 +167,7 @@ def get_project_access_token_async(
 
   # Cache key for the token.
   cache_key = _memcache_key(
-      method='tokenserver',
-      email=project_id,
-      scopes=scopes,
-      key_id=None)
+      method='tokenserver', email=project_id, scopes=scopes, key_id=None)
   # We need token only on cache miss, so generate it lazily.
   token = yield _get_or_mint_token_async(
       cache_key,
@@ -191,8 +187,10 @@ def get_project_access_token(*args, **kwargs):
 
 
 @ndb.tasklet
-def get_access_token_async(
-    scopes, service_account_key=None, act_as=None, min_lifetime_sec=5*60):
+def get_access_token_async(scopes,
+                           service_account_key=None,
+                           act_as=None,
+                           min_lifetime_sec=5 * 60):
   """Returns an OAuth2 access token for a service account.
 
   If 'service_account_key' is specified, will use it to generate access token
@@ -232,8 +230,8 @@ def get_access_token_async(
   # fresh).
   if min_lifetime_sec <= 0 or min_lifetime_sec > 30 * 60:
     raise ValueError(
-        '"min_lifetime_sec" should be in range (0; 1800], actual: %d'
-        % min_lifetime_sec)
+        '"min_lifetime_sec" should be in range (0; 1800], actual: %d' %
+        min_lifetime_sec)
 
   # Accept a single string to mimic app_identity.get_access_token behavior.
   if isinstance(scopes, basestring):
@@ -246,10 +244,7 @@ def get_access_token_async(
     # Cache key for the target token! Not the IAM-scoped one. The key ID is not
     # known in advance when using signJwt RPC.
     cache_key = _memcache_key(
-        method='iam',
-        email=act_as,
-        scopes=scopes,
-        key_id=None)
+        method='iam', email=act_as, scopes=scopes, key_id=None)
     # We need IAM-scoped token only on cache miss, so generate it lazily.
     iam_token_factory = (
       lambda: get_access_token_async(
@@ -302,6 +297,7 @@ def get_access_token(*args, **kwargs):
 
 _MEMCACHE_NS = 'access_tokens'
 
+
 def _memcache_key(method, email, scopes, key_id=None):
   """Returns a string to use as a memcache key for a token.
 
@@ -312,19 +308,19 @@ def _memcache_key(method, email, scopes, key_id=None):
     key_id: private key ID used (if known).
   """
   blob = utils.encode_to_json({
-    'method': method,
-    'email': email,
-    'scopes': scopes,
-    'key_id': key_id,
+      'method': method,
+      'email': email,
+      'scopes': scopes,
+      'key_id': key_id,
   })
   return hashlib.sha256(blob).hexdigest()
 
+
 @ndb.tasklet
-def _get_or_mint_token_async(
-    cache_key,
-    min_lifetime_sec,
-    minter,
-    namespace=_MEMCACHE_NS):
+def _get_or_mint_token_async(cache_key,
+                             min_lifetime_sec,
+                             minter,
+                             namespace=_MEMCACHE_NS):
   """Gets an accress token from the cache or triggers mint flow."""
   # Randomize refresh time to avoid thundering herd effect when token expires.
   # Also add 5 sec extra to make sure callers will get the token that lives for
@@ -334,14 +330,15 @@ def _get_or_mint_token_async(
   token_info = yield _memcache_get(cache_key, namespace=namespace)
 
   min_allowed_exp = (
-    utils.time_time() +
-    _randint(min_lifetime_sec + 5, min_lifetime_sec + 305))
+      utils.time_time() + _randint(min_lifetime_sec + 5,
+                                   min_lifetime_sec + 305))
 
   if not token_info or token_info['exp_ts'] < min_allowed_exp:
     token_info = yield minter()
-    yield _memcache_set(cache_key, token_info,
-                        token_info['exp_ts'], namespace=namespace)
+    yield _memcache_set(
+        cache_key, token_info, token_info['exp_ts'], namespace=namespace)
   raise ndb.Return(token_info['access_token'], token_info['exp_ts'])
+
 
 @ndb.tasklet
 def _mint_jwt_based_token_async(scopes, signer):
@@ -357,18 +354,17 @@ def _mint_jwt_based_token_async(scopes, signer):
   # perfectly in sync with global time. If client machine's time is in the
   # future according to Google server clock, the access token request will be
   # denied. It doesn't complain about slightly late clock though.
-  logging.info(
-    'Refreshing the access token for %s with scopes %s',
-    signer.email, scopes)
+  logging.info('Refreshing the access token for %s with scopes %s',
+               signer.email, scopes)
 
   now = int(utils.time_time()) - 5
   jwt = yield signer.sign_claimset_async({
-    'aud': 'https://www.googleapis.com/oauth2/v4/token',
-    'exp': now + 3600,
-    'iat': now,
-    'iss': signer.email,
-    'jti': _b64_encode(os.urandom(16)),
-    'scope': ' '.join(scopes),
+      'aud': 'https://www.googleapis.com/oauth2/v4/token',
+      'exp': now + 3600,
+      'iat': now,
+      'iss': signer.email,
+      'jti': _b64_encode(os.urandom(16)),
+      'scope': ' '.join(scopes),
   })
 
   # URL encoded body of a token request.
@@ -383,25 +379,27 @@ def _mint_jwt_based_token_async(scopes, signer):
       payload=request_body,
       method='POST',
       headers={
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
       })
   raise ndb.Return({
-    'access_token': str(token['access_token']),
-    'exp_ts': int(utils.time_time() + token['expires_in'])
+      'access_token': str(token['access_token']),
+      'exp_ts': int(utils.time_time() + token['expires_in'])
   })
 
+
 @ndb.tasklet
-def _mint_oauth_token_async(
-    token_factory, email, scopes, lifetime_sec=0, delegates=None):
+def _mint_oauth_token_async(token_factory,
+                            email,
+                            scopes,
+                            lifetime_sec=0,
+                            delegates=None):
   """Creates a new access token using IAM credentials API."""
   # Query IAM credentials generateAccessToken API to obtain an OAuth token for
   # a given service account. Maximum lifetime is 1 hour. And can be obtained
   # through a chain of delegates.
-  logging.info(
-      'Refreshing the access token for %s with scopes %s',
-      email, scopes
-  )
+  logging.info('Refreshing the access token for %s with scopes %s', email,
+               scopes)
 
   request_body = {'scope': scopes}
   if delegates:
@@ -422,11 +420,12 @@ def _mint_oauth_token_async(
       },
       payload=utils.encode_to_json(request_body),
   )
-  expired_at = int(utils.datetime_to_timestamp(
-      utils.parse_rfc3339_datetime(response['expireTime'])) / 1e6)
+  expired_at = int(
+      utils.datetime_to_timestamp(
+          utils.parse_rfc3339_datetime(response['expireTime'])) / 1e6)
   raise ndb.Return({
-    'access_token': response['accessToken'],
-    'exp_ts': expired_at,
+      'access_token': response['accessToken'],
+      'exp_ts': expired_at,
   })
 
 
@@ -459,16 +458,14 @@ def _call_async(url, payload, method, headers):
 
     # Transient error on the other side.
     if response.status_code >= 500:
-      logging.warning(
-          '%s %s failed with HTTP %d: %r',
-          method, url, response.status_code, response.content)
+      logging.warning('%s %s failed with HTTP %d: %r', method, url,
+                      response.status_code, response.content)
       continue
 
     # Non-transient error.
     if 300 <= response.status_code < 500:
-      logging.warning(
-          '%s %s failed with HTTP %d: %r',
-          method, url, response.status_code, response.content)
+      logging.warning('%s %s failed with HTTP %d: %r', method, url,
+                      response.status_code, response.content)
       raise AccessTokenError(
           'Failed to call %s: HTTP %d' % (url, response.status_code))
 
@@ -489,6 +486,7 @@ def _call_async(url, payload, method, headers):
 def _randint(*args, **kwargs):
   """To be mocked in tests."""
   return random.randint(*args, **kwargs)
+
 
 def _urlfetch(**kwargs):
   """To be mocked in tests."""
@@ -527,13 +525,13 @@ def _log_jwt(email, method, jwt):
     raise AccessTokenError('Got broken JWT, see logs')
 
   try:
-    hdr = _b64_decode(parts[0])     # includes key ID
+    hdr = _b64_decode(parts[0])  # includes key ID
     claims = _b64_decode(parts[1])  # includes scopes and timestamp
-    sig = parts[2][:12]             # only 9 bytes of the signature
+    sig = parts[2][:12]  # only 9 bytes of the signature
   except (TypeError, ValueError):
     logging.error(
-        'Got broken JWT (can\'t base64-decode): by=%s method=%s jwt=%r',
-        email, method, jwt)
+        'Got broken JWT (can\'t base64-decode): by=%s method=%s jwt=%r', email,
+        method, jwt)
     raise AccessTokenError('Got broken JWT, see logs')
 
   if not _is_json_object(hdr):
@@ -548,8 +546,8 @@ def _log_jwt(email, method, jwt):
     raise AccessTokenError('Got broken JWT, see logs')
 
   logging.info(
-      'signed_jwt: by=%s method=%s hdr=%s claims=%s sig_prefix=%s fp=%s',
-      email, method, hdr, claims, sig, utils.get_token_fingerprint(jwt))
+      'signed_jwt: by=%s method=%s hdr=%s claims=%s sig_prefix=%s fp=%s', email,
+      method, hdr, claims, sig, utils.get_token_fingerprint(jwt))
 
 
 def _b64_encode(data):
@@ -579,15 +577,17 @@ class _LocalSigner(object):
   @ndb.tasklet
   def sign_claimset_async(self, claimset):
     # Prepare JWT header and claimset as base 64.
-    header_b64 = _b64_encode(utils.encode_to_json({
-      'alg': 'RS256',
-      'kid': self._key.private_key_id,
-      'typ': 'JWT',
-    }))
+    header_b64 = _b64_encode(
+        utils.encode_to_json({
+            'alg': 'RS256',
+            'kid': self._key.private_key_id,
+            'typ': 'JWT',
+        }))
     claimset_b64 = _b64_encode(utils.encode_to_json(claimset))
     # Sign <header>.<claimset> with account's private key.
-    signature_b64 = _b64_encode(self._rsa_sign(
-        '%s.%s' % (header_b64, claimset_b64), self._key.private_key))
+    signature_b64 = _b64_encode(
+        self._rsa_sign('%s.%s' % (header_b64, claimset_b64),
+                       self._key.private_key))
     jwt = '%s.%s.%s' % (header_b64, claimset_b64, signature_b64)
     _log_jwt(self.email, 'local', jwt)
     raise ndb.Return(jwt)

@@ -27,7 +27,7 @@ DEFAULT_SCOPES = ['email']
 DEFAULT_TIMEOUT = 30
 
 # This is part of the API.
-if sys.platform.startswith('win'): # pragma: no cover
+if sys.platform.startswith('win'):  # pragma: no cover
   SERVICE_ACCOUNTS_CREDS_ROOT = 'C:\\creds\\service_accounts'
 else:
   SERVICE_ACCOUNTS_CREDS_ROOT = '/creds/service_accounts'
@@ -65,8 +65,8 @@ def load_service_account_credentials(credentials_filename,
   Raises:
     AuthError: if the file content is invalid.
   """
-  service_accounts_creds_root = (service_accounts_creds_root
-                                 or SERVICE_ACCOUNTS_CREDS_ROOT)
+  service_accounts_creds_root = (
+      service_accounts_creds_root or SERVICE_ACCOUNTS_CREDS_ROOT)
 
   service_account_file = os.path.join(service_accounts_creds_root,
                                       credentials_filename)
@@ -74,8 +74,8 @@ def load_service_account_credentials(credentials_filename,
     with open(service_account_file, 'r') as f:
       key = json.load(f)
   except ValueError as e:
-    raise AuthError('Parsing of file as JSON failed (%s): %s',
-                    e, service_account_file)
+    raise AuthError('Parsing of file as JSON failed (%s): %s', e,
+                    service_account_file)
 
   if key.get('type') != 'service_account':
     msg = ('Credentials type must be for a service_account, got %s.'
@@ -122,11 +122,11 @@ def get_signed_jwt_assertion_credentials(credentials_filename,
   assert all(isinstance(s, basestring) for s in scope)
 
   key = load_service_account_credentials(
-    credentials_filename,
-    service_accounts_creds_root=service_accounts_creds_root)
+      credentials_filename,
+      service_accounts_creds_root=service_accounts_creds_root)
 
   return oauth2client.client.SignedJwtAssertionCredentials(
-    key['client_email'], key['private_key'], scope)
+      key['client_email'], key['private_key'], scope)
 
 
 def get_authenticated_http(credentials_filename,
@@ -155,9 +155,9 @@ def get_authenticated_http(credentials_filename,
     httplib2.Http authenticated with master's service account.
   """
   creds = get_signed_jwt_assertion_credentials(
-    credentials_filename,
-    scope=scope,
-    service_accounts_creds_root=service_accounts_creds_root)
+      credentials_filename,
+      scope=scope,
+      service_accounts_creds_root=service_accounts_creds_root)
 
   if http_identifier:
     http = InstrumentedHttp(http_identifier, timeout=timeout)
@@ -166,8 +166,7 @@ def get_authenticated_http(credentials_filename,
   return creds.authorize(http)
 
 
-class DelegateServiceAccountCredentials(
-    oauth2client.client.OAuth2Credentials):
+class DelegateServiceAccountCredentials(oauth2client.client.OAuth2Credentials):
   """Authorizes an HTTP client with a service account for which we are an actor.
 
   This class uses the IAM:generateAccessToken API to obtain an access token for
@@ -206,29 +205,27 @@ class DelegateServiceAccountCredentials(
   def _refresh(self, _):
     # Use IAM:generateAccessToken API to create an access token
     req = {
-      "scope": self._scopes,
+        "scope": self._scopes,
     }
 
     response, content = (
-      self._http.request(
-        uri='https://iamcredentials.googleapis.com/v1/projects/%s/'
-            'serviceAccounts/%s:generateAccessToken' %
-            (urllib.quote_plus(self._project),
-             urllib.quote_plus(self._sa_email)),
-        method='POST',
-        body=json.dumps(req),
-        headers={
-          'Content-Type': 'application/json',
-        },
-      ))
+        self._http.request(
+            uri='https://iamcredentials.googleapis.com/v1/projects/%s/'
+            'serviceAccounts/%s:generateAccessToken' % (urllib.quote_plus(
+                self._project), urllib.quote_plus(self._sa_email)),
+            method='POST',
+            body=json.dumps(req),
+            headers={
+                'Content-Type': 'application/json',
+            },
+        ))
 
     if response.status != 200:
       msg = ('Unable to generate access token,'
-             'http error code %d, content: %s'
-             % (response.status, content))
+             'http error code %d, content: %s' % (response.status, content))
       logging.error(msg)
-      raise AuthError('Code: %d, Reason: %s'
-                      % (response.status, response.reason))
+      raise AuthError(
+          'Code: %d, Reason: %s' % (response.status, response.reason))
 
     resp = json.loads(content)
     self.access_token = resp['accessToken']
@@ -238,7 +235,10 @@ class DelegateServiceAccountCredentials(
 class RetriableHttp(object):
   """A httplib2.Http object that retries on failure."""
 
-  def __init__(self, http, max_tries=5, backoff_time=1,
+  def __init__(self,
+               http,
+               max_tries=5,
+               backoff_time=1,
                retrying_statuses_fn=None):
     """
     Args:
@@ -267,9 +267,8 @@ class RetriableHttp(object):
                        'will retry')
         else:
           break
-      except (ValueError, errors.Error,
-              socket.timeout, socket.error, socket.herror, socket.gaierror,
-              httplib2.HttpLib2Error) as error:
+      except (ValueError, errors.Error, socket.timeout, socket.error,
+              socket.herror, socket.gaierror, httplib2.HttpLib2Error) as error:
         logging.info('RetriableHttp: attempt %d received exception: %s, %s',
                      i, error, 'final attempt' if i == self._max_tries else \
                      'will retry')
@@ -346,8 +345,8 @@ class InstrumentedHttp(httplib2.Http):
 
 class HttpMock(object):
   """Mock of httplib2.Http"""
-  HttpCall = collections.namedtuple('HttpCall', ('uri', 'method', 'body',
-                                                 'headers'))
+  HttpCall = collections.namedtuple('HttpCall',
+                                    ('uri', 'method', 'body', 'headers'))
 
   def __init__(self, uris):
     """
@@ -380,7 +379,8 @@ class HttpMock(object):
       self._uris.append((compiled_uri, new_headers, body))
 
   # pylint: disable=unused-argument
-  def request(self, uri,
+  def request(self,
+              uri,
               method='GET',
               body=None,
               headers=None,

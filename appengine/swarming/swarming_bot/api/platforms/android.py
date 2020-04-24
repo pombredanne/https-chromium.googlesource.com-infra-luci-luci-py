@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Android specific utility functions.
 
 This file serves as an API to bot_config.py. bot_config.py can be replaced on
@@ -190,6 +189,7 @@ def get_dimensions(devices):
 
   # Tweaks the 'product.brand' prop to be a little more readable.
   if dimensions.get(u'device_os_flavor'):
+
     def _fix_flavor(flavor):
       flavor = flavor.lower()
       # Non-aosp stock android is reported as 'google'. Other OEMs that ship
@@ -202,7 +202,7 @@ def get_dimensions(devices):
 
   nb_android = len(dimensions[u'android'])
   dimensions[u'android_devices'] = map(
-      str, range(nb_android, max(0, nb_android-4), -1))
+      str, range(nb_android, max(0, nb_android - 4), -1))
 
   # TODO(maruel): Add back once dimensions limit is figured out and there's a
   # need.
@@ -213,8 +213,7 @@ def get_dimensions(devices):
   dimensions[u'os'] = ['Android']
 
   logging.info(
-      'get_dimensions() (device part) took %gs' %
-      round(time.time() - start, 1))
+      'get_dimensions() (device part) took %gs' % round(time.time() - start, 1))
 
   def _get_package_versions(package):
     versions = set()
@@ -287,6 +286,5 @@ def get_state(devices):
       }
   }
   logging.info(
-      'get_state() (device part) took %gs' %
-      round(time.time() - start, 1))
+      'get_state() (device part) took %gs' % round(time.time() - start, 1))
   return state

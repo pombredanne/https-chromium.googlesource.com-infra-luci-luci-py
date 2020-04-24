@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Runs either task_runner.py, bot_main.py or bot_config.py.
 
 The imports are done late so if an ImportError occurs, it is localized to this
@@ -17,7 +16,6 @@ import os
 import shutil
 import sys
 import zipfile
-
 
 # We have to reorder imports to make sure the third parties included in the zip
 # are preferred over the ones on the system.
@@ -67,7 +65,6 @@ def fix_protobuf_package():
 
 # Then it's safe to import the rest.
 fix_protobuf_package()
-
 
 import signal_trace
 
@@ -173,8 +170,7 @@ def CMDshell(args):
   }
   # Can't use: from api.platforms import *
   local_vars.update(
-      (k, v) for k, v in platforms.__dict__.items()
-      if not k.startswith('_'))
+      (k, v) for k, v in platforms.__dict__.items() if not k.startswith('_'))
 
   if args:
     for arg in args:

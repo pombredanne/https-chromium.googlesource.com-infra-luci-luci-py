@@ -10,10 +10,8 @@ import unittest
 from test_support import test_env
 test_env.setup_test_env()
 
-
 from components.auth import b64
 from test_support import test_case
-
 
 URL_SAFE_ALPHABET = set(string.letters + string.digits + '-_')
 

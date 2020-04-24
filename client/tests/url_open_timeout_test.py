@@ -41,8 +41,8 @@ class SleepingServer(socketserver.ThreadingMixIn, BaseHTTPServer.HTTPServer):
     pass
 
   def start(self):
-    self.serving_thread = threading.Thread(target=self.serve_forever,
-                                           kwargs={'poll_interval': 0.05})
+    self.serving_thread = threading.Thread(
+        target=self.serve_forever, kwargs={'poll_interval': 0.05})
     self.serving_thread.start()
 
   def stop(self):
@@ -72,10 +72,10 @@ class SleepingHandler(BaseHTTPServer.BaseHTTPRequestHandler):
   full_response = first_line + second_line
 
   modes = {
-    'sleep_before_response': ['SLEEP', 'HEADERS', 'FIRST', 'SECOND'],
-    'sleep_after_headers': ['HEADERS', 'SLEEP', 'FIRST', 'SECOND'],
-    'sleep_during_response': ['HEADERS', 'FIRST', 'SLEEP', 'SECOND'],
-    'sleep_after_response': ['HEADERS', 'FIRST', 'SECOND', 'SLEEP'],
+      'sleep_before_response': ['SLEEP', 'HEADERS', 'FIRST', 'SECOND'],
+      'sleep_after_headers': ['HEADERS', 'SLEEP', 'FIRST', 'SECOND'],
+      'sleep_during_response': ['HEADERS', 'FIRST', 'SLEEP', 'SECOND'],
+      'sleep_after_response': ['HEADERS', 'FIRST', 'SECOND', 'SLEEP'],
   }
 
   def send_headers(self):
@@ -106,10 +106,10 @@ class SleepingHandler(BaseHTTPServer.BaseHTTPRequestHandler):
       return
     # Mapping mode's action -> function to call.
     actions = {
-      'SLEEP': lambda: self.server.sleep(timeout),
-      'HEADERS': self.send_headers,
-      'FIRST': lambda: self.wfile.write(self.first_line),
-      'SECOND': lambda: self.wfile.write(self.second_line),
+        'SLEEP': lambda: self.server.sleep(timeout),
+        'HEADERS': self.send_headers,
+        'FIRST': lambda: self.wfile.write(self.first_line),
+        'SECOND': lambda: self.wfile.write(self.second_line),
     }
     # Execute all actions defined by the mode.
     for action in self.modes[mode]:
@@ -117,6 +117,7 @@ class SleepingHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
 
 class UrlOpenTimeoutTest(auto_stub.TestCase):
+
   def setUp(self):
     super(UrlOpenTimeoutTest, self).setUp()
     self.mock(authenticators, 'OAuthAuthenticator', lambda *_: None)
@@ -136,12 +137,14 @@ class UrlOpenTimeoutTest(auto_stub.TestCase):
   def test_urlopen_success(self):
     # Server doesn't block.
     for mode in SleepingHandler.modes:
-      self.assertEqual(self.call(mode, 0, read_timeout=0.1).read(),
-                       SleepingHandler.full_response)
+      self.assertEqual(
+          self.call(mode, 0, read_timeout=0.1).read(),
+          SleepingHandler.full_response)
     # Server does block, but url_open called without read timeout.
     for mode in SleepingHandler.modes:
-      self.assertEqual(self.call(mode, 0.25, read_timeout=None).read(),
-                       SleepingHandler.full_response)
+      self.assertEqual(
+          self.call(mode, 0.25, read_timeout=None).read(),
+          SleepingHandler.full_response)
 
   def test_urlopen_retry(self):
     # This should trigger retry logic and eventually return None.
@@ -162,8 +165,7 @@ class UrlOpenTimeoutTest(auto_stub.TestCase):
     with self.assertRaises(net.TimeoutError):
       next(gen)
 
-  @unittest.skipIf(platform.system() == 'Darwin',
-                   'TODO(crbug.com/1017545):'
+  @unittest.skipIf(platform.system() == 'Darwin', 'TODO(crbug.com/1017545):'
                    'AssertionError: TimeoutError not raised')
   def test_urlopen_timeout_mid_stream(self):
     # Timeouts while reading from the stream.

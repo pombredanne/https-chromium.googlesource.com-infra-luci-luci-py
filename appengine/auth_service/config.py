@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Adapter between config service client and the rest of auth_service.
 
 Basically a cron job that each minute refetches config files from config service
@@ -39,7 +38,6 @@ from components.config import validation
 
 from proto import config_pb2
 import importer
-
 
 # Config file revision number and where it came from.
 Revision = collections.namedtuple('Revision', ['revision', 'url'])
@@ -132,9 +130,8 @@ def refetch_config(force=False):
   # First update configs that do not touch AuthDB, one by one.
   for path, (rev, conf) in sorted(dirty.items()):
     dirty = _CONFIG_SCHEMAS[path]['updater'](None, rev, conf)
-    logging.info(
-        'Processed %s at rev %s: %s', path, rev.revision,
-        'updated' if dirty else 'up-to-date')
+    logging.info('Processed %s at rev %s: %s', path, rev.revision,
+                 'updated' if dirty else 'up-to-date')
 
   # Configs that touch AuthDB are updated in a single transaction so that config
   # update generates single AuthDB replication task instead of a bunch of them.
@@ -293,24 +290,21 @@ def _update_authdb_configs(configs):
   revs = _imported_config_revisions_key().get()
   if not revs:
     revs = _ImportedConfigRevisions(
-        key=_imported_config_revisions_key(),
-        revisions={})
+        key=_imported_config_revisions_key(), revisions={})
 
   ingested_revs = {}  # path -> Revision
   for path, (rev, conf) in sorted(configs.items()):
     dirty = _CONFIG_SCHEMAS[path]['updater'](root, rev, conf)
     revs.revisions[path] = {'rev': rev.revision, 'url': rev.url}
-    logging.info(
-        'Processed %s at rev %s: %s', path, rev.revision,
-        'updated' if dirty else 'up-to-date')
+    logging.info('Processed %s at rev %s: %s', path, rev.revision,
+                 'updated' if dirty else 'up-to-date')
     if dirty:
       ingested_revs[path] = rev
 
   if root.to_dict() != orig:
     assert ingested_revs
     report = ', '.join(
-        '%s@%s' % (p, rev.revision) for p, rev in sorted(ingested_revs.items())
-    )
+        '%s@%s' % (p, rev.revision) for p, rev in sorted(ingested_revs.items()))
     logging.info('Global config has been updated: %s', report)
     root.record_revision(
         modified_by=model.get_service_self_identity(),
@@ -360,9 +354,8 @@ def _resolve_ip_whitelist_includes(whitelists):
 
   def resolve_one(wl, visiting):
     if wl.name in visiting:
-      raise ValueError(
-          'IP whitelist %s is part of an include cycle %s' %
-          (wl.name, visiting + [wl.name]))
+      raise ValueError('IP whitelist %s is part of an include cycle %s' %
+                       (wl.name, visiting + [wl.name]))
     visiting.append(wl.name)
     subnets = set(wl.subnets)
     for inc in wl.includes:
@@ -383,8 +376,8 @@ def _update_ip_whitelist_config(root, rev, conf):
 
   # Existing whitelist entities.
   existing_ip_whitelists = {
-    e.key.id(): e
-    for e in model.AuthIPWhitelist.query(ancestor=model.root_key())
+      e.key.id(): e
+      for e in model.AuthIPWhitelist.query(ancestor=model.root_key())
   }
 
   # Whitelists being imported (name => [list of subnets]).
@@ -419,10 +412,8 @@ def _update_ip_whitelist_config(root, rev, conf):
       model.ip_whitelist_assignments_key().get() or
       model.AuthIPWhitelistAssignments(
           key=model.ip_whitelist_assignments_key()))
-  existing = {
-    (a.identity.to_bytes(), a.ip_whitelist): a
-    for a in ip_whitelist_assignments.assignments
-  }
+  existing = {(a.identity.to_bytes(), a.ip_whitelist): a
+              for a in ip_whitelist_assignments.assignments}
   updated = []
   for a in conf.assignments:
     key = (a.identity, a.ip_whitelist_name)
@@ -438,10 +429,7 @@ def _update_ip_whitelist_config(root, rev, conf):
       updated.append(new_one)
 
   # Something has changed?
-  updated_keys = [
-    (a.identity.to_bytes(), a.ip_whitelist)
-    for a in updated
-  ]
+  updated_keys = [(a.identity.to_bytes(), a.ip_whitelist) for a in updated]
   if set(updated_keys) != set(existing):
     ip_whitelist_assignments.assignments = updated
     to_put.append(ip_whitelist_assignments)
@@ -478,16 +466,16 @@ def _update_oauth_config(root, _rev, conf):
   assert ndb.in_transaction(), 'Must be called in AuthDB transaction'
   assert isinstance(root, model.AuthGlobalConfig), root
   existing_as_dict = {
-    'oauth_client_id': root.oauth_client_id,
-    'oauth_client_secret': root.oauth_client_secret,
-    'oauth_additional_client_ids': list(root.oauth_additional_client_ids),
-    'token_server_url': root.token_server_url,
+      'oauth_client_id': root.oauth_client_id,
+      'oauth_client_secret': root.oauth_client_secret,
+      'oauth_additional_client_ids': list(root.oauth_additional_client_ids),
+      'token_server_url': root.token_server_url,
   }
   new_as_dict = {
-    'oauth_client_id': conf.primary_client_id,
-    'oauth_client_secret': conf.primary_client_secret,
-    'oauth_additional_client_ids': list(conf.client_ids),
-    'token_server_url': conf.token_server_url,
+      'oauth_client_id': conf.primary_client_id,
+      'oauth_client_secret': conf.primary_client_secret,
+      'oauth_additional_client_ids': list(conf.client_ids),
+      'token_server_url': conf.token_server_url,
   }
   if new_as_dict == existing_as_dict:
     return False
@@ -538,38 +526,52 @@ def _update_security_config(root, _rev, conf):
 #   'default': Default config value to use if the config file is missing.
 # }
 _CONFIG_SCHEMAS = {
-  'imports.cfg': {
-    'proto_class': None, # importer configs are stored as text
-    'revision_getter': _get_imports_config_revision_async,
-    'updater': _update_imports_config,
-    'use_authdb_transaction': False,
-  },
-  'ip_whitelist.cfg': {
-    'proto_class': config_pb2.IPWhitelistConfig,
-    'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
-    'updater': _update_ip_whitelist_config,
-    'use_authdb_transaction': True,
-  },
-  'oauth.cfg': {
-    'proto_class': config_pb2.OAuthConfig,
-    'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
-    'updater': _update_oauth_config,
-    'use_authdb_transaction': True,
-  },
-  'settings.cfg': {
-    'proto_class': None, # settings are stored as text in datastore
-    'default': '',  # it's fine if config file is not there
-    'revision_getter': lambda: _get_service_config_rev_async('settings.cfg'),
-    'updater': lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
-    'use_authdb_transaction': False,
-  },
-  'security.cfg': {
-    'proto_class': security_config_pb2.SecurityConfig,
-    'default': security_config_pb2.SecurityConfig(),
-    'revision_getter': lambda: _get_authdb_config_rev_async('security.cfg'),
-    'updater': _update_security_config,
-    'use_authdb_transaction': True,
-  },
+    'imports.cfg': {
+        'proto_class': None,  # importer configs are stored as text
+        'revision_getter': _get_imports_config_revision_async,
+        'updater': _update_imports_config,
+        'use_authdb_transaction': False,
+    },
+    'ip_whitelist.cfg': {
+        'proto_class':
+            config_pb2.IPWhitelistConfig,
+        'revision_getter':
+            lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
+        'updater':
+            _update_ip_whitelist_config,
+        'use_authdb_transaction':
+            True,
+    },
+    'oauth.cfg': {
+        'proto_class': config_pb2.OAuthConfig,
+        'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
+        'updater': _update_oauth_config,
+        'use_authdb_transaction': True,
+    },
+    'settings.cfg': {
+        'proto_class':
+            None,  # settings are stored as text in datastore
+        'default':
+            '',  # it's fine if config file is not there
+        'revision_getter':
+            lambda: _get_service_config_rev_async('settings.cfg'),
+        'updater':
+            lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
+        'use_authdb_transaction':
+            False,
+    },
+    'security.cfg': {
+        'proto_class':
+            security_config_pb2.SecurityConfig,
+        'default':
+            security_config_pb2.SecurityConfig(),
+        'revision_getter':
+            lambda: _get_authdb_config_rev_async('security.cfg'),
+        'updater':
+            _update_security_config,
+        'use_authdb_transaction':
+            True,
+    },
 }
 
 
@@ -602,13 +604,13 @@ def _fetch_configs(paths):
       default = _CONFIG_SCHEMAS[path].get('default')
       if default is None:
         raise CannotLoadConfigError('Config %s is missing' % path)
-      rev, conf = '0'*40, default
+      rev, conf = '0' * 40, default
     try:
       validation.validate(config.self_config_set(), path, conf)
     except ValueError as exc:
       raise CannotLoadConfigError(
-          'Config %s at rev %s failed to pass validation: %s' %
-          (path, rev, exc))
+          'Config %s at rev %s failed to pass validation: %s' % (path, rev,
+                                                                 exc))
     out[path] = (Revision(rev, _gitiles_url(configs_url, rev, path)), conf)
   return out
 
@@ -617,11 +619,12 @@ def _gitiles_url(configs_url, rev, path):
   """URL to a directory in gitiles -> URL to a file at concrete revision."""
   try:
     location = gitiles.Location.parse(configs_url)
-    return str(gitiles.Location(
-        hostname=location.hostname,
-        project=location.project,
-        treeish=rev,
-        path=posixpath.join(location.path, path)))
+    return str(
+        gitiles.Location(
+            hostname=location.hostname,
+            project=location.project,
+            treeish=rev,
+            path=posixpath.join(location.path, path)))
   except ValueError:
     # Not a gitiles URL, return as is.
     return configs_url

@@ -11,9 +11,6 @@ sys.path.insert(0, os.path.join(THIS_DIR, '..', '..'))
 
 from tools import run_coverage
 
-
 if __name__ == '__main__':
-  sys.exit(run_coverage.main(
-      THIS_DIR,
-      [],
-      'PRESUBMIT.py,components,*test*,tool*'))
+  sys.exit(
+      run_coverage.main(THIS_DIR, [], 'PRESUBMIT.py,components,*test*,tool*'))

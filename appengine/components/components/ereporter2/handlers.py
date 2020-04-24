@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """HTTP Handlers."""
 
 import datetime
@@ -26,9 +25,7 @@ from . import models
 from . import on_error
 from . import ui
 
-
 # Access to a protected member XXX of a client class - pylint: disable=W0212
-
 
 ### Admin pages.
 
@@ -52,8 +49,8 @@ class RestrictedEreporter2Report(auth.AuthenticatingHandler):
     # formatted datetime.
     end = int(float(self.request.get('end', 0)) or time.time())
     start = int(
-        float(self.request.get('start', 0)) or
-        ui._get_default_start_time() or 0)
+        float(self.request.get('start', 0)) or ui._get_default_start_time() or
+        0)
     modules = self.request.get('modules')
     if modules:
       modules = modules.split(',')
@@ -63,15 +60,22 @@ class RestrictedEreporter2Report(auth.AuthenticatingHandler):
         start, end, module_versions)
 
     params = {
-      'errors': errors,
-      'errors_count': sum(len(e.events) for e in errors),
-      'errors_version_count':
-          len(set(itertools.chain.from_iterable(e.versions for e in errors))),
-      'ignored': ignored,
-      'ignored_count': sum(len(i.events) for i in ignored),
-      'ignored_version_count':
-          len(set(itertools.chain.from_iterable(i.versions for i in ignored))),
-      'xsrf_token': self.generate_xsrf_token(),
+        'errors':
+            errors,
+        'errors_count':
+            sum(len(e.events) for e in errors),
+        'errors_version_count':
+            len(set(itertools.chain.from_iterable(e.versions for e in errors))),
+        'ignored':
+            ignored,
+        'ignored_count':
+            sum(len(i.events) for i in ignored),
+        'ignored_version_count':
+            len(
+                set(itertools.chain.from_iterable(
+                    i.versions for i in ignored))),
+        'xsrf_token':
+            self.generate_xsrf_token(),
     }
     params.update(ui._get_template_env(start, end, module_versions))
     self.response.write(template.render('ereporter2/requests.html', params))
@@ -99,12 +103,13 @@ class RestrictedEreporter2ErrorsList(auth.AuthenticatingHandler):
     limit = int(self.request.get('limit', 100))
     cursor = datastore_query.Cursor(urlsafe=self.request.get('cursor'))
     errors_found, cursor, more = models.Error.query().order(
-        -models.Error.created_ts).fetch_page(limit, start_cursor=cursor)
+        -models.Error.created_ts).fetch_page(
+            limit, start_cursor=cursor)
     params = {
-      'cursor': cursor.urlsafe() if cursor and more else None,
-      'errors': errors_found,
-      'limit': limit,
-      'now': utils.utcnow(),
+        'cursor': cursor.urlsafe() if cursor and more else None,
+        'errors': errors_found,
+        'limit': limit,
+        'now': utils.utcnow(),
     }
     self.response.out.write(template.render('ereporter2/errors.html', params))
 
@@ -119,13 +124,14 @@ class RestrictedEreporter2Error(auth.AuthenticatingHandler):
     if not error:
       self.abort(404, 'Error not found')
     params = {
-      'error': error,
-      'now': utils.utcnow(),
+        'error': error,
+        'now': utils.utcnow(),
     }
     self.response.out.write(template.render('ereporter2/error.html', params))
 
 
 class RestrictedEreporter2Silence(auth.AuthenticatingHandler):
+
   @auth.autologin
   @auth.require(acl.is_ereporter2_viewer)
   def get(self):
@@ -135,8 +141,8 @@ class RestrictedEreporter2Silence(auth.AuthenticatingHandler):
     items = models.ErrorReportingMonitoring.query().fetch()
     items.sort(key=lambda x: x.created_ts)
     params = {
-      'silenced': items,
-      'xsrf_token': self.generate_xsrf_token(),
+        'silenced': items,
+        'xsrf_token': self.generate_xsrf_token(),
     }
     self.response.out.write(template.render('ereporter2/silence.html', params))
 
@@ -179,6 +185,7 @@ class RestrictedEreporter2Silence(auth.AuthenticatingHandler):
 
 class CronEreporter2Mail(webapp2.RequestHandler):
   """Generate and emails an exception report."""
+
   @decorators.require_cronjob
   def get(self):
     """Sends email(s) containing the errors logged."""
@@ -191,11 +198,8 @@ class CronEreporter2Mail(webapp2.RequestHandler):
     report_url = host_url + '/restricted/ereporter2/report'
     recipients = self.request.get('recipients', acl.get_ereporter2_recipients())
     result = ui._generate_and_email_report(
-        utils.get_module_version_list(None, False),
-        recipients,
-        request_id_url,
-        report_url,
-        {})
+        utils.get_module_version_list(None, False), recipients, request_id_url,
+        report_url, {})
     self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
     if result:
       self.response.write('Success.')
@@ -206,6 +210,7 @@ class CronEreporter2Mail(webapp2.RequestHandler):
 
 class CronEreporter2Cleanup(webapp2.RequestHandler):
   """Deletes old error reports."""
+
   @decorators.require_cronjob
   def get(self):
     old_cutoff = utils.utcnow() - on_error.ERROR_TIME_TO_LIVE
@@ -262,37 +267,33 @@ class OnErrorHandler(auth.AuthenticatingHandler):
     report_id = on_error.log_request(self.request, add_params=False, **kwargs)
     self.response.headers['Content-Type'] = 'application/json; charset=utf-8'
     body = {
-      'id': report_id,
-      'url':
-          '%s/restricted/ereporter2/errors/%d' %
-          (self.request.host_url, report_id),
+        'id':
+            report_id,
+        'url':
+            '%s/restricted/ereporter2/errors/%d' % (self.request.host_url,
+                                                    report_id),
     }
     self.response.write(utils.encode_to_json(body))
 
 
 def get_frontend_routes():
   routes = [
-    # Public API.
-    webapp2.Route(
-      '/ereporter2/api/v1/on_error', OnErrorHandler),
+      # Public API.
+      webapp2.Route('/ereporter2/api/v1/on_error', OnErrorHandler),
   ]
   if not utils.should_disable_ui_routes():
     routes.extend([
-      webapp2.Route(
-        r'/restricted/ereporter2/errors',
-        RestrictedEreporter2ErrorsList),
-      webapp2.Route(
-        r'/restricted/ereporter2/errors/<error_id:\d+>',
-        RestrictedEreporter2Error),
-      webapp2.Route(
-        r'/restricted/ereporter2/report',
-        RestrictedEreporter2Report),
-      webapp2.Route(
-        r'/restricted/ereporter2/request/<request_id:[0-9a-fA-F]+>',
-        RestrictedEreporter2Request),
-      webapp2.Route(
-        r'/restricted/ereporter2/silence',
-        RestrictedEreporter2Silence),
+        webapp2.Route(r'/restricted/ereporter2/errors',
+                      RestrictedEreporter2ErrorsList),
+        webapp2.Route(r'/restricted/ereporter2/errors/<error_id:\d+>',
+                      RestrictedEreporter2Error),
+        webapp2.Route(r'/restricted/ereporter2/report',
+                      RestrictedEreporter2Report),
+        webapp2.Route(
+            r'/restricted/ereporter2/request/<request_id:[0-9a-fA-F]+>',
+            RestrictedEreporter2Request),
+        webapp2.Route(r'/restricted/ereporter2/silence',
+                      RestrictedEreporter2Silence),
     ])
 
   return routes
@@ -301,8 +302,7 @@ def get_frontend_routes():
 def get_backend_routes():
   # This requires a cron job to this URL.
   return [
-    webapp2.Route(
-        r'/internal/cron/ereporter2/cleanup', CronEreporter2Cleanup),
-    webapp2.Route(
-        r'/internal/cron/ereporter2/mail', CronEreporter2Mail),
+      webapp2.Route(r'/internal/cron/ereporter2/cleanup',
+                    CronEreporter2Cleanup),
+      webapp2.Route(r'/internal/cron/ereporter2/mail', CronEreporter2Mail),
   ]

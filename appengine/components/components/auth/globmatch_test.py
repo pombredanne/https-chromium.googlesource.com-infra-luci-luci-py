@@ -13,6 +13,7 @@ from components.auth import globmatch
 
 
 class GlobMatchTest(unittest.TestCase):
+
   def test_translate(self):
     self.assertEqual('^$', globmatch._translate(''))
     self.assertEqual('^.*$', globmatch._translate('*'))

@@ -7,7 +7,6 @@ import os
 import sys
 import unittest
 
-
 # config/
 APP_DIR = os.path.dirname(os.path.realpath(os.path.abspath(__file__)))
 # config/components/third_party

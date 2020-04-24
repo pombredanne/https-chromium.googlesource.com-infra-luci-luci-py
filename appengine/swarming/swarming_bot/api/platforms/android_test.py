@@ -13,7 +13,6 @@ test_env_platforms.setup_test_env()
 if sys.platform.startswith('linux'):
   import android
 
-
 GMS_PACKAGE = 'com.google.android.gms'
 PLAYSTORE_PACKAGE = 'com.android.vending'
 

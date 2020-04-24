@@ -57,7 +57,7 @@ class Handler(httpserver.Handler):
           'client_id': 'id',
           'client_not_so_secret': 'hunter2',
           'primary_url': self.server.url,
-        })
+      })
     raise NotImplementedError(self.path)
 
   def do_POST(self):

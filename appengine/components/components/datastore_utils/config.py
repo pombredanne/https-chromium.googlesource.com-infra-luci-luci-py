@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Versioned singleton entity with global application configuration.
 
 Example usage:
@@ -64,6 +63,7 @@ class GlobalConfig(ndb.Model):
     # environment, last one wins). Same can be achieved with metaclasses, but no
     # one likes metaclasses.
     if not cls._config_fetcher_async:
+
       @ndb.tasklet
       def fetcher():
         with fetcher.cache_lock:

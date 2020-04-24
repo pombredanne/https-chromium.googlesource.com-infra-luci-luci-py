@@ -2,7 +2,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Calculate statistics about tasks.
 
 Saves the data fetched from the server into a json file to enable reprocessing
@@ -18,7 +17,6 @@ import subprocess
 import sys
 
 from six.moves import urllib
-
 
 CLIENT_DIR = os.path.dirname(
     os.path.dirname(
@@ -125,7 +123,7 @@ def percentile(items, percent):
   rank_int = int(rank)
   rest = rank - rank_int
   if rest and rank_int < len(items) - 1:
-    return items[rank_int] + rest * (items[rank_int+1] - items[rank_int])
+    return items[rank_int] + rest * (items[rank_int + 1] - items[rank_int])
   return items[min(rank_int, len(items) - 1)]
 
 
@@ -143,7 +141,7 @@ def fetch_data(options):
   if not options.start:
     # Defaults to 25 hours ago.
     options.start = datetime.datetime.utcnow() - datetime.timedelta(
-        seconds=25*60*60)
+        seconds=25 * 60 * 60)
   else:
     options.start = parse_time_option(options.start)
   if not options.end:
@@ -187,7 +185,7 @@ def stats(tasks, show_cost):
       if not i.get('deduped_from') and not i.get('properties_hash')
   ]
   ri = [
-    i for i in tasks if not i.get('deduped_from') and i.get('properties_hash')
+      i for i in tasks if not i.get('deduped_from') and i.get('properties_hash')
   ]
   dd = [i for i in tasks if i.get('deduped_from')]
 
@@ -235,7 +233,6 @@ def stats(tasks, show_cost):
   percent_failures = sp(len(failures), len(tasks))
   percent_two_tries = sp(len(two_tries), len(tasks))
 
-
   # Print results as a table.
   if rn:
     cost = '  %7.2f$ (%5.1f%%)' % (cost_rn, percent_rn_cost_total)
@@ -264,16 +261,13 @@ def stats(tasks, show_cost):
     cost = '           (%5.1f%%)' % (percent_dd_cost_rel)
     print(
         '         (%5.1f%%)                     (%5.1f%%)%s  '
-        '  (relative to idempotent tasks only)' % (
-          percent_dd_nb_rel, percent_dd_duration_rel,
-          cost if show_cost else ''))
+        '  (relative to idempotent tasks only)' %
+        (percent_dd_nb_rel, percent_dd_duration_rel, cost if show_cost else ''))
   if int(bool(rn)) + int(bool(ri)) + int(bool(dd)) > 1:
     cost = '           %7.2f$' % (cost_total)
-    print(
-        '  %6d           %18s%s           '
-        'Total tasks' % (
-          len(tasks), seconds_to_timedelta(duration_total),
-          cost if show_cost else ''))
+    print('  %6d           %18s%s           '
+          'Total tasks' % (len(tasks), seconds_to_timedelta(duration_total),
+                           cost if show_cost else ''))
   print('        Reliability:    %7g%%    Internal errors: %-4d' %
         (reliability, len(internal_failures)))
   print('        Tasks failures: %-4d (%5.3f%%)' % (len(failures),
@@ -338,7 +332,10 @@ def main():
       '--start', help='Starting date in UTC; defaults to 25 hours ago')
   parser.add_option('--end', help='End date in UTC; defaults to --start+1 day')
   parser.add_option(
-      '--no-cost', action='store_false', dest='cost', default=True,
+      '--no-cost',
+      action='store_false',
+      dest='cost',
+      default=True,
       help='Strip $ from display')
   parser.add_option(
       '--users', action='store_true', help='Display top users instead')

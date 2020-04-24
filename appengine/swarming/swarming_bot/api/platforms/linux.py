@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """GNU/Linux specific utility functions."""
 
 from __future__ import absolute_import
@@ -22,9 +21,7 @@ from utils import tools
 from api.platforms import common
 from api.platforms import gpu
 
-
 ## Private stuff.
-
 
 libc = ctypes.cdll.LoadLibrary(ctypes.util.find_library('c'))
 
@@ -34,6 +31,7 @@ CPU_SETSIZE = 1024
 NCPUBITS = 8 * ctypes.sizeof(cpu_mask_t)
 
 pid_t = ctypes.c_uint64
+
 
 class cpu_set_t(ctypes.Structure):
   _fields_ = [('__bits', cpu_mask_t * (CPU_SETSIZE // NCPUBITS))]
@@ -61,9 +59,7 @@ def get_num_processors():
   # find out the number of usable processors instead.
   cpu_set = cpu_set_t()
   err = libc.sched_getaffinity(
-      pid_t(os.getpid()),
-      ctypes.sizeof(cpu_set_t),
-      ctypes.pointer(cpu_set))
+      pid_t(os.getpid()), ctypes.sizeof(cpu_set_t), ctypes.pointer(cpu_set))
   if err != 0:
     # This is not a big deal, fallback onto multiprocessing. This happens on
     # MIPS.
@@ -77,8 +73,8 @@ def _lspci():
   list(Bus, Type, Vendor [ID], Device [ID], extra...)
   """
   try:
-    lines = subprocess.check_output(
-        ['lspci', '-mm', '-nn'], stderr=subprocess.PIPE).splitlines()
+    lines = subprocess.check_output(['lspci', '-mm', '-nn'],
+                                    stderr=subprocess.PIPE).splitlines()
   except (OSError, subprocess.CalledProcessError):
     # It normally happens on Google Compute Engine as lspci is not installed by
     # default and on ARM since they do not have a PCI bus.
@@ -175,7 +171,7 @@ def get_audio():
     return None
   # Join columns 'Vendor' and 'Device'. 'man lspci' for more details.
   return [
-    u': '.join(l[2:4]) for l in pci_devices if l[1] == 'Audio device [0403]'
+      u': '.join(l[2:4]) for l in pci_devices if l[1] == 'Audio device [0403]'
   ]
 
 

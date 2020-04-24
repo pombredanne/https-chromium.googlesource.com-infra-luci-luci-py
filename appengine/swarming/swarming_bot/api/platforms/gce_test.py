@@ -39,6 +39,7 @@ class TestGCE(auto_stub.TestCase):
 
 
 class TestSignedMetadataToken(auto_stub.TestCase):
+
   def setUp(self):
     super(TestSignedMetadataToken, self).setUp()
     self.now = 1541465089.0
@@ -56,6 +57,7 @@ class TestSignedMetadataToken(auto_stub.TestCase):
         bytes_json) + b'.unimportant'
 
     metadata_calls = []
+
     def mocked_raw_metadata_request(path):
       metadata_calls.append(path)
       return jwt
@@ -66,8 +68,8 @@ class TestSignedMetadataToken(auto_stub.TestCase):
     self.assertEqual(tok, jwt)
     self.assertEqual(exp, self.now + 3600)
     self.assertEqual(metadata_calls, [
-      '/computeMetadata/v1/instance/service-accounts/default/'
-      'identity?audience=https%3A%2F%2Fexample.com&format=full',
+        '/computeMetadata/v1/instance/service-accounts/default/'
+        'identity?audience=https%3A%2F%2Fexample.com&format=full',
     ])
 
     # Hitting the cache now.

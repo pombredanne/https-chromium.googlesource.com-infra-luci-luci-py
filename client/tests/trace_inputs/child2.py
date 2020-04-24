@@ -22,16 +22,15 @@ def main():
     open('test_file.txt', 'rb').close()
 
   expected = {
-    'bar': 'Foo\n',
-    'foo': 'Bar\n',
+      'bar': 'Foo\n',
+      'foo': 'Bar\n',
   }
 
   root = 'files1'
-  actual = dict(
-      (filename, open(os.path.join(root, filename), 'rb').read())
-      for filename in (os.listdir(root))
-      if (filename != 'do_not_care.txt' and
-          os.path.isfile(os.path.join(root, filename))))
+  actual = dict((filename, open(os.path.join(root, filename), 'rb').read())
+                for filename in (os.listdir(root))
+                if (filename != 'do_not_care.txt' and
+                    os.path.isfile(os.path.join(root, filename))))
 
   if actual != expected:
     print('Failure')

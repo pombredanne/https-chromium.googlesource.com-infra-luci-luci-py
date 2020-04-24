@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Generates statistics out of logs. Contains the backend code.
 
 The first 100mb of logs read is free. It's important to keep logs concise also
@@ -24,7 +23,6 @@ from components import utils
 import bqh
 
 from proto import isolated_pb2
-
 
 ### Models
 
@@ -68,7 +66,6 @@ class BqStateStats(ndb.Model):
 
 
 ### Utility
-
 
 # Text to store for the corresponding actions.
 _ACTION_NAMES = ['store', 'return', 'lookup', 'dupe']
@@ -118,9 +115,8 @@ def _extract_snapshot_from_logs(start_time, end_time):
         total_lines += 1
       else:
         parse_errors += 1
-  logging.debug(
-      '_extract_snapshot_from_logs(%s, %s): %d lines, %d errors',
-      start_time, end_time, total_lines, parse_errors)
+  logging.debug('_extract_snapshot_from_logs(%s, %s): %d lines, %d errors',
+                start_time, end_time, total_lines, parse_errors)
   return values
 
 
@@ -147,20 +143,24 @@ def _send_to_bq(snapshots):
       'https://www.googleapis.com/bigquery/v2/projects/%s/datasets/%s/tables/'
       '%s/insertAll') % (app_identity.get_application_id(), dataset, table_name)
   payload = {
-    'kind': 'bigquery#tableDataInsertAllRequest',
-    # Do not fail entire request because of one bad snapshot.
-    # We handle invalid rows below.
-    'skipInvalidRows': True,
-    'ignoreUnknownValues': False,
-    'rows': [
-      {
-        'insertId': s.timestamp_str,
-        'json': bqh.message_to_dict(_to_proto(s)),
-      } for s in snapshots
-    ],
+      'kind':
+          'bigquery#tableDataInsertAllRequest',
+      # Do not fail entire request because of one bad snapshot.
+      # We handle invalid rows below.
+      'skipInvalidRows':
+          True,
+      'ignoreUnknownValues':
+          False,
+      'rows': [{
+          'insertId': s.timestamp_str,
+          'json': bqh.message_to_dict(_to_proto(s)),
+      } for s in snapshots],
   }
   res = net.json_request(
-      url=url, method='POST', payload=payload, scopes=bqh.INSERT_ROWS_SCOPE,
+      url=url,
+      method='POST',
+      payload=payload,
+      scopes=bqh.INSERT_ROWS_SCOPE,
       deadline=600)
 
   failed = []
@@ -175,10 +175,8 @@ def _send_to_bq(snapshots):
 
 ### Public API
 
-
 STATS_HANDLER = stats_framework.StatisticsFramework(
     'global_stats', _Snapshot, _extract_snapshot_from_logs)
-
 
 # Action to log.
 STORE, RETURN, LOOKUP, DUPE = range(4)
@@ -283,8 +281,8 @@ def cron_send_to_bq():
         size = max_batch - len(state.failed)
 
       logging.info(
-          'Fetching %d entities starting from %s and %d failed backlog',
-          size, state.last, len(state.failed))
+          'Fetching %d entities starting from %s and %d failed backlog', size,
+          state.last, len(state.failed))
 
       keys = [
           STATS_HANDLER.minute_key(state.last +
@@ -308,7 +306,7 @@ def cron_send_to_bq():
       state = BqStateStats(
           id=1,
           ts=utils.utcnow(),
-          last=state.last + datetime.timedelta(seconds=60*size),
+          last=state.last + datetime.timedelta(seconds=60 * size),
           failed=failed)
       state.put()
   finally:

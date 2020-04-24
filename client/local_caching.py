@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Define local cache policies."""
 
 import contextlib
@@ -65,9 +64,8 @@ def is_valid_file(path, size):
                     os.path.basename(path), e)
     return False
   if size != actual_size:
-    logging.warning(
-        'Found invalid item %s; %d != %d',
-        os.path.basename(path), actual_size, size)
+    logging.warning('Found invalid item %s; %d != %d', os.path.basename(path),
+                    actual_size, size)
     return False
   return True
 
@@ -106,6 +104,7 @@ def trim_caches(caches, path, min_free_space, max_age_secs):
   for c in caches:
     total.extend(c.trim())
   return total
+
 
 def _use_scandir():
   # Use scandir in windows for faster execution.
@@ -169,6 +168,7 @@ class NoMoreSpace(Exception):
 
 
 class CachePolicies(object):
+
   def __init__(self, max_cache_size, min_free_space, max_items, max_age_secs):
     """Common caching policies for the multiple caches (isolated, named, cipd).
 
@@ -198,6 +198,7 @@ class CachePolicies(object):
 
 class CacheMiss(Exception):
   """Raised when an item is not in cache."""
+
   def __init__(self, digest):
     self.digest = digest
     super(CacheMiss,
@@ -714,10 +715,8 @@ class DiskContentAddressedCache(ContentAddressedCache):
 
     # Ensure enough free space.
     self._free_disk = file_path.get_free_space(self.cache_dir)
-    while (
-        self.policies.min_free_space and
-        self._lru and
-        self._free_disk < self.policies.min_free_space):
+    while (self.policies.min_free_space and self._lru and
+           self._free_disk < self.policies.min_free_space):
       # self._free_disk is updated by this call.
       evicted.append(self._remove_lru_file(True))
 
@@ -805,7 +804,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
 
   def _get_mtime(self, digest):
     """Get mtime of cache file."""
-    return  os.path.getmtime(self._path(digest))
+    return os.path.getmtime(self._path(digest))
 
   def _is_valid_hash(self, digest):
     """Verify digest with supported hash algos."""
@@ -971,8 +970,8 @@ class NamedCache(Cache):
 
         try:
           fs.symlink(os.path.join(u'..', rel_cache), named_path)
-          logging.info(
-              'NamedCache: Created symlink %r to %r', named_path, abs_cache)
+          logging.info('NamedCache: Created symlink %r to %r', named_path,
+                       abs_cache)
         except OSError:
           # Ignore on Windows. It happens when running as a normal user or when
           # UAC is enabled and the user is a filtered administrator account.
@@ -1050,9 +1049,8 @@ class NamedCache(Cache):
         while len(self._lru) > self._policies.max_items:
           name, size = self._remove_lru_item()
           evicted.append(size)
-          logging.info(
-              'NamedCache.trim(): Removed %r(%d) due to max_items(%d)',
-              name, size, self._policies.max_items)
+          logging.info('NamedCache.trim(): Removed %r(%d) due to max_items(%d)',
+                       name, size, self._policies.max_items)
 
       # Trim according to maximum age.
       if self._policies.max_age_secs:
@@ -1064,8 +1062,8 @@ class NamedCache(Cache):
           name, size = self._remove_lru_item()
           evicted.append(size)
           logging.info(
-              'NamedCache.trim(): Removed %r(%d) due to max_age_secs(%d)',
-              name, size, self._policies.max_age_secs)
+              'NamedCache.trim(): Removed %r(%d) due to max_age_secs(%d)', name,
+              size, self._policies.max_age_secs)
 
       # Trim according to minimum free space.
       if self._policies.min_free_space:
@@ -1111,14 +1109,13 @@ class NamedCache(Cache):
         # Remove missing entries.
         for missing in (set(expected) - actual):
           name, size = self._lru.pop(expected[missing])
-          logging.warning(
-              'NamedCache.cleanup(): Missing on disk %r(%d)', name, size)
+          logging.warning('NamedCache.cleanup(): Missing on disk %r(%d)', name,
+                          size)
         # Remove unexpected items.
         for unexpected in (actual - set(expected)):
           try:
             p = os.path.join(self.cache_dir, unexpected)
-            logging.warning(
-                'NamedCache.cleanup(): Unexpected %r', unexpected)
+            logging.warning('NamedCache.cleanup(): Unexpected %r', unexpected)
             if fs.isdir(p) and not fs.islink(p):
               file_path.rmtree(p)
             else:
@@ -1141,8 +1138,8 @@ class NamedCache(Cache):
               if expected_link == link:
                 continue
               logging.warning(
-                  'Unexpected symlink for cache %s: %s, expected %s',
-                  name, link, expected_link)
+                  'Unexpected symlink for cache %s: %s, expected %s', name,
+                  link, expected_link)
             else:
               logging.warning('Unexpected non symlink for cache %s', name)
             if fs.isdir(p) and not fs.islink(p):
@@ -1180,6 +1177,7 @@ class NamedCache(Cache):
     def upgrade(_name, rel_cache):
       abs_cache = os.path.join(self.cache_dir, rel_cache)
       return rel_cache, _get_recursive_size(abs_cache)
+
     self._lru.transform(upgrade)
     self._save()
 
@@ -1202,8 +1200,7 @@ class NamedCache(Cache):
     while len(tried) < 1000:
       i = random.randint(0, abc_len * abc_len - 1)
       rel_path = (
-        self._DIR_ALPHABET[i / abc_len] +
-        self._DIR_ALPHABET[i % abc_len])
+          self._DIR_ALPHABET[i / abc_len] + self._DIR_ALPHABET[i % abc_len])
       if rel_path in tried:
         continue
       abs_path = os.path.join(self.cache_dir, rel_path)

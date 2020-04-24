@@ -2,7 +2,6 @@
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Runs the whole set of swarming client unit tests on swarming itself.
 
 This is done in a few steps:
@@ -93,7 +92,10 @@ def archive_isolated_triggers(isolate_server, tree_isolated, tests):
       tools.write_json(v, isolated, True)
       isolateds.append(v)
     cmd = [
-        'isolateserver.py', 'archive', '--isolate-server', isolate_server,
+        'isolateserver.py',
+        'archive',
+        '--isolate-server',
+        isolate_server,
     ] + isolateds
     if logging.getLogger().isEnabledFor(logging.INFO):
       cmd.append('--verbose')
@@ -106,10 +108,8 @@ def archive_isolated_triggers(isolate_server, tree_isolated, tests):
     file_path.rmtree(tempdir)
 
 
-
-def run_swarming_tests_on_swarming(
-    swarming_server, isolate_server, priority, oses, tests, logs,
-    no_idempotent):
+def run_swarming_tests_on_swarming(swarming_server, isolate_server, priority,
+                                   oses, tests, logs, no_idempotent):
   """Archives, triggers swarming jobs and gets results."""
   print('Archiving the whole tree.')
   start = time.time()
@@ -161,7 +161,7 @@ def run_swarming_tests_on_swarming(
 
 def main():
   parser = parallel_execution.OptionParser(
-              usage='%prog [options]', version=__version__)
+      usage='%prog [options]', version=__version__)
   parser.add_option(
       '--logs',
       help='Destination where to store the failure logs (recommended!)')
@@ -172,7 +172,8 @@ def main():
       action='append',
       help='Run only these test, can be specified multiple times')
   parser.add_option(
-      '--no-idempotent', action='store_true',
+      '--no-idempotent',
+      action='store_true',
       help='Do not use --idempotent to detect flaky tests')
   options, args = parser.parse_args()
   if args:
@@ -185,8 +186,8 @@ def main():
        glob.glob(os.path.join(CLIENT_DIR, 'googletest', 'tests', '*_test.py')))
   ]
   valid_tests = sorted(map(os.path.basename, tests))
-  assert len(valid_tests) == len(set(valid_tests)), (
-      'Can\'t have 2 tests with the same base name')
+  assert len(valid_tests) == len(
+      set(valid_tests)), ('Can\'t have 2 tests with the same base name')
 
   if options.test:
     for t in options.test:

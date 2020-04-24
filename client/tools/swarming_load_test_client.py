@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Triggers a ton of fake jobs to test its handling under high load.
 
 Generates an histogram with the latencies to process the tasks and number of
@@ -39,7 +38,6 @@ from utils import threading_utils
 
 import swarming_load_test_bot
 
-
 # Amount of time the timer should be reduced on the Swarming side.
 TIMEOUT_OVERHEAD = 10
 
@@ -54,7 +52,7 @@ def print_results(results, columns, buckets):
   print('Total items : %d' % len(results))
   average = 0
   if delays:
-    average = sum(delays)/ len(delays)
+    average = sum(delays) / len(delays)
   print('Average delay: %.2fs' % average)
   #print('Average overhead: %s' % graph.to_units(total_size / len(sizes)))
   print('')
@@ -126,10 +124,8 @@ def trigger_task(swarming_url, dimensions, sleep_time, output_size, progress,
       return 'no_test_keys'
     assert test_keys == new_test_keys, (test_keys, new_test_keys)
     out = [
-      output
-      for _index, output in swarming.yield_results(
-          swarming_url, test_keys, timeout, None, False, None, False,
-          True)
+        output for _index, output in swarming.yield_results(
+            swarming_url, test_keys, timeout, None, False, None, False, True)
     ]
     if not out:
       return 'no_result'
@@ -139,13 +135,11 @@ def trigger_task(swarming_url, dimensions, sleep_time, output_size, progress,
       # TODO(maruel): Assert output even when run on a real bot.
       _out_actual = item.pop('output')
       # assert out_actual == swarming_load_test_bot.TASK_OUTPUT, out_actual
-    expected = [
-      {
+    expected = [{
         u'config_instance_index': 0,
         u'exit_codes': u'0',
         u'num_config_instances': 1,
-      }
-    ]
+    }]
     assert out == expected, '\n%s\n%s' % (out, expected)
     return time.time() - start
   finally:
@@ -156,8 +150,10 @@ def main():
   colorama.init()
   parser = optparse.OptionParser(description=sys.modules[__name__].__doc__)
   parser.add_option(
-      '-S', '--swarming',
-      metavar='URL', default='',
+      '-S',
+      '--swarming',
+      metavar='URL',
+      default='',
       help='Swarming server to use')
   swarming.add_filter_options(parser)
   parser.set_defaults(dimensions=[('os', swarming_load_test_bot.OS_NAME)])
@@ -253,8 +249,8 @@ def main():
   progress = threading_utils.Progress(columns)
   index = 0
   results = []
-  with threading_utils.ThreadPoolWithProgress(
-      progress, 1, options.concurrent, 0) as pool:
+  with threading_utils.ThreadPoolWithProgress(progress, 1, options.concurrent,
+                                              0) as pool:
     try:
       start = time.time()
       while True:

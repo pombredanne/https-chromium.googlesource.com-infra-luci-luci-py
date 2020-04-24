@@ -19,11 +19,11 @@ import components.config
 from proto import config_pb2
 import config
 
-
 # pylint: disable=W0212,W0612
 
 
 class ConfigTest(test_case.TestCase):
+
   def setUp(self):
     super(ConfigTest, self).setUp()
 
@@ -34,10 +34,9 @@ class ConfigTest(test_case.TestCase):
     ctx = validation.Context()
     self.assertIsInstance(cfg, config_pb2.SettingsCfg)
     config._validate_settings(cfg, ctx)
-    self.assertEquals(ctx.result().messages, [
-      validation.Message(severity=logging.ERROR, text=m)
-      for m in messages
-    ])
+    self.assertEquals(
+        ctx.result().messages,
+        [validation.Message(severity=logging.ERROR, text=m) for m in messages])
 
   def test_validate_defaults(self):
     self.validator_test(config.settings(fresh=True)._cfg, [])
@@ -78,8 +77,10 @@ class ConfigTest(test_case.TestCase):
 
   def test_get_configs_url_exception(self):
     """Test that 'except' specifies exceptions correctly."""
+
     def mock_raise(_):
       raise net.Error('test', 404, None)
+
     self.mock(components.config, 'get_config_set_location', mock_raise)
     self.assertIsNone(config._get_configs_url())
 

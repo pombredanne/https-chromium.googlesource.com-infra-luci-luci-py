@@ -45,6 +45,7 @@ def test_db():
 
 
 class RolesExpanderTest(test_case.TestCase):
+
   def test_builtin_roles(self):
     r = rules.RolesExpander(test_db().roles, [])
     self.assertEqual(r.role('role/dev.a'), (0, 1))
@@ -87,24 +88,27 @@ class RolesExpanderTest(test_case.TestCase):
 
     # Since eyeballing these numbers are hard, here's a somewhat redundant test.
     remap = lambda permset: {perms[mapping[idx]] for idx in permset}
-    self.assertEqual(remap(r.role('customRole/custom1')), {
-        'luci.dev.p1',
-        'luci.dev.p2',
-        'luci.dev.p3',
-        'luci.dev.p4',
-        'luci.dev.p5',
-    })
-    self.assertEqual(remap(r.role('customRole/custom2')), {
-        'luci.dev.p2',
-        'luci.dev.p3',
-        'luci.dev.p4',
-        'luci.dev.p5',
-    })
-    self.assertEqual(remap(r.role('customRole/custom3')), {
-        'luci.dev.p2',
-        'luci.dev.p3',
-        'luci.dev.p5',
-    })
+    self.assertEqual(
+        remap(r.role('customRole/custom1')), {
+            'luci.dev.p1',
+            'luci.dev.p2',
+            'luci.dev.p3',
+            'luci.dev.p4',
+            'luci.dev.p5',
+        })
+    self.assertEqual(
+        remap(r.role('customRole/custom2')), {
+            'luci.dev.p2',
+            'luci.dev.p3',
+            'luci.dev.p4',
+            'luci.dev.p5',
+        })
+    self.assertEqual(
+        remap(r.role('customRole/custom3')), {
+            'luci.dev.p2',
+            'luci.dev.p3',
+            'luci.dev.p5',
+        })
 
 
 def binding(role, *principals):
@@ -112,17 +116,24 @@ def binding(role, *principals):
 
 
 class ExpandRealmsTest(test_case.TestCase):
+
   def expand(self, cfg):
-    out = rules.expand_realms(
-        test_db(), 'p', realms_config_pb2.RealmsCfg(**cfg))
+    out = rules.expand_realms(test_db(), 'p',
+                              realms_config_pb2.RealmsCfg(**cfg))
     return json_format.MessageToDict(out)
 
   def test_fails_validation(self):
     with self.assertRaises(ValueError):
       self.expand({
           'realms': [
-              {'name': 'r1', 'extends': 'r2'},
-              {'name': 'r2', 'extends': 'r1'},
+              {
+                  'name': 'r1',
+                  'extends': 'r2'
+              },
+              {
+                  'name': 'r2',
+                  'extends': 'r1'
+              },
           ],
       })
 
@@ -132,56 +143,78 @@ class ExpandRealmsTest(test_case.TestCase):
   def test_empty_realm(self):
     cfg = {
         'realms': [
-            {'name': 'r2'},
-            {'name': 'r1'},
+            {
+                'name': 'r2'
+            },
+            {
+                'name': 'r1'
+            },
         ],
     }
-    self.assertEqual(self.expand(cfg), {'realms': [
-        {'name': u'p:@root'},
-        {'name': u'p:r1'},
-        {'name': u'p:r2'},
-    ]})
+    self.assertEqual(
+        self.expand(cfg), {
+            'realms': [
+                {
+                    'name': u'p:@root'
+                },
+                {
+                    'name': u'p:r1'
+                },
+                {
+                    'name': u'p:r2'
+                },
+            ]
+        })
 
   def test_simple_bindings(self):
-    cfg = {'realms': [
-        {
-            'name': 'r',
+    cfg = {
+        'realms': [{
+            'name':
+                'r',
             'bindings': [
                 binding('role/dev.a', 'group:gr1', 'group:gr3'),
                 binding('role/dev.b', 'group:gr2', 'group:gr3'),
                 binding('role/dev.all', 'group:gr4'),
             ],
-        },
-    ]}
-    self.assertEqual(self.expand(cfg), {
-        'permissions': [
-            {'name': u'luci.dev.p1'},
-            {'name': u'luci.dev.p2'},
-            {'name': u'luci.dev.p3'},
-        ],
-        'realms': [
-            {
-                'name': u'p:@root',
-            },
-            {
-                'name': u'p:r',
-                'bindings': [
-                    {
-                        'permissions': [0, 1],
-                        'principals': [u'group:gr1'],
-                    },
-                    {
-                        'permissions': [0, 1, 2],
-                        'principals': [u'group:gr3', u'group:gr4'],
-                    },
-                    {
-                        'permissions': [1, 2],
-                        'principals': [u'group:gr2'],
-                    },
-                ],
-            },
-        ],
-    })
+        },]
+    }
+    self.assertEqual(
+        self.expand(cfg), {
+            'permissions': [
+                {
+                    'name': u'luci.dev.p1'
+                },
+                {
+                    'name': u'luci.dev.p2'
+                },
+                {
+                    'name': u'luci.dev.p3'
+                },
+            ],
+            'realms': [
+                {
+                    'name': u'p:@root',
+                },
+                {
+                    'name':
+                        u'p:r',
+                    'bindings': [
+                        {
+                            'permissions': [0, 1],
+                            'principals': [u'group:gr1'],
+                        },
+                        {
+                            'permissions': [0, 1, 2],
+                            'principals': [u'group:gr3', u'group:gr4'],
+                        },
+                        {
+                            'permissions': [1, 2],
+                            'principals': [u'group:gr2'],
+                        },
+                    ],
+                },
+            ],
+        })
 
   def test_custom_root(self):
     cfg = {
@@ -191,7 +224,8 @@ class ExpandRealmsTest(test_case.TestCase):
                 'bindings': [binding('role/dev.all', 'group:gr4')],
             },
             {
-                'name': 'r',
+                'name':
+                    'r',
                 'bindings': [
                     binding('role/dev.a', 'group:gr1', 'group:gr3'),
                     binding('role/dev.b', 'group:gr2', 'group:gr3'),
@@ -199,41 +233,48 @@ class ExpandRealmsTest(test_case.TestCase):
             },
         ],
     }
-    self.assertEqual(self.expand(cfg), {
-        'permissions': [
-            {'name': u'luci.dev.p1'},
-            {'name': u'luci.dev.p2'},
-            {'name': u'luci.dev.p3'},
-        ],
-        'realms': [
-            {
-                'name': u'p:@root',
-                'bindings': [
-                    {
+    self.assertEqual(
+        self.expand(cfg), {
+            'permissions': [
+                {
+                    'name': u'luci.dev.p1'
+                },
+                {
+                    'name': u'luci.dev.p2'
+                },
+                {
+                    'name': u'luci.dev.p3'
+                },
+            ],
+            'realms': [
+                {
+                    'name':
+                        u'p:@root',
+                    'bindings': [{
                         'permissions': [0, 1, 2],
                         'principals': [u'group:gr4'],
-                    },
-                ],
-            },
-            {
-                'name': u'p:r',
-                'bindings': [
-                    {
-                        'permissions': [0, 1],
-                        'principals': [u'group:gr1'],
-                    },
-                    {
-                        'permissions': [0, 1, 2],
-                        'principals': [u'group:gr3', u'group:gr4'],
-                    },
-                    {
-                        'permissions': [1, 2],
-                        'principals': [u'group:gr2'],
-                    },
-                ],
-            },
-        ],
-    })
+                    },],
+                },
+                {
+                    'name':
+                        u'p:r',
+                    'bindings': [
+                        {
+                            'permissions': [0, 1],
+                            'principals': [u'group:gr1'],
+                        },
+                        {
+                            'permissions': [0, 1, 2],
+                            'principals': [u'group:gr3', u'group:gr4'],
+                        },
+                        {
+                            'permissions': [1, 2],
+                            'principals': [u'group:gr2'],
+                        },
+                    ],
+                },
+            ],
+        })
 
   def test_realm_inheritance(self):
     cfg = {
@@ -253,54 +294,62 @@ class ExpandRealmsTest(test_case.TestCase):
             },
         ],
     }
-    self.assertEqual(self.expand(cfg), {
-        'permissions': [
-            {'name': u'luci.dev.p1'},
-            {'name': u'luci.dev.p2'},
-            {'name': u'luci.dev.p3'},
-        ],
-        'realms': [
-            {
-                'name': u'p:@root',
-                'bindings': [
-                    {
+    self.assertEqual(
+        self.expand(cfg), {
+            'permissions': [
+                {
+                    'name': u'luci.dev.p1'
+                },
+                {
+                    'name': u'luci.dev.p2'
+                },
+                {
+                    'name': u'luci.dev.p3'
+                },
+            ],
+            'realms': [
+                {
+                    'name':
+                        u'p:@root',
+                    'bindings': [{
                         'permissions': [0, 1, 2],
                         'principals': [u'group:gr4'],
-                    },
-                ],
-            },
-            {
-                'name': u'p:r1',
-                'bindings': [
-                    {
-                        'permissions': [0, 1],
-                        'principals': [u'group:gr1', u'group:gr3'],
-                    },
-                    {
-                        'permissions': [0, 1, 2],
-                        'principals': [u'group:gr4'],
-                    },
-                ],
-            },
-            {
-                'name': u'p:r2',
-                'bindings': [
-                    {
-                        'permissions': [0, 1],
-                        'principals': [u'group:gr1'],
-                    },
-                    {
-                        'permissions': [0, 1, 2],
-                        'principals': [u'group:gr3', u'group:gr4'],
-                    },
-                    {
-                        'permissions': [1, 2],
-                        'principals': [u'group:gr2'],
-                    },
-                ],
-            },
-        ],
-    })
+                    },],
+                },
+                {
+                    'name':
+                        u'p:r1',
+                    'bindings': [
+                        {
+                            'permissions': [0, 1],
+                            'principals': [u'group:gr1', u'group:gr3'],
+                        },
+                        {
+                            'permissions': [0, 1, 2],
+                            'principals': [u'group:gr4'],
+                        },
+                    ],
+                },
+                {
+                    'name':
+                        u'p:r2',
+                    'bindings': [
+                        {
+                            'permissions': [0, 1],
+                            'principals': [u'group:gr1'],
+                        },
+                        {
+                            'permissions': [0, 1, 2],
+                            'principals': [u'group:gr3', u'group:gr4'],
+                        },
+                        {
+                            'permissions': [1, 2],
+                            'principals': [u'group:gr2'],
+                        },
+                    ],
+                },
+            ],
+        })
 
   def test_custom_roles(self):
     cfg = {
@@ -319,48 +368,59 @@ class ExpandRealmsTest(test_case.TestCase):
                 'permissions': ['luci.dev.p5'],
             },
         ],
-        'realms': [
-            {
-                'name': 'r',
-                'bindings': [
-                    binding('customRole/r1', 'group:gr1', 'group:gr3'),
-                    binding('customRole/r2', 'group:gr2', 'group:gr3'),
-                    binding('customRole/r3', 'group:gr5'),
-                ],
-            },
-        ],
+        'realms': [{
+            'name':
+                'r',
+            'bindings': [
+                binding('customRole/r1', 'group:gr1', 'group:gr3'),
+                binding('customRole/r2', 'group:gr2', 'group:gr3'),
+                binding('customRole/r3', 'group:gr5'),
+            ],
+        },],
     }
-    self.assertEqual(self.expand(cfg), {
-        'permissions': [
-            {'name': u'luci.dev.p1'},
-            {'name': u'luci.dev.p2'},
-            {'name': u'luci.dev.p3'},
-            {'name': u'luci.dev.p4'},
-            {'name': u'luci.dev.p5'},
-        ],
-        'realms': [
-            {
-                'name': u'p:@root',
-            },
-            {
-                'name': u'p:r',
-                'bindings': [
-                    {
-                        'permissions': [0, 1, 2, 3],
-                        'principals': [u'group:gr2', u'group:gr3'],
-                    },
-                    {
-                        'permissions': [0, 1, 3],
-                        'principals': [u'group:gr1'],
-                    },
-                    {
-                        'permissions': [4],
-                        'principals': [u'group:gr5'],
-                    },
-                ],
-            },
-        ],
-    })
+    self.assertEqual(
+        self.expand(cfg), {
+            'permissions': [
+                {
+                    'name': u'luci.dev.p1'
+                },
+                {
+                    'name': u'luci.dev.p2'
+                },
+                {
+                    'name': u'luci.dev.p3'
+                },
+                {
+                    'name': u'luci.dev.p4'
+                },
+                {
+                    'name': u'luci.dev.p5'
+                },
+            ],
+            'realms': [
+                {
+                    'name': u'p:@root',
+                },
+                {
+                    'name':
+                        u'p:r',
+                    'bindings': [
+                        {
+                            'permissions': [0, 1, 2, 3],
+                            'principals': [u'group:gr2', u'group:gr3'],
+                        },
+                        {
+                            'permissions': [0, 1, 3],
+                            'principals': [u'group:gr1'],
+                        },
+                        {
+                            'permissions': [4],
+                            'principals': [u'group:gr5'],
+                        },
+                    ],
+                },
+            ],
+        })
 
 
 if __name__ == '__main__':

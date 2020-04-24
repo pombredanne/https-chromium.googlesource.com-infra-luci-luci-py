@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Various utility functions and classes not specific to any single area."""
 
 import atexit
@@ -27,7 +26,6 @@ else:
 _ca_certs = None
 _ca_certs_lock = threading.Lock()
 
-
 # @cached decorators registered by report_cache_stats_at_exit.
 _caches = []
 _caches_lock = threading.Lock()
@@ -35,6 +33,7 @@ _caches_lock = threading.Lock()
 
 class Profiler(object):
   """Context manager that records time spend inside its body."""
+
   def __init__(self, name):
     self.name = name
     self.start_time = None
@@ -45,8 +44,8 @@ class Profiler(object):
 
   def __exit__(self, _exc_type, _exec_value, _traceback):
     time_taken = time.time() - self.start_time
-    logging.info('Profiling: Section %s took %3.3f seconds',
-                 self.name, time_taken)
+    logging.info('Profiling: Section %s took %3.3f seconds', self.name,
+                 time_taken)
 
 
 class ProfileCounter(object):
@@ -67,18 +66,13 @@ class ProfileCounter(object):
   def summarize_all():
     print('\nProfiling report:')
     print('-' * 80)
-    print(
-        '{:<38}{:<10}{:<16}{:<16}'.format(
-            'Name', 'Count', 'Total ms', 'Average ms'))
+    print('{:<38}{:<10}{:<16}{:<16}'.format('Name', 'Count', 'Total ms',
+                                            'Average ms'))
     print('-' * 80)
     with ProfileCounter._instances_lock:
       for i in sorted(ProfileCounter._instances, key=lambda x: -x.total_time):
-        print(
-            '{:<38}{:<10}{:<16.1f}{:<16.1f}'.format(
-                i.name,
-                i.call_count,
-                i.total_time * 1000,
-                i.average_time * 1000))
+        print('{:<38}{:<10}{:<16.1f}{:<16.1f}'.format(
+            i.name, i.call_count, i.total_time * 1000, i.average_time * 1000))
     print('-' * 80)
 
   def __init__(self, name):
@@ -136,15 +130,18 @@ def profile(func):
   if os.environ.get('SWARMING_PROFILE') != '1':
     return func
   timer = ProfileCounter(func.__name__)
+
   @functools.wraps(func)
   def wrapper(*args, **kwargs):
     with timer:
       return func(*args, **kwargs)
+
   return wrapper
 
 
 def report_cache_stats_at_exit(func, cache):
   """Registers a hook that reports state of the cache on the process exit."""
+
   # Very dumb. Tries to account for object reuse though.
   def get_size(obj, seen):
     # Use id(...) to avoid triggering __hash__ and comparing by value instead.
@@ -170,8 +167,8 @@ def report_cache_stats_at_exit(func, cache):
       for func, cache in sorted(_caches, key=lambda x: -len(x[1])):
         size = get_size(cache, seen_objects)
         total += size
-        print(
-            '{:<40}{:<16}{:<26}'.format(func.__name__, len(cache), size / 1024))
+        print('{:<40}{:<16}{:<26}'.format(func.__name__, len(cache),
+                                          size / 1024))
     print('-' * 80)
     print('Total: %.1f MB' % (total / 1024 / 1024,))
     print('-' * 80)
@@ -183,6 +180,7 @@ def report_cache_stats_at_exit(func, cache):
 
 
 _CACHED_FUNCS = set()
+
 
 def clear_cache_all():
   for f in _CACHED_FUNCS:
@@ -231,6 +229,7 @@ def clear_cache(func):
 
 class Unbuffered(object):
   """Disable buffering on a file object."""
+
   def __init__(self, stream):
     self.stream = stream
 
@@ -399,10 +398,10 @@ def is_headless():
   Examines os.environ for presence of SWARMING_HEADLESS var.
   """
   headless_env_keys = (
-    # This is Chromium specific. Set when running under buildbot slave.
-    'CHROME_HEADLESS',
-    # Set when running under swarm bot.
-    'SWARMING_HEADLESS',
+      # This is Chromium specific. Set when running under buildbot slave.
+      'CHROME_HEADLESS',
+      # Set when running under swarm bot.
+      'SWARMING_HEADLESS',
   )
   return any(get_bool_env_var(key) for key in headless_env_keys)
 
@@ -461,8 +460,10 @@ def force_local_third_party(root=None):
       # python3 transition, as it makes the edit-debug loop much faster.
       root = os.path.dirname(os.getcwd())
       logging.warning('Falling back to current directory %s', root)
-  sys.path.insert(0, os.path.join(
-      root, 'third_party', 'httplib2', 'python%d' % sys.version_info.major))
+  sys.path.insert(
+      0,
+      os.path.join(root, 'third_party', 'httplib2',
+                   'python%d' % sys.version_info.major))
   sys.path.insert(0, os.path.join(root, 'third_party', 'pyasn1'))
   sys.path.insert(0, os.path.join(root, 'third_party', 'rsa'))
   sys.path.insert(0, os.path.join(root, 'third_party'))

@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Useful custom properties."""
 
 import json
@@ -11,17 +10,15 @@ from google.appengine.ext import ndb
 
 from components import utils
 
-
 __all__ = [
-  'BytesComputedProperty',
-  'DeterministicJsonProperty',
-  'ProtobufProperty',
+    'BytesComputedProperty',
+    'DeterministicJsonProperty',
+    'ProtobufProperty',
 ]
 
 # Some methods below don't use self because they implement an interface of their
 # base class.
 # pylint: disable=no-self-use
-
 
 ### Other specialized properties.
 
@@ -81,9 +78,12 @@ class ProtobufProperty(ndb.BlobProperty):
   _max_length = None
 
   @ndb.utils.positional(2 + ndb.BlobProperty._positional)
-  def __init__(
-      self, message_class, name=None, compressed=False, max_length=None,
-      **kwds):
+  def __init__(self,
+               message_class,
+               name=None,
+               compressed=False,
+               max_length=None,
+               **kwds):
     super(ProtobufProperty, self).__init__(
         name=name, compressed=compressed, **kwds)
     assert message_class, message_class

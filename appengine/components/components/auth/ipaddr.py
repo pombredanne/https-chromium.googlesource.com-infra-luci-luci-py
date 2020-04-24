@@ -1,25 +1,22 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Utilities for working with IPv4 and IPv6 addresses."""
 
 import collections
 
-
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
-  'IP',
-  'ip_from_string',
-  'ip_to_string',
-  'is_in_subnet',
-  'normalize_ip',
-  'normalize_subnet',
-  'Subnet',
-  'subnet_from_string',
-  'subnet_to_string',
+    'IP',
+    'ip_from_string',
+    'ip_to_string',
+    'is_in_subnet',
+    'normalize_ip',
+    'normalize_subnet',
+    'Subnet',
+    'subnet_from_string',
+    'subnet_to_string',
 ]
-
 
 # Parsed IPv4 or IPv6 address. 'bits' is 32 for IPv4 and 128 for IPv6,
 # value is long int in native endianness.
@@ -59,7 +56,7 @@ def ip_from_string(ipstr):
       else:
         idx = ipstr.index('::')
         before = ipstr[:idx].split(':') if ipstr[:idx] else []
-        after = ipstr[idx+2:].split(':') if ipstr[idx+2:] else []
+        after = ipstr[idx + 2:].split(':') if ipstr[idx + 2:] else []
         if len(before) + len(after) >= 8:
           raise ValueError('too many sections')
         blocks = before + ['0'] * (8 - len(before) - len(after)) + after

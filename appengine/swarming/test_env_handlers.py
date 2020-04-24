@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Base class for handlers_*_test.py"""
 
 import base64
@@ -150,6 +149,7 @@ class AppTestBase(test_case.TestCase):
   def mock_default_pool_acl(self, service_accounts):
     """Mocks ACLs of 'default' pool to allow usage of given service accounts."""
     assert isinstance(service_accounts, (list, tuple)), service_accounts
+
     def mocked_fetch_pools_config():
       default_isolate = pools_config.IsolateServer(
           server='https://pool.config.isolate.example.com',
@@ -387,8 +387,8 @@ class AppTestBase(test_case.TestCase):
   def client_create_task(self, **kwargs):
     """Creates a minimal task request via the Cloud Endpoints API."""
     request = self.create_new_request(**kwargs)
-    response = self.endpoint_call(
-        handlers_endpoints.SwarmingTasksService, 'new', request)
+    response = self.endpoint_call(handlers_endpoints.SwarmingTasksService,
+                                  'new', request)
     return response, response['task_id']
 
   def client_create_task_isolated(self, properties=None, **kwargs):

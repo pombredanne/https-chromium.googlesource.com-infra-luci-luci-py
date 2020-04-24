@@ -73,6 +73,7 @@ class RetryLoopTest(RetryLoopMockedTest):
 
 
 class HttpErrorTest(unittest.TestCase):
+
   def test_description_simple(self):
     e = net_utils.make_fake_error(
         code=404,
@@ -83,16 +84,17 @@ class HttpErrorTest(unittest.TestCase):
             'X-Skipped': 'zzz'
         })
     self.assertEqual(e.description(False), 'Server returned HTTP code 404')
-    self.assertEqual(e.description(True), '\n'.join([
-        'Server returned HTTP code 404',
-        '----------',
-        'Content-length: 13',
-        'Header-a: value-a',
-        '',
-        'Response',
-        'Body',
-        '----------',
-    ]))
+    self.assertEqual(
+        e.description(True), '\n'.join([
+            'Server returned HTTP code 404',
+            '----------',
+            'Content-length: 13',
+            'Header-a: value-a',
+            '',
+            'Response',
+            'Body',
+            '----------',
+        ]))
 
   def test_description_json_good(self):
     e = net_utils.make_fake_error(
@@ -103,42 +105,43 @@ class HttpErrorTest(unittest.TestCase):
     self.assertEqual(
         e.description(False),
         'Server returned HTTP code 404 - inner error message')
-    self.assertEqual(e.description(True), '\n'.join([
-        'Server returned HTTP code 404 - inner error message',
-        '----------',
-        'Content-length: 32',
-        'Content-type: application/json',
-        '',
-        '{"error": "inner error message"}',
-        '----------',
-    ]))
+    self.assertEqual(
+        e.description(True), '\n'.join([
+            'Server returned HTTP code 404 - inner error message',
+            '----------',
+            'Content-length: 32',
+            'Content-type: application/json',
+            '',
+            '{"error": "inner error message"}',
+            '----------',
+        ]))
 
 
 class HttpServiceTest(RetryLoopMockedTest):
   """Tests for HttpService class."""
 
   @staticmethod
-  def mocked_http_service(
-      url='http://example.com',
-      perform_request=None,
-      authorize=None,
-      login=None):
+  def mocked_http_service(url='http://example.com',
+                          perform_request=None,
+                          authorize=None,
+                          login=None):
 
     class MockedAuthenticator(authenticators.Authenticator):
       supports_login = True
+
       def authorize(self, request):
         return authorize(request) if authorize else None
+
       def login(self, allow_user_interaction):
         return login(allow_user_interaction) if login else False
 
     class MockedRequestEngine(object):
+
       def perform_request(self, request):
         return perform_request(request) if perform_request else None
 
     return net.HttpService(
-        url,
-        authenticator=MockedAuthenticator(),
-        engine=MockedRequestEngine())
+        url, authenticator=MockedAuthenticator(), engine=MockedRequestEngine())
 
   def test_request_GET_success(self):
     service_url = 'http://example.com'
@@ -150,8 +153,8 @@ class HttpServiceTest(RetryLoopMockedTest):
           request.get_full_url().startswith(service_url + request_url))
       return net_utils.make_fake_response(response, request.get_full_url())
 
-    service = self.mocked_http_service(url=service_url,
-        perform_request=mock_perform_request)
+    service = self.mocked_http_service(
+        url=service_url, perform_request=mock_perform_request)
     self.assertEqual(service.request(request_url).read(), response)
     self.assertAttempts(1, net.URL_OPEN_TIMEOUT)
 
@@ -166,8 +169,8 @@ class HttpServiceTest(RetryLoopMockedTest):
       self.assertEqual(b'', request.body)
       return net_utils.make_fake_response(response, request.get_full_url())
 
-    service = self.mocked_http_service(url=service_url,
-        perform_request=mock_perform_request)
+    service = self.mocked_http_service(
+        url=service_url, perform_request=mock_perform_request)
     self.assertEqual(service.request(request_url, data={}).read(), response)
     self.assertAttempts(1, net.URL_OPEN_TIMEOUT)
 
@@ -186,10 +189,10 @@ class HttpServiceTest(RetryLoopMockedTest):
       self.assertEqual(request.headers['Content-Type'], content_type)
       return net_utils.make_fake_response(response_body, request.get_full_url())
 
-    service = self.mocked_http_service(url=service_url,
-        perform_request=mock_perform_request)
-    response = service.request(request_url,
-        data=request_body, content_type=content_type, method='PUT')
+    service = self.mocked_http_service(
+        url=service_url, perform_request=mock_perform_request)
+    response = service.request(
+        request_url, data=request_body, content_type=content_type, method='PUT')
     self.assertEqual(response.read(), response_body)
     self.assertAttempts(1, net.URL_OPEN_TIMEOUT)
 
@@ -208,35 +211,44 @@ class HttpServiceTest(RetryLoopMockedTest):
     self.assertAttempts(2, net.URL_OPEN_TIMEOUT)
 
   def test_request_failure_max_attempts_default(self):
+
     def mock_perform_request(_request):
       raise net.ConnectionError()
+
     service = self.mocked_http_service(perform_request=mock_perform_request)
     self.assertEqual(service.request('/'), None)
     self.assertAttempts(net.URL_OPEN_MAX_ATTEMPTS, net.URL_OPEN_TIMEOUT)
 
   def test_request_failure_max_attempts(self):
+
     def mock_perform_request(_request):
       raise net.ConnectionError()
+
     service = self.mocked_http_service(perform_request=mock_perform_request)
     self.assertEqual(service.request('/', max_attempts=23), None)
     self.assertAttempts(23, net.URL_OPEN_TIMEOUT)
 
   def test_request_failure_timeout(self):
+
     def mock_perform_request(_request):
       raise net.ConnectionError()
+
     service = self.mocked_http_service(perform_request=mock_perform_request)
     self.assertEqual(service.request('/', max_attempts=10000), None)
     self.assertAttempts(int(net.URL_OPEN_TIMEOUT) + 1, net.URL_OPEN_TIMEOUT)
 
   def test_request_failure_timeout_default(self):
+
     def mock_perform_request(_request):
       raise net.ConnectionError()
+
     service = self.mocked_http_service(perform_request=mock_perform_request)
     self.assertEqual(service.request('/', timeout=10.), None)
     self.assertAttempts(11, 10.0)
 
   def test_request_HTTP_error_no_retry(self):
     count = []
+
     def mock_perform_request(request):
       count.append(request)
       raise net_utils.make_fake_error(400, request.get_full_url())
@@ -253,13 +265,16 @@ class HttpServiceTest(RetryLoopMockedTest):
     def mock_perform_request(request):
       attempts.append(request)
       if len(attempts) == 1:
-        raise net_utils.make_fake_error(404, request.get_full_url(), headers={
-          'Content-Type': 'application/text; charset=ASCII',
-        })
+        raise net_utils.make_fake_error(
+            404,
+            request.get_full_url(),
+            headers={
+                'Content-Type': 'application/text; charset=ASCII',
+            })
       return net_utils.make_fake_response(response, request.get_full_url())
 
     service = self.mocked_http_service(perform_request=mock_perform_request)
-    result = service.request('/_ah/api/foo/v1/bar', )
+    result = service.request('/_ah/api/foo/v1/bar',)
     self.assertEqual(result.read(), response)
     self.assertAttempts(2, net.URL_OPEN_TIMEOUT)
 
@@ -301,8 +316,8 @@ class HttpServiceTest(RetryLoopMockedTest):
         authorize=mock_authorize,
         login=mock_login)
     self.assertEqual(service.request('/').read(), response)
-    self.assertEqual(
-        ['authorize', 'request', 'login', 'authorize', 'request'], calls)
+    self.assertEqual(['authorize', 'request', 'login', 'authorize', 'request'],
+                     calls)
     self.assertAttempts(2, net.URL_OPEN_TIMEOUT)
     self.assertSleeps(0)
 
@@ -317,8 +332,8 @@ class HttpServiceTest(RetryLoopMockedTest):
       count.append(1)
       return False
 
-    service = self.mocked_http_service(perform_request=mock_perform_request,
-        login=mock_login)
+    service = self.mocked_http_service(
+        perform_request=mock_perform_request, login=mock_login)
     self.assertEqual(service.request('/'), None)
     self.assertEqual(len(count), 1)
     self.assertAttempts(1, net.URL_OPEN_TIMEOUT)
@@ -335,6 +350,7 @@ class HttpServiceTest(RetryLoopMockedTest):
 
     # Respects read timeout errors.
     def timeouting_http_response(url):
+
       def read_mock(_size=None):
         raise net.TimeoutError()
 
@@ -343,7 +359,7 @@ class HttpServiceTest(RetryLoopMockedTest):
       return response
 
     self.mock(net, 'url_open',
-        lambda url, **_kwargs: timeouting_http_response(url))
+              lambda url, **_kwargs: timeouting_http_response(url))
     self.assertIsNone(net.url_read('https://fake_url.com/test'))
 
   def test_url_retrieve(self):
@@ -355,16 +371,17 @@ class HttpServiceTest(RetryLoopMockedTest):
     self.mock(io, 'open', fake_open)
     self.mock(net, 'url_open',
               lambda url, **_kwargs: net_utils.make_fake_response(b'111', url))
-    self.assertEqual(
-        True, net.url_retrieve('filepath', 'https://localhost/test'))
+    self.assertEqual(True, net.url_retrieve('filepath',
+                                            'https://localhost/test'))
 
     # Respects url_open connection errors.
     self.mock(net, 'url_open', lambda _url, **_kwargs: None)
-    self.assertEqual(
-        False, net.url_retrieve('filepath', 'https://localhost/test'))
+    self.assertEqual(False,
+                     net.url_retrieve('filepath', 'https://localhost/test'))
 
     # Respects read timeout errors.
     def timeouting_http_response(url):
+
       def iter_content_mock(_size=None):
         raise net.TimeoutError()
 
@@ -375,24 +392,25 @@ class HttpServiceTest(RetryLoopMockedTest):
     removed = []
     self.mock(os, 'remove', removed.append)
     self.mock(net, 'url_open',
-        lambda url, **_kwargs: timeouting_http_response(url))
-    self.assertEqual(
-        False, net.url_retrieve('filepath', 'https://localhost/test'))
+              lambda url, **_kwargs: timeouting_http_response(url))
+    self.assertEqual(False,
+                     net.url_retrieve('filepath', 'https://localhost/test'))
     self.assertEqual(['filepath'], removed)
 
 
 class TestNetFunctions(auto_stub.TestCase):
+
   def test_fix_url(self):
     data = [
-      ('http://foo.com/', 'http://foo.com'),
-      ('https://foo.com/', 'https://foo.com'),
-      ('https://foo.com', 'https://foo.com'),
-      ('https://foo.com/a', 'https://foo.com/a'),
-      ('https://foo.com/a/', 'https://foo.com/a'),
-      ('https://foo.com:8080/a/', 'https://foo.com:8080/a'),
-      ('foo.com', 'https://foo.com'),
-      ('foo.com/', 'https://foo.com'),
-      ('foo.com/a/', 'https://foo.com/a'),
+        ('http://foo.com/', 'http://foo.com'),
+        ('https://foo.com/', 'https://foo.com'),
+        ('https://foo.com', 'https://foo.com'),
+        ('https://foo.com/a', 'https://foo.com/a'),
+        ('https://foo.com/a/', 'https://foo.com/a'),
+        ('https://foo.com:8080/a/', 'https://foo.com:8080/a'),
+        ('foo.com', 'https://foo.com'),
+        ('foo.com/', 'https://foo.com'),
+        ('foo.com/a/', 'https://foo.com/a'),
     ]
     for value, expected in data:
       self.assertEqual(expected, net.fix_url(value))

@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Runs a Swarming task.
 
 Downloads all the necessary files to run the task, executes the command and
@@ -36,20 +35,16 @@ from libs import luci_context
 import bot_auth
 import remote_client
 
-
 # Path to this file or the zip containing this file.
 THIS_FILE = os.path.abspath(zip_package.get_main_script_path())
 
-
 # Current task_runner_out version.
 OUT_VERSION = 3
-
 
 # On Windows, SIGTERM is actually sent as SIGBREAK since there's no real
 # SIGTERM.  SIGBREAK is not defined on posix since it's a pure Windows concept.
 SIG_BREAK_OR_TERM = (
     signal.SIGBREAK if sys.platform == 'win32' else signal.SIGTERM)
-
 
 # Used to implement monotonic_time for a clock that never goes backward.
 _last_now = 0
@@ -75,8 +70,8 @@ def get_run_isolated():
   return [sys.executable, '-u', THIS_FILE, 'run_isolated']
 
 
-def get_isolated_args(work_dir, task_details, isolated_result,
-                      bot_file, run_isolated_flags):
+def get_isolated_args(work_dir, task_details, isolated_result, bot_file,
+                      run_isolated_flags):
   """Returns the command to call run_isolated. Mocked in tests."""
   bot_dir = os.path.dirname(work_dir)
   if os.path.isfile(isolated_result):
@@ -93,10 +88,10 @@ def get_isolated_args(work_dir, task_details, isolated_result,
     ])
     isolated_input = task_details.isolated.get('input')
     if isolated_input:
-      cmd.extend(
-          [
-            '--isolated', isolated_input,
-          ])
+      cmd.extend([
+          '--isolated',
+          isolated_input,
+      ])
 
   # Named caches options.
   # Specify --named-cache-root unconditionally so run_isolated.py never creates
@@ -349,9 +344,7 @@ def load_and_run(in_file, swarming_server, is_grpc, cost_usd_hour, start,
       # Override LUCI_CONTEXT['local_auth']. If the task is not using auth,
       # do NOT inherit existing local_auth (if its there). Kick it out by
       # passing None.
-      context_edits = {
-        'local_auth': local_auth_context
-      }
+      context_edits = {'local_auth': local_auth_context}
 
       # Extend existing LUCI_CONTEXT['swarming'], if any.
       if task_details.secret_bytes is not None:
@@ -364,7 +357,7 @@ def load_and_run(in_file, swarming_server, is_grpc, cost_usd_hour, start,
         try:
           if auth_system:
             return auth_system.get_bot_headers()
-          return (None, None) # A timeout of "None" means "don't use auth"
+          return (None, None)  # A timeout of "None" means "don't use auth"
         except bot_auth.AuthSystemError as e:
           raise InternalError('Failed to grab bot auth headers: %s' % e)
 
@@ -391,9 +384,8 @@ def load_and_run(in_file, swarming_server, is_grpc, cost_usd_hour, start,
       # Auth environment is up, start the command. task_result is dumped to
       # disk in 'finally' block.
       with luci_context.stage(_tmpdir=work_dir, **context_edits) as ctx_file:
-        task_result = run_command(
-            remote, task_details, work_dir, cost_usd_hour,
-            start, run_isolated_flags, bot_file, ctx_file)
+        task_result = run_command(remote, task_details, work_dir, cost_usd_hour,
+                                  start, run_isolated_flags, bot_file, ctx_file)
   except (ExitSignal, InternalError, remote_client.InternalError) as e:
     # This normally means run_command() didn't get the chance to run, as it
     # itself traps exceptions and will report accordingly. In this case, we want
@@ -451,6 +443,7 @@ def fail_without_command(remote, task_id, params, cost_usd_hour, task_start,
 
 class _FailureOnStart(Exception):
   """Process run_isolated couldn't be started."""
+
   def __init__(self, exit_code, stdout):
     super(_FailureOnStart, self).__init__(stdout)
     self.exit_code = exit_code
@@ -480,9 +473,8 @@ def _start_task_runner(args, work_dir, ctx_file):
     with open(args_path, 'wb') as f:
       json.dump(args, f)
   except (IOError, OSError) as e:
-    raise _FailureOnStart(
-        e.errno or -1,
-        'Could not write args to %s: %s' % (args_path, e))
+    raise _FailureOnStart(e.errno or -1,
+                          'Could not write args to %s: %s' % (args_path, e))
 
   try:
     # TODO(maruel): Support separate streams for stdout and stderr.
@@ -578,9 +570,8 @@ class _OutputBuffer(object):
     packet_interval = (
         self._min_packet_interval
         if self._stdout else self._max_packet_interval)
-    return (
-        len(self._stdout) >= self._max_chunk_size or
-        (self._last_loop - self._last_pop) > packet_interval)
+    return (len(self._stdout) >= self._max_chunk_size or
+            (self._last_loop - self._last_pop) > packet_interval)
 
   def calc_yield_wait(self, timed_out):
     """Calculates the maximum number of seconds to wait in yield_any().
@@ -597,8 +588,8 @@ class _OutputBuffer(object):
       return 0.
 
     out = (
-        self._min_packet_interval if self._stdout
-        else self._max_packet_interval)
+        self._min_packet_interval
+        if self._stdout else self._max_packet_interval)
     now = monotonic_time()
     if self._task_details.hard_timeout:
       out = min(out, self._start + self._task_details.hard_timeout - now)
@@ -609,8 +600,8 @@ class _OutputBuffer(object):
     return out
 
 
-def run_command(remote, task_details, work_dir, cost_usd_hour,
-                task_start, run_isolated_flags, bot_file, ctx_file):
+def run_command(remote, task_details, work_dir, cost_usd_hour, task_start,
+                run_isolated_flags, bot_file, ctx_file):
   """Runs a command and sends packets to the server to stream results back.
 
   Implements both I/O and hard timeouts. Sends the packets numbered, so the
@@ -634,8 +625,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
   }
   if not remote.post_task_update(task_details.task_id, params):
     # Don't even bother, the task was already canceled.
-    logging.debug('Task has been already canceled. Won\'t start it. '
-                  'task_id: %s. Sending update...', task_details.task_id)
+    logging.debug(
+        'Task has been already canceled. Won\'t start it. '
+        'task_id: %s. Sending update...', task_details.task_id)
     # crbug.com/1052208:
     # Send task update again for the server to know that the task has stopped.
     # Sending 'canceled' signal to the server for the task to be 'CANCELED'
@@ -651,8 +643,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     }
 
   isolated_result = os.path.join(work_dir, 'isolated_result.json')
-  args = get_isolated_args(work_dir, task_details,
-                           isolated_result, bot_file, run_isolated_flags)
+  args = get_isolated_args(work_dir, task_details, isolated_result, bot_file,
+                           run_isolated_flags)
   # Hard timeout enforcement is deferred to run_isolated. Grace is doubled to
   # give one 'grace_period' slot to the child process and one slot to upload
   # the results back.
@@ -726,9 +718,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
             kill_sent = True
       logging.info('Waiting for process exit')
       exit_code = proc.wait()
-    except (
-        ExitSignal, InternalError, IOError,
-        OSError, remote_client.InternalError) as e:
+    except (ExitSignal, InternalError, IOError, OSError,
+            remote_client.InternalError) as e:
       # Something wrong happened, try to kill the child process.
       must_signal_internal_failure = str(e.message or 'unknown error')
       exit_code = kill_and_wait(proc, task_details.grace_period, e.message)
@@ -784,10 +775,10 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
           params['bot_overhead'] -= params['duration']
           params['bot_overhead'] -= run_isolated_result.get('download', {}).get(
               'duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'upload', {}).get('duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'cipd', {}).get('duration', 0)
+          params['bot_overhead'] -= run_isolated_result.get('upload', {}).get(
+              'duration', 0)
+          params['bot_overhead'] -= run_isolated_result.get('cipd', {}).get(
+              'duration', 0)
           if params['bot_overhead'] < 0:
             params['bot_overhead'] = 0
         isolated_stats = run_isolated_result.get('stats', {}).get('isolated')
@@ -833,8 +824,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         params.pop('cipd_pins', None)
       remote.post_task_update(task_details.task_id, params, buf.pop(),
                               exit_code)
-      logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
-                    'params: %s.', task_details.task_id, exit_code, params)
+      logging.debug(
+          'Last task update finished. task_id: %s, exit_code: %s, '
+          'params: %s.', task_details.task_id, exit_code, params)
       if must_signal_internal_failure:
         remote.post_task_error(task_details.task_id,
                                must_signal_internal_failure)
@@ -872,7 +864,8 @@ def main(args):
   parser.add_option(
       '--swarming-server', help='Swarming server to send data back')
   parser.add_option(
-      '--is-grpc', action='store_true',
+      '--is-grpc',
+      action='store_true',
       help='If true, --swarming-server is a gRPC proxy')
   parser.add_option(
       '--cost-usd-hour', type='float', help='Cost of this VM in $/h')
@@ -895,10 +888,9 @@ def main(args):
     options.start = now
 
   try:
-    load_and_run(
-        options.in_file, options.swarming_server, options.is_grpc,
-        options.cost_usd_hour, options.start, options.out_file,
-        args, options.bot_file, options.auth_params_file)
+    load_and_run(options.in_file, options.swarming_server, options.is_grpc,
+                 options.cost_usd_hour, options.start, options.out_file, args,
+                 options.bot_file, options.auth_params_file)
     return 0
   finally:
     logging.info('quitting')

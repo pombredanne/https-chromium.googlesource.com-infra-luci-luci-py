@@ -29,23 +29,22 @@ from components.prpc.test import test_prpc_pb2
 class PRPCClientTestCase(test_case.TestCase):
 
   def make_test_client(self):
-    return prpc_client.Client(
-        'example.com', test_prpc_pb2.TestServiceDescription)
+    return prpc_client.Client('example.com',
+                              test_prpc_pb2.TestServiceDescription)
 
   def test_generated_methods(self):
     expected_methods = {
-      'GiveAsync',
-      'Give',
-      'TakeAsync',
-      'Take',
-      'EchoAsync',
-      'Echo',
+        'GiveAsync',
+        'Give',
+        'TakeAsync',
+        'Take',
+        'EchoAsync',
+        'Echo',
     }
 
     members = dir(self.make_test_client())
     for m in expected_methods:
       self.assertIn(m, members)
-
 
   @contextlib.contextmanager
   def mocked_request_async(self, res=None):
@@ -61,7 +60,6 @@ class PRPCClientTestCase(test_case.TestCase):
     with mock.patch('components.net.request_async', autospec=True) as m:
       m.side_effect = inner
       yield
-
 
   def test_request(self):
     client_metadata = {'Jennys-Number-Bin': '867-5309'}
@@ -115,10 +113,11 @@ class PRPCClientTestCase(test_case.TestCase):
 
   def test_request_credentials_composite(self):
     with self.mocked_request_async():
-      self.give_creds(prpc_client.composite_call_credentials(
-          prpc_client.service_account_credentials(),
-          prpc_client.delegation_credentials('token'),
-      ))
+      self.give_creds(
+          prpc_client.composite_call_credentials(
+              prpc_client.service_account_credentials(),
+              prpc_client.delegation_credentials('token'),
+          ))
       _, kwargs = net.request_async.call_args
       self.assertEqual(kwargs['scopes'], [net.EMAIL_SCOPE])
       self.assertEqual(kwargs['delegation_token'], 'token')

@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Client tool to perform various authentication related tasks."""
 
 __version__ = '0.4'

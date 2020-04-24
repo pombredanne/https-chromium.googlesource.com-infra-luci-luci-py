@@ -17,6 +17,7 @@ import common
 
 
 class CommonCase(test_case.TestCase):
+
   def test_convert_none(self):
     self.assertIsNone(common._convert_config(None, test_config_pb2.Config))
 

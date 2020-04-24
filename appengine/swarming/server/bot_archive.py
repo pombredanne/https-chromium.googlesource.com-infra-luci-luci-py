@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Generates the swarming_bot.zip archive for the bot.
 
 Unlike the other source files, this file can be run from ../tools/bot_archive.py
@@ -18,7 +17,6 @@ import logging
 import os
 import StringIO
 import zipfile
-
 
 # List of files needed by the swarming bot.
 # TODO(maruel): Make the list automatically generated?
@@ -425,12 +423,12 @@ def resolve_symlink(path):
       with open(partial) as f:
         link = f.read()
       assert '\n' not in link and link, link
-      parts[i-1] = link
+      parts[i - 1] = link
   return os.path.normpath(os.path.sep.join(parts))
 
 
-def yield_swarming_bot_files(
-    root_dir, host, host_version, additionals, settings):
+def yield_swarming_bot_files(root_dir, host, host_version, additionals,
+                             settings):
   """Yields all the files to map as tuple(filename, content).
 
   config.json is injected with json data about the server.
@@ -449,8 +447,7 @@ def yield_swarming_bot_files(
         yield item, f.read()
 
 
-def get_swarming_bot_zip(
-    root_dir, host, host_version, additionals, settings):
+def get_swarming_bot_zip(root_dir, host, host_version, additionals, settings):
   """Returns a zipped file of all the files a bot needs to run.
 
   Arguments:
@@ -467,8 +464,8 @@ def get_swarming_bot_zip(
   zip_memory_file = StringIO.StringIO()
   h = hashlib.sha256()
   with zipfile.ZipFile(zip_memory_file, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-    for name, content in yield_swarming_bot_files(
-        root_dir, host, host_version, additionals, settings):
+    for name, content in yield_swarming_bot_files(root_dir, host, host_version,
+                                                  additionals, settings):
 
       # We must pass ZipInfo object, otherwise zipfile will generate ZipInfo
       # on its own, setting date_time to the current time, thus making the zip
@@ -477,10 +474,10 @@ def get_swarming_bot_zip(
       zinfo = zipfile.ZipInfo(filename=name)
       zinfo.compress_type = zip_file.compression
       if zinfo.filename.endswith('/'):
-        zinfo.external_attr = 0o40775 << 16   # drwxrwxr-x
-        zinfo.external_attr |= 0x10           # MS-DOS directory flag
+        zinfo.external_attr = 0o40775 << 16  # drwxrwxr-x
+        zinfo.external_attr |= 0x10  # MS-DOS directory flag
       else:
-        zinfo.external_attr = 0o600 << 16     # ?rw-------
+        zinfo.external_attr = 0o600 << 16  # ?rw-------
       zip_file.writestr(zinfo, content)
 
       h.update(str(len(name)))
@@ -490,14 +487,13 @@ def get_swarming_bot_zip(
 
   data = zip_memory_file.getvalue()
   bot_version = h.hexdigest()
-  logging.info(
-      'get_swarming_bot_zip(%s) is %d bytes; %s',
-      additionals.keys(), len(data), bot_version)
+  logging.info('get_swarming_bot_zip(%s) is %d bytes; %s', additionals.keys(),
+               len(data), bot_version)
   return data, bot_version
 
 
-def get_swarming_bot_version(
-    root_dir, host, host_version, additionals, settings):
+def get_swarming_bot_version(root_dir, host, host_version, additionals,
+                             settings):
   """Returns the SHA256 hash of the bot code, representing the version.
 
   Arguments:
@@ -511,8 +507,8 @@ def get_swarming_bot_version(
   h = hashlib.sha256()
   try:
     # TODO(maruel): Deduplicate from zip_package.generate_version().
-    for name, content in yield_swarming_bot_files(
-        root_dir, host, host_version, additionals, settings):
+    for name, content in yield_swarming_bot_files(root_dir, host, host_version,
+                                                  additionals, settings):
       h.update(str(len(name)))
       h.update(name)
       h.update(str(len(content)))
@@ -520,8 +516,8 @@ def get_swarming_bot_version(
   except IOError:
     logging.warning('Missing expected file. Hash will be invalid.')
   bot_version = h.hexdigest()
-  logging.info(
-      'get_swarming_bot_version(%s) = %s', sorted(additionals), bot_version)
+  logging.info('get_swarming_bot_version(%s) = %s', sorted(additionals),
+               bot_version)
   return bot_version
 
 
@@ -532,11 +528,11 @@ def _make_config_json(host, host_version, settings):
   """Generates a config.json to embed in swarming_bot.zip"""
   # The keys must match ../swarming_bot/config/config.json.
   config = {
-    'enable_ts_monitoring': False,
-    'isolate_grpc_proxy': "",
-    'server': host.rstrip('/'),
-    'server_version': host_version,
-    'swarming_grpc_proxy': "",
+      'enable_ts_monitoring': False,
+      'isolate_grpc_proxy': "",
+      'server': host.rstrip('/'),
+      'server_version': host_version,
+      'swarming_grpc_proxy': "",
   }
   if settings:
     config['enable_ts_monitoring'] = settings.enable_ts_monitoring

@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Timeseries metrics."""
 
 from collections import defaultdict
@@ -41,14 +40,12 @@ _TARGET_FIELDS = {
     'task_num': 0,  # instance ID
 }
 
-
 ### All the metrics.
-
 
 # Custom bucketer with 12% resolution in the range of 1..10**5. Used for job
 # cycle times.
-_bucketer = gae_ts_mon.GeometricBucketer(growth_factor=10**0.05,
-                                         num_finite_buckets=100)
+_bucketer = gae_ts_mon.GeometricBucketer(
+    growth_factor=10**0.05, num_finite_buckets=100)
 
 # Regular (instance-local) metrics: jobs/completed and jobs/durations.
 # Both have the following metric fields:
@@ -59,8 +56,7 @@ _bucketer = gae_ts_mon.GeometricBucketer(growth_factor=10**0.05,
 #     for buildbot jobs.
 # - result: one of 'success', 'failure', or 'infra-failure'.
 _jobs_completed = gae_ts_mon.CounterMetric(
-    'jobs/completed',
-    'Number of completed jobs.', [
+    'jobs/completed', 'Number of completed jobs.', [
         gae_ts_mon.StringField('spec_name'),
         gae_ts_mon.StringField('project_id'),
         gae_ts_mon.StringField('subproject_id'),
@@ -68,7 +64,6 @@ _jobs_completed = gae_ts_mon.CounterMetric(
         gae_ts_mon.StringField('result'),
         gae_ts_mon.StringField('status'),
     ])
-
 
 _jobs_durations = gae_ts_mon.CumulativeDistributionMetric(
     'jobs/durations',
@@ -81,7 +76,6 @@ _jobs_durations = gae_ts_mon.CumulativeDistributionMetric(
     ],
     bucketer=_bucketer)
 
-
 # Similar to jobs/completed and jobs/duration, but with a dedup field.
 # - project_id: e.g. 'chromium'
 # - subproject_id: e.g. 'blink'. Set to empty string if not used.
@@ -90,15 +84,13 @@ _jobs_durations = gae_ts_mon.CumulativeDistributionMetric(
 #     for buildbot jobs.
 # - deduped: boolean describing whether the job was deduped or not.
 _jobs_requested = gae_ts_mon.CounterMetric(
-    'jobs/requested',
-    'Number of requested jobs over time.', [
+    'jobs/requested', 'Number of requested jobs over time.', [
         gae_ts_mon.StringField('spec_name'),
         gae_ts_mon.StringField('project_id'),
         gae_ts_mon.StringField('subproject_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.BooleanField('deduped'),
     ])
-
 
 # Swarming-specific metric. Metric fields:
 # - project_id: e.g. 'chromium'
@@ -114,15 +106,13 @@ _tasks_expired = gae_ts_mon.CounterMetric(
         gae_ts_mon.StringField('pool'),
     ])
 
-
 # Swarming-specific metric. Metric fields:
 # - project_id: e.g. 'chromium-swarm'
 _tasks_expiration_delay = gae_ts_mon.CumulativeDistributionMetric(
-    'swarming/tasks/expiration_delay',
-    'Delay of task expiration, in seconds.', [
+    'swarming/tasks/expiration_delay', 'Delay of task expiration, in seconds.',
+    [
         gae_ts_mon.StringField('project_id'),
     ])
-
 
 # Swarming-specific metric. Metric fields:
 # - project_id: e.g. 'chromium-swarm'
@@ -133,14 +123,13 @@ _tasks_slice_expiration_delay = gae_ts_mon.CumulativeDistributionMetric(
         gae_ts_mon.IntegerField('slice_index'),
     ])
 
-
 _task_bots_runnable = gae_ts_mon.CumulativeDistributionMetric(
     'swarming/tasks/bots_runnable',
-    'Number of bots available to run tasks.', [
+    'Number of bots available to run tasks.',
+    [
         gae_ts_mon.StringField('pool'),
     ],
 )
-
 
 # Global metric. Metric fields:
 # - project_id: e.g. 'chromium'
@@ -177,24 +166,17 @@ _jobs_active = gae_ts_mon.GaugeMetric(
         gae_ts_mon.StringField('status'),
     ])
 
-
 # Global metric. Target field: hostname = 'autogen:<executor_id>' (bot id).
 _executors_pool = gae_ts_mon.StringMetric(
-    'executors/pool',
-    'Pool name for a given job executor.',
-    None)
-
+    'executors/pool', 'Pool name for a given job executor.', None)
 
 # Global metric. Target fields:
 # - hostname = 'autogen:<executor_id>' (bot id).
 # Status value must be 'ready', 'running', or anything else, possibly
 # swarming-specific, when it cannot run a job. E.g. 'quarantined' or
 # 'dead'.
-_executors_status = gae_ts_mon.StringMetric(
-    'executors/status',
-    'Status of a job executor.',
-    None)
-
+_executors_status = gae_ts_mon.StringMetric('executors/status',
+                                            'Status of a job executor.', None)
 
 # Global metric. Target fields:
 # - hostname = 'autogen:<executor_id>' (bot id).
@@ -214,7 +196,6 @@ _jobs_pending_durations = gae_ts_mon.NonCumulativeDistributionMetric(
     ],
     bucketer=_bucketer)
 
-
 # Global metric. Target fields:
 # - hostname = 'autogen:<executor_id>' (bot id).
 # Status value must be 'ready', 'running', or anything else, possibly
@@ -231,7 +212,6 @@ _jobs_max_pending_duration = gae_ts_mon.FloatMetric(
         gae_ts_mon.StringField('status'),
     ])
 
-
 # Instance metric. Metric fields:
 # - auth_method = one of 'luci_token', 'service_account', 'ip_whitelist'.
 # - condition = depends on the auth method (e.g. email for 'service_account').
@@ -241,7 +221,6 @@ _bot_auth_successes = gae_ts_mon.CounterMetric(
         gae_ts_mon.StringField('auth_method'),
         gae_ts_mon.StringField('condition'),
     ])
-
 
 ### Private stuff.
 
@@ -254,7 +233,7 @@ def _pool_from_dimensions(dimensions):
       continue
     # Strip all the prefixes of other values. values is already sorted.
     for i, value in enumerate(values):
-      if not any(v.startswith(value) for v in values[i+1:]):
+      if not any(v.startswith(value) for v in values[i + 1:]):
         pairs.append(u'%s:%s' % (key, value))
   return u'|'.join(sorted(pairs))
 
@@ -262,18 +241,19 @@ def _pool_from_dimensions(dimensions):
 def _set_jobs_metrics(payload):
   params = _ShardParams(payload)
 
-  state_map = {task_result.State.RUNNING: 'running',
-               task_result.State.PENDING: 'pending'}
+  state_map = {
+      task_result.State.RUNNING: 'running',
+      task_result.State.PENDING: 'pending'
+  }
   jobs_counts = defaultdict(lambda: 0)
   jobs_total = 0
   jobs_pending_distributions = defaultdict(
       lambda: gae_ts_mon.Distribution(_bucketer))
-  jobs_max_pending_durations = defaultdict(
-      lambda: 0.0)
+  jobs_max_pending_durations = defaultdict(lambda: 0.0)
 
   query_iter = task_result.get_result_summaries_query(
       None, None, 'created_ts', 'pending_running', None).iter(
-      produce_cursors=True, start_cursor=params.cursor)
+          produce_cursors=True, start_cursor=params.cursor)
 
   while query_iter.has_next():
     runtime = (utils.utcnow() - params.start_time).total_seconds()
@@ -306,9 +286,8 @@ def _set_jobs_metrics(payload):
     pending_duration = summary.pending_now(utils.utcnow())
     if pending_duration is not None:
       jobs_pending_distributions[key].add(pending_duration.total_seconds())
-      jobs_max_pending_durations[key] = max(
-          jobs_max_pending_durations[key],
-          pending_duration.total_seconds())
+      jobs_max_pending_durations[key] = max(jobs_max_pending_durations[key],
+                                            pending_duration.total_seconds())
 
   logging.debug(
       '_set_jobs_metrics: task %d started at %s, processed %d jobs (%d total)',
@@ -369,10 +348,9 @@ def _set_executors_metrics(payload):
     _executors_pool.set(
         _pool_from_dimensions(bot_info.dimensions), target_fields=target_fields)
 
-  logging.debug(
-      '%s: task %d started at %s, processed %d bots (%d total)',
-      '_set_executors_metrics', params.task_count, params.task_start,
-       executors_count, params.count)
+  logging.debug('%s: task %d started at %s, processed %d bots (%d total)',
+                '_set_executors_metrics', params.task_count, params.task_start,
+                executors_count, params.count)
 
 
 def _set_global_metrics():
@@ -382,6 +360,7 @@ def _set_global_metrics():
 
 class _ShardParams(object):
   """Parameters for a chain of taskqueue tasks."""
+
   def __init__(self, payload):
     self.start_time = utils.utcnow()
     self.cursor = None
@@ -394,8 +373,8 @@ class _ShardParams(object):
       params = json.loads(payload)
       if params['cursor']:
         self.cursor = Cursor(urlsafe=params['cursor'])
-      self.task_start = datetime.datetime.strptime(
-          params['task_start'], utils.DATETIME_FORMAT)
+      self.task_start = datetime.datetime.strptime(params['task_start'],
+                                                   utils.DATETIME_FORMAT)
       self.task_count = params['task_count']
       self.count = params['count']
     except (ValueError, KeyError) as e:
@@ -436,9 +415,8 @@ def _extract_job_fields(tags_dict):
   """
   spec_name = tags_dict.get('spec_name')
   if not spec_name:
-    spec_name = '%s:%s' % (
-        tags_dict.get('master', ''),
-        tags_dict.get('buildername', ''))
+    spec_name = '%s:%s' % (tags_dict.get('master', ''),
+                           tags_dict.get('buildername', ''))
     if tags_dict.get('build_is_experimental') == 'true':
       spec_name += ':experimental'
 

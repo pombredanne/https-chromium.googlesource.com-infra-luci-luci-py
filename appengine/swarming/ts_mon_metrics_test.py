@@ -127,7 +127,7 @@ class TestMetrics(test_case.TestCase):
         'spec_name': 'test_master:test_builder',
     }
     summary = _gen_task_result_summary(self.now, 1, tags=tags)
-    summary.exit_code = 0 # sets failure = False.
+    summary.exit_code = 0  # sets failure = False.
     summary.internal_failure = False
     summary.duration = 42
 
@@ -138,7 +138,7 @@ class TestMetrics(test_case.TestCase):
     ts_mon_metrics.on_task_completed(summary)
     self.assertEqual(1, ts_mon_metrics._jobs_completed.get(fields=fields))
 
-    summary.exit_code = 1 # sets failure = True.
+    summary.exit_code = 1  # sets failure = True.
     summary.state = task_result.State.COMPLETED
     fields['result'] = 'failure'
     fields['status'] = task_result.State.to_string(summary.state)
@@ -244,7 +244,9 @@ class TestMetrics(test_case.TestCase):
     _gen_bot_info('bot_quarantined', self.now, quarantined=True).put()
     _gen_bot_info('bot_dead', self.now - datetime.timedelta(days=365)).put()
     _gen_bot_info(
-        'bot_maintenance', self.now, state={'maintenance': True}).put()
+        'bot_maintenance', self.now, state={
+            'maintenance': True
+        }).put()
     bots_expected = {
         'bot_ready': 'ready',
         'bot_running': 'running',
@@ -265,8 +267,9 @@ class TestMetrics(test_case.TestCase):
     jobs_target_fields = dict(ts_mon_metrics._TARGET_FIELDS)
     jobs_target_fields['hostname'] = 'autogen:test_bot1'
 
-    self.assertTrue(ts_mon_metrics._jobs_running.get(
-        fields=jobs_fields, target_fields=jobs_target_fields))
+    self.assertTrue(
+        ts_mon_metrics._jobs_running.get(
+            fields=jobs_fields, target_fields=jobs_target_fields))
     jobs_target_fields['hostname'] = 'autogen:test_bot2'
     self.assertFalse(
         ts_mon_metrics._jobs_running.get(

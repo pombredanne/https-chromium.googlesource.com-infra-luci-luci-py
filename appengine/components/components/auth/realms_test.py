@@ -19,117 +19,131 @@ def perms(*names):
 
 
 class MergeTest(test_case.TestCase):
+
   def test_empty(self):
     self.assertEqual(
-        realms.merge([], {}),
-        realms_pb2.Realms(api_version=realms.API_VERSION))
+        realms.merge([], {}), realms_pb2.Realms(api_version=realms.API_VERSION))
 
   def test_remaps_permissions(self):
     out = realms.merge(
         perms('luci.dev.p1', 'luci.dev.p2'),
         {
-            'proj1': realms_pb2.Realms(
-                permissions=perms('luci.dev.p2', 'luci.dev.z', 'luci.dev.p1'),
-                realms=[
-                    {
-                        'name': 'proj1:@root',
-                        'bindings': [
-                            {
-                                'permissions': [0, 1, 2],  # p2, z, p1
-                                'principals': ['group:gr1'],
-                            },
-                            {
-                                'permissions': [1],  # z, will be dropped
-                                'principals': ['group:gr2'],
-                            },
-                            {
-                                'permissions': [2],  # p1
-                                'principals': ['group:gr3'],
-                            },
-                        ],
-                    },
-                ],
-            ),
+            'proj1':
+                realms_pb2.Realms(
+                    permissions=perms('luci.dev.p2', 'luci.dev.z',
+                                      'luci.dev.p1'),
+                    realms=[
+                        {
+                            'name':
+                                'proj1:@root',
+                            'bindings': [
+                                {
+                                    'permissions': [0, 1, 2],  # p2, z, p1
+                                    'principals': ['group:gr1'],
+                                },
+                                {
+                                    'permissions': [1],  # z, will be dropped
+                                    'principals': ['group:gr2'],
+                                },
+                                {
+                                    'permissions': [2],  # p1
+                                    'principals': ['group:gr3'],
+                                },
+                            ],
+                        },
+                    ],
+                ),
         },
     )
-    self.assertEqual(out, realms_pb2.Realms(
-        api_version=realms.API_VERSION,
-        permissions=perms('luci.dev.p1', 'luci.dev.p2'),
-        realms=[
-            {
-                'name': 'proj1:@root',
-                'bindings': [
-                    {
-                        'permissions': [0],  # p1
-                        'principals': ['group:gr3'],
-                    },
-                    {
-                        'permissions': [0, 1],  # p1, p2
-                        'principals': ['group:gr1'],
-                    },
-                ],
-            },
-        ],
-    ))
+    self.assertEqual(
+        out,
+        realms_pb2.Realms(
+            api_version=realms.API_VERSION,
+            permissions=perms('luci.dev.p1', 'luci.dev.p2'),
+            realms=[
+                {
+                    'name':
+                        'proj1:@root',
+                    'bindings': [
+                        {
+                            'permissions': [0],  # p1
+                            'principals': ['group:gr3'],
+                        },
+                        {
+                            'permissions': [0, 1],  # p1, p2
+                            'principals': ['group:gr1'],
+                        },
+                    ],
+                },
+            ],
+        ))
 
   def test_merge_multiple(self):
     out = realms.merge(
         perms('luci.dev.p1', 'luci.dev.p2', 'luci.dev.p3'),
         {
-            'proj1': realms_pb2.Realms(
-                permissions=perms('luci.dev.p1', 'luci.dev.p2'),
-                realms=[
-                    {
-                        'name': 'proj1:@root',
-                        'bindings': [
-                            {
-                                'permissions': [0, 1],  # p1, p2
-                                'principals': ['group:gr1'],
-                            },
-                        ],
-                    },
-                ],
-            ),
-            'proj2': realms_pb2.Realms(
-                permissions=perms('luci.dev.p2', 'luci.dev.p3'),
-                realms=[
-                    {
-                        'name': 'proj2:@root',
-                        'bindings': [
-                            {
-                                'permissions': [0, 1],  # p2, p3
-                                'principals': ['group:gr2'],
-                            },
-                        ],
-                    },
-                ],
-            ),
+            'proj1':
+                realms_pb2.Realms(
+                    permissions=perms('luci.dev.p1', 'luci.dev.p2'),
+                    realms=[
+                        {
+                            'name':
+                                'proj1:@root',
+                            'bindings': [
+                                {
+                                    'permissions': [0, 1],  # p1, p2
+                                    'principals': ['group:gr1'],
+                                },
+                            ],
+                        },
+                    ],
+                ),
+            'proj2':
+                realms_pb2.Realms(
+                    permissions=perms('luci.dev.p2', 'luci.dev.p3'),
+                    realms=[
+                        {
+                            'name':
+                                'proj2:@root',
+                            'bindings': [
+                                {
+                                    'permissions': [0, 1],  # p2, p3
+                                    'principals': ['group:gr2'],
+                                },
+                            ],
+                        },
+                    ],
+                ),
         },
     )
-    self.assertEqual(out, realms_pb2.Realms(
-        api_version=realms.API_VERSION,
-        permissions=perms('luci.dev.p1', 'luci.dev.p2', 'luci.dev.p3'),
-        realms=[
-            {
-                'name': 'proj1:@root',
-                'bindings': [
-                    {
-                        'permissions': [0, 1],  # p1, p2
-                        'principals': ['group:gr1'],
-                    },
-                ],
-            },
-            {
-                'name': 'proj2:@root',
-                'bindings': [
-                    {
-                        'permissions': [1, 2],  # p2, p3
-                        'principals': ['group:gr2'],
-                    },
-                ],
-            },
-        ],
-    ))
+    self.assertEqual(
+        out,
+        realms_pb2.Realms(
+            api_version=realms.API_VERSION,
+            permissions=perms('luci.dev.p1', 'luci.dev.p2', 'luci.dev.p3'),
+            realms=[
+                {
+                    'name':
+                        'proj1:@root',
+                    'bindings': [
+                        {
+                            'permissions': [0, 1],  # p1, p2
+                            'principals': ['group:gr1'],
+                        },
+                    ],
+                },
+                {
+                    'name':
+                        'proj2:@root',
+                    'bindings': [
+                        {
+                            'permissions': [1, 2],  # p2, p3
+                            'principals': ['group:gr2'],
+                        },
+                    ],
+                },
+            ],
+        ))
 
 
 if __name__ == '__main__':

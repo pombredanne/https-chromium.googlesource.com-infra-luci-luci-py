@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Top-level presubmit script for swarming-server.
 
 See http://dev.chromium.org/developers/how-tos/depottools/presubmit-scripts for
@@ -19,12 +18,14 @@ def CommonChecks(input_api, output_api):
       r'.*_pb2_grpc\.py$',
   ]
   disabled_warnings = [
-    'relative-import',
+      'relative-import',
   ]
-  output.extend(input_api.canned_checks.RunPylint(
-      input_api, output_api,
-      black_list=black_list,
-      disabled_warnings=disabled_warnings))
+  output.extend(
+      input_api.canned_checks.RunPylint(
+          input_api,
+          output_api,
+          black_list=black_list,
+          disabled_warnings=disabled_warnings))
   return output
 
 

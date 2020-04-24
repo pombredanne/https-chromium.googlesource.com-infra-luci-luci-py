@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """pRPC client.
 
 Supports components.auth-based authentication, including delegation tokens.
@@ -19,44 +18,44 @@ from components.prpc import encoding
 
 _BINARY_MEDIA_TYPE = encoding.Encoding.media_type(encoding.Encoding.BINARY)
 
-
 # A low-level pRPC request to be sent using components.net module.
 # Most clients should use Client class instead.
 # Use new_request to create a new request.
-Request = collections.namedtuple('Request', [
-    # hostname of the pRPC server, e.g. "app.example.com".
-    # Must not contain a scheme.
-    'hostname',
-    # True if the client must use HTTP, as opposed to HTTPS.
-    # Useful for local servers.
-    'insecure',
-    # Full name of the service, including the package name,
-    # e.g. "mypackage.MyService".
-    'service_name',
-    # Name of the RPC method.
-    'method_name',
-    # The request message.
-    'request_message',
-    # Target response message.
-    'response_message',
-    # A dict of call metadata. Will be available to the server.
-    'metadata',
-    # RPC timeout in seconds.
-    'timeout',
-    # OAuth2 scopes for the access token (ok skip auth if None).
-    'scopes',
-    # components.auth.ServiceAccountKey with credentials.
-    'service_account_key',
-    # delegation token returned by components.auth.delegate.
-    'delegation_token',
-    # how many times to retry on errors (4 times by default).
-    'max_attempts',
-])
+Request = collections.namedtuple(
+    'Request',
+    [
+        # hostname of the pRPC server, e.g. "app.example.com".
+        # Must not contain a scheme.
+        'hostname',
+        # True if the client must use HTTP, as opposed to HTTPS.
+        # Useful for local servers.
+        'insecure',
+        # Full name of the service, including the package name,
+        # e.g. "mypackage.MyService".
+        'service_name',
+        # Name of the RPC method.
+        'method_name',
+        # The request message.
+        'request_message',
+        # Target response message.
+        'response_message',
+        # A dict of call metadata. Will be available to the server.
+        'metadata',
+        # RPC timeout in seconds.
+        'timeout',
+        # OAuth2 scopes for the access token (ok skip auth if None).
+        'scopes',
+        # components.auth.ServiceAccountKey with credentials.
+        'service_account_key',
+        # delegation token returned by components.auth.delegate.
+        'delegation_token',
+        # how many times to retry on errors (4 times by default).
+        'max_attempts',
+    ])
 
 
-def new_request(
-    hostname, service_name, method_name, request_message, response_message,
-    **kwargs):
+def new_request(hostname, service_name, method_name, request_message,
+                response_message, **kwargs):
   """Creates a Request object. Provides defaults for optional fields."""
   ret = Request(
       hostname=hostname,
@@ -201,10 +200,12 @@ def composite_call_credentials(*call_credentials):
 
   The returned value can be used as "credentials" argument in RPC method calls.
   """
+
   def fn(req):
     for mut in call_credentials:
       req = mut(req)
     return req
+
   return fn
 
 
@@ -228,8 +229,7 @@ class Client(object):
   Otherwise, they raise an Error.
   """
 
-  def __init__(
-      self, hostname, service_description, insecure=False):
+  def __init__(self, hostname, service_description, insecure=False):
     """Initializes a new pRPC Client.
 
     Args:
@@ -282,8 +282,8 @@ class Client(object):
 
       if credentials:
         assert hasattr(credentials, '__call__'), (
-          'credentials must be created using credentials functions in '
-          'components.prpc.client module')
+            'credentials must be created using credentials functions in '
+            'components.prpc.client module')
         prpc_req = credentials(prpc_req)
 
       return rpc_async(prpc_req, response_metadata=response_metadata)

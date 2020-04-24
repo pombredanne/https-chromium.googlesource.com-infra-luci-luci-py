@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Automated maintenance tool to run a script on bots.
 
 To use this script, write a self-contained python script (use a .zip if
@@ -115,9 +114,9 @@ def batched_subprocess(cmd, sem):
   return thread
 
 
-def run_batches(
-    swarming_server, isolate_server, dimensions, tags, env, priority, deadline,
-    batches, repeat, isolated_hash, name, bots, args):
+def run_batches(swarming_server, isolate_server, dimensions, tags, env,
+                priority, deadline, batches, repeat, isolated_hash, name, bots,
+                args):
   """Runs the task |batches| at a time.
 
   This will be mainly bound by task scheduling latency, especially if the bots
@@ -128,8 +127,8 @@ def run_batches(
   for i in range(repeat):
     for bot in bots:
       suffix = '/%d' % i if repeat > 1 else ''
-      task_name = parallel_execution.task_to_name(
-            name, {'id': bot}, isolated_hash) + suffix
+      task_name = parallel_execution.task_to_name(name, {'id': bot},
+                                                  isolated_hash) + suffix
       cmd = [
           sys.executable,
           'swarming.py',
@@ -175,8 +174,8 @@ def run_serial(swarming_server, isolate_server, dimensions, tags, env, priority,
   for i in range(repeat):
     for bot in bots:
       suffix = '/%d' % i if repeat > 1 else ''
-      task_name = parallel_execution.task_to_name(
-          name, {'id': bot}, isolated_hash) + suffix
+      task_name = parallel_execution.task_to_name(name, {'id': bot},
+                                                  isolated_hash) + suffix
       cmd = [
           sys.executable,
           'swarming.py',
@@ -227,14 +226,14 @@ def run_parallel(swarming_server, isolate_server, dimensions, env, priority,
   for failed_task in parallel_execution.run_swarming_tasks_parallel(
       swarming_server, isolate_server, extra_args, tasks):
     _name, dimensions, stdout = failed_task
-    print('%sFailure: %s%s\n%s' % (
-      colorama.Fore.RED, dimensions, colorama.Fore.RESET, stdout))
+    print('%sFailure: %s%s\n%s' % (colorama.Fore.RED, dimensions,
+                                   colorama.Fore.RESET, stdout))
 
 
 def main():
   parser = parallel_execution.OptionParser(
       usage='%prog [options] (script.py|isolated hash) '
-            '-- [script.py arguments]',
+      '-- [script.py arguments]',
       version=__version__)
   parser.add_option(
       '--serial',
@@ -242,18 +241,24 @@ def main():
       help='Runs the task serially, to be used when debugging problems since '
       'it\'s slow')
   parser.add_option(
-      '--batches', type='int', default=0,
+      '--batches',
+      type='int',
+      default=0,
       help='Runs a task in parallel |batches| at a time.')
   parser.add_option(
-      '--tags', action='append', default=[], metavar='FOO:BAR',
+      '--tags',
+      action='append',
+      default=[],
+      metavar='FOO:BAR',
       help='Tags to assign to the task.')
   parser.add_option(
-      '--repeat', type='int', default=1,
+      '--repeat',
+      type='int',
+      default=1,
       help='Runs the task multiple time on each bot, meant to be used as a '
-           'load test')
+      'load test')
   parser.add_option(
-      '--name',
-      help='Name to use when providing an isolated hash')
+      '--name', help='Name to use when providing an isolated hash')
   options, args = parser.parse_args()
 
   if len(args) < 1:
@@ -286,8 +291,8 @@ def main():
   print('Running %s' % isolated_hash)
 
   # 2. Query the bots list.
-  bots, quarantined_bots, dead_bots = get_bot_list(
-      options.swarming, options.dimensions)
+  bots, quarantined_bots, dead_bots = get_bot_list(options.swarming,
+                                                   options.dimensions)
   print('Found %d bots to process' % len(bots))
   if quarantined_bots:
     print('Warning: found %d quarantined bots' % len(quarantined_bots))

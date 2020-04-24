@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """OSX specific utility functions."""
 
 import cgi
@@ -30,9 +29,7 @@ try:
 except ImportError:
   Quartz = None
 
-
 ## Private stuff.
-
 
 iokit = ctypes.CDLL(
     '/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit')
@@ -61,7 +58,9 @@ iokit.IOServiceMatching.restype = ctypes.c_void_p
 
 # https://developer.apple.com/documentation/iokit/1514494-ioservicegetmatchingservices
 iokit.IOServiceGetMatchingServices.argtypes = [
-    ctypes.c_uint, ctypes.c_void_p, ctypes.POINTER(ctypes.c_uint),
+    ctypes.c_uint,
+    ctypes.c_void_p,
+    ctypes.POINTER(ctypes.c_uint),
 ]
 iokit.IOServiceGetMatchingServices.restype = ctypes.c_int
 
@@ -72,7 +71,6 @@ iokit.IOIteratorNext.restype = ctypes.c_uint
 # https://developer.apple.com/documentation/iokit/1514627-ioobjectrelease
 iokit.IOObjectRelease.argtypes = [ctypes.c_uint]
 iokit.IOObjectRelease.restype = ctypes.c_int
-
 
 libkern = ctypes.CDLL('/usr/lib/system/libsystem_kernel.dylib')
 libkern.mach_task_self.restype = ctypes.c_uint
@@ -302,8 +300,7 @@ def _SMC_get_value(conn, key):
   if t == 'sp78\0' and val.size == 2:
     # Format is first byte signed int8, second byte uint8 fractional.
     return round(
-        float(ctypes.c_int8(val.bytes[0]).value) + (val.bytes[1] / 256.),
-        2)
+        float(ctypes.c_int8(val.bytes[0]).value) + (val.bytes[1] / 256.), 2)
   if t == 'fpe2\0' and val.size == 2:
     # Format is unsigned 14 bits big endian, 2 bits fractional.
     return round((float((val.bytes[0] << 6) + (val.bytes[1] >> 2)) +
@@ -407,8 +404,7 @@ def get_xcode_state():
 
 def get_xcode_versions():
   """Returns a list of Xcode versions installed on this machine."""
-  return sorted(
-      set(xcode['version'] for xcode in get_xcode_state().values()))
+  return sorted(set(xcode['version'] for xcode in get_xcode_state().values()))
 
 
 def get_current_xcode_version():
@@ -627,6 +623,7 @@ def get_monitor_hidpi():
     <key>spdisplays_display_type</key>
     <string>spdisplays_built-in_retinaLCD</string>
   """
+
   def is_hidpi(displays):
     return any(
         d.get('spdisplays_retina') == 'spdisplays_yes' or
@@ -634,9 +631,9 @@ def get_monitor_hidpi():
         for d in displays)
 
   hidpi = any(
-    is_hidpi(card['spdisplays_ndrvs'])
-    for card in _get_system_profiler('SPDisplaysDataType')
-    if 'spdisplays_ndrvs' in card)
+      is_hidpi(card['spdisplays_ndrvs'])
+      for card in _get_system_profiler('SPDisplaysDataType')
+      if 'spdisplays_ndrvs' in card)
   return unicode(int(hidpi))
 
 

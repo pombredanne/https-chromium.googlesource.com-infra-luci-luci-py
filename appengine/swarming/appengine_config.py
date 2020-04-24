@@ -1,7 +1,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Configures includes (components.auth).
 
 https://developers.google.com/appengine/docs/python/tools/appengineconfig
@@ -10,7 +9,6 @@ https://developers.google.com/appengine/docs/python/tools/appengineconfig
 import os
 
 from server import config
-
 
 components_auth_UI_APP_NAME = 'Swarming'
 
@@ -39,12 +37,13 @@ def hack_windows():
       link = f.read()
     if '\n' not in link:
       # This is not exactly right but close enough.
-      sys.path.insert(
-          0, os.path.dirname(os.path.normpath(os.path.abspath(link))))
+      sys.path.insert(0, os.path.dirname(
+          os.path.normpath(os.path.abspath(link))))
   sys.path.insert(
       0,
-      os.path.normpath(os.path.abspath(
-          os.path.join('..', 'components', 'components', 'third_party'))))
+      os.path.normpath(
+          os.path.abspath(
+              os.path.join('..', 'components', 'components', 'third_party'))))
 
 
 if os.__file__[0] != '/':

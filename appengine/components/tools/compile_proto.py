@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Compiles all *.proto files it finds into *_pb2.py."""
 
 from __future__ import print_function
@@ -16,29 +15,24 @@ import subprocess
 import sys
 import tempfile
 
-
 # Directory with this file.
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-
 
 # Minimally required protoc version.
 MIN_SUPPORTED_PROTOC_VERSION = (3, 6, 1)
 # Maximally supported protoc version.
 MAX_SUPPORTED_PROTOC_VERSION = (3, 6, 1)
 
-
 # Printed if protoc is missing or too old.
 PROTOC_INSTALL_HELP = (
-    "Could not find working protoc (%s <= ver <= %s) in PATH." %
-    (
-      '.'.join(map(str, MIN_SUPPORTED_PROTOC_VERSION)),
-      '.'.join(map(str, MAX_SUPPORTED_PROTOC_VERSION)),
+    "Could not find working protoc (%s <= ver <= %s) in PATH." % (
+        '.'.join(map(str, MIN_SUPPORTED_PROTOC_VERSION)),
+        '.'.join(map(str, MAX_SUPPORTED_PROTOC_VERSION)),
     ))
-
 
 # Paths that should not be searched for *.proto.
 BLACKLISTED_PATHS = [
-  re.compile(r'.*(/|\\)third_party(/|\\)?'),
+    re.compile(r'.*(/|\\)third_party(/|\\)?'),
 ]
 
 
@@ -53,8 +47,8 @@ def find_proto_files(path):
   for dirpath, dirnames, filenames in os.walk(path, followlinks=True):
     # Skip hidden and blacklisted directories
     skipped = [
-      x for x in dirnames
-      if x[0] == '.' or is_blacklisted(os.path.join(dirpath, x))
+        x for x in dirnames
+        if x[0] == '.' or is_blacklisted(os.path.join(dirpath, x))
     ]
     for dirname in skipped:
       dirnames.remove(dirname)
@@ -67,6 +61,7 @@ def find_proto_files(path):
 def get_protoc():
   """Returns protoc executable path (maybe relative to PATH)."""
   return 'protoc.exe' if sys.platform == 'win32' else 'protoc'
+
 
 def compile_proto(proto_file, output_path, proto_path):
   """Invokes 'protoc', compiling single *.proto file into *_pb2.py file.
@@ -87,8 +82,8 @@ def compile_proto(proto_file, output_path, proto_path):
   root = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
   env['PYTHONPATH'] = os.path.join(root, 'client', 'third_party')
   subprocess.check_call(cmd, env=env)
-  return proto_file.replace('.proto', '_pb2.py').replace(proto_path,
-                                                         output_path)
+  return proto_file.replace('.proto', '_pb2.py').replace(
+      proto_path, output_path)
 
 
 def check_proto_compiled(proto_file, proto_path):
@@ -166,7 +161,9 @@ def main(args, app_dir=None):
       description=sys.modules['__main__'].__doc__,
       usage='%prog [options]' + ('' if app_dir else ' <root dir>'))
   parser.add_option(
-      '-c', '--check', action='store_true',
+      '-c',
+      '--check',
+      action='store_true',
       help='Only check that all *.proto files are up to date')
   parser.add_option('-v', '--verbose', action='store_true')
   parser.add_option(

@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Profiler to compare various compression levels with regards to speed
 and final size when compressing the full set of files from a given
 isolated file.
@@ -106,8 +105,8 @@ def main():
     file_set = tree_files(temp_dir)
 
     if options.largest_files:
-      sorted_by_size = sorted(file_set.items(), key=lambda x: x[1],
-                              reverse=True)
+      sorted_by_size = sorted(
+          file_set.items(), key=lambda x: x[1], reverse=True)
       files_to_compress = sorted_by_size[:options.largest_files]
 
       for filename, size in files_to_compress:

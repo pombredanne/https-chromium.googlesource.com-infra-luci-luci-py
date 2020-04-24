@@ -23,9 +23,12 @@ from utils import oauth
 
 
 class LuciContextAuthTest(auto_stub.TestCase):
+
   @contextlib.contextmanager
   def lucicontext(self, token_response=None, response_code=200):
+
     class MockLuciContextServer(object):
+
       @staticmethod
       def request(uri=None, method=None, body=None, headers=None):
         self.assertEqual('POST', method)
@@ -42,6 +45,7 @@ class LuciContextAuthTest(auto_stub.TestCase):
         response.status = response_code
         content = json.dumps(token_response)
         return response, content
+
     self.mock_local_auth(MockLuciContextServer())
     yield
 
@@ -50,15 +54,19 @@ class LuciContextAuthTest(auto_stub.TestCase):
     self.mock_time(0)
 
   def mock_local_auth(self, server):
+
     def load_local_auth():
       return oauth.LocalAuthParameters(
           rpc_port=0,
           secret='secret',
           accounts=[oauth.LocalAuthAccount('acc_a')],
           default_account_id='acc_a')
+
     self.mock(oauth, '_load_local_auth', load_local_auth)
+
     def http_server():
       return server
+
     self.mock(httplib2, 'Http', http_server)
 
   def mock_time(self, delta):
@@ -93,29 +101,23 @@ class LuciContextAuthTest(auto_stub.TestCase):
   def test_validation(self):
     t_expire = self._utc_datetime(120)
     good_token = oauth.AccessToken("secret", t_expire)
-    self.assertEqual(
-        True,
-        oauth._validate_luci_context_access_token(good_token))
+    self.assertEqual(True,
+                     oauth._validate_luci_context_access_token(good_token))
     no_token = oauth.AccessToken("", t_expire)
-    self.assertEqual(
-        False,
-        oauth._validate_luci_context_access_token(no_token))
+    self.assertEqual(False, oauth._validate_luci_context_access_token(no_token))
     not_a_token = {'token': "secret", 'expires_at': t_expire}
-    self.assertEqual(
-        False,
-        oauth._validate_luci_context_access_token(not_a_token))
+    self.assertEqual(False,
+                     oauth._validate_luci_context_access_token(not_a_token))
 
     self.mock_time(50)
 
-    self.assertEqual(
-        True,
-        oauth._validate_luci_context_access_token(good_token))
+    self.assertEqual(True,
+                     oauth._validate_luci_context_access_token(good_token))
 
     self.mock_time(100)
 
-    self.assertEqual(
-        False,
-        oauth._validate_luci_context_access_token(good_token))
+    self.assertEqual(False,
+                     oauth._validate_luci_context_access_token(good_token))
 
 
 if __name__ == '__main__':

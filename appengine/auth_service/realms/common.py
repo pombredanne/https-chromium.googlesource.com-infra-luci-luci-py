@@ -1,13 +1,11 @@
 # Copyright 2020 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Shared constants and internal utilities."""
 
 import re
 
 from components import utils
-
 
 # Root realm is included in all other realms, see realms_config.proto.
 ROOT_REALM = '@root'

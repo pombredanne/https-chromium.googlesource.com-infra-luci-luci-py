@@ -51,8 +51,8 @@ class MainTest(test_case.TestCase):
     self.auth_app = webtest.TestApp(
         auth.create_wsgi_application(debug=True),
         extra_environ={
-          'REMOTE_ADDR': self.source_ip,
-          'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
 
     full_access_group = config.settings().auth.full_access_group
@@ -103,7 +103,9 @@ class MainTest(test_case.TestCase):
     """Gets the generic XSRF token for web clients."""
     resp = self.auth_app.post(
         '/auth/api/v1/accounts/self/xsrf_token',
-        headers={'X-XSRF-Token-Request': '1'}).json
+        headers={
+            'X-XSRF-Token-Request': '1'
+        }).json
     return resp['xsrf_token'].encode('ascii')
 
   def test_root(self):
@@ -154,6 +156,7 @@ class MainTest(test_case.TestCase):
       self.assertEqual(u'sample-app', bucket)
       self.assertEqual(namespace + '/' + hashhex, key)
       return [compressed]
+
     self.mock(gcs, 'read_file', read_file)
 
     key = model.get_entry_key(namespace, hashhex)
@@ -182,6 +185,7 @@ class MainTest(test_case.TestCase):
       self.assertEqual(u'sample-app', bucket)
       self.assertEqual(namespace + '/' + hashhex, key)
       raise cloudstorage.NotFoundError('Someone deleted the file from GCS')
+
     self.mock(gcs, 'read_file', read_file)
 
     key = model.get_entry_key(namespace, hashhex)
@@ -203,9 +207,9 @@ class MainTest(test_case.TestCase):
     # TODO(maruel): Use beautifulsoup?
     priv_key = 'test private key'
     params = {
-      'gs_private_key': priv_key,
-      'keyid': str(config.settings_info()['cfg'].key.integer_id()),
-      'xsrf_token': self.get_xsrf_token(),
+        'gs_private_key': priv_key,
+        'keyid': str(config.settings_info()['cfg'].key.integer_id()),
+        'xsrf_token': self.get_xsrf_token(),
     }
     self.assertEqual('', config.settings().gs_private_key)
     resp = self.app.post('/restricted/config', params)
@@ -217,10 +221,10 @@ class MainTest(test_case.TestCase):
     resp = self.app.get('/restricted/config')
     # TODO(maruel): Use beautifulsoup?
     params = {
-      'google_analytics': 'foobar',
-      'keyid': str(config.settings().key.integer_id() - 1),
-      'reusable_task_age_secs': 30,
-      'xsrf_token': self.get_xsrf_token(),
+        'google_analytics': 'foobar',
+        'keyid': str(config.settings().key.integer_id() - 1),
+        'reusable_task_age_secs': 30,
+        'xsrf_token': self.get_xsrf_token(),
     }
     self.assertEqual('', config.settings().google_analytics)
     resp = self.app.post('/restricted/config', params)

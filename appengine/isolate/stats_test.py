@@ -25,6 +25,7 @@ import stats
 
 
 class Store(webapp2.RequestHandler):
+
   def get(self):
     """Generates fake stats."""
     stats.add_entry(stats.STORE, 2048, 'GS; inline')
@@ -32,6 +33,7 @@ class Store(webapp2.RequestHandler):
 
 
 class Return(webapp2.RequestHandler):
+
   def get(self):
     """Generates fake stats."""
     stats.add_entry(stats.RETURN, 4096, 'memcache')
@@ -39,6 +41,7 @@ class Return(webapp2.RequestHandler):
 
 
 class Lookup(webapp2.RequestHandler):
+
   def get(self):
     """Generates fake stats."""
     stats.add_entry(stats.LOOKUP, 200, 103)
@@ -46,6 +49,7 @@ class Lookup(webapp2.RequestHandler):
 
 
 class Dupe(webapp2.RequestHandler):
+
   def get(self):
     """Generates fake stats."""
     stats.add_entry(stats.DUPE, 1024, 'inline')
@@ -59,6 +63,7 @@ def to_str(now, delta):
 
 
 class StatsTest(test_case.TestCase):
+
   def setUp(self):
     super(StatsTest, self).setUp()
     fake_routes = [
@@ -93,42 +98,42 @@ class StatsTest(test_case.TestCase):
     self.mock_now(self.now, 60)
     self.assertEqual(10, stats.cron_generate_stats())
 
-    actual = stats_framework.get_stats(
-        stats.STATS_HANDLER, 'minutes', self.now, 1, True)
+    actual = stats_framework.get_stats(stats.STATS_HANDLER, 'minutes', self.now,
+                                       1, True)
     expected = [
-      {
-        'contains_lookups': 0,
-        'contains_requests': 0,
-        'downloads': 0,
-        'downloads_bytes': 0,
-        'failures': 0,
-        'key': '2010-01-02T03:04',
-        'requests': 1,
-        'uploads': 0,
-        'uploads_bytes': 0,
-      },
+        {
+            'contains_lookups': 0,
+            'contains_requests': 0,
+            'downloads': 0,
+            'downloads_bytes': 0,
+            'failures': 0,
+            'key': '2010-01-02T03:04',
+            'requests': 1,
+            'uploads': 0,
+            'uploads_bytes': 0,
+        },
     ]
     expected[0].update(added_data)
     self.assertEqual(expected, actual)
 
   def test_store(self):
     expected = {
-      'uploads': 1,
-      'uploads_bytes': 2048,
+        'uploads': 1,
+        'uploads_bytes': 2048,
     }
     self._test_handler('/store', expected)
 
   def test_return(self):
     expected = {
-      'downloads': 1,
-      'downloads_bytes': 4096,
+        'downloads': 1,
+        'downloads_bytes': 4096,
     }
     self._test_handler('/return', expected)
 
   def test_lookup(self):
     expected = {
-      'contains_lookups': 200,
-      'contains_requests': 1,
+        'contains_lookups': 200,
+        'contains_requests': 1,
     }
     self._test_handler('/lookup', expected)
 
@@ -145,29 +150,28 @@ class StatsTest(test_case.TestCase):
         key=stats.STATS_HANDLER.minute_key(self.now),
         created=self.now,
         values_compressed=stats._Snapshot(
-          uploads=1,
-          uploads_bytes=2,
-          downloads=3,
-          downloads_bytes=4,
-          contains_requests=5,
-          contains_lookups=6,
-          requests=7,
-          failures=8,
+            uploads=1,
+            uploads_bytes=2,
+            downloads=3,
+            downloads_bytes=4,
+            contains_requests=5,
+            contains_lookups=6,
+            requests=7,
+            failures=8,
         ))
     p = isolated_pb2.StatsSnapshot()
     stats.snapshot_to_proto(s, p)
-    expected = (
-      u'start_time {\n'
-      u'  seconds: 1262401440\n'
-      u'}\n'
-      u'uploads: 1\n'
-      u'uploads_bytes: 2\n'
-      u'downloads: 3\n'
-      u'downloads_bytes: 4\n'
-      u'contains_requests: 5\n'
-      u'contains_lookups: 6\n'
-      u'requests: 7\n'
-      u'failures: 8\n')
+    expected = (u'start_time {\n'
+                u'  seconds: 1262401440\n'
+                u'}\n'
+                u'uploads: 1\n'
+                u'uploads_bytes: 2\n'
+                u'downloads: 3\n'
+                u'downloads_bytes: 4\n'
+                u'contains_requests: 5\n'
+                u'contains_lookups: 6\n'
+                u'requests: 7\n'
+                u'failures: 8\n')
     self.assertEqual(expected, unicode(p))
 
   def test_cron_generate_stats(self):
@@ -185,33 +189,33 @@ class StatsTest(test_case.TestCase):
     self.assertEqual(120, stats.cron_generate_stats())
 
     payloads = []
+
     def json_request(url, method, payload, scopes, deadline):
       self.assertEqual(
           'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
-            'isolated/tables/stats/insertAll',
-          url)
+          'isolated/tables/stats/insertAll', url)
       payloads.append(payload)
       self.assertEqual('POST', method)
       self.assertEqual(stats.bqh.INSERT_ROWS_SCOPE, scopes)
       self.assertEqual(600, deadline)
       return {'insertErrors': []}
+
     self.mock(stats.net, 'json_request', json_request)
 
     self.assertEqual(120, stats.cron_send_to_bq())
     expected = {
-      'failed': [],
-      'last': datetime.datetime(2009, 12, 28, 2, 0),
-      'ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
+        'failed': [],
+        'last': datetime.datetime(2009, 12, 28, 2, 0),
+        'ts': datetime.datetime(2010, 1, 2, 3, 4, 5, 6),
     }
-    self.assertEqual(
-        expected, stats.BqStateStats.get_by_id(1).to_dict())
+    self.assertEqual(expected, stats.BqStateStats.get_by_id(1).to_dict())
 
     expected = [
-      {
-        'ignoreUnknownValues': False,
-        'kind': 'bigquery#tableDataInsertAllRequest',
-        'skipInvalidRows': True,
-      },
+        {
+            'ignoreUnknownValues': False,
+            'kind': 'bigquery#tableDataInsertAllRequest',
+            'skipInvalidRows': True,
+        },
     ]
     actual_rows = payloads[0].pop('rows')
     self.assertEqual(expected, payloads)

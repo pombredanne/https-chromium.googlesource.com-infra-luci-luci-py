@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Gerrit functions for GAE environment."""
 
 import collections
@@ -14,43 +13,39 @@ from google.appengine.ext import ndb
 from components import net
 from components import utils
 
-
 AUTH_SCOPE = 'https://www.googleapis.com/auth/gerritcodereview'
 RESPONSE_PREFIX = ")]}'"
 
-
 Owner = collections.namedtuple('Owner', ['name', 'email', 'username'])
-
 
 Revision = collections.namedtuple(
     'Revision',
     [
-      # Commit sha, such as d283186300411e4d05ef0ced6c29fe77e8767a43.
-      'commit',
-      # Ordinal of the revision within a GerritChange, starting from 1.
-      'number',
-      # A ref where this commit can be fetched.
-      'fetch_ref',
+        # Commit sha, such as d283186300411e4d05ef0ced6c29fe77e8767a43.
+        'commit',
+        # Ordinal of the revision within a GerritChange, starting from 1.
+        'number',
+        # A ref where this commit can be fetched.
+        'fetch_ref',
     ])
-
 
 Change = collections.namedtuple(
     'Change',
     [
-      # A "long" change id, such as
-      # chromium/src~master~If1bfd2e7d0ad2c14908e5d45a513b5335d36ff01
-      'id',
-      # A "short" change id, such as If1bfd2e7d0ad2c14908e5d45a513b5335d36ff01
-      'change_id',
-      'project',
-      'branch',
-      'subject',
-      # Owner of the Change, of type Owner.
-      'owner',
-      # Sha of the current revision's commit.
-      'current_revision',
-      # A list of Revision objects.
-      'revisions',
+        # A "long" change id, such as
+        # chromium/src~master~If1bfd2e7d0ad2c14908e5d45a513b5335d36ff01
+        'id',
+        # A "short" change id, such as If1bfd2e7d0ad2c14908e5d45a513b5335d36ff01
+        'change_id',
+        'project',
+        'branch',
+        'subject',
+        # Owner of the Change, of type Owner.
+        'owner',
+        # Sha of the current revision's commit.
+        'current_revision',
+        # A list of Revision objects.
+        'revisions',
     ])
 
 
@@ -60,9 +55,10 @@ def get_change(*args, **kwargs):
 
 
 @ndb.tasklet
-def get_change_async(
-    hostname, change_id, include_all_revisions=True,
-    include_owner_details=False):
+def get_change_async(hostname,
+                     change_id,
+                     include_all_revisions=True,
+                     include_owner_details=False):
   """Gets a single Gerrit change by id.
 
   Returns Change object, or None if change was not found.
@@ -86,22 +82,24 @@ def get_change_async(
         username=ownerData.get('username'))
 
   revisions = [
-    Revision(
-        commit=key,
-        number=int(value['_number']),
-        fetch_ref=value['fetch']['http']['ref'],
-    ) for key, value in data.get('revisions', {}).items()]
+      Revision(
+          commit=key,
+          number=int(value['_number']),
+          fetch_ref=value['fetch']['http']['ref'],
+      ) for key, value in data.get('revisions', {}).items()
+  ]
   revisions.sort(key=lambda r: r.number)
 
-  raise ndb.Return(Change(
-      id=data['id'],
-      project=data.get('project'),
-      branch=data.get('branch'),
-      subject=data.get('subject'),
-      change_id=data.get('change_id'),
-      current_revision=data.get('current_revision'),
-      revisions=revisions,
-      owner=owner))
+  raise ndb.Return(
+      Change(
+          id=data['id'],
+          project=data.get('project'),
+          branch=data.get('branch'),
+          subject=data.get('subject'),
+          change_id=data.get('change_id'),
+          current_revision=data.get('current_revision'),
+          revisions=revisions,
+          owner=owner))
 
 
 def set_review(*args, **kwargs):
@@ -110,8 +108,12 @@ def set_review(*args, **kwargs):
 
 
 @ndb.tasklet
-def set_review_async(
-    hostname, change_id, revision, message=None, labels=None, notify=None):
+def set_review_async(hostname,
+                     change_id,
+                     revision,
+                     message=None,
+                     labels=None,
+                     notify=None):
   """Sets review on a revision.
 
   Args:
@@ -131,11 +133,11 @@ def set_review_async(
     notify = str(notify).upper()
   assert notify in (None, 'NONE', 'OWNER', 'OWNER_REVIEWERS', 'ALL')
   body = {
-    'labels': labels,
-    'message': message,
-    'notify': notify,
+      'labels': labels,
+      'message': message,
+      'notify': notify,
   }
-  body = {k:v for k, v in body.items() if v is not None}
+  body = {k: v for k, v in body.items() if v is not None}
 
   path = 'changes/%s/revisions/%s/review' % (change_id, revision)
   yield fetch_json_async(hostname, path, method='POST', payload=body)
@@ -195,9 +197,8 @@ def fetch_json_async(hostname, path, payload=None, headers=None, **kwargs):
   if content is None:
     raise ndb.Return(None)
   if not content.startswith(RESPONSE_PREFIX):
-    msg = (
-        'Unexpected response format. Expected prefix %s. Received: %s' %
-        (RESPONSE_PREFIX, content))
+    msg = ('Unexpected response format. Expected prefix %s. Received: %s' %
+           (RESPONSE_PREFIX, content))
     raise net.Error(msg, status_code=200, response=content)
   raise ndb.Return(json.loads(content[len(RESPONSE_PREFIX):]))
 

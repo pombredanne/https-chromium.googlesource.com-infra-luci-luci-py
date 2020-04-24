@@ -2,7 +2,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Triggers a task that can be used to debug another task."""
 
 import argparse
@@ -16,10 +15,8 @@ CLIENT_DIR = os.path.dirname(
     os.path.dirname(
         os.path.abspath(__file__.decode(sys.getfilesystemencoding()))))
 
-
 # URL to point people to. *Chromium specific*
 URL = 'http://go/swarming-ssh'
-
 
 COMMAND = """import os,sys,time
 print('Mapping task: %(task_url)s')
@@ -98,10 +95,16 @@ def get_swarming_args_from_task(task):
     os.close(f)
     try:
       cmd = [
-        sys.executable, 'isolateserver.py', 'download',
-        '-I', task['properties']['inputs_ref']['isolatedserver'],
-        '--namespace', task['properties']['inputs_ref']['namespace'],
-        '-f', isolated, name,
+          sys.executable,
+          'isolateserver.py',
+          'download',
+          '-I',
+          task['properties']['inputs_ref']['isolatedserver'],
+          '--namespace',
+          task['properties']['inputs_ref']['namespace'],
+          '-f',
+          isolated,
+          name,
       ]
       subprocess.check_call(cmd, cwd=CLIENT_DIR)
       with open(name, 'rb') as f:
@@ -119,18 +122,29 @@ def trigger(swarming, taskid, task, duration, reuse_bot):
   'task'.
   """
   cmd = [
-    sys.executable, 'swarming.py', 'trigger', '-S', swarming,
-    '-S', swarming,
-    '--hard-timeout', str(duration),
-    '--io-timeout', str(duration),
-    '--task-name', 'Debug Task for %s' % taskid,
-    '--raw-cmd',
-    '--tags', 'debug_task:1',
+      sys.executable,
+      'swarming.py',
+      'trigger',
+      '-S',
+      swarming,
+      '-S',
+      swarming,
+      '--hard-timeout',
+      str(duration),
+      '--io-timeout',
+      str(duration),
+      '--task-name',
+      'Debug Task for %s' % taskid,
+      '--raw-cmd',
+      '--tags',
+      'debug_task:1',
   ]
   if reuse_bot:
     pool = [
-        i['value'] for i in task['properties']['dimensions']
-        if i['key'] == 'pool'][0]
+        i['value']
+        for i in task['properties']['dimensions']
+        if i['key'] == 'pool'
+    ][0]
     cmd.extend(('-d', 'pool', pool))
     # Need to query the task's bot.
     res = retrieve_task_results(swarming, taskid)
@@ -178,10 +192,16 @@ def main():
       default=os.environ.get('SWARMING_SERVER', ''),
       help='Swarming server to use')
   parser.add_argument(
-      '-r', '--reuse-bot', action='store_true',
+      '-r',
+      '--reuse-bot',
+      action='store_true',
       help='Locks the debug task to the original bot that ran the task')
   parser.add_argument(
-      '-l', '--lease', type=int, default=6*60*60, metavar='SECS',
+      '-l',
+      '--lease',
+      type=int,
+      default=6 * 60 * 60,
+      metavar='SECS',
       help='Duration of the lease')
   args = parser.parse_args()
 

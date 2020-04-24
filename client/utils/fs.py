@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Wraps os, os.path and shutil functions to work around MAX_PATH on Windows."""
 
 import inspect
@@ -23,10 +22,9 @@ if sys.platform == 'win32':
   from ctypes import wintypes
   from ctypes.wintypes import windll
 
-
   CreateSymbolicLinkW = windll.kernel32.CreateSymbolicLinkW
-  CreateSymbolicLinkW.argtypes = (
-      wintypes.LPCWSTR, wintypes.LPCWSTR, wintypes.DWORD)
+  CreateSymbolicLinkW.argtypes = (wintypes.LPCWSTR, wintypes.LPCWSTR,
+                                  wintypes.DWORD)
   CreateSymbolicLinkW.restype = wintypes.BOOL
   DeleteFile = windll.kernel32.DeleteFileW
   DeleteFile.argtypes = (wintypes.LPCWSTR,)
@@ -38,10 +36,9 @@ if sys.platform == 'win32':
   RemoveDirectory.argtypes = (wintypes.LPCWSTR,)
   RemoveDirectory.restype = wintypes.BOOL
   DeviceIoControl = windll.kernel32.DeviceIoControl
-  DeviceIoControl.argtypes = (
-      wintypes.HANDLE, wintypes.DWORD, wintypes.LPVOID, wintypes.DWORD,
-      wintypes.LPVOID, wintypes.DWORD, ctypes.POINTER(wintypes.DWORD),
-      wintypes.LPVOID)
+  DeviceIoControl.argtypes = (wintypes.HANDLE, wintypes.DWORD, wintypes.LPVOID,
+                              wintypes.DWORD, wintypes.LPVOID, wintypes.DWORD,
+                              ctypes.POINTER(wintypes.DWORD), wintypes.LPVOID)
   DeviceIoControl.restype = wintypes.BOOL
 
   # It's *much* faster to temporarily waste 32Kb of memory than call
@@ -51,37 +48,37 @@ if sys.platform == 'win32':
 
   class _SYMBOLIC_LINK_REPARSE_BUFFER(ctypes.Structure):
     _fields_ = (
-      ('SubstituteNameOffset', wintypes.USHORT),
-      ('SubstituteNameLength', wintypes.USHORT),
-      ('PrintNameOffset', wintypes.USHORT),
-      ('PrintNameLength', wintypes.USHORT),
-      ('Flags', wintypes.ULONG),
-      ('PathBuffer', wintypes.WCHAR * _MAX_WIN_PATH_LENGTH),
+        ('SubstituteNameOffset', wintypes.USHORT),
+        ('SubstituteNameLength', wintypes.USHORT),
+        ('PrintNameOffset', wintypes.USHORT),
+        ('PrintNameLength', wintypes.USHORT),
+        ('Flags', wintypes.ULONG),
+        ('PathBuffer', wintypes.WCHAR * _MAX_WIN_PATH_LENGTH),
     )
 
   class _MOUNT_POINT_REPARSE_BUFFER(ctypes.Structure):
     _fields_ = (
-      ('SubstituteNameOffset', wintypes.USHORT),
-      ('SubstituteNameLength', wintypes.USHORT),
-      ('PrintNameOffset', wintypes.USHORT),
-      ('PrintNameLength', wintypes.USHORT),
-      ('PathBuffer', wintypes.WCHAR * _MAX_WIN_PATH_LENGTH),
+        ('SubstituteNameOffset', wintypes.USHORT),
+        ('SubstituteNameLength', wintypes.USHORT),
+        ('PrintNameOffset', wintypes.USHORT),
+        ('PrintNameLength', wintypes.USHORT),
+        ('PathBuffer', wintypes.WCHAR * _MAX_WIN_PATH_LENGTH),
     )
 
   class _REPARSE_BUFFER(ctypes.Union):
     _fields_ = (
-      ('SymbolicLinkReparseBuffer', _SYMBOLIC_LINK_REPARSE_BUFFER),
-      ('MountPointReparseBuffer', _MOUNT_POINT_REPARSE_BUFFER),
+        ('SymbolicLinkReparseBuffer', _SYMBOLIC_LINK_REPARSE_BUFFER),
+        ('MountPointReparseBuffer', _MOUNT_POINT_REPARSE_BUFFER),
     )
 
   # https://msdn.microsoft.com/en-us/data/ff552012(v=vs.96)
   class REPARSE_DATA_BUFFER(ctypes.Structure):
     _fields_ = (
-      # A bitpacked value.
-      ('ReparseTag', wintypes.DWORD),
-      ('ReparseDataLength', wintypes.WORD),
-      ('Reserved', wintypes.WORD),
-      ('ReparseBuffer', _REPARSE_BUFFER),
+        # A bitpacked value.
+        ('ReparseTag', wintypes.DWORD),
+        ('ReparseDataLength', wintypes.WORD),
+        ('Reserved', wintypes.WORD),
+        ('ReparseBuffer', _REPARSE_BUFFER),
     )
 
   # Flags for GetFileAttributesW().
@@ -109,10 +106,8 @@ if sys.platform == 'win32':
   IO_REPARSE_TAG_MOUNT_POINT = 0xa0000003
   IO_REPARSE_TAG_SYMLINK = 0xa000000c
 
-
   # Set to true or false once symlink support is initialized.
   _SUPPORTS_SYMLINKS = None
-
 
   def _supports_unprivileged_symlinks():
     """Returns True if the OS supports sane symlinks without any user privilege
@@ -152,7 +147,6 @@ if sys.platform == 'win32':
       pass
     return _SUPPORTS_SYMLINKS
 
-
   def extend(path):
     """Adds '\\\\?\\' when given an absolute path so the MAX_PATH (260) limit is
     not enforced.
@@ -162,7 +156,6 @@ if sys.platform == 'win32':
     prefix = u'\\\\?\\'
     return path if path.startswith(prefix) else prefix + path
 
-
   def trim(path):
     """Removes '\\\\?\\' when receiving a path."""
     assert isinstance(path, six.text_type), path
@@ -171,7 +164,6 @@ if sys.platform == 'win32':
       path = path[len(prefix):]
     assert os.path.isabs(path), path
     return path
-
 
   def islink(path):
     """Proper implementation of islink() for Windows.
@@ -183,7 +175,6 @@ if sys.platform == 'win32':
     if res == INVALID_FILE_ATTRIBUTES:
       return False
     return bool(res & FILE_ATTRIBUTE_REPARSE_POINT)
-
 
   def symlink(source, link_name):
     """Creates a symlink on Windows 7 and later.
@@ -230,11 +221,9 @@ if sys.platform == 'win32':
       if err == 1314:
         raise WindowsError(
             (u'symlink(%r, %r) failed: ERROR_PRIVILEGE_NOT_HELD(1314). Try '
-             u'calling file_path.enable_symlink() first') %
-              (source, link_name))
+             u'calling file_path.enable_symlink() first') % (source, link_name))
       raise WindowsError(
           u'symlink(%r, %r) failed: %s' % (source, link_name, err))
-
 
   def remove(path):
     """Removes a symlink on Windows 7 and later.
@@ -258,16 +247,13 @@ if sys.platform == 'win32':
     if isdir(path):
       if not RemoveDirectory(path):
         # pylint: disable=undefined-variable
-        raise WindowsError(
-            u'unlink(%r): could not remove directory: %s' %
-              (path, ctypes.GetLastError()))
+        raise WindowsError(u'unlink(%r): could not remove directory: %s' %
+                           (path, ctypes.GetLastError()))
     else:
       if not DeleteFile(path):
         # pylint: disable=undefined-variable
-        raise WindowsError(
-            u'unlink(%r): could not delete file: %s' %
-              (path, ctypes.GetLastError()))
-
+        raise WindowsError(u'unlink(%r): could not delete file: %s' %
+                           (path, ctypes.GetLastError()))
 
   def readlink(path):
     """Reads a symlink on Windows."""
@@ -276,12 +262,9 @@ if sys.platform == 'win32':
     # is not a reparse point, the actual file will be opened. It's the
     # DeviceIoControl() below that will fail with 4390.
     handle = windll.kernel32.CreateFileW(
-        extend(path),
-        FILE_READ_EA,
-        FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
-        None,
-        OPEN_ALWAYS,
-        FILE_FLAG_BACKUP_SEMANTICS|FILE_FLAG_OPEN_REPARSE_POINT,
+        extend(path), FILE_READ_EA,
+        FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, None,
+        OPEN_ALWAYS, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OPEN_REPARSE_POINT,
         None)
     if handle == INVALID_HANDLE_VALUE:
       # pylint: disable=undefined-variable
@@ -290,9 +273,9 @@ if sys.platform == 'win32':
     try:
       buf = REPARSE_DATA_BUFFER()
       returned = wintypes.DWORD()
-      ret = DeviceIoControl(
-          handle, FSCTL_GET_REPARSE_POINT, None, 0, ctypes.byref(buf),
-          ctypes.sizeof(buf), ctypes.byref(returned), None)
+      ret = DeviceIoControl(handle, FSCTL_GET_REPARSE_POINT, None, 0,
+                            ctypes.byref(buf), ctypes.sizeof(buf),
+                            ctypes.byref(returned), None)
       if not ret:
         err = ctypes.GetLastError()
         # ERROR_MORE_DATA(234) should not happen because we preallocate the
@@ -303,8 +286,7 @@ if sys.platform == 'win32':
               u'readlink(%r): failed to read: ERROR_NOT_A_REPARSE_POINT(4390)' %
               path)
         # pylint: disable=undefined-variable
-        raise WindowsError(
-            u'readlink(%r): failed to read: %s' % (path, err))
+        raise WindowsError(u'readlink(%r): failed to read: %s' % (path, err))
       if buf.ReparseTag == IO_REPARSE_TAG_SYMLINK:
         actual = buf.ReparseBuffer.SymbolicLinkReparseBuffer
       elif buf.ReparseTag == IO_REPARSE_TAG_MOUNT_POINT:
@@ -320,7 +302,6 @@ if sys.platform == 'win32':
     finally:
       windll.kernel32.CloseHandle(handle)
 
-
   def walk(top, topdown=True, onerror=None, followlinks=False):
     # We need to reimplement walk() here because the standard library ignores
     # the flag followlinks=False. This is because ntpath.islink() is hardcoded
@@ -335,7 +316,7 @@ if sys.platform == 'win32':
 
     dirs, nondirs = [], []
     for name in names:
-      if isdir(os.path.join(top, name)):   # pylint: disable=undefined-variable
+      if isdir(os.path.join(top, name)):  # pylint: disable=undefined-variable
         dirs.append(name)
       else:
         nondirs.append(name)
@@ -350,9 +331,7 @@ if sys.platform == 'win32':
     if not topdown:
       yield top, dirs, nondirs
 
-
 else:
-
 
   def extend(path):
     """Path extending is not needed on POSIX."""
@@ -364,7 +343,6 @@ else:
       return path.encode('utf-8')
     return path
 
-
   def trim(path):
     """Path mangling is not needed on POSIX."""
     assert os.path.isabs(path), path
@@ -374,25 +352,20 @@ else:
     assert isinstance(path, six.text_type), path
     return path
 
-
   def islink(path):
     return os.path.islink(extend(path))
 
-
   def symlink(source, link_name):
     return os.symlink(source, extend(link_name))
-
 
   def readlink(path):
     if six.PY2:
       return os.readlink(extend(path)).decode('utf-8')
     return os.readlink(extend(path))
 
-
   def walk(top, *args, **kwargs):
     for root, dirs, files in os.walk(extend(top), *args, **kwargs):
       yield trim(root), dirs, files
-
 
   def remove(path):
     return os.remove(extend(path))
@@ -446,21 +419,17 @@ def _is_path_fn(func):
   return (inspect.getargspec(func)[0] or [None]) == 'path'
 
 
-_os_fns = (
-  'access', 'chdir', 'chflags', 'chroot', 'chmod', 'chown', 'lchflags',
-  'lchmod', 'lchown', 'listdir', 'lstat', 'mknod', 'mkdir', 'makedirs',
-  'removedirs', 'rmdir', 'stat', 'statvfs', 'utime')
+_os_fns = ('access', 'chdir', 'chflags', 'chroot', 'chmod', 'chown', 'lchflags',
+           'lchmod', 'lchown', 'listdir', 'lstat', 'mknod', 'mkdir', 'makedirs',
+           'removedirs', 'rmdir', 'stat', 'statvfs', 'utime')
 
-_os_path_fns = (
-  'exists', 'lexists', 'getatime', 'getmtime', 'getctime', 'getsize', 'isfile',
-  'isdir', 'ismount')
-
+_os_path_fns = ('exists', 'lexists', 'getatime', 'getmtime', 'getctime',
+                'getsize', 'isfile', 'isdir', 'ismount')
 
 for _fn in _os_fns:
   if hasattr(os, _fn):
-    sys.modules[__name__].__dict__.setdefault(
-        _fn, _get_lambda(getattr(os, _fn)))
-
+    sys.modules[__name__].__dict__.setdefault(_fn, _get_lambda(
+        getattr(os, _fn)))
 
 for _fn in _os_path_fns:
   if hasattr(os.path, _fn):

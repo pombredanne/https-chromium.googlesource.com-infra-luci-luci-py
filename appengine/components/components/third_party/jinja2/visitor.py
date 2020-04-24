@@ -12,7 +12,7 @@ from jinja2.nodes import Node
 
 
 class NodeVisitor(object):
-    """Walks the abstract syntax tree and call visitor functions for every
+  """Walks the abstract syntax tree and call visitor functions for every
     node found.  The visitor functions may return values which will be
     forwarded by the `visit` method.
 
@@ -23,29 +23,29 @@ class NodeVisitor(object):
     (return value `None`) the `generic_visit` visitor is used instead.
     """
 
-    def get_visitor(self, node):
-        """Return the visitor function for this node or `None` if no visitor
+  def get_visitor(self, node):
+    """Return the visitor function for this node or `None` if no visitor
         exists for this node.  In that case the generic visit function is
         used instead.
         """
-        method = 'visit_' + node.__class__.__name__
-        return getattr(self, method, None)
+    method = 'visit_' + node.__class__.__name__
+    return getattr(self, method, None)
 
-    def visit(self, node, *args, **kwargs):
-        """Visit a node."""
-        f = self.get_visitor(node)
-        if f is not None:
-            return f(node, *args, **kwargs)
-        return self.generic_visit(node, *args, **kwargs)
+  def visit(self, node, *args, **kwargs):
+    """Visit a node."""
+    f = self.get_visitor(node)
+    if f is not None:
+      return f(node, *args, **kwargs)
+    return self.generic_visit(node, *args, **kwargs)
 
-    def generic_visit(self, node, *args, **kwargs):
-        """Called if no explicit visitor function exists for a node."""
-        for node in node.iter_child_nodes():
-            self.visit(node, *args, **kwargs)
+  def generic_visit(self, node, *args, **kwargs):
+    """Called if no explicit visitor function exists for a node."""
+    for node in node.iter_child_nodes():
+      self.visit(node, *args, **kwargs)
 
 
 class NodeTransformer(NodeVisitor):
-    """Walks the abstract syntax tree and allows modifications of nodes.
+  """Walks the abstract syntax tree and allows modifications of nodes.
 
     The `NodeTransformer` will walk the AST and use the return value of the
     visitor functions to replace or remove the old node.  If the return
@@ -55,33 +55,33 @@ class NodeTransformer(NodeVisitor):
     replacement takes place.
     """
 
-    def generic_visit(self, node, *args, **kwargs):
-        for field, old_value in node.iter_fields():
-            if isinstance(old_value, list):
-                new_values = []
-                for value in old_value:
-                    if isinstance(value, Node):
-                        value = self.visit(value, *args, **kwargs)
-                        if value is None:
-                            continue
-                        elif not isinstance(value, Node):
-                            new_values.extend(value)
-                            continue
-                    new_values.append(value)
-                old_value[:] = new_values
-            elif isinstance(old_value, Node):
-                new_node = self.visit(old_value, *args, **kwargs)
-                if new_node is None:
-                    delattr(node, field)
-                else:
-                    setattr(node, field, new_node)
-        return node
+  def generic_visit(self, node, *args, **kwargs):
+    for field, old_value in node.iter_fields():
+      if isinstance(old_value, list):
+        new_values = []
+        for value in old_value:
+          if isinstance(value, Node):
+            value = self.visit(value, *args, **kwargs)
+            if value is None:
+              continue
+            elif not isinstance(value, Node):
+              new_values.extend(value)
+              continue
+          new_values.append(value)
+        old_value[:] = new_values
+      elif isinstance(old_value, Node):
+        new_node = self.visit(old_value, *args, **kwargs)
+        if new_node is None:
+          delattr(node, field)
+        else:
+          setattr(node, field, new_node)
+    return node
 
-    def visit_list(self, node, *args, **kwargs):
-        """As transformers may return lists in some places this method
+  def visit_list(self, node, *args, **kwargs):
+    """As transformers may return lists in some places this method
         can be used to enforce a list as return value.
         """
-        rv = self.visit(node, *args, **kwargs)
-        if not isinstance(rv, list):
-            rv = [rv]
-        return rv
+    rv = self.visit(node, *args, **kwargs)
+    if not isinstance(rv, list):
+      rv = [rv]
+    return rv

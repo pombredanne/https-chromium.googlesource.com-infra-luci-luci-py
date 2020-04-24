@@ -1,7 +1,6 @@
 # Copyright 2020 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Expansion of realms_config.Realm into a flat form."""
 
 import collections
@@ -88,8 +87,7 @@ def expand_realms(db, project_id, realms_cfg):
           realms_pb2.Realm(
               name='%s:%s' % (project_id, name),
               bindings=to_normalized_bindings(perms_to_principals, index_map),
-          )
-          for name, perms_to_principals in realms
+          ) for name, perms_to_principals in realms
       ])
 
 
@@ -150,7 +148,7 @@ class RolesExpander(object):
     See to_normalized_bindings below for how it is used.
     """
     perms = sorted(self._permissions)
-    mapping = [None]*len(perms)
+    mapping = [None] * len(perms)
     for new_idx, p in enumerate(perms):
       old_idx = self._permissions[p]
       mapping[old_idx] = new_idx
@@ -212,10 +210,9 @@ def to_normalized_bindings(perms_to_principals, index_map):
   Returns:
     A sorted list of realm_pb2.Binding.
   """
-  normalized = (
-      (sorted(index_map[idx] for idx in perms), sorted(principals))
-      for perms, principals in perms_to_principals
-  )
+  normalized = ((sorted(index_map[idx]
+                        for idx in perms), sorted(principals))
+                for perms, principals in perms_to_principals)
   return [
       realms_pb2.Binding(permissions=perms, principals=principals)
       for perms, principals in sorted(normalized, key=lambda x: x[0])

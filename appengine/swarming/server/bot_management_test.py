@@ -29,7 +29,6 @@ from server import bot_management
 from server import config
 from server import task_queues
 
-
 _VERSION = unicode(hashlib.sha256().hexdigest())
 
 
@@ -184,9 +183,9 @@ class BotManagementTest(test_case.TestCase):
   def test_BotEvent_proto_events(self):
     # Ensures all bot event states can be converted to a proto.
     dimensions = {
-      u'id': [u'id1'],
-      u'os': [u'Ubuntu', u'Ubuntu-16.04'],
-      u'pool': [u'default'],
+        u'id': [u'id1'],
+        u'os': [u'Ubuntu', u'Ubuntu-16.04'],
+        u'pool': [u'default'],
     }
     for name in bot_management.BotEvent.ALLOWED_EVENTS:
       event_key = _bot_event(
@@ -286,8 +285,8 @@ class BotManagementTest(test_case.TestCase):
     _bot_event(event_type=event, bot_id='id1', dimensions=d)
 
     expected = _gen_bot_info()
-    self.assertEqual(
-        expected, bot_management.get_info_key('id1').get().to_dict())
+    self.assertEqual(expected,
+                     bot_management.get_info_key('id1').get().to_dict())
 
     self.assertEqual([event, 5],
                      memcache.get(
@@ -327,13 +326,13 @@ class BotManagementTest(test_case.TestCase):
     if reset_task:
       # bot_info.task_id and bot_info.task_name should be reset
       expected = _gen_bot_info(
-          composite=composite+[bot_management.BotInfo.IDLE],
+          composite=composite + [bot_management.BotInfo.IDLE],
           id=bot_id,
           task_name=None)
     else:
       # bot_info.task_id and bot_info.task_name should be kept
       expected = _gen_bot_info(
-          composite=composite+[bot_management.BotInfo.BUSY],
+          composite=composite + [bot_management.BotInfo.BUSY],
           id=bot_id,
           task_id=task_id,
           task_name=task_name)
@@ -391,10 +390,10 @@ class BotManagementTest(test_case.TestCase):
     _bot_event(event_type='request_task', task_id='12311', task_name='yo')
     expected = _gen_bot_info(
         composite=[
-          bot_management.BotInfo.NOT_IN_MAINTENANCE,
-          bot_management.BotInfo.ALIVE,
-          bot_management.BotInfo.HEALTHY,
-          bot_management.BotInfo.BUSY,
+            bot_management.BotInfo.NOT_IN_MAINTENANCE,
+            bot_management.BotInfo.ALIVE,
+            bot_management.BotInfo.HEALTHY,
+            bot_management.BotInfo.BUSY,
         ],
         task_id=u'12311',
         task_name=u'yo')
@@ -402,16 +401,16 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(expected, bot_info.to_dict())
 
     expected = [
-      _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
-      _gen_bot_event(event_type=u'bot_connected', dimensions={}),
+        _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
+        _gen_bot_event(event_type=u'bot_connected', dimensions={}),
     ]
     self.assertEqual(
         expected,
         [e.to_dict() for e in bot_management.get_events_query('id1', True)])
 
-    self.assertEqual(
-        ['bot_connected', 5, 'request_task', 5],
-        memcache.get('id1:2010-01-02T03:04', namespace='BotEvents'))
+    self.assertEqual(['bot_connected', 5, 'request_task', 5],
+                     memcache.get(
+                         'id1:2010-01-02T03:04', namespace='BotEvents'))
 
   def test_bot_event_update_dimensions(self):
     bot_id = 'id1'
@@ -428,7 +427,11 @@ class BotManagementTest(test_case.TestCase):
     # 'request_sleep' initializes BotInfo with given dimensions at first poll.
     _bot_event(
         event_type='request_sleep',
-        dimensions={'id': ['id1'], 'os': ['Android'], 'pool': ['default']})
+        dimensions={
+            'id': ['id1'],
+            'os': ['Android'],
+            'pool': ['default']
+        })
     self.assertEqual(bot_info_key.get().dimensions_flat,
                      [u'id:id1', u'os:Android', u'pool:default'])
 
@@ -448,8 +451,8 @@ class BotManagementTest(test_case.TestCase):
         bot_management.get_root_key('foo'))
 
   def test_get_settings_key(self):
-    expected = ndb.Key(
-        bot_management.BotRoot, 'foo', bot_management.BotSettings, 'settings')
+    expected = ndb.Key(bot_management.BotRoot, 'foo',
+                       bot_management.BotSettings, 'settings')
     self.assertEqual(expected, bot_management.get_settings_key('foo'))
 
   def test_has_capacity(self):
@@ -469,8 +472,11 @@ class BotManagementTest(test_case.TestCase):
     # A bot comes online. There's some capacity now.
     _bot_event(
         event_type='request_sleep',
-        dimensions={'id': ['id1'], 'pool': ['default'], 'os': ['Ubuntu',
-          'Ubuntu-16.04']})
+        dimensions={
+            'id': ['id1'],
+            'pool': ['default'],
+            'os': ['Ubuntu', 'Ubuntu-16.04']
+        })
     self.assertEqual(1, bot_management.BotInfo.query().count())
     self.assertEqual(True, bot_management.has_capacity(d))
 
@@ -490,8 +496,11 @@ class BotManagementTest(test_case.TestCase):
     botid = 'id1'
     _bot_event(
         event_type='request_sleep',
-        dimensions={'id': [botid], 'pool': ['default'], 'os': ['Ubuntu',
-          'Ubuntu-16.04']})
+        dimensions={
+            'id': [botid],
+            'pool': ['default'],
+            'os': ['Ubuntu', 'Ubuntu-16.04']
+        })
     self.assertEqual(True, bot_management.has_capacity(d))
 
     or_dimensions = {
@@ -505,7 +514,7 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(True, bot_management.has_capacity(d))
     self.assertEqual(True, bot_management.has_capacity(or_dimensions))
 
-    self.mock_now(self.now, config.settings().bot_death_timeout_secs-1)
+    self.mock_now(self.now, config.settings().bot_death_timeout_secs - 1)
     self.assertEqual(True, bot_management.has_capacity(d))
     self.assertEqual(True, bot_management.has_capacity(or_dimensions))
 
@@ -516,10 +525,14 @@ class BotManagementTest(test_case.TestCase):
   def test_cron_update_bot_info(self):
     # Create two bots, one becomes dead, updating the cron job fixes composite.
     timeout = bot_management.config.settings().bot_death_timeout_secs
+
     def check(dead, alive):
       q = bot_management.filter_availability(
-          bot_management.BotInfo.query(), quarantined=None, in_maintenance=None,
-          is_dead=True, is_busy=None)
+          bot_management.BotInfo.query(),
+          quarantined=None,
+          in_maintenance=None,
+          is_dead=True,
+          is_busy=None)
       self.assertEqual(dead, [t.to_dict() for t in q])
       q = bot_management.filter_availability(
           bot_management.BotInfo.query(),
@@ -531,15 +544,18 @@ class BotManagementTest(test_case.TestCase):
 
     _bot_event(event_type='request_sleep')
     # One second before the timeout value.
-    then = self.mock_now(self.now, timeout-1)
+    then = self.mock_now(self.now, timeout - 1)
     _bot_event(
         event_type='request_sleep',
         bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:id2.domain',
-        dimensions={'id': ['id2'], 'foo': ['bar']})
+        external_ip='8.8.4.4',
+        authenticated_as='bot:id2.domain',
+        dimensions={
+            'id': ['id2'],
+            'foo': ['bar']
+        })
 
-    bot1_alive = _gen_bot_info(
-        first_seen_ts=self.now, last_seen_ts=self.now)
+    bot1_alive = _gen_bot_info(first_seen_ts=self.now, last_seen_ts=self.now)
     bot1_dead = _gen_bot_info(
         first_seen_ts=self.now,
         last_seen_ts=self.now,
@@ -606,33 +622,35 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(2, bot_management.cron_delete_old_bot())
     actual = bot_management.BotEvent.query().fetch(keys_only=True)
     self.assertEqual([event_key], actual)
-    self.assertEqual(
-        [u'id1'],
-        [k.string_id() for k in
-          bot_management.BotRoot.query().fetch(keys_only=True)])
+    self.assertEqual([u'id1'], [
+        k.string_id()
+        for k in bot_management.BotRoot.query().fetch(keys_only=True)
+    ])
 
   def test_cron_aggregate_dimensions(self):
     # TODO(maruel): https://crbug.com/912154
     self.assertEqual(0, bot_management.cron_aggregate_dimensions())
 
   def test_filter_dimensions(self):
-    pass # Tested in handlers_endpoints_test
+    pass  # Tested in handlers_endpoints_test
 
   def test_filter_availability(self):
-    pass # Tested in handlers_endpoints_test
+    pass  # Tested in handlers_endpoints_test
 
   def test_task_bq_empty(self):
     # Empty, nothing is done.
     start = utils.utcnow()
-    end = start+datetime.timedelta(seconds=60)
+    end = start + datetime.timedelta(seconds=60)
     self.assertEqual((0, 0), bot_management.task_bq_events(start, end))
 
   def test_task_bq_events(self):
     payloads = []
+
     def send_to_bq(table_name, rows):
       self.assertEqual('bot_events', table_name)
       payloads.append(rows)
       return 0
+
     self.mock(bq_state, 'send_to_bq', send_to_bq)
 
     # Generate a few events.

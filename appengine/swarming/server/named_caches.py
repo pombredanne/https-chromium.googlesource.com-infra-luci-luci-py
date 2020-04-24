@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Swarming bot named cache management, i.e. list of known named cache and their
 state on each bot.
 
@@ -39,7 +38,6 @@ from google.appengine.ext import ndb
 from components import utils
 from server import bot_management
 from server import pools_config
-
 
 ### Models.
 
@@ -95,7 +93,7 @@ def _update_named_cache(pool, os, name, hint):
   now = utils.utcnow().replace(microsecond=0)
   e = key.get()
   exp = now - datetime.timedelta(hours=24)
-  if not e or e.hint <= hint*0.9 or e.ts < exp:
+  if not e or e.hint <= hint * 0.9 or e.ts < exp:
     e = NamedCache(key=key, ts=now, os=os, name=name, hint=hint)
     e.put()
     return True
@@ -167,7 +165,7 @@ def task_update_pool(pool):
   found = {}
   bots = 0
   exp = utils.utcnow().replace(microsecond=0) - datetime.timedelta(hours=4)
-  for bot in bot_management.filter_dimensions(q, [u'pool:'+pool]):
+  for bot in bot_management.filter_dimensions(q, [u'pool:' + pool]):
     if bot.last_seen_ts < exp:
       # Very dead bot; it hasn't pinged for 4 hours.
       continue
@@ -193,9 +191,8 @@ def task_update_pool(pool):
         continue
       s = value[0][1]
       d.setdefault(key, []).append(s)
-  logging.info(
-      'Found %d bots, %d caches in %d distinct OSes in pool %r',
-      bots, sum(len(f) for f in found.values()), len(found), pool)
+  logging.info('Found %d bots, %d caches in %d distinct OSes in pool %r', bots,
+               sum(len(f) for f in found.values()), len(found), pool)
 
   # TODO(maruel): Parallelise.
   for os, d in sorted(found.items()):

@@ -1,7 +1,6 @@
 # Copyright 2016 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Fetches CIPD client and installs packages."""
 
 import contextlib
@@ -28,10 +27,8 @@ import isolated_format
 import isolateserver
 import local_caching
 
-
 # .exe on Windows.
 EXECUTABLE_SUFFIX = '.exe' if sys.platform == 'win32' else ''
-
 
 if sys.platform == 'win32':
 
@@ -42,6 +39,7 @@ if sys.platform == 'win32':
           '@set CIPD="%~dp0cipd.exe"', '@shift', '@%CIPD% %*'
       ]))
 else:
+
   def _ensure_batfile(_client_path):
     pass
 
@@ -117,11 +115,9 @@ def validate_cipd_options(parser, options):
     parser.error('cipd is enabled, --cipd-server is required')
 
   if not options.cipd_client_package:
-    parser.error(
-        'cipd is enabled, --cipd-client-package is required')
+    parser.error('cipd is enabled, --cipd-client-package is required')
   if not options.cipd_client_version:
-    parser.error(
-        'cipd is enabled, --cipd-client-version is required')
+    parser.error('cipd is enabled, --cipd-client-version is required')
 
 
 class CipdClient(object):
@@ -225,9 +221,8 @@ class CipdClient(object):
 
       exit_code = process.wait(timeout=timeoutfn())
       if exit_code != 0:
-        raise Error(
-            'Could not install packages; exit code %d\noutput:%s' % (
-            exit_code, '\n'.join(output)))
+        raise Error('Could not install packages; exit code %d\noutput:%s' %
+                    (exit_code, '\n'.join(output)))
       with open(json_file_path) as jfile:
         result_json = json.load(jfile)
       return {

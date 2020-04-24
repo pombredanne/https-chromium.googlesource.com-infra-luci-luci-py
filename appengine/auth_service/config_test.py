@@ -25,6 +25,7 @@ import config
 
 
 class ConfigTest(test_case.TestCase):
+
   def setUp(self):
     super(ConfigTest, self).setUp()
     self.mock_now(datetime.datetime(2014, 1, 2, 3, 4, 5))
@@ -34,6 +35,7 @@ class ConfigTest(test_case.TestCase):
     ).put()
 
   def test_validate_settings_cfg(self):
+
     def is_valid(**fields):
       ctx = validation.Context()
       config.validate_settings_cfg(config_pb2.SettingsCfg(**fields), ctx)
@@ -50,9 +52,9 @@ class ConfigTest(test_case.TestCase):
 
   def test_refetch_config(self):
     initial_revs = {
-      'a.cfg': config.Revision('old_a_rev', 'urla'),
-      'b.cfg': config.Revision('old_b_rev', 'urlb'),
-      'c.cfg': config.Revision('old_c_rev', 'urlc'),
+        'a.cfg': config.Revision('old_a_rev', 'urla'),
+        'b.cfg': config.Revision('old_b_rev', 'urlb'),
+        'c.cfg': config.Revision('old_c_rev', 'urlc'),
     }
 
     revs = initial_revs.copy()
@@ -68,38 +70,56 @@ class ConfigTest(test_case.TestCase):
       raise ndb.Return(revs[pkg])
 
     self.mock(config, 'is_remote_configured', lambda: True)
-    self.mock(config, '_CONFIG_SCHEMAS', {
-      # Will be updated outside of auth db transaction.
-      'a.cfg': {
-        'proto_class': None,
-        'revision_getter': lambda: get_rev_async('a.cfg'),
-        'validator': lambda body: self.assertEqual(body, 'new a body'),
-        'updater': lambda root, rev, conf: bump_rev('a.cfg', rev, conf),
-        'use_authdb_transaction': False,
-      },
-      # Will not be changed.
-      'b.cfg': {
-        'proto_class': None,
-        'revision_getter': lambda: get_rev_async('b.cfg'),
-        'validator': lambda _body: True,
-        'updater': lambda root, rev, conf: bump_rev('b.cfg', rev, conf),
-        'use_authdb_transaction': False,
-      },
-      # Will be updated inside auth db transaction.
-      'c.cfg': {
-        'proto_class': None,
-        'revision_getter': lambda: get_rev_async('c.cfg'),
-        'validator': lambda body: self.assertEqual(body, 'new c body'),
-        'updater': lambda root, rev, conf: bump_rev('c.cfg', rev, conf),
-        'use_authdb_transaction': True,
-      },
-    })
+    self.mock(
+        config,
+        '_CONFIG_SCHEMAS',
+        {
+            # Will be updated outside of auth db transaction.
+            'a.cfg': {
+                'proto_class':
+                    None,
+                'revision_getter':
+                    lambda: get_rev_async('a.cfg'),
+                'validator':
+                    lambda body: self.assertEqual(body, 'new a body'),
+                'updater':
+                    lambda root, rev, conf: bump_rev('a.cfg', rev, conf),
+                'use_authdb_transaction':
+                    False,
+            },
+            # Will not be changed.
+            'b.cfg': {
+                'proto_class':
+                    None,
+                'revision_getter':
+                    lambda: get_rev_async('b.cfg'),
+                'validator':
+                    lambda _body: True,
+                'updater':
+                    lambda root, rev, conf: bump_rev('b.cfg', rev, conf),
+                'use_authdb_transaction':
+                    False,
+            },
+            # Will be updated inside auth db transaction.
+            'c.cfg': {
+                'proto_class':
+                    None,
+                'revision_getter':
+                    lambda: get_rev_async('c.cfg'),
+                'validator':
+                    lambda body: self.assertEqual(body, 'new c body'),
+                'updater':
+                    lambda root, rev, conf: bump_rev('c.cfg', rev, conf),
+                'use_authdb_transaction':
+                    True,
+            },
+        })
 
     # _fetch_configs is called by config.refetch_config().
     configs_to_fetch = {
-      'a.cfg': (config.Revision('new_a_rev', 'urla'), 'new a body'),
-      'b.cfg': (config.Revision('old_b_rev', 'urlb'), 'old b body'),
-      'c.cfg': (config.Revision('new_c_rev', 'urlc'), 'new c body'),
+        'a.cfg': (config.Revision('new_a_rev', 'urla'), 'new a body'),
+        'b.cfg': (config.Revision('old_b_rev', 'urlb'), 'old b body'),
+        'c.cfg': (config.Revision('new_c_rev', 'urlc'), 'new c body'),
     }
     self.mock(config, '_fetch_configs', lambda _: configs_to_fetch)
 
@@ -109,15 +129,14 @@ class ConfigTest(test_case.TestCase):
     # Initial update.
     config.refetch_config()
     self.assertEqual([
-      ('a.cfg', config.Revision('new_a_rev', 'urla'), 'new a body', False),
-      ('c.cfg', config.Revision('new_c_rev', 'urlc'), 'new c body', True),
+        ('a.cfg', config.Revision('new_a_rev', 'urla'), 'new a body', False),
+        ('c.cfg', config.Revision('new_c_rev', 'urlc'), 'new c body', True),
     ], bumps)
     del bumps[:]
 
     # Updated revisions now.
-    self.assertEqual(
-        {k: v[0] for k, v in configs_to_fetch.items()},
-        config.get_revisions())
+    self.assertEqual({k: v[0] for k, v in configs_to_fetch.items()},
+                     config.get_revisions())
 
     # Refetch, nothing new.
     config.refetch_config()
@@ -127,24 +146,20 @@ class ConfigTest(test_case.TestCase):
     new_rev = config.Revision('rev', 'url')
     body = 'tarball{url:"a" systems:"b"}'
     self.assertTrue(config._update_imports_config(None, new_rev, body))
-    self.assertEqual(
-        new_rev, config._get_imports_config_revision_async().get_result())
+    self.assertEqual(new_rev,
+                     config._get_imports_config_revision_async().get_result())
 
   def test_validate_ip_whitelist_config_ok(self):
     conf = config_pb2.IPWhitelistConfig(
         ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=['127.0.0.1/32', '0.0.0.0/0']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='bots',
-              subnets=[],
-              includes=['abc']),
+            config_pb2.IPWhitelistConfig.IPWhitelist(
+                name='abc', subnets=['127.0.0.1/32', '0.0.0.0/0']),
+            config_pb2.IPWhitelistConfig.IPWhitelist(
+                name='bots', subnets=[], includes=['abc']),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:abc@example.com', ip_whitelist_name='abc'),
         ])
     config._validate_ip_whitelist_config(conf)
 
@@ -152,231 +167,208 @@ class ConfigTest(test_case.TestCase):
     config._validate_ip_whitelist_config(config_pb2.IPWhitelistConfig())
 
   def test_validate_ip_whitelist_config_bad_name(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='<bad name>'),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(name='<bad name>'),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_duplicated_wl(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
+        config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_bad_subnet(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=['not a subnet']),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='abc', subnets=['not a subnet']),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_bad_identity(self):
     conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc')
-        ],
+        ip_whitelists=[config_pb2.IPWhitelistConfig.IPWhitelist(name='abc')],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='bad identity',
-              ip_whitelist_name='abc'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='bad identity', ip_whitelist_name='abc'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_unknown_whitelist(self):
-    conf = config_pb2.IPWhitelistConfig(
-        assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:abc@example.com',
-              ip_whitelist_name='missing'),
-        ])
+    conf = config_pb2.IPWhitelistConfig(assignments=[
+        config_pb2.IPWhitelistConfig.Assignment(
+            identity='user:abc@example.com', ip_whitelist_name='missing'),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_identity_twice(self):
     conf = config_pb2.IPWhitelistConfig(
         ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='def'),
+            config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
+            config_pb2.IPWhitelistConfig.IPWhitelist(name='def'),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:abc@example.com',
-              ip_whitelist_name='def'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:abc@example.com', ip_whitelist_name='abc'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:abc@example.com', ip_whitelist_name='def'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_unknown_include(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=[],
-              includes=['unknown']),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='abc', subnets=[], includes=['unknown']),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_include_cycle_1(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=[],
-              includes=['abc']),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='abc', subnets=[], includes=['abc']),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_include_cycle_2(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=[],
-              includes=['def']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='def',
-              subnets=[],
-              includes=['abc']),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='abc', subnets=[], includes=['def']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='def', subnets=[], includes=['abc']),
+    ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_include_diamond(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=[],
-              includes=['middle1', 'middle2']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='middle1',
-              subnets=[],
-              includes=['inner']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='middle2',
-              subnets=[],
-              includes=['inner']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='inner',
-              subnets=[]),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='abc', subnets=[], includes=['middle1', 'middle2']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='middle1', subnets=[], includes=['inner']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='middle2', subnets=[], includes=['inner']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(name='inner', subnets=[]),
+    ])
     config._validate_ip_whitelist_config(conf)
 
   def test_update_ip_whitelist_config(self):
+
     def run(conf):
       return config._update_authdb_configs({
-        'ip_whitelist.cfg': (
-          config.Revision('ip_whitelist_cfg_rev', 'http://url'), conf
-        ),
+          'ip_whitelist.cfg': (config.Revision('ip_whitelist_cfg_rev',
+                                               'http://url'), conf),
       })
+
     # Pushing empty config to empty DB -> no changes.
     self.assertFalse(run(config_pb2.IPWhitelistConfig()))
 
     # Added a bunch of IP whitelists and assignments.
     conf = config_pb2.IPWhitelistConfig(
         ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=['0.0.0.1/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='bots',
-              subnets=['0.0.0.2/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='empty'),
+            config_pb2.IPWhitelistConfig.IPWhitelist(
+                name='abc', subnets=['0.0.0.1/32']),
+            config_pb2.IPWhitelistConfig.IPWhitelist(
+                name='bots', subnets=['0.0.0.2/32']),
+            config_pb2.IPWhitelistConfig.IPWhitelist(name='empty'),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:def@example.com',
-              ip_whitelist_name='bots'),
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:xyz@example.com',
-              ip_whitelist_name='bots'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:abc@example.com', ip_whitelist_name='abc'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:def@example.com', ip_whitelist_name='bots'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:xyz@example.com', ip_whitelist_name='bots'),
         ])
     self.assertTrue(run(conf))
 
     # Verify everything is there.
     self.assertEqual({
-      'assignments': [
-        {
-          'comment':
-              u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
-          'created_by': model.Identity(kind='service', name='sample-app'),
-          'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
-          'identity': model.Identity(kind='user', name='abc@example.com'),
-          'ip_whitelist': u'abc',
-        },
-        {
-          'comment':
-              u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
-          'created_by': model.Identity(kind='service', name='sample-app'),
-          'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
-          'identity': model.Identity(kind='user', name='def@example.com'),
-          'ip_whitelist': u'bots',
-        },
-        {
-          'comment':
-              u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
-          'created_by': model.Identity(kind='service', name='sample-app'),
-          'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
-          'identity': model.Identity(kind='user', name='xyz@example.com'),
-          'ip_whitelist': u'bots',
-        },
-      ],
-      'auth_db_rev': 1,
-      'auth_db_prev_rev': None,
-      'modified_by': model.get_service_self_identity(),
-      'modified_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
-    }, model.ip_whitelist_assignments_key().get().to_dict())
-    self.assertEqual(
-        {
-          'abc': {
+        'assignments': [
+            {
+                'comment':
+                    u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
+                'created_by':
+                    model.Identity(kind='service', name='sample-app'),
+                'created_ts':
+                    datetime.datetime(2014, 1, 2, 3, 4, 5),
+                'identity':
+                    model.Identity(kind='user', name='abc@example.com'),
+                'ip_whitelist':
+                    u'abc',
+            },
+            {
+                'comment':
+                    u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
+                'created_by':
+                    model.Identity(kind='service', name='sample-app'),
+                'created_ts':
+                    datetime.datetime(2014, 1, 2, 3, 4, 5),
+                'identity':
+                    model.Identity(kind='user', name='def@example.com'),
+                'ip_whitelist':
+                    u'bots',
+            },
+            {
+                'comment':
+                    u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
+                'created_by':
+                    model.Identity(kind='service', name='sample-app'),
+                'created_ts':
+                    datetime.datetime(2014, 1, 2, 3, 4, 5),
+                'identity':
+                    model.Identity(kind='user', name='xyz@example.com'),
+                'ip_whitelist':
+                    u'bots',
+            },
+        ],
+        'auth_db_rev':
+            1,
+        'auth_db_prev_rev':
+            None,
+        'modified_by':
+            model.get_service_self_identity(),
+        'modified_ts':
+            datetime.datetime(2014, 1, 2, 3, 4, 5),
+    },
+                     model.ip_whitelist_assignments_key().get().to_dict())
+    self.assertEqual({
+        'abc': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1388631845000000,
             'subnets': [u'0.0.0.1/32'],
-          },
-          'bots': {
+        },
+        'bots': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1388631845000000,
             'subnets': [u'0.0.0.2/32'],
-          },
-          'empty': {
+        },
+        'empty': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1388631845000000,
             'subnets': [],
-          },
         },
-        {
-          x.key.id(): x.to_serializable_dict()
-          for x in model.AuthIPWhitelist.query(ancestor=model.root_key())
-        })
+    }, {
+        x.key.id(): x.to_serializable_dict()
+        for x in model.AuthIPWhitelist.query(ancestor=model.root_key())
+    })
 
     # Exact same config a bit later -> no changes applied.
     self.mock_now(datetime.datetime(2014, 2, 2, 3, 4, 5))
@@ -385,242 +377,244 @@ class ConfigTest(test_case.TestCase):
     # Modify whitelist, add new one, remove some. Same for assignments.
     conf = config_pb2.IPWhitelistConfig(
         ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='abc',
-              subnets=['0.0.0.3/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='bots',
-              subnets=['0.0.0.2/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='another'),
+            config_pb2.IPWhitelistConfig.IPWhitelist(
+                name='abc', subnets=['0.0.0.3/32']),
+            config_pb2.IPWhitelistConfig.IPWhitelist(
+                name='bots', subnets=['0.0.0.2/32']),
+            config_pb2.IPWhitelistConfig.IPWhitelist(name='another'),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:def@example.com',
-              ip_whitelist_name='another'),
-          config_pb2.IPWhitelistConfig.Assignment(
-              identity='user:zzz@example.com',
-              ip_whitelist_name='bots'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:abc@example.com', ip_whitelist_name='abc'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:def@example.com', ip_whitelist_name='another'),
+            config_pb2.IPWhitelistConfig.Assignment(
+                identity='user:zzz@example.com', ip_whitelist_name='bots'),
         ])
     self.mock_now(datetime.datetime(2014, 3, 2, 3, 4, 5))
     self.assertTrue(run(conf))
 
     # Verify everything is there.
     self.assertEqual({
-      'assignments': [
-        {
-          'comment':
-              u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
-          'created_by': model.Identity(kind='service', name='sample-app'),
-          'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
-          'identity': model.Identity(kind='user', name='abc@example.com'),
-          'ip_whitelist': u'abc',
-        },
-        {
-          'comment':
-              u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
-          'created_by': model.Identity(kind='service', name='sample-app'),
-          'created_ts': datetime.datetime(2014, 3, 2, 3, 4, 5),
-          'identity': model.Identity(kind='user', name='def@example.com'),
-          'ip_whitelist': u'another',
-        },
-        {
-          'comment':
-              u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
-          'created_by': model.Identity(kind='service', name='sample-app'),
-          'created_ts': datetime.datetime(2014, 3, 2, 3, 4, 5),
-          'identity': model.Identity(kind='user', name='zzz@example.com'),
-          'ip_whitelist': u'bots',
-        },
-      ],
-      'auth_db_rev': 2,
-      'auth_db_prev_rev': 1,
-      'modified_by': model.get_service_self_identity(),
-      'modified_ts': datetime.datetime(2014, 3, 2, 3, 4, 5),
-    }, model.ip_whitelist_assignments_key().get().to_dict())
-    self.assertEqual(
-        {
-          'abc': {
+        'assignments': [
+            {
+                'comment':
+                    u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
+                'created_by':
+                    model.Identity(kind='service', name='sample-app'),
+                'created_ts':
+                    datetime.datetime(2014, 1, 2, 3, 4, 5),
+                'identity':
+                    model.Identity(kind='user', name='abc@example.com'),
+                'ip_whitelist':
+                    u'abc',
+            },
+            {
+                'comment':
+                    u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
+                'created_by':
+                    model.Identity(kind='service', name='sample-app'),
+                'created_ts':
+                    datetime.datetime(2014, 3, 2, 3, 4, 5),
+                'identity':
+                    model.Identity(kind='user', name='def@example.com'),
+                'ip_whitelist':
+                    u'another',
+            },
+            {
+                'comment':
+                    u'Imported from ip_whitelist.cfg at rev ip_whitelist_cfg_rev',
+                'created_by':
+                    model.Identity(kind='service', name='sample-app'),
+                'created_ts':
+                    datetime.datetime(2014, 3, 2, 3, 4, 5),
+                'identity':
+                    model.Identity(kind='user', name='zzz@example.com'),
+                'ip_whitelist':
+                    u'bots',
+            },
+        ],
+        'auth_db_rev':
+            2,
+        'auth_db_prev_rev':
+            1,
+        'modified_by':
+            model.get_service_self_identity(),
+        'modified_ts':
+            datetime.datetime(2014, 3, 2, 3, 4, 5),
+    },
+                     model.ip_whitelist_assignments_key().get().to_dict())
+    self.assertEqual({
+        'abc': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1393729445000000,
             'subnets': [u'0.0.0.3/32'],
-          },
-          'bots': {
+        },
+        'bots': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1388631845000000,
             'subnets': [u'0.0.0.2/32'],
-          },
-          'another': {
+        },
+        'another': {
             'created_by': 'service:sample-app',
             'created_ts': 1393729445000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1393729445000000,
             'subnets': [],
-          },
         },
-        {
-          x.key.id(): x.to_serializable_dict()
-          for x in model.AuthIPWhitelist.query(ancestor=model.root_key())
-        })
+    }, {
+        x.key.id(): x.to_serializable_dict()
+        for x in model.AuthIPWhitelist.query(ancestor=model.root_key())
+    })
 
   def test_update_ip_whitelist_config_with_includes(self):
+
     def run(conf):
       return config._update_authdb_configs({
-        'ip_whitelist.cfg': (
-          config.Revision('ip_whitelist_cfg_rev', 'http://url'), conf
-        ),
+          'ip_whitelist.cfg': (config.Revision('ip_whitelist_cfg_rev',
+                                               'http://url'), conf),
       })
 
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='a',
-              subnets=['0.0.0.1/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='b',
-              subnets=['0.0.0.1/32', '0.0.0.2/32'],
-              includes=['a']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='c',
-              subnets=['0.0.0.3/32'],
-              includes=['a', 'b']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
-              name='d',
-              includes=['c']),
-        ])
+    conf = config_pb2.IPWhitelistConfig(ip_whitelists=[
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='a', subnets=['0.0.0.1/32']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='b', subnets=['0.0.0.1/32', '0.0.0.2/32'], includes=['a']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(
+            name='c', subnets=['0.0.0.3/32'], includes=['a', 'b']),
+        config_pb2.IPWhitelistConfig.IPWhitelist(name='d', includes=['c']),
+    ])
     self.assertTrue(run(conf))
 
     # Verify everything is there.
-    self.assertEqual(
-        {
-          'a': {
+    self.assertEqual({
+        'a': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1388631845000000,
             'subnets': [u'0.0.0.1/32'],
-          },
-          'b': {
+        },
+        'b': {
             'created_by': 'service:sample-app',
             'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
+            'description': u'Imported from ip_whitelist.cfg',
             'modified_by': 'service:sample-app',
             'modified_ts': 1388631845000000,
             'subnets': [u'0.0.0.1/32', u'0.0.0.2/32'],
-          },
-          'c': {
-            'created_by': 'service:sample-app',
-            'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
-            'modified_by': 'service:sample-app',
-            'modified_ts': 1388631845000000,
-            'subnets': [u'0.0.0.1/32', u'0.0.0.2/32', u'0.0.0.3/32'],
-          },
-          'd': {
-            'created_by': 'service:sample-app',
-            'created_ts': 1388631845000000,
-            'description':
-                u'Imported from ip_whitelist.cfg',
-            'modified_by': 'service:sample-app',
-            'modified_ts': 1388631845000000,
-            'subnets': [u'0.0.0.1/32', u'0.0.0.2/32', u'0.0.0.3/32'],
-          },
         },
-        {
-          x.key.id(): x.to_serializable_dict()
-          for x in model.AuthIPWhitelist.query(ancestor=model.root_key())
-        })
+        'c': {
+            'created_by': 'service:sample-app',
+            'created_ts': 1388631845000000,
+            'description': u'Imported from ip_whitelist.cfg',
+            'modified_by': 'service:sample-app',
+            'modified_ts': 1388631845000000,
+            'subnets': [u'0.0.0.1/32', u'0.0.0.2/32', u'0.0.0.3/32'],
+        },
+        'd': {
+            'created_by': 'service:sample-app',
+            'created_ts': 1388631845000000,
+            'description': u'Imported from ip_whitelist.cfg',
+            'modified_by': 'service:sample-app',
+            'modified_ts': 1388631845000000,
+            'subnets': [u'0.0.0.1/32', u'0.0.0.2/32', u'0.0.0.3/32'],
+        },
+    }, {
+        x.key.id(): x.to_serializable_dict()
+        for x in model.AuthIPWhitelist.query(ancestor=model.root_key())
+    })
 
   def test_update_oauth_config(self):
+
     def run(conf):
       return config._update_authdb_configs({
-        'oauth.cfg': (config.Revision('oauth_cfg_rev', 'http://url'), conf),
+          'oauth.cfg': (config.Revision('oauth_cfg_rev', 'http://url'), conf),
       })
+
     # Pushing empty config to empty state -> no changes.
     self.assertFalse(run(config_pb2.OAuthConfig()))
     # Updating config.
-    self.assertTrue(run(config_pb2.OAuthConfig(
-        primary_client_id='a',
-        primary_client_secret='b',
-        client_ids=['c', 'd'],
-        token_server_url='https://token-server')))
+    self.assertTrue(
+        run(
+            config_pb2.OAuthConfig(
+                primary_client_id='a',
+                primary_client_secret='b',
+                client_ids=['c', 'd'],
+                token_server_url='https://token-server')))
     self.assertEqual({
-      'auth_db_rev': 1,
-      'auth_db_prev_rev': 0,
-      'modified_by': model.get_service_self_identity(),
-      'modified_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
-      'oauth_additional_client_ids': [u'c', u'd'],
-      'oauth_client_id': u'a',
-      'oauth_client_secret': u'b',
-      'security_config': None,
-      'token_server_url': u'https://token-server',
-    }, model.root_key().get().to_dict())
+        'auth_db_rev': 1,
+        'auth_db_prev_rev': 0,
+        'modified_by': model.get_service_self_identity(),
+        'modified_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
+        'oauth_additional_client_ids': [u'c', u'd'],
+        'oauth_client_id': u'a',
+        'oauth_client_secret': u'b',
+        'security_config': None,
+        'token_server_url': u'https://token-server',
+    },
+                     model.root_key().get().to_dict())
     # Same config again -> no changes.
-    self.assertFalse(run(config_pb2.OAuthConfig(
-        primary_client_id='a',
-        primary_client_secret='b',
-        client_ids=['c', 'd'],
-        token_server_url='https://token-server')))
+    self.assertFalse(
+        run(
+            config_pb2.OAuthConfig(
+                primary_client_id='a',
+                primary_client_secret='b',
+                client_ids=['c', 'd'],
+                token_server_url='https://token-server')))
 
   def test_validate_oauth_config(self):
     with self.assertRaises(ValueError):
       config._validate_oauth_config(
           config_pb2.OAuthConfig(
-            primary_client_id='a',
-            primary_client_secret='b',
-            client_ids=['c', 'd'],
-            token_server_url='https://not-root-url/abc/def'))
+              primary_client_id='a',
+              primary_client_secret='b',
+              client_ids=['c', 'd'],
+              token_server_url='https://not-root-url/abc/def'))
 
   def test_fetch_configs_ok(self):
     fetches = {
-      'imports.cfg': ('imports_cfg_rev', 'tarball{url:"a" systems:"b"}'),
-      'ip_whitelist.cfg': (
-          'ip_whitelist_cfg_rev', config_pb2.IPWhitelistConfig()),
-      'oauth.cfg': (
-          'oauth_cfg_rev', config_pb2.OAuthConfig(primary_client_id='a')),
-      'settings.cfg': (None, None),  # emulate missing config
+        'imports.cfg': ('imports_cfg_rev', 'tarball{url:"a" systems:"b"}'),
+        'ip_whitelist.cfg': ('ip_whitelist_cfg_rev',
+                             config_pb2.IPWhitelistConfig()),
+        'oauth.cfg': ('oauth_cfg_rev',
+                      config_pb2.OAuthConfig(primary_client_id='a')),
+        'settings.cfg': (None, None),  # emulate missing config
     }
+
     @ndb.tasklet
     def get_self_config_mock(path, *_args, **_kwargs):
       self.assertIn(path, fetches)
       raise ndb.Return(fetches.pop(path))
+
     self.mock(config_component, 'get_self_config_async', get_self_config_mock)
     self.mock(config, '_get_configs_url', lambda: 'http://url')
     result = config._fetch_configs(fetches.keys())
     self.assertFalse(fetches)
     self.assertEqual({
-      'imports.cfg': (
-          config.Revision('imports_cfg_rev', 'http://url'),
-          'tarball{url:"a" systems:"b"}'),
-      'ip_whitelist.cfg': (
-          config.Revision('ip_whitelist_cfg_rev', 'http://url'),
-          config_pb2.IPWhitelistConfig()),
-      'oauth.cfg': (
-          config.Revision('oauth_cfg_rev', 'http://url'),
-          config_pb2.OAuthConfig(primary_client_id='a')),
-      'settings.cfg': (config.Revision('0'*40, 'http://url'), ''),
+        'imports.cfg': (config.Revision('imports_cfg_rev', 'http://url'),
+                        'tarball{url:"a" systems:"b"}'),
+        'ip_whitelist.cfg': (config.Revision('ip_whitelist_cfg_rev',
+                                             'http://url'),
+                             config_pb2.IPWhitelistConfig()),
+        'oauth.cfg': (config.Revision('oauth_cfg_rev', 'http://url'),
+                      config_pb2.OAuthConfig(primary_client_id='a')),
+        'settings.cfg': (config.Revision('0' * 40, 'http://url'), ''),
     }, result)
 
   def test_fetch_configs_not_valid(self):
+
     @ndb.tasklet
     def get_self_config_mock(*_args, **_kwargs):
       raise ndb.Return(('imports_cfg_rev', 'bad config'))
+
     self.mock(config_component, 'get_self_config_async', get_self_config_mock)
     self.mock(config, '_get_configs_url', lambda: 'http://url')
     with self.assertRaises(config.CannotLoadConfigError):
@@ -644,18 +638,20 @@ class ConfigTest(test_case.TestCase):
     self.assertTrue(config._update_service_config('abc.cfg', rev, 'body'))
     self.assertEqual('body', config._get_service_config('abc.cfg'))
     self.assertEqual(
-        rev, config._get_service_config_rev_async('abc.cfg').get_result())
+        rev,
+        config._get_service_config_rev_async('abc.cfg').get_result())
     # Same body, returns False, though updates rev.
     rev2 = config.Revision('rev2', 'url')
     self.assertFalse(config._update_service_config('abc.cfg', rev2, 'body'))
     self.assertEqual(
-        rev2, config._get_service_config_rev_async('abc.cfg').get_result())
+        rev2,
+        config._get_service_config_rev_async('abc.cfg').get_result())
 
   def test_settings_updates(self):
     # Fetch only settings.cfg in this test case.
     self.mock(config, 'is_remote_configured', lambda: True)
     self.mock(config, '_CONFIG_SCHEMAS', {
-      'settings.cfg': config._CONFIG_SCHEMAS['settings.cfg'],
+        'settings.cfg': config._CONFIG_SCHEMAS['settings.cfg'],
     })
 
     # Default settings.
@@ -663,9 +659,10 @@ class ConfigTest(test_case.TestCase):
 
     # Mock new settings value in luci-config.
     settings_cfg_text = 'enable_ts_monitoring: true'
-    self.mock(config, '_fetch_configs', lambda _: {
-      'settings.cfg': (config.Revision('rev', 'url'), settings_cfg_text),
-    })
+    self.mock(
+        config, '_fetch_configs', lambda _: {
+            'settings.cfg': (config.Revision('rev', 'url'), settings_cfg_text),}
+    )
 
     # Fetch them.
     config.refetch_config()
@@ -677,9 +674,9 @@ class ConfigTest(test_case.TestCase):
         config.get_settings())
 
     # "Delete" them from luci-config.
-    self.mock(config, '_fetch_configs', lambda _: {
-      'settings.cfg': (config.Revision('0'*40, 'url'), ''),
-    })
+    self.mock(
+        config, '_fetch_configs', lambda _: {
+            'settings.cfg': (config.Revision('0' * 40, 'url'), ''),})
 
     # Fetch them.
     config.refetch_config()
@@ -695,30 +692,33 @@ class ConfigTest(test_case.TestCase):
 
   def test_validate_security_config_bad_regexp(self):
     ctx = validation.Context()
-    config.validate_security_config(security_config_pb2.SecurityConfig(
-        internal_service_regexp=['???'],
-    ), ctx)
+    config.validate_security_config(
+        security_config_pb2.SecurityConfig(internal_service_regexp=['???'],),
+        ctx)
     self.assertEqual(ctx.result().messages, [
-      validation.Message(
-          "internal_service_regexp: bad regexp '???' - nothing to repeat", 40),
+        validation.Message(
+            "internal_service_regexp: bad regexp '???' - nothing to repeat",
+            40),
     ])
 
   def test_update_security_config(self):
+
     def cfg(internal_service_regexp):
       return security_config_pb2.SecurityConfig(
           internal_service_regexp=internal_service_regexp)
 
     def run(conf):
       return config._update_authdb_configs({
-        'security.cfg': (config.Revision('cfg_rev', 'http://url'), conf),
+          'security.cfg': (config.Revision('cfg_rev', 'http://url'), conf),
       })
 
     def extract():
       d = model.root_key().get()
       return {
-        'auth_db_rev': d.auth_db_rev,
-        'security_config': security_config_pb2.SecurityConfig.FromString(
-            d.security_config),
+          'auth_db_rev':
+              d.auth_db_rev,
+          'security_config':
+              security_config_pb2.SecurityConfig.FromString(d.security_config),
       }
 
     # Pushing empty config -> no changes.
@@ -727,8 +727,8 @@ class ConfigTest(test_case.TestCase):
     # Updating the config.
     self.assertTrue(run(cfg([r'example\.com'])))
     self.assertEqual({
-      'auth_db_rev': 1,
-      'security_config': cfg([r'example\.com']),
+        'auth_db_rev': 1,
+        'security_config': cfg([r'example\.com']),
     }, extract())
 
     # Pushing same config again. No changes.
@@ -736,15 +736,17 @@ class ConfigTest(test_case.TestCase):
 
   def test_update_two_authdb_cfgs(self):
     """It is OK to update oauth.cfg and security.cfg at once."""
+
     def oauth_cfg(client_id):
       return config_pb2.OAuthConfig(primary_client_id=client_id)
+
     def sec_cfg(regexps):
       return security_config_pb2.SecurityConfig(internal_service_regexp=regexps)
 
     def run(oauth, sec):
       return config._update_authdb_configs({
-        'oauth.cfg': (config.Revision('cfg_rev', 'http://url'), oauth),
-        'security.cfg': (config.Revision('cfg_rev', 'http://url'), sec),
+          'oauth.cfg': (config.Revision('cfg_rev', 'http://url'), oauth),
+          'security.cfg': (config.Revision('cfg_rev', 'http://url'), sec),
       })
 
     def extract():
@@ -753,26 +755,26 @@ class ConfigTest(test_case.TestCase):
       if d.security_config:
         sec.MergeFromString(d.security_config)
       return {
-        'auth_db_rev': d.auth_db_rev,
-        'oauth_client_id': d.oauth_client_id,
-        'security_config': sec,
+          'auth_db_rev': d.auth_db_rev,
+          'oauth_client_id': d.oauth_client_id,
+          'security_config': sec,
       }
 
     # Both are empty when applied to empty state. No changes.
     self.assertFalse(run(oauth_cfg(''), sec_cfg([])))
     self.assertEqual({
-      'auth_db_rev': 0,
-      'oauth_client_id': u'',
-      'security_config': sec_cfg([]),
+        'auth_db_rev': 0,
+        'oauth_client_id': u'',
+        'security_config': sec_cfg([]),
     }, extract())
 
     # Both have changes. AuthDB revision is bumped only once. Both changes are
     # preserved.
     self.assertTrue(run(oauth_cfg('z'), sec_cfg(['z'])))
     self.assertEqual({
-      'auth_db_rev': 1,
-      'oauth_client_id': u'z',
-      'security_config': sec_cfg(['z']),
+        'auth_db_rev': 1,
+        'oauth_client_id': u'z',
+        'security_config': sec_cfg(['z']),
     }, extract())
 
 

@@ -2,7 +2,6 @@
 # Copyright 2017 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Extract specific state entry from Swarming bots"""
 
 import json
@@ -13,7 +12,6 @@ import subprocess
 import sys
 
 from six.moves import urllib
-
 
 CLIENT_DIR = os.path.dirname(
     os.path.dirname(
@@ -77,10 +75,7 @@ def main():
 
   bots = fetch_bots(options.swarming, options.dimensions)
   if options.key:
-    out = {
-      bot[u'bot_id']: bot[u'state'].get(options.key, None)
-      for bot in bots
-    }
+    out = {bot[u'bot_id']: bot[u'state'].get(options.key, None) for bot in bots}
   else:
     out = {bot[u'bot_id']: bot[u'state'] for bot in bots}
   json.dump(out, sys.stdout, sort_keys=True, indent=2)

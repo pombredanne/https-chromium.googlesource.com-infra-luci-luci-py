@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Task execution result models.
 
 This module doesn't do the scheduling itself. It only describes the entities to
@@ -108,8 +107,8 @@ class State(object):
   # State will mutate again. Anything else means not queued, not running.
   STATES_RUNNING = (RUNNING, PENDING)
   # Abnormal termination.
-  STATES_EXCEPTIONAL = (
-      EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, KILLED, NO_RESOURCE)
+  STATES_EXCEPTIONAL = (EXPIRED, TIMED_OUT, BOT_DIED, CANCELED, KILLED,
+                        NO_RESOURCE)
   # Task ran and is done running.
   STATES_DONE = (TIMED_OUT, COMPLETED, KILLED)
   # Task didn't run (except for BOT_DIED, which may or may not have run).
@@ -137,6 +136,7 @@ class State(object):
 
 class StateProperty(ndb.IntegerProperty):
   """State of a single task as a model property."""
+
   def __init__(self, **kwargs):
     # pylint: disable=E1002
     super(StateProperty, self).__init__(choices=State.STATES, **kwargs)
@@ -190,7 +190,7 @@ class TaskOutput(ndb.Model):
   # big. On the other hand, having thousands of small entities is pure overhead.
   # TODO(maruel): This value should be stored in the entity for future-proofing.
   # It can't be changed until then.
-  CHUNK_SIZE = 100*1024
+  CHUNK_SIZE = 100 * 1024
 
   # Maximum number of chunks.
   PUT_MAX_CHUNKS = 1024
@@ -382,8 +382,8 @@ class CipdPins(ndb.Model):
   client_package = ndb.LocalStructuredProperty(task_request.CipdPackage)
 
   # List of packages that were installed.
-  packages = ndb.LocalStructuredProperty(task_request.CipdPackage,
-                                         repeated=True)
+  packages = ndb.LocalStructuredProperty(
+      task_request.CipdPackage, repeated=True)
 
 
 class _TaskResultCommon(ndb.Model):
@@ -566,9 +566,8 @@ class _TaskResultCommon(ndb.Model):
       duration = (self.duration or 0.) + (perf.bot_overhead or 0.)
       duration += (perf.isolated_download.duration or 0.)
       duration += (perf.isolated_upload.duration or 0.)
-      out = (
-          (self.duration_as_seen_by_server or datetime.timedelta()) -
-          datetime.timedelta(seconds=duration))
+      out = ((self.duration_as_seen_by_server or datetime.timedelta()) -
+             datetime.timedelta(seconds=duration))
       if out.total_seconds() >= 0:
         return out
 
@@ -755,7 +754,7 @@ class _TaskResultCommon(ndb.Model):
     # Determine which chunks to fetch.
     first_chunk = offset / chunk_size
     end = offset + length
-    last_chunk = min((end + chunk_size-1) / chunk_size, self.stdout_chunks)
+    last_chunk = min((end + chunk_size - 1) / chunk_size, self.stdout_chunks)
 
     # Retrieve the subset of TaskOutputChunk needed.
     output_key = _run_result_key_to_output_key(run_result_key)
@@ -795,14 +794,13 @@ class _TaskResultCommon(ndb.Model):
     if self.state in State.STATES_DONE:
       if self.duration is None:
         raise datastore_errors.BadValueError(
-            'duration must be set with state %s' %
-            State.to_string(self.state))
+            'duration must be set with state %s' % State.to_string(self.state))
       # Allow exit_code to be missing for TIMED_OUT.
       if self.state != State.TIMED_OUT:
         if self.exit_code is None:
           raise datastore_errors.BadValueError(
-              'exit_code must be set with state %s' %
-              State.to_string(self.state))
+              'exit_code must be set with state %s' % State.to_string(
+                  self.state))
     elif self.state != State.BOT_DIED:
       # Allow duration and exit_code to be either missing or set for BOT_DIED,
       # but they should be not present for any running/pending states.
@@ -812,14 +810,14 @@ class _TaskResultCommon(ndb.Model):
                 self.state))
       if self.exit_code is not None:
         raise datastore_errors.BadValueError(
-            'exit_code must not be set with state %s' %
-            State.to_string(self.state))
+            'exit_code must not be set with state %s' % State.to_string(
+                self.state))
 
     if self.state not in State.STATES_RUNNING:
       if self.completed_ts is None:
         raise datastore_errors.BadValueError(
-            'completed_ts must be set with state %s' %
-            State.to_string(self.state))
+            'completed_ts must be set with state %s' % State.to_string(
+                self.state))
       # When a task is deduped, its creation time is after the completed time,
       # because original timestamps are used.
       if not self.deduped_from and self.completed_ts < self.created_ts:
@@ -848,8 +846,9 @@ class _TaskResultCommon(ndb.Model):
     properties.
     """
     return [
-      prop._code_name for prop in cls._properties.values()
-      if not isinstance(prop, ndb.ComputedProperty)
+        prop._code_name
+        for prop in cls._properties.values()
+        if not isinstance(prop, ndb.ComputedProperty)
     ]
 
 
@@ -931,9 +930,7 @@ class TaskRunResult(_TaskResultCommon):
     Returns the entities to save.
     """
     entities, self.stdout_chunks = _output_append(
-        _run_result_key_to_output_key(self.key),
-        self.stdout_chunks,
-        output,
+        _run_result_key_to_output_key(self.key), self.stdout_chunks, output,
         output_chunk_start)
     assert self.stdout_chunks <= TaskOutput.PUT_MAX_CHUNKS
     return entities
@@ -1128,18 +1125,16 @@ class TaskResultSummary(_TaskResultCommon):
 
     while len(self.costs_usd) < run_result.try_number:
       self.costs_usd.append(0.)
-    self.costs_usd[run_result.try_number-1] = run_result.cost_usd
+    self.costs_usd[run_result.try_number - 1] = run_result.cost_usd
 
     # Update the automatic tags, removing the ones from the other
     # TaskProperties.
     t = request.task_slice(run_result.current_task_slice or 0)
     if run_result.current_task_slice != self.current_task_slice:
-      self.tags = task_request.get_automatic_tags(
-          request, run_result.current_task_slice)
-    if (self.state == State.COMPLETED and
-        not self.failure and
-        not self.internal_failure and
-        t.properties.idempotent and
+      self.tags = task_request.get_automatic_tags(request,
+                                                  run_result.current_task_slice)
+    if (self.state == State.COMPLETED and not self.failure and
+        not self.internal_failure and t.properties.idempotent and
         not self.deduped_from):
       # Signal the results are valid and can be reused. If the request has a
       # SecretBytes, it is GET, which is a performance concern.
@@ -1164,9 +1159,8 @@ class TaskResultSummary(_TaskResultCommon):
     # is a ComputedProperty so it can't be copied as-is, and try_number is a
     # generated property.
     # pylint: disable=W0201
-    return (
-        self.state != run_result.state or
-        self.try_number != run_result.try_number)
+    return (self.state != run_result.state or
+            self.try_number != run_result.try_number)
 
   def to_dict(self):
     return super(TaskResultSummary, self).to_dict(exclude=['properties_hash'])
@@ -1203,7 +1197,7 @@ def _output_key_to_output_chunk_key(output_key, chunk_number):
   """
   assert output_key.kind() == 'TaskOutput', output_key
   assert chunk_number >= 0, chunk_number
-  return ndb.Key(TaskOutputChunk, chunk_number+1, parent=output_key)
+  return ndb.Key(TaskOutputChunk, chunk_number + 1, parent=output_key)
 
 
 def _output_append(output_key, number_chunks, output, output_chunk_start):
@@ -1251,7 +1245,7 @@ def _output_append(output_key, number_chunks, output, output_chunk_start):
     chunks.append((key, start, output[:next_start]))
     output = output[next_start:]
     number_chunks = max(number_chunks, chunk_number + 1)
-    output_chunk_start = (chunk_number+1)*TaskOutput.CHUNK_SIZE
+    output_chunk_start = (chunk_number + 1) * TaskOutput.CHUNK_SIZE
 
   if not chunks:
     return [], number_chunks
@@ -1276,7 +1270,7 @@ def _output_append(output_key, number_chunks, output, output_chunk_start):
     if len(chunk.chunk) < start:
       # Insert blank data automatically.
       chunk.gaps.extend((len(chunk.chunk), start))
-      chunk.chunk = chunk.chunk + '\x00' * (start-len(chunk.chunk))
+      chunk.chunk = chunk.chunk + '\x00' * (start - len(chunk.chunk))
 
     # Strip gaps that are being written to.
     new_gaps = []
@@ -1328,8 +1322,8 @@ def _sort_property(sort):
   if sort == 'created_ts':
     return datastore_query.PropertyOrder(
         '__key__', datastore_query.PropertyOrder.ASCENDING)
-  return datastore_query.PropertyOrder(
-      sort, datastore_query.PropertyOrder.DESCENDING)
+  return datastore_query.PropertyOrder(sort,
+                                       datastore_query.PropertyOrder.DESCENDING)
 
 
 def _datetime_to_key(date):
@@ -1367,9 +1361,7 @@ def _filter_query(cls, q, start, end, sort, state):
   if state == 'pending_running':
     # cls.state <= State.PENDING would work.
     return q.filter(
-        ndb.OR(
-            cls.state == State.PENDING,
-            cls.state == State.RUNNING))
+        ndb.OR(cls.state == State.PENDING, cls.state == State.RUNNING))
 
   if state == 'completed':
     return q.filter(cls.state == State.COMPLETED)
@@ -1517,8 +1509,7 @@ def get_result_summaries_query(start, end, sort, state, tags):
   # a thousand entities loaded in memory, and this is a pure memory leak, as
   # there's no chance this specific instance will need these again, therefore
   # this leads to 'Exceeded soft memory limit' AppEngine errors.
-  q = TaskResultSummary.query(
-      default_options=ndb.QueryOptions(use_cache=False))
+  q = TaskResultSummary.query(default_options=ndb.QueryOptions(use_cache=False))
   # Filter by one or more tags.
   if tags:
     # Add TaskResultSummary indexes if desired.
@@ -1557,8 +1548,8 @@ def cron_update_tags():
       break
 
   tags = [
-    TagValues(tag=k, values=sorted(values or []))
-    for k, values in sorted(seen.items())
+      TagValues(tag=k, values=sorted(values or []))
+      for k, values in sorted(seen.items())
   ]
   logging.info('From %d tasks, saw %d tags', count, len(tags))
   TagAggregation(key=TagAggregation.KEY, tags=tags, ts=now).put()
@@ -1571,6 +1562,7 @@ def task_bq_run(start, end):
   Multiple queries are run one after the other. This is because ndb.OR() cannot
   be used when the subqueries are inequalities on different fields.
   """
+
   def _convert(e):
     """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.TaskResult()
@@ -1605,6 +1597,7 @@ def task_bq_summary(start, end):
   Multiple queries are run one after the other. This is because ndb.OR() cannot
   be used when the subqueries are inequalities on different fields.
   """
+
   def _convert(e):
     """Returns a tuple(bq_key, row)."""
     out = swarming_pb2.TaskResult()

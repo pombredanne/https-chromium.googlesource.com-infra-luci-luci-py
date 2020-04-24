@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Delegation token implementation.
 
 See delegation.proto for general idea behind it.
@@ -26,17 +25,14 @@ from . import service_account
 from . import signature
 from .proto import delegation_pb2
 
-
 __all__ = [
-  'delegate',
-  'delegate_async',
-  'DelegationToken',
+    'delegate',
+    'delegate_async',
+    'DelegationToken',
 ]
-
 
 # TODO(vadimsh): Add a simple encryption layer, so that token's guts are not
 # visible in plain form to anyone who sees the token.
-
 
 # Tokens that are larger than this (before base64 encoding) are rejected.
 MAX_TOKEN_SIZE = 8 * 1024
@@ -47,12 +43,13 @@ ALLOWED_CLOCK_DRIFT_SEC = 30
 # Name of the HTTP header to look for delegation token.
 HTTP_HEADER = 'X-Delegation-Token-V1'
 
-
 # A minted delegation token returned by delegate_async and delegate.
-DelegationToken = collections.namedtuple('DelegationToken', [
-  'token',  # urlsafe base64 encoded blob with delegation token.
-  'expiry',  # datetime.datetime of expiration.
-])
+DelegationToken = collections.namedtuple(
+    'DelegationToken',
+    [
+        'token',  # urlsafe base64 encoded blob with delegation token.
+        'expiry',  # datetime.datetime of expiration.
+    ])
 
 
 @utils.cache_with_expiration(expiration_sec=900)
@@ -164,12 +161,12 @@ def unseal_token(tok):
     if exc.transient:
       raise TransientError(str(exc))
     raise exceptions.BadTokenError(
-        'Bad certificate (signer_id == %s, signing_key_id == %s): %s' % (
-        tok.signer_id, tok.signing_key_id, exc))
+        'Bad certificate (signer_id == %s, signing_key_id == %s): %s' %
+        (tok.signer_id, tok.signing_key_id, exc))
   if not is_valid_sig:
     raise exceptions.BadTokenError(
-        'Invalid signature (signer_id == %s, signing_key_id == %s)' % (
-        tok.signer_id, tok.signing_key_id))
+        'Invalid signature (signer_id == %s, signing_key_id == %s)' %
+        (tok.signer_id, tok.signing_key_id))
 
   # The signature is correct, deserialize the subtoken.
   try:
@@ -180,15 +177,15 @@ def unseal_token(tok):
 
 ## Token creation.
 
+
 @ndb.tasklet
-def delegate_async(
-    audience,
-    services,
-    min_validity_duration_sec=5*60,
-    max_validity_duration_sec=60*60*3,
-    impersonate=None,
-    tags=None,
-    token_server_url=None):
+def delegate_async(audience,
+                   services,
+                   min_validity_duration_sec=5 * 60,
+                   max_validity_duration_sec=60 * 60 * 3,
+                   impersonate=None,
+                   tags=None,
+                   token_server_url=None):
   """Creates a delegation token by contacting the token server.
 
   Memcaches the token.
@@ -241,7 +238,7 @@ def delegate_async(
       raise ValueError('audience can\'t be empty')
     for a in audience:
       if isinstance(a, model.Identity):
-        continue # identities are already validated
+        continue  # identities are already validated
       if not isinstance(a, basestring):
         raise ValueError('expecting a string or Identity')
       if a == 'REQUESTOR' or a.startswith('group:'):
@@ -289,34 +286,31 @@ def delegate_async(
   if not token_server_url:
     token_server_url = api.get_request_auth_db().token_server_url
     if not token_server_url:
-      raise exceptions.TokenCreationError(
-          'Token server URL is not configured'
-      )
+      raise exceptions.TokenCreationError('Token server URL is not configured')
 
   # End of validation.
 
   # See MintDelegationTokenRequest in
   # https://github.com/luci/luci-go/blob/master/tokenserver/api/minter/v1/token_minter.proto.
   req = {
-    'delegatedIdentity': impersonate or 'REQUESTOR',
-    'validityDuration': max_validity_duration_sec,
-    'audience': audience,
-    'services': services,
-    'tags': tags,
+      'delegatedIdentity': impersonate or 'REQUESTOR',
+      'validityDuration': max_validity_duration_sec,
+      'audience': audience,
+      'services': services,
+      'tags': tags,
   }
 
   # Get from cache.
-  cache_key_hash = hashlib.sha256(
-      token_server_url + '\n' + json.dumps(req, sort_keys=True)).hexdigest()
+  cache_key_hash = hashlib.sha256(token_server_url + '\n' +
+                                  json.dumps(req, sort_keys=True)).hexdigest()
   cache_key = 'delegation_token/v2/%s' % cache_key_hash
   ctx = ndb.get_context()
   token = yield ctx.memcache_get(cache_key)
   min_validity_duration = datetime.timedelta(seconds=min_validity_duration_sec)
   now = utils.utcnow()
   if token and token.expiry - min_validity_duration > now:
-    logging.info(
-        'Fetched cached delegation token: fingerprint=%s',
-        utils.get_token_fingerprint(token.token))
+    logging.info('Fetched cached delegation token: fingerprint=%s',
+                 utils.get_token_fingerprint(token.token))
     raise ndb.Return(token)
 
   # Request a new one.
@@ -326,7 +320,7 @@ def delegate_async(
   )
   res = yield service_account.authenticated_request_async(
       '%s/prpc/tokenserver.minter.TokenMinter/MintDelegationToken' %
-          token_server_url,
+      token_server_url,
       method='POST',
       payload=req)
 
@@ -338,9 +332,7 @@ def delegate_async(
   token_struct = res.get('delegationSubtoken')
   if not token_struct or not isinstance(token_struct, dict):
     logging.error('Bad MintDelegationToken response: %s', res)
-    raise exceptions.TokenCreationError(
-        'Bad response, no delegationSubtoken'
-    )
+    raise exceptions.TokenCreationError('Bad response, no delegationSubtoken')
 
   if token_struct.get('kind') != 'BEARER_DELEGATION_TOKEN':
     logging.error('Bad MintDelegationToken response: %s', res)
@@ -360,12 +352,13 @@ def delegate_async(
 
   logging.info(
       'Token server "%s" generated token (subtoken_id=%s, fingerprint=%s):\n%s',
-      res.get('serviceVersion'),
-      token_struct.get('subtokenId'),
+      res.get('serviceVersion'), token_struct.get('subtokenId'),
       utils.get_token_fingerprint(token.token),
       json.dumps(
           res.get('delegationSubtoken'),
-          sort_keys=True, indent=2, separators=(',', ': ')))
+          sort_keys=True,
+          indent=2,
+          separators=(',', ': ')))
 
   # Put to cache. Refresh the token 10 sec in advance.
   if actual_validity_duration_sec > 10:
@@ -429,8 +422,8 @@ def check_subtoken_expiration(subtoken, now):
         'Invalid validity_duration: %d' % subtoken.validity_duration)
   if subtoken.creation_time >= now + ALLOWED_CLOCK_DRIFT_SEC:
     raise exceptions.BadTokenError(
-        'Token is not active yet (%d < %d)' %
-        (subtoken.creation_time, now + ALLOWED_CLOCK_DRIFT_SEC))
+        'Token is not active yet (%d < %d)' % (subtoken.creation_time,
+                                               now + ALLOWED_CLOCK_DRIFT_SEC))
   if subtoken.creation_time + subtoken.validity_duration < now:
     exp = now - (subtoken.creation_time + subtoken.validity_duration)
     raise exceptions.BadTokenError('Token has expired %d sec ago' % exp)
@@ -447,8 +440,7 @@ def check_subtoken_services(subtoken, service_id):
     BadTokenError if token is not intended for the current service.
   """
   if not subtoken.services:
-    raise exceptions.BadTokenError(
-        'The token\'s services list is empty')
+    raise exceptions.BadTokenError('The token\'s services list is empty')
   if '*' not in subtoken.services and service_id not in subtoken.services:
     raise exceptions.BadTokenError(
         'The token is not intended for %s' % service_id)
@@ -506,16 +498,14 @@ def check_bearer_delegation_token(token, peer_identity, auth_db=None):
     BadTokenError if token is invalid.
     TransientError if token can't be verified due to transient errors.
   """
-  logging.info(
-      'Checking delegation token: fingerprint=%s',
-      utils.get_token_fingerprint(token))
+  logging.info('Checking delegation token: fingerprint=%s',
+               utils.get_token_fingerprint(token))
   subtoken = unseal_token(deserialize_token(token))
   if subtoken.kind != delegation_pb2.Subtoken.BEARER_DELEGATION_TOKEN:
     raise exceptions.BadTokenError(
         'Not a valid delegation token kind: %s' % subtoken.kind)
-  ident = check_subtoken(
-      subtoken, peer_identity, auth_db or api.get_request_auth_db())
-  logging.info(
-      'Using delegation token: subtoken_id=%s, delegated_identity=%s',
-      subtoken.subtoken_id, ident.to_bytes())
+  ident = check_subtoken(subtoken, peer_identity, auth_db or
+                         api.get_request_auth_db())
+  logging.info('Using delegation token: subtoken_id=%s, delegated_identity=%s',
+               subtoken.subtoken_id, ident.to_bytes())
   return ident, subtoken

@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Discovery document generator for an Endpoints v1 over webapp2 service."""
 
 import re
@@ -116,8 +115,8 @@ def _get_schemas(types):
     name = _normalize_name(message_type.definition_name())
 
     schemas[name] = {
-      'id': name,
-      'type': 'object',
+        'id': name,
+        'type': 'object',
     }
 
     desc = _normalize_whitespace(message_type.__doc__)
@@ -134,8 +133,8 @@ def _get_schemas(types):
       # directly. For message fields, add a $ref to elsewhere in the schema
       # and ensure the type is queued to have its schema added. DateTimeField
       # is a message field but is treated as a non-message field.
-      if (isinstance(field, messages.MessageField)
-          and not isinstance(field, message_types.DateTimeField)):
+      if (isinstance(field, messages.MessageField) and
+          not isinstance(field, message_types.DateTimeField)):
         field_type = field.type().__class__
         desc = _normalize_whitespace(field_type.__doc__)
         if desc:
@@ -241,8 +240,8 @@ def _get_methods(service):
     resources, and types.
   """
   document = {
-    'methods': {},
-    'resources': {},
+      'methods': {},
+      'resources': {},
   }
   types = set()
 
@@ -260,12 +259,10 @@ def _get_methods(service):
     resource_parts = parts[1:-1]
 
     item = {
-      'httpMethod': info.http_method,
-      'id': method_id,
-      'path': info.get_path(service.api_info),
-      'scopes': [
-        'https://www.googleapis.com/auth/userinfo.email',
-      ],
+        'httpMethod': info.http_method,
+        'id': method_id,
+        'path': info.get_path(service.api_info),
+        'scopes': ['https://www.googleapis.com/auth/userinfo.email',],
     }
 
     desc = _normalize_whitespace(method.remote.method.__doc__)
@@ -278,9 +275,9 @@ def _get_methods(service):
       if not isinstance(request, message_types.VoidMessage):
         if info.http_method not in ('GET', 'DELETE'):
           item['request'] = {
-            # $refs refer to the "schemas" section of the discovery doc.
-            '$ref': _normalize_name(request.__class__.definition_name()),
-            'parameterName': 'resource',
+              # $refs refer to the "schemas" section of the discovery doc.
+              '$ref': _normalize_name(request.__class__.definition_name()),
+              'parameterName': 'resource',
           }
           types.add(request.__class__)
     else:
@@ -290,17 +287,18 @@ def _get_methods(service):
       if rc.body_message_class != message_types.VoidMessage:
         if info.http_method not in ('GET', 'DELETE'):
           item['request'] = {
-            '$ref': _normalize_name(rc.body_message_class.definition_name()),
-            'parameterName': 'resource',
+              '$ref': _normalize_name(rc.body_message_class.definition_name()),
+              'parameterName': 'resource',
           }
           types.add(rc.body_message_class)
-      item.update(_get_parameters(
-          rc.parameters_message_class, info.get_path(service.api_info)))
+      item.update(
+          _get_parameters(rc.parameters_message_class,
+                          info.get_path(service.api_info)))
 
     response = method.remote.response_type()
     if not isinstance(response, message_types.VoidMessage):
       item['response'] = {
-        '$ref': _normalize_name(response.__class__.definition_name()),
+          '$ref': _normalize_name(response.__class__.definition_name()),
       }
       types.add(response.__class__)
 
@@ -327,88 +325,118 @@ def generate(classes, host, base_path):
   assert classes, classes
   scheme = 'http:' if utils.is_local_dev_server() else 'https:'
   document = {
-    'discoveryVersion': 'v1',
-    'auth': {
-      'oauth2': {
-        'scopes': {s: {'description': s} for s in classes[0].api_info.scopes},
+      'discoveryVersion':
+          'v1',
+      'auth': {
+          'oauth2': {
+              'scopes': {
+                  s: {
+                      'description': s
+                  } for s in classes[0].api_info.scopes
+              },
+          },
       },
-    },
-    'basePath': '%s/%s/%s' % (
-        base_path, classes[0].api_info.name, classes[0].api_info.version),
-    'baseUrl': '%s//%s%s/%s/%s' % (
-        scheme, host, base_path,
-        classes[0].api_info.name, classes[0].api_info.version),
-    'batchPath': 'batch',
-    'icons': {
-      'x16': 'https://www.google.com/images/icons/product/search-16.gif',
-      'x32': 'https://www.google.com/images/icons/product/search-32.gif',
-    },
-    'id': '%s:%s' % (classes[0].api_info.name, classes[0].api_info.version),
-    'kind': 'discovery#restDescription',
-    'name': classes[0].api_info.name,
-    'parameters': {
-      'alt': {
-        'default': 'json',
-        'description': 'Data format for the response.',
-        'enum': ['json'],
-        'enumDescriptions': [
-          'Responses with Content-Type of application/json',
-        ],
-        'location': 'query',
-        'type': 'string',
+      'basePath':
+          '%s/%s/%s' % (base_path, classes[0].api_info.name,
+                        classes[0].api_info.version),
+      'baseUrl':
+          '%s//%s%s/%s/%s' % (scheme, host, base_path, classes[0].api_info.name,
+                              classes[0].api_info.version),
+      'batchPath':
+          'batch',
+      'icons': {
+          'x16': 'https://www.google.com/images/icons/product/search-16.gif',
+          'x32': 'https://www.google.com/images/icons/product/search-32.gif',
       },
-      'fields': {
-        'description': (
-            'Selector specifying which fields to include in a partial'
-            ' response.'),
-        'location': 'query',
-        'type': 'string',
+      'id':
+          '%s:%s' % (classes[0].api_info.name, classes[0].api_info.version),
+      'kind':
+          'discovery#restDescription',
+      'name':
+          classes[0].api_info.name,
+      'parameters': {
+          'alt': {
+              'default':
+                  'json',
+              'description':
+                  'Data format for the response.',
+              'enum': ['json'],
+              'enumDescriptions': [
+                  'Responses with Content-Type of application/json',
+              ],
+              'location':
+                  'query',
+              'type':
+                  'string',
+          },
+          'fields': {
+              'description': (
+                  'Selector specifying which fields to include in a partial'
+                  ' response.'),
+              'location':
+                  'query',
+              'type':
+                  'string',
+          },
+          'key': {
+              'description': (
+                  'API key. Your API key identifies your project and provides you'
+                  ' with API access, quota, and reports. Required unless you provide'
+                  ' an OAuth 2.0 token.'),
+              'location':
+                  'query',
+              'type':
+                  'string',
+          },
+          'oauth_token': {
+              'description': 'OAuth 2.0 token for the current user.',
+              'location': 'query',
+              'type': 'string',
+          },
+          'prettyPrint': {
+              'default':
+                  'true',
+              'description':
+                  'Returns response with indentations and line breaks.',
+              'location':
+                  'query',
+              'type':
+                  'boolean',
+          },
+          'quotaUser': {
+              'description': (
+                  'Available to use for quota purposes for server-side applications.'
+                  ' Can be any arbitrary string assigned to a user, but should not'
+                  ' exceed 40 characters. Overrides userIp if both are provided.'
+              ),
+              'location':
+                  'query',
+              'type':
+                  'string',
+          },
+          'userIp': {
+              'description': (
+                  'IP address of the site where the request originates. Use this if'
+                  ' you want to enforce per-user limits.'),
+              'location':
+                  'query',
+              'type':
+                  'string',
+          },
       },
-      'key': {
-        'description': (
-            'API key. Your API key identifies your project and provides you'
-            ' with API access, quota, and reports. Required unless you provide'
-            ' an OAuth 2.0 token.'),
-        'location': 'query',
-        'type': 'string',
-      },
-      'oauth_token': {
-        'description': 'OAuth 2.0 token for the current user.',
-        'location': 'query',
-        'type': 'string',
-      },
-      'prettyPrint': {
-        'default': 'true',
-        'description': 'Returns response with indentations and line breaks.',
-        'location': 'query',
-        'type': 'boolean',
-      },
-      'quotaUser': {
-        'description': (
-            'Available to use for quota purposes for server-side applications.'
-            ' Can be any arbitrary string assigned to a user, but should not'
-            ' exceed 40 characters. Overrides userIp if both are provided.'),
-        'location': 'query',
-        'type': 'string',
-      },
-      'userIp': {
-        'description': (
-            'IP address of the site where the request originates. Use this if'
-            ' you want to enforce per-user limits.'),
-        'location': 'query',
-        'type': 'string',
-      },
-    },
-    'protocol': 'rest',
-    'rootUrl': '%s//%s%s/' % (scheme, host, base_path),
-    'servicePath': '%s/%s/' % (
-        classes[0].api_info.name, classes[0].api_info.version),
-    'version': classes[0].api_info.version,
+      'protocol':
+          'rest',
+      'rootUrl':
+          '%s//%s%s/' % (scheme, host, base_path),
+      'servicePath':
+          '%s/%s/' % (classes[0].api_info.name, classes[0].api_info.version),
+      'version':
+          classes[0].api_info.version,
   }
   if classes[0].api_info.title:
     document['title'] = classes[0].api_info.title
-  desc = _normalize_whitespace(
-      classes[0].api_info.description or classes[0].__doc__)
+  desc = _normalize_whitespace(classes[0].api_info.description or
+                               classes[0].__doc__)
   if desc:
     document['description'] = desc
   if classes[0].api_info.documentation:
@@ -443,30 +471,37 @@ def directory(classes, host, base_path):
   """
   scheme = 'http:' if utils.is_local_dev_server() else 'https:'
   document = {
-    'discoveryVersion': 'v1',
-    'kind': 'discovery#directoryList',
+      'discoveryVersion': 'v1',
+      'kind': 'discovery#directoryList',
   }
 
   items = {}
   for service in classes:
     item = {
-      'discoveryLink': './apis/%s/%s/rest' % (
-          service.api_info.name, service.api_info.version),
-      'discoveryRestUrl': '%s//%s%s/discovery/v1/apis/%s/%s/rest' % (
-          scheme, host, base_path,
-          service.api_info.name, service.api_info.version),
-      'id': '%s:%s' % (service.api_info.name, service.api_info.version),
-      'icons': {
-        'x16': 'https://www.google.com/images/icons/product/search-16.gif',
-        'x32': 'https://www.google.com/images/icons/product/search-32.gif',
-      },
-      'kind': 'discovery#directoryItem',
-      'name': service.api_info.name,
-      'preferred': True,
-      'version': service.api_info.version,
+        'discoveryLink':
+            './apis/%s/%s/rest' % (service.api_info.name,
+                                   service.api_info.version),
+        'discoveryRestUrl':
+            '%s//%s%s/discovery/v1/apis/%s/%s/rest' %
+            (scheme, host, base_path, service.api_info.name,
+             service.api_info.version),
+        'id':
+            '%s:%s' % (service.api_info.name, service.api_info.version),
+        'icons': {
+            'x16': 'https://www.google.com/images/icons/product/search-16.gif',
+            'x32': 'https://www.google.com/images/icons/product/search-32.gif',
+        },
+        'kind':
+            'discovery#directoryItem',
+        'name':
+            service.api_info.name,
+        'preferred':
+            True,
+        'version':
+            service.api_info.version,
     }
-    desc = _normalize_whitespace(
-        service.api_info.description or service.__doc__)
+    desc = _normalize_whitespace(service.api_info.description or
+                                 service.__doc__)
     if desc:
       item['description'] = desc
     if service.api_info.documentation:

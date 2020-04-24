@@ -25,7 +25,6 @@ import projects
 import storage
 import validation
 
-
 # This is used by endpoints indirectly.
 package = 'luci-config'
 
@@ -45,9 +44,11 @@ class Revision(messages.Message):
   timestamp = messages.IntegerField(3)
   committer_email = messages.StringField(4)
 
+
 class File(messages.Message):
   """Describes a file."""
   path = messages.StringField(1)
+
 
 class ConfigSet(messages.Message):
   """Describes a config set."""
@@ -66,24 +67,25 @@ class ConfigSet(messages.Message):
   last_import_attempt = messages.MessageField(ImportAttempt, 4)
   files = messages.MessageField(File, 5, repeated=True)
 
+
 def attempt_to_msg(entity):
   if entity is None:
     return None
   return ConfigSet.ImportAttempt(
-    timestamp=utils.datetime_to_timestamp(entity.time),
-    revision=Revision(
-        id=entity.revision.id,
-        url=entity.revision.url,
-        timestamp=utils.datetime_to_timestamp(entity.revision.time),
-        committer_email=entity.revision.committer_email,
-    ) if entity.revision else None,
-    success=entity.success,
-    message=entity.message,
-    validation_messages=[
-      cfg_endpoint.ValidationMessage(
-          path=m.path, severity=m.severity, text=m.text)
-      for m in entity.validation_messages
-    ],
+      timestamp=utils.datetime_to_timestamp(entity.time),
+      revision=Revision(
+          id=entity.revision.id,
+          url=entity.revision.url,
+          timestamp=utils.datetime_to_timestamp(entity.revision.time),
+          committer_email=entity.revision.committer_email,
+      ) if entity.revision else None,
+      success=entity.success,
+      message=entity.message,
+      validation_messages=[
+          cfg_endpoint.ValidationMessage(
+              path=m.path, severity=m.severity, text=m.text)
+          for m in entity.validation_messages
+      ],
   )
 
 
@@ -96,6 +98,7 @@ GET_CONFIG_MULTI_REQUEST_RESOURCE_CONTAINER = endpoints.ResourceContainer(
 
 
 class GetConfigMultiResponseMessage(messages.Message):
+
   class ConfigEntry(messages.Message):
     config_set = messages.StringField(1, required=True)
     revision = messages.StringField(2, required=True)
@@ -103,6 +106,7 @@ class GetConfigMultiResponseMessage(messages.Message):
     # None if request.hash_only is True
     content = messages.BytesField(4)
     url = messages.StringField(5)
+
   configs = messages.MessageField(ConfigEntry, 1, repeated=True)
 
 
@@ -114,9 +118,11 @@ class ConfigApi(remote.Service):
   # endpoint: get_mapping
 
   class GetMappingResponseMessage(messages.Message):
+
     class Mapping(messages.Message):
       config_set = messages.StringField(1, required=True)
       location = messages.StringField(2)
+
     mappings = messages.MessageField(Mapping, 1, repeated=True)
 
   @auth.endpoints_method(
@@ -127,7 +133,7 @@ class ConfigApi(remote.Service):
       GetMappingResponseMessage,
       http_method='GET',
       path='mapping')
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def get_mapping(self, request):
     """DEPRECATED. Use get_config_sets."""
     if request.config_set and not can_read_config_set(request.config_set):
@@ -136,14 +142,12 @@ class ConfigApi(remote.Service):
     config_sets = storage.get_config_sets_async(
         config_set=request.config_set).get_result()
     can_read = can_read_config_sets([cs.key.id() for cs in config_sets])
-    return self.GetMappingResponseMessage(
-        mappings=[
-          self.GetMappingResponseMessage.Mapping(
-              config_set=cs.key.id(), location=cs.location)
-          for cs in config_sets
-          if can_read[cs.key.id()]
-        ]
-    )
+    return self.GetMappingResponseMessage(mappings=[
+        self.GetMappingResponseMessage.Mapping(
+            config_set=cs.key.id(), location=cs.location)
+        for cs in config_sets
+        if can_read[cs.key.id()]
+    ])
 
   ##############################################################################
   # endpoint: validate_config
@@ -153,6 +157,7 @@ class ConfigApi(remote.Service):
         cfg_endpoint.ValidationMessage, 1, repeated=True)
 
   class ValidateConfigRequestMessage(messages.Message):
+
     class File(messages.Message):
       path = messages.StringField(1)
       content = messages.BytesField(2)
@@ -166,13 +171,11 @@ class ConfigApi(remote.Service):
       http_method='POST',
       path='validate-config',
   )
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def validate_config(self, request):
-    logging.debug(
-        "requester: %s, config_set: %s, paths: %s",
-        auth.get_current_identity().to_bytes(),
-        request.config_set,
-        [f.path for f in request.files])
+    logging.debug("requester: %s, config_set: %s, paths: %s",
+                  auth.get_current_identity().to_bytes(), request.config_set,
+                  [f.path for f in request.files])
 
     try:
       validation.validate_config_set(request.config_set)
@@ -184,26 +187,27 @@ class ConfigApi(remote.Service):
       raise endpoints.BadRequestException(ex.message)
 
     if not acl.can_validate(request.config_set):
-      logging.warning(
-          '%s does not have validation access',
-          auth.get_current_identity().to_bytes())
+      logging.warning('%s does not have validation access',
+                      auth.get_current_identity().to_bytes())
       raise endpoints.ForbiddenException()
 
     futs = []
     for f in request.files:
       ctx = cfg_validation.Context()
       with ctx.prefix(f.path + ': '):
-        futs.append(validation.validate_config_async(
-            request.config_set, f.path, f.content, ctx=ctx))
+        futs.append(
+            validation.validate_config_async(
+                request.config_set, f.path, f.content, ctx=ctx))
     ndb.Future.wait_all(futs)
 
     msgs = []
     for f, fut in zip(request.files, futs):
       for msg in fut.get_result().messages:
-        msgs.append(cfg_endpoint.ValidationMessage(
-          path=f.path,
-          severity=common.Severity.lookup_by_number(msg.severity),
-          text=msg.text))
+        msgs.append(
+            cfg_endpoint.ValidationMessage(
+                path=f.path,
+                severity=common.Severity.lookup_by_number(msg.severity),
+                text=msg.text))
 
     return self.ValidateConfigResponseMessage(messages=msgs)
 
@@ -214,16 +218,16 @@ class ConfigApi(remote.Service):
     config_sets = messages.MessageField(ConfigSet, 1, repeated=True)
 
   @auth.endpoints_method(
-    endpoints.ResourceContainer(
-        message_types.VoidMessage,
-        config_set=messages.StringField(1),
-        include_last_import_attempt=messages.BooleanField(2),
-        include_files=messages.BooleanField(3),
-    ),
-    GetConfigSetsResponseMessage,
-    http_method='GET',
-    path='config-sets')
-  @auth.public # ACL check inside
+      endpoints.ResourceContainer(
+          message_types.VoidMessage,
+          config_set=messages.StringField(1),
+          include_last_import_attempt=messages.BooleanField(2),
+          include_files=messages.BooleanField(3),
+      ),
+      GetConfigSetsResponseMessage,
+      http_method='GET',
+      path='config-sets')
+  @auth.public  # ACL check inside
   def get_config_sets(self, request):
     """Returns config sets."""
     if request.config_set and not can_read_config_set(request.config_set):
@@ -242,14 +246,13 @@ class ConfigApi(remote.Service):
       # specified.
       cs = config_sets[0]
       if cs.latest_revision:
-        file_keys = storage.get_file_keys(
-            request.config_set, cs.latest_revision)
+        file_keys = storage.get_file_keys(request.config_set,
+                                          cs.latest_revision)
         files = [File(path=key.id()) for key in file_keys]
 
     if request.include_last_import_attempt:
-      attempts = ndb.get_multi([
-        storage.last_import_attempt_key(cs.key.id()) for cs in config_sets
-      ])
+      attempts = ndb.get_multi(
+          [storage.last_import_attempt_key(cs.key.id()) for cs in config_sets])
     else:
       attempts = [None] * len(config_sets)
 
@@ -306,7 +309,7 @@ class ConfigApi(remote.Service):
       GetConfigResponseMessage,
       http_method='GET',
       path='config_sets/{config_set}/config/{path}')
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def get_config(self, request):
     """Gets a config file."""
     try:
@@ -317,14 +320,14 @@ class ConfigApi(remote.Service):
     res = self.GetConfigResponseMessage()
 
     if not can_read_config_set(request.config_set):
-      logging.warning(
-          '%s does not have access to %s',
-          auth.get_current_identity().to_bytes(),
-          request.config_set)
+      logging.warning('%s does not have access to %s',
+                      auth.get_current_identity().to_bytes(),
+                      request.config_set)
       raise_config_not_found()
 
-    content_hashes = storage.get_config_hashes_async(
-        {request.config_set: request.revision}, request.path).get_result()
+    content_hashes = storage.get_config_hashes_async({
+        request.config_set: request.revision
+    }, request.path).get_result()
     res.revision, res.url, res.content_hash = (
         content_hashes.get(request.config_set))
     if not res.content_hash:
@@ -336,8 +339,8 @@ class ConfigApi(remote.Service):
       if not res.content:
         logging.warning(
             'Config hash is found, but the blob is not.\n'
-            'File: "%s:%s:%s". Hash: %s', request.config_set,
-            request.revision, request.path, res.content_hash)
+            'File: "%s:%s:%s". Hash: %s', request.config_set, request.revision,
+            request.path, res.content_hash)
         raise_config_not_found()
 
     return res
@@ -356,13 +359,12 @@ class ConfigApi(remote.Service):
       GetConfigByHashResponseMessage,
       http_method='GET',
       path='config/{content_hash}')
-  @auth.public # assumes the hash itself is a guarded secret
+  @auth.public  # assumes the hash itself is a guarded secret
   def get_config_by_hash(self, request):
     """Gets a config file by its hash."""
     res = self.GetConfigByHashResponseMessage(
-        content=storage.get_configs_by_hashes_async(
-            [request.content_hash]).get_result().get(request.content_hash)
-    )
+        content=storage.get_configs_by_hashes_async([request.content_hash])
+        .get_result().get(request.content_hash))
     if not res.content:
       raise_config_not_found()
     return res
@@ -378,7 +380,7 @@ class ConfigApi(remote.Service):
       GetProjectsResponseMessage,
       http_method='GET',
       path='projects')
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def get_projects(self, request):  # pylint: disable=W0613
     """Gets list of registered projects.
 
@@ -387,15 +389,16 @@ class ConfigApi(remote.Service):
     projs = get_projects()
     has_access = acl.has_projects_access([p.id for p in projs])
     return self.GetProjectsResponseMessage(
-        projects=[p for p in projs if has_access[p.id]],
-    )
+        projects=[p for p in projs if has_access[p.id]],)
 
   ##############################################################################
   # endpoint: get_refs
 
   class GetRefsResponseMessage(messages.Message):
+
     class Ref(messages.Message):
       name = messages.StringField(1)
+
     refs = messages.MessageField(Ref, 1, repeated=True)
 
   @auth.endpoints_method(
@@ -406,11 +409,11 @@ class ConfigApi(remote.Service):
       GetRefsResponseMessage,
       http_method='GET',
       path='projects/{project_id}/refs')
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def get_refs(self, request):
     """Gets list of refs of a project."""
-    has_access = acl.has_projects_access(
-        [request.project_id]).get(request.project_id)
+    has_access = acl.has_projects_access([request.project_id]).get(
+        request.project_id)
     if not has_access:
       raise endpoints.NotFoundException()
     refs = projects.get_refs([request.project_id]).get(request.project_id)
@@ -429,7 +432,7 @@ class ConfigApi(remote.Service):
       GetConfigMultiResponseMessage,
       http_method='GET',
       path='configs/projects/{path}')
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def get_project_configs(self, request):
     """Gets configs in all project config sets."""
     try:
@@ -447,7 +450,7 @@ class ConfigApi(remote.Service):
       GetConfigMultiResponseMessage,
       http_method='GET',
       path='configs/refs/{path}')
-  @auth.public # ACL check inside
+  @auth.public  # ACL check inside
   def get_ref_configs(self, request):
     """Gets configs in all ref config sets."""
     try:
@@ -461,14 +464,13 @@ class ConfigApi(remote.Service):
   # endpoint: reimport
 
   @auth.endpoints_method(
-    endpoints.ResourceContainer(
-        message_types.VoidMessage,
-        config_set=messages.StringField(1, required=True)
-    ),
-    message_types.VoidMessage,
-    http_method='POST',
-    path='reimport')
-  @auth.public # ACL check inside
+      endpoints.ResourceContainer(
+          message_types.VoidMessage,
+          config_set=messages.StringField(1, required=True)),
+      message_types.VoidMessage,
+      http_method='POST',
+      path='reimport')
+  @auth.public  # ACL check inside
   def reimport(self, request):
     """Reimports a config set."""
     try:
@@ -479,8 +481,8 @@ class ConfigApi(remote.Service):
 
     if not acl.can_reimport(request.config_set):
       raise endpoints.ForbiddenException(
-          '%s is now allowed to reimport %r' % (
-              auth.get_current_identity().to_bytes(), request.config_set))
+          '%s is now allowed to reimport %r' %
+          (auth.get_current_identity().to_bytes(), request.config_set))
     # Assume it is Gitiles.
     try:
       gitiles_import.import_config_set(request.config_set)
@@ -519,12 +521,13 @@ def get_projects():
     name = None
     if metadata.get(p.id) and metadata[p.id].name:
       name = metadata[p.id].name
-    result.append(Project(
-        id=p.id,
-        name=name,
-        repo_type=repo_type,
-        repo_url=repo_url,
-    ))
+    result.append(
+        Project(
+            id=p.id,
+            name=name,
+            repo_type=repo_type,
+            repo_url=repo_url,
+        ))
   return result
 
 
@@ -565,16 +568,15 @@ def get_config_multi(scope, path, hashes_only):
       if not content_hash:
         continue
       configs.append({
-        'config_set': cs,
-        'revision': rev,
-        'content_hash': content_hash,
-        'content': content,
-        'url': rev_url,
+          'config_set': cs,
+          'revision': rev,
+          'content_hash': content_hash,
+          'content': content,
+          'url': rev_url,
       })
       if not hashes_only and content is None:
-        logging.error(
-            'Blob %s referenced from %s:%s:%s was not found',
-            content_hash, cs, rev, path)
+        logging.error('Blob %s referenced from %s:%s:%s was not found',
+                      content_hash, cs, rev, path)
     try:
       _memcache_add_compressed(cache_key, configs, time=60)
     except ValueError:

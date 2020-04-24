@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Uploads a ton of stuff to isolateserver to test its handling.
 
 Generates an histogram with the latencies to download a just uploaded file.
@@ -53,13 +52,14 @@ class Randomness(object):
   def gen(self, size):
     """Returns a str containing random data from the pool of size |size|."""
     chunks = int(size / 1024)
-    rest = size - (chunks*1024)
+    rest = size - (chunks * 1024)
     data = ''.join(random.choice(self.pool) for _ in range(chunks))
     data += random.choice(self.pool)[:rest]
     return data
 
 
 class Progress(threading_utils.Progress):
+
   def _render_columns(self):
     """Prints the size data as 'units'."""
     columns_as_str = [
@@ -77,8 +77,7 @@ def print_results(results, columns, buckets):
   sizes = [i[1] for i in results]
 
   print('%sSIZES%s (bytes):' % (colorama.Fore.RED, colorama.Fore.RESET))
-  graph.print_histogram(
-      graph.generate_histogram(sizes, buckets), columns, '%d')
+  graph.print_histogram(graph.generate_histogram(sizes, buckets), columns, '%d')
   print('')
   total_size = sum(sizes)
   print('Total size  : %s' % graph.to_units(total_size))
@@ -182,7 +181,9 @@ def main():
       default=0,
       help='Loop until this amount of data was transferred')
   graph.unit_option(
-      data_group, '--mid-size', default=100*1024,
+      data_group,
+      '--mid-size',
+      default=100 * 1024,
       help='Rough average size of each item, default:%default')
   parser.add_option_group(data_group)
 
@@ -202,8 +203,7 @@ def main():
   parser.add_option_group(ui_group)
 
   log_group = optparse.OptionGroup(parser, 'Logging')
-  log_group.add_option(
-      '--dump', metavar='FOO.JSON', help='Dumps to json file')
+  log_group.add_option('--dump', metavar='FOO.JSON', help='Dumps to json file')
   log_group.add_option(
       '-v', '--verbose', action='store_true', help='Enable logging')
   parser.add_option_group(log_group)
@@ -222,9 +222,8 @@ def main():
   if not options.isolate_server:
     parser.error('--isolate-server is required.')
 
-  print(
-      ' - Using %d thread,  items=%d,  max-size=%d,  mid-size=%d' % (
-      options.threads, options.items, options.max_size, options.mid_size))
+  print(' - Using %d thread,  items=%d,  max-size=%d,  mid-size=%d' %
+        (options.threads, options.items, options.max_size, options.mid_size))
 
   start = time.time()
 

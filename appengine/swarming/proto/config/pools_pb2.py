@@ -2,7 +2,7 @@
 # source: pools.proto
 
 import sys
-_b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
+_b = sys.version_info[0] < 3 and (lambda x: x) or (lambda x: x.encode('latin1'))
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -11,908 +11,1456 @@ from google.protobuf import symbol_database as _symbol_database
 
 _sym_db = _symbol_database.Default()
 
-
 import config_pb2 as config__pb2
 
-
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='pools.proto',
-  package='swarming.config',
-  syntax='proto3',
-  serialized_options=_b('Z3go.chromium.org/luci/swarming/proto/config;configpb'),
-  serialized_pb=_b('\n\x0bpools.proto\x12\x0fswarming.config\x1a\x0c\x63onfig.proto\"\xb4\x02\n\x08PoolsCfg\x12#\n\x04pool\x18\x01 \x03(\x0b\x32\x15.swarming.config.Pool\x12\x44\n\x19\x64\x65\x66\x61ult_external_services\x18\x06 \x01(\x0b\x32!.swarming.config.ExternalServices\x12\x34\n\rtask_template\x18\x03 \x03(\x0b\x32\x1d.swarming.config.TaskTemplate\x12I\n\x18task_template_deployment\x18\x04 \x03(\x0b\x32\'.swarming.config.TaskTemplateDeployment\x12\x36\n\x0e\x62ot_monitoring\x18\x05 \x03(\x0b\x32\x1e.swarming.config.BotMonitoringJ\x04\x08\x02\x10\x03\"\x8e\x03\n\x04Pool\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x0e\n\x06owners\x18\x02 \x03(\t\x12/\n\nschedulers\x18\x03 \x01(\x0b\x32\x1b.swarming.config.Schedulers\x12\x1f\n\x17\x61llowed_service_account\x18\x04 \x03(\t\x12%\n\x1d\x61llowed_service_account_group\x18\x05 \x03(\t\x12\"\n\x18task_template_deployment\x18\x06 \x01(\tH\x00\x12R\n\x1ftask_template_deployment_inline\x18\x07 \x01(\x0b\x32\'.swarming.config.TaskTemplateDeploymentH\x00\x12\x16\n\x0e\x62ot_monitoring\x18\x08 \x01(\t\x12\x45\n\x13\x65xternal_schedulers\x18\t \x03(\x0b\x32(.swarming.config.ExternalSchedulerConfigB\x18\n\x16task_deployment_scheme\"i\n\nSchedulers\x12\x0c\n\x04user\x18\x01 \x03(\t\x12\r\n\x05group\x18\x02 \x03(\t\x12>\n\x12trusted_delegation\x18\x03 \x03(\x0b\x32\".swarming.config.TrustedDelegation\"\x80\x01\n\x11TrustedDelegation\x12\x0f\n\x07peer_id\x18\x01 \x01(\t\x12\x42\n\x0erequire_any_of\x18\x02 \x01(\x0b\x32*.swarming.config.TrustedDelegation.TagList\x1a\x16\n\x07TagList\x12\x0b\n\x03tag\x18\x01 \x03(\t\"\xfd\x02\n\x0cTaskTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x37\n\x05\x63\x61\x63he\x18\x03 \x03(\x0b\x32(.swarming.config.TaskTemplate.CacheEntry\x12?\n\x0c\x63ipd_package\x18\x04 \x03(\x0b\x32).swarming.config.TaskTemplate.CipdPackage\x12.\n\x03\x65nv\x18\x05 \x03(\x0b\x32!.swarming.config.TaskTemplate.Env\x1a(\n\nCacheEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x1a\x39\n\x0b\x43ipdPackage\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0b\n\x03pkg\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x1a?\n\x03\x45nv\x12\x0b\n\x03var\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0e\n\x06prefix\x18\x03 \x03(\t\x12\x0c\n\x04soft\x18\x04 \x01(\x08\"\x99\x01\n\x16TaskTemplateDeployment\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x04prod\x18\x02 \x01(\x0b\x32\x1d.swarming.config.TaskTemplate\x12-\n\x06\x63\x61nary\x18\x03 \x01(\x0b\x32\x1d.swarming.config.TaskTemplate\x12\x15\n\rcanary_chance\x18\x04 \x01(\x05\"4\n\rBotMonitoring\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rdimension_key\x18\x02 \x03(\t\"\xc7\x01\n\x17\x45xternalSchedulerConfig\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x12\n\ndimensions\x18\x03 \x03(\t\x12\x0f\n\x07\x65nabled\x18\x04 \x01(\x08\x12\x1f\n\x13\x66\x61llback_when_empty\x18\x05 \x01(\x08\x42\x02\x18\x01\x12\x16\n\x0e\x61ll_dimensions\x18\x06 \x03(\t\x12\x16\n\x0e\x61ny_dimensions\x18\x07 \x03(\t\x12\x19\n\x11\x61llow_es_fallback\x18\x08 \x01(\x08\"\x96\x02\n\x10\x45xternalServices\x12:\n\x07isolate\x18\x01 \x01(\x0b\x32).swarming.config.ExternalServices.Isolate\x12\x34\n\x04\x63ipd\x18\x02 \x01(\x0b\x32&.swarming.config.ExternalServices.CIPD\x1a,\n\x07Isolate\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x11\n\tnamespace\x18\x02 \x01(\t\x1a\x62\n\x04\x43IPD\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x34\n\x0e\x63lient_package\x18\x03 \x01(\x0b\x32\x1c.swarming.config.CipdPackageJ\x04\x08\x02\x10\x03R\x0e\x63lient_versionB5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3')
-  ,
-  dependencies=[config__pb2.DESCRIPTOR,])
-
-
-
+    name='pools.proto',
+    package='swarming.config',
+    syntax='proto3',
+    serialized_options=_b(
+        'Z3go.chromium.org/luci/swarming/proto/config;configpb'),
+    serialized_pb=_b(
+        '\n\x0bpools.proto\x12\x0fswarming.config\x1a\x0c\x63onfig.proto\"\xb4\x02\n\x08PoolsCfg\x12#\n\x04pool\x18\x01 \x03(\x0b\x32\x15.swarming.config.Pool\x12\x44\n\x19\x64\x65\x66\x61ult_external_services\x18\x06 \x01(\x0b\x32!.swarming.config.ExternalServices\x12\x34\n\rtask_template\x18\x03 \x03(\x0b\x32\x1d.swarming.config.TaskTemplate\x12I\n\x18task_template_deployment\x18\x04 \x03(\x0b\x32\'.swarming.config.TaskTemplateDeployment\x12\x36\n\x0e\x62ot_monitoring\x18\x05 \x03(\x0b\x32\x1e.swarming.config.BotMonitoringJ\x04\x08\x02\x10\x03\"\x8e\x03\n\x04Pool\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x0e\n\x06owners\x18\x02 \x03(\t\x12/\n\nschedulers\x18\x03 \x01(\x0b\x32\x1b.swarming.config.Schedulers\x12\x1f\n\x17\x61llowed_service_account\x18\x04 \x03(\t\x12%\n\x1d\x61llowed_service_account_group\x18\x05 \x03(\t\x12\"\n\x18task_template_deployment\x18\x06 \x01(\tH\x00\x12R\n\x1ftask_template_deployment_inline\x18\x07 \x01(\x0b\x32\'.swarming.config.TaskTemplateDeploymentH\x00\x12\x16\n\x0e\x62ot_monitoring\x18\x08 \x01(\t\x12\x45\n\x13\x65xternal_schedulers\x18\t \x03(\x0b\x32(.swarming.config.ExternalSchedulerConfigB\x18\n\x16task_deployment_scheme\"i\n\nSchedulers\x12\x0c\n\x04user\x18\x01 \x03(\t\x12\r\n\x05group\x18\x02 \x03(\t\x12>\n\x12trusted_delegation\x18\x03 \x03(\x0b\x32\".swarming.config.TrustedDelegation\"\x80\x01\n\x11TrustedDelegation\x12\x0f\n\x07peer_id\x18\x01 \x01(\t\x12\x42\n\x0erequire_any_of\x18\x02 \x01(\x0b\x32*.swarming.config.TrustedDelegation.TagList\x1a\x16\n\x07TagList\x12\x0b\n\x03tag\x18\x01 \x03(\t\"\xfd\x02\n\x0cTaskTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x37\n\x05\x63\x61\x63he\x18\x03 \x03(\x0b\x32(.swarming.config.TaskTemplate.CacheEntry\x12?\n\x0c\x63ipd_package\x18\x04 \x03(\x0b\x32).swarming.config.TaskTemplate.CipdPackage\x12.\n\x03\x65nv\x18\x05 \x03(\x0b\x32!.swarming.config.TaskTemplate.Env\x1a(\n\nCacheEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x1a\x39\n\x0b\x43ipdPackage\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0b\n\x03pkg\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x1a?\n\x03\x45nv\x12\x0b\n\x03var\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0e\n\x06prefix\x18\x03 \x03(\t\x12\x0c\n\x04soft\x18\x04 \x01(\x08\"\x99\x01\n\x16TaskTemplateDeployment\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x04prod\x18\x02 \x01(\x0b\x32\x1d.swarming.config.TaskTemplate\x12-\n\x06\x63\x61nary\x18\x03 \x01(\x0b\x32\x1d.swarming.config.TaskTemplate\x12\x15\n\rcanary_chance\x18\x04 \x01(\x05\"4\n\rBotMonitoring\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rdimension_key\x18\x02 \x03(\t\"\xc7\x01\n\x17\x45xternalSchedulerConfig\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x12\n\ndimensions\x18\x03 \x03(\t\x12\x0f\n\x07\x65nabled\x18\x04 \x01(\x08\x12\x1f\n\x13\x66\x61llback_when_empty\x18\x05 \x01(\x08\x42\x02\x18\x01\x12\x16\n\x0e\x61ll_dimensions\x18\x06 \x03(\t\x12\x16\n\x0e\x61ny_dimensions\x18\x07 \x03(\t\x12\x19\n\x11\x61llow_es_fallback\x18\x08 \x01(\x08\"\x96\x02\n\x10\x45xternalServices\x12:\n\x07isolate\x18\x01 \x01(\x0b\x32).swarming.config.ExternalServices.Isolate\x12\x34\n\x04\x63ipd\x18\x02 \x01(\x0b\x32&.swarming.config.ExternalServices.CIPD\x1a,\n\x07Isolate\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x11\n\tnamespace\x18\x02 \x01(\t\x1a\x62\n\x04\x43IPD\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x34\n\x0e\x63lient_package\x18\x03 \x01(\x0b\x32\x1c.swarming.config.CipdPackageJ\x04\x08\x02\x10\x03R\x0e\x63lient_versionB5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3'
+    ),
+    dependencies=[
+        config__pb2.DESCRIPTOR,
+    ])
 
 _POOLSCFG = _descriptor.Descriptor(
-  name='PoolsCfg',
-  full_name='swarming.config.PoolsCfg',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='pool', full_name='swarming.config.PoolsCfg.pool', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='default_external_services', full_name='swarming.config.PoolsCfg.default_external_services', index=1,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='task_template', full_name='swarming.config.PoolsCfg.task_template', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='task_template_deployment', full_name='swarming.config.PoolsCfg.task_template_deployment', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='bot_monitoring', full_name='swarming.config.PoolsCfg.bot_monitoring', index=4,
-      number=5, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=47,
-  serialized_end=355,
+    name='PoolsCfg',
+    full_name='swarming.config.PoolsCfg',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='pool',
+            full_name='swarming.config.PoolsCfg.pool',
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='default_external_services',
+            full_name='swarming.config.PoolsCfg.default_external_services',
+            index=1,
+            number=6,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='task_template',
+            full_name='swarming.config.PoolsCfg.task_template',
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='task_template_deployment',
+            full_name='swarming.config.PoolsCfg.task_template_deployment',
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='bot_monitoring',
+            full_name='swarming.config.PoolsCfg.bot_monitoring',
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=47,
+    serialized_end=355,
 )
-
 
 _POOL = _descriptor.Descriptor(
-  name='Pool',
-  full_name='swarming.config.Pool',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='swarming.config.Pool.name', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='owners', full_name='swarming.config.Pool.owners', index=1,
-      number=2, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='schedulers', full_name='swarming.config.Pool.schedulers', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='allowed_service_account', full_name='swarming.config.Pool.allowed_service_account', index=3,
-      number=4, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='allowed_service_account_group', full_name='swarming.config.Pool.allowed_service_account_group', index=4,
-      number=5, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='task_template_deployment', full_name='swarming.config.Pool.task_template_deployment', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='task_template_deployment_inline', full_name='swarming.config.Pool.task_template_deployment_inline', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='bot_monitoring', full_name='swarming.config.Pool.bot_monitoring', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='external_schedulers', full_name='swarming.config.Pool.external_schedulers', index=8,
-      number=9, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='task_deployment_scheme', full_name='swarming.config.Pool.task_deployment_scheme',
-      index=0, containing_type=None, fields=[]),
-  ],
-  serialized_start=358,
-  serialized_end=756,
+    name='Pool',
+    full_name='swarming.config.Pool',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='name',
+            full_name='swarming.config.Pool.name',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='owners',
+            full_name='swarming.config.Pool.owners',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='schedulers',
+            full_name='swarming.config.Pool.schedulers',
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='allowed_service_account',
+            full_name='swarming.config.Pool.allowed_service_account',
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='allowed_service_account_group',
+            full_name='swarming.config.Pool.allowed_service_account_group',
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='task_template_deployment',
+            full_name='swarming.config.Pool.task_template_deployment',
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='task_template_deployment_inline',
+            full_name='swarming.config.Pool.task_template_deployment_inline',
+            index=6,
+            number=7,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='bot_monitoring',
+            full_name='swarming.config.Pool.bot_monitoring',
+            index=7,
+            number=8,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='external_schedulers',
+            full_name='swarming.config.Pool.external_schedulers',
+            index=8,
+            number=9,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name='task_deployment_scheme',
+            full_name='swarming.config.Pool.task_deployment_scheme',
+            index=0,
+            containing_type=None,
+            fields=[]),
+    ],
+    serialized_start=358,
+    serialized_end=756,
 )
-
 
 _SCHEDULERS = _descriptor.Descriptor(
-  name='Schedulers',
-  full_name='swarming.config.Schedulers',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user', full_name='swarming.config.Schedulers.user', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='group', full_name='swarming.config.Schedulers.group', index=1,
-      number=2, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='trusted_delegation', full_name='swarming.config.Schedulers.trusted_delegation', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=758,
-  serialized_end=863,
+    name='Schedulers',
+    full_name='swarming.config.Schedulers',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='user',
+            full_name='swarming.config.Schedulers.user',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='group',
+            full_name='swarming.config.Schedulers.group',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='trusted_delegation',
+            full_name='swarming.config.Schedulers.trusted_delegation',
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=758,
+    serialized_end=863,
 )
 
-
 _TRUSTEDDELEGATION_TAGLIST = _descriptor.Descriptor(
-  name='TagList',
-  full_name='swarming.config.TrustedDelegation.TagList',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='tag', full_name='swarming.config.TrustedDelegation.TagList.tag', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=972,
-  serialized_end=994,
+    name='TagList',
+    full_name='swarming.config.TrustedDelegation.TagList',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='tag',
+            full_name='swarming.config.TrustedDelegation.TagList.tag',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=972,
+    serialized_end=994,
 )
 
 _TRUSTEDDELEGATION = _descriptor.Descriptor(
-  name='TrustedDelegation',
-  full_name='swarming.config.TrustedDelegation',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='peer_id', full_name='swarming.config.TrustedDelegation.peer_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='require_any_of', full_name='swarming.config.TrustedDelegation.require_any_of', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_TRUSTEDDELEGATION_TAGLIST, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=866,
-  serialized_end=994,
+    name='TrustedDelegation',
+    full_name='swarming.config.TrustedDelegation',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='peer_id',
+            full_name='swarming.config.TrustedDelegation.peer_id',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='require_any_of',
+            full_name='swarming.config.TrustedDelegation.require_any_of',
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[
+        _TRUSTEDDELEGATION_TAGLIST,
+    ],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=866,
+    serialized_end=994,
 )
 
-
 _TASKTEMPLATE_CACHEENTRY = _descriptor.Descriptor(
-  name='CacheEntry',
-  full_name='swarming.config.TaskTemplate.CacheEntry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='swarming.config.TaskTemplate.CacheEntry.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='path', full_name='swarming.config.TaskTemplate.CacheEntry.path', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1214,
-  serialized_end=1254,
+    name='CacheEntry',
+    full_name='swarming.config.TaskTemplate.CacheEntry',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='name',
+            full_name='swarming.config.TaskTemplate.CacheEntry.name',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='path',
+            full_name='swarming.config.TaskTemplate.CacheEntry.path',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1214,
+    serialized_end=1254,
 )
 
 _TASKTEMPLATE_CIPDPACKAGE = _descriptor.Descriptor(
-  name='CipdPackage',
-  full_name='swarming.config.TaskTemplate.CipdPackage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='path', full_name='swarming.config.TaskTemplate.CipdPackage.path', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pkg', full_name='swarming.config.TaskTemplate.CipdPackage.pkg', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='version', full_name='swarming.config.TaskTemplate.CipdPackage.version', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1256,
-  serialized_end=1313,
+    name='CipdPackage',
+    full_name='swarming.config.TaskTemplate.CipdPackage',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='path',
+            full_name='swarming.config.TaskTemplate.CipdPackage.path',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='pkg',
+            full_name='swarming.config.TaskTemplate.CipdPackage.pkg',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='version',
+            full_name='swarming.config.TaskTemplate.CipdPackage.version',
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1256,
+    serialized_end=1313,
 )
 
 _TASKTEMPLATE_ENV = _descriptor.Descriptor(
-  name='Env',
-  full_name='swarming.config.TaskTemplate.Env',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='var', full_name='swarming.config.TaskTemplate.Env.var', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='swarming.config.TaskTemplate.Env.value', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='prefix', full_name='swarming.config.TaskTemplate.Env.prefix', index=2,
-      number=3, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='soft', full_name='swarming.config.TaskTemplate.Env.soft', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1315,
-  serialized_end=1378,
+    name='Env',
+    full_name='swarming.config.TaskTemplate.Env',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='var',
+            full_name='swarming.config.TaskTemplate.Env.var',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='value',
+            full_name='swarming.config.TaskTemplate.Env.value',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='prefix',
+            full_name='swarming.config.TaskTemplate.Env.prefix',
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='soft',
+            full_name='swarming.config.TaskTemplate.Env.soft',
+            index=3,
+            number=4,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1315,
+    serialized_end=1378,
 )
 
 _TASKTEMPLATE = _descriptor.Descriptor(
-  name='TaskTemplate',
-  full_name='swarming.config.TaskTemplate',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='swarming.config.TaskTemplate.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='include', full_name='swarming.config.TaskTemplate.include', index=1,
-      number=2, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='cache', full_name='swarming.config.TaskTemplate.cache', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='cipd_package', full_name='swarming.config.TaskTemplate.cipd_package', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='env', full_name='swarming.config.TaskTemplate.env', index=4,
-      number=5, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_TASKTEMPLATE_CACHEENTRY, _TASKTEMPLATE_CIPDPACKAGE, _TASKTEMPLATE_ENV, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=997,
-  serialized_end=1378,
+    name='TaskTemplate',
+    full_name='swarming.config.TaskTemplate',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='name',
+            full_name='swarming.config.TaskTemplate.name',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='include',
+            full_name='swarming.config.TaskTemplate.include',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='cache',
+            full_name='swarming.config.TaskTemplate.cache',
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='cipd_package',
+            full_name='swarming.config.TaskTemplate.cipd_package',
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='env',
+            full_name='swarming.config.TaskTemplate.env',
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[
+        _TASKTEMPLATE_CACHEENTRY,
+        _TASKTEMPLATE_CIPDPACKAGE,
+        _TASKTEMPLATE_ENV,
+    ],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=997,
+    serialized_end=1378,
 )
-
 
 _TASKTEMPLATEDEPLOYMENT = _descriptor.Descriptor(
-  name='TaskTemplateDeployment',
-  full_name='swarming.config.TaskTemplateDeployment',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='swarming.config.TaskTemplateDeployment.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='prod', full_name='swarming.config.TaskTemplateDeployment.prod', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='canary', full_name='swarming.config.TaskTemplateDeployment.canary', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='canary_chance', full_name='swarming.config.TaskTemplateDeployment.canary_chance', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1381,
-  serialized_end=1534,
+    name='TaskTemplateDeployment',
+    full_name='swarming.config.TaskTemplateDeployment',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='name',
+            full_name='swarming.config.TaskTemplateDeployment.name',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='prod',
+            full_name='swarming.config.TaskTemplateDeployment.prod',
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='canary',
+            full_name='swarming.config.TaskTemplateDeployment.canary',
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='canary_chance',
+            full_name='swarming.config.TaskTemplateDeployment.canary_chance',
+            index=3,
+            number=4,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1381,
+    serialized_end=1534,
 )
-
 
 _BOTMONITORING = _descriptor.Descriptor(
-  name='BotMonitoring',
-  full_name='swarming.config.BotMonitoring',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='swarming.config.BotMonitoring.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='dimension_key', full_name='swarming.config.BotMonitoring.dimension_key', index=1,
-      number=2, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1536,
-  serialized_end=1588,
+    name='BotMonitoring',
+    full_name='swarming.config.BotMonitoring',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='name',
+            full_name='swarming.config.BotMonitoring.name',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='dimension_key',
+            full_name='swarming.config.BotMonitoring.dimension_key',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1536,
+    serialized_end=1588,
 )
-
 
 _EXTERNALSCHEDULERCONFIG = _descriptor.Descriptor(
-  name='ExternalSchedulerConfig',
-  full_name='swarming.config.ExternalSchedulerConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='address', full_name='swarming.config.ExternalSchedulerConfig.address', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='swarming.config.ExternalSchedulerConfig.id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='dimensions', full_name='swarming.config.ExternalSchedulerConfig.dimensions', index=2,
-      number=3, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='enabled', full_name='swarming.config.ExternalSchedulerConfig.enabled', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='fallback_when_empty', full_name='swarming.config.ExternalSchedulerConfig.fallback_when_empty', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=_b('\030\001'), file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='all_dimensions', full_name='swarming.config.ExternalSchedulerConfig.all_dimensions', index=5,
-      number=6, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='any_dimensions', full_name='swarming.config.ExternalSchedulerConfig.any_dimensions', index=6,
-      number=7, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='allow_es_fallback', full_name='swarming.config.ExternalSchedulerConfig.allow_es_fallback', index=7,
-      number=8, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1591,
-  serialized_end=1790,
+    name='ExternalSchedulerConfig',
+    full_name='swarming.config.ExternalSchedulerConfig',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='address',
+            full_name='swarming.config.ExternalSchedulerConfig.address',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='id',
+            full_name='swarming.config.ExternalSchedulerConfig.id',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='dimensions',
+            full_name='swarming.config.ExternalSchedulerConfig.dimensions',
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='enabled',
+            full_name='swarming.config.ExternalSchedulerConfig.enabled',
+            index=3,
+            number=4,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='fallback_when_empty',
+            full_name=
+            'swarming.config.ExternalSchedulerConfig.fallback_when_empty',
+            index=4,
+            number=5,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=_b('\030\001'),
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='all_dimensions',
+            full_name='swarming.config.ExternalSchedulerConfig.all_dimensions',
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='any_dimensions',
+            full_name='swarming.config.ExternalSchedulerConfig.any_dimensions',
+            index=6,
+            number=7,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='allow_es_fallback',
+            full_name=
+            'swarming.config.ExternalSchedulerConfig.allow_es_fallback',
+            index=7,
+            number=8,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1591,
+    serialized_end=1790,
 )
 
-
 _EXTERNALSERVICES_ISOLATE = _descriptor.Descriptor(
-  name='Isolate',
-  full_name='swarming.config.ExternalServices.Isolate',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='server', full_name='swarming.config.ExternalServices.Isolate.server', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='namespace', full_name='swarming.config.ExternalServices.Isolate.namespace', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1927,
-  serialized_end=1971,
+    name='Isolate',
+    full_name='swarming.config.ExternalServices.Isolate',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='server',
+            full_name='swarming.config.ExternalServices.Isolate.server',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='namespace',
+            full_name='swarming.config.ExternalServices.Isolate.namespace',
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1927,
+    serialized_end=1971,
 )
 
 _EXTERNALSERVICES_CIPD = _descriptor.Descriptor(
-  name='CIPD',
-  full_name='swarming.config.ExternalServices.CIPD',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='server', full_name='swarming.config.ExternalServices.CIPD.server', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='client_package', full_name='swarming.config.ExternalServices.CIPD.client_package', index=1,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1973,
-  serialized_end=2071,
+    name='CIPD',
+    full_name='swarming.config.ExternalServices.CIPD',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='server',
+            full_name='swarming.config.ExternalServices.CIPD.server',
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode('utf-8'),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='client_package',
+            full_name='swarming.config.ExternalServices.CIPD.client_package',
+            index=1,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1973,
+    serialized_end=2071,
 )
 
 _EXTERNALSERVICES = _descriptor.Descriptor(
-  name='ExternalServices',
-  full_name='swarming.config.ExternalServices',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='isolate', full_name='swarming.config.ExternalServices.isolate', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='cipd', full_name='swarming.config.ExternalServices.cipd', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_EXTERNALSERVICES_ISOLATE, _EXTERNALSERVICES_CIPD, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1793,
-  serialized_end=2071,
+    name='ExternalServices',
+    full_name='swarming.config.ExternalServices',
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name='isolate',
+            full_name='swarming.config.ExternalServices.isolate',
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+        _descriptor.FieldDescriptor(
+            name='cipd',
+            full_name='swarming.config.ExternalServices.cipd',
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR),
+    ],
+    extensions=[],
+    nested_types=[
+        _EXTERNALSERVICES_ISOLATE,
+        _EXTERNALSERVICES_CIPD,
+    ],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax='proto3',
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1793,
+    serialized_end=2071,
 )
 
 _POOLSCFG.fields_by_name['pool'].message_type = _POOL
-_POOLSCFG.fields_by_name['default_external_services'].message_type = _EXTERNALSERVICES
+_POOLSCFG.fields_by_name[
+    'default_external_services'].message_type = _EXTERNALSERVICES
 _POOLSCFG.fields_by_name['task_template'].message_type = _TASKTEMPLATE
-_POOLSCFG.fields_by_name['task_template_deployment'].message_type = _TASKTEMPLATEDEPLOYMENT
+_POOLSCFG.fields_by_name[
+    'task_template_deployment'].message_type = _TASKTEMPLATEDEPLOYMENT
 _POOLSCFG.fields_by_name['bot_monitoring'].message_type = _BOTMONITORING
 _POOL.fields_by_name['schedulers'].message_type = _SCHEDULERS
-_POOL.fields_by_name['task_template_deployment_inline'].message_type = _TASKTEMPLATEDEPLOYMENT
-_POOL.fields_by_name['external_schedulers'].message_type = _EXTERNALSCHEDULERCONFIG
+_POOL.fields_by_name[
+    'task_template_deployment_inline'].message_type = _TASKTEMPLATEDEPLOYMENT
+_POOL.fields_by_name[
+    'external_schedulers'].message_type = _EXTERNALSCHEDULERCONFIG
 _POOL.oneofs_by_name['task_deployment_scheme'].fields.append(
-  _POOL.fields_by_name['task_template_deployment'])
-_POOL.fields_by_name['task_template_deployment'].containing_oneof = _POOL.oneofs_by_name['task_deployment_scheme']
+    _POOL.fields_by_name['task_template_deployment'])
+_POOL.fields_by_name[
+    'task_template_deployment'].containing_oneof = _POOL.oneofs_by_name[
+        'task_deployment_scheme']
 _POOL.oneofs_by_name['task_deployment_scheme'].fields.append(
-  _POOL.fields_by_name['task_template_deployment_inline'])
-_POOL.fields_by_name['task_template_deployment_inline'].containing_oneof = _POOL.oneofs_by_name['task_deployment_scheme']
-_SCHEDULERS.fields_by_name['trusted_delegation'].message_type = _TRUSTEDDELEGATION
+    _POOL.fields_by_name['task_template_deployment_inline'])
+_POOL.fields_by_name[
+    'task_template_deployment_inline'].containing_oneof = _POOL.oneofs_by_name[
+        'task_deployment_scheme']
+_SCHEDULERS.fields_by_name[
+    'trusted_delegation'].message_type = _TRUSTEDDELEGATION
 _TRUSTEDDELEGATION_TAGLIST.containing_type = _TRUSTEDDELEGATION
-_TRUSTEDDELEGATION.fields_by_name['require_any_of'].message_type = _TRUSTEDDELEGATION_TAGLIST
+_TRUSTEDDELEGATION.fields_by_name[
+    'require_any_of'].message_type = _TRUSTEDDELEGATION_TAGLIST
 _TASKTEMPLATE_CACHEENTRY.containing_type = _TASKTEMPLATE
 _TASKTEMPLATE_CIPDPACKAGE.containing_type = _TASKTEMPLATE
 _TASKTEMPLATE_ENV.containing_type = _TASKTEMPLATE
 _TASKTEMPLATE.fields_by_name['cache'].message_type = _TASKTEMPLATE_CACHEENTRY
-_TASKTEMPLATE.fields_by_name['cipd_package'].message_type = _TASKTEMPLATE_CIPDPACKAGE
+_TASKTEMPLATE.fields_by_name[
+    'cipd_package'].message_type = _TASKTEMPLATE_CIPDPACKAGE
 _TASKTEMPLATE.fields_by_name['env'].message_type = _TASKTEMPLATE_ENV
 _TASKTEMPLATEDEPLOYMENT.fields_by_name['prod'].message_type = _TASKTEMPLATE
 _TASKTEMPLATEDEPLOYMENT.fields_by_name['canary'].message_type = _TASKTEMPLATE
 _EXTERNALSERVICES_ISOLATE.containing_type = _EXTERNALSERVICES
-_EXTERNALSERVICES_CIPD.fields_by_name['client_package'].message_type = config__pb2._CIPDPACKAGE
+_EXTERNALSERVICES_CIPD.fields_by_name[
+    'client_package'].message_type = config__pb2._CIPDPACKAGE
 _EXTERNALSERVICES_CIPD.containing_type = _EXTERNALSERVICES
-_EXTERNALSERVICES.fields_by_name['isolate'].message_type = _EXTERNALSERVICES_ISOLATE
+_EXTERNALSERVICES.fields_by_name[
+    'isolate'].message_type = _EXTERNALSERVICES_ISOLATE
 _EXTERNALSERVICES.fields_by_name['cipd'].message_type = _EXTERNALSERVICES_CIPD
 DESCRIPTOR.message_types_by_name['PoolsCfg'] = _POOLSCFG
 DESCRIPTOR.message_types_by_name['Pool'] = _POOL
 DESCRIPTOR.message_types_by_name['Schedulers'] = _SCHEDULERS
 DESCRIPTOR.message_types_by_name['TrustedDelegation'] = _TRUSTEDDELEGATION
 DESCRIPTOR.message_types_by_name['TaskTemplate'] = _TASKTEMPLATE
-DESCRIPTOR.message_types_by_name['TaskTemplateDeployment'] = _TASKTEMPLATEDEPLOYMENT
+DESCRIPTOR.message_types_by_name[
+    'TaskTemplateDeployment'] = _TASKTEMPLATEDEPLOYMENT
 DESCRIPTOR.message_types_by_name['BotMonitoring'] = _BOTMONITORING
-DESCRIPTOR.message_types_by_name['ExternalSchedulerConfig'] = _EXTERNALSCHEDULERCONFIG
+DESCRIPTOR.message_types_by_name[
+    'ExternalSchedulerConfig'] = _EXTERNALSCHEDULERCONFIG
 DESCRIPTOR.message_types_by_name['ExternalServices'] = _EXTERNALSERVICES
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-PoolsCfg = _reflection.GeneratedProtocolMessageType('PoolsCfg', (_message.Message,), dict(
-  DESCRIPTOR = _POOLSCFG,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.PoolsCfg)
-  ))
+PoolsCfg = _reflection.GeneratedProtocolMessageType(
+    'PoolsCfg',
+    (_message.Message,),
+    dict(
+        DESCRIPTOR=_POOLSCFG,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.PoolsCfg)
+    ))
 _sym_db.RegisterMessage(PoolsCfg)
 
-Pool = _reflection.GeneratedProtocolMessageType('Pool', (_message.Message,), dict(
-  DESCRIPTOR = _POOL,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.Pool)
-  ))
+Pool = _reflection.GeneratedProtocolMessageType(
+    'Pool',
+    (_message.Message,),
+    dict(
+        DESCRIPTOR=_POOL,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.Pool)
+    ))
 _sym_db.RegisterMessage(Pool)
 
-Schedulers = _reflection.GeneratedProtocolMessageType('Schedulers', (_message.Message,), dict(
-  DESCRIPTOR = _SCHEDULERS,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.Schedulers)
-  ))
+Schedulers = _reflection.GeneratedProtocolMessageType(
+    'Schedulers',
+    (_message.Message,),
+    dict(
+        DESCRIPTOR=_SCHEDULERS,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.Schedulers)
+    ))
 _sym_db.RegisterMessage(Schedulers)
 
-TrustedDelegation = _reflection.GeneratedProtocolMessageType('TrustedDelegation', (_message.Message,), dict(
-
-  TagList = _reflection.GeneratedProtocolMessageType('TagList', (_message.Message,), dict(
-    DESCRIPTOR = _TRUSTEDDELEGATION_TAGLIST,
-    __module__ = 'pools_pb2'
-    # @@protoc_insertion_point(class_scope:swarming.config.TrustedDelegation.TagList)
+TrustedDelegation = _reflection.GeneratedProtocolMessageType(
+    'TrustedDelegation',
+    (_message.Message,),
+    dict(
+        TagList=_reflection.GeneratedProtocolMessageType(
+            'TagList',
+            (_message.Message,),
+            dict(
+                DESCRIPTOR=_TRUSTEDDELEGATION_TAGLIST,
+                __module__='pools_pb2'
+                # @@protoc_insertion_point(class_scope:swarming.config.TrustedDelegation.TagList)
+            )),
+        DESCRIPTOR=_TRUSTEDDELEGATION,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.TrustedDelegation)
     ))
-  ,
-  DESCRIPTOR = _TRUSTEDDELEGATION,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.TrustedDelegation)
-  ))
 _sym_db.RegisterMessage(TrustedDelegation)
 _sym_db.RegisterMessage(TrustedDelegation.TagList)
 
-TaskTemplate = _reflection.GeneratedProtocolMessageType('TaskTemplate', (_message.Message,), dict(
-
-  CacheEntry = _reflection.GeneratedProtocolMessageType('CacheEntry', (_message.Message,), dict(
-    DESCRIPTOR = _TASKTEMPLATE_CACHEENTRY,
-    __module__ = 'pools_pb2'
-    # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate.CacheEntry)
+TaskTemplate = _reflection.GeneratedProtocolMessageType(
+    'TaskTemplate',
+    (_message.Message,),
+    dict(
+        CacheEntry=_reflection.GeneratedProtocolMessageType(
+            'CacheEntry',
+            (_message.Message,),
+            dict(
+                DESCRIPTOR=_TASKTEMPLATE_CACHEENTRY,
+                __module__='pools_pb2'
+                # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate.CacheEntry)
+            )),
+        CipdPackage=_reflection.GeneratedProtocolMessageType(
+            'CipdPackage',
+            (_message.Message,),
+            dict(
+                DESCRIPTOR=_TASKTEMPLATE_CIPDPACKAGE,
+                __module__='pools_pb2'
+                # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate.CipdPackage)
+            )),
+        Env=_reflection.GeneratedProtocolMessageType(
+            'Env',
+            (_message.Message,),
+            dict(
+                DESCRIPTOR=_TASKTEMPLATE_ENV,
+                __module__='pools_pb2'
+                # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate.Env)
+            )),
+        DESCRIPTOR=_TASKTEMPLATE,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate)
     ))
-  ,
-
-  CipdPackage = _reflection.GeneratedProtocolMessageType('CipdPackage', (_message.Message,), dict(
-    DESCRIPTOR = _TASKTEMPLATE_CIPDPACKAGE,
-    __module__ = 'pools_pb2'
-    # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate.CipdPackage)
-    ))
-  ,
-
-  Env = _reflection.GeneratedProtocolMessageType('Env', (_message.Message,), dict(
-    DESCRIPTOR = _TASKTEMPLATE_ENV,
-    __module__ = 'pools_pb2'
-    # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate.Env)
-    ))
-  ,
-  DESCRIPTOR = _TASKTEMPLATE,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplate)
-  ))
 _sym_db.RegisterMessage(TaskTemplate)
 _sym_db.RegisterMessage(TaskTemplate.CacheEntry)
 _sym_db.RegisterMessage(TaskTemplate.CipdPackage)
 _sym_db.RegisterMessage(TaskTemplate.Env)
 
-TaskTemplateDeployment = _reflection.GeneratedProtocolMessageType('TaskTemplateDeployment', (_message.Message,), dict(
-  DESCRIPTOR = _TASKTEMPLATEDEPLOYMENT,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplateDeployment)
-  ))
+TaskTemplateDeployment = _reflection.GeneratedProtocolMessageType(
+    'TaskTemplateDeployment',
+    (_message.Message,),
+    dict(
+        DESCRIPTOR=_TASKTEMPLATEDEPLOYMENT,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.TaskTemplateDeployment)
+    ))
 _sym_db.RegisterMessage(TaskTemplateDeployment)
 
-BotMonitoring = _reflection.GeneratedProtocolMessageType('BotMonitoring', (_message.Message,), dict(
-  DESCRIPTOR = _BOTMONITORING,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.BotMonitoring)
-  ))
+BotMonitoring = _reflection.GeneratedProtocolMessageType(
+    'BotMonitoring',
+    (_message.Message,),
+    dict(
+        DESCRIPTOR=_BOTMONITORING,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.BotMonitoring)
+    ))
 _sym_db.RegisterMessage(BotMonitoring)
 
-ExternalSchedulerConfig = _reflection.GeneratedProtocolMessageType('ExternalSchedulerConfig', (_message.Message,), dict(
-  DESCRIPTOR = _EXTERNALSCHEDULERCONFIG,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.ExternalSchedulerConfig)
-  ))
+ExternalSchedulerConfig = _reflection.GeneratedProtocolMessageType(
+    'ExternalSchedulerConfig',
+    (_message.Message,),
+    dict(
+        DESCRIPTOR=_EXTERNALSCHEDULERCONFIG,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.ExternalSchedulerConfig)
+    ))
 _sym_db.RegisterMessage(ExternalSchedulerConfig)
 
-ExternalServices = _reflection.GeneratedProtocolMessageType('ExternalServices', (_message.Message,), dict(
-
-  Isolate = _reflection.GeneratedProtocolMessageType('Isolate', (_message.Message,), dict(
-    DESCRIPTOR = _EXTERNALSERVICES_ISOLATE,
-    __module__ = 'pools_pb2'
-    # @@protoc_insertion_point(class_scope:swarming.config.ExternalServices.Isolate)
+ExternalServices = _reflection.GeneratedProtocolMessageType(
+    'ExternalServices',
+    (_message.Message,),
+    dict(
+        Isolate=_reflection.GeneratedProtocolMessageType(
+            'Isolate',
+            (_message.Message,),
+            dict(
+                DESCRIPTOR=_EXTERNALSERVICES_ISOLATE,
+                __module__='pools_pb2'
+                # @@protoc_insertion_point(class_scope:swarming.config.ExternalServices.Isolate)
+            )),
+        CIPD=_reflection.GeneratedProtocolMessageType(
+            'CIPD',
+            (_message.Message,),
+            dict(
+                DESCRIPTOR=_EXTERNALSERVICES_CIPD,
+                __module__='pools_pb2'
+                # @@protoc_insertion_point(class_scope:swarming.config.ExternalServices.CIPD)
+            )),
+        DESCRIPTOR=_EXTERNALSERVICES,
+        __module__='pools_pb2'
+        # @@protoc_insertion_point(class_scope:swarming.config.ExternalServices)
     ))
-  ,
-
-  CIPD = _reflection.GeneratedProtocolMessageType('CIPD', (_message.Message,), dict(
-    DESCRIPTOR = _EXTERNALSERVICES_CIPD,
-    __module__ = 'pools_pb2'
-    # @@protoc_insertion_point(class_scope:swarming.config.ExternalServices.CIPD)
-    ))
-  ,
-  DESCRIPTOR = _EXTERNALSERVICES,
-  __module__ = 'pools_pb2'
-  # @@protoc_insertion_point(class_scope:swarming.config.ExternalServices)
-  ))
 _sym_db.RegisterMessage(ExternalServices)
 _sym_db.RegisterMessage(ExternalServices.Isolate)
 _sym_db.RegisterMessage(ExternalServices.CIPD)
-
 
 DESCRIPTOR._options = None
 _EXTERNALSCHEDULERCONFIG.fields_by_name['fallback_when_empty']._options = None

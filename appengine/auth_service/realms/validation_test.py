@@ -34,6 +34,7 @@ def test_db():
 
 
 class ValidationTest(test_case.TestCase):
+
   def call(self, fields):
     ctx = cfgvalidation.Context()
     validation.validate_realms_cfg_with_db(
@@ -47,9 +48,8 @@ class ValidationTest(test_case.TestCase):
   def assert_has_error(self, err, fields):
     ctx = self.call(fields)
     if len(ctx.messages) != 1 or err not in ctx.messages[0].text:
-      self.fail(
-          'Expected to fail validation with %r only, but got:\n%s' %
-          (err, '\n'.join(msg.text for msg in ctx.messages) or 'none'))
+      self.fail('Expected to fail validation with %r only, but got:\n%s' %
+                (err, '\n'.join(msg.text for msg in ctx.messages) or 'none'))
 
   def test_empty(self):
     self.assert_valid({})
@@ -65,7 +65,8 @@ class ValidationTest(test_case.TestCase):
                 'extends': ['role/dev.a', 'role/dev.b'],
             },
             {
-                'name': 'customRole/permissions-and-extension',
+                'name':
+                    'customRole/permissions-and-extension',
                 'extends': [
                     'role/dev.a',
                     'customRole/extends-builtin',
@@ -79,10 +80,12 @@ class ValidationTest(test_case.TestCase):
         ],
         'realms': [
             {
-                'name': '@root',
+                'name':
+                    '@root',
                 'bindings': [
                     {
-                        'role': 'customRole/permissions-and-extension',
+                        'role':
+                            'customRole/permissions-and-extension',
                         'principals': [
                             'group:aaa',
                             'user:a@example.com',
@@ -96,7 +99,8 @@ class ValidationTest(test_case.TestCase):
                 ],
             },
             {
-                'name': '@legacy',
+                'name':
+                    '@legacy',
                 'extends': [
                     '@root',  # explicitly extending root is OK
                     'some-realm/a',
@@ -104,214 +108,249 @@ class ValidationTest(test_case.TestCase):
                 ],
             },
             {
-                'name': 'some-realm/a',
+                'name':
+                    'some-realm/a',
                 'extends': ['some-realm/b'],
-                'bindings': [
-                    {
-                        'role': 'role/dev.a',
-                        'principals': ['group:aaa'],
-                    },
-                ],
+                'bindings': [{
+                    'role': 'role/dev.a',
+                    'principals': ['group:aaa'],
+                },],
             },
             {
-                'name': 'some-realm/b',
-                'bindings': [
-                    {
-                        'role': 'role/dev.b',
-                        'principals': ['group:bbb'],
-                    },
-                ],
+                'name':
+                    'some-realm/b',
+                'bindings': [{
+                    'role': 'role/dev.b',
+                    'principals': ['group:bbb'],
+                },],
             },
         ],
     })
 
   def test_custom_role_bad_name(self):
     self.assert_has_error('name should start with "customRole/"', {
-        'custom_roles': [
-            {'name': 'role/bad'},
-        ],
+        'custom_roles': [{
+            'name': 'role/bad'
+        },],
     })
 
   def test_custom_role_dup(self):
-    self.assert_has_error('was already defined', {
-        'custom_roles': [
-            {'name': 'customRole/some'},
-            {'name': 'customRole/some'},
-        ],
-    })
+    self.assert_has_error(
+        'was already defined', {
+            'custom_roles': [
+                {
+                    'name': 'customRole/some'
+                },
+                {
+                    'name': 'customRole/some'
+                },
+            ],
+        })
 
   def test_unknown_permission(self):
-    self.assert_has_error('not defined in permissions DB', {
-        'custom_roles': [
-            {
-                'name': 'customRole/some',
-                'permissions': [
-                    'luci.dev.p1',  # known
-                    'luci.dev.unknown',
-                ],
-            },
-        ],
-    })
+    self.assert_has_error(
+        'not defined in permissions DB',
+        {
+            'custom_roles': [
+                {
+                    'name':
+                        'customRole/some',
+                    'permissions': [
+                        'luci.dev.p1',  # known
+                        'luci.dev.unknown',
+                    ],
+                },
+            ],
+        })
 
   def test_custom_role_unknown_builtin_role_ref(self):
-    self.assert_has_error('not defined in permissions DB', {
-        'custom_roles': [
-            {
+    self.assert_has_error(
+        'not defined in permissions DB', {
+            'custom_roles': [{
                 'name': 'customRole/some',
                 'extends': ['role/unknown'],
-            },
-        ],
-    })
+            },],
+        })
 
   def test_custom_role_unknown_custom_role_ref(self):
-    self.assert_has_error('not defined in the realms config', {
-        'custom_roles': [
-            {
+    self.assert_has_error(
+        'not defined in the realms config', {
+            'custom_roles': [{
                 'name': 'customRole/some',
                 'extends': ['customRole/unknown'],
-            },
-        ],
-    })
+            },],
+        })
 
   def test_custom_role_unknown_role_ref_format(self):
-    self.assert_has_error('bad role reference "foo/unknown"', {
-        'custom_roles': [
-            {
-                'name': 'customRole/some',
-            },
-            {
-                'name': 'customRole/another',
-                'extends': ['foo/unknown'],
-            },
-        ],
-    })
+    self.assert_has_error(
+        'bad role reference "foo/unknown"', {
+            'custom_roles': [
+                {
+                    'name': 'customRole/some',
+                },
+                {
+                    'name': 'customRole/another',
+                    'extends': ['foo/unknown'],
+                },
+            ],
+        })
 
   def test_custom_role_dup_extends(self):
-    self.assert_has_error('extended from more than once', {
-        'custom_roles': [
-            {
-                'name': 'customRole/base',
-            },
-            {
-                'name': 'customRole/another',
-                'extends': ['customRole/base', 'customRole/base'],
-            },
-        ],
-    })
+    self.assert_has_error(
+        'extended from more than once', {
+            'custom_roles': [
+                {
+                    'name': 'customRole/base',
+                },
+                {
+                    'name': 'customRole/another',
+                    'extends': ['customRole/base', 'customRole/base'],
+                },
+            ],
+        })
 
   def test_custom_role_cycle(self):
-    self.assert_has_error('cyclically extends itself', {
-        'custom_roles': [
-            {
-                'name': 'customRole/roleA',
-                'extends': ['customRole/roleB'],
-            },
-            {
-                'name': 'customRole/roleB',
-                'extends': ['customRole/roleA'],
-            },
-        ],
-    })
+    self.assert_has_error(
+        'cyclically extends itself', {
+            'custom_roles': [
+                {
+                    'name': 'customRole/roleA',
+                    'extends': ['customRole/roleB'],
+                },
+                {
+                    'name': 'customRole/roleB',
+                    'extends': ['customRole/roleA'],
+                },
+            ],
+        })
 
   def test_realms_bad_name_re(self):
     self.assert_has_error('name must match', {
-        'realms': [
-            {'name': 'FORBIDDENCHARS'},
-        ],
+        'realms': [{
+            'name': 'FORBIDDENCHARS'
+        },],
     })
 
   def test_realms_bad_name_special(self):
     self.assert_has_error('unknown special realm name', {
-        'realms': [
-            {'name': '@huh'},
-        ],
+        'realms': [{
+            'name': '@huh'
+        },],
     })
 
   def test_realms_dup(self):
     self.assert_has_error('was already defined', {
         'realms': [
-            {'name': 'some'},
-            {'name': 'some'},
+            {
+                'name': 'some'
+            },
+            {
+                'name': 'some'
+            },
         ],
     })
 
   def test_realms_root_realm_cant_extend(self):
     self.assert_has_error('the root realm must not use `extends`', {
         'realms': [
-            {'name': 'some'},
-            {'name': '@root', 'extends': ['some']},
+            {
+                'name': 'some'
+            },
+            {
+                'name': '@root',
+                'extends': ['some']
+            },
         ],
     })
 
   def test_realms_extending_unknown(self):
-    self.assert_has_error('extending from an undefined realm', {
-        'realms': [
-            {'name': 'some'},
-            {'name': 'another', 'extends': ['some', 'unknown']},
-        ],
-    })
+    self.assert_has_error(
+        'extending from an undefined realm', {
+            'realms': [
+                {
+                    'name': 'some'
+                },
+                {
+                    'name': 'another',
+                    'extends': ['some', 'unknown']
+                },
+            ],
+        })
 
   def test_realms_dup_extends(self):
-    self.assert_has_error('extended from more than once', {
-        'realms': [
-            {'name': 'some'},
-            {'name': 'another', 'extends': ['some', 'some']},
-        ],
-    })
+    self.assert_has_error(
+        'extended from more than once', {
+            'realms': [
+                {
+                    'name': 'some'
+                },
+                {
+                    'name': 'another',
+                    'extends': ['some', 'some']
+                },
+            ],
+        })
 
   def test_realms_cycle(self):
-    self.assert_has_error('cyclically extends itself', {
-        'realms': [
-            {'name': 'a', 'extends': ['b']},
-            {'name': 'b', 'extends': ['a']},
-        ],
-    })
+    self.assert_has_error(
+        'cyclically extends itself', {
+            'realms': [
+                {
+                    'name': 'a',
+                    'extends': ['b']
+                },
+                {
+                    'name': 'b',
+                    'extends': ['a']
+                },
+            ],
+        })
 
   def test_bindings_bad_role_ref(self):
     self.assert_has_error('not defined in the realms config', {
-        'realms': [
-            {
-                'name': 'a',
-                'bindings': [
-                    {'role': 'customRole/unknown'},
-                ],
-            },
-        ],
+        'realms': [{
+            'name': 'a',
+            'bindings': [{
+                'role': 'customRole/unknown'
+            },],
+        },],
     })
 
   def test_bindings_bad_group_name(self):
-    self.assert_has_error('invalid group name', {
-        'realms': [
-            {
-                'name': 'a',
-                'bindings': [
-                    {'role': 'role/dev.a', 'principals': ['group:!!!!']},
-                ],
-            },
-        ],
-    })
+    self.assert_has_error(
+        'invalid group name', {
+            'realms': [{
+                'name':
+                    'a',
+                'bindings': [{
+                    'role': 'role/dev.a',
+                    'principals': ['group:!!!!']
+                },],
+            },],
+        })
 
   def test_bindings_bad_principal_format(self):
-    self.assert_has_error('invalid principal format', {
-        'realms': [
-            {
+    self.assert_has_error(
+        'invalid principal format', {
+            'realms': [{
                 'name': 'a',
-                'bindings': [
-                    {'role': 'role/dev.a', 'principals': ['zzz']},
-                ],
-            },
-        ],
-    })
-
+                'bindings': [{
+                    'role': 'role/dev.a',
+                    'principals': ['zzz']
+                },],
+            },],
+        })
 
 
 class FindCycleTest(test_case.TestCase):
+
   def test_no_cycles(self):
-    self.assertIsNone(validation.find_cycle('A', {
-        'A': ['B', 'C'],
-        'B': ['C'],
-        'C': [],
-    }))
+    self.assertIsNone(
+        validation.find_cycle('A', {
+            'A': ['B', 'C'],
+            'B': ['C'],
+            'C': [],
+        }))
 
   def test_trivial_cycle(self):
     self.assertEqual(validation.find_cycle('A', {
@@ -319,42 +358,47 @@ class FindCycleTest(test_case.TestCase):
     }), ['A', 'A'])
 
   def test_longer_cycle(self):
-    self.assertEqual(validation.find_cycle('A', {
-        'A': ['B'],
-        'B': ['C'],
-        'C': ['A'],
-    }), ['A', 'B', 'C', 'A'])
+    self.assertEqual(
+        validation.find_cycle('A', {
+            'A': ['B'],
+            'B': ['C'],
+            'C': ['A'],
+        }), ['A', 'B', 'C', 'A'])
 
   def test_cycle_that_doesnt_involve_start(self):
-    self.assertIsNone(validation.find_cycle('A', {
-        'A': ['B'],
-        'B': ['C'],
-        'C': ['B'],
-    }))
+    self.assertIsNone(
+        validation.find_cycle('A', {
+            'A': ['B'],
+            'B': ['C'],
+            'C': ['B'],
+        }))
 
   def test_many_cycles_but_only_one_has_start(self):
-    self.assertEqual(validation.find_cycle('A', {
-        'A': ['B'],
-        'B': ['C'],
-        'C': ['B', 'D'],
-        'D': ['B', 'C', 'A'],
-    }), ['A', 'B', 'C', 'D', 'A'])
+    self.assertEqual(
+        validation.find_cycle('A', {
+            'A': ['B'],
+            'B': ['C'],
+            'C': ['B', 'D'],
+            'D': ['B', 'C', 'A'],
+        }), ['A', 'B', 'C', 'D', 'A'])
 
   def test_diamon_no_cycles(self):
-    self.assertIsNone(validation.find_cycle('A', {
-        'A': ['B1', 'B2'],
-        'B1': ['C'],
-        'B2': ['C'],
-        'C': [],
-    }))
+    self.assertIsNone(
+        validation.find_cycle('A', {
+            'A': ['B1', 'B2'],
+            'B1': ['C'],
+            'B2': ['C'],
+            'C': [],
+        }))
 
   def test_diamon_with_cycle(self):
-    self.assertEqual(validation.find_cycle('A', {
-        'A': ['B1', 'B2'],
-        'B1': ['C'],
-        'B2': ['C'],
-        'C': ['A'],
-    }), ['A', 'B1', 'C', 'A'])
+    self.assertEqual(
+        validation.find_cycle('A', {
+            'A': ['B1', 'B2'],
+            'B1': ['C'],
+            'B2': ['C'],
+            'C': ['A'],
+        }), ['A', 'B1', 'C', 'A'])
 
 
 if __name__ == '__main__':

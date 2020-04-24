@@ -52,6 +52,7 @@ def _prepare_lru_dict(data):
 
 
 class LRUDictTest(unittest.TestCase):
+
   def assert_same_data(self, expected, lru_dict):
     """Asserts that given |lru_dict| contains same data as |expected|.
 

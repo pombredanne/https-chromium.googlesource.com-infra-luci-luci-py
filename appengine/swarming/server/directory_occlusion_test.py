@@ -56,10 +56,8 @@ class TestDirectoryOcclusionChecker(unittest.TestCase):
     self.assertTrue(self.doc.conflicts(self.ctx))
     self.assertEqual(
         [x.text for x in self.ctx.result().messages],
-        [
-          ('charlie[\'for peace\'] uses \'some/path/rather/deep/other\', '
-           'which conflicts with bobbie[\'for justice\'] using \'some/path\'')
-        ])
+        [('charlie[\'for peace\'] uses \'some/path/rather/deep/other\', '
+          'which conflicts with bobbie[\'for justice\'] using \'some/path\'')])
 
 
 if __name__ == '__main__':

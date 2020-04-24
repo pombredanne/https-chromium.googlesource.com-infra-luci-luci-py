@@ -9,13 +9,15 @@ import httpserver
 
 
 class FakeSwarmingServerHandler(httpserver.Handler):
+
   def do_GET(self):
     logging.info('S GET %s', self.path)
     if self.path == '/auth/api/v1/server/oauth_config':
       self.send_json({
           'client_id': 'c',
           'client_not_so_secret': 's',
-          'primary_url': self.server.url})
+          'primary_url': self.server.url
+      })
     elif self.path == '/auth/api/v1/accounts/self':
       self.send_json({'identity': 'user:joe', 'xsrf_token': 'foo'})
     else:
@@ -24,7 +26,7 @@ class FakeSwarmingServerHandler(httpserver.Handler):
         logging.info('%s', m.group(1))
         self.send_json(self.server.tasks[int(m.group(1))])
       else:
-        self.send_json( {'a': 'b'})
+        self.send_json({'a': 'b'})
         #raise NotImplementedError(self.path)
 
   def do_POST(self):

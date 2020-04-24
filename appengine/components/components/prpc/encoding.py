@@ -8,7 +8,6 @@ import six
 
 from google.protobuf import json_format, text_format
 
-
 _BASE64_ENCODING_ERROR = TypeError
 if six.PY3:
   import binascii
@@ -17,8 +16,8 @@ if six.PY3:
 
 class Encoding(object):
   BINARY = (0, 'application/prpc; encoding=binary')
-  JSON   = (1, 'application/json')
-  TEXT   = (2, 'application/prpc; encoding=text')
+  JSON = (1, 'application/json')
+  TEXT = (2, 'application/prpc; encoding=text')
 
   @staticmethod
   def media_type(encoding):

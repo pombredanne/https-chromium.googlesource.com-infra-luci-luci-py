@@ -2,7 +2,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """OS specific utility functions.
 
 Includes code:
@@ -31,7 +30,6 @@ import sys
 import tempfile
 import time
 
-
 from utils import tools
 tools.force_local_third_party()
 
@@ -43,7 +41,6 @@ from six.moves import urllib
 from api import platforms
 from utils import file_path
 from utils import fs
-
 
 # https://cloud.google.com/compute/pricing#machinetype
 GCE_MACHINE_COST_HOUR_US = {
@@ -89,29 +86,23 @@ GCE_MACHINE_COST_HOUR_EUROPE_ASIA = {
     u'n1-highcpu-32': 1.344,
 }
 
-
 GCE_RAM_GB_PER_CORE_RATIOS = {
-  0.9: u'n1-highcpu-',
-  3.75: u'n1-standard-',
-  6.5: u'n1-highmem-',
+    0.9: u'n1-highcpu-',
+    3.75: u'n1-standard-',
+    6.5: u'n1-highmem-',
 }
-
 
 # https://cloud.google.com/compute/pricing#disk
 GCE_HDD_GB_COST_MONTH = 0.04
 GCE_SSD_GB_COST_MONTH = 0.17
 
-
 # https://cloud.google.com/compute/pricing#premiumoperatingsystems
 GCE_WINDOWS_COST_CORE_HOUR = 0.04
-
 
 MONITORING_ENDPOINT = 'https://www.googleapis.com/cloudmonitoring/v2beta2'
 MONITORING_SCOPES = ['https://www.googleapis.com/auth/monitoring']
 
-
 ### Private stuff.
-
 
 # Used to calculated Swarming bot uptime.
 _STARTED_TS = time.time()
@@ -182,10 +173,10 @@ def get_os_name():
     Windows, Mac, Ubuntu, Raspbian, etc.
   """
   value = {
-    'cygwin': u'Windows',
-    # TODO(maruel): 'Mac' is an historical accident, it should be named 'OSX'.
-    'darwin': u'Mac',
-    'win32': u'Windows',
+      'cygwin': u'Windows',
+      # TODO(maruel): 'Mac' is an historical accident, it should be named 'OSX'.
+      'darwin': u'Mac',
+      'win32': u'Windows',
   }.get(sys.platform)
   if value:
     return value
@@ -260,10 +251,7 @@ def get_cpu_dimensions():
   cpu_type = get_cpu_type()
   bitness = get_cpu_bitness()
   info = get_cpuinfo()
-  out = [
-    cpu_type,
-    u'%s-%s' % (cpu_type, bitness)
-  ]
+  out = [cpu_type, u'%s-%s' % (cpu_type, bitness)]
   if 'avx2' in info.get(u'flags', []):
     out.append(u'%s-%s-%s' % (cpu_type, bitness, 'avx2'))
 
@@ -418,9 +406,8 @@ def get_disk_size(path):
   """Returns the partition size that is referenced by this path in Mb."""
   # Find the disk for the path.
   path = os.path.realpath(path)
-  paths = sorted(
-      ((p, k[u'size_mb']) for p, k in get_disks_info().items()),
-      key=lambda x: -len(x[0]))
+  paths = sorted(((p, k[u'size_mb']) for p, k in get_disks_info().items()),
+                 key=lambda x: -len(x[0]))
   # It'd be nice if it were possible to know on a per-path basis, e.g. you can
   # have both case sensitive and insensitive partitions mounted on OSX.
   case_insensitive = sys.platform in ('darwin', 'win32')
@@ -537,7 +524,7 @@ def get_machine_type():
   logging.info('RAM GB/core = %.3f', ram_gb_per_core)
   best_fit = None
   for ratio, prefix in GCE_RAM_GB_PER_CORE_RATIOS.items():
-    delta = (ram_gb_per_core-ratio)**2
+    delta = (ram_gb_per_core - ratio)**2
     if best_fit is None or delta < best_fit[0]:
       best_fit = (delta, prefix)
   prefix = best_fit[1]
@@ -791,8 +778,8 @@ def get_timeseries_data(name, project, service_account, **kwargs):
   metric = urllib.parse.quote('custom.cloudmonitoring.googleapis.com/%s' % name,
                               '')
   params = urllib.parse.urlencode(params, True)
-  url = '%s/projects/%s/timeseries/%s?%s' % (
-      MONITORING_ENDPOINT, project, metric, params)
+  url = '%s/projects/%s/timeseries/%s?%s' % (MONITORING_ENDPOINT, project,
+                                             metric, params)
   logging.info('Attempting to get timeseries data: %s', url)
   try:
     response, content = authenticated_http_request(
@@ -835,7 +822,8 @@ def send_metric(name, value, labels, project, service_account):
 
   now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
   body = {
-      'commonLabels': labels,
+      'commonLabels':
+          labels,
       'timeseries': [{
           'point': {
               'end': now,
@@ -859,7 +847,9 @@ def send_metric(name, value, labels, project, service_account):
     response, content = authenticated_http_request(
         service_account,
         '%s/projects/%s/timeseries:write' % (MONITORING_ENDPOINT, project),
-        method='POST', body=json.dumps(body), headers=headers,
+        method='POST',
+        body=json.dumps(body),
+        headers=headers,
         scopes=MONITORING_SCOPES)
   except (AuthenticatedHttpRequestFailure, IOError) as e:
     raise SendMetricsFailure(e)
@@ -1210,17 +1200,16 @@ def setup_auto_startup_osx(command, cwd, plistname):
     # Sometimes ~/Library gets deleted.
     os.makedirs(launchd_dir)
   filepath = os.path.join(launchd_dir, plistname)
-  return _write(
-      filepath, platforms.osx.generate_launchd_plist(command, cwd, plistname))
+  return _write(filepath,
+                platforms.osx.generate_launchd_plist(command, cwd, plistname))
 
 
 def setup_auto_startup_initd_linux(command, cwd, user=None, name='swarming'):
   """Uses init.d to start the bot automatically."""
   if not user:
     user = getpass.getuser()
-  logging.info(
-      'setup_auto_startup_initd_linux(%s, %s, %s, %s)',
-      command, cwd, user, name)
+  logging.info('setup_auto_startup_initd_linux(%s, %s, %s, %s)', command, cwd,
+               user, name)
   if not os.path.isabs(cwd):
     raise ValueError('Refusing relative path')
   script = platforms.linux.generate_initd(command, cwd, user)
@@ -1233,9 +1222,9 @@ def setup_auto_startup_initd_linux(command, cwd, user=None, name='swarming'):
     # request.
     # TODO(maruel): Likely not the sanest thing, reevaluate.
     cmd = [
-      'sudo', '/bin/sh', '-c',
-      "cp %s %s && chmod 0755 %s && update-rc.d %s defaults" % (
-        pipes.quote(f.name), filepath, filepath, name)
+        'sudo', '/bin/sh', '-c',
+        "cp %s %s && chmod 0755 %s && update-rc.d %s defaults" % (pipes.quote(
+            f.name), filepath, filepath, name)
     ]
     subprocess.check_call(cmd)
     print('To remove, use:')
@@ -1253,8 +1242,8 @@ def setup_auto_startup_autostart_desktop_linux(command, name='swarming'):
   if not os.path.isdir(basedir):
     os.makedirs(basedir)
   filepath = os.path.join(basedir, '%s.desktop' % name)
-  return _write(
-      filepath, platforms.linux.generate_autostart_desktop(command, name))
+  return _write(filepath,
+                platforms.linux.generate_autostart_desktop(command, name))
 
 
 def host_reboot(message=None, timeout=None):
@@ -1289,8 +1278,8 @@ def host_reboot(message=None, timeout=None):
         # process.
         logging.info('Interrupted sleep: %s', e)
     if timeout and time.time() >= deadline:
-      logging.warning(
-          'Waited for host to reboot for too long (%s); aborting', timeout)
+      logging.warning('Waited for host to reboot for too long (%s); aborting',
+                      timeout)
       return False
 
 
@@ -1305,14 +1294,14 @@ def host_reboot_and_return(message=None):
   """
   if sys.platform == 'win32':
     cmds = [
-      ['shutdown', '-r', '-f', '-t', '1'],
+        ['shutdown', '-r', '-f', '-t', '1'],
     ]
   elif sys.platform == 'cygwin':
     # The one that will succeed depends if it is executed via a prompt or via
     # a ssh command. #itscomplicated.
     cmds = [
-      ['shutdown', '-r', '-f', '-t', '1'],
-      ['shutdown', '-r', '-f', '1'],
+        ['shutdown', '-r', '-f', '-t', '1'],
+        ['shutdown', '-r', '-f', '1'],
     ]
   elif sys.platform.startswith('linux'):
     # systemd removed support for -f. So Ubuntu 14.04 supports -f but 16.04
@@ -1333,8 +1322,8 @@ def host_reboot_and_return(message=None):
 
   success = False
   for cmd in cmds:
-    logging.info(
-        'Restarting machine with command %s (%s)', ' '.join(cmd), message)
+    logging.info('Restarting machine with command %s (%s)', ' '.join(cmd),
+                 message)
     try:
       subprocess.check_call(cmd)
       logging.info('Restart command exited successfully')
@@ -1348,14 +1337,14 @@ def host_reboot_and_return(message=None):
 def roll_log(name):
   """Rolls a log in 5Mb chunks and keep the last 10 files."""
   try:
-    if not os.path.isfile(name) or os.stat(name).st_size < 5*1024*1024:
+    if not os.path.isfile(name) or os.stat(name).st_size < 5 * 1024 * 1024:
       return
     if os.path.isfile('%s.9' % name):
       os.remove('%s.9' % name)
     for i in range(8, 0, -1):
       item = '%s.%d' % (name, i)
       if os.path.isfile(item):
-        os.rename(item, '%s.%d' % (name, i+1))
+        os.rename(item, '%s.%d' % (name, i + 1))
     if os.path.isfile(name):
       os.rename(name, '%s.1' % name)
   except Exception as e:

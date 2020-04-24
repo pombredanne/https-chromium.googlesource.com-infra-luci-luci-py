@@ -1,7 +1,6 @@
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Toolset to run multiple Swarming tasks in parallel."""
 
 import json
@@ -80,9 +79,9 @@ def collect(swarming_server, task_id):
 
 class Runner(object):
   """Runners runs tasks in parallel on Swarming."""
-  def __init__(
-      self, swarming_server, isolate_server, add_task, progress,
-      extra_trigger_args):
+
+  def __init__(self, swarming_server, isolate_server, add_task, progress,
+               extra_trigger_args):
     self.swarming_server = swarming_server
     self.isolate_server = isolate_server
     self.add_task = add_task
@@ -93,10 +92,7 @@ class Runner(object):
     args = sum((['--dimension', k, v] for k, v in dimensions.items()), [])
     args.extend(sum((['--env', k, v] for k, v in env), []))
     returncode, stdout, duration, task_id = trigger(
-        self.swarming_server,
-        self.isolate_server,
-        task_name,
-        isolated_hash,
+        self.swarming_server, self.isolate_server, task_name, isolated_hash,
         args + self.extra_trigger_args)
     step_name = '%s (%3.2fs)' % (task_name, duration)
     if returncode:
@@ -111,8 +107,7 @@ class Runner(object):
     step_name = '%s (%3.2fs)' % (task_name, duration)
     if returncode:
       # Only print the output for failures, successes are unexciting.
-      self.progress.update_item(
-          'Failed %s:\n%s' % (step_name, stdout), index=1)
+      self.progress.update_item('Failed %s:\n%s' % (step_name, stdout), index=1)
       return (task_name, dimensions, stdout)
     self.progress.update_item('Passed %s' % step_name, index=1)
     return None, None, None
@@ -178,8 +173,13 @@ class OptionParser(logging_utils.OptionParserWithLogging):
     self.add_option_group(self.server_group)
     auth.add_auth_options(self)
     self.add_option(
-        '-d', '--dimension', default=[], action='append', nargs=2,
-        dest='dimensions', metavar='FOO bar',
+        '-d',
+        '--dimension',
+        default=[],
+        action='append',
+        nargs=2,
+        dest='dimensions',
+        metavar='FOO bar',
         help='dimension to filter on')
     self.add_option(
         '--priority',

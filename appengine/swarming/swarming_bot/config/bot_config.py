@@ -2,7 +2,6 @@
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """This file is meant to be overriden by the server's specific copy.
 
 You can upload a new version via /restricted/upload/bot_config.

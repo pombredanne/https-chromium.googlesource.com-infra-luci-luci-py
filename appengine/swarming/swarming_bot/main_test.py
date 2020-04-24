@@ -48,6 +48,7 @@ class TestCase(auto_stub.TestCase):
 
 
 class SimpleMainTest(TestCase):
+
   @property
   def url(self):
     return 'http://localhost:1'
@@ -89,6 +90,7 @@ class SimpleMainTest(TestCase):
 
 
 class MainTest(TestCase):
+
   def setUp(self):
     self._server = swarmingserver_bot_fake.Server()
     super(MainTest, self).setUp()

@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Defines validation rules for configuration files.
 
 Configurations requested with store_last_good=True are automatically validated
@@ -34,20 +33,18 @@ from six.moves import urllib
 from . import common
 from . import validation_context
 
-
 __all__ = [
-  'Context',
-  'Message',
-  'RuleSet',
-  'is_defined_for',
-  'is_valid',
-  'project_config_rule',
-  'ref_config_rule',
-  'rule',
-  'self_rule',
-  'validate',
+    'Context',
+    'Message',
+    'RuleSet',
+    'is_defined_for',
+    'is_valid',
+    'project_config_rule',
+    'ref_config_rule',
+    'rule',
+    'self_rule',
+    'validate',
 ]
-
 
 Message = validation_context.Message
 
@@ -111,8 +108,8 @@ def is_valid_secure_url(url):
 ConfigPattern = collections.namedtuple(
     'ConfigPattern',
     [
-      'config_set',  # config_set pattern, see compile_pattern().
-      'path',  # path pattern, see compile_pattern().
+        'config_set',  # config_set pattern, see compile_pattern().
+        'path',  # path pattern, see compile_pattern().
     ])
 
 
@@ -162,16 +159,13 @@ def rule(config_set, path, dest_type=None, rule_set=None):
 
 def project_config_rule(*args, **kwargs):
   """Shortcut for rule() for project configs."""
-  return rule(
-      'regex:%s' % common.PROJECT_CONFIG_SET_RGX.pattern,
-      *args, **kwargs)
+  return rule('regex:%s' % common.PROJECT_CONFIG_SET_RGX.pattern, *args,
+              **kwargs)
 
 
 def ref_config_rule(*args, **kwargs):
   """Shortcut for rule() for ref configs."""
-  return rule(
-      'regex:%s' % common.REF_CONFIG_SET_RGX.pattern,
-      *args, **kwargs)
+  return rule('regex:%s' % common.REF_CONFIG_SET_RGX.pattern, *args, **kwargs)
 
 
 def self_rule(*args, **kwargs):
@@ -250,6 +244,7 @@ class Rule(object):
 
 
 class RuleSet(object):
+
   def __init__(self):
     self.rules = []
 
@@ -278,9 +273,7 @@ class RuleSet(object):
       A set of ConfigPattern objects.
     """
     return set(
-      ConfigPattern(config_set=r.config_set, path=r.path)
-      for r in self.rules
-    )
+        ConfigPattern(config_set=r.config_set, path=r.path) for r in self.rules)
 
 
 def compile_pattern(pattern):

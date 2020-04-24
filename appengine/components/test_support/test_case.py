@@ -97,8 +97,8 @@ class TestCase(auto_stub.TestCase):
     # Email support.
     self.testbed.init_mail_stub()
     self.mail_stub = self.testbed.get_stub(testbed.MAIL_SERVICE_NAME)
-    self.old_send_to_admins = self.mock(
-        self.mail_stub, '_Dynamic_SendToAdmins', self._SendToAdmins)
+    self.old_send_to_admins = self.mock(self.mail_stub, '_Dynamic_SendToAdmins',
+                                        self._SendToAdmins)
 
     self.testbed.init_taskqueue_stub()
     self._taskqueue_stub = self.testbed.get_stub(testbed.TASKQUEUE_SERVICE_NAME)
@@ -110,9 +110,10 @@ class TestCase(auto_stub.TestCase):
     try:
       if not self.has_failed():
         remaining = self.execute_tasks()
-        self.assertEqual(0, remaining,
-            'Passing tests must leave behind no pending tasks, found %d.'
-            % remaining)
+        self.assertEqual(
+            0, remaining,
+            'Passing tests must leave behind no pending tasks, found %d.' %
+            remaining)
       self.testbed.deactivate()
     finally:
       super(TestCase, self).tearDown()
@@ -196,6 +197,7 @@ class TestCase(auto_stub.TestCase):
 
 class Endpoints(object):
   """Handles endpoints API calls."""
+
   def __init__(self, api_service_cls, regex=None, source_ip='127.0.0.1'):
     super(Endpoints, self).__init__()
     self._api_service_cls = api_service_cls
@@ -235,8 +237,7 @@ class Endpoints(object):
       path = '%s?%s' % (path, '&'.join(query_strings))
 
     path = '/_ah/api/%s/%s/%s' % (self._api_service_cls.api_info.name,
-                                  self._api_service_cls.api_info.version,
-                                  path)
+                                  self._api_service_cls.api_info.version, path)
     try:
       if info.http_method in ('GET', 'DELETE'):
         return self._api_app.get(path, status=status)

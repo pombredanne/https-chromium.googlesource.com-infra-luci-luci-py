@@ -1,7 +1,6 @@
 # Copyright 2015 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """Manages PubSub topic that receives notifications about AuthDB changes.
 
 The topic is hosted in auth_service Cloud Project and auth_service manages its
@@ -29,7 +28,6 @@ from components.auth.proto import replication_pb2
 
 import acl
 
-
 # Fatal errors raised by this module. Reuse pubset.Error to avoid catching and
 # raising an exception again all the time.
 Error = pubsub.Error
@@ -37,8 +35,8 @@ Error = pubsub.Error
 
 def topic_name():
   """Full name of PubSub topic that receives AuthDB change notifications."""
-  return pubsub.full_topic_name(
-      app_identity.get_application_id(), 'auth-db-changed')
+  return pubsub.full_topic_name(app_identity.get_application_id(),
+                                'auth-db-changed')
 
 
 def _email_to_iam_ident(email):
@@ -107,6 +105,6 @@ def publish_authdb_change(state):
   key_name, sig = signature.sign_blob(blob)
 
   pubsub.publish(topic_name(), blob, {
-    'X-AuthDB-SigKey-v1': key_name,
-    'X-AuthDB-SigVal-v1': base64.b64encode(sig),
+      'X-AuthDB-SigKey-v1': key_name,
+      'X-AuthDB-SigVal-v1': base64.b64encode(sig),
   })

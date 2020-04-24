@@ -34,7 +34,6 @@ class Severity(messages.Enum):
 ################################################################################
 # Patterns
 
-
 SERVICE_ID_PATTERN = r'[a-z0-9\-_]+'
 SERVICE_ID_RGX = re.compile(r'^%s$' % SERVICE_ID_PATTERN)
 SERVICE_CONFIG_SET_RGX = re.compile(r'^services/(%s)$' % SERVICE_ID_PATTERN)
@@ -49,11 +48,10 @@ REF_CONFIG_SET_RGX = re.compile(
     r'^projects/(%s)/(%s)$' % (PROJECT_ID_PATTERN, REF_NAME_PATTERN))
 
 ALL_CONFIG_SET_RGX = [
-  SERVICE_CONFIG_SET_RGX,
-  PROJECT_CONFIG_SET_RGX,
-  REF_CONFIG_SET_RGX,
+    SERVICE_CONFIG_SET_RGX,
+    PROJECT_CONFIG_SET_RGX,
+    REF_CONFIG_SET_RGX,
 ]
-
 
 ################################################################################
 # Settings

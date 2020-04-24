@@ -18,7 +18,6 @@ from test_support import test_case
 from proto.config import bots_pb2
 from server import bot_groups_config
 
-
 TEST_CONFIG = bots_pb2.BotsCfg(
     trusted_dimensions=['pool'],
     bot_group=[
@@ -110,7 +109,6 @@ EXPECTED_GROUP_3 = bot_groups_config._make_bot_group_config(
     system_service_account='',
     is_default=True)
 
-
 DEFAULT_AUTH_CFG = [bots_pb2.BotAuth(ip_whitelist='bots')]
 
 
@@ -123,12 +121,14 @@ class ValidationCtx(validation.Context):
 
 
 class BotGroupsConfigTest(test_case.TestCase):
+
   def validator_test(self, cfg, messages):
     ctx = ValidationCtx()
     bot_groups_config._validate_bots_cfg(cfg, ctx)
     ctx.assert_errors(self, messages)
 
   def mock_config(self, cfg):
+
     def get_self_config_mock(path, cls=None, **kwargs):
       self.assertEqual({'store_last_good': True}, kwargs)
       if path == 'bots.cfg':
@@ -155,9 +155,11 @@ class BotGroupsConfigTest(test_case.TestCase):
     check(['abc1def', 'abc2def', 'abc3def'], 'abc{1..3}def')
 
   def test_expand_bot_id_expr_fail(self):
+
     def check_fail(expr):
       with self.assertRaises(ValueError):
         list(bot_groups_config._expand_bot_id_expr(expr))
+
     check_fail('')
     check_fail('abc{ab}def')
     check_fail('abc{..}def')
@@ -185,8 +187,8 @@ class BotGroupsConfigTest(test_case.TestCase):
 
   def test_get_bot_group_config(self):
     self.mock_config(TEST_CONFIG)
-    self.assertEquals(
-        EXPECTED_GROUP_1, bot_groups_config.get_bot_group_config('bot1'))
+    self.assertEquals(EXPECTED_GROUP_1,
+                      bot_groups_config.get_bot_group_config('bot1'))
     self.assertEquals(EXPECTED_GROUP_3,
                       bot_groups_config.get_bot_group_config('?'))
 
@@ -202,9 +204,8 @@ class BotGroupsConfigTest(test_case.TestCase):
 
   def test_trusted_dimensions_invalid(self):
     cfg = bots_pb2.BotsCfg(trusted_dimensions=['pool:blah'])
-    self.validator_test(cfg, [
-      u'trusted_dimensions: invalid dimension key u\'pool:blah\''
-    ])
+    self.validator_test(
+        cfg, [u'trusted_dimensions: invalid dimension key u\'pool:blah\''])
 
   def test_bad_bot_id(self):
     cfg = bots_pb2.BotsCfg(bot_group=[
@@ -389,31 +390,30 @@ class BotGroupsConfigTest(test_case.TestCase):
             auth=DEFAULT_AUTH_CFG,
             system_service_account='bad email'),
     ])
-    self.validator_test(cfg, [
-      'bot_group #0: invalid system service account email "bad email"'
-    ])
+    self.validator_test(
+        cfg, ['bot_group #0: invalid system service account email "bad email"'])
 
   def test_system_service_account_bot_on_non_oauth_machine(self):
-    cfg = bots_pb2.BotsCfg(
-      bot_group=[
+    cfg = bots_pb2.BotsCfg(bot_group=[
         bots_pb2.BotGroup(
-          bot_id=['blah'],
-          auth=[bots_pb2.BotAuth(ip_whitelist='bots')],
-          system_service_account='bot'),
-      ])
+            bot_id=['blah'],
+            auth=[bots_pb2.BotAuth(ip_whitelist='bots')],
+            system_service_account='bot'),
+    ])
     self.validator_test(cfg, [
-      'bot_group #0: system_service_account "bot" requires '
-      'auth.require_service_account to be used'
+        'bot_group #0: system_service_account "bot" requires '
+        'auth.require_service_account to be used'
     ])
 
   def test_system_service_account_bot_on_oauth_machine(self):
-    cfg = bots_pb2.BotsCfg(
-      bot_group=[
+    cfg = bots_pb2.BotsCfg(bot_group=[
         bots_pb2.BotGroup(
-          bot_id=['blah'],
-          auth=[bots_pb2.BotAuth(require_service_account=['blah@example.com'])],
-          system_service_account='bot'),
-      ])
+            bot_id=['blah'],
+            auth=[
+                bots_pb2.BotAuth(require_service_account=['blah@example.com'])
+            ],
+            system_service_account='bot'),
+    ])
     self.validator_test(cfg, [])
 
 
@@ -430,6 +430,7 @@ class CacheTest(test_case.TestCase):
 
   def mock_config(self, cfg):
     calls = {}
+
     def get_self_config_mock(path, cls=None, **kwargs):
       calls[path] = calls.get(path, 0) + 1
       self.assertEqual({'store_last_good': True}, kwargs)
@@ -439,6 +440,7 @@ class CacheTest(test_case.TestCase):
       if cls:
         self.assertIsInstance(value, cls)
       return rev, value
+
     self.mock(config, 'get_self_config', get_self_config_mock)
     return calls
 
@@ -457,7 +459,7 @@ class CacheTest(test_case.TestCase):
   def test_fetch_bot_groups_cache(self):
     # Empty config initially. Gets cached in memory.
     cfg = bot_groups_config._fetch_bot_groups()
-    self.assertEqual('none',  cfg.rev)
+    self.assertEqual('none', cfg.rev)
 
     # New config becomes available.
     self.mock_config({'bots.cfg': ('rev1', TEST_CONFIG)})
@@ -465,12 +467,12 @@ class CacheTest(test_case.TestCase):
 
     # Still using the empty config from the cache.
     cfg = bot_groups_config._fetch_bot_groups()
-    self.assertEqual('none',  cfg.rev)
+    self.assertEqual('none', cfg.rev)
 
     # Until the cache expires.
     self.mock_now(self.epoch + datetime.timedelta(hours=1))
     cfg = bot_groups_config._fetch_bot_groups()
-    self.assertEqual('rev1',  cfg.rev)
+    self.assertEqual('rev1', cfg.rev)
 
   def test_refetch_from_config_service_empty(self):
     self.mock_config({})
@@ -531,8 +533,8 @@ class CacheTest(test_case.TestCase):
     # New config is stored.
     cached = self.cached_config_entity()
     self.assertEqual('rev2', cached.bots_cfg_rev)
-    self.assertEqual(
-        self.epoch + datetime.timedelta(hours=12), cached.last_update_ts)
+    self.assertEqual(self.epoch + datetime.timedelta(hours=12),
+                     cached.last_update_ts)
 
   def test_get_expanded_bots_cfg_empty(self):
     self.mock_config({})
@@ -673,8 +675,8 @@ class CacheTest(test_case.TestCase):
     with self.assertRaises(bot_groups_config.BadConfigError):
       bot_groups_config.refetch_from_config_service(ctx)
     ctx.assert_errors(self, [
-      'bot_group #0: invalid bot config script "script.py": invalid syntax'
-      ' (<unknown>, line 1)',
+        'bot_group #0: invalid bot config script "script.py": invalid syntax'
+        ' (<unknown>, line 1)',
     ])
 
 

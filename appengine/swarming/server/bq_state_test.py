@@ -58,10 +58,12 @@ class BotManagementTest(test_case.TestCase):
     now = datetime.datetime(2020, 1, 2, 3, 4, 5, 678900)
     self.mock_now(now)
     urls = []
+
     def enqueue_task(url, task_name):
       urls.append(url)
       self.assertEqual('tqname', task_name)
       return True
+
     self.mock(utils, 'enqueue_task', enqueue_task)
     actual = bq_state.cron_trigger_tasks('mytable', '/internal/taskqueue/foo/',
                                          'tqname', 100, 10)
@@ -97,8 +99,7 @@ class BotManagementTest(test_case.TestCase):
     self.mock_now(now)
 
     oldest = (
-        now_trimmed - bq_state._OLDEST_BACKFILL +
-        datetime.timedelta(minutes=3))
+        now_trimmed - bq_state._OLDEST_BACKFILL + datetime.timedelta(minutes=3))
     bq_state.BqState(
         id='mytable',
         ts=now,
@@ -106,10 +107,12 @@ class BotManagementTest(test_case.TestCase):
         recent=datetime.datetime(2020, 1, 2, 2, 59)).put()
 
     urls = []
+
     def enqueue_task(url, task_name):
       urls.append(url)
       self.assertEqual('tqname', task_name)
       return True
+
     self.mock(utils, 'enqueue_task', enqueue_task)
 
     actual = bq_state.cron_trigger_tasks('mytable', '/internal/taskqueue/foo/',
@@ -139,8 +142,8 @@ class BotManagementTest(test_case.TestCase):
     now = datetime.datetime(2020, 1, 2, 3, 4, 5, 678900)
     self.mock_now(now)
     self.mock(utils, 'enqueue_task', self.fail)
-    actual = bq_state.cron_trigger_tasks(
-        'mytable', '/internal/taskqueue/foo/', 'tqname', 0, 10)
+    actual = bq_state.cron_trigger_tasks('mytable', '/internal/taskqueue/foo/',
+                                         'tqname', 0, 10)
     self.assertEqual(0, actual)
     self.assertEqual(1, bq_state.BqState.query().count())
     expected = {
@@ -156,6 +159,7 @@ class BotManagementTest(test_case.TestCase):
 
   def test_send_to_bq(self):
     payloads = []
+
     def json_request(url, method, payload, scopes, deadline):
       self.assertEqual(
           'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
@@ -165,6 +169,7 @@ class BotManagementTest(test_case.TestCase):
       self.assertEqual(bq_state.bqh.INSERT_ROWS_SCOPE, scopes)
       self.assertEqual(600, deadline)
       return {'insertErrors': []}
+
     self.mock(bq_state.net, 'json_request', json_request)
 
     rows = [
@@ -186,11 +191,11 @@ class BotManagementTest(test_case.TestCase):
   def test_send_to_bq_fail(self):
     # Test the failure code path.
     payloads = []
+
     def json_request(url, method, payload, scopes, deadline):
       self.assertEqual(
           'https://www.googleapis.com/bigquery/v2/projects/sample-app/datasets/'
-            'swarming/tables/foo/insertAll',
-          url)
+          'swarming/tables/foo/insertAll', url)
       first = not payloads
       payloads.append(payload)
       self.assertEqual('POST', method)
@@ -208,6 +213,7 @@ class BotManagementTest(test_case.TestCase):
             },],
         }
       return {'insertErrors': []}
+
     self.mock(bq_state.net, 'json_request', json_request)
 
     rows = [

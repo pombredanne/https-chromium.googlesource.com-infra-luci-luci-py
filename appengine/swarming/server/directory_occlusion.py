@@ -1,7 +1,6 @@
 # Copyright 2018 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-
 """directory_occlusion.Checker provides a way to check for conflicts between
 multiple competing uses of the filesystem.
 
@@ -17,7 +16,6 @@ Concretely, this is used to check for conflicts between CIPD and named caches,
 but could also (potentially) be extended to declare ownership of other
 subdirectories in the task (e.g. in the isolated).
 """
-
 
 import collections
 
@@ -39,9 +37,10 @@ class Checker(object):
   directories. Similarly, multiple caches cannot be mapped to the same
   directory.
   """
+
   def __init__(self, full_path=''):
     self._full_path = full_path
-    self._owner_notes = collections.defaultdict(set) # owner -> set(notes)
+    self._owner_notes = collections.defaultdict(set)  # owner -> set(notes)
     self._subdirs = {}
 
   def add(self, path, owner, note):
@@ -55,7 +54,7 @@ class Checker(object):
     tokens = path.split('/')
     node = self
     for i, subdir in enumerate(tokens):
-      node = node._subdirs.setdefault(subdir, Checker('/'.join(tokens[:i+1])))
+      node = node._subdirs.setdefault(subdir, Checker('/'.join(tokens[:i + 1])))
     node._owner_notes[owner].add(note)
 
   def conflicts(self, ctx):

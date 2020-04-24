@@ -13,9 +13,9 @@ class NotBootstrappedError(RuntimeError):
   """
 
 
-_ButlerBootstrapBase = collections.namedtuple('_ButlerBootstrapBase',
-    ('project', 'prefix', 'streamserver_uri', 'coordinator_host',
-     'namespace'))
+_ButlerBootstrapBase = collections.namedtuple(
+    '_ButlerBootstrapBase',
+    ('project', 'prefix', 'streamserver_uri', 'coordinator_host', 'namespace'))
 
 
 class ButlerBootstrap(_ButlerBootstrapBase):
