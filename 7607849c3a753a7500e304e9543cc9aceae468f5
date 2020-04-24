@@ -16,6 +16,24 @@
       "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f2a6eb_a71d2621",
+        "filename": ".style.yapf",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-24T07:57:44Z",
+      "side": 1,
+      "message": "Ack, will follow pep8.\nShall we remove .style.yapf, then?",
+      "parentUuid": "70ad530d_49797c10",
+      "revId": "7607849c3a753a7500e304e9543cc9aceae468f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
