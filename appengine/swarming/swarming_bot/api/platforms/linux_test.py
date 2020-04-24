@@ -130,14 +130,10 @@ class TestCPUInfo(auto_stub.TestCase):
             u'vfpv4',
         ],
         u'model': (0, 3087, 4),
-        u'name':
-            u'SAMSUNG EXYNOS5',
-        u'revision':
-            u'0000',
-        u'serial':
-            u'',
-        u'vendor':
-            u'ARMv7 Processor rev 4 (v7l)',
+        u'name': u'SAMSUNG EXYNOS5',
+        u'revision': u'0000',
+        u'serial': u'',
+        u'vendor': u'ARMv7 Processor rev 4 (v7l)',
     }, self.get_cpuinfo(EXYNOS_CPU_INFO))
 
   def test_get_cpuinfo_cavium(self):
@@ -154,8 +150,7 @@ class TestCPUInfo(auto_stub.TestCase):
             u'sha2',
         ],
         u'model': (1, 161, 1),
-        u'vendor':
-            u'N/A',
+        u'vendor': u'N/A',
     }, self.get_cpuinfo(CAVIUM_CPU_INFO))
 
   def test_get_cpuinfo_mips(self):

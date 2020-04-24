@@ -75,19 +75,15 @@ def _gen_request(properties=None):
   """Creates a TaskRequest."""
   now = utils.utcnow()
   args = {
-      'created_ts':
-          now,
+      'created_ts': now,
       'manual_tags': [u'tag:1'],
-      'name':
-          'Request name',
-      'priority':
-          50,
+      'name': 'Request name',
+      'priority': 50,
       'task_slices': [
           task_request.TaskSlice(
               expiration_secs=60, properties=properties or _gen_properties()),
       ],
-      'user':
-          'Jesus',
+      'user': 'Jesus',
   }
   req = task_request.TaskRequest(**args)
   task_request.init_new_request(req, True, task_request.TEMPLATE_AUTO)

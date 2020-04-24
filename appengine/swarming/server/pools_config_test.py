@@ -111,11 +111,11 @@ class PoolsConfigTest(test_case.TestCase):
         ]),
         scheduling_groups=frozenset([u'group2', u'group1']),
         trusted_delegatees={
-            auth.Identity('user', 'delegatee@example.com'):
-                pools_config.TrustedDelegatee(
-                    peer_id=auth.Identity('user', 'delegatee@example.com'),
-                    required_delegation_tags=frozenset([u'k:tag1', u'k:tag2']),
-                ),
+            auth.Identity(
+                'user', 'delegatee@example.com'): pools_config.TrustedDelegatee(
+                peer_id=auth.Identity('user', 'delegatee@example.com'),
+                required_delegation_tags=frozenset([u'k:tag1', u'k:tag2']),
+            ),
         },
         service_accounts=frozenset([u'a2@example.com', u'a1@example.com']),
         service_accounts_groups=(u'accounts_group1', u'accounts_group2'),
