@@ -1127,6 +1127,7 @@ export const taskRequests = [
             "-output-result-json",
             "${ISOLATED_OUTDIR}/build-run-result.json"
           ],
+          "relative_cwd": ".",
           "env": [
             {
               "value": "FALSE",
@@ -1334,6 +1335,7 @@ export const taskRequests = [
             "-output-result-json",
             "${ISOLATED_OUTDIR}/build-run-result.json"
           ],
+          "relative_cwd": ".",
           "env": [
             {
               "value": "FALSE",
@@ -1543,6 +1545,7 @@ export const taskRequests = [
         "-output-result-json",
         "${ISOLATED_OUTDIR}/build-run-result.json"
       ],
+      "relative_cwd": ".",
       "env": [
         {
           "value": "FALSE",
