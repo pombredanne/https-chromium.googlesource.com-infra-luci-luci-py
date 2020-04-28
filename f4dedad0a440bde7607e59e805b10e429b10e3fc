@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "997dcada_f2ae538d",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-04-28T13:47:02Z",
+      "side": 1,
+      "message": "Leave logs for this path?",
+      "revId": "f4dedad0a440bde7607e59e805b10e429b10e3fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
