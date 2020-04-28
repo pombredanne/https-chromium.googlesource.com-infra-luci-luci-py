@@ -22,6 +22,30 @@
       "revId": "24ad99ff8e8d9ad575ab7d778e98b6b67b488598",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c72a666d_109f5c34",
+        "filename": "client/isolateserver.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-28T04:54:43Z",
+      "side": 1,
+      "message": "Ouch.",
+      "parentUuid": "a935b9b3_f3a5d9d7",
+      "range": {
+        "startLine": 1656,
+        "startChar": 25,
+        "endLine": 1656,
+        "endChar": 28
+      },
+      "revId": "24ad99ff8e8d9ad575ab7d778e98b6b67b488598",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
