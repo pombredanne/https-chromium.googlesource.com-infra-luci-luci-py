@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85b6c8c1_99215d43",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-04-28T13:13:34Z",
+      "side": 1,
+      "message": "I\u0027m wondering this is appropriate in\nhttps://docs.google.com/document/d/1-4JL8cZ06yTb7yhDzXD8nh4FwhUBm1zaQAICQ-JRpus/edit?disco\u003dAAAAJeI54jg",
+      "revId": "20dc13aefd775875cced155407dffb45ee71a6f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
