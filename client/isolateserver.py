@@ -1529,7 +1529,10 @@ def _enqueue_dir(dirpath, blacklist, hash_algo, hash_algo_name):
       tools.format_json(data, True), algo=hash_algo, high_priority=True)
 
 
-def archive_files_to_storage(storage, files, blacklist, verify_push=False):
+def _archive_files_to_storage_internal(storage,
+                                       files,
+                                       blacklist,
+                                       verify_push=False):
   """Stores every entry into remote storage and returns stats.
 
   Arguments:
@@ -1631,6 +1634,43 @@ def archive_files_to_storage(storage, files, blacklist, verify_push=False):
     else:
       hot.append(i)
   return results, cold, hot
+
+
+def archive_files_to_storage(storage, files, blacklist, verify_push=False):
+  """Calls _archive_files_to_storage_internal with retry.
+
+  Arguments:
+    storage: a Storage object that communicates with the remote object store.
+    files: iterable of files to upload. If a directory is specified (with a
+          trailing slash), a .isolated file is created and its hash is returned.
+          Duplicates are skipped.
+    blacklist: function that returns True if a file should be omitted.
+    verify_push: verify files are uploaded correctly by fetching from server.
+
+  Returns:
+    tuple(OrderedDict(path: hash), list(FileItem cold), list(FileItem hot)).
+    The first file in the first item is always the .isolated file.
+
+  Raises:
+    Re-raises the exception in _archive_files_to_storage_internal if all retry
+    failed.
+  """
+
+  backoff = 10
+
+  while True:
+    try:
+      return _archive_files_to_storage_internal(storage, files, blacklist,
+                                                verify_push)
+    except Exception:
+      if backoff > 100:
+        raise
+
+      logging.exception(
+          'failed to run _archive_files_to_storage_internal,'
+          ' will retry after %d seconds', backoff)
+      time.sleep(backoff)
+      backoff *= 2
 
 
 @subcommand.usage('<file1..fileN> or - to read from stdin')
