@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2c26abbd_7ed311d1",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-28T15:03:59Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "cce6680d_8ccd685b",
+      "range": {
+        "startLine": 17,
+        "startChar": 22,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "20dc13aefd775875cced155407dffb45ee71a6f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6164c212_c51cc6cd",
         "filename": "appengine/swarming/server/resultdb.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "79d24997_df5dc284",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-28T15:03:59Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "6164c212_c51cc6cd",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "20dc13aefd775875cced155407dffb45ee71a6f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "85b6c8c1_99215d43",
         "filename": "appengine/swarming/server/resultdb.py",
         "patchSetId": 2
@@ -59,6 +107,24 @@
       "writtenOn": "2020-04-28T13:13:34Z",
       "side": 1,
       "message": "I\u0027m wondering this is appropriate in\nhttps://docs.google.com/document/d/1-4JL8cZ06yTb7yhDzXD8nh4FwhUBm1zaQAICQ-JRpus/edit?disco\u003dAAAAJeI54jg",
+      "revId": "20dc13aefd775875cced155407dffb45ee71a6f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ac32cd7_6df9b4a3",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-28T15:03:59Z",
+      "side": 1,
+      "message": "I\u0027ve fixed the doc. Server returns FAILED_PRECONDITION.\n\nbut also, we should ignore all other non-transient errors, see the doc for rationale",
+      "parentUuid": "85b6c8c1_99215d43",
       "revId": "20dc13aefd775875cced155407dffb45ee71a6f1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -93,6 +159,30 @@
       "writtenOn": "2020-04-28T13:36:59Z",
       "side": 1,
       "message": "Should this also be configured in the cfg.resultdb or defined as constant somewhere?",
+      "range": {
+        "startLine": 69,
+        "startChar": 19,
+        "endLine": 69,
+        "endChar": 49
+      },
+      "revId": "20dc13aefd775875cced155407dffb45ee71a6f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07f2bb57_93d952f3",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-28T15:03:59Z",
+      "side": 1,
+      "message": "this won\u0027t change, so I don\u0027t think this should be configurable\n\nif we define a constant in code, then it would be used only here, so i think this code is fine",
+      "parentUuid": "f247e556_e48b2b05",
       "range": {
         "startLine": 69,
         "startChar": 19,
