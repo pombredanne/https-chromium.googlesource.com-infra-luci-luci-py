@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72121161_c3682f1b",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-30T15:43:25Z",
+      "side": 1,
+      "message": "simpler:\n\n  if ex.headers.get(\u0027X-Prpc-Grpc-Code\u0027) \u003d\u003d str(prpc.StatusCode.FAILED_PRECONDITION.value):\n    logging.info(...)\n  else:\n    logging.errror(...)\n\nalso these logging messages do not explain that this is about resultdb. it might be difficult to understand these messages when they are in the global log",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 63
+      },
+      "revId": "4f79595e420c7744add393a11df98bd576319bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b23745b_fb3d673d",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-30T15:43:25Z",
+      "side": 1,
+      "message": "unnecessary",
+      "revId": "4f79595e420c7744add393a11df98bd576319bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6152ddf9_795f172e",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-30T15:43:25Z",
+      "side": 1,
+      "message": "forgot to yield everywhere in this file.\nalso tests didn\u0027t catch it because the mocked func is not a true async func",
+      "revId": "4f79595e420c7744add393a11df98bd576319bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "507a6630_00cdc096",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-04-30T15:43:25Z",
+      "side": 1,
+      "message": "unnecessary",
+      "revId": "4f79595e420c7744add393a11df98bd576319bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
