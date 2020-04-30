@@ -109,6 +109,12 @@ message Pool {
   // For a given task or bot, the first entry in this list that matches based on
   // dimension eligibility will be used.
   repeated ExternalSchedulerConfig external_schedulers = 9;
+
+  // Realm name associated to the pool.
+  // The scheme of Realm name is explained in
+  // luci/appengine/components/components/auth/proto/realms.proto
+  // e.g. "infra:pool/flex/try" for infra.flex.try pool
+  string realm = 10;
 }
 
 
