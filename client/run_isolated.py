@@ -700,7 +700,12 @@ def upload_then_delete(storage, out_dir, leak_temp_dir):
     with tools.Profiler('ArchiveOutput'):
       try:
         results, f_cold, f_hot = isolateserver.archive_files_to_storage(
-            storage, [out_dir], None, verify_push=True)
+            storage,
+            [out_dir],
+            None,
+            # Windows doesn't have issue like crbug.com/1073832, but has crbug.com/1076637
+            # TODO(crbug.com/1076637): make this True if we fixed the root cause.
+            verify_push=not sys.platform != 'win32')
         outputs_ref = {
           'isolated': results.values()[0],
           'isolatedserver': storage.server_ref.url,
