@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e83adbd8_7ac50ca2",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-01T05:30:43Z",
+      "side": 1,
+      "message": "nvm, I realized that it\u0027s only for CreateInvocation",
+      "parentUuid": "4ac6a133_9bb3ef0b",
+      "revId": "b328e809ebfee70415b91968d3fba1494fcb3f5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c4c70aa_113ed42b",
         "filename": "appengine/swarming/server/resultdb.py",
         "patchSetId": 12
