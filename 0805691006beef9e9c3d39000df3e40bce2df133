@@ -63,6 +63,30 @@
       "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "384a4a29_17bb8a6a",
+        "filename": ".yapfignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-07T01:36:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3a9b134_fe7fd118",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
