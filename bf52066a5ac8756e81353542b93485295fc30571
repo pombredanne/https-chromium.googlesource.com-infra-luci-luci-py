@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a3b5da8_fa0d355e",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-07T09:55:15Z",
+      "side": 1,
+      "message": "\u003e It sounds to me that the bot could be set to different tasks at the same time, and therefore there is a race condition?\n\nYes, this sometimes happens.\n\n\n\u003e Do we need to use a transaction at the place where |bot_info.task_id| is set? \n\nI noticed that updating the task entities and the bot entity are done in different transactions. I guess it\u0027s intentionally not checked due to performance or something.\nWill confirm with maruel@.",
+      "parentUuid": "a408e881_4b7e1b8f",
+      "range": {
+        "startLine": 597,
+        "startChar": 19,
+        "endLine": 597,
+        "endChar": 36
+      },
+      "revId": "bf52066a5ac8756e81353542b93485295fc30571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f1635d3_66677592",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-05-07T09:39:32Z",
       "side": 1,
       "message": "prepend \u0027crbug.com/1077188: \u0027?",
+      "range": {
+        "startLine": 598,
+        "startChar": 20,
+        "endLine": 598,
+        "endChar": 21
+      },
+      "revId": "bf52066a5ac8756e81353542b93485295fc30571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26e5506c_766ba817",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-07T09:55:15Z",
+      "side": 1,
+      "message": "I think this log can be kept even after fixing crbug.com/1077188.",
+      "parentUuid": "3f1635d3_66677592",
       "range": {
         "startLine": 598,
         "startChar": 20,
