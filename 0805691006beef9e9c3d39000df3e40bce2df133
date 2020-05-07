@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "394d9775_f5a765ad",
+        "filename": ".yapfignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-07T01:25:27Z",
+      "side": 1,
+      "message": "I think this file name is intentional for test.",
+      "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c051450_e093f867",
+        "filename": ".yapfignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-07T01:25:27Z",
+      "side": 1,
+      "message": "prepend \u0027/\u0027?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
