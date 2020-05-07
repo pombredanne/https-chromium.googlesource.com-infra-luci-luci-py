@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0883b3b3_1d83c7de",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-07T13:21:35Z",
+      "side": 1,
+      "message": "\u003e single bot does not send concurrent poll request\n\nThat\u0027s true.",
+      "parentUuid": "91369e2a_46a21450",
+      "range": {
+        "startLine": 597,
+        "startChar": 19,
+        "endLine": 597,
+        "endChar": 36
+      },
+      "revId": "bf52066a5ac8756e81353542b93485295fc30571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f1635d3_66677592",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 3
