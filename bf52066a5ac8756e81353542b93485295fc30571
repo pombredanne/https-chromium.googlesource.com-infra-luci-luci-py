@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a408e881_4b7e1b8f",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-07T09:42:32Z",
+      "side": 1,
+      "message": "Do we need to use a transaction at the place where |bot_info.task_id| is set? It sounds to me that the bot could be set to different tasks at the same time, and therefore there is a race condition?",
+      "range": {
+        "startLine": 597,
+        "startChar": 19,
+        "endLine": 597,
+        "endChar": 36
+      },
+      "revId": "bf52066a5ac8756e81353542b93485295fc30571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f1635d3_66677592",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 3
