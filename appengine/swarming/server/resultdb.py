@@ -48,15 +48,9 @@ def finalize_invocation_async(task_run_id):
         'name': invocation_id,
     })
   except net.Error as ex:
-    if ex.headers.get('X-Prpc-Grpc-Code') == str(
-        prpc.StatusCode.FAILED_PRECONDITION.value):
-      logging.info(
-          'Got FAILED_PRECONDITION in response headers when '
-          'finalize invocation %s', invocation_id)
-    else:
-      logging.exception(
-          'X-Prpc-Grpc-Code is not FAILED_PRECONDITION when '
-          'finalize invocation %s: %s', invocation_id, ex.headers)
+    logging.exception(
+        'X-Prpc-Grpc-Code is not FAILED_PRECONDITION when '
+        'finalize invocation %s: %s', invocation_id, ex.headers)
 
 
 ### Private code
