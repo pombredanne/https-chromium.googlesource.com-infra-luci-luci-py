@@ -39,6 +39,30 @@
       "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3a9b134_fe7fd118",
+        "filename": ".yapfignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-07T01:33:21Z",
+      "side": 1,
+      "message": "yapfignore format is different from gitignore.\nAnd starting with \u0027/\u0027 or \u0027./\u0027 don\u0027t work.\n\nhttps://github.com/google/yapf#excluding-files-from-formatting-yapfignore",
+      "parentUuid": "5c051450_e093f867",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
