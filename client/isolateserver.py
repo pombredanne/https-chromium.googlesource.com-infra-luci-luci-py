@@ -1655,12 +1655,17 @@ def archive_files_to_storage(storage, files, blacklist, verify_push=False):
   # Will do exponential backoff.
   # e.g. 10, 20, 40, 80
   backoff = 10
+  first = True
 
   while True:
     try:
       return _archive_files_to_storage_internal(storage, files, blacklist,
                                                 verify_push)
     except Exception:
+      if first:
+        on_error.report()
+        first = False
+
       if backoff > 100:
         raise
 
