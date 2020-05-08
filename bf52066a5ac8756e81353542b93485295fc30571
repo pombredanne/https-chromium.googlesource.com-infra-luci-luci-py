@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "de499dc9_438b7d46",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-08T01:28:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0883b3b3_1d83c7de",
+      "range": {
+        "startLine": 597,
+        "startChar": 19,
+        "endLine": 597,
+        "endChar": 36
+      },
+      "revId": "bf52066a5ac8756e81353542b93485295fc30571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1635d3_66677592",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 3
