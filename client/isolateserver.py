@@ -1661,6 +1661,8 @@ def archive_files_to_storage(storage, files, blacklist, verify_push=False):
       return _archive_files_to_storage_internal(storage, files, blacklist,
                                                 verify_push)
     except Exception:
+      on_error.report('error before %d second backoff' % backoff)
+
       if backoff > 100:
         raise
 
