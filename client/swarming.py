@@ -1991,7 +1991,7 @@ class OptionParserSwarming(logging_utils.OptionParserWithLogging):
       options.swarming = net.fix_url(options.swarming)
     except ValueError as e:
       self.error('--swarming %s' % e)
-    on_error.report_on_exception_exit(options.swarming)
+
     try:
       user = auth.ensure_logged_in(options.swarming)
     except ValueError as e:
