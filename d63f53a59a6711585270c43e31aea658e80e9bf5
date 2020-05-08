@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f24baf80_19d07a35",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-08T03:38:08Z",
+      "side": 0,
+      "message": "Sorry... Thank you for the revert.",
+      "revId": "d63f53a59a6711585270c43e31aea658e80e9bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
