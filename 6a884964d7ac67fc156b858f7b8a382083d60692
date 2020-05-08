@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bea7d67_b1e8e572",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-08T12:12:08Z",
+      "side": 1,
+      "message": "I don\u0027t know what this feature is. But is it ok to be removed?",
+      "revId": "6a884964d7ac67fc156b858f7b8a382083d60692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
