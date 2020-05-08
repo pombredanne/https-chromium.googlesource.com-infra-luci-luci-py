@@ -1686,7 +1686,7 @@ def CMDarchive(parser, args):
   add_isolate_server_options(parser)
   add_archive_options(parser)
   options, files = parser.parse_args(args)
-  process_isolate_server_options(parser, options, True, True)
+  process_isolate_server_options(parser, options, False, True)
   server_ref = isolate_storage.ServerRef(
       options.isolate_server, options.namespace)
   if files == ['-']:
@@ -1740,7 +1740,7 @@ def CMDdownload(parser, args):
   if not file_path.enable_symlink():
     logging.warning('Symlink support is not enabled')
 
-  process_isolate_server_options(parser, options, True, True)
+  process_isolate_server_options(parser, options, False, True)
   if bool(options.isolated) == bool(options.file):
     parser.error('Use one of --isolated or --file, and only one.')
   if not options.cache and options.use_symlinks:
