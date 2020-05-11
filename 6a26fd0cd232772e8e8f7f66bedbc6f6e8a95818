@@ -16,6 +16,24 @@
       "revId": "6a26fd0cd232772e8e8f7f66bedbc6f6e8a95818",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1339ebf4_773e37c2",
+        "filename": "client/auth.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T01:13:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e36a18e0_bb385662",
+      "revId": "6a26fd0cd232772e8e8f7f66bedbc6f6e8a95818",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
