@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "004540f3_2509240e",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-11T17:37:54Z",
+      "side": 1,
+      "message": "POOLS\n\nWe follow same convention for naming permissions as Cloud IAM, and it uses plurals. See also some already defined permissions in https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/auth_service/realms/permissions.py#44",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "beeeb2a361ccaf5895bff560d143419d6a90aaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "240221d5_700a276a",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-11T17:37:54Z",
+      "side": 1,
+      "message": "nit: \"\"\"Generates ...\"",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "beeeb2a361ccaf5895bff560d143419d6a90aaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a725554b_e021d6af",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 9
