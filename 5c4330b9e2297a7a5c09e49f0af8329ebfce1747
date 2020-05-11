@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f0aa27d4_1df4a31a",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T06:22:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf7f1600_4bed3a97",
+      "revId": "5c4330b9e2297a7a5c09e49f0af8329ebfce1747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "287314c9_b0a54be2",
         "filename": "appengine/swarming/proto/config/realms.proto",
         "patchSetId": 5
@@ -39,6 +57,30 @@
       "revId": "5c4330b9e2297a7a5c09e49f0af8329ebfce1747",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6d1333a_d25414a0",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T06:22:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "287314c9_b0a54be2",
+      "range": {
+        "startLine": 11,
+        "startChar": 36,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "5c4330b9e2297a7a5c09e49f0af8329ebfce1747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
