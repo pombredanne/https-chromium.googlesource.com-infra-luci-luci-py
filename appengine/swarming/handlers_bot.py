@@ -677,49 +677,68 @@ class BotPollHandler(_BotBaseHandler):
       caches[i]['hint'] = str(hint)
 
     out = {
-      'cmd': 'run',
-      'manifest': {
-        'bot_id': bot_id,
-        'bot_authenticated_as': auth.get_peer_identity().to_bytes(),
-        'caches': caches,
-        'cipd_input': {
-          'client_package': props.cipd_input.client_package.to_dict(),
-          'packages': [p.to_dict() for p in props.cipd_input.packages],
-          'server': props.cipd_input.server,
-        } if props.cipd_input else None,
-        'command': props.command,
-        'containment': props.containment.to_dict() if props.containment else {},
-        'dimensions': props.dimensions,
-        'env': props.env,
-        'env_prefixes': props.env_prefixes,
-        'extra_args': props.extra_args,
-        'grace_period': props.grace_period_secs,
-        'hard_timeout': props.execution_timeout_secs,
-        'host': utils.get_versioned_hosturl(),
-        'io_timeout': props.io_timeout_secs,
-        'secret_bytes': (secret_bytes.secret_bytes.encode('base64')
-                         if secret_bytes else None),
-        'isolated': {
-          'input': props.inputs_ref.isolated,
-          'namespace': props.inputs_ref.namespace,
-          'server': props.inputs_ref.isolatedserver,
-        } if props.inputs_ref else None,
-        'outputs': props.outputs,
-        'relative_cwd': props.relative_cwd,
-        'service_accounts': {
-          'system': {
-            # 'none', 'bot' or email. Bot interprets 'none' and 'bot' locally.
-            # When it sees something else, it uses /oauth_token API endpoint to
-            # grab tokens through server.
-            'service_account': bot_group_cfg.system_service_account or 'none',
-          },
-          'task': {
-            # Same here.
-            'service_account': request.service_account,
-          },
+        'cmd': 'run',
+        'manifest': {
+            'bot_id':
+                bot_id,
+            'bot_authenticated_as':
+                auth.get_peer_identity().to_bytes(),
+            'caches':
+                caches,
+            'cipd_input': {
+                'client_package': props.cipd_input.client_package.to_dict(),
+                'packages': [p.to_dict() for p in props.cipd_input.packages],
+                'server': props.cipd_input.server,
+            } if props.cipd_input else None,
+            'command':
+                props.command,
+            'containment':
+                props.containment.to_dict() if props.containment else {},
+            'dimensions':
+                props.dimensions,
+            'env':
+                props.env,
+            'env_prefixes':
+                props.env_prefixes,
+            'extra_args':
+                props.extra_args,
+            'grace_period':
+                props.grace_period_secs,
+            'hard_timeout':
+                props.execution_timeout_secs,
+            'host':
+                utils.get_versioned_hosturl(),
+            'io_timeout':
+                props.io_timeout_secs,
+            'secret_bytes': (secret_bytes.secret_bytes.encode('base64')
+                             if secret_bytes else None),
+            'isolated': {
+                'input': props.inputs_ref.isolated,
+                'namespace': props.inputs_ref.namespace,
+                'server': props.inputs_ref.isolatedserver,
+            } if props.inputs_ref else None,
+            'outputs':
+                props.outputs,
+            'relative_cwd':
+                props.relative_cwd,
+            # TODO(crbug.com/1065139): fill appropriately.
+            'resultdb': {},
+            'service_accounts': {
+                'system': {
+                    # 'none', 'bot' or email. Bot interprets 'none' and 'bot'
+                    # locally. When it sees something else, it uses /oauth_token
+                    # API endpoint to grab tokens through server.
+                    'service_account':
+                        bot_group_cfg.system_service_account or 'none',
+                },
+                'task': {
+                    # Same here.
+                    'service_account': request.service_account,
+                },
+            },
+            'task_id':
+                task_pack.pack_run_result_key(run_result.key),
         },
-        'task_id': task_pack.pack_run_result_key(run_result.key),
-      },
     }
     self.send_response(utils.to_json_encodable(out))
 
