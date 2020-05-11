@@ -3,3 +3,9 @@
 # patterns (e.g. *.ext" matches all paths that end in .ext).
 *_pb2.py
 *_pb2_grpc.py
+*/third_party/*
+*/third_party_local/*
+*/node_modules/*
+# crbug.com/1081197: yapf fails to format this file.
+client/example/payload/hello_🌐.py
+appengine/swarming/ui2/nodejs/*
