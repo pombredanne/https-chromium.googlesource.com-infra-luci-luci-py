@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7d932945_7010ee11",
+        "filename": ".yapfignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T12:30:31Z",
+      "side": 1,
+      "message": "\u003e not deleted?\nI think the TODO has been deleted. Please check it again.\n\n\u003e also could you file an issue to yapf?\ndone https://crbug.com/1081197",
+      "parentUuid": "f817528b_003f6ace",
+      "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c051450_e093f867",
         "filename": ".yapfignore",
         "patchSetId": 3
