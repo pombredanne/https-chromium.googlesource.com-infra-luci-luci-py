@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e36a18e0_bb385662",
+        "filename": "client/auth.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T01:10:53Z",
+      "side": 1,
+      "message": "nit: no need to keep the empty line?",
+      "revId": "6a26fd0cd232772e8e8f7f66bedbc6f6e8a95818",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
