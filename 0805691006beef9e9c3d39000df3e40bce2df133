@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f817528b_003f6ace",
+        "filename": ".yapfignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T12:04:31Z",
+      "side": 1,
+      "message": "not deleted?\n\nalso could you file an issue to yapf?",
+      "parentUuid": "616e77a7_e5bb7af5",
+      "revId": "0805691006beef9e9c3d39000df3e40bce2df133",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c051450_e093f867",
         "filename": ".yapfignore",
         "patchSetId": 3
