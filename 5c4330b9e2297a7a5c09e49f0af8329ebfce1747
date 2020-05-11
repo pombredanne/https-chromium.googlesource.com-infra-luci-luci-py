@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf7f1600_4bed3a97",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T06:08:33Z",
+      "side": 1,
+      "message": "Follow this order?\nhttps://developers.google.com/protocol-buffers/docs/style#file-structure",
+      "revId": "5c4330b9e2297a7a5c09e49f0af8329ebfce1747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "287314c9_b0a54be2",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T06:08:33Z",
+      "side": 1,
+      "message": "period?",
+      "range": {
+        "startLine": 11,
+        "startChar": 36,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "5c4330b9e2297a7a5c09e49f0af8329ebfce1747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
