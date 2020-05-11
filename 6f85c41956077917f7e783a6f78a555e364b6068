@@ -34,6 +34,24 @@
       "revId": "6f85c41956077917f7e783a6f78a555e364b6068",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5af1897_247fda95",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T12:05:49Z",
+      "side": 1,
+      "message": "Sorry, I meant to move this inside get_permission_name.",
+      "parentUuid": "a4a828b5_abae4157",
+      "revId": "6f85c41956077917f7e783a6f78a555e364b6068",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
