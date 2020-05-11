@@ -370,56 +370,61 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.set_as_bot()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
     expected = {
-      u'cmd': u'run',
-      u'manifest': {
-        u'bot_id': u'bot1',
-        u'bot_authenticated_as': u'bot:whitelisted-ip',
-        u'caches': [],
-        u'cipd_input': {
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
-            u'version': u'git_revision:deadbeef',
-          },
-          u'packages': [{
-            u'package_name': u'rm',
-            u'path': u'bin',
-            u'version': u'git_revision:deadbeef',
-          }],
-          u'server': u'https://pool.config.cipd.example.com',
+        u'cmd': u'run',
+        u'manifest': {
+            u'bot_id': u'bot1',
+            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'caches': [],
+            u'cipd_input': {
+                u'client_package': {
+                    u'package_name': u'infra/tools/cipd/${platform}',
+                    u'path': None,
+                    u'version': u'git_revision:deadbeef',
+                },
+                u'packages': [{
+                    u'package_name': u'rm',
+                    u'path': u'bin',
+                    u'version': u'git_revision:deadbeef',
+                }],
+                u'server': u'https://pool.config.cipd.example.com',
+            },
+            u'command': [u'python', u'run_test.py'],
+            u'containment': {
+                u'lower_priority': True,
+                u'containment_type': 2,
+                u'limit_processes': 1000,
+                u'limit_total_committed_memory': 1024**3,
+            },
+            u'relative_cwd': u'de/ep',
+            u'dimensions': {
+                u'os': [u'Amiga'],
+                u'pool': [u'default'],
+            },
+            u'env': {},
+            u'env_prefixes': {},
+            u'extra_args': [],
+            u'grace_period': 30,
+            u'hard_timeout': 3600,
+            u'host': u'http://localhost:8080',
+            u'isolated': {
+                u'input': None,
+                u'namespace': u'default-gzip',
+                u'server': u'https://pool.config.isolate.example.com',
+            },
+            u'secret_bytes': None,
+            u'resultdb': {},
+            u'io_timeout': 1200,
+            u'outputs': [u'foo', u'path/to/foobar'],
+            u'service_accounts': {
+                u'system': {
+                    u'service_account': u'none'
+                },
+                u'task': {
+                    u'service_account': u'none'
+                },
+            },
+            u'task_id': task_id,
         },
-        u'command': [u'python', u'run_test.py'],
-        u'containment': {
-          u'lower_priority': True,
-          u'containment_type': 2,
-          u'limit_processes': 1000,
-          u'limit_total_committed_memory': 1024**3,
-        },
-        u'relative_cwd': u'de/ep',
-        u'dimensions': {
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
-        },
-        u'env': {},
-        u'env_prefixes': {},
-        u'extra_args': [],
-        u'grace_period': 30,
-        u'hard_timeout': 3600,
-        u'host': u'http://localhost:8080',
-        u'isolated': {
-          u'input': None,
-          u'namespace': u'default-gzip',
-          u'server': u'https://pool.config.isolate.example.com',
-        },
-        u'secret_bytes': None,
-        u'io_timeout': 1200,
-        u'outputs': [u'foo', u'path/to/foobar'],
-        u'service_accounts': {
-          u'system': {u'service_account': u'none'},
-          u'task': {u'service_account': u'none'},
-        },
-        u'task_id': task_id,
-      },
     }
     self.assertEqual(expected, response)
 
@@ -442,56 +447,61 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.set_as_bot()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
     expected = {
-      u'cmd': u'run',
-      u'manifest': {
-        u'bot_id': u'bot1',
-        u'bot_authenticated_as': u'bot:whitelisted-ip',
-        u'caches': [],
-        u'cipd_input': {
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
-            u'version': u'git_revision:deadbeef',
-          },
-          u'packages': [{
-            u'package_name': u'rm',
-            u'path': u'bin',
-            u'version': u'git_revision:deadbeef',
-          }],
-          u'server': u'https://pool.config.cipd.example.com',
+        u'cmd': u'run',
+        u'manifest': {
+            u'bot_id': u'bot1',
+            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'caches': [],
+            u'cipd_input': {
+                u'client_package': {
+                    u'package_name': u'infra/tools/cipd/${platform}',
+                    u'path': None,
+                    u'version': u'git_revision:deadbeef',
+                },
+                u'packages': [{
+                    u'package_name': u'rm',
+                    u'path': u'bin',
+                    u'version': u'git_revision:deadbeef',
+                }],
+                u'server': u'https://pool.config.cipd.example.com',
+            },
+            u'command': [u'python', u'run_test.py'],
+            u'containment': {
+                u'lower_priority': True,
+                u'containment_type': 2,
+                u'limit_processes': 1000,
+                u'limit_total_committed_memory': 1024**3,
+            },
+            u'relative_cwd': None,
+            u'dimensions': {
+                u'os': [u'Amiga'],
+                u'pool': [u'default'],
+            },
+            u'env': {},
+            u'env_prefixes': {},
+            u'extra_args': [],
+            u'grace_period': 30,
+            u'hard_timeout': 3600,
+            u'host': u'http://localhost:8080',
+            u'isolated': {
+                u'input': None,
+                u'namespace': u'default-gzip',
+                u'server': u'https://pool.config.isolate.example.com',
+            },
+            u'secret_bytes': None,
+            u'resultdb': {},
+            u'io_timeout': 1200,
+            u'outputs': [u'foo', u'path/to/foobar'],
+            u'service_accounts': {
+                u'system': {
+                    u'service_account': u'none'
+                },
+                u'task': {
+                    u'service_account': u'bot'
+                },
+            },
+            u'task_id': task_id,
         },
-        u'command': [u'python', u'run_test.py'],
-        u'containment': {
-          u'lower_priority': True,
-          u'containment_type': 2,
-          u'limit_processes': 1000,
-          u'limit_total_committed_memory': 1024**3,
-        },
-        u'relative_cwd': None,
-        u'dimensions': {
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
-        },
-        u'env': {},
-        u'env_prefixes': {},
-        u'extra_args': [],
-        u'grace_period': 30,
-        u'hard_timeout': 3600,
-        u'host': u'http://localhost:8080',
-        u'isolated': {
-          u'input': None,
-          u'namespace': u'default-gzip',
-          u'server': u'https://pool.config.isolate.example.com',
-        },
-        u'secret_bytes': None,
-        u'io_timeout': 1200,
-        u'outputs': [u'foo', u'path/to/foobar'],
-        u'service_accounts': {
-          u'system': {u'service_account': u'none'},
-          u'task': {u'service_account': u'bot'},
-        },
-        u'task_id': task_id,
-      },
     }
     self.assertEqual(expected, response)
 
@@ -511,62 +521,65 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.set_as_bot()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
     expected = {
-      u'cmd': u'run',
-      u'manifest': {
-        u'bot_id': u'bot1',
-        u'bot_authenticated_as': u'bot:whitelisted-ip',
-        u'caches': [
-          {
-            u'hint': '-1',
-            u'name': u'git_infra',
-            u'path': u'git_cache',
-          },
-        ],
-        u'cipd_input': {
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
-            u'version': u'git_revision:deadbeef',
-          },
-          u'packages': [{
-            u'package_name': u'rm',
-            u'path': u'bin',
-            u'version': u'git_revision:deadbeef',
-          }],
-          u'server': u'https://pool.config.cipd.example.com',
+        u'cmd': u'run',
+        u'manifest': {
+            u'bot_id': u'bot1',
+            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'caches': [{
+                u'hint': '-1',
+                u'name': u'git_infra',
+                u'path': u'git_cache',
+            },],
+            u'cipd_input': {
+                u'client_package': {
+                    u'package_name': u'infra/tools/cipd/${platform}',
+                    u'path': None,
+                    u'version': u'git_revision:deadbeef',
+                },
+                u'packages': [{
+                    u'package_name': u'rm',
+                    u'path': u'bin',
+                    u'version': u'git_revision:deadbeef',
+                }],
+                u'server': u'https://pool.config.cipd.example.com',
+            },
+            u'command': [u'python', u'run_test.py'],
+            u'containment': {
+                u'lower_priority': True,
+                u'containment_type': 2,
+                u'limit_processes': 1000,
+                u'limit_total_committed_memory': 1024**3,
+            },
+            u'relative_cwd': None,
+            u'dimensions': {
+                u'os': [u'Amiga'],
+                u'pool': [u'default'],
+            },
+            u'env': {},
+            u'env_prefixes': {},
+            u'extra_args': [],
+            u'grace_period': 30,
+            u'hard_timeout': 3600,
+            u'host': u'http://localhost:8080',
+            u'isolated': {
+                u'input': None,
+                u'namespace': u'default-gzip',
+                u'server': u'https://pool.config.isolate.example.com',
+            },
+            u'io_timeout': 1200,
+            u'outputs': [u'foo', u'path/to/foobar'],
+            u'secret_bytes': None,
+            u'resultdb': {},
+            u'service_accounts': {
+                u'system': {
+                    u'service_account': u'none'
+                },
+                u'task': {
+                    u'service_account': u'none'
+                },
+            },
+            u'task_id': task_id,
         },
-        u'command': [u'python', u'run_test.py'],
-        u'containment': {
-          u'lower_priority': True,
-          u'containment_type': 2,
-          u'limit_processes': 1000,
-          u'limit_total_committed_memory': 1024**3,
-        },
-        u'relative_cwd': None,
-        u'dimensions': {
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
-        },
-        u'env': {},
-        u'env_prefixes': {},
-        u'extra_args': [],
-        u'grace_period': 30,
-        u'hard_timeout': 3600,
-        u'host': u'http://localhost:8080',
-        u'isolated': {
-          u'input': None,
-          u'namespace': u'default-gzip',
-          u'server': u'https://pool.config.isolate.example.com',
-        },
-        u'io_timeout': 1200,
-        u'outputs': [u'foo', u'path/to/foobar'],
-        u'secret_bytes': None,
-        u'service_accounts': {
-          u'system': {u'service_account': u'none'},
-          u'task': {u'service_account': u'none'},
-        },
-        u'task_id': task_id,
-      },
     }
     self.assertEqual(expected, response)
 
@@ -636,56 +649,61 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.set_as_bot()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
     expected = {
-      u'cmd': u'run',
-      u'manifest': {
-        u'bot_id': u'bot1',
-        u'bot_authenticated_as': u'bot:whitelisted-ip',
-        u'caches': [],
-        u'cipd_input': {
-          u'client_package': {
-            u'package_name': u'infra/tools/cipd/${platform}',
-            u'path': None,
-            u'version': u'git_revision:deadbeef',
-          },
-          u'packages': [{
-            u'package_name': u'rm',
-            u'path': u'bin',
-            u'version': u'git_revision:deadbeef',
-          }],
-          u'server': u'https://pool.config.cipd.example.com',
+        u'cmd': u'run',
+        u'manifest': {
+            u'bot_id': u'bot1',
+            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'caches': [],
+            u'cipd_input': {
+                u'client_package': {
+                    u'package_name': u'infra/tools/cipd/${platform}',
+                    u'path': None,
+                    u'version': u'git_revision:deadbeef',
+                },
+                u'packages': [{
+                    u'package_name': u'rm',
+                    u'path': u'bin',
+                    u'version': u'git_revision:deadbeef',
+                }],
+                u'server': u'https://pool.config.cipd.example.com',
+            },
+            u'command': [],
+            u'containment': {
+                u'lower_priority': True,
+                u'containment_type': 2,
+                u'limit_processes': 1000,
+                u'limit_total_committed_memory': 1024**3,
+            },
+            u'relative_cwd': None,
+            u'dimensions': {
+                u'os': [u'Amiga'],
+                u'pool': [u'default'],
+            },
+            u'env': {},
+            u'env_prefixes': {},
+            u'extra_args': [],
+            u'hard_timeout': 3600,
+            u'grace_period': 30,
+            u'host': u'http://localhost:8080',
+            u'isolated': {
+                u'input': u'0123456789012345678901234567890123456789',
+                u'server': u'http://localhost:1',
+                u'namespace': u'default-gzip',
+            },
+            u'secret_bytes': None,
+            u'resultdb': {},
+            u'io_timeout': 1200,
+            u'outputs': [u'foo', u'path/to/foobar'],
+            u'service_accounts': {
+                u'system': {
+                    u'service_account': u'none'
+                },
+                u'task': {
+                    u'service_account': u'none'
+                },
+            },
+            u'task_id': task_id,
         },
-        u'command': [],
-        u'containment': {
-          u'lower_priority': True,
-          u'containment_type': 2,
-          u'limit_processes': 1000,
-          u'limit_total_committed_memory': 1024**3,
-        },
-        u'relative_cwd': None,
-        u'dimensions': {
-          u'os': [u'Amiga'],
-          u'pool': [u'default'],
-        },
-        u'env': {},
-        u'env_prefixes': {},
-        u'extra_args': [],
-        u'hard_timeout': 3600,
-        u'grace_period': 30,
-        u'host': u'http://localhost:8080',
-        u'isolated': {
-          u'input': u'0123456789012345678901234567890123456789',
-          u'server': u'http://localhost:1',
-          u'namespace': u'default-gzip',
-        },
-        u'secret_bytes': None,
-        u'io_timeout': 1200,
-        u'outputs': [u'foo', u'path/to/foobar'],
-        u'service_accounts': {
-          u'system': {u'service_account': u'none'},
-          u'task': {u'service_account': u'none'},
-        },
-        u'task_id': task_id,
-      },
     }
     self.assertEqual(expected, response)
 
