@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a725554b_e021d6af",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T12:45:50Z",
+      "side": 1,
+      "message": "drop?",
+      "range": {
+        "startLine": 21,
+        "startChar": 30,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "beeeb2a361ccaf5895bff560d143419d6a90aaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
