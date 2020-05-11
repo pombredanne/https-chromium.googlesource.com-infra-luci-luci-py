@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5d06889c_b0b0433c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T02:07:06Z",
+      "side": 1,
+      "message": "this was stale only when `s and s.valid_until_ts \u003c now`?\nbut this path run when `not s` case too?",
+      "parentUuid": "986c38dc_179ad4ec",
+      "range": {
+        "startLine": 412,
+        "startChar": 17,
+        "endLine": 412,
+        "endChar": 26
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0d00ec2_87364cec",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I can, but why? there are other logs that use \u0027\\n\u0027",
       "parentUuid": "d0d00ec2_87364cec",
+      "range": {
+        "startLine": 985,
+        "startChar": 65,
+        "endLine": 985,
+        "endChar": 67
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7886b4d_20208a49",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T02:07:06Z",
+      "side": 1,
+      "message": "I think using \u0027\\n\u0027 in log is not so good generally. This may not be shown as intentional or consistent depends on the length of bot_id.\nAlso log collector may not handle \u0027\\n\u0027 well if we stop using GAE v1.",
+      "parentUuid": "1f31face_f9b79f51",
       "range": {
         "startLine": 985,
         "startChar": 65,
