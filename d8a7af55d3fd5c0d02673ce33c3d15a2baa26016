@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04a885fb_ca2b5a12",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T05:33:31Z",
+      "side": 1,
+      "message": "is it better to write function that dynamically convert enum to permission?",
+      "revId": "d8a7af55d3fd5c0d02673ce33c3d15a2baa26016",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec6a540f_c75e5e7e",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T05:33:31Z",
+      "side": 1,
+      "message": "I think we don\u0027t need to have this.",
+      "revId": "d8a7af55d3fd5c0d02673ce33c3d15a2baa26016",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
