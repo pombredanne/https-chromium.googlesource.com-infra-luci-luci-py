@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "986c38dc_179ad4ec",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T01:59:09Z",
+      "side": 1,
+      "message": "What do you mean?\n\nBtw, I did s/TaskDimension/TaskDimensionsSet/",
+      "parentUuid": "7f13ac28_28452975",
+      "range": {
+        "startLine": 412,
+        "startChar": 17,
+        "endLine": 412,
+        "endChar": 26
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0d00ec2_87364cec",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-05-11T01:51:43Z",
       "side": 1,
       "message": "remove this or use debug twice?",
+      "range": {
+        "startLine": 985,
+        "startChar": 65,
+        "endLine": 985,
+        "endChar": 67
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f31face_f9b79f51",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T01:59:09Z",
+      "side": 1,
+      "message": "I can, but why? there are other logs that use \u0027\\n\u0027",
+      "parentUuid": "d0d00ec2_87364cec",
       "range": {
         "startLine": 985,
         "startChar": 65,
