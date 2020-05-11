@@ -16,6 +16,24 @@
       "revId": "6a884964d7ac67fc156b858f7b8a382083d60692",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de6f5bbc_7fc0530a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T01:04:32Z",
+      "side": 1,
+      "message": "This is to prevent collecting information from unintentional users.\nLet me remove existing usage and enable this only in bot.",
+      "parentUuid": "5bea7d67_b1e8e572",
+      "revId": "6a884964d7ac67fc156b858f7b8a382083d60692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
