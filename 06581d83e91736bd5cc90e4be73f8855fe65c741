@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3905036_a36b3e8f",
+        "filename": ".yapfignore",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T12:36:54Z",
+      "side": 1,
+      "message": "leave link to yapf issue?",
+      "revId": "06581d83e91736bd5cc90e4be73f8855fe65c741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
