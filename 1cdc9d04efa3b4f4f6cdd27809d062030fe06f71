@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "34cf8681_641bb11a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T02:20:09Z",
+      "side": 1,
+      "message": "Ah, I see. changed the else to \"elif s\".",
+      "parentUuid": "5d06889c_b0b0433c",
+      "range": {
+        "startLine": 412,
+        "startChar": 17,
+        "endLine": 412,
+        "endChar": 26
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0d00ec2_87364cec",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 3
@@ -141,6 +165,30 @@
       "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d031bf6c_f7054062",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T02:20:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a7886b4d_20208a49",
+      "range": {
+        "startLine": 985,
+        "startChar": 65,
+        "endLine": 985,
+        "endChar": 67
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
