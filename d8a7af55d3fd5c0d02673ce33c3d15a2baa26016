@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "8663a076_76279294",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T06:29:32Z",
+      "side": 1,
+      "message": "I think we can write conversion function from permission name to enum or vice versa.\nUse that in test for this map.",
+      "parentUuid": "89b621f6_7b5b9af9",
+      "revId": "d8a7af55d3fd5c0d02673ce33c3d15a2baa26016",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec6a540f_c75e5e7e",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 4
