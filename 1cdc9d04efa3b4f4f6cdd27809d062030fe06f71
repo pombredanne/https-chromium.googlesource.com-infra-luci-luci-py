@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f13ac28_28452975",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T01:51:43Z",
+      "side": 1,
+      "message": "check |s|?",
+      "range": {
+        "startLine": 412,
+        "startChar": 17,
+        "endLine": 412,
+        "endChar": 26
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0d00ec2_87364cec",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-11T01:51:43Z",
+      "side": 1,
+      "message": "remove this or use debug twice?",
+      "range": {
+        "startLine": 985,
+        "startChar": 65,
+        "endLine": 985,
+        "endChar": 67
+      },
+      "revId": "1cdc9d04efa3b4f4f6cdd27809d062030fe06f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
