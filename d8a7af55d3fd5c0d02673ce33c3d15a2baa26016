@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "9cac44bb_545d2623",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-11T08:29:43Z",
+      "side": 1,
+      "message": "\u003e Use that in test for this map.\n\nI implemented a function to generate string name from a enum value as you proposed.",
+      "parentUuid": "8663a076_76279294",
+      "revId": "d8a7af55d3fd5c0d02673ce33c3d15a2baa26016",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec6a540f_c75e5e7e",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 4
