@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0399770_b89d422c",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-12T00:51:38Z",
+      "side": 1,
+      "message": "Thanks, changed the subjects to plurals.",
+      "parentUuid": "004540f3_2509240e",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "beeeb2a361ccaf5895bff560d143419d6a90aaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "240221d5_700a276a",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "beeeb2a361ccaf5895bff560d143419d6a90aaf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e078534_2ec560a4",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-12T00:51:38Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "240221d5_700a276a",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "beeeb2a361ccaf5895bff560d143419d6a90aaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
