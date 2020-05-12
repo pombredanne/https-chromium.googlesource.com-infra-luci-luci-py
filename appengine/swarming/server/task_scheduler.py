@@ -24,10 +24,12 @@ from components import utils
 
 import ts_mon_metrics
 
+from proto.config import realms_pb2
 from server import bot_management
 from server import config
 from server import external_scheduler
 from server import pools_config
+from server import realms
 from server import service_accounts
 from server import task_pack
 from server import task_queues
@@ -1086,6 +1088,30 @@ def check_schedule_request_acl(request):
   pool = request.pool
   pool_cfg = pools_config.get_pool_config(pool)
 
+  # 'swarming.pools.createTask'
+  perm = realms.get_permission_name(
+      realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
+
+  if realms.is_enforced_permission(
+      realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK, pool_cfg):
+    # check only Realm ACLs.
+    return auth.has_permission(perm, [pools_cfg.realm])
+
+  legach_check_result = True
+  try:
+    _legach_check_schedule_request_ack(request, pool, pool_cfg)
+  except auth.AuthorizationError:
+    legach_check_result = False
+    raise
+  finally:
+    if pool_cfg.realm:
+      auth.has_permission_dryrun(perm, [pools_cfg.realm], legach_check_result,
+                                 tracking_bug='crbug.com/1066839')
+    else:
+      logging.warning('crbug.com/1066839: missing pool realm. pool: %s', pool)
+
+
+def _legach_check_schedule_request_ack(request, pool, pool_cfg):
   # request.service_account can be 'bot' or 'none'. We don't care about these,
   # they are always allowed. We care when the service account is a real email.
   has_service_account = service_accounts.is_service_account(
