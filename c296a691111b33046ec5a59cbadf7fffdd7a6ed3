@@ -46,6 +46,30 @@
       "revId": "c296a691111b33046ec5a59cbadf7fffdd7a6ed3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de3cca40_caef24a4",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-12T02:24:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a54874d1_b2e70e41",
+      "range": {
+        "startLine": 1237,
+        "startChar": 54,
+        "endLine": 1237,
+        "endChar": 56
+      },
+      "revId": "c296a691111b33046ec5a59cbadf7fffdd7a6ed3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
