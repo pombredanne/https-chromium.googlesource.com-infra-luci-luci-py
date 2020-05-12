@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0c1a5e2_b25dc2c9",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-12T04:16:04Z",
+      "side": 1,
+      "message": "I think complete URL is better.\nhttps://chromium.googlesource.com/infra/luci/luci-go/+/HEAD/server/auth/service/protocol/components/auth/proto/realms.proto",
+      "range": {
+        "startLine": 119,
+        "startChar": 14,
+        "endLine": 119,
+        "endChar": 59
+      },
+      "revId": "743de280352ef8d373db37036744b8df6f272c6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
