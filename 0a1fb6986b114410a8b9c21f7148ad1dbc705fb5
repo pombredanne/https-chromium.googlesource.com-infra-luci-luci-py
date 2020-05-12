@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c263af3f_4d3a3cbf",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-12T00:50:01Z",
+      "side": 1,
+      "message": "Do you think it\u0027s necessary to add the unit? e.g.\n\ndeadline\u003d60)  # seconds",
+      "range": {
+        "startLine": 641,
+        "startChar": 6,
+        "endLine": 641,
+        "endChar": 18
+      },
+      "revId": "0a1fb6986b114410a8b9c21f7148ad1dbc705fb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
