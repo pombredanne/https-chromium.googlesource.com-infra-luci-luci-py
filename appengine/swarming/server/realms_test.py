@@ -69,6 +69,9 @@ class RealmsTest(test_case.TestCase):
     self.assertEqual(expected, realms.is_enforced_permission(
         realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK, pool_cfg))
 
+  def test_can_create_task_in_pool(self):
+    pass
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
