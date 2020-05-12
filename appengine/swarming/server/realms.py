@@ -2,8 +2,14 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import logging
+
+from components import auth
+
 from proto.config import realms_pb2
 from server import config
+from server import pools_config
+from server import task_scheduler
 
 
 def get_permission_name(enum_permission):
@@ -43,3 +49,56 @@ def is_enforced_permission(perm, pool_cfg=None):
   if pool_cfg and perm in pool_cfg.enforced_realm_permissions:
     return True
   return perm in config.settings().auth.enforced_realm_permissions
+
+
+def can_create_task_in_pool(task_request):
+  """ Checks if the caller can create in the pool.
+
+  If the realm permission check is enforced,
+    just call auth.has_permission()
+
+  If it's legacy-compatible,
+    call the legacy task_scheduler.check_schedule_request_acl() and compre
+    the legacy result with the realm permission check using
+    auth.has_permission_dryrun()
+    Note that the legacy check function raises exception, which also will be
+    re-raised from this function.
+
+  Args:
+    task_request: TaskRequest
+
+  Returns:
+    bool: True if it's allowed,
+          False otherwise (enforced mode only)
+
+  Raises:
+    auth.AuthorizationError (legacy-compatible mode only)
+
+  """
+  pool = task_request.pool
+  pool_cfg = pools_config.get_pool_config(pool)
+
+  # 'swarming.pools.createTask'
+  perm = get_permission_name(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
+
+  if is_enforced_permission(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK,
+                            pool_cfg):
+    # check only Realm ACLs.
+    return auth.has_permission(perm, [pool_cfg.realm])
+
+  legacy_check_result = True
+  try:
+    task_scheduler.check_schedule_request_acl(task_request)
+  except auth.AuthorizationError:
+    legacy_check_result = False
+    raise  # re-raise the exception
+  finally:
+    if pool_cfg and pool_cfg.realm:
+      auth.has_permission_dryrun(
+          perm, [pool_cfg.realm],
+          legacy_check_result,
+          tracking_bug='crbug.com/1066839')
+    else:
+      logging.warning('crbug.com/1066839: missing pool realm. pool: %s', pool)
+
+  return legacy_check_result
