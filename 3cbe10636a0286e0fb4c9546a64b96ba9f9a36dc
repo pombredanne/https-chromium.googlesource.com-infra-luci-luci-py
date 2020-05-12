@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1473f53_a8019c4f",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-12T13:11:16Z",
+      "side": 1,
+      "message": "remove this space?",
+      "range": {
+        "startLine": 55,
+        "startChar": 5,
+        "endLine": 55,
+        "endChar": 6
+      },
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d427b1c_24b7d51d",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-12T13:11:16Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 61,
+        "startChar": 68,
+        "endLine": 61,
+        "endChar": 74
+      },
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32955dcc_4e110d2b",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-12T13:11:16Z",
+      "side": 1,
+      "message": "I think parametrizing this decreases readability.\ngo/tott/479",
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4df3feac_8e431578",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-12T13:11:16Z",
+      "side": 1,
+      "message": "better to use mock module for this?",
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
