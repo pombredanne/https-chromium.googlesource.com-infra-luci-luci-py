@@ -22,6 +22,30 @@
       "revId": "e2035bb6ede52aed6a50045b6d7cf617e7c1b169",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76801d3b_fc0c402b",
+        "filename": ".yapfignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-12T08:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c222f8be_4d9d77e7",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "e2035bb6ede52aed6a50045b6d7cf617e7c1b169",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
