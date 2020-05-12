@@ -22,6 +22,30 @@
       "revId": "c296a691111b33046ec5a59cbadf7fffdd7a6ed3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a54874d1_b2e70e41",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-12T02:22:48Z",
+      "side": 1,
+      "message": "This flag reports exception to isolate server.\nand exception will be appeared in\nhttps://pantheon.corp.google.com/errors?time\u003dPT6H\u0026order\u003dCOUNT_DESC\u0026resolution\u003dOPEN\u0026resolution\u003dACKNOWLEDGED\u0026project\u003disolateserver",
+      "parentUuid": "f493220b_2952f510",
+      "range": {
+        "startLine": 1237,
+        "startChar": 54,
+        "endLine": 1237,
+        "endChar": 56
+      },
+      "revId": "c296a691111b33046ec5a59cbadf7fffdd7a6ed3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
