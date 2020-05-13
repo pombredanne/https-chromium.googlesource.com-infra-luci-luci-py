@@ -123,6 +123,24 @@
       "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "712680ef_7fe5f157",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T07:55:41Z",
+      "side": 1,
+      "message": "Done. Note that I also removed sorted() since order is not important.",
+      "parentUuid": "91f6c7b0_4f958f4d",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
