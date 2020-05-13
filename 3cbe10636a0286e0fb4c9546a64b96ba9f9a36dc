@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2d9c26c1_ed77647a",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T00:54:40Z",
+      "side": 1,
+      "message": "Done\n\nWill remove other spaces in this file in another CL.",
+      "parentUuid": "c1473f53_a8019c4f",
+      "range": {
+        "startLine": 55,
+        "startChar": 5,
+        "endLine": 55,
+        "endChar": 6
+      },
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d427b1c_24b7d51d",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8eac9277_a64c2b63",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T00:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d427b1c_24b7d51d",
+      "range": {
+        "startLine": 61,
+        "startChar": 68,
+        "endLine": 61,
+        "endChar": 74
+      },
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32955dcc_4e110d2b",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 10
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "68771381_a8bb8138",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T00:54:40Z",
+      "side": 1,
+      "message": "Ok, will separate the tests to be readable.",
+      "parentUuid": "32955dcc_4e110d2b",
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4df3feac_8e431578",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 10
@@ -79,6 +145,24 @@
       "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e115e797_1928d877",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T00:54:40Z",
+      "side": 1,
+      "message": "Indeed, mock library simplified the tests.",
+      "parentUuid": "4df3feac_8e431578",
+      "revId": "3cbe10636a0286e0fb4c9546a64b96ba9f9a36dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
