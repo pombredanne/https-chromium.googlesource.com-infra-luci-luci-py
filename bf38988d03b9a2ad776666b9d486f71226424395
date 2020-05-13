@@ -105,6 +105,24 @@
       "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f6c7b0_4f958f4d",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T07:50:49Z",
+      "side": 1,
+      "message": "ah, then could you use\nhttps://six.readthedocs.io/#six.assertCountEqual\n?",
+      "parentUuid": "1f7ca43b_28361196",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
