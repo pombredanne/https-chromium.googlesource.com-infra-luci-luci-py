@@ -802,6 +802,10 @@ class TaskChannel(object):
       raise StopIteration()
     assert False, 'Impossible queue item type: %r' % item_type
 
+  def __next__(self):
+    # For python3 compatibility
+    return self.next()
+
   def wrap_task(self, task):
     """Decorator that makes a function push results into this channel."""
     @functools.wraps(task)
