@@ -34,6 +34,24 @@
       "revId": "a2dbead4cd9a92c604d74d684e71b22f7239ef18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5617854_c0f6f7e8",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T07:59:57Z",
+      "side": 1,
+      "message": "PTAL, I think this is the right style now?",
+      "parentUuid": "1dab4d30_1a0b6d6b",
+      "revId": "a2dbead4cd9a92c604d74d684e71b22f7239ef18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
