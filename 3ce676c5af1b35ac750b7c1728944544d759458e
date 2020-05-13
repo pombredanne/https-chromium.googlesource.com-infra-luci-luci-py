@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59922046_277bdb8c",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T04:07:36Z",
+      "side": 1,
+      "message": "I think it is better to stop using parametrized and use helper function for the code around L81~L90 here.",
+      "revId": "3ce676c5af1b35ac750b7c1728944544d759458e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1529a970_e2dc1c1c",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T04:07:36Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "3ce676c5af1b35ac750b7c1728944544d759458e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
