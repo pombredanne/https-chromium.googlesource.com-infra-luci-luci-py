@@ -70,6 +70,24 @@
       "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "224c5759_eb79d10e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T04:33:06Z",
+      "side": 1,
+      "message": "I\u0027m fine to skip most of test in python3 if this fix is covered by some.",
+      "parentUuid": "a85139ea_c4e290a0",
+      "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
