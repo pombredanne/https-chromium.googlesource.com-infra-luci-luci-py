@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "477a5a3b_8d39c7bd",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T06:46:28Z",
+      "side": 1,
+      "message": "could you enable python3 test taking this path too?",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "483cb460_fd4000f5",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T06:46:28Z",
+      "side": 1,
+      "message": "Can we use\nhttps://docs.python.org/2.7/library/unittest.html#unittest.TestCase.assertItemsEqual\ninstead?\n`self.assertEqual(range(-31,1), results)`",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
