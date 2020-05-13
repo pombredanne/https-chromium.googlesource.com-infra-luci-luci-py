@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dab4d30_1a0b6d6b",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T07:57:11Z",
+      "side": 1,
+      "message": "six is not standard package?",
+      "revId": "a2dbead4cd9a92c604d74d684e71b22f7239ef18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
