@@ -16,6 +16,24 @@
       "revId": "63fbc43c055505d2982ce77639da57497b1e4b35",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b55e9b2_412af320",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T08:11:06Z",
+      "side": 1,
+      "message": "Honestly i don\u0027t know if there\u0027s a consistent style: http://google3/third_party/py/swarming/client/utils/threading_utils.py?l\u003d16-21\u0026rcl\u003d302817080",
+      "parentUuid": "07ac4545_26f07509",
+      "revId": "63fbc43c055505d2982ce77639da57497b1e4b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
