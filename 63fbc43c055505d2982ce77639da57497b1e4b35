@@ -52,6 +52,24 @@
       "revId": "63fbc43c055505d2982ce77639da57497b1e4b35",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eff57952_2f9d136a",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T08:54:23Z",
+      "side": 1,
+      "message": "Done. \n\nFYI i tried to run `git cl format --python --full tests/threading_utils_test.py`. It created lots of differences, but didn\u0027t reorder the import automatically. I guess this is not part of yapf?",
+      "parentUuid": "ea8dcd53_c861c561",
+      "revId": "63fbc43c055505d2982ce77639da57497b1e4b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
