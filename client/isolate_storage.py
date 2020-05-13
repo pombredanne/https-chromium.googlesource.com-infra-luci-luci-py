@@ -51,6 +51,13 @@ DOWNLOAD_READ_TIMEOUT = 60
 _grpc_proxy = None
 
 
+def _decode_bytes_on_python3(data):
+  """This function decodes bytes type on python3."""
+  if isinstance(data, bytes) and sys.version_info.major == 3:
+    return data.decode('utf-8')
+  return data
+
+
 class ServerRef(object):
   """ServerRef is a reference to the remote cache.
 
@@ -566,7 +573,8 @@ class IsolateServer(StorageApi):
     # https://cloud.google.com/storage/docs/xml-api/reference-headers#xgooghash
     goog_hash = response.headers.get('x-goog-hash')
     assert goog_hash, response.headers
-    md5_x_goog_hash = 'md5=' + base64.b64encode(hashlib.md5(content).digest())
+    md5_x_goog_hash = 'md5=' + _decode_bytes_on_python3(
+        base64.b64encode(hashlib.md5(content).digest()))
     return md5_x_goog_hash in goog_hash
 
 
