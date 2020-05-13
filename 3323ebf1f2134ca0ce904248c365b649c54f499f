@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "98b36fca_891c459f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T06:06:45Z",
+      "side": 1,
+      "message": "Could you use skipIf for such test?\nhttps://docs.python.org/3/library/unittest.html#unittest.skipIf\n\nI\u0027d like to prevent future regression as far as possible.",
+      "parentUuid": "bebc3e23_6858acbf",
+      "revId": "3323ebf1f2134ca0ce904248c365b649c54f499f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c713b38_7df827c2",
         "filename": "client/isolate_storage.py",
         "patchSetId": 3
