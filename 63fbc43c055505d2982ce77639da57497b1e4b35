@@ -34,6 +34,24 @@
       "revId": "63fbc43c055505d2982ce77639da57497b1e4b35",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea8dcd53_c861c561",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T08:17:21Z",
+      "side": 1,
+      "message": "That is sad, but I\u0027d like to ensure that new code follow our style as far as possible.\nhttps://chromium.googlesource.com/chromium/src/+/master/styleguide/python/python.md",
+      "parentUuid": "0b55e9b2_412af320",
+      "revId": "63fbc43c055505d2982ce77639da57497b1e4b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
