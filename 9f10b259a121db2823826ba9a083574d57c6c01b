@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a654b1aa_77889ec2",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-13T00:59:47Z",
+      "side": 1,
+      "message": "SGTM, I also think returning exceptions is better in this case.",
+      "parentUuid": "d46dafa7_242e8cb3",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13a78a6e_8ef2713b",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 11
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I see. The original function checks two ACLs.\n\nShould I compare \n_is_allowed_to_schedule() with has_permission_dryrun(\u0027swarming.pools.createTask\u0027, ...)\nAnd\n_is_allowed_service_account() with has_permission_dryrun(\u0027swarming.tasks.runAs\u0027, ...)\n?",
       "parentUuid": "13a78a6e_8ef2713b",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fefd40ee_f8cbfcd3",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-13T00:59:47Z",
+      "side": 1,
+      "message": "Yes.\n\nThere\u0027s also a third check (swarming.tasks.createInRealm), it has no equivalent in the current Swarming ACLs. We\u0027ll have to figure out how to \"dry run\" it too...",
+      "parentUuid": "ac094d73_274169f0",
       "range": {
         "startLine": 97,
         "startChar": 6,
