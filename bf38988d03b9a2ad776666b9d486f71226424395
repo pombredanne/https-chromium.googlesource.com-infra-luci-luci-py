@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6d7a3b9d_89ee0d6c",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T06:56:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "477a5a3b_8d39c7bd",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "483cb460_fd4000f5",
         "filename": "client/tests/threading_utils_test.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04b7c144_fb84780e",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T06:56:38Z",
+      "side": 1,
+      "message": "Ack, I used https://docs.python.org/2.7/library/unittest.html#unittest.TestCase.assertSequenceEqual, becuase assertItemsEqual ignores the item orders, and is renamed in Py3.",
+      "parentUuid": "483cb460_fd4000f5",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
