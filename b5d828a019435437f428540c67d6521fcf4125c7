@@ -88,6 +88,24 @@
       "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ba681b6_d762b14b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T04:35:12Z",
+      "side": 1,
+      "message": "Actually, here\u0027s the result:\n\nIf I follow jwata@\u0027s advice and change the shebang to vpython3, then running that test with both `python ...` and `vpython ...` succeeded.\n\nWhen I say failed, I explicitly used `python3 ...`.",
+      "parentUuid": "224c5759_eb79d10e",
+      "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
