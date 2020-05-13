@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "7b4cab33_32de9d54",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T03:37:41Z",
+      "side": 1,
+      "message": "\u003e returning exceptions is better in this case.\nI see your point since I also considered it.\nIt\u0027s similar to Go error handling.\n\n\nI think, in many cases\nthe callers of the realm check functions would need to raise exceptions anyway.\n\n\"\"\"\nallowed, err \u003d realms.can_do_something()\nif not allowed:\n  # may customize the exception\n  raise err\n\"\"\"\n\nThis looks redundant in Python. \n\nI think it\u0027s better to always raise auth.AuthorizationError, and a common exception handler\nwill convert them to 403 responses.\n\nIf a caller really wants to handler the exceptions, they can still catch them.",
+      "parentUuid": "a654b1aa_77889ec2",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef145353_ed77847e",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 11
@@ -84,6 +108,24 @@
       "writtenOn": "2020-05-13T02:45:30Z",
       "side": 1,
       "message": "move this just before L97?",
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa371373_704c0b34",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T03:37:41Z",
+      "side": 1,
+      "message": "It\u0027s also used at L87.",
+      "parentUuid": "ef145353_ed77847e",
       "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -149,6 +191,30 @@
       "side": 1,
       "message": "Yes.\n\nThere\u0027s also a third check (swarming.tasks.createInRealm), it has no equivalent in the current Swarming ACLs. We\u0027ll have to figure out how to \"dry run\" it too...",
       "parentUuid": "ac094d73_274169f0",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "370764c5_a3ef44dd",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T03:37:41Z",
+      "side": 1,
+      "message": "\u003e There\u0027s also a third check (swarming.tasks.createInRealm), it has no equivalent in the current Swarming ACLs. We\u0027ll have to figure out how to \"dry run\" it too...\n\nI was thinking to call the dryrun with expected_result\u003dTrue since it\u0027s always accepted in the current configurations.",
+      "parentUuid": "fefd40ee_f8cbfcd3",
       "range": {
         "startLine": 97,
         "startChar": 6,
