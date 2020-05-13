@@ -34,6 +34,24 @@
       "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a85139ea_c4e290a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-13T04:31:14Z",
+      "side": 1,
+      "message": "\u003e can you make the test work on python3?\n\u003e \u003e https://cs.chromium.org/chromium/infra/luci/client/tests/threading_utils_test.py\n\n\u0027test.py\u0027 checks if the shebang include \u0027vpython3\u0027 or not.\nIf a test includes \u0027vpython3\u0027, the test will run in py2 *and* py3.\nPlease change \n\n#!/usr/bin/env vpython\n\nto\n\n#!/usr/bin/env vpython3",
+      "parentUuid": "3f5168c3_3e8a8c71",
+      "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
