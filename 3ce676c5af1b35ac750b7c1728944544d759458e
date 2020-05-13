@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "216949d6_7aa1ed4e",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-13T12:28:34Z",
+      "side": 1,
+      "message": "go/tott/479 says\n\u0027\u0027\u0027\nAvoid parameterized tests if it will make your tests more complicated. As a rule of thumb, don’t use them if it would require adding conditional statements in your test: it should be trivial to check that a test is correct by simple inspection.\n\u0027\u0027\u0027",
+      "parentUuid": "981016f1_0ebaa519",
+      "revId": "3ce676c5af1b35ac750b7c1728944544d759458e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1529a970_e2dc1c1c",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 15
