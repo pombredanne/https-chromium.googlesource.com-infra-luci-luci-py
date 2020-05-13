@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bebc3e23_6858acbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T06:04:55Z",
+      "side": 1,
+      "message": "As i said, threading_utils still has some py3 incompatible features around its queue usage.",
+      "parentUuid": "eaf17c57_7332f65c",
+      "revId": "3323ebf1f2134ca0ce904248c365b649c54f499f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c713b38_7df827c2",
         "filename": "client/isolate_storage.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "3323ebf1f2134ca0ce904248c365b649c54f499f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebcd00ba_cbad057c",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T06:04:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c713b38_7df827c2",
+      "revId": "3323ebf1f2134ca0ce904248c365b649c54f499f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
