@@ -481,6 +481,8 @@ class SwarmingTasksService(remote.Service):
       logging.warning('Incorrect new task request', exc_info=True)
       raise endpoints.BadRequestException(e.message)
 
+    # TODO(crbug.com/1066839): replace check_schedule_request_acl with
+    # realms.can_create_task_in_pool, which internally calls the legacy check.
     # Make sure the caller is actually allowed to schedule the task before
     # asking the token server for a service account token.
     task_scheduler.check_schedule_request_acl(request_obj)
