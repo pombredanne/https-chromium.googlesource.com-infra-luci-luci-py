@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#!/usr/bin/env vpython3
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -508,7 +508,7 @@ class WorkerPoolTest(unittest.TestCase):
       for i in range(32):
         pool.add_task(0, mapper, i)
       results = pool.join()
-    self.assertEqual(range(-31, 1), sorted(results))
+    self.assertSequenceEqual(range(-31, 1), sorted(results))
 
   def test_exception(self):
     class FearsomeException(Exception):
