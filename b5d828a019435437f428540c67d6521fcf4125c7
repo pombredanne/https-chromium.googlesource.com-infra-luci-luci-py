@@ -124,6 +124,24 @@
       "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11614580_ccc93cb9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T04:45:29Z",
+      "side": 1,
+      "message": "Ah i see. Actually i think it\u0027s not hard to fix the rest of the problems. Let me give that a try",
+      "parentUuid": "ebb743d4_bfe54857",
+      "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
