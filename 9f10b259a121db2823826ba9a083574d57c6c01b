@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eef693c_8419df84",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-13T00:39:32Z",
+      "side": 1,
+      "message": "Having two ways to report a result is not great, it will make using this function complicated. Better to either only use exceptions or only use boolean return value.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a78a6e_8ef2713b",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-13T00:39:32Z",
+      "side": 1,
+      "message": "This is not a fair comparison, check_schedule_request_acl does more checks that just checking the user can user the pool. A more correct approach would be to check \"swarming.pools.createTask\" result with the result of _is_allowed_to_schedule(...) from https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1104?q\u003dcheck_schedule_request_acl\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F.\n\nYou may need to break check_schedule_request_acl into two functions (check pool \"scheduler\" ACL and checking allowed_service_accounts ACL).",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "9f10b259a121db2823826ba9a083574d57c6c01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
