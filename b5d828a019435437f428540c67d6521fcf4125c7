@@ -142,6 +142,24 @@
       "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01dc431b_82222b8b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T05:41:22Z",
+      "side": 1,
+      "message": "Take that back. Allow me to focus this CL on making it compatible enough so that it can be ported to google3. Now the test has passed, see https://g3c.corp.google.com/results/invocations;query\u003duser:yekuang/c9f1f232-5d15-442f-bdc0-ee0321af1705/targets/%2F%2Ftesting%2Fswarming%2Fexamples:basic_swarming_test",
+      "parentUuid": "11614580_ccc93cb9",
+      "revId": "b5d828a019435437f428540c67d6521fcf4125c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
