@@ -87,6 +87,24 @@
       "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f7ca43b_28361196",
+        "filename": "client/tests/threading_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-13T07:49:13Z",
+      "side": 1,
+      "message": "Probably not. But again, the naming is different in py2 vs 3. So I\u0027d suggest to just use whatever is the simplest that works.",
+      "parentUuid": "5c39bc6a_d8aea832",
+      "revId": "bf38988d03b9a2ad776666b9d486f71226424395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
