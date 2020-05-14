@@ -125,7 +125,7 @@ def check_pools_create_task(task_request):
 # TODO(crbug.com/1066839): implement and replace the legacy check function
 # with check_tasks_run_as and check_pools_create_task.
 def check_tasks_run_as(_task_request):
-  """Checks if the task service account is allowed to run in the pool.
+  """Checks if the task service account is allowed to run in the task realm.
 
   Realm permission `swarming.tasks.runAs` will be checked,
   using auth.has_permission() or auth.has_permission_dryrun().

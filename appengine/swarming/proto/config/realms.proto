@@ -14,8 +14,22 @@ option go_package = "go.chromium.org/luci/swarming/proto/config;configpb";
 enum RealmPermission {
   REALM_PERMISSION_UNSPECIFIED = 0;
 
+  // Pools permissions
+
   // Permission 'swarming.pools.createTask'
   // This is required to create a task in the pool.
   // It will be checked at the new task API.
-  REALM_PERMISSION_POOLS_CREATE_TASK = 1;
+  REALM_PERMISSION_POOLS_CREATE_TASK = 0x11;
+
+  // Tasks permissions
+
+  // Permission 'swarming.tasks.createInRealm'
+  // This is required to attach the realm to the new task.
+  // It will be checked at the new task API.
+  REALM_PERMISSION_TASKS_CREATE_IN_REALM = 0x21;
+
+  // Permission 'swarming.tasks.runAs'
+  // This is required to use a task service account in the realm.
+  // It will be checked at the new task API.
+  REALM_PERMISSION_TASKS_RUN_AS = 0x22;
 }
