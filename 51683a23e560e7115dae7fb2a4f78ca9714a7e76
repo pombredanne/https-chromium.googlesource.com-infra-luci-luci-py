@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "05b1ad9a_0d47baf0",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-14T02:41:50Z",
+      "side": 1,
+      "message": "Callers specify a pool name in the request. So they already knows the pool name.\nI agree that \"no permission to submit tasks\" doesn\u0027t leak any information.\n\nNote that the current auth error message already leaks why not authorized.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1073?q\u003df:task_scheduler.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\nDon\u0027t these messages leak the reasons intentionally for us to identify mis configurations easily?",
+      "parentUuid": "9cfb7225_f7997b37",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 78
+      },
+      "revId": "51683a23e560e7115dae7fb2a4f78ca9714a7e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d2a8ebf_994ed99e",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 24
@@ -36,6 +60,30 @@
       "writtenOn": "2020-05-14T01:54:09Z",
       "side": 1,
       "message": "We\u0027ll need to change this message as well to be identical to a message returned when there\u0027s no pool.",
+      "range": {
+        "startLine": 105,
+        "startChar": 10,
+        "endLine": 106,
+        "endChar": 74
+      },
+      "revId": "51683a23e560e7115dae7fb2a4f78ca9714a7e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a61b35d2_7d82915a",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-14T02:41:50Z",
+      "side": 1,
+      "message": "ditto\n\nThis is the same message with the one used in the current impl.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1105?q\u003df:task_scheduler.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "4d2a8ebf_994ed99e",
       "range": {
         "startLine": 105,
         "startChar": 10,
