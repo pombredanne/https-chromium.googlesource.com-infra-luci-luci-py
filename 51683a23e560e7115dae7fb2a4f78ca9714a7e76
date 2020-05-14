@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cfb7225_f7997b37",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-14T01:54:09Z",
+      "side": 1,
+      "message": "Once we remove acl.can_create_task() we\u0027ll need to make this error more generic \"unknown pool or have no permission to submit tasks to it\". Otherwise this error message leaks pool names to unauthorized callers.",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 78
+      },
+      "revId": "51683a23e560e7115dae7fb2a4f78ca9714a7e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d2a8ebf_994ed99e",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-14T01:54:09Z",
+      "side": 1,
+      "message": "We\u0027ll need to change this message as well to be identical to a message returned when there\u0027s no pool.",
+      "range": {
+        "startLine": 105,
+        "startChar": 10,
+        "endLine": 106,
+        "endChar": 74
+      },
+      "revId": "51683a23e560e7115dae7fb2a4f78ca9714a7e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
