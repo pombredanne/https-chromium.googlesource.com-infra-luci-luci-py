@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78929670_4e14f224",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-15T01:46:38Z",
+      "side": 1,
+      "message": "I think it is better to assign number in increasing order.\nAlso avoid to change already assigned number as far as possible.\nhttp://shortn/_QgINJOR9gS",
+      "range": {
+        "startLine": 22,
+        "startChar": 39,
+        "endLine": 22,
+        "endChar": 43
+      },
+      "revId": "783cf838850140c5fc7f3c2e46fd326c81e801b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
