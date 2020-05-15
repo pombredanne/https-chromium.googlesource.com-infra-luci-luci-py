@@ -535,6 +535,11 @@ class NewTaskRequest(messages.Message):
   # Configuration of Swarming:ResultDB integration.
   resultdb = messages.MessageField(ResultDBCfg, 17)
 
+  # Task realm
+  # This is used to control who can interact with the task (get, cancel etc),
+  # and allow task service accounts to be used in the realm.
+  realm = messags.StrinfField(18)
+
 class TaskRequest(messages.Message):
   """Description of a task request as registered by the server.
 

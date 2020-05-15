@@ -1146,6 +1146,9 @@ class TaskRequest(ndb.Model):
   # was not enabled for this task.
   resultdb_update_token = ndb.StringProperty(indexed=False)
 
+  # TODO(jwata): add comment
+  realm = ndb.StringProperty()
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
