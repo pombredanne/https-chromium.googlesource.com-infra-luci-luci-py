@@ -679,6 +679,7 @@ class BotPollHandler(_BotBaseHandler):
     # reap failure.
     for i, hint in enumerate(named_caches.get_hints(pool, oses, names)):
       caches[i]['hint'] = str(hint)
+      logging.debug('named cache hint:', caches[i])
 
     out = {
         'cmd': 'run',
