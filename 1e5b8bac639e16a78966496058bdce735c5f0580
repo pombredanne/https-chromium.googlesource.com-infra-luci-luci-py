@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c45248c_8e351a32",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-05-15T15:55:57Z",
+      "side": 1,
+      "message": "i forgot to mention hostname in the doc, just added\nsee also https://pkg.go.dev/go.chromium.org/luci/lucictx?tab\u003ddoc#ResultDB",
+      "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
