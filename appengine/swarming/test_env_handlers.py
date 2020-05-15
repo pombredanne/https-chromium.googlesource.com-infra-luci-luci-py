@@ -59,7 +59,9 @@ class AppTestBase(test_case.TestCase):
             admins_group=admins_group,
             privileged_users_group=priv_users_group,
             users_group=users_group,
-        ))
+        ),
+        resultdb=config_pb2.ResultDBSettings(server='https://test-resultdb-server.com')
+    )
     self.mock(config, '_get_settings', lambda: ('test_rev', cfg))
     utils.clear_cache(config.settings)
 
