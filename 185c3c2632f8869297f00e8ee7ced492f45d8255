@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "494e7926_3b888e2c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-15T09:26:48Z",
+      "side": 1,
+      "message": "done in https://crrev.com/c/2203888",
+      "parentUuid": "5300fe40_47394866",
+      "range": {
+        "startLine": 1221,
+        "startChar": 19,
+        "endLine": 1223,
+        "endChar": 61
+      },
+      "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18b99bb9_e82ca2a8",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "writtenOn": "2020-05-15T07:38:58Z",
       "side": 1,
       "message": "btw, where does this come from? Is it just a random string?",
+      "range": {
+        "startLine": 629,
+        "startChar": 41,
+        "endLine": 629,
+        "endChar": 57
+      },
+      "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0d68127_40d8f3c3",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-15T09:26:48Z",
+      "side": 1,
+      "message": "This comes from\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/task_request.py?l\u003d1403\u0026rcl\u003d474068e3ba2069d1bd2a2acb0708e99a8f668b8a\n\nAnd both time and random are mocked to constant value.",
+      "parentUuid": "18b99bb9_e82ca2a8",
       "range": {
         "startLine": 629,
         "startChar": 41,
@@ -86,6 +134,24 @@
       "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "228a726f_a947793f",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-15T09:26:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75ecbb47_b047bfa8",
+      "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
