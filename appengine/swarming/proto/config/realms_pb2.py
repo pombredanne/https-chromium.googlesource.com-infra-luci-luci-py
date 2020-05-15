@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='swarming.config',
   syntax='proto3',
   serialized_options=_b('Z3go.chromium.org/luci/swarming/proto/config;configpb'),
-  serialized_pb=_b('\n\x0crealms.proto\x12\x0fswarming.config*[\n\x0fRealmPermission\x12 \n\x1cREALM_PERMISSION_UNSPECIFIED\x10\x00\x12&\n\"REALM_PERMISSION_POOLS_CREATE_TASK\x10\x01\x42\x35Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3')
+  serialized_pb=_b('\n\x0crealms.proto\x12\x0fswarming.config*\xaa\x01\n\x0fRealmPermission\x12 \n\x1cREALM_PERMISSION_UNSPECIFIED\x10\x00\x12&\n\"REALM_PERMISSION_POOLS_CREATE_TASK\x10\x11\x12*\n&REALM_PERMISSION_TASKS_CREATE_IN_REALM\x10!\x12!\n\x1dREALM_PERMISSION_TASKS_RUN_AS\x10\"B5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3')
 )
 
 _REALMPERMISSION = _descriptor.EnumDescriptor(
@@ -34,20 +34,30 @@ _REALMPERMISSION = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='REALM_PERMISSION_POOLS_CREATE_TASK', index=1, number=1,
+      name='REALM_PERMISSION_POOLS_CREATE_TASK', index=1, number=17,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='REALM_PERMISSION_TASKS_CREATE_IN_REALM', index=2, number=33,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='REALM_PERMISSION_TASKS_RUN_AS', index=3, number=34,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33,
-  serialized_end=124,
+  serialized_start=34,
+  serialized_end=204,
 )
 _sym_db.RegisterEnumDescriptor(_REALMPERMISSION)
 
 RealmPermission = enum_type_wrapper.EnumTypeWrapper(_REALMPERMISSION)
 REALM_PERMISSION_UNSPECIFIED = 0
-REALM_PERMISSION_POOLS_CREATE_TASK = 1
+REALM_PERMISSION_POOLS_CREATE_TASK = 17
+REALM_PERMISSION_TASKS_CREATE_IN_REALM = 33
+REALM_PERMISSION_TASKS_RUN_AS = 34
 
 
 DESCRIPTOR.enum_types_by_name['RealmPermission'] = _REALMPERMISSION
