@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5300fe40_47394866",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-15T07:53:01Z",
+      "side": 1,
+      "message": "I think I asked the same question in another CL.\nIf there are multiple places to generate the ID, it think it\u0027s worth having a helper.",
+      "parentUuid": "439af236_c5694ccb",
+      "range": {
+        "startLine": 1221,
+        "startChar": 19,
+        "endLine": 1223,
+        "endChar": 61
+      },
+      "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "18b99bb9_e82ca2a8",
         "filename": "appengine/swarming/server/task_scheduler_test.py",
         "patchSetId": 6
