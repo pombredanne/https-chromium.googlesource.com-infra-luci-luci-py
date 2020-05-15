@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a379e46e_0047b095",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-15T00:22:52Z",
+      "side": 1,
+      "message": "vadimsh,\nWould \u0027taskUser\u0027 be more appropriate?",
+      "range": {
+        "startLine": 102,
+        "startChar": 22,
+        "endLine": 102,
+        "endChar": 31
+      },
+      "revId": "eed8bd2d0ee5b88a1a1722c82ca6973a7b620b20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
