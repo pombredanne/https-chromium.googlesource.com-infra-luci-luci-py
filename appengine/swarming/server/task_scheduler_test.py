@@ -311,7 +311,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     """
     self.assertEqual(0, self.execute_tasks())
     request = _gen_request_slices(**kwargs)
-    result_summary = task_scheduler.schedule_request(request, None)
+    result_summary = task_scheduler.schedule_request(request, None, False)
     # State will be either PENDING or COMPLETED (for deduped task)
     self.assertEqual(num_task, self.execute_tasks())
     self.assertEqual(0, self.execute_tasks())
@@ -585,7 +585,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # No capacity, denied. That's the default.
     pub_sub_calls = self.mock_pub_sub()
     request = _gen_request_slices(pubsub_topic='projects/abc/topics/def')
-    result_summary = task_scheduler.schedule_request(request, None)
+    result_summary = task_scheduler.schedule_request(request, None, False)
     self.assertEqual(State.NO_RESOURCE, result_summary.state)
     self.assertEqual(2, self.execute_tasks())
     expected = [
@@ -1531,7 +1531,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Run parent task.
     parent_request = _gen_request_slices()
     parent_result_summary = task_scheduler.schedule_request(
-        parent_request, None)
+        parent_request, None, False)
     self.assertEqual(1, self.execute_tasks())
 
     _, _, parent_run_result = task_scheduler.bot_reap_task(
@@ -1540,7 +1540,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Run a child task.
     child_request = _gen_request_slices(
         parent_task_id=parent_run_result.task_id)
-    child_result_summary = task_scheduler.schedule_request(child_request, None)
+    child_result_summary = task_scheduler.schedule_request(
+        child_request, None, False)
     self.assertEqual(0, self.execute_tasks())
 
     bot2_dimensions = self.bot_dimensions.copy()
@@ -1554,7 +1555,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     child_request2 = _gen_request_slices(
         parent_task_id=parent_run_result.task_id)
     child_result2_summary = task_scheduler.schedule_request(
-        child_request2, None)
+        child_request2, None, False)
     self.assertEqual(0, self.execute_tasks())
 
     bot3_dimensions = self.bot_dimensions.copy()
@@ -1568,7 +1569,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     child_request3 = _gen_request_slices(
         parent_task_id=parent_run_result.task_id)
     child_result3_summary = task_scheduler.schedule_request(
-        child_request3, None)
+        child_request3, None, False)
 
     # Cancel parent task.
     ok, was_running = task_scheduler.cancel_task(
