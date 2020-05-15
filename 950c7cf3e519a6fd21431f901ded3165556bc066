@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1ec6119_56ce7269",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-05-15T16:05:36Z",
+      "side": 1,
+      "message": "this says\n\n  invocation invocations/foobar\n\nwhich stutters. Consider \"Failed to finalize %s\". That\u0027s ResultDB code does.",
+      "range": {
+        "startLine": 51,
+        "startChar": 41,
+        "endLine": 51,
+        "endChar": 55
+      },
+      "revId": "950c7cf3e519a6fd21431f901ded3165556bc066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
