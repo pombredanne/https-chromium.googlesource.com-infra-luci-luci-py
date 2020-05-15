@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18b99bb9_e82ca2a8",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-15T07:38:58Z",
+      "side": 1,
+      "message": "btw, where does this come from? Is it just a random string?",
+      "range": {
+        "startLine": 629,
+        "startChar": 41,
+        "endLine": 629,
+        "endChar": 57
+      },
+      "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75ecbb47_b047bfa8",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-15T07:38:58Z",
+      "side": 1,
+      "message": "check resultdb_update_token as well?",
+      "revId": "185c3c2632f8869297f00e8ee7ced492f45d8255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
