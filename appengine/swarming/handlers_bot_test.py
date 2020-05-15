@@ -14,6 +14,8 @@ import sys
 import unittest
 import zipfile
 
+import mock
+
 # Setups environment.
 import test_env_handlers
 
@@ -576,6 +578,88 @@ class BotApiTest(test_env_handlers.AppTestBase):
             u'outputs': [u'foo', u'path/to/foobar'],
             u'secret_bytes': None,
             u'resultdb': {},
+            u'service_accounts': {
+                u'system': {
+                    u'service_account': u'none'
+                },
+                u'task': {
+                    u'service_account': u'none'
+                },
+            },
+            u'task_id': task_id,
+        },
+    }
+    self.assertEqual(expected, response)
+
+  @ndb.tasklet
+  def _mock_create_invocation_async(self, _):
+    raise ndb.Return('resultdb-update-token')
+
+  def test_poll_with_resultdb(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    params = self.do_handshake(do_first_poll=True)
+
+    self.set_as_user()
+    with mock.patch('server.resultdb.create_invocation_async',
+                    self._mock_create_invocation_async) as mocked_call:
+      _, task_id = self.client_create_task_raw(resultdb={'enable': True})
+
+    self.assertEqual('0', task_id[-1])
+    task_id = task_id[:-1] + '1'
+
+    self.set_as_bot()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    expected = {
+        u'cmd': u'run',
+        u'manifest': {
+            u'bot_id': u'bot1',
+            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'caches': [],
+            u'cipd_input': {
+                u'client_package': {
+                    u'package_name': u'infra/tools/cipd/${platform}',
+                    u'path': None,
+                    u'version': u'git_revision:deadbeef',
+                },
+                u'packages': [{
+                    u'package_name': u'rm',
+                    u'path': u'bin',
+                    u'version': u'git_revision:deadbeef',
+                }],
+                u'server': u'https://pool.config.cipd.example.com',
+            },
+            u'command': [u'python', u'run_test.py'],
+            u'containment': {
+                u'lower_priority': True,
+                u'containment_type': 2,
+                u'limit_processes': 1000,
+                u'limit_total_committed_memory': 1024**3,
+            },
+            u'relative_cwd': None,
+            u'dimensions': {
+                u'os': [u'Amiga'],
+                u'pool': [u'default'],
+            },
+            u'env': {},
+            u'env_prefixes': {},
+            u'extra_args': [],
+            u'grace_period': 30,
+            u'hard_timeout': 3600,
+            u'host': u'http://localhost:8080',
+            u'isolated': {
+                u'input': None,
+                u'namespace': u'default-gzip',
+                u'server': u'https://pool.config.isolate.example.com',
+            },
+            u'io_timeout': 1200,
+            u'outputs': [u'foo', u'path/to/foobar'],
+            u'secret_bytes': None,
+            u'resultdb': {
+                u'current_invocation': {
+                    u'invocation': u'invocations/task:None:5cee488008811',
+                    u'update_token': u'resultdb-update-token',
+                }
+            },
             u'service_accounts': {
                 u'system': {
                     u'service_account': u'none'
