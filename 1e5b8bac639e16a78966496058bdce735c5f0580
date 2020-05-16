@@ -16,6 +16,69 @@
       "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be912477_8c2395a0",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-16T07:35:50Z",
+      "side": 1,
+      "message": "Is None really expected to be in an invocation name?",
+      "range": {
+        "startLine": 617,
+        "startChar": 46,
+        "endLine": 617,
+        "endChar": 50
+      },
+      "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9941df67_05742816",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-16T07:35:50Z",
+      "side": 1,
+      "message": "colons are replaced with dashes.\nhttps://crrev.com/c/2204481",
+      "range": {
+        "startLine": 617,
+        "startChar": 45,
+        "endLine": 617,
+        "endChar": 46
+      },
+      "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edc771e6_4af8236f",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-16T07:35:50Z",
+      "side": 1,
+      "message": "What would happen if the request has resultdb.enable:True, but the TaskRequest.resultdb_update_token is None?\n\nIs it guaranteed that TaskRequest entity has resultdb_update_token when enable\u003dTrue?\nIf not, I recommend checking the existence of resultdb_update_token in pre_put_hook.",
+      "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
