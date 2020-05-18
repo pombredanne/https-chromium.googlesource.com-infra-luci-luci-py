@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab0b5db_d5dff1ba",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T09:10:29Z",
+      "side": 1,
+      "message": "period?",
+      "range": {
+        "startLine": 538,
+        "startChar": 9,
+        "endLine": 538,
+        "endChar": 14
+      },
+      "revId": "eb370aa186aa389842a7a4036f5ed07ca91befd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
