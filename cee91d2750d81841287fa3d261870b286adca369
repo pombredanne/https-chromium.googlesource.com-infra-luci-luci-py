@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5940c40_32671aa1",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T10:27:03Z",
+      "side": 1,
+      "message": "do you need this sometime soon before finalizing this in design doc?",
+      "revId": "cee91d2750d81841287fa3d261870b286adca369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
