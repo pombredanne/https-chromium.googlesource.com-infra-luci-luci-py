@@ -22,6 +22,30 @@
       "revId": "783cf838850140c5fc7f3c2e46fd326c81e801b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8ebefd9_2c5a090b",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T07:10:16Z",
+      "side": 1,
+      "message": "I updated the proto to do numbering incrementally with NEXT_ID in the comment.",
+      "parentUuid": "78929670_4e14f224",
+      "range": {
+        "startLine": 22,
+        "startChar": 39,
+        "endLine": 22,
+        "endChar": 43
+      },
+      "revId": "783cf838850140c5fc7f3c2e46fd326c81e801b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
