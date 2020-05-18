@@ -16,6 +16,24 @@
       "revId": "cee91d2750d81841287fa3d261870b286adca369",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fbcb4c7_5cc62914",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T12:24:04Z",
+      "side": 1,
+      "message": "What do you mean by finalizing?\nWe can change the naming before we actually configure realm permissions and roles.",
+      "parentUuid": "d5940c40_32671aa1",
+      "revId": "cee91d2750d81841287fa3d261870b286adca369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
