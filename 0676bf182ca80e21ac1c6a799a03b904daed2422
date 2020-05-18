@@ -46,6 +46,30 @@
       "revId": "0676bf182ca80e21ac1c6a799a03b904daed2422",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "937b8b4b_77af30ca",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T05:28:27Z",
+      "side": 1,
+      "message": "Replied on the original CL. Please reply to it if I\u0027m misunderstanding something.",
+      "parentUuid": "3bdfe8f1_e0722b61",
+      "range": {
+        "startLine": 1221,
+        "startChar": 8,
+        "endLine": 1221,
+        "endChar": 16
+      },
+      "revId": "0676bf182ca80e21ac1c6a799a03b904daed2422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
