@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "480ba294_11ee2d8c",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T07:35:22Z",
+      "side": 1,
+      "message": "I don\u0027t feel \u0027attach the realsm\u0027 and \u0027create in realm\u0027 is the same.",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "f9f81b9456f1cda52ebf59959d7af9cb27d479e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
