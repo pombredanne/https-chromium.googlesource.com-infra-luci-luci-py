@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "4301ed04_53956c37",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T09:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a039fb8c_60c6ec40",
+      "range": {
+        "startLine": 611,
+        "startChar": 6,
+        "endLine": 615,
+        "endChar": 0
+      },
+      "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bee6a639_540bded7",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 15
@@ -203,6 +227,30 @@
       "writtenOn": "2020-05-18T06:22:15Z",
       "side": 1,
       "message": "The invocation name in the response of client_create_task_raw should be used, instead of generating invocation name here?",
+      "range": {
+        "startLine": 621,
+        "startChar": 28,
+        "endLine": 621,
+        "endChar": 65
+      },
+      "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66621d53_7fdbcdd2",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T09:30:37Z",
+      "side": 1,
+      "message": "client_create_task_raw doesn\u0027t have invocation name inn its response?",
+      "parentUuid": "23924a1b_d037db66",
       "range": {
         "startLine": 621,
         "startChar": 28,
