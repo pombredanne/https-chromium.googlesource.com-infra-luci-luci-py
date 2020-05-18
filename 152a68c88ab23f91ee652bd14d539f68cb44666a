@@ -284,6 +284,30 @@
       "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71648913_36e6b060",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T13:00:57Z",
+      "side": 1,
+      "message": "Hmm, seems like result is returned only when state is not pending.\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/handlers_endpoints.py?l\u003d569\u0026rcl\u003dd2625c14a5179db7efe9ebf96b80f3151d31a615\n\nCome from https://codereview.chromium.org/1455883002\n\nLet me consider how to do that\n1. return result always\n2. return result when resutldb is enabled\n3. other?",
+      "parentUuid": "71d1efc6_40aa3be2",
+      "range": {
+        "startLine": 621,
+        "startChar": 28,
+        "endLine": 621,
+        "endChar": 65
+      },
+      "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
