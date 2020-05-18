@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "e5f92a8e_3e0edbce",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T06:22:15Z",
+      "side": 1,
+      "message": "I think the parameter of create_invocation_async is implementation detail, and so no need to check. assert_called_once is enough.",
+      "parentUuid": "b890f3c1_602e060c",
+      "range": {
+        "startLine": 611,
+        "startChar": 6,
+        "endLine": 615,
+        "endChar": 0
+      },
+      "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bee6a639_540bded7",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 15
@@ -117,6 +141,29 @@
       "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23924a1b_d037db66",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T06:22:15Z",
+      "side": 1,
+      "message": "The invocation name in the response of client_create_task_raw should be used, instead of generating invocation name here?",
+      "range": {
+        "startLine": 621,
+        "startChar": 28,
+        "endLine": 621,
+        "endChar": 65
+      },
+      "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
