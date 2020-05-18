@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b4ebeab3_89e57ef8",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T06:16:26Z",
+      "side": 1,
+      "message": "I think the response from client_create_task_raw includes invocation name?",
+      "parentUuid": "4923c415_d4585727",
+      "range": {
+        "startLine": 611,
+        "startChar": 6,
+        "endLine": 615,
+        "endChar": 0
+      },
+      "revId": "152a68c88ab23f91ee652bd14d539f68cb44666a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bee6a639_540bded7",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 15
