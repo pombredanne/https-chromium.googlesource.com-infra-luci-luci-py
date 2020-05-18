@@ -34,6 +34,24 @@
       "revId": "1920294f55571ab45291e6f52a8da973637fb81f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2096b89c_02bed967",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T06:38:04Z",
+      "side": 1,
+      "message": "The previous code missed the edge case when ResultDB respond, but without update-token.\n\nIn theory, it\u0027s better to describe expected behavior in tests.\nThat would help us write good tests to avoid the same mistakes when we migrate the server to Go.",
+      "parentUuid": "21cf75e5_f06e5de1",
+      "revId": "1920294f55571ab45291e6f52a8da973637fb81f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
