@@ -163,6 +163,24 @@
       "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4068a869_c869319f",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T05:20:30Z",
+      "side": 1,
+      "message": "\u003e TaskRequest cannot access to resultdb.enable in NewTaskRequest\n\nYeah, noticed that after I commented.\nYou could store ResultDBCfg on TaskRequest entity.\nBut, Re-checking the code that generates update token, maybe there is no room to miss update token(?)\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1217?q\u003df:task_scheduler.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "5bce8300_52da7c4b",
+      "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
