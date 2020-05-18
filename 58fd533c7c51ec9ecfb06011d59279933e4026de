@@ -70,6 +70,30 @@
       "revId": "58fd533c7c51ec9ecfb06011d59279933e4026de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5786a325_5522e912",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1220,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T04:01:02Z",
+      "side": 1,
+      "message": "Maybe this is for\nhttps://google.aip.dev/122#full-resource-names\nbut we want to use url when accessing to resultdb?",
+      "parentUuid": "5225151a_dcf9f25b",
+      "range": {
+        "startLine": 1220,
+        "startChar": 44,
+        "endLine": 1220,
+        "endChar": 50
+      },
+      "revId": "58fd533c7c51ec9ecfb06011d59279933e4026de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
