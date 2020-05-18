@@ -14,6 +14,8 @@ import sys
 import unittest
 import zipfile
 
+import mock
+
 # Setups environment.
 import test_env_handlers
 
@@ -591,6 +593,36 @@ class BotApiTest(test_env_handlers.AppTestBase):
         },
     }
     self.assertEqual(expected, response)
+
+  @ndb.tasklet
+  def _mock_create_invocation_async(self, _):
+    raise ndb.Return('resultdb-update-token')
+
+  def test_poll_with_resultdb(self):
+    params = self.do_handshake(do_first_poll=True)
+
+    self.set_as_user()
+    with mock.patch(
+        'server.resultdb.create_invocation_async',
+        mock.Mock(
+            side_effect=self._mock_create_invocation_async)) as mocked_call:
+      _, task_id = self.client_create_task_raw(resultdb={'enable': True})
+
+      self.assertEqual('0', task_id[-1])
+      task_id = task_id[:-1] + '1'
+
+      mocked_call.assert_called_once_with(task_id)
+
+    self.set_as_bot()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    expected = {
+        u'hostname': u'test-resultdb-server.com',
+        u'current_invocation': {
+            u'invocation': u'invocations/task-test-swarming.appspot.com-%s' % task_id,
+            u'update_token': u'resultdb-update-token',
+        }
+    }
+    self.assertEqual(expected, response['manifest']['resultdb'])
 
   def test_poll_conflicting_dimensions(self):
     params = self.do_handshake()
