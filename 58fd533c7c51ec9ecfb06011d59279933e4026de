@@ -142,6 +142,30 @@
       "revId": "58fd533c7c51ec9ecfb06011d59279933e4026de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0c25f90_291f8241",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1220,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T08:16:23Z",
+      "side": 1,
+      "message": "\u003e Let me clarify my suggestions \n\u003e \n\u003e 1) configuring hostname in the settings.cfg?\n\u003e - you don\u0027t need to retrieve hostname here from URL.\n\nI\u0027m fine with that.\nBut that depends on whether we need to support both http and https or more.\n\n\u003e or\n\u003e 2) giving the URL to bot instead of hostname here?\n\u003e - Bots don\u0027t need to reconstruct URL from hostname.\n\nAsked in\nhttp://docs/document/d/1-4JL8cZ06yTb7yhDzXD8nh4FwhUBm1zaQAICQ-JRpus?disco\u003dAAAAJjiir5g",
+      "parentUuid": "32d3ca9c_ab5c4d5d",
+      "range": {
+        "startLine": 1220,
+        "startChar": 44,
+        "endLine": 1220,
+        "endChar": 50
+      },
+      "revId": "58fd533c7c51ec9ecfb06011d59279933e4026de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
