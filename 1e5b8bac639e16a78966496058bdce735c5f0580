@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "c7cf1598_9016c333",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T04:41:48Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/2206080",
+      "parentUuid": "be912477_8c2395a0",
+      "range": {
+        "startLine": 617,
+        "startChar": 46,
+        "endLine": 617,
+        "endChar": 50
+      },
+      "revId": "1e5b8bac639e16a78966496058bdce735c5f0580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edc771e6_4af8236f",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 11
