@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28f5f195_0c45439f",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-18T07:58:31Z",
+      "side": 1,
+      "message": "better to pass pool instead of task_request?",
+      "range": {
+        "startLine": 54,
+        "startChar": 28,
+        "endLine": 54,
+        "endChar": 40
+      },
+      "revId": "72f8a5a990ef68ea8811a80b26c76ec44c55c169",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
