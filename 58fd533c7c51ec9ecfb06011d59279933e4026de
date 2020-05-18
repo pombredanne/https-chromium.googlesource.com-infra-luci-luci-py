@@ -118,6 +118,30 @@
       "revId": "58fd533c7c51ec9ecfb06011d59279933e4026de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32d3ca9c_ab5c4d5d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1220,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-18T05:27:44Z",
+      "side": 1,
+      "message": "Let me clarify my suggestions \n\n1) configuring hostname in the settings.cfg?\n- you don\u0027t need to retrieve hostname here from URL.\nor\n2) giving the URL to bot instead of hostname here?\n- Bots don\u0027t need to reconstruct URL from hostname.",
+      "parentUuid": "38e8e866_3c138c81",
+      "range": {
+        "startLine": 1220,
+        "startChar": 44,
+        "endLine": 1220,
+        "endChar": 50
+      },
+      "revId": "58fd533c7c51ec9ecfb06011d59279933e4026de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
