@@ -148,6 +148,38 @@ class RealmsTest(test_case.TestCase):
     has_permission_mock.assert_called_once_with('swarming.pools.createTask',
                                                 [u'test:pool'])
 
+  def test_check_tasks_create_in_realm_legacy(self):
+    has_permission_dryrun_mock = self._mock_has_permission(is_enforced=False)
+    realms.check_tasks_create_in_realm('test:realm')
+    has_permission_dryrun_mock.called_once_with('swarming.tasks.createInRealm',
+                                                [u'test:realm'], True,
+                                                realms._TRACKING_BUG)
+
+  def test_check_tasks_create_in_realm_legacy_no_realm(self):
+    has_permission_dryrun_mock = self._mock_has_permission(is_enforced=False)
+    realms.check_tasks_create_in_realm(None)
+    has_permission_dryrun_mock.assert_not_called()
+
+  def test_check_tasks_create_in_realm_enforced_allowed(self):
+    has_permission_mock = self._mock_has_permission(
+        is_enforced=True, is_allowed_realms=True)
+    realms.check_tasks_create_in_realm('test:realm')
+    has_permission_mock.called_once_with('swarming.tasks.createInRealm',
+                                         [u'test:realm'])
+
+  def test_check_tasks_create_in_realm_enforced_not_allowed(self):
+    has_permission_mock = self._mock_has_permission(
+        is_enforced=True, is_allowed_realms=False)
+    with self.assertRaises(auth.AuthorizationError):
+      realms.check_tasks_create_in_realm('test:realm')
+    has_permission_mock.called_once_with('swarming.tasks.createInRealm',
+                                         [u'test:realm'])
+
+  def test_check_tasks_create_in_realm_enforced_no_realm(self):
+    self._mock_has_permission(is_enforced=True, is_allowed_realms=True)
+    with self.assertRaises(auth.AuthorizationError):
+      realms.check_tasks_create_in_realm(None)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
