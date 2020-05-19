@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7ccc6f2_0aa2b717",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-19T03:29:53Z",
+      "side": 1,
+      "message": "use named argument instead?",
+      "revId": "3ef7547c78c3fa4932cf4ab05bcc544f8a6010c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db99801e_877052d6",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-19T03:29:53Z",
+      "side": 1,
+      "message": "I think it is better to use only True or False for this kind of argument.",
+      "range": {
+        "startLine": 88,
+        "startChar": 40,
+        "endLine": 90,
+        "endChar": 63
+      },
+      "revId": "3ef7547c78c3fa4932cf4ab05bcc544f8a6010c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
