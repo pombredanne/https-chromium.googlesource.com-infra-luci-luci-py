@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99572581_73cd4608",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-19T05:24:20Z",
+      "side": 1,
+      "message": "can we move all possibly mocked functions to setUp functions and store that in private members?\n\n```\ndef setUp(self):\n  ...\n  self._mock_has_permission_dryrun \u003d mock.patch(\n    \u0027auth.has_permission_dryrun\u0027).start()\n\ndef tearDown(self):\n  ...\n  mock.patch.stopall()\n\n\ndef test_hoge_hoge(self):\n  self._mock_has_permission_dryrun.return_value \u003d True\n```",
+      "revId": "90daf4a187b256764f1593f26bff70e09779654a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
