@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1e615c7_baa30dfd",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-19T04:48:50Z",
+      "side": 1,
+      "message": "I still think this part is checking an internal impl.\nIMO, mocked_call.assert_called_once() is sufficient especially in the bot API tests.",
+      "range": {
+        "startLine": 614,
+        "startChar": 2,
+        "endLine": 619,
+        "endChar": 49
+      },
+      "revId": "6bfc94440e60b9cbba22763c2bd73452b8851f41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
