@@ -16,6 +16,24 @@
       "revId": "90daf4a187b256764f1593f26bff70e09779654a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e58becb_e22ad1aa",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-19T06:21:29Z",
+      "side": 1,
+      "message": "Updated to mock auth module in setup.",
+      "parentUuid": "99572581_73cd4608",
+      "revId": "90daf4a187b256764f1593f26bff70e09779654a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
