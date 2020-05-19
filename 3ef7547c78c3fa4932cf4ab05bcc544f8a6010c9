@@ -39,6 +39,30 @@
       "revId": "3ef7547c78c3fa4932cf4ab05bcc544f8a6010c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1f9d7a6_69564d1b",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-19T04:42:30Z",
+      "side": 1,
+      "message": "hmm, some of them may not be used.\nSo maybe separate mock methods?\n\ne.g. \ndef _mock_for_check_pools_create_task_enforced(self. is_allowed_realms, pool_realm\u003d\u0027test:pool\u0027)\ndef _mock_for_check_pools_create_task_legacy(self, is_allowed_legacy, pool_realm\u003d\u0027test:pool\u0027)",
+      "parentUuid": "db99801e_877052d6",
+      "range": {
+        "startLine": 88,
+        "startChar": 40,
+        "endLine": 90,
+        "endChar": 63
+      },
+      "revId": "3ef7547c78c3fa4932cf4ab05bcc544f8a6010c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
