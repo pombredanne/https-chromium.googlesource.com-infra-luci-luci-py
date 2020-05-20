@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "effe6f30_d5257aed",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-20T08:55:17Z",
+      "side": 1,
+      "message": "not necessary",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5afa58ac_6ccf7732",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-20T08:55:17Z",
+      "side": 1,
+      "message": "not necessary",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce949755_8bbbb508",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-20T08:55:17Z",
+      "side": 1,
+      "message": "not necessary",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdda8b6f_0bd77a6d",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-20T08:55:17Z",
+      "side": 1,
+      "message": "not necessary",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37fffd20_28d91eb5",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-20T08:55:17Z",
+      "side": 1,
+      "message": "we cannot use TaskRequest here?",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
