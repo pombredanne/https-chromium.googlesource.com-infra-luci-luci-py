@@ -198,6 +198,27 @@ def apply_server_property_defaults(properties):
         properties.cipd_input.client_package.version or cipd_vers)
 
 
+def append_service_account_token(request_obj):
+  if service_accounts.is_service_account(request_obj.service_account):
+    if not service_accounts.has_token_server():
+      raise endpoints.BadRequestException(
+          'This Swarming server doesn\'t support task service accounts '
+          'because Token Server URL is not configured')
+    max_lifetime_secs = request_obj.max_lifetime_secs
+    try:
+      duration = datetime.timedelta(seconds=max_lifetime_secs)
+      request_obj.service_account_token = (
+          service_accounts.get_oauth_token_grant(
+              service_account=request_obj.service_account,
+              validity_duration=duration))
+    except service_accounts.PermissionError as exc:
+      raise auth.AuthorizationError(exc.message)
+    except service_accounts.MisconfigurationError as exc:
+      raise endpoints.BadRequestException(exc.message)
+    except service_accounts.InternalError as exc:
+      raise endpoints.InternalServerErrorException(exc.message)
+
+
 ### API
 
 
@@ -498,24 +519,7 @@ class SwarmingTasksService(remote.Service):
     # check that the given service account usage is allowed by the token server
     # rules at the time the task is posted. This check is also performed later
     # (when running the task), when we get the actual OAuth access token.
-    if service_accounts.is_service_account(request_obj.service_account):
-      if not service_accounts.has_token_server():
-        raise endpoints.BadRequestException(
-            'This Swarming server doesn\'t support task service accounts '
-            'because Token Server URL is not configured')
-      max_lifetime_secs = request_obj.max_lifetime_secs
-      try:
-        duration = datetime.timedelta(seconds=max_lifetime_secs)
-        request_obj.service_account_token = (
-            service_accounts.get_oauth_token_grant(
-                service_account=request_obj.service_account,
-                validity_duration=duration))
-      except service_accounts.PermissionError as exc:
-        raise auth.AuthorizationError(exc.message)
-      except service_accounts.MisconfigurationError as exc:
-        raise endpoints.BadRequestException(exc.message)
-      except service_accounts.InternalError as exc:
-        raise endpoints.InternalServerErrorException(exc.message)
+    append_service_account_token(request_obj)
 
     # If the user only wanted to evaluate scheduling the task, but not actually
     # schedule it, return early without a task_id.
