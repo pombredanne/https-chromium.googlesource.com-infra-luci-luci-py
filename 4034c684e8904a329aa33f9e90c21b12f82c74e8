@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b156b04_15241a56",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:21:53Z",
+      "side": 1,
+      "message": "update this comment?",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 25
+      },
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43c7d549_a57886e6",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:21:53Z",
+      "side": 1,
+      "message": "if you only pass \u0027realm\u0027 in kwargs and won\u0027t pass many, it is better to use explicit default argument?",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eae6662_13e02521",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:21:53Z",
+      "side": 1,
+      "message": "using namedtuple is not sufficient?",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
