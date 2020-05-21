@@ -322,6 +322,24 @@
       "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8fc8483_885bb2a7",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T07:38:17Z",
+      "side": 1,
+      "message": "Looks mock library already provides features for the issue.\nhttps://docs.python.org/3/library/unittest.mock.html#autospeccing\nThis way, you can\u0027t mock properties that don\u0027t exist.\n\nAs suggested in the document, integration testing usually will find those issues.\nBut unfortunately, my CL isn\u0027t checked because the implemented functions are not integrated.",
+      "parentUuid": "b63d4c2a_b204142f",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
