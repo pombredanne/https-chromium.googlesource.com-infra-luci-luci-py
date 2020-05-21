@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fce933f3_bfcaaaf7",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:56:54Z",
+      "side": 1,
+      "message": "not uploaded?",
+      "parentUuid": "975e24ca_753b4605",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 25
+      },
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43c7d549_a57886e6",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 8
@@ -84,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "1168558d_4a0b4795",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:56:54Z",
+      "side": 1,
+      "message": "I feel such generalization is bit too much for this and other tests at this stage.",
+      "parentUuid": "d075fed2_3f25838f",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8eae6662_13e02521",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 8
@@ -113,6 +155,41 @@
       "side": 1,
       "message": "How do you avoid the typo case with namedtuple?\n\nI remember I used namedtuple at the beginning, and refactored it at some point.",
       "parentUuid": "8eae6662_13e02521",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c62ae51_49f20bf4",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:56:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bf0b3a4e_3f7586d5",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d3da86a_3271163f",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T08:56:54Z",
+      "side": 1,
+      "message": "better to pass args other than \u0027max_lifetime_secs\u0027 in constructor?",
       "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
