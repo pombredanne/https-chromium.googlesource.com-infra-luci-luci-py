@@ -1093,7 +1093,7 @@ def check_schedule_request_acl(request):
     logging.warning('Pool "%s" is not in pools.cfg', pool)
     # Unknown pools are forbidden.
     raise auth.AuthorizationError(
-        'Can\'t submit tasks to pool "%s" not defined in pools.cfg' % pool)
+        'Can\'t submit tasks to pool "%s", not defined in pools.cfg' % pool)
 
   logging.info(
       'Looking at the pool "%s" in pools.cfg, rev "%s"', pool, pool_cfg.rev)
