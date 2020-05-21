@@ -70,6 +70,52 @@
     },
     {
       "key": {
+        "uuid": "60c2c36a_9cc1aa8f",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-21T01:02:39Z",
+      "side": 1,
+      "message": "this should probably be task_request.realm (is there a test case for this code path)?",
+      "range": {
+        "startLine": 203,
+        "startChar": 11,
+        "endLine": 203,
+        "endChar": 16
+      },
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcfb44a5_72c8bfee",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-21T01:02:39Z",
+      "side": 1,
+      "message": "This is still true when using realms. We need the token server to actually generate access tokens. This check should be right after service_accounts.is_service_account(...).",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 53
+      },
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "37fffd20_28d91eb5",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 5
