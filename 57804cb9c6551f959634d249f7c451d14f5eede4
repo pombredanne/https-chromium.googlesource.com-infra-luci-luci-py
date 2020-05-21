@@ -268,6 +268,24 @@
       "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b722665_5219a12f",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T04:54:43Z",
+      "side": 1,
+      "message": "Then I\u0027d like only mock max_lifetime_secs, I feel using mocl.Mock for some small object is error-prone",
+      "parentUuid": "c645eb5a_5911cfd5",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
