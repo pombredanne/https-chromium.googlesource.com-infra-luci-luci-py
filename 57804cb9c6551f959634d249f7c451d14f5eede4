@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "814e928b_885b1006",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "effe6f30_d5257aed",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5afa58ac_6ccf7732",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18251e30_2270d6f0",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "removed, but I personally think worth commenting that they are app engine libraries.",
+      "parentUuid": "5afa58ac_6ccf7732",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "e20a1361_49de6242",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "removed, but I personally think worth commenting that they are luci common libraries.",
+      "parentUuid": "ce949755_8bbbb508",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdda8b6f_0bd77a6d",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 5
@@ -67,6 +121,24 @@
       "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8651559a_83309bcf",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "fdda8b6f_0bd77a6d",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "3cc2d6d0_917ea2bb",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "Ah, good catch...\ndidn\u0027t have tests for this path...\nfixed.",
+      "parentUuid": "60c2c36a_9cc1aa8f",
+      "range": {
+        "startLine": 203,
+        "startChar": 11,
+        "endLine": 203,
+        "endChar": 16
+      },
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcfb44a5_72c8bfee",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 5
@@ -116,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "bb7d8951_90eaeb51",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "Good catch\nI moved after is_service_account(...)",
+      "parentUuid": "dcfb44a5_72c8bfee",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 53
+      },
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37fffd20_28d91eb5",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 5
@@ -127,6 +247,24 @@
       "writtenOn": "2020-05-20T08:55:17Z",
       "side": 1,
       "message": "we cannot use TaskRequest here?",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c645eb5a_5911cfd5",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T04:47:12Z",
+      "side": 1,
+      "message": "mock.Mock() is easier to mock property methods, which internally computes something.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d1200?q\u003df:task_request.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "37fffd20_28d91eb5",
       "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
