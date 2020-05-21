@@ -304,6 +304,24 @@
       "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b63d4c2a_b204142f",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-21T06:24:51Z",
+      "side": 1,
+      "message": "mock.Mock does not detect any unintentional member access caused by something like typo.\nSo I think we should avoid using Mock just to skip creating some small classes.",
+      "parentUuid": "9ae0d54c_f683b171",
+      "revId": "57804cb9c6551f959634d249f7c451d14f5eede4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
