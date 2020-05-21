@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "d075fed2_3f25838f",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T08:47:50Z",
+      "side": 1,
+      "message": "Yes, it\u0027s only realm at this moment.\nHow about extracting this method as a utility in another module since it\u0027s general?",
+      "parentUuid": "43c7d549_a57886e6",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8eae6662_13e02521",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 8
@@ -53,6 +71,24 @@
       "writtenOn": "2020-05-21T08:21:53Z",
       "side": 1,
       "message": "using namedtuple is not sufficient?",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf0b3a4e_3f7586d5",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T08:47:50Z",
+      "side": 1,
+      "message": "How do you avoid the typo case with namedtuple?\n\nI remember I used namedtuple at the beginning, and refactored it at some point.",
+      "parentUuid": "8eae6662_13e02521",
       "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
