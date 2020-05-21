@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1dc01ad0_f27e2a28",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T14:00:10Z",
+      "side": 1,
+      "message": "I just don\u0027t want to touch since the legacy function will be replaced in a following CL.",
+      "parentUuid": "96aa707f_600ffa82",
+      "revId": "d6f7ea42a690e0b8149c1e87ba6e2440f77b9339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f1748ffc_a60fc176",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 6
@@ -30,6 +48,30 @@
       "writtenOn": "2020-05-21T13:07:47Z",
       "side": 1,
       "message": "This is rather endpoints.BadRequestException here?",
+      "range": {
+        "startLine": 491,
+        "startChar": 12,
+        "endLine": 491,
+        "endChar": 35
+      },
+      "revId": "d6f7ea42a690e0b8149c1e87ba6e2440f77b9339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a610c3a_4d7a3397",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-21T14:00:10Z",
+      "side": 1,
+      "message": "Hmm, you\u0027re right.\nI just want to follow the current behavior since it will return a different status code.\nMaybe we can refactor it later.",
+      "parentUuid": "f1748ffc_a60fc176",
       "range": {
         "startLine": 491,
         "startChar": 12,
