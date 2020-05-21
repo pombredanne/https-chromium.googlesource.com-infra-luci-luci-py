@@ -53,7 +53,7 @@ def is_enforced_permission(perm, pool_cfg=None):
   return perm in config.settings().auth.enforced_realm_permissions
 
 
-def check_pools_create_task(pool):
+def check_pools_create_task(pool, pool_cfg):
   """Checks if the caller can create the task in the pool.
 
   Realm permission `swarming.pools.createTask` will be checked,
@@ -68,6 +68,7 @@ def check_pools_create_task(pool):
 
   Args:
     pool: Pool in which the caller is scheduling a new task.
+    pool_cfg: PoolCfg of the pool.
 
   Returns:
     None
@@ -76,13 +77,6 @@ def check_pools_create_task(pool):
     auth.AuthorizationError: if the caller is not allowed to schedule the task
                              in the pool.
   """
-  pool_cfg = pools_config.get_pool_config(pool)
-
-  if not pool_cfg:
-    logging.warning('Pool "%s" is not in pools.cfg', pool)
-    # Unknown pools are forbidden.
-    raise auth.AuthorizationError('Pool "%s" not defined in pools.cfg' % pool)
-
   # 'swarming.pools.createTask'
   perm = get_permission_name(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
 
