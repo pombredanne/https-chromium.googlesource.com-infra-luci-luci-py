@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5794ec4d_4dccb1c6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-25T23:08:44Z",
+      "side": 1,
+      "message": "Check if the state of task summary is EXPIRED, and call finalize_invocation_async().\nThe task may be still pending if there is a next task run.\n\nSee _expire_task_tx for more details.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d133?q\u003df:task_scheduler.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "range": {
+        "startLine": 220,
+        "startChar": 4,
+        "endLine": 220,
+        "endChar": 24
+      },
+      "revId": "5601e9658e6ca1f86ac4442e0b2956752dc2043d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
