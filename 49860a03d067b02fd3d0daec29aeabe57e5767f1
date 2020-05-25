@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b3721e0_454aae92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-25T07:12:24Z",
+      "side": 1,
+      "message": "could you add short explaination why you want to have this for this issue?",
+      "revId": "49860a03d067b02fd3d0daec29aeabe57e5767f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
