@@ -22,6 +22,30 @@
       "revId": "c50a404ba04db15d4d9e02d94efd432f5d65a06b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b02cca6d_cd7facd4",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-25T08:23:29Z",
+      "side": 1,
+      "message": "It looks msg.realm returns u\u0027\u0027 for no configuration.",
+      "parentUuid": "ffd3a956_4f38f6d6",
+      "range": {
+        "startLine": 603,
+        "startChar": 25,
+        "endLine": 603,
+        "endChar": 48
+      },
+      "revId": "c50a404ba04db15d4d9e02d94efd432f5d65a06b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
