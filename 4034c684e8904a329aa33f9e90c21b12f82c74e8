@@ -271,6 +271,24 @@
       "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78701b84_74b97038",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-25T05:20:19Z",
+      "side": 1,
+      "message": "I see...\nI updated to get rid of kwargs. PTAL.",
+      "parentUuid": "f894b2c8_33ce2510",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
