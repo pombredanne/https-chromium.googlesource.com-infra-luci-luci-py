@@ -414,6 +414,7 @@ def load_and_run(in_file, swarming_server, is_grpc, cost_usd_hour, start,
           u'hard_timeout': False,
           u'io_timeout': False,
           u'must_signal_internal_failure': str(e.message or 'unknown error'),
+          u'internal_failure': True,
           u'version': OUT_VERSION,
       }
   finally:
@@ -454,6 +455,7 @@ def fail_without_command(remote, task_id, params, cost_usd_hour, task_start,
       u'hard_timeout': False,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': OUT_VERSION,
   }
 
@@ -656,6 +658,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': OUT_VERSION,
     }
 
@@ -823,6 +826,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     # Ignore server reply to stop. Also ignore internal errors here if we are
     # already handling some.
     try:
+      internal_failure = False
       if must_signal_internal_failure:
         # We need to update the task and then send task error. However, we
         # should *not* send the exit_code since doing so would cause the task
@@ -840,6 +844,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         params.pop('isolated_stats', None)
         params.pop('cipd_stats', None)
         params.pop('cipd_pins', None)
+        internal_failure = True
       remote.post_task_update(task_details.task_id, params, buf.pop(),
                               exit_code)
       logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
@@ -855,12 +860,14 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
       logging.error('Internal error while finishing the task: %s', e)
       if not must_signal_internal_failure:
         must_signal_internal_failure = str(e.message or 'unknown error')
+        internal_failure = True
 
     return {
         u'exit_code': exit_code,
         u'hard_timeout': had_hard_timeout,
         u'io_timeout': had_io_timeout,
         u'must_signal_internal_failure': must_signal_internal_failure,
+        u'internal_failure': internal_failure,
         u'version': OUT_VERSION,
     }
   finally:

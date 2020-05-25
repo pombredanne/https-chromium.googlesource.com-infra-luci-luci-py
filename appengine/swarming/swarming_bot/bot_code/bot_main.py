@@ -958,6 +958,8 @@ def _run_manifest(botobj, manifest, start):
       msg = (
         'Execution failed: %s' % task_result[u'must_signal_internal_failure'])
       internal_failure = True
+    elif task_result[u'internal_failure']:
+      internal_failure = True
 
     failure = bool(task_result.get('exit_code')) if task_result else False
     return not internal_failure and not failure

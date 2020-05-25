@@ -308,11 +308,12 @@ class TestTaskRunner(TestTaskRunnerBase):
   def test_run_command_raw(self):
     task_details = get_task_details('print(\'hi\')')
     expected = {
-      u'exit_code': 0,
-      u'hard_timeout': False,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': task_runner.OUT_VERSION,
+        u'exit_code': 0,
+        u'hard_timeout': False,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
@@ -329,6 +330,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -349,11 +351,12 @@ class TestTaskRunner(TestTaskRunnerBase):
             'PATH': ['./local/smurf', './other/thing'],
         })
     expected = {
-      u'exit_code': 0,
-      u'hard_timeout': False,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': task_runner.OUT_VERSION,
+        u'exit_code': 0,
+        u'hard_timeout': False,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
@@ -406,6 +409,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -425,6 +429,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -444,6 +449,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -502,6 +508,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
@@ -561,11 +568,12 @@ class TestTaskRunner(TestTaskRunnerBase):
 
     task_details = get_task_details()
     expected = {
-      u'exit_code': 0,
-      u'hard_timeout': False,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': task_runner.OUT_VERSION,
+        u'exit_code': 0,
+        u'hard_timeout': False,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
@@ -625,6 +633,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -793,6 +802,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': 3,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -837,11 +847,12 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
-      u'exit_code': exit_code,
-      u'hard_timeout': False,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': 3,
+        u'exit_code': exit_code,
+        u'hard_timeout': False,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': 3,
     }
     self.assertEqual(expected, self._run_command(task_details))
 
@@ -855,11 +866,12 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
-      u'exit_code': exit_code,
-      u'hard_timeout': True,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': task_runner.OUT_VERSION,
+        u'exit_code': exit_code,
+        u'hard_timeout': True,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
@@ -878,6 +890,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -893,6 +906,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': True,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -912,6 +926,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -929,11 +944,12 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
-      u'exit_code': exit_code,
-      u'hard_timeout': True,
-      u'io_timeout': False,
-      u'must_signal_internal_failure': None,
-      u'version': task_runner.OUT_VERSION,
+        u'exit_code': exit_code,
+        u'hard_timeout': True,
+        u'io_timeout': False,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
@@ -949,11 +965,12 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         grace_period=self.SHORT_TIME_OUT)
     exit_code = -1 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
-      u'exit_code': exit_code,
-      u'hard_timeout': False,
-      u'io_timeout': True,
-      u'must_signal_internal_failure': None,
-      u'version': task_runner.OUT_VERSION,
+        u'exit_code': exit_code,
+        u'hard_timeout': False,
+        u'io_timeout': True,
+        u'must_signal_internal_failure': None,
+        u'internal_failure': False,
+        u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
@@ -969,6 +986,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': True,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -992,6 +1010,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -1063,6 +1082,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     try:
@@ -1219,6 +1239,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': u'',
+        u'internal_failure': True,
         u'version': 3,
     }
     with open(task_result_file, 'rb') as f:
@@ -1279,6 +1300,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
           u'hard_timeout': False,
           u'io_timeout': False,
           u'must_signal_internal_failure': None,
+          u'internal_failure': False,
           u'version': task_runner.OUT_VERSION,
       }
     self.mock(task_runner, 'run_command', _run_command)
@@ -1300,6 +1322,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
@@ -1335,6 +1358,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
           u'hard_timeout': False,
           u'io_timeout': False,
           u'must_signal_internal_failure': None,
+          u'internal_failure': False,
           u'version': task_runner.OUT_VERSION,
       }
     self.mock(task_runner, 'run_command', _run_command)
@@ -1351,6 +1375,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
