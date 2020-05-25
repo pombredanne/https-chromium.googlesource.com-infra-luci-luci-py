@@ -790,6 +790,7 @@ class TaskRequestApiTest(TestCase):
         trusted_delegatees={},
         service_accounts=(),
         service_accounts_groups=(),
+        realm=None,
         task_template_deployment=deployment,
         bot_monitoring=None,
         default_isolate=None,
