@@ -780,6 +780,7 @@ class TestBotMain(TestBotBase):
     result = {
         'exit_code': exit_code,
         'must_signal_internal_failure': None,
+        'internal_failure': False,
         'version': 3,
     }
     # Method should have "self" as first argument - pylint: disable=E0213

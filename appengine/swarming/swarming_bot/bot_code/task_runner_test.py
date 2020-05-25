@@ -312,6 +312,7 @@ class TestTaskRunner(TestTaskRunnerBase):
       u'hard_timeout': False,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -329,6 +330,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -353,6 +355,7 @@ class TestTaskRunner(TestTaskRunnerBase):
       u'hard_timeout': False,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -406,6 +409,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -425,6 +429,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -444,6 +449,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -502,6 +508,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
@@ -565,6 +572,7 @@ class TestTaskRunner(TestTaskRunnerBase):
       u'hard_timeout': False,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+        u'internal_failure': False,
       u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -625,6 +633,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -793,6 +802,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': 3,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -841,6 +851,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       u'hard_timeout': False,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': 3,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -859,6 +870,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       u'hard_timeout': True,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -878,6 +890,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -893,6 +906,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': True,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -912,6 +926,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -933,6 +948,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       u'hard_timeout': True,
       u'io_timeout': False,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -953,6 +969,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       u'hard_timeout': False,
       u'io_timeout': True,
       u'must_signal_internal_failure': None,
+      u'internal_failure': False,
       u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -969,6 +986,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': True,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -992,6 +1010,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, self._run_command(task_details))
@@ -1063,6 +1082,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': True,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     try:
@@ -1219,6 +1239,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': u'',
+        u'internal_failure': True,
         u'version': 3,
     }
     with open(task_result_file, 'rb') as f:
@@ -1279,6 +1300,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
           u'hard_timeout': False,
           u'io_timeout': False,
           u'must_signal_internal_failure': None,
+          u'internal_failure': False,
           u'version': task_runner.OUT_VERSION,
       }
     self.mock(task_runner, 'run_command', _run_command)
@@ -1300,6 +1322,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
@@ -1335,6 +1358,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
           u'hard_timeout': False,
           u'io_timeout': False,
           u'must_signal_internal_failure': None,
+          u'internal_failure': False,
           u'version': task_runner.OUT_VERSION,
       }
     self.mock(task_runner, 'run_command', _run_command)
@@ -1351,6 +1375,7 @@ class TaskRunnerNoServer(auto_stub.TestCase):
         u'hard_timeout': False,
         u'io_timeout': False,
         u'must_signal_internal_failure': None,
+        u'internal_failure': False,
         u'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
