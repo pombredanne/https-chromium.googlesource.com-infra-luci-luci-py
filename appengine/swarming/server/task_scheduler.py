@@ -189,6 +189,10 @@ def _expire_task(to_run_key, request, inline):
     logging.info('%s/%s: not reapable. but continuing expiration.',
                  to_run.task_id, to_run.task_slice_index)
 
+  finalize_result = None
+  if request.resultdb_update_token:
+    finalize_result = resultdb.finalize_invocation_async(to_run.task_id)
+
   result_summary_key = task_pack.request_key_to_result_summary_key(request.key)
   now = utils.utcnow()
 
@@ -217,6 +221,10 @@ def _expire_task(to_run_key, request, inline):
   except datastore_utils.CommitError:
     summary = None
     new_to_run = None
+
+  if finalize_result:
+    finalize_result.get_result()
+
   if summary:
     logging.info(
         'Expired %s', task_pack.pack_result_summary_key(result_summary_key))
