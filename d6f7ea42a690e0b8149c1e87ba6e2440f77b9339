@@ -171,6 +171,30 @@
       "revId": "d6f7ea42a690e0b8149c1e87ba6e2440f77b9339",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea47f6a1_6ad4f026",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-25T01:50:07Z",
+      "side": 1,
+      "message": "From chatting, this will be done after rolling this CL to prod.",
+      "parentUuid": "8005f2ae_a960137b",
+      "range": {
+        "startLine": 491,
+        "startChar": 12,
+        "endLine": 491,
+        "endChar": 35
+      },
+      "revId": "d6f7ea42a690e0b8149c1e87ba6e2440f77b9339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
