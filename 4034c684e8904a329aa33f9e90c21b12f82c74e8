@@ -235,6 +235,24 @@
       "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65d91b66_200f857a",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-25T04:32:23Z",
+      "side": 1,
+      "message": "Opposed to the intuition, the constructor doesn\u0027t set given arguments to attributes.\nI had to use the setattr.",
+      "parentUuid": "6d3da86a_3271163f",
+      "revId": "4034c684e8904a329aa33f9e90c21b12f82c74e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
