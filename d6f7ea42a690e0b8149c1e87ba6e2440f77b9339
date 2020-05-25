@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0324c5f0_d16b8f4c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-25T00:55:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1dc01ad0_f27e2a28",
+      "revId": "d6f7ea42a690e0b8149c1e87ba6e2440f77b9339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1748ffc_a60fc176",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 6
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "Hmm, you\u0027re right.\nI just want to follow the current behavior since it will return a different status code.\nMaybe we can refactor it later.",
       "parentUuid": "f1748ffc_a60fc176",
+      "range": {
+        "startLine": 491,
+        "startChar": 12,
+        "endLine": 491,
+        "endChar": 35
+      },
+      "revId": "d6f7ea42a690e0b8149c1e87ba6e2440f77b9339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d4f96b1_492fe2e1",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-25T00:55:51Z",
+      "side": 1,
+      "message": "Then could you make refactoring CL too?",
+      "parentUuid": "5a610c3a_4d7a3397",
       "range": {
         "startLine": 491,
         "startChar": 12,
