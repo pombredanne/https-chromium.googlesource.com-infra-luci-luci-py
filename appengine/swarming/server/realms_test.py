@@ -16,6 +16,7 @@ test_env.setup_test_env()
 import endpoints
 
 from components import auth
+from components.auth import api as auth_api
 from components import utils
 from test_support import test_case
 
@@ -43,9 +44,9 @@ class RealmsTest(test_case.TestCase):
   def setUp(self):
     super(RealmsTest, self).setUp()
     self._has_permission_mock = mock.Mock()
-    self._has_permission_dryrun_mock = mock.Mock()
+    # self._has_permission_dryrun_mock = mock.Mock()
     self.mock(auth, 'has_permission', self._has_permission_mock)
-    self.mock(auth, 'has_permission_dryrun', self._has_permission_dryrun_mock)
+    # self.mock(auth, 'has_permission_dryrun', self._has_permission_dryrun_mock)
     delegatee = auth.Identity.from_bytes('user:delegatee@example.com')
     self.mock(auth, 'get_peer_identity', lambda: delegatee)
     self.mock(service_accounts, 'has_token_server', lambda: True)
@@ -149,10 +150,12 @@ class RealmsTest(test_case.TestCase):
         'swarming.pools.createTask', [u'test:pool'])
 
   def test_check_tasks_create_in_realm_legacy(self):
+    auth_db = auth_api.AuthDB.empty()
+    self.mock(auth_api, 'get_request_cache', lambda: mock.Mock(auth_db=auth_db))
     realms.check_tasks_create_in_realm('test:realm')
-    self._has_permission_dryrun_mock.assert_called_once_with(
-        'swarming.tasks.createInRealm', [u'test:realm'],
-        expected_result=True, tracking_bug=realms._TRACKING_BUG)
+    # self._has_permission_dryrun_mock.assert_called_once_with(
+    #     'swarming.tasks.createInRealm', [u'test:realm'],
+    #     expected_result=True, tracking_bug=realms._TRACKING_BUG)
 
   def test_check_tasks_create_in_realm_legacy_no_realm(self):
     realms.check_tasks_create_in_realm(None)
