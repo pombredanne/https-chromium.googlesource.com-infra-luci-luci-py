@@ -16,6 +16,24 @@
       "revId": "4b5210eaa7fd65d97f54398bf4a98e71481fe90c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb8ab1bc_11fc0117",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T05:53:35Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/2215535",
+      "parentUuid": "98684f68_7b7c0d22",
+      "revId": "4b5210eaa7fd65d97f54398bf4a98e71481fe90c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
