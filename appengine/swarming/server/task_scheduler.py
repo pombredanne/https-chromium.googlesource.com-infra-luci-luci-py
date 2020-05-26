@@ -218,6 +218,9 @@ def _expire_task(to_run_key, request, inline):
     summary = None
     new_to_run = None
   if summary:
+    if summary.state == task_result.State.EXPIRED and request.resultdb_update_token:
+      resultdb.finalize_invocation_async(to_run.task_id).get_result()
+
     logging.info(
         'Expired %s', task_pack.pack_result_summary_key(result_summary_key))
     ts_mon_metrics.on_task_expired(summary, to_run_key.get())
