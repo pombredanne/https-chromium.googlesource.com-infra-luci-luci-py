@@ -497,12 +497,13 @@ class SwarmingTasksService(remote.Service):
     # task_realm = request.realm if request.realm else pool_cfg.realm.
     # realms.check_tasks_create_in_realm(task_realm)
 
-    # TODO(crbug.com/1066839): replace check_schedule_request_acl with
-    # realms.check_pools_create_task and realms.check_tasks_run_as which
-    # internally calls legacy checks.
-    # Make sure the caller is actually allowed to schedule the task before
-    # asking the token server for a service account token.
-    task_scheduler.check_schedule_request_acl(request_obj)
+    # Realm permission 'swarming.pools.create' checks if the caller is allowed
+    # to create a task in the pool.
+    realms.check_pools_create_task(pool, pool_cfg)
+
+    # Realm permission 'swarming.tasks.runAs' checks if the service account is
+    # allowed to run in the pool.
+    realms.check_tasks_run_as(request_obj)
 
     # If request_obj.service_account is an email, contact the token server to
     # generate "OAuth token grant" (or grab a cached one). By doing this we
