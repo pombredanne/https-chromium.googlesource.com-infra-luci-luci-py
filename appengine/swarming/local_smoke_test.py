@@ -1212,6 +1212,48 @@ class Test(unittest.TestCase):
     self.assertTrue(summary[u'abandoned_ts'])
     self.assertEqual(['summary.json'], actual_files.keys())
 
+  def test_task_realm(self):
+    request = {
+      'name': 'task_realm',
+      'realm': 'test:realm',
+      'priority': 40,
+      'task_slices': [
+        {
+          'expiration_secs': 120,
+          'properties': {
+            'command': ['python', '-c', 'print("hello LUCI Realms")'],
+            'dimensions': [
+              {
+                'key': 'pool',
+                'value': 'default',
+              },
+            ],
+            'grace_period_secs': 30,
+            'execution_timeout_secs': 30,
+            'io_timeout_secs': 30,
+          },
+        },
+      ],
+    }
+    task_id = self.client.task_trigger_post(json.dumps(request))
+    expected_summary = self.gen_expected(
+        name=u'task_realm',
+        output=u'hello LUCI Realms\n',
+        tags=[
+          u'pool:default',
+          u'priority:40',
+          u'service_account:none',
+          u'swarming.pool.template:none',
+          u'swarming.pool.version:pools_cfg_rev',
+          u'user:None',
+        ],
+        user=u'')
+    actual_summary, actual_files = self.client.task_collect(task_id)
+    performance_stats = actual_summary['shards'][0].pop('performance_stats')
+    self.assertPerformanceStatsEmpty(performance_stats)
+    self.assertResults(expected_summary, actual_summary, deduped=False)
+    self.assertEqual(['summary.json'], actual_files.keys())
+
   @contextlib.contextmanager
   def _make_wait_task(self, name):
     """Creates a dummy task that keeps the bot busy, while other things are
