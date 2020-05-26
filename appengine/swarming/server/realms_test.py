@@ -30,9 +30,9 @@ from server import task_request
 from server import task_scheduler
 
 
-PERM_POOLS_CREATE_TASK = auth.Permission('swarming.pools.createTask')
-PERM_TASKS_CREATE_IN_REALM = auth.Permission('swarming.tasks.createInRealm')
-PERM_TASKS_RUN_AS = auth.Permission('swarming.tasks.runAs')
+_PERM_POOLS_CREATE_TASK = auth.Permission('swarming.pools.createTask')
+_PERM_TASKS_CREATE_IN_REALM = auth.Permission('swarming.tasks.createInRealm')
+_PERM_TASKS_RUN_AS = auth.Permission('swarming.tasks.runAs')
 
 
 def _gen_task_request_mock(realm='test:realm'):
@@ -61,7 +61,7 @@ class RealmsTest(test_case.TestCase):
 
   def test_get_permission(self):
     perm = realms.get_permission(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
-    self.assertEqual(PERM_POOLS_CREATE_TASK, perm)
+    self.assertEqual(_PERM_POOLS_CREATE_TASK, perm)
 
   @parameterized.expand([
       # should return False if the permissiion is not configured in settings.cfg
@@ -109,7 +109,7 @@ class RealmsTest(test_case.TestCase):
     realms.check_pools_create_task('test_pool',
                                    pools_pb2.Pool(realm='test:pool'))
     self._has_permission_dryrun_mock.assert_called_once_with(
-        PERM_POOLS_CREATE_TASK, [u'test:pool'],
+        _PERM_POOLS_CREATE_TASK, [u'test:pool'],
         True,
         tracking_bug='crbug.com/1066839')
 
@@ -124,7 +124,7 @@ class RealmsTest(test_case.TestCase):
       realms.check_pools_create_task('test_pool',
                                      pools_pb2.Pool(realm='test:pool'))
     self._has_permission_dryrun_mock.assert_called_once_with(
-        PERM_POOLS_CREATE_TASK, [u'test:pool'],
+        _PERM_POOLS_CREATE_TASK, [u'test:pool'],
         False,
         tracking_bug='crbug.com/1066839')
 
@@ -139,7 +139,7 @@ class RealmsTest(test_case.TestCase):
     self._has_permission_mock.return_value = True
     realms.check_pools_create_task('test_pool',
                                    pools_pb2.Pool(realm='test:pool'))
-    self._has_permission_mock.assert_called_once_with(PERM_POOLS_CREATE_TASK,
+    self._has_permission_mock.assert_called_once_with(_PERM_POOLS_CREATE_TASK,
                                                       [u'test:pool'])
 
   def test_check_pools_create_task_enforced_not_allowed(self):
@@ -148,13 +148,13 @@ class RealmsTest(test_case.TestCase):
     with self.assertRaises(auth.AuthorizationError):
       realms.check_pools_create_task('test_pool',
                                      pools_pb2.Pool(realm='test:pool'))
-    self._has_permission_mock.assert_called_once_with(PERM_POOLS_CREATE_TASK,
+    self._has_permission_mock.assert_called_once_with(_PERM_POOLS_CREATE_TASK,
                                                       [u'test:pool'])
 
   def test_check_tasks_create_in_realm_legacy(self):
     realms.check_tasks_create_in_realm('test:realm')
     self._has_permission_dryrun_mock.assert_called_once_with(
-        PERM_TASKS_CREATE_IN_REALM, [u'test:realm'],
+        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'],
         expected_result=True,
         tracking_bug=realms._TRACKING_BUG)
 
@@ -167,7 +167,7 @@ class RealmsTest(test_case.TestCase):
     self._has_permission_mock.return_value = True
     realms.check_tasks_create_in_realm('test:realm')
     self._has_permission_mock.assert_called_once_with(
-        PERM_TASKS_CREATE_IN_REALM, [u'test:realm'])
+        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'])
 
   def test_check_tasks_create_in_realm_enforced_not_allowed(self):
     self.mock(realms, 'is_enforced_permission', lambda *_: True)
@@ -175,7 +175,7 @@ class RealmsTest(test_case.TestCase):
     with self.assertRaises(auth.AuthorizationError):
       realms.check_tasks_create_in_realm('test:realm')
     self._has_permission_mock.assert_called_once_with(
-        PERM_TASKS_CREATE_IN_REALM, [u'test:realm'])
+        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'])
 
   def test_check_tasks_create_in_realm_enforced_no_realm(self):
     self.mock(realms, 'is_enforced_permission', lambda *_: True)
@@ -198,7 +198,7 @@ class RealmsTest(test_case.TestCase):
     task_request_mock = _gen_task_request_mock()
     realms.check_tasks_run_as(task_request_mock)
     self._has_permission_dryrun_mock.assert_called_once_with(
-        PERM_TASKS_RUN_AS, [u'test:realm'],
+        _PERM_TASKS_RUN_AS, [u'test:realm'],
         True,
         identity=auth.Identity.from_bytes('user:delegatee@example.com'),
         tracking_bug=realms._TRACKING_BUG)
@@ -217,7 +217,7 @@ class RealmsTest(test_case.TestCase):
     with self.assertRaises(auth.AuthorizationError):
       realms.check_tasks_run_as(task_request_mock)
     self._has_permission_dryrun_mock.assert_called_once_with(
-        PERM_TASKS_RUN_AS, [u'test:realm'],
+        _PERM_TASKS_RUN_AS, [u'test:realm'],
         False,
         identity=auth.Identity.from_bytes('user:delegatee@example.com'),
         tracking_bug=realms._TRACKING_BUG)
@@ -230,7 +230,7 @@ class RealmsTest(test_case.TestCase):
     with self.assertRaises(auth.AuthorizationError):
       realms.check_tasks_run_as(task_request_mock)
     self._has_permission_dryrun_mock.assert_called_once_with(
-        PERM_TASKS_RUN_AS, [u'test:realm'],
+        _PERM_TASKS_RUN_AS, [u'test:realm'],
         False,
         identity=auth.Identity.from_bytes('user:delegatee@example.com'),
         tracking_bug=realms._TRACKING_BUG)
@@ -253,7 +253,7 @@ class RealmsTest(test_case.TestCase):
     task_request_mock = _gen_task_request_mock()
     realms.check_tasks_run_as(task_request_mock)
     self._has_permission_mock.assert_called_once_with(
-        PERM_TASKS_RUN_AS, [u'test:realm'],
+        _PERM_TASKS_RUN_AS, [u'test:realm'],
         identity=auth.Identity.from_bytes('user:delegatee@example.com'))
 
   def test_check_tasks_run_as_enforced_no_realm(self):
@@ -271,7 +271,7 @@ class RealmsTest(test_case.TestCase):
     with self.assertRaises(auth.AuthorizationError):
       realms.check_tasks_run_as(task_request_mock)
     self._has_permission_mock.assert_called_once_with(
-        PERM_TASKS_RUN_AS, [u'test:realm'],
+        _PERM_TASKS_RUN_AS, [u'test:realm'],
         identity=auth.Identity.from_bytes('user:delegatee@example.com'))
 
 
