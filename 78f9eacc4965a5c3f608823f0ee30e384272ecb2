@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e635469f_1bdad98d",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T08:19:15Z",
+      "side": 1,
+      "message": "better to use tuple or None?",
+      "range": {
+        "startLine": 48,
+        "startChar": 53,
+        "endLine": 48,
+        "endChar": 55
+      },
+      "revId": "78f9eacc4965a5c3f608823f0ee30e384272ecb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a21868c0_2ee801cb",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T08:19:15Z",
+      "side": 1,
+      "message": "tuple?",
+      "range": {
+        "startLine": 794,
+        "startChar": 35,
+        "endLine": 794,
+        "endChar": 37
+      },
+      "revId": "78f9eacc4965a5c3f608823f0ee30e384272ecb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7308c6ce_a5f5d601",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2498,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T08:19:15Z",
+      "side": 1,
+      "message": "not necessary?",
+      "range": {
+        "startLine": 2498,
+        "startChar": 49,
+        "endLine": 2498,
+        "endChar": 51
+      },
+      "revId": "78f9eacc4965a5c3f608823f0ee30e384272ecb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
