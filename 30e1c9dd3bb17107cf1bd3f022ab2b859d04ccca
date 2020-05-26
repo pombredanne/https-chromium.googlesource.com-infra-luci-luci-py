@@ -288,6 +288,24 @@
       "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e09275bf_2b9f5dbc",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T10:53:58Z",
+      "side": 1,
+      "message": "I worry that returning 5xx error even when the transaction completed.\n(I remember the outage caused by the tasks new API we experienced last year.)\n\nBut I re-thought that the finalize invocation won\u0027t be called in user facing APIs?(I\u0027m not sure about task terminate API).\nSo it\u0027s probably ok to fail in background jobs.",
+      "parentUuid": "77c25b5b_320ef956",
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
