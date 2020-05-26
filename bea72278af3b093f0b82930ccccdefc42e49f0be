@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3aa946_df4f6fb9",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T01:43:53Z",
+      "side": 1,
+      "message": "make these private?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "bea72278af3b093f0b82930ccccdefc42e49f0be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b75d3b33_c6667a22",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T01:43:53Z",
+      "side": 1,
+      "message": "I prefer to compare perm.name with string literal.",
+      "range": {
+        "startLine": 64,
+        "startChar": 45,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "bea72278af3b093f0b82930ccccdefc42e49f0be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
