@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae2d589e_51c9ffa7",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T04:32:07Z",
+      "side": 1,
+      "message": "nit:\nHow about extracting a helper function to share with _send_job_completed_metric?",
+      "range": {
+        "startLine": 1103,
+        "startChar": 1,
+        "endLine": 1106,
+        "endChar": 12
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39ec2650_4f9f0344",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T04:32:07Z",
+      "side": 1,
+      "message": "nit:\nI\u0027m just curious when self.request can be None.",
+      "range": {
+        "startLine": 1107,
+        "startChar": 7,
+        "endLine": 1107,
+        "endChar": 20
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe148535_5ade2198",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T04:32:07Z",
+      "side": 1,
+      "message": "Use TaskResultSummary.run_result_key\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_result.py;l\u003d1060?q\u003df:task_result.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\nYou can also add a property method run_id, IMO.",
+      "range": {
+        "startLine": 1108,
+        "startChar": 15,
+        "endLine": 1109,
+        "endChar": 69
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2ca2151_35fa874b",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T04:32:07Z",
+      "side": 1,
+      "message": "nit:\nI\u0027m not familiar with ndb async code. But don\u0027t we use @ndb.toplevel to wait all \u0027ndb.tasklet\u0027s?\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/async\n\nI couldn\u0027t find it by code search.",
+      "range": {
+        "startLine": 1110,
+        "startChar": 49,
+        "endLine": 1110,
+        "endChar": 59
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a116b7ec_cf5db478",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T04:32:07Z",
+      "side": 1,
+      "message": "What are expected behaviors when finalize invocations failed?\nDo you need to catch the exceptions?",
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
