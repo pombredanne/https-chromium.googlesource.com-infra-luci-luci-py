@@ -22,6 +22,30 @@
       "revId": "5601e9658e6ca1f86ac4442e0b2956752dc2043d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59a1e504_69cf8d02",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T03:23:21Z",
+      "side": 1,
+      "message": "changed to use _post_put_hook.",
+      "parentUuid": "5794ec4d_4dccb1c6",
+      "range": {
+        "startLine": 220,
+        "startChar": 4,
+        "endLine": 220,
+        "endChar": 24
+      },
+      "revId": "5601e9658e6ca1f86ac4442e0b2956752dc2043d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
