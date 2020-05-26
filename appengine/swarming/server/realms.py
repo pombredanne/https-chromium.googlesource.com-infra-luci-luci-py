@@ -156,10 +156,8 @@ def check_tasks_create_in_realm(realm):
     logging.warning('%s: task realm is missing', _TRACKING_BUG)
 
 
-# TODO(crbug.com/1066839): replace the legacy check function with
-# check_tasks_run_as and check_pools_create_task.
 def check_tasks_run_as(task_request):
-  """Checks if the task service account is allowed to run in the pool.
+  """Checks if the task service account is allowed to run in the task realm.
 
   Realm permission `swarming.tasks.runAs` will be checked,
   using auth.has_permission() or auth.has_permission_dryrun().
@@ -181,7 +179,7 @@ def check_tasks_run_as(task_request):
 
   Raises:
     auth.AuthorizationError: if the service account is not allowed to run
-                             in the pool.
+                             in the task realm.
   """
   if not service_accounts.is_service_account(task_request.service_account):
     return
