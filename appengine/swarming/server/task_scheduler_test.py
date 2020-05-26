@@ -1974,6 +1974,36 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, result_summary.key.get().to_dict())
     self.assertEqual(1, len(pub_sub_calls)) # pubsub completion notification
 
+  def test_cron_abort_expired_task_to_run_finalize_invocation(self):
+    self._register_bot(0, self.bot_dimensions)
+    expiration_ts = self.now + datetime.timedelta(1)
+    result_summary = self._quick_schedule(1, resultdb_update_token='secret')
+    expiration_ts = result_summary.request_key.get().expiration_ts
+    abandoned_ts = self.mock_now(expiration_ts, 1)
+
+    task_scheduler.cron_abort_expired_task_to_run()
+    tasks = self._taskqueue_stub.GetTasks('task-expire')
+    self.assertEqual(1, len(tasks))
+
+    @ndb.tasklet
+    def _nop_async(_):
+      pass
+
+    with mock.patch('server.resultdb.finalize_invocation_async',
+                    mock.Mock(side_effect=_nop_async)) as mock_call:
+      self.assertEqual(1, self.execute_tasks())
+      mock_call.assert_called_once_with('1d69b9f088008911')
+
+    self.assertEqual([], task_result.TaskRunResult.query().fetch())
+    expected = self._gen_result_summary_pending(
+        abandoned_ts=abandoned_ts,
+        completed_ts=abandoned_ts,
+        expiration_delay=1,
+        id='1d69b9f088008910',
+        modified_ts=abandoned_ts,
+        state=State.EXPIRED)
+    self.assertEqual(expected, result_summary.key.get().to_dict())
+
   def test_cron_abort_expired_fallback(self):
     # 1 and 4 have capacity.
     self.bot_dimensions[u'item'] = [u'1', u'4']
