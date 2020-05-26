@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "641afcab_e58a408c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T05:07:49Z",
+      "side": 1,
+      "message": "condition is bit different because finalize invocation is not called when NO RESOURCE case.",
+      "parentUuid": "ae2d589e_51c9ffa7",
+      "range": {
+        "startLine": 1103,
+        "startChar": 1,
+        "endLine": 1106,
+        "endChar": 12
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39ec2650_4f9f0344",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "509e5da7_4003832e",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T05:07:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39ec2650_4f9f0344",
+      "range": {
+        "startLine": 1107,
+        "startChar": 7,
+        "endLine": 1107,
+        "endChar": 20
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a30cfc86_2536d55e",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T05:07:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe148535_5ade2198",
+      "range": {
+        "startLine": 1108,
+        "startChar": 15,
+        "endLine": 1109,
+        "endChar": 69
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2ca2151_35fa874b",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 9
@@ -91,6 +163,30 @@
       "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaac79d3_e3afcfb0",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T05:07:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2ca2151_35fa874b",
+      "range": {
+        "startLine": 1110,
+        "startChar": 49,
+        "endLine": 1110,
+        "endChar": 59
+      },
+      "revId": "30e1c9dd3bb17107cf1bd3f022ab2b859d04ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
