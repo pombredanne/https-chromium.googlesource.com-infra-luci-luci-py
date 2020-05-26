@@ -197,4 +197,4 @@ def create_application(debug):
   routes.extend(get_routes())
   routes.extend(handlers_bot.get_routes())
   routes.extend(handlers_endpoints.get_routes())
-  return webapp2.WSGIApplication(routes, debug=debug)
+  return ndb.toplevel(webapp2.WSGIApplication(routes, debug=debug))
