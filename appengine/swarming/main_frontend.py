@@ -60,7 +60,7 @@ def create_application():
     return config.settings().enable_ts_monitoring
 
   # App that serves HTML pages and old API.
-  frontend_app = handlers_frontend.create_application(False)
+  frontend_app = handlers_frontend.create_application(False, ndb_toplevel=False)
   gae_ts_mon.initialize(frontend_app, is_enabled_fn=is_enabled_callback)
 
   endpoints_api = endpoints_webapp2.api_server([
@@ -76,14 +76,14 @@ def create_application():
   ])
   gae_ts_mon.instrument_wsgi_application(endpoints_api)
 
-  prpc_api = webapp2.WSGIApplication(handlers_prpc.get_routes())
+  prpc_api = ndb.toplevel(webapp2.WSGIApplication(handlers_prpc.get_routes()))
   gae_ts_mon.instrument_wsgi_application(prpc_api)
 
   ts_mon_metrics.initialize()
   utils.report_memory(frontend_app)
   utils.report_memory(endpoints_api)
   utils.report_memory(prpc_api)
-  return frontend_app, endpoints_api, prpc_api
+  return ndb.toplevel(frontend_app), endpoints_api, prpc_api
 
 
 app, endpoints_app, prpc_app = create_application()
