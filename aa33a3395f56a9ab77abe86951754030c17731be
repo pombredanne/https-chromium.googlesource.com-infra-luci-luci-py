@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d1fda58_1874e45b",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T10:49:36Z",
+      "side": 1,
+      "message": "this is not mock?",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "aa33a3395f56a9ab77abe86951754030c17731be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caf8be16_230f5881",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-26T10:49:36Z",
+      "side": 1,
+      "message": "frozenset?",
+      "range": {
+        "startLine": 794,
+        "startChar": 35,
+        "endLine": 794,
+        "endChar": 37
+      },
+      "revId": "aa33a3395f56a9ab77abe86951754030c17731be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
