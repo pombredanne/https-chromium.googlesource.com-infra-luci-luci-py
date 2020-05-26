@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98684f68_7b7c0d22",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-26T05:17:31Z",
+      "side": 1,
+      "message": "Good job!\nLet\u0027s create another CL for @ndb.toplevel since it might have unexpected effects.\nI think it\u0027s ok to leave get_result(), and remove it after submitting a CL for @ndb.toplevel.",
+      "revId": "4b5210eaa7fd65d97f54398bf4a98e71481fe90c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
