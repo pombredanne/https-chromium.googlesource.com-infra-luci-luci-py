@@ -345,7 +345,6 @@ def _handle_dead_bot(run_result_key):
   request_future = request_key.get_async()
   now = utils.utcnow()
   server_version = utils.get_app_version()
-  packed = task_pack.pack_run_result_key(run_result_key)
   request = request_future.get_result()
   if not request:
     # That's a particularly broken task, there's no TaskRequest in the DB!
@@ -364,7 +363,7 @@ def _handle_dead_bot(run_result_key):
   es_cfg = external_scheduler.config_for_task(request)
 
   def run():
-    """Returns tuple(task_is_retried or None, bot_id).
+    """Returns None.
 
     1x GET, 1x GETs 2~3x PUT.
     """
@@ -372,11 +371,11 @@ def _handle_dead_bot(run_result_key):
 
     if run_result.state != task_result.State.RUNNING:
       # It was updated already or not updating last. Likely DB index was stale.
-      return None, run_result.bot_id
+      return
 
     if not run_result.dead_after_ts or run_result.dead_after_ts > now:
       # This shouldn't have been filtered in the query. DB index may be stale.
-      return None, run_result.bot_id
+      return
 
     run_result.signal_server_version(server_version)
     run_result.modified_ts = now
@@ -393,7 +392,6 @@ def _handle_dead_bot(run_result_key):
       run_result.internal_failure = True
       run_result.abandoned_ts = now
       run_result.completed_ts = now
-      task_is_retried = None
     else:
       # Kill it as BOT_DIED, there was more than one try, the task expired in
       # the meantime or it wasn't idempotent.
@@ -411,7 +409,6 @@ def _handle_dead_bot(run_result_key):
       run_result.abandoned_ts = now
       run_result.completed_ts = now
       result_summary.set_from_run_result(run_result, request)
-      task_is_retried = False
 
     futures = ndb.put_multi_async(to_put)
     # if result_summary.state != orig_summary_state:
@@ -421,17 +418,10 @@ def _handle_dead_bot(run_result_key):
     for f in futures:
       f.check_success()
 
-    return task_is_retried
-
   try:
-    task_is_retried = datastore_utils.transaction(run)
+    datastore_utils.transaction(run)
   except datastore_utils.CommitError:
-    task_is_retried = None
-  if task_is_retried:
-    logging.info('Retried %s', packed)
-  elif task_is_retried == False:
-    logging.debug('Ignored %s', packed)
-  return task_is_retried
+    pass
 
 
 def _copy_summary(src, dst, skip_list):
