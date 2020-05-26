@@ -791,6 +791,7 @@ class TaskRequestApiTest(TestCase):
         service_accounts=(),
         service_accounts_groups=(),
         realm=None,
+        enforced_realm_permissions=(),
         task_template_deployment=deployment,
         bot_monitoring=None,
         default_isolate=None,
