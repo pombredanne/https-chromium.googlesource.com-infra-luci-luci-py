@@ -917,9 +917,23 @@ class SwarmingBotService(remote.Service):
       # entity. If this is the case, it means the bot was deleted but it's
       # useful to show information about it to the user even if the bot was
       # deleted.
-      events = bot_management.get_events_query(bot_id, True).fetch(1)
+      events = bot_management.get_events_query(bot_id, True).fetch(2)
       if not events:
         raise endpoints.NotFoundException('%s not found.' % bot_id)
+
+      # If this API is called between the first handshake and the first poll,
+      # BotInfo isn't ready. This caused crbug.com/1086757.
+      # Reconstruct BotInfo from the existing event. Skip if the event is old.
+      if (len(events) == 1 and
+          events[0].ts > utils.utcnow() - datetime.timedelta(minutes=5)):
+        logging.debug("BotInfo isn't ready. Reconstructing BotInfo from "
+                      "bot_connected event.")
+        first_seen_ts = events[0].ts
+      else:
+        # Otherwise, it's a deleted bot.
+        first_seen_ts = None
+        deleted = True
+
       bot = bot_management.BotInfo(
           key=bot_management.get_info_key(bot_id),
           dimensions_flat=task_queues.bot_dimensions_to_flat(
@@ -931,13 +945,13 @@ class SwarmingBotService(remote.Service):
           quarantined=events[0].quarantined,
           maintenance_msg=events[0].maintenance_msg,
           task_id=events[0].task_id,
+          first_seen_ts=first_seen_ts,
           last_seen_ts=events[0].ts)
       # message_conversion.bot_info_to_rpc calls `is_dead`, `is_alive`. And
       # Those properties require components to be calculated. The calculation
       # is done in _pre_put_hook usually. But the BotInfo shouldn't be stored
       # in this case, as it's already deleted.
       bot.composite = bot._calc_composite()
-      deleted = True
 
     return message_conversion.bot_info_to_rpc(bot, deleted=deleted)
 
