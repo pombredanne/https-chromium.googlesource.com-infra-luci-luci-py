@@ -22,6 +22,30 @@
       "revId": "cd7d985bf315883ea3f49d0989f8303e685250b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ba4152f_107c1abc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-27T07:01:41Z",
+      "side": 1,
+      "message": "I think this CL can fix the unexpected behavior. And we can refactor the *internal* workarounds afterwards.",
+      "parentUuid": "3aa9422a_b5232059",
+      "range": {
+        "startLine": 11,
+        "startChar": 18,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "cd7d985bf315883ea3f49d0989f8303e685250b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
