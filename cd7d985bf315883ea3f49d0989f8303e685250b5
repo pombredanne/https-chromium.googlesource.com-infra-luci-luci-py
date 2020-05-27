@@ -70,6 +70,30 @@
       "revId": "cd7d985bf315883ea3f49d0989f8303e685250b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "117c2014_2b2ff393",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-27T08:24:45Z",
+      "side": 1,
+      "message": "Discussed in Chat.\nI will store BotInfo at the first handshake to avoid this workaround.",
+      "parentUuid": "d08469f8_06164723",
+      "range": {
+        "startLine": 11,
+        "startChar": 18,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "cd7d985bf315883ea3f49d0989f8303e685250b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
