@@ -46,6 +46,30 @@
       "revId": "cd7d985bf315883ea3f49d0989f8303e685250b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d08469f8_06164723",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-27T07:08:41Z",
+      "side": 1,
+      "message": "I think it is better to do refactoring without having this CL to prevent code complexity increase. Because the issue is not so urgent?",
+      "parentUuid": "6ba4152f_107c1abc",
+      "range": {
+        "startLine": 11,
+        "startChar": 18,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "cd7d985bf315883ea3f49d0989f8303e685250b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
