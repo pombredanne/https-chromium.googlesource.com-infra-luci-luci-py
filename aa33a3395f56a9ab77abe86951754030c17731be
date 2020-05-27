@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b549ff54_368beae0",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-27T02:03:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d1fda58_1874e45b",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "aa33a3395f56a9ab77abe86951754030c17731be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "caf8be16_230f5881",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "aa33a3395f56a9ab77abe86951754030c17731be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "999459b7_ca517719",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-27T02:03:52Z",
+      "side": 1,
+      "message": "I just followed the other lines above.\nI changed all sets to frozensets().",
+      "parentUuid": "caf8be16_230f5881",
+      "range": {
+        "startLine": 794,
+        "startChar": 35,
+        "endLine": 794,
+        "endChar": 37
+      },
+      "revId": "aa33a3395f56a9ab77abe86951754030c17731be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
