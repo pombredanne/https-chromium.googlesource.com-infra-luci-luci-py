@@ -2518,8 +2518,12 @@ class BotApiTest(BaseTest):
   def test_get_ok(self):
     """Asserts that get shows the tasks a specific bot has executed."""
     self.set_as_privileged_user()
-    _bot_event('request_sleep', bot_id='id1', maintenance_msg='very busy')
 
+    # crbug.com/1086757
+    # It's expected to return a BotInfo after handhshake even before
+    # creating BotInfo at the first poll.
+    connected_at = self.mock_now(self.now)
+    _bot_event('bot_connected', bot_id='id1')
     expected = {
         u'authenticated_as': u'bot:whitelisted-ip',
         u'bot_id': u'id1',
@@ -2535,10 +2539,39 @@ class BotApiTest(BaseTest):
             },
         ],
         u'external_ip': u'8.8.4.4',
-        u'first_seen_ts': fmtdate(self.now),
+        # first_teen_ts is reconstructed from the bot_connected event.
+        u'first_seen_ts': fmtdate(connected_at),
         u'is_dead': False,
-        u'last_seen_ts': fmtdate(self.now),
-        u'maintenance_msg': u'very busy',
+        u'last_seen_ts': fmtdate(connected_at),
+        u'quarantined': False,
+        u'state': u'{"ram":65}',
+        u'version': u'123456789',
+    }
+    response = self.call_api('get', body={'bot_id': 'id1'})
+    self.assertEqual(expected, response.json)
+
+    polled_at = self.mock_now(self.now, 1)
+    _bot_event('request_sleep', bot_id='id1')
+    expected = {
+        u'authenticated_as': u'bot:whitelisted-ip',
+        u'bot_id': u'id1',
+        u'deleted': False,
+        u'dimensions': [
+            {
+                u'key': u'id',
+                u'value': [u'id1']
+            },
+            {
+                u'key': u'pool',
+                u'value': [u'default']
+            },
+        ],
+        u'external_ip': u'8.8.4.4',
+        # BotInfo.first_seen_ts is a bit later than the timestamp of
+        # bot connected event.
+        u'first_seen_ts': fmtdate(polled_at),
+        u'is_dead': False,
+        u'last_seen_ts': fmtdate(polled_at),
         u'quarantined': False,
         u'state': u'{"ram":65}',
         u'version': u'123456789',
@@ -2583,6 +2616,7 @@ class BotApiTest(BaseTest):
     self.call_api('get', body={'bot_id': 'not_a_bot'}, status=404)
 
   def test_get_deleted_bot(self):
+    _bot_event('bot_connected', bot_id='id1')
     _bot_event('request_sleep', bot_id='id1', state={'foo': 0})
     # Delete the bot.
     self.set_as_admin()
