@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98886849_526ef5c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-05-27T21:11:12Z",
+      "side": 1,
+      "message": "You forgot to add 1086757?",
+      "revId": "72812cccf0d5e48b0f3355e7d9af70b7a92777a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
