@@ -16,6 +16,24 @@
       "revId": "37d02f62ff4f3328de8782f25d3982ebd1891ef7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31c303f8_f12a193a",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2386,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-27T06:11:07Z",
+      "side": 0,
+      "message": "made https://crrev.com/c/2216144",
+      "parentUuid": "8e4001f5_e760aab7",
+      "revId": "37d02f62ff4f3328de8782f25d3982ebd1891ef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
