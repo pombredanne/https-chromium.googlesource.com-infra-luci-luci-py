@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ca5b8c6d_5fb6775d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-27T08:03:14Z",
+      "side": 1,
+      "message": "Note: \nNeed to store BotInfo at the first handshake for crbug.com/1086757.\nDon\u0027t store all dimensions at handshake which will be updated at the next polling.",
+      "revId": "c651ef05da9496373d698ea4b2045136fd703f6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "233e2a49_f74cce9d",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 3
