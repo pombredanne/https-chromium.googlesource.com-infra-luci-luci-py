@@ -67,11 +67,24 @@ def _bot_pool_cfg(bot_dimensions):
 
 
 def _config_for_dimensions(pool_cfg, dimensions_flat):
-  """Determines the external scheduler for pool config and dimension set."""
+  """Determines the external scheduler for pool config and dimension set.
+
+  Pool's dimensions are matched with the config. The config with more
+  dimension labels match first. For example, for below configs, the former
+  one will match first as it has two dimension labels.
+    - 'dimensions': ['pool:foo', 'dut_state:ready'],
+    - 'dimensions': ['dut_state:ready'],
+  This allows us flexibility to set a default rule for external scheduler
+  while accepting a few exceptions.
+  """
   if not pool_cfg or not pool_cfg.external_schedulers:
     return None
-  for e in pool_cfg.external_schedulers:
-    if e.enabled and e.dimensions.issubset(dimensions_flat):
+  for e in sorted(pool_cfg.external_schedulers,
+                  key=lambda e: len(e.dimensions),
+                  reverse=True):
+    if e.enabled in [False, 'False'] and e.dimensions.issubset(dimensions_flat):
+      return None
+    if e.enabled in [True, 'True'] and e.dimensions.issubset(dimensions_flat):
       return e
   return None
 
@@ -120,7 +133,6 @@ def config_for_task(request):
     s = request.task_slice(i)
     common_dimensions.intersection_update(
         task_queues.bot_dimensions_to_flat(s.properties.dimensions))
-
   return _config_for_dimensions(pool_cfg, common_dimensions)
 
 
