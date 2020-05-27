@@ -67,11 +67,18 @@ def _bot_pool_cfg(bot_dimensions):
 
 
 def _config_for_dimensions(pool_cfg, dimensions_flat):
-  """Determines the external scheduler for pool config and dimension set."""
+  """Determines the external scheduler for pool config and dimension set.
+
+  If there is a config clearly enabled or disabled external scheduler for
+  the dimensions_flat, return this config. Then return the default config.
+  If no config matched with the dimensions_flat, return None.
+  """
   if not pool_cfg or not pool_cfg.external_schedulers:
     return None
-  for e in pool_cfg.external_schedulers:
-    if e.enabled and e.dimensions.issubset(dimensions_flat):
+  for e in sorted(pool_cfg.external_schedulers, key=lambda e: len(e.dimensions), reverse=True):
+    if e.enabled in [False, 'False'] and e.dimensions.issubset(dimensions_flat):
+      return None
+    if e.enabled in [True, 'True'] and e.dimensions.issubset(dimensions_flat):
       return e
   return None
 
@@ -120,7 +127,6 @@ def config_for_task(request):
     s = request.task_slice(i)
     common_dimensions.intersection_update(
         task_queues.bot_dimensions_to_flat(s.properties.dimensions))
-
   return _config_for_dimensions(pool_cfg, common_dimensions)
 
 
