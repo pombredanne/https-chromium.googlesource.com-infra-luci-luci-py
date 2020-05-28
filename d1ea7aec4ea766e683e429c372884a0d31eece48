@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa0473cb_331a9d35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-05-28T19:18:09Z",
+      "side": 1,
+      "message": "Yes. I mentioned in the message. I want to attach a unit test within this CL.\nBut need some input, where is best to add such a unittest?",
+      "parentUuid": "a3666cb4_3bcd5f2d",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e1d6a84_c981b2a5",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "11ae1845_f0392468",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-05-28T19:18:09Z",
+      "side": 1,
+      "message": "Err... NACK, because I think this only works for the pattern (default + exceptions).\nJust in case, if we have to roll back the config to current form:\n\n```\n  external_schedulers {\n    address: \"qscheduler-prod.chromium.org\"\n    dimensions: \"dut_state:ready\"\n    dimensions: \"label-pool:DUT_POOL_QUOTA\"\n    enabled: true\n    id: \"all\"\n  }\n```\nThen CTS pool will become QS true, while it is expected to be false.\nPlus, I think the order upon the matched dimensions is natural for the configuration operator. \nIf two rules are conflicting, the more \"matched\" wins. Looks good?",
+      "parentUuid": "a91bd46d_d38d3321",
+      "range": {
+        "startLine": 82,
+        "startChar": 11,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3135c903_da4d448e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6
@@ -92,6 +140,30 @@
       "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8a390df_809cf686",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-05-28T19:18:09Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "3135c903_da4d448e",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 34
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
