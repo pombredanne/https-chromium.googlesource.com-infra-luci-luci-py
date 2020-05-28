@@ -135,9 +135,9 @@ The root is a dictionary with the following keys:
 
 There are the following file types;
   - `basic`: All normal files, the default type.
-  - `ar`: An [ar](https://en.wikipedia.org/wiki/Ar_(Unix)) archive containing a
+  - `ar`: DEPRECATED. An [ar](https://en.wikipedia.org/wiki/Ar_(Unix)) archive containing a
     large number of small files.
-  - `tar`: An [tar](https://en.wikipedia.org/wiki/Tar_(Unix)) archive
+  - `tar`: DEPRECATED. An [tar](https://en.wikipedia.org/wiki/Tar_(Unix)) archive
     containing a large number of small files.
 
 
