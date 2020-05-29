@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8068937a_2af2972c",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-29T21:24:22Z",
+      "side": 1,
+      "message": "role/",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15f1855b_eca59c17",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-29T21:24:22Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is a good name, it has some negative connotation.\n\nCan you give examples of accounts that will have this role?",
+      "range": {
+        "startLine": 123,
+        "startChar": 23,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "860b9c3a_d86e8b60",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-29T21:24:22Z",
+      "side": 1,
+      "message": "who will have this role?",
+      "range": {
+        "startLine": 126,
+        "startChar": 23,
+        "endLine": 126,
+        "endChar": 47
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c62125ba_8c4f1cfe",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-29T21:24:22Z",
+      "side": 1,
+      "message": "invocationWriter? resultsWriter?\n\nWhat if we later want to grant developers ability to populate invocations with results (e.g. when they run tests locally), we wouldn\u0027t want to grant them \"task\" role.",
+      "range": {
+        "startLine": 132,
+        "startChar": 23,
+        "endLine": 132,
+        "endChar": 27
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c8593fd_e9b69bb1",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-05-29T21:24:22Z",
+      "side": 1,
+      "message": "reader (to be consistent with other roles like role/scheduler.reader)",
+      "range": {
+        "startLine": 137,
+        "startChar": 23,
+        "endLine": 137,
+        "endChar": 29
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
