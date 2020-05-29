@@ -115,6 +115,29 @@ def db():
       permission('swarming.pools.createTask'),
   ])
 
+  # ResultDB permissions and roles. (crbug.com/1013316)
+  role('roles/resultdb.invocationCreator', [
+      permission('resultdb.invocations.create'),
+      permission('resultdb.invocations.update'),
+  ])
+  role('roles/resultdb.leaker', [
+      permission('resultdb.invocations.includeFrom'),
+  ])
+  role('roles/resultdb.trustedInvocationCreator', [
+      include('role/luci.invocationCreator'),
+      permission('resultdb.invocations.createWithReservedName'),
+      permission('resultdb.invocations.setProduceResource'),
+      permission('resultdb.invocations.exportToBigQuery'),
+  ])
+  role('roles/resultdb.task', [
+      permission('resultdb.testResults.create'),
+      permission('resultdb.artifacts.create'),
+      permission('resultdb.testExonerations.create'),
+  ])
+  role('roles/resultdb.viewer', [
+      permission('resultdb.invocations.read'),
+  ])
+
   return builder.finish()
 
 
