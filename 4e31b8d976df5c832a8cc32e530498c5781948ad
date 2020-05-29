@@ -22,6 +22,30 @@
       "revId": "4e31b8d976df5c832a8cc32e530498c5781948ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72866429_d408ada7",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-05-29T07:51:13Z",
+      "side": 1,
+      "message": "let me use try except.",
+      "parentUuid": "f49ad7b3_42a18178",
+      "range": {
+        "startLine": 624,
+        "startChar": 22,
+        "endLine": 624,
+        "endChar": 60
+      },
+      "revId": "4e31b8d976df5c832a8cc32e530498c5781948ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
