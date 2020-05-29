@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "c6797fe7_c6a85e3c",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-05-29T22:42:44Z",
+      "side": 1,
+      "message": "Thanks. \n\n\u003e (People who configure external schedulers need to know the rule)\n\nThis only happens when two rules are conflicting. And yes, user should be aware of it. I will add some clarifications in that config file.\nFYI: QS is using the same way to match bot and task.\n\n\u003e So why not just using the config as is?\nIn that case(you mean the current config file?), we need to change the config whenever a new pool is created. Engprod team does have a lot of updates on their pools.\n\nOr you mean the order that rules are placed in the config?",
+      "parentUuid": "d494e81c_ada70f77",
+      "range": {
+        "startLine": 82,
+        "startChar": 11,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3135c903_da4d448e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6

@@ -16,6 +16,24 @@
       "revId": "fef5de36b5d48f3d44786f831c0184a100c278f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f38fa0cc_fb88e56b",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-05-29T22:42:44Z",
+      "side": 1,
+      "message": "Ack, but I would like to file a separate CL for them. LGTY?",
+      "parentUuid": "6c655aea_8367bd0d",
+      "revId": "fef5de36b5d48f3d44786f831c0184a100c278f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
