@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c655aea_8367bd0d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-29T22:18:09Z",
+      "side": 1,
+      "message": "ok this is a good end to end testing.\n\nnit: it\u0027s worth having unit test for the test_config_for_bot and test_config_for_task.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/external_scheduler_test.py;l\u003d184?q\u003df:external_scheduler_test.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "revId": "fef5de36b5d48f3d44786f831c0184a100c278f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
