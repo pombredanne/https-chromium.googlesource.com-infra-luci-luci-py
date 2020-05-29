@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f49ad7b3_42a18178",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-05-29T07:47:34Z",
+      "side": 1,
+      "message": "nit: I think this can throw exception. Shall we guard this with another try: finally...?",
+      "range": {
+        "startLine": 624,
+        "startChar": 22,
+        "endLine": 624,
+        "endChar": 60
+      },
+      "revId": "4e31b8d976df5c832a8cc32e530498c5781948ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
