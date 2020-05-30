@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "014f905d_a59dca1a",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-05-30T04:17:45Z",
+      "side": 1,
+      "message": "creative \u0026 precise!\n\nbut whatever 😊",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "31335da07c11bb739badf704d8b97544c84f787d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c24287a_944443ad",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-05-30T04:17:45Z",
+      "side": 1,
+      "message": "and eventually the same for CQ to trigger builds in BB, right?",
+      "revId": "31335da07c11bb739badf704d8b97544c84f787d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
