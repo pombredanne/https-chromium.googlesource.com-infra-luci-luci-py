@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "4cd6d379_700412dc",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-05-30T01:11:45Z",
+      "side": 1,
+      "message": "\u003e Or you mean the order that rules are placed in the config?\n\nI meant this. Isn\u0027t it more explicit for users?",
+      "parentUuid": "c6797fe7_c6a85e3c",
+      "range": {
+        "startLine": 82,
+        "startChar": 11,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3135c903_da4d448e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6
