@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad97a4f4_c7ba4e27",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-05-30T00:33:58Z",
+      "side": 1,
+      "message": "Should resultdb.invocationCreator include resultdb.reader?\n\nI\u0027m asking because in Cloud, it looks like \"BigQuery Data Owner\" has all permissions of \"BigQuery Data Editor\", and the latter has all permissions of \"BigQuery Data Viewer\". So I\u0027m wondering should we follow the same",
+      "revId": "600855ca29cd3f379f0f2497d203bcb8edf09e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8789c2db_0e53ec6b",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-05-30T00:33:58Z",
+      "side": 1,
+      "message": "Same here, should resultdb.resultsUploader include resultdb.reader?",
+      "revId": "600855ca29cd3f379f0f2497d203bcb8edf09e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
