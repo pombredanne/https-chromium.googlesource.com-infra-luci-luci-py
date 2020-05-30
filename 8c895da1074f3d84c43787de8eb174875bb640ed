@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1516393c_eff5d708",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-05-30T00:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8068937a_2af2972c",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15f1855b_eca59c17",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-05-29T21:24:22Z",
       "side": 1,
       "message": "I\u0027m not sure this is a good name, it has some negative connotation.\n\nCan you give examples of accounts that will have this role?",
+      "range": {
+        "startLine": 123,
+        "startChar": 23,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8171c65a_0a33f608",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-05-30T00:22:59Z",
+      "side": 1,
+      "message": "Given that boxster will not use resultdb we no longer have an identified use case, so I will remove it.\n\nThis permission was intended to allow an account to include invocations from this realm into another (where they presumably have invocation creator role)\n\nThe name was intended to make it sound risky, because it is. You\u0027d be granting the account permission to expose all the details of your realm\u0027s invocations to accounts you don\u0027t control",
+      "parentUuid": "15f1855b_eca59c17",
       "range": {
         "startLine": 123,
         "startChar": 23,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "668378d7_9f2b8de6",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-05-30T00:22:59Z",
+      "side": 1,
+      "message": "Buildbucket",
+      "parentUuid": "860b9c3a_d86e8b60",
+      "range": {
+        "startLine": 126,
+        "startChar": 23,
+        "endLine": 126,
+        "endChar": 47
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c62125ba_8c4f1cfe",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "eebb79f8_7eb2666c",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-05-30T00:22:59Z",
+      "side": 1,
+      "message": "Makes sense, done.",
+      "parentUuid": "c62125ba_8c4f1cfe",
+      "range": {
+        "startLine": 132,
+        "startChar": 23,
+        "endLine": 132,
+        "endChar": 27
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c8593fd_e9b69bb1",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41476dcc_aa5090b9",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-05-30T00:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c8593fd_e9b69bb1",
+      "range": {
+        "startLine": 137,
+        "startChar": 23,
+        "endLine": 137,
+        "endChar": 29
+      },
+      "revId": "8c895da1074f3d84c43787de8eb174875bb640ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
