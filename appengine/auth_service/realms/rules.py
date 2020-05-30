@@ -56,6 +56,9 @@ def expand_realms(db, project_id, realms_cfg):
   # A helper to traverse the realms graph.
   realms_expander = RealmsExpander(roles_expander, realms_cfg.realms)
 
+  # This extends @root realm with additional implicit bindings.
+  realms_expander.extend_root(db.implicit_root_bindings(project_id))
+
   # Visit all realms and build preliminary bindings as pairs of
   # (a tuple with permission indexes, a list of principals who have them). The
   # bindings are preliminary since we don't know final permission indexes yet
@@ -164,8 +167,14 @@ class RealmsExpander(object):
   def __init__(self, roles, realms):
     self._roles = roles
     self._realms = {r.name: r for r in realms}
-    if common.ROOT_REALM not in self._realms:
-      self._realms[common.ROOT_REALM] = default_root()
+
+  def extend_root(self, bindings):
+    """Adds given realms_config_pb2.Binding to the root realm."""
+    root = default_root()
+    if common.ROOT_REALM in self._realms:
+      root.CopyFrom(self._realms[common.ROOT_REALM])
+    root.bindings.extend(bindings)
+    self._realms[common.ROOT_REALM] = root
 
   @property
   def realm_names(self):
