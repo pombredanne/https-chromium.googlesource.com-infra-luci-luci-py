@@ -264,6 +264,30 @@
     },
     {
       "key": {
+        "uuid": "c991c0e9_d8327421",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-06-01T17:18:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9b062d6_63cd3d2d",
+      "range": {
+        "startLine": 82,
+        "startChar": 11,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3135c903_da4d448e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6
