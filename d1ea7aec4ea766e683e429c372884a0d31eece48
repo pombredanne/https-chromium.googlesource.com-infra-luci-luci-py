@@ -240,6 +240,30 @@
     },
     {
       "key": {
+        "uuid": "a9b062d6_63cd3d2d",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-01T01:32:52Z",
+      "side": 1,
+      "message": "\u003e I am not sure how other configs managed in swarming, \n\nIn bots.cfg, the default is defined at the bottom because it would match to all bots if it\u0027s placed at middle (or the top). So I prefer a similar convention for consistency.\nI think the external scheduler configs won\u0027t become complicated any more.\nhttps://chrome-internal.googlesource.com/infradata/config/+/refs/heads/master/configs/chromeos-swarming/bots.cfg#580",
+      "parentUuid": "4e2c4759_12220d11",
+      "range": {
+        "startLine": 82,
+        "startChar": 11,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "d1ea7aec4ea766e683e429c372884a0d31eece48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3135c903_da4d448e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 6
