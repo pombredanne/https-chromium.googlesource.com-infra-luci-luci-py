@@ -16,6 +16,24 @@
       "revId": "ec40e62efbba4d7ef64818d6eb0d4075975bb253",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d7685c7_bcbc47a5",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-01T08:28:18Z",
+      "side": 1,
+      "message": "Then I\u0027d like to align those with data stored in datastore too.\nHow do you think?",
+      "parentUuid": "e2f318c4_e34426e4",
+      "revId": "ec40e62efbba4d7ef64818d6eb0d4075975bb253",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
