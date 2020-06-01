@@ -141,6 +141,26 @@ def db():
       ),
   ]
 
+  # ResultDB permissions and roles. (crbug.com/1013316)
+  role('role/resultdb.invocationCreator', [
+      permission('resultdb.invocations.create'),
+      permission('resultdb.invocations.update'),
+  ])
+  role('role/resultdb.trustedInvocationCreator', [
+      include('role/luci.invocationCreator'),
+      permission('resultdb.invocations.createWithReservedName'),
+      permission('resultdb.invocations.setProducerResource'),
+      permission('resultdb.invocations.exportToBigQuery'),
+  ])
+  role('role/resultdb.resultsUploader', [
+      permission('resultdb.testResults.create'),
+      permission('resultdb.artifacts.create'),
+      permission('resultdb.testExonerations.create'),
+  ])
+  role('role/resultdb.reader', [
+      permission('resultdb.invocations.read'),
+  ])
+
   return builder.finish()
 
 
