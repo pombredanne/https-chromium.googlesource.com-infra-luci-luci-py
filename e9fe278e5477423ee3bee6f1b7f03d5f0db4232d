@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35fc2c5e_3538566e",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-01T19:04:18Z",
+      "side": 1,
+      "message": "I see you rebased. Please move ResultDB section before \u0027role/luci.internal.system\u0027 section and add `include(\u0027role/resultdb.trustedInvocationCreator\u0027)` to role/luci.internal.system. It will allow Buildbucket (and CQ) to create invocations.",
+      "range": {
+        "startLine": 144,
+        "startChar": 2,
+        "endLine": 144,
+        "endChar": 55
+      },
+      "revId": "e9fe278e5477423ee3bee6f1b7f03d5f0db4232d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
