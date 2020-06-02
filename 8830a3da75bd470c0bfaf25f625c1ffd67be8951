@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca661ff9_ed973e46",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-02T19:47:13Z",
+      "side": 1,
+      "message": "(I assume that an untrusted user will be able to graph themselves this permission)\n\nRealms are used to permissions that may damage only things *within the realm*. This affects affects a *global* resource, so such permissions should not be controlled via realm.\nThey should be controlled via a global config in infradata/config (when we decide to have it).\n\nsame applies to exportToBigQuery because the namespace of bigquery tables is global.",
+      "revId": "8830a3da75bd470c0bfaf25f625c1ffd67be8951",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc437895_21cd4126",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-02T19:47:13Z",
+      "side": 1,
+      "message": "yes, i think we need testResults/artifacts/testExonerations specific permissions for consistency with above",
+      "revId": "8830a3da75bd470c0bfaf25f625c1ffd67be8951",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
