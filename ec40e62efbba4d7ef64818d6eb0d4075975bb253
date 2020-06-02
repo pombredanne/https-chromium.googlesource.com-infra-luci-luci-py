@@ -70,6 +70,24 @@
       "revId": "ec40e62efbba4d7ef64818d6eb0d4075975bb253",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54269a62_1d0dba3d",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-02T04:56:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7e6d571b_e48b4f75",
+      "revId": "ec40e62efbba4d7ef64818d6eb0d4075975bb253",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
