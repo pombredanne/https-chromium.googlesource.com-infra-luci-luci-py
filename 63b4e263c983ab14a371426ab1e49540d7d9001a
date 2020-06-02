@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fc2aadd_7215ba84",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-02T08:42:46Z",
+      "side": 1,
+      "message": "I sent pull request so that this is caught by tricium next time.\nhttps://github.com/codespell-project/codespell/pull/1538",
+      "revId": "63b4e263c983ab14a371426ab1e49540d7d9001a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
