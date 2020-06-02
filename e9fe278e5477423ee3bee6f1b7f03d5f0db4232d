@@ -22,6 +22,30 @@
       "revId": "e9fe278e5477423ee3bee6f1b7f03d5f0db4232d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d778b06b_ed92b31e",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-06-02T18:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35fc2c5e_3538566e",
+      "range": {
+        "startLine": 144,
+        "startChar": 2,
+        "endLine": 144,
+        "endChar": 55
+      },
+      "revId": "e9fe278e5477423ee3bee6f1b7f03d5f0db4232d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
