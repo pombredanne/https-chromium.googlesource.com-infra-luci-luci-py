@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b33fd211_bc8adb3e",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-02T00:30:12Z",
+      "side": 1,
+      "message": "nit: \nThe dimension \u0027pool\u0027 is used to pick up the PoolConfig which is mocked in this setup.\nThis should be \u0027label-pool:CTS\u0027 to be aligned with the real config.",
+      "range": {
+        "startLine": 667,
+        "startChar": 42,
+        "endLine": 667,
+        "endChar": 50
+      },
+      "revId": "2ebacfb1646b7758b0d47ccebd2e46c9273ced89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
