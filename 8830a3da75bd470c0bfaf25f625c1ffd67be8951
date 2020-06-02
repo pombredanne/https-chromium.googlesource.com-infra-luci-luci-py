@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ab9259a_60f22c7d",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-06-02T21:07:59Z",
+      "side": 1,
+      "message": "Thanks for catching this.\nFor now I\u0027ll stick to the hard-coded group membership check for these two permissions, with a TODO for the global config.",
+      "parentUuid": "ca661ff9_ed973e46",
+      "revId": "8830a3da75bd470c0bfaf25f625c1ffd67be8951",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc437895_21cd4126",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "8830a3da75bd470c0bfaf25f625c1ffd67be8951",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a209c95_2bd190f8",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-06-02T21:07:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc437895_21cd4126",
+      "revId": "8830a3da75bd470c0bfaf25f625c1ffd67be8951",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
