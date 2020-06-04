@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efd7bde5_07b03c9c",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-04T12:35:57Z",
+      "side": 1,
+      "message": "\u0027(auth.IDENTITY_USER, \u0027?",
+      "range": {
+        "startLine": 194,
+        "startChar": 26,
+        "endLine": 194,
+        "endChar": 48
+      },
+      "revId": "32914d766456a7235de8ba787e9afd3a5e26073e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c29de93a_d68c1708",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-04T12:35:57Z",
+      "side": 1,
+      "message": "better to make this auth.Identity?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "32914d766456a7235de8ba787e9afd3a5e26073e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
