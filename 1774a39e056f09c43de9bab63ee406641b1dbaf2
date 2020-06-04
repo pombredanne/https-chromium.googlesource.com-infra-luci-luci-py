@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac4b0080_5529f8c6",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-04T13:46:26Z",
+      "side": 1,
+      "message": "I\u0027m now wondering implementation of this function matches with what we think\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/server/service_accounts.py?l\u003d68\u0026rcl\u003d8b702e20d8a26bcc6de708f3e7d9b23a5e02a73e",
+      "range": {
+        "startLine": 506,
+        "startChar": 24,
+        "endLine": 506,
+        "endChar": 42
+      },
+      "revId": "1774a39e056f09c43de9bab63ee406641b1dbaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc28e256_854c7990",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-04T13:46:26Z",
+      "side": 1,
+      "message": "why not endpoints exception?",
+      "range": {
+        "startLine": 533,
+        "startChar": 16,
+        "endLine": 533,
+        "endChar": 20
+      },
+      "revId": "1774a39e056f09c43de9bab63ee406641b1dbaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
