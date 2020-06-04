@@ -509,6 +509,30 @@ class SwarmingTasksService(remote.Service):
     # allowed to run in the task realm.
     realms.check_tasks_run_as(request_obj)
 
+    # If request_obj.service_account is an email and equest_obj.realm isn't set,
+    # it use the legacy minting oauth token mechanism. This path will be
+    # deprecated after migrating to the minting mechanism using realm.
+    # It contacts the token server to generate "OAuth token grant" (or grab
+    # a cached one). By doing this we check that the given service account
+    # usage is allowed by the token server rules at the time the task is posted.
+    # This check is also performed later (when running the task), when we get
+    # the actual OAuth access token.
+    if (service_accounts.is_service_account(request_obj.service_account)
+            and not request_obj.realm):
+      max_lifetime_secs = request_obj.max_lifetime_secs
+      try:
+        duration = datetime.timedelta(seconds=max_lifetime_secs)
+        request_obj.service_account_token = (
+            service_accounts.get_oauth_token_grant(
+                service_account=request_obj.service_account,
+                validity_duration=duration))
+      except service_accounts.PermissionError as exc:
+        raise auth.AuthorizationError(exc.message)
+      except service_accounts.MisconfigurationError as exc:
+        raise endpoints.BadRequestException(exc.message)
+      except service_accounts.InternalError as exc:
+        raise endpoints.InternalServerErrorException(exc.message)
+
     # If the user only wanted to evaluate scheduling the task, but not actually
     # schedule it, return early without a task_id.
     if request.evaluate_only:
