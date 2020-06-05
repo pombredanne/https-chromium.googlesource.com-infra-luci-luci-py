@@ -392,6 +392,28 @@ def known():
   return sorted(_fetch_pools_config().pools)
 
 
+def init_pool_config(**kwargs):
+  """Initializees PoolConfig with given arguments."""
+  args = {
+      'name': None,
+      'rev': None,
+      'scheduling_users': frozenset(),
+      'scheduling_groups': frozenset(),
+      'trusted_delegatees': {},
+      'service_accounts': frozenset(),
+      'service_accounts_groups': tuple(),
+      'realm': None,
+      'enforced_realm_permissions': frozenset(),
+      'task_template_deployment': None,
+      'bot_monitoring': None,
+      'default_isolate': None,
+      'default_cipd': None,
+      'external_schedulers': None,
+  }
+  args.update(kwargs)
+  return PoolConfig(**args)
+
+
 ### Private stuff.
 
 
@@ -589,7 +611,7 @@ def _fetch_pools_config():
   pools = {}
   for msg in cfg.pool:
     for name in msg.name:
-      pools[name] = PoolConfig(
+      pools[name] = init_pool_config(
           name=name,
           rev=rev,
           scheduling_users=frozenset(_to_ident(u) for u in msg.schedulers.user),
@@ -703,7 +725,7 @@ def bootstrap_dev_server_acls():
   _LOCAL_FAKE_CONFIG = _PoolsCfg(
       {
           'default':
-              PoolConfig(
+              init_pool_config(
                   name='default',
                   rev='pools_cfg_rev',
                   scheduling_users=frozenset([
@@ -711,17 +733,6 @@ def bootstrap_dev_server_acls():
                                     'smoke-test@example.com'),
                       auth.Identity(auth.IDENTITY_BOT, 'whitelisted-ip'),
                   ]),
-                  scheduling_groups=frozenset(),
-                  trusted_delegatees={},
-                  service_accounts=frozenset(),
-                  service_accounts_groups=tuple(),
-                  realm=None,
-                  enforced_realm_permissions=frozenset(),
-                  task_template_deployment=None,
-                  bot_monitoring=None,
-                  default_isolate=None,
-                  default_cipd=None,
-                  external_schedulers=None,
               ),
       },
       (None, None),
