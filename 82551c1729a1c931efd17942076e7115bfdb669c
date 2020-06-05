@@ -16,6 +16,24 @@
       "revId": "82551c1729a1c931efd17942076e7115bfdb669c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fed83a62_88d2659e",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-05T04:52:57Z",
+      "side": 1,
+      "message": "I think this should be auth.AuthorizationError because it\u0027s handled in components. So we shouldn\u0027t have a different path to return authorization error.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/components/auth/handler.py?q\u003d%22except%20api.AuthorizationError%22",
+      "parentUuid": "5c0c8a9c_5ef388c0",
+      "revId": "82551c1729a1c931efd17942076e7115bfdb669c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
