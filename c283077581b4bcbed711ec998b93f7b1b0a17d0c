@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b8a08cdc_2d9dfcd4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-05T03:55:32Z",
+      "side": 1,
+      "message": "This was actually added in\nhttps://crrev.com/c/1100904\n\nIn\nhttps://chromium-swarm.appspot.com/task?id\u003d4c91c2ae15c6c310\u0026o\u003dtrue\u0026w\u003dtrue\nthe task uses following named caches\nbuilder_f7c6770ec5a7636f73ee7c2bd3910d0955997e3a7c48c9b3a9731703090bbcf0_v2:cache/builder\ngit:cache/git\ngoma_v2:cache/goma\ninfra_gclient_with_go:cache/infra_gclient_with_go\nvpython:cache/vpython\n\nBut doesn\u0027t leave any files for builder cache\nbuilder_f7c6770ec5a7636f73ee7c2bd3910d0955997e3a7c48c9b3a9731703090bbcf0_v2:cache/builder\nwhich is specified in the 1st task slice.\nAnd this directory is currently removed and bot does not expose this cache dimension after the task execution.\n\nThen, the tasks for the builder cannot utilize any affinity.\n\nThis CL tries to fix such issue implicitly.",
+      "parentUuid": "fcaed710_97c2d27c",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "c283077581b4bcbed711ec998b93f7b1b0a17d0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dc3ac0e1_dce65c0b",
         "filename": "client/local_caching.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cc6eb531_03c6cbbc",
+        "filename": "client/local_caching.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-05T03:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc3ac0e1_dce65c0b",
+      "range": {
+        "startLine": 945,
+        "startChar": 8,
+        "endLine": 947,
+        "endChar": 29
+      },
+      "revId": "c283077581b4bcbed711ec998b93f7b1b0a17d0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f6c60f8_a04cc1d7",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2020-06-05T03:30:37Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 873,
+        "startChar": 27,
+        "endLine": 873,
+        "endChar": 33
+      },
+      "revId": "c283077581b4bcbed711ec998b93f7b1b0a17d0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eb40c3c_152338a5",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-05T03:55:32Z",
+      "side": 1,
+      "message": "this is already updated?",
+      "parentUuid": "8f6c60f8_a04cc1d7",
       "range": {
         "startLine": 873,
         "startChar": 27,
