@@ -947,9 +947,8 @@ class NamedCache(Cache):
         # named caches cache.
         size = _get_recursive_size(src)
         logging.info('- Size is %d', size)
-        if not size:
-          # Do not save empty named cache.
-          return size
+
+        # Do keep empty named cache for better other named cache affinity.
 
         # Move the dir and create an entry for the named cache.
         rel_cache = self._allocate_dir()
