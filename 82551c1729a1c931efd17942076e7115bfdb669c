@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c0c8a9c_5ef388c0",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-05T04:43:51Z",
+      "side": 1,
+      "message": "could you change this to endpoint execption first?",
+      "revId": "82551c1729a1c931efd17942076e7115bfdb669c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
