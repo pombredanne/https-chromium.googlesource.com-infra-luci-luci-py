@@ -154,7 +154,7 @@ def check_tasks_create_in_realm(realm):
     logging.warning('%s: task realm is missing', _TRACKING_BUG)
 
 
-def check_tasks_run_as(task_request):
+def check_tasks_run_as(task_request, pool_cfg):
   """Checks if the task service account is allowed to run in the task realm.
 
   Realm permission `swarming.tasks.runAs` will be checked,
@@ -170,6 +170,7 @@ def check_tasks_run_as(task_request):
 
   Args:
     task_request: TaskRequest entity to be scheduled.
+    pool_cfg: PoolConfig of the pool where the task will run.
 
   Returns:
     None
@@ -182,10 +183,9 @@ def check_tasks_run_as(task_request):
   perm = get_permission(perm_enum)
   identity = auth.Identity(auth.IDENTITY_USER, task_request.service_account)
 
-  # TODO(crbug.com/1066839): enforce if task_request has realm, or configured
-  # in pool_cfg
-
-  if is_enforced_permission(perm_enum):
+  # Enforce if the requested task has realm or it's configured in pools.cfg or
+  # in settings.cfg globally.
+  if task_request.realm or is_enforced_permission(perm_enum, pool_cfg):
     if not task_request.realm:
       raise auth.AuthorizationError('Task realm is missing')
 
@@ -198,21 +198,17 @@ def check_tasks_run_as(task_request):
   # legacy-compatible path
 
   legacy_allowed = True
+
   try:
     # ACL check
-    pool_cfg = pools_config.get_pool_config(task_request.pool)
     task_scheduler.check_schedule_request_acl_service_account(
         task_request, pool_cfg)
   except auth.AuthorizationError:
     legacy_allowed = False
     raise  # re-raise the exception
   finally:
-    if task_request.realm:
-      auth.has_permission_dryrun(
-          perm, [task_request.realm],
-          legacy_allowed,
-          identity=identity,
-          tracking_bug='crbug.com/1066839')
-    else:
-      # task realm is optional.
-      logging.warning('crbug.com/1066839: realm is missing in TaskRequest')
+    auth.has_permission_dryrun(
+        perm, [pool_cfg.dry_run_task_realm],
+        legacy_allowed,
+        identity=identity,
+        tracking_bug='crbug.com/1066839')
