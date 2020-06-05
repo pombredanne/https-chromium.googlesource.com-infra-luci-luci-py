@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61c61c31_14711b11",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-05T06:11:02Z",
+      "side": 1,
+      "message": "do we need this?",
+      "range": {
+        "startLine": 618,
+        "startChar": 44,
+        "endLine": 618,
+        "endChar": 79
+      },
+      "revId": "13fbc1d920c14c1798d1392b704707a000beab77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
