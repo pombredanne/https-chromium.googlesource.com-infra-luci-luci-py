@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c71bff5c_4406c504",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-05T00:17:13Z",
+      "side": 1,
+      "message": "It checks the service_account forms email address. It can be a string \u0027none\u0027, \u0027bot\u0027.\n\nThe code had been there. This CL just brings it back.\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/37d02f62ff4f3328de8782f25d3982ebd1891ef7/appengine/swarming/handlers_endpoints.py#513",
+      "parentUuid": "ac4b0080_5529f8c6",
+      "range": {
+        "startLine": 506,
+        "startChar": 24,
+        "endLine": 506,
+        "endChar": 42
+      },
+      "revId": "1774a39e056f09c43de9bab63ee406641b1dbaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dc28e256_854c7990",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-04T13:46:26Z",
       "side": 1,
       "message": "why not endpoints exception?",
+      "range": {
+        "startLine": 533,
+        "startChar": 16,
+        "endLine": 533,
+        "endChar": 20
+      },
+      "revId": "1774a39e056f09c43de9bab63ee406641b1dbaf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f456b23_f9e44c6c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-05T00:17:13Z",
+      "side": 1,
+      "message": "The code had been there. This CL just brings it back.",
+      "parentUuid": "dc28e256_854c7990",
       "range": {
         "startLine": 533,
         "startChar": 16,
