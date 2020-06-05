@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a809424_11540a6d",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-05T04:16:56Z",
+      "side": 1,
+      "message": "better to have this near to the definition of PoolConfig?",
+      "revId": "7e3e3ca3ccc1c39b3b0285226af57e19faa6bb90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
