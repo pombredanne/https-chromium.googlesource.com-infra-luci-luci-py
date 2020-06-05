@@ -495,10 +495,12 @@ class SwarmingTasksService(remote.Service):
 
     # Realm permission 'swarming.pools.createInRealm' checks if the
     # caller is allowed to create a task in the task realm.
-    realms.check_tasks_create_in_realm(request_obj.realm)
+    import pdb; pdb.set_trace()
+    realms.check_tasks_create_in_realm(request_obj.realm, pool_cfg)
 
     # Realm permission 'swarming.pools.create' checks if the caller is allowed
     # to create a task in the pool.
+    import pdb; pdb.set_trace()
     realms.check_pools_create_task(pool, pool_cfg)
 
     # If the request has a service account email, check if the service account
@@ -511,7 +513,8 @@ class SwarmingTasksService(remote.Service):
 
       # Realm permission 'swarming.tasks.runAs' checks if the service account is
       # allowed to run in the task realm.
-      realms.check_tasks_run_as(request_obj)
+      import pdb; pdb.set_trace()
+      realms.check_tasks_run_as(request_obj, pool_cfg)
 
       # If request_obj.realm is not set, use the legacy mechanism to mint oauth
       # token. Note that this path will be deprecated after migration to
