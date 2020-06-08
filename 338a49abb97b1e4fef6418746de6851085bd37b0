@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18e3e216_4d884d3f",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-08T06:01:49Z",
+      "side": 1,
+      "message": "I think this comment is not necessary",
+      "revId": "338a49abb97b1e4fef6418746de6851085bd37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70e5384a_83f86639",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-08T06:01:49Z",
+      "side": 1,
+      "message": "sort?",
+      "revId": "338a49abb97b1e4fef6418746de6851085bd37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e7647a3_99f38d45",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-08T06:01:49Z",
+      "side": 1,
+      "message": "this returns number, is it intentional?",
+      "range": {
+        "startLine": 291,
+        "startChar": 32,
+        "endLine": 291,
+        "endChar": 73
+      },
+      "revId": "338a49abb97b1e4fef6418746de6851085bd37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
