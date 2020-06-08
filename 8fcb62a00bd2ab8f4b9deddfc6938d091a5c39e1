@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a775c7e7_7cc68605",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-08T09:06:45Z",
+      "side": 1,
+      "message": "exception?",
+      "range": {
+        "startLine": 429,
+        "startChar": 12,
+        "endLine": 429,
+        "endChar": 17
+      },
+      "revId": "8fcb62a00bd2ab8f4b9deddfc6938d091a5c39e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fb5e2b5_55a5a946",
         "filename": "appengine/swarming/server/service_accounts_test.py",
         "patchSetId": 8
