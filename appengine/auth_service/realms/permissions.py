@@ -131,10 +131,6 @@ def db():
       permission('resultdb.invocations.create'),
       permission('resultdb.invocations.update'),
   ])
-  role('role/resultdb.trustedInvocationCreator', [
-      include('role/resultdb.invocationCreator'),
-      permission('resultdb.invocations.setProducerResource'),
-  ])
   role('role/resultdb.reader', [
       permission('resultdb.invocations.read'),
       permission('resultdb.testResults.read'),
@@ -155,7 +151,13 @@ def db():
           # Allow Buildbucket to trigger Swarming tasks and use project's pools.
           include('role/swarming.realmUser'),
           include('role/swarming.poolUser'),
-          include('role/resultdb.trustedInvocationCreator'),
+          include('role/resultdb.invocationCreator'),
+          # Allow Buildbucket to create invocations with custom names, e.g.
+          # `build:8878494550606210560`.
+          permission('resultdb.invocations.createWithReservedName'),
+          # Allow Buildbucket to populate reserved fields in new invocations.
+          permission('resultdb.invocations.setProducerResource'),
+          permission('resultdb.invocations.exportToBigQuery'),
       ])
 
   # Bindings implicitly added into the root realm of every project.
