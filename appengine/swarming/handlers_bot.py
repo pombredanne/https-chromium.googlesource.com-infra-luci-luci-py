@@ -27,6 +27,7 @@ from server import bot_code
 from server import bot_management
 from server import config
 from server import named_caches
+from server import realms
 from server import resultdb
 from server import service_accounts
 from server import task_pack
@@ -959,6 +960,10 @@ class BotOAuthTokenHandler(_BotApiHandler):
     token = None  # service_accounts.AccessToken
     try:
       if account_id == 'task':
+        # Check if the service account is still allowed to run in the realm.
+        # It may have changed since the last check.
+        task = task_pack.get_request_and_result_keys(task_id)[0].get()
+        realms.check_tasks_run_as(task)
         account, token = service_accounts.get_task_account_token(
             task_id, bot_id, scopes)
       elif account_id == 'system':
