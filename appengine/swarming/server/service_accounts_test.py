@@ -156,7 +156,10 @@ class OAuthTokenGrantTest(TestBase):
 
 class TaskAccountTokenTest(TestBase):
 
-  def make_task_request(self, service_account, service_account_token):
+  def make_task_request(self,
+                        service_account,
+                        service_account_token=None,
+                        realm=None):
     now = utils.utcnow()
     args = {
         'created_ts':
@@ -182,6 +185,7 @@ class TaskAccountTokenTest(TestBase):
     req.key = task_request.new_request_key()
     req.service_account = service_account
     req.service_account_token = service_account_token
+    req.realm = realm
     req.put()
 
     summary_key = task_pack.request_key_to_result_summary_key(req.key)
@@ -189,7 +193,7 @@ class TaskAccountTokenTest(TestBase):
         summary_key, 1)
     return task_pack.pack_run_result_key(run_result_key)
 
-  def test_happy_path(self):
+  def test_ok(self):
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(now)
 
@@ -227,6 +231,49 @@ class TaskAccountTokenTest(TestBase):
     self.assertEqual(('service-account@example.com', tok),
                      service_accounts.get_task_account_token(
                          task_id, 'bot-id', ['scope1', 'scope2']))
+
+  def test_ok_with_realm(self):
+    now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(now)
+
+    # Initial attempt.
+    task_id = self.make_task_request(
+        service_account='service-account@example.com', realm='realm')
+
+    expiry = now + datetime.timedelta(seconds=3600)
+    self.mock_json_request(
+        expected_url='https://tokens.example.com/prpc/'
+        'tokenserver.minter.TokenMinter/MintServiceAccountToken',
+        expected_payload={
+            'tokenKind':
+                1,
+            'serviceAccount':
+                'service-account@example.com',
+            'realm':
+                'realm',
+            'oauthScope': ['scope1', 'scope2'],
+            'minValidityDuration':
+                300,
+            'auditTags': [
+                'swarming:gae_request_id:7357B3D7091D',
+                'swarming:service_version:sample-app/v1a',
+                'swarming:bot_id:bot-id',
+                'swarming:task_id:' + task_id,
+                'swarming:task_name:Request with service-account@example.com',
+            ],
+        },
+        response={
+            'token': 'totally_real_token',
+            'serviceVersion': 'token-server-id/ver',
+            'expiry': expiry.isoformat() + 'Z',
+        })
+
+    tok = service_accounts.AccessToken('totally_real_token',
+                                       int(utils.time_time() + 3600))
+    self.assertEqual(
+        ('service-account@example.com', tok),
+        service_accounts.get_task_account_token(task_id, 'bot-id',
+                                                ['scope1', 'scope2']))
 
   def test_malformed_task_id(self):
     with self.assertRaises(service_accounts.MisconfigurationError):
