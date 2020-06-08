@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aa71f8f_0006e246",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-06-08T22:03:58Z",
+      "side": 1,
+      "message": "did you know to touch this file or is it test-covered?",
+      "revId": "21d5152852ab76888cd44af133265741b0950a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
