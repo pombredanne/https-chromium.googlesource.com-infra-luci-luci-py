@@ -959,6 +959,9 @@ class BotOAuthTokenHandler(_BotApiHandler):
     token = None  # service_accounts.AccessToken
     try:
       if account_id == 'task':
+        # Check if the service account is still allowed to run in the realm.
+        # It may have changed since the last check.
+        realms.check_tasks_run_as(task_request)
         account, token = service_accounts.get_task_account_token(
             task_id, bot_id, scopes)
       elif account_id == 'system':
