@@ -959,6 +959,7 @@ class BotOAuthTokenHandler(_BotApiHandler):
     token = None  # service_accounts.AccessToken
     try:
       if account_id == 'task':
+        realms.check_tasks_run_as(task_request)
         account, token = service_accounts.get_task_account_token(
             task_id, bot_id, scopes)
       elif account_id == 'system':
