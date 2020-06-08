@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0cbde3a_68e5cc8a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-08T20:55:38Z",
+      "side": 1,
+      "message": "I think it would be better if this moved to get_task_account_token:\n1. It already fetches TaskRequest there, no need to fetch it twice.\n2. In the current implementation ACL checks are happening right there already.",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 966,
+        "endChar": 39
+      },
+      "revId": "9e59edcdd6f80b2dc334cb88ac0dd5700ecf7596",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac69536d_b8550d7f",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-08T20:55:38Z",
+      "side": 1,
+      "message": "`realm` here is \"\u003cproject\u003e:\u003crealm\u003e\". You\u0027ll need to send X-Luci-Project header with value \"\u003cproject\u003e\". It is a bit silly in Swarming\u0027s case, but other LUCI services may have cross-project calls where X-Luci-Project and the project in `realm` do not match.",
+      "range": {
+        "startLine": 413,
+        "startChar": 9,
+        "endLine": 413,
+        "endChar": 27
+      },
+      "revId": "9e59edcdd6f80b2dc334cb88ac0dd5700ecf7596",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
