@@ -131,9 +131,12 @@ def db():
       permission('resultdb.invocations.create'),
       permission('resultdb.invocations.update'),
   ])
-  role('role/resultdb.trustedInvocationCreator', [
+  # TODO(crbug.com/1092663): Forbid this role and their rules in realms.cfg.
+  role('role/resultdb.internal.trustedInvocationCreator', [
       include('role/resultdb.invocationCreator'),
       permission('resultdb.invocations.setProducerResource'),
+      permission('resultdb.invocations.exportToBigQuery'),
+      permission('resultdb.invocations.createWithReservedName'),
   ])
   role('role/resultdb.reader', [
       permission('resultdb.invocations.read'),
