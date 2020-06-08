@@ -191,6 +191,10 @@ def get_task_account_token(task_id, bot_id, scopes):
 
   Otherwise returns (<email>, AccessToken with valid token for <email>).
 
+  If the task has realm, it calls MintServiceAccountToken rpc using the realm.
+  Otherwise, it calls MintOAuthTokenViaGrant with grant token. The legacy path
+  will be deprecated after migrating to Realm-based configurations.
+
   Args:
     task_id: ID of the task.
     bot_id: ID of the bot that executes the task, for logs.
@@ -227,11 +231,6 @@ def get_task_account_token(task_id, bot_id, scopes):
     raise MisconfigurationError(
         'Not a service account email: %s' % task_request.service_account)
 
-  # Should have a token prepared by 'get_oauth_token_grant' already.
-  if not task_request.service_account_token:
-    raise MisconfigurationError(
-        'The task request %s has no associated service account token' % task_id)
-
   # Additional information for Token Server's logs.
   audit_tags = [
       'swarming:bot_id:%s' % bot_id,
@@ -239,10 +238,22 @@ def get_task_account_token(task_id, bot_id, scopes):
       'swarming:task_name:%s' % task_request.name,
   ]
 
-  # Use this token to grab the real OAuth token. Note that the bot caches the
-  # resulting OAuth token internally, so we don't bother to cache it here.
-  access_token, expiry = _mint_oauth_token_via_grant(
-      task_request.service_account_token, scopes, audit_tags)
+  if task_request.realm:
+    # If TaskRequest.realm is set, it calls MintServiceAccountToken to grab
+    # a OAuth token.
+    access_token, expiry = _mint_service_account_token(
+        task_request.service_account, task_request.realm, scopes, audit_tags)
+  else:
+    # Should have a token prepared by 'get_oauth_token_grant' already.
+    if not task_request.service_account_token:
+      raise MisconfigurationError(
+          'The task request %s has no associated service account token' %
+          task_id)
+
+    # Use this token to grab the real OAuth token. Note that the bot caches the
+    # resulting OAuth token internally, so we don't bother to cache it here.
+    access_token, expiry = _mint_oauth_token_via_grant(
+        task_request.service_account_token, scopes, audit_tags)
 
   # Log and return the token.
   token = AccessToken(access_token,
@@ -268,7 +279,7 @@ def get_system_account_token(system_service_account, scopes):
     system_service_account: whatever is specified in bots.cfg for the bot.
     scopes: list of requested OAuth scopes.
 
-  Returns:
+  eeturns:
     (<service account email> or 'bot' or 'none', AccessToken or None).
 
   Raises:
@@ -375,6 +386,43 @@ def _mint_oauth_token_via_grant(grant_token, oauth_scopes, audit_tags):
       })
   try:
     access_token = str(resp['accessToken'])
+    service_version = str(resp['serviceVersion'])
+    expiry = utils.parse_rfc3339_datetime(resp['expiry'])
+  except (KeyError, ValueError) as exc:
+    logging.error('Bad response from the token server (%s):\n%r', exc, resp)
+    raise InternalError('Bad response from the token server, see server logs')
+  logging.info('The token server replied, its version: %s', service_version)
+  return access_token, expiry
+
+
+def _mint_service_account_token(service_account, realm, oauth_scopes,
+                                audit_tags):
+  """Does the RPC to the token server to get an access token using realm.
+
+  Args:
+    service_account: a service account email to use.
+    realm: a realm name to use.
+    oauth_scopes: list of strings with requested OAuth scopes.
+    audit_tags: list with information tags to send with the RPC, for logging.
+
+  Raises:
+    PermissionError if the token server forbids the usage.
+    MisconfigurationError if the service account is misconfigured.
+    InternalError if the RPC fails unexpectedly.
+  """
+  resp = _call_token_server(
+      'MintServiceAccountToken',
+      {
+          # tokenserver.minter.SERVICE_ACCOUNT_TOKEN_ACCESS_TOKEN
+          'tokenKind': 1,
+          'serviceAccount': service_account,
+          'realm': realm,
+          'oauthScope': oauth_scopes,
+          'minValidityDuration': MIN_TOKEN_LIFETIME_SEC,
+          'auditTags': _common_audit_tags() + audit_tags,
+      })
+  try:
+    access_token = str(resp['token'])
     service_version = str(resp['serviceVersion'])
     expiry = utils.parse_rfc3339_datetime(resp['expiry'])
   except (KeyError, ValueError) as exc:
