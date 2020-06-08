@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f503bc4_bd6f6fd9",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-08T09:01:58Z",
+      "side": 0,
+      "message": "This check will be applied only to tasks without realm (legacy tasks).",
+      "revId": "58b20f29cba12140a20f8a2b4f3ce5b1144d335e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

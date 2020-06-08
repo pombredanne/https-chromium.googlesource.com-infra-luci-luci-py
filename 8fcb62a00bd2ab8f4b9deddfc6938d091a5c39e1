@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fb5e2b5_55a5a946",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-08T09:01:58Z",
+      "side": 1,
+      "message": "Assuming, BB requests a task with a realm in \"\u003cproject\u003e:\u003crealm\u003e\" format since Swarming doesn\u0027t have the concept of LUCI Project.",
+      "range": {
+        "startLine": 241,
+        "startChar": 62,
+        "endLine": 241,
+        "endChar": 72
+      },
+      "revId": "8fcb62a00bd2ab8f4b9deddfc6938d091a5c39e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
