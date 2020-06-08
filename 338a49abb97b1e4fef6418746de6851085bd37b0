@@ -72,6 +72,29 @@
     },
     {
       "key": {
+        "uuid": "0f29ef06_c7437b91",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-08T20:45:47Z",
+      "side": 1,
+      "message": "why not mock auth.has_permission instead? Will be simpler and less brittle.",
+      "range": {
+        "startLine": 256,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 77
+      },
+      "revId": "338a49abb97b1e4fef6418746de6851085bd37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e7647a3_99f38d45",
         "filename": "appengine/swarming/test_env_handlers.py",
         "patchSetId": 9
