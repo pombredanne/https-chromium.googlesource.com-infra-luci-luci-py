@@ -207,7 +207,7 @@ def get_task_account_token(task_id, bot_id, scopes):
     task_request_key = task_pack.result_summary_key_to_request_key(
         result_summary_key)
   except ValueError as exc:
-    logging.error('Unexpectedly bad task_id: %s', exc)
+    logging.exception('Unexpectedly bad task_id: %s', exc)
     raise MisconfigurationError('Bad task_id: %s' % task_id)
 
   task_request = task_request_key.get()
@@ -338,7 +338,7 @@ def _mint_oauth_token_grant(service_account, end_user, validity_duration):
     service_version = str(resp['serviceVersion'])
     expiry = utils.parse_rfc3339_datetime(resp['expiry'])
   except (KeyError, ValueError) as exc:
-    logging.error('Bad response from the token server (%s):\n%r', exc, resp)
+    logging.exception('Bad response from the token server (%s):\n%r', exc, resp)
     raise InternalError('Bad response from the token server, see server logs')
   logging.info('The token server replied, its version: %s', service_version)
   return grant_token, expiry
@@ -372,7 +372,7 @@ def _mint_oauth_token_via_grant(grant_token, oauth_scopes, audit_tags):
     service_version = str(resp['serviceVersion'])
     expiry = utils.parse_rfc3339_datetime(resp['expiry'])
   except (KeyError, ValueError) as exc:
-    logging.error('Bad response from the token server (%s):\n%r', exc, resp)
+    logging.exception('Bad response from the token server (%s):\n%r', exc, resp)
     raise InternalError('Bad response from the token server, see server logs')
   logging.info('The token server replied, its version: %s', service_version)
   return access_token, expiry
@@ -412,8 +412,8 @@ def _call_token_server(method, request):
         payload=request,
         scopes=[net.EMAIL_SCOPE])
   except net.Error as exc:
-    logging.error('Error calling %s (HTTP %s: %s):\n%s', method,
-                  exc.status_code, exc.message, exc.response)
+    logging.exception('Error calling %s (HTTP %s: %s):\n%s', method,
+                      exc.status_code, exc.message, exc.response)
     if exc.status_code == 403:
       raise PermissionError(
           'HTTP 403 from the token server:\n%s' % exc.response)
