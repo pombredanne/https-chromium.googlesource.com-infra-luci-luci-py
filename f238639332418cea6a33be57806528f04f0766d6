@@ -117,6 +117,30 @@
       "revId": "f238639332418cea6a33be57806528f04f0766d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1250e1d9_9a742341",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-09T06:54:52Z",
+      "side": 1,
+      "message": "OK. But note that cloud error reporting automatically detects stack trace from logs and aggregates the error in the dashboard.",
+      "parentUuid": "99f21291_b4beb75e",
+      "range": {
+        "startLine": 436,
+        "startChar": 12,
+        "endLine": 436,
+        "endChar": 17
+      },
+      "revId": "f238639332418cea6a33be57806528f04f0766d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
