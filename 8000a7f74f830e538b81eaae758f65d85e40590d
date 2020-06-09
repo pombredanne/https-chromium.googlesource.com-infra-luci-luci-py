@@ -85,6 +85,24 @@
       "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb6a487e_d79605c1",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-09T00:04:12Z",
+      "side": 1,
+      "message": "It is not implemented yet: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1092663. I plan just add `internal\u003dTrue` property, e.g. \n\n  permission(\u0027resultdb.invocations.exportToBigQuery\u0027, internal\u003dTrue)\n\nInternal permissions can\u0027t be used in custom roles, only in predefined ones (i.e. ones defined in this file or, in the future, in chrome-infra-auth service config).",
+      "parentUuid": "8547dd66_5dc78d79",
+      "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
