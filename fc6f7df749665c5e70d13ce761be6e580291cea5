@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07809626_6099bbe1",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T07:33:43Z",
+      "side": 1,
+      "message": "Is this supported in Python?\nhttps://docs.python.org/2/library/stdtypes.html#string-formatting\n\nMaybe Golang format?",
+      "range": {
+        "startLine": 853,
+        "startChar": 51,
+        "endLine": 853,
+        "endChar": 53
+      },
+      "revId": "fc6f7df749665c5e70d13ce761be6e580291cea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
