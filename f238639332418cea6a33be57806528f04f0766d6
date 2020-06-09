@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f98d11b_8c3b9b6c",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-09T05:47:56Z",
+      "side": 1,
+      "message": "I prefer `\u0027:\u0027 not in`",
+      "range": {
+        "startLine": 413,
+        "startChar": 5,
+        "endLine": 413,
+        "endChar": 15
+      },
+      "revId": "f238639332418cea6a33be57806528f04f0766d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84aa256f_595eeca4",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-09T05:47:56Z",
+      "side": 1,
+      "message": "exception?",
+      "range": {
+        "startLine": 436,
+        "startChar": 12,
+        "endLine": 436,
+        "endChar": 17
+      },
+      "revId": "f238639332418cea6a33be57806528f04f0766d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
