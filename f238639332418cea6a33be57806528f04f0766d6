@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "98bf9502_efcefa9d",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T06:07:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f98d11b_8c3b9b6c",
+      "range": {
+        "startLine": 413,
+        "startChar": 5,
+        "endLine": 413,
+        "endChar": 15
+      },
+      "revId": "f238639332418cea6a33be57806528f04f0766d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84aa256f_595eeca4",
         "filename": "appengine/swarming/server/service_accounts.py",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "f238639332418cea6a33be57806528f04f0766d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc63d6ed_5cf1e5b8",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T06:07:34Z",
+      "side": 1,
+      "message": "Done\n\nI also changed other loggings to use exception.\nhttps://crrev.com/c/2235397",
+      "parentUuid": "84aa256f_595eeca4",
+      "range": {
+        "startLine": 436,
+        "startChar": 12,
+        "endLine": 436,
+        "endChar": 17
+      },
+      "revId": "f238639332418cea6a33be57806528f04f0766d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
