@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "9ffbfa51_277e3a0f",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T01:05:23Z",
+      "side": 1,
+      "message": "Because the Realms support in Swarming is complicated, I want to do integrated tests somewhere to be able to catch mistakes before deployment.",
+      "parentUuid": "0f29ef06_c7437b91",
+      "range": {
+        "startLine": 256,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 77
+      },
+      "revId": "338a49abb97b1e4fef6418746de6851085bd37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e7647a3_99f38d45",
         "filename": "appengine/swarming/test_env_handlers.py",
         "patchSetId": 9
