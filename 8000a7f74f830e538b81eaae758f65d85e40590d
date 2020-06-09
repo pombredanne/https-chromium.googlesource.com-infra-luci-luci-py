@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "cc1ce4a5_912e9909",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-06-09T01:40:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85b37ed8_9aa74323",
+      "range": {
+        "startLine": 155,
+        "startChar": 64,
+        "endLine": 155,
+        "endChar": 69
+      },
+      "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "473ec377_8db817df",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-06-09T01:40:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fa619ae_7e3eed8a",
+      "range": {
+        "startLine": 155,
+        "startChar": 18,
+        "endLine": 155,
+        "endChar": 29
+      },
+      "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35461fd7_5a8cf7b1",
         "filename": "appengine/auth_service/realms/permissions.py",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "710552dc_0acff291",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-06-09T01:40:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35461fd7_5a8cf7b1",
+      "range": {
+        "startLine": 157,
+        "startChar": 61,
+        "endLine": 157,
+        "endChar": 65
+      },
+      "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
