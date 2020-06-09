@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b54defea_846dfb64",
+        "filename": "appengine/swarming/server/service_accounts_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-09T05:17:48Z",
+      "side": 1,
+      "message": "could you extract this to service_accounts_utils_test.py?",
+      "revId": "7ddc592d9236825b20a90c9f5830e4213b843302",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
