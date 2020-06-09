@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7359f27_cfed15be",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-09T01:46:27Z",
+      "side": 1,
+      "message": "please rebase and add internal\u003dTrue, see https://chromium.googlesource.com/infra/luci/luci-py/+/46c4d3f83290feaeb6b4a75e8569df376abc5325",
+      "range": {
+        "startLine": 157,
+        "startChar": 10,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "fe23dbd4fd778ee98f4f68d894d23aaad7374e5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
