@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0204bdac_592a6f92",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T04:07:11Z",
+      "side": 1,
+      "message": "Ok, I moved the check to here just because it occurred circular imports...\nWill update.",
+      "parentUuid": "e0cbde3a_68e5cc8a",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 966,
+        "endChar": 39
+      },
+      "revId": "9e59edcdd6f80b2dc334cb88ac0dd5700ecf7596",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ac69536d_b8550d7f",
         "filename": "appengine/swarming/server/service_accounts.py",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-08T20:55:38Z",
       "side": 1,
       "message": "`realm` here is \"\u003cproject\u003e:\u003crealm\u003e\". You\u0027ll need to send X-Luci-Project header with value \"\u003cproject\u003e\". It is a bit silly in Swarming\u0027s case, but other LUCI services may have cross-project calls where X-Luci-Project and the project in `realm` do not match.",
+      "range": {
+        "startLine": 413,
+        "startChar": 9,
+        "endLine": 413,
+        "endChar": 27
+      },
+      "revId": "9e59edcdd6f80b2dc334cb88ac0dd5700ecf7596",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0da57cc1_002c706c",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T04:07:11Z",
+      "side": 1,
+      "message": "\u003e `realm` here is \"\u003cproject\u003e:\u003crealm\u003e\". You\u0027ll need to send X-Luci-Project header with value \"\u003cproject\u003e\"\n\nOk, will extract the project from the realm and set it as X-Luci-Project header.",
+      "parentUuid": "ac69536d_b8550d7f",
       "range": {
         "startLine": 413,
         "startChar": 9,
