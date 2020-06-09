@@ -93,6 +93,30 @@
       "revId": "f238639332418cea6a33be57806528f04f0766d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99f21291_b4beb75e",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-09T06:42:49Z",
+      "side": 1,
+      "message": "I reverted to use logging.erro.\nThis try-except just catches errors from RPC call or parsing the response, so stack trace won\u0027t bring new insights in this case.",
+      "parentUuid": "dc63d6ed_5cf1e5b8",
+      "range": {
+        "startLine": 436,
+        "startChar": 12,
+        "endLine": 436,
+        "endChar": 17
+      },
+      "revId": "f238639332418cea6a33be57806528f04f0766d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
