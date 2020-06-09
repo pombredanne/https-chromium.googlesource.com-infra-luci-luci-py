@@ -19,6 +19,7 @@ from components import net
 from components import utils
 
 from server import service_accounts
+from server import service_accounts_utils
 from server import task_pack
 from server import task_request
 
@@ -27,11 +28,12 @@ class ServiceAccountRegexpTest(test_case.TestCase):
 
   def test_is_service_account(self):
     self.assertTrue(
-        service_accounts.is_service_account('a@proj.iam.gserviceaccount.com'))
-    self.assertFalse(service_accounts.is_service_account('bot:something'))
+        service_accounts_utils.is_service_account(
+            'a@proj.iam.gserviceaccount.com'))
+    self.assertFalse(service_accounts_utils.is_service_account('bot:something'))
     self.assertFalse(
-        service_accounts.is_service_account('user:something@something'))
-    self.assertFalse(service_accounts.is_service_account(''))
+        service_accounts_utils.is_service_account('user:something@something'))
+    self.assertFalse(service_accounts_utils.is_service_account(''))
 
 
 class MockedAuthDB(object):
