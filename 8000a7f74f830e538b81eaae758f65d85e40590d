@@ -103,6 +103,24 @@
       "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbff6e04_7fca6d7b",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-09T00:29:05Z",
+      "side": 1,
+      "message": "ok. I guess it is not a big deal that it isn\u0027t implemented yet because nothing critical uses realms yet",
+      "parentUuid": "bb6a487e_d79605c1",
+      "revId": "8000a7f74f830e538b81eaae758f65d85e40590d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
