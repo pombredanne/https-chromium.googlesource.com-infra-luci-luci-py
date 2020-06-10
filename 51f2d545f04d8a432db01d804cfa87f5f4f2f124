@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3f60e0a_b3526915",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:21:52Z",
+      "side": 1,
+      "message": "Is there a proper check for this in /tasks/new handler?\n\nYou may need to extract https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/components/components/auth/api.py#880 into a public check_realm_name function.\n\nCan be a separate CL.",
+      "range": {
+        "startLine": 413,
+        "startChar": 5,
+        "endLine": 413,
+        "endChar": 21
+      },
+      "revId": "51f2d545f04d8a432db01d804cfa87f5f4f2f124",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "709dc466_229b6630",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:21:52Z",
+      "side": 1,
+      "message": "Eh... InternalError might be better. MisconfigurationError indicates there\u0027s something wrong with the account on the Token Server side (it is communicated to the bot as HTTP 400). Swarming has no control over this. \n\nBut Swarming can enforce that `realm` is valid in /tasks/new. Thus if it is invalid here, it means there\u0027s an internal error in Swarming itself. For the same reason I can just be an assert (in non-buggy Swarming this error should never happen).",
+      "range": {
+        "startLine": 414,
+        "startChar": 10,
+        "endLine": 414,
+        "endChar": 31
+      },
+      "revId": "51f2d545f04d8a432db01d804cfa87f5f4f2f124",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8782e90_7313f191",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:21:52Z",
+      "side": 1,
+      "message": "nit: update",
+      "range": {
+        "startLine": 445,
+        "startChar": 2,
+        "endLine": 445,
+        "endChar": 6
+      },
+      "revId": "51f2d545f04d8a432db01d804cfa87f5f4f2f124",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
