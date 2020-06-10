@@ -22,6 +22,30 @@
       "revId": "85327ff4654ca1c48ec024b6c2c7da2e1de28482",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae56aa5_2f5d8fd7",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-10T23:36:20Z",
+      "side": 1,
+      "message": "Ah, maybe I should check it in _pre_put_hook so that invalid realm name won\u0027t be stored.\nLet me change.",
+      "parentUuid": "a710fa22_761da690",
+      "range": {
+        "startLine": 505,
+        "startChar": 8,
+        "endLine": 505,
+        "endChar": 56
+      },
+      "revId": "85327ff4654ca1c48ec024b6c2c7da2e1de28482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
