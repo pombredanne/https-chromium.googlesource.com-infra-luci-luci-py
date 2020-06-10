@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5278e397_1ae9ba20",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-10T03:41:46Z",
+      "side": 1,
+      "message": "could you sort this?",
+      "revId": "c5bba260ad35208c8ec4bb9d0bb04ade2854599d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6f1b1a2_bdae51ca",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-10T03:41:46Z",
+      "side": 1,
+      "message": "I think it is better to just import six here.",
+      "revId": "c5bba260ad35208c8ec4bb9d0bb04ade2854599d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97fae564_799fda8c",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-10T03:41:46Z",
+      "side": 1,
+      "message": "u?",
+      "range": {
+        "startLine": 226,
+        "startChar": 6,
+        "endLine": 226,
+        "endChar": 7
+      },
+      "revId": "c5bba260ad35208c8ec4bb9d0bb04ade2854599d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
