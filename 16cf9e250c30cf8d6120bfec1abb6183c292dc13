@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6671053_b1c84b7d",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2109,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-10T05:49:43Z",
+      "side": 1,
+      "message": "\u0027be form of\u0027?",
+      "range": {
+        "startLine": 2109,
+        "startChar": 30,
+        "endLine": 2109,
+        "endChar": 35
+      },
+      "revId": "16cf9e250c30cf8d6120bfec1abb6183c292dc13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4219c17d_0465e682",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-10T05:49:43Z",
+      "side": 1,
+      "message": "I prefer full URL.",
+      "range": {
+        "startLine": 2110,
+        "startChar": 11,
+        "endLine": 2110,
+        "endChar": 71
+      },
+      "revId": "16cf9e250c30cf8d6120bfec1abb6183c292dc13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
