@@ -117,6 +117,30 @@
       "revId": "66888ff607ad51dbe7adb2632ef4c33bf77ef4be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1beb66a9_794ebd06",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2116,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-10T07:56:39Z",
+      "side": 1,
+      "message": "Ok, it looks there are both cases.\n\nfor example, \nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/components/auth/api.py;l\u003d811\n\nI won\u0027t refactor them since this is just copied from L882.",
+      "parentUuid": "816a78a4_e39253d4",
+      "range": {
+        "startLine": 2116,
+        "startChar": 63,
+        "endLine": 2116,
+        "endChar": 64
+      },
+      "revId": "66888ff607ad51dbe7adb2632ef4c33bf77ef4be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
