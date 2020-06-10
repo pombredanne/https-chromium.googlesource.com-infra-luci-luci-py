@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3dd24640_64d194df",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T06:36:22Z",
+      "side": 1,
+      "message": "I think it would be better if this function raises ValueError. That way you don\u0027t need to copy paste \n\n      raise ValueError(\n          \u0027Bad realm %r: should be \"\u003cproject\u003e:\u003cname\u003e\" where \u0027\n          \u0027\u003cproject\u003e matches %r and \u003cname\u003e matches %r or is %s or %s\u0027 % (\n          name, _PROJECT_NAME_RE.pattern, _REALM_NAME_RE.pattern,\n          _ROOT_REALM, _LEGACY_REALM))\n\nIf you prefer it to return boolean, then rename it to `is_valid_realm_name`.\n\nActually, if you decide to switch to ValueError, it would be better to rename it to validate_realm_name for consistency with other functions here and with https://godoc.org/go.chromium.org/luci/server/auth/realms#ValidateRealmName.",
+      "range": {
+        "startLine": 2106,
+        "startChar": 4,
+        "endLine": 2106,
+        "endChar": 20
+      },
+      "revId": "16cf9e250c30cf8d6120bfec1abb6183c292dc13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6671053_b1c84b7d",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 3
