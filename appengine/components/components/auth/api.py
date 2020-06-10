@@ -71,6 +71,7 @@ __all__ = [
   'new_auth_details',
   'Permission',
   'public',
+  'RealmsError',
   'require',
   'root_realm',
   'SecretKey',

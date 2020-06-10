@@ -5,6 +5,8 @@
 import datetime
 import logging
 
+from six import raise_from
+
 from components import auth
 
 from proto.config import realms_pb2
@@ -89,7 +91,7 @@ def check_pools_create_task(pool, pool_cfg):
       raise auth.AuthorizationError('realm is missing in Pool "%s"' % pool)
 
     # check only Realm ACLs.
-    if not auth.has_permission(perm, [pool_cfg.realm]):
+    if not _has_permission(perm, [pool_cfg.realm]):
       raise auth.AuthorizationError(
           'User "%s" is not allowed to schedule tasks in the pool "%s", '
           'see pools.cfg' % (auth.get_current_identity().to_bytes(), pool))
@@ -137,7 +139,7 @@ def check_tasks_create_in_realm(realm, pool_cfg):
     if not realm:
       raise auth.AuthorizationError('task realm is missing')
 
-    if not auth.has_permission(perm, [realm]):
+    if not _has_permission(perm, [realm]):
       raise auth.AuthorizationError(
           'User "%s" is not allowed to create a task in the realm "%s"' %
           (auth.get_current_identity().to_bytes(), realm))
@@ -187,7 +189,7 @@ def check_tasks_run_as(task_request, pool_cfg):
     if not task_request.realm:
       raise auth.AuthorizationError('Task realm is missing')
 
-    if not auth.has_permission(perm, [task_request.realm], identity=identity):
+    if not _has_permission(perm, [task_request.realm], identity=identity):
       raise auth.AuthorizationError(
           'Task service account "%s" is not allowed to run in the realm "%s"' %
           (task_request.service_account, task_request.realm))
@@ -211,3 +213,15 @@ def check_tasks_run_as(task_request, pool_cfg):
           legacy_allowed,
           identity=identity,
           tracking_bug='crbug.com/1066839')
+
+
+# Private
+
+
+def _has_permission(perm, realms, identity=None):
+    try:
+      return auth.has_permission(perm, realms, identity=identity)
+    except (TypeError, ValueError, auth.RealmsError) as e:
+      # Requests may contain invalid realm names or
+      # Users may submit invalid configurations.
+      raise_from(auth.AuthorizationError, e)

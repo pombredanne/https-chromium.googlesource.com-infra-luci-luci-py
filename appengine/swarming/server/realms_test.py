@@ -76,6 +76,12 @@ class RealmsTest(test_case.TestCase):
     perm = realms.get_permission(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
     self.assertEqual(_PERM_POOLS_CREATE_TASK, perm)
 
+  def test_has_permission_wrapper(self):
+    perm = realms.get_permission(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
+    self._has_permission_mock.side_effect = ValueError('Invalid realm.')
+    with self.assertRaises(auth.AuthorizationError):
+      realms._has_permission(perm, ['invalid'])
+
   @parameterized.expand([
       # should return False if the permissiion is not configured in settings.cfg
       # and in pools.cfg.
@@ -147,7 +153,7 @@ class RealmsTest(test_case.TestCase):
     realms.check_pools_create_task('test_pool',
                                    _gen_pool_config(realm='test:pool'))
     self._has_permission_mock.assert_called_once_with(_PERM_POOLS_CREATE_TASK,
-                                                      [u'test:pool'])
+                                                      [u'test:pool'], identity=None)
 
   def test_check_pools_create_task_enforced_not_allowed(self):
     self._mock_for_check_pools_create_task()
@@ -156,7 +162,7 @@ class RealmsTest(test_case.TestCase):
       realms.check_pools_create_task('test_pool',
                                      _gen_pool_config(realm='test:pool'))
     self._has_permission_mock.assert_called_once_with(_PERM_POOLS_CREATE_TASK,
-                                                      [u'test:pool'])
+                                                      [u'test:pool'], identity=None)
 
   def test_check_tasks_create_in_realm_legacy(self):
     pool_cfg_mock = _gen_pool_config()
@@ -176,7 +182,7 @@ class RealmsTest(test_case.TestCase):
     pool_cfg_mock = _gen_pool_config()
     realms.check_tasks_create_in_realm('test:realm', pool_cfg_mock)
     self._has_permission_mock.assert_called_once_with(
-        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'])
+        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'], identity=None)
 
   def test_check_tasks_create_in_realm_enforced_not_allowed(self):
     self._has_permission_mock.return_value = False
@@ -184,7 +190,7 @@ class RealmsTest(test_case.TestCase):
     with self.assertRaises(auth.AuthorizationError):
       realms.check_tasks_create_in_realm('test:realm', pool_cfg_mock)
     self._has_permission_mock.assert_called_once_with(
-        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'])
+        _PERM_TASKS_CREATE_IN_REALM, [u'test:realm'], identity=None)
 
   def test_check_tasks_create_in_realm_enforced_no_realm(self):
     pool_cfg_mock = _gen_pool_config(enforced_realm_permissions=[
