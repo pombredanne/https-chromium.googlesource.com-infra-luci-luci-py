@@ -494,6 +494,12 @@ class SwarmingTasksService(remote.Service):
       raise auth.AuthorizationError(
           'Can\'t submit tasks to pool "%s", not defined in pools.cfg' % pool)
 
+    # Validate task realm given by caller.
+    if request_obj.realm and not auth.check_realm_name(request_obj.realm):
+      raise endpoints.BadRequestException(
+          'Invalid realm name. expected to be "<project>:<name>", '
+          'but got "%s"' % request_obj.realm)
+
     # Realm permission 'swarming.pools.createInRealm' checks if the
     # caller is allowed to create a task in the task realm.
     realms.check_tasks_create_in_realm(request_obj.realm, pool_cfg)
