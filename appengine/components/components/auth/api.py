@@ -52,6 +52,7 @@ __all__ = [
     'Permission',
     'SecretKey',
     'autologin',
+    'check_realm_name',
     'disable_process_cache',
     'get_auth_details',
     'get_current_identity',
@@ -877,15 +878,7 @@ class AuthDB(object):
     # the realm name along the way. We do it here (instead of at the start of
     # the function) to avoid unnecessary regexp checks on the hot path (when
     # hitting existing realms).
-    spl = name.split(':', 1)
-    if len(spl) != 2 or not spl[0] or not spl[1]:
-      raise ValueError('Bad realm %r, want "<project>:<name>"' % (name,))
-    if (not _PROJECT_NAME_RE.match(spl[0]) or
-        not (
-            _REALM_NAME_RE.match(spl[1]) or
-            spl[1] == _ROOT_REALM or
-            spl[1] == _LEGACY_REALM
-        )):
+    if not check_realm_name(name):
       raise ValueError(
           'Bad realm %r: should be "<project>:<name>" where '
           '<project> matches %r and <name> matches %r or is %s or %s' % (
@@ -893,7 +886,7 @@ class AuthDB(object):
           _ROOT_REALM, _LEGACY_REALM))
 
     # Same as root_realm(...) except skipping the validation, we already did it.
-    root_name = str('%s:%s' % (spl[0], _ROOT_REALM))
+    root_name = str('%s:%s' % (name.split(':')[0], _ROOT_REALM))
 
     # Can't fallback to the root if already checking it.
     if name == root_name:
@@ -2108,6 +2101,26 @@ def legacy_realm(project):
     ValueError if `project` doesn't pass the regexp check.
   """
   return '%s:%s' % (_validated_project_id(project), _LEGACY_REALM)
+
+
+def check_realm_name(name):
+  """Validates realm name.
+
+  A realm name is expected to be "<project>:<realm>".
+  See also
+  https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/master/appengine/components/components/auth/proto/realms.proto
+
+  Returns:
+    True: if the realm name is valid.
+  """
+  spl = name.split(':', 1)
+  if len(spl) != 2 or not spl[0] or not spl[1]:
+    return False
+  if (not _PROJECT_NAME_RE.match(spl[0]) or
+      not (_REALM_NAME_RE.match(spl[1]) or spl[1] == _ROOT_REALM or
+           spl[1] == _LEGACY_REALM)):
+    return False
+  return True
 
 
 def has_permission(permission, realms, identity=None):

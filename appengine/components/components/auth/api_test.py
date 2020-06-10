@@ -1165,6 +1165,14 @@ class RealmStringsTest(test_case.TestCase):
     with self.assertRaises(ValueError):
       api.legacy_realm('')
 
+  def test_check_realm_name(self):
+    self.assertTrue(api.check_realm_name('proj:realm'))
+    self.assertTrue(api.check_realm_name('proj:@root'))
+    self.assertTrue(api.check_realm_name('proj:@legacy'))
+    self.assertFalse(api.check_realm_name('realm'))
+    self.assertFalse(api.check_realm_name('proj:@invalid'))
+    self.assertFalse(api.check_realm_name('proj:re:alm'))
+
 
 PERM0 = api.Permission('luci.dev.testing0')
 PERM1 = api.Permission('luci.dev.testing1')
