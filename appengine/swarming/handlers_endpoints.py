@@ -10,6 +10,8 @@ import logging
 import os
 import re
 
+import six
+
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -493,6 +495,14 @@ class SwarmingTasksService(remote.Service):
       # return 400 BadRequest or 422 Unprocessable Entity, instead.
       raise auth.AuthorizationError(
           'Can\'t submit tasks to pool "%s", not defined in pools.cfg' % pool)
+
+    # Validate task realm given by caller.
+    if request_obj.realm:
+      try:
+        auth.validate_realm_name(request_obj.realm)
+      except ValueError as e:
+        # Wrap the error with endpoints.BadRequestException.
+        six.raise_from(endpoints.BadRequestException, e)
 
     # Realm permission 'swarming.pools.createInRealm' checks if the
     # caller is allowed to create a task in the task realm.
