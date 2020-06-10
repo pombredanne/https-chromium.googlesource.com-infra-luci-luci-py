@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a710fa22_761da690",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T18:08:49Z",
+      "side": 1,
+      "message": "consider logging this, to be consistent with \n\n  logging.warning(\u0027Incorrect new task request\u0027, exc_info\u003dTrue)\n\nfrom above (which also raise BadRequestException)",
+      "range": {
+        "startLine": 505,
+        "startChar": 8,
+        "endLine": 505,
+        "endChar": 56
+      },
+      "revId": "85327ff4654ca1c48ec024b6c2c7da2e1de28482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
