@@ -1338,6 +1338,9 @@ class TaskRequest(ndb.Model):
       raise datastore_errors.BadValueError(
           'pubsub_userdata requires pubsub_topic')
 
+    if self.realm:
+      auth.validate_realm_name(self.realm)
+
 
 ### Private stuff.
 
