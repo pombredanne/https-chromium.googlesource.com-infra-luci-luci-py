@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7128e304_a6619876",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:46:10Z",
+      "side": 1,
+      "message": "RealmsError was purposefully not exported. It\u0027s not a part of public API.",
+      "range": {
+        "startLine": 140,
+        "startChar": 45,
+        "endLine": 140,
+        "endChar": 73
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c1766d_ca24bf2f",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:46:10Z",
+      "side": 1,
+      "message": "TypeError must not be happening in a non-buggy Swarming. It should not pass non-strings to has_permission(...).",
+      "range": {
+        "startLine": 224,
+        "startChar": 10,
+        "endLine": 224,
+        "endChar": 19
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a2a53c9_8c08d9cd",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:46:10Z",
+      "side": 1,
+      "message": "ValueError (realm name has invalid format) should result in HTTP 400 (Bad Request), not HTTP 403.\n\nI think it would be cleaner to validate the realm name separately before calling has_permission.",
+      "range": {
+        "startLine": 224,
+        "startChar": 21,
+        "endLine": 224,
+        "endChar": 31
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6e2ad3f_4490eb76",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-10T03:46:10Z",
+      "side": 1,
+      "message": "Do not catch this. This is an internal error, it should not be happening, or if it happens it\u0027s better if it crashes loudly with a stack trace and HTTP 500.",
+      "range": {
+        "startLine": 224,
+        "startChar": 33,
+        "endLine": 224,
+        "endChar": 49
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
