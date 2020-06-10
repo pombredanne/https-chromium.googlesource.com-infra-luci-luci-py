@@ -91,6 +91,78 @@
       "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4497e5c1_74e518a2",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-10T04:01:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e8c1766d_ca24bf2f",
+      "range": {
+        "startLine": 224,
+        "startChar": 10,
+        "endLine": 224,
+        "endChar": 19
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "206586de_6576f09d",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-10T04:01:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6e2ad3f_4490eb76",
+      "range": {
+        "startLine": 224,
+        "startChar": 33,
+        "endLine": 224,
+        "endChar": 49
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "397fa0c9_efbb3f06",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-10T04:01:28Z",
+      "side": 1,
+      "message": "ok, will handle it at handler level. and won\u0027t check ValueError here.",
+      "parentUuid": "1a2a53c9_8c08d9cd",
+      "range": {
+        "startLine": 224,
+        "startChar": 21,
+        "endLine": 224,
+        "endChar": 31
+      },
+      "revId": "ae1c2058ef34470d02407d3c1860335a0673bdb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
