@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "20e6f2de_a13c12dd",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-11T02:07:17Z",
+      "side": 1,
+      "message": "Note that I update the test to check the error message.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2237561/9/appengine/swarming/handlers_endpoints_test.py#1260\n\nAnd there are also similar 400 error tests for invalid user inputs.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints_test.py;l\u003d510?q\u003df:handlers_endpoints_test.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\n\nYes, I can add unit tests for TaskRequest._validate_realm. I didn\u0027t add just because those tests would be almost dup of tests for auth.validate_realm_name.\n\nAnyway, I added some unit tests.",
+      "parentUuid": "f92a7c65_751c1e69",
+      "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7dbde4b_13bfda09",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 8
