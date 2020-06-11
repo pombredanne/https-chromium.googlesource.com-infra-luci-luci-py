@@ -1172,7 +1172,7 @@ class IsolateServerDownloadTest(TestCase):
 
     files = {
         os.path.join('a', 'foo'): ('Content', 0o500),
-        'b': ('More content', 0o400),
+        'b': ('More content', 0o600),
         'c': ('Even more content!', 0o500),
     }
 

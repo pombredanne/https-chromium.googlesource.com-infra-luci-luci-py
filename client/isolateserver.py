@@ -1137,7 +1137,6 @@ class IsolatedBundle(object):
 
     self.command = []
     self.files = {}
-    self.read_only = None
     self.relative_cwd = None
     # The main .isolated file, a IsolatedFile instance.
     self.root = None
@@ -1242,7 +1241,7 @@ class IsolatedBundle(object):
 
         # Make sure if the isolated is read only, the mode doesn't have write
         # bits.
-        if 'm' in properties and self.read_only:
+        if 'm' in properties:
           properties['m'] &= ~(stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
 
         # Preemptively request hashed files.
@@ -1262,8 +1261,6 @@ class IsolatedBundle(object):
       self.command = node.data['command']
       if self.command:
         self.command[0] = self.command[0].replace('/', os.path.sep)
-    if self.read_only is None and node.data.get('read_only') is not None:
-      self.read_only = node.data['read_only']
     if (self.relative_cwd is None and
         node.data.get('relative_cwd') is not None):
       self.relative_cwd = node.data['relative_cwd']
@@ -1284,7 +1281,7 @@ def get_storage(server_ref):
   return Storage(isolate_storage.get_storage_api(server_ref))
 
 
-def _map_file(dst, digest, props, cache, read_only, use_symlinks):
+def _map_file(dst, digest, props, cache, use_symlinks):
   """Put downloaded file to destination path. This function is used for multi
   threaded file putting.
   """
@@ -1295,9 +1292,6 @@ def _map_file(dst, digest, props, cache, read_only, use_symlinks):
       if filetype == 'basic':
         # Ignore all bits apart from the user.
         file_mode = (props.get('m') or 0o500) & 0o700
-        if read_only:
-          # Enforce read-only if the root bundle does.
-          file_mode &= 0o500
         putfile(srcfileobj, dst, file_mode, use_symlink=use_symlinks)
 
       elif filetype == 'tar':
@@ -1322,9 +1316,6 @@ def _map_file(dst, digest, props, cache, read_only, use_symlinks):
               file_path.ensure_tree(fp_dir)
               ensured_dirs.add(fp_dir)
             file_mode = ti.mode & 0o700
-            if read_only:
-              # Enforce read-only if the root bundle does.
-              file_mode &= 0o500
             putfile(ifd, fp, file_mode, ti.size)
 
       else:
@@ -1409,9 +1400,8 @@ def fetch_isolated(isolated_hash, storage, cache, outdir, use_symlinks,
             fullpath = os.path.join(outdir, filepath)
 
             putfile_thread_pool.add_task(threading_utils.PRIORITY_HIGH,
-                                         _map_file, fullpath, digest,
-                                         props, cache, bundle.read_only,
-                                         use_symlinks)
+                                         _map_file, fullpath, digest, props,
+                                         cache, use_symlinks)
 
           # Report progress.
           duration = time.time() - last_update
