@@ -55,6 +55,9 @@ import logging
 import posixpath
 import random
 import re
+import sys
+
+import six
 
 from google.appengine import runtime
 from google.appengine.api import datastore_errors
@@ -1337,6 +1340,13 @@ class TaskRequest(ndb.Model):
     if self.pubsub_userdata and not self.pubsub_topic:
       raise datastore_errors.BadValueError(
           'pubsub_userdata requires pubsub_topic')
+
+    if self.realm:
+      try:
+        auth.validate_realm_name(self.realm)
+      except ValueError:
+        _, e, tb = sys.exc_info()
+        six.reraise(datastore_errors.BadValueError, e.message, tb)
 
 
 ### Private stuff.
