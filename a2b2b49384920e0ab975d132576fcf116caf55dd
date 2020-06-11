@@ -16,6 +16,29 @@
       "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7dbde4b_13bfda09",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-11T00:51:38Z",
+      "side": 1,
+      "message": "whats wrong with just\n\n  raise datastore_errors.BadValueError(exc.message)\n\n?\n\nThe stack trace of ValueError is not important there, it will always duplicate the stack trace of BadValueError.",
+      "range": {
+        "startLine": 1348,
+        "startChar": 8,
+        "endLine": 1349,
+        "endChar": 66
+      },
+      "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
