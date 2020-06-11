@@ -234,6 +234,7 @@ class TaskDetails(object):
       'io_timeout',
       'isolated',
       'outputs',
+      'realm',
       'relative_cwd',
       'resultdb',
       'secret_bytes',
@@ -278,6 +279,7 @@ class TaskDetails(object):
     self.outputs = data['outputs']
     self.secret_bytes = data['secret_bytes']
     self.resultdb = data['resultdb']
+    self.realm = data['realm']
     self.containment = Containment(data['containment'])
 
   @staticmethod
