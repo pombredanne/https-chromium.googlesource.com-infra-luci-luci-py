@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "526c5336_84cd33c3",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-11T01:11:35Z",
+      "side": 1,
+      "message": "It\u0027s expected the handler to validate user inputs and return Bad Request.\nWhere to check them is an implementation detail.",
+      "parentUuid": "bdd6cd99_0b089952",
+      "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7dbde4b_13bfda09",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 8
@@ -30,6 +48,30 @@
       "writtenOn": "2020-06-11T00:51:38Z",
       "side": 1,
       "message": "whats wrong with just\n\n  raise datastore_errors.BadValueError(exc.message)\n\n?\n\nThe stack trace of ValueError is not important there, it will always duplicate the stack trace of BadValueError.",
+      "range": {
+        "startLine": 1348,
+        "startChar": 8,
+        "endLine": 1349,
+        "endChar": 66
+      },
+      "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c98480_d43a7eb9",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-11T01:11:35Z",
+      "side": 1,
+      "message": "I find it useful to see where is the origin of the exception.\nYeah, it\u0027s not hard to find in this particular case. but just my preference.\n\n```\n# raise datastore_errors.BadValueError(exc.message)\n...\n  File \"/Users/jwata/chrome_infra_internal/infra/luci/appengine/swarming/server/task_request.py\", line 491, in _validate_realm\n    raise datastore_errors.BadValueError(e.message)\n(End of Stack trace)\n```\n\nvs\n\n```\n# six.reraise(datastore_errors.BadValueError, e.message, tb)\n\n  File \"/Users/jwata/chrome_infra_internal/infra/luci/appengine/swarming/server/task_request.py\", line 490, in _validate_realm\n    six.reraise(datastore_errors.BadValueError, e.message, tb)\n  File \"/Users/jwata/chrome_infra_internal/infra/luci/appengine/swarming/server/task_request.py\", line 487, in _validate_realm\n    auth.validate_realm_name(value)\n  File \"/Users/jwata/chrome_infra_internal/infra/luci/appengine/components/components/auth/api.py\", line 2113, in validate_realm_name\n    raise ValueError(\u0027Bad realm %r, want \"\u003cproject\u003e:\u003cname\u003e\"\u0027 % (name,))\n(End of Stack trace)\n```",
+      "parentUuid": "a7dbde4b_13bfda09",
       "range": {
         "startLine": 1348,
         "startChar": 8,
