@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdd6cd99_0b089952",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-11T00:45:05Z",
+      "side": 1,
+      "message": "I think having test in task_request_test.py is better.",
+      "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
