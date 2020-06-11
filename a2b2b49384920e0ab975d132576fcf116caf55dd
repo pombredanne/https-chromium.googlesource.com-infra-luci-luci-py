@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f92a7c65_751c1e69",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-11T01:42:12Z",
+      "side": 1,
+      "message": "This test is kind of integration test, but I\u0027d like to have more simple unit test to check validation behavior.\nAnd I think this test can be failed in many reason other than realm check. So I don\u0027t get enough confidence that added check works as expected.",
+      "parentUuid": "526c5336_84cd33c3",
+      "revId": "a2b2b49384920e0ab975d132576fcf116caf55dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7dbde4b_13bfda09",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 8
