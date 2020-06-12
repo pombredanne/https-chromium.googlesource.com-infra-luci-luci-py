@@ -87,6 +87,8 @@ def get_manifest(script=None, isolated=None, **kwargs):
       'isolated':
           isolated,
       'outputs': [],
+      'realm':
+          None,
       'relative_cwd':
           None,
       'resultdb':
