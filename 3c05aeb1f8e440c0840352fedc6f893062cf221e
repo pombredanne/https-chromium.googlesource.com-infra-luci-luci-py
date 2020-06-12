@@ -16,6 +16,24 @@
       "revId": "3c05aeb1f8e440c0840352fedc6f893062cf221e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02ee169a_cf408443",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-06-12T00:00:49Z",
+      "side": 1,
+      "message": "fixed. PTAL",
+      "parentUuid": "6591c406_6499c968",
+      "revId": "3c05aeb1f8e440c0840352fedc6f893062cf221e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
