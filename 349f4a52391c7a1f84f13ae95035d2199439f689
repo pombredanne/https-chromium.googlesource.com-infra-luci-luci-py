@@ -22,6 +22,30 @@
       "revId": "349f4a52391c7a1f84f13ae95035d2199439f689",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd20c5e_5f103622",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-12T00:30:10Z",
+      "side": 1,
+      "message": "Ah, OK. done.",
+      "parentUuid": "c2d59a89_73845ab8",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 372,
+        "endChar": 0
+      },
+      "revId": "349f4a52391c7a1f84f13ae95035d2199439f689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
