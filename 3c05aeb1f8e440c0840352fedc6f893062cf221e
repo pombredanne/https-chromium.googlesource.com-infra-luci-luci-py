@@ -34,6 +34,24 @@
       "revId": "3c05aeb1f8e440c0840352fedc6f893062cf221e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c24d6b8_62ff37fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-06-12T00:03:34Z",
+      "side": 1,
+      "message": "nvm. still failing, but another test.\n\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8877744679727298720/+/u/components/run_tests_python2/stdout\n\nThe failed test doesn\u0027t look like related to this patch, though. I will trace further",
+      "parentUuid": "02ee169a_cf408443",
+      "revId": "3c05aeb1f8e440c0840352fedc6f893062cf221e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
