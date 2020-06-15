@@ -5,10 +5,14 @@
 import datetime
 import logging
 
+import endpoints
+
 from components import auth
 
 from proto.config import realms_pb2
+from server import acl
 from server import config
+from server import pools_config
 from server import task_scheduler
 
 _TRACKING_BUG = 'crbug.com/1066839'
@@ -92,6 +96,40 @@ def check_pools_create_task(pool, pool_cfg):
       is_enforced=is_enforced_permission(perm, pool_cfg),
       legacy_check_func=check_auth_legacy,
       legacy_auth_err_msg=legacy_err_msg,
+      dryrun_realm=pool_cfg.realm)
+
+
+def check_pools_list_bots(pool):
+  """Checks if the caller can list or count bots in the pool.
+
+  Realm permission `swarming.pools.listBots` will be checked
+  using auth.has_permission() or auth.has_permission_dryrun().
+
+  If the Realm permission is enforced,
+    it just calls auth.has_permission().
+
+  Otherwise,
+    it calls legacy acl.can_view_bot() and compare the result with
+    the realm permission check result. using auth.has_permission_dryrun().
+
+  Args:
+    pool: Pool where the target bots belong.
+
+  Returns:
+    None
+
+  Raises:
+    auth.AuthorizationError: if the caller is not allowed to query bots
+                             in the pool.
+  """
+  pool_cfg = _get_pool_config(pool)
+  perm = realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS
+
+  _check_permission(
+      perm,
+      pool_cfg.realm,
+      is_enforced=is_enforced_permission(perm, pool_cfg),
+      legacy_check_func=acl.can_view_bot,
       dryrun_realm=pool_cfg.realm)
 
 
@@ -228,3 +266,11 @@ def _check_permission(enum_permission,
 
   if not legacy_allowed:
     raise auth.AuthorizationError(legacy_auth_err_msg)
+
+
+def _get_pool_config(pool):
+  cfg = pools_config.get_pool_config(pool)
+  if not cfg:
+    logging.warning('Pool "%s" is not configured in pools.cfg', pool)
+    raise endpoints.BadRequestException('Pool "%s" not found.' % pool)
+  return cfg
