@@ -70,6 +70,30 @@
       "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03ce0597_5c7fbd41",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-15T07:31:39Z",
+      "side": 1,
+      "message": "I know there is a batch cancel, but I think it\u0027s just an extension of cancel API.\n(Search(list)/count APIs are different from batch APIs, which specify ids explicitly.)\n\nIt would make sense if it\u0027s consistent with other permissions like bot terminate/delete permissions.\nWe don\u0027t have batch APIs for them, yet. but we could have /bots/terminate, /bots/delete with the \u0027plural\u0027 permissions. e.g. terminateBots, deleteBots\n\nBoth make sense. I just prefer singular, personally.",
+      "parentUuid": "32ac11f8_4f72da6a",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
