@@ -22,6 +22,30 @@
       "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dec618b2_8c7583c9",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-15T07:08:34Z",
+      "side": 1,
+      "message": "This permission will be used in both /task/{task_id}/cancel and /tasks/cancel APIs.\nSo singular looks reasonable as other permissions. e.g. createTask, terminateBot, deleteBot",
+      "parentUuid": "c74cd60c_ac3fdead",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
