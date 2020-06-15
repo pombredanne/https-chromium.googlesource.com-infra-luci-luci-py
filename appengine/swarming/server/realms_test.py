@@ -22,6 +22,7 @@ from test_support import test_case
 from proto.config import config_pb2
 from proto.config import pools_pb2
 from proto.config import realms_pb2
+from server import acl
 from server import config
 from server import pools_config
 from server import realms
@@ -30,6 +31,7 @@ from server import task_request
 from server import task_scheduler
 
 _PERM_POOLS_CREATE_TASK = auth.Permission('swarming.pools.createTask')
+_PERM_POOLS_LIST_BOTS = auth.Permission('swarming.pools.listBots')
 _PERM_TASKS_CREATE_IN_REALM = auth.Permission('swarming.tasks.createInRealm')
 _PERM_TASKS_RUN_AS = auth.Permission('swarming.tasks.runAs')
 _TASK_SERVICE_ACCOUNT_IDENTITY = auth.Identity(
@@ -65,6 +67,8 @@ class RealmsTest(test_case.TestCase):
     self.mock(auth, 'has_permission', self._has_permission_mock)
     self.mock(auth, 'has_permission_dryrun', self._has_permission_dryrun_mock)
     self.mock(service_accounts, 'has_token_server', lambda: True)
+    self._get_pool_config_mock = mock.Mock()
+    self.mock(pools_config, 'get_pool_config', self._get_pool_config_mock)
     utils.clear_cache(config.settings)
 
   def tearDown(self):
@@ -161,6 +165,60 @@ class RealmsTest(test_case.TestCase):
                                      _gen_pool_config(realm='test:pool'))
     self._has_permission_mock.assert_called_once_with(
         _PERM_POOLS_CREATE_TASK, [u'test:pool'],
+        identity=auth.get_current_identity())
+
+  def test_check_pools_list_bots_legacy_allowed_no_realm(self):
+    self._get_pool_config_mock.return_value = _gen_pool_config(realm=None)
+    self.mock(acl, 'can_view_bot', lambda: True)
+    realms.check_pools_list_bots('test_pool')
+    self._has_permission_dryrun_mock.assert_not_called()
+
+  def test_check_pools_list_bots_legacy_allowed(self):
+    self._get_pool_config_mock.return_value = _gen_pool_config(
+        realm='test:pool')
+    self.mock(acl, 'can_view_bot', lambda: True)
+    realms.check_pools_list_bots('test_pool')
+    self._has_permission_dryrun_mock.assert_called_once_with(
+        _PERM_POOLS_LIST_BOTS, [u'test:pool'],
+        True,
+        identity=auth.get_current_identity(),
+        tracking_bug=realms._TRACKING_BUG)
+
+  def test_check_pools_list_bots_legacy_not_allowed(self):
+    self._get_pool_config_mock.return_value = _gen_pool_config(
+        realm='test:pool')
+    self.mock(acl, 'can_view_bot', lambda: False)
+    with self.assertRaises(auth.AuthorizationError):
+      realms.check_pools_list_bots('test_pool')
+    self._has_permission_dryrun_mock.assert_called_once_with(
+        _PERM_POOLS_LIST_BOTS, [u'test:pool'],
+        False,
+        identity=auth.get_current_identity(),
+        tracking_bug=realms._TRACKING_BUG)
+
+  def test_check_pools_list_bots_enforced_allowed(self):
+    self._get_pool_config_mock.return_value = _gen_pool_config(
+        realm='test:pool',
+        enforced_realm_permissions=[
+            realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS,
+        ])
+    self._has_permission_mock.return_value = True
+    realms.check_pools_list_bots('test_pool')
+    self._has_permission_mock.assert_called_once_with(
+        _PERM_POOLS_LIST_BOTS, [u'test:pool'],
+        identity=auth.get_current_identity())
+
+  def test_check_pools_list_bots_enforced_not_allowed(self):
+    self._get_pool_config_mock.return_value = _gen_pool_config(
+        realm='test:pool',
+        enforced_realm_permissions=[
+            realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS,
+        ])
+    self._has_permission_mock.return_value = False
+    with self.assertRaises(auth.AuthorizationError):
+      realms.check_pools_list_bots('test_pool')
+    self._has_permission_mock.assert_called_once_with(
+        _PERM_POOLS_LIST_BOTS, [u'test:pool'],
         identity=auth.get_current_identity())
 
   def test_check_tasks_create_in_realm_legacy(self):
