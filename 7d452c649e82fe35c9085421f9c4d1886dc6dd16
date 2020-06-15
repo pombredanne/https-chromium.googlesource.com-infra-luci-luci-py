@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c74cd60c_ac3fdead",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-15T07:05:41Z",
+      "side": 1,
+      "message": "cancelTasks?",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
