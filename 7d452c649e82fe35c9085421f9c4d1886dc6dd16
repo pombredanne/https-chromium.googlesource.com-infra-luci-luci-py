@@ -46,6 +46,30 @@
       "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32ac11f8_4f72da6a",
+        "filename": "appengine/swarming/proto/config/realms.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-15T07:11:39Z",
+      "side": 1,
+      "message": "But I feel this api is more similar to pool.listTasks or pool.listBots?",
+      "parentUuid": "dec618b2_8c7583c9",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "7d452c649e82fe35c9085421f9c4d1886dc6dd16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
