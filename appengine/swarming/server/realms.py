@@ -5,11 +5,17 @@
 import datetime
 import logging
 
+import endpoints
+
 from components import auth
 
 from proto.config import realms_pb2
+from server import acl
+from server import bot_management
 from server import config
+from server import pools_config
 from server import task_scheduler
+from server import task_queues
 
 _TRACKING_BUG = 'crbug.com/1066839'
 
@@ -51,6 +57,9 @@ def is_enforced_permission(perm, pool_cfg=None):
   if pool_cfg and perm in pool_cfg.enforced_realm_permissions:
     return True
   return perm in config.settings().auth.enforced_realm_permissions
+
+
+# Realm permission checks
 
 
 def check_pools_create_task(pool, pool_cfg):
@@ -190,6 +199,54 @@ def check_tasks_run_as(task_request, pool_cfg):
           tracking_bug='crbug.com/1066839')
 
 
+# Handler permission checks
+
+
+def check_bot_get_acl(bot_id):
+  # check global permission.
+  if acl.can_view_bot():
+    return
+
+  # retrieve the pools from bot dimensions in the last BotEvent,
+  # because BotInfo may have been deleted.
+  events = bot_management.get_events_query(bot_id, True).fetch(1)
+  if not events:
+    raise endpoints.NotFoundException('Bot "%s" not found.' % bot_id)
+  dimensions_flat = task_queues.bot_dimensions_to_flat(events[0].dimensions)
+
+  # the caller needs to have any permission of the pools.
+  pools = _get_pools_from_dimensions_flat(dimensions_flat)
+  realms = [pools_config.get_pool_config(p).realm for p in pools]
+
+  # check Realm permission 'swarming.pools.listBots'
+  perm = get_permission(realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS)
+  _check_permission(perm, realms)
+
+
+def check_bots_list_acl(dimensions):
+  # check global permission.
+  if acl.can_view_bot():
+    return
+
+  pools = _get_pools_from_dimensions_flat(dimensions)
+
+  # Pool dimension is required if the caller doesn't have global permission.
+  if not pools:
+    raise auth.AuthorizationError('Pool dimension is missing')
+
+  # check Realm permission 'swarming.pools.listBots'
+  perm = get_permission(realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS)
+
+  # the caller needs to have all permissions of the pools.
+  for p in pools:
+    pool_cfg = pools_config.get_pool_config(p)
+    if not pool_cfg:
+      raise endpoints.BadRequestException('Pool "%s" not found' % p)
+
+    # check Realm permission 'swarming.pools.listBots'
+    _check_permission(perm, [pool_cfg.realm])
+
+
 # Private section
 
 
@@ -219,8 +276,14 @@ def _check_permission(perm, realms, identity=None):
     raise auth.AuthorizationError('Realm is missing')
 
   if not auth.has_permission(perm, realms, identity=identity):
-    raise auth.AuthorizationError(
-        '[realms] Identity "%s" does not have permission "%s" in any realms %s'
-        % (identity, perm.name, realms))
-  logging.info('[realms] Identity "%s" has permission "%s" in any realms %s',
-               identity, perm.name, realms)
+    logging.warning(
+        '[realms] %s "%s" does not have permission "%s" in any realms %s',
+        identity.kind, identity.name, perm.name, realms)
+    raise auth.AuthorizationError('%s "%s" does not have permission "%s"' %
+                                  (identity.kind, identity.name, perm.name))
+  logging.info('[realms]  %s "%s" has permission "%s" in any realms %s',
+               identity.kind, identity.name, perm.name, realms)
+
+
+def _get_pools_from_dimensions_flat(dimensions):
+  return [d.replace('pool:', '') for d in dimensions if d.startswith('pool:')]
