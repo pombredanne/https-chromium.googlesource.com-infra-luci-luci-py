@@ -22,6 +22,30 @@
       "revId": "1cc35db689cb3a4fbff0934ad18c2a0a84f3b8eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "576c6f57_d1d6eec9",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-16T08:29:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d48e7e3_9148893f",
+      "range": {
+        "startLine": 227,
+        "startChar": 24,
+        "endLine": 227,
+        "endChar": 26
+      },
+      "revId": "1cc35db689cb3a4fbff0934ad18c2a0a84f3b8eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
