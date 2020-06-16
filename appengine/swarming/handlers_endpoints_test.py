@@ -1241,7 +1241,7 @@ class TasksApiTest(BaseTest):
   def test_new_ok_with_realm(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
     self.mock(service_accounts, 'has_token_server', lambda: True)
-    self.mock_auth_db()
+    self.mock_auth_db([auth.Permission('swarming.pools.createTask')])
 
     request = self.create_new_request(
         properties={
@@ -2204,6 +2204,10 @@ class QueuesApiTest(BaseTest):
 class BotsApiTest(BaseTest):
   api_service_cls = handlers_endpoints.SwarmingBotsService
 
+  def setUp(self):
+    super(BotsApiTest, self).setUp()
+    self.mock_default_pool_acl([])
+
   def test_list_ok(self):
     """Asserts that BotInfo is returned for the appropriate set of bots."""
     self.set_as_privileged_user()
@@ -2438,6 +2442,39 @@ class BotsApiTest(BaseTest):
     request = handlers_endpoints.BotsRequest.combined_message_class(
         dimensions=['bad'])
     self.call_api('list', body=message_to_dict(request), status=400)
+
+  def test_list_ok_realm(self):
+    # non-privileged user, with realm permission.
+    self.mock_auth_db([auth.Permission('swarming.pools.listBots')])
+    self.set_as_user()
+
+    # the user can query bots in the default pool.
+    self.call_api('list', body={
+        'dimensions': ['pool:default']
+    }, status=200)
+
+  def test_list_forbidden(self):
+    # non-privileged user, with no permissions.
+    self.mock_auth_db([])
+    self.set_as_user()
+
+    # the user needs to specify a pool dimension.
+    response = self.call_api('list', status=403)
+    self.assertErrorResponseMessage(u'Pool dimension is missing', response)
+
+    # the user needs to have permissions of the requested pools.
+    response = self.call_api('list', body={
+        'dimensions': ['pool:default']
+    }, status=403)
+    self.assertErrorResponseMessage(
+        'user "user@example.com" does not have permission '
+        '"swarming.pools.listBots"', response)
+
+    # the user needs to specify known pools.
+    response = self.call_api('list', body={
+        'dimensions': ['pool:unknown']
+    }, status=400)
+    self.assertErrorResponseMessage('Pool "unknown" not found' , response)
 
   def test_count_ok(self):
     """Asserts that BotsCount is returned for the appropriate set of bots."""

@@ -1114,13 +1114,19 @@ class SwarmingBotsService(remote.Service):
   @auth.endpoints_method(
       BotsRequest, swarming_rpcs.BotList,
       http_method='GET')
-  @auth.require(acl.can_view_bot)
+  @auth.require(acl.can_access)
   def list(self, request):
     """Provides list of known bots.
 
     Deleted bots will not be listed.
     """
     logging.debug('%s', request)
+
+    # Check permission
+    # If the caller has global permission, it can access all bots.
+    # Otherwise, it requires pool dimension to check ACL.
+    realms.check_bots_list_acl(request.dimensions)
+
     now = utils.utcnow()
     # Disable the in-process local cache. This is important, as there can be up
     # to a thousand entities loaded in memory, and this is a pure memory leak,
@@ -1149,10 +1155,16 @@ class SwarmingBotsService(remote.Service):
   @auth.endpoints_method(
       BotsCountRequest, swarming_rpcs.BotsCount,
       http_method='GET')
-  @auth.require(acl.can_view_bot)
+  @auth.require(acl.can_access)
   def count(self, request):
     """Counts number of bots with given dimensions."""
     logging.debug('%s', request)
+
+    # Check permission
+    # If the caller has global permission, it can access all bots.
+    # Otherwise, it requires pool dimension to check ACL.
+    realms.check_bots_list_acl(request.dimensions)
+
     now = utils.utcnow()
     q = bot_management.BotInfo.query()
     try:
