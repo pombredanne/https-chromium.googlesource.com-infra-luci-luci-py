@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9b2b06cb_1f06df16",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-16T07:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3233ba86_7392c258",
+      "range": {
+        "startLine": 200,
+        "startChar": 10,
+        "endLine": 200,
+        "endChar": 12
+      },
+      "revId": "9f61c9a274fb9caa64d58b078f20b849e629dca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12385aa4_cde341f5",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-16T06:58:11Z",
       "side": 1,
       "message": "realm?",
+      "range": {
+        "startLine": 201,
+        "startChar": 20,
+        "endLine": 201,
+        "endChar": 26
+      },
+      "revId": "9f61c9a274fb9caa64d58b078f20b849e629dca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6fcfabc_279aec82",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-16T07:02:59Z",
+      "side": 1,
+      "message": "plural is appropriate?\nhttps://ell.stackexchange.com/questions/227167/a-list-of-item-or-items",
+      "parentUuid": "12385aa4_cde341f5",
       "range": {
         "startLine": 201,
         "startChar": 20,
@@ -68,6 +116,30 @@
       "revId": "9f61c9a274fb9caa64d58b078f20b849e629dca0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33c60332_f809a2eb",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-16T07:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fae0a13_b7242030",
+      "range": {
+        "startLine": 202,
+        "startChar": 14,
+        "endLine": 202,
+        "endChar": 16
+      },
+      "revId": "9f61c9a274fb9caa64d58b078f20b849e629dca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
