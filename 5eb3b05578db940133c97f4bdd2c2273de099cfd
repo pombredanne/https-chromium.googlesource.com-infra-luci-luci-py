@@ -16,6 +16,24 @@
       "revId": "5eb3b05578db940133c97f4bdd2c2273de099cfd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92ab3d67_1630d755",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-16T12:52:56Z",
+      "side": 1,
+      "message": "updated the description. PTAL.",
+      "parentUuid": "95778a13_7e8836cb",
+      "revId": "5eb3b05578db940133c97f4bdd2c2273de099cfd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
