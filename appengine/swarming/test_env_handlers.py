@@ -43,6 +43,8 @@ from server import service_accounts
 # Realm permissions used in the tests.
 PERM_POOLS_CREATE_TASK = realms.get_permission(
     realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK)
+PERM_POOLS_LIST_BOTS = realms.get_permission(
+    realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS)
 PERM_TASKS_CREATE_IN_REALM = realms.get_permission(
     realms_pb2.REALM_PERMISSION_TASKS_CREATE_IN_REALM)
 PREM_TASKS_RUN_AS = realms.get_permission(
@@ -50,6 +52,7 @@ PREM_TASKS_RUN_AS = realms.get_permission(
 
 _ALL_PERMS = [
     PERM_POOLS_CREATE_TASK,
+    PERM_POOLS_LIST_BOTS,
     PERM_TASKS_CREATE_IN_REALM,
     PREM_TASKS_RUN_AS,
 ]
@@ -252,12 +255,12 @@ class AppTestBase(test_case.TestCase):
 
     self.mock(pools_config, '_fetch_pools_config', mocked_fetch_pools_config)
 
-  def mock_auth_db(self):
-    self.mock(auth_api,
-              'get_request_cache', lambda: mock.Mock(auth_db=self.auth_db()))
+  def mock_auth_db(self, permissions):
+    cache_mock = mock.Mock(auth_db=self.auth_db(permissions))
+    self.mock(auth_api, 'get_request_cache', lambda: cache_mock)
 
   @staticmethod
-  def auth_db():
+  def auth_db(permissions):
     return auth_api.AuthDB.from_proto(
         replication_state=auth_model.AuthReplicationState(),
         auth_db=replication_pb2.AuthDB(
@@ -287,7 +290,7 @@ class AppTestBase(test_case.TestCase):
                             'test:pool/default',
                         'bindings': [{
                             'permissions': [
-                                _ALL_PERMS.index(PERM_POOLS_CREATE_TASK),
+                                _ALL_PERMS.index(p) for p in permissions
                             ],
                             'principals': ['user:user@example.com'],
                         }],
@@ -724,3 +727,8 @@ class AppTestBase(test_case.TestCase):
     }
     out.update((unicode(k), v) for k, v in kwargs.items())
     return out
+
+  def assertErrorResponseMessage(self, message, response):
+    """Asserts the error message in http response.
+    """
+    self.assertEqual({'error': {'message': message}}, response.json)
