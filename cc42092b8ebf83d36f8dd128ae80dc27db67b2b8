@@ -69,6 +69,30 @@
       "revId": "cc42092b8ebf83d36f8dd128ae80dc27db67b2b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b95a09f5_5805f53a",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-17T22:27:39Z",
+      "side": 1,
+      "message": "Sorry, Roberto. My suggestion wasn\u0027t good.",
+      "parentUuid": "8556bcd6_93fea71d",
+      "range": {
+        "startLine": 232,
+        "startChar": 4,
+        "endLine": 232,
+        "endChar": 15
+      },
+      "revId": "cc42092b8ebf83d36f8dd128ae80dc27db67b2b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
