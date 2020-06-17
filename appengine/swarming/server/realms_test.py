@@ -48,10 +48,10 @@ def _gen_task_request_mock(realm='test:realm'):
   return mocked
 
 
-def _gen_bot_event_mock(dimensions=None):
+def _gen_bot_event_mock(dimensions_flat=None):
   mocked = mock.create_autospec(
       bot_management.BotEvent, spec_set=True, instance=True)
-  mocked.dimensions = dimensions or {}
+  mocked.dimensions_flat = dimensions_flat or []
   return mocked
 
 
@@ -114,13 +114,13 @@ class RealmsTest(test_case.TestCase):
 
   def _mock_for_check_pools_create_task_legacy(self, is_allowed_legacy):
     self.mock(realms, 'is_enforced_permission', lambda *_: False)
-    self.mock(task_scheduler,
-              '_is_allowed_to_schedule', lambda _: is_allowed_legacy)
+    self.mock(task_scheduler, '_is_allowed_to_schedule',
+              lambda _: is_allowed_legacy)
 
   def _mock_for_check_pools_create_task(self, pool_realm='test:pool'):
     self.mock(realms, 'is_enforced_permission', lambda *_: True)
-    self.mock(pools_config,
-              'get_pool_config', lambda _: _gen_pool_config(realm=pool_realm))
+    self.mock(pools_config, 'get_pool_config',
+              lambda _: _gen_pool_config(realm=pool_realm))
 
   def test_check_pools_create_task_legacy_allowed(self):
     self._mock_for_check_pools_create_task_legacy(is_allowed_legacy=True)
@@ -269,7 +269,9 @@ class RealmsTest(test_case.TestCase):
   def test_check_bot_get_acl_allowed(self):
     # mock
     self.mock(acl, 'can_view_bot', lambda: False)
-    bot_events = [_gen_bot_event_mock(dimensions={'pool': ['pool1', 'pool2']})]
+    bot_events = [
+        _gen_bot_event_mock(dimensions_flat=['pool:pool1', 'pool:pool2'])
+    ]
     query = lambda *_: mock.Mock(fetch=lambda _: bot_events)
     self.mock(bot_management, 'get_events_query', query)
     get_pool_config = lambda p: _gen_pool_config(realm='test:' + p)
@@ -284,7 +286,9 @@ class RealmsTest(test_case.TestCase):
   def test_check_bot_get_acl_not_allowed(self):
     # mock
     self.mock(acl, 'can_view_bot', lambda: False)
-    bot_events = [_gen_bot_event_mock(dimensions={'pool': ['pool1', 'pool2']})]
+    bot_events = [
+        _gen_bot_event_mock(dimensions_flat=['pool:pool1', 'pool:pool2'])
+    ]
     query = lambda *_: mock.Mock(fetch=lambda _: bot_events)
     self.mock(bot_management, 'get_events_query', query)
     get_pool_config = lambda p: _gen_pool_config(realm='test:' + p)
@@ -307,7 +311,9 @@ class RealmsTest(test_case.TestCase):
   def test_check_bot_get_acl_no_realms(self):
     # mock
     self.mock(acl, 'can_view_bot', lambda: False)
-    bot_events = [_gen_bot_event_mock(dimensions={'pool': ['pool1', 'pool2']})]
+    bot_events = [
+        _gen_bot_event_mock(dimensions_flat=['pool:pool1', 'pool:pool2'])
+    ]
     query = lambda *_: mock.Mock(fetch=lambda _: bot_events)
     self.mock(bot_management, 'get_events_query', query)
     get_pool_config = lambda p: _gen_pool_config(realm=None)
