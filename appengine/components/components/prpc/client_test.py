@@ -28,9 +28,9 @@ from components.prpc.test import test_prpc_pb2
 
 class PRPCClientTestCase(test_case.TestCase):
 
-  def make_test_client(self):
+  def make_test_client(self, project=None):
     return prpc_client.Client(
-        'example.com', test_prpc_pb2.TestServiceDescription)
+        'example.com', test_prpc_pb2.TestServiceDescription, project=project)
 
   def test_generated_methods(self):
     expected_methods = {
@@ -68,7 +68,7 @@ class PRPCClientTestCase(test_case.TestCase):
     server_metadata = {}  # To be written to.
     with self.mocked_request_async():
       req = test_pb2.GiveRequest(m=1)
-      self.make_test_client().GiveAsync(
+      self.make_test_client(project='mockium').GiveAsync(
           req, metadata=client_metadata,
           response_metadata=server_metadata).get_result()
 
@@ -81,6 +81,7 @@ class PRPCClientTestCase(test_case.TestCase):
               'Accept': 'application/prpc; encoding=binary',
               'X-Prpc-Timeout': '10S',
               'Jennys-Number-Bin': 'ODY3LTUzMDk=',  # '867-5309'
+              'X-Luci-Project': 'mockium',
           },
           scopes=None,
           service_account_key=None,
