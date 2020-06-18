@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b6339905_3e564c65",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-18T02:39:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd19c1dd_8d2d0079",
+      "range": {
+        "startLine": 1439,
+        "startChar": 8,
+        "endLine": 1439,
+        "endChar": 15
+      },
+      "revId": "187eeabe0ae8cc9f0cdb4d8ef5abef0f1cf268b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "265c883e_ce5bb73b",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 10
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5abbb9cf_9f364b15",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-18T02:39:11Z",
+      "side": 1,
+      "message": "I prefer to use alphabetical order here.",
+      "parentUuid": "aa51d027_b3658d2d",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 60
+      },
+      "revId": "187eeabe0ae8cc9f0cdb4d8ef5abef0f1cf268b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a761eda_6342fdab",
         "filename": "appengine/swarming/test_env_handlers.py",
         "patchSetId": 10
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "7a761eda_6342fdab",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "187eeabe0ae8cc9f0cdb4d8ef5abef0f1cf268b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd7e844e_d45ee540",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-18T02:39:11Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "44e14d98_56564740",
       "range": {
         "startLine": 56,
         "startChar": 0,
