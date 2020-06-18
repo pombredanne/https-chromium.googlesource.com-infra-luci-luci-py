@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd19c1dd_8d2d0079",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-18T02:31:27Z",
+      "side": 1,
+      "message": "It looks the `utils.datetime_to_timestamp` returns micro seconds.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/components/components/utils.py;l\u003d176?q\u003df:utils%20datetime_to_timestamp\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "3cb363ea_face166f",
+      "range": {
+        "startLine": 1439,
+        "startChar": 8,
+        "endLine": 1439,
+        "endChar": 15
+      },
+      "revId": "187eeabe0ae8cc9f0cdb4d8ef5abef0f1cf268b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "265c883e_ce5bb73b",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "aa51d027_b3658d2d",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-18T02:31:27Z",
+      "side": 1,
+      "message": "This is the order of the enum definitions.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/proto/config/realms.proto;l\u003d15?q\u003df:realms.proto\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "265c883e_ce5bb73b",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 60
+      },
+      "revId": "187eeabe0ae8cc9f0cdb4d8ef5abef0f1cf268b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a761eda_6342fdab",
         "filename": "appengine/swarming/test_env_handlers.py",
         "patchSetId": 10
@@ -59,6 +107,30 @@
       "writtenOn": "2020-06-18T01:58:40Z",
       "side": 1,
       "message": "sort?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "187eeabe0ae8cc9f0cdb4d8ef5abef0f1cf268b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44e14d98_56564740",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-18T02:31:27Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "7a761eda_6342fdab",
       "range": {
         "startLine": 56,
         "startChar": 0,
