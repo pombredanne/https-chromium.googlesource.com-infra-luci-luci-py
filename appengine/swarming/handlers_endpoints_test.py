@@ -1794,6 +1794,7 @@ class TaskApiTest(BaseTest):
 
     # Attempt to cancel as non-privileged user -> HTTP 403.
     self.set_as_user()
+    self.mock_auth_db([])
     self.call_api(
         'cancel', body={
             'task_id': task_id,
