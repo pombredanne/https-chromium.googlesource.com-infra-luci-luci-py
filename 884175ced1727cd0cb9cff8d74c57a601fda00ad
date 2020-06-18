@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b34cbe3_52092c52",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-18T05:36:42Z",
+      "side": 1,
+      "message": "let me wait the rename of this first.",
+      "revId": "884175ced1727cd0cb9cff8d74c57a601fda00ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
