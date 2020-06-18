@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c012709b_27a33a8b",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-18T04:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff2243ba_50dd2a51",
+      "revId": "bce62fa753d2c95b3dded112352efb2ee911fd56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3eec7bc_88f4eb3e",
         "filename": "appengine/swarming/server/realms_test.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "bce62fa753d2c95b3dded112352efb2ee911fd56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e739722d_9a336eee",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-18T04:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3eec7bc_88f4eb3e",
+      "revId": "bce62fa753d2c95b3dded112352efb2ee911fd56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
