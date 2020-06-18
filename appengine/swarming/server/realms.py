@@ -284,24 +284,6 @@ def check_bots_list_acl(dimensions_flat):
 
 
 def check_task_get_acl(task_request):
-  """Checks if the caller is allowed to get the task entities.
-
-  Checks if the caller has global permission using acl.can_view_task().
-
-  If the caller doesn't have any global permissions,
-    Checks if the caller has either of 'swarming.pools.listTasks' or
-    'swarming.tasks.get' permission.
-
-  Args:
-    task_request: An instance of TaskRequest.
-
-  Returns:
-    None
-
-  Raises:
-    auth.AuthorizationError: if the caller is not allowed.
-  """
-
   if acl.can_view_task(task_request):
     return
 
@@ -313,6 +295,28 @@ def check_task_get_acl(task_request):
     return
 
   # check 'swarming.tasks.get' permission.
+  task_realm = task_request.realm
+  if task_realm and auth.has_permission(
+      get_permission(realms_pb2.REALM_PERMISSION_TASKS_GET), [task_realm]):
+    return
+
+  raise auth.AuthorizationError('Task "%s" is not accessible' %
+                                task_request.task_id)
+
+
+def check_task_cancel_acl(task_request):
+  # check global permission.
+  if acl.can_edit_task(task_request):
+    return
+
+  # check 'swarming.pools.cancelTask' permission.
+  pool_realm = pools_config.get_pool_config(task_request.pool).realm
+  if pool_realm and auth.has_permission(
+      get_permission(realms_pb2.REALM_PERMISSION_POOLS_CANCEL_TASK),
+      [pool_realm]):
+    return
+
+  # check 'swarming.tasks.cancel' permission.
   task_realm = task_request.realm
   if task_realm and auth.has_permission(
       get_permission(realms_pb2.REALM_PERMISSION_TASKS_GET), [task_realm]):
