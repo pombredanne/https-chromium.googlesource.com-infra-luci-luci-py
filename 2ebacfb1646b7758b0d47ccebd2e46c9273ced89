@@ -22,6 +22,30 @@
       "revId": "2ebacfb1646b7758b0d47ccebd2e46c9273ced89",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4704d494_c72670cc",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2020-06-18T05:06:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b33fd211_bc8adb3e",
+      "range": {
+        "startLine": 667,
+        "startChar": 42,
+        "endLine": 667,
+        "endChar": 50
+      },
+      "revId": "2ebacfb1646b7758b0d47ccebd2e46c9273ced89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
