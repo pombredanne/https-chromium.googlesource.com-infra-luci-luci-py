@@ -118,6 +118,30 @@
       "revId": "1dd7c7fa1226a51e69f334d15718a6c85c41e617",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95bbec8b_f88eaa8a",
+        "filename": "appengine/swarming/server/realms_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-18T05:46:25Z",
+      "side": 1,
+      "message": "Can I do it after https://crrev.com/c/2249193, because I deleted some of run-as code from tests in the CL?",
+      "parentUuid": "3ae27fa7_88b7519d",
+      "range": {
+        "startLine": 38,
+        "startChar": 11,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "1dd7c7fa1226a51e69f334d15718a6c85c41e617",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
