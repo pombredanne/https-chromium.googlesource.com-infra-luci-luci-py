@@ -299,7 +299,7 @@ class AppTestBase(test_case.TestCase):
                             'permissions': [
                                 _ALL_PERMS.index(
                                     realms.get_permission(
-                                        realms_pb2.REALM_PERMISSION_TASKS_ACT_AS
+                                        realms_pb2.REALM_PERMISSION_TASKS_RUN_AS
                                     )),
                             ],
                             'principals': ['user:service-account@example.com'],
