@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a48a4e3_3351ab0e",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T04:23:36Z",
+      "side": 1,
+      "message": "I\u0027d like to merge this and isolate handler\u0027s in https://cs.chromium.org/chromium/infra/luci/appengine/isolate/handlers_endpoints_v1.py?l\u003d48-60\u0026rcl\u003d60c180568af32d5729caaee08fe5dc5566d9d743, but not sure where to put it. WDYT if we create a //infra/luci/appengine/components/components/auth/identity.py just for this, or is it an overkill?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 24
+      },
+      "revId": "d251239adee550310ebed1d77a49d3694c65be61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
