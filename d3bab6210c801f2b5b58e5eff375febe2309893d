@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6e37709_2f5bce87",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-19T09:16:04Z",
+      "side": 1,
+      "message": "I think this function name is confusing now?",
+      "range": {
+        "startLine": 374,
+        "startChar": 2,
+        "endLine": 374,
+        "endChar": 23
+      },
+      "revId": "d3bab6210c801f2b5b58e5eff375febe2309893d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
