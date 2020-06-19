@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "3a5a57a5_6f1aa05c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T04:42:57Z",
+      "side": 1,
+      "message": "OK, thanks for the input. Made https://crrev.com/c/2251614",
+      "parentUuid": "8258c10d_05c5f133",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 24
+      },
+      "revId": "d251239adee550310ebed1d77a49d3694c65be61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6de391d_47ab28d3",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 1
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "FWIU, \n\u0027called_once_with\u0027 checks the last call, and expect logging.info to be called only once.",
       "parentUuid": "f6de391d_47ab28d3",
+      "range": {
+        "startLine": 1299,
+        "startChar": 19,
+        "endLine": 1299,
+        "endChar": 28
+      },
+      "revId": "d251239adee550310ebed1d77a49d3694c65be61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30081464_fd9802dd",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T04:42:57Z",
+      "side": 1,
+      "message": "+1. The existing test uses assert_any_call (we might already have had such a debate once on this)",
+      "parentUuid": "eee437ec_cf1412cf",
       "range": {
         "startLine": 1299,
         "startChar": 19,
