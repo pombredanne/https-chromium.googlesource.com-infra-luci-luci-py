@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6044362_fb5ded30",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-19T08:11:45Z",
+      "side": 1,
+      "message": "I will also keep global permissions for admin operations task cancel, bot delete etc.",
+      "revId": "101ae10324467c9edc293f1848ee0236cd029e08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
