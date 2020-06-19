@@ -5,6 +5,7 @@
 """This module defines Swarming Server endpoints handlers."""
 
 import datetime
+import functools
 import json
 import logging
 import os
@@ -331,7 +332,7 @@ class SwarmingTaskService(remote.Service):
       name='result',
       path='{task_id}/result',
       http_method='GET')
-  @auth.require(acl.can_access)
+  @auth.require(acl.can_access, log_identity=True)
   def result(self, request):
     """Reports the result of the task corresponding to a task ID.
 
@@ -360,7 +361,7 @@ class SwarmingTaskService(remote.Service):
       name='request',
       path='{task_id}/request',
       http_method='GET')
-  @auth.require(acl.can_access)
+  @auth.require(acl.can_access, log_identity=True)
   def request(self, request):
     """Returns the task request corresponding to a task ID."""
     logging.debug('%s', request)
@@ -374,7 +375,7 @@ class SwarmingTaskService(remote.Service):
       TaskCancel, swarming_rpcs.CancelResponse,
       name='cancel',
       path='{task_id}/cancel')
-  @auth.require(acl.can_access)
+  @auth.require(acl.can_access, log_identity=True)
   def cancel(self, request):
     """Cancels a task.
 
@@ -394,7 +395,7 @@ class SwarmingTaskService(remote.Service):
       name='stdout',
       path='{task_id}/stdout',
       http_method='GET')
-  @auth.require(acl.can_access)
+  @auth.require(acl.can_access, log_identity=True)
   def stdout(self, request):
     """Returns the output of the task corresponding to a task ID."""
     logging.debug('%s', request)
@@ -449,7 +450,8 @@ class SwarmingTasksService(remote.Service):
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
       swarming_rpcs.NewTaskRequest, swarming_rpcs.TaskRequestMetadata)
-  @auth.require(acl.can_create_task, 'User cannot create tasks.')
+  @auth.require(
+      acl.can_create_task, 'User cannot create tasks.', log_identity=True)
   def new(self, request):
     """Creates a new task.
 
@@ -611,7 +613,7 @@ class SwarmingTasksService(remote.Service):
   @auth.endpoints_method(
       TasksRequest, swarming_rpcs.TaskList,
       http_method='GET')
-  @auth.require(acl.can_access)
+  @auth.require(acl.can_access, log_identity=True)
   def list(self, request):
     """Returns full task results based on the filters.
 
@@ -657,7 +659,7 @@ class SwarmingTasksService(remote.Service):
       http_method='GET')
   # TODO(martiniss): users should be able to view their state. This requires
   # looking up each TaskRequest.
-  @auth.require(acl.can_view_all_tasks)
+  @auth.require(acl.can_view_all_tasks, log_identity=True)
   def get_states(self, request):
     """Returns task state for a specific set of tasks.
     """
@@ -689,7 +691,7 @@ class SwarmingTasksService(remote.Service):
   @auth.endpoints_method(
       TasksRequest, swarming_rpcs.TaskRequests,
       http_method='GET')
-  @auth.require(acl.can_view_all_tasks)
+  @auth.require(acl.can_view_all_tasks, log_identity=True)
   def requests(self, request):
     """Returns tasks requests based on the filters.
 
@@ -729,7 +731,7 @@ class SwarmingTasksService(remote.Service):
   @auth.endpoints_method(
       swarming_rpcs.TasksCancelRequest, swarming_rpcs.TasksCancelResponse,
       http_method='POST')
-  @auth.require(acl.can_edit_all_tasks)
+  @auth.require(acl.can_edit_all_tasks, log_identity=True)
   def cancel(self, request):
     """Cancel a subset of pending tasks based on the tags.
 
@@ -779,7 +781,7 @@ class SwarmingTasksService(remote.Service):
   @auth.endpoints_method(
       TasksCountRequest, swarming_rpcs.TasksCount,
       http_method='GET')
-  @auth.require(acl.can_access)
+  @auth.require(acl.can_access, log_identity=True)
   def count(self, request):
     """Counts number of tasks in a given state."""
     logging.debug('%s', request)
@@ -825,7 +827,7 @@ class SwarmingTasksService(remote.Service):
   @auth.endpoints_method(
       message_types.VoidMessage, swarming_rpcs.TasksTags,
       http_method='GET')
-  @auth.require(acl.can_view_all_tasks)
+  @auth.require(acl.can_view_all_tasks, log_identity=True)
   def tags(self, _request):
     """Returns the cached set of tags currently seen in the fleet."""
     tags = task_result.TagAggregation.KEY.get()

@@ -1282,6 +1282,22 @@ class TasksApiTest(BaseTest):
             },
         }, response.json)
 
+  @mock.patch('logging.info')
+  def test_new_with_identity_logged(self, logfunc):
+    """Assert that service account identity is being logged."""
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.set_as_user()
+    request = self.create_new_request(
+        properties=self.create_props(
+            inputs_ref=swarming_rpcs.FilesRef(
+                isolated='1' * 40,
+                isolatedserver='http://localhost:1',
+                namespace='default-gzip')))
+
+    self.call_api('new', body=message_to_dict(request))
+    identity = auth.get_current_identity()
+    logfunc.assert_any_call('Accessed from %s' % identity.to_bytes())
+
   def _prepare_mass_cancel(self):
     # Create 3 tasks: one pending, one running, one complete.
     self.mock(random, 'getrandbits', lambda _: 0x88)
