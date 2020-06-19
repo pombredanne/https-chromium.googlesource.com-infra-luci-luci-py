@@ -5,6 +5,7 @@
 """This module defines Swarming Server endpoints handlers."""
 
 import datetime
+import functools
 import json
 import logging
 import os
@@ -51,6 +52,20 @@ from server import task_scheduler
 _EDIT = object()
 _VIEW = object()
 
+
+def _log_identity(func):
+  """Logs the identity from the client's request.
+
+  This decorator must come after the auth ones, so that when it is invoked, the
+  identity is updated.
+  """
+
+  @functools.wraps(func)
+  def wrapped(service, *args, **kwargs):
+    logging.info('Accessed from %s' % auth.get_current_identity().to_bytes())
+    return func(service, *args, **kwargs)
+
+  return wrapped
 
 # Add support for BooleanField in protorpc in endpoints GET requests.
 _old_decode_field = protojson.ProtoJson.decode_field
@@ -332,6 +347,7 @@ class SwarmingTaskService(remote.Service):
       path='{task_id}/result',
       http_method='GET')
   @auth.require(acl.can_access)
+  @_log_identity
   def result(self, request):
     """Reports the result of the task corresponding to a task ID.
 
@@ -361,6 +377,7 @@ class SwarmingTaskService(remote.Service):
       path='{task_id}/request',
       http_method='GET')
   @auth.require(acl.can_access)
+  @_log_identity
   def request(self, request):
     """Returns the task request corresponding to a task ID."""
     logging.debug('%s', request)
@@ -375,6 +392,7 @@ class SwarmingTaskService(remote.Service):
       name='cancel',
       path='{task_id}/cancel')
   @auth.require(acl.can_access)
+  @_log_identity
   def cancel(self, request):
     """Cancels a task.
 
@@ -395,6 +413,7 @@ class SwarmingTaskService(remote.Service):
       path='{task_id}/stdout',
       http_method='GET')
   @auth.require(acl.can_access)
+  @_log_identity
   def stdout(self, request):
     """Returns the output of the task corresponding to a task ID."""
     logging.debug('%s', request)
@@ -450,6 +469,7 @@ class SwarmingTasksService(remote.Service):
   @auth.endpoints_method(
       swarming_rpcs.NewTaskRequest, swarming_rpcs.TaskRequestMetadata)
   @auth.require(acl.can_create_task, 'User cannot create tasks.')
+  @_log_identity
   def new(self, request):
     """Creates a new task.
 
@@ -612,6 +632,7 @@ class SwarmingTasksService(remote.Service):
       TasksRequest, swarming_rpcs.TaskList,
       http_method='GET')
   @auth.require(acl.can_access)
+  @_log_identity
   def list(self, request):
     """Returns full task results based on the filters.
 
@@ -658,6 +679,7 @@ class SwarmingTasksService(remote.Service):
   # TODO(martiniss): users should be able to view their state. This requires
   # looking up each TaskRequest.
   @auth.require(acl.can_view_all_tasks)
+  @_log_identity
   def get_states(self, request):
     """Returns task state for a specific set of tasks.
     """
@@ -690,6 +712,7 @@ class SwarmingTasksService(remote.Service):
       TasksRequest, swarming_rpcs.TaskRequests,
       http_method='GET')
   @auth.require(acl.can_view_all_tasks)
+  @_log_identity
   def requests(self, request):
     """Returns tasks requests based on the filters.
 
@@ -730,6 +753,7 @@ class SwarmingTasksService(remote.Service):
       swarming_rpcs.TasksCancelRequest, swarming_rpcs.TasksCancelResponse,
       http_method='POST')
   @auth.require(acl.can_edit_all_tasks)
+  @_log_identity
   def cancel(self, request):
     """Cancel a subset of pending tasks based on the tags.
 
@@ -780,6 +804,7 @@ class SwarmingTasksService(remote.Service):
       TasksCountRequest, swarming_rpcs.TasksCount,
       http_method='GET')
   @auth.require(acl.can_access)
+  @_log_identity
   def count(self, request):
     """Counts number of tasks in a given state."""
     logging.debug('%s', request)
@@ -826,6 +851,7 @@ class SwarmingTasksService(remote.Service):
       message_types.VoidMessage, swarming_rpcs.TasksTags,
       http_method='GET')
   @auth.require(acl.can_view_all_tasks)
+  @_log_identity
   def tags(self, _request):
     """Returns the cached set of tags currently seen in the fleet."""
     tags = task_result.TagAggregation.KEY.get()
