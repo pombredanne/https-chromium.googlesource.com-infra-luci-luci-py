@@ -16,6 +16,24 @@
       "revId": "d605674ed978f835adebb7892943163dcf90f785",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6aa7a85_387b528a",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T04:54:36Z",
+      "side": 1,
+      "message": "https://cs.chromium.org/chromium/infra/luci/appengine/isolate/handlers_endpoints_v1_test.py?l\u003d610-637\u0026rcl\u003d935ea65fc594504ccaddb5ea2366e6c076644f59",
+      "parentUuid": "55d90863_1ee2ad1a",
+      "revId": "d605674ed978f835adebb7892943163dcf90f785",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
