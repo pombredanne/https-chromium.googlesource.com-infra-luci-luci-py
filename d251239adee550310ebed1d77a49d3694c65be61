@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8258c10d_05c5f133",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-19T04:29:56Z",
+      "side": 1,
+      "message": "\u003e auth.require(acl...., log\u003dTrue)?\nSGTM, otherwise there are hanlders with @auth.public, which don\u0027t require authentication.",
+      "parentUuid": "8b77d068_57cb1d2f",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 24
+      },
+      "revId": "d251239adee550310ebed1d77a49d3694c65be61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6de391d_47ab28d3",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 1
