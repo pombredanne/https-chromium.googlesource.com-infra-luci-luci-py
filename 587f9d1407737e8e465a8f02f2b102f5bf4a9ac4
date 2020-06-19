@@ -22,6 +22,30 @@
       "revId": "587f9d1407737e8e465a8f02f2b102f5bf4a9ac4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a17fc9d_aa0a0225",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T08:31:28Z",
+      "side": 0,
+      "message": "WDYT?",
+      "parentUuid": "c7db3507_b416f9cc",
+      "range": {
+        "startLine": 739,
+        "startChar": 19,
+        "endLine": 739,
+        "endChar": 27
+      },
+      "revId": "587f9d1407737e8e465a8f02f2b102f5bf4a9ac4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
