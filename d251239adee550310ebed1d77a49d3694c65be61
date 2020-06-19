@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "c78303f3_8efd2162",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T08:04:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a5a57a5_6f1aa05c",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 24
+      },
+      "revId": "d251239adee550310ebed1d77a49d3694c65be61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6de391d_47ab28d3",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 1
@@ -165,6 +189,30 @@
       "revId": "d251239adee550310ebed1d77a49d3694c65be61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e79fa89_e9361e88",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T08:04:12Z",
+      "side": 1,
+      "message": "Adding to what has been pointed out:\n\n1. The purpose of this test is to check that \"logging.info\" is called with \"Accessed from ...\", not to check that it is called exactly once with that arg.\n2. Because of 1, if we use any_call and do an extra logging.info in the handler, the test will just fail, for completely unrelated reason.\n\nI will once again refer to go/tott/571. The information we really cared about is the identity, not the string template \"Accessed from ...\". So ideally, we can have a simple mockable logger that accepts an identity, but that is way of an overkill.",
+      "parentUuid": "30081464_fd9802dd",
+      "range": {
+        "startLine": 1299,
+        "startChar": 19,
+        "endLine": 1299,
+        "endChar": 28
+      },
+      "revId": "d251239adee550310ebed1d77a49d3694c65be61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
