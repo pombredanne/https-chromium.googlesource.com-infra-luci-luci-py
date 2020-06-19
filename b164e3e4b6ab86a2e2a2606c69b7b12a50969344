@@ -16,6 +16,24 @@
       "revId": "b164e3e4b6ab86a2e2a2606c69b7b12a50969344",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2508b33c_a7ebe790",
+        "filename": "appengine/components/components/auth/api_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-19T06:43:57Z",
+      "side": 1,
+      "message": "Done. I followed https://cs.chromium.org/chromium/infra/luci/appengine/components/components/gerrit_test.py?type\u003dcs\u0026q\u003d%22import+mock%22+file:%5Einfra/luci/appengine/+package:%5Echromium$\u0026g\u003d0\u0026l\u003d15",
+      "parentUuid": "0edc12bf_9a6edf69",
+      "revId": "b164e3e4b6ab86a2e2a2606c69b7b12a50969344",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
