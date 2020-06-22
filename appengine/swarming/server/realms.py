@@ -279,8 +279,8 @@ def check_bots_list_acl(dimensions_flat):
   # check global permission.
   if acl.can_view_bot():
     return
-  _check_pools_list_acl(realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS,
-                        dimensions_flat)
+  _check_pools_query_acl(realms_pb2.REALM_PERMISSION_POOLS_LIST_BOTS,
+                         dimensions_flat)
 
 
 def check_task_get_acl(task_request):
@@ -385,7 +385,33 @@ def check_tasks_list_acl(tags):
   # check global permission.
   if acl.can_view_all_tasks():
     return
-  _check_pools_list_acl(realms_pb2.REALM_PERMISSION_POOLS_LIST_TASKS, tags)
+  _check_pools_query_acl(realms_pb2.REALM_PERMISSION_POOLS_LIST_TASKS, tags)
+
+
+def check_tasks_cancel_acl(tags):
+  """Checks if the caller is allowed to cancel tasks.
+
+  Checks if the caller has global permission using acl.can_edit_all_tasks().
+
+  If the caller doesn't have any global permissions,
+    It checks realm permission 'swarming.pools.cancelTask'.
+    The caller is required to specify a pool dimension, and have
+    *all* permissions of the specified pools.
+
+  Args:
+    tags: List of tags for filtering.
+
+  Returns:
+    None
+
+  Raises:
+    auth.AuthorizationError: if the caller is not allowed.
+  """
+
+  # check global permission.
+  if acl.can_edit_all_tasks():
+    return
+  _check_pools_query_acl(realms_pb2.REALM_PERMISSION_POOLS_CANCEL_TASK, tags)
 
 
 # Private section
@@ -440,8 +466,9 @@ def _retrieve_bot_dimensions(bot_id):
   return events[0].dimensions_flat
 
 
-def _check_pools_list_acl(perm_enum, dimensions):
-  """Checks if the caller is allowed to list or count resources in the pools.
+def _check_pools_query_acl(perm_enum, dimensions):
+  """Checks if the caller is allowed list, count, update resources in the
+  pools.
 
   The caller needs to have *all* permissions of the specified pools.
 
@@ -454,7 +481,6 @@ def _check_pools_list_acl(perm_enum, dimensions):
   if not pools:
     raise auth.AuthorizationError('No pool is specified')
 
-  # check Realm permission 'swarming.pools.listTasks'
   perm = get_permission(perm_enum)
 
   # the caller needs to have all permissions of the pools.
@@ -463,7 +489,6 @@ def _check_pools_list_acl(perm_enum, dimensions):
     if not pool_cfg:
       raise endpoints.BadRequestException('Pool "%s" not found' % p)
 
-    # check Realm permission 'swarming.pools.listBots'
     _check_permission(perm, [pool_cfg.realm])
 
 
