@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b44d563_fbfb909e",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T04:51:45Z",
+      "side": 1,
+      "message": "I fixed the comment.",
+      "parentUuid": "e8b45165_7cdef037",
+      "range": {
+        "startLine": 470,
+        "startChar": 37,
+        "endLine": 471,
+        "endChar": 8
+      },
+      "revId": "1fc72a0122b6ac1f4c84512a6d1a8b1029549199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0cebd369_d08bd483",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-22T04:37:57Z",
       "side": 1,
       "message": "all pools but not all permissions?",
+      "range": {
+        "startLine": 473,
+        "startChar": 28,
+        "endLine": 473,
+        "endChar": 31
+      },
+      "revId": "1fc72a0122b6ac1f4c84512a6d1a8b1029549199",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3be5d9d1_fb85635e",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T04:51:45Z",
+      "side": 1,
+      "message": "I fixed the comment.",
+      "parentUuid": "0cebd369_d08bd483",
       "range": {
         "startLine": 473,
         "startChar": 28,

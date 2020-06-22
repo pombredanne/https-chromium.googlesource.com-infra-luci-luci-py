@@ -288,6 +288,30 @@
     },
     {
       "key": {
+        "uuid": "66126f46_f496e4fe",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T04:51:45Z",
+      "side": 1,
+      "message": "\u003e I think we don\u0027t have pool in tags.\n\nI\u0027m not sure if we\u0027re talking about the same \u0027tags\u0027.\nBut I think there are pool tags. http://screen/tXjGrZqasiW\nIIRC, we discussed to use \u0027tags\u0027 for permission check at batch cancel API.",
+      "parentUuid": "e7c435c3_bfde9357",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
