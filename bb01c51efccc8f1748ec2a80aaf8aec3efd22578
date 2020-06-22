@@ -264,6 +264,30 @@
     },
     {
       "key": {
+        "uuid": "e7c435c3_bfde9357",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-22T04:37:57Z",
+      "side": 1,
+      "message": "I think we don\u0027t have pool in tags, so this function always throw auth error then?",
+      "parentUuid": "8c963e47_72181b35",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
