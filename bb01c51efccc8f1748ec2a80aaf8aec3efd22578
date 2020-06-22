@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "b8e0db95_de4e9fd4",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T02:49:55Z",
+      "side": 1,
+      "message": "The field in the cancel request is called \u0027tags\u0027.",
+      "parentUuid": "7b74a577_720d22e2",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa1c668_b8add612",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T02:49:55Z",
+      "side": 1,
+      "message": "I considered, but thought it\u0027s too generic.\n(swarming.pools.createTask doesn\u0027t use the private function).\n\nI couldn\u0027t come up with a better name. maybe filters?\n_check_pools_filters_acl\n_check_pools_with_filters_acl",
+      "parentUuid": "e51601e3_23f2d9ec",
+      "range": {
+        "startLine": 414,
+        "startChar": 2,
+        "endLine": 414,
+        "endChar": 24
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
@@ -68,6 +116,30 @@
       "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "634ddd88_7cd2fb94",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T02:49:55Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c2a2c6c6_83399554",
+      "range": {
+        "startLine": 470,
+        "startChar": 40,
+        "endLine": 470,
+        "endChar": 51
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
