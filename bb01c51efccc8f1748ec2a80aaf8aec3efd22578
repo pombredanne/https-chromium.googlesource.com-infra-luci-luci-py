@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "0ce1d10a_1f5576c4",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-22T03:32:10Z",
+      "side": 1,
+      "message": "If this is tags, why not use tags for argument name?\nOr this can be both tags or dimensions?",
+      "parentUuid": "1219e871_6621ebb8",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
