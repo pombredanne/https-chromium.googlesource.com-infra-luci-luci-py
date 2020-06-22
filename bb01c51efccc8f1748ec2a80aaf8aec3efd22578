@@ -144,6 +144,54 @@
     },
     {
       "key": {
+        "uuid": "4a5f604e_4ba2255a",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T03:03:37Z",
+      "side": 1,
+      "message": "Ok, will change.",
+      "parentUuid": "dab14788_f6e6755f",
+      "range": {
+        "startLine": 414,
+        "startChar": 2,
+        "endLine": 414,
+        "endChar": 24
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1219e871_6621ebb8",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T03:03:37Z",
+      "side": 1,
+      "message": "Would it make sense to rename the argument?\n\ne.g.\n_check_pools_filters_acl(..., conditions)\n_check_pools_filters_acl(..., criteria)",
+      "parentUuid": "4d13e76c_d9bc65b3",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
