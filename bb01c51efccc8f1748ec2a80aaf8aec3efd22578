@@ -336,6 +336,30 @@
     },
     {
       "key": {
+        "uuid": "d854f4b3_c43e60d0",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T05:15:48Z",
+      "side": 1,
+      "message": "\u003e This contains \u0027pool-tag:\u003cpool\u003e\u0027 instead of \u0027pool:\u003cpool\u003e\u0027?\n\nThe \u0027-tag\u0027 suffix is used only on the UI. The API request sends \"tags: [\u0027pool:pool1\u0027, ...]\".",
+      "parentUuid": "39ea67a7_5669b0cd",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
