@@ -216,6 +216,54 @@
     },
     {
       "key": {
+        "uuid": "3bde6156_1149a378",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T04:27:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a5f604e_4ba2255a",
+      "range": {
+        "startLine": 414,
+        "startChar": 2,
+        "endLine": 414,
+        "endChar": 24
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c963e47_72181b35",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-22T04:27:04Z",
+      "side": 1,
+      "message": "\u003e Or this can be both tags or dimensions?\n\nyes.",
+      "parentUuid": "0ce1d10a_1f5576c4",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
