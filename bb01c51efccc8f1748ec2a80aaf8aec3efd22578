@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b74a577_720d22e2",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-22T02:28:39Z",
+      "side": 1,
+      "message": "dimensions?",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e51601e3_23f2d9ec",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-22T02:28:39Z",
+      "side": 1,
+      "message": "better to use _check_pools_permission ?\nI feel cancel is not like a query.",
+      "range": {
+        "startLine": 414,
+        "startChar": 2,
+        "endLine": 414,
+        "endChar": 24
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2a2c6c6_83399554",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-22T02:28:39Z",
+      "side": 1,
+      "message": "update?",
+      "range": {
+        "startLine": 470,
+        "startChar": 40,
+        "endLine": 470,
+        "endChar": 51
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
