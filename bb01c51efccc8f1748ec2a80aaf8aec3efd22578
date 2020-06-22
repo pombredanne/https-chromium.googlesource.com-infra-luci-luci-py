@@ -312,6 +312,30 @@
     },
     {
       "key": {
+        "uuid": "39ea67a7_5669b0cd",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-22T05:09:04Z",
+      "side": 1,
+      "message": "Then I think you need to fix _get_pools_from_dimensions_flat.\nThis contains \u0027pool-tag:\u003cpool\u003e\u0027 instead of \u0027pool:\u003cpool\u003e\u0027?",
+      "parentUuid": "66126f46_f496e4fe",
+      "range": {
+        "startLine": 414,
+        "startChar": 72,
+        "endLine": 414,
+        "endChar": 76
+      },
+      "revId": "bb01c51efccc8f1748ec2a80aaf8aec3efd22578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a2c6c6_83399554",
         "filename": "appengine/swarming/server/realms.py",
         "patchSetId": 7
