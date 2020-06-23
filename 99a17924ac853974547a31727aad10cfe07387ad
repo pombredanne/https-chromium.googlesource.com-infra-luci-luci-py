@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6b5d34d_143a8ad7",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-23T01:19:39Z",
+      "side": 0,
+      "message": "Which should we introduce \u0027go get\u0027 or \u0027./go/env.py\u0027 to get `isolated` properly?",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 86
+      },
+      "revId": "99a17924ac853974547a31727aad10cfe07387ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
