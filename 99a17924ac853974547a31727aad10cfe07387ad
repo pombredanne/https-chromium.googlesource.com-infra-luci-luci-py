@@ -22,6 +22,23 @@
       "revId": "99a17924ac853974547a31727aad10cfe07387ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89d1f136_3bb7f357",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-23T01:23:24Z",
+      "side": 0,
+      "message": "better to add explanation about how to get isolated?",
+      "revId": "99a17924ac853974547a31727aad10cfe07387ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
