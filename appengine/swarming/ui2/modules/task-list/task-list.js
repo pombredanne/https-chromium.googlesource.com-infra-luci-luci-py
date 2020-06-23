@@ -488,13 +488,16 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
       headers: {'authorization': this.auth_header},
       signal: this._fetchController.signal,
     };
+
     // Fetch the tasks
-    this.app.addBusyTasks(1);
     let queryParams = listQueryParams(this._filters, {
       limit: this._limit,
       start: floorSecond(this._startTime),
       end: floorSecond(this._now ? Date.now() : this._endTime),
     });
+    this.app._fetchPermissions(extra, queryParams);
+
+    this.app.addBusyTasks(1);
     fetch(`/_ah/api/swarming/v1/tasks/list?${queryParams}`, extra)
       .then(jsonOrThrow)
       .then((json) => {
