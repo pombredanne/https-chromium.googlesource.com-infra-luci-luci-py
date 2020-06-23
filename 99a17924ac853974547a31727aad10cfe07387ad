@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "695f5ed9_197013b7",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-23T01:56:14Z",
+      "side": 0,
+      "message": "I added an instruction to install it via CIPD.\nI use `install` instead of `ensure` because it\u0027s simpler.\nhttp://screen/stNGz2p32Cv",
+      "parentUuid": "48055aec_2d3baa28",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 86
+      },
+      "revId": "99a17924ac853974547a31727aad10cfe07387ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89d1f136_3bb7f357",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 2
