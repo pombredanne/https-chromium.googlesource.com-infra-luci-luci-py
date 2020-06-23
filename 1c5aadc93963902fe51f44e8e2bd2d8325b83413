@@ -45,6 +45,54 @@
       "revId": "1c5aadc93963902fe51f44e8e2bd2d8325b83413",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b13e3ef7_570f5467",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-23T04:17:11Z",
+      "side": 1,
+      "message": "What do you suggest?\n\nBetter to install to the current directory?\n\ne.g.\ncipd install infra/tools/luci/isolated/${platform} -root .\n./isolated download ...",
+      "parentUuid": "422c6e18_505cf070",
+      "range": {
+        "startLine": 835,
+        "startChar": 78,
+        "endLine": 835,
+        "endChar": 92
+      },
+      "revId": "1c5aadc93963902fe51f44e8e2bd2d8325b83413",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2394fa71_e5f35df1",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-23T04:17:11Z",
+      "side": 1,
+      "message": "It escapes for JS template engine. I tried, but single quote didn\u0027t escape.\nI updated since I realized that \\${...} is sufficient.",
+      "parentUuid": "2300670e_5da8827e",
+      "range": {
+        "startLine": 835,
+        "startChar": 57,
+        "endLine": 835,
+        "endChar": 71
+      },
+      "revId": "1c5aadc93963902fe51f44e8e2bd2d8325b83413",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
