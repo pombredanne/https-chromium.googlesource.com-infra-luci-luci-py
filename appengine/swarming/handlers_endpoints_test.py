@@ -161,7 +161,7 @@ class ServerApiTest(BaseTest):
     self.set_as_user()
     response = self.call_api('permissions')
     expected = {
-        u'cancel_task': True,
+        u'cancel_task': False,
         u'cancel_tasks': False,
         u'delete_bot': False,
         u'get_bootstrap_token': False,
@@ -171,12 +171,46 @@ class ServerApiTest(BaseTest):
     }
     self.assertEqual(expected, response.json)
 
+  def test_user_permissions_with_bot_id(self):
+    """Asserts that permissions respond correctly to a user has pool
+       permissions.
+    """
+    # create a bot, and a task.
+    self.set_as_bot()
+    self.bot_poll()
+    self.set_as_admin()
+    self.mock_default_pool_acl([])
+    _, task_id = self.client_create_task_raw()
+
+    # The user has realm permissions.
+    self.set_as_user()
+    self.mock_auth_db([
+        auth.Permission('swarming.pools.terminateBot'),
+        auth.Permission('swarming.pools.cancelTask'),
+    ])
+    params = {
+        'bot_id': 'bot1',
+        'task_id': task_id,
+        'tags': ['pool:default'],
+    }
+    response = self.call_api('permissions', body=params, status=200)
+    expected = {
+        u'cancel_task': True,
+        u'cancel_tasks': True,
+        u'delete_bot': False,
+        u'get_bootstrap_token': False,
+        u'get_configs': False,
+        u'put_configs': False,
+        u'terminate_bot': True,
+    }
+    self.assertEqual(expected, response.json)
+
   def test_privileged_user_permissions(self):
     """Asserts that permissions respond correctly to a privileged user."""
     self.set_as_privileged_user()
     response = self.call_api('permissions')
     expected = {
-        u'cancel_task': True,
+        u'cancel_task': False,
         u'cancel_tasks': False,
         u'delete_bot': False,
         u'get_bootstrap_token': False,
@@ -191,7 +225,7 @@ class ServerApiTest(BaseTest):
     self.set_as_admin()
     response = self.call_api('permissions')
     expected = {
-        u'cancel_task': True,
+        u'cancel_task': False,
         u'cancel_tasks': True,
         u'delete_bot': True,
         u'get_bootstrap_token': True,
