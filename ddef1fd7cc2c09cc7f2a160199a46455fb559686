@@ -22,6 +22,30 @@
       "revId": "ddef1fd7cc2c09cc7f2a160199a46455fb559686",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95590511_e5d1c50e",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-23T02:18:44Z",
+      "side": 1,
+      "message": "Oops. fixed.\nhttps://screenshot.googleplex.com/OV7snpWTPsy",
+      "parentUuid": "b9a9d68e_192aed1c",
+      "range": {
+        "startLine": 835,
+        "startChar": 31,
+        "endLine": 835,
+        "endChar": 66
+      },
+      "revId": "ddef1fd7cc2c09cc7f2a160199a46455fb559686",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
