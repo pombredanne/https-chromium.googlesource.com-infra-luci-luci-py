@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "48055aec_2d3baa28",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-23T01:26:36Z",
+      "side": 0,
+      "message": "Ideally, we should introduce go modules to luci-go.\nBut currently, we need to download binary from CIPD.\nSee http://shortn/_b8Jb1v0mav",
+      "parentUuid": "b6b5d34d_143a8ad7",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 86
+      },
+      "revId": "99a17924ac853974547a31727aad10cfe07387ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89d1f136_3bb7f357",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 2
@@ -75,6 +99,24 @@
       "revId": "99a17924ac853974547a31727aad10cfe07387ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1405a08d_0466dfbd",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-23T01:26:36Z",
+      "side": 0,
+      "message": "Sorry, I did\u0027t notice. replied.",
+      "parentUuid": "b6c2c2b0_acbe72d5",
+      "revId": "99a17924ac853974547a31727aad10cfe07387ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
