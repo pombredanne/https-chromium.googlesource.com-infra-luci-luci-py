@@ -93,6 +93,30 @@
       "revId": "1c5aadc93963902fe51f44e8e2bd2d8325b83413",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5be3aebe_28c3ebf8",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-23T04:24:50Z",
+      "side": 1,
+      "message": "I think it is fine to use name like bar here?",
+      "parentUuid": "b13e3ef7_570f5467",
+      "range": {
+        "startLine": 835,
+        "startChar": 78,
+        "endLine": 835,
+        "endChar": 92
+      },
+      "revId": "1c5aadc93963902fe51f44e8e2bd2d8325b83413",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

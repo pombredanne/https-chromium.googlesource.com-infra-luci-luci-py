@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44b8f66f_387bb34e",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-23T04:24:50Z",
+      "side": 1,
+      "message": "use single quote not to expland ${platform} in shell.",
+      "range": {
+        "startLine": 835,
+        "startChar": 31,
+        "endLine": 835,
+        "endChar": 69
+      },
+      "revId": "afa0c7f331e515e8f81a586334f8d39c7b74db1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
