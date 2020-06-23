@@ -261,7 +261,7 @@ window.customElements.define('swarming-app', class extends HTMLElement {
     const auth = {
       headers: {'authorization': this._auth_header}
     };
-    this.addBusyTasks(2);
+    this.addBusyTasks(1);
     fetch('/_ah/api/swarming/v1/server/details', auth)
       .then(jsonOrThrow)
       .then((json) => {
@@ -285,7 +285,20 @@ window.customElements.define('swarming-app', class extends HTMLElement {
         }
         this.finishedTask();
       });
-    fetch('/_ah/api/swarming/v1/server/permissions', auth)
+    this._fetchPermissions(auth);
+  }
+
+  _fetchPermissions(auth, params) {
+    this.addBusyTasks(1);
+    let url = '/_ah/api/swarming/v1/server/permissions';
+    if (params) {
+      const urlParams = new URLSearchParams();
+      for (const [k, v] of Object.entries(params)) {
+        urlParams.append(k, v);
+      }
+      url += `?${urlParams.toString()}`;
+    }
+    fetch(url, auth)
       .then(jsonOrThrow)
       .then((json) => {
         this._permissions = json;
