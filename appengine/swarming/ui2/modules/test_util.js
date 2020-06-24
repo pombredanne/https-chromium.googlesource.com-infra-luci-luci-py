@@ -104,7 +104,6 @@ export function mockAppGETs(fetchMock, permissions) {
     display_server_url_template: 'https://example.com#id=%s',
   });
 
-
   fetchMock.get('/_ah/api/swarming/v1/server/permissions', permissions);
 }
 
@@ -115,7 +114,6 @@ export function mockAuthdAppGETs(fetchMock, permissions) {
     machine_provider_template: 'https://example.com/leases/%s',
     display_server_url_template: 'https://example.com#id=%s',
   }));
-
 
   fetchMock.get('/_ah/api/swarming/v1/server/permissions',
                 requireLogin(permissions));
