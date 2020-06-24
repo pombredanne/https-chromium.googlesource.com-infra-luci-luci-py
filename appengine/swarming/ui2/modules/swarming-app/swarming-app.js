@@ -33,6 +33,7 @@ import { errorMessage } from 'elements-sk/errorMessage'
 import { html, render } from 'lit-html'
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { jsonOrThrow } from 'common-sk/modules/jsonOrThrow'
+import * as query from 'common-sk/modules/query'
 import { upgradeProperty } from 'elements-sk/upgradeProperty'
 
 import 'elements-sk/error-toast-sk'
@@ -261,7 +262,7 @@ window.customElements.define('swarming-app', class extends HTMLElement {
     const auth = {
       headers: {'authorization': this._auth_header}
     };
-    this.addBusyTasks(2);
+    this.addBusyTasks(1);
     fetch('/_ah/api/swarming/v1/server/details', auth)
       .then(jsonOrThrow)
       .then((json) => {
@@ -285,7 +286,14 @@ window.customElements.define('swarming-app', class extends HTMLElement {
         }
         this.finishedTask();
       });
-    fetch('/_ah/api/swarming/v1/server/permissions', auth)
+    this._fetchPermissions(auth);
+  }
+
+  _fetchPermissions(auth, params) {
+    this.addBusyTasks(1);
+    let url = '/_ah/api/swarming/v1/server/permissions';
+    if (params) url += `?${query.fromObject(params)}`;
+    fetch(url, auth)
       .then(jsonOrThrow)
       .then((json) => {
         this._permissions = json;
