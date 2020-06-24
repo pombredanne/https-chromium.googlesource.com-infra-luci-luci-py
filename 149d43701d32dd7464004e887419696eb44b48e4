@@ -22,6 +22,30 @@
       "revId": "149d43701d32dd7464004e887419696eb44b48e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64c4e13b_dc95452c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T00:49:39Z",
+      "side": 1,
+      "message": "Oops, was confused with something.\nThanks.",
+      "parentUuid": "013590bf_1fa79a30",
+      "range": {
+        "startLine": 274,
+        "startChar": 25,
+        "endLine": 274,
+        "endChar": 43
+      },
+      "revId": "149d43701d32dd7464004e887419696eb44b48e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
