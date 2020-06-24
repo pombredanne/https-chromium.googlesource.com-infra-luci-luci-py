@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b658db3_828084a5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-24T03:33:49Z",
+      "side": 1,
+      "message": "it is fine to pass only task_id here?",
+      "range": {
+        "startLine": 278,
+        "startChar": 29,
+        "endLine": 278,
+        "endChar": 36
+      },
+      "revId": "7dd75f8320f6c9be4e33a83c57bef17831cf7f4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
