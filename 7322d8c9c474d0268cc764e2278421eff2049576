@@ -93,6 +93,23 @@
       "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7717b90d_8b685bd7",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-24T09:24:32Z",
+      "side": 1,
+      "message": "by the way where do we see tabs?",
+      "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
