@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4a7bfabf_d28acf1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T09:32:34Z",
+      "side": 1,
+      "message": "I meant \"strip html tags and ignore spaces and tabs\".\nUpdated.",
+      "parentUuid": "cde9284b_df24f96b",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3369b6f1_9a8fa076",
         "filename": "appengine/swarming/ui2/modules/test_util.js",
         "patchSetId": 3
@@ -107,6 +131,24 @@
       "writtenOn": "2020-06-24T09:24:32Z",
       "side": 1,
       "message": "by the way where do we see tabs?",
+      "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73aec8dc_5abf8cd1",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T09:32:34Z",
+      "side": 1,
+      "message": "I don\u0027t know exactly where it came from.\nBut I faced with tabs in some tests about table rows. \nmaybe around here.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/ui2/modules/task-list/task-list.js;l\u003d201?q\u003dsummaryQueryRow\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\n`actual.innerText` may convert some html tags to tabs.",
+      "parentUuid": "7717b90d_8b685bd7",
       "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
