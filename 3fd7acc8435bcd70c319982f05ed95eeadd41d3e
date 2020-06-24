@@ -1,0 +1,52 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f45bcfee_5b8d8049",
+        "filename": "appengine/swarming/ui2/dist/public_botlist_index-bundle.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T09:55:56Z",
+      "side": 1,
+      "message": "\u003e \"recieved\" is a possible misspelling of \"received\".\n\nFixed",
+      "parentUuid": "ead01b14_16a8bbaf",
+      "range": {
+        "startLine": 201,
+        "startChar": 5526,
+        "endLine": 201,
+        "endChar": 5534
+      },
+      "revId": "3fd7acc8435bcd70c319982f05ed95eeadd41d3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f54f873_8bb0cfdf",
+        "filename": "appengine/swarming/ui2/dist/public_tasklist_index-bundle.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T09:55:56Z",
+      "side": 1,
+      "message": "\u003e \"recieved\" is a possible misspelling of \"received\".\n\nFixed",
+      "parentUuid": "eb5c1336_ea250d4f",
+      "range": {
+        "startLine": 217,
+        "startChar": 48594,
+        "endLine": 217,
+        "endChar": 48602
+      },
+      "revId": "3fd7acc8435bcd70c319982f05ed95eeadd41d3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
