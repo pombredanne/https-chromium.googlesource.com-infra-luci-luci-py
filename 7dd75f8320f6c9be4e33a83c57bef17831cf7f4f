@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "79800d46_54078577",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T04:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b658db3_828084a5",
+      "range": {
+        "startLine": 278,
+        "startChar": 29,
+        "endLine": 278,
+        "endChar": 36
+      },
+      "revId": "7dd75f8320f6c9be4e33a83c57bef17831cf7f4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "323dc6a6_1cb7aa7d",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 4
@@ -36,6 +60,24 @@
       "writtenOn": "2020-06-24T03:34:08Z",
       "side": 1,
       "message": "why this is changed?",
+      "revId": "7dd75f8320f6c9be4e33a83c57bef17831cf7f4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f28a6972_a5e1ad0f",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-24T04:19:42Z",
+      "side": 1,
+      "message": "The existing implementation isn\u0027t implemented properly, and always returns True for authenticated users.\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/d81c2e4afa98a449ae9bc3a63d4246b9fb809f2a/appengine/swarming/handlers_endpoints.py#268\n\nThis CL fixes it.",
+      "parentUuid": "323dc6a6_1cb7aa7d",
       "revId": "7dd75f8320f6c9be4e33a83c57bef17831cf7f4f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
