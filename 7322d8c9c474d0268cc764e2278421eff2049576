@@ -46,6 +46,30 @@
       "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1f54ae4_63647575",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-24T09:22:47Z",
+      "side": 1,
+      "message": "But it still leaves space? how about using \u0027normalize\u0027?",
+      "parentUuid": "9ce02caf_aacba18c",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 21
+      },
+      "revId": "7322d8c9c474d0268cc764e2278421eff2049576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
