@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0de35515_babe5bd1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-25T03:01:26Z",
+      "side": 1,
+      "message": "maybe you want to have tracking issue for this?\n\nalso will you apply prettier too?",
+      "revId": "f8eeb90099c0a7ea0caf4906b3da3d8d05ce4703",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b530f549_12bad2c4",
+        "filename": "appengine/swarming/ui2/.eslintrc.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-25T03:01:26Z",
+      "side": 1,
+      "message": "better to have\n```\nroot: true\n```\n?\nhttps://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy",
+      "revId": "f8eeb90099c0a7ea0caf4906b3da3d8d05ce4703",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
