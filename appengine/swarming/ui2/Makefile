@@ -7,7 +7,7 @@ export npm_config_cache := $(CURDIR)/.npm
 default: _packages-lock.json.done
 	npx webpack --mode=development
 
-release: _packages-lock.json.done
+release: format
 	npx webpack --mode=production
 
 serve: _packages-lock.json.done
@@ -32,6 +32,9 @@ continuous_test:
 	while inotifywait -e modify ./modules/*; do
 		make test
 	done
+
+format: package-lock.json
+	- git ls-files "[^dist]*.js" | xargs npx eslint --fix --quiet
 
 _packages-lock.json.done: package-lock.json
 	npm ci
